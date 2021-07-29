@@ -70,17 +70,21 @@ You can improve the readability of the output using color as well. Run `netq con
 
 The tracing function only knows about addresses that have already been learned. If you find that a path is invalid or incomplete, you may need to ping the identified device so that its address becomes known.
 
+<!-- vale off -->
 ## Create On-demand Traces
+<!-- vale on -->
 
 You can view the current connectivity between two devices in your network by creating an on-demand trace. These can be performed at layer 2 or layer 3 using the NetQ UI or the NetQ CLI.
 
+<!-- vale off -->
 ### Create a Layer 3 On-demand Trace Request
+<!-- vale on -->
 
 It is helpful to verify the connectivity between two devices when you suspect an issue is preventing proper communication between them. If you cannot find a layer 3 path, you might also try checking connectivity through a layer 2 path.
 
-{{< tabs "TabID83" >}}
+{{<tabs "TabID83" >}}
 
-{{< tab "On-demand Trace Request" >}}
+{{<tab "On-demand Trace Request" >}}
 
 1. Determine the IP addresses of the two devices to be traced.
 
@@ -94,8 +98,8 @@ It is helpful to verify the connectivity between two devices when you suspect an
 
 2. Open the Trace Request card.
 
-    - On new workbench: Click in the **Global Search** box. Type *trace*. Click on card name.
-    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click on card. Click **Open Cards**.
+    - On new workbench: Click in the **Global Search** field. Type *trace*. Click the card name.
+    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click the card. Click **Open Cards**.
 
 3. In the **Source** field, enter the hostname or IP address of the device where you want to start the trace.
 
@@ -109,9 +113,9 @@ It is helpful to verify the connectivity between two devices when you suspect an
 
 5. Click **Run Now**. A corresponding Trace Results card is opened on your workbench. Refer to {{<link title="Verify Network Connectivity#view-layer-3-on-demand-trace-results" text="View Layer 3 On-demand Trace Results">}} for details.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "netq trace" >}}
+{{<tab "netq trace" >}}
 
 Use the `netq trace` command to view the results in the terminal window. Use the `netq add trace` command to view the results in the NetQ UI.
 
@@ -230,9 +234,9 @@ Id  Hop Hostname    InPort          InTun, RtrIf    OutRtrIf, Tun   OutPort
 --- --- ----------- --------------- --------------- --------------- ---------------
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "netq add trace" >}}
+{{<tab "netq add trace" >}}
 
 To create a layer 3 on-demand trace and see the results in the On-demand Trace Results card, run:
 
@@ -249,17 +253,19 @@ Running job None src 10.10.10.1 dst 10.10.10.63
 
 Confirmation of the on-demand job is provided. Refer to {{<link title="Verify Network Connectivity#view-layer-3-on-demand-trace-results" text="View Layer 3 On-demand Trace Results">}} for details.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
+<!-- vale off -->
 ### Create a Layer 3 On-demand Trace Through a Given VRF
+<!-- vale on -->
 
 You can guide a layer 3 trace through a particular VRF interface using the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID264" >}}
+{{<tabs "TabID264" >}}
 
-{{< tab "On-demand Trace Request" >}}
+{{<tab "On-demand Trace Request" >}}
 
 To create the trace request:
 
@@ -275,8 +281,8 @@ To create the trace request:
 
 2. Open the Trace Request card.
 
-    - On new workbench: Click in the **Global Search** box. Type *trace*. Click on card name.
-    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click on card. Click **Open Cards**.
+    - On new workbench: Click the **Global Search** entry field. Type *trace*. Click the card name.
+    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click the card. Click **Open Cards**.
 
     {{<figure src="/images/netq/trace-request-large-310.png" width="500">}}
 
@@ -292,9 +298,9 @@ To create the trace request:
 
 6. Click **Run Now**. A corresponding Trace Results card is opened on your workbench. Refer to {{<link title="Verify Network Connectivity#View Layer 3 On-demand Trace Results" text="View Layer 3 On-demandTrace Results">}} for details.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "netq trace" >}}
+{{<tab "netq trace">}}
 
 Use the `netq trace` command to view the results in the terminal window. Use the `netq add trace` command to view the results in the NetQ UI.
 
@@ -306,7 +312,7 @@ netq trace <ip> from (<src-hostname>|<ip-src>) vrf <vrf> [json|detail|pretty]
 
 Note the syntax requires the *destination* device address first and then the *source* device address or hostname.
 
-This example shows a trace from 10.1.10.101 (source, server01) to 10.1.10.104 (destination, server04) through VRF RED in detail output. It first identifies the addresses for the source and destination devices and a VRF between them using `netq show ip addresses` then runs the trace. Note that the VRF name is case sensitive. The trace job may take a bit to compile all of the available paths, especially if there are a large number of them.
+This example shows a trace from 10.1.10.101 (source, server01) to 10.1.10.104 (destination, server04) through VRF RED in detail output. It first identifies the addresses for the source and destination devices and a VRF between them using `netq show ip addresses` then runs the trace. Note that the VRF name is case sensitive. The trace job may take some time to compile all the available paths, especially if there are many of them.
 
 ```
 cumulus@switch:~$ netq server01 show ip addresses
@@ -472,9 +478,9 @@ Path MTU: 9000
                                                        swp51 -- swp1 spine01 swp3 -- swp51 vni: 10 leaf03 bond1 -- uplink server04  
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "netq add trace" >}}
+{{<tab "netq add trace">}}
 
 To create a layer 3 on-demand trace and see the results in the On-demand Trace Results card, run:
 
@@ -490,17 +496,19 @@ cumulus@switch:~$ netq add trace 10.1.10.104 from 10.1.10.101 vrf RED
 
 Confirmation of the on-demand job is provided. Refer to {{<link title="Verify Network Connectivity#View Layer 3 On-demand Trace Results" text="View Layer 3 On-demand Trace Results">}} for details.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
+<!-- vale off -->
 ### Create a Layer 2 On-demand Trace
+<!-- vale on -->
 
 It is helpful to verify the connectivity between two devices when you suspect an issue is preventing proper communication between them. It you cannot find a path through a layer 2 path, you might also try checking connectivity through a layer 3 path.
 
-{{< tabs "TabID505" >}}
+{{<tabs "Create Layer 2 On-demand Trace">}}
 
-{{< tab "On-demand Trace Request" >}}
+{{<tab "On-demand Trace Request">}}
 
 To create a layer 2 trace request:
 
@@ -516,8 +524,8 @@ To create a layer 2 trace request:
 
 2. Open the Trace Request card.
 
-    - On new workbench: Click in the **Global Search** box. Type *trace*. Click on card name.
-    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click on card. Click **Open Cards**.
+    - On new workbench: Click in the **Global Search** field. Type *trace*. Click the card name.
+    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click the card. Click **Open Cards**.
 
     {{<figure src="/images/netq/trace-request-large-310.png" width="500">}}
 
@@ -533,9 +541,9 @@ To create a layer 2 trace request:
 
 6. Click **Run Now**. A corresponding Trace Results card is opened on your workbench. Refer to {{<link title="Verify Network Connectivity#view-layer-2-on-demand-trace-results" text="View Layer 2 On-demand Trace Results">}} for details.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "netq trace" >}}
+{{<tab "netq trace" >}}
 
 Use the `netq trace` command to view on-demand trace results in the terminal window.
 
@@ -743,9 +751,9 @@ Path MTU: 9000
                                                        swp51 -- swp1 spine01 swp3 -- swp51 vni: 10 leaf03 bond1 -- uplink server04  
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "netq add trace" >}}
+{{<tab "netq add trace" >}}
 
 Use the `netq add trace` command to view on-demand trace results in the NetQ UI.
 
@@ -763,21 +771,25 @@ cumulus@switch:~$ netq add trace 44:38:39:00:00:3e vlan 10 from 44:38:39:00:00:3
 
 Confirmation of the on-demand job is provided. Refer to {{<link title="Verify Network Connectivity#view-layer-2-on-demand-trace-results" text="View Layer 2 On-demand Trace Results">}} for details.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
+<!-- vale off -->
 ## View On-demand Trace Results
+<!-- vale on -->
 
 After you have started an on-demand trace, the results are displayed either in the NetQ UI On-demand Trace Result card or by running the `netq show trace results` command.
 
+<!-- vale off -->
 ### View Layer 3 On-demand Trace Results
+<!-- vale on -->
 
 View the results for a layer 3 trace based on how you created the request.
 
-{{< tabs "TabID832" >}}
+{{<tabs "TabID832" >}}
 
-{{< tab "Trace Request card" >}}
+{{<tab "Trace Request card" >}}
 
 After you click **Run Now**, the corresponding results card is opened on your workbench. While it is working on the trace, a notice is shown on the card indicating it is running.
 
@@ -793,15 +805,15 @@ In this example, we see that the trace was successful. 12 paths were found betwe
 
 In our example, we can see that paths 9-12 had three hops by scrolling through the path listing in the table. To view the hop details, refer to the next section. If there were errors or warnings, that caused the trace failure, a count would be visible in this table. To view more details for this and other traces, refer to {{<link title="#View Detailed On-demand Trace Results" text="Detailed On-demand Trace Results">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "netq trace" >}}
+{{<tab "netq trace" >}}
 
 The results of the `netq trace` command are displayed in the terminal window where you ran the command. Refer to {{<link title="#Create On-demand Traces" text="Create On-demand Traces">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "netq add trace" >}}
+{{<tab "netq add trace" >}}
 
 After you have run the `netq add trace` command, you are able to view the results in the NetQ UI.
 
@@ -811,17 +823,17 @@ After you have run the `netq add trace` command, you are able to view the result
 
 To view more details for this and other traces, refer to {{<link title="#View Detailed On-demand Trace Results" text="Detailed On-demand Trace Results">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Layer 2 On-demand Trace Results
 
 View the results for a layer 2 trace based on how you created the request.
 
-{{< tabs "TabID782" >}}
+{{<tabs "TabID782" >}}
 
-{{< tab "Trace Request card" >}}
+{{<tab "Trace Request card" >}}
 
 After clicking **Run Now** on the Trace Request card, the corresponding On-demand Trace Result card is opened on your workbench. While it is working on the trace, a notice is shown on the card indicating it is running.
 
@@ -843,15 +855,15 @@ If there was a difference between the minimum and maximum number of hops or othe
 
 In the example on top, we can verify that every path option had five hops since the distribution chart only shows one hop count and the table indicates each path had a value of five hops. Similarly, you can view the MTU data. In the example on the bottom, is an error (scroll to the right in the table to see the count). To view more details for this and other traces, refer to {{<link title="#View Detailed On-demand Trace Results" text="Detailed On-demand Trace Results">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "netq trace" >}}
+{{<tab "netq trace" >}}
 
 The results of the `netq trace` command are displayed in the terminal window where you ran the command. Refer to {{<link title="#Create On-demand Traces" text="Create On-demand Traces">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "netq add trace" >}}
+{{<tab "netq add trace" >}}
 
 After you have run the `netq add trace` command, you are able to view the results in the NetQ UI.
 
@@ -861,9 +873,9 @@ After you have run the `netq add trace` command, you are able to view the result
 
 To view more details for this and other traces, refer to {{<link title="#View Detailed On-demand Trace Results" text="Detailed On-demand Trace Results">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Detailed On-demand  Trace Results
 
@@ -913,9 +925,9 @@ There may be paths through your network that you consider critical or particular
 
 Use the instructions here, based on how you want to create the trace using the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID920" >}}
+{{<tabs "TabID920" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To schedule a trace:
 
@@ -970,9 +982,9 @@ To schedule a trace:
 
     You can now run this trace on demand by selecting it from the dropdown list, or wait for it to run on its defined schedule. To view the scheduled trace results after its normal run, refer to {{<link title="Verify Network Connectivity#view-scheduled-trace-results" text="View Scheduled Trace Results">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To create a layer 3 scheduled trace and see the results in the Scheduled Trace Results card, run:
 
@@ -980,7 +992,7 @@ To create a layer 3 scheduled trace and see the results in the Scheduled Trace R
 netq add trace name <text-new-trace-name> <ip> from (<src-hostname>|<ip-src>) interval <text-time-min>
 ```
 
-This example shows the creation of a scheduled trace between leaf01 (source, 10.10.10.1) and border01 (destination, 10.10.10.63) with a name of L01toB01Daily that is run on an daily basis. The `interval` option value must be a number of minutes with the units indicator (m).
+This example shows the creation of a scheduled trace between *leaf01* (source, *10.10.10.1*) and *border01* (destination, *10.10.10.63*) with a name of *L01toB01Daily* that is run on an daily basis. The `interval` option value is *1440* minutes, as denoted by the units indicator (*m*).
 
 ```
 cumulus@switch:~$ netq add trace name Lf01toBor01Daily 10.10.10.63 from 10.10.10.1 interval 1440m
@@ -989,17 +1001,17 @@ Successfully added/updated Lf01toBor01Daily running every 1440m
 
 View the results in the NetQ UI. Refer to {{<link title="Verify Network Connectivity#view-scheduled-trace-results" text="View Scheduled Trace Results">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### Create a Layer 3 Scheduled Trace through a Given VRF
 
 Use the instructions here, based on how you want to create the trace using the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID1004" >}}
+{{<tabs "TabID1004" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To schedule a trace from the NetQ UI:
 
@@ -1015,7 +1027,7 @@ To schedule a trace from the NetQ UI:
 
 2. Open the Trace Request card.
 
-    Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click on card. Click **Open Cards**.
+    Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click the card. Click **Open Cards**.
 
 3. In the **Source** field, enter the hostname or IP address of the device where you want to start the trace.
 
@@ -1053,9 +1065,9 @@ To schedule a trace from the NetQ UI:
 
     You can now run this trace on demand by selecting it from the dropdown list, or wait for it to run on its defined schedule. To view the scheduled trace results after its normal run, refer to {{<link title="Verify Network Connectivity#view-scheduled-trace-results" text="View Scheduled Trace Results">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To create a layer 3 scheduled trace that uses a VRF other than default and then see the results in the Scheduled Trace Results card, run:
 
@@ -1063,7 +1075,7 @@ To create a layer 3 scheduled trace that uses a VRF other than default and then 
 netq add trace name <text-new-trace-name> <ip> from (<src-hostname>|<ip-src>) vrf <vrf> interval <text-time-min>
 ```
 
-This example shows the creation of a scheduled trace between server01 (source, 10.1.10.101) and server04 (destination, 10.1.10.104) with a name of Svr01toSvr04Hrly that is run on an hourly basis. The `interval` option value must be a number of minutes with the units indicator (m).
+This example shows the creation of a scheduled trace between *server01* (source, *10.1.10.101*) and *server04* (destination, *10.1.10.104*) with a name of *Svr01toSvr04Hrly* that is run on an hourly basis. The `interval` option value is *60* minutes, as denoted by the units indicator (*m*).
 
 ```
 cumulus@switch:~$ netq add trace name Svr01toSvr04Hrly 10.1.10.104 from 10.10.10.1 interval 60m
@@ -1072,17 +1084,17 @@ Successfully added/updated Svr01toSvr04Hrly running every 60m
 
 View the results in the NetQ UI. Refer to {{<link title="Verify Network Connectivity#view-scheduled-trace-results" text="View Scheduled Trace Results">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### Create a Layer 2 Scheduled Trace
 
 Use the instructions here, based on how you want to create the trace using the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID1069" >}}
+{{<tabs "TabID1069" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To schedule a layer 2 trace:
 
@@ -1098,8 +1110,8 @@ To schedule a layer 2 trace:
 
 2. Open the Trace Request card.
 
-    - On new workbench: Click in the **Global Search** box. Type *trace*. Click on card name.
-    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click on card. Click **Open Cards**.
+    - On new workbench: Click in the **Global Search** field. Type *trace*. Click the card name.
+    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click the card. Click **Open Cards**.
 
     {{<figure src="/images/netq/trace-request-large-310.png" width="500">}}
 
@@ -1139,9 +1151,9 @@ To schedule a layer 2 trace:
 
     You can now run this trace on demand by selecting it from the dropdown list, or wait for it to run on its defined schedule. To view the scheduled trace results after its normal run, refer to {{<link title="Verify Network Connectivity#view-scheduled-trace-results" text="View Scheduled Trace Results">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To create a layer 2 scheduled trace and then see the results in the Scheduled Trace Result card, run:
 
@@ -1149,7 +1161,7 @@ To create a layer 2 scheduled trace and then see the results in the Scheduled Tr
 netq add trace name <text-new-trace-name> <mac> vlan <1-4096> from (<src-hostname> | <ip-src>) [vrf <vrf>] interval <text-time-min>
 ```
 
-This example shows the creation of a scheduled trace between server01 (source, 10.1.10.101) and server04 (destination, 44:38:39:00:00:3e) on VLAN 10 with a name of Svr01toSvr04x3Hrs that is run every three hours. The `interval` option value must be a number of minutes with the units indicator (m).
+This example shows the creation of a scheduled trace between *server01* (source, *10.1.10.101*) and *server04* (destination, *44:38:39:00:00:3e*) on VLAN 10 with a name of *Svr01toSvr04x3Hrs* that is run every three hours. The `interval` option value is *180* minutes, as denoted by the units indicator (*m*).
 
 ```
 cumulus@switch:~$ netq add trace name Svr01toSvr04x3Hrs 44:38:39:00:00:3e vlan 10 from 10.1.10.101 interval 180m
@@ -1158,9 +1170,9 @@ Successfully added/updated Svr01toSvr04x3Hrs running every 180m
 
 View the results in the NetQ UI. Refer to {{<link title="Verify Network Connectivity#view-scheduled-trace-results" text="View Scheduled Trace Results">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### Run a Scheduled Trace on Demand
 
@@ -1184,9 +1196,9 @@ To run a scheduled trace now:
 
 You can view the results of scheduled traces at any time. Results can be displayed in the NetQ UI or in the NetQ CLI.
 
-{{< tabs "TabID1166" >}}
+{{<tabs "TabID1166" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 The results of scheduled traces are displayed on the Scheduled Trace Result card.
 
@@ -1260,9 +1272,9 @@ To view the results:
 
 15. Export this data by clicking **Export** or click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> to return to the results list to view another trace in detail.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 ### View a Summary of All Scheduled Traces
 
@@ -1334,9 +1346,9 @@ cumulus@switch:~$ netq show trace summary name Lf01toBor01Daily json
 cumulus@switch:~$ netq show trace results f501f9b0-cca3-4fa1-a60d-fb6f495b7a0e
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## Manage Scheduled Traces
 
@@ -1356,7 +1368,7 @@ To modify a scheduled trace:
 
 1. Open the Trace Request card.
 
-    Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click on card. Click **Open Cards**.
+    Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click the card. Click **Open Cards**.
 
 2. Select the trace from the **New Trace Request** dropdown.
 
@@ -1392,9 +1404,9 @@ Both a standard user and an administrative user can remove scheduled traces. No 
 
 {{%/notice%}}
 
-{{< tabs "TabID1372" >}}
+{{<tabs "TabID1372" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Open the Trace Request card.
 
@@ -1408,9 +1420,9 @@ Both a standard user and an administrative user can remove scheduled traces. No 
 
 4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 1. Determine the name of the scheduled trace you want to remove. Run:
 
@@ -1505,6 +1517,6 @@ Both a standard user and an administrative user can remove scheduled traces. No 
 
 3. Repeat these steps for additional traces you want to remove.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}

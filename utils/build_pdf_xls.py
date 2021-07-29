@@ -115,7 +115,7 @@ def get_xls_files():
                 create_response = doc_api.create_doc({
                     "test": TEST,                                                   # test documents are free but watermarked
                     "document_url": "{}{}/{}".format(base_url, directory, file),
-                    "name": "{}-{}".format(directory, file),                                 # help you find a document later
+                    "name": "{}-{}".format(directory, file),                        # help you find a document later
                     "document_type": "xls",                                         # pdf or xls or xlsx
                     "prince_options": {
                         "http_user": http_user,
@@ -130,57 +130,57 @@ def get_xls_files():
                 file.close
 try:
 
-    dir_list = get_dir_list()
-    pdf_requests = {}
+    # dir_list = get_dir_list()
+    # pdf_requests = {}
 
-    # Get the list of directories we need to build PDFs for
-    # map each directory to docraptor request object
-    for directory in dir_list:
-        pdf_requests[directory] = request_pdf(directory)
+    # # Get the list of directories we need to build PDFs for
+    # # map each directory to docraptor request object
+    # for directory in dir_list:
+    #     pdf_requests[directory] = request_pdf(directory)
 
     # Request and download the XLS files
     print("Downloading XLS files...")
     get_xls_files()
 
-    print("Checking PDF status...", end="")
-    # It takes some time to gerate the pdf files, so loop forever
-    while True:
+    # print("Checking PDF status...", end="")
+    # # It takes some time to gerate the pdf files, so loop forever
+    # while True:
 
-        for directory in dir_list:
-            status = doc_api.get_async_doc_status(pdf_requests[directory].status_id)
+    #     for directory in dir_list:
+    #         status = doc_api.get_async_doc_status(pdf_requests[directory].status_id)
 
-            if status.status == "failed":
-                print("\n{} PDF creation failed. Error response:".format(directory))
-                print(status)
-                exit(1)
+    #         if status.status == "failed":
+    #             print("\n{} PDF creation failed. Error response:".format(directory))
+    #             print(status)
+    #             exit(1)
 
-            elif status.status == "completed":
-                print("\nPDF generation for {} completed, downloading.\n".format(directory))
-                doc_response = doc_api.get_async_doc(status.download_id)
+    #         elif status.status == "completed":
+    #             print("\nPDF generation for {} completed, downloading.\n".format(directory))
+    #             doc_response = doc_api.get_async_doc(status.download_id)
 
-                # write the file to the version folder, for example
-                # content/cumulus-linux-37/cumulus-linux-37.pdf
-                download_dir = "content/{}/{}.pdf".format(directory, directory)
+    #             # write the file to the version folder, for example
+    #             # content/cumulus-linux-37/cumulus-linux-37.pdf
+    #             download_dir = "content/{}/{}.pdf".format(directory, directory)
 
-                with safe_open_w(download_dir) as f:
-                    f.write(doc_response)
-                print("PDF written to {}".format(download_dir))
+    #             with safe_open_w(download_dir) as f:
+    #                 f.write(doc_response)
+    #             print("PDF written to {}".format(download_dir))
 
-                # Now that we have the PDF of that release, remove it from the directory list
-                dir_list.remove(directory)
+    #             # Now that we have the PDF of that release, remove it from the directory list
+    #             dir_list.remove(directory)
 
-                # If there are no directories left in the list then we have all the PDFs
-                if len(dir_list) == 0:
-                    print("All PDFs generated. Exiting")
-                    exit(0)
-                else:
-                    print("Still waiting on PDFs {}.\n".format(", ".join(dir_list)))
+    #             # If there are no directories left in the list then we have all the PDFs
+    #             if len(dir_list) == 0:
+    #                 print("All PDFs generated. Exiting")
+    #                 exit(0)
+    #             else:
+    #                 print("Still waiting on PDFs {}.\n".format(", ".join(dir_list)))
 
-            else:
-                print(".", end="")
-                #Flush the stdout buffer to print growing "..." for waiting message
-                sys.stdout.flush()
-        time.sleep(1)
+    #         else:
+    #             print(".", end="")
+    #             #Flush the stdout buffer to print growing "..." for waiting message
+    #             sys.stdout.flush()
+    #     time.sleep(1)
 
 except docraptor.rest.ApiException as error:
     print(error)

@@ -14,6 +14,10 @@ By default, the SNMP configuration has a listening address of localhost (127.0.0
 
 The SNMPv3 username is the recommended option instead of the read-only community name, as it is more secure; it does not expose the user credentials and can also encrypt packet contents. However, a read-only community password is required for SNMPv1 or SNMPv2c environments so that the `snmpd` daemon can respond to requests. The read-only community string allows polling of the various MIB objects on the device itself.
 
+{{%notice note%}}
+NVUE commands are not supported for SNMP.
+{{%/notice%}}
+
 ## Start the SNMP Daemon
 
 Before you can use SNMP, you need to enable and start the `snmpd` service.
@@ -73,13 +77,6 @@ The IP address must exist on an interface that has link UP on the switch where `
 You can configure multiple IP addresses and bind to a particular IP address within a particular VRF table.
 
 {{< tabs "Listening IP" >}}
-{{< tab "CUE Commands" >}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 To configure the `snmpd` daemon to listen on the localhost IPv4 and IPv6 interfaces, run:
@@ -150,13 +147,6 @@ agentAddress udp:66.66.66.66:161,udp:77.77.77.77:161,udp6:[2001::1]:161
 Cumulus Linux provides a listening address for VRFs along with trap and inform support. You can configure `snmpd` to listen to a specific IPv4 or IPv6 address on an interface within a particular VRF. With VRFs, identical IP addresses can exist in different VRF tables. This command restricts listening to a particular IP address within a particular VRF. If the VRF name is not given, the default VRF is used.
 
 {{< tabs "SNMP and VRFs" >}}
-{{< tab "CUE Commands" >}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 The following command configures `snmpd` to listen to IP address 10.10.10.10 on eth0, the management interface in the management VRF:
@@ -209,13 +199,6 @@ You have three choices for authenticating the user:
 - SHA password
 
 {{< tabs "username" >}}
-{{< tab "CUE Commands" >}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 For no authentication, run:
@@ -378,16 +361,9 @@ To restrict MIB tree exposure, you can define a view for an SNMPv3 username or c
 
 You can define a specific view multiple times and fine tune to provide or restrict access using the `included` or `excluded` command to specify branches of certain MIB trees.
 
-By default, the `snmpd.conf` file contains numerous views within the *systemonly* view.
+By default, the `snmpd.conf` file contains many views within the *systemonly* view.
 
 {{< tabs "viewname" >}}
-{{< tab "CUE Commands" >}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 ```
@@ -430,13 +406,6 @@ You can specify a source IP address token to restrict access to only that host o
 You can also specify a view to restrict the subset of the OID tree.
 
 {{< tabs "community-string" >}}
-{{< tab "CUE Commands" >}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 The following example configuration:
@@ -503,16 +472,9 @@ You can configure system settings for the SNMPv2 MIB. The example commands here 
 
 - The system physical location for the node in the SNMPv2-MIB system table (the `syslocation`).
 - The username and email address of the contact person for this managed node (the `syscontact`).
-- An administratively-assigned name for the managed node (the `sysname`).
+- An administratively assigned name for the managed node (the `sysname`).
 
 {{< tabs "sys-settings" >}}
-{{< tab "CUE Commands" >}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 For example, to set the system physical location for the node in the SNMPv2-MIB system table, run:
@@ -529,7 +491,7 @@ cumulus@switch:~$ net add snmp-server system-contact user X at myemail@example.c
 cumulus@switch:~$ net commit
 ```
 
-To set an administratively-assigned name for the managed node, run the following command. Typically, this is the fully-qualified domain name of the node.
+To set an administratively assigned name for the managed node, run the following command. Typically, this is the fully qualified domain name of the node.
 
 ```
 cumulus@switch:~$ net add snmp-server system-name CumulusBox number 1,543,567
@@ -632,9 +594,9 @@ To verify the configuration, run `snmpwalk`. For example, if you have a running 
 ```
 cumulus@switch:~$ sudo snmpwalk -v2c -cpublic localhost 1.3.6.1.2.1.14
 ```
-
+<!-- vale off -->
 ### Enable the .1.3.6.1.2.1 Range
-
+<!-- vale on -->
 Some MIBs, including storage information, are not included by default in `snmpd.conf` in Cumulus Linux. This results in some default views on common network tools (like `librenms`) to return less than optimal data. You can include more MIBs by enabling the complete .1.3.6.1.2.1 range. This simplifies the configuration file, removing the concern that any required MIBs might be missed by the monitoring system. Various MIBs included were added to the default SNMPv3 configuration and include the following:
 
 - ENTITY-MIB
@@ -649,9 +611,7 @@ To enable the .1.3.6.1.2.1 range, make sure the view commands include the requir
 
 ## Restore the Default SNMP Configuration
 
-The following command removes all custom entries in the `/etc/snmp/snmpd.conf` file and replaces them with defaults, including for all SNMPv3 usernames and readonly-communities. A `listening-address` for the localhost is configured in its place.
-
-NEED COMMAND for CUE
+The following command removes all custom entries in the `/etc/snmp/snmpd.conf` file and replaces them with defaults, including for all SNMPv3 usernames and read only communities. A `listening-address` for the localhost is configured in its place.
 
 ```
 cumulus@switch:~$ net del snmp-server all
@@ -705,13 +665,6 @@ The following example configuration:
 You can find a working example configuration on the {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/poc-support/snmp-and-cl" text="NVIDIA Networking GitLab project">}}, which you can try for free with {{<exlink url="https://air.nvidia.com" text="NVIDIA AIR Simulation Platform">}}.
 
 {{< tabs "example-config" >}}
-{{< tab "CUE Commands" >}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 ```

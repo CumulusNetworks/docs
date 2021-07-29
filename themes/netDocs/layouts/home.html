@@ -53,6 +53,7 @@
               <a class="rootLink" href={{ "cumulus-vx" | absURL }}>NVIDIA Cumulus VX</a>
               <a class="rootLink" href={{ .Site.Params.sonic_latest | absURL }}>SONiC</a>
               <a class="rootLink" href={{ "knowledge-base" | absURL }}>Knowledge Base</a>
+              <a class="rootLink" href={{ "guides" | absURL }}>Technical Guides</a>
             </li>
             <li class="navSection mobile">
               <div class="burger-menu">
@@ -91,10 +92,42 @@
             </h3>
           </div>
           <div class="col-12 text-center pb-5">
-          <script async src="https://cse.google.com/cse.js?cx=002929300794741444210:sy0sz3qlwdc"></script>
-          <div class="gcse-searchbox-only" enableAutoComplete="true" data-resultsUrl={{"search" | absURL}}></div>
+            <script async="" src="https://cse.google.com/cse.js?cx=002929300794741444210:sy0sz3qlwdc"></script>
+            <div id="___gcse_0">
+              <div class="gsc-control-searchbox-only gsc-control-searchbox-only-en" dir="ltr">
+                <form action="{{"search/" | absURL }}" class="gsc-search-box gsc-search-box-tools" accept-charset="utf-8">
+                  <table class="gsc-search-box" cellspacing="0" cellpadding="0">
+                    <tbody>
+                      <tr>
+                        <td class="gsc-input">
+                          <div class="gsc-input-box" id="gsc-iw-id1">
+                            <table style="width: 100%; padding: 0px;" id="gs_id50" class="gstl_50 gsc-input" cellspacing="0" cellpadding="0">
+                              <tbody>
+                                <tr>
+                                  <td id="gs_tti50" class="gsib_a">
+                                    <input autocomplete="off" type="text" size="10" class="gsc-input" name="q" title="search" style="width: 100%; padding: 0px; border: medium none; margin: 0px; height: auto; background: rgb(255, 255, 255) url(&quot;https://www.google.com/cse/static/images/1x/en/branding.png&quot;) no-repeat scroll left center; outline: currentcolor none medium;" id="gsc-i-id1" dir="ltr" spellcheck="false" placeholder="Search the docs. For better results, include your version number in your query.">
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </td>
+                        <td class="gsc-search-button">
+                          <button class="gsc-search-button gsc-search-button-v2">
+                            <svg width="13" height="13" viewBox="0 0 13 13">
+                              <title>search</title>
+                              <path d="m4.8495 7.8226c0.82666 0 1.5262-0.29146 2.0985-0.87438 0.57232-0.58292 0.86378-1.2877 0.87438-2.1144 0.010599-0.82666-0.28086-1.5262-0.87438-2.0985-0.59352-0.57232-1.293-0.86378-2.0985-0.87438-0.8055-0.010599-1.5103 0.28086-2.1144 0.87438-0.60414 0.59352-0.8956 1.293-0.87438 2.0985 0.021197 0.8055 0.31266 1.5103 0.87438 2.1144 0.56172 0.60414 1.2665 0.8956 2.1144 0.87438zm4.4695 0.2115 3.681 3.6819-1.259 1.284-3.6817-3.7 0.0019784-0.69479-0.090043-0.098846c-0.87973 0.76087-1.92 1.1413-3.1207 1.1413-1.3553 0-2.5025-0.46363-3.4417-1.3909s-1.4088-2.0686-1.4088-3.4239c0-1.3553 0.4696-2.4966 1.4088-3.4239 0.9392-0.92727 2.0864-1.3969 3.4417-1.4088 1.3553-0.011889 2.4906 0.45771 3.406 1.4088 0.9154 0.95107 1.379 2.0924 1.3909 3.4239 0 1.2126-0.38043 2.2588-1.1413 3.1385l0.098834 0.090049z"></path>
+                            </svg>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
         <div class="row">
           <div class="col-12 text-center">
             <h3 class="header-fancy">
@@ -230,7 +263,7 @@
                 <div class="footer-content">
                     <div class="mb-4">
                       <img src={{"images/nvidia-logo-white.svg" | absURL }} />
-                        <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script>&nbsp;&nbsp;NVIDIA Corporation.</p>
+                        <p>© {{ dateFormat "2006" now }}&nbsp;&nbsp;NVIDIA Corporation.</p>
                         <p><a href={{"license" | absURL }}><img src={{"images/by-nc-sa.svg" | absURL }} alt="Cumulus Networks CC-by-NC-SA License"></a></p>
                     </div>
                     <ul class="mb-4">
@@ -343,12 +376,6 @@
       burgerMenu.addEventListener('click', function() {
         siteNav.classList.toggle('menu-opened');
       });
-   </script>
-
-   <script>
-    window.onload = function(){
-      document.getElementById('gsc-i-id1').placeholder = 'Search the docs. For better results, include your version number in your query.';
-    };
    </script>
 
 </body>

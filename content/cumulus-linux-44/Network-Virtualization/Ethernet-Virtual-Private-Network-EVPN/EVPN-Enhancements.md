@@ -17,38 +17,94 @@ For eBGP EVPN peering, the peers are in a different AS so using an automatic RT 
 If you do *not* want RDs and RTs to be derived automatically, you can define them manually. The following example commands are per VNI. <!--You must specify these commands under `address-family l2vpn evpn` in BGP.-->
 
 {{< tabs "TabID19 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 {{< tabs "TabID22 ">}}
 {{< tab "leaf01 ">}}
 
-``` 
-cumulus@leaf01:~$ cl set evpn evi 10 route-target 10.10.10.1:20
-cumulus@leaf01:~$ cl set evpn evi 10 route-target export 65101:10
-cumulus@leaf01:~$ cl set evpn evi 10 route-target import 65102:10
-cumulus@leaf01:~$ cl config apply
+```
+cumulus@leaf01:~$ net add bgp l2vpn evpn vni 10 rd 10.10.10.1:20
+cumulus@leaf01:~$ net add bgp l2vpn evpn vni 10 route-target export 65101:10
+cumulus@leaf01:~$ net add bgp l2vpn evpn vni 10 route-target import 65102:10
+cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-all-vni
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NCLU commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
 
 ```
-cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+...
+address-family l2vpn evpn
+  advertise-all-vni
+  vni 10
+   rd 10.10.10.1:20
+   route-target export 65101:10
+   route-target import 65102:10
+...
 ```
 
 {{< /tab >}}
 {{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf03:~$ cl set evpn evi 10 route-target 10.10.10.3:20
-cumulus@leaf03:~$ cl set evpn evi 10 route-target export 65102:10
-cumulus@leaf03:~$ cl set evpn evi 10 route-target import 65101:10
-cumulus@leaf03:~$ cl config apply
+cumulus@leaf03:~$ net add bgp l2vpn evpn vni 10 rd 10.10.10.3:20
+cumulus@leaf03:~$ net add bgp l2vpn evpn vni 10 route-target export 65102:10
+cumulus@leaf03:~$ net add bgp l2vpn evpn vni 10 route-target import 65101:10
+cumulus@leaf03:~$ net add bgp l2vpn evpn advertise-all-vni
+cumulus@leaf03:~$ net pending
+cumulus@leaf03:~$ net commit
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NCLU commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
 
 ```
-cumulus@leaf03:~$ sudo cat /etc/cue.d/startup.yaml
+...
+address-family l2vpn evpn
+  advertise-all-vni
+  vni 10
+   rd 10.10.10.3:20
+   route-target export 65102:10
+   route-target import 65101:10
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+{{< tabs "TabID52 ">}}
+{{< tab "leaf01 ">}}
+
+``` 
+cumulus@leaf01:~$ nv set evpn evi 10 route-target 10.10.10.1:20
+cumulus@leaf01:~$ nv set evpn evi 10 route-target export 65101:10
+cumulus@leaf01:~$ nv set evpn evi 10 route-target import 65102:10
+cumulus@leaf01:~$ nv config apply
+```
+
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ nv set evpn evi 10 route-target 10.10.10.3:20
+cumulus@leaf03:~$ nv set evpn evi 10 route-target export 65102:10
+cumulus@leaf03:~$ nv set evpn evi 10 route-target import 65101:10
+cumulus@leaf03:~$ nv config apply
+```
+
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+
+```
+cumulus@leaf03:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 
 {{< /tab >}}
@@ -57,7 +113,7 @@ cumulus@leaf03:~$ sudo cat /etc/cue.d/startup.yaml
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
-{{< tabs "TabID50 ">}}
+{{< tabs "TabID90 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -78,7 +134,7 @@ leaf01)# exit
 cumulus@leaf01:~$
 ```
 
-These commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
+The vtysh commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
 
 ```
 ...
@@ -112,7 +168,7 @@ leaf03)# exit
 cumulus@leaf03:~$
 ```
 
-These commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
+The vtysh commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
 
 ```
 ...
@@ -136,39 +192,95 @@ If you delete the RD or RT later, it reverts back to its corresponding default v
 
 You can configure multiple RT values. In addition, you can configure both the import and export route targets with a single command by using `route-target both`:
 
-{{< tabs "TabID199 ">}}
-{{< tab "CUE Commands ">}}
+{{< tabs "TabID169 ">}}
+{{< tab "NCLU Commands ">}}
 
-{{< tabs "TabID167 ">}}
+{{< tabs "TabID172 ">}}
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ cl set evpn evi 10 route-target import 65102:10
-cumulus@leaf01:~$ cl set evpn evi 10 route-target import 65102:20
-cumulus@leaf01:~$ cl set evpn evi 20 route-target both 65101:10
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ net add bgp l2vpn evpn vni 10 route-target import 65102:10
+cumulus@leaf01:~$ net add bgp l2vpn evpn vni 10 route-target import 65102:20
+cumulus@leaf01:~$ net add bgp l2vpn evpn vni 20 route-target both 65101:10
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NCLU commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
 
 ```
-cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+...
+address-family l2vpn evpn
+  vni 10
+    route-target import 65102:10
+    route-target import 65102:20
+  vni 20
+    route-target import 65101:10
+    route-target export 65101:10
+...
 ```
 
 {{< /tab >}}
 {{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf03:~$ cl set evpn evi 10 route-target import 65101:10
-cumulus@leaf03:~$ cl set evpn evi 10 route-target import 65101:20
-cumulus@leaf03:~$ cl set evpn evi 20 route-target both 65102:10
-cumulus@leaf03:~$ cl config apply
+cumulus@leaf03:~$ net add bgp l2vpn evpn vni 10 route-target import 65101:10
+cumulus@leaf03:~$ net add bgp l2vpn evpn vni 10 route-target import 65101:20
+cumulus@leaf03:~$ net add bgp l2vpn evpn vni 20 route-target both 65102:10
+cumulus@leaf03:~$ net pending
+cumulus@leaf03:~$ net commit
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NCLU commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
 
 ```
-cumulus@leaf03:~$ sudo cat /etc/cue.d/startup.yaml
+...
+address-family l2vpn evpn
+  vni 10
+    route-target import 65101:10
+    route-target import 65101:20
+  vni 20
+    route-target import 65102:10
+    route-target export 65102:10
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+{{< tabs "TabID200 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ nv set evpn evi 10 route-target import 65102:10
+cumulus@leaf01:~$ nv set evpn evi 10 route-target import 65102:20
+cumulus@leaf01:~$ nv set evpn evi 20 route-target both 65101:10
+cumulus@leaf01:~$ nv config apply
+```
+
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ nv set evpn evi 10 route-target import 65101:10
+cumulus@leaf03:~$ nv set evpn evi 10 route-target import 65101:20
+cumulus@leaf03:~$ nv set evpn evi 20 route-target both 65102:10
+cumulus@leaf03:~$ nv config apply
+```
+
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+
+```
+cumulus@leaf03:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 
 {{< /tab >}}
@@ -177,7 +289,7 @@ cumulus@leaf03:~$ sudo cat /etc/cue.d/startup.yaml
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
-{{< tabs "TabID150 ">}}
+{{< tabs "TabID238 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -259,20 +371,7 @@ You can use EVPN with an {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF"
 
 The leaf switches peer with each other in a full mesh within the EVPN address family without using route reflectors. The leafs generally peer to their loopback addresses, which are advertised in OSPF. The receiving VTEP imports routes into a specific VNI with a matching route target community.
 
-{{< tabs "TabID257 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@leaf01:~$ NEED COMMANDS
-```
-
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
-
-```
-cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
-```
-
-{{< /tab >}}
+{{< tabs "TabID292 ">}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -297,6 +396,167 @@ cumulus@leaf01:~$ net add interface swp51 ospf network point-to-point
 cumulus@leaf01:~$ net add interface swp52 ospf network point-to-point
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
+
+```
+...
+interface lo
+  ip ospf area 0.0.0.0
+!
+interface swp49
+  ip ospf area 0.0.0.0
+  ip ospf network point-to-point
+!
+interface swp50
+  ip ospf area 0.0.0.0
+  ip ospf network point-to-point
+!
+interface swp51
+  ip ospf area 0.0.0.0
+  ip ospf network point-to-point
+!
+interface swp52
+  ip ospf area 0.0.0.0
+  ip ospf network point-to-point
+!
+router bgp 65101
+  neighbor 10.10.10.2 remote-as internal
+  neighbor 10.10.10.3 remote-as internal
+  neighbor 10.10.10.4 remote-as internal
+  !
+  address-family l2vpn evpn
+  neighbor 10.10.10.2 activate
+  neighbor 10.10.10.3 activate
+  neighbor 10.10.10.4 activate
+  advertise-all-vni
+  exit-address-family
+  !
+Router ospf
+  Ospf router-id 10.10.10.1
+  Passive-interface lo
+...
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
+cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ nv set vrf default router bgp peer 10.10.10.2 remote-as internal
+cumulus@leaf01:~$ nv set vrf default router bgp peer 10.10.10.3 remote-as internal
+cumulus@leaf01:~$ nv set vrf default router bgp peer 10.10.10.4 remote-as internal
+cumulus@leaf01:~$ nv set evpn enable on
+cumulus@leaf01:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv set vrf default router bgp peer 10.10.10.2 address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv set vrf default router bgp peer 10.10.10.3 address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv set vrf default router bgp peer 10.10.10.4 address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv set vrf default router ospf router-id 10.10.10.1
+cumulus@leaf01:~$ nv set interface lo router ospf area 0
+cumulus@leaf01:~$ nv set interface lo router ospf passive on
+cumulus@leaf01:~$ nv set interface swp49 router ospf area 0.0.0.0
+cumulus@leaf01:~$ nv set interface swp50 router ospf area 0.0.0.0
+cumulus@leaf01:~$ nv set interface swp51 router ospf area 0.0.0.0
+cumulus@leaf01:~$ nv set interface swp52 router ospf area 0.0.0.0
+cumulus@leaf01:~$ nv set interface swp49 router ospf network-type point-to-point
+cumulus@leaf01:~$ nv set interface swp50 router ospf network-type point-to-point
+cumulus@leaf01:~$ nv set interface swp51 router ospf network-type point-to-point
+cumulus@leaf01:~$ nv set interface swp52 router ospf network-type point-to-point
+cumulus@leaf01:~$ nv config apply
+```
+
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+      lo:
+        ip:
+          address:
+            10.10.10.1/32: {}
+        router:
+          ospf:
+            area: 0
+            enable: on
+            network-type: point-to-point    
+        type: loopback
+      swp49:
+        router:
+          ospf:
+            area: 0.0.0.0
+            enable: on
+        type: swp
+      swp50:
+        router:
+          ospf:
+            area: 0.0.0.0
+            enable: on
+            network-type: point-to-point
+        type: swp
+      swp51:
+        router:
+          ospf:
+            area: 0.0.0.0
+            enable: on
+            network-type: point-to-point
+        type: swp
+      swp52:
+        router:
+          ospf:
+            area: 0.0.0.0
+            enable: on
+            network-type: point-to-point
+        type: swp
+    bridge:
+      domain:
+        br_default:
+          multicast:
+            snooping:
+              enable: off
+              querier:
+                enable: on
+    router:
+      bgp:
+        autonomous-system: 65101
+        enable: on
+        router-id: 10.10.10.1
+      ospf:
+        router-id: 10.10.10.1
+        enable: on
+    vrf:
+      default:
+        router:
+          bgp:
+            peer:
+              10.10.10.2:
+                remote-as: internal
+                type: numbered
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+              10.10.10.3:
+                remote-as: internal
+                type: numbered
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+              10.10.10.4:
+                remote-as: internal
+                type: numbered
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+            enable: on
+            address-family:
+              l2vpn-evpn:
+                enable: on
+    evpn:
+      enable: on
+    nve:
+      vxlan:
+        enable: on
 ```
 
 {{< /tab >}}
@@ -405,14 +665,34 @@ In a centralized routing deployment, you must configure layer 3 interfaces even 
 The following example commands turn off IPv4 and IPv6 forwarding on VLAN 10 and VLAN 20.
 
 {{< tabs "TabID367 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface vlan10 ip ipv4 forward off
-cumulus@leaf01:~$ cl set interface vlan10 ip ipv6 forward off
-cumulus@leaf01:~$ cl set interface vlan20 ip ipv4 forward off
-cumulus@leaf01:~$ cl set interface vlan20 ip ipv6 forward off
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ net add bridge bridge ports vni10,vni20
+cumulus@leaf01:~$ net add bridge bridge vids 10,20
+cumulus@leaf01:~$ net add vxlan vni10 vxlan id 10
+cumulus@leaf01:~$ net add vxlan vni20 vxlan id 20
+cumulus@leaf01:~$ net add vxlan vni10 bridge access 10
+cumulus@leaf01:~$ net add vxlan vni20 bridge access 20
+cumulus@leaf01:~$ net add vxlan vni10 vxlan local-tunnelip 10.10.10.1
+cumulus@leaf01:~$ net add vxlan vni20 vxlan local-tunnelip 10.10.10.1
+cumulus@leaf01:~$ net add vlan 10 ip forward off
+cumulus@leaf01:~$ net add vlan 10 ipv6 forward off
+cumulus@leaf01:~$ net add vlan 20 ip forward off
+cumulus@leaf01:~$ net add vlan 20 ipv6 forward off
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set interface vlan10 ip ipv4 forward off
+cumulus@leaf01:~$ nv set interface vlan10 ip ipv6 forward off
+cumulus@leaf01:~$ nv set interface vlan20 ip ipv4 forward off
+cumulus@leaf01:~$ nv set interface vlan20 ip ipv6 forward off
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -485,12 +765,22 @@ net.ipv6.neigh.default.gc_thresh2=8192
 
 Keep ARP and ND suppression enabled to reduce flooding of ARP/ND packets over VXLAN tunnels. However, if you need to disable ARP and ND suppression, follow the example commands below.
 
-{{< tabs "TabID475 ">}}
-{{< tab "CUE Commands ">}}
+{{< tabs "TabID593 ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress off
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ net del vxlan vni10 bridge arp-nd-suppress
+cumulus@leaf01:~$ net del vxlan vni20 bridge arp-nd-suppress
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress off
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -523,15 +813,7 @@ iface vni20
 
 MAC addresses that are intended to be pinned to a particular VTEP can be provisioned on the VTEP as a static bridge FDB entry. EVPN picks up these MAC addresses and advertises them to peers as remote static MACs. You configure static bridge FDB entries for MACs under the bridge configuration:
 
-{{< tabs "TabID13 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ cl config apply
-```
-
-{{< /tab >}}
+{{< tabs "TabID641 ">}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -540,17 +822,10 @@ cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
-For a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, you must edit the bridge configuration in the `/etc/network/interfaces` file using a text editor:
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
 
-```
-cumulus@leaf01:~$ sudo nano /etc/network/interfaces
-...
-auto br10
-iface br10
-    bridge-ports swp1.10 vni10
-    post-up bridge fdb add 26:76:e6:93:32:78 dev swp1.10 master static
-...
-```
+NVUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -572,6 +847,18 @@ iface bridge
 {{< /tab >}}
 {{< /tabs >}}
 
+For a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, you must edit the bridge configuration in the `/etc/network/interfaces` file using a text editor:
+
+```
+cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+...
+auto br10
+iface br10
+    bridge-ports swp1.10 vni10
+    post-up bridge fdb add 26:76:e6:93:32:78 dev swp1.10 master static
+...
+```
+
 ## Filter EVPN Routes
 
 A common deployment scenario for large data centers is to sub divide the data center into multiple pods with full host mobility within a pod but only do prefix-based routing across pods. You can achieve this by only exchanging EVPN type-5 routes across pods.
@@ -579,17 +866,22 @@ A common deployment scenario for large data centers is to sub divide the data ce
 The following example commands configure EVPN to advertise type-5 routes:
 
 {{< tabs "TabID63 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set router policy route-map map1 rule 10 match evpn-route-type ip-prefix
-cumulus@leaf01:~$ cl set router policy route-map map1 rule 10 action permit
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-export to-evpn route-map map1
+cumulus@leaf01:~$ net add routing route-map map1 permit 1 match evpn route-type prefix
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
-{{%notice note%}}
-You must apply the route map for the configuration to take effect. See {{<link url="Route-Filtering-and-Redistribution/#route-maps" text="Route Maps">}} for more information.
-{{%/notice%}}
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set router policy route-map map1 rule 10 match evpn-route-type ip-prefix
+cumulus@leaf01:~$ nv set router policy route-map map1 rule 10 action permit
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast route-export to-evpn route-map map1
+```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -609,6 +901,10 @@ cumulus@leaf01:~$
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+You must apply the route map for the configuration to take effect. See {{<link url="Route-Filtering-and-Redistribution/#route-maps" text="Route Maps">}} for more information.
+{{%/notice%}}
+
 ## Advertise SVI IP Addresses
 
 In a typical EVPN deployment, you *reuse* SVI IP addresses on VTEPs across multiple racks. However, if you use *unique* SVI IP addresses across multiple racks and you want the local SVI IP address to be reachable via remote VTEPs, you can enable the advertise SVI IP/MAC address option. This option advertises the SVI IP/MAC address as a type-2 route and eliminates the need for any flooding over VXLAN to reach the IP address from a remote VTEP or rack.
@@ -620,12 +916,21 @@ In a typical EVPN deployment, you *reuse* SVI IP addresses on VTEPs across multi
 
 To advertise *all* SVI IP/MAC addresses on the switch, run these commands:
 
-{{< tabs "TabID635 ">}}
-{{< tab "CUE Commands ">}}
+{{< tabs "TabID751 ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set evpn route-advertise svi-ip on
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-svi-ip
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set evpn route-advertise svi-ip on
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -650,17 +955,38 @@ cumulus@leaf01:~$
 To advertise a *specific* SVI IP/MAC address, run these commands:
 
 {{< tabs "TabID711 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set evpn evi 10 route-advertise svi-ip on
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ net add bgp l2vpn evpn vni 10 advertise-svi-ip
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
-cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+...
+address-family l2vpn evpn
+  vni 10
+  advertise-svi-ip
+exit-address-family
+...
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set evpn evi 10 route-advertise svi-ip on
+cumulus@leaf01:~$ nv config apply
+```
+
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 
 {{< /tab >}}
@@ -711,21 +1037,44 @@ For information on EVPN BUM flooding with PIM, refer to {{<link url="EVPN-BUM-Tr
 
 To disable BUM flooding:
 
-{{< tabs "TabID212 ">}}
-{{< tab "CUE Commands ">}}
+{{< tabs "TabID872 ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set nve vxlan flooding enable off
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ net add bgp l2vpn evpn disable-flooding
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
-cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+...
+router bgp 65101
+ !
+ address-family l2vpn evpn
+  flooding disable
+ exit-address-family
+...
 ```
 
-To renable BUM flodding, run the `cl set nve vxlan enable on` command.
+To re-enable BUM flooding, run the NCLU `net del bgp l2vpn evpn disable-flooding` command.
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set nve vxlan flooding enable off
+cumulus@leaf01:~$ nv config apply
+```
+
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
+```
+
+To renable BUM flodding, run the `nv set nve vxlan flooding enable on` command.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -754,7 +1103,7 @@ router bgp 65101
 ...
 ```
 
-To renable BUM flodding:
+To re-enable BUM flooding, run the vtysh `flooding head-end-replication` command.
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -790,7 +1139,7 @@ Flags: * - Kernel
 * 4001       L3   10.1.20.2:5           65101:4001                65101:4001               RED
 ```
 
-Run the NCLU `net show bgp l2vpn evpn route type multicast` command to make sure no locally-originated EVPN type-3 routes are listed.
+Run the NCLU `net show bgp l2vpn evpn route type multicast` command to make sure no locally originated EVPN type-3 routes are listed.
 
 ## Extended Mobility
 
@@ -849,13 +1198,22 @@ To change the threshold for MAC and IP address moves, run the `net add bgp l2vpn
 
 The following example command sets the maximum number of address moves allowed to 10 and the duplicate address detection time interval to 1200 seconds.
 
-{{< tabs "TabID372 ">}}
-{{< tab "CUE Commands ">}}
+{{< tabs "TabID1021 ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ cl set evpn dad mac-move-threshold 10
-cumulus@switch:~$ cl set evpn dad move-window 1200
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection max-moves 10 time 1200
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set evpn dad mac-move-threshold 10
+cumulus@switch:~$ nv set evpn dad move-window 1200
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -899,7 +1257,7 @@ Cumulus Linux provides a *freeze* option that takes action on a detected duplica
 
 When you enable the freeze option and a duplicate address is detected:
 
-- If the MAC or IP address is learned from a remote VTEP at the time it is frozen, the forwarding information in the kernel and hardware is not updated, leaving it in the prior state. Any future remote updates are processed but they are not reflected in the kernel entry. If the remote VTEP sends a MAC-IP route withdrawal, the local VTEP removes the frozen remote entry. Then, if the local VTEP has a locally-learned entry already present in its kernel, FRRouting will originate a corresponding MAC-IP route and advertise it to all remote VTEPs.
+- If the MAC or IP address is learned from a remote VTEP at the time it is frozen, the forwarding information in the kernel and hardware is not updated, leaving it in the prior state. Any future remote updates are processed but they are not reflected in the kernel entry. If the remote VTEP sends a MAC-IP route withdrawal, the local VTEP removes the frozen remote entry. Then, if the local VTEP has a locally learned entry already present in its kernel, FRRouting originates a corresponding MAC-IP route and advertises it to all remote VTEPs.
 - If the MAC or IP address is locally learned on this VTEP at the time it is frozen, the address is not advertised to remote VTEPs. Future local updates are processed but are not advertised to remote VTEPs. If FRR receives a local entry delete event, the frozen entry is removed from the FRR database. Any remote updates (from other VTEPs) change the state of the entry to remote but the entry is not installed in the kernel (until cleared).
 
 **To recover from a freeze**, shut down the faulty host or VM or fix any other misconfiguration in the network. If the address is frozen *permanently,* issue the {{<link url="#clear-duplicate-addresses" text="clear command">}} on the VTEP where the address is marked as duplicate. If the address is frozen for a defined period of time, it is cleared automatically after the timer expires (you can clear the duplicate address before the timer expires with the {{<link url="#clear-duplicate-addresses" text="clear command">}}).
@@ -916,12 +1274,21 @@ To enable Cumulus Linux to *freeze* detected duplicate addresses, run the `net a
 
 The following example command freezes duplicate addresses for a period of 1000 seconds, after which it is cleared automatically:
 
-{{< tabs "TabID442 ">}}
-{{< tab "CUE Commands ">}}
+{{< tabs "TabID1095 ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ cl set evpn dad duplicate-action freeze duration 1000
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection freeze 1000
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set evpn dad duplicate-action freeze duration 1000
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -949,12 +1316,21 @@ Set the freeze timer to be three times the duplicate address detection window. F
 
 The following example command freezes duplicate addresses permanently (until you issue the {{<link url="#clear-duplicate-addresses" text="clear command">}}):
 
-{{< tabs "TabID479 ">}}
-{{< tab "CUE Commands ">}}
+{{< tabs "TabID1135 ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ cl set evpn dad duplicate-action freeze duration permanent
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection freeze permanent
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set evpn dad duplicate-action freeze duration permanent
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -980,10 +1356,19 @@ cumulus@switch:~$
 
 You can clear a duplicate MAC or IP address (and unfreeze a frozen address). The following example command clears IP address 10.0.0.9 for VNI 101.
 
-{{< tabs "TabID512 ">}}
-{{< tab "CUE Commands ">}}
+{{< tabs "TabID1175 ">}}
+{{< tab "NCLU Commands ">}}
 
-CUE command is not curently supported.
+```
+cumulus@switch:~$ net clear evpn dup-addr vni 101 ip 10.0.0.9
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+The NVUE Command is not curently supported.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1001,10 +1386,19 @@ cumulus@switch:~$
 
 To clear duplicate addresses for all VNIs, run the following command:
 
-{{< tabs "TabID538 ">}}
-{{< tab "CUE Commands ">}}
+{{< tabs "TabID1203 ">}}
+{{< tab "NCLU Commands ">}}
 
-CUE command is not curently supported.
+```
+cumulus@switch:~$ net clear evpn dup-addr vni all
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+NVUE Command is not curently supported.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1029,12 +1423,21 @@ cumulus@switch:~$
 
 By default, duplicate address detection is enabled and a syslog error is generated when a duplicate address is detected. To disable duplicate address detection, run the following command.
 
-{{< tabs "TabID578 ">}}
-{{< tab "CUE Commands ">}}
+{{< tabs "TabID1238 ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ cl set evpn dad enable on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ net del bgp l2vpn evpn dup-addr-detection
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set evpn dad enable off
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}

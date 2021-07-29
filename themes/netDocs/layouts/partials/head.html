@@ -12,7 +12,7 @@
 {{ if .Page.Params.description }}
 <meta name="description" content="{{ .Page.Params.description }}">
 {{ end }}
-<meta name="products" content=”{{.Page.Params.product | htmlUnescape }}”>
+<meta name="products" content={{.Page.Params.product | htmlUnescape }}>
 {{$prodVersion := print .Page.Params.product " " (.Page.Params.version | default "") }}
 <title>{{ .Page.Title }} | {{ $prodVersion | default .Site.Title -}}</title>
 

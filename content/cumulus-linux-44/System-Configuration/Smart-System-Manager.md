@@ -19,9 +19,15 @@ Smart System Manager includes the following modes:
 
 You can restart the switch in one of the following modes.
 
-- `cold` completely restarts the system and resets all the hardware devices on the switch (including the switching ASIC).
-- `warm` restarts the system with minimal impact to traffic and without affecting the data plane. Warm mode diverts traffic from itself and restarts the system without a hardware reset of the switch ASIC. While the data plane is not affected by the process, the control plane is absent during restart and is unable to process routing updates. However, if no alternate paths exist, the switch continues forwarding with the existing entries with no interruptions. BGP performs a graceful restart when restarted.
-- `fast` restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system is decoupled from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The forwarding entries of the switching ASIC are maintained through the restart process and the data plane is not affected. The data plane is only interrupted when `switchd` resets and reconfigures the ASIC if the SDK is upgraded. Traffic outage is significantly lower in this mode.
+- **cold** completely restarts the system and resets all the hardware devices on the switch (including the switching ASIC).
+- **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system is decoupled from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The forwarding entries of the switching ASIC are maintained through the restart process and the data plane is not affected. The data plane is only interrupted when `switchd` resets and reconfigures the ASIC if the SDK is upgraded. Traffic outage is significantly lower in this mode.
+- **warm** restarts the system with minimal impact to traffic and without affecting the data plane. Warm mode diverts traffic from itself and restarts the system without a hardware reset of the switch ASIC. While the data plane is not affected by the process, the control plane is absent during restart and is unable to process routing updates. However, if no alternate paths exist, the switch continues forwarding with the existing entries with no interruptions.
+
+   When you restart the switch in warm mode, BGP performs a graceful restart if the BGP Graceful Restart option is enabled. To enable BGP Graceful Restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
+
+   {{%notice note%}}
+   During warm boot, bonds, VXLAN traffic, and IP multicast traffic are disrupted until reboot is complete.
+   {{%/notice%}}
 
 The following command restarts the system in cold mode:
 
@@ -33,11 +39,9 @@ cumulus@switch:~$ net system maintenance restart cold
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ cl set NEED COMMAND
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -51,7 +55,7 @@ cumulus@switch:~$ sudo csmgrctl -c
 
 The following command restarts the system in fast mode:
 
-{{< tabs "49 ">}}
+{{< tabs "52 ">}}
 {{< tab "NCLU Command ">}}
 
 ```
@@ -59,11 +63,9 @@ cumulus@switch:~$ net system maintenance restart fast
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ cl set NEED COMMAND
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -75,13 +77,40 @@ cumulus@switch:~$ sudo csmgrctl -f
 {{< /tab >}}
 {{< /tabs >}}
 
+The following command restarts the system in warm mode:
+{{< notice warning >}}
+Warm boot resets any manually configured FEC settings.
+{{< /notice >}}
+
+{{< tabs "76 ">}}
+{{< tab "NCLU Command ">}}
+
+```
+cumulus@switch:~$ net system maintenance restart warm
+```
+
+{{< /tab >}}
+{{< tab "NVUE Command ">}}
+
+NVUE command is not supported.
+
+{{< /tab >}}
+{{< tab "Linux Command ">}}
+
+```
+cumulus@switch:~$ sudo csmgrctl -w
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Upgrade Mode
 
 Upgrade mode updates all the components and services on the switch to the latest Cumulus Linux release without traffic loss. After upgrade is complete, you must restart the switch with either a {{<link url="#restart-mode" text="cold or fast restart">}}.
 
 Upgrade mode includes the following options:
-- `all` runs `apt-get upgrade` to upgrade all the system components to the latest release without affecting traffic flow. You must restart the system after the upgrade completes with one of the {{<link url="#restart-mode" text="restart modes">}}.
-- `dry-run` provides information on the components to be upgraded.
+- **all** runs `apt-get upgrade` to upgrade all the system components to the latest release without affecting traffic flow. You must restart the system after the upgrade completes with one of the {{<link url="#restart-mode" text="restart modes">}}.
+- **dry-run** provides information on the components to be upgraded.
 
 The following command upgrades all the system components:
 
@@ -93,11 +122,9 @@ cumulus@switch:~$ net system maintenance upgrade all
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ cl set NEED COMMAND
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -119,11 +146,9 @@ cumulus@switch:~$ net system maintenance upgrade dry-run
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ cl set NEED COMMAND
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -155,11 +180,9 @@ cumulus@switch:~$ net system maintenance mode enable
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ cl set NEED COMMAND
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -182,11 +205,9 @@ cumulus@switch:~$ net system maintenance ports up
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ cl set NEED COMMAND
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -215,11 +236,9 @@ cumulus@switch:~$ net system maintenance mode disable
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ cl set NEED COMMAND
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}

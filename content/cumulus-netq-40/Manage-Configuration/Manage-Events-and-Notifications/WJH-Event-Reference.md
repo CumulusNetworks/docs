@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 813
 toc: 4
 ---
-This reference lists all of the NetQ-supported WJH metrics and provides a brief description of each. The full outputs vary slightly based on the type of drop and whether you are viewing the results in the NetQ UI or through one of the NetQ CLI commands.
+This reference lists all the NetQ-supported WJH metrics and provides a brief description of each. The full outputs vary slightly based on the type of drop and whether you are viewing the results in the NetQ UI or through one of the NetQ CLI commands.
 
 For instructions on how to configure and monitor What Just Happened events, refer to {{<link title="Configure and Monitor What Just Happened">}}.
 
@@ -30,7 +30,7 @@ Displays the reason why the server buffer has dropped packets.
 | Port TC Congestion Threshold Crossed | Percentage of the occupancy buffer exceeded or dropped below the specified high or low threshold |
 | Packet Latency Threshold Crossed | Time a packet spent within the switch exceeded or dropped below the specified high or low threshold |
 
-## L1 Drops
+## Layer 1 Drops
 
 Displays the reason why a port is in the down state.
 
@@ -62,7 +62,7 @@ In addition to the reason, the information provided for these drops includes:
 | OPID | Operation identifier; used for internal purposes |
 | Is Port Up | Indicates whether the port is in an Up (true) or Down (false) state |
 
-## L2 Drops
+## Layer 2 Drops
 
 Displays the reason for a link to be down.
 
@@ -103,7 +103,7 @@ Displays the reason why the server is unable to route a packet.
 | --- | --- |
 | Non-routable packet |  Packet has no route in routing table |
 | Blackhole route | Packet received with action equal to discard |
-| Unresolved next-hop | The next hop in the route is unknown |
+| Unresolved next hop | The next hop in the route is unknown |
 | Blackhole ARP/neighbor | Packet received with blackhole adjacency |
 | IPv6 destination in multicast scope FFx0:/16 | Packet received with multicast destination address in FFx0:/16 address range |
 | IPv6 destination in multicast scope FFx1:/16 | Packet received with multicast destination address in FFx1:/16 address range |
@@ -119,7 +119,7 @@ Displays the reason why the server is unable to route a packet.
 | Source IP equals destination IP | Packet has a source IP address equal to the destination IP address |
 | IPv4 source IP is limited broadcast | Packet has broadcast source IP address |
 | IPv4 destination IP is local network (destination = 0.0.0.0/8) | Packet has IPv4 destination address that is a local network (destination=0.0.0.0/8) |
-| IPv4 destination IP is link local | Packet has IPv4 destination address that is a local link |
+| IPv4 destination IP is link-local | Packet has IPv4 destination address that is a local link |
 | Ingress router interface is disabled | Packet destined to a different subnet cannot be routed because ingress router interface is disabled |
 | Egress router interface is disabled | Packet destined to a different subnet cannot be routed because egress router interface is disabled |
 | IPv4 routing table (LPM) unicast miss | No route available in routing table for packet |

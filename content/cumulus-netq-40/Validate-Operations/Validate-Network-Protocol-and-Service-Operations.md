@@ -24,15 +24,19 @@ NetQ lets you validate the operation of the network protocols and services runni
 
 For a more general understanding of how well your network is operating, refer to the {{<link title="Validate Overall Network Health">}} topic.
 
+<!-- vale off -->
 ## On-demand Validations
+<!-- vale on -->
 
 When you want to validate the operation of one or more network protocols and services right now, you can create and run on-demand validations using the NetQ UI or the NetQ CLI.
 
+<!-- vale off -->
 ### Create an On-demand Validation
+<!-- vale on -->
 
 You can create on-demand validations that contain checks for protocols or services that you suspect may have issues.
 
-Using the NetQ UI, you can create an on-demand validation for multiple protocols or services at the same time. This is handy when the protocols are strongly related with respect to a possible issue or if you only want to create one validation request.
+Using the NetQ UI, you can create an on-demand validation for multiple protocols or services at the same time. This is handy when the protocols are strongly related regarding a possible issue or if you only want to create one validation request.
 
 {{<tabs "On-demand Validation">}}
 
@@ -82,7 +86,7 @@ netq check vlan [label <text-label-name> | hostnames <text-list-hostnames>] [unv
 netq check vxlan [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <vxlan-number-range-list> | exclude <vxlan-number-range-list>] [around <text-time>] [json | summary]
 ```
 
-All of the `netq check` commands have a summary and test results section. Some have additional summary information.
+All `netq check` commands have a summary and test results section. Some have additional summary information.
 
 This example shows a validation of the EVPN protocol.
 
@@ -118,7 +122,7 @@ L3 VNI RMAC Test                 : skipped
 To create a request containing checks on a single protocol or service in the NetQ CLI, run:
 
 ```
-netq add validation type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf) [alert-on-failure]
+netq add validation type (bgp | evpn | interfaces | mlag | mtu | ntp | ospf | sensors | vlan | vxlan) [alert-on-failure]
 ```
 
 This example shows the creation of an on-demand BGP validation.
@@ -134,7 +138,9 @@ The associated Validation Result card is accessible from the full-screen Validat
 
 {{</tabs>}}
 
+<!-- vale off -->
 ### Create an On-demand Validation with Selected Tests
+<!-- vale on -->
 
 You can include or exclude one or more of the various checks performed during a validation. Refer to {{<link title="Validation Checks">}} for a description of the tests for each protocol or service.
 
@@ -328,6 +334,8 @@ Warning nodes       : 0
 Agent Health Test   : passed
 ```
 
+Refer to {{<link url="Validation-Checks/#netq-agent-validation-tests" text="NetQ Agent Validation Tests">}} for descriptions of these tests.
+
 {{</tab>}}
 
 {{<tab "BGP">}}
@@ -389,7 +397,7 @@ Using the `include <bgp-number-range-list>` and `exclude <bgp-number-range-list>
 | 1 | Address Families |
 | 2 | Router ID |
 
-Refer to {{<link url="#bgp-validation-tests" text="BGP Validation Tests">}} for a description of these tests.
+Refer to {{<link url="Validation-Checks#bgp-validation-tests" text="BGP Validation Tests">}} for a description of these tests.
 
 To include only the session establishment and router ID tests during a validation, run either of these commands:
 
@@ -523,6 +531,8 @@ Warning nodes       : 0
 Cumulus Linux Image Version Test   : passed
 ```
 
+Refer to {{<link url="Validation-Checks/#cumulus-linux-version-tests" text="Cumulus Linux Version Tests">}} for descriptions of these tests.
+
 {{</tab>}}
 
 {{<tab "EVPN">}}
@@ -585,6 +595,7 @@ Vrf Consistency Test             : passed,
 
 Using the `include <evpn-number-range-list>` and `exclude <evpn-number-range-list>` options, you can include or exclude one or more of the various checks performed during the validation. You can select from the following EVPN validation tests:
 
+<!-- vale off -->
 | Test Number | Test Name |
 | :---------: | --------- |
 | 0 | EVPN BGP Session |
@@ -595,8 +606,9 @@ Using the `include <evpn-number-range-list>` and `exclude <evpn-number-range-lis
 | 5 | L3 VNI RMAC |
 | 6 | VLAN Consistency |
 | 7 | VRF Consistency |
+<!-- vale on -->
 
-Refer to {{<link url="#evpn-validation-tests" text="EVPN Validation Tests">}} for descriptions of these tests.
+Refer to {{<link url="Validation-Checks#evpn-validation-tests" text="EVPN Validation Tests">}} for descriptions of these tests.
 
 To run only the EVPN Type 2 test:
 
@@ -740,7 +752,7 @@ Using the `include <interface-number-range-list>` and `exclude <interface-number
 | 2 | Speed |
 | 3 | Autoneg |
 
-Refer to {{<link url="#interface-validation-tests" text="Interface Validation Tests">}} for descriptions of these tests.
+Refer to {{<link url="Validation-Checks#interface-validation-tests" text="Interface Validation Tests">}} for descriptions of these tests.
 
 {{</tab>}}
 
@@ -767,6 +779,8 @@ Link MTU Consistency Test   : passed,
 VLAN interface Test         : passed,
 Bridge interface Test       : passed,
 ```
+
+Refer to {{<link url="Validation-Checks/#link-mtu-validation-tests" text="Link MTU Validation Tests">}} for descriptions of these tests.
 
 {{</tab>}}
 
@@ -852,7 +866,7 @@ Using the `include <mlag-number-range-list>` and `exclude <mlag-number-range-lis
 | 9 | ProtoDown Bonds |
 | 10 | SVI |
 
-Refer to {{<link url="#mlag-validation-tests" text="MLAG Validation Tests">}} for descriptions of these tests.
+Refer to {{<link url="Validation-Checks#mlag-validation-tests" text="MLAG Validation Tests">}} for descriptions of these tests.
 
 To include only the CLAG SysMAC test during a validation:
 
@@ -940,6 +954,8 @@ Hostname          NTP Sync Connect Time
 server04          no       2019-09-17 19:21:47
 ```
 
+Refer to {{<link url="Validation-Checks#ntp-validation-tests" text="NTP Validation Tests">}} for descriptions of these tests.
+
 {{</tab>}}
 
 {{<tab "OSPF">}}
@@ -973,6 +989,8 @@ spine-2           downlink-6                0.0.0.22                  27.0.0.22 
 tor-2             uplink-2                  0.0.0.20                  27.0.0.20                 mtu mismatch                                  Mon Jul  1 16:19:37 2019
 ```
 
+Refer to {{<link url="Validation-Checks/#ospf-validation-tests" text="OSPF Validation Tests">}} for descriptions of these tests.
+
 {{</tab>}}
 
 {{<tab "Sensors">}}
@@ -1000,6 +1018,8 @@ Fan sensors Test           : passed,
 Temperature sensors Test   : passed,
 ```
 
+Refer to {{<link url="Validation-Checks/#sensor-validation-tests" text="Sensor Validation Tests">}} for descriptions of these tests.
+
 {{</tab>}}
 
 {{<tab "VLAN">}}
@@ -1024,6 +1044,8 @@ Link Neighbor VLAN Consistency Test   : passed,
 Clag Bond VLAN Consistency Test       : passed,
 ```
 
+Refer to {{<link url="Validation-Checks/#vlan-validation-tests" text="VLAN Validation Tests">}} for descriptions of these tests.
+
 {{</tab>}}
 
 {{<tab "VXLAN">}}
@@ -1047,6 +1069,8 @@ BUM replication Test    : passed,
 {{%notice tip%}}
 Both asymmetric and symmetric VXLAN configurations are validated with this command.
 {{%/notice%}}
+
+Refer to {{<link url="Validation-Checks/#vxlan-validation-tests" text="VXLAN Validation Tests">}} for descriptions of these tests.
 
 {{</tab>}}
 
@@ -1105,7 +1129,7 @@ Sometimes it is useful to run validations on more than one protocol simultaneous
 To create a scheduled request containing checks on a single protocol or service in the NetQ CLI, run:
 
 ```
-netq add validation name <text-new-validation-name> type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf) interval <text-time-min>
+netq add validation name <text-new-validation-name> type (agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | sensors | vlan | vxlan) interval <text-time-min>
 ```
 
 This example shows the creation of a BGP validation run every 15 minutes for debugging.
@@ -1117,7 +1141,7 @@ Successfully added Bgp15m running every 15m
 
 The associated Validation Result card is accessible from the full-screen Scheduled Validation Result card. Refer to {{<link title="Validate Network Protocol and Service Operations#view-scheduled-validation-results" text="View Scheduled Validation Results">}}.
 
-You might want to remove this validation once you complete your analysis. Refer to {{<link title="Validate Network Protocol and Service Operations#delete-a-scheduled-validation" text="Delete a Scheduled Validation">}}.
+You might want to remove this validation after you complete your analysis. Refer to {{<link title="Validate Network Protocol and Service Operations#delete-a-scheduled-validation" text="Delete a Scheduled Validation">}}.
 
 {{</tab>}}
 
@@ -1129,7 +1153,7 @@ After creating scheduled validations with either the NetQ UI or the NetQ CLI, th
 
 #### Granularity of Data Shown Based on Time Period
 
-On the medium and large Validation Result cards, the status of the runs is represented in heat maps stacked vertically; one for passing runs,  one for runs with warnings, and one for runs with failures. Depending on the time period of data on the card, the number of smaller time blocks used to indicate the status varies. A vertical stack of time blocks, one from each map, includes the results from all checks during that time. The results are shown by how saturated the color is for each block. If all validations during that time period pass, then the middle block is 100% saturated (white) and the warning and failure blocks are zero % saturated (gray). As warnings and errors increase in saturation, the passing block is proportionally reduced in saturation. An example heat map for a time period of 24 hours is shown here with the most common time periods in the table showing the resulting time blocks and regions.
+On the medium and large Validation Result cards, the status of the runs is represented in heat maps stacked vertically; one for passing runs, one for runs with warnings, and one for runs with failures. Depending on the time period of data on the card, the number of smaller time blocks indicate that the status varies. A vertical stack of time blocks, one from each map, includes the results from all checks during that time. The results are shown by how saturated the color is for each block. If all validations during that time period pass, then the middle block is 100% saturated (white) and the warning and failure blocks are zero % saturated (gray). As warnings and errors increase in saturation, the passing block is proportionally reduced in saturation. An example heat map for a time period of 24 hours is shown here with the most common time periods in the table showing the resulting time blocks and regions.
 
 {{<figure src="/images/netq/sch-valid-result-granularity-230.png" width="300">}}
 
@@ -1272,7 +1296,7 @@ You can remove a user-defined scheduled validation at any time using the NetQ UI
 1. Determine the name of the scheduled validation you want to remove. Run:
 
     ```
-    netq show validation summary [name <text-validation-name>] type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf) [around <text-time-hr>] [json]
+    netq show validation summary [name <text-validation-name>] type (agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | sensors | vlan | vxlan) [around <text-time-hr>] [json]
     ```
 
     This example shows all scheduled validations for BGP.

@@ -6,14 +6,17 @@ toc: 3
 right_toc_levels: 1
 pdfhidden: true
 ---
+<!-- vale NVIDIA.HeadingTitles = NO -->
 This topic includes all commands that begin with `netq s*`.
 
+<!-- vale off -->
 ## netq show address-history
+<!-- vale on -->
 
 Displays where an IPv4 or IPv6 address has lived in your network fabric in the last 24 hours. The output provides:
 
 - When the address was last changed
-- The switch or host name where the address resides
+- The switch or hostname where the address resides
 - The interface where the address resides
 - The address prefix and mask
 - The associated VRF
@@ -383,7 +386,9 @@ leaf02            swp51(spine01)               default         65101      65199 
 <!-- vale on -->
 - - -
 
+<!-- vale off -->
 ## netq show cl-btrfs-info
+<!-- vale on -->
 
 Displays status about disk utilization on a given device or all devices networkwide with BTRFS and Cumulus Linux 3.x installed. The output provides the following information for each device:
 
@@ -443,7 +448,9 @@ leaf01            37.79 %              3.58 GB              588.5 MB            
 
 - - -
 
+<!-- vale off -->
 ## netq show cl-manifest
+<!-- vale on -->
 
 Displays the Cumulus Linux OS versions supported for a given device or all devices networkwide. The output provides the following information for each device:
 
@@ -514,7 +521,9 @@ leaf02            vx                   x86_64               3.6.2.1
 
 - - -
 
+<!-- vale off -->
 ## netq show cl-pkg-info
+<!-- vale on -->
 
 Displays the versions for all software packages installed on a given device or all devices networkwide. The output provides the following information for each device:
 
@@ -919,11 +928,13 @@ netq <hostname> show interface-stats
 
 ### Required Arguments
 
+<!-- vale off -->
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | port | \<physical-port\> | Only display results for the port with this name |
-| <!-- vale off -->rx<!-- vale on --> | NA | Only display receive statistics |
-| <!-- vale off -->tx<!-- vale on --> | NA | Only display transmit statistics |
+| rx | NA | Only display receive statistics |
+| tx | NA | Only display transmit statistics |
+<!-- vale on -->
 
 ### Options
 
@@ -1049,7 +1060,7 @@ Display system events that have occurred in the last 24 hours. Optionally, view 
 ```
 netq [<hostname>] show events
     [level info | level error | level warning | level critical | level debug]
-    [type clsupport | type ntp | type mtu | type configdiff | type vlan | type trace | type vxlan | type clag | type bgp | type interfaces | type interfaces-physical | type agents | type ospf | type evpn | type macs | type services | type lldp | type license | type os | type sensors | type btrfsinfo | type lcm]
+    [type agents|bgp|btrfsinfo|clag|clsupport|configdiff|evpn|interfaces|interfaces-physical|lcm|lldp|macs|mtu|ntp|os|ospf|roceconfig|sensors|services|tca_roce|trace|vlan|vxlan]
     [between <text-time> and <text-endtime>]
     [json]
 ```
@@ -1064,7 +1075,7 @@ None
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | level | info, error, warning, critical, or debug | Only display events with this severity level |
-| type | <!-- vale off -->agents, bgp, btrfsinfo, clag, clsupport, configdiff, evpn, interfaces, interfaces-physical, lcm, license, lldp, macs, mtu, ntp, os, ospf, sensors, services, trace, vlan, or vxlan<!-- vale on --> | Display events for the type with this name |
+| type | <!-- vale off -->agents, bgp, btrfsinfo, clag, clsupport, configdiff, evpn, interfaces, interfaces-physical, lcm, lldp, macs, mtu, ntp, os, ospf, roceconfig, sensors, services, tca_roce, trace, vlan or vxlan<!-- vale on --> | Display events for the type with this name |
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
@@ -1162,7 +1173,7 @@ Displays all event suppression configurations. Optionally, you can filter by a s
 - Configuration identifier and name
 - Message type
 - Scope of the suppression
-- When the suppression will no longer apply
+- When the suppression no longer applies
 
 When you filter by a message type, you must include the `show-filter-conditions` keyword to display the conditions associated with that message type and the hierarchy in which they are processed. The output in this case provides the following information for each message type:
 
@@ -1547,7 +1558,9 @@ Count of matching link records: 10
 
 - - -
 
+<!-- vale off -->
 ## netq show interface-stats
+<!-- vale on -->
 
 Displays performance statistics for the physical interfaces on switches in your network. The NetQ Agent collects the statistics every 30 seconds. Statistics are not collected for non-physical interfaces, such as bonds, bridges, and VXLANs. You can filter the output by interface or to view only error statistics. The ouput provides the following information for each switch and interface:
 
@@ -1658,7 +1671,9 @@ spine04           swp2                      5167364              0              
 
 - - -
 
+<!-- vale off -->
 ## netq show interface-utilization
+<!-- vale on -->
 
 Displays utilization (transmit and receive) and port speed for physical interfaces on switches in your network. NetQ collects this data every 30 seconds. You can filter the output by port name, data direction, and time.
 
@@ -1678,14 +1693,16 @@ None
 
 ### Options
 
+<!-- vale off -->
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | NA | \<text-port\> | Only display results for the port with this name |
-| <!-- vale off -->tx<!-- vale on --> | NA | Only display results for transmit data |
-| <!-- vale off -->rx<!-- vale on --> | NA | Only display results for receive data |
+| tx | NA | Only display results for transmit data |
+| rx | NA | Only display results for receive data |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
+<!-- vale on -->
 
 ### Command History
 
@@ -1776,13 +1793,6 @@ netq [<hostname>] show inventory disk
     [opta]
     [json]
 
-netq [<hostname>] show inventory license
-    [cumulus]
-    [status ok | status missing]
-    [around <text-time>]
-    [opta]
-    [json]
-
 netq [<hostname>] show inventory memory
     [type <memory-type>|vendor <memory-vendor>]
     [opta]
@@ -1803,7 +1813,6 @@ netq [<hostname>] show inventory os
 | board | NA | Only display motherboard information; hostname, vendor, model, base MAC address, serial number, part number, revision, manufacturing date |
 | cpu | NA | Only display processor information; hostname, architecture, model, frequency, number of cores |
 | disk | NA | Only display disk information; hostname, disk name and type, transport, size, vendor, model |
-| license | NA | Only display license information; hostname, license name, current state, when changed |
 | memory | NA | Only display memory information; hostname, memory name, type, size, speed, vendor, serial number |
 | os | NA | Only display operating system information; hostname, OS name, version, when changed |
 
@@ -1817,8 +1826,6 @@ netq [<hostname>] show inventory os
 | model-id | \<asic-model-id\> | Only display results for ASIC models with this ID |
 | arch | \<cpu-arch\> | Only display results for CPUs with this architecure |
 | transport | \<disk-transport\> | Only display results for disks with this transport method |
-| cumulus | NA | Only display results for Cumulus Linux licenses |
-| status | ok, missing | Only display results for licenses with this status |
 | type | \<memory-type\> | Only display results for memory of this type |
 | version | \<os-version\> | Only display results for operating systems of this version |
 | name | \<os-name\> | Only display results for operating systems with this name |
@@ -1832,6 +1839,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
+| 4.0.0 | Removed license commands and options |
 | 2.1.2 | Added `status` keyword to license form of command |
 | 1.x | Introduced |
 
@@ -2198,7 +2206,7 @@ Displays the IPv4 or IPv6 routes configured for a given device or all devices ne
 - VRF used for the route
 - Address prefix used for the route
 - Hostname of the device with the route
-- Next hops the route will take
+- Next hops the route takes
 - When the last change was made to any of these items
 
 ### Syntax
@@ -2315,7 +2323,9 @@ no     BLUE            ::/0                           leaf03            Blackhol
 
 - - -
 
+<!-- vale off -->
 ## netq show job-status
+<!-- vale on -->
 
 Displays the status of installation and upgrade jobs running on your NetQ appliance or VM.
 
@@ -3622,12 +3632,14 @@ The output provides the following information for each package:
 
 ### Syntax
 
+<!-- vale off -->
 ```
 netq [<hostname>] show recommended-pkg-version
     [release-id <text-release-id>]
     [package-name <text-package-name>]
     [json]
 ```
+<!-- vale on -->
 
 ### Required Arguments
 
@@ -3951,7 +3963,6 @@ Displays configuration and health of system-level services for one or all switch
 - **rsyslog**: Rocket-fast system event logging processing service
 - **smond**: System monitor daemon
 - **ssh**: Secure Shell service for switches and servers
-- **status**: License validation service
 - **syslog**: System event logging service
 - **vrf**: VRF (Virtual Route Forwarding) service
 - **zebra**: GNU Zebra routing daemon
@@ -4333,7 +4344,7 @@ netq show unit-tests vxlan [json]
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| <!-- vale off -->agent, bgp, clag, cl-version, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan<!-- vale on --> | NA | Display tests run during standard validation for the protocol or service with this name |
+| <!-- vale off -->agent, bgp, clag, cl-version, evpn, interfaces, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan<!-- vale on --> | NA | Display tests run during standard validation for the protocol or service with this name |
 
 ### Options
 
@@ -4381,7 +4392,7 @@ Displays one or all scheduled validations, including their name, type, cadence, 
 ```
 netq show validation settings
     [name <text-validation-name>]
-    [type ntp | type interfaces | type license | type sensors | type evpn | type vxlan | type agents | type mlag | type vlan | type bgp | type mtu | type ospf]
+    [type agents|bgp|evpn|interfaces|mlag|mtu|ntp|ospf|sensors|vlan|vxlan]
     [json]
 ```
 
@@ -4394,7 +4405,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | name | \<text-validation-name\> | Filter output to view settings for the scheduled validation with this name |
-| type | <!-- vale off -->agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan<!-- vale on --> | Filter output to view settings for only the indicated protocol or service |
+| type | <!-- vale off -->agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan<!-- vale on --> | Filter output to view settings for only the indicated protocol or service |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
 ### Command History
@@ -4439,8 +4450,6 @@ Default validat ntp        60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:
 ion NTP                                   2020
 Default validat evpn       60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
 ion EVPN                                  2020
-Default validat license    60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion LICENSE                               2020
 ```
 
 ### Related Commands
@@ -4460,7 +4469,7 @@ Displays summary status of a scheduled validation for a given protocol or servic
 ```
 netq show validation summary
     [name <text-validation-name>]
-    type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf)
+    type (agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | sensors | vlan | vxlan)
     [around <text-time-hr>]
     [json]
 ```
@@ -4469,7 +4478,7 @@ netq show validation summary
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| type | <!-- vale off -->agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan<!-- vale on --> | Show validation runs summary for the indicated protocol or service |
+| type | <!-- vale off -->agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, sensors, vlan or vxlan <!-- vale on --> | Show validation runs summary for the indicated protocol or service |
 
 ### Options
 
@@ -4555,7 +4564,7 @@ ion                              2-4ee7-917e-
 
 Displays the configuration of all VLANs on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
 
-- The switch or host name
+- The switch or hostname
 - The VLANs associated with that node
 - The SVIs (switch virtual interfaces) associated with that node
 - When the last change was made to any of these items
@@ -4636,7 +4645,7 @@ leaf04            20     bond2,vni20                         yes  Tue Nov 24 20:
 <!-- vale on -->
 Displays the configuration of all VXLANs on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
 
-- The switch or host name
+- The switch or hostname
 - The VNI associated with that node
 - The protocol used over the interface
 - The VTEP IP for the node
@@ -4736,7 +4745,7 @@ leaf04            4001       EVPN   10.0.1.2         4001                       
 
 ## netq show wjh-drops
 
-Displays packet drops due to buffer congestion, incorrect routing, tunnel, ACL and layer 1 and 2 problems that are captured by the WJH (What just happened) feature on NVIDIA switches. You can filter all drops by ingress port and severity. You can filter drops of a particular type by numerous attributes. The output varies according to the type of drop. Refer to the {{<link title="WJH Event Messages Reference">}} for descriptions of the supported drop reasons.
+Displays packet drops due to buffer congestion, incorrect routing, tunnel, ACL and layer 1 and 2 problems that are captured by the WJH (What just happened) feature on NVIDIA switches. You can filter all drops by ingress port and severity. You can filter drops of a particular type by various attributes. The output varies according to the type of drop. Refer to the {{<link title="WJH Event Messages Reference">}} for descriptions of the supported drop reasons.
 
 {{<notice note>}}
 Cumulus Linux 4.0.0 or later and NetQ Agent 2.4.0 or later are required to view this drop information. The NetQ Agent must also be configured to collect this data.
@@ -4746,6 +4755,7 @@ Additionally, using <em>wjh_dump.py</em> on a NVIDIA platform that is running Cu
 
 ### Syntax
 
+<!-- vale off -->
 ```
 netq [<hostname>] show wjh-drop
     [ingress-port <text-ingress-port>]
@@ -4773,6 +4783,7 @@ netq [<hostname>] show wjh-drop <text-drop-type>
     [around <text-time>]
     [json]
 ```
+<!-- vale on -->
 
 ### Required Arguments
 
@@ -4858,3 +4869,4 @@ leaf01            swp2                     Ingress router ACL                   
 - netq config restart agent
 
 - - -
+<!-- vale NVIDIA.HeadingTitles = YES -->

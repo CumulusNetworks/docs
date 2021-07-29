@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 370
 toc: 3
 ---
-In data center topologies, right cabling is a time-consuming endeavor and is error prone. Prescriptive Topology Manager (PTM) is a dynamic cabling verification tool to help detect and eliminate such errors. It takes a Graphviz-DOT specified network cabling plan (something many operators already generate), stored in a `topology.dot` file, and couples it with runtime information derived from LLDP to verify that the cabling matches the specification. The check is performed on every link transition on each node in the network.
+In data center topologies, right cabling is time-consuming and error prone. Prescriptive Topology Manager (PTM) is a dynamic cabling verification tool to help detect and eliminate errors. It takes a Graphviz-DOT specified network cabling plan (something many operators already generate), stored in a `topology.dot` file, and couples it with runtime information derived from LLDP to verify that the cabling matches the specification. The check is performed on every link transition on each node in the network.
 
 You can customize the `topology.dot` file to control `ptmd` at both the global/network level and the node/port level.
 
@@ -46,8 +46,7 @@ You can configure `ptmd` parameters in the topology file. The parameters are cla
 <!-- Vale issue #253 -->
 ### Host-only Parameters
 <!-- vale on -->
-*Host-only parameters* apply to the entire host on which PTM is running. You can include the `hostnametype` host-only parameter, which specifies if PTM uses only the hostname (`hostname`) or the fully-qualified
-domain name (`fqdn`) while looking for the `self-node` in the graph file. For example, in the graph file below PTM ignores the FQDN and only looks for *switch04* because that is the hostname of the switch on which it is running:
+*Host-only parameters* apply to the entire host on which PTM is running. You can include the `hostnametype` host-only parameter, which specifies if PTM uses only the hostname (`hostname`) or the fully qualified domain name (`fqdn`) while looking for the `self-node` in the graph file. For example, in the graph file below PTM ignores the FQDN and only looks for *switch04* because that is the hostname of the switch on which it is running:
 
 {{%notice tip%}}
 - Always wrap the hostname in double quotes; for example, `"www.example.com"` to prevent `ptmd` from failing.
@@ -149,7 +148,7 @@ graph G {
 
 `ptmd` supports the following LLDP parameters:
 - `match_type`, which defaults to the interface name (`ifname`), but can accept a port description (`portdescr`) instead if you want `lldpd` to compare the topology against the port description instead of the interface name. You can set this parameter globally or at the per-port level.
-- `match_hostname`, which defaults to the hostname (`hostname`), but enables PTM to match the topology using the fully-qualified domain name (`fqdn`) supplied by LLDP.
+- `match_hostname`, which defaults to the hostname (`hostname`), but enables PTM to match the topology using the fully qualified domain name (`fqdn`) supplied by LLDP.
 
 The following is an example of a topology with LLDP applied at the port level:
 
@@ -225,7 +224,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-With PTM enabled on an interface, the `zebra` daemon connects to `ptmd` over a Unix socket. Any time there is a change of status for an interface, `ptmd` sends notifications to `zebra`. Zebra maintains a `ptm-status` flag per interface and evaluates routing adjacency based on this flag. To check the per-interface `ptm-status`, run the CUE `cl show interface <interface>` command or the vtysh `show interface <interface>` command.
+With PTM enabled on an interface, the `zebra` daemon connects to `ptmd` over a Unix socket. Any time there is a change of status for an interface, `ptmd` sends notifications to `zebra`. Zebra maintains a `ptm-status` flag per interface and evaluates routing adjacency based on this flag. To check the per-interface `ptm-status`, run the NVUE `nv show interface <interface>` command or the vtysh `show interface <interface>` command.
 
 ```
 cumulus@switch:~$ sudo vtysh

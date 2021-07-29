@@ -12,7 +12,7 @@ If you intend to run this service within a {{<link url="Virtual-Routing-and-Forw
 
 ## Configure NTP Servers
 
-The default NTP configuration includes the following servers, which are listed in the `/etc/ntpd.conf` file:
+The default NTP configuration includes the following servers, which are listed in the `/etc/ntp.conf` file:
 
 - server 0.cumulusnetworks.pool.ntp.org iburst
 - server 1.cumulusnetworks.pool.ntp.org iburst
@@ -44,11 +44,13 @@ server 4.cumulusnetworks.pool.ntp.org iburst
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
+
+The NVUE command requires a VRF. The following command adds the NTP servers in the default VRF.
 
 ```
-cumulus@switch:~$ cl set system ntp pool 4.cumulusnetworks.pool.ntp.org iburst on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set service ntp default server 4.cumulusnetworks.pool.ntp.org iburst on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -99,10 +101,10 @@ cumulus@switch:~$ net show time ntp servers
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl show system ntp server
+cumulus@switch:~$ nv show service ntp default server
 ```
 
 {{< /tab >}}
@@ -136,14 +138,14 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl unset system ntp server 0.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ cl unset system ntp server 1.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ cl unset system ntp server 2.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ cl unset system ntp server 3.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv unset service ntp default server 0.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset service ntp default server 1.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset service ntp default server 2.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset service ntp default server 3.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -187,17 +189,18 @@ interface listen swp10
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set system ntp listen swp10
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set service ntp default listen swp10
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/ntp.conf` file and modify the entry under the `Specify interfaces` comment.
+
 ```
 cumulus@switch:~$ sudo nano /etc/ntp.conf
 ...
@@ -233,7 +236,7 @@ cumulus@switch:~$ sudo systemctl restart ntp
 cumulus@switch:~$ sudo systemctl status -n0 ntp.service
 ```
 
-If the state is not *Active*, or the alternate configuration file does not appear in the `ntp` command line, it is likely that you made a configuration mistake. In this case, correct the mistake and rerun the commands above to verify.
+If the state is not *Active*, or the alternate configuration file does not appear in the `ntp` command line, it is likely that you made a configuration mistake. Correct the mistake and rerun the commands above to verify.
 
 ## Configure NTP with Authorization Keys
 

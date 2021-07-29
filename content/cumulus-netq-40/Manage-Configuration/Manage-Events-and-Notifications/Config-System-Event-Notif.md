@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 780
 toc: 3
 ---
-To take advantage of the numerous event messages generated and processed by NetQ, you must integrate with third-party event notification applications. You can integrate NetQ with <!-- vale off -->Syslog<!-- vale on -->, PagerDuty, Slack, and Email. You may integrate with one or more of these applications simultaneously.
+To take advantage of the various event messages generated and processed by NetQ, you must integrate with third-party event notification applications. You can integrate NetQ with <!-- vale off -->Syslog<!-- vale on -->, PagerDuty, Slack, and Email. You may integrate with one or more of these applications simultaneously.
 
 In an on-premises deployment, the NetQ On-premises Appliance or VM receives the raw data stream from the NetQ Agents, processes the data, stores, and delivers events to the Notification function. Notification then filters and sends messages to any configured notification applications. In a cloud deployment, the NetQ Cloud Appliance or VM passes the raw data stream on to the NetQ Cloud service for processing and delivery.
 
@@ -27,7 +27,7 @@ Notifications are generated for the following types of events:
 | Services | <ul><li>NetQ Agent status</li><li>PTM\*</li><li>SSH \*</li><li>NTP status\*</li></ul> |
 | Traces | <ul><li>On-demand trace status</li><li>Scheduled trace status</li></ul> |
 | Sensors | <ul><li>Fan status</li><li>PSU (power supply unit) status</li><li>Temperature status</li></ul> |
-| System Software | <ul><li>Configuration File changes</li><li>Running Configuration File changes</li><li>Cumulus Linux License status</li><li>Cumulus Linux Support status</li><li>Software Package status</li><li>Operating System version</li><li>Lifecycle Management status</li></ul> |
+| System Software | <ul><li>Configuration File changes</li><li>Running Configuration File changes</li><li>Cumulus Linux Support status</li><li>Software Package status</li><li>Operating System version</li><li>Lifecycle Management status</li></ul> |
 | System Hardware | <ul><li>Physical resources status</li><li>BTRFS status</li><li>SSD utilization status</li></ul> |
 
 *\* This type of event can only be viewed in the CLI with this release.*
@@ -43,7 +43,7 @@ Messages have the following structure:
 
 | Element  | Description  |
 | ----------- | -------------- |
-| message type | Category of event; *agent*, *bgp*, *clag*, *clsupport*, *configdiff*, *evpn*, *license*, *link*, *lldp*, *mtu*, *node*, *ntp*, *ospf*, *packageinfo*, *ptm*, *resource*, *runningconfigdiff*, *sensor*, *services*, *ssdutil*, *tca*, *trace*, *version*, *vlan* or *vxlan* |
+| message type | Category of event; *agent*, *bgp*, *clag*, *clsupport*, *configdiff*, *evpn*, *link*, *lldp*, *mtu*, *node*, *ntp*, *ospf*, *packageinfo*, *ptm*, *resource*, *runningconfigdiff*, *sensor*, *services*, *ssdutil*, *tca*, *trace*, *version*, *vlan* or *vxlan* |
 | timestamp    | Date and time event occurred  |
 | opid         | Identifier of the service or process that generated the event |
 | hostname     | Hostname of network device where event occurred |
@@ -78,15 +78,15 @@ A notification configuration must contain one channel, one rule, and one filter.
 
 The first step is to create a PagerDuty, Slack, syslog, or Email channel to receive the notifications.
 
-{{< tabs "TabID81" >}}
+{{<tabs "TabID81" >}}
 
-{{< tab "Slack" >}}
+{{<tab "Slack" >}}
 
 You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
-{{< tabs "TabID191" >}}
+{{<tabs "TabID191" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
 
@@ -119,9 +119,9 @@ You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
 8. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To create and verify the specification of a Slack channel, run:
 
@@ -153,19 +153,19 @@ This example shows the creation of a *slk-netq-events* channel and verifies the 
                                                 moretext/evenmoretext
     ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "PagerDuty" >}}
+{{<tab "PagerDuty" >}}
 
 You can use the NetQ UI or the NetQ CLI to create a PagerDuty channel.
 
-{{< tabs "TabID125" >}}
+{{<tabs "TabID125" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
 
@@ -198,9 +198,9 @@ You can use the NetQ UI or the NetQ CLI to create a PagerDuty channel.
 
 8. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To create and verify the specification of a PagerDuty channel, run:
 
@@ -230,19 +230,19 @@ This example shows the creation of a *pd-netq-events* channel and verifies the c
                                                     210a8425298ef7abde0d1998
     ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
-{{< /tab >}}
+{{</tab>}}
 <!-- vale off -->
-{{< tab "Syslog" >}}
+{{<tab "Syslog" >}}
 <!-- vale on -->
 You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
-{{< tabs "TabID261" >}}
+{{<tabs "TabID261" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
 
@@ -275,9 +275,9 @@ You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
 8. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To create and verify the specification of a syslog channel, run:
 
@@ -308,19 +308,19 @@ This example shows the creation of a *syslog-netq-events* channel and verifies t
     nts                                        port: 514
     ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Email" >}}
+{{<tab "Email" >}}
 
 You can use the NetQ UI or the NetQ CLI to create an Email channel.
 
-{{< tabs "TabID328" >}}
+{{<tabs "TabID328" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
 
@@ -364,9 +364,9 @@ You can use the NetQ UI or the NetQ CLI to create an Email channel.
 
 9. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To create and verify the specification of an Email channel, run:
 
@@ -455,13 +455,13 @@ Successfully added/updated channel cloud-email
 
     ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### Create a Rule
 
@@ -504,9 +504,9 @@ netq show notification filter [json]
 
 These examples use the channels created in the {{<link title="#Create a Channel">}} topic and the rule created in the {{<link title="#Create a Rule">}} topic.
 
-{{< tabs "TabID466" >}}
+{{<tabs "TabID466" >}}
 
-{{< tab "PagerDuty" >}}
+{{<tab "PagerDuty" >}}
 
 ```
 cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-interfaces channel pd-netq-events
@@ -519,9 +519,9 @@ Name            Order      Severity         Channels         Rules
 notify-all-ifs  1          info             pd-netq-events   all-interfaces
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Slack" >}}
+{{<tab "Slack" >}}
 
 ```
 cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-interfaces channel slk-netq-events
@@ -534,9 +534,9 @@ Name            Order      Severity         Channels         Rules
 notify-all-ifs  1          info             slk-netq-events   all-interfaces
 ```
 
-{{< /tab >}}
+{{</tab>}}
 <!-- vale off -->
-{{< tab "Syslog" >}}
+{{<tab "Syslog" >}}
 <!-- vale on -->
 ```
 cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-interfaces channel syslog-netq-events
@@ -549,9 +549,9 @@ Name            Order      Severity         Channels         Rules
 notify-all-ifs  1          info             syslog-netq-events all-ifs
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Email" >}}
+{{<tab "Email" >}}
 
 ```
 cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-interfaces channel onprem-email
@@ -564,9 +564,9 @@ Name            Order      Severity         Channels         Rules
 notify-all-ifs  1          info             onprem-email all-ifs
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 NetQ is now configured to send all interface events to your selected channel.
 
@@ -604,9 +604,9 @@ proxy4:80          yes                        yes
 
 Create one or more PagerDuty, Slack, syslog, or Email channels to receive the notifications.
 
-{{< tabs "TabID566" >}}
+{{<tabs "TabID566" >}}
 
-{{< tab "PagerDuty" >}}
+{{<tab "PagerDuty" >}}
 
 NetQ sends notifications to PagerDuty as PagerDuty events.
 
@@ -672,9 +672,9 @@ This example shows the creation of a *pd-netq-events* channel and verifies the c
                                                     210a8425298ef7abde0d1998
     ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Slack" >}}
+{{<tab "Slack" >}}
 
 NetQ Notifier sends notifications to Slack as incoming webhooks for a
 Slack channel you configure.
@@ -747,9 +747,9 @@ This example shows the creation of a *slk-netq-events* channel and verifies the 
                                                       oretext/evenmoretext
     ```
 
-{{< /tab >}}
+{{</tab>}}
 <!-- vale off -->
-{{< tab "Syslog" >}}
+{{<tab "Syslog" >}}
 <!-- vale on -->
 To create and verify the specification of a syslog channel, run:
 
@@ -812,15 +812,15 @@ This example shows the creation of a *syslog-netq-events* channel and verifies t
     nts                                        port: 514
     ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Email" >}}
+{{<tab "Email" >}}
 
 The configuration is different depending on whether you are using the on-premises or cloud version of NetQ.
 
-{{< tabs "TabID780" >}}
+{{<tabs "TabID780" >}}
 
-{{< tab "On-premises" >}}
+{{<tab "On-premises" >}}
 
 To create an Email notification channel for an on-premises deployment, run:
 
@@ -860,9 +860,9 @@ This example creates an email channel named *onprem-email* that uses the *smtpse
                                                       omain.com
     ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Cloud" >}}
+{{<tab "Cloud" >}}
 
 In cloud deployments as the NetQ cloud service uses the NetQ SMTP server to push email notifications.
 
@@ -902,13 +902,13 @@ This example creates an email channel named *cloud-email* that uses the NetQ SMT
 
     ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### Create Rules
 
@@ -1767,7 +1767,7 @@ eventsconfig_10      job_cl_upgrade_2d89c sensor               {"sensor":"*","ne
                      fw2
 ```
 
-When you filter for a message type, you must include the `show-filter-conditions` keyword to show the conditions associated with that message type and the hierarchy in which they're processed.
+When you filter for a message type, you must include the `show-filter-conditions` keyword to show the conditions associated with that message type and the hierarchy in which they are processed.
 
 ```
 cumulus@switch:~$ netq show events-config message_type evpn show-filter-conditions
@@ -1781,18 +1781,11 @@ evpn                     hostname                                   1           
 
 ## Examples of Advanced Notification Configurations
 
-Putting all of these channel, rule, and filter definitions together you
-create a complete notification configuration. The following are example
-notification configurations are created using the three-step process
-outlined above.
+Putting all these channel, rule, and filter definitions together you create a complete notification configuration. The following are example notification configurations are created using the three-step process outlined above.
 
 ### Create a Notification for BGP Events from a Selected Switch
 
-In this example, we created a notification integration with a PagerDuty
-channel called *pd-netq-events*. We then created a rule *bgpHostname*
-and a filter called *4bgpSpine* for any notifications from *spine-01*.
-The result is that any info severity event messages from Spine-01 are
-filtered to the *pd-netq-events* channel.
+This example creates a notification integration with a PagerDuty channel called *pd-netq-events*. It then creates a rule *bgpHostname* and a filter called *4bgpSpine* for any notifications from *spine-01*. The result is that any info severity event messages from Spine-01 are filtered to the *pd-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
     Successfully added/updated channel pd-netq-events
@@ -1823,11 +1816,7 @@ filtered to the *pd-netq-events* channel.
 
 ### Create a Notification for Warnings on a Given EVPN VNI
 
-In this example, we created a notification integration with a PagerDuty
-channel called *pd-netq-events*. We then created a rule *evpnVni* and a
-filter called *3vni42* for any warnings messages from VNI 42 on the EVPN
-overlay network. The result is that any warning severity event messages
-from VNI 42 are filtered to the *pd-netq-events* channel.
+This example creates a notification integration with a PagerDuty channel called *pd-netq-events*. It then creates a rule *evpnVni* and a filter called *3vni42* for any warnings messages from VNI 42 on the EVPN overlay network. The result is that any warning severity event messages from VNI 42 are filtered to the *pd-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
     Successfully added/updated channel pd-netq-events
@@ -1862,11 +1851,7 @@ from VNI 42 are filtered to the *pd-netq-events* channel.
 
 ### Create a Notification for Configuration File Changes
 
-In this example, we created a notification integration with a Slack
-channel called *slk-netq-events*. We then created a rule *sysconf* and a
-filter called *configChange* for any configuration file update messages.
-The result is that any configuration update messages are filtered to the
-*slk-netq-events* channel.
+This example creates a notification integration with a Slack channel called *slk-netq-events*. It then creates a rule *sysconf* and a filter called *configChange* for any configuration file update messages. The result is that any configuration update messages are filtered to the *slk-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
@@ -1904,11 +1889,7 @@ The result is that any configuration update messages are filtered to the
 
 ### Create a Notification for When a Service Goes Down
 
-In this example, we created a notification integration with a Slack
-channel called *slk-netq-events*. We then created a rule *svcStatus* and
-a filter called *svcDown* for any services state messages indicating a
-service is no longer operational. The result is that any service down
-messages are filtered to the *slk-netq-events* channel.
+This example creates a notification integration with a Slack channel called *slk-netq-events*. It then creates a rule *svcStatus* and a filter called *svcDown* for any services state messages indicating a service is no longer operational. The result is that any service down messages are filtered to the *slk-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
@@ -1948,10 +1929,7 @@ messages are filtered to the *slk-netq-events* channel.
 
 ### Create a Filter to Drop Notifications from a Given Interface
 
-In this example, we created a notification integration with a Slack
-channel called *slk-netq-events*. We then created a rule *swp52* and a
-filter called *swp52Drop* that drops all notifications for events from
-interface *swp52*.
+This example creates a notification integration with a Slack channel called *slk-netq-events*. It then creates a rule *swp52* and a filter called *swp52Drop* that drops all notifications for events from interface *swp52*.
 
     cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
@@ -1992,13 +1970,9 @@ interface *swp52*.
     configChange    4          info             slk-netq-events  sysconf
     svcDown         5          critical         slk-netq-events  svcStatus
 
-### Create a Notification for a Given Device that has a Tendency to Overheat (using multiple rules)
+### Create a Notification for a Given Device that Has a Tendency to Overheat (Using Multiple Rules)
 
-In this example, we created a notification when switch *leaf04* has
-passed over the high temperature threshold. Two rules were needed to
-create this notification, one to identify the specific device and one to
-identify the temperature trigger. We sent the message to the
-*pd-netq-events* channel.
+This example creates a notification when switch *leaf04* has passed over the high temperature threshold. Two rules were needed to create this notification, one to identify the specific device and one to identify the temperature trigger. NetQ then sends the message to the *pd-netq-events* channel.
 
 ```
 cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
@@ -2164,9 +2138,9 @@ For integrations with threshold-based event notifications, refer to {{<link titl
 
 If you retire selected channels from a given notification application, you might want to remove them from NetQ as well. You can remove channels if they are not part of an existing notification configuration using the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID1908" >}}
+{{<tabs "TabID1908" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To remove notification channels:
 
@@ -2178,15 +2152,15 @@ To remove notification channels:
 
     {{<figure src="/images/netq/channels-slack-created-300.png" width="700">}}
 
-2. Click the tab for the type of channel you want to remove (Slack, PagerDuty, <!-- vale off -->Syslog<!-- vale on -->, Email).
+2. Click the tab for the type of channel you want to remove (Slack, PagerDuty, `syslog`, Email).
 
 3. Select one or more channels.
 
 4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/>.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To remove notification channels, run:
 
@@ -2208,9 +2182,9 @@ pd-netq-events  pagerduty        info             integration-key: 1234567
                                                     890
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### Delete an Event Notification Rule
 

@@ -125,6 +125,15 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set interface bond0 bond member swp1-4
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 {{%notice note%}}
@@ -200,6 +209,17 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+The following example sets the bond mode for bond01 to balance-xor (static):
+
+```
+cumulus@switch:~$ cl set interface bond01 bond mode static 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 {{%notice note%}}
@@ -208,15 +228,17 @@ Each bond configuration option, except for `bond slaves,` is set to the recommen
 
 {{%/notice%}}
 
-| Parameter| Description|
-|---------- |---------- |
-| `bond-mode 802.3ad`\|`balance-xor` | Cumulus Linux supports IEEE 802.3ad link aggregation mode (802.3ad) and balance-xor mode.<br>The default mode is 802.3ad.<br><br>**Note:** When you enable balance-xor mode, the bonding of slave interfaces are static and all slave interfaces are active for load balancing and fault tolerance purposes. Packet transmission on the bond is based on the hash policy specified by xmit-hash-policy.<br><br>When using balance-xor mode to dual-connect host-facing bonds in an MLAG environment, you must configure the clag-id parameter on the MLAG bonds and it must be the same on both MLAG switches. Otherwise, the bonds are treated by the MLAG switch pair as single-connected.<br><br>Use balance-xor mode only if you cannot use LACP; LACP can detect mismatched link attributes between bond members and can even detect misconnections. |
-| `bond-slaves <interface-list>` | The list of slaves in the bond. |
-| `bond miimon <value>` |Defines how often the link state of each slave is inspected for failures. You can specify a value between 0 and 255. The default value is 100. |
-| `bond-use-carrier no` | Determines the link state. |
-| `bond-lacp-bypass-allow`| Enables LACP bypass. |
-| `bond-lacp-rate slow` | Sets the rate to ask the link partner to transmit LACP control packets. slow is the only option. |
-| `bond-min-links` | Defines the minimum number of links (between 0 and 255) that must be active before the bond is put into service. The default value is 1.<br><br>A value greater than 1 is useful if higher level services need to ensure a minimum aggregate bandwidth level before activating a bond. Keeping bond-min-links set to 1 indicates the bond must have at least one active member. If the number of active members drops below the bond-min-links setting, the bond appears to upper-level protocols as link-down. When the number of active links returns to greater than or equal to bond-min-links, the bond becomes link-up. |
+| NCLU and Linux Parameter| CUE Attribute |Description|
+|---------- |---------- | ------ |
+| `bond-mode 802.3ad`\|`balance-xor` | `lacp`\|`static`| Cumulus Linux supports IEEE 802.3ad link aggregation mode (802.3ad) and balance-xor mode.<br>The default mode is 802.3ad.<br><br>**Note:** When you enable balance-xor mode, the bonding of slave interfaces are static and all slave interfaces are active for load balancing and fault tolerance purposes. Packet transmission on the bond is based on the hash policy specified by xmit-hash-policy.<br><br>When using balance-xor mode to dual-connect host-facing bonds in an MLAG environment, you must configure the clag-id parameter on the MLAG bonds and it must be the same on both MLAG switches. Otherwise, the bonds are treated by the MLAG switch pair as single-connected.<br><br>Use balance-xor mode only if you cannot use LACP; LACP can detect mismatched link attributes between bond members and can even detect misconnections. |
+| `bond-slaves <interface-list>` | `member` | The list of slaves in the bond. |
+| `bond miimon <value>` | NEED ATTRIBUTE | Defines how often the link state of each slave is inspected for failures. You can specify a value between 0 and 255. The default value is 100. |
+| `bond downdelay <milliseconds>` | `down-delay` | Specifies the time, in milliseconds (between 0 and 65535), to wait before disabling a slave after a link failure is detected. The default value is 0.<br><br>This option is only valid for the miimon link monitor. The downdelay value must be a multiple of the miimon value; if not, it is rounded down to the nearest multiple. |
+| `bond-updelay <milliseconds>` | `up-delay` | Specifies the time, in milliseconds (between 0 and 65535), to wait before enabling a slave after a link recovery is detected. The default value is 0.<br><br>This option is only valid for the miimon link monitor. The updelay value must be a multiple of the miimon value; if not, it is rounded down to the nearest multiple. |
+| `bond-use-carrier no` | NEED ATTRIBUTE | Determines the link state. |
+| `bond-lacp-bypass-allow` | `lacp-bypass` | Enables LACP bypass. |
+| `bond-lacp-rate slow` | `lacp-rate` | Sets the rate to ask the link partner to transmit LACP control packets. slow is the only option. |
+| `bond-min-links` | NEED ATTRIBUTE | Defines the minimum number of links (between 0 and 255) that must be active before the bond is put into service. The default value is 1.<br><br>A value greater than 1 is useful if higher level services need to ensure a minimum aggregate bandwidth level before activating a bond. Keeping bond-min-links set to 1 indicates the bond must have at least one active member. If the number of active members drops below the bond-min-links setting, the bond appears to upper-level protocols as link-down. When the number of active links returns to greater than or equal to bond-min-links, the bond becomes link-up. |
 
 ## Show Bond Information
 
@@ -292,6 +314,14 @@ Duplex: full
 Link Failure Count: 0
 Permanent HW addr: 44:38:39:00:00:03
 Slave queue ID: 0
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl show interface bond0 
 ```
 
 {{< /tab >}}

@@ -138,7 +138,9 @@ cumulus@switch~:$ netq config add agent server 10.0.0.23
 cumulus@switch~:$ netq config restart agent
 ```
 
+<!-- vale off -->
 ### Disable and Re-enable a NetQ Agent
+<!-- vale on -->
 
 You can temporarily disable NetQ Agent on a node. Disabling the NetQ Agent maintains the data already collected in the NetQ database, but stops the NetQ Agent from collecting new data until it is re-enabled.
 
@@ -156,9 +158,9 @@ cumulus@switch:~$ netq config restart agent
 
 ### Configure a NetQ Agent to Limit Switch CPU Usage
 
-While not typically an issue, you can restrict the NetQ Agent from using more than a configurable amount of the CPU resources. This setting requires Cumulus Linux versions 3.6 or later or 4.1.0 or later to be running on the switch.
+While not typically an issue, you can restrict the NetQ Agent from using more than a configurable amount of the CPU resources. This setting requires Cumulus Linux versions 3.6.x, 3.7.x or 4.1.0 or later to be running on the switch.
 
-For more detail about this feature, refer to this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Cumulus-NetQ/NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches/" text="Knowledge Base article">}}.
+For more detail about this feature, refer to this [Knowledge Base article]({{<ref "knowledge-base/Configuration-and-Usage/Cumulus-NetQ/NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches">}}).
 
 This example limits a NetQ Agent from consuming more than 40% of the CPU resources on a Cumulus Linux switch.
 
@@ -224,7 +226,7 @@ cumulus@switch:~$ netq config restart agent
 
 ### Configure a NetQ Agent to Send Data to a Server Cluster
 
-If you have a server cluster arrangement for NetQ, you will want to configure the NetQ Agent to send the data it collects to all of the servers in the cluster.
+If you have a server cluster arrangement for NetQ, you should configure the NetQ Agent to send the data it collects to every server in the cluster.
 
 To configure the agent to send data to the servers in your cluster, run:
 
@@ -357,7 +359,6 @@ clagctl-json                   60  yes       /usr/bin/clagctl -j
 dpkg-query                  21600  yes       dpkg-query --show -f ${Package},${Version},${Status}\n
 ptmctl-json                   120  yes       ptmctl
 mstpctl-bridge-json            60  yes       /sbin/mstpctl showall json
-cl-license                  21600  yes       /usr/sbin/switchd -lic
 ports                        3600  yes       Netq Predefined Command
 proc-net-dev                   30  yes       Netq Predefined Command
 agent_stats                   300  yes       Netq Predefined Command
@@ -403,7 +404,6 @@ clagctl-json                   60  yes       /usr/bin/clagctl -j
 dpkg-query                  21600  yes       dpkg-query --show -f ${Package},${Version},${Status}\n
 ptmctl-json                   120  yes       /usr/bin/ptmctl -d -j
 mstpctl-bridge-json            60  yes       /sbin/mstpctl showall json
-cl-license                  21600  yes       /usr/sbin/switchd -lic
 ports                        3600  yes       Netq Predefined Command
 proc-net-dev                   30  yes       Netq Predefined Command
 agent_stats                   300  yes       Netq Predefined Command
@@ -439,7 +439,6 @@ clagctl-json                   60  yes       /usr/bin/clagctl -j
 dpkg-query                  21600  yes       dpkg-query --show -f ${Package},${Version},${Status}\n
 ptmctl-json                   120  yes       /usr/bin/ptmctl -d -j
 mstpctl-bridge-json            60  yes       /sbin/mstpctl showall json
-cl-license                  21600  yes       /usr/sbin/switchd -lic
 ports                        3600  yes       Netq Predefined Command
 proc-net-dev                   30  yes       Netq Predefined Command
 agent_stats                   300  yes       Netq Predefined Command
@@ -475,7 +474,6 @@ clagctl-json                   60  yes       /usr/bin/clagctl -j
 dpkg-query                  21600  yes       dpkg-query --show -f ${Package},${Version},${Status}\n
 ptmctl-json                   120  yes       /usr/bin/ptmctl -d -j
 mstpctl-bridge-json            60  yes       /sbin/mstpctl showall json
-cl-license                  21600  yes       /usr/sbin/switchd -lic
 ports                        3600  yes       Netq Predefined Command
 proc-net-dev                   30  yes       Netq Predefined Command
 agent_stats                   300  yes       Netq Predefined Command

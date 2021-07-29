@@ -261,6 +261,34 @@ cumulus@leaf01:~$ net add dhcp relay giaddr-interface swp2 10.0.0.4
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+Run the `cl set service dhcp-relay default giaddress-interface` command with the interface/IP address you want to use. The  following example uses the first IP address on the loopback interface as the gateway IP address:
+
+```
+cumulus@leaf01:~$ cl set service dhcp-relay default giaddress-interface lo
+```
+
+The first IP address on the loopback interface is typically the 127.0.0.1 address. This example uses IP address 10.10.10.1 on the loopback interface as the giaddr:
+
+```
+cumulus@leaf01:~$ cl set service dhcp-relay default giaddress-interface lo 10.10.10.1
+```
+
+This example uses the first IP address on swp2 as the giaddr:
+
+```
+cumulus@leaf01:~$ cl set service dhcp-relay default giaddr-interface swp2
+```
+
+This example uses IP address 10.0.0.4 on swp2 as the giaddr:
+
+```
+cumulus@leaf01:~$ cl set service dhcp-relay default giaddr-interface swp2 10.0.0.4
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ### Gateway IP Address as Source IP for Relayed DHCP Packets (Advanced)
@@ -352,7 +380,13 @@ This section provides troubleshooting tips.
 
 ### Show DHCP Relay Status
 
-To show the DHCP relay status, run the Linux `systemctl status dhcrelay.service` command (`systemctl status dhcrelay6.service` command for IPv6). For example:
+To show the DHCP relay status:
+
+{{< tabs "TabID583 ">}}
+
+{{< tab "Linux Commands ">}}
+
+Run the Linux `systemctl status dhcrelay.service` command for IPv4 DHCP or the `systemctl status dhcrelay6.service` command for IPv6 DHCP. For example:
 
 ```
 cumulus@leaf01:~$ sudo systemctl status dhcrelay.service
@@ -365,6 +399,27 @@ Main PID: 1997 (dhcrelay)
             └─1997 /usr/sbin/dhcrelay --nl -d -q -i vlan10 -i swp51 -i swp52 172.16.1.102
 ```
 
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+Run the `cl show service dhcp-relay` command. For example:
+
+```
+cumulus@leaf01:~$ cl show service dhcp-relay
+           source-ip  Summary
+---------  ---------  -----------------------
++ default  auto       giaddress-interface: lo
+  default             interface:        swp51
+  default             interface:        swp52
+  default             interface:        vlan10
+  default             server:    172.16.1.102
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ### Check systemd
 
 If you are experiencing issues with DHCP relay, check if there is a problem with `systemd:`
@@ -375,7 +430,7 @@ If you are experiencing issues with DHCP relay, check if there is a problem with
    cumulus@leaf01:~$ /usr/sbin/dhcrelay -4 -i vlan10 172.16.1.102 -i swp51
    ```
 
-- For IPv6, run the `/usr/sbin/dhcrelay -6 -l <interface-facing-host> -u <ip-address-dhcp-server>%<interface-facing-dhcp-server>` command. For example:
+- For IPv6,run the `/usr/sbin/dhcrelay -6 -l <interface-facing-host> -u <ip-address-hcp-server>%<interface-facing-dhcp-server>` command. For example:
 
    ```
    cumulus@leaf01:~$ /usr/sbin/dhcrelay -6 -l vlan10 -u 2001:db8:100::2%swp51

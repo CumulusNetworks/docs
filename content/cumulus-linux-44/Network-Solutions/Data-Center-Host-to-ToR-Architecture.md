@@ -16,7 +16,7 @@ This chapter discusses the various architectures and strategies available from t
 |----------|---------|
 |<ul><li>Established technology: Interoperability with other vendors, easy configuration, a lot of documentation from multiple vendors and the industry</li><li>Ability to use {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="spanning tree">}} commands: {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#portadminedge-portfast-mode" text="PortAdminEdge">}} and {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-guard" text="BPDU guard">}}</li><li>Layer 2 reachability to all VMs</li></ul>|<ul><li>The load balancing mechanism on the host can cause problems. If there is only host pinning to each NIC, there are no problems, but if you have a bond, you need to look at an MLAG solution.</li><li>No active-active host links. Some operating systems allow HA (NIC failover), but this still does not utilize all the bandwidth. VMs use one NIC, not two.</li></ul>|
 
-| <div style="width:130px">Active-Active Mode | <div style="width:130px">Active-Passive Mode | L2 to L3 Demarcation|
+| <div style="width:130px">Active-Active Mode | <div style="width:130px">Active-Passive Mode | Layer 2 to layer 3 Demarcation|
 |---------------------|--------------------|---------------------|
 | None (not possible with traditional spanning tree) | {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP" text="VRR">}} | <ul><li>ToR layer (recommended)</li><li>Spine layer</li><li>Core/edge/exit</li></ul><br>You can configure VRR on a pair of switches at any level in the network. However, the higher up the network, the larger the layer 2 domain becomes. The benefit is layer 2 reachability. The drawback is that the layer 2 domain is more difficult to troubleshoot, does not scale as well, and the pair of switches running VRR needs to carry the entire MAC address table of everything below it in the network. Cumulus Professional Services recommends minimizing the layer 2 domain as much as possible. For more information, see {{<exlink url="https://docs.google.com/presentation/d/1l1d_6iUF7RTUHTSAmGuLwm3WCUXTNdFjndCLLxzBSOU/edit?usp=sharing" text="this presentation">}}.|
 
@@ -84,11 +84,11 @@ iface br-20 inet manual
 | <div style="width:300px">Benefits | Considerations |
 |----------| --------|
 | 100% of links utilized | <ul><li>More complicated (more moving parts) </li><li>More configuration</li><li>No interoperability between vendors</li><li>ISL (inter-switch link) required</li></ul> |
-
-| Active-Active Mode | Active-Passive Mode | L2 to L3 Demarcation| More Information|
+<!-- vale off -->
+| Active-Active Mode | Active-Passive Mode | Layer 2 to layer 3 Demarcation| More Information|
 |---------------------|--------------------|---------------------|-----------------|
 | {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP" text="VRR">}}| None | <ul><li>ToR layer (recommended)</li><li>Spine layer</li><li>Core/edge/exit</li><ul>|<ul><li>Can be done with either the {{<link url="Traditional-Bridge-Mode" text="traditional">}} or {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware">}} bridge driver depending on overall STP needs.</li><li>There are a few different solutions including Cisco VPC and Arista MLAG, but none of them interoperate and are very vendor specific.</li><li>{{<exlink url=https://resource.nvidia.com/en-us-ethernet-switching/bgp-evpn-for-vxlan-techincal-overview" text="Cumulus Networks Layer 2 HA validated design guide">}}.</li></ul>|
-
+<!-- vale on -->
 **Example Configuration**
 
 {{< tabs "TabID99 ">}}
@@ -113,7 +113,7 @@ iface peerlink
 
 auto peerlink.4094
 iface peerlink.4094
-    address 169.254.1.2
+    address 169.254.1.1/30
     clagd-enable yes
     clagd-peer-ip 169.254.1.2
     clagd-system-mac 44:38:39:FF:40:94
@@ -144,9 +144,9 @@ iface vm-br10 inet manual
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- vale off -->
 ## Layer 3 - Single-attached Hosts
-
+<!-- vale on -->
 | <div style="width:300px">Example| Summary|
 |----|----|
 |{{< img src = "/images/cumulus-linux/network-solutions-single-attached.png" >}} | The server (physical host) has only has one link to one ToR switch. |
@@ -243,7 +243,7 @@ iface eth1 inet static
 
 |<div style="width:300px">Example| Summary |
 |--------------------------------|-----------|
-| {{< img src = "/images/cumulus-linux/network-solutions-routing-on-host.png" >}} | Routing on the host means there is a routing application (such as {{<link url="FRRouting" text="FRRouting">}}, either on the bare metal host (no VMs or containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by our Professional Services team. |
+| {{< img src = "/images/cumulus-linux/network-solutions-routing-on-host.png" >}} | Routing on the host means there is a routing application (such as {{<link url="FRRouting" text="FRRouting">}}, either on the bare metal host (no VMs or containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Professional Services team. |
 
 | <div style="width:300px">Benefits | Considerations |
 |-----------------------------------| --------|
@@ -289,7 +289,7 @@ iface eth1 inet static
 
 | <div style="width:300px">Benefits | Considerations |
 |-----------------------------------| --------|
-| <ul><li>Most benefits of routing **on** the host</li><li>No requirement for host to run routing</li><li>No requirement for redistribute neighbor</li></ul>|<ul><li>Removing a subnet from one ToR and re-adding it to another (network statements from your router process) is a manual process.</li><li>Network team and server team have to be in sync, or the server team controls the ToR, or automation is used used whenever VM migration occurs.</li><li>When using VMs or containers it is very easy to black hole traffic, as the leafs continue to advertise prefixes even when the VM is down.</li><li>No layer 2 adjacency between servers without VXLAN.</li></ul>|
+| <ul><li>Most benefits of routing **on** the host</li><li>No requirement for host to run routing</li><li>No requirement for redistribute neighbor</li></ul>|<ul><li>Removing a subnet from one ToR and re-adding it to another (network statements from your router process) is a manual process.</li><li>Network team and server team have to be in sync, or the server team controls the ToR, or automation is used whenever VM migration occurs.</li><li>When using VMs or containers it is very easy to black hole traffic, as the leafs continue to advertise prefixes even when the VM is down.</li><li>No layer 2 adjacency between servers without VXLAN.</li></ul>|
 
 | FHR (First Hop Redundancy) |
 | ---------------------------|

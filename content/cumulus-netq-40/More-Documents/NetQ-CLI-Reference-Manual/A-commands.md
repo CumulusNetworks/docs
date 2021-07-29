@@ -9,9 +9,11 @@ pdfhidden: true
 
 This topic includes all commands that begin with `netq a*` and `netq b*`.
 
+<!-- vale off -->
 ## netq add events-config
+<!-- vale on -->
 
-Enables suppression of any of the numerous system events, excluding them from event displays. By default all events are delivered. You can suppress events for:
+Enables suppression of any of the various system events, excluding them from event displays. By default all events are delivered. You can suppress events for:
 
 - Two years (default): useful when you do not want to see the events (essentially never show them)
 - A period of time: useful when you want to temporarily suppress events due to maintenance (typically days), or when testing a new network configuration where the switch may generate many messages that are expected and not needed beyond this time period (typically minutes or hours)
@@ -70,7 +72,7 @@ netq add events-config events_config_name mybtrfs message_type ospf scope '[{"sc
 
 ## netq add notification channel
 
-NetQ events are presented to the user through event notification channels. NetQ supports four channel types: email, PagerDuty, Slack, or Syslog. This command configures these channels.
+NetQ events are presented to the user through event notification channels. NetQ supports four channel types: email, PagerDuty, Slack, or `syslog`. This command configures these channels.
 
 {{<notice note>}}
 You must have at least one channel, one rule, and one filter to fully configure a notification.
@@ -611,7 +613,7 @@ Creates a validation for various protocols and services to be run on a regular i
 ```
 netq add validation
     name <text-new-validation-name>
-    type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf)
+    type (agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | sensors | vlan | vxlan)
     interval <text-time-min>
     [alert-on-failure]
 ```
@@ -621,7 +623,7 @@ netq add validation
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | name | user defined | Unique name for the validation |
-| type | <!-- vale off -->agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, sensors, vlan, or vxlan <!-- vale on -->| Protocol or service to be validated |
+| type | <!-- vale off -->agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, sensors, vlan or vxlan <!-- vale on -->| Protocol or service to be validated |
 | interval | \<text-time-min\> | Frequency to run the validation, in minutes. Value must include time unit of *m*, minutes. Default scheduled validations per type run every 60 minutes. |
 
 ### Options
@@ -663,7 +665,7 @@ Creates an on-demand validation for various protocols and services, with results
 
 ```
 netq add validation
-    type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf)
+    type (agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | sensors | vlan | vxlan)
     [alert-on-failure]
 ```
 
@@ -671,7 +673,7 @@ netq add validation
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| type | agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, sensors, vlan, or vxlan | Protocol or service to be validated |
+| type | agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, sensors, vlan or vxlan | Protocol or service to be validated |
 
 ### Options
 
@@ -827,6 +829,12 @@ cumulus@switch:~$ netq bootstrap reset keep-db
 ## netq bootstrap master upgrade
 
 Loads master node with a new NetQ installer in an existing server cluster deployment.
+
+{{%notice note%}}
+
+This command applies only when upgrading from NetQ 3.1.1 and earlier.
+
+{{%/notice%}}
 
 ### Syntax
 

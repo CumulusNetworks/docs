@@ -8,7 +8,7 @@ toc: 3
 
 The fundamental premise behind redistribute neighbor is to announce individual host /32 routes in the routed fabric. Other hosts on the fabric can then use this new path to access the hosts in the fabric. If multiple equal-cost paths (ECMP) are available, traffic can load balance across the available paths natively.
 
-The challenge is to accurately compile and update this list of reachable hosts or neighbors. Luckily, existing commonly-deployed protocols are available to solve this problem. Hosts use {{<link title="Address Resolution Protocol - ARP" text="ARP">}} to resolve MAC addresses when sending to an IPv4 address. A host then builds an ARP cache table of known MAC addresses: IPv4 tuples as they receive or respond to ARP requests.
+The challenge is to accurately compile and update this list of reachable hosts or neighbors. Luckily, existing commonly deployed protocols are available to solve this problem. Hosts use {{<link title="Address Resolution Protocol - ARP" text="ARP">}} to resolve MAC addresses when sending to an IPv4 address. A host then builds an ARP cache table of known MAC addresses: IPv4 tuples as they receive or respond to ARP requests.
 
 For a leaf switch, where the default gateway is used for hosts within the rack, the ARP cache table contains a list of all hosts that have ARP'd for their default gateway. In many scenarios, this table contains all the layer 3 information that is needed. Redistribute neighbor formats and synchronizes this table into the routing protocol.
 
@@ -60,10 +60,10 @@ The following example configuration is based on the following topology.
 
 ### Configure the Leafs
 
-The following steps demonstrate how to configure leaf01, but you can follow the same steps on any leaf.
+The following steps configure leaf01 but you can follow the same steps on any leaf.
 
 {{%notice note%}}
-CUE commands are currently unsupported.
+NVUE Commands are currently unsupported.
 {{%/notice%}}
 
 1. Edit the `/etc/network/interfaces` file to configure the host facing ports, using the same IP address on both host-facing interfaces as well as a /32 prefix. In this case, swp1 and swp2 are configured as they are the ports facing server01 and server02:
@@ -219,7 +219,7 @@ iface eth2
 
 ### Install ifplugd
 
-Install and use `{{<link url="ifplugd">}}`, which modifies the behavior of the Linux routing table when an interface undergoes a link transition (carrier up/down). The Linux kernel by default leaves routes up even when the physical interface is unavailable (NO-CARRIER).
+Install and use `{{<link url="ifplugd">}}`, which modifies the behavior of the Linux routing table when an interface undergoes a link transition (carrier up/down). By default, the Linux kernel keeps routes up even when the physical interface is unavailable (NO-CARRIER).
 
 After you install `ifplugd`, edit `/etc/default/ifplugd` as follows, where *eth1* and *eth2* are the interface names that your host uses to connect to the leafs.
 
@@ -284,7 +284,7 @@ cumulus@leaf01:~$ sudo systemctl restart rdnbrd.service
 
 ### Set the Routing Table ID
 
-The Linux kernel supports multiple routing tables and can utilize 0 through 255 as table IDs; however tables 0, 253, 254 and 255 are reserved, and 1 is usually the first one utilized. Therefore, `rdnbrd` only allows you to specify 2-252. Cumulus Linux uses table ID 10, however you can set the ID to any value between 2-252. You can see all the tables specified here:
+The Linux kernel supports multiple routing tables and can utilize 0 through 255 as table IDs; however tables 0, 253, 254 and 255 are reserved, and 1 is usually the first one used. Therefore, `rdnbrd` only allows you to specify between 2 and 252. Cumulus Linux uses table ID 10, however you can set the ID to any value between 2 and 252. You can see all the tables specified here:
 
 ```
 cumulus@leaf01:~$ cat /etc/iproute2/rt_tables

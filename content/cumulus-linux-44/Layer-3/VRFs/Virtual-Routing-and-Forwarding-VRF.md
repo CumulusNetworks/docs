@@ -28,7 +28,7 @@ Cumulus Linux supports up to 255 VRFs on a switch.
 
 Each routing table is called a *VRF table*, and has its own table ID.
 
-To configure VRF, you associate each subset of interfaces to a VRF routing table and configure an instance of the routing protocol (BGP or OSPFv2) for each routing table.Configuring a VRF is similar to configuring other network interfaces. Keep in mind the following:
+To configure VRF, you associate each subset of interfaces to a VRF routing table and configure an instance of the routing protocol (BGP or OSPFv2) for each routing table. Configuring a VRF is similar to configuring other network interfaces. Keep in mind the following:
 
 - A VRF table can have an IP address, which is a loopback interface for the VRF.
 - Associated rules are added automatically.
@@ -48,12 +48,12 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf BLUE table auto
-cumulus@switch:~$ cl set interface swp1 ip vrf BLUE
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set vrf BLUE table auto
+cumulus@switch:~$ nv set interface swp1 ip vrf BLUE
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -96,11 +96,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf BLUE table 1016
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set vrf BLUE table 1016
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -243,7 +243,7 @@ Cumulus Linux supports dynamic VRF route leaking. Static route leaking is not su
 
 ### Configure Route Leaking
 
-For route leaking, a destination VRF is interested in the routes of a source VRF. As routes come and go in the source VRF, they are dynamically leaked to the destination VRF through BGP. If the routes in the source VRF are learned through BGP, no additional configuration is necessary. If the routes in the source VRF are learned through OSPF, or if they are statically configured or directly-connected networks have to be reached, you need to *redistribute* the routes first into BGP (in the source VRF) for them to be leaked.
+For route leaking, a destination VRF is interested in the routes of a source VRF. As routes come and go in the source VRF, they are dynamically leaked to the destination VRF through BGP. If the routes in the source VRF are learned through BGP, no additional configuration is necessary. If the routes in the source VRF are learned through OSPF, or if they are statically configured or directly connected networks have to be reached, you need to *redistribute* the routes first into BGP (in the source VRF) for them to be leaked.
 
 You can also use route leaking to reach remote destinations as well as directly connected destinations in another VRF. Multiple VRFs can import routes from a single source VRF and a VRF can import routes from multiple source VRFs. This is typically used when a single VRF provides connectivity to external networks or a shared service for many other VRFs. The routes that are leaked dynamically across VRFs can be controlled using a route-map.
 
@@ -262,11 +262,11 @@ When you use route leaking:
 In the following example commands, routes in the BGP routing table of VRF `BLUE` are dynamically leaked into VRF `RED`.
 
 {{< tabs "TabID266 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf RED router bgp address-family ipv4-unicast route-import from-vrf list BLUE
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast route-import from-vrf list BLUE
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -339,15 +339,15 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf RED router bgp address-family ipv4-unicast route-import from-vrf list BLUE
-cumulus@switch:~$ cl set router policy route-map BLUEtoRED rule 10 match source-protocol bgp 
-cumulus@switch:~$ cl set router policy route-map BLUEtoRED rule 10 action permit
-cumulus@switch:~$ cl set router policy route-map BLUEtoRED rule 10 set community 11:11
-cumulus@switch:~$ cl set vrf RED router bgp address-family ipv4-unicast route-import from-vrf route-map BLUEtoRED
-cumulus@switch:~$ cl config
+cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast route-import from-vrf list BLUE
+cumulus@switch:~$ nv set router policy route-map BLUEtoRED rule 10 match source-protocol bgp 
+cumulus@switch:~$ nv set router policy route-map BLUEtoRED rule 10 action permit
+cumulus@switch:~$ nv set router policy route-map BLUEtoRED rule 10 set community 11:11
+cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast route-import from-vrf route-map BLUEtoRED
+cumulus@switch:~$ nv config
 ```
 
 {{< /tab >}}
@@ -432,11 +432,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl unset vrf RED router bgp address-family ipv4-unicast route-import from-vrf list BLUE
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv unset vrf RED router bgp address-family ipv4-unicast route-import from-vrf list BLUE
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -540,11 +540,9 @@ router bgp 64900 vrf vrf1012
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-```
+NVUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -654,12 +652,9 @@ router ospf vrf vrf1
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ 
-```
+NVUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -786,11 +781,38 @@ router bgp 65001 vrf vrf1
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ 
+cumulus@switch:~$ nv set vrf vrf1 table auto
+cumulus@switch:~$ nv set vrf vrf1 loopback ip address 6.1.0.6/32
+cumulus@switch:~$ nv set vrf vrf1 loopback ip address 2001:6:1::6/128
+cumulus@switch:~$ nv set interface swp1 link speed 10G
+cumulus@switch:~$ nv set interface swp1 link auto-negotiate off
+cumulus@switch:~$ nv set interface swp1 ip vrf vrf1
+cumulus@switch:~$ nv set interface vlan101 ip address 20.1.6.1/24
+cumulus@switch:~$ nv set interface vlan101 ip address 2001:20:1:6::1/80
+cumulus@switch:~$ nv set bridge domain br_default
+cumulus@switch:~$ nv set bridge domain br_default vlan 101
+```
+
+Here is the FRRouting BGP configuration:
+
+```
+cumulus@switch:~$ nv set vrf vrf1 router bgp router-id 10.10.10.1
+cumulus@switch:~$ nv set vrf vrf1 router bgp autonomous-system 65001
+cumulus@switch:~$ nv set vrf vrf1 router bgp path-selection multipath aspath-ignore on 
+cumulus@switch:~$ nv set vrf vrf1 router bgp path-selection routerid-compare on 
+cumulus@switch:~$ nv set vrf vrf1 router bgp peer-group LEAF
+cumulus@switch:~$ nv set vrf vrf1 router bgp peer-group LEAF remote-as external 
+cumulus@switch:~$ nv set vrf vrf1 router bgp peer-group LEAF capabilities extended-nexthop on
+cumulus@switch:~$ nv set vrf vrf1 router bgp peer swp1.101 peer-group LEAF
+cumulus@switch:~$ nv set vrf vrf1 router bgp peer swp1.102 peer-group LEAF
+cumulus@switch:~$ nv set vrf vrf1 router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@switch:~$ nv set vrf vrf1 router bgp peer-group LEAF address-family ipv4-unicast enable on
+cumulus@switch:~$ nv set vrf vrf1 router bgp address-family ipv6-unicast redistribute connected enable on
+cumulus@switch:~$ nv set vrf vrf1 router bgp peer-group LEAF address-family ipv6-unicast enable on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -887,7 +909,7 @@ router bgp 65001 vrf vrf1
 
 ## DHCP with VRF
 
-Because you can use VRF to bind IPv4 and IPv6 sockets to non-default VRF tables, you can start DHCP servers and relays in any non-default VRF table using the `dhcpd` and `dhcrelay` services.  These services must be managed by `systemd` to run in a VRF context. In addition, the services must be listed in the `/etc/vrf/systemd.conf` file. By default, this file already lists these two services, as well as others like `ntp`. You can add more services as needed, such as `dhcpd6` and `dhcrelay6` for IPv6.
+Because you can use VRF to bind IPv4 and IPv6 sockets to non-default VRF tables, you can start DHCP servers and relays in any non-default VRF table using the `dhcpd` and `dhcrelay` services. These services must be managed by `systemd` to run in a VRF context. In addition, the services must be listed in the `/etc/vrf/systemd.conf` file. By default, this file already lists these two services, as well as others like `ntp`. You can add more services as needed, such as `dhcpd6` and `dhcrelay6` for IPv6.
 
 If you edit `/etc/vrf/systemd.conf`, run `sudo systemctl daemon-reload` to generate the `systemd` instance files for the newly added services. Then you can start the service in the VRF using `systemctl start <service>@<vrf-name>.service`, where `<service>` is the name of the service (such as `dhcpd` or `dhcrelay`) and `<vrf-name>` is the name of the VRF.
 
@@ -1147,7 +1169,7 @@ cumulus@switch:~$ sudo traceroute -i turtle
 
 ## Troubleshooting
 
-You can use NCLU, vtysh, or Linux show commands commands to troubleshoot VRFs.
+You can use NCLU, vtysh, or Linux show commands to troubleshoot VRFs.
 
 {{< tabs "TabID642 ">}}
 {{< tab "NCLU Commands ">}}

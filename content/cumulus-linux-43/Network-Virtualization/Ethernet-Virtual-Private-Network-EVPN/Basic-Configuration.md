@@ -56,9 +56,21 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
+cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ cl config apply 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
-The above commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
+The NCLU and vtysh commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
 
 ```
 ...
@@ -111,9 +123,18 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ cl set 
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
-The above commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
+The NCLU and vtysh commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
 
 ```
 ...
@@ -146,7 +167,7 @@ For information about active-active VTEPs and anycast IP behavior, and for failu
 ## Considerations
 
 - When EVPN is enabled on a VTEP, all locally defined VNIs on that switch and other information (such as MAC addresses) are advertised to EVPN peers. There is no provision to only announce certain VNIs.
-- On switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}, ND suppression only works with the Spectrum-A1 chip.
+- On switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}, ND suppression is supported on Spectrum-A1 and above.
 - ARP suppression is enabled by default in Cumulus Linux. However, in a {{<link url="VXLAN-Active-active-Mode" text="VXLAN active-active">}} configuration, ARPs are sometimes *not* suppressed. This is because the neighbor entries are not synchronized between the two switches operating in active-active mode by a control plane. This has no impact on forwarding.
 - You must configure the overlay (tenants) in a specific VRF and separate from the underlay, which resides in the default VRF. Layer 3 VNI mapping for the default VRF is not supported.
 - EVPN is not supported when {{<link title="Redistribute Neighbor" >}} is also configured. Enabling both features simultaneously causes instability in IPv4 and IPv6 neighbor entries.

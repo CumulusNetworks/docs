@@ -1,7 +1,9 @@
 {{- $src := ((trim (.Get "src") "/") | default (.Get 0)) -}}
 {{- $external := ((.Get "external") | default false) -}}
 {{- /* "Check if the file exists in the /static directory. Skip any external icons" */ -}}
-{{- if or (fileExists (print "static/" $src)) (in $src "icons.cumulusnetworks.com") ($external) -}}
+{{- if or (in $src "http:") (in $src "https:") -}}
+<img src={{$src | absURL }} alt="{{.Get "alt"}}" width="{{.Get "width"}}" height="{{.Get "height"}}" />
+{{- else if or (fileExists (print "static/" $src)) ($external) -}}
 <img src={{$src | absURL }} alt="{{.Get "alt"}}" width="{{.Get "width"}}" height="{{.Get "height"}}" />
 {{- else -}}
 {{- /* "If the file doesn't exist, print the .md file and image" */ -}}

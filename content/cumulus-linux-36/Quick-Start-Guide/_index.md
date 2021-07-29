@@ -74,7 +74,7 @@ not need a console cable. A fresh install with ONIE using a local web
 server typically completes in less than ten minutes.
 
 You have more options for installing Cumulus Linux with ONIE. Read
-[Installing a New Cumulus Linux Image](/cumulus-linux-36/Installation-Management/Installing-a-New-Cumulus-Linux-Image)
+{{<link text="Installing a New Cumulus Linux Image" url="Installing-a-New-Cumulus-Linux-Image" >}}
 to install Cumulus Linux using ONIE in the following ways:
 
   - DHCP/web server with and without DHCP options

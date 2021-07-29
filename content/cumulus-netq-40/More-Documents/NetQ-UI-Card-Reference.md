@@ -6,8 +6,8 @@ toc: 3
 ---
 This reference describes the cards available with the NetQ {{<version>}} graphical user interface (NetQ UI). Each item and field on the four sizes of cards is shown. You can open cards using one of two methods:
 
-- Search for the card by name in the Global Search box in the application header
-- Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Select a card category or scroll down. Click on the desired card. Click **Open Cards**.
+- Search for the card by name in the Global Search field in the application header
+- Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Select a card category or scroll down. Click the desired card. Click **Open Cards**.
 
 Cards opened on the default NetQ Workbench are not saved. Create a new workbench and open cards there to save and view the cards at a later time.
 
@@ -139,7 +139,7 @@ The *Alarm Summary* tab displays:
 <tr class="odd">
 <td>Alarm Distribution</td>
 <td><p><strong>Chart</strong>: Distribution of all alarms received from each category during the designated time period:
-<ul><li>NetQ Agent</li><li>BTRFS Information</li><li>CL Support</li><li>Config Diff</li><li>CL License</li><li>Installed Packages</li><li>Link</li><li>LLDP</li><li>MTU</li><li>Node</li><li>Port</li><li>Resource</li><li>Running Config Diff</li><li>Sensor</li><li>Services</li><li>SSD Utilization</li><li>TCA Interface Stats</li><li>TCA Resource Utilization</li><li>TCA Sensors</li></ul>  
+<ul><li>NetQ Agent</li><li>BTRFS Information</li><li>CL Support</li><li>Config Diff</li><li>Installed Packages</li><li>Link</li><li>LLDP</li><li>MTU</li><li>Node</li><li>Port</li><li>Resource</li><li>Running Config Diff</li><li>Sensor</li><li>Services</li><li>SSD Utilization</li><li>TCA Interface Stats</li><li>TCA Resource Utilization</li><li>TCA Sensors</li></ul>  
 The categories are displayed in descending order based on total count of alarms, with the largest number of alarms is shown at the top, followed by the next most, down to the chart with the fewest alarms.</p>
 <p><strong>Count</strong>: Total number of alarms received from each category during the designated time period.</p></td>
 </tr>
@@ -481,7 +481,7 @@ The large Devices Inventory card has one tab.
 
 The *Switches* tab displays:
 
-{{<figure src="/images/netq/inventory-devices-large-switches-tab-230.png" width="500">}}
+{{<figure src="/images/netq/inventory-devices-large-switches-tab-400.png" width="500">}}
 
 <table>
 <colgroup>
@@ -517,7 +517,7 @@ The *Switches* tab displays:
 </tr>
 <tr class="even">
 <td>Component</td>
-<td>Switch components monitored-ASIC, Operating System (OS), Cumulus Linux license, NetQ Agent version, and Platform.</td>
+<td>Switch components monitored-ASIC, Operating System (OS), NetQ Agent version, and Platform.</td>
 </tr>
 <tr class="odd">
 <td>Distribution charts</td>
@@ -525,7 +525,7 @@ The *Switches* tab displays:
 </tr>
 <tr class="even">
 <td>Unique</td>
-<td>Number of unique items of each component type. For example, for License, you might have CL 2.7.2 and CL 2.7.4, giving you a unique count of two.</td>
+<td>Number of unique items of each component type. For example, for OS, you might have Cumulus Linux 3.7.15, 4.3 and SONiC 202012, giving you a unique count of 3.</td>
 </tr>
 </tbody>
 </table>
@@ -589,7 +589,6 @@ The full screen Devices Inventory card provides tabs for all switches and all ho
 <li>Nos: Number of cores. Example values include 2, 4, and 8.</li>
 </ul></li>
 <li><strong>Disk Total Size</strong>: Total amount of storage space in physical disks (not total available). Example values: 10 GB, 20 GB, 30 GB.</li>
-<li><strong>License State</strong>: Indicator of validity. Values include ok and bad.</li>
 <li><strong>Memory Size</strong>: Total amount of local RAM. Example values include 8192 MB and 2048 MB.</li>
 <li><strong>OS</strong>
 <ul>
@@ -656,7 +655,7 @@ The medium Switch Inventory card displays:
 </tr>
 <tr class="odd">
 <td>Chart</td>
-<td><p>Distribution of switch components (disk size, OS, ASIC, NetQ Agents, CPU, Cumulus Linux licenses, platform, and memory size) during the designated time period. Hover over chart segment to view versions of each component.</p>
+<td><p>Distribution of switch components (disk size, OS, ASIC, NetQ Agents, CPU, platform, and memory size) during the designated time period. Hover over chart segment to view versions of each component.</p>
 <p><strong>Note</strong>: You should only have one version of NetQ Agent running and it should match the NetQ Platform release number. If you have more than one, you likely need to upgrade the older agents.</p></td>
 </tr>
 <tr class="even">
@@ -694,7 +693,7 @@ The *Summary* tab displays:
 </tr>
 <tr class="odd">
 <td>Charts</td>
-<td><p>Distribution of switch components (disk size, OS, ASIC, NetQ Agents, CPU, Cumulus Linux licenses, platform, and memory size), divided into software and hardware, during the designated time period. Hover over chart segment to view versions of each component.</p>
+<td><p>Distribution of switch components (disk size, OS, ASIC, NetQ Agents, CPU, platform, and memory size), divided into software and hardware, during the designated time period. Hover over chart segment to view versions of each component.</p>
 <p><strong>Note</strong>: You should only have one version of NetQ Agent running and it should match the NetQ Platform release number. If you have more than one, you likely need to upgrade the older agents.</p></td>
 </tr>
 <tr class="even">
@@ -776,10 +775,6 @@ The *Platform* tab displays:
 <td>Distribution of platform models. Hover over chart segment to view the number of switches with each model.</td>
 </tr>
 <tr class="odd">
-<td>License State chart</td>
-<td>Distribution of Cumulus Linux license status. Hover over chart segments to highlight the vendor and platforms that have that license status.</td>
-</tr>
-<tr class="even">
 <td>Show All</td>
 <td>Opens full screen card displaying all components for all switches.</td>
 </tr>
@@ -927,7 +922,7 @@ trend of the:
 <td>Health score</td>
 <td>Percentage of devices which passed validation versus the number of devices checked during the time window for:
 <ul>
-<li><strong>System health</strong>: NetQ Agent health, Cumulus Linux license status, and sensors</li>
+<li><strong>System health</strong>: NetQ Agent health and sensors</li>
 <li><strong>Network services health</strong>: BGP, CLAG, EVPN, NTP, OSPF, and VXLAN health</li>
 <li><strong>Interface health</strong>: interfaces MTU, VLAN health.</li>
 </ul>
@@ -944,7 +939,7 @@ The large Network Health card contains three tabs.
 
 The *System Health* tab displays:
 
-{{< figure src="/images/netq/ntwk-hlth-large-sys-hlth-tab-241.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-hlth-system-hlth-lg-400.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -968,7 +963,7 @@ The *System Health* tab displays:
 </tr>
 <tr class="odd">
 <td>Health trend</td>
-<td>Trend of NetQ Agents, Cumulus Linux licenses, and sensor health, represented by an arrow:
+<td>Trend of NetQ Agents and sensor health, represented by an arrow:
 <ul>
 <li><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend.</li>
 <li><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend.</li>
@@ -978,12 +973,12 @@ The *System Health* tab displays:
 </tr>
 <tr class="even">
 <td>Health score</td>
-<td><p>Percentage of devices which passed validation versus the number of devices checked during the time window for NetQ Agents, Cumulus Linux license status, and platform sensors.</p>
+<td><p>Percentage of devices which passed validation versus the number of devices checked during the time window for NetQ Agents and platform sensors.</p>
 <p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
 </tr>
 <tr class="odd">
 <td>Charts</td>
-<td>Distribution of health score for NetQ Agents, Cumulus Linux license status, and platform sensors during the designated time period.</td>
+<td>Distribution of health score for NetQ Agents and platform sensors during the designated time period.</td>
 </tr>
 <tr class="even">
 <td>Table</td>
@@ -1175,9 +1170,6 @@ The full screen Network Health card displays all events in the network.
 <li><strong>Checked Port Count</strong>: Number of ports included in the validation</li>
 <li><strong>Failed Port Count</strong>: Number of ports that failed the validation.</li>
 <li><strong>Unverified Port Count</strong>: Number of ports where a peer could not be identified</li></ul></li>
-<li>Licenses<ul>
-<li><strong>Checked License Count</strong>: Number of licenses included in the validation</li>
-<li><strong>Failed License Count</strong>: Number of licenses that failed the validation</li></ul></li>
 <li>MTU<ul>
 <li><strong>Total Link Count</strong>: Number of links included in the validation</li>
 <li><strong>Failed Link Count</strong>: Number of links that failed the validation</li></ul></li>
@@ -1476,7 +1468,6 @@ The full screen BGP Service card provides tabs for all switches, all sessions, a
 <li>Nos: Number of cores. Example values include 2, 4, and 8.</li>
 </ul></li>
 <li><strong>Disk Total Size</strong>: Total amount of storage space in physical disks (not total available). Example values: 10 GB, 20 GB, 30 GB.</li>
-<li><strong>License State</strong>: Indicator of validity. Values include ok and bad.</li>
 <li><strong>Memory Size</strong>: Total amount of local RAM. Example values include 8192 MB and 2048 MB.</li>
 <li><strong>OS</strong>
 <ul>
@@ -2134,7 +2125,6 @@ The full screen EVPN Service card provides tabs for all switches, all sessions, 
 <li>Nos: Number of cores. Example values include 2, 4, and 8.</li>
 </ul></li>
 <li><strong>Disk Total Size</strong>: Total amount of storage space in physical disks (not total available). Example values: 10 GB, 20 GB, 30 GB.</li>
-<li><strong>License State</strong>: Indicator of validity. Values include ok and bad.</li>
 <li><strong>Memory Size</strong>: Total amount of local RAM. Example values include 8192 MB and 2048 MB.</li>
 <li><strong>OS</strong>
 <ul>
@@ -2720,7 +2710,6 @@ The full screen LLDP Service card provides tabs for all switches, all sessions, 
 <li>Nos: Number of cores. Example values include 2, 4, and 8.</li>
 </ul></li>
 <li><strong>Disk Total Size</strong>: Total amount of storage space in physical disks (not total available). Example values: 10 GB, 20 GB, 30 GB.</li>
-<li><strong>License State</strong>: Indicator of validity. Values include ok and bad.</li>
 <li><strong>Memory Size</strong>: Total amount of local RAM. Example values include 8192 MB and 2048 MB.</li>
 <li><strong>OS</strong>
 <ul>
@@ -3348,7 +3337,6 @@ sessions, and all alarms.
 <li>Nos: Number of cores. Example values include 2, 4, and 8.</li>
 </ul></li>
 <li><strong>Disk Total Size</strong>: Total amount of storage space in physical disks (not total available). Example values: 10 GB, 20 GB, 30 GB.</li>
-<li><strong>License State</strong>: Indicator of validity. Values include ok and bad.</li>
 <li><strong>Memory Size</strong>: Total amount of local RAM. Example values include 8192 MB and 2048 MB.</li>
 <li><strong>OS</strong>
 <ul>
@@ -3999,7 +3987,6 @@ The full screen OSPF Service card provides tabs for all switches, all sessions, 
 <li>Nos: Number of cores. Example values include 2, 4, and 8.</li>
 </ul></li>
 <li><strong>Disk Total Size</strong>: Total amount of storage space in physical disks (not total available). Example values: 10 GB, 20 GB, 30 GB.</li>
-<li><strong>License State</strong>: Indicator of validity. Values include ok and bad.</li>
 <li><strong>Memory Size</strong>: Total amount of local RAM. Example values include 8192 MB and 2048 MB.</li>
 <li><strong>OS</strong>
 <ul>
@@ -4540,7 +4527,7 @@ The *Attributes* tab displays:
 </tr>
 <tr class="odd">
 <td>OS</td>
-<td>Operating system running on the switch. CL indicates a Cumulus Linux license.</td>
+<td>Operating system running on the switch. CL indicates Cumulus Linux is installed.</td>
 </tr>
 <tr class="even">
 <td>OS Version</td>
@@ -4551,10 +4538,6 @@ The *Attributes* tab displays:
 <td>Version of the NetQ Agent running on the switch.</td>
 </tr>
 <tr class="even">
-<td>License State</td>
-<td>Indicates whether the license is valid (<em>ok</em>) or invalid/missing (<em>bad</em>).</td>
-</tr>
-<tr class="odd">
 <td>Total Interfaces</td>
 <td>Total number of interfaces on this switch, and the number of those that are up and down.</td>
 </tr>

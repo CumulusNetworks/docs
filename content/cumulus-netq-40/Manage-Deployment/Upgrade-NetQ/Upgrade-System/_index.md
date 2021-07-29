@@ -22,7 +22,7 @@ To complete the preparation:
 
 2. Download the relevant software.
 
-    {{<netq-install/upgrade-image version="3.3.1">}} <!-- UPDATE ME! -->
+    {{<netq-install/upgrade-image version="4.0">}}
 
 3. Copy the file to the `/mnt/installables/` directory on your appliance or VM.
 
@@ -38,7 +38,7 @@ To complete the preparation:
     ```
     cumulus@<hostname>:~$ sudo apt-get update
     Get:1 http://apps3.cumulusnetworks.com/repos/deb bionic InRelease [13.8 kB]
-    Get:2 http://apps3.cumulusnetworks.com/repos/deb bionic/netq-3.3 amd64 Packages [758 B]
+    Get:2 http://apps3.cumulusnetworks.com/repos/deb bionic/netq-4.0 amd64 Packages [758 B]
     Hit:3 http://archive.ubuntu.com/ubuntu bionic InRelease
     Get:4 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
     Get:5 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
@@ -70,9 +70,9 @@ To complete the preparation:
 
 6. If you are upgrading NetQ as a VM in the cloud from version 3.1.0 or earlier, you must increase the root volume disk image size for proper operation of the lifecycle management feature.
 
-    {{< tabs "TabID89" >}}
+    {{<tabs "TabID89" >}}
 
-{{< tab "VMware" >}}
+{{<tab "VMware" >}}
 
 1. Check the size of the existing disk in the VM to confirm it is 32 GB. In this example, the number of 1 MB blocks is 31583, or 32 GB.
 
@@ -119,9 +119,9 @@ To complete the preparation:
     /dev/sda1          63341  4772     58554   8% /
     ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "KVM" >}}
+{{<tab "KVM" >}}
 
 1. Check the size of the existing hard disk in the VM to confirm it is 32 GB. In this example, the number of 1 MB blocks is 31583, or 32 GB.
 
@@ -174,7 +174,7 @@ To complete the preparation:
 
 6. Start the VM and log back in.
 
-7. From step 1 we know the name of the root disk is */dev/vda 1*. Use that to run the following commands on the partition.
+7. From step 1 you know the name of the root disk is */dev/vda 1*. Use that to run the following commands on the partition.
 
     ```
     cumulus@netq-310-cloud:~$ sudo growpart /dev/vda 1
@@ -195,78 +195,24 @@ Filesystem     1M-blocks  Used Available Use% Mounted on
 /dev/vda1          63341  1193     62132   2% /
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 You can now upgrade your appliance using the NetQ Admin UI, in the next section. Alternately, you can upgrade using the CLI here: {{<link title="#Upgrade Your Platform Using the NetQ CLI" text="Upgrade Your Platform Using the NetQ CLI">}}.
 
-## Upgrade Your Platform Using the NetQ Admin UI
+## Run the Upgrade
 
-After completing the preparation steps, upgrading your NetQ On-premises or Cloud Appliances or VMs is simple using the Admin UI.
+You can upgrade the NetQ platform in one of two ways:
+
+- Using the `netq upgrade` CLI command, which works with any supported older versions
+- Using the NetQ Admin UI, which works only if you are upgrading from version 3.1.1 or later
+
+### Upgrade Using the NetQ CLI
+
+After completing the {{<link url="#prepare-for-upgrade" text="preparation steps">}}, upgrading your NetQ On-premises, Cloud Appliances or VMs is simple using the NetQ CLI.
 
 To upgrade your NetQ software:
-
-1. Run the bootstrap CLI to upgrade the Admin UI application.
-
-    {{< tabs "TabID100" >}}
-
-{{< tab "On-premises Deployments" >}}
-
-```
-cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-4.0.0.tgz
-2020-04-28 15:39:37.016710: master-node-installer: Extracting tarball /mnt/installables/NetQ-4.0.0.tgz
-2020-04-28 15:44:48.188658: master-node-installer: Upgrading NetQ Admin container
-2020-04-28 15:47:35.667579: master-node-installer: Removing old images
------------------------------------------------
-Successfully bootstrap-upgraded the master node
-```
-
-{{< /tab >}}
-
-{{< tab "Remote Deployments" >}}
-
-```
-netq bootstrap master upgrade /mnt/installables/NetQ-4.0.0-opta.tgz
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-2. Open the Admin UI by entering *http://\<hostname-or-ipaddress\>:8443* in your browser address field.
-
-3. Enter your NetQ credentials to enter the application.
-
-    The default username is *admin* and the default password in *admin*.
-
-    {{<figure src="/images/netq/adminui-health-tab-onprem-320.png" width="700" caption="On-premises deployment">}}
-
-    {{<figure src="/images/netq/adminui-health-tab-cloud-330.png" width="700" caption="Remote (cloud) deployment">}}
-
-4. Click **Upgrade** in the upper right corner.
-
-5. Enter *NetQ-4.0.0.tgz* or *NetQ-4.0.0-opta.tgz* and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
-
-    {{<figure src="/images/netq/adminui-upgrade-enter-tar-330.png" width="700">}}
-
-    {{<notice tip>}}
-The <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/> is only visible after you enter your tar file information.
-    {{</notice>}}
-
-6. Monitor the progress. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-circle-down.svg" height="18" width="18"/> to monitor each step in the jobs.
-
-    The following example is for an on-premises upgrade. The jobs for a cloud upgrade are slightly different.
-
-    {{<figure src="/images/netq/adminui-upgrade-progress-4.0.0.png" width="700">}}
-
-7. When it completes, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/> to be returned to the Health dashboard.
-
-## Upgrade Your Platform Using the NetQ CLI
-
-After completing the preparation steps, upgrading your NetQ On-premises/Cloud Appliance(s) or VMs is simple using the NetQ CLI.
-
-To upgrade:
 
 1. Run the appropriate `netq upgrade` command.
 
@@ -298,3 +244,64 @@ netq upgrade bundle /mnt/installables/NetQ-4.0.0-opta.tgz
     APPLIANCE_MANIFEST_HASH=74ac3017d5
     APPLIANCE_VERSION=4.0.0
     ```
+
+### Upgrade Using the NetQ Admin UI
+
+If you are upgrading from NetQ 3.1.1 or later, after completing the {{<link url="#prepare-for-upgrade" text="preparation steps">}}, upgrading your NetQ On-premises or Cloud Appliances or VMs is simple using the Admin UI.
+
+To upgrade your NetQ software:
+
+1. Run the bootstrap CLI to upgrade the Admin UI application.
+
+    {{<tabs "Upgrade Old Platforms">}}
+
+{{<tab "On-premises Deployments">}}
+
+```
+cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-4.0.0.tgz
+2020-04-28 15:39:37.016710: master-node-installer: Extracting tarball /mnt/installables/NetQ-4.0.0.tgz
+2020-04-28 15:44:48.188658: master-node-installer: Upgrading NetQ Admin container
+2020-04-28 15:47:35.667579: master-node-installer: Removing old images
+-----------------------------------------------
+Successfully bootstrap-upgraded the master node
+```
+
+{{</tab>}}
+
+{{<tab "Remote Deployments">}}
+
+```
+netq bootstrap master upgrade /mnt/installables/NetQ-4.0.0-opta.tgz
+```
+
+{{</tab>}}
+
+{{</tabs>}}
+
+2. Open the Admin UI by entering *http://\<hostname-or-ipaddress\>:8443* in your browser address field.
+
+3. Enter your NetQ credentials to enter the application.
+
+    The default username is *admin* and the default password in *admin*.
+
+    {{<figure src="/images/netq/adminui-health-tab-onprem-320.png" width="700" caption="On-premises deployment">}}
+
+    {{<figure src="/images/netq/adminui-health-tab-cloud-330.png" width="700" caption="Remote (cloud) deployment">}}
+
+4. Click **Upgrade** in the upper right corner.
+
+5. Enter *NetQ-4.0.0.tgz* or *NetQ-4.0.0-opta.tgz* and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
+
+    {{<figure src="/images/netq/adminui-upgrade-enter-tar-330.png" width="700">}}
+
+    {{<notice tip>}}
+The <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/> is only visible after you enter your tar file information.
+    {{</notice>}}
+
+6. Monitor the progress. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-circle-down.svg" height="18" width="18"/> to monitor each step in the jobs.
+
+    The following example is for an on-premises upgrade. The jobs for a cloud upgrade are slightly different.
+
+    {{<figure src="/images/netq/adminui-upgrade-progress-4.0.0.png" width="700">}}
+
+7. When it completes, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/> to be returned to the Health dashboard.

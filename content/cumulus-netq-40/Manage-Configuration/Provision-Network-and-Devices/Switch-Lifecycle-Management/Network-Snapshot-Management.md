@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 690
 toc: 4
 ---
-Creating and comparing network snapshots can be useful to validate that the network state has not changed. Snapshots are typically created when you upgrade or change the configuration of your switches in some way. This section describes the Snapshot card and content, as well as how to create and compare network snapshots at any time. Snapshots can be automatically created during the upgrade process for Cumulus Linux. Refer to {{<link title="Upgrade Cumulus Linux Using LCM#perform-a-cumulus-linux-upgrade" text="Perform a Cumulus Linux Upgrade">}}.
+Creating and comparing network snapshots can be useful to validate that the network state has not changed. Snapshots are typically created when you upgrade or change the configuration of your switches in some way. This section describes the Snapshot card and content, as well as how to create and compare network snapshots at any time. Snapshots can be automatically created during the upgrade process for Cumulus Linux or SONiC. Refer to {{<link title="Upgrade Cumulus Linux Using LCM#perform-a-cumulus-linux-upgrade" text="Perform a Cumulus Linux Upgrade">}}.
 
 ## Create a Network Snapshot
 
@@ -77,9 +77,9 @@ To compare network snapshots:
 
     Depending on what, if any, cards are open on your workbench:
 
-{{< tabs "TabID80" >}}
+{{<tabs "TabID80" >}}
 
-{{< tab "Two snapshots open" >}}
+{{<tab "Two snapshots open" >}}
 
 1. Put the cards next to each other to view a high-level comparison. Scroll down to see all of the items.
 
@@ -87,9 +87,9 @@ To compare network snapshots:
 
     {{<figure src="/images/netq/snapshot-compare-snap-results-300.png" width="425">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "One snapshot open" >}}
+{{<tab "One snapshot open" >}}
 
 1. Click **Compare** on the open card.
 
@@ -97,9 +97,9 @@ To compare network snapshots:
 
     {{<figure src="/images/netq/snapshot-compare-select-fr-open-card-300.png" width="250">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "No snapshots open" >}}
+{{<tab "No snapshots open" >}}
 
 1. Click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}}.
 
@@ -111,9 +111,9 @@ To compare network snapshots:
 
     {{<figure src="/images/netq/snapshot-compare-selection-modal-300.png" width="500">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 In the latter two cases, the large Snapshot card opens. The only difference is in the card title. If you opened the comparison card from a snapshot on your workbench, the title includes the name of that card. If you open the comparison card through the Snapshot menu, the title is generic, indicating a comparison only. Functionally, you have reached the same point.
 

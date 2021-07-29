@@ -1,1 +1,0 @@
-kexec-tools-udeb has no copyright file

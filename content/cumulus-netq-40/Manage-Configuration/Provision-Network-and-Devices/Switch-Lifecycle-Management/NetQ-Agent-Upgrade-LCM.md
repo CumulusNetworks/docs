@@ -20,15 +20,15 @@ Upgrades can be performed from NetQ Agents of 2.4.x and 3.0.x-3.2.x releases. <e
 
 Prepare for NetQ Agent upgrade on switches as follows:
 
-{{< tabs "TabID23" >}}
+{{<tabs "TabID23" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" width="18" height="18">}} (Upgrade) in the workbench header.
 
-2. Add the {{<link title="Manage Cumulus Linux and NetQ Images/#upload-upgrade-images" text="upgrade images">}}.
+2. Add the {{<link title="Manage NetQ and Network OS Images/#upload-upgrade-images" text="upgrade images">}}.
 
-3. Optionally, specify a {{<link title="Manage Cumulus Linux and NetQ Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
+3. Optionally, specify a {{<link title="Manage NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
 
 4. Verify or add {{<link title="Manage Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
 
@@ -38,27 +38,27 @@ Your LCM dashboard should look similar to this after you have completed the abov
 
 {{<figure src="/images/netq/lcm-netq-upgrade-dashboard-post-prep-330.png" width="600">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 1. Verify or add {{<link title="Manage Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
 
 2. Configure {{<link title="Manage Switch Credentials/#role-management" text="switch roles">}} to determine the order in which the switches get upgraded.
 
-3. Upload the {{<link title="Manage Cumulus Linux and NetQ Images/#upload-upgrade-images" text="Cumulus Linux install images">}}.
+3. Upload the {{<link title="Manage NetQ and Network OS Images/#upload-upgrade-images" text="Cumulus Linux install images">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## Perform a NetQ Agent Upgrade
 
 You can upgrade NetQ Agents on switches as follows:
 
-{{< tabs "TabID61" >}}
+{{<tabs "TabID61" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. In the **Switch Management** tab, click **Manage** on the Switches card.
 
@@ -140,9 +140,9 @@ By default, the NetQ Agent and CLI are upgraded on the selected switches. If you
 
     {{<figure src="/images/netq/lcm-netq-upgrade-success-history-card-320.png" width="200">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To upgrade the NetQ Agent on one or more switches, run:
 
@@ -158,13 +158,13 @@ cumulus@switch:~$ netq lcm upgrade name upgrade-cl430-nq330 netq-version 4.0.0 h
 
 <!-- You can assign an order for which switches to upgrade based on the switch roles defined above. For example, to upgrade the spines before the leafs, add the `order ROLE1,ROLE2` option to the command:
 
-    cumulus@switch:~$ netq lcm upgrade name upgrade-3712 image-id cl_image_69ce56d15b7958de5bb8371e9c4bf2fc9131da9a57b13853e2a60ca109238b22 license LICENSE hostnames spine01,spine02,leaf01,leaf02 order spine,leaf
+    cumulus@switch:~$ netq lcm upgrade name upgrade-3712 image-id cl_image_69ce56d15b7958de5bb8371e9c4bf2fc9131da9a57b13853e2a60ca109238b22 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf
 
 If the switches have not been assigned a role, then do not use the `order` option. So in this example, if switches spine01 and spine02 have not been assigned the _spine_ role, then do not specify the `order spine` option. -->
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## Analyze the NetQ Agent Upgrade Results
 
@@ -314,11 +314,12 @@ Upgrades can fail at any of the stages of the process, including when backing up
 
 Some of the common reasons for upgrade failures and the errors they present:
 
+<!-- vale off -->
 | Reason | Error Message |
 | --- | --- |
 | Switch is not reachable via SSH | Data could not be sent to remote host "192.168.0.15." Make sure this host can be reached over ssh: ssh: connect to host 192.168.0.15 port 22: No route to host |
 | Switch is reachable, but user-provided credentials are invalid | Invalid/incorrect username/password. Skipping remaining 2 retries to prevent account lockout: Warning: Permanently added '\<hostname-ipaddr\>' to the list of known hosts. Permission denied, please try again. |
-| Switch is reachable, but a valid Cumulus Linux license is not installed | <!-- vale off -->1587866683.880463 2020-04-26 02:04:43 license.c:336 CRIT No license file. No license installed! <!-- vale on -->|
 | Upgrade task could not be run | Failure message depends on the why the task could not be run. For example: /etc/network/interfaces: No such file or directory |
-| Upgrade task failed | Failed at- \<task that failed\>. <!-- vale off -->For example: Failed at- MLAG check for the peerLink interface status<!-- vale on --> |
+| Upgrade task failed | Failed at- \<task that failed\>. For example: Failed at- MLAG check for the peerLink interface status |
 | Retry failed after five attempts | FAILED In all retries to process the LCM Job |
+<!-- vale off -->

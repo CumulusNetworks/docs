@@ -8,10 +8,12 @@ With NetQ, a user can monitor IP (Internet Protocol) addresses, neighbors, and r
 
 It helps answer questions such as:
 
+<!-- vale off -->
 - Who are the IP neighbors for each switch?
 - How many IPv4 and IPv6 addresses am I using in total and on which interface?
 - Which routes are owned by which switches?
 - When did changes occur to my IP configuration?
+<!-- vale on -->
 
 The `netq show ip` command is used to obtain the address, neighbor, and
 route information from the devices. Its syntax is:
@@ -49,11 +51,11 @@ For the `between` option, the start (`text-time`) and end time (`text-endtime`) 
 
 ## View IP Address Information
 
-You can view the IPv4 and IPv6 address information for all of your devices, including the interface and VRF for each device. Additionally, you can:
+You can view the IPv4 and IPv6 address information for all your devices, including the interface and VRF for each device. Additionally, you can:
 
 - View the information at an earlier point in time
 - Filter against a particular device, interface or VRF assignment
-- Obtain a count of all of the addresses
+- Obtain a count of all addresses
 
 Each of these provides information for troubleshooting potential configuration and communication issues at the layer 3 level.
 
@@ -242,12 +244,13 @@ Count of matching address records: 17
 
 ## View IP Neighbor Information
 
-You can view the IPv4 and IPv6 neighbor information for all of your devices, including the interface port, MAC address, VRF assignment, and whether it learns the MAC address from the peer (remote=yes).
+You can view the IPv4 and IPv6 neighbor information for all your devices, including the interface port, MAC address, VRF assignment, and whether it learns the MAC address from the peer (remote=yes).
+
 Additionally, you can:
 
 - View the information at an earlier point in time
 - Filter against a particular device, interface, address or VRF assignment
-- Obtain a count of all of the addresses
+- Obtain a count of all addresses
 
 Each of these provides information for troubleshooting potential configuration and communication issues at the layer 3 level.
 
@@ -360,11 +363,11 @@ fe80::4638:39ff:fe00:37   leaf01            vlan10                    44:38:39:0
 
 ## View IP Routes Information
 
-You can view the IPv4 and IPv6 routes for all of your devices, including the IP address (with or without mask), the destination (by hostname) of the route, next hops available, VRF assignment, and whether a host is the owner of the route or MAC address. Additionally, you can:
+You can view the IPv4 and IPv6 routes for all your devices, including the IP address (with or without mask), the destination (by hostname) of the route, next hops available, VRF assignment, and whether a host is the owner of the route or MAC address. Additionally, you can:
 
 - View the information at an earlier point in time
 - Filter against a particular address or VRF assignment
-- Obtain a count of all of the routes
+- Obtain a count of all routes
 
 Each of these provides information for troubleshooting potential configuration and communication issues at the layer 3 level.
 
@@ -466,7 +469,7 @@ no                     0.0.0.0/0                      leaf02            Blackhol
 ...
 ```
 
-This example shows all of the *IPv4* routes owned by *spine01* switch.
+This example shows all *IPv4* routes owned by *spine01* switch.
 
 ```
 cumulus@switch:~$ netq spine01 show ip routes origin

@@ -15,7 +15,7 @@ IETF has defined extensions to OSPFv3 to support multiple address families (both
 You can configure OSPFv3 using either numbered interfaces or unnumbered interfaces. Both methods are described below.
 
 {{%notice note%}}
-CUE commands are not supported for OSPFv3.
+NVUE commands are not supported for OSPFv3.
 {{%/notice%}}
 
 ### OSPFv3 Numbered
@@ -72,7 +72,7 @@ cumulus@spine01:~$ net commit
 {{< tabs "TabID85 ">}}
 {{< tab "leaf01 ">}}
 
-1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRRouting service (see {{<link url="Configure-FRRouting">}}).
+1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRRouting service (see {{<link title="FRRouting">}}).
 
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp51:
 
@@ -119,7 +119,7 @@ cumulus@spine01:~$ net commit
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
-1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRRouting service (see {{<link url="Configure-FRRouting">}}).
+1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRRouting service (see {{<link title="FRRouting">}}).
 
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp1:
 
@@ -256,7 +256,7 @@ cumulus@spine01:~$ net commit
 {{< tabs "TabID299 ">}}
 {{< tab "leaf01 ">}}
 
-1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRRouting service (see {{<link url="Configure-FRRouting">}}).
+1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRRouting service (see {{<link title="FRRouting">}}).
 
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp51:
 
@@ -305,7 +305,7 @@ cumulus@leaf01:~$
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
-1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRRouting service (see {{<link url="Configure-FRRouting">}}).
+1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRRouting service (see {{<link title="FRRouting">}}).
 
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp1:
 
@@ -717,9 +717,9 @@ router ospf6
 
 ### Stub Areas
 
-External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. In many cases, external link states make up a large percentage of the link-state database (LSDB). Stub *areas* reduce the LSDB size by not flooding AS-external LSAs.
+External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. Typically, external link states make up a large percentage of the link-state database (LSDB). Stub *areas* reduce the LSDB size by not flooding AS-external LSAs.
 
-All routers must agree that an area is a stub, otherwise they will not become OSPF neighbors.
+All routers must agree that an area is a stub, otherwise they do not become OSPF neighbors.
 
 To configure a stub area:
 
@@ -808,9 +808,9 @@ Here is a brief summary of the area type differences:
 | Normal non-zero area | LSA types 1, 2, 3, 4 area-scoped, type 5 externals, inter-area routes summarized |
 | Stub area | LSA types 1, 2, 3, 4 area-scoped, no type 5 externals, inter-area routes summarized |
 | Totally stubby area | LSA types 1, 2 area-scoped, default summary, no type 3, 4, 5 LSA types allowed |
-
+<!-- vale off -->
 ### Auto-cost Reference Bandwidth
-
+<!-- vale on -->
 When you set the *auto-cost reference bandwidth,* Cumulus Linux dynamically calculates the OSPF interface cost to support higher speed links. The default value is *100000* for 100Gbps link speed. The cost of interfaces with link speeds lower than 100Gbps is higher.
 
 {{%notice tip%}}
@@ -976,7 +976,7 @@ router ospf6
 
 Cumulus Linux provides several OSPFv3 troubleshooting commands:
 
-| To...   | <div style="width:330px">NCLU Command | <div style="width:330px">vtysh Command |
+| To   | <div style="width:330px">NCLU Command | <div style="width:330px">vtysh Command |
 | --- | ---- | ----- |
 | Show neighbor states | `net show ospf6 neighbor` | `show ip ospf6 neighbor` |
 | Verify that the LSDB is synchronized across all routers in the network | `net show ospf6 database` | `show ip ospf6 database` |

@@ -37,7 +37,8 @@ To install Cumulus Linux using a DHCP/web server *with* DHCP options, set up a D
 1. The switch boots up and requests an IP address (DHCP request).
 2. The DHCP server acknowledges and responds with DHCP option 114 and the location of the installation image.
 3. ONIE downloads the Cumulus Linux image, installs, and reboots.
-4. Success! You are now running Cumulus Linux.
+
+   You are now running Cumulus Linux.
 
 {{< img src = "/images/cumulus-linux/install-image-onie-dhcp.png" >}}
 
@@ -395,7 +396,7 @@ If you use the `--ztp` option together with any of the other command line option
 
 ## Edit the Cumulus Linux Image (Advanced)
 
-The Cumulus Linux disk image file contains a BASH script that includes a set of variables. You can set these variables to be able to install a fully-configured system with a single image file.
+The Cumulus Linux disk image file contains a BASH script that includes a set of variables. You can set these variables to be able to install a fully configured system with a single image file.
 
 {{< expand "To edit the image"  >}}
 
@@ -454,11 +455,14 @@ The original file is now split, with the first 20 lines in `cumulus-linux-4.4.0-
 ```
 cat cumulus-linux-4.4.0-mlx-amd64.bin.1 cumulus-linux-4.4.0-mlx-amd64.bin.2 > cumulus-linux-4.4.0-mlx-amd64.bin.final
 ```
+5. Calculate the new checksum and update the `CL_INSTALLER_PAYLOAD_SHA256` variable.  
+`sed -e '1,/^exit_marker$/d' "cumulus-linux-4.4.0-mlx-amd64.bin.final" | sha256sum | awk '{ print $1 }'`
 
 This is an example of a modified image file:
 
 ```
 ...
+CL_INSTALLER_PAYLOAD_SHA256='d14a028c2a3a2bc9476102bb288234c415a2b01f828ea62ac332e42f'
 CL_INSTALLER_PASSWORD='MyP4$$word'
 CL_INSTALLER_HASHED_PASSWORD=''
 CL_INSTALLER_LICENSE='customer@datacenter.com|4C3YMCACDiK0D/EnrxlXpj71FBBNAg4Yrq+brza4ZtJFCInvalid'
@@ -498,6 +502,71 @@ You can install this edited image file in the usual way, by using the ONIE insta
 If you install the modified installation image and specify installer command line parameters, the command line parameters take precedence over the variables modified in the image.
 
 {{< /expand >}}
+
+## Secure Boot
+
+Secure Boot ensures that each binary image loaded during system boot is validated with key signatures that correspond to a stored trusted key in firmware.
+
+{{%notice note%}}
+Secure Boot is supported on the NVIDIA SN3700C-S switch.
+{{%/notice%}}
+
+Secure Boot settings are located in the BIOS Security menu. To access BIOS, press `Ctrl+B` through the serial console during system boot while the BIOS version is printed:
+
+    {{< img src = "/images/cumulus-linux/SB-BIOS-post.png" >}}
+
+To access the BIOS menu, use `admin` which is the default BIOS password:
+
+    {{< img src = "/images/cumulus-linux/SB-BIOS-main.png" >}}
+
+NVIDIA recommends changing the default BIOS password. To change the BIOS password, select **Administrator Password** from the **Security** menu:
+
+  {{< img src = "/images/cumulus-linux/SB-BIOS-sec-passwd.png" >}}
+
+To validate or change the Secure Boot mode, navigate to **Security** and select **Secure Boot**:
+
+    {{< img src = "/images/cumulus-linux/SB-BIOS-secboot.png" >}}
+
+In the Secure Boot menu, you can enable and disable Secure Boot mode. To install an unsigned version of Cumulus Linux or access ONIE without being prompted for a username and password, set Secure Boot to disabled: 
+
+    {{< img src = "/images/cumulus-linux/SB-BIOS-secbootEnableDisable.png" >}}
+
+To access ONIE when Secure Boot is enabled, authentication is necessary. The default username and password are both `root`:
+
+```
+​ONIE: Rescue Mode ...
+Platform  : x86_64-mlnx_x86-r0
+Version   : 2021.02-5.3.0006-rc3-115200
+Build Date: 2021-05-20T14:27+03:00
+Info: Mounting kernel filesystems... done.
+
+Info: Mounting ONIE-BOOT on /mnt/onie-boot ...
+[   17.011057] ext4 filesystem being mounted at /mnt/onie-boot supports timestamps until 2038 (0x7fffffff)
+Info: Mounting EFI System on /boot/efi ...
+Info: BIOS mode: UEFI
+Info: Using eth0 MAC address: b8:ce:f6:3c:62:06
+Info: eth0:  Checking link... up.
+Info: Trying DHCPv4 on interface: eth0
+ONIE: Using DHCPv4 addr: eth0: 10.20.84.226 / 255.255.255.0
+Starting: klogd... done.
+Starting: dropbear ssh daemon... done.
+Starting: telnetd... done.
+discover: Rescue mode detected.  Installer disabled.
+
+Please press Enter to activate this console. To check the install status inspect /var/log/onie.log.
+Try this:  tail -f /var/log/onie.log
+
+** Rescue Mode Enabled **
+login: root
+Password: root
+ONIE:~ #
+```
+
+To validate the Secure Boot status of a system from Cumulus Linux, run the `mokutil --sb-state` command.
+```
+cumulus@leaf01:mgmt:~$ mokutil --sb-state
+SecureBoot enabled
+```
 
 ## Related Information
 

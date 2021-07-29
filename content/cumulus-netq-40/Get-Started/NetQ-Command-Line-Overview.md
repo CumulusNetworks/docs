@@ -5,7 +5,7 @@ weight: 160
 toc: 3
 ---
 
-The NetQ CLI provides access to all of the network state and event information collected by the NetQ Agents. It behaves the same way most CLIs behave, with groups of commands used to display related information, the ability to use TAB completion when entering commands, and to get help for given commands and options. The commands are grouped into four categories: check, show, config, and trace.
+The NetQ CLI provides access to all network state and event information collected by the NetQ Agents. It behaves the same way most CLIs behave, with groups of commands used to display related information, the ability to use TAB completion when entering commands, and to get help for given commands and options. The commands are grouped into four categories: check, show, config, and trace.
 
 {{<notice note>}}
 
@@ -19,6 +19,7 @@ When NetQ is installed or upgraded, the CLI may also be installed  and enabled o
 
 To access the CLI from a switch or server:
 
+<!-- vale off -->
 1. Log in to the device. This example uses the default username of *cumulus* and a hostname of *switch*.
 
     ```
@@ -43,6 +44,7 @@ To access the CLI from a switch or server:
     cumulus@switch:~$ netq show agents
     cumulus@switch:~$ netq check bgp
     ```
+<!-- vale on -->
 
 ## Command Line Basics
 
@@ -108,7 +110,7 @@ NetQ code examples use the following prompts:
 - `cumulus@netq-appliance:~$` Indicates the user *cumulus* is logged in to either the NetQ Appliance or NetQ Cloud Appliance to run the command
 - `cumulus@hostname:~$` Indicates the user *cumulus* is logged in to a switch, host or appliance to run the example command
 
-To use the NetQ CLI, the switches must be running the Cumulus Linux operating system (OS), NetQ Platform or NetQ Collector software, the NetQ Agent, and the NetQ CLI. The hosts must be running CentOS, RHEL, or Ubuntu OS, the NetQ Agent, and the NetQ CLI. Refer to the {{<link url="Install-NetQ">}} topic for details.
+To use the NetQ CLI, the switches must be running the Cumulus Linux or SONiC operating system (OS), NetQ Platform or NetQ Collector software, the NetQ Agent, and the NetQ CLI. The hosts must be running CentOS, RHEL, or Ubuntu OS, the NetQ Agent, and the NetQ CLI. Refer to the {{<link url="Install-NetQ">}} topic for details.
 
 ### Command Completion
 
@@ -122,7 +124,6 @@ cumulus@switch:~$ netq check <<press Tab>>
     clag        :  Cumulus Multi-chassis LAG
     evpn        :  EVPN
     interfaces  :  network interface port
-    license     :  License information
     mlag        :  Multi-chassis LAG (alias of clag)
     mtu         :  Link MTU
     ntp         :  NTP
@@ -135,7 +136,7 @@ cumulus@switch:~$ netq check
 
 ### Command Help
 
-As you enter commands, you can get help with command syntax by entering `help` at various points within a command entry. For example, to find out what options are available for a BGP check, enter `help` after entering a portion of the `netq check` command. In this example, you can see that there are no additional required parameters and three optional parameters, `hostnames`, `vrf` and `around`, that can be used with a BGP check.
+As you enter commands, you can get help with command syntax by entering `help` at various points within a command entry. For example, to find out what options are available for a BGP check, enter `help` after entering some of the `netq check` command. In this example, you can see that there are no additional required parameters and three optional parameters, `hostnames`, `vrf` and `around`, that can be used with a BGP check.
 
 ```
 cumulus@switch:~$ netq check bgp help
@@ -180,7 +181,6 @@ The `netq` `check` commands enable the network administrator to validate the cur
 - **cl-version**: Cumulus Linux version
 - **evpn**: EVPN (Ethernet Virtual Private Network) operation
 - **interfaces**: network interface port operation
-- **license**: License status
 - **mlag**: Cumulus MLAG (multi-chassis LAG/link aggregation) operation
 - **mtu**: Link MTU (maximum transmission unit) consistency across paths
 - **ntp**: NTP (Network Time Protocol) operation
@@ -479,7 +479,7 @@ netq config add cli server api.netq.cumulusnetworks.com access-key <user-access-
 
 #### NetQ System Configuration Commands
 
-A number of commands are provided for managing the NetQ system itself. These include:
+The following commands are provided for managing the NetQ system itself:
 
 - **bootstrap**: Loads the installation program onto the network switches and hosts in either a single server or server cluster arrangement.
 - **decommission**: Decommissions a switch or host.
@@ -518,7 +518,9 @@ Successfully added/updated channel pd-netq-events
 
 Refer to {{<link title="Configure System Event Notifications">}} for details about using these commands and additional examples.
 
+<!-- vale off -->
 #### Threshold-based Event Notification Commands
+<!-- vale on -->
 
 NetQ supports a set of events that are triggered by crossing a user-defined threshold, called {{<link title="Configure Threshold-Based Event Notifications" text="TCA events">}}. You configure and manage TCA events using the following commands:
 
@@ -532,12 +534,12 @@ netq show tca [tca_id <text-tca-id-anchor>] [json]
 
 The `netq lcm` ({{<link title="Manage Switches through Their Lifecycle" text="lifecycle management">}}) commands enable you to manage the deployment of NVIDIA product software onto your network devices (servers, appliances, and switches) in the most efficient way and with the most information about the process as possible. The LCM commands provide for:
 
-- Managing Cumulus Linux and NetQ images in a local repository
+- Managing network OS and NetQ images in a local repository
 - Configuring switch access credentials for installations and upgrades
-- Managing Cumulus Linux switch inventory and roles
-- Upgrade NetQ (Agents and CLI) on Cumulus Linux switches with NetQ Agents
-- Install or upgrade NetQ Agents and CLI on Cumulus Linux switches with or without NetQ Agents all in a single job
-- Upgrade Cumulus Linux on switches with NetQ Agents
+- Managing switch inventory and roles
+- Upgrade NetQ (Agents and CLI) on switches with NetQ Agents
+- Install or upgrade NetQ Agents and CLI on switches with or without NetQ Agents all in a single job
+- Upgrade the network OS on switches with NetQ Agents
 - View a result history of upgrade attempts
 
 This example shows the NetQ configuration profiles:
@@ -554,7 +556,7 @@ eb2b
 
 This example shows how to add a Cumulus Linux installation image to the NetQ repository on the switch:
 
-    netq lcm add cl-image /path/to/download/cumulus-linux-4.2.0-mlnx-amd64.bin
+    netq lcm add cl-image /path/to/download/cumulus-linux-4.3.0-mlnx-amd64.bin
 
 ### Trace Commands
 

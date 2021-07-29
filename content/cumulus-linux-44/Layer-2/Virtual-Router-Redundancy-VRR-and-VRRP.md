@@ -45,21 +45,31 @@ Cumulus Linux only supports VRR on switched virtual interfaces (SVIs). VRR is no
 The example commands below create a VLAN-aware bridge interface for a VRR-enabled network. The example assumes you have already configured a VLAN-aware bridge with VLAN 10 and that VLAN 10 has an IP address:
 
 {{< tabs "TabID53 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@switch:~$ cl set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
-cumulus@switch:~$ cl set interface vlan10 ip vrr state up
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ net add vlan 10 ip address-virtual 00:00:5E:00:01:01 10.1.10.1/24
+cumulus@switch:~$ net add vlan 10 ipv6 address-virtual 00:00:5e:00:01:00 10.1.20.1/24
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@switch:~$ nv set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@switch:~$ nv set interface vlan10 ip vrr state up
+cumulus@switch:~$ nv config apply
 ```
 
 Use the same commands for IPV6 addresses; for example:
 
 ```
-cumulus@switch:~$ cl set interface vlan10 ip vrr address 2001:db8::1/32
-cumulus@switch:~$ cl set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
-cumulus@switch:~$ cl set interface vlan10 ip vrr state up
+cumulus@switch:~$ nv set interface vlan10 ip vrr address 2001:db8::1/32
+cumulus@switch:~$ nv set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@switch:~$ nv set interface vlan10 ip vrr state up
 ```
 
 {{< /tab >}}
@@ -100,34 +110,53 @@ To create an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} co
 The following examples uses a single virtual MAC address for VLANs. You can add a unique MAC address for each VLAN, but this is not necessary.
 {{%/notice%}}
 
-{{< tabs "TabID119 ">}}
+{{< tabs "TabID116 ">}}
 {{< tab "leaf01 ">}}
 
-{{< tabs "TabID146 ">}}
-{{< tab "CUE Commands ">}}
+{{< tabs "TabID119 ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface eth0 ip address 192.168.200.11/24
-cumulus@leaf01:~$ cl set interface bond1 bond member swp1
-cumulus@leaf01:~$ cl set interface bond2 bond member swp2
-cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
-cumulus@leaf01:~$ cl set interface bond1-2 bridge domain br_default
-cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
-cumulus@leaf01:~$ cl set mlag backup 10.10.10.2
-cumulus@leaf01:~$ cl set mlag peer-ip linklocal
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10,20
-cumulus@leaf01:~$ cl set bridge domain br_default untagged 1
-cumulus@leaf01:~$ cl set interface vlan10 ip address 10.1.10.2/24
-cumulus@leaf01:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf01:~$ cl set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
-cumulus@leaf01:~$ cl set interface vlan10 ip vrr state up
-cumulus@leaf01:~$ cl set interface vlan20 ip address 10.1.20.2/24
-cumulus@leaf01:~$ cl set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf01:~$ cl set interface vlan20 ip vrr mac-address 00:00:5e:00:01:00
-cumulus@leaf01:~$ cl set interface vlan20 ip vrr state up
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ net add interface eth0 ip address 192.168.200.11/24
+cumulus@leaf01:~$ net add bond bond1 bond slaves swp1
+cumulus@leaf01:~$ net add bond bond2 bond slaves swp2
+cumulus@leaf01:~$ net add bond bond1 clag id 1
+cumulus@leaf01:~$ net add bond bond2 clag id 2
+cumulus@leaf01:~$ net add bridge bridge ports bond1,bond2
+cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.2
+cumulus@leaf01:~$ net add vlan 10 ip address 10.1.10.2/24
+cumulus@leaf01:~$ net add vlan 10 ip address-virtual 00:00:5E:00:01:01 10.1.10.1/24
+cumulus@leaf01:~$ net add vlan 20 ip address 10.1.20.2/24
+cumulus@leaf01:~$ net add vlan 20 ip address-virtual 00:00:5E:00:01:01 10.1.20.1/24
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set interface eth0 ip address 192.168.200.11/24
+cumulus@leaf01:~$ nv set interface bond1 bond member swp1
+cumulus@leaf01:~$ nv set interface bond2 bond member swp2
+cumulus@leaf01:~$ nv set interface bond1 bond mlag id 1
+cumulus@leaf01:~$ nv set interface bond2 bond mlag id 2
+cumulus@leaf01:~$ nv set interface bond1-2 bridge domain br_default
+cumulus@leaf01:~$ nv set interface peerlink bond member swp49-50
+cumulus@leaf01:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set mlag backup 10.10.10.2
+cumulus@leaf01:~$ nv set mlag peer-ip linklocal
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 10,20
+cumulus@leaf01:~$ nv set bridge domain br_default untagged 1
+cumulus@leaf01:~$ nv set interface vlan10 ip address 10.1.10.2/24
+cumulus@leaf01:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@leaf01:~$ nv set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@leaf01:~$ nv set interface vlan10 ip vrr state up
+cumulus@leaf01:~$ nv set interface vlan20 ip address 10.1.20.2/24
+cumulus@leaf01:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
+cumulus@leaf01:~$ nv set interface vlan20 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@leaf01:~$ nv set interface vlan20 ip vrr state up
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -206,30 +235,30 @@ iface br_default
 {{< tab "leaf02 ">}}
 
 {{< tabs "TabID246 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf02:~$ cl set interface eth0 ip address 192.168.200.12/24
-cumulus@leaf02:~$ cl set interface bond1 bond member swp1
-cumulus@leaf02:~$ cl set interface bond2 bond member swp2
-cumulus@leaf02:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf02:~$ cl set interface bond2 bond mlag id 2
-cumulus@leaf02:~$ cl set interface bond1-2 bridge domain br_default
-cumulus@leaf02:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf02:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
-cumulus@leaf02:~$ cl set mlag backup 10.10.10.1
-cumulus@leaf02:~$ cl set mlag peer-ip linklocal
-cumulus@leaf02:~$ cl set bridge domain br_default vlan 10,20
-cumulus@leaf02:~$ cl set bridge domain br_default untagged 1
-cumulus@leaf02:~$ cl set interface vlan10 ip address 10.1.10.3/24
-cumulus@leaf02:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf02:~$ cl set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
-cumulus@leaf02:~$ cl set interface vlan10 ip vrr state up
-cumulus@leaf02:~$ cl set interface vlan20 ip address 10.1.20.3/24
-cumulus@leaf02:~$ cl set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf02:~$ cl set interface vlan20 ip vrr mac-address 00:00:5e:00:01:00
-cumulus@leaf02:~$ cl set interface vlan20 ip vrr state up
-cumulus@leaf02:~$ cl config apply
+cumulus@leaf02:~$ nv set interface eth0 ip address 192.168.200.12/24
+cumulus@leaf02:~$ nv set interface bond1 bond member swp1
+cumulus@leaf02:~$ nv set interface bond2 bond member swp2
+cumulus@leaf02:~$ nv set interface bond1 bond mlag id 1
+cumulus@leaf02:~$ nv set interface bond2 bond mlag id 2
+cumulus@leaf02:~$ nv set interface bond1-2 bridge domain br_default
+cumulus@leaf02:~$ nv set interface peerlink bond member swp49-50
+cumulus@leaf02:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ nv set mlag backup 10.10.10.1
+cumulus@leaf02:~$ nv set mlag peer-ip linklocal
+cumulus@leaf02:~$ nv set bridge domain br_default vlan 10,20
+cumulus@leaf02:~$ nv set bridge domain br_default untagged 1
+cumulus@leaf02:~$ nv set interface vlan10 ip address 10.1.10.3/24
+cumulus@leaf02:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@leaf02:~$ nv set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@leaf02:~$ nv set interface vlan10 ip vrr state up
+cumulus@leaf02:~$ nv set interface vlan20 ip address 10.1.20.3/24
+cumulus@leaf02:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
+cumulus@leaf02:~$ nv set interface vlan20 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@leaf02:~$ nv set interface vlan20 ip vrr state up
+cumulus@leaf02:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -406,8 +435,9 @@ All virtual routers use 00:00:5E:00:01:XX for IPv4 gateways or 00:00:5E:00:02:XX
 {{%notice note%}}
 - Cumulus Linux supports both VRRPv2 and VRRPv3. The default protocol version is VRRPv3.
 - 255 virtual routers are supported per switch.
-- VRRP is not supported in an MLAG environment or with EVPN.
-- To configure VRRP on an SVI, you need to edit the `/etc/frr/frr.conf` file; NCLU commands are not supported for SVIs.
+- VRRP is not supported in an MLAG environment.
+- To configure VRRP on an SVI or {{<link url="Traditional-Bridge-Mode" text="traditional mode bridge">}}, you need to edit the `etc/network/interfaces` and `/etc/frr/frr.conf` files. The NCLU commands are not supported with SVIs or traditional mode bridges.
+- VRRP is supported with EVPN and on layer 3 interfaces and subinterfaces that are part of a VRF.
 {{%/notice%}}
 
 {{<exlink url="https://tools.ietf.org/html/rfc5798#section-4.1" text="RFC 5798">}} describes VRRP in detail.
@@ -438,36 +468,6 @@ A primary address is required for the parent interface to use as the source addr
 {{%/notice%}}
 
 {{< tabs "TabID448 ">}}
-{{< tab "CUE Commands ">}}
-
-{{< tabs "TabID504 ">}}
-{{< tab "spine01 ">}}
-
-```
-cumulus@spine01:~$ cl set interface swp1 ip address 10.0.0.2/24
-cumulus@spine01:~$ cl set interface swp1 ip address 2001:0db8::2/64
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "spine02 ">}}
-
-```
-cumulus@spine02:~$ cl set interface swp1 ip address 10.0.0.3/24
-cumulus@spine02:~$ cl set interface swp1 address 2001:0db8::3/64
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 {{< tabs "TabID526 ">}}
@@ -495,6 +495,23 @@ cumulus@spine02:~$ net add interface swp1 vrrp 44 2001:0db8::1/64
 cumulus@spine02:~$ net pending
 cumulus@spine02:~$ net commit
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+{{< tabs "TabID504 ">}}
+{{< tab "spine01 ">}}
+
+NVUE commands are not supported.
+
+{{< /tab >}}
+{{< tab "spine02 ">}}
+
+NVUE commands are not supported.
+
 {{< /tab >}}
 {{< /tabs >}}
 

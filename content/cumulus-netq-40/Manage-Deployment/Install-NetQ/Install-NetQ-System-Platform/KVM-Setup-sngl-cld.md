@@ -17,11 +17,11 @@ Follow these steps to setup and configure your VM on a single server in a cloud 
 
 3. Download the NetQ images.
 
-    {{<netq-install/kvm-platform-image deployment="cloud" version="3.3.1">}}
+    {{<netq-install/kvm-platform-image deployment="cloud" version="4.0">}}
 
 4. Setup and configure your VM.
 
-    {{<netq-install/vm-setup hypervisor="kvm" deployment="cloud" version="3.3.1">}}
+    {{<netq-install/vm-setup hypervisor="kvm" deployment="cloud" version="4.0">}}
 
 5. Log in to the VM and change the password.
 
@@ -37,11 +37,11 @@ Follow these steps to setup and configure your VM on a single server in a cloud 
 
 8. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap version="3.3.1" server="single" platform="vm" deployment="cloud">}}
+    {{<netq-install/bootstrap version="4.0" server="single" platform="vm" deployment="cloud">}}
 
 9. Consider the following for container environments, and make adjustments as needed.
 
-    {{<netq-install/container version="3.3.1">}}
+    {{<netq-install/container version="4.0">}}
 
 The final step is to install and activate the NetQ software. You can do this using the Admin UI or the CLI.
 

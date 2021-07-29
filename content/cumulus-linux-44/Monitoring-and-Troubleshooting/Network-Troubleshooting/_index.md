@@ -4,11 +4,11 @@ author: NVIDIA
 weight: 1110
 toc: 3
 ---
-Cumulus Linux includes a number of command line and analytical tools to help you troubleshoot issues with your network.
+Cumulus Linux includes command line and analytical tools to help you troubleshoot issues with your network.
 
-## Check Reachability with ping
+## Use ping
 
-Use `ping` to check reachability of a host. `ping` also calculates the time it takes for packets to travel round trip. See `man ping` for details.
+Use `ping` to check that a host is reachable. `ping` also calculates the time it takes for packets to travel round trip. See `man ping` for details.
 
 To test the connection to an IPv4 host:
 
@@ -47,9 +47,9 @@ traceroute to www.google.com (74.125.239.49), 30 hops max, 60 byte packets
 7  72.14.232.35 (72.14.232.35)  27.505 ms  22.925 ms  22.323 ms
 8  nuq04s19-in-f17.1e100.net (74.125.239.49)  23.544 ms  21.851 ms  22.604 ms
 ```
-
+<!-- vale off -->
 ## Run Commands in a Non-default VRF
-
+<!-- vale on -->
 You can use `ip vrf exec` to run commands in a non-default VRF context. This is particularly useful for network utilities like `ping`, `traceroute`, and `nslookup`.
 
 The full syntax is `ip vrf exec <vrf-name> <command> <arguments>`. For example:
@@ -61,9 +61,9 @@ cumulus@switch:~$ sudo ip vrf exec Tenant1 nslookup google.com - 8.8.8.8
 By default, `ping` and `ping6`, and `traceroute` and `traceroute6` all use the default VRF and use a mechanism that checks the VRF context of the current shell, which you can see when you run `ip vrf id` - at the time one of these commands is run. If the shell's VRF context is *mgmt*, then these commands are run in the default VRF context.
 
 `ping` and `traceroute` have additional arguments that you can use to specify an egress interface or a source address. In the default VRF, the source interface flag (`ping -I` or `traceroute -i`) specifies the egress interface for the `ping` or `traceroute` operation. However, you can use the source interface flag instead to specify a non-default VRF to use for the command. Doing so causes the routing lookup for the destination address to occur in that VRF.
-
-With `ping -I`, you can specify the source interface or the source IP address, but you cannot use the flag more than once. Either choose an egress interface/VRF or a source IP address. For `traceroute`, you can use `traceroute -s` to specify the source IP address.
-
+<!-- vale off -->
+With `ping -I`, you can specify the source interface or the source IP address but you cannot use the flag more than once. Either choose an egress interface/VRF or a source IP address. For `traceroute`, you can use `traceroute -s` to specify the source IP address.
+<!-- vale on -->
 You gain additional flexibility if you run `ip vrf exec` in combination with `ping`/`ping6`  or `traceroute`/`traceroute6`, as the VRF context is specified outside of the `ping` and `traceroute` commands. This allows for the most granular control of `ping` and `traceroute`, as you can specify both the VRF and the source interface flag.
 
 For `ping`, use the following syntax:

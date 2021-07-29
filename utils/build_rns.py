@@ -215,31 +215,33 @@ def sanatize_rn_for_xls(string):
     # output_string = TAG_RE.sub('', string)
     output_string = string.replace("<p>", "\015")
     output_string = output_string.replace("</p>", "")
-    output_string = string.replace("<br />", "\015")
+    output_string = output_string.replace("<br>", "\015")
+    output_string = output_string.replace("<br />", "\015")
 
-    output_string = output_string.replace("`", "&apos;")
     output_string = output_string.replace("&", "&amp;")
+    output_string = output_string.replace("`", "&apos;")
     output_string = output_string.replace("\\<", "&lt;")
     output_string = output_string.replace("\\>", "&gt;")
     output_string = output_string.replace("<", "&lt;")
     output_string = output_string.replace(">", "&gt;")
 
-    output_string = output_string.replace("<tt>", "")
-    output_string = output_string.replace("</tt>", "")
+    output_string = output_string.replace("&lt;tt&gt;", "")
+    output_string = output_string.replace("&lt;/tt&gt;", "")
 
-    output_string = output_string.replace("<pre>", "")
-    output_string = output_string.replace("</pre>", "")
-    output_string = output_string.replace("<pre class=\"code-java\">", "")
+    output_string = output_string.replace("&lt;pre&gt;", "")
+    output_string = output_string.replace("&lt;/pre&gt;", "")
+    output_string = output_string.replace("&lt;pre class=\"code-java\"&gt;", "")
 
-    output_string = output_string.replace('<div class=\"code panel\" style=\"border-width: 1px;\"><div class=\"codeContent panelContent\">', "")
-    output_string = output_string.replace('<div class=\"preformatted\" style=\"border-width: 1px;\"><div class=\"preformattedContent panelContent\">', "")
-    output_string = output_string.replace("</div>", "")
+    output_string = output_string.replace('&lt;div class=\"code panel\" style=\"border-width: 1px;\"&gt;&lt;div class=\"codeContent panelContent\"&gt;', "")
+    output_string = output_string.replace('&lt;div class=\"preformatted\" style=\"border-width: 1px;\"&gt;&lt;div class=\"preformattedContent panelContent\"&gt;', "")
+    output_string = output_string.replace("&lt;/div&gt;", "")
+    output_string = output_string.replace("&lt;span class=\"code-keyword\"&gt;", "")
+    output_string = output_string.replace("&lt;/span&gt;", "")
 
     # NetQ-5774 Fix. The use of "<>" in a string inside a code (<pre>) block disappears
-    output_string = output_string.replace("<ipaddr>", "[ipaddr]")
+    output_string = output_string.replace("&lt;ipaddr&gt;", "[ipaddr]")
 
     output_string = output_string.replace("{noformat}", "")
-
     return output_string
 
 def build_rn_markdown(json_file, version, file_type):
@@ -254,7 +256,7 @@ def build_rn_markdown(json_file, version, file_type):
     output = []
 
     if file_type == "affects":
-        output.append("### Open issues in {}".format(version))
+        output.append("### Open Issues in {}".format(version))
         output.append("\n")
         # output.append("<div class=\"table-wrapper\" markdown=\"block\">")
         output.append("\n")
@@ -431,8 +433,7 @@ def build_rn_markdown_files(product, version_list):
         except FileNotFoundError:
             version_output.extend(build_markdown_header(product_string(product), major))
         hugo_dir = get_hugo_folder(product, major)
-        link = "<a href=\"/{}/rn.xls\">".format(hugo_dir)
-        version_output.append("{} {{{{<rn_icon alt=\"Download {} Release Notes xls\" >}}}}</a>&nbsp;&nbsp;&nbsp;&nbsp;{}Download all {} release notes as .xls</a>\n".format(link, major, link, major))
+        version_output.append("{{{{<rn_xls_link dir=\"{}\" >}}}}\n".format(hugo_dir))
 
 
         # Loop over all the maintenance releases.
@@ -468,7 +469,7 @@ def build_rn_xls(json_file, version, file_type):
     if file_type == "affects":
         output.append("<table name=\"Open Issues in {}\">\n".format(version))
     else:
-        output.append("<table name=\"Fixed issues in {}\">\n".format(version))
+        output.append("<table name=\"Fixed Issues in {}\">\n".format(version))
     output.append("<tr>\n")
     output.append("<th> Issue ID </th>\n")
     output.append("<th> Description </th>\n")

@@ -17,17 +17,16 @@ toc: 3
 | exit leaf | A switch dedicated to peering the Clos network to an outside network; also referred to as a border leaf, service leaf, or edge leaf. |
 | anycast | An IP address that is advertised from multiple locations. Anycast enables multiple devices to share the same IP address and effectively load balance traffic across them. With VXLAN, anycast is used to share a VTEP IP address between a pair of MLAG switches. |
 | VXLAN routing | The industry standard term for the ability to route in and out of a VXLAN. |
-| clagd-vxlan-anycast-ip | The anycast address for the MLAG pair to share and bind to when MLAG is up and running. |
-
+<!-- vale off -->
 ## Configure VXLAN Active-active Mode
-
+<!-- vale on -->
 VXLAN active-active mode requires the following underlying technologies to work correctly.
 - MLAG. Refer to {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} for more detailed configuration information.
 - OSPF or BGP. Refer to {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} for more detailed configuration information. 
 - STP. You must enable {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-filter" text="BPDU filter">}} and {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-guard" text="BPDU guard">}} in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN.
-
+<!-- vale off -->
 ### Active-active VTEP Anycast IP Behavior
-
+<!-- vale on -->
 You must provision each individual switch within an MLAG pair with a virtual IP address in the form of an anycast IP address for VXLAN data-path termination. The VXLAN termination address is an anycast IP address that you configure as a `clagd` parameter (`clagd-vxlan-anycast-ip`) under the loopback interface. `clagd` dynamically adds and removes this address as the loopback interface address as follows:
 
 1. When the switches boot up, `ifupdown2` places all VXLAN interfaces in a PROTO_DOWN state. The configured anycast addresses are not configured yet.
@@ -46,8 +45,8 @@ For the anycast address to activate, you must configure a VXLAN interface on eac
 | One of the switches goes down. | The other operational switch continues to use the anycast IP address. |
 | `clagd` is stopped. | All VXLAN interfaces are put in a PROTO_DOWN state. The anycast IP address is removed from the loopback interface and the local IP addresses of the VXLAN interfaces are changed from the anycast IP address to unique non-virtual IP addresses. |
 | MLAG peering cannot be established between the switches. | `clagd` brings up all the VXLAN interfaces after the reload timer expires with the configured anycast IP address. This allows the VXLAN interface to be up and running on both switches even though peering is not established. |
-| When the peer link goes down but the peer switch is up (the backup link is active). | All VXLAN interfaces are put into a PROTO_DOWN state on the secondary switch. |
-| A configuration mismatch between the MLAG switches | The VXLAN interface is placed into a PROTO_DOWN state on the secondary switch. |
+| The peer link goes down but the peer switch is up (the backup link is active). | All VXLAN interfaces are put into a PROTO_DOWN state on the secondary switch. |
+| The anycast IP address is different on the MLAG peers. | The VXLAN interface is placed into a PROTO_DOWN state on the secondary switch. |
 
 ### VXLAN Interface Configuration Consistency
 
@@ -64,23 +63,47 @@ With MLAG peering, both switches use an anycast IP address for VXLAN encapsulati
 
 {{< img src = "/images/cumulus-linux/vxlan-active-active-config.png" >}}
 
-{{< tabs "TabID70 ">}}
-{{< tab "CUE Commands ">}}
+{{< tabs "TabID67 ">}}
+{{< tab "NCLU Commands ">}}
 
-{{< tabs "TabID73 ">}}
+{{< tabs "TabID70 ">}}
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.12
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ net add loopback lo clag vxlan-anycast-ip 10.0.1.12
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
 {{< tab "leaf02 ">}}
 
 ```
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.12
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf02:~$ net add loopback lo clag vxlan-anycast-ip 10.0.1.12
+cumulus@leaf02:~$ net pending
+cumulus@leaf02:~$ net commit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+{{< tabs "TabID81 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ nv set nve vxlan mlag shared-address 10.0.1.12
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:~$ nv set nve vxlan mlag shared-address 10.0.1.12
+cumulus@leaf02:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -116,9 +139,9 @@ iface lo inet loopback
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- vale off -->
 ## Example VXLAN Active-Active Configuration
-
+<!-- vale on -->
 {{< img src = "/images/cumulus-linux/vxlan-active-active-example.png" >}}
 
 The VXLAN interfaces are configured with individual IP addresses, which `clagd` changes to anycast upon MLAG peering.

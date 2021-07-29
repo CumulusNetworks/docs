@@ -104,9 +104,34 @@ cumulus@leaf03:~$
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+{{< tabs "TabID109 ">}}
+
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ cl set 
+
+```
+
+{{< /tab >}}
+
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
-These commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and vtysh commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
 
 {{< tabs "TabID73 ">}}
 
@@ -235,9 +260,33 @@ cumulus@leaf03:~$
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+{{< tabs "TabID264 ">}}
+
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
+
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
-The above commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and vtysh commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
 
 {{< tabs "TabID189 ">}}
 
@@ -358,9 +407,17 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
-These commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
+The NCLU and vtysh commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
 
 ```
 ...
@@ -484,6 +541,14 @@ iface vni20
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 For a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, you must edit the bridge configuration in the `/etc/network/interfaces` file using a text editor:
@@ -526,7 +591,6 @@ cumulus@leaf01:~$ net del vxlan vni10 bridge arp-nd-suppress
 cumulus@leaf01:~$ net del vxlan vni20 bridge arp-nd-suppress
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
-
 ```
 
 {{< /tab >}}
@@ -551,6 +615,14 @@ iface vni20
       vxlan-id 20
       vxlan-local-tunnelip 10.10.10.1
 ...
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}
@@ -603,6 +675,14 @@ iface bridge
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ## Filter EVPN Routes
@@ -641,6 +721,14 @@ leaf01(config)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}
@@ -693,6 +781,14 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 To advertise a *specific* SVI IP/MAC address, run these commands:
@@ -723,6 +819,14 @@ leaf01(config-router-af-vni)# end
 leaf01)# write memory
 leaf01)# exit
 cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}
@@ -785,6 +889,14 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -825,6 +937,14 @@ leaf01(config-router-af)# end
 leaf01)# write memory
 leaf01)# exit
 cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}
@@ -944,6 +1064,14 @@ cumulus@switch:~$
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 To disable duplicate address detection, see {{<link url="#disable-duplicate-address-detection" text="Disable Duplicate Address Detection">}} below.
@@ -1014,6 +1142,14 @@ cumulus@switch:~$
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 {{%notice note%}}
@@ -1051,6 +1187,14 @@ cumulus@switch:~$
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ### Clear Duplicate Addresses
@@ -1079,6 +1223,14 @@ cumulus@switch:~$
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 To clear duplicate addresses for all VNIs, run the following command:
@@ -1101,6 +1253,14 @@ cumulus@switch:~$ sudo vtysh
 switch# clear evpn dup-addr vni all
 switch)# exit
 cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ 
 ```
 
 {{< /tab >}}
@@ -1146,6 +1306,14 @@ switch(config-router-af)# end
 switch)# write memory
 switch)# exit
 cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ 
 ```
 
 {{< /tab >}}

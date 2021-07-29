@@ -14,17 +14,17 @@ You can use the `lldpcli` CLI tool to query the `lldpd` daemon for neighbors, st
 
 ## Configure LLDP Timers
 
-You can configure the frequency of LLDP updates (between 10-300 seconds) and the amount of time to hold the information before discarding it. The hold time interval is a multiple of the `tx-interval`.
+You can configure the frequency of LLDP updates (between 10 and 300 seconds) and the amount of time to hold the information before discarding it. The hold time interval is a multiple of the `tx-interval`.
 
 The following example commands configure the frequency of LLDP updates to 100 and the hold time to 3.
 
 {{< tabs "TabID67 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set system lldp tx-interval 100
-cumulus@switch:~$ cl set system lldp tx-hold-multiplier 3
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set system lldp tx-interval 100
+cumulus@switch:~$ nv set system lldp tx-hold-multiplier 3
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -259,7 +259,7 @@ Configuration:
 --------------------------------------------------------------------
 ```
 
-You can also run the CUE `cl show system lldp` command to show the running LLDP configuration.
+You can also run the NVUE `nv show system lldp` command to show the running LLDP configuration.
 
 ## Considerations
 

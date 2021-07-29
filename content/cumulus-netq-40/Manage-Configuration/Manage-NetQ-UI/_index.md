@@ -298,7 +298,7 @@ To export a scheduled validation:
 
 ## Manage Threshold Crossing Rules
 
-NetQ supports a set of events that are triggered by crossing a user-defined threshold, called TCA events. These events allow detection and prevention of network failures for selected ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, sensor and WJH events. A complete list of supported events can be found in the {{<link title="TCA Event Messages Reference">}}.
+NetQ supports a set of events that are triggered by crossing a user-defined threshold, called TCA events. These events allow detection and prevention of network failures for selected ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, RoCE (RDMA over converged Ethernet), sensor and WJH events. A complete list of supported events can be found in the {{<link title="TCA Event Messages Reference">}}.
 
 Instructions for managing these rules can be found in {{<link title="Configure Threshold-Based Event Notifications/#manage-threshold-based-event-notifications" text="Manage Threshold-based Event Notifications">}}.
 
@@ -487,9 +487,9 @@ To integrate your authentication server:
 
     You need several pieces of data from your Microsoft Azure or Google account and authentication server to complete the integration. Open your account for easy cut and paste of this data into the NetQ form.
 
-    {{< tabs "TabID468" >}}
+    {{<tabs "TabID468" >}}
 
-{{< tab "OAuth+OpenID Connect" >}}
+{{<tab "OAuth+OpenID Connect" >}}
 
 {{<figure src="/images/netq/netq-mgmt-add-sso-oauth-330.png" width="600">}}
 
@@ -529,9 +529,9 @@ To integrate your authentication server:
 
     {{<figure src="/images/netq/netq-mgmt-sso-oauth-config-enabled-330.png" width="200">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "SAML" >}}
+{{<tab "SAML" >}}
 
 {{<figure src="/images/netq/netq-mgmt-add-sso-saml-330.png" width="600">}}
 
@@ -571,9 +571,9 @@ To integrate your authentication server:
 
     {{<figure src="/images/netq/netq-mgmt-sso-saml-config-enabled-330.png" width="200">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-    {{< /tabs >}}
+    {{</tabs>}}
 
 ### Modify Integrations
 

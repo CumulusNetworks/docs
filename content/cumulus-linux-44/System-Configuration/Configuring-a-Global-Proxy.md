@@ -36,7 +36,7 @@ You configure {{<exlink url="https://wiki.archlinux.org/index.php/proxy_settings
     Acquire::https::Proxy "https://myproxy.domain.com:8080";
     ```
 
-4. Add the proxy addresses to the `/etc/wgetrc` file. Uncomment the `http_proxy` and `https_proxy` lines, if necessary:
+4. Add the proxy addresses to the `/etc/wgetrc` file, then uncomment the `http_proxy` and `https_proxy` lines, if necessary:
 
     ```
     cumulus@switch:~$ sudo nano /etc/wgetrc

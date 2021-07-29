@@ -104,9 +104,9 @@ The network has no knowledge of any sessions or relationships between different 
 
 FTP data transfers require two connections: one for control and one for the file transfer. These two connections are independent, with their own TCP ports. Consider the scenario where an FTP server was deployed in an anycast architecture. When the secondary data connection is initiated, the traffic is destined initially to the same FTP server IP address, but the network hashes this traffic as a new, unique flow because the ports are different. This may result in the new session ending up on a new server. The new server would only accept that data connection if the FTP server application was capable of robust information sharing, as it has no history of the original request in the control session.
 
-### Initiating Traffic vs. Receiving Traffic
+### Initiating Traffic and Receiving Traffic
 
-Do not initiate an outbound TCP session over an anycast IP address; traffic that originates from an anycast IP address might not return to the same anycast server after the network hash. With inbound sessions, the network hash is the same for all packets in a flow, so the inbound traffic hashes to the same anycast server.
+Do not start an outbound TCP session over an anycast IP address; traffic that originates from an anycast IP address might not return to the same anycast server after the network hash. With inbound sessions, the network hash is the same for all packets in a flow, so the inbound traffic hashes to the same anycast server.
 
 ### TCP and Anycast
 
@@ -122,8 +122,6 @@ TCP applications that have longer-lived flows should not be used as anycast serv
 - FTP or other large file transfers.
 - Transactions that must be completed and journaled. For example, financial transactions.
 - Streaming media without application-level automated recovery.
-
-It should be noted that anycast TCP is possible and has been implemented by a number of organizations, one notable example being LinkedIn.
 
 ## Conclusion
 

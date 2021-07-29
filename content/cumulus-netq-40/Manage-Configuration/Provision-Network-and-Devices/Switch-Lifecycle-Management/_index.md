@@ -28,7 +28,7 @@ Using the NetQ UI or CLI, lifecycle management enables you to:
 
 {{<notice note>}}
 
-This feature is fully enabled for on-premises deployments and fully disabled for cloud deployments. Contact your local NVIDIA sales representative or {{<exlink url="https://support.cumulusnetworks.com/hc/en-us" text="submit a support ticket">}} to activate LCM on cloud deployments.
+This feature is fully enabled for on-premises deployments and fully disabled for cloud deployments. Contact your local NVIDIA sales representative or {{<exlink url="https://support.mellanox.com/s/" text="submit a support ticket">}} to activate LCM on cloud deployments.
 
 {{</notice>}}
 

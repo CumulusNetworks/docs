@@ -1,10 +1,10 @@
 ---
-title: Prepare Your Existing NetQ Appliances for a NetQ 3.3 Deployment
+title: Prepare Your Existing NetQ Appliances for a NetQ 4.0 Deployment
 author: NVIDIA
 weight: 235
 toc: 5
 ---
-This topic describes how to prepare a NetQ 3.2.x or earlier NetQ Appliance before installing NetQ {{<version>}}. The steps are the same for both the on-premises and cloud appliances. The only difference is the software you download for each platform. On completion of the steps included here, you will be ready to perform a fresh installation of NetQ {{<version>}}.
+This topic describes how to prepare a NetQ 3.3.x or earlier NetQ Appliance before installing NetQ {{<version>}}. The steps are the same for both the on-premises and cloud appliances. The only difference is the software you download for each platform. After you complete the steps included here, you are ready to perform a fresh installation of NetQ {{<version>}}.
 
 The preparation workflow is summarized in this figure:
 
@@ -44,7 +44,7 @@ To prepare your appliance:
     Note these tips when installing:
 
     - Ignore the instructions for MAAS.
-    - Ubuntu OS should be installed on the SSD disk. Select Micron SSD with ~900 GB at step#9 in the aforementioned instructions.
+    - Ubuntu OS should be installed on the SSD disk. Select Micron SSD with ~900 GB at step #9 in the {{<exlink url="https://www.fosslinux.com/6406/how-to-install-ubuntu-server-18-04-lts.htm" text="Ubuntu instructions">}}.
 
         {{<figure src="/images/netq/install-ubuntu-ssd-selection-240.png" width="700">}}
 
@@ -58,9 +58,9 @@ To prepare your appliance:
 
     Ubuntu uses Netplan for network configuration. You can give your appliance an IP address using DHCP or a static address.
 
-    {{< tabs "TabID0" >}}
+    {{<tabs "TabID0" >}}
     
-{{< tab "DHCP" >}}
+{{<tab "DHCP" >}}
 
 - Create and/or edit the  */etc/netplan/01-ethernet.yaml* Netplan configuration file.
 
@@ -81,9 +81,9 @@ To prepare your appliance:
     $ sudo netplan apply
     ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Static IP" >}}
+{{<tab "Static IP" >}}
 
 - Create and/or edit the  */etc/netplan/01-ethernet.yaml* Netplan configuration file.
 
@@ -110,9 +110,9 @@ To prepare your appliance:
     $ sudo netplan apply
     ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 5. Update the Ubuntu repository.
 

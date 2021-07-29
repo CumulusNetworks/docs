@@ -9,8 +9,8 @@ When installing NetQ {{<version>}}, you are not required to install the NetQ CLI
 
 After installing your NetQ software and the NetQ {{<version>}} Agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 
-- Cumulus Linux version 3.3.2-3.7.x
-- Cumulus Linux version 4.0.0 and later
+- Cumulus Linux version 3.3.2-3.7.x, 4.0.0 and later
+- SONiC 202012 and later
 - CentOS 7
 - RHEL 7.1
 - Ubuntu 16.04
@@ -29,7 +29,7 @@ For servers running RHEL 7, CentOS or Ubuntu OS, you need to:
 - Install and configure NTP, if needed
 - Obtain NetQ software packages
 
-You don't need to take any of these steps on Cumulus Linux.
+You do not take any of these steps on Cumulus Linux or SONiC.
 
 ### Verify Service Package Versions
 
@@ -149,9 +149,9 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 2.  Configure the network time server.
 
-    {{< tabs "TabID0" >}}
+    {{<tabs "TabID0" >}}
 
-{{< tab "Use NTP Configuration File" >}}
+{{<tab "Use NTP Configuration File" >}}
 
 1. Open the `/etc/ntp.conf` file in your text editor of choice.
 
@@ -179,7 +179,7 @@ If you are running NTP in your out-of-band management network with VRF, specify 
     2a00:7600::41    .STEP.          16 u    - 1024    0    0.000    0.000   0.000
     \*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
 
-{{</tab >}}
+{{</tab>}}
     
 {{<tab "Use Chrony (Ubuntu 18.04 only)" >}}
 
@@ -262,9 +262,9 @@ If you are running NTP in your out-of-band management network with VRF, specify 
     Leap status     : Normal
     ```
 
-{{</tab >}}
+{{</tab>}}
 
-{{</tabs >}}
+{{</tabs>}}
 
 
 {{</tab>}}
@@ -285,7 +285,7 @@ To get the NetQ CLI package:
 
 2. Add the Ubuntu repository:
 
-    {{< tabs "TabID2" >}}
+    {{<tabs "TabID2" >}}
 
 {{<tab "Ubuntu 16.04" >}}
 
@@ -298,7 +298,7 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
 ...
 ```
 
-{{</tab >}}
+{{</tab>}}
 
 {{<tab "Ubuntu 18.04" >}}
 
@@ -311,9 +311,9 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
 ...
 ```
 
-{{</tab >}}
+{{</tab>}}
 
-{{</tabs >}}
+{{</tabs>}}
 
     {{<notice note>}}
 The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as <code>netq-3.1</code> - use that instead.
@@ -346,7 +346,7 @@ Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-3.3
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-4.0
 ...
 ```
 
@@ -354,14 +354,14 @@ deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-3.3
 The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> can be used if you want to always retrieve the latest posted version of NetQ.
 {{</notice>}}
 
-{{</tab >}}
+{{</tab>}}
 
 {{<tab "Cumulus Linux 4.x" >}}
 
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-3.3
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.0
 ...
 ```
 
@@ -369,9 +369,9 @@ deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-3.3
 The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> can be used if you want to always retrieve the latest posted version of NetQ.
 {{</notice>}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 2. Update the local `apt` repository and install the software on the switch.
 
@@ -386,8 +386,44 @@ The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="3.3.1" opsys="cl">}}
+{{<netq-install/cli-version version="4.0" opsys="cl">}}
 <!-- vale on -->
+4. Continue with NetQ CLI configuration in the next section.
+
+{{</tab>}}
+
+{{<tab "SONiC">}}
+
+To install the NetQ CLI you need to install `netq-apps` on each switch. This is available from the NVIDIA networking repository.
+
+{{<notice note>}}
+If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NVIDIA networking repository.
+{{</notice>}}
+
+To obtain the NetQ Agent package:
+
+1. Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
+
+       admin@switch:~$ sudo nano /etc/apt/sources.list
+       ...
+       deb [arch=amd64] http://apps3.cumulusnetworks.com/repos/deb buster netq-4.0
+       ...
+
+2. Update the local `apt` repository and install the software on the switch.
+
+       admin@switch:~$ sudo apt-get update
+       admin@switch:~$ sudo apt-get install netq-apps
+
+3. Verify you have the correct version of the CLI.
+
+    ```
+    admin@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
+    ```
+
+    You should see version 4.0.0 and update 34 in the results. For example:
+
+    - netq-apps_<strong>4.0.0</strong>-deb10u<strong>34</strong>~1622184065.3c77d9bd_amd64.deb
+
 4. Continue with NetQ CLI configuration in the next section.
 
 {{</tab>}}
@@ -406,14 +442,14 @@ The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux
     ```
     root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
     ...
-    [cumulus-arch-netq-3.3]
+    [cumulus-arch-netq-4.0]
     name=Cumulus netq packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.2/$basearch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.0/$basearch
     gpgcheck=1
     enabled=1
-    [cumulus-noarch-netq-3.3]
+    [cumulus-noarch-netq-4.0]
     name=Cumulus netq architecture-independent packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.3/noarch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.0/noarch
     gpgcheck=1
     enabled=1
     ...
@@ -432,7 +468,7 @@ The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux
     root@rhel7:~# rpm -q -netq-apps
     ```
 <!-- vale off -->
-    {{<netq-install/cli-version version="3.3.0" opsys="rh">}}
+    {{<netq-install/cli-version version="4.0.0" opsys="rh">}}
 <!-- vale on -->
 5. Continue with the next section.
 
@@ -453,7 +489,7 @@ The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-    {{<netq-install/cli-version version="3.3.1" opsys="ub">}}
+    {{<netq-install/cli-version version="4.0" opsys="ub">}}
 <!-- vale on -->
 3. Continue with NetQ CLI configuration in the next section.
 
@@ -514,7 +550,9 @@ If you have a server cluster deployed, use the IP address of the master server.
 
 {{<tab "Cloud Deployments">}}
 
-To access and configure the CLI on your NetQ Cloud Appliance or VM, you must have your username and password to access the NetQ UI to generate AuthKeys. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were provided by NVIDIA via an email titled <!-- vale off -->*Welcome to NVIDIA Cumulus NetQ!*<!-- vale on -->
+<!-- vale off -->
+To access and configure the CLI on your NetQ Cloud Appliance or VM, you must have your username and password to access the NetQ UI to generate AuthKeys. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were provided by NVIDIA via an email titled *Welcome to NVIDIA Cumulus NetQ!*.
+<!-- vale on -->
 
 To generate AuthKeys:
 
@@ -603,7 +641,7 @@ You can configure the NetQ CLI in the `netq.yml` configuration file contained in
 <!-- vale on -->
 3. Set the parameters for the CLI.
 
-    {{< tabs "TabID1" >}}
+    {{<tabs "TabID1" >}}
 
 {{<tab "On-premises Deployments" >}}
 
@@ -622,7 +660,7 @@ port: 32708
 server: 192.168.0.254
 ```
 
-{{</tab >}}
+{{</tab>}}
 
 {{<tab "Cloud Deployments" >}}
 
@@ -643,6 +681,6 @@ premises: datacenterwest
 server: api.netq.cumulusnetworks.com
 ```
 
-{{</tab >}}
+{{</tab>}}
 
-{{</tabs >}}
+{{</tabs>}}

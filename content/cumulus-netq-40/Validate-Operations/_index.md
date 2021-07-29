@@ -21,7 +21,6 @@ Validation support is available in the NetQ UI and the NetQ CLI as shown here.
 | Cumulus Linux version | No | Yes |
 | EVPN | Yes | Yes |
 | Interfaces | Yes | Yes |
-| License | Yes | Yes |
 | LLDP | No | Yes |
 | MLAG (CLAG) | Yes | Yes |
 | MTU | Yes | Yes |
@@ -45,7 +44,7 @@ For a general understanding of how well your network is operating, the Network H
 
 The NetQ CLI uses the `netq check` commands to validate the various elements of your network fabric, looking for inconsistencies in configuration across your fabric, connectivity faults, missing configuration, and so forth, and then display the results for your assessment. They can be run from any node in the network.
 
-The NetQ CLI has a number of additional validation features and considerations.
+The NetQ CLI has many other validation features and considerations.
 
 ### Set a Time Period
 
@@ -117,7 +116,7 @@ bgp:
 
 ### Create Filters for Provisioning Exceptions
 
-You can configure filters to change validation errors to warnings that would normally occur due to the default expectations of the `netq check` commands. This applies to all protocols and services, except for Agents. For example, if you have provisioned BGP with configurations where a BGP peer is not expected or desired, you will get errors that a BGP peer is missing. By creating a filter, you can remove the error in favor of a warning.
+You can configure filters to change validation errors to warnings that would normally occur due to the default expectations of the `netq check` commands. This applies to all protocols and services, except for Agents. For example, if you provision BGP with configurations where a BGP peer is not expected or desired, then errors that a BGP peer is missing occur. By creating a filter, you can remove the error in favor of a warning.
 
 To create a validation filter:
 

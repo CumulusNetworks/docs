@@ -106,6 +106,12 @@ subnet 192.168.0.0 netmask 255.255.255.0 {
 Do not use an underscore (_) in the hostname; underscores are not permitted in hostnames.
 {{%/notice%}}
 
+### DHCP on Front Panel Ports
+
+In case eth0 is not operational or you prefer to use a front panel port, you can configure ZTP to bring all the front panel ports that are operational and run DHCP on any active interface. The list of active ports is reassessed on every retry cycle. When the DHCP lease is received and option 239 is present in the response, ZTP begins executing the script.
+
+To configure ZTP to bring up the front panel ports and run DHCP on any active interface, add the `CUMULUS-AUTOPROVISIONING-FRONT-PANEL` directive to the local ZTP script.
+
 ### Inspect HTTP Headers
 
 The following HTTP headers are sent in the request to the webserver to retrieve the provisioning script:
@@ -190,9 +196,13 @@ exit 0
 
 Several ZTP example scripts are available in the {{<exlink url="https://github.com/CumulusNetworks/example-ztp-scripts" text="Cumulus GitHub repository">}}.
 
+## Continue Provisioning
+
+Typically ZTP exits after executing the script locally and does not continue. To continue with provisioning so that you do not have to intervine manually or embed an Ansible callback into the script, you can add the `CUMULUS-AUTOPROVISION-CASCADE` directive.
+
 ## Best Practices
 
-ZTP scripts come in different forms and frequently perform many of the same tasks. As BASH is the most common language used for ZTP scripts, the following BASH snippets are provided to accelerate your ability to perform common tasks with robust error checking.
+ZTP scripts come in different forms and frequently perform many of the same tasks. As BASH is the most common language used for ZTP scripts, the following BASH snippets are provided to help you perform common tasks with robust error checking.
 
 ### Set the Default Cumulus User Password
 
@@ -467,7 +477,7 @@ cumulus@switch:~$ sudo grep -i ztp /var/log/syslog
 ## Common ZTP Script Errors
 
 <!-- vale off -->
-### Could not find referenced script/interpreter in downloaded payload
+**Could not find referenced script/interpreter in downloaded payload**
 <!-- vale on -->
 ```
 cumulus@leaf01:~$ sudo cat /var/log/syslog | grep ztp

@@ -4,22 +4,22 @@ author: NVIDIA
 weight: 630
 toc: 3
 ---
-*QinQ* is an amendment to the {{<exlink url="http://www.ieee802.org/1/pages/802.1Q.html" text="IEEE 802.1Q specification">}} that provides the capability for multiple {{<link url="VLAN-Tagging" text="VLAN tags">}} to be inserted into a single Ethernet frame.
+*QinQ* is an amendment to the {{<exlink url="http://www.ieee802.org/1/pages/802.1Q.html" text="IEEE 802.1Q specification">}} that enables you to insert multiple {{<link url="VLAN-Tagging" text="VLAN tags">}} into a single Ethernet frame.
 
-QinQ with VXLAN is typically used by a service provider who offers multi-tenant layer 2 connectivity between different customer data centers (private clouds) and also needs to connect those data centers to public cloud providers. Public clouds often has a mandatory QinQ handoff interface, where the outer tag is for the customer and the inner tag is for the service.
+QinQ with VXLAN is typically used by a service provider who offers multi-tenant layer 2 connectivity between different customer data centers (private clouds) and also needs to connect those data centers to public cloud providers. Public clouds tend to have a mandatory QinQ handoff interface, where the outer tag is for the customer and the inner tag is for the service.
 
 In Cumulus Linux, you map QinQ packets to VXLANs through:
 
 - *Single tag translation*, where you map a customer to a VNI and preserve the service as an inner VLAN inside a VXLAN packet.
 - *Double tag translation*, where you map a customer and service to a VNI.
 
-<!--QinQ is available only on {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} with 802.1ad.-->
+{{%notice note%}}
+You must disable ARP/ND suppression on VXLAN bridges when using QinQ.
+{{%/notice%}}
 
-## Configure Single Tag Translation
+## Single Tag Translation
 
 Single tag translation adheres to the traditional QinQ service model. The customer-facing interface is a QinQ access port with the outer S-tag being the PVID, representing the customer. The S-tag is translated to a VXLAN VNI. The inner C-tag, which represents the service, is transparent to the provider. The public cloud handoff interface is a QinQ trunk where packets on the wire carry both the S-tag and the C-tag.
-
-Single tag translation works with both {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}} and {{<link url="Traditional-Bridge-Mode" text="traditional bridge mode">}}. However, single tag translation with *VLAN-aware bridge mode* is more scalable.
 
 An example configuration in VLAN-aware bridge mode looks like this:
 
@@ -28,11 +28,17 @@ An example configuration in VLAN-aware bridge mode looks like this:
 You configure two switches: one at the service provider edge that faces the customer (the switch on the left above), and one on the public cloud handoff edge (the switch on the right above).
 
 {{%notice note%}}
-To correctly interoperate, all edges must support QinQ with VXLANs.
+- All edges must support QinQ with VXLANs.
+- You *cannot* mix 802.1Q and 802.1ad subinterfaces on the same switch port.
+- When configuring bridges in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, all VLANs that are members of the same switch port must use the same `vlan_protocol`.
+- When using switches in an MLAG pair:
+  - Configure the peerlink (peerlink.4094) between the MLAG pair for VLAN protocol 802.1ad.
+  - You cannot use the peerlink as a backup datapath in case one of the MLAG peers loses all uplinks.
+- When the bridge VLAN protocol is 802.1ad and is VXLAN-enabled, all bridge ports must be either access ports (except for the MLAG peerlink) or VLAN trunks.
 {{%/notice%}}
-
-### Configure the Public Cloud-facing Switch
-
+<!-- vale off -->
+### Public Cloud-facing Switch
+<!-- vale on -->
 For the switch facing the public cloud:
 
 - Configure the bridge with `vlan_protocol` set to *802.1ad*.
@@ -42,16 +48,6 @@ For the switch facing the public cloud:
 To configure the public cloud-facing switch:
 
 {{< tabs "TabID51 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ 
-cumulus@switch:~$ cl set
-cumulus@switch:~$ 
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -66,6 +62,11 @@ cumulus@switch:~$ net add bridge bridge ports swp3,vni-1000,vni-3000
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+NVUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -104,9 +105,9 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-
-### Configure the Customer-facing Edge Switch
-
+<!-- vale off -->
+### Customer-facing Edge Switch
+<!-- vale on -->
 For the switch facing the customer:
 
 - Configure the bridge with `vlan_protocol` set to *802.1ad*.
@@ -116,13 +117,6 @@ For the switch facing the customer:
 To configure the customer-facing switch:
 
 {{< tabs "TabID118 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -139,6 +133,11 @@ cumulus@switch:~$ net add bridge bridge vlan-protocol 802.1ad
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+NVUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -198,7 +197,7 @@ vni-1000       100   PVID, Egress Untagged   1000
 vni-3000       200   PVID, Egress Untagged   3000
 ```
 
-To check the customer-facing switch, use `net show bridge vlan`:
+To check the customer-facing switch, run the `net show bridge vlan` command:
 
 ```
 cumulus@switch:~$ net show bridge vlan
@@ -210,7 +209,7 @@ vni-1000        100  PVID, Egress Untagged  1000
 vni-3000        200  PVID, Egress Untagged  3000
 ```
 
-To verify that the bridge is configured for QinQ, run `ip -d link show bridge` and look for *vlan\_protocol 802.1ad* in the output:
+To verify that the bridge is configured for QinQ, run the `ip -d link show bridge` commands and check for *vlan\_protocol 802.1ad* in the output:
 
 ```
 cumulus@switch:~$ sudo ip -d link show bridge
@@ -219,7 +218,7 @@ cumulus@switch:~$ sudo ip -d link show bridge
     bridge forward_delay 1500 hello_time 200 max_age 2000 ageing_time 30000 stp_state 2 priority 32768 vlan_filtering 1 vlan_protocol 802.1ad bridge_id 8000.6:a2:ae:de:e3:43 designated_root 8000.6:a2:ae:de:e3:43 root_port 0 root_path_cost 0 topology_change 0 topology_change_detected 0 hello_timer    0.00 tcn_timer    0.00 topology_change_timer    0.00 gc_timer   64.29 vlan_default_pvid 1 vlan_stats_enabled 1 group_fwd_mask 0 group_address 01:80:c2:00:00:08 mcast_snooping 0 mcast_router 1 mcast_query_use_ifaddr 0 mcast_querier 0 mcast_hash_elasticity 4096 mcast_hash_max 4096 mcast_last_member_count 2 mcast_startup_query_count 2 mcast_last_member_interval 100 mcast_membership_interval 26000 mcast_querier_interval 25500 mcast_query_interval 12500 mcast_query_response_interval 1000 mcast_startup_query_interval 3125 mcast_stats_enabled 1 mcast_igmp_version 2 mcast_mld_version 1 nf_call_iptables 0 nf_call_ip6tables 0 nf_call_arptables 0 addrgenmode eui64
 ```
 
-### Example Configuration in Traditional Bridge Mode
+### Example Configuration
 
 An example configuration for single tag translation in traditional bridge mode on a leaf switch is shown below.
 
@@ -242,35 +241,56 @@ iface br11
 
 {{< /expand >}}
 
-## Configure Double Tag Translation
+## Double Tag Translation
 
-Double tag translation involves a bridge with double-tagged member interfaces, where a combination of the C-tag and S-tag map to a VNI. You create the configuration only at the edge facing the public cloud. The VXLAN configuration at the customer-facing edge does not need to change.
+Double tag translation includes a bridge with double-tagged member interfaces, where a combination of the C-tag and S-tag map to a VNI. You create the configuration only at the edge facing the public cloud. The VXLAN configuration at the customer-facing edge does not need to change.
 
 The double tag is always a cloud connection. The customer-facing edge is either single-tagged or untagged. At the public cloud handoff point, the VNI maps to double VLAN tags, with the S-tag indicating the customer and the C-tag indicating the service.
 
-{{%notice note%}}
 The configuration in Cumulus Linux uses the outer tag for the customer and the inner tag for the service.
+
+{{%notice note%}}
+Double tag translation:
+- Is supported on Spectrum-2 and Spectrum-3 switches in a VXLAN configuration on native interfaces only (bonds are not supported).
+- Is supported with bridges in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} only.
+- Is supported with 802.1Q bridge mode only.
+- Is *not* supported with MLAG.
+- Uses ACL resources internally, which can increase ACL resource utilization. To see the number of ACL entries used, run the `sudo cat /cumulus/switchd/run/acl_info/iacl_resource` command.
+- Uses internal VLANs for each traditional-mode bridge, which has a default range of 275. To change the range, edit the `/etc/cumulus/switchd.conf` file to uncomment the `#resv_vlan_range = 3725-3999` line and specify the range you want to use.
 {{%/notice%}}
 
-You configure a double-tagged interface by stacking the VLANs in the following manner: `<port>.<outer tag>.<inner tag>`. For example, consider swp1.100.10: the outer tag is VLAN 100, which represents the customer, and the inner tag is VLAN 10, which represents the service.
-
-The outer tag or *TPID* (tagged protocol identifier) needs the `vlan_protocol` to be specified. It can be either *802.1Q* or *802.1ad*. If 802.1ad is used, it must be specified on the lower VLAN device, such as swp3.100 in the example below.
-
-<!--{{%notice note%}}
-Double tag translation only works with bridges in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} (not VLAN-aware mode).
-{{%/notice%}} -->
+You configure a double-tagged interface by stacking the VLANs as `<port>.<outer tag>.<inner tag>`. For example, swp1.100.10, where the outer tag is VLAN 100, which represents the customer, and the inner tag is VLAN 10, which represents the service.
 
 An example configuration:
 
 {{< img src = "/images/cumulus-linux/qinq-double-tag-translation.png" >}}
 
+{{< tabs "TabID268 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add interface swp3.100.10
+cumulus@switch:~$ net add interface swp3.100.10 stp portbpdufilter
+cumulus@switch:~$ net add interface swp3.100.10 stp bpduguard
+cumulus@switch:~$ net add vxlan vni1000 vxlan id 1000
+cumulus@switch:~$ net add vxlan vni1000 stp portbpdufilter
+cumulus@switch:~$ net add vxlan vni1000 stp bpduguard
+cumulus@switch:~$ net add vxlan vni1000 vxlan local-tunnelip 10.0.0.1
+cumulus@switch:~$ net add bridge custA-10-azr
+cumulus@switch:~$ net add bridge custA-10-azr ports swp3.100.10,vni1000
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+NVUE commands are not supported.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
 To configure the switch for double tag translation using the above example, edit the `/etc/network/interfaces` file in a text editor and add the following:
 
 ```
-auto swp3.100
-iface swp3.100
-    vlan_protocol 802.1ad
-
 auto swp3.100.10
 iface swp3.100.10
     mstpctl-portbpdufilter yes
@@ -289,6 +309,9 @@ iface custA-10-azr
     bridge-vlan-aware no
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 To check the configuration, run the `brctl show` command:
 
 ```
@@ -300,42 +323,7 @@ custB-20-azr    8000.00020000004b       yes             swp3.200.20
                                                         vni3000
 ```
 
-If the bridge is *not* VXLAN-enabled, the configuration looks like this:
-
-```
-auto swp5.100
-iface swp5.100
-    vlan-protocol 802.1ad
-
-auto swp5.100.10
-iface swp5.100.10
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard yes
-
-auto br10
-iface br10
-    bridge-ports swp3.10  swp4  swp5.100.10
-    bridge-vlan-aware no
-```
-
-{{< img src = "/images/cumulus-linux/qinq-double-tagged-no-vxlan.png" >}}
-
 ## Considerations
-
-### Feature Limitations
-
-- `iptables` match on double-tagged interfaces is not supported.
-- {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} is only supported with single-tagged translation.
-- Mixing 802.1Q and 802.1ad subinterfaces on the same switch port is not supported.
-- When configuring bridges in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, all VLANs that are members of the same switch port must use the same `vlan_protocol`.
-- When using switches in an MLAG pair:
-  - Configure the peerlink (peerlink.4094) between the MLAG pair for VLAN protocol 802.1ad.
-  - You cannot use the peerlink as a backup datapath in case one of the MLAG peers loses all uplinks.
-- For switches with any type of Spectrum ASIC, when the bridge VLAN protocol is 802.1ad and is VXLAN-enabled, either:
-  - All bridge ports are access ports, except for the MLAG peerlink.
-  - All bridge ports are VLAN trunks. This means the switch terminating the cloud provider connections (double-tagged) cannot have local clients; these clients must be on a separate switch.
-
-### Long Interface Names
 
 The Linux kernel limits interface names to 15 characters in length. For QinQ interfaces, you can reach this limit easily.
 
@@ -348,7 +336,6 @@ auto vlan1001
 iface vlan1001
       vlan-id 1001
        vlan-raw-device swp50s0
-       vlan-protocol 802.1ad
 
 auto vlan1001-101
 iface vlan1001-101

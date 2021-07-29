@@ -11,11 +11,13 @@ You can decommission a switch or host at any time. You might need to do this whe
 another
 - RMA the switch or host being monitored
 
-{{<notice note>}}
+{{%notice note%}}
 
 Decommissioning the switch or host removes information about the switch or host from the NetQ database.
 
-{{</notice>}}
+When the NetQ Agent restarts at a later date, it sends a connection request back to the database, so NetQ can monitor the switch or host again.
+
+{{%/notice%}}
 
 To decommission a switch or host:
 

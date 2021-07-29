@@ -15,8 +15,8 @@ ERSPAN (Encapsulated Remote SPAN) enables the mirrored packets to be sent to a m
 ```
 
 You can configure SPAN and ERSPAN in one of the following ways:
-- With CUE commands
-<!--- With NCLU commands-->
+- With NVUE Commands
+- With NCLU commands
 - With ACL rules
 - Manually by editing the `/etc/cumulus/switchd.d/port-mirror.conf` file (for advanced users)
 
@@ -31,11 +31,7 @@ All three methods are described below.
 - Mirroring to the same interface that is being monitored causes a recursive flood of traffic and might impact traffic on other interfaces.
 {{%/notice%}}
 
-## CUE Configuration
-
-NEED COMMAND
-
-<!--## NCLU Configuration
+## NCLU Configuration
 
 - To configure SPAN with NCLU, run the `net add port-mirror session <session-id> (ingress|egress) span src-port <interface> dst-port <interface>` command.
 - To configure ERSPAN with NCLU, run the `net add port-mirror session <session-id> (ingress|egress) erspan src-port <interface> src-ip <interface> dst-ip <ip-address>` command.
@@ -126,9 +122,94 @@ cumulus@switch:~$ net del port-mirror session all
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
--->
-## cl-acltool Configuration
 
+## NVUE Configuration
+
+- To configure SPAN with NVUE, run the `nv set system port-mirror session <session-id> span <option>` command.
+- To configure ERSPAN with NVUE, run the `nv set system port-mirror session <session-id> erspan <option>` command.
+
+SPAN and ERSPAN configuration requires a seesion ID, which is a number between 0 and 7.
+
+You can set the following SPAN and ERSPAN options:
+- Source port (`src-port`)
+- Destination port (`destination`)
+- Direction (`ingress` or `egress`)
+- Source IP address for ERSPAN encapsulation (`destination src-ip`)
+- Destination IP address for ERSPAN encapsulation (`destination dst-ip`)
+
+You can also truncate the mirrored frames at specified number of bytes. The size must be between 4 and 4088 bytes and a multiple of 4.
+
+The NVUE commands save the configuration in the `/etc/cumulus/switchd.d/port-mirror.conf` file.
+
+### Example Commands
+
+The following example commands mirror all packets received on swp1, and copy and transmit the packets to swp2 for monitoring:
+
+```
+cumulus@switch:~$ nv set system port-mirror session 1 span direction ingress 
+cumulus@switch:~$ nv set system port-mirror session 1 span src-port swp1 
+cumulus@switch:~$ nv set system port-mirror session 1 span dest-port swp2
+cumulus@switch:~$ nv config apply
+```
+
+The following example commands mirror all packets that are sent out of swp1, and copy and transmit the packets to swp2 for monitoring:
+
+```
+cumulus@switch:~$ nv set system port-mirror session 1 span direction egress
+cumulus@switch:~$ nv set system port-mirror session 1 span src-port swp1
+cumulus@switch:~$ nv set system port-mirror session 1 span dest-port swp2
+cumulus@switch:~$ nv config apply
+```
+
+The following example commands mirror all packets recieved on swp1, and copy and transmit the packets from source IP address 10.10.10.1 to destination IP address 10.10.10.234 through a GRE tunnel:
+
+```
+cumulus@switch:~$ nv set system port-mirror session 1 erspan src-port swp1
+cumulus@switch:~$ nv set system port-mirror session 1 erspan destination src-ip 10.10.10.1 
+cumulus@switch:~$ nv set system port-mirror session 1 erspan destination dst-ip 10.10.10.234
+cumulus@switch:~$ nv config apply
+```
+
+The following example commands mirror all packets that are sent out of swp1, and copy and transmit the packets from source IP address 10.10.10.1 to destination IP address 10.10.10.234 through a GRE tunnel:
+
+```
+cumulus@switch:~$ nv set system port-mirror session 1 erspan direction egress
+cumulus@switch:~$ nv set system port-mirror session 1 erspan src-port swp1
+cumulus@switch:~$ nv set system port-mirror session 1 erspan destination src-ip 10.10.10.1
+cumulus@switch:~$ nv set system port-mirror session 1 erspan destination dst-ip 10.10.10.234
+cumulus@switch:~$ nv config apply
+```
+
+The following commands truncate the mirrored frames for SPAN at 40 bytes:
+
+```
+cumulus@switch:~$ nv set system port-mirror session 1 span truncate size 40
+cumulus@switch:~$ nv config apply
+```
+
+### Show Session Configuration
+
+To show SPAN and ERSPAN configuration for a specific session, run the `nv show system port-mirror session <session-id>` command.
+To show SPAN and ERSPAN configuration for all sessions, run the `nv show system port-mirror` command.
+
+### Delete Sessions
+
+To delete a SPAN or ERSPAN session, run the `nv unset system port-mirror session <session-id>` command. For example:
+
+```
+cumulus@switch:~$ nv unset system port-mirror session 1
+cumulus@switch:~$ nv config apply
+```
+
+You can delete all SPAN or ERSPAN sessions with the `nv unset system port-mirror` command. For example:
+
+```
+cumulus@switch:~$ nv unset system port-mirror 
+cumulus@switch:~$ nv config apply
+```
+<!-- vale off -->
+## cl-acltool Configuration
+<!-- vale on -->
 You can configure SPAN and ERSPAN with `cl-acltool`, the {{<link url="Netfilter-ACLs" text="same utility used for security ACL configuration">}}. The match criteria for SPAN and ERSPAN is usually an interface; for more granular match terms, use {{<link url="#selective-spanning" text="selective spanning">}}. The SPAN source interface can be a port, a subinterface, or a bond interface. Ingress traffic on interfaces can be matched, and on switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}, egress traffic can be matched. See the {{<link url="#limitations-for-span-and-erspan" text="list of limitations">}} below.
 
 Cumulus Linux supports a maximum of two SPAN destinations. Multiple rules (SPAN sources) can point to the same SPAN destination, although a given SPAN source cannot specify two SPAN destinations. The SPAN destination (MTP) interface can be a physical port, subinterface, bond interface or CPU.  The SPAN and ERSPAN action is independent of security ACL actions. If packets match both a security ACL rule and a SPAN rule, both actions are carried out.
@@ -289,7 +370,7 @@ To use the CPU port as the SPAN destination, create a file in the `/etc/cumulus/
 ```
 
 This example rule matches on swp1 egress traffic that has the source IP Address 10.10.1.1.
-When a match occurs, the traffic is is mirrored to the CPU:
+When a match occurs, the traffic is mirrored to the CPU:
 
 ```
 [iptables]
@@ -374,12 +455,13 @@ This section describes how to configure ERSPAN.
      69  6804 ERSPAN     all  --  swp1   any     anywhere      anywhere       ERSPAN src-ip:10.0.0.1 dst-ip:10.10.10.234
      ```
 
-The `src-ip` option can be any IP address, even if it does not exist in the routing table. The `dst-ip` option must be an IP address reachable through the routing table. The destination IP address must be reachable from a front-panel port; not the management port. Use `ping` or `ip route get <ip>` to verify that the destination IP address is reachable. Setting the `--ttl` option is recommended.
+- `src-ip` can be any IP address, even if it does not exist in the routing table.
+- `dst-ip` must be an IP address reachable through the routing table and front-panel port (not the management port) or SVI. Use ping or ip route get <ip> to verify that the destination IP address is reachable. Setting the --ttl option is recommended.
 
-If a SPAN destination IP address is not available, or if the interface type prevents using a laptop as a SPAN destination, refer to [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Configure-ERSPAN-to-a-Cumulus-Linux-Switch" >}}).
+If a SPAN destination IP address is not available, or if the interface type prevents you from using a laptop as a SPAN destination, refer to [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Configure-ERSPAN-to-a-Cumulus-Linux-Switch" >}}).
 
 {{%notice note%}}
-- When using {{<exlink url="https://www.wireshark.org" text="Wireshark">}} to review the ERSPAN output, Wireshark might report the message "Unknown version, please report or test to use fake ERSPAN preference" and the trace is unreadable. To resolve this issue, go to the General preferences for Wireshark, then go to **Protocols \ ERSPAN** and check the **Force to decode fake ERSPAN frame** option.
+- If you use {{<exlink url="https://www.wireshark.org" text="Wireshark">}} to review the ERSPAN output, you might see the Wireshark error message `Unknown version, please report or test to use fake ERSPAN preference` and the trace might be unreadable. To resolve this issue, go to **Protocols \ ERSPAN** from the Wireshark General preferences and check the **Force to decode fake ERSPAN frame** option.
 - To set up a {{<exlink url="https://www.wireshark.org/docs/wsug_html_chunked/ChCapCaptureFilterSection.html" text="capture filter">}} on the destination switch that filters for a specific IP protocol, use `ip.proto == 47` to filter for GRE-encapsulated (IP protocol 47) traffic.
 {{%/notice%}}
 

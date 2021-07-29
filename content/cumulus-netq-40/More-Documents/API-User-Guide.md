@@ -6,7 +6,7 @@ toc: 3
 ---
 The NetQ API provides access to key telemetry and system monitoring data gathered about the performance and operation of your network and devices so that you can view that data in your internal or third-party analytic tools. The API gives you access to the health of individual switches, network protocols and services, trace and validation results, and views of networkwide inventory and events.
 
-This guide provides an overview of the NetQ API framework, the basics of using Swagger UI 2.0 or bash plus curl to view and test the APIs. Descriptions of each endpoint and model parameter are contained in individual API .JSON files.
+This guide provides an overview of the NetQ API framework, the basics of using Swagger UI 2.0 or `bash` plus `curl` to view and test the APIs. Descriptions of each endpoint and model parameter are contained in individual API .JSON files.
 
 For information regarding new features, improvements, bug fixes, and known issues present in this NetQ release, refer to the {{<link title="NVIDIA Cumulus NetQ 4.0 Release Notes" text="release notes">}}.
 
@@ -46,9 +46,9 @@ The API is embedded in the NetQ software, making it easy to access from the Swag
 
 3. Open a new browser tab or window, and enter one of the following in the address bar:
 
-    - Cloud deployments:  https://api.prod1.netq.cumulusnetworks.com
+    - Cloud deployments:  https://api.netq.cumulusnetworks.com/swagger/
     - On-premises deployments: https://\<hostname-or-ipaddr\>/swagger/
-    - Cumulus in the Cloud (CITC): https://api.air.netq.cumulusnetworks.com
+    - Cumulus in the Cloud (CITC): https://api.air.netq.cumulusnetworks.com/swagger/
 
     This opens the Swagger interface.
 
@@ -142,11 +142,11 @@ By default, authorization is valid for 24 hours, after which users must sign in 
 
 ### API Requests
 
-You can use either the Swagger UI or a terminal window with bash and curl commands to create and execute API requests.
+You can use either the Swagger UI or a terminal window with `bash` and `curl` commands to create and execute API requests.
 
-{{< tabs "TabID133" >}}
+{{<tabs "TabID133" >}}
 
-{{< tab "Swagger UI" >}}
+{{<tab "Swagger UI" >}}
 
 API requests are easy to execute in the Swagger UI. Simply select the endpoint of interest and try it out.
 
@@ -174,7 +174,7 @@ API requests are easy to execute in the Swagger UI. Simply select the endpoint o
 
 {{<tab "Terminal Window">}}
 
-In a terminal window, use bash plus curl to execute requests. Each request contains an API method (GET, POST, etc.), the address and API endpoint object to query, a variety of headers, and sometimes a body. For example, in the log in step above:
+In a terminal window, use `bash` plus `curl` to execute requests. Each request contains an API method (GET, POST, etc.), the address and API endpoint object to query, a variety of headers, and sometimes a body. For example, in the log in step above:
 
 - API method = POST
 - Address and API object = "https://\<netq.domain\>:443/netq/auth/v1/login"
@@ -204,7 +204,7 @@ The following HTTP status codes might be presented in the API responses:
 
 ## Example Requests and Responses
 
-Some command requests and their responses are shown here, but feel free to run your own requests. To run a request, you will need your authorization token. When using the curl commands, the responses have been piped through a python tool to make them more readable. You may chose to do so as well.
+Some command requests and their responses are shown here, but feel free to run your own requests. To run a request, you will need your authorization token. When using the `curl` commands, the responses have been piped through a python tool to make them more readable. You may chose to do so as well.
 
 ### Validate Networkwide Status of the BGP Service
 
@@ -440,7 +440,6 @@ Make your request to the *inventory* endpoint to get a listing of all monitored 
         "asic_model": "A-Z",
         "agent_version": "3.2.0-cl4u30~1601403318.104fb9ed",
         "os_version": "A.2.0",
-        "license_state": "ok",
         "disk_total_size": "10 GB",
         "os_version_id": "A.2.0",
         "platform_model": "A_VX",
@@ -468,7 +467,6 @@ Make your request to the *inventory* endpoint to get a listing of all monitored 
         "asic_model": "C-Z",
         "agent_version": "3.2.0-cl4u30~1601403318.104fb9ed",
         "os_version": "C.2.0",
-        "license_state": "N/A",
         "disk_total_size": "30 GB",
         "os_version_id": "C.2.0",
         "platform_model": "C_VX",
@@ -496,7 +494,6 @@ Make your request to the *inventory* endpoint to get a listing of all monitored 
         "asic_model": "N/A",
         "agent_version": "2.1.0-ub16.04u15~1555608012.1d98892",
         "os_version": "16.04.1 LTS (Xenial Xerus)",
-        "license_state": "N/A",
         "disk_total_size": "3.20 GB",
         "os_version_id": "(hydra-poc-01 /tmp/purna/Kleen-Gui1/)\"16.04",
         "platform_model": "N/A",

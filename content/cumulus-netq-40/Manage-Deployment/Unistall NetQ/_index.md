@@ -136,23 +136,23 @@ First remove the data collected to free up used disk space. Then remove the soft
 
 5. Delete the virtual machine according to the usual VMware or KVM practice.
 
-  {{< tabs "TabID130" >}}
+  {{<tabs "TabID130" >}}
 
-{{< tab "VMware ESX" >}}
+{{<tab "VMware ESX" >}}
 
 Delete a virtual machine from the host computer using one of the following methods:
 
 - Right-click the name of the virtual machine in the **Favorites** list, then select **Delete from Disk**
 - Select the virtual machine and choose **VM** > **Delete from disk**
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "KVM" >}}
+{{<tab "KVM" >}}
 
 Delete a virtual machine from the host computer using one of the following methods:
 
 - Run `virsch undefine <vm-domain> --remove-all-storage`
 - Run `virsh undefine <vm-domain> --wipe-storage`
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}

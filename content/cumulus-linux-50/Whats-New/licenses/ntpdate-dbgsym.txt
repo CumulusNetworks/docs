@@ -1,1 +1,0 @@
-ntpdate-dbgsym has no copyright file

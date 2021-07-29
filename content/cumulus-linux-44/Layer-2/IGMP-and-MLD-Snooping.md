@@ -61,9 +61,30 @@ To disable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoo
 
 In the absence of a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is called the querier or the designated router. The querier generates query messages to check group membership, and processes membership reports and leave messages.
 
-To configure the querier on the switch for a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, edit the `/etc/network/interfaces` file to add `bridge-mcquerier 1` to the bridge stanza (this enables the multicast querier on the bridge) and add `bridge-igmp-querier-src <ip-address>` to the VLAN stanza (the is the source IP address of the queries).
+To configure the querier on the switch for a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, enable the multicast querier on the bridge and add the source IP address of the queries to the VLAN.
 
-The following configuration example sets `bridge-igmp-querier-src` to 10.10.10.1 (the loopback address of the switch) and `bridge-mcquerier` to 1.
+The following configuration example enables the multicast querier and sets source IP address of the queries to 10.10.10.1 (the loopback address of the switch).
+
+{{< tabs "TabID68 ">}}
+{{< tab "NCLU Commands ">}}
+
+NCLU commands are not supported.
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set bridge domain br_default multicast snooping querier enable on
+cumulus@switch:~$ nv set bridge domain br_default vlan vlan10 multicast snooping querier source-ip 10.10.10.1
+cumulus@switch:~$ nv config apply
+```
+
+NVUE commands for a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} are not supported.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file to add `bridge-mcquerier 1` to the bridge stanza (this enables the multicast querier on the bridge) and add `bridge-igmp-querier-src <ip-address>` to the VLAN stanza (the is the source IP address of the queries).
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -85,6 +106,12 @@ iface br_default
 ...
 ```
 
+Run the `ifreload -a` command to reload the configuration:
+
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
 To configure the querier on the switch for a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, edit the bridge stanza in the `/etc/network/interfaces` file to add `bridge-mcquerier 1` (this enables the multicast querier on the bridge) and `bridge-mcqifaddr` to 1 (this configures the source IP address of the queries to be the bridge IP address).
 
 ```
@@ -99,37 +126,73 @@ iface br0
 ...
 ```
 
+Run the `ifreload -a` command to reload the configuration:
+
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Optimized Multicast Flooding (OMF)
 
-IGMP Snooping restricts multicast forwarding only to the ports where IGMP report messages are received. If no IGMP reports are received, multicast traffic is flooded to all ports in the VLAN. To restrict this flooding to only querier ports, you must enable OMF.
+IGMP Snooping restricts multicast forwarding only to the ports where IGMP report messages are received. If no IGMP reports are received, multicast traffic is flooded to all ports in the bridge domain (this traffic is known as unregistered multicast (URMC) traffic). To restrict this flooding to only mrouter ports, you can enable OMF.
 
 To enable OMF:
 
 1. Configure an IGMP querier. See {{<link url="#configure-the-igmp-and-mld-querier" text="Configure the IGMP and MLD Querier">}} above.
-2. Change the `bridge.optimized_mcast_flood` option to `TRUE` in the `/etc/cumulus/switchd.conf` file, then restart `switchd`.
+2. In the `IGMP snooping unregistered L2 multicast flood control` section of the `/etc/cumulus/switchd.conf` file, uncomment and change these settings to TRUE, then restart `switchd`.
+
+   - `bridge.unreg_mcast_init`
+   - `bridge.unreg_v4_mcast_prune`
+   - `bridge.unreg_v6_mcast_prune`
 
    ```
    cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
    ...
-   bridge.optimized_mcast_flood = TRUE
+   #IGMP snooping unregistered L2 multicast flood control
+   #
+   #Initialize prune module:
+   bridge.unreg_mcast_init = TRUE
+   #
+   #Note:
+   #Below configuration allowed only when bridge.unreg_mcast_init is set to TRUE
+   #
+   #Set below to TRUE to enable unregistered L2 multicast prune to mrouter ports.
+   #Default is to flood the unregistered L2 multicast
+   #
+   bridge.unreg_v4_mcast_prune = TRUE
+   bridge.unreg_v6_mcast_prune = TRUE
    ```
 
    {{<cl/restart-switchd>}}
 
-When IGMP reports are sent for a multicast group, OMF has no effect. Normal IGMP Snooping behavior is followed.
+When IGMP reports are sent for a multicast group, OMF has no effect; normal IGMP Snooping behavior is followed.
+
+{{%notice note%}}
+OMF increases memory usage, which can impact scaling on Spectrum 1 switches.
+{{%/notice%}}
 
 ## Disable IGMP and MLD Snooping
 
 If you do not use mirroring functions or other types of multicast traffic, you can disable IGMP and MLD Snooping.
 
-To disable IGMP and MLD snooping:
-
 {{< tabs "TabID114 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ net add bridge bridge mcsnoop no
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set bridge domain br_default multicast snooping enable off
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -213,7 +276,7 @@ swp3 (3)
   flags
 ```
 
-To show the groups and bridge port state, run the Linux `bridge mdb show` command. To show detailed router ports and group information, run the `bridge -d -s mdb show` command:
+To show the groups and bridge port state, run the NCLU `net show bridge mdb` command or the Linux `sudo bridge mdb show` command. To show detailed router ports and group information, run the `sudo bridge -d -s mdb show` command:
 
 ```
 cumulus@switch:~$ sudo bridge -d -s mdb show

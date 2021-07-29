@@ -75,6 +75,20 @@ iface bridge
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set interface swp1-3 bridge domain br_default
+cumulus@switch:~$ cl set bridge domain br_default vlan 10,100,200,300
+cumulus@switch:~$ cl set bridge domain br_default untagged 10
+cumulus@switch:~$ cl set interface swp1 bridge domain br_default NEED COMMAND
+cumulus@switch:~$ cl set interface swp2 bridge domain br_default NEED COMMAND
+cumulus@switch:~$ cl set interface swp3 bridge domain br_default NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ## Troubleshooting

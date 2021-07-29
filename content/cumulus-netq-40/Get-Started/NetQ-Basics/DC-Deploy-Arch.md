@@ -20,12 +20,14 @@ layer 3 routed environments. A layer 3 routed environment is recommended wheneve
 
 {{</notice>}}
 
+<!-- vale off -->
 ## Out-of-band Management Deployment
+<!-- vale on -->
 
 NVIDIA recommends deploying NetQ on an out-of-band (OOB)
 management network to separate network management traffic from standard
 network data traffic, but it is not required. This figure shows a sample
-CLOS-based network fabric design for a data center using an OOB
+Clos-based network fabric design for a data center using an OOB
 management network overlaid on top, where NetQ is deployed.
 
 The physical *network* hardware includes:
@@ -52,7 +54,7 @@ connected to Exit 01.
 
 The physical *management* hardware includes:
 
-- OOB Management Switch: aggregation switch that connects to all of the network devices through communications with the NetQ Agent on each node
+- OOB Management Switch: aggregation switch that connects to all network devices through communications with the NetQ Agent on each node
 - NetQ Platform: hosts the telemetry software, database and user interfaces (refer to description above)
 
 These switches are connected to each of the physical network devices
@@ -60,13 +62,15 @@ through a virtual network overlay, shown with purple lines.
 
 {{< figure src="/images/netq/deploy-arch-oob-example-230.png" width="700" >}}
 
+<!-- vale off -->
 ## In-band Management Deployment
+<!-- vale on -->
 
 While not the preferred deployment method, you might choose to implement
 NetQ within your data network. In this scenario, there is no overlay and
 all traffic to and from the NetQ Agents and the NetQ Platform traverses
 the data paths along with your regular network traffic. The roles of the
-switches in the CLOS network are the same, except that the NetQ Platform
+switches in the Clos network are the same, except that the NetQ Platform
 performs the aggregation function that the OOB management switch
 performed. If your network goes down, you might not have access to the
 NetQ Platform for troubleshooting.

@@ -4,15 +4,7 @@ author: NVIDIA
 weight: 850
 toc: 3
 ---
-With NetQ, a network administrator can monitor OSI Layer 1 physical
-components on network devices, including interfaces, ports, links, and
-peers. Keeping track of the various physical layer components in your switches
-and servers ensures you have a fully functioning network and provides
-inventory management and audit capabilities. You can monitor ports,
-transceivers, and cabling deployed on a per port (interface), per
-vendor, per part number and so forth. NetQ enables you to view the
-current status and the status an earlier point in time. From this
-information, you can, among other things:
+With NetQ, a network administrator can monitor OSI Layer 1 physical components on network devices, including interfaces, ports, links, and peers. Keeping track of the various physical layer components in your switches and servers ensures you have a fully functioning network and provides inventory management and audit capabilities. You can monitor ports, transceivers, and cabling deployed on a per port (interface), per vendor, per part number and so forth. NetQ enables you to view the current status and the status an earlier point in time. From this information, you can, among other things:
 
 - Determine which ports are empty versus which ones have cables
   plugged in and thereby validate expected connectivity
@@ -197,10 +189,9 @@ leaf01            swp38                     down       10G        off     SFP   
 
 ### View All Devices Using a Given Component
 
-You can view all of the devices with ports using a particular component. This could be helpful when you need to change out a particular component for possible failure issues, upgrades, or cost reasons.
+You can view all devices with ports using a particular component. This could be helpful when you need to change out a particular component for possible failure issues, upgrades, or cost reasons.
 
-This example first determines which models (part numbers) exist on all of the devices
-and then those devices with a part number of QSFP-H40G-CU1M installed.
+This example first determines which models (part numbers) exist on all the devices and then those devices with a part number of QSFP-H40G-CU1M installed.
 
 ```
 cumulus@switch:~$ netq show interfaces physical model

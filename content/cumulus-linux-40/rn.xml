@@ -1190,10 +1190,10 @@ Fixed: 2.4.47+dfsg-3+deb10u6</td>
 <tr>
 <td>2699399</td>
 <td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
+
 spine01# show ip bgp vrf all statistics 
 vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!
-spine01# show bgp vrf all ipv6 unicast statistics 
-vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!
+
 To workaround this issue, run the command against each VRF independently.</td>
 <td>3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -1226,8 +1226,9 @@ Fixed: 0.6.1-2+deb10u1</td>
 <td>2685994</td>
 <td>When you use the NVUE command {{nv set interface lo router ospf area}} to configure OSPF on a loopback interface, the configuration fails to apply.
 To work around this issue, configure the loopback interface in the desired OSPF area with the {{nv set vrf default router ospf area 0 network}} command and reference the assigned prefix of the loopback interface. For example:
+
 cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
-cumulus@leaf01:~$ nv config apply</td>
+</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
 </tr>

@@ -160,10 +160,10 @@ Fixed: 1.6.2-2+dev8u9</td>
 <tr>
 <td>2699399</td>
 <td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
+
 spine01# show ip bgp vrf all statistics 
 vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!
-spine01# show bgp vrf all ipv6 unicast statistics 
-vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!
+
 To workaround this issue, run the command against each VRF independently.</td>
 <td>3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -266,7 +266,7 @@ username cumulus nopassword
 <tr>
 <td>2668483</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -275,12 +275,6 @@ username cumulus nopassword
 Vulnerable: &lt;= 1.6.2-3+deb8u4
 Fixed: 1.6.2-3+deb8u5</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2663119</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -423,7 +417,7 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 </tr>
 <tr>
 <td>2556061</td>
-<td>On Edgecore AS4610 switches, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
+<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
 <td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
 <td></td>
 </tr>
@@ -2436,7 +2430,7 @@ username cumulus nopassword
 <tr>
 <td>2668483</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -2445,12 +2439,6 @@ username cumulus nopassword
 Vulnerable: &lt;= 1.6.2-3+deb8u4
 Fixed: 1.6.2-3+deb8u5</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2663119</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2853,7 +2841,7 @@ Fixed: 1.0.4-0-cl4.3.0u2</td>
 </tr>
 <tr>
 <td>2556061</td>
-<td>On Edgecore AS4610 switches, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
+<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
 <td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
 <td></td>
 </tr>
@@ -4648,7 +4636,7 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <tr>
 <td>2668483</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -4657,12 +4645,6 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 Vulnerable: &lt;= 1.6.2-3+deb8u4
 Fixed: 1.6.2-3+deb8u5</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2663119</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -5062,7 +5044,7 @@ Fixed: 1.0.4-0-cl4.3.0u2</td>
 </tr>
 <tr>
 <td>2556061</td>
-<td>On Edgecore AS4610 switches, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
+<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
 <td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
 <td></td>
 </tr>
@@ -7623,7 +7605,7 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 </tr>
 <tr>
 <td>2556061</td>
-<td>On Edgecore AS4610 switches, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
+<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
 <td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
 <td></td>
 </tr>
@@ -10577,7 +10559,7 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 </tr>
 <tr>
 <td>2556061</td>
-<td>On Edgecore AS4610 switches, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
+<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
 <td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
 <td></td>
 </tr>

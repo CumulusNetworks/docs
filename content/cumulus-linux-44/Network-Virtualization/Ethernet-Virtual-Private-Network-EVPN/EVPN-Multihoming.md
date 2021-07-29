@@ -3649,7 +3649,7 @@ cumulus@leaf01:~$ net add bond bond1-3 stp bpduguard
 cumulus@leaf01:~$ net add bond bond1-3 stp portadminedge
 cumulus@leaf01:~$ net add bridge bridge ports bond1,bond2,bond3
 cumulus@leaf01:~$ net add loopback lo pim
-cumulus@leaf01:~$ net add pim rp 10.10.100.100 224.0.0.0/4
+cumulus@leaf01:~$ net add pim rp 10.10.100.100
 cumulus@leaf01:~$ net add pim ecmp
 cumulus@leaf01:~$ net add pim keep-alive-timer 3600
 cumulus@leaf01:~$ net add interface swp51-52 pim
@@ -3755,7 +3755,7 @@ cumulus@leaf02:~$ net add bond bond1-3 stp bpduguard
 cumulus@leaf02:~$ net add bond bond1-3 stp portadminedge
 cumulus@leaf02:~$ net add bridge bridge ports bond1,bond2,bond3
 cumulus@leaf02:~$ net add loopback lo pim
-cumulus@leaf02:~$ net add pim rp 10.10.100.100 224.0.0.0/4
+cumulus@leaf02:~$ net add pim rp 10.10.100.100
 cumulus@leaf02:~$ net add pim ecmp
 cumulus@leaf02:~$ net add pim keep-alive-timer 3600
 cumulus@leaf02:~$ net add interface swp51-52 pim
@@ -3861,7 +3861,7 @@ cumulus@leaf03:~$ net add bond bond1-3 stp bpduguard
 cumulus@leaf03:~$ net add bond bond1-3 stp portadminedge
 cumulus@leaf03:~$ net add bridge bridge ports bond1,bond2,bond3
 cumulus@leaf03:~$ net add loopback lo pim
-cumulus@leaf03:~$ net add pim rp 10.10.100.100 224.0.0.0/4
+cumulus@leaf03:~$ net add pim rp 10.10.100.100
 cumulus@leaf03:~$ net add pim ecmp
 cumulus@leaf03:~$ net add pim keep-alive-timer 3600
 cumulus@leaf03:~$ net add interface swp51-52 pim
@@ -3967,7 +3967,7 @@ cumulus@leaf04:~$ net add bond bond1-3 stp bpduguard
 cumulus@leaf04:~$ net add bond bond1-3 stp portadminedge
 cumulus@leaf04:~$ net add bridge bridge ports bond1,bond2,bond3
 cumulus@leaf04:~$ net add loopback lo pim
-cumulus@leaf04:~$ net add pim rp 10.10.100.100 224.0.0.0/4
+cumulus@leaf04:~$ net add pim rp 10.10.100.100
 cumulus@leaf04:~$ net add pim ecmp
 cumulus@leaf04:~$ net add pim keep-alive-timer 3600
 cumulus@leaf04:~$ net add interface swp51-52 pim
@@ -4059,7 +4059,7 @@ cumulus@spine01:~$ net add loopback lo pim
 cumulus@spine01:~$ net add loopback lo pim use-source 10.10.10.101
 cumulus@spine01:~$ net add interface swp1-4 pim
 cumulus@spine01:~$ net add interface swp1-4 alias to leaf
-cumulus@spine01:~$ net add pim rp 10.10.100.100 224.0.0.0/4
+cumulus@spine01:~$ net add pim rp 10.10.10.101/32 10.10.100.100/32
 cumulus@spine01:~$ net add pim ecmp
 cumulus@spine01:~$ net add pim keep-alive-timer 3600
 cumulus@spine01:~$ net add bgp autonomous-system 65100
@@ -4085,7 +4085,7 @@ cumulus@spine02:~$ net add loopback lo pim
 cumulus@spine02:~$ net add loopback lo pim use-source 10.10.10.101
 cumulus@spine02:~$ net add interface swp1-4 pim
 cumulus@spine02:~$ net add interface swp1-4 alias to leaf
-cumulus@spine02:~$ net add pim rp 10.10.100.100 224.0.0.0/4
+cumulus@spine02:~$ net add pim rp 10.10.10.102/32 10.10.100.100/32
 cumulus@spine02:~$ net add pim ecmp
 cumulus@spine02:~$ net add pim keep-alive-timer 3600
 cumulus@spine02:~$ net add bgp autonomous-system 65100
@@ -4916,7 +4916,7 @@ cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
 ...
 interface lo
  ip pim
-ip pim rp 10.10.100.100 224.0.0.0/4
+ip pim rp 10.10.100.100
 ip pim ecmp
 ip pim keep-alive-timer 3600
 interface swp51
@@ -4985,7 +4985,7 @@ cumulus@leaf02:~$ sudo cat /etc/frr/frr.conf
 ...
 interface lo
  ip pim
-ip pim rp 10.10.100.100 224.0.0.0/4
+ip pim rp 10.10.100.100
 ip pim ecmp
 ip pim keep-alive-timer 3600
 interface swp51
@@ -5054,7 +5054,7 @@ cumulus@leaf03:~$ sudo cat /etc/frr/frr.conf
 ...
 interface lo
  ip pim
-ip pim rp 10.10.100.100 224.0.0.0/4
+ip pim rp 10.10.100.100
 ip pim ecmp
 ip pim keep-alive-timer 3600
 interface swp51
@@ -5122,7 +5122,7 @@ cumulus@leaf03:~$ sudo cat /etc/frr/frr.conf
 ...
 interface lo
  ip pim
-ip pim rp 10.10.100.100 224.0.0.0/4
+ip pim rp 10.10.100.100
 ip pim ecmp
 ip pim keep-alive-timer 3600
 interface swp51
@@ -5198,7 +5198,7 @@ interface swp3
  ip pim
 interface swp4
  ip pim
-ip pim rp 10.10.100.100 224.0.0.0/4
+ip pim rp 10.10.10.101/32 10.10.100.100/32
 ip pim ecmp
 ip pim keep-alive-timer 3600
 router bgp 65100
@@ -5234,7 +5234,7 @@ interface swp3
  ip pim
 interface swp4
  ip pim
-ip pim rp 10.10.100.100 224.0.0.0/4
+ip pim rp 10.10.10.102/32 10.10.100.100/32
 ip pim ecmp
 ip pim keep-alive-timer 3600
 router bgp 65100

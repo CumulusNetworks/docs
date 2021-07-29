@@ -31,18 +31,6 @@ Fixed: 1.17-3+deb10u2</td>
 <td></td>
 </tr>
 <tr>
-<td>2736265</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2736260</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2734126</td>
 <td>CVE-2021-33910: The Qualys Research Labs discovered that an attacker-controlled allocation using the alloca() function could result in memory
 corruption, allowing to crash systemd and hence the entire operating system.  Details can be found at https://www.qualys.com/2021/07/20/cve-2021-33910/denial-of-service-systemd.txt .
@@ -303,6 +291,12 @@ Multiple vulnerabilities were discovered in plugins for the GStreamer media fram
 Vulnerable: 1.14.4-2
 Fixed: 1.14.4-2+deb10u1</td>
 <td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1667,18 +1661,6 @@ Fixed: 1.17-3+deb10u2</td>
 <td></td>
 </tr>
 <tr>
-<td>2736265</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2736260</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2734126</td>
 <td>CVE-2021-33910: The Qualys Research Labs discovered that an attacker-controlled allocation using the alloca() function could result in memory
 corruption, allowing to crash systemd and hence the entire operating system.  Details can be found at https://www.qualys.com/2021/07/20/cve-2021-33910/denial-of-service-systemd.txt .
@@ -2016,8 +1998,8 @@ Fixed: 1.14.4-2+deb10u1</td>
 <tr>
 <td>2628693</td>
 <td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.4.0</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2628513</td>

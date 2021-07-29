@@ -9,3 +9,8 @@ level: warning
 swap:
   tx: TX
   rx: RX
+  vlan: VLAN
+  vxlan: VXLAN
+  Vxlan: VXLAN
+  vlan-aware: VLAN-aware
+  vni: VNI

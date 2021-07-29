@@ -60,9 +60,9 @@ Run the `clagctl` command to check if any VXLAN switches are in a PROTO_DOWN sta
 ### Configure the Anycast IP Address
 
 With MLAG peering, both switches use an anycast IP address for VXLAN encapsulation and decapsulation. This enables remote VTEPs to learn the host MAC addresses attached to the MLAG switches against one logical VTEP, even though the switches independently encapsulate and decapsulate layer 2 traffic originating from the host.
-
+<!-- vale off -->
 {{< img src = "/images/cumulus-linux/vxlan-active-active-config.png" >}}
-
+<!-- vale on -->
 {{< tabs "TabID67 ">}}
 {{< tab "NCLU Commands ">}}
 
@@ -141,9 +141,9 @@ iface lo inet loopback
 {{< /tabs >}}
 <!-- vale off -->
 ## Example VXLAN Active-Active Configuration
-<!-- vale on -->
-{{< img src = "/images/cumulus-linux/vxlan-active-active-example.png" >}}
 
+{{< img src = "/images/cumulus-linux/vxlan-active-active-example.png" >}}
+<!-- vale on -->
 The VXLAN interfaces are configured with individual IP addresses, which `clagd` changes to anycast upon MLAG peering.
 
 ### FRRouting Configuration

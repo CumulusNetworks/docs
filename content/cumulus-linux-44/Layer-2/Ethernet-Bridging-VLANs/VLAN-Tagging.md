@@ -9,9 +9,9 @@ This topic shows two examples of VLAN tagging, one basic and one more advanced. 
 ## VLAN Tagging, a Basic Example
 
 A simple configuration demonstrating VLAN tagging involves two hosts connected to a switch.
-
+<!-- vale off -->
 {{< img src = "/images/cumulus-linux/vlan-tagging-trunks-bond-simple.png" >}}
-
+<!-- vale on -->
 - *host1* connects to swp1 with both untagged frames and with 802.1Q frames tagged for *vlan100*.
 - *host2* connects to swp2 with 802.1Q frames tagged for *vlan120* and *vlan130*.
 
@@ -42,9 +42,9 @@ iface swp2.130
 ## VLAN Tagging, an Advanced Example
 
 This example of VLAN tagging is more complex, involving three hosts and two switches, with several bridges and a bond connecting them all.
-
+<!-- vale off -->
 {{< img src = "/images/cumulus-linux/vlan-tagging-trunks-bond-adv.png" >}}
-
+<!-- vale on -->
 - *host1* connects to bridge *br-untagged* with bare Ethernet frames and to bridge *br-tag100* with 802.1q frames tagged for *vlan100*.
 - *host2* connects to bridge *br-tag100* with 802.1q frames tagged for *vlan100* and to bridge *br-vlan120* with 802.1q frames tagged for *vlan120*.
 - *host3* connects to bridge *br-vlan120* with 802.1q frames tagged for *vlan120* and to bridge *v130* with 802.1q frames tagged for *vlan130*.
@@ -282,5 +282,6 @@ bridge name     bridge id               STP enabled     interfaces
 br_mix          8000.4438390032bd       yes             swp10.100
                                                         swp11.200
 ```
-
+<!-- vale off -->
 {{< img src = "/images/cumulus-linux/vlan-tagging-mixed-vlans.png" >}}
+<!-- vale on -->

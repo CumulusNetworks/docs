@@ -18,17 +18,15 @@ To install NetQ:
 
     In your browser address field, enter *https://\<hostname-or-ipaddr\>:8443*.
 
-    {{<figure src="/images/netq/adminui-login-page-320.png" width="600">}}
+    {{<figure src="/images/netq/adminui-login-page-400.png" width="600">}}
 
-2. Enter your NetQ credentials to enter the application.
+2. Enter your NetQ credentials to enter the application. The default username is *admin* and the default password in *admin*.
 
-    The default username is *admin* and the default password in *admin*.
-
-    {{<figure src="/images/netq/adminui-welcome-330.png" width="600">}}
+   Then click **Sign In**.
 
 3. Click **Begin Installation**.
 
-4. Choose an installation type: basic or advanced.
+4. Choose an installation type: *basic* or *advanced*.
 
     {{<figure src="/images/netq/adminui-install-type-330.png" width="600">}}
 
@@ -213,9 +211,7 @@ Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/0
 
     This final step activates the software and enables you to view the health of your NetQ system. For remote deployments, you must enter your configuration key.
 
-    {{<figure src="/images/netq/adminui-activate-netq-onprem-240.png" width="700" caption="Self-hosted activation">}}
-
-    {{<figure src="/images/netq/adminui-activate-netq-cloud-240.png" width="700" caption="Remote-hosted activation">}}
+    {{<figure src="/images/netq/adminui-activate-netq-400.png" width="700">}}
 
 {{</tab>}}
 

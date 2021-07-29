@@ -618,7 +618,7 @@ However, you set specific bridge interface options with interface commands. For 
 cumulus@leaf01:~$ nv set interface swp1 bridge domain br_default learning on
 ```
 
-The default vlan-aware bridge in NVUE is `br_default`. The default vlan-aware bridge in NCLU is `bridge`.
+The default VLAN-aware bridge in NVUE is `br_default`. The default VLAN-aware bridge in NCLU is `bridge`.
 
 ### BGP Configuration
 

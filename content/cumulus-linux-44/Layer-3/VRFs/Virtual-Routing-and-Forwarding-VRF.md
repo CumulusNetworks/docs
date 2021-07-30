@@ -1282,7 +1282,7 @@ vlan24-v0@vlan24  UP     44:39:39:ff:00:24 <BROADCAST,MULTICAST,UP,LOWER_UP>
 vlan4001@bridge   UP     44:39:39:ff:40:94 <BROADCAST,MULTICAST,UP,LOWER_UP>
 ```
 
-To show the interfaces for a specific VRF, run the `net show vrf list <vrf-name>` command. For  xample:
+To show the interfaces for a specific VRF, run the `net show vrf list <vrf-name>` command. For example:
 
 ```
 cumulus@switch:~$ net show vrf list turtle

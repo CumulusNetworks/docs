@@ -82,7 +82,7 @@ cumulus@switch:~$ ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-The Primary VLAN Identifer (PVID) of the bridge defaults to 1. You do *not* have to specify `bridge-pvid` for a bridge or a port. However, even though this does not affect the configuration, it helps other users for readability. The following configurations are identical to each other and the configuration above:
+The Primary VLAN Identifier (PVID) of the bridge defaults to 1. You do *not* have to specify `bridge-pvid` for a bridge or a port. However, even though this does not affect the configuration, it helps other users for readability. The following configurations are identical to each other and the configuration above:
 
 ```
 auto br_default
@@ -123,7 +123,7 @@ This example shows the commands required to create two VLAN-aware bridges on the
 - bridge1 bridges swp1 and swp2, and includes 2 VLANs; `vlan 10` and `vlan 20`
 - bridge2 bridges swp3 and contains one VLAN; `vlan 10`
 
-Bridges are independent so you can reuse VLANs between bridges. Each VLAN-aware bridge maintains its own MAC address and VLAN tag table; MAC and VLAN tags in one bridge are not visibile to the other table.
+Bridges are independent so you can reuse VLANs between bridges. Each VLAN-aware bridge maintains its own MAC address and VLAN tag table; MAC and VLAN tags in one bridge are not visible to the other table.
 
 {{< tabs "TabID128 ">}}
 {{< tab "NCLU Commands ">}}
@@ -261,9 +261,9 @@ cumulus@switch:~$ ifreload -a
 ## Access Ports and Tagged Packets
 
 Access ports ignore all tagged packets. In the configuration below, swp1 and swp2 are configured as access ports, while all untagged traffic goes to VLAN 10:
-
+<!-- vale off -->
 {{< img src = "/images/cumulus-linux/ethernet-bridging-vlan_untagged_access_ports1.png" >}}
-
+<!-- vale on -->
 {{< tabs "TabID223 ">}}
 {{< tab "NCLU Commands ">}}
 

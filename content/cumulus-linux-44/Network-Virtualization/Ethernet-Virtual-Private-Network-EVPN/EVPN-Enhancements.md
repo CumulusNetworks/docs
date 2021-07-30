@@ -1074,7 +1074,7 @@ The NVUE Commands create the following configuration snippet in the `/etc/nvue.d
 cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 
-To renable BUM flodding, run the `nv set nve vxlan flooding enable on` command.
+To reenable BUM flooding, run the `nv set nve vxlan flooding enable on` command.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1368,7 +1368,7 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-The NVUE Command is not curently supported.
+The NVUE Command is not currently supported.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1398,7 +1398,7 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-NVUE Command is not curently supported.
+NVUE Command is not currently supported.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}

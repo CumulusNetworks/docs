@@ -153,7 +153,7 @@ iface vm-br10 inet manual
 
 | <div style="width:300px">Benefits | Considerations |
 |----------| --------|
-| <ul><li>Relatively simple network configuration</li><li>No STP</li><li>No MLAG</li><li>No layer 2 loops</li><li>No crosslink between leafs</li><li>Greater route scaling and flexibility</li></ul>| <ul><li>No redundancy for ToR, upgrades can cause downtime.</li><li>There is often no software to support application layer redundancy.</li></ul>|
+| <ul><li>Relatively simple network configuration</li><li>No STP</li><li>No MLAG</li><li>No layer 2 loops</li><li>No link between leafs</li><li>Greater route scaling and flexibility</li></ul>| <ul><li>No redundancy for ToR, upgrades can cause downtime.</li><li>There is often no software to support application layer redundancy.</li></ul>|
 
 | <div style="width:300px">FHR (First Hop Redundancy) | More Information |
 |----------| --------|

@@ -12,7 +12,7 @@ Use *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}* bridges ins
 
 ## Configure a Traditional Mode Bridge
 
-The following examples show how to create a simple traditional mode bridge configuration on the switch. The examle uses some optional elements:
+The following examples show how to create a simple traditional mode bridge configuration on the switch. The example uses some optional elements:
 
 - You can add an IP address to provide IP access to the bridge interface.
 - You can specify a range of interfaces.

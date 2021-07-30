@@ -14,7 +14,7 @@ You can configure OSPF using either numbered interfaces or unnumbered interfaces
 
 To configure OSPF using numbered interfaces, you specify the router ID, IP subnet prefix, and area address. All the interfaces on the switch with an IP address that matches the network subnet are put into the specified area. OSPF attempts to discover other OSPF routers on those interfaces. All matching interface network addresses are added to a Type-1 Router LSA and advertised to discovered neighbors for proper reachability.
 
-If you do not want to bring up an OSPF adjacency on certain interfaces, but want to advertise those networks in the OSPF database, you can configure the interfaces as *passive interfaces*. A passive interface creates a database entry but does not send or recieve OSPF hello packets. For example, in a data center topology, the host-facing interfaces do not need to run OSPF, however, the corresponding IP addresses still need to be advertised to neighbors.
+If you do not want to bring up an OSPF adjacency on certain interfaces, but want to advertise those networks in the OSPF database, you can configure the interfaces as *passive interfaces*. A passive interface creates a database entry but does not send or receive OSPF hello packets. For example, in a data center topology, the host-facing interfaces do not need to run OSPF, however, the corresponding IP addresses still need to be advertised to neighbors.
 
 Network statements can be as inclusive or generic as necessary to cover the interface networks.
 
@@ -651,7 +651,7 @@ interface swp51
 {{< /tab >}}
 {{< /tabs >}}
 
-The following command example sets the hello interval to 5 seconds and the dead interval to 60 seconds. The hello interval and dead inteval can be any value between 1 and 65535 seconds.
+The following command example sets the hello interval to 5 seconds and the dead interval to 60 seconds. The hello interval and dead interval can be any value between 1 and 65535 seconds.
 
 {{< tabs "TabID568 ">}}
 {{< tab "NCLU Commands ">}}
@@ -1495,9 +1495,10 @@ O>* 10.10.10.101/32 [110/100] via 10.0.1.1, swp51, weight 1, 00:00:57
 To capture OSPF packets, run the `sudo tcpdump -v -i swp1 ip proto ospf` command.
 
 ## Related Information
-
+<!-- vale off -->
 - {{<exlink url="http://docs.frrouting.org/en/latest/ospfd.html" text="FRR OSPFv2">}}
 - Perlman, Radia (1999); *Interconnections: Bridges, Routers, Switches, and Internetworking Protocols (2 ed.)*; Addison-Wesley
 - Moy, John T.; *OSPF: Anatomy of an Internet Routing Protocol*; Addison-Wesley
 - {{<exlink url="https://tools.ietf.org/html/rfc2328" text="RFC 2328 OSPFv2">}}
 - {{<exlink url="https://tools.ietf.org/html/rfc3101" text="RFC 3101 OSPFv2 Not-So-Stubby Area (NSSA)">}}
+<!-- vale on --> 

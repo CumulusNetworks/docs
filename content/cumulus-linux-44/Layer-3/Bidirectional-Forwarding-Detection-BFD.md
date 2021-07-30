@@ -12,10 +12,7 @@ Cumulus Linux does not support demand mode in BFD.
 
 ## BFD Multihop Routed Paths
 
-BFD multihop sessions are built over arbitrary paths between two systems, which results in some complexity that does not exist for single hop sessions. Here are some best practices for using multihop paths:
-
-- To avoid **spoofing** with multihop paths, configure the maximum hop count (`max_hop_cnt`*)* for each peer, which limits the number of hops for a BFD session. All BFD packets exceeding the maximum hop count are dropped.
-- Because multihop BFD sessions can take arbitrary paths, **demultiplex** the initial BFD packet based on the source/destination IP address pair. Use FRRouting, which monitors connectivity to the peer, to determine the source/destination IP address pairs.
+BFD multihop sessions are built over arbitrary paths between two systems, which results in some complexity that does not exist for single hop sessions. To avoid **spoofing** with multihop paths, configure the maximum hop count (`max_hop_cnt`) for each peer, which limits the number of hops for a BFD session. All BFD packets exceeding the maximum hop count are dropped.
 
   Cumulus Linux supports multihop BFD sessions for both IPv4 and IPv6 peers.
 
@@ -44,7 +41,7 @@ When you configure BFD, you can set the following parameters for both IPv4 and I
 
 ### BFD in BGP
 
-When you configure BFD in BGP, neighbors are registered and deregistered with {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM">}} dynamically.
+When you configure BFD in BGP, neighbors are registered and unregistered with {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM">}} dynamically.
 
 To configure BFD in BGP, run the following commands.
 
@@ -153,7 +150,7 @@ BFD: Type: single hop
 
 ### BFD in OSPF
 
-When you enable or disable BFD in OSPF, neighbors are registered and de-registered dynamically with {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM">}}. When BFD is enabled on the interface, a neighbor is registered with BFD when two-way adjacency is established and deregistered when adjacency goes down. The BFD configuration is per interface and any IPv4 and IPv6 neighbors discovered on that interface inherit the configuration.
+When you enable or disable BFD in OSPF, neighbors are registered and de-registered dynamically with {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM">}}. When BFD is enabled on the interface, a neighbor is registered with BFD when two-way adjacency is established and unregistered when adjacency goes down. The BFD configuration is per interface and any IPv4 and IPv6 neighbors discovered on that interface inherit the configuration.
 
 The following example configures BFD in OSPF for interface swp1 and sets interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
 

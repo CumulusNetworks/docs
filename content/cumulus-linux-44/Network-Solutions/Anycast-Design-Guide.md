@@ -115,12 +115,12 @@ TCP-based applications can be used with anycast, with the following recommendati
 - TCP sessions are short lived.
 - The impact of a failed session or TCP reset does not impact the application. For example, a web page refresh is acceptable.
 - There is application-level session management that is completely independent of the TCP session.
-- A redirection middleware layer handles incorrectly hashed flows.
+- A redirection layer handles incorrectly hashed flows.
 
 TCP applications that have longer-lived flows should not be used as anycast services. For example:
 
 - FTP or other large file transfers.
-- Transactions that must be completed and journaled. For example, financial transactions.
+- Transactions that must be completed and logged. For example, financial transactions.
 - Streaming media without application-level automated recovery.
 
 ## Conclusion

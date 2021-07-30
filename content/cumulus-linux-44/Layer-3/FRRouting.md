@@ -256,9 +256,9 @@ B>* 172.16.1.0/24 [20/0] via fe80::4638:39ff:fe00:5b, swp1, 00:11:57
 B>* 172.16.3.0/24 [20/0] via fe80::4638:39ff:fe00:57, swp3, 00:11:59
   *                      via fe80::4638:39ff:fe00:43, swp4, 00:11:59
 ```
-
+<!-- vale off -->
 To run the same command at a config level, prepend `do`:
-
+<!-- vale on -->
 ```
 switch(config-router)# do show ip route
 Codes: K - kernel route, C - connected, S - static, R - RIP,

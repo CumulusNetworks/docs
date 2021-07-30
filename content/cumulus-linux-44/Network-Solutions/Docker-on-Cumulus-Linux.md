@@ -62,7 +62,7 @@ Do you want to continue? [Y/n]
 {{< /tab >}}
 {{< /tabs >}}
 
-2. In the managment VRF, enable the Docker service. Docker pulls container images from the internet, which requires internet access through the management VRF.
+2. In the management VRF, enable the Docker service. Docker pulls container images from the internet, which requires internet access through the management VRF.
 
    ```
    cumulus@switch:mgmt:~$ sudo systemctl enable --now docker@mgmt.service

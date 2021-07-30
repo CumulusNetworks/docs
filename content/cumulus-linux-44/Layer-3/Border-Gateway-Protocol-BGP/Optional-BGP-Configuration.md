@@ -288,8 +288,9 @@ router bgp 65101
 You can authenticate your BGP peer connection to prevent interference with your routing tables.
 
 To enable MD5 authentication for BGP peers, set the same password on each peer.
-
+<!-- vale off --> 
 The following example commands set the password *mypassword* on BGP peers leaf01 and spine01:
+<!-- vale on --> 
 
 {{< tabs "40 ">}}
 {{< tab "NCLU Commands ">}}
@@ -718,7 +719,7 @@ Total number of neighbors 1
 
 ## ECMP
 
-BGP supports equal-cost multipathing ({{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP">}}). If a BGP node hears a certain prefix from multiple peers, it has the information necessary to program the routing table and forward traffic for that prefix through all these peers. BGP typically choses one best path for each prefix and installs that route in the forwarding table.
+BGP supports equal-cost multipathing ({{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP">}}). If a BGP node hears a certain prefix from multiple peers, it has the information necessary to program the routing table and forward traffic for that prefix through all these peers. BGP typically chooses one best path for each prefix and installs that route in the forwarding table.
 
 In Cumulus Linux, the *BGP multipath* option is enabled by default with the maximum number of paths set to 64 so that the switch can install multiple equal-cost BGP paths to the forwarding table and load balance traffic across multiple links. You can change the number of paths allowed, according to your needs.
 

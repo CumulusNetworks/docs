@@ -477,7 +477,7 @@ router bgp 65199
 
 The following example commands show a basic {{<link title="Border Gateway Protocol - BGP#bgp-unnumbered" text="BGP unnumbered">}} configuration for two switches, leaf01 and spine01, which are eBGP peers.
 
-The only difference between a BGP unnumbered configuration and the BGP numbered configuration shown above is that the BGP neighbor is specified as an interface (insead of an IP address). The interface between the two peers does **not** need to have an IP address configured on each side.
+The only difference between a BGP unnumbered configuration and the BGP numbered configuration shown above is that the BGP neighbor is specified as an interface (instead of an IP address). The interface between the two peers does **not** need to have an IP address configured on each side.
 
 {{< tabs "463 ">}}
 {{< tab "NCLU Commands ">}}

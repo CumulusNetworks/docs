@@ -136,7 +136,7 @@ The message `Duplicate IPv4 address detected, some interfaces may not be visible
 
 ### ping or traceroute on the Management VRF
 
-By default, when you issue a `ping` or `traceroute`, the packet is sent to the dataplane network (the main routing table). To use `ping` or `traceroute` on the management network, use `ping -I mgmt` or `traceroute -i mgmt`. To select a source address within the management VRF, use the `-s` flag for `traceroute`.
+By default, when you issue a `ping` or `traceroute`, the packet is sent to the data plane network (the main routing table). To use `ping` or `traceroute` on the management network, use `ping -I mgmt` or `traceroute -i mgmt`. To select a source address within the management VRF, use the `-s` flag for `traceroute`.
 
 ```
 cumulus@switch:~$ ping -I mgmt <destination-ip>
@@ -152,7 +152,7 @@ For additional information on using `ping` and `traceroute`, see {{<link url="Ne
 <!-- vale on -->
 To run services in the management VRF as a non-root user, you need to create a custom service based on the original service file. The following example commands configure the SSH service to run in the management VRF as a non-root user.
 
-1. Run the following command to create a custom service file in the `/etc/systemd/system` direcotry.
+1. Run the following command to create a custom service file in the `/etc/systemd/system` directory.
 
     ```
     cumulus@switch:~$ sudo -E systemctl edit --full ssh.service
@@ -298,7 +298,7 @@ cumulus@switch:~$ sudo ip vrf exec default ssh 10.23.23.2 10.3.3.3
 {{< tabs "TabID276 ">}}
 {{< tab "NCLU Commands ">}}
 
-The `ip route show` command shows the switch port (*main*) table. You can see the dataplane routing table with the `net show route vrf main` command.
+The `ip route show` command shows the switch port (*main*) table. You can see the data plane routing table with the `net show route vrf main` command.
 
 To show information for eth0 (the management routing table), run the `net show route vrf mgmt` command:
 

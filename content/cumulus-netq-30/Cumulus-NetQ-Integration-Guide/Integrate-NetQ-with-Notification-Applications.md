@@ -1641,7 +1641,7 @@ Now you have four rules created (the original one, plus these three new ones) al
 
 ### Suppress a Rule
 
-During troubleshooting or maintenance of switches you may want to suppress a rule to prevent erroneous event messages. Using the `suppress_until` option allows you to prevent the rule from being applied for a designated amout of time (in seconds). When this time has passed, the rule is automatically re-enabled.
+During troubleshooting or maintenance of switches you may want to suppress a rule to prevent erroneous event messages. Using the `suppress_until` option allows you to prevent the rule from being applied for a designated amout of time (in seconds). When this time has passed, the rule is automatically reenabled.
 
 For example, to suppress the disk utilization event for an hour:
 
@@ -1707,7 +1707,7 @@ TCA_TXMULTICAST_UPPER_1      TCA_TXMULTICAST_UPPE {"ifname":"swp3","hostname inf
 
 ### Disable a TCA Rule
 
-Where the `suppress` option temporarily disables a TCA rule, you can use the `is_active` option to disable a rule indefinitely. To disable a rule, set the option to *false*. To re-enable it, set the option to *true*.
+Where the `suppress` option temporarily disables a TCA rule, you can use the `is_active` option to disable a rule indefinitely. To disable a rule, set the option to *false*. To reenable it, set the option to *true*.
 
 ```
 cumulus@switch:~$ netq add tca tca_id TCA_DISK_UTILIZATION_UPPER_1 is_active false

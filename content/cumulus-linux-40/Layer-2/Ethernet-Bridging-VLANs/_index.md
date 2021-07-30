@@ -271,13 +271,13 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tabs >}}
 
-To re-enable automatic link-local address generation for a VLAN:
+To reenable automatic link-local address generation for a VLAN:
 
 {{< tabs "TabID6" >}}
 
 {{< tab "NCLU Commands" >}}
 
-Run the `net del vlan <vlan> ipv6-addrgen off` command. The following example command re-enables automatic address generation for a regular IPv6 address on VLAN 100.
+Run the `net del vlan <vlan> ipv6-addrgen off` command. The following example command reenables automatic address generation for a regular IPv6 address on VLAN 100.
 
 ```
 cumulus@switch:~$ net del vlan 100 ipv6-addrgen off
@@ -289,7 +289,7 @@ cumulus@switch:~$ net commit
 
 {{< tab "Linux Commands" >}}
 
-1.  Edit the `/etc/network/interfaces` file and **remove** the line `ipv6-addrgen off` from the VLAN stanza. The following example re-enables automatic address generation for a regular IPv6 address on a VLAN 100.
+1.  Edit the `/etc/network/interfaces` file and **remove** the line `ipv6-addrgen off` from the VLAN stanza. The following example reenables automatic address generation for a regular IPv6 address on a VLAN 100.
 
 2.  Run the `ifreload -a` command to load the new configuration:
 

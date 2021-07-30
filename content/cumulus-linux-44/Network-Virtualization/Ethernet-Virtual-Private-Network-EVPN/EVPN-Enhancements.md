@@ -1058,7 +1058,7 @@ router bgp 65101
 ...
 ```
 
-To re-enable BUM flooding, run the NCLU `net del bgp l2vpn evpn disable-flooding` command.
+To reenable BUM flooding, run the NCLU `net del bgp l2vpn evpn disable-flooding` command.
 
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
@@ -1103,7 +1103,7 @@ router bgp 65101
 ...
 ```
 
-To re-enable BUM flooding, run the vtysh `flooding head-end-replication` command.
+To reenable BUM flooding, run the vtysh `flooding head-end-replication` command.
 
 ```
 cumulus@leaf01:~$ sudo vtysh

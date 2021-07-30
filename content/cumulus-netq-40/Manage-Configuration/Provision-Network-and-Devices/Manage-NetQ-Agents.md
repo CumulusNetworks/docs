@@ -139,10 +139,10 @@ cumulus@switch~:$ netq config restart agent
 ```
 
 <!-- vale off -->
-### Disable and Re-enable a NetQ Agent
+### Disable and Reenable a NetQ Agent
 <!-- vale on -->
 
-You can temporarily disable NetQ Agent on a node. Disabling the NetQ Agent maintains the data already collected in the NetQ database, but stops the NetQ Agent from collecting new data until it is re-enabled.
+You can temporarily disable NetQ Agent on a node. Disabling the NetQ Agent maintains the data already collected in the NetQ database, but stops the NetQ Agent from collecting new data until it is reenabled.
 
 To disable a NetQ Agent, run:
 
@@ -150,7 +150,7 @@ To disable a NetQ Agent, run:
 cumulus@switch:~$ netq config stop agent
 ```
 
-To re-enable a NetQ Agent, run:
+To reenable a NetQ Agent, run:
 
 ```
 cumulus@switch:~$ netq config restart agent

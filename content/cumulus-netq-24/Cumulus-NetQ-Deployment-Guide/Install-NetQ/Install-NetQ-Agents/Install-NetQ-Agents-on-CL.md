@@ -40,7 +40,7 @@ If NTP is not installed, install and configure it before continuing.
 If NTP is not running:
 
 - verify the IP address or hostname of the NTP server in the `/etc/ntp.conf` file, and then
-- re-enable and start the NTP service using the `systemctl [enable|start] ntp` commands.
+- reenable and start the NTP service using the `systemctl [enable|start] ntp` commands.
 
 {{%notice tip%}}
 If you are running NTP in your out-of-band management network with VRF, specify the VRF (`ntp@<vrf-name>` versus just `ntp`) in the above commands.

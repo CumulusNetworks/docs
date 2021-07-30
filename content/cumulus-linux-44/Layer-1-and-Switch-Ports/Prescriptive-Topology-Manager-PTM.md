@@ -210,7 +210,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-If you need to re-enable PTM for that interface:
+If you need to reenable PTM for that interface:
 
 ```
 cumulus@switch:~$ sudo vtysh

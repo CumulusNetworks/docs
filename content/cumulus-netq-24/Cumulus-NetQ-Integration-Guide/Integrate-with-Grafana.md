@@ -21,9 +21,9 @@ interface statistics:
 
 You can use {{<exlink url="https://grafana.com/" text="Grafana">}}, an open source analytics and monitoring tool, to view the interface statistics collected by the NetQ Agents. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then importing the prepared NetQ dashboard.
 
-## Install NetQ Plug-in for Grafana
+## Install NetQ Plugin for Grafana
 
-The first step is to install the NetQ plug-in on your NetQ server or appliance. There are three ways to install the plug-in:
+The first step is to install the NetQ plugin on your NetQ server or appliance. There are three ways to install the plugin:
 
 - **Docker File**: Add the following to your existing Dockerfile
     ```
@@ -31,11 +31,11 @@ The first step is to install the NetQ plug-in on your NetQ server or appliance. 
     FROM grafana/grafana:6.2.2
     RUN grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip plugins install netq-dashboard
     ```
-- **Grafana Docker Image**: Download and run the plug-in in your Grafana Docker container
+- **Grafana Docker Image**: Download and run the plugin in your Grafana Docker container
     ```
     $ docker run -d -p 3000:3000 --name=grafana -e "GF_INSTALL_PLUGINS=https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip;netq-dashboard" grafana/grafana
     ```
-- **Grafana CLI**: Download and install the Grafana plug-in using Grafana CLI
+- **Grafana CLI**: Download and install the Grafana plugin using Grafana CLI
     ```
     brew update
     brew install grafana
@@ -53,7 +53,7 @@ forwarding rules in IPtables to allow access to port 3000.
 
 ## Set Up a Dashboard
 
-The quickest way to view the interface statistics for your Cumulus Linux network is to make use of the pre-configured dashboard installed with the plug-in. Once you are familiar with that dashboard, you can create new dashboards or add new panels to the NetQ dashboard.
+The quickest way to view the interface statistics for your Cumulus Linux network is to make use of the pre-configured dashboard installed with the plugin. Once you are familiar with that dashboard, you can create new dashboards or add new panels to the NetQ dashboard.
 
 1.  Open the Grafana user interface:
     - **Remote access**: Enter *\<NetQ-Server-or-Appliance-IPaddr\>:3000* in a web browser address field.
@@ -90,7 +90,7 @@ The quickest way to view the interface statistics for your Cumulus Linux network
 
 ## Create a Dashboard
 
-You can either use the dashboard provided with the plug-in, NetQ Interface Statistics, or create your own.
+You can either use the dashboard provided with the plugin, NetQ Interface Statistics, or create your own.
 
 To use the Cumulus-provided dashboard, select the *NetQ Interface Statistics* from the left panel of the Home Page.
 

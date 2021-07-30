@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 126
 toc: 3
 ---
-The `ntpd` daemon running on the switch implements the NTP protocol. It synchronizes the system time with time servers listed in the `/etc/ntp.conf` file. The `ntpd` daemon is started at boot by default.
+The `ntpd` daemon running on the switch implements the NTP protocol. It synchronizes the system time with time servers in the `/etc/ntp.conf` file. The `ntpd` daemon starts at boot by default.
 
 {{%notice note%}}
 If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-within-the-management-vrf" text="these steps">}} to configure the service.
@@ -12,7 +12,7 @@ If you intend to run this service within a {{<link url="Virtual-Routing-and-Forw
 
 ## Configure NTP Servers
 
-The default NTP configuration includes the following servers, which are listed in the `/etc/ntp.conf` file:
+The default NTP configuration includes the following servers, which are in the `/etc/ntp.conf` file:
 
 - server 0.cumulusnetworks.pool.ntp.org iburst
 - server 1.cumulusnetworks.pool.ntp.org iburst

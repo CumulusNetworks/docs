@@ -11,7 +11,7 @@ You can generate authentication keys to access a Cumulus Linux switch securely w
 1. To generate the SSH key pair, run the `ssh-keygen` command and follow the prompts:
 
     {{%notice info%}}
-To configure a completely passwordless system, do not enter a passphrase when prompted in the following step.
+To configure the system without a password, do not enter a passphrase when prompted in the following step.
 {{%/notice%}}
 
     ```

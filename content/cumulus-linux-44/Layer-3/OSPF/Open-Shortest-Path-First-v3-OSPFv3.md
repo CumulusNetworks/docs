@@ -7,12 +7,12 @@ toc: 3
 OSPFv3 is a revised version of OSPFv2 and supports the IPv6 address family.
 
 {{%notice note%}}
-IETF has defined extensions to OSPFv3 to support multiple address families (both IPv6 and IPv4). {{<link url="FRRouting" text="FRR">}} does not currently support multiple address families.
+IETF has defined extensions to OSPFv3 to support multiple address families (both IPv6 and IPv4). {{<link url="FRRouting" text="FRR">}} does not support multiple address families.
 {{%/notice%}}
 
 ## Basic OSPFv3 Configuration
 
-You can configure OSPFv3 using either numbered interfaces or unnumbered interfaces. Both methods are described below.
+You can configure OSPFv3 using either numbered interfaces or unnumbered interfaces.
 
 {{%notice note%}}
 NVUE commands are not supported for OSPFv3.
@@ -20,9 +20,9 @@ NVUE commands are not supported for OSPFv3.
 
 ### OSPFv3 Numbered
 
-To configure OSPF using numbered interfaces, you specify the router ID, IP subnet prefix, and area address. All the interfaces on the switch with an IP address that matches the network subnet are put into the specified area. OSPF attempts to discover other OSPF routers on those interfaces. All matching interface network addresses are added to a Type-1 Router LSA and advertised to discovered neighbors for proper reachability.
+To configure OSPF using numbered interfaces, you specify the router ID, IP subnet prefix, and area address. All the interfaces on the switch with an IP address that matches the network subnet go into the specified area. OSPF attempts to discover other OSPF routers on those interfaces. Cumulus Linux adds all matching interface network addresses to a Type-1 Router LSA and advertises to discovered neighbors for proper reachability.
 
-If you do not want to bring up an OSPF adjacency on certain interfaces, but want to advertise those networks in the OSPF database, you can configure the interfaces as *passive interfaces*. A passive interface creates a database entry but does not send or receive OSPF hello packets. For example, in a data center topology, the host-facing interfaces do not need to run OSPF, however, the corresponding IP addresses still need to be advertised to neighbors.
+If you do not want to bring up an OSPF adjacency on certain interfaces, but want to advertise those networks in the OSPF database, you can configure the interfaces as *passive interfaces*. A passive interface creates a database entry but does not send or receive OSPF hello packets. For example, in a data center topology, the host-facing interfaces do not need to run OSPF, however, you must advertise the corresponding IP addresses to neighbors.
 
 The following example commands configure OSPF numbered on leaf01 and spine01.
 
@@ -203,7 +203,7 @@ Unnumbered interfaces are interfaces without unique IP addresses; multiple inter
 To configure an unnumbered interface, take the IP address of another interface (called the *anchor*) and use that as the IP address of the unnumbered interface. The anchor is typically the loopback interface on the switch.
 
 {{%notice note%}}
-OSPFv3 Unnumbered is supported with {{<link url="#interface-parameters" text="point-to-point interfaces">}} only.
+OSPFv3 unnumbered supports {{<link url="#interface-parameters" text="point-to-point interfaces">}} only.
 {{%/notice%}}
 
 The following example commands configure OSPFv3 unnumbered on leaf01 and spine01.
@@ -212,7 +212,7 @@ The following example commands configure OSPFv3 unnumbered on leaf01 and spine01
 
 | leaf01 | spine01 |
 | ------ | ------- |
-| <ul><li>The loopback address is 2001:db8::a0a:0a01/128</li><li>The router ID is 10.10.10.1</li><li>OSPF is enabled on the loopback interface and on swp51 in area 0.0.0.0</li><li>swp1 and swp2 are passive interfaces</li><li>swp51 is a point-to-point interface (point-to-point is required for unnumbered interfaces)</li><ul>|<ul><li>The loopback address is 2001:db8::a0a:0a65/128</li><li>The router ID is 10.10.10.101</li><li>OSPF is enabled on the loopback interface and on swp1 in area 0.0.0.0</li><li>swp1 is a point-to-point interface (point-to-point is required for unnumbered interfaces)</li><ul> |
+| <ul><li>The loopback address is 2001:db8::a0a:0a01/128</li><li>The router ID is 10.10.10.1</li><li>OSPF is on the loopback interface and on swp51 in area 0.0.0.0</li><li>swp1 and swp2 are passive interfaces</li><li>swp51 is a point-to-point interface (unnumbered interfaces require point-to-point)</li><ul>|<ul><li>The loopback address is 2001:db8::a0a:0a65/128</li><li>The router ID is 10.10.10.101</li><li>OSPF is on the loopback interface and on swp1 in area 0.0.0.0</li><li>swp1 is a point-to-point interface (unnumbered interfaces require point-to-point)</li><ul> |
 
 {{< tabs "TabID257 ">}}
 {{< tab "NCLU Commands ">}}
@@ -396,9 +396,9 @@ This section describes optional configuration. The steps provided in this sectio
 ### Interface Parameters
 
 You can define the following OSPF parameters per interface:
-- Network type (point-to-point or broadcast). Broadcast is the default setting. Configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
+- Network type (point-to-point or broadcast). Broadcast is the default setting. Configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine so there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
   {{%notice note%}}
-  Point-to-point is required for {{<link url="#ospfv3-unnumbered" text="OSPFv3 unnumbered">}}.
+  {{<link url="#ospfv3-unnumbered" text="OSPFv3 unnumbered">}} requires Point-to-point.
   {{%/notice%}}
 - Hello interval. The number of seconds between hello packets sent on the interface. The default is 10 seconds.
 - Dead interval. Then number of seconds before neighbors declare the router down after they stop hearing
@@ -565,7 +565,7 @@ interface swp51
 ...
 ```
 
-To show the currently configured OSPF interface parameter values, run the NCLU `net show ospf6 interface` command or the vtysh `show ipv6 ospf6 interface` command.
+To show the configured OSPF interface parameter values, run the NCLU `net show ospf6 interface` command or the vtysh `show ipv6 ospf6 interface` command.
 
 ### SPF Timer Defaults
 
@@ -647,7 +647,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-You can also configure the cost for a summary route, which is used to determine the shortest paths to the destination. The value for cost must be between 0 and 16777215.
+You can also configure the cost for a summary route, which Cumulus Linux uses to determine the shortest paths to the destination. The value for cost must be between 0 and 16777215.
 
 ```
 cumulus@switch:~$ net add ospf6 area 0.0.0.0 range 2001::/64 cost 160
@@ -686,7 +686,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-You can also configure the cost for a summary route, which is used to determine the shortest paths to the destination. The value for cost must be between 0 and 16777215.
+You can also configure the cost for a summary route, which Cumulus Linux uses to determine the shortest paths to the destination. The value for cost must be between 0 and 16777215.
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -979,8 +979,8 @@ Cumulus Linux provides several OSPFv3 troubleshooting commands:
 | To   | <div style="width:330px">NCLU Command | <div style="width:330px">vtysh Command |
 | --- | ---- | ----- |
 | Show neighbor states | `net show ospf6 neighbor` | `show ip ospf6 neighbor` |
-| Verify that the LSDB is synchronized across all routers in the network | `net show ospf6 database` | `show ip ospf6 database` |
-| Determine why an OSPF route is not being forwarded correctly |`net show route ospf6` | `show ip route ospf6` |
+| Verify that the LSDB is the same across all routers in the network | `net show ospf6 database` | `show ip ospf6 database` |
+| Determine why Cumulus Linux does forward an OSPF route correctly |`net show route ospf6` | `show ip route ospf6` |
 | Show OSPF interfaces | `net show ospf6 interface` | `show ip ospf6 interface` |
 | Help visualize the network view | `net show ospf6 spf tree` | `show ip ospf6 spf tree` |
 | Show information about the OSPFv3 process | `net show ospf6` | `show ip ospf6` |

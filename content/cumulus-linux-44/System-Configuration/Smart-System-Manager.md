@@ -19,14 +19,14 @@ Smart System Manager includes the following modes:
 
 You can restart the switch in one of the following modes.
 
-- **cold** completely restarts the system and resets all the hardware devices on the switch (including the switching ASIC).
-- **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system is decoupled from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The forwarding entries of the switching ASIC are maintained through the restart process and the data plane is not affected. The data plane is only interrupted when `switchd` resets and reconfigures the ASIC if the SDK is upgraded. Traffic outage is significantly lower in this mode.
-- **warm** restarts the system with minimal impact to traffic and without affecting the data plane. Warm mode diverts traffic from itself and restarts the system without a hardware reset of the switch ASIC. While the data plane is not affected by the process, the control plane is absent during restart and is unable to process routing updates. However, if no alternate paths exist, the switch continues forwarding with the existing entries with no interruptions.
+- **cold** Restarts the system and resets all the hardware devices on the switch (including the switching ASIC).
+- **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The restart process maintain the forwarding entries of the switching ASIC and the data plane is not affected. However, if you upgrade the SDK, `switchd` resets and reconfigures the ASIC, which interrupts the data plane. Traffic outage is significantly lower in this mode.
+- **warm** restarts the system with minimal impact to traffic and without affecting the data plane. Warm mode diverts traffic from itself and restarts the system without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. However, if no alternate paths exist, the switch continues forwarding with the existing entries with no interruptions.
 
    When you restart the switch in warm mode, BGP performs a graceful restart if the BGP Graceful Restart option is enabled. To enable BGP Graceful Restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
 
    {{%notice note%}}
-   During warm boot, bonds, VXLAN traffic, and IP multicast traffic are disrupted until reboot is complete.
+   A warm boot disrupts bonds, VXLAN traffic, and IP multicast traffic until reboot completes.
    {{%/notice%}}
 
 The following command restarts the system in cold mode:
@@ -110,7 +110,7 @@ Upgrade mode updates all the components and services on the switch to the latest
 
 Upgrade mode includes the following options:
 - **all** runs `apt-get upgrade` to upgrade all the system components to the latest release without affecting traffic flow. You must restart the system after the upgrade completes with one of the {{<link url="#restart-mode" text="restart modes">}}.
-- **dry-run** provides information on the components to be upgraded.
+- **dry-run** provides information on the components you want to upgrade.
 
 The following command upgrades all the system components:
 
@@ -136,7 +136,7 @@ cumulus@switch:~$ sudo csmgrctl -u
 {{< /tab >}}
 {{< /tabs >}}
 
-The following command provides information on the components to be upgraded:
+The following command provides information on the components you want to upgrade:
 
 {{< tabs "114 ">}}
 {{< tab "NCLU Command ">}}
@@ -165,7 +165,7 @@ cumulus@switch:~$ sudo csmgrctl -d
 Maintenance mode isolates the system from the rest of the network so that you can perform intrusive troubleshooting tasks and data collection or perform system changes, such as break out ports and replace optics or cables with minimal disruption.
 
 {{%notice note%}}
-Depending on your configuration and network topology, complete isolation might not be possible.
+Depending on your configuration and network topology, complete isolation is not possible.
 {{%/notice%}}
 
 ### Enable Maintenance Mode
@@ -252,7 +252,7 @@ cumulus@switch:~$ sudo csmgrctl -m0
 
 ### Show Maintenance Mode Status
 
-To see if maintanance mode is enabled or disabled, run the NCLU `net system maintenance show status` command or the Linux `sudo csmgrctl -s` command. For example:
+To see if maintenance mode is enabled, run the NCLU `net system maintenance show status` command or the Linux `sudo csmgrctl -s` command. For example:
 
 ```
 cumulus@switch:~$ net system maintenance show status

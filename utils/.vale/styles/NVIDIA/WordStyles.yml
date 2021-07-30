@@ -54,3 +54,4 @@ swap:
   subcommand: argument
   'link local': link-local
   'linklocal': link-local
+  plaintext: 'plain text'

@@ -55,7 +55,7 @@ If NTP is not installed, install and configure it before continuing.
 If NTP is not running:
 
 - Verify the IP address or hostname of the NTP server in the `/etc/ntp.conf` file, and then
-- Re-enable and start the NTP service using the `systemctl [enable|start] ntp` commands
+- Reenable and start the NTP service using the `systemctl [enable|start] ntp` commands
 
 {{<notice tip>}}
 If you are running NTP in your out-of-band management network with VRF, specify the VRF (<code>ntp@&lt;vrf-name&gt;</code> versus just <code>ntp</code>) in the above commands.
@@ -140,7 +140,7 @@ If NTP is not installed, install and configure it before continuing.
 If NTP is not running:
 
 - Verify the IP address or hostname of the NTP server in the `/etc/sonic/config_db.json` file, and then
-- Re-enable and start the NTP service using the `sudo config reload -n` command
+- Reenable and start the NTP service using the `sudo config reload -n` command
 
 Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
 

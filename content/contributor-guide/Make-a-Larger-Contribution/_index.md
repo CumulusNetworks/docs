@@ -222,7 +222,7 @@ To avoid the error, you can disable Vale for that heading in the source file. Wr
 Run the following command to view the NetQ Agent version.
 ```
 
-The `<!-- vale on -->` tag must be on its own line in order to re-enable Vale checking; otherwise, Vale ignores the rest of the file.
+The `<!-- vale on -->` tag must be on its own line in order to reenable Vale checking; otherwise, Vale ignores the rest of the file.
 
 Vale currently has a bug where it does not properly ignore a hyphen (-) in a title. If you wrote a heading with a hyphen and see this error, disable Vale and add a comment so we can find it later. For example:
 

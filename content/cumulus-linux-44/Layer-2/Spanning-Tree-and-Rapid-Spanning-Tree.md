@@ -230,7 +230,7 @@ cumulus@switch:~$ sudo ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example commands re-enable PortAutoEdge on swp1:
+The following example commands reenable PortAutoEdge on swp1:
 
 {{< tabs "TabID383 ">}}
 {{< tab "NCLU Commands ">}}

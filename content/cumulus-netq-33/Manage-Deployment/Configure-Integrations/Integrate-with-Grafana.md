@@ -22,7 +22,7 @@ NetQ displays:
 - **Software Transmit** with *soft\_out\_* prefix: errors, drops, tx_fifo_full
 - **Software Receive** with *soft\_in\_* prefix: errors, frame_errors, drops -->
 
-You can use Grafana version 6.x or 7.x, an open source analytics and monitoring tool, to view these statistics. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then installing the NetQ plug-in.  
+You can use Grafana version 6.x or 7.x, an open source analytics and monitoring tool, to view these statistics. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then installing the NetQ plugin.  
 
 {{%notice note%}}
 
@@ -30,14 +30,31 @@ If you do not have Grafana installed already, refer to {{<exlink url="https://gr
 
 {{%/notice%}}
 
-## Install NetQ Plug-in for Grafana
+## Install NetQ Plugin for Grafana
 
-Use the Grafana CLI to install the NetQ plug-in. For more detail about this command, refer to the {{<exlink url="https://grafana.com/docs/grafana/latest/administration/cli/" text="Grafana CLI documentation">}}.
+Use the Grafana CLI to install the NetQ plugin. For more detail about this command, refer to the {{<exlink url="https://grafana.com/docs/grafana/latest/administration/cli/" text="Grafana CLI documentation">}}.
 
-For NetQ 3.3.1 and later, use this command:
+{{%notice info%}}
+
+The Grafana plugin is unsigned. In order to install it, you need to update the `grafana.ini` file then restart the Grafana service:
+
+1. Edit `/etc/grafana/grafana.ini` and add `allow_loading_unsigned_plugins = netq-dashboard` to the file.
+
+       cumulus@switch:~$ sudo nano /etc/grafana/grafana.ini
+       ...
+       allow_loading_unsigned_plugins = netq-dashboard
+       ...
+
+1. Restart the Grafana service:
+
+       cumulus@switch:~$ sudo systemctl restart grafana-server.service
+
+{{%/notice%}}
+
+Then install the plugin. For NetQ 3.3.1 and later, use this command:
 
 ```
-grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/NetQ-DSplugin-3.3.1-plus.zip plugins install netq-dashboard
+cumulus@switch:~$ grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/NetQ-DSplugin-3.3.1-plus.zip plugins install netq-dashboard
 installing netq-dashboard @
 from: https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/NetQ-DSplugin-3.3.1-plus.zip
 into: /usr/local/var/lib/grafana/plugins
@@ -58,7 +75,7 @@ After installing the plugin a restart of Grafana is required. Restart Grafana ac
 
 ## Set Up the NetQ Data Source
 
-Now that you have the plug-in installed, you need to configure access to the NetQ data source.
+Now that you have the plugin installed, you need to configure access to the NetQ data source.
 
 1. Open the Grafana user interface.
 

@@ -319,7 +319,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-If you need to re-enable PTM for that interface, run:
+If you need to reenable PTM for that interface, run:
 
 ```
 cumulus@switch:~$ net add interface swp51 ptm-enable

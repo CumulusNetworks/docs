@@ -616,7 +616,7 @@ cumulus@switch:~$ ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-To re-enable automatic link-local address generation for a VLAN:
+To reenable automatic link-local address generation for a VLAN:
 
 {{< tabs "TabID287 ">}}
 {{< tab "NCLU Commands ">}}

@@ -14,7 +14,7 @@ NetQ only collects statistics for physical interfaces; it does not collect stati
   - **Receive**: rx\_bytes, rx\_drop, rx\_errs, rx\_frame,
     rx\_multicast, rx\_packets
 
-You can use Grafana version 6.x, an open source analytics and monitoring tool, to view these statistics. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then installing the NetQ plug-in containing the prepared NetQ dashboard.  
+You can use Grafana version 6.x, an open source analytics and monitoring tool, to view these statistics. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then installing the NetQ plugin containing the prepared NetQ dashboard.  
 
 {{%notice note%}}
 
@@ -22,9 +22,9 @@ If you do not have Grafana installed already, refer to {{<exlink url="https://gr
 
 {{%/notice%}}
 
-## Install NetQ Plug-in for Grafana
+## Install NetQ Plugin for Grafana
 
-Use the Grafana CLI to install the NetQ plug-in. For more detail about this command, refer to the {{<exlink url="https://grafana.com/docs/grafana/latest/administration/cli/" text="Grafana CLI documentation">}}.
+Use the Grafana CLI to install the NetQ plugin. For more detail about this command, refer to the {{<exlink url="https://grafana.com/docs/grafana/latest/administration/cli/" text="Grafana CLI documentation">}}.
 
 ```
 grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip plugins install netq-dashboard
@@ -39,7 +39,7 @@ Restart grafana after installing plugins . <service grafana-server restart>
 
 ## Set Up the NetQ Data Source
 
-Now that you have the plug-in installed, you need to configure access to the NetQ data source.
+Now that you have the plugin installed, you need to configure access to the NetQ data source.
 
 1. Open the Grafana user interface.
 

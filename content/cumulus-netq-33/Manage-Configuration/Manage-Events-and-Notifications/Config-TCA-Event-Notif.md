@@ -720,8 +720,8 @@ During troubleshooting or maintenance of switches you may want to suppress a rul
 The TCA rules have three possible states iin the NetQ UI:
 
 - **Active**: Rule is operating, delivering events. This would be the normal operating state.
-- **Suppressed**: Rule is disabled until a designated date and time. When that time occurs, the rule is automatically re-enabled. This state is useful during troubleshooting or maintenance of a switch when you do not want erroneous events being generated.
-- **Disabled**: Rule is disabled until a user manually re-enables it. This state is useful when you are unclear when you want the rule to be re-enabled. This is not the same as deleting the rule.
+- **Suppressed**: Rule is disabled until a designated date and time. When that time occurs, the rule is automatically reenabled. This state is useful during troubleshooting or maintenance of a switch when you do not want erroneous events being generated.
+- **Disabled**: Rule is disabled until a user manually reenables it. This state is useful when you are unclear when you want the rule to be reenabled. This is not the same as deleting the rule.
 
 To suppress a rule for a designated amount of time, you must change the state of the rule.
 
@@ -737,7 +737,7 @@ To suppress a rule:
 
     {{<figure src="/images/netq/tca-suppress-rule-300.png" width="300">}}
 
-5. Click in the **Date/Time** field to set when you want the rule to be *automatically re-enabled*.
+5. Click in the **Date/Time** field to set when you want the rule to be *automatically reenabled*.
 
 6. Click **Disable**.
 
@@ -754,7 +754,7 @@ To suppress a rule:
 
 {{< tab "NetQ CLI" >}}
 
-Using the `suppress_until` option allows you to prevent the rule from being applied for a designated amout of time (in seconds). When this time has passed, the rule is automatically re-enabled.
+Using the `suppress_until` option allows you to prevent the rule from being applied for a designated amout of time (in seconds). When this time has passed, the rule is automatically reenabled.
 
 To suppress a rule, run:
 
@@ -784,8 +784,8 @@ Whereas suppression temporarily disables a rule, you can deactivate a rule to di
 The TCA rules have three possible states in the NetQ UI:
 
 - **Active**: Rule is operating, delivering events. This would be the normal operating state.
-- **Suppressed**: Rule is disabled until a designated date and time. When that time occurs, the rule is automatically re-enabled. This state is useful during troubleshooting or maintenance of a switch when you do not want erroneous events being generated.
-- **Disabled**: Rule is disabled until a user manually re-enables it. This state is useful when you are unclear when you want the rule to be re-enabled. This is not the same as deleting the rule.
+- **Suppressed**: Rule is disabled until a designated date and time. When that time occurs, the rule is automatically reenabled. This state is useful during troubleshooting or maintenance of a switch when you do not want erroneous events being generated.
+- **Disabled**: Rule is disabled until a user manually reenables it. This state is useful when you are unclear when you want the rule to be reenabled. This is not the same as deleting the rule.
 
 To disable a rule that is currently **active**:
 
@@ -844,7 +844,7 @@ cumulus@switch:~$ netq add tca tca_id TCA_DISK_UTILIZATION_UPPER_1 is_active fal
 Successfully added/updated tca TCA_DISK_UTILIZATION_UPPER_1
 ```
 
-To re-enable the rule, set the `is_active` option to *true*.
+To reenable the rule, set the `is_active` option to *true*.
 
 {{< /tab >}}
 

@@ -333,14 +333,14 @@ The operational state shows the current state of the link in the kernel and in t
       Topo File Neighbor: switch-1, swp43
       LLDP Neighbor:      switch-1, swp43
 ```
-
+<!-- vale off -->
 - Link Status and Speed: The kernel state and hardware state should match, unless the link is in some unstable or transitory state.
 - Autoneg/Autodetect: See {{<link url="#auto-negotiation" text="Auto-negotiation">}} above for more information.
 - FEC: The operational state of FEC on the link. See {{<link url="#fec" text="FEC">}} above for more information.
 - TX Power/RX Power: These values are read from the module DDM/DOM fields to indicate the optical power strength measured on the module if the module implements the feature. Sometimes both are supported, sometimes only RX, sometimes neither. This is not applicable to DAC and twisted pair interfaces.
-- Topo File Neighbor: If the `/etc/ptm.d/topology.dot` file is populated and the `ptmd` daemon is active, the entry matching this interface is shown.
+- Topo File Neighbor: If the `/etc/ptm.d/topology.dot` file is populated and the `ptmd` daemon is active, the entry matching this interface is shown. 
 - LLDP Neighbor: If the `lldpd` daemon is running and LLDP data is received from the neighbor, the neighbor information is shown here.
-
+<!-- vale on -->
 ### Port Hardware State
 
 The port hardware state shows additional low level port information. The output varies between vendors.
@@ -459,7 +459,7 @@ Module Info
 ```
 
 - Does the module vendor name and vendor part number match the module that is believed to be installed? Is this port the correct port with the link problem? Is the right module installed?
-- Does the module type match the technology that is expected for this link? For example, if there is a 100G DAC installed, then is this value *Type: 100G-CR4*? See {{<link url="#compliance-codes-ethernet-type-ethmode-type-interface-type" text="Compliance Codes, Ethernet Type, Ethmode Type, Interface Type">}} for more informatioon.
+- Does the module type match the technology that is expected for this link? For example, if there is a 100G DAC installed, then is this value *Type: 100G-CR4*? See {{<link url="#compliance-codes-ethernet-type-ethmode-type-interface-type" text="Compliance Codes, Ethernet Type, Ethmode Type, Interface Type">}} for more information.
 - Does the device at the remote end recognize the module as the same Ethernet type that the local switch recognizes? Vendor outputs differ. If the remote device is not a Cumulus Linux device, consult the vendor documentation to determine how to display the Ethernet type for the installed module.
 
 ### Examine Configured State

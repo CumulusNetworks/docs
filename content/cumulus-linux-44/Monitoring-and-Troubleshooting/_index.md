@@ -237,7 +237,7 @@ If you want to limit the number of `syslog` messages that can be written to the 
 module(load="imuxsock"
       SysSock.RateLimit.Interval="2" SysSock.RateLimit.Burst="50")
 ```
-The following test script shows an example of rate-limit outputvin Cumulus Linux
+The following test script shows an example of rate-limit output in Cumulus Linux
 
 {{< expand "Example test script" >}}
 

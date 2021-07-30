@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 550
 toc: 4
 ---
-The following sections provide the basic configuration needed to use EVPN as the control plane for VXLAN in a BGP-EVPN-based layer 2 extension deployment. For layer 3 multi-tenancy configuration, see {{<link url="Inter-subnet-Routing" text="Inter-subnet Routing">}}. For addtional EVPN configuration, see {{<link url="EVPN-Enhancements" text="EVPN Enhancements">}}.
+The following sections provide the basic configuration needed to use EVPN as the control plane for VXLAN in a BGP-EVPN-based layer 2 extension deployment. For layer 3 multi-tenancy configuration, see {{<link url="Inter-subnet-Routing" text="Inter-subnet Routing">}}. For additional EVPN configuration, see {{<link url="EVPN-Enhancements" text="EVPN Enhancements">}}.
 
 ## Basic EVPN Configuration Commands
 

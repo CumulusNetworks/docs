@@ -5,11 +5,11 @@ weight: 10
 toc: 2
 ---
 
-This quick start guide provides an end-to-end setup process for installing and running Cumulus Linux, as well as a collection of example commands for getting started after installation is complete.
+This quick start guide provides an end-to-end setup process for installing and running Cumulus Linux.
 
 ## Prerequisites
 
-Intermediate-level Linux knowledge is assumed for this guide. You need to be familiar with basic text editing, Unix file permissions, and process monitoring. A variety of text editors are pre-installed, including `vi` and `nano`.
+This guide assumes you have intermediate-level Linux knowledge. You need to be familiar with basic text editing, Unix file permissions, and process monitoring. A variety of text editors are pre-installed, including `vi` and `nano`.
 
 You must have access to a Linux or UNIX shell. If you are running Windows, use a Linux environment like {{<exlink url="http://www.cygwin.com/" text="Cygwin">}} as your command line tool for interacting with Cumulus Linux.
 
@@ -41,9 +41,9 @@ When starting Cumulus Linux for the first time, the management port makes a DHCP
 
 The default installation includes two accounts:
 - The system account (root) has full system privileges. The root account password is locked by default (which prohibits login).
-- The user account (cumulus) has `sudo` privileges. The cumulus account is configured with the default password `cumulus`.
+- The user account (cumulus) has `sudo` privileges. The cumulus account uses the default password `cumulus`.
 
-   When you log into Cumulus Linux for the first time with the cumulus account, you are prompted to change the default password. After you provide a new password, the SSH session disconnects and you have to reconnect with the new password.
+   When you log in for the first time with the cumulus account, Cumulus Linux prompts you to change the default password. After you provide a new password, the SSH session disconnects and you have to reconnect with the new password.
 
 {{%notice note%}}
 ONIE includes options that allow you to change the default password for the *cumulus* account automatically when you install a new Cumulus Linux image. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image#onie-installation-options" text="ONIE Installation Options" >}}. You can also  {{<link url="Zero-Touch-Provisioning-ZTP/#set-the-default-cumulus-user-password" text="change the default password using a ZTP script">}}.
@@ -51,19 +51,19 @@ ONIE includes options that allow you to change the default password for the *cum
 
 In this quick start guide, you use the *cumulus* account to configure Cumulus Linux.
 
-All accounts except root are permitted remote SSH login; you can use `sudo` to grant a non-root account root-level access. Commands that change the system configuration require this elevated level of access.
+All accounts except root can use remote SSH login; you can use `sudo` to grant a non-root account root-level access. Commands that change the system configuration require this elevated level of access.
 
 For more information about `sudo`, see {{<link url="Using-sudo-to-Delegate-Privileges" >}}.
 
 ### Serial Console Management
 
-You are encouraged to perform management and configuration over the network, either in band or out of band. A serial console is fully supported; however, you might prefer the convenience of network-based management.
+NVIDIA recommends you perform management and configuration over the network, either in band or out of band. A serial console is fully supported.
 
 Typically, switches ship from the manufacturer with a mating DB9 serial cable. Switches with ONIE are always set to a 115200 baud rate.
 
 ### Wired Ethernet Management
 
-A Cumulus Linux switch always provides at least one dedicated Ethernet management port, which is named eth0. This interface is geared specifically for out-of-band management use. The management interface uses DHCPv4 for addressing by default.
+A Cumulus Linux switch always provides at least one dedicated Ethernet management port called eth0. This interface is specifically for out-of-band management use. The management interface uses DHCPv4 for addressing by default.
 
 To set a static IP address:
 
@@ -167,12 +167,12 @@ To update the time zone, use NTP interactive mode:
 2. Follow the on screen menu options to select the geographic area and region.
 
 {{%notice note%}}
-Programs that are already running (including log files) and users currently logged in, do not see time zone changes made with interactive mode. To set the time zone for all services and daemons, reboot the switch.
+Programs that are already running (including log files) and users that are logged in, do not see time zone changes made with interactive mode. To set the time zone for all services and daemons, reboot the switch.
 {{%/notice%}}
 
 ### Verify the System Time
 
-Verify that the date and time on the switch are correct, and {{<link url="Setting-the-Date-and-Time" text="correct the date and time">}} if necessary. If the date and time is incorrect, the switch might not be able to synchronize with Puppet or might return errors after you restart `switchd`:
+Verify that the date and time on the switch are correct, and {{<link url="Setting-the-Date-and-Time" text="correct the date and time">}} if necessary. If the date and time is incorrect, the switch does not synchronize with Puppet and returns errors after you restart `switchd`:
 
 ```
 Warning: Unit file of switchd.service changed on disk, 'systemctl daemon-reload' recommended.
@@ -184,7 +184,7 @@ If you are using 4x10G DAC or AOC cables, or you want to break out 100G or 40G s
 
 ## Test Cable Connectivity
 
-By default, all data plane ports (every Ethernet port except the management interface, eth0) are disabled. You can test cable connectivity by administratively enabling physical ports.
+By default, all data plane ports (every Ethernet port except the management interface, eth0) are disabled. To test cable connectivity, administratively enable physical ports.
 
 {{< tabs "TabID260 ">}}
 {{< tab "NCLU Commands ">}}
@@ -254,7 +254,7 @@ Cumulus Linux does not put all ports into a bridge by default. To create a bridg
 {{< tabs "TabID367 ">}}
 {{< tab "NCLU Commands ">}}
 
-In the following configuration example, the front panel port swp1 is placed into a bridge called *bridge*.
+In the following configuration example, the front panel port swp1 is in a bridge called *bridge*.
 
 ```
 cumulus@switch:~$ net add bridge bridge ports swp1
@@ -334,7 +334,7 @@ You can configure a front panel port or bridge interface as a layer 3 port.
 {{< tabs "TabID437 ">}}
 {{< tab "NCLU Commands ">}}
 
-In the following configuration example, the front panel port swp1 is configured as a layer 3 access port:
+In the following configuration example, the front panel port swp1 is a layer 3 access port:
 
 ```
 cumulus@switch:~$ net add interface swp1 ip address 10.1.1.1/30
@@ -435,7 +435,7 @@ IP:                        127.0.0.1/8, ::1/128
 IP Neighbor(ARP) Entries:  0
 ```
 
-The loopback is up and is assigned an IP address of 127.0.0.1.
+The loopback is up with the IP address 127.0.0.1.
 
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}

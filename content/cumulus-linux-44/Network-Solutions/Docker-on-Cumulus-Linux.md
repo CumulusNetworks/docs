@@ -6,7 +6,7 @@ toc: 3
 ---
 You can use Cumulus Linux to run the {{<exlink url="https://www.docker.com/" text="Docker">}} container platform.
 
-The Docker package is installed as part of the installation or ONIE upgrade process. The Docker package includes Docker Engine, and dependencies and configuration files required to run the Docker service. If you upgraded the switch with `apt-upgrade`, you must install the Docker package manually.
+The Docker package installs as part of the installation or ONIE upgrade process. The Docker package includes Docker Engine, and dependencies and configuration files required to run the Docker service. If you upgraded the switch with `apt-upgrade`, you must install the Docker package manually.
 
 To run Docker containers on the Cumulus Linux switch:
 
@@ -15,7 +15,7 @@ To run Docker containers on the Cumulus Linux switch:
 {{< tabs "TabID16 ">}}
 {{< tab "Docker is installed    ">}}
 
-The following command output shows that the Docker package is installed. No further action is required. Go to the next step to enable the Docker service.
+The following command output shows that the Docker package is installed. Go to the next step to enable the Docker service.
 
    ```
    cumulus@switch:mgmt:~$ dpkg-query -l cumulus-docker-setup
@@ -154,4 +154,4 @@ rtt min/avg/max/mdev = 1.212/1.237/1.262/0.045 ms
 If you see the error `Failed to load BPF prog: ‘Operation not permitted’`, increase the `memlock` limit by doubling the value.
 {{%/notice%}}
 
-Be mindful of the types of applications you want to run in containers on a Cumulus Linux switch. Depending on the configuration of the container, DHCP servers, custom scripts, and other lightweight services run well. However, VPN, NAT and encryption-type services are CPU-intensive and might lead to undesirable effects on critical applications. Resource-intensive services are not supported.
+Be mindful of the types of applications you want to run in containers on a Cumulus Linux switch. Depending on the configuration of the container, DHCP servers, custom scripts, and other lightweight services run well. However, VPN, NAT and encryption-type services are CPU-intensive and lead to undesirable effects on critical applications.

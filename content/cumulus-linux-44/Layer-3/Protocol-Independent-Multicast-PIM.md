@@ -4,12 +4,12 @@ author: NVIDIA
 weight: 960
 toc: 3
 ---
-Protocol Independent Multicast (PIM) is a multicast control plane protocol that advertises multicast sources and receivers over a routed layer 3 network. Layer 3 multicast relies on PIM to advertise information about multicast capable routers, and the location of multicast senders and receivers. For this reason, multicast cannot be sent through a routed network without PIM.
+Protocol Independent Multicast (PIM) is a multicast control plane protocol that advertises multicast sources and receivers over a routed layer 3 network. Layer 3 multicast relies on PIM to advertise information about multicast capable routers, and the location of multicast senders and receivers. Multicast does not go through a routed network without PIM.
 
 PIM has two modes of operation: Sparse Mode (PIM-SM) and Dense Mode (PIM-DM).
 
 {{%notice note%}}
-- Cumulus Linux supports only PIM Sparse Mode.
+- Cumulus Linux supports PIM Sparse Mode only.
 - NVUE commands are not supported.
 {{%/notice%}}
 

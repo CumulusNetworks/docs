@@ -8,13 +8,13 @@ This topic describes OSPFv2, which is a link-state routing protocol for IPv4. Fo
 
 ## Basic OSPFv2 Configuration
 
-You can configure OSPF using either numbered interfaces or unnumbered interfaces. Both methods are described below.
+You can configure OSPF using either numbered interfaces or unnumbered interfaces.
 
 ### OSPFv2 Numbered
 
-To configure OSPF using numbered interfaces, you specify the router ID, IP subnet prefix, and area address. All the interfaces on the switch with an IP address that matches the network subnet are put into the specified area. OSPF attempts to discover other OSPF routers on those interfaces. All matching interface network addresses are added to a Type-1 Router LSA and advertised to discovered neighbors for proper reachability.
+To configure OSPF using numbered interfaces, you specify the router ID, IP subnet prefix, and area address. You must put all the interfaces on the switch with an IP address that matches the network subnet into the specified area. OSPF attempts to discover other OSPF routers on those interfaces. Cumulus Linux adds all matching interface network addresses to a Type-1 Router LSA and advertises to discovered neighbors for proper reachability.
 
-If you do not want to bring up an OSPF adjacency on certain interfaces, but want to advertise those networks in the OSPF database, you can configure the interfaces as *passive interfaces*. A passive interface creates a database entry but does not send or receive OSPF hello packets. For example, in a data center topology, the host-facing interfaces do not need to run OSPF, however, the corresponding IP addresses still need to be advertised to neighbors.
+If you do not want to bring up an OSPF adjacency on certain interfaces, but want to advertise those networks in the OSPF database, you can configure the interfaces as *passive interfaces*. A passive interface creates a database entry but does not send or receive OSPF hello packets. For example, in a data center topology, the host-facing interfaces do not need to run OSPF, however, you need to advertise the corresponding IP addresses to neighbors.
 
 Network statements can be as inclusive or generic as necessary to cover the interface networks.
 
@@ -46,7 +46,7 @@ cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
-You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
+You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf passive-interface <interface>` command to selectively bring up protocol adjacency on certain interfaces:
 
 ```
 cumulus@leaf01:~$ net add ospf passive-interface default
@@ -79,7 +79,7 @@ cumulus@spine01:~$ net pending
 cumulus@spine01:~$ net commit
 ```
 
-You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
+You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf passive-interface <interface>` command to selectively bring up protocol adjacency on certain interfaces:
 
 ```
 cumulus@spine01:~$ net add ospf passive-interface default
@@ -179,7 +179,7 @@ cumulus@spine01:~$ nv config apply
     cumulus@leaf01:~$
     ```
 
-You can use the `passive-interface default` command to set all interfaces as *passive* and selectively bring up protocol adjacency only on certain interfaces:
+You can use the `passive-interface default` command to set all interfaces as *passive* and selectively bring up protocol adjacency on certain interfaces:
 
 ```
 leaf01(config)# router ospf
@@ -242,7 +242,7 @@ router ospf
     cumulus@spine01:~$
     ```
 
-You can use the `passive-interface default` command to set all interfaces as *passive* and selectively bring up protocol adjacency only on certain interfaces:
+You can use the `passive-interface default` command to set all interfaces as *passive* and selectively bring up protocol adjacency on certain interfaces:
 
 ```
 spine01(config)# router ospf
@@ -269,12 +269,12 @@ router ospf
 
 ### OSPFv2 Unnumbered
 
-Unnumbered interfaces are interfaces without unique IP addresses; multiple interfaces share the same IP address. In OSPFv2, unnumbered interfaces reduce the need for unique IP addresses on leaf and spine interfaces and simplify the OSPF database, reducing the memory footprint and improving SPF convergence times.
+Unnumbered interfaces are interfaces without unique IP addresses; multiple interfaces share the same IP address. In OSPFv2, unnumbered interfaces do not need unique IP addresses on leaf and spine interfaces and simplify the OSPF database, which reduces the memory footprint and improves SPF convergence times.
 
 To configure an unnumbered interface, take the IP address of loopback interface (called the *anchor*) and use that as the IP address of the unnumbered interface.
 
 {{%notice note%}}
-OSPF unnumbered is supported with {{<link url="#interface-parameters" text="point-to-point interfaces">}} only and does *not* support network statements.
+OSPF unnumbered supports {{<link url="#interface-parameters" text="point-to-point interfaces">}} only and does *not* support network statements.
 {{%/notice%}}
 
 The following example commands configure OSPF unnumbered on leaf01 and spine01.
@@ -283,7 +283,7 @@ The following example commands configure OSPF unnumbered on leaf01 and spine01.
 
 | leaf01 | spine01 |
 | ------ | ------- |
-| <ul><li>The loopback address is 10.10.10.1/32</li><li>The IP address of the unnumbered interface (swp51) is 10.10.10.1/32</li><li>The router ID is 10.10.10.1</li><li>OSPF is enabled on the loopback interface and on swp51 in area 0</li><li>swp1 and swp2 are passive interfaces</li><li>swp51 is a point-to-point interface (point-to-point is required for unnumbered interfaces)</li><ul>|<ul><li>The loopback address is 10.10.10.101/32</li><li>The IP address of the unnumbered interface (swp1) is 10.10.10.101/32</li><li>The router ID is 10.10.10.101</li><li>OSPF is enabled on the loopback interface and on swp1 in area 0</li><li>swp1 is a point-to-point interface (point-to-point is required for unnumbered interfaces)</li><ul> |
+| <ul><li>The loopback address is 10.10.10.1/32</li><li>The IP address of the unnumbered interface (swp51) is 10.10.10.1/32</li><li>The router ID is 10.10.10.1</li><li>OSPF is enabled on the loopback interface and on swp51 in area 0</li><li>swp1 and swp2 are passive interfaces</li><li>swp51 is a point-to-point interface (Cumulus Linux requires point-to-point for unnumbered interfaces)</li><ul>|<ul><li>The loopback address is 10.10.10.101/32</li><li>The IP address of the unnumbered interface (swp1) is 10.10.10.101/32</li><li>The router ID is 10.10.10.101</li><li>OSPF is enabled on the loopback interface and on swp1 in area 0</li><li>swp1 is a point-to-point interface (Cumulus Linux requires point-to-point for unnumbered interfaces)</li><ul> |
 
 {{< tabs "TabID306 ">}}
 {{< tab "NCLU Commands ">}}
@@ -313,7 +313,7 @@ cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
-You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf` `passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
+You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf` `passive-interface <interface>` command to selectively bring up protocol adjacency on certain interfaces:
 
 ```
 cumulus@leaf01:~$ net add ospf passive-interface default
@@ -358,7 +358,7 @@ cumulus@spine01:~$ net pending
 cumulus@spine01:~$ net commit
 ```
 
-You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf` `passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
+You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf` `passive-interface <interface>` command to selectively bring up protocol adjacency on certain interfaces:
 
 ```
 cumulus@spine01:~$ net add ospf passive-interface default
@@ -483,7 +483,7 @@ cumulus@spine01:~$ nv config apply
     cumulus@leaf01:~$
     ```
 
-   You can use the `passive-interface default` command to set all interfaces as *passive* and selectively bring up protocol adjacency only on certain interfaces:
+   You can use the `passive-interface default` command to set all interfaces as *passive* and selectively bring up protocol adjacency on certain interfaces:
 
    ```
    leaf01(config)# router ospf
@@ -552,7 +552,7 @@ router ospf
     cumulus@spine01:~$
     ```
 
-   You can use the `passive-interface default` command to set all interfaces as *passive* and selectively bring up protocol adjacency only on certain interfaces:
+   You can use the `passive-interface default` command to set all interfaces as *passive* and selectively bring up protocol adjacency on certain interfaces:
 
    ```
    spine01(config)# router ospf
@@ -587,9 +587,9 @@ This section describes optional configuration. The steps provided in this sectio
 ### Interface Parameters
 
 You can define the following OSPF parameters per interface:
-- Network type (point-to-point or broadcast). Broadcast is the default setting. Configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
+- Network type (point-to-point or broadcast). Broadcast is the default setting. Configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine so there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
   {{%notice note%}}
-  Point-to-point is required for {{<link url="#ospfv2-unnumbered" text="OSPFv2 unnumbered">}}.
+  Cumulus Linux requires Point-to-point for {{<link url="#ospfv2-unnumbered" text="OSPFv2 unnumbered">}}.
   {{%/notice%}}
 - Hello interval. The number of seconds between hello packets sent on the interface. The default is 10 seconds.
 - Dead interval. The number of seconds before neighbors declare the router down after they stop hearing
@@ -710,7 +710,7 @@ interface swp51
 {{< /tab >}}
 {{< /tabs >}}
 
-The following command example sets the priority to 5 for swp51. The priority can be any value between 0 to 255 (0 configures the interface to never become the OSPF Designated Router (DR) on a broadcast interface).
+The following command example sets the priority to 5 for swp51. The priority can be any value between 0 to 255. 0 configures the interface to never become the OSPF Designated Router (DR) on a broadcast interface.
 
 {{< tabs "TabID612 ">}}
 {{< tab "NCLU Commands ">}}
@@ -765,7 +765,7 @@ interface swp51
 {{< /tab >}}
 {{< /tabs >}}
 
-To see the currently configured OSPF interface parameter values, run the vtysh `show ip ospf interface` command.
+To see the configured OSPF interface parameter values, run the vtysh `show ip ospf interface` command.
 
 ### SPF Timer Defaults
 
@@ -844,7 +844,7 @@ To see the configured SPF timer values, run the NCLU `net show ospf` command, th
 
 ### MD5 Authentication
 
-To configure MD5 authentication on the switch, you need to create a key and a key ID, then enable MD5 authentication. The *key ID* must be a value between 1 and 255 that represents the key used to create the message digest. This value must be consistent across all routers on a link. The *key* must be a value with an upper range of 16 characters (longer strings are truncated) that represents the actual message digest.
+To configure MD5 authentication on the switch, you need to create a key and a key ID, then enable MD5 authentication. The *key ID* must be a value between 1 and 255 that represents the key used to create the message digest. This value must be consistent across all routers on a link. The *key* must be a value with an upper range of 16 characters (longer strings truncate) that represents the actual message digest.
 
 The following example commands create key ID 1 with the key `thisisthekey` and enable MD5 authentication on swp51 on leaf01 and on swp1 on spine01.
 
@@ -987,15 +987,15 @@ To remove existing MD5 authentication hashes, run the NCLU `net del` command, or
 
 ### Summarization and Prefix Range
 
-By default, an area border router (ABR) creates a summary (type-3) LSA for each route in an area and advertises it in adjacent areas. Prefix range configuration optimizes this behavior by creating and advertising one summary LSA for multiple routes. OSPF only allows for route summarization between areas on a ABR. This is done with the area range command.
+By default, an area border router (ABR) creates a summary (type-3) LSA for each route in an area and advertises it in adjacent areas. Prefix range configuration optimizes this behavior by creating and advertising one summary LSA for multiple routes. OSPF only allows for route summarization between areas on a ABR.
 
 The following example shows a topology divided into area 0 and area 1. border01 and border02 are *area border routers* (ABRs) that have links to multiple areas and perform a set of specialized tasks, such as SPF computation per area and summarization of routes across areas.
 
 {{< img src = "/images/cumulus-linux/ospf-scalability-areas.png" >}}
 
 On border01:
-- swp1 is in area 1 and is configured with IP addresses 10.0.0.24/31, 172.16.1.1/32, 172.16.1.2/32, and 172.16.1.3/32
-- swp51 is in area 0 and is configured with IP address 10.0.1.9/31
+- swp1 is in area 1 with IP addresses 10.0.0.24/31, 172.16.1.1/32, 172.16.1.2/32, and 172.16.1.3/32
+- swp51 is in area 0 with IP address 10.0.1.9/31
 
 These commands create a summary route for all the routes in the range 172.16.1.0/24 in area 0:
 
@@ -1400,11 +1400,11 @@ router ospf
 
 ### Topology Changes and OSPF Reconvergence
 
-When you remove a router or OSPF interface, LSA updates trigger throughout the network to inform all routers of the topology change. When the LSA is received and SPF is run, it does a routing update. This can cause short-duration outages while the network detects the failure and updates the OSPF database.
+When you remove a router or OSPF interface, LSA updates trigger throughout the network to inform all routers of the topology change. When the switch receives the LSA and runs OSPF, a routing update occurs. This can cause short-duration outages while the network detects the failure and updates the OSPF database.
 
-If the outage is planned (during a maintenance window), you can configure the OSPF router with an OSPF max-metric to notify its neighbors not to use it as part of the OSPF topology. While the network converges, all traffic forwarded to the max-metric router is still forwarded. After the network is fully updated, the max-metric router no longer receives any traffic and can be safely modified. To remove a single interface, you can configure the OSPF cost for that specific interface.
+If the outage is planned (during a maintenance window), you can configure the OSPF router with an OSPF max-metric to notify its neighbors not to use it as part of the OSPF topology. While the network converges, all traffic forwarded to the max-metric router is still forwarded. After you update the network, the max-metric router no longer receives any traffic and you can configure the max-metric setting. To remove a single interface, you can configure the OSPF cost for that specific interface.
 
-For failure events, traffic might be lost during reconvergence (until SPF on all nodes computes an alternative path around the failed link or node to each of the destinations).
+For failure events, traffic loss can occur during reconvergence (until SPF on all nodes computes an alternative path around the failed link or node to each of the destinations).
 
 To configure the max-metric (for all interfaces):
 
@@ -1462,8 +1462,8 @@ Cumulus Linux provides several OSPF troubleshooting commands:
 | Description | <div style="width:330px">NCLU Command | <div style="width:330px">vtysh Command |
 | ----------- | ------------------------------------- | -------------------------------------- |
 | Show neighbor states | `net show ospf neighbor` | `show ip ospf neighbor` |
-| Verify that the LSDB is synchronized across all routers in the network | `net show ospf database` | `show ip ospf database` |
-| Determine why an OSPF route is not being forwarded correctly |`net show route ospf` | `show ip route ospf` |
+| Verify that the LSDB synchronizes across all routers in the network | `net show ospf database` | `show ip ospf database` |
+| Determine why Cumulus Linux does not forward an OSPF route properly |`net show route ospf` | `show ip route ospf` |
 | Show OSPF interfaces | `net show ospf interface` | `show ip ospf interface` |
 | Show information about the OSPF process | `net show ospf` | `show ip ospf` |
 

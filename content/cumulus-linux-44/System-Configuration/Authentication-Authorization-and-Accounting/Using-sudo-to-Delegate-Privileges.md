@@ -12,7 +12,7 @@ You can add more user accounts as needed. Like the *cumulus* account, these acco
 
 `sudo` allows you to execute a command as superuser or another user as specified by the security policy.
 
-The default security policy is *sudoers*, which is configured using `/etc/sudoers`. Use `/etc/sudoers.d/` to add to the default sudoers policy.
+The default security policy is *sudoers*, which you configure in the `/etc/sudoers` file. Use `/etc/sudoers.d/` to add to the default sudoers policy.
 
 {{%notice warning%}}
 Use `visudo` only to edit the `sudoers` file; do not use another editor like `vi` or `emacs`.
@@ -24,7 +24,7 @@ Errors in the `sudoers` file can result in losing the ability to elevate privile
 
 By default, users in the *sudo* group can use `sudo` to execute privileged commands. To add users to the sudo group, use the `useradd(8)` or `usermod(8)` command. To see which users belong to the sudo group, see `/etc/group` (`man group(5)`).
 
-You can run any command as `sudo`, including `su`. A password is required.
+You can run any command as `sudo`, including `su`. You must enter a password.
 
 The example below shows how to use `sudo` as a non-privileged user *cumulus* to bring up an interface:
 
@@ -46,10 +46,10 @@ link/ether 44:38:39:00:27:9f brd ff:ff:ff:ff:ff:ff
 
 ## sudoers Examples
 
-The following examples show how you grant as few privileges as necessary to a user or group of users to allow them to perform the required task. For each example, the system group *noc* is used; groups are prefixed with an %.
+The following examples show how you grant as few privileges as necessary to a user or group of users to allow them to perform the required task. Each example uses the system group *noc*; groups include the prefix %.
 
-When executed by an unprivileged user, the example commands below must be prefixed with `sudo`.
-
+When an unprivileged user runs a command, the command must include the `sudo` prefix.
+<!-- vale off -->
 | Category | Privilege | Example Command | sudoers Entry |
 |--------- |---------- |---------------- |-------------- |
 | Monitoring | Switch port information|ethtool -m swp1|%noc ALL=(ALL) NOPASSWD:/sbin/ethtool |
@@ -81,7 +81,7 @@ When executed by an unprivileged user, the example commands below must be prefix
 | Layer 3| Any static route change | ip route *|%noc ALL=(ALL) NOPASSWD:/bin/ip route * |
 | Layer 3| Any iproute command | ip * | %noc ALL=(ALL) NOPASSWD:/bin/ip |
 | Layer 3| Non-modal OSPF | cl-ospf area 0.0.0.1 range 10.0.0.0/24 | %noc ALL=(ALL) NOPASSWD:/usr/bin/cl-ospf |
-
+<!-- vale on -->
 ## Related Information
 
 - {{<exlink url="https://wiki.debian.org/sudo" text="Debian wiki - sudo">}}

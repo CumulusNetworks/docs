@@ -266,13 +266,13 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tabs >}}
 
-To re-enable automatic link-local address generation for a VLAN:
+To reenable automatic link-local address generation for a VLAN:
 
 {{< tabs "TabID287 ">}}
 
 {{< tab "NCLU Commands ">}}
 
-Run the `net del vlan <vlan> ipv6-addrgen off` command. The following example command re-enables automatic address generation for a regular IPv6 address on VLAN 100.
+Run the `net del vlan <vlan> ipv6-addrgen off` command. The following example command reenables automatic address generation for a regular IPv6 address on VLAN 100.
 
 ```
 cumulus@switch:~$ net del vlan 100 ipv6-addrgen off

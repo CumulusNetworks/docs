@@ -62,7 +62,7 @@ cumulus@switch:~$ sudo systemctl start frr.service
 
 {{%notice note%}}
 - All the routing protocol daemons (`bgpd`, `ospfd`, `ospf6d`, `ripd`, `ripngd`, `isisd` and `pimd`) are dependent on `zebra`. When you start FFRouting, `systemd` determines whether zebra is running; if zebra is not running, `systemd` starts `zebra`, then starts the dependent service, such as `bgpd`.
-- In general, if you restart a service, its dependent services are also restarted. For example, running `systemctl restart frr.service` restarts any of the routing protocol daemons that are enabled and running.
+- If you restart a service, its dependent services are also restarted. For example, running `systemctl restart frr.service` restarts any of the routing protocol daemons that are enabled and running.
 - For more information on the `systemctl` command and changing the state of daemons, see {{<link url="Services-and-Daemons-in-Cumulus-Linux" text="Services and Daemons in Cumulus Linux">}}.
 {{%/notice%}}
 
@@ -256,9 +256,9 @@ B>* 172.16.1.0/24 [20/0] via fe80::4638:39ff:fe00:5b, swp1, 00:11:57
 B>* 172.16.3.0/24 [20/0] via fe80::4638:39ff:fe00:57, swp3, 00:11:59
   *                      via fe80::4638:39ff:fe00:43, swp4, 00:11:59
 ```
-
+<!-- vale off -->
 To run the same command at a config level, prepend `do`:
-
+<!-- vale on -->
 ```
 switch(config-router)# do show ip route
 Codes: K - kernel route, C - connected, S - static, R - RIP,

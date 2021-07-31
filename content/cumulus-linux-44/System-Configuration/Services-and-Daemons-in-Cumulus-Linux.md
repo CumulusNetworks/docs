@@ -8,14 +8,14 @@ toc: 3
 
 You manage services in Cumulus Linux in the following ways:
 
-- Identify currently active or stopped services
+- Identify all active or stopped services
 - Identify boot time state of a specific service
 - Disable or enable a specific service
 - Identify active listener ports
 
 ## systemd and the systemctl Command
 
-In general, you manage services using `systemd` via the `systemctl` command. You use it with any service on the switch to start, stop, restart, reload, enable, disable, reenable, or get the status of the service.
+You manage services using `systemd` with the `systemctl` command. You run the `systemctl` command with any service on the switch to start, stop, restart, reload, enable, disable, reenable, or get the status of the service.
 
 ```
 cumulus@switch:~$ sudo systemctl start | stop | restart | status | reload | enable | disable | reenable SERVICENAME.service
@@ -28,10 +28,10 @@ cumulus@switch:~$ sudo systemctl restart networking.service
 ```
 
 {{%notice note%}}
-The service name is written **after** the `systemctl` argument, not before it.
+Add the service name **after** the `systemctl` argument.
 {{%/notice%}}
 
-To show all the services currently running, run the `systemctl status` command. For example:
+To show all running services, use the `systemctl status` command. For example:
 
 ```
 cumulus@switch:~$ sudo systemctl status
@@ -76,9 +76,9 @@ cumulus@switch:~$ sudo systemctl status
               ...
 ```
 
-### systemctl Subcommands
+### systemctl Commands
 
-`systemctl` has subcommands that perform a specific operation on a given service:
+`systemctl` has commands that perform a specific operation on a given service:
 - **status** returns the status of the specified service.
 - **start** starts the service.
 - **stop** stops the service.
@@ -86,13 +86,13 @@ cumulus@switch:~$ sudo systemctl status
 - **reload** reloads the configuration for the service.
 - **enable** enables the service to start when the system boots, but does not start it unless you use the `systemctl start SERVICENAME.service` command or reboot the switch.
 - **disable** disables the service, but does not stop it unless you use the `systemctl stop SERVICENAME.service` command or reboot the switch. You can start or stop a disabled service.
-- **reenable** disables, then enables a service. You might need to do this so that any new *Wants* or *WantedBy* lines create the symlinks necessary for ordering. This has no side effects on other services.
+- **reenable** disables, then enables a service. Run this command so that any new *Wants* or *WantedBy* lines create the symlinks necessary for ordering. This has no side effects on other services.
 
-There is little reason to interact with the services directly using these commands. If a critical service crashes or encounters an error, it is automatically respawned by `systemd`, which is the caretaker of services in modern Linux systems and responsible for starting all the necessary services at boot time.
+You do not need to interact with the services directly using these commands. If a critical service crashes or encounters an error, `systemd` restarts it automatically. `systemd` is the caretaker of services in modern Linux systems and responsible for starting all the necessary services at boot time.
 
 ### Ensure a Service Starts after Multiple Restarts
 
-By default, `systemd` is configured to try to restart a particular service only a certain number of times within a given interval before the service fails to start at all. The settings, *StartLimitInterval* (which defaults to 10 seconds) and *StartBurstLimit* (which defaults to 5 attempts) are stored in the service script; however, many services override these defaults, sometimes with much longer times. For example, `switchd.service` sets *StartLimitInterval=10m* and *StartBurstLimit=3;* therefore, if you restart `switchd` more than 3 times in 10 minutes, it does not start.
+By default, `systemd` tries to restart a particular service only a certain number of times within a given interval before the service fails to start. The settings *StartLimitInterval* (which defaults to 10 seconds) and *StartBurstLimit* (which defaults to 5 attempts) are in the service script; however, certain services override these defaults, sometimes with much longer times. For example, `switchd.service` sets *StartLimitInterval=10m* and *StartBurstLimit=3;* therefore, if you restart `switchd` more than three times in ten minutes, it does not start.
 
 When the restart fails for this reason, you see a message similar to the following:
 
@@ -110,7 +110,7 @@ To clear this error, run `systemctl reset-failed switchd.service`. If you know y
 
 ### Keep systemd Services from Hanging after Starting
 
-If you start, restart, or reload any `systemd` service that can be started from another `systemd` service, you must use the `--no-block` option with `systemctl`. Otherwise, that service or even the switch itself might hang after starting or restarting.
+If you start, restart, or reload a `systemd` service that you can start from another `systemd` service, you must use the `--no-block` option with `systemctl`.
 
 ## Identify Active Listener Ports for IPv4 and IPv6
 
@@ -142,9 +142,9 @@ udp6       0      0 :::4784                 :::*                                
 udp6       0      0 :::3784                 :::*                                909/ptmd
 ```
 
-## Identify Services Currently Active or Stopped
+## Identify Active or Stopped Services
 
-To determine which services are currently active or stopped, run the `cl-service-summary` command:
+To see active or stopped services, run the `cl-service-summary` command:
 
 ```
 cumulus@switch:~$ cl-service-summary
@@ -206,13 +206,13 @@ cumulus-platform.service               enabled
 
 ## Identify Essential Services
 
-To identify which services are required to run when the switch boots, run:
+To identify which services must run when the switch boots:
 
 ```
 cumulus@switch:~$ systemctl list-dependencies --before basic.target
 ```
 
-To identify which services are needed for networking, run:
+To identify which services you need for networking:
 
 <pre style="line-height: 1rem;">cumulus@switch:~$ systemctl list-dependencies --after network.target
 <span style="color: #5cdd49;"> <strong>●</strong> </span> ├─switchd.service
@@ -233,7 +233,7 @@ To identify the services needed for a multi-user environment, run:
 ### Important Services
 
 The following table lists the most important services in Cumulus Linux.
-
+<!-- vale off -->
 |Service Name|Description|Affects Forwarding?|
 |------------ |-----------|-------------------|
 |switchd|Hardware abstraction daemon. Synchronizes the kernel with the ASIC.|YES|
@@ -252,3 +252,4 @@ The following table lists the most important services in Cumulus Linux.
 |lldpd|Handles Tx/Rx of {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}} information.|NO|
 |smond|Reads {{<link url="Monitoring-System-Hardware" text="platform sensors and fan information">}} from pwmd.|NO|
 |pwmd|Reads and sets fan speeds.|NO|
+<!-- vale on -->

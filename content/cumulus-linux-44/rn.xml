@@ -17,8 +17,10 @@ Fixed: 1.24.1-1+deb 10u1</td>
 <tr>
 <td>2739648</td>
 <td>If you configure BGP graceful restart in the {{/etc/frr/frr.conf}} file, then apply the configuration with {{systemctl reload frr}}, the configuration fails to apply and you see the following error:
-   Job for frr.service failed.
-See "systemctl status frr.service" and "journalctl -xe" for details.</td>
+
+Job for frr.service failed.
+See "systemctl status frr.service" and "journalctl -xe" for details.
+</td>
 <td>4.3.0-4.4.0</td>
 <td></td>
 </tr>
@@ -34,12 +36,6 @@ See "systemctl status frr.service" and "journalctl -xe" for details.</td>
 Vulnerable: &lt;= 1.17-3+deb10u1
 Fixed: 1.17-3+deb10u2</td>
 <td>4.0.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2736265</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -171,10 +167,10 @@ To work around this issue, delete the DHCP lease file for eth0 with the {{sudo r
 <tr>
 <td>2699399</td>
 <td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
+
 spine01# show ip bgp vrf all statistics 
 vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!
-spine01# show bgp vrf all ipv6 unicast statistics 
-vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!
+
 To workaround this issue, run the command against each VRF independently.</td>
 <td>3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -203,8 +199,9 @@ Fixed: 4.11.4+107-gef32c7afa2-1</td>
 <td>2685994</td>
 <td>When you use the NVUE command {{nv set interface lo router ospf area}} to configure OSPF on a loopback interface, the configuration fails to apply.
 To work around this issue, configure the loopback interface in the desired OSPF area with the {{nv set vrf default router ospf area 0 network}} command and reference the assigned prefix of the loopback interface. For example:
+
 cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
-cumulus@leaf01:~$ nv config apply</td>
+</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
 </tr>
@@ -229,15 +226,13 @@ Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
 </tr>
 <tr>
 <td>2671652</td>
-<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (greater than five seconds) when a prefix transitions to a new ECMP next-hop group.
-This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
+<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (greater than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
 <td>4.4.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2671381</td>
-<td>Remote MAC addreses in zebra are out of sync with {{bgpd}}.
-The zebra MAC addresses point to an incorrect (old) VTEP IP  address and the sequence number is one higher than in BGP.</td>
+<td>Remote MAC addreses in zebra are out of sync with {{bgpd}}. The zebra MAC addresses point to an incorrect (old) VTEP IP  address and the sequence number is one higher than in BGP. </td>
 <td>4.3.0-4.4.0</td>
 <td></td>
 </tr>
@@ -249,15 +244,9 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <td></td>
 </tr>
 <tr>
-<td>2668483</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2663119</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td>4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -282,9 +271,9 @@ See /var/log/netd.log for more details.</td>
 </tr>
 <tr>
 <td>2596458</td>
-<td>When {{bridge.unreg_v6_mcast_prune = TRUE}} is configured in {{/etc/cumulus/switchd.conf}}, traffic destined to IPv6 link-local multicast addresses might not be flooded within the bridge.
+<td>When {{bridge.unreg_v6_mcast_prune = TRUE}} is configured in the {{/etc/cumulus/switchd.conf}} file, traffic destined to IPv6 link-local multicast addresses might not be flooded within the bridge.
 
-To work around this issue, disable pruning for IPv6 multicast by setting {{bridge.unreg_v6_mcast_prune = FALSE}} in {{/etc/cumulus/switchd.conf}}.</td>
+To work around this issue, disable pruning for IPv6 multicast by setting {{bridge.unreg_v6_mcast_prune = FALSE}} in the {{/etc/cumulus/switchd.conf}} file.</td>
 <td>4.4.0</td>
 <td></td>
 </tr>
@@ -315,14 +304,14 @@ Vulnerable: &lt;= 2.8.90-1-cl4u5</td>
 </tr>
 <tr>
 <td>2556591</td>
-<td>After upgrading to Cumulus Linux 4.3.0, MLAG ports might remain down with {{clagctl}} and {{net show clag}} reporting {{bridge-priority-mismatch}}.
-To work around this issue, run the {{sudo ifreload -a}} command on both peers, or configure {{bridge-bridgeprio}} to be the same value as {{mstpcl-treeprio}} on the bridge interface in /etc/network/interfaces followed by {{sudo ifreload -a}}.</td>
+<td>After upgrading to Cumulus Linux, MLAG ports might remain down with {{clagctl}} and {{net show clag}} reporting {{bridge-priority-mismatch}}.
+To work around this issue, run the {{sudo ifreload -a}} command on both peers, or configure {{bridge-bridgeprio}} to be the same value as {{mstpcl-treeprio}} on the bridge interface in the {{/etc/network/interfaces}} file, then run {{sudo ifreload -a}}.</td>
 <td>4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2556462</td>
-<td>{{smonctl}} and {{sensors}} display different information about removed fans when a fan tray is removed.</td>
+<td> When you remove a fan tray, {{smonctl}} and {{sensors}} display different information about the removed fans.</td>
 <td>4.2.1-4.4.0</td>
 <td></td>
 </tr>
@@ -342,13 +331,13 @@ To work around this issue, disable OSPF debugs from global configuration mode.</
 </tr>
 <tr>
 <td>2556249</td>
-<td>On a Mellanox switch, the {{cl-resource-query -j}} command takes a long time to run with the max acl-heavy or ip-acl-heavy profile.</td>
+<td>On a Mellanox switch configured with the {{max acl-heavy}} or {{ip-acl-heavy}} profile, the {{cl-resource-query -j}} command takes a long time to run.</td>
 <td>4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2556061</td>
-<td>On Edgecore AS4610 switches, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
+<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
 <td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
 <td></td>
 </tr>

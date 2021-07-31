@@ -85,7 +85,7 @@ NVUE Commands are currently unsupported.
     ...
     ```
 
-2. Enable the daemon so it starts at bootup, then start the daemon:
+2. Enable the daemon to start at boot up, then start the daemon:
 
     ```
     cumulus@leaf01:~$ sudo systemctl enable rdnbrd.service
@@ -325,7 +325,7 @@ Total number of prefixes 4
 
 ### Verify the Kernel Routing Table
 
-Use the following workflow to verify that the kernel routing table isbeing populated correctly and that routes are being correctly imported and advertised:
+Use the following workflow to verify that the kernel routing table is being populated correctly and that routes are being correctly imported and advertised:
 
 1. Verify that ARP neighbor entries are being populated into the Kernel routing table 10.
 

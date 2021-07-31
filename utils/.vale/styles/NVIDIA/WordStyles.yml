@@ -38,6 +38,8 @@ swap:
   'next-hop': 'next hop'
   nexthop: 'next hop'
   once: after
+  plug-in: 'plugin'
+  're-enable': 'reenable'
   'right click': right-click
   'setup the': 'set up the'
   since: because

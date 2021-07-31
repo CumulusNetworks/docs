@@ -1,0 +1,13 @@
+---
+# Error: NVIDIA.Polite
+#
+# No Please or Thank You
+#
+# Based on Vale rule from Openstack: https://github.com/testthedocs/OpenStack/blob/master/OpenStack/Polite.yml
+extends: existence
+message: 'Do not use “%s” in technical documentation.'
+level: error
+ignorecase: true
+tokens:
+  - please
+  - thank you

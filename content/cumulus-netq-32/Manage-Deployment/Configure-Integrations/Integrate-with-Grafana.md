@@ -20,7 +20,7 @@ Net-Q-Ethtool displays:
 - **Software Transmit** with *soft\_out\_* prefix: errors, drops, tx_fifo_full
 - **Software Receive** with *soft\_in\_* prefix: errors, frame_errors, drops
 
-You can use Grafana version 6.x, an open source analytics and monitoring tool, to view these statistics. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then installing the NetQ plug-in containing the prepared NetQ dashboard.  
+You can use Grafana version 6.x, an open source analytics and monitoring tool, to view these statistics. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then installing the NetQ plugin containing the prepared NetQ dashboard.  
 
 {{%notice note%}}
 
@@ -28,9 +28,9 @@ If you do not have Grafana installed already, refer to {{<exlink url="https://gr
 
 {{%/notice%}}
 
-## Install NetQ Plug-in for Grafana
+## Install NetQ Plugin for Grafana
 
-Use the Grafana CLI to install the NetQ plug-in. For more detail about this command, refer to the {{<exlink url="https://grafana.com/docs/grafana/latest/administration/cli/" text="Grafana CLI documentation">}}.
+Use the Grafana CLI to install the NetQ plugin. For more detail about this command, refer to the {{<exlink url="https://grafana.com/docs/grafana/latest/administration/cli/" text="Grafana CLI documentation">}}.
 
 ```
 grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip plugins install netq-dashboard
@@ -45,7 +45,7 @@ Restart grafana after installing plugins . <service grafana-server restart>
 
 ## Set Up the Pre-configured NetQ Dashboard
 
-The quickest way to view the interface statistics for your Cumulus Linux network is to make use of the pre-configured dashboard installed with the plug-in. Once you are familiar with that dashboard, you can create new dashboards or add new panels to the NetQ dashboard.
+The quickest way to view the interface statistics for your Cumulus Linux network is to make use of the pre-configured dashboard installed with the plugin. Once you are familiar with that dashboard, you can create new dashboards or add new panels to the NetQ dashboard.
 
 1. Open the Grafana user interface.
 

@@ -632,7 +632,7 @@ router bgp 65000
 ...
 ```
 
-To re-enable BUM flooding, run the NCLU `net del bgp l2vpn evpn disable-flooding` command or the vtysh `flooding head-end-replication` command. For example:
+To reenable BUM flooding, run the NCLU `net del bgp l2vpn evpn disable-flooding` command or the vtysh `flooding head-end-replication` command. For example:
 
 {{< tabs "TabID256 ">}}
 

@@ -398,9 +398,9 @@ example disables PortAutoEdge on swp1:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-To re-enable PortAutoEdge for an interface, run the the 
+To reenable PortAutoEdge for an interface, run the the 
 `net del interface <port> stp portautoedge no` command. The following example
-re-enables PortAutoEdge on swp1:
+reenables PortAutoEdge on swp1:
 
     cumulus@switch:~$ net del interface swp1 stp portautoedge no
     cumulus@switch:~$ net pending

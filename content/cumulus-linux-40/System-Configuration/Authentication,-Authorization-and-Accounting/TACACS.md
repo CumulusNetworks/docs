@@ -84,7 +84,7 @@ Due to SSH and login processing mechanisms, Cumulus Linux needs to know the foll
 
 The only way to do this for non-local users &mdash; that is, users not present in the local password file &mdash; is to send a TACACS+ authorization request as the first communication with the TACACS+ server, prior to the authentication and before a password is requested from the user logging in.
 
-Some TACACS+ servers need special configuration to allow authorization requests prior to authentication. {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="Contact Cumulus Support">}} if your TACACS+ server does not allow the initial authorization request.
+Some TACACS+ servers need special configuration to allow authorization requests prior to authentication. Contact your TACACS+ server vendor for the proper configuration if your TACACS+ server does not allow the initial authorization request.
 
 ## Local Fallback Authentication
 

@@ -967,7 +967,7 @@ RFC 4133                 Entity MIB (Version 3)              August 2005
        powerSupply(6),
        fan(7),
        sensor(8),
-       module(9),        -- e.g., plug-in card or daughter-card
+       module(9),        -- e.g., plugin card or daughter-card
        port(10),
        stack(11),        -- e.g., stack of multiple chassis entities
        cpu(12)
@@ -2916,7 +2916,7 @@ Bierman & McCloghrie        Standards Track                    [Page 52]
 RFC 4133                 Entity MIB (Version 3)              August 2005
 
 
-      Slot 1 contains a plug-in module with 4 10-BaseT ports:
+      Slot 1 contains a plugin module with 4 10-BaseT ports:
          entPhysicalDescr.7  ==         'Acme 10Base-T Module 114'
          entPhysicalVendorType.7 ==     acmeProducts.moduleTypes.32
          entPhysicalContainedIn.7  ==   4

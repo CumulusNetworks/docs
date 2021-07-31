@@ -140,7 +140,7 @@ cumulus@leaf01:~$ sudo systemctl restart switchd.service
 <!-- vale on -->
 To configure bond interfaces for EVPN-MH, run commands similar to the following:
 
-{{<tabs "bond config">}}
+{{<tabs "bond configuration">}}
 {{<tab "NCLU Commands">}}
 
 ```
@@ -299,7 +299,7 @@ Split-horizon and Designated-Forwarder filters are only applied to interfaces co
 If you configure EVPN-MH without MH uplinks, BUM traffic might be duplicated or looped back to the same ES where it is received. This can cause MAC flaps or other issues on multihomed devices.
 {{%/notice%}}
 
-{{<tabs "upink tracking">}}
+{{<tabs "uplink tracking">}}
 {{<tab "NCLU Commands">}}
 
 ```
@@ -669,7 +669,7 @@ When an Ethernet segment link goes down, the attached VTEP notifies all other VT
 Fast failover also triggers:
 
 - When you reboot a leaf switch or VTEP.
-- When there is an uplink failure. When all uplinks are down, the Ethernet segment bonds on the switch are protodowned or error disabled.
+- When there is an uplink failure. When all uplinks are down, the Ethernet segment bonds on the switch are protodown or error disabled.
 
 ### Disable Next Hop Group Sharing in the ASIC
 

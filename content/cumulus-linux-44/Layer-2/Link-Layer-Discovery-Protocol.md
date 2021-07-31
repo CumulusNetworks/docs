@@ -102,7 +102,7 @@ DAEMON_ARGS="-c -x -M 4"
 ```
 
 {{%notice note%}}
-The `-c` option enables backwards compatability with CDP and the `-M 4` option sends a field in discovery packets to indicate that the switch is a network device.
+The `-c` option enables backwards compatibility with CDP and the `-M 4` option sends a field in discovery packets to indicate that the switch is a network device.
 {{%/notice%}}
 
 ## Troubleshooting

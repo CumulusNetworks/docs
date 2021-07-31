@@ -26,9 +26,9 @@ cumulus@switch:~$ cat /etc/timezone
 US/Eastern
 ```
 
-Edit the file to add your desired time zone. A list of valid time zones can be found {{<exlink url="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" text="here">}}.
+Edit the file to add your desired time zone. You can see a list of valid time zones {{<exlink url="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" text="here">}}.
 
-Use the following command to apply the new time zone immediately.
+Use the following command to apply the new time zone:
 
 ```
 cumulus@switch:~$ sudo dpkg-reconfigure --frontend noninteractive tzdata
@@ -56,7 +56,7 @@ For more information, see the Debian {{<exlink url="http://www.debian.org/doc/ma
 
 The switch contains a battery backed hardware clock that maintains the time while the switch is powered off and between reboots. When the switch is running, the Cumulus Linux operating system maintains its own software clock.
 
-During boot up, the time from the hardware clock is copied into the operating system software clock. The software clock is then used for all timekeeping responsibilities. During system shutdown, the software clock is copied back to the battery backed hardware clock.
+During boot up, the switch copies the time from the hardware clock to the operating system software clock. The software clock takes care of all the timekeeping. During system shutdown, the switch copies the software clock back to the battery backed hardware clock.
 
 You can set the date and time on the software clock with the `date` command. First, determine your current time zone:
 

@@ -311,7 +311,7 @@ iface vlan 100
 ...
 ```
 
-To re-enable automatic link-local address generation, run:
+To reenable automatic link-local address generation, run:
 
 ```
 cumulus@switch:~$ net del vlan 100 ipv6-addrgen off

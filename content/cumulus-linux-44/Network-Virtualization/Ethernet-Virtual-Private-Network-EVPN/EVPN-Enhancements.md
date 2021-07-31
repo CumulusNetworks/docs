@@ -1058,7 +1058,7 @@ router bgp 65101
 ...
 ```
 
-To re-enable BUM flooding, run the NCLU `net del bgp l2vpn evpn disable-flooding` command.
+To reenable BUM flooding, run the NCLU `net del bgp l2vpn evpn disable-flooding` command.
 
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
@@ -1074,7 +1074,7 @@ The NVUE Commands create the following configuration snippet in the `/etc/nvue.d
 cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 
-To renable BUM flodding, run the `nv set nve vxlan flooding enable on` command.
+To reenable BUM flooding, run the `nv set nve vxlan flooding enable on` command.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1103,7 +1103,7 @@ router bgp 65101
 ...
 ```
 
-To re-enable BUM flooding, run the vtysh `flooding head-end-replication` command.
+To reenable BUM flooding, run the vtysh `flooding head-end-replication` command.
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -1368,7 +1368,7 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-The NVUE Command is not curently supported.
+The NVUE Command is not currently supported.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1398,7 +1398,7 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-NVUE Command is not curently supported.
+NVUE Command is not currently supported.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}

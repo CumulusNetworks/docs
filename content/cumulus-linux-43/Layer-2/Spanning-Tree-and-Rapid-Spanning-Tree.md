@@ -260,13 +260,13 @@ cumulus@switch:~$ cl config apply
 
 {{< /tabs >}}
 
-To re-enable PortAutoEdge for an interface:
+To reenable PortAutoEdge for an interface:
 
 {{< tabs "TabID383 ">}}
 
 {{< tab "NCLU Commands ">}}
 
-The following example commands re-enable PortAutoEdge on swp1:
+The following example commands reenable PortAutoEdge on swp1:
 
 ```
 cumulus@switch:~$ net del interface swp1 stp portautoedge no

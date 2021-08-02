@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 750
 toc: 3
 ---
-Route filtering lets you exclude routes that are advertised or received from neighbors. You can use route filtering to manipulate traffic flows, reduce memory utilization, and improve security.
+Route filtering lets you exclude routes that neighbors advertise or receive. You can use route filtering to manipulate traffic flows, reduce memory utilization, and improve security.
 
 This section discusses the following route filtering methods:
 - Prefix lists
@@ -15,7 +15,7 @@ This section discusses the following route filtering methods:
 
 Prefix lists are access lists for route advertisements that match routes instead of traffic. Prefix lists are typically used with route maps and other filtering methods. A prefix list can match the prefix (the network itself) and the prefix-length (the length of the subnet mask).
 
-The following example commands configure a prefix list that permits all prefixes in the range 10.0.0.0/16 with a subnet mask less than or equal to /30. For networks 10.0.0.0/24, 10.10.10.0/24, and 10.0.0.10/32, only 10.0.0.0/24 is matched (10.10.10.0/24 has a different prefix and 10.0.0.10/32 has a greater subnet mask).
+The following example commands configure a prefix list that permits all prefixes in the range 10.0.0.0/16 with a subnet mask less than or equal to /30. For networks 10.0.0.0/24, 10.10.10.0/24, and 10.0.0.10/32, only 10.0.0.0/24 matches (10.10.10.0/24 has a different prefix and 10.0.0.10/32 has a greater subnet mask).
 
 {{< tabs "TabID22 ">}}
 {{< tab "NCLU Commands ">}}
@@ -126,7 +126,7 @@ match ip address prefix-list prefixlist1
 
 ## Route Maps
 
-Route maps are routing policies that are considered before the router examines the forwarding table. Each statement in a route map is assigned a sequence number, and contains a series of match and set statements. The route map is parsed from the lowest sequence number to the highest, and stops when a match is found.
+Route maps are routing policies that Cumulus Linux considers before the router examines the forwarding table. Each statement in a route map has a sequence number, and includes a series of match and set statements. The route map parses from the lowest sequence number to the highest, and stops when there is a match.
 
 ### Configure a Route Map
 
@@ -245,7 +245,7 @@ ip protocol bgp route-map routemap1
 {{< /tab >}}
 {{< /tabs >}}
 
-For BGP, you can also apply a route map on route updates from BGP to Zebra. All the applicable match operations are allowed, such as match on prefix, next hop, communities, and so on. Set operations for this attach-point are limited to metric and next hop only. Any operation of this feature does not affect BGPs internal RIB. Both IPv4 and IPv6 address families are supported. Route maps work on multi-paths; however, the metric setting is based on the best path only.
+For BGP, you can also apply a route map on route updates from BGP to Zebra. You can match on prefix, next hop, communities, and so on. You can set the metric and next hop only. Route maps do not affect the BGP internal RIB. You can use both IPv4 and IPv6 address families. Route maps work on multi-paths; however, the metric setting is based on the best path only.
 
 To apply a route map to filter route updates from BGP into Zebra, run the following command:
 
@@ -409,7 +409,7 @@ route-map MARK-PREFIXES permit 30
 !
 ```
 
-The following example filters routes from being advertised to the peer:
+The following example filters routes from advertising to the peer:
 
 ```
 router bgp 65101

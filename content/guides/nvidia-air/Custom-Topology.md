@@ -151,7 +151,7 @@ You can gather the `cl-support` script output by using {{<exlink url="https://gi
 
 The `ReadMe` in that repository provides instructions how to run the playbook to gather the `cl-support` output.
 
-### Create topology.dot from the eProduction Network
+### Create topology.dot from the Production Network
 
 Once you get the `cl-support` output, you can create a `topology.dot` file using {{<exlink url="https://gitlab.com/cumulus-consulting/features/cl_support_lldp_parser" text="this script">}}.
 

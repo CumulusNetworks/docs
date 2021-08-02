@@ -70,6 +70,33 @@ The advanced view has 4 different panes:
 3. **Nodes**: The list of the nodes in the topology.
 4. **Services**: Optional services you can add, such as SSH.
 
+#### Services 
+
+The services pane provides the option for creating an external connection into the simulation. Example use cases for this include:
+
+* Accessing the simulation environment using your local preferred SSH client
+* Running Grafana on the `oob-mgmt-server` and accessing the Grafana GUI externally
+* Setting up SNMP polling from your local laptop into the simulation environment
+
+To set up a service click the `+ Add Service` button.
+
+{{<img src="/images/guides/nvidia-air/ServicesPanel.png" width="400px">}}
+
+The following popup will present giving four options:
+
+{{<img src="/images/guides/nvidia-air/ServicesCreate.png" width="400px">}}
+
+* **Service Name:** The name of the service. This can be any free form text field.
+* **Interface:** The interface inside the simulation environment that will terminate the connection. This is most commonly the `eth0` interface of the `oob-mgmt-server`.
+* **Service Type:** If the field is SSH, HTTP or HTTPS, a hyper link to the URL will automatically be created in the Services panel. If set to Other, any port can be selected, but no hyperlink will be created. The hyperlink has no functional difference other than providing users a quick way to copy and paste the service.
+* **Service Port:** This is the internal port where the service will terminate.
+
+After selecting this and submitting, the service will be created. In the below example, a service was created for TCP port 1022. The external port would be 24886, so connecting to this service would require connecting to worker06.air.nvidia.com on TCP port 24886, which would forward and redirect to the oob-mgmt-server on TCP port 1022.
+
+{{<img src="/images/guides/nvidia-air/ServicesCreated.png" width="400px">}}
+
+The `Enable SSH` button auto populates the `Services` panel with an SSH session. It is a short cut to enable inbound SSH to the `oob-mgmt-server` so that the user can leverage their local preferred SSH client. Be aware, that SSH password authentication is disabled on the `oob-mgmt-server` by default. So to use this functionality upload SSH keys to your user profile. More information about uploading SSH keys to the user profile is in the section labelled `User Settings`.
+
 ## Manage a Simulation
 
 From the Air landing page, you can manage simulations. There are three options for each public simulation:
@@ -79,3 +106,13 @@ From the Air landing page, you can manage simulations. There are three options f
 - **Delete**: Deletes the simulation.
 
 {{<img src="/images/guides/nvidia-air/ManagingSim.png" width="800px">}}
+
+## User Settings
+
+In the top right there is a gear icon which opens up user options.
+
+{{<img src="/images/guides/nvidia-air/UserSettingsGear.png" width="200px">}}
+
+Clicking the gear will open up `User Settings` where SSH keys can be uploaded. These SSH keys are automatically uploaded to the `oob-mgmt-server` when a simulation is created as to allow password-less authentication when SSH is enabled.
+
+{{<img src="/images/guides/nvidia-air/UserSSHKeys.png" width="800px">}}

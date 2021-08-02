@@ -46,12 +46,6 @@ Fixed: 1.17-3+deb10u2</td>
 <td></td>
 </tr>
 <tr>
-<td>2734463</td>
-<td>The state of the VNI interface shows UP on the MLAG local switch when it is not configured on the peer switch.</td>
-<td>3.7.8-3.7.15, 4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2734126</td>
 <td>CVE-2021-33910: The Qualys Research Labs discovered that an attacker-controlled allocation using the alloca() function could result in memory
 corruption, allowing to crash systemd and hence the entire operating system.  Details can be found at https://www.qualys.com/2021/07/20/cve-2021-33910/denial-of-service-systemd.txt .

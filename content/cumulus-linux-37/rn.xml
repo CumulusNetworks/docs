@@ -105,12 +105,6 @@ Fixed: 2.8.17-1+deb8u8</td>
 <td></td>
 </tr>
 <tr>
-<td>2734463</td>
-<td>The state of the VNI interface shows UP on the MLAG local switch when it is not configured on the peer switch.</td>
-<td>3.7.8-3.7.15, 4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2728207</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
@@ -2277,12 +2271,6 @@ Fixed: 1.900.1-debian1-2.4+deb8u11</td>
 Vulnerable: &lt;= 2.8.17-1+deb8u7
 Fixed: 2.8.17-1+deb8u8</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2734463</td>
-<td>The state of the VNI interface shows UP on the MLAG local switch when it is not configured on the peer switch.</td>
-<td>3.7.8-3.7.15, 4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4494,12 +4482,6 @@ Fixed: 1.900.1-debian1-2.4+deb8u11</td>
 Vulnerable: &lt;= 2.8.17-1+deb8u7
 Fixed: 2.8.17-1+deb8u8</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2734463</td>
-<td>The state of the VNI interface shows UP on the MLAG local switch when it is not configured on the peer switch.</td>
-<td>3.7.8-3.7.15, 4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -7267,12 +7249,6 @@ Fixed: 1.900.1-debian1-2.4+deb8u11</td>
 Vulnerable: &lt;= 2.8.17-1+deb8u7
 Fixed: 2.8.17-1+deb8u8</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2734463</td>
-<td>The state of the VNI interface shows UP on the MLAG local switch when it is not configured on the peer switch.</td>
-<td>3.7.8-3.7.15, 4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -10242,12 +10218,6 @@ Fixed: 2.8.17-1+deb8u8</td>
 <td></td>
 </tr>
 <tr>
-<td>2734463</td>
-<td>The state of the VNI interface shows UP on the MLAG local switch when it is not configured on the peer switch.</td>
-<td>3.7.8-3.7.15, 4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2728207</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
@@ -13062,12 +13032,6 @@ Fixed: 2.8.17-1+deb8u8</td>
 <td></td>
 </tr>
 <tr>
-<td>2734463</td>
-<td>The state of the VNI interface shows UP on the MLAG local switch when it is not configured on the peer switch.</td>
-<td>3.7.8-3.7.15, 4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2728207</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
@@ -15554,12 +15518,6 @@ Fixed: 2.8.17-1+deb8u8</td>
 <td></td>
 </tr>
 <tr>
-<td>2734463</td>
-<td>The state of the VNI interface shows UP on the MLAG local switch when it is not configured on the peer switch.</td>
-<td>3.7.8-3.7.15, 4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2728207</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
@@ -17478,12 +17436,6 @@ Fixed: 1.900.1-debian1-2.4+deb8u11</td>
 Vulnerable: &lt;= 2.8.17-1+deb8u7
 Fixed: 2.8.17-1+deb8u8</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2734463</td>
-<td>The state of the VNI interface shows UP on the MLAG local switch when it is not configured on the peer switch.</td>
-<td>3.7.8-3.7.15, 4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -19713,12 +19665,6 @@ Fixed: 1.900.1-debian1-2.4+deb8u11</td>
 Vulnerable: &lt;= 2.8.17-1+deb8u7
 Fixed: 2.8.17-1+deb8u8</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2734463</td>
-<td>The state of the VNI interface shows UP on the MLAG local switch when it is not configured on the peer switch.</td>
-<td>3.7.8-3.7.15, 4.4.0</td>
 <td></td>
 </tr>
 <tr>

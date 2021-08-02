@@ -27,7 +27,7 @@ FRRouting does not start by default in Cumulus Linux. Before you run FRRouting, 
 NVIDIA has not tested RIP, RIPv6, IS-IS and Babel.
 {{%/notice%}}
 
-The `zebra` daemon is enabled by default. You can enable the other daemons according to how you plan to route your network.
+Cumulus Linux enables the `zebra` daemon by default. You can enable the other daemons according to how you plan to route your network.
 
 Before you start FRRouting, edit the `/etc/frr/daemons` file to enable each daemon you want to use. For example, to enable BGP, set `bgpd` to *yes*:
 
@@ -62,7 +62,7 @@ cumulus@switch:~$ sudo systemctl start frr.service
 
 {{%notice note%}}
 - All the routing protocol daemons (`bgpd`, `ospfd`, `ospf6d`, `ripd`, `ripngd`, `isisd` and `pimd`) are dependent on `zebra`. When you start FFRouting, `systemd` determines whether zebra is running; if zebra is not running, `systemd` starts `zebra`, then starts the dependent service, such as `bgpd`.
-- If you restart a service, its dependent services are also restarted. For example, running `systemctl restart frr.service` restarts any of the routing protocol daemons that are enabled and running.
+- If you restart a service, its dependent services also restart. For example, running `systemctl restart frr.service` restarts any of the enabled routing protocol daemons that are running.
 - For more information on the `systemctl` command and changing the state of daemons, see {{<link url="Services-and-Daemons-in-Cumulus-Linux" text="Services and Daemons in Cumulus Linux">}}.
 {{%/notice%}}
 
@@ -84,7 +84,7 @@ To reenable integrated configuration file mode, run:
 switch(config)# service integrated-vtysh-config
 ```
 
-If you disable integrated configuration mode, FRRouting saves each daemon-specific configuration file in a separate file. At a minimum for a daemon to start, that daemon must be enabled and its daemon-specific configuration file must be present, even if that file is empty.
+If you disable integrated configuration mode, FRRouting saves each daemon-specific configuration file in a separate file. For a daemon to start, you must enable that daemon and its daemon-specific configuration file must be present, even if the file is empty.
 
 To save the current configuration:
 
@@ -101,7 +101,7 @@ cumulus@switch:~$
 You can use `write file` instead of `write memory`.
 {{%/notice%}}
 
-When integrated configuration mode is disabled, the output looks like this:
+When you enable integrated configuration mode, the output looks like this:
 
 ```
 switch# write memory
@@ -130,10 +130,10 @@ Back up `frr.conf` (or any configuration files you want to remove) before procee
     cumulus@switch:~$ sudo rm /etc/frr/frr.conf
     ```
 
-    If integrated configuration file mode is disabled, remove all the configuration files (such as `zebra.conf` or `ospf6d.conf`) instead of `frr.conf`.
-
+    If you disable integrated configuration file mode, remove all the configuration files (such as `zebra.conf` or `ospf6d.conf`) instead of `frr.conf`.
+<!-- vale off -->
 3. {{<cl/restart-frr>}}
-
+<!-- vale on -->
 ## Interface IP Addresses and VRFs
 
 FRRouting inherits the IP addresses and any associated routing tables for the network interfaces from the `/etc/network/interfaces` file. This is the recommended way to define the addresses; do **not** create interfaces using FRRouting. For more information, see {{<link url="Interface-Configuration-and-Management/#configure-ip-addresses" text="Configure IP Addresses">}} and {{<link url="Virtual-Routing-and-Forwarding-VRF">}}.
@@ -151,14 +151,14 @@ Copyright 1996-2005 Kunihiro Ishiguro, et al.
 switch#
 ```
 
-vtysh provides a Cisco-like modal CLI and many of the commands are similar to Cisco IOS commands. There are different modes to the CLI and certain commands are only available within a specific mode. Configuration is available with the `configure terminal` command:
+vtysh provides a Cisco-like modal CLI and the commands are similar to Cisco IOS commands. There are different modes to the CLI and certain commands are only available within a specific mode. Configuration is available with the `configure terminal` command:
 
 ```
 switch# configure terminal
 switch(config)#
 ```
 
-The prompt displays the current CLI mode. For example, when the interface-specific commands are invoked, the prompt changes to:
+The prompt displays the current CLI mode. For example, when you run the interface-specific commands, the prompt changes to:
 
 ```
 switch(config)# interface swp1
@@ -427,7 +427,7 @@ end
 {{< /expand >}}
 
 {{%notice note%}}
-If you try to configure a routing protocol that has not been started, vtysh silently ignores those commands.
+If you try to configure a routing protocol that is not running, vtysh ignores those commands.
 {{%/notice%}}
 
 ## Reload the FRRouting Configuration
@@ -435,7 +435,7 @@ If you try to configure a routing protocol that has not been started, vtysh sile
 If you make a change to your routing configuration, you need to reload FRRouting so your changes take place. *FRRouting reload* enables you to apply only the modifications you make to your FRRouting configuration, synchronizing its running state with the configuration in `/etc/frr/frr.conf`. This is useful for optimizing FRRouting automation in your environment or to apply changes made at runtime.
 
 {{%notice note%}}
-FRRouting reload only applies to an integrated service configuration, where your FRRouting configuration is stored in a single `frr.conf` file instead of one configuration file per FRRouting daemon (like `zebra` or `bgpd`).
+FRRouting reload only applies to an integrated service configuration, where your FRRouting configuration is in a single `frr.conf` file instead of one configuration file per FRRouting daemon (like `zebra` or `bgpd`).
 {{%/notice%}}
 
 To reload your FRRouting configuration after you modify `/etc/frr/frr.conf`, run:
@@ -458,10 +458,10 @@ If the running configuration is not what you expect, {{<exlink url="https://supp
 
 ## FRR Logging
 
-By default, Cumulus Linux configures FFR with syslog severity level 6 (informational). Log output is written to the `/var/log/frr/frr.log` file.
+By default, Cumulus Linux configures FFR with syslog severity level 6 (informational). Log output writes to the `/var/log/frr/frr.log` file.
 
 {{%notice note%}}
-To write debug messages to the log file, you must run the `log syslog debug` command to configure FRR with syslog severity 7 (debug); otherwise, when you issue a debug command such as, `debug bgp neighbor-events`, no output is sent to `/var/log/frr/frr.log`. However, when you manually define a log target with the `log file /var/log/frr/debug.log` command, FRR automatically defaults to severity 7 (debug) logging and the output is logged to `/var/log/frr/debug.log`.
+To write debug messages to the log file, you must run the `log syslog debug` command to configure FRR with syslog severity 7 (debug); otherwise, when you issue a debug command such as, `debug bgp neighbor-events`, no output goes to `/var/log/frr/frr.log`. However, when you manually define a log target with the `log file /var/log/frr/debug.log` command, FRR automatically defaults to severity 7 (debug) logging and the output logs to `/var/log/frr/debug.log`.
 {{%/notice%}}
 
 ## Considerations
@@ -485,7 +485,7 @@ hostname Spine01-1
 ```
 
 {{%notice note%}}
-Accidentally configuring the same numbered BGP neighbor using both the `neighbor x.x.x.x` and `neighbor swp# interface` commands results in two neighbor entries being present for the same IP address in the configuration. To correct this issue, update the configuration and restart the FRR service.
+If you configure the same numbered BGP neighbor with both the `neighbor x.x.x.x` and `neighbor swp# interface` commands, two neighbor entries are present for the same IP address in the configuration. To correct this issue, update the configuration and restart the FRR service.
 {{%/notice%}}
 
 ## Related Information

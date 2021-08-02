@@ -4,13 +4,13 @@ author: NVIDIA
 weight: 780
 toc: 3
 ---
-Unequal Cost Multipath (UCMP) is deployed in data center networks that rely on anycast routing to provide network-based load balancing. Cumulus Linux supports UCMP by using the BGP link bandwidth extended community to load balance traffic towards anycast services for IPv4 and IPv6 routes in a layer 3 deployment and for prefix (type-5) routes in an EVPN deployment.
+You use Unequal Cost Multipath (UCMP) in data center networks that rely on anycast routing to provide network-based load balancing. Cumulus Linux supports UCMP by using the BGP link bandwidth extended community to load balance traffic towards anycast services for IPv4 and IPv6 routes in a layer 3 deployment and for prefix (type-5) routes in an EVPN deployment.
 
 ## UCMP Routing
 
-In ECMP, the route to a destination has multiple next hops and traffic is equally distributed across them. Flow-based hashing is used so that all traffic associated with a particular flow uses the same next hop and the same path across the network.
+In ECMP, the route to a destination has multiple next hops and traffic distributes across them equally. Flow-based hashing ensures that all traffic associated with a particular flow uses the same next hop and the same path across the network.
 
-In UCMP, along with the ECMP flow-based hash, a weight is associated with each next hop and traffic is distributed across the next hops in proportion to their weight. Cumulus Linux relies on the BGP link bandwidth extended community to carry information about the anycast server distribution through the network; this is mapped to the weight of the corresponding next hop. This mapping is a factoring of a particular path’s bandwidth value against the total bandwidth values of all possible paths, mapped to the range 1 to 100. There is no change to either the BGP best path selection algorithm or to the multipath computation algorithm that determines which paths can be used for load balancing.
+In UCMP, along with the ECMP flow-based hash, Cumulus Linux associates a weight with each next hop and distributes traffic across the next hops in proportion to their weight. The BGP link bandwidth extended community carries information about the anycast server distribution through the network, which maps to the weight of the corresponding next hop. The mapping factors the bandwidth value of a particular path against the total bandwidth values of all possible paths, mapped to the range 1 to 100. The BGP best path selection algorithm and the multipath computation algorithm that determines which paths you can use for load balancing does not change.
 
 ## UCMP Example
 
@@ -19,7 +19,7 @@ In UCMP, along with the ECMP flow-based hash, a weight is associated with each n
 The above example shows how traffic towards 192.168.10.1/32 is load balanced when you use UCMP routing:
 
 - Leaf01 has two ECMP paths to 192.168.10.1/32 (via Server01 and Server03) whereas Leaf03 and Leaf04 have a single path to Server04.
-- Leaf01, Leaf02, Leaf03, and Leaf04 are configured to generate BGP link bandwidth based on the number of BGP multipaths for a prefix.
+- Leaf01, Leaf02, Leaf03, and Leaf04 generate a BGP link bandwidth based on the number of BGP multipaths for a prefix.
 - When announcing the prefix to the spines, Leaf01 and Leaf02 generate a link bandwidth of two while Leaf03 and Leaf04 generate a link bandwidth of one.
 - Each spine advertises the 192.168.10.1/32 prefix to the border leafs with an accumulated bandwidth of 6. This combines the value of 2 from Leaf01, 2 from Leaf02, 1 from Leaf03 and 1 from Leaf04.
 
@@ -43,9 +43,9 @@ The border leafs balance traffic equally; all weights are equal to the spines. O
 
 Use the `set extcommunity bandwidth num-multipaths` command in a route map to set the extended community against all prefixes, or against a specific or set of prefixes using the match clause of the route map. Apply the route map at the first device to receive the prefix; against the BGP neighbor that generated this prefix.
 
-The BGP link bandwidth extended community is encoded in bytes-per-second. To convert the number of ECMP paths, a reference bandwidth of 1024Kbps is used. For example, if there are four ECMP paths to an anycast IP, the encoded bandwidth in the extended community is 512,000. The actual value is not important, as long as all routers originating the link bandwidth are converting the number of ECMP paths in the same way.
+The BGP link bandwidth extended community uses bytes-per-second. To convert the number of ECMP paths, Cumulus Linux uses a reference bandwidth of 1024Kbps. For example, if there are four ECMP paths to an anycast IP, the encoded bandwidth in the extended community is 512,000. The actual value is not important, as long as all routers originating the link bandwidth convert the number of ECMP paths in the same way.
 
-Cumulus Linux accepts the bandwidth extended community by default. No additional configuration is required on transit devices where UCMP routes are not being originated.
+Cumulus Linux accepts the bandwidth extended community by default. You do not need to configure transit devices where UCMP routes are not originated.
 
 {{%notice note%}}
 - NVUE commands are not supported.
@@ -253,7 +253,7 @@ To control UCMP on the receiving switch, you can:
 
 By default, if some of the multipaths do not have link bandwidth, Cumulus Linux ignores the bestpath bandwidth value in any of the multipaths and performs ECMP. However, you can set one of the following options instead:
 
-- Ignore link bandwidth completely and perform ECMP.
+- Ignore link bandwidth and perform ECMP.
 - Skip paths without link bandwidth and perform UCMP among the others (if at least some paths have link bandwidth).
 - Assign a low default weight (value 1) to paths that do not have link bandwidth.
 
@@ -332,7 +332,7 @@ router bgp 65011
 The BGP link bandwidth extended community is automatically passed on with the prefix to eBGP peers. If you do not want to pass on the BGP link bandwidth extended community outside of a particular domain, you can disable the advertisement of all BGP extended communities on specific peerings.
 
 {{%notice note%}}
-You cannot disable just the BGP link bandwidth extended community from being advertised to a neighbor; you either send all BGP extended communities, or none.
+You cannot disable just the BGP link bandwidth extended community from advertising to a neighbor; you either send all BGP extended communities, or none.
 {{%/notice%}}
 
 To disable all BGP extended communities on a peer or peer group (per address family), either run the NCLU `net del bgp neighbor <neighbor> send-community extended` command or the vtysh `no neighbor <neighbor> send-community extended` command:
@@ -367,7 +367,7 @@ cumulus@switch:~$
 
 To show the extended community in a received or local route, run the NCLU `net show bgp` command or the vtysh `show bgp` command.
 
-The following example shows that an IPv4 unicast route is received with the BGP link bandwidth attribute from two peers. The link bandwidth extended community is encoded in bytes-per-second and shown in Mbps per second: `Extended Community: LB:65002:131072000 (1000.000 Mbps) and Extended Community: LB:65001:65536000 (500.000 Mbps)`.
+The following example shows that the switch receives an IPv4 unicast route with the BGP link bandwidth attribute from two peers. The link bandwidth extended community is in bytes-per-second and shows in Mbps per second: `Extended Community: LB:65002:131072000 (1000.000 Mbps) and Extended Community: LB:65001:65536000 (500.000 Mbps)`.
 
 ```
 cumulus@switch:~$ net show bgp ipv4 unicast 192.168.10.1/32
@@ -396,7 +396,7 @@ The bandwidth value used by UCMP is only to determine the percentage of load to 
 
 To show EVPN type-5 routes, run the NCLU `net show bgp l2vpn evpn route type prefix` command or the vtysh `show bgp l2vpn evpn route type prefix` command.
 
-The bandwidth is displayed both in the way it is carried in the extended community (as bytes-per-second - unsigned 32 bits) as well as in Gbps, Mbps, or Kbps. For example:
+The bandwidth shows both as bytes-per-second (unsigned 32 bits) as well as in Gbps, Mbps, or Kbps. For example:
 
 ```
 cumulus@switch:~$ net show bgp l2vpn evpn route type prefix

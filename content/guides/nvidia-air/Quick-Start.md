@@ -95,7 +95,7 @@ After selecting this and submitting, the service will be created. In the below e
 
 {{<img src="/images/guides/nvidia-air/ServicesCreated.png" width="400px">}}
 
-
+The `Enable SSH` button auto populates the `Services` panel with an SSH session. It is a short cut to enable inbound SSH to the `oob-mgmt-server` so that the user can leverage their local preferred SSH client. Be aware, that SSH password authentication is disabled on the `oob-mgmt-server` by default. So to use this functionality upload SSH keys to your user profile. More information about uploading SSH keys to the user profile is in the section labelled `User Settings`.
 
 ## Manage a Simulation
 
@@ -106,3 +106,13 @@ From the Air landing page, you can manage simulations. There are three options f
 - **Delete**: Deletes the simulation.
 
 {{<img src="/images/guides/nvidia-air/ManagingSim.png" width="800px">}}
+
+## User Settings
+
+In the top right there is a gear icon which opens up user options.
+
+{{<img src="/images/guides/nvidia-air/UserSettingsGear.png" width="200px">}}
+
+Clicking the gear will open up `User Settings` where SSH keys can be uploaded. These SSH keys are automatically uploaded to the `oob-mgmt-server` when a simulation is created as to allow password-less authentication when SSH is enabled.
+
+{{<img src="/images/guides/nvidia-air/UserSSHKeys.png" width="800px">}}

@@ -1402,7 +1402,7 @@ router ospf
 
 When you remove a router or OSPF interface, LSA updates trigger throughout the network to inform all routers of the topology change. When the switch receives the LSA and runs OSPF, a routing update occurs. This can cause short-duration outages while the network detects the failure and updates the OSPF database.
 
-If the outage is planned (during a maintenance window), you can configure the OSPF router with an OSPF max-metric to notify its neighbors not to use it as part of the OSPF topology. While the network converges, all traffic forwarded to the max-metric router is still forwarded. After you update the network, the max-metric router no longer receives any traffic and you can configure the max-metric setting. To remove a single interface, you can configure the OSPF cost for that specific interface.
+With a planned outage (such as during a maintenance window), you can configure the OSPF router with an OSPF max-metric to notify its neighbors not to use it as part of the OSPF topology. While the network converges, all traffic forwarded to the max-metric router is still forwarded. After you update the network, the max-metric router no longer receives any traffic and you can configure the max-metric setting. To remove a single interface, you can configure the OSPF cost for that specific interface.
 
 For failure events, traffic loss can occur during reconvergence (until SPF on all nodes computes an alternative path around the failed link or node to each of the destinations).
 

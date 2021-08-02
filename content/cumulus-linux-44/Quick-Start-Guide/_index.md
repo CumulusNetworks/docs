@@ -40,7 +40,7 @@ When starting Cumulus Linux for the first time, the management port makes a DHCP
 ### Login Credentials
 
 The default installation includes two accounts:
-- The system account (root) has full system privileges. The root account password is locked by default (which prohibits login).
+- The system account (root) has full system privileges. Cumulus linux locks the root account password by default (which prohibits login).
 - The user account (cumulus) has `sudo` privileges. The cumulus account uses the default password `cumulus`.
 
    When you log in for the first time with the cumulus account, Cumulus Linux prompts you to change the default password. After you provide a new password, the SSH session disconnects and you have to reconnect with the new password.
@@ -167,7 +167,7 @@ To update the time zone, use NTP interactive mode:
 2. Follow the on screen menu options to select the geographic area and region.
 
 {{%notice note%}}
-Programs that are already running (including log files) and users that are logged in, do not see time zone changes made with interactive mode. To set the time zone for all services and daemons, reboot the switch.
+Programs that are already running (including log files) and logged in users, do not see time zone changes made with interactive mode. To set the time zone for all services and daemons, reboot the switch.
 {{%/notice%}}
 
 ### Verify the System Time

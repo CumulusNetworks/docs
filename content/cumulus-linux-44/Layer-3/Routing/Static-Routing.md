@@ -10,7 +10,7 @@ With static routing, you configure the switch manually to send traffic with a sp
 
 ## Configure a Static Route
 
-Static routes are added to the {{<exlink url="https://frrouting.org" text="FRRouting">}} routing table and then the kernel routing table.
+Cumulus Linux adds static routes to the {{<exlink url="https://frrouting.org" text="FRRouting">}} routing table and then to the kernel routing table.
 
 The following example commands configure Cumulus Linux to send traffic with the destination prefix 10.10.10.101/32 out swp51 (10.0.1.1/31) to the next hop 10.0.1.0.
 
@@ -256,7 +256,7 @@ The `ip route` command allows you to manipulate the kernel routing table directl
 
 On each switch, consider creating a *gateway* or *default route* for traffic destined outside the switch's subnet or local network. All such traffic passes through the gateway, which is a system on the same network that routes packets to their destination beyond the local network.
 
-The following example configures the default route 0.0.0.0/0, which indicates any IP address can be sent to the gateway. The gateway is another switch with the IP address 10.0.1.0.
+The following example configures the default route 0.0.0.0/0, which indicates that you can send any IP address to the gateway. The gateway is another switch with the IP address 10.0.1.0.
 
 {{< tabs "TabID310 ">}}
 {{< tab "NCLU Commands ">}}
@@ -314,7 +314,7 @@ ip route 0.0.0.0/0 10.0.1.0
 ```
 
 {{%notice note%}}
-The default route created by the `gateway` parameter in ifupdown2 is not installed in FRR and cannot be redistributed into other routing protocols. See {{<link url="Interface-Configuration-and-Management#ifupdown2-and-the-gateway-parameter" text="ifupdown2 and the gateway Parameter" >}} for more information.
+The default route created by the `gateway` parameter in ifupdown2 does not install in FRR and does not redistribute into other routing protocols. See {{<link url="Interface-Configuration-and-Management#ifupdown2-and-the-gateway-parameter" text="ifupdown2 and the gateway Parameter" >}} for more information.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -328,7 +328,7 @@ To avoid incorrect routing, **do not** use the Linux shell to delete static rout
 
 ### IPv6 Default Route with a Source IP Address on eth0
 
-If you install an IPv6 default route on eth0 with a source IP address, the configuration either fails at reboot or the first time you run `ifup -dv eth0`, you see a warning and the route is not installed. (If you run `ifup -dv eth0` a second time, the route is installed successfully.)
+If you install an IPv6 default route on eth0 with a source IP address, the configuration either fails at reboot or the first time you run `ifup -dv eth0`, you see a warning.
 
 ```
 cumulus@leaf01:~$ sudo ifup -dv eth0

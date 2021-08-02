@@ -4,28 +4,24 @@ author: NVIDIA
 weight: 790
 toc: 3
 ---
-*Redistribute neighbor* provides a way for IP subnets to span racks without forcing the end hosts to run a routing protocol.
+*Redistribute neighbor* provides a way for IP subnets to span racks without forcing the end hosts to run a routing protocol by announcing individual host /32 routes in the routed fabric. Other hosts on the fabric can use this new path to access the hosts in the fabric. If multiple equal-cost paths (ECMP) are available, traffic can load balance across the available paths natively.
 
-The fundamental premise behind redistribute neighbor is to announce individual host /32 routes in the routed fabric. Other hosts on the fabric can then use this new path to access the hosts in the fabric. If multiple equal-cost paths (ECMP) are available, traffic can load balance across the available paths natively.
+Hosts use {{<link title="Address Resolution Protocol - ARP" text="ARP">}} to resolve MAC addresses when sending to an IPv4 address. A host then builds an ARP cache table of known MAC addresses: IPv4 tuples as they receive or respond to ARP requests.
 
-The challenge is to accurately compile and update this list of reachable hosts or neighbors. Luckily, existing commonly deployed protocols are available to solve this problem. Hosts use {{<link title="Address Resolution Protocol - ARP" text="ARP">}} to resolve MAC addresses when sending to an IPv4 address. A host then builds an ARP cache table of known MAC addresses: IPv4 tuples as they receive or respond to ARP requests.
-
-For a leaf switch, where the default gateway is used for hosts within the rack, the ARP cache table contains a list of all hosts that have ARP'd for their default gateway. In many scenarios, this table contains all the layer 3 information that is needed. Redistribute neighbor formats and synchronizes this table into the routing protocol.
-
-Redistribute neighbor is distributed as `python-rdnbrd`.
+For a leaf switch, where hosts within the rack use the default gateway, the ARP cache table contains a list of all hosts that ARP for their default gateway. In most cases, this table contains all the layer 3 information necessary. Redistribute neighbor formats and synchronizes this table into the routing protocol.
 
 {{%notice note%}}
 The current implementation of redistribute neighbor:
 
 - Supports IPv4 only.
 - Does not support {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRFs">}}.
-- Supports a maximum of 1024 interfaces. Using more than 1024 interfaces might crash the `rdnbrd` service.
+- Supports a maximum of 1024 interfaces.
 - Is not supported with EVPN. Enabling both redistribute neighbor and EVPN leads to unreachable IPv4 ARP and IPv6 neighbor entries.
 {{%/notice%}}
 
 ## Target Use Cases and Best Practices
 
-Redistribute neighbor is typically used in these configurations:
+You use redistribute neighbor in these configurations:
 
 - Virtualized clusters
 - Hosts with service IP addresses that migrate between racks
@@ -35,26 +31,26 @@ Redistribute neighbor is typically used in these configurations:
 Follow these guidelines:
 
 - You can connect a host to one or more leafs. Each leaf advertises the /32 it sees in its neighbor table.
-- Make sure that a host-bound bridge/VLAN is local to each switch.
-- Connect leaf switches with redistribute neighbor enabled directly to the hosts.
-- Make sure that IP addressing is non-overlapping, as the host IP addresses are directly advertised into the routed fabric.
-- Run redistribute neighbor on Linux-based hosts. NVIDIA has not actively tested other host operating systems.
+- Make sure that a host-bound bridge or VLAN is local to each switch.
+- Connect the leafs with redistribute neighbor directly to the hosts.
+- Make sure that IP addresses do not overlap, as the host IP addresses are directly advertised into the routed fabric.
+- Run redistribute neighbor on Linux-based hosts. NVIDIA does not test other host operating systems.
 
-## How Redistribute Neighbor Works
+## How Does Redistribute Neighbor Work?
 
 Redistribute neighbor works as follows:
 
-1. The leaf/ToR switches learn about connected hosts when the host sends an ARP request or ARP reply.
-2. An entry for the host is added to the kernel neighbor table of each leaf switch.
-3. The redistribute neighbor daemon, `rdnbrd`, monitors the kernel neighbor table and creates a  /32 route for each neighbor entry. This /32 route is created in kernel table 10.
-4. FRRouting is configured to import routes from kernel table 10.
-5. A route-map controls which routes from table 10 are imported.
-6. In FRRouting these routes are imported as *table* routes.
-7. BGP, OSPF and so on, are then configured to redistribute the table 10 routes.
+1. The leaf or ToR switches learn about connected hosts when the host sends an ARP request or ARP reply.
+2. The kernel neighbor table adds an entry for the host of each leaf.
+3. The redistribute neighbor daemon (`rdnbrd`) monitors the kernel neighbor table and creates a  /32 route for each neighbor entry. This /32 route is in kernel table 10.
+4. FRRouting imports routes from kernel table 10.
+5. A route map controls which routes to import from table 10.
+6. FRR imports these routes as *table* routes.
+7. You configure BGP or OSPF to redistribute the table 10 routes.
 
 ## Example Configuration
 
-The following example configuration is based on the following topology.
+The following example configuration uses the following topology.
 
 {{< img src = "/images/cumulus-linux/redistribute-neighbor-example.png" >}}
 
@@ -62,11 +58,7 @@ The following example configuration is based on the following topology.
 
 The following steps configure leaf01 but you can follow the same steps on any leaf.
 
-{{%notice note%}}
-NVUE Commands are currently unsupported.
-{{%/notice%}}
-
-1. Edit the `/etc/network/interfaces` file to configure the host facing ports, using the same IP address on both host-facing interfaces as well as a /32 prefix. In this case, swp1 and swp2 are configured as they are the ports facing server01 and server02:
+1. Edit the `/etc/network/interfaces` file to configure the ports that face the host. Use the same IP address on both interfaces that face the host, as well as a /32 prefix. In this case, swp1 and swp2 face server01 and server02:
 
     ```
     cumulus@leaf01:~$ sudo nano /etc/network/interfaces
@@ -103,7 +95,7 @@ NVUE Commands are currently unsupported.
         leaf01(config)# ip import-table 10
         ```
 
-    2. Define a route-map that matches on the host-facing interface:
+    2. Define a route map that matches on the host-facing interface:
 
         ```
         leaf01(config)# route-map REDIST_NEIGHBOR permit 10
@@ -112,13 +104,13 @@ NVUE Commands are currently unsupported.
         leaf01(config-route-map)# match interface swp2
         ```
 
-    3. Apply that route-map to routes imported into *table*:
+    3. Apply that route map to routes imported into *table*:
 
         ```
         leaf01(config)# ip protocol table route-map REDIST_NEIGHBOR
         ```
 
-    4. Redistribute the imported *table* routes in into the appropriate routing protocol.
+    4. Redistribute the imported *table* routes into the appropriate routing protocol.
 
         **BGP:**
 
@@ -178,19 +170,19 @@ line vty
 
 ### Configure the Hosts
 
-There are a few possible host configurations that range in complexity. This document only covers the basic use case: dual-connected Linux hosts with static IP addresses assigned.
+This document describes dual-connected Linux hosts with static IP addresses.
 
-Configure a host with the same /32 IP address on its loopback (lo) and uplinks (in this example, eth1 and eth2). This is done so both leaf switches advertise the same /32 regardless of the interface. Cumulus Linux relies on {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP">}} to load balance across the interfaces southbound, and an equal cost static route (see the configuration below) for load balancing northbound.
+Configure a host with the same /32 IP address on its loopback and uplinks so that both leafs advertise the same /32 regardless of the interface. Cumulus Linux relies on {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP">}} to load balance across the interfaces southbound, and an equal cost static route (see the configuration below) to load balance northbound.
 
-The loopback hosts the primary service IP address(es) and to which you can bind services.
+The loopback hosts the primary service IP address to which you can bind services.
 
-Configure the loopback and physical interfaces. Referring back to the topology diagram, server01 is connected to leaf01 via eth1 and to leaf02 via eth2. You should note:
+Configure the loopback and physical interfaces. In the example topology above:
+- server01 connects to leaf01 through eth1 and to leaf02 through eth2.
+- lo, eth1, and eth2 use the loopback IP address.
+- The `post-up arping` command forces the host to ARP as soon as its interface comes up. This allows the leaf to learn about the host as soon as possible.
+- The `post-up ip route` commands install a default route through one or both leafs if both swp1 and swp2 are up.
 
-- The loopback IP is assigned to lo, eth1 and eth2.
-- The post-up ARPing is used to force the host to ARP as soon as its interface comes up. This allows the leaf to learn about the host as soon as possible.
-- The post-up `ip route replace` is used to install a default route via one or both leaf nodes if both swp1 and swp2 are up.
-
-    {{< expand "Click to expand"  >}}
+    {{< expand "Configuration"  >}}
 
 ```
 # The loopback network interface
@@ -231,7 +223,7 @@ ARGS="-q -f -u10 -d10 -w -I"
 SUSPEND_ACTION="stop"
 ```
 
-For full instructions on installing `ifplugd` on Ubuntu, [follow this guide]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Using-ifplugd-on-a-Server-Host" >}}).
+For complete instructions to install `ifplugd` on Ubuntu, [follow this guide]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Using-ifplugd-on-a-Server-Host" >}}).
 
 ## Troubleshooting
 
@@ -284,7 +276,7 @@ cumulus@leaf01:~$ sudo systemctl restart rdnbrd.service
 
 ### Set the Routing Table ID
 
-The Linux kernel supports multiple routing tables and can utilize 0 through 255 as table IDs; however tables 0, 253, 254 and 255 are reserved, and 1 is usually the first one used. Therefore, `rdnbrd` only allows you to specify between 2 and 252. Cumulus Linux uses table ID 10, however you can set the ID to any value between 2 and 252. You can see all the tables specified here:
+The Linux kernel supports multiple routing tables and can use 0 through 255 table IDs; however tables 0, 253, 254 and 255 are reserved, and 1 is the first one used. Therefore, `rdnbrd` only allows you to specify between 2 and 252. Cumulus Linux uses table ID 10, however you can set the ID to any value between 2 and 252. You can see all the tables specified here:
 
 ```
 cumulus@leaf01:~$ cat /etc/iproute2/rt_tables
@@ -325,18 +317,18 @@ Total number of prefixes 4
 
 ### Verify the Kernel Routing Table
 
-Use the following workflow to verify that the kernel routing table is being populated correctly and that routes are being correctly imported and advertised:
+Use the following workflow to verify that the kernel routing table populates correctly and that routes import and advertise correctly:
 
-1. Verify that ARP neighbor entries are being populated into the Kernel routing table 10.
+1. Verify that ARP neighbor entries populate into the Kernel routing table 10.
 
     ```
     cumulus@leaf01:~$ ip route show table 10
     10.0.1.101 dev swp1 scope link
     ```
 
-    If these routes are not being generated, verify the following that the `rdnbrd` daemon is running and check the `/etc/rdnbrd.conf` file to verify the correct table number is used.
+    If these routes do not generate, verify that the `rdnbrd` daemon is running and check that the `/etc/rdnbrd.conf` file includes the correct table number.
 
-2. Verify that routes are being imported into FRRouting from the kernel routing table 10.
+2. Verify that routes import into FRRouting from the kernel routing table 10.
 
     ```
     cumulus@leaf01:~$ sudo vtysh
@@ -347,9 +339,9 @@ Use the following workflow to verify that the kernel routing table is being popu
     T[10]>* 10.0.1.101/32 [19/0] is directly connected, swp1, 01:25:29
     ```
 
-    Both the \> and \* should be present so that table 10 routes are installed as preferred into  the routing table. If the routes are not being installed, verify the imported distance of the locally imported kernel routes with the `ip import 10 distance X` command (where X is **not** less than the administrative distance of the routing protocol). If the distance is too low,  routes learned from the protocol might overwrite the locally imported routes. Also, verify that the routes are in the kernel routing table.
+    Both the \> and \* must be present so that table 10 routes install as preferred into the routing table. If the routes do not install, verify the imported distance of the locally imported kernel routes with the `ip import 10 distance X` command (where X is **not** less than the administrative distance of the routing protocol). If the distance is too low, routes learned from the protocol can overwrite the locally imported routes. Also, verify that the routes are in the kernel routing table.
 
-3. Confirm that routes are in the BGP/OSPF database and are being advertised.
+3. Confirm that routes are in the BGP/OSPF database and that they advertise.
 
     ```
     leaf01# show ip bgp
@@ -363,8 +355,8 @@ This feature adds each ARP entry as a /32 host route into the routing table of a
 
 ### Uneven Traffic Distribution
 
-Linux uses *source* layer 3 addresses only to do load balancing on most older distributions.
+Linux uses *source* layer 3 addresses only to load balance on most older distributions.
 
 ### Silent Hosts Never Receive Traffic
 
-Freshly provisioned hosts that have never sent traffic may not ARP for their default gateways. The post-up ARPing in `/etc/network/interfaces` on the host should take care of this. If the host does not ARP, then `rdnbrd` on the leaf cannot learn about the host.
+Sometimes, freshly provisioned hosts that have yet to send traffic do not ARP for their default gateways. The `post-up arping` command in the  `/etc/network/interfaces` file on the host takes care of this. If the host does not ARP, then `rdnbrd` on the leaf does not learn about the host.

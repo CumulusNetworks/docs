@@ -8,11 +8,11 @@ This section shows an OSPF configuration example based on the reference topology
 
 {{< img src = "/images/cumulus-linux/ospf-scalability-areas.png" >}}
 
-In the example configuration:
-- OSPFv2 *unnumbered* is configured on all leafs and spines
-- MLAG is configured on leaf01 and leaf02, and on border01 and border02
-- leaf01, leaf02, spine01, and spine02 are in area 0
-- border01 and border02 are ABRs and are in area 0 (lo, swp51, swp52) and area 1 (swp1, swp2)
+The example configuration configures:
+- OSPFv2 *unnumbered* on all leafs and spines
+- MLAG on leaf01 and leaf02, and on border01 and border02
+- leaf01, leaf02, spine01, and spine02 in area 0
+- border01 and border02 (ABRs) in area 0 (lo, swp51, swp52) and area 1 (swp1, swp2)
 
 ## NCLU Commands
 

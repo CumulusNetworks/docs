@@ -4,11 +4,11 @@ author: NVIDIA
 weight: 760
 toc: 3
 ---
-Typical routing systems and protocols forward traffic based on the destination address in the packet, which is used to look up an entry in a routing table. However, sometimes the traffic on your network requires a more hands-on approach. You might need to forward a packet based on the source address, the packet size, or other information in the packet header.
+Typical routing systems and protocols forward traffic based on the destination address in the packet, which they look up in a routing table. However, sometimes the traffic on your network requires a more hands-on approach. Sometimes, you need to forward a packet based on the source address, the packet size, or other information in the packet header.
 
-Policy-based routing (PBR) lets you make routing decisions based on filters that change the routing behavior of specific traffic so that you can override the routing table and influence where the traffic goes. For example, you can use PBR to help you reach the best bandwidth utilization for business-critical applications, isolate traffic for inspection or analysis, or manually load balance outbound traffic.
+Policy-based routing (PBR) lets you make routing decisions based on filters that change the routing behavior of specific traffic so that you can override the routing table and influence where the traffic goes. For example, you can use PBR to reach the best bandwidth utilization for business-critical applications, isolate traffic for inspection or analysis, or manually load balance outbound traffic.
 
-Policy-based routing is applied to incoming packets. All packets received on a PBR-enabled interface pass through enhanced packet filters that determine rules and specify where to forward the packets.
+Cumulus Linux applies policy-based routing to incoming packets. All packets received on a PBR-enabled interface pass through enhanced packet filters that determine rules and specify where to forward the packets.
 
 {{%notice note%}}
 - You can create a *maximum* of 255 PBR match rules and 256 next hop groups (this is the ECMP limit).
@@ -23,12 +23,12 @@ Policy-based routing is applied to incoming packets. All packets received on a P
 
 A PBR policy contains one or more policy maps. Each policy map:
 
-- Is identified with a unique map name and sequence (rule) number. The rule number is used to determine the relative order of the map within the policy.
+- Has a unique map name and sequence (rule) number. The rule number determines the relative order of the map within the policy.
 - Contains a match source IP rule and (or) a match destination IP rule and a set rule, or a match DSCP or ECN rule and a set rule.
    - To match on a source and destination address, a policy map can contain both match source and match destination IP rules.
    - A set rule determines the PBR next hop for the policy. <!--The set rule can contain a single next hop IP address or it can contain a next hop group. A next hop group has more than one next hop IP address so that you can use multiple interfaces to forward traffic. To use ECMP, you configure a next hop group.-->
 
-To use PBR in Cumulus Linux, you define a PBR policy and apply it to the ingress interface (the interface must already have an IP address assigned). Traffic is matched against the match rules in sequential order and forwarded according to the set rule in the first match. Traffic that does not match any rule is passed onto the normal destination based routing mechanism.
+To use PBR in Cumulus linux, you define a PBR policy and apply it to the ingress interface (the interface must already have an IP address assigned). Cumulus Linux matches traffic against the match rules in sequential order and forwards the traffic according to the set rule in the first match. Traffic that does not match any rule passes on to the normal destination based routing mechanism.
 
 To configure a PBR policy:
 
@@ -74,7 +74,7 @@ To configure a PBR policy:
     cumulus@switch:~$ net add pbr-map map1 seq 1 set nexthop-group group1
     ```
 
-   If you want the rule to use a specific VRF table as its lookup, set the VRF. If no VRF is set, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table:
+   If you want the rule to use a specific VRF table as its lookup, set the VRF. If you do not set a VRF, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table:
 
     ```
     cumulus@switch:~$ net add pbr-map map1 seq 1 set vrf dmz
@@ -141,7 +141,7 @@ pbr-policy map1
     cumulus@switch:~$ nv set router pbr map map1 rule 1 action nexthop-group group1
     ```
 
-   If you want the rule to use a specific VRF table as its lookup, set the VRF. If no VRF is set, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table:
+   If you want the rule to use a specific VRF table as its lookup, set the VRF. If you do not set a VRF, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table:
 
     ```
     cumulus@switch:~$ nv set router pbr map map1 rule 1 action vrf dmz
@@ -233,7 +233,7 @@ pbr-policy map1
     switch(config)#
     ```
 
-    If you want the rule to use a specific VRF table as its lookup, set the VRF. If no VRF is set, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table:
+    If you want the rule to use a specific VRF table as its lookup, set the VRF. If you do not set a VRF, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table:
 
     ```
     switch(config)# pbr-map map1 seq 1
@@ -391,7 +391,7 @@ cumulus@switch:~$ sudo cat /cumulus/switchd/run/iprule/show | grep 303 -A 1
 
 {{< expand "Add a match condition to an existing rule"  >}}
 
-The example below shows an existing configuration, where only one source IP match is configured:
+The example below shows an existing configuration with only one source IP match:
 
 ```
 Seq: 3 rule: 302 Installed: yes Reason: Valid
@@ -486,7 +486,7 @@ cumulus@switch:~$ cat /cumulus/switchd/run/iprule/show | grep 302 -A 1
 You can delete a PBR rule, a next hop group, or a policy. The following commands provide examples.
 
 {{%notice note%}}
-Use caution when deleting PBR rules and next hop groups, as you might create an incorrect configuration for the PBR policy.
+Use caution when deleting PBR rules and next hop groups. Do not create an incorrect configuration for the PBR policy.
 {{%/notice%}}
 
 {{< tabs "TabID451 ">}}
@@ -734,7 +734,7 @@ cumulus@switch:~$ net show pbr map
       Installed: yes Tableid: 10004
 ```
 
-To see information about a specific policy, what it matches, and with which interface it is associated, add the map name at the end of the command; for example, `net show pbr map map1` (or `show pbr map map1` in vtysh).
+To see information about a policy, its matches, and associated interface, add the map name at the end of the command; for example, `net show pbr map map1` (or `show pbr map map1` in vtysh).
 
 To see information about all next hop groups, run the NVUE `nv show router pbr nexthop-group` command or the vtysh `show pbr nexthop-group` command.
 
@@ -757,12 +757,12 @@ Valid: yes nexthop 192.168.8.3
 To see information about a specific next hop group, add the group name at the end of the command; for example, `nv show router pbr nexthop-group group1` (or `show pbr nexthop-group group1` in vtysh).
 
 {{%notice note%}}
-A new Linux routing table ID is used for each next hop and next hop group.
+Each next hop and next hop group uses a new Linux routing table ID.
 {{%/notice%}}
 
 ## Example Configuration
 
-In the following example, the PBR-enabled switch has a PBR policy to route all traffic from the Internet to a server that performs anti-DDOS. The traffic returns to the PBR-enabled switch after being cleaned and is then passed onto the regular destination based routing mechanism.
+In the following example, the PBR-enabled switch has a PBR policy to route all traffic from the Internet to a server that performs anti-DDOS. After cleaning, the traffic returns to the PBR-enabled switch and then passes on to the regular destination-based routing mechanism.
 
 {{< img src = "/images/cumulus-linux/pbr-example.png" >}}
 

@@ -10,12 +10,12 @@ The Docker package installs as part of the installation or ONIE upgrade process.
 
 To run Docker containers on the Cumulus Linux switch:
 
-1. Check if the Docker package is already installed on the switch with the `dpkg-query -l cumulus-docker-setup` command.
+1. Check if the Docker package already exists on the switch with the `dpkg-query -l cumulus-docker-setup` command.
 
 {{< tabs "TabID16 ">}}
-{{< tab "Docker is installed    ">}}
+{{< tab "Docker exists on the switch    ">}}
 
-The following command output shows that the Docker package is installed. Go to the next step to enable the Docker service.
+The following command output shows that the Docker package exists. Go to the next step to enable the Docker service.
 
    ```
    cumulus@switch:mgmt:~$ dpkg-query -l cumulus-docker-setup
@@ -28,9 +28,9 @@ The following command output shows that the Docker package is installed. Go to t
    ```
 
 {{< /tab >}}
-{{< tab "Docker is not installed ">}}
+{{< tab "Docker does not exist on the switch ">}}
 
-The following command output shows that the Docker package is *not* installed:
+The following command output shows that the Docker package does *not* exist on the switch:
 
 ```
 cumulus@switch:mgmt:~$ dpkg-query -l cumulus-docker-setup

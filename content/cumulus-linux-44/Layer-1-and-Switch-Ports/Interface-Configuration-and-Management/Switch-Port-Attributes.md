@@ -766,7 +766,7 @@ Maximum 100G ports: 32
 {{< /tabs >}}
 {{< tab "SN3420">}}
 
-48x SFP28 25G and 12x QSFP28 100G interfaces only support NRZ encoding. All speeds down to 1G are supported.
+48x SFP28 25G and 12x QSFP28 100G interfaces only support NRZ encoding.
 
 All 12x QSFP28 ports can break out into 4x SFP28 or 2x QSFP28.
 
@@ -882,7 +882,7 @@ Maximum 400G ports: 6
 
 {{< tab "SN3700C">}}
 
-32x QSFP28 100G interfaces only support NRZ encoding. All speeds down to 1G are supported.
+32x QSFP28 100G interfaces only support NRZ encoding.
 
 All 32x QSFP28 ports can break out into 4x SFP28 or 2x QSFP28.
 
@@ -927,7 +927,7 @@ Maximum 100G ports: 32
 {{< /tabs >}}
 {{< tab "SN3700">}}
 
-32x QSFP56 200G interfaces support both PAM4 and NRZ encodings. All speeds down to 1G are supported.
+32x QSFP56 200G interfaces support both PAM4 and NRZ encodings.
 
 For lower speed interface configurations, PAM4 is automatically converted to NRZ encoding.
 
@@ -1060,7 +1060,7 @@ Maximum 400G ports: 8
 -->
 {{< tab "SN4600C">}}
 
-64x QSFP28 100G interfaces only support NRZ encoding. All speeds down to 1G are supported.
+64x QSFP28 100G interfaces only support NRZ encoding.
 
 Only 32x QSFP28 ports can break out into 4x SFP28. The adjacent QSFP28 port is disabled. Only the first and third or second and forth rows can break out into 4xSFP28.
 
@@ -1166,7 +1166,7 @@ Maximum 200G ports: 64
 -->
 {{< tab "SN4700">}}
 
-SN4700 32x QSFP-DD 400GbE interfaces support both PAM4 and NRZ encodings. All speeds down to 1G are supported.
+SN4700 32x QSFP-DD 400GbE interfaces support both PAM4 and NRZ encodings.
 
 For lower speed interface configurations, PAM4 is automatically converted to NRZ encoding.
 

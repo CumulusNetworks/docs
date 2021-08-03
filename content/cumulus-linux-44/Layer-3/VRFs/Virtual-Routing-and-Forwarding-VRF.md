@@ -6,17 +6,17 @@ toc: 3
 ---
 Cumulus Linux provides *virtual* *routing and forwarding* (VRF) to allow for the presence of multiple independent routing tables working simultaneously on the same router or switch. This permits multiple network paths without the need for multiple switches. Think of this feature as VLAN for layer 3, but unlike VLANs, there is no field in the IP header carrying it. Other implementations call this feature *VRF-Lite*.
 
-The primary use cases for VRF in a data center are similar to VLANs at layer 2: using common physical infrastructure to carry multiple isolated traffic streams for multi-tenant environments, where these streams are allowed to cross over only at configured boundary points, typically firewalls or IDS. You can also use it to burst traffic from private clouds to enterprise networks where the burst point is at layer 3.
+The primary use cases for VRF in a data center are similar to VLANs at layer 2: using common physical infrastructure to carry multiple isolated traffic streams for multi-tenant environments, where these streams can cross over only at configured boundary points, typically firewalls or IDS. You can also use it to burst traffic from private clouds to enterprise networks where the burst point is at layer 3.
 
 VRF is fully supported in the Linux kernel, so it has the following characteristics:
 
-- The VRF is presented as a layer 3 master network device with its own associated routing table.
-- The layer 3 interfaces (VLAN interfaces, bonds, switch virtual interfaces/SVIs) associated with the VRF are enslaved to that VRF; IP rules direct FIB (forwarding information base) lookups to the routing table for the VRF device.
+- The VRF is a layer 3 master network device with its own associated routing table.
+- The layer 3 interfaces (VLAN interfaces, bonds, switch virtual interfaces/SVIs) associated with the VRF belong to that VRF; IP rules direct FIB (forwarding information base) lookups to the routing table for the VRF device.
 - The VRF device can have its own IP address, known as a *VRF-local loopback*.
-- Applications can use existing interfaces to operate in a VRF context by binding sockets to the VRF device or passing the `ifindex` using `cmsg`. By default, applications on the switch run against the default VRF. Services started by `systemd` run in the default VRF unless the VRF instance is used. When {{<link url="Management-VRF" text="management VRF">}} is enabled, logins to the switch default to the management VRF. This is a convenience so that you do not have to specify management VRF for each command. Management VRF is enabled by default in Cumulus Linux.
-- Listen sockets used by services are VRF-global by default unless the application is configured to use a more limited scope (see {{<link url="Management-VRF#run-services-within-the-management-vrf" text="services in the management VRF">}}). Connected sockets (like TCP) are then bound to the VRF domain in which the connection originates. The kernel provides a sysctl that allows a single instance to accept connections over all VRFs. For TCP, connected sockets are bound to the VRF on which the first packet is received. This sysctl is enabled for Cumulus Linux.
-- Connected and local routes are placed in appropriate VRF tables.
-- Neighbor entries continue to be per-interface, and you can view all entries associated with the VRF device.
+- Applications can use existing interfaces to operate in a VRF context by binding sockets to the VRF device or passing the `ifindex` using `cmsg`. By default, applications on the switch run against the default VRF. Services started by `systemd` run in the default VRF unless you use the VRF instance. When you enable {{<link url="Management-VRF" text="management VRF">}}, logins to the switch default to the management VRF. This is a convenience so that you do not have to specify management VRF for each command. Cumulus Linux enables management VRF by default.
+- Listen sockets that services use are VRF-global by default unless you configure the application to use a more limited scope (see {{<link url="Management-VRF#run-services-within-the-management-vrf" text="services in the management VRF">}}). Cumulus Linux binds connected sockets (like TCP) to the VRF domain in which the connection originates. The kernel provides a `sysctl` that allows a single instance to accept connections over all VRFs. For TCP, Cumulus Linux binds connected sockets to the VRF on which the first packet arrives.
+- Connected and local routes go in appropriate VRF tables.
+- Neighbor entries continue to be per-interface. You can view all entries for a VRF device.
 - A VRF does not map to its own network namespace; however, you can nest VRFs in a network namespace.
 - You can use existing Linux tools, such as `tcpdump`, to interact with a VRF.
 
@@ -26,16 +26,16 @@ Cumulus Linux supports up to 255 VRFs on a switch.
 
 ## Configure VRF
 
-Each routing table is called a *VRF table*, and has its own table ID.
+Cumulus Linux calls each routing table a *VRF table*, which has its own table ID.
 
 To configure VRF, you associate each subset of interfaces to a VRF routing table and configure an instance of the routing protocol (BGP or OSPFv2) for each routing table. Configuring a VRF is similar to configuring other network interfaces. Keep in mind the following:
 
 - A VRF table can have an IP address, which is a loopback interface for the VRF.
-- Associated rules are added automatically.
+- Cumulus Linux adds the associated rules automatically.
 - You can also add a default route to avoid skipping across tables when the kernel forwards the packet.
-- Names for VRF tables can be a maximum of 15 characters. However, you **cannot** use the name *mgmt*, as this name can **only** be used for the {{<link url="Management-VRF" text="management VRF">}}.
+- Names for VRF tables can be a maximum of 15 characters. However, you **cannot** use the name *mgmt*; Cumulus Linux uses this name for the {{<link url="Management-VRF" text="management VRF">}}.
 
-The following example commands configure a VRF called BLUE with a table ID that is automatically assigned.
+The following example commands configure the VRF BLUE and assigns a table ID automatically.
 
 {{< tabs "TabID44 ">}}
 {{< tab "NCLU Commands ">}}
@@ -59,7 +59,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file to add the VRF with a table ID that is automatically assigned:
+Edit the `/etc/network/interfaces` file to add the VRF and assign a table ID automatically:
 
 ```
 ...
@@ -84,7 +84,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 ### Specify a Table ID
 
-Instead of having Cumulus Linux assign a table ID for the VRF table, you can specify your own table ID in the configuration. The table ID to name mapping is saved in `/etc/iproute2/rt_tables.d/` for name-based references. Instead of using the `auto` option as shown above, specify the table ID. For example:
+Instead of having Cumulus Linux assign a table ID for the VRF table, you can specify your own table ID in the configuration. The table ID to name mapping goes in the `/etc/iproute2/rt_tables.d/` file for name-based references. Instead of using the `auto` option as shown above, specify the table ID. For example:
 
 {{< tabs "TabID89 ">}}
 {{< tab "NCLU Commands ">}}
@@ -130,12 +130,12 @@ cumulus@switch:~$ sudo ifreload -a
 {{< /tabs >}}
 
 {{%notice note%}}
-The table ID **must** be in the range of 1001 to 1255, which is reserved in Cumulus Linux for VRF table IDs.
+The table ID **must** be in the range of 1001 to 1255. Cumulus Linux reserves this range for VRF table IDs.
 {{%/notice%}}
 
 ### Bring a VRF Up After You Run ifdown
 
-If you take down a VRF using `ifdown`, you need to run one of the following commands to bring the VRF back up:
+If you take down a VRF using `ifdown`, run one of the following commands to bring the VRF back up:
 
 - `ifup --with-depends <vrf-name>`
 - `ifreload -a`
@@ -161,7 +161,7 @@ VRF              Table
 BLUE            1016
 ```
 
-To show a list of processes and PIDs associated with a specific VRF table, run the `ip vrf pids <vrf-name>` command. For example:
+To show a list of processes and PIDs for a specific VRF table, run the `ip vrf pids <vrf-name>` command. For example:
 
 ```
 cumulus@switch:~$ ip vrf pids BLUE
@@ -176,7 +176,7 @@ bash               2720
 vrf                2829
 ```
 
-To determine which VRF table is associated with a particular PID, run the `ip vrf identify <pid>` command. For example:
+To determine which VRF table associates with a particular PID, run the `ip vrf identify <pid>` command. For example:
 
 ```
 cumulus@switch:~$ ip vrf identify 2829
@@ -185,7 +185,7 @@ BLUE
 
 #### IPv4 and IPv6 Commands in a VRF Context
 
-You can execute non-VRF-specific Linux commands and perform other tasks against a given VRF table. This typically applies to single-use commands started from a login shell, as they affect only AF_INET and AF_INET6 sockets opened by the command that gets executed; it has no impact on netlink sockets, associated with the `ip` command.
+You can execute non-VRF-specific Linux commands and perform other tasks against a given VRF table. This typically applies to single-use commands started from a login shell, as they affect only AF_INET and AF_INET6 sockets opened by the command that executes; it has no impact on netlink sockets, associated with the `ip` command.
 
 To execute such a command against a VRF table, run `ip vrf exec <vrf-name> <command>`. For  example, to SSH from the switch to a device accessible through VRF *BLUE*:
 
@@ -195,13 +195,13 @@ cumulus@switch:~$ sudo ip vrf exec BLUE ssh user@host
 
 ### Services in VRFs
 
-For services that need to run against a specific VRF, Cumulus Linux uses `systemd` instances, where the instance is the VRF. In general, you start a service within a VRF with the `systemctl start <service>@<vrf-name>` command. For example, to run the NTP service in the BLUE VRF:
+For services that need to run against a specific VRF, Cumulus Linux uses `systemd` instances, where the instance is the VRF. You start a service within a VRF with the `systemctl start <service>@<vrf-name>` command. For example, to run the NTP service in the BLUE VRF:
 
 ```
 cumulus@switch:~$ sudo systemctl start ntp@BLUE
 ```
 
-In most cases, the instance running in the default VRF needs to be stopped before a VRF instance can start. This is because the instance running in the default VRF owns the port across all VRFs (it is VRF global). Cumulus Linux stops `systemd`-based services when the VRF is deleted and starts them when the VRF is created (when you restart networking or run an `ifdown`/`ifup` sequence). Refer to {{<link url="Management-VRF" text="management VRF">}} for details.
+In most cases, you need to stop the instance running in the default VRF before a VRF instance can start. This is because the instance running in the default VRF owns the port across all VRFs (it is VRF global). Cumulus Linux stops `systemd`-based services when you restart networking or run an `ifdown`/`ifup` sequence. Refer to {{<link url="Management-VRF" text="management VRF">}} for details.
 
 The following services work with VRF instances:
 
@@ -218,7 +218,7 @@ The following services work with VRF instances:
 - `zabbix-agent`
 
 {{%notice note%}}
-There are cases where `systemd` instances do not work; you must use a service-specific configuration option instead. For example, to configure `rsyslogd` to send messages to remote systems over a VRF:
+If `systemd` instances do not work; use a service-specific configuration option instead. For example, to configure `rsyslogd` to send messages to remote systems over a VRF:
 
 ```
 action(type="omfwd" Target="hostname or ip here" Device="mgmt" Port=514
@@ -230,36 +230,36 @@ Protocol="udp")
 
 The most common use case for VRF is to use multiple independent routing and forwarding tables; however, there are situations where destinations in one VRF must be reachable (leaked) from another VRF. For example, to make a service (such as a firewall) available to multiple VRFs or to enable routing to external networks (or the Internet) for multiple VRFs, where the external network itself is reachable through a specific VRF.
 
-Cumulus Linux supports dynamic VRF route leaking. Static route leaking is not supported.
+Cumulus Linux supports dynamic VRF route leaking (not static route leaking).
 
 {{%notice note%}}
-- An interface is always assigned to only one VRF; any packets received on that interface are routed using the associated VRF routing table.
-- Route leaking is not allowed for overlapping addresses.
-- Route leaking is supported for both IPv4 and IPv6 routes.
-- Route leaking is supported with EVPN in a symmetric routing configuration only.
-- VRF route leaking is not supported between the tenant VRF and the default VRF with onlink next hops (BGP unnumbered).
-- The NCLU command to configure route leaking fails if the VRF is named `red` (lowercase letters only). This is not a problem if the VRF is named `RED` (uppercase letters) or has a name other than red. To work around this issue, rename the VRF or run the vtysh command instead. This is a known limitation in `network-docopt`.
+- You can assign an interface to only one VRF; Cumulus Linux routes any packets arriving on that interface using the associated VRF routing table.
+- You cannot route leak overlapping addresses.
+- VRF route leaking supports both IPv4 and IPv6 routes.
+- You can use VRF route leaking with EVPN in a symmetric routing configuration only.
+- You cannot use VRF route leaking between the tenant VRF and the default VRF with onlink next hops (BGP unnumbered).
+- The NCLU command to configure route leaking fails if you name the VRF `red` (lowercase letters only). This is not a problem if you name the VRF `RED` (uppercase letters) or has a name other than red. To work around this issue, rename the VRF or run the vtysh command instead. This is a known limitation in `network-docopt`.
 {{%/notice%}}
 
 ### Configure Route Leaking
 
-For route leaking, a destination VRF is interested in the routes of a source VRF. As routes come and go in the source VRF, they are dynamically leaked to the destination VRF through BGP. If the routes in the source VRF are learned through BGP, no additional configuration is necessary. If the routes in the source VRF are learned through OSPF, or if they are statically configured or directly connected networks have to be reached, you need to *redistribute* the routes first into BGP (in the source VRF) for them to be leaked.
+With route leaking, a destination VRF interests itself in the routes of a source VRF. As routes come and go in the source VRF, they are dynamically leaked to the destination VRF through BGP. If BGP learns the routes in the source VRF, you do not need to perform any  additional configuration. If OSPF learns the routes in the source VRF, if you configure the routes statically, or need to reach directly connected networks, you need to *redistribute* the routes first into BGP (in the source VRF).
 
-You can also use route leaking to reach remote destinations as well as directly connected destinations in another VRF. Multiple VRFs can import routes from a single source VRF and a VRF can import routes from multiple source VRFs. This is typically used when a single VRF provides connectivity to external networks or a shared service for many other VRFs. The routes that are leaked dynamically across VRFs can be controlled using a route-map.
+You can also use route leaking to reach remote destinations as well as directly connected destinations in another VRF. Multiple VRFs can import routes from a single source VRF and a VRF can import routes from multiple source VRFs. You can use this method when a single VRF provides connectivity to external networks or a shared service for other VRFs. You can control the routes leaked dynamically across VRFs with a route map.
 
-Because route leaking happens through BGP, the underlying mechanism relies on the BGP constructs of the Route Distinguisher (RD) and Route Targets (RTs). However, you do not need to configure these parameters; they are automatically derived when you enable route leaking between a pair of VRFs.
+Because route leaking happens through BGP, the underlying mechanism relies on the BGP constructs of the Route Distinguisher (RD) and Route Targets (RTs). However, you do not need to configure these parameters; Cumulus Linux derives them automatically when you enable route leaking between a pair of VRFs.
 
 When you use route leaking:
 
 - You cannot reach the loopback address of a VRF (the address assigned to the VRF device) from another VRF.
 - When using route leaking, you must use the `redistribute` command in BGP to leak non-BGP routes (connected or static routes); you cannot use the `network` command.
 - Routes in the management VRF with the next hop as eth0 or the management interface are not leaked.
-- Routes learned with iBGP or multi-hop eBGP in a VRF can be leaked even if their next hops become unreachable. Therefore, route leaking for BGP-learned routes is recommended only when they are learned through single-hop eBGP.
+- You can leak routes in a VRF that iBGP or multi-hop eBGP learns even if their next hops become unreachable. NVIDIA recommends route leaking for routes that BGP learns through single-hop eBGP.
 - You cannot configure VRF instances of BGP in multiple autonomous systems (AS) or an AS that is not the same as the global AS.
 - Do not use the default VRF as a shared service VRF. Create another VRF for shared services.
-- An EVPN symmetric routing configuration has certain limitations when leaking routes between the default VRF and non-default VRFs. The default VRF has underlay routes (routes to VTEP addresses) that cannot be leaked to any tenant VRFs. If you need to leak routes between the default VRF and a non-default VRF, you must filter out routes to the VTEP addresses to prevent leaking these routes. Use caution with such a configuration. Run common services in a separate VRF (service VRF) instead of the default VRF to simplify configuration and avoid using route-maps for filtering.
+- An EVPN symmetric routing configuration has certain limitations when leaking routes between the default VRF and non-default VRFs. The default VRF has underlay routes (routes to VTEP addresses) that you cannot leak to any tenant VRFs. If you need to leak routes between the default VRF and a non-default VRF, you must filter out routes to the VTEP addresses to prevent leaking these routes. Use caution with such a configuration. Run common services in a separate VRF (service VRF) instead of the default VRF to simplify configuration and avoid using route maps for filtering.
 
-In the following example commands, routes in the BGP routing table of VRF `BLUE` are dynamically leaked into VRF `RED`.
+In the following example commands, routes in the BGP routing table of VRF `BLUE` dynamically leak into VRF `RED`.
 
 {{< tabs "TabID266 ">}}
 {{< tab "NVUE Commands ">}}
@@ -321,9 +321,9 @@ router bgp 65001 vrf RED
 
 ### Exclude Certain Prefixes
 
-You can exclude certain prefixes from being imported. The prefixes must be configured in a route map.
+You can exclude certain prefixes from the import process. You must configure the prefixes in a route map.
 
-The following example configures a route map to match the source protocol BGP and imports the routes from VRF BLUE to VRF RED. For the imported routes, the community is set to 11:11 in VRF RED.
+The following example configures a route map to match the source protocol BGP and imports the routes from VRF BLUE to VRF RED. For the imported routes, the community is 11:11 in VRF RED.
 
 {{< tabs "TabID313 ">}}
 {{< tab "NCLU Commands ">}}
@@ -392,7 +392,7 @@ Export RT: 10.1.1.1:2
 ```
 
 - To view the BGP routing table, run the NCLU `net show bgp vrf <vrf-name> ipv4|ipv6 unicast` command or the vtysh `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast` command.
-- To view the FRRouting IP routing table, use the NCLU `net show route vrf <vrf-name>` command or the vtysh `show ip route vrf <vrf-name>` command. These commands show all routes, including routes leaked from other VRFs.
+- To view the FRRouting IP routing table, run the NCLU `net show route vrf <vrf-name>` command or the vtysh `show ip route vrf <vrf-name>` command. These commands show all routes, including routes leaked from other VRFs.
 
 The following example commands show all routes in VRF `RED`, including routes leaked from VRF `BLUE`:
 
@@ -418,7 +418,7 @@ B>* 10.20.2.0/30 [200/0] is directly connected, swp1.21(vrf rocket), 6d05h10m
 
 ### Delete Route Leaking Configuration
 
-To remove route leaking configuration, run the following commands. These commands ensure that all leaked routes are removed and routes are no longer leaked from the specified source VRF.
+To remove route leaking configuration, run the following commands.
 
 The following example commands delete leaked routes from VRF `BLUE` to VRF `RED`:
 
@@ -459,18 +459,18 @@ cumulus@switch:~$
 {{< /tabs >}}
 
 {{%notice note%}}
-Do not use the kernel commands; they are no longer supported and might cause issues when used with VRF route leaking in FRR.
+Cumulus Linux no longer supports kernel commands. To avoid issues with VRF route leaking in FRR, do not use the kernel commands.
 {{%/notice%}}
 
 ## FRRouting Operation in a VRF
 
-In Cumulus Linux, {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}, {{<link url="Open-Shortest-Path-First-v2-OSPFv2" text="OSPFv2">}} and {{<link url="Static-Routing" text="static routing">}} (IPv4 and IPv6) are supported within a VRF context. Various FRRouting routing constructs, such as routing tables, next hops, router-id, and related processing are also VRF-aware.
+Cumulus Linux supports {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}, {{<link url="Open-Shortest-Path-First-v2-OSPFv2" text="OSPFv2">}} and {{<link url="Static-Routing" text="static routing">}} (IPv4 and IPv6) within a VRF context. Various FRRouting routing constructs, such as routing tables, nexthops, router-id, and related processing are also VRF-aware.
 
-{{<link url="FRRouting" text="FRRouting">}} learns of VRFs provisioned on the system as well as interface attachment to a VRF through notifications from the kernel.
+{{<link url="FRRouting" text="FRRouting">}} learns of VRFs on the system as well as interface attachment to a VRF through notifications from the kernel.
 
-You can assign switch ports to each VRF table with an interface-level configuration, and BGP instances can be assigned to the table with a BGP router-level command.
+You can assign switch ports to each VRF table with an interface-level configuration and you can assign BGP instances to the table with a BGP router-level command.
 
-Because BGP is VRF-aware, per-VRF neighbors, both iBGP and eBGP, as well as numbered and unnumbered interfaces are supported. Non-interface-based VRF neighbors are bound to the VRF, which is how you can have overlapping address spaces in different VRFs. Each VRF can have its own parameters, such as address families and redistribution. Incoming connections rely on the Linux kernel for VRF-global sockets. BGP neighbors can be tracked using {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}}, both for single and multiple hops. You can configure multiple BGP instances, associating each with a VRF.
+Because BGP is VRF-aware, Cumulus Linux supports per-VRF neighbors, both iBGP and eBGP, as well as numbered and unnumbered interfaces. Non-interface-based VRF neighbors bind to the VRF, so you can have overlapping address spaces in different VRFs. Each VRF can have its own parameters, such as address families and redistribution. Incoming connections rely on the Linux kernel for VRF-global sockets. You can track BGP neighbors with {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}}, both for single and multiple hops. You can configure multiple BGP instances, associating each with a VRF.
 
 A VRF-aware OSPFv2 configuration also supports numbered and unnumbered interfaces. Supported layer 3 interfaces include SVIs, subinterfaces and physical interfaces. The VRF supports types 1 through 5 (ABR/ASBR - external LSAs) and types 9 through 11 (opaque LSAs) link state advertisements, redistributing other routing protocols, connected and static routes, and route maps. As with BGP, you can track OSPF neighbors with {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}}.
 
@@ -478,12 +478,12 @@ A VRF-aware OSPFv2 configuration also supports numbered and unnumbered interface
 Cumulus Linux does not support multiple VRFs in multi-instance OSPF.
 {{%/notice%}}
 
-VRFs are provisioned using NCLU. VRFs can be pre-provisioned in FRRouting too, but they become active only when configured with NCLU.
+You provision VRFs with NCLU. You can pre-provision VRFs in FRRouting, however, they become active only when you configure them with NCLU.
 
-- You pre-provision a VRF in FRRouting by running the command `vrf vrf-name`.
-- You can pre-provision a BGP instance corresponding to a VRF with the  NCLU `net add bgp vrf <vrf-name> autonomous-system <value>` command. Under this context, all existing BGP parameters can be configured: neighbors, peer-groups, address-family configuration, redistribution, and so on.
-- An OSPFv2 instance can be configured using the NCLU `net add ospf vrf <vrf-name>` command; as with BGP, you can configure all OSPFv2 parameters.
-- You can provision static routes (IPv4 and IPv6) in a VRF by specifying the VRF along with the static route configuration. For example, `ip route prefix dev vrf <vrf-name>`. The VRF has to exist for this configuration to be accepted - either already defined through `/etc/network/interfaces` or pre-provisioned in FRRouting.
+- To pre-provision a VRF in FRRouting, run the `vrf vrf-name` command.
+- To pre-provision a BGP instance corresponding to a VRF, run the NCLU `net add bgp vrf <vrf-name> autonomous-system <value>` command. You can also configure all existing BGP parameters with NCLU: neighbors, peer-groups, address-family configuration, redistribution, and so on.
+- To configure an OSPFv2 instance, run the NCLU `net add ospf vrf <vrf-name>` command; as with BGP, you can configure all OSPFv2 parameters.
+- To provision static routes (IPv4 and IPv6) in a VRF, specify the VRF together with the static route configuration. For example, `ip route prefix dev vrf <vrf-name>`. The VRF must exist either in the `/etc/network/interfaces` file or you must first pre-provision the  in FRRouting.
 
 ### Example VRF Configuration in BGP
 
@@ -712,9 +712,9 @@ router ospf vrf vrf1
 
 ## BGP Unnumbered Interfaces with VRF
 
-{{<link url="Border-Gateway-Protocol-BGP#bgp-unnumbered" text="BGP unnumbered interface configurations">}} are supported with VRF. In BGP unnumbered, there are no addresses on any interface. However, debugging tools like `traceroute` need at least a single IP address per node as the node's source IP address. Typically, this address is assigned to the loopback device. With VRF, you need a loopback device for each VRF table because VRF is based on interfaces, not IP addresses. While Linux does not support multiple loopback devices, it does support the concept of a dummy interface, which is used to achieve the same goal.
+You can use {{<link url="Border-Gateway-Protocol-BGP#bgp-unnumbered" text="BGP unnumbered interface configurations">}} with VRFs. In BGP unnumbered, there are no addresses on any interface. However, debugging tools like `traceroute` need at least a single IP address per node as the node's source IP address. Typically, this address is the loopback device. With VRF, you need a loopback device for each VRF table because VRF uses interfaces, not IP addresses. While Linux does not support multiple loopback devices, it does support the concept of a dummy interface, which achieves the same goal.
 
-An IP address can be associated with the VRF device, which then acts as the dummy (loopback-like) interface for that VRF.
+You can associate an IP address with the VRF device, which then acts as the dummy (loopback-like) interface for that VRF.
 
 The BGP unnumbered configuration is the same as for a non-VRF, applied under the VRF context.
 
@@ -909,7 +909,7 @@ router bgp 65001 vrf vrf1
 
 ## DHCP with VRF
 
-Because you can use VRF to bind IPv4 and IPv6 sockets to non-default VRF tables, you can start DHCP servers and relays in any non-default VRF table using the `dhcpd` and `dhcrelay` services. These services must be managed by `systemd` to run in a VRF context. In addition, the services must be listed in the `/etc/vrf/systemd.conf` file. By default, this file already lists these two services, as well as others like `ntp`. You can add more services as needed, such as `dhcpd6` and `dhcrelay6` for IPv6.
+Because you can use VRF to bind IPv4 and IPv6 sockets to non-default VRF tables, you can start DHCP servers and relays in any non-default VRF table using the `dhcpd` and `dhcrelay` services. `systemd` must manage these services and the `/etc/vrf/systemd.conf` file must list the services. By default, this file already lists these two services, as well as others like `ntp`. You can add more services as needed, such as `dhcpd6` and `dhcrelay6` for IPv6.
 
 If you edit `/etc/vrf/systemd.conf`, run `sudo systemctl daemon-reload` to generate the `systemd` instance files for the newly added services. Then you can start the service in the VRF using `systemctl start <service>@<vrf-name>.service`, where `<service>` is the name of the service (such as `dhcpd` or `dhcrelay`) and `<vrf-name>` is the name of the VRF.
 
@@ -925,7 +925,7 @@ To enable the service at boot time, you must also enable the service:
 cumulus@switch:~$ sudo systemctl enable dhcrelay@turtle.service
 ```
 
-In addition, you need to create a separate default file in `/etc/default` for every instance of a DHCP server and/or relay in a non-default VRF; this is where you set the server and relay options. To run multiple instances of any of these services, you need a separate file for each instance. The files must be named as follows:
+In addition, you need to create a separate default file in the `/etc/default` directory for every instance of a DHCP server or relay in a non-default VRF. To run multiple instances of any of these services, you need a separate file for each instance. The files must have the following names:
 
 - `isc-dhcp-server-<vrf-name>`
 - `isc-dhcp-server6-<vrf-name>`
@@ -936,7 +936,7 @@ See the example configuration below for more details.
 
 {{%notice note%}}
 - Cumulus Linux does **not** support DHCP server and relay across VRFs; the server and host cannot be in different VRF tables. In addition, the server and relay cannot be in different VRF tables.
-- Typically, a service running in the default VRF owns a port across all VRFs. If the VRF local instance is preferred, first disable and stop the global instance.
+- Typically, a service running in the default VRF owns a port across all VRFs. If you prefer the VRF local instance, first disable and stop the global instance.
 - VRF is a layer 3 routing feature; only run programs that use AF\_INET and AF\_INET6 sockets in a VRF. VRF context does not affect any other aspects of the operation of a program.
 - This method only works with `systemd`-based services.
 {{%/notice%}}
@@ -1339,7 +1339,7 @@ vrf vrf1013 id 21 table 1013
 vrf vrf1014 id 28 table 1014
 ```
 
-To show the VRFs configured in BGP (including the default VRF), run the `show bgp vrfs` command. A non-zero ID is a VRF that has also been provisioned (defined in the `/etc/network/interfaces` file).
+To show the VRFs configured in BGP (including the default VRF), run the `show bgp vrfs` command. A non-zero ID is a VRF that you define in the `/etc/network/interfaces` file.
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1412,7 +1412,7 @@ N    8.0.0.0/24            [10] area: 0.0.0.0
 ============ OSPF external routing table ===========
 ```
 
-To see the routing table for each VRF, use the `show ip route vrf all` command. The OSPF route is denoted in the row that starts with O.
+To see the routing table for each VRF, use the `show ip route vrf all` command. The OSPF route is in the row that starts with O.
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1592,8 +1592,8 @@ You can also show routes in a VRF using the `ip [-6] route show vrf <vrf-name>` 
 
 ## Considerations
 
-- Table selection is based on the incoming interface only; currently, packet attributes or output-interface-based selection are not available.
-- Setting the router ID outside of BGP using the `router-id` option causes all BGP instances to get the same router ID. If you want each BGP instance to have its own router ID, specify the `router-id` under the BGP instance using `bgp router-id`. If both are specified, the one under the BGP instance overrides the one provided outside BGP.
+- Cumulus Linux bases table selection on the incoming interface only; packet attributes or output-interface-based selection are not available.
+- Setting the router ID outside of BGP using the `router-id` option causes all BGP instances to get the same router ID. If you want each BGP instance to have its own router ID, specify the `router-id` under the BGP instance using `bgp router-id`. If you specify both `router-id` and `bgp router-id`, the ID under the BGP instance overrides the one you provide outside BGP.
 - You cannot configure {{<link url="Basic-Configuration/#enable-evpn-between-bgp-neighbors" text="EVPN address families">}} within a VRF.
 - When you take down a VRF using `ifdown`, Cumulus Linux removes all routes associated with that VRF from FRR but it does *not* remove the routes from the kernel.
-- The NCLU command to remove a BGP neighbor (`net del bgp neighbor <interface> remote-as <asn>`) does not remove the BGP neighbor statement in the `/etc/network/interfaces` file when the BGP unnumbered interface belongs to a VRF. However, if the interface belongs to the default VRF, the BGP neighbor statement is removed.
+- The NCLU command to remove a BGP neighbor (`net del bgp neighbor <interface> remote-as <asn>`) does not remove the BGP neighbor statement in the `/etc/network/interfaces` file when the BGP unnumbered interface belongs to a VRF. However, if the interface belongs to the default VRF, the NCLU command removes the BGP neighbor statement.

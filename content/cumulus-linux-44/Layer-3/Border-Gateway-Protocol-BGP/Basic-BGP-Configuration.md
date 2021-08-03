@@ -7,7 +7,7 @@ toc: 3
 This section describes how to configure BGP using either BGP numbered or {{<link title="Border Gateway Protocol - BGP#bgp-unnumbered" text="BGP unnumbered">}}. With BGP *unnumbered*, you can set up BGP peering between your Cumulus Linux switches and exchange IPv4 prefixes without having to configure an IPv4 address on each switch.
 
 {{%notice note%}}
-BGP *unnumbered* simplifies configuration and is recommended for data center deployments.
+BGP *unnumbered* simplifies configuration. NVIDIA recommends you use BGP unnumbered for data center deployments.
 {{%/notice%}}
 
 ## BGP Numbered
@@ -54,7 +54,7 @@ To configure BGP numbered on a BGP node, you need to:
     cumulus@leaf01:~$ net add bgp neighbor 10.0.1.0 remote-as external
     ```
 
-    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
+    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. Cumulus Linux enables the IPv4 address family by default; you do not need to run the `activate` command for IPv4 route exchange.
 
     ```
     cumulus@leaf01:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 remote-as external
@@ -128,7 +128,7 @@ router bgp 65101
     cumulus@spine01:~$ net add bgp neighbor 10.0.1.1 remote-as external
     ```
 
-    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
+    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. Cumulus Linux enables the IPv4 address family by default; you do not need to run the `activate` command for IPv4 route exchange.
 
     ```
     cumulus@spine01:~$ net add bgp neighbor 2001:db8:0002::0a00:1 remote-as external
@@ -205,7 +205,7 @@ router bgp 65199
     cumulus@leaf01:~$ nv set vrf default router bgp peer 10.0.1.0 remote-as external
     ```
 
-    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
+    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. Cumulus Linux enables the IPv4 address family by default; you do not need to run the `activate` command for IPv4 route exchange.
 
     ```
     cumulus@leaf01:~$ nv set vrf default router bgp peer 2001:db8:0002::0a00:0002 remote-as external
@@ -287,7 +287,7 @@ router:
     cumulus@spine01:~$ nv set vrf default router bgp peer 10.0.1.0 remote-as external
     ```
 
-    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
+    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. Cumulus Linux enables the IPv4 address family by default; you do not need to run the `activate` command for IPv4 route exchange.
 
     ```
     cumulus@spine01:~$ nv set vrf default router bgp peer 2001:db8:0002::0a00:1 remote-as external
@@ -363,7 +363,7 @@ vrf:
    leaf01(config-router)# neighbor 10.0.1.0 remote-as external
    ```
 
-   For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
+   For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. Cumulus Linux enables the IPv4 address family by default; you do not need to run the `activate` command for IPv4 route exchange.
 
    ```
    leaf01(config-router)# neighbor 2001:db8:0002::0a00:1 remote-as external
@@ -416,7 +416,7 @@ vrf:
     spine01(config-router)# neighbor 10.0.1.1 remote-as external
     ```
 
-   For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
+   For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. Cumulus Linux enables the IPv4 address family by default; you do not need to run the `activate` command for IPv4 route exchange.
 
    ```
    spine01(config-router)# neighbor 2001:db8:0002::0a00:0002 remote-as external
@@ -477,7 +477,7 @@ router bgp 65199
 
 The following example commands show a basic {{<link title="Border Gateway Protocol - BGP#bgp-unnumbered" text="BGP unnumbered">}} configuration for two switches, leaf01 and spine01, which are eBGP peers.
 
-The only difference between a BGP unnumbered configuration and the BGP numbered configuration shown above is that the BGP neighbor is specified as an interface (instead of an IP address). The interface between the two peers does **not** need to have an IP address configured on each side.
+The only difference between a BGP unnumbered configuration and the BGP numbered configuration shown above is that the BGP neighbor is as an interface (instead of an IP address). You do not need to configure an IP address on the interface between the two peers on each side.
 
 {{< tabs "463 ">}}
 {{< tab "NCLU Commands ">}}
@@ -495,7 +495,7 @@ cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
-For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
+For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. Cumulus Linux enables the IPv4 address family by default; you do not need to run the `activate` command for IPv4 route exchange.
 
 ```
 cumulus@leaf01:~$ net add bgp autonomous-system 65101
@@ -519,7 +519,7 @@ cumulus@spine01:~$ net pending
 cumulus@spine01:~$ net commit
 ```
 
-For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
+For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. Cumulus Linux enables the IPv4 address family by default; you do not need to run the `activate` command for IPv4 route exchange.
 
 ```
 cumulus@spine01:~$ net add bgp autonomous-system 65199
@@ -565,7 +565,7 @@ cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast stat
 cumulus@leaf01:~$ nv config apply
 ```
 
-For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `enable` command is not required for IPv4 route exchange.
+For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. Cumulus Linux enables the IPv4 address family by default; you do not need to run the `activate` command for IPv4 route exchange.
 
 ```
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
@@ -614,7 +614,7 @@ cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast sta
 cumulus@spine01:~$ nv config apply
 ```
 
-For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `enable` command is not required for IPv4 route exchange.
+For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. Cumulus Linux enables the IPv4 address family by default; you do not need to run the `activate` command for IPv4 route exchange.
 
 ```
 cumulus@spine01:~$ nv set router bgp autonomous-system 65199
@@ -675,7 +675,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
+For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. Cumulus Linux enables the IPv4 address family by default; you do not need to run the `activate` command for IPv4 route exchange.
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -726,7 +726,7 @@ spine01# exit
 cumulus@spine01:~$
 ```
 
-For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
+For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. Cumulus Linux enables the IPv4 address family by default; you do not need to run the `activate` command for IPv4 route exchange.
 
 ```
 cumulus@spine01:~$ sudo vtysh

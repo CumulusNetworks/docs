@@ -8,7 +8,7 @@ Linux bonding provides a method for aggregating multiple network interfaces (*sl
 
 Cumulus Linux supports two bonding modes:
 
-- IEEE 802.3ad link aggregation mode that allows one or more links to be aggregated together to form a *link aggregation group* (LAG) so that a media access control (MAC) client can treat the group as if it were a single link. IEEE 802.3ad link aggregation is the default mode.
+- IEEE 802.3ad link aggregation mode that allows you to combine one or more links to form a *link aggregation group* (LAG) so that a media access control (MAC) client can treat the group as a single link. IEEE 802.3ad link aggregation is the default mode.
 - Balance-xor mode, where the bonding of slave interfaces are static and all slave interfaces are active for load balancing and fault tolerance purposes. This is useful for {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} deployments.
 
 Cumulus Linux uses version 1 of the LAG control protocol (LACP).
@@ -17,20 +17,20 @@ To temporarily bring up a bond even when there is no LACP partner, use {{<link t
 
 ## Hash Distribution
 
-Egress traffic through a bond is distributed to a slave based on a packet hash calculation, providing load balancing over the slaves; many conversation flows are distributed over all available slaves to load balance the total traffic. Traffic for a single conversation flow always hashes to the same slave.
+The switch distributes egress traffic through a bond to a slave based on a packet hash calculation, providing load balancing over the slaves; the switch distributes conversation flows over all available slaves to load balance the total traffic. Traffic for a single conversation flow always hashes to the same slave.
 
 The hash calculation uses packet header data to choose to which slave to transmit the packet:
 
-- For IP traffic, IP header source and destination fields are used in the calculation.
-- For IP + TCP/UDP traffic, source and destination ports are included in the hash calculation.
+- For IP traffic, the switch uses IP header source and destination fields in the calculation.
+- For IP + TCP/UDP traffic, the switch  includes source and destination ports in the hash calculation.
 
 {{%notice note%}}
-In a failover event, the hash calculation is adjusted to steer traffic over available slaves.
+In a failover event, the switch adjusts the hash calculation to steer traffic over available slaves.
 {{%/notice%}}
 
 ### LAG Custom Hashing
 
-You can configure which fields are used in the LAG hash calculation. For example, if you do not want to use source or destination port numbers in the hash calculation, you can disable the source port and destination port fields.
+You can configure the fields you want to use in the LAG hash calculation. For example, if you do not want to use source or destination port numbers in the hash calculation, you can disable the source port and destination port fields.
 
 You can configure the following fields:  
 
@@ -75,10 +75,10 @@ lag_hash_config.ip_prot = true
 ```
 
 {{%notice note%}}
-Symmetric hashing is enabled by default. Make sure that the settings for the source IP (`lag_hash_config.sip`) and destination IP (`lag_hash_config.dip`) fields match, and that the settings for  the source port (`lag_hash_config.sport`) and destination port (`lag_hash_config.dport`) fields match; otherwise symmetric hashing is disabled automatically. You can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
+Cumulus Linux enables symmetric hashing by default. Make sure that the settings for the source IP (`lag_hash_config.sip`) and destination IP (`lag_hash_config.dip`) fields match, and that the settings for the source port (`lag_hash_config.sport`) and destination port (`lag_hash_config.dport`) fields match; otherwise symmetric hashing disables automatically. You can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
 {{%/notice%}}
 
-You can set a unique hash seed for each switch to help avoid hash polarization. See {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP#configure-a-hash-seed-to-avoid-hash-polarization" text="Configure a Hash Seed to Avoid Hash Polarization">}}.
+You can set a unique hash seed for each switch to avoid hash polarization. See {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP#configure-a-hash-seed-to-avoid-hash-polarization" text="Configure a Hash Seed to Avoid Hash Polarization">}}.
 
 ## Create a Bond
 
@@ -127,13 +127,13 @@ cumulus@switch:~$ ifreload -a
 {{< /tabs >}}
 
 {{%notice note%}}
-- The bond is configured by default in IEEE 802.3ad link aggregation mode. To configure the bond in balance-xor mode, see {{<link url="#configure-bond-options" text="Configuration Parameters">}} below.
+- By default, the bond uses IEEE 802.3ad link aggregation mode. To configure the bond in balance-xor mode, see {{<link url="#configure-bond-options" text="Configuration Parameters">}} below.
 - If the bond is *not* going to be part of a bridge, you must specify an IP address.
-- The name of the bond must be compliant with Linux interface naming conventions and unique within the switch.
-- Cumulus Linux does not currently support bond members at 200G or greater.
+- Make sure the name of the bond adheres to Linux interface naming conventions and is unique within the switch.
+- Cumulus Linux does not support bond members at 200G or greater.
 {{%/notice%}}
 
-When networking is started on the switch, bond0 is created as MASTER and interfaces swp1 thru swp4 come up in SLAVE mode, as seen in the `ip link show` command:
+When you start networking, the switch creates bond0 as MASTER and interfaces swp1 thru swp4 come up in SLAVE mode:
 
 ```
 cumulus@switch:~$ ip link show
@@ -154,7 +154,7 @@ cumulus@switch:~$ ip link show
 ```
 
 {{%notice note%}}
-All slave interfaces within a bond have the same MAC address as the bond. Typically, the first slave added to the bond donates its MAC address as the bond MAC address, whereas the MAC addresses of the other slaves are set to the bond MAC address. The bond MAC address is used as the source MAC address for all traffic leaving the bond and provides a single destination MAC address to address traffic to the bond.
+All slave interfaces within a bond have the same MAC address as the bond. Typically, the first slave you add to the bond donates its MAC address as the bond MAC address, whereas the MAC addresses of the other slaves are the bond MAC address. The bond MAC address is the source MAC address for all traffic leaving the bond and provides a single destination MAC address to address traffic to the bond.
 {{%/notice%}}
 
 ## Configure Bond Options
@@ -203,17 +203,17 @@ cumulus@switch:~$ ifreload -a
 {{< /tabs >}}
 
 {{%notice note%}}
-Each bond configuration option, except for `bond slaves,` is set to the recommended value by default in Cumulus Linux. Only configure an option if a different setting is needed. For more information on configuration values, refer to the {{<link url="#related-information" text="Related Information">}}  section below.
+Each bond configuration option, except for `bond slaves,` has the recommended value by default in Cumulus Linux. Only configure an option if you need a different setting. For more information on configuration values, refer to the {{<link url="#related-information" text="Related Information">}}  section below.
 {{%/notice%}}
 
 | Parameter |  Description|
 |---------- | ---------- |
-| `bond-mode 802.3ad`<br><br>`bond-mode balance-xor` | Cumulus Linux supports IEEE 802.3ad link aggregation mode (802.3ad) and balance-xor mode.<br>The default mode is 802.3ad.<br><br>**Note:** When you enable balance-xor mode, the bonding of slave interfaces are static and all slave interfaces are active for load balancing and fault tolerance purposes. Packet transmission on the bond is based on the hash policy specified by xmit-hash-policy.<br><br>When using balance-xor mode to dual-connect host-facing bonds in an MLAG environment, you must configure the clag-id parameter on the MLAG bonds and it must be the same on both MLAG switches. Otherwise, the bonds are treated by the MLAG switch pair as single-connected.<br><br>Use balance-xor mode only if you cannot use LACP; LACP can detect mismatched link attributes between bond members and can even detect misconnections. <br><br>NCLU command: `net add bond <bond-name> bond mode balance-xor` <br>NVUE command: `nv set interface <bond-name> bond mode static` |
-| `bond miimon <value>` | Defines how often the link state of each slave is inspected for failures. You can specify a value between 0 and 255. The default value is 100. |
+| `bond-mode 802.3ad`<br><br>`bond-mode balance-xor` | Cumulus Linux supports IEEE 802.3ad link aggregation mode (802.3ad) and balance-xor mode.<br>The default mode is 802.3ad.<br><br>**Note:** When you enable balance-xor mode, the bonding of slave interfaces are static and all slave interfaces are active for load balancing and fault tolerance. The switch bases packet transmission on the bond on the hash policy in xmit-hash-policy.<br><br>When you use balance-xor mode to dual-connect host-facing bonds in an MLAG environment, you must configure the `clag-id` parameter with the same value on both MLAG switches. Otherwise, the MLAG switch pair treats the bonds as single-connected.<br><br>Use balance-xor mode only if you cannot use LACP; LACP can detect mismatched link attributes between bond members and can even detect misconnections. <br><br>NCLU command: `net add bond <bond-name> bond mode balance-xor` <br>NVUE command: `nv set interface <bond-name> bond mode static` |
+| `bond miimon <value>` | Defines how often to inspect the link state of each slave for failures. You can specify a value between 0 and 255. The default value is 100. |
 | `bond-use-carrier no` | Determines the link state. |
 | `bond-lacp-bypass-allow`| Enables LACP bypass.<br><br>NCLU command: `net add bond <bond-name> bond lacp-bypass-allow` <br>NVUE command: `nv set interface <bond-name> bond lacp-bypass on` |
-| `bond-lacp-rate slow` | Sets the rate to ask the link partner to transmit LACP control packets. slow is the only option. |
-| `bond-min-links` | Defines the minimum number of links (between 0 and 255) that must be active before the bond is put into service. The default value is 1.<br><br>A value greater than 1 is useful if higher level services need to ensure a minimum aggregate bandwidth level before activating a bond. Keeping bond-min-links set to 1 indicates the bond must have at least one active member. If the number of active members drops below the bond-min-links setting, the bond appears to upper-level protocols as link-down. When the number of active links returns to greater than or equal to bond-min-links, the bond becomes link-up. |
+| `bond-lacp-rate slow` | Sets the rate to ask the link partner to transmit LACP control packets. `slow` is the only option. |
+| `bond-min-links` | Defines the minimum number of links (between 0 and 255) that must be active before the bond goes into service. The default value is 1.<br><br>Use a value greater than 1 if you need higher level services to ensure a minimum aggregate bandwidth level before activating a bond. Keeping the `bond-min-links` value at 1 indicates the bond must have at least one active member. If the number of active members drops below the `bond-min-links` setting, the bond appears to upper-level protocols as link-down. When the number of active links returns to greater than or equal to `bond-min-links`, the bond becomes link-up. |
 
 ## Show Bond Information
 

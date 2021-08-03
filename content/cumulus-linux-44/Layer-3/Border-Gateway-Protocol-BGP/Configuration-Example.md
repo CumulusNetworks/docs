@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 880
 toc: 3
 ---
-This section shows a BGP configuration example based on the reference topology. The example configures BGP *unnumbered* on all leafs and spines. MLAG is configured on leaf01 and leaf02, and on leaf03 and leaf04.
+This section shows a BGP configuration example based on the reference topology. The example configures BGP *unnumbered* on all leafs and spines, and MLAG on leaf01 and leaf02, and on leaf03 and leaf04.
 
 {{< img src = "/images/cumulus-linux/mlag-config-peering.png" >}}
 

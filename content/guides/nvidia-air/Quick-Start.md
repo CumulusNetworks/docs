@@ -67,35 +67,39 @@ The advanced view has 4 different panes:
 
 1. **Guided Tour**: A detailed description of the simulation, complete with step-by-step instructions on running the demo infrastructure.
 2. **Console**: The console connection to the simulation.
-3. **Nodes**: The list of the nodes in the topology.
-4. **Services**: Optional services you can add, such as SSH.
+3. **Nodes**: The list of the nodes in the topology. The list shows the status, number of CPUs and amount of memory for each node. You can take the following actions for each node:
+   - **Rebuild**: To restore the node to its default configuration.
+   - **Reset**: To issue a hard reset to the node.
+   - **View Console**: To connect to the node via a console.
+4. **Services**: Optional services you can add, such as SSH. See {{<link url="#services" text="Services">}} below.
 
-#### Services 
+#### Services
 
-The services pane provides the option for creating an external connection into the simulation. Example use cases for this include:
+The Services pane provides the ability to create an external connection into the simulation. Example use cases for this include:
 
-* Accessing the simulation environment using your local preferred SSH client
-* Running Grafana on the `oob-mgmt-server` and accessing the Grafana GUI externally
-* Setting up SNMP polling from your local laptop into the simulation environment
+- Accessing the simulation environment using your local preferred SSH client.
+- Running Grafana on the oob-mgmt-server and accessing the Grafana GUI externally.
+- Setting up SNMP polling from your local laptop into the simulation environment.
 
-To set up a service click the `+ Add Service` button.
+To set up a service click the **+ Add Service** button.
 
 {{<img src="/images/guides/nvidia-air/ServicesPanel.png" width="400px">}}
 
-The following popup will present giving four options:
+The Create Service dialog appears:
 
 {{<img src="/images/guides/nvidia-air/ServicesCreate.png" width="400px">}}
 
-* **Service Name:** The name of the service. This can be any free form text field.
-* **Interface:** The interface inside the simulation environment that will terminate the connection. This is most commonly the `eth0` interface of the `oob-mgmt-server`.
-* **Service Type:** If the field is SSH, HTTP or HTTPS, a hyper link to the URL will automatically be created in the Services panel. If set to Other, any port can be selected, but no hyperlink will be created. The hyperlink has no functional difference other than providing users a quick way to copy and paste the service.
-* **Service Port:** This is the internal port where the service will terminate.
+1. In the **Service Name** field, enter the name of the service. This is a free form text field.
+1. In the **Interface** dropdown, select the name of the interface in the simulation where the connection is to terminate. This is most commonly the eth0 interface on the oob-mgmt-server.
+1. In the **Service Type** dropdown, select the type of service you are creating. If you select *SSH*, *HTTP* or *HTTPS*, a hyperlink to the URL is automatically created in the Services panel. If you select *Other*, you can select any port, but no hyperlink is created. The hyperlink has no functional difference other than providing users a quick way to copy and paste the service.
+1. In the **Service Port** field, specify the internal port where the service is to terminate.
+1. Click **Submit** to create the service.
 
-After selecting this and submitting, the service will be created. In the below example, a service was created for TCP port 1022. The external port would be 24886, so connecting to this service would require connecting to worker06.air.nvidia.com on TCP port 24886, which would forward and redirect to the oob-mgmt-server on TCP port 1022.
+In the example below, a service was created for TCP port 1022. The external port is 24886, so connecting to this service requires connecting to worker06.air.nvidia.com on TCP port 24886, which would forward and redirect to the oob-mgmt-server on TCP port 1022.
 
 {{<img src="/images/guides/nvidia-air/ServicesCreated.png" width="400px">}}
 
-The `Enable SSH` button auto populates the `Services` panel with an SSH session. It is a short cut to enable inbound SSH to the `oob-mgmt-server` so that the user can leverage their local preferred SSH client. Be aware, that SSH password authentication is disabled on the `oob-mgmt-server` by default. So to use this functionality upload SSH keys to your user profile. More information about uploading SSH keys to the user profile is in the section labelled `User Settings`.
+The **Enable SSH** button automatically populates the Services panel with an SSH session. It is a short cut to enable inbound SSH to the oob-mgmt-server so that you can leverage your preferred local SSH client. Note that SSH password authentication is disabled on the oob-mgmt-server by default, so you must upload SSH keys to your user profile so you can use this feature. More information about uploading SSH keys to the user profile is in {{<link url="#user-settings" text="User Settings">}} below.
 
 ## Manage a Simulation
 
@@ -109,10 +113,10 @@ From the Air landing page, you can manage simulations. There are three options f
 
 ## User Settings
 
-In the top right there is a gear icon which opens up user options.
+In the top right of the Air window next to the **Logout** link, a gear icon for specifying user settings.
 
-{{<img src="/images/guides/nvidia-air/UserSettingsGear.png" width="200px">}}
+{{<img src="/images/guides/nvidia-air/UserSettingsGear.png" width="100px">}}
 
-Clicking the gear will open up `User Settings` where SSH keys can be uploaded. These SSH keys are automatically uploaded to the `oob-mgmt-server` when a simulation is created as to allow password-less authentication when SSH is enabled.
+Clicking the gear loads the User Settings page, where you can upload your public SSH key. These SSH keys are automatically uploaded to the oob-mgmt-server. Creating a simulation and enabling SSH allows for passwordless authentication.
 
 {{<img src="/images/guides/nvidia-air/UserSSHKeys.png" width="800px">}}

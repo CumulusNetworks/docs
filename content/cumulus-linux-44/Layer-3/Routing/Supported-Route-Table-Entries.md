@@ -56,7 +56,7 @@ The IPv6 number corresponds to the /64 IPv6 prefix. The /128 IPv6 prefix number 
 <!-- vale on -->
 ## Forwarding Resource Profiles
 
-You can configure forwarding resource allocation, which is shared between IP multicast forwarding entries and ACL tables. Choose the profile that best suits your network architecture.
+You can configure forwarding resource allocation. Choose the profile that best suits your network architecture.
 <!-- vale off -->
 ### Spectrum-2 and Spectrum-3
 <!-- vale on -->

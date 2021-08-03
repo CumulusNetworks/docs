@@ -138,7 +138,7 @@ BGP Connect Retry Timer in Seconds: 10
 Read thread: on  Write thread: on  FD used: 30
 ```
 
-To see details of a specific route, such as from where it is received and where it is sent, run the NCLU `net show bgp <route>` command or the vtysh `show ip bgp <route>` command.
+To see details of a specific route, such as its source and destination, run the NCLU `net show bgp <route>` command or the vtysh `show ip bgp <route>` command.
 
 ```
 cumulus@switch:~$ net show bgp 10.10.10.3/32
@@ -174,9 +174,9 @@ Paths: (5 available, best #5, table default)
 
 ## Troubleshoot BGP Unnumbered
 
-To verify that FRR learned the neighboring link-local IPv6 address through the IPv6 neighbor discovery router advertisements on a given interface, run the NCLU `net show interface <interface>` command or the vtysh `show interface <interface>` command.
+To verify that FRR learns the neighboring link-local IPv6 address through the IPv6 neighbor discovery router advertisements on a given interface, run the NCLU `net show interface <interface>` command or the vtysh `show interface <interface>` command.
 
-If `ipv6 nd suppress-ra` is not enabled on both ends of the interface, `Neighbor address(s):` has the other end's link-local address (the address that BGP uses when BGP is enabled on that interface).
+If you do not enable `ipv6 nd suppress-ra` on both ends of the interface, `Neighbor address(s):` shows the link-local address of the other end (the address that BGP uses when that interface uses BGP).
 
 {{%notice note%}}
 
@@ -237,7 +237,7 @@ Routing
 
 To show IPv4 prefixes learned with IPv6 next hops, run the following commands.
 
-The following examples show an IPv4 prefix learned from a BGP peer over an IPv6 session using IPv6 global addresses, but where the next hop installed by BGP is a link-local IPv6 address. This occurs when the session is directly between peers and both link-local and global IPv6 addresses are included as next hops in the BGP update for the prefix. If both global and link-local next hops exist, BGP prefers the link-local address for route installation.
+The following examples show an IPv4 prefix learned from a BGP peer over an IPv6 session using IPv6 global addresses, but where the next hop installed by BGP is a link-local IPv6 address. This occurs when the session is directly between peers, and the BGP update for the prefix includes both link-local and global IPv6 addresses as next hops. If both global and link-local next hops exist, BGP prefers the link-local address for route installation.
 
 ```
 cumulus@spine01:mgmt:~$ net show bgp ipv4 unicast summary
@@ -281,7 +281,7 @@ Paths: (1 available, best #1, table default)
       Last update: Mon Oct 22 08:09:22 2018
 ```
 
-The example output below shows the results of installing the route in the FRR RIB as well as the kernel FIB. Note that the next hop used for installation in the FRR RIB is the link-local IPv6 address, but then it is converted into an IPv4 link-local address as required for installation into the kernel FIB.
+The example output below shows the results of installing the route in the FRR RIB as well as the kernel FIB. The next hop installed in the FRR RIB is the link-local IPv6 address, which Cumulus Linux converts into an IPv4 link-local address, as required for installation into the kernel FIB.
 
 ```
 cumulus@spine01:~$ net show route 10.10.10.101/32
@@ -297,7 +297,7 @@ FIB entry for 10.10.10.101/32
 10.10.10.101/32 via 10.0.1.0 dev swp1 proto bgp metric 20 onlink
 ```
 
-If an IPv4 prefix is learned with only an IPv6 global next hop address (for example, when the route is learned through a route reflector), the command output shows the IPv6 global address as the next hop value and shows that it is learned recursively through the link-local address of the route reflector. When a global IPv6 address is used as a next hop for route installation in the FRR RIB, it is still converted into an IPv4 link-local address for installation into the kernel.
+If BGP learns an IPv4 prefix with only an IPv6 global next hop address (for example, when it learns the route through a route reflector), the command output shows the IPv6 global address as the next hop value and shows that it learns recursively through the link-local address of the route reflector. When you use a global IPv6 address as a next hop for route installation in the FRR RIB, the switch still converts it into an IPv4 link-local address for installation into the kernel.
 
 ```
 cumulus@leaf01:~$ net show bgp ipv4 unicast summary
@@ -353,7 +353,7 @@ FIB entry for 10.10.10.1/32
 10.10.10.1/32 via 10.0.1.1 dev swp1 proto bgp metric 20 onlink
 ```
 
-To have only IPv6 global addresses used for route installation into the FRR RIB, you must add an additional route map to the neighbor or peer group statement in the appropriate address family. When the route map command `set ipv6 next-hop prefer-global` is applied to a neighbor, if both a link-local and global IPv6 address are in the BGP update for a prefix, the IPv6 global address is preferred for route installation.
+To only use IPv6 global addresses for route installation into the FRR RIB, you must add an additional route map to the neighbor or peer group statement in the appropriate address family. When the route map command `set ipv6 next-hop prefer-global` applies to a neighbor, if both a link-local and global IPv6 address are in the BGP update for a prefix, BGP uses the IPv6 global address for route installation.
 
 With this additional configuration, the output in the FRR RIB changes in the direct neighbor case as shown below:
 
@@ -390,7 +390,7 @@ B>* 172.16.4.0/24 [200/0] via 2001:2:2::4, swp2, 00:01:00ß
 C>* 172.16.10.0/24 is directly connected, swp3, 5d18h32m
 ```
 
-When the route is learned through a route reflector, it appears like this:
+When the switch learns the route through a route reflector, it appears like this:
 
 ```
 router bgp 65101

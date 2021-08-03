@@ -276,7 +276,7 @@ cumulus@leaf01:~$ sudo systemctl restart rdnbrd.service
 
 ### Set the Routing Table ID
 
-The Linux kernel supports multiple routing tables and can use 0 through 255 table IDs; however tables 0, 253, 254 and 255 are reserved, and 1 is the first one used. Therefore, `rdnbrd` only allows you to specify between 2 and 252. Cumulus Linux uses table ID 10, however you can set the ID to any value between 2 and 252. You can see all the tables specified here:
+The Linux kernel supports multiple routing tables and can use 0 through 255 table IDs; however it reserves tables 0, 253, 254 and 255, and uses 1 first. Therefore, `rdnbrd` only allows you to specify between 2 and 252. Cumulus Linux uses table ID 10, however you can set the ID to any value between 2 and 252. You can see all the tables specified here:
 
 ```
 cumulus@leaf01:~$ cat /etc/iproute2/rt_tables

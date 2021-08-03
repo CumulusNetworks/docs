@@ -85,7 +85,7 @@ When you use BGP multipath, if multiple paths are equal, BGP still selects a sin
 
 Historically, peers connect over IPv4 and TCP port 179, and after they establish a session, they exchange prefixes. When a BGP peer advertises an IPv4 prefix, it must include an IPv4 next hop address, which is the address of the advertising router. This requires each BGP peer to have an IPv4 address, which in a large network can consume a lot of address space and can require a separate IP address for each peer-facing interface.
 
-The BGP unnumbered standard in {{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549">}}, uses *extended next hop encoding* (ENHE) and does not require that you advertise an IPv4 prefix together with an IPv4 next hop. You can configure BGP peering between your Cumulus Linux switches and exchange IPv4 prefixes without having to configure an IPv4 address on each switch; the interfaces that BGP uses are unnumbered.
+The BGP unnumbered standard in {{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549">}}, uses *extended next hop encoding* (ENHE) and does not require that you advertise an IPv4 prefix together with an IPv4 next hop. You can configure BGP peering between your Cumulus Linux switches and exchange IPv4 prefixes without having to configure an IPv4 address on each switch; BGP uses unnumbered interfaces.
 
 The next hop address for each prefix is an IPv6 link-local address, which BGP assigns automatically to each interface. Using the IPv6 link-local address as a next hop instead of an IPv4 unicast address, BGP unnumbered saves you from having to configure IPv4 addresses on each interface.
 

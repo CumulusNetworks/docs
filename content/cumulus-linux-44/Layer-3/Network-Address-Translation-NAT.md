@@ -145,10 +145,10 @@ cumulus@switch:~$ net del nat static snat tcp 10.0.0.1 translate 172.30.58.80
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
-
+<!-- vale off -->
 {{< /tab >}}
 {{< tab "cl-acltool Commands ">}}
-
+<!-- vale on -->
 To add NAT rules using `cl-acltool`, either edit an existing file in the `/etc/cumulus/acl/policy.d` directory and add rules under `[iptables]` or create a new file in the `/etc/cumulus/acl/policy.d` directory and add rules under an `[iptables]` section. For example:
 
 ```
@@ -317,10 +317,10 @@ cumulus@switch:~$ net del nat dynamic snat tcp source-ip 10.0.0.0/24 translate 1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
-
+<!-- vale off -->
 {{< /tab >}}
 {{< tab "cl-acltool Commands ">}}
-
+<!-- vale on -->
 To add NAT rules using `cl-acltool`, either edit an existing file in the `/etc/cumulus/acl/policy.d` directory and add rules under `[iptables]` or create a new file in the `/etc/cumulus/acl/policy.d` directory and add rules under an `[iptables]` section. For example:
 
 ```

@@ -4,22 +4,23 @@ author: NVIDIA
 weight: 970
 toc: 3
 ---
+<!-- vale off -->
 {{%notice warning%}}
 GRE Tunneling is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}).
 {{%/notice%}}
+<!-- vale on -->
+Generic Routing Encapsulation (GRE) is a tunneling protocol that encapsulates network layer protocols inside virtual point-to-point links over an Internet Protocol network. The tunnel source and tunnel destination addresses identify the two endpoints at each endpoint.
 
-Generic Routing Encapsulation (GRE) is a tunneling protocol that encapsulates network layer protocols inside virtual point-to-point links over an Internet Protocol network. The two endpoints are identified by the tunnel source and tunnel destination addresses at each endpoint.
-
-GRE packets travel directly between the two endpoints through a virtual tunnel. As a packet comes across other routers, there is no interaction with its payload; the routers only parse the outer IP packet. When the packet reaches the endpoint of the GRE tunnel, the outer packet is de-encapsulated, the payload is parsed, then forwarded to its ultimate destination.
+GRE packets travel directly between the two endpoints through a virtual tunnel. As a packet comes across other routers, there is no interaction with its payload; the routers only parse the outer IP packet. When the packet reaches the endpoint of the GRE tunnel, the router de-encapsulates the outer packet, parses the payload, then forwards it to its ultimate destination.
 
 GRE uses multiple protocols over a single-protocol backbone and is less demanding than some of the alternative solutions, such as VPN. You can use GRE to transport protocols that the underlying network does not support, work around networks with limited hops, connect non-contiguous subnets, and allow VPNs across wide area networks.
 
 {{%notice note%}}
-- Only static routes are supported as a destination for the tunnel interface.
-- IPv6 endpoints are not supported.
+- Cumulus Linux supports only static routes as a destination for the tunnel interface.
+- GRE Tunneling does not support IPv6 endpoints.
 {{%/notice%}}
 
-The following example shows two sites that use IPv4 addresses. Using GRE tunneling, the two end points can encapsulate an IPv4 or IPv6 payload inside an IPv4 packet. The packet is routed based on the destination in the outer IPv4 header.
+The following example shows two sites that use IPv4 addresses. Using GRE tunneling, the two end points can encapsulate an IPv4 or IPv6 payload inside an IPv4 packet. The switch routes the packet according to the destination in the outer IPv4 header.
 
 {{< img src = "/images/cumulus-linux/gre-tunnel-example.png" >}}
 
@@ -127,7 +128,7 @@ cumulus@switch:~$ sudo ip tunnel del Tunnel-R2 mode gre remote 10.0.0.2 local 10
 {{%notice note%}}
 You can delete a GRE tunnel directly from the `/etc/network/interfaces` file instead of using the `ip tunnel del` command. Make sure you run the `ifreload - a` command after you update the interfaces file.
 
-This action is disruptive as the tunnel is removed, then recreated with the new settings.
+This action is disruptive.
 {{%/notice%}}
 
 ## Change GRE Tunnel Settings

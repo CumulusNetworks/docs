@@ -184,7 +184,7 @@ If you are using 4x10G DAC or AOC cables, or you want to break out 100G or 40G s
 
 ## Test Cable Connectivity
 
-By default, all data plane ports (every Ethernet port except the management interface, eth0) are disabled. To test cable connectivity, administratively enable physical ports.
+By default, Cumulus Linux disables all data plane ports (every Ethernet port except the management interface, eth0). To test cable connectivity, administratively enable physical ports.
 
 {{< tabs "TabID260 ">}}
 {{< tab "NCLU Commands ">}}

@@ -6,27 +6,27 @@ toc: 3
 ---
 Network Address Translation (NAT) enables your network to use one set of IP addresses for internal traffic and a second set of addresses for external traffic.
 
-NAT was designed to overcome addressing problems due to the explosive growth of the Internet. In addition to preventing the depletion of IPv4 addresses, NAT enables you to use the private address space internally and still have a way to access the Internet.
+NAT overcomes addressing problems due to the explosive growth of the Internet. In addition to preventing the depletion of IPv4 addresses, NAT enables you to use the private address space internally and still have a way to access the Internet.
 
-Cumulus Linux supports both static NAT and dynamic NAT. Static NAT provides a permanent mapping between one private IP address and a single public address. Dynamic NAT maps private IP addresses to public addresses; these public IP addresses come from a pool. The translations are created as needed  dynamically, so that a large number of private addresses can share a smaller pool of public addresses.
+Cumulus Linux supports both static NAT and dynamic NAT. Static NAT provides a permanent mapping between one private IP address and a single public address. Dynamic NAT maps private IP addresses to public addresses; these public IP addresses come from a pool. Cumulus Linux creates the translations as needed dynamically, so that a large number of private addresses can share a smaller pool of public addresses.
 
 Static and dynamic NAT both support:
 
 - Basic NAT, which only translates the IP address in the packet: the source IP address in the outbound direction and the destination IP address in the inbound direction.
 - Port Address Translation (PAT), which translates both the IP address and layer 4 port: the source IP address and port in the outbound direction and the destination IP address and port in the inbound direction.
 
-Static NAT supports double NAT (also known as twice NAT) where both the source and destination IP addresses are translated as a packet crosses address realms. Double NAT is used typically when address space in a private network overlaps with IP addresses in the public space.
+Static NAT supports double NAT (also known as twice NAT) where the switch translates both the source and destination IP addresses as a packet crosses address realms. You use double NAT when the address space in a private network overlaps with IP addresses in the public space.
 
 The following illustration shows a basic NAT configuration.
 
 {{< img src = "/images/cumulus-linux/nat-example.png" >}}
 
 {{%notice note%}}
-- NAT is supported on NVIDIA Spectrum-2 and Spectrum-3 switches only.
-- NAT is supported on physical interfaces and bond interfaces and only in the default VRF.
-- IPv6 to IPv4 translation is not supported.
-- Multicast traffic is not supported.
-- NAT is *not* supported in an EVPN configuration.
+- NVIDIA Spectrum-2 and Spectrum-3 switches only support NAT.
+- You can configure NAT on physical interfaces and bond interfaces and only in the default VRF.
+- You cannot translate IPv6 rules to IPv4 rules.
+- NAT does not support multicast traffic.
+- You cannot use NAT in an EVPN configuration.
 {{%/notice%}}
 
 ## Static NAT
@@ -49,9 +49,9 @@ nat.static_enable = TRUE
 ```
 
 Then restart `switchd`.
-
+<!-- vale off -->
 {{<cl/restart-switchd>}}
-
+<!-- vale on -->
 {{%notice note%}}
 Other options in the NAT configuration section of the `switchd.conf` file, such as `nat.age_poll_interval` and `nat.table_size` are dynamic NAT configuration options and are not supported with static NAT.
 {{%/notice%}}
@@ -87,7 +87,7 @@ Where:
 
 - `snat` is the source NAT
 - `dnat` is the destination NAT
-- `protocol` is TCP, ICMP, or UDP. The protocol is required.
+- `protocol` is TCP, ICMP, or UDP. You must specify a protocol.
 - `out-interface` is the outbound interface for `snat` (NVIDIA Spectrum-2 switches only)
 - `in-interface` is the inbound interface for `dnat` (NVIDIA Spectrum-2 switches only)
 
@@ -145,10 +145,10 @@ cumulus@switch:~$ net del nat static snat tcp 10.0.0.1 translate 172.30.58.80
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
-
+<!-- vale off -->
 {{< /tab >}}
 {{< tab "cl-acltool Commands ">}}
-
+<!-- vale on -->
 To add NAT rules using `cl-acltool`, either edit an existing file in the `/etc/cumulus/acl/policy.d` directory and add rules under `[iptables]` or create a new file in the `/etc/cumulus/acl/policy.d` directory and add rules under an `[iptables]` section. For example:
 
 ```
@@ -202,7 +202,7 @@ To delete a static NAT rule, remove the rule from the policy file in the  `/etc/
 
 ## Dynamic NAT
 
-Dynamic NAT maps private IP addresses and ports to a public IP address and port range or a public IP address range and port range. IP addresses are assigned from a pool of addresses dynamically. When entries are released after a period of inactivity, new incoming connections are dynamically mapped to the freed up addresses and ports.
+Dynamic NAT maps private IP addresses and ports to a public IP address and port range or a public IP address range and port range. Cumulus Linux assigns IP addresses from a pool of addresses dynamically. When the switch releases entries after a period of inactivity, it maps new incoming connections dynamically to the freed up addresses and ports.
 
 ### Enable Dynamic NAT
 
@@ -218,23 +218,23 @@ nat.dynamic_enable = TRUE
 ```
 
 Then restart `switchd`.
-
+<!-- vale off -->
 {{<cl/restart-switchd>}}
-
+<!-- vale on -->
 #### Optional Dynamic NAT Settings
 
-The `/etc/cumulus/switchd.conf` file includes the following configuration options for dynamic NAT. Only change these options if dynamic NAT is enabled.
+The `/etc/cumulus/switchd.conf` file includes the following configuration options for dynamic NAT. Only change these options if you enable dynamic NAT.
 <!-- vale off -->
 | Option | Description |
 | ------ | ----------- |
 | nat.age_poll_interval | The period of inactivity before `switchd` releases a NAT entry from the translation table.<br>The default value is 5 minutes. The minimum value is 1 minute. The maximum value is 24 hours.|
 | nat.table_size | The maximum number of dynamic `snat` and `dnat` entries in the translation table. The default value is 1024.<br>NVIDIA Spectrum-2 switches support a maximum of 8192 entries. |
 | nat.config_table_size | The maximum number of rules allowed (NCLU or cl-acltool).<br>The default value is 64. The minimum value is 64. The maximum value is 1024. |
-<!-- vale on --> 
+<!-- vale on -->
 After you change any of the dynamic NAT configuration options, restart `switchd`.
-
+<!-- vale off -->
 {{<cl/restart-switchd>}}
-
+<!-- vale on -->
 ### Configure Dynamic NAT
 
 For dynamic **NAT**, create a rule that matches a IP address in CIDR notation and translates the address to a public IP address or IP address range.
@@ -264,7 +264,7 @@ Where:
 
 - `snat` is the source NAT
 - `dnat` is the destination NAT
-- `protocol` is TCP, ICMP, or UDP. The protocol is required.
+- `protocol` is TCP, ICMP, or UDP. You must specify a protocol.
 - `out-interface` is the outbound interface for `snat` (NVIDIA Spectrum-2 switches only)
 - `in-interface` is the inbound interface for `dnat` (NVIDIA Spectrum-2 switches only)
 
@@ -302,7 +302,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-The following rule matches ICMP packets with source IP address in the range 10.0.0.0/24 and destination IP address in the range 10.1.0.0/24, and translates the address dynamically to IP address range 172.30.58.0-172.30.58.80 with layer 4 ports in the range 1024-1200:
+The following rule matches ICMP packets with source IP address in the range 10.0.0.0/24 and destination IP address in the range 10.1.0.0/24. The rule translates the address dynamically to IP address range 172.30.58.0-172.30.58.80 with layer 4 ports in the range 1024-1200:
 
 ```
 cumulus@switch:~$ net add nat dynamic snat icmp source-ip 10.0.0.0/24 destination-ip 10.1.0.0/24 translate 172.30.58.0-172.30.58.80 1024-1200
@@ -317,10 +317,10 @@ cumulus@switch:~$ net del nat dynamic snat tcp source-ip 10.0.0.0/24 translate 1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
-
+<!-- vale off -->
 {{< /tab >}}
 {{< tab "cl-acltool Commands ">}}
-
+<!-- vale on -->
 To add NAT rules using `cl-acltool`, either edit an existing file in the `/etc/cumulus/acl/policy.d` directory and add rules under `[iptables]` or create a new file in the `/etc/cumulus/acl/policy.d` directory and add rules under an `[iptables]` section. For example:
 
 ```
@@ -356,7 +356,7 @@ The following rule matches TCP packets with destination IP address in the range 
 -t nat -A PREROUTING -d 10.1.0.0/24 -p tcp -j DNAT --to-destination 172.30.58.0-172.30.58.80:1024-1200
 ```
 
-The following rule matches ICMP packets with source IP address in the range 10.0.0.0/24 and destination IP address in the range 10.1.0.0/24, and translates the address dynamically to IP address range 172.30.58.0-172.30.58.80 with layer 4 ports in the range 1024-1200:
+The following rule matches ICMP packets with source IP address in the range 10.0.0.0/24 and destination IP address in the range 10.1.0.0/24. The rule translates the address dynamically to IP address range 172.30.58.0-172.30.58.80 with layer 4 ports in the range 1024-1200:
 
 ```
 -t nat -A POSTROUTING -s 10.0.0.0/24 -d 10.1.0.0/24 -p icmp -j SNAT --to-source 172.30.58.0-172.30.58.80:1024-1200
@@ -382,7 +382,7 @@ Chain POSTROUTING (policy ACCEPT 27 packets, 3249 bytes)
 
 ## Show Conntrack Flows
 
-To see the currently active connection tracking (conntrack) flows, run the `sudo cat /proc/net/nf_conntrack` command. The hardware offloaded flows contain `[OFFLOAD]` in the output.
+To see the active connection tracking (conntrack) flows, run the `sudo cat /proc/net/nf_conntrack` command. The hardware offloaded flows contain `[OFFLOAD]` in the output.
 
 ```
 cumulus@switch:~$ sudo cat /proc/net/nf_conntrack

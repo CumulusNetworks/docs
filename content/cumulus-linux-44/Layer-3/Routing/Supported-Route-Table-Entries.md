@@ -23,7 +23,7 @@ Cumulus Linux provides several generalized profiles, described below. These prof
 The following tables list the number of MAC addresses, layer 3 neighbors, and LPM routes validated for each forwarding table profile. If you do not specify any profiles as described below, the switch uses the *default* values.
 
 {{%notice note%}}
-The values in the following tables reflect results from testing, which might differ from published manufacturer specifications.
+The values in the following tables reflect results from testing, which can differ from published manufacturer specifications.
 {{%/notice%}}
 <!-- vale off -->
 ### Spectrum-2 and Spectrum-3
@@ -56,7 +56,7 @@ The IPv6 number corresponds to the /64 IPv6 prefix. The /128 IPv6 prefix number 
 <!-- vale on -->
 ## Forwarding Resource Profiles
 
-You can configure forwarding resource allocation, which is shared between IP multicast forwarding entries and ACL tables. Choose the profile that best suits your network architecture.
+You can configure forwarding resource allocation. Choose the profile that best suits your network architecture.
 <!-- vale off -->
 ### Spectrum-2 and Spectrum-3
 <!-- vale on -->
@@ -110,7 +110,7 @@ tcam_resource.profile = ipmc-max
 
 After you specify a different profile, {{%link url="Configuring-switchd#restart-switchd" text="restart `switchd`"%}} for the change to take effect.
 
-When {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-atomic-update-mode" text="nonatomic updates">}} are enabled (`acl.non_atomic_update_mode` is set to `TRUE` in the `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL entries for each profile are:
+When you enable {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-atomic-update-mode" text="nonatomic updates">}} (`acl.non_atomic_update_mode` is `TRUE` in the `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL entries for each profile are:
 
 | Profile    | Mroute Entries | ACL Entries                |
 | ---------- | -------------- | -------------------------- |
@@ -119,7 +119,7 @@ When {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-atomic-update-mode" t
 | acl-heavy  | 450            | 2000 (IPv6) or 3500 (IPv4) |
 | ipmc-max   | 13000          | 1000 (IPv6) or 2000 (IPv4) |
 
-When {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-atomic-update-mode" text="nonatomic updates">}} are disabled (`acl.non_atomic_update_mode` is set to `FALSE` in the `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL entries for each profile are:
+When you disable {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-atomic-update-mode" text="nonatomic updates">}} (`acl.non_atomic_update_mode` is `FALSE` in the `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL entries for each profile are:
 
 | Profile    | Mroute Entries | ACL Entries                |
 | ---------- | -------------- | -------------------------- |

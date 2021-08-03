@@ -1051,7 +1051,11 @@ cumulus@leaf01:~$ nv config apply
 {{< /tabs >}}
 
 ## Suppress Route Advertisement
-
+<!-- vale off -->
+{{%notice note%}}
+Suppress Route Advertisement is an early access feature.
+{{%/notice%}}
+<!-- vale on -->
 You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers.
 
 {{< tabs "TabID788 ">}}
@@ -2269,9 +2273,9 @@ Total number of neighbors 1
 The NCLU `net show bgp summary json` and the vtysh `show ip bgp summary json` command show the last convergence event.
 
 ## BGP Community Lists
-
+<!-- vale off -->
 You can use *{{<exlink url="http://docs.frrouting.org/en/latest/bgp.html#community-lists" text="community lists">}}* to define a BGP community to tag one or more routes. You can then use the communities to apply a route policy on either egress or ingress.
-
+<!-- vale on -->
 The BGP community list can be either *standard* or *expanded*. The standard BGP community list is a pair of values (such as *100:100*) that you can tag on a specific prefix and advertise to other neighbors or you can apply them on route ingress. Or, the standard BGP community list can be one of four BGP default communities:
 
 - *internet*: a BGP community that matches all routes

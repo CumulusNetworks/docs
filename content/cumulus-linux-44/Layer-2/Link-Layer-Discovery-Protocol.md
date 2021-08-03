@@ -6,7 +6,7 @@ toc: 3
 ---
 The `lldpd` daemon implements the IEEE802.1AB Link Layer Discovery Protocol  (LLDP) standard. LLDP shows which ports are neighbors of a given port.
 
-By default, `lldpd` runs as a daemon and starts at system boot. `lldpd` command line arguments are in the `/etc/default/lldpd` file. All `lldpd` configuration options are saved in the `/etc/lldpd.conf` file or under `/etc/lldpd.d/`.
+By default, `lldpd` runs as a daemon and starts at system boot. `lldpd` command line arguments are in the `/etc/default/lldpd` file. Cumulus Linux saves all `lldpd` configuration options in the `/etc/lldpd.conf` file or under `/etc/lldpd.d/`.
 
 `lldpd` supports CDP (Cisco Discovery Protocol, v1 and v2) and logs by default into `/var/log/daemon.log` with an `lldpd` prefix.
 
@@ -61,7 +61,7 @@ DAEMON_ARGS="-c -I *,!swp43"
 {{< expand "Runtime Configuration (Advanced) "  >}}
 
 {{%notice warning%}}
-A runtime configuration does not persist when you reboot the switch; all changes are lost.
+A runtime configuration does not persist when you reboot the switch; you lose all changes.
 {{%/notice%}}
 
 To configure active interfaces:

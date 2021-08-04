@@ -19,7 +19,7 @@ You must disable ARP/ND suppression on VXLAN bridges when using QinQ.
 
 ## Single Tag Translation
 
-Single tag translation adheres to the traditional QinQ service model. The customer-facing interface is a QinQ access port with the outer S-tag being the PVID, representing the customer. The S-tag is translated to a VXLAN VNI. The inner C-tag, which represents the service, is transparent to the provider. The public cloud handoff interface is a QinQ trunk where packets on the wire carry both the S-tag and the C-tag.
+Single tag translation adheres to the traditional QinQ service model. The customer-facing interface is a QinQ access port with the outer S-tag being the PVID, representing the customer. Cumulus Linux translates the S-tag to a VXLAN VNI. The inner C-tag, which represents the service, is transparent to the provider. The public cloud handoff interface is a QinQ trunk where packets on the wire carry both the S-tag and the C-tag.
 
 An example configuration in VLAN-aware bridge mode looks like this:
 
@@ -111,8 +111,8 @@ cumulus@switch:~$ ifreload -a
 For the switch facing the customer:
 
 - Configure the bridge with `vlan_protocol` set to *802.1ad*.
-- The customer interface is the QinQ access port, the PVID is the S-tag (customer) and is mapped to a VNI.
-- The service VLAN tags (C-tags) are preserved during VXLAN encapsulation.
+- The customer interface is the QinQ access port, the PVID is the S-tag (customer) and maps to a VNI.
+- The service VLAN tags (C-tags) do not change during VXLAN encapsulation.
 
 To configure the customer-facing switch:
 
@@ -220,7 +220,7 @@ cumulus@switch:~$ sudo ip -d link show bridge
 
 ### Example Configuration
 
-An example configuration for single tag translation in traditional bridge mode on a leaf switch is shown below.
+This example shows a configuration for single tag translation in traditional bridge mode on a leaf.
 
 {{< expand "Example /etc/network/interfaces File" >}}
 
@@ -250,16 +250,18 @@ The double tag is always a cloud connection. The customer-facing edge is either 
 The configuration in Cumulus Linux uses the outer tag for the customer and the inner tag for the service.
 
 {{%notice note%}}
-Double tag translation:
-- Is supported on Spectrum-2 and Spectrum-3 switches in a VXLAN configuration on native interfaces only (bonds are not supported).
-- Is supported with bridges in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} only.
-- Is supported with 802.1Q bridge mode only.
-- Is *not* supported with MLAG.
-- Uses ACL resources internally, which can increase ACL resource utilization. To see the number of ACL entries used, run the `sudo cat /cumulus/switchd/run/acl_info/iacl_resource` command.
-- Uses internal VLANs for each traditional-mode bridge, which has a default range of 275. To change the range, edit the `/etc/cumulus/switchd.conf` file to uncomment the `#resv_vlan_range = 3725-3999` line and specify the range you want to use.
+You can use double tag translation:
+- On Spectrum-2 and Spectrum-3 switches in a VXLAN configuration on native interfaces only. You cannot configure double tag translation on bonds.
+- With bridges in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} only.
+- With 802.1Q bridge mode.
+- *Without* MLAG.
+
+Double tag translation uses:
+- ACL resources internally, which can increase ACL resource utilization. To see the number of ACL entries used, run the `sudo cat /cumulus/switchd/run/acl_info/iacl_resource` command.
+- Internal VLANs for each traditional-mode bridge, which has a default range of 275. To change the range, edit the `/etc/cumulus/switchd.conf` file to uncomment the `#resv_vlan_range = 3725-3999` line and specify the range you want to use.
 {{%/notice%}}
 
-You configure a double-tagged interface by stacking the VLANs as `<port>.<outer tag>.<inner tag>`. For example, swp1.100.10, where the outer tag is VLAN 100, which represents the customer, and the inner tag is VLAN 10, which represents the service.
+To configure a double-tagged interface, stack the VLANs as `<port>.<outer tag>.<inner tag>`. For example, swp1.100.10, where the outer tag is VLAN 100, which represents the customer, and the inner tag is VLAN 10, which represents the service.
 
 An example configuration:
 
@@ -283,7 +285,7 @@ cumulus@switch:~$ net add bridge custA-10-azr ports swp3.100.10,vni1000
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-NVUE commands are not supported.
+NVUE does not support double tag translation.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -325,9 +327,7 @@ custB-20-azr    8000.00020000004b       yes             swp3.200.20
 
 ## Considerations
 
-The Linux kernel limits interface names to 15 characters in length. For QinQ interfaces, you can reach this limit easily.
-
-To work around this issue, create two VLANs as nested VLAN raw devices, one for the outer tag and one for the inner tag. For example, you cannot create an interface called swp50s0.1001.101 because it contains 16 characters. Instead, edit the `/etc/network/interfaces` file to create VLANs with IDs 1001 and 101. For example:
+The Linux kernel limits interface names to 15 characters in length, which can be a problem for QinQ interfaces. To work around this issue, create two VLANs as nested VLAN raw devices, one for the outer tag and one for the inner tag. For example, you cannot create an interface called swp50s0.1001.101 because it contains 16 characters. Instead, edit the `/etc/network/interfaces` file to create VLANs with IDs 1001 and 101:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces

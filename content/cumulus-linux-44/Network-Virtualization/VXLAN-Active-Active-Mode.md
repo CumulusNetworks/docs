@@ -15,15 +15,15 @@ toc: 3
 | ToR | The top of rack switch; also referred to as a leaf or access switch. |
 | spine | The aggregation switch for multiple leafs. Specifically used when a data center is using a {{<exlink url="https://en.wikipedia.org/wiki/Clos_network" text="Clos network architecture">}}. Read more about spine-leaf architecture in this {{<exlink url="https://resource.nvidia.com/en-us-scalability/building-scalable-data-center-networks?xs=257738" text="white paper">}}. |
 | exit leaf | A switch dedicated to peering the Clos network to an outside network; also referred to as a border leaf, service leaf, or edge leaf. |
-| anycast | An IP address that is advertised from multiple locations. Anycast enables multiple devices to share the same IP address and effectively load balance traffic across them. With VXLAN, anycast is used to share a VTEP IP address between a pair of MLAG switches. |
-| VXLAN routing | The industry standard term for the ability to route in and out of a VXLAN. |
+| anycast | An IP address that advertises from multiple locations. Anycast enables multiple devices to share the same IP address and load balance traffic across them. With VXLAN, anycast shares a VTEP IP address between a pair of MLAG switches. |
+| VXLAN routing | The industry standard term for routing in and out of a VXLAN. |
 <!-- vale off -->
 ## Configure VXLAN Active-active Mode
 <!-- vale on -->
 VXLAN active-active mode requires the following underlying technologies to work correctly.
 - MLAG. Refer to {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} for more detailed configuration information.
 - OSPF or BGP. Refer to {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} for more detailed configuration information. 
-- STP. You must enable {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-filter" text="BPDU filter">}} and {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-guard" text="BPDU guard">}} in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN.
+- STP. You must enable {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-filter" text="BPDU filter">}} and {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-guard" text="BPDU guard">}} in the VXLAN interfaces if the bridge that connects to the VXLAN has STP.
 <!-- vale off -->
 ### Active-active VTEP Anycast IP Behavior
 <!-- vale on -->
@@ -43,17 +43,17 @@ For the anycast address to activate, you must configure a VXLAN interface on eac
 | --------------------------------- | ---------|
 | The peer link goes down. | The primary MLAG switch continues to keep all VXLAN interfaces up with the anycast IP address while the secondary switch brings down all VXLAN interfaces and places them in a PROTO_DOWN state. The secondary MLAG switch removes the anycast IP address from the loopback interface and changes the local IP address of the VXLAN interface to the configured unique IP address. |
 | One of the switches goes down. | The other operational switch continues to use the anycast IP address. |
-| `clagd` is stopped. | All VXLAN interfaces are put in a PROTO_DOWN state. The anycast IP address is removed from the loopback interface and the local IP addresses of the VXLAN interfaces are changed from the anycast IP address to unique non-virtual IP addresses. |
-| MLAG peering cannot be established between the switches. | `clagd` brings up all the VXLAN interfaces after the reload timer expires with the configured anycast IP address. This allows the VXLAN interface to be up and running on both switches even though peering is not established. |
-| The peer link goes down but the peer switch is up (the backup link is active). | All VXLAN interfaces are put into a PROTO_DOWN state on the secondary switch. |
-| The anycast IP address is different on the MLAG peers. | The VXLAN interface is placed into a PROTO_DOWN state on the secondary switch. |
+| `clagd` stops. | All VXLAN interfaces go in a PROTO_DOWN state. The switch removes the anycast IP address from the loopback interface and the local IP addresses of the VXLAN interfaces change from the anycast IP address to unique non-virtual IP addresses. |
+| MLAG peering does not establish between the switches. | `clagd` brings up all the VXLAN interfaces after the reload timer expires with the configured anycast IP address. This allows the VXLAN interface to be up and running on both switches even though peering is not established. |
+| The peer link goes down but the peer switch is up (the backup link is active). | All VXLAN interfaces go into a PROTO_DOWN state on the secondary switch. |
+| The anycast IP address is different on the MLAG peers. | The VXLAN interface goes into a PROTO_DOWN state on the secondary switch. |
 
 ### VXLAN Interface Configuration Consistency
 
-The active-active configuration for a given VXLAN interface must be consistent between the MLAG switches for correct traffic behavior. MLAG ensures that the configuration consistency is met before bringing up the VXLAN interfaces:
+The active-active configuration for a given VXLAN interface must be consistent between the MLAG switches for correct traffic behavior. MLAG ensures that the configuration is consistent before bringing up the VXLAN interfaces:
 
 - The anycast virtual IP address for VXLAN termination must be the same on the switches in the MLAG pair.
-- A VXLAN interface with the same VXLAN ID must be configured and administratively up on both switches in the MLAG pair.
+- You must configure a VXLAN interface with the same VXLAN ID, which must be administratively up on both switches in the MLAG pair.
 
 Run the `clagctl` command to check if any VXLAN switches are in a PROTO_DOWN state.
 
@@ -144,12 +144,12 @@ iface lo inet loopback
 
 {{< img src = "/images/cumulus-linux/vxlan-active-active-example.png" >}}
 <!-- vale on -->
-The VXLAN interfaces are configured with individual IP addresses, which `clagd` changes to anycast upon MLAG peering.
+The VXLAN interfaces have individual IP addresses, which `clagd` changes to anycast upon MLAG peering.
 
 ### FRRouting Configuration
 
 You can configure the layer 3 fabric using {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}
-or {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}}. The following example uses BGP unnumbered. The MLAG switch configuration for the topology above is shown below. The exit leafs are not shown in this configuration for simplicity.
+or {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}}. The following example uses BGP unnumbered. For simplicity, the example does not show the exit leafs.
 
 ### Layer 3 IP Addressing
 
@@ -529,7 +529,7 @@ iface swp4
 
 ### Host Configuration
 
-In this example, the servers are running Ubuntu 14.04. A layer2 bond must be mapped from server01 and server03 to the respective switch. In Ubuntu, you use subinterfaces.
+In this example, the servers are running Ubuntu 14.04. A layer 2 bond links from server01 and server03 to the respective switch. In Ubuntu, you use subinterfaces.
 
 {{< tabs "TabID492 ">}}
 {{< tab "server01 ">}}
@@ -618,7 +618,7 @@ iface bond1.20 inet static
 
 ## Troubleshooting
 
-Run the `clagctl` command to show MLAG behavior and any inconsistencies that might arise between a MLAG pair.
+Run the `clagctl` command to show MLAG behavior and any inconsistencies between an MLAG pair.
 
 ```
 cumulus@leaf01$ clagctl
@@ -642,11 +642,11 @@ The additions to normal MLAG behavior are:
 
 | <div style="width:200px">Output | Explanation |
 | ------------------------------- | ----------- |
-| `VXLAN Anycast IP: 10.10.10.30` | The anycast IP address being shared by the MLAG pair for VTEP termination is in use and is 10.10.10.30. |
-| `Conflicts: -` | There are no conflicts for this MLAG Interface. |
+| `VXLAN Anycast IP: 10.10.10.30` | The anycast IP address shared by the MLAG pair for VTEP termination is in use and is 10.10.10.30. |
+| `Conflicts: -` | No conflicts exist for this MLAG Interface. |
 | `Proto-Down Reason: -` | The VXLAN is up and running (there is no Proto-Down). |
 
-In the following example the `vxlan-id` on VXLAN10 is switched to the wrong `vxlan-id`. When you run the `clagctl` command, VXLAN10 is down because this switch is the secondary switch and the peer switch takes control of VXLAN. The reason code is `vxlan-single` indicating that there is a `vxlan-id` mis-match on VXLAN10.
+In the following example, VXLAN10 has the wrong `vxlan-id`. When you run the `clagctl` command, VXLAN10 is down because this switch is the secondary switch and the peer switch takes control of VXLAN. The reason code is `vxlan-single` indicating that there is a `vxlan-id` mis-match on VXLAN10.
 
 ```
 cumulus@leaf02$ clagctl
@@ -670,11 +670,11 @@ Our Interface      Peer Interface     CLAG Id   Conflicts      Proto-Down Reason
 
 ### VLAN for Peer Link Layer 3 Subinterface
 
-Do not reuse the VLAN for the peer link layer 3 subinterface for any other interface in the system. A high VLAN ID value is recommended. For more information on VLAN ID ranges, refer to the {{<link url="VLAN-aware-Bridge-Mode#reserved-vlan-range" text="VLAN-aware Bridge Mode">}}.
+Do not reuse the VLAN for the peer link layer 3 subinterface for any other interface in the system. Use a high VLAN ID value. For more information on VLAN ID ranges, refer to the {{<link url="VLAN-aware-Bridge-Mode#reserved-vlan-range" text="VLAN-aware Bridge Mode">}}.
 
 ### Bonds with Vagrant in Cumulus VX
 
-Bonds (or LACP Etherchannels) fail to work in a Vagrant configuration unless the link is set to *promiscuous* mode. This is a limitation on virtual topologies only and is not needed on real hardware.
+Bonds (or LACP Etherchannels) fail to work in a Vagrant configuration unless the link is in *promiscuous* mode. This is a limitation on virtual topologies only.
 
 ```
 auto swp49

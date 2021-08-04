@@ -22,7 +22,7 @@ To configure the DHCP server on a Cumulus Linux switch:
 - Create a DHCP pool by providing a pool ID. The ID is an IPv4 or IPv6 prefix.
 - Provide a name for the pool (optional).
 - Provide the IP address of the DNS Server you want to use in this pool. You can assign multiple DNS servers.
-- Provide the domain name you want to use for this pool so that name resolution is provided (optional).
+- Provide the domain name you want to use for this pool for name resolution (optional).
 - Define the range of IP addresses available for assignment.
 - Provide the default gateway IP address (optional).
 
@@ -304,7 +304,7 @@ cumulus@switch:~$ nv config apply
 
 ### Ping Check
 
-Configure the DHCP server to ping the address to be assigned to a client before issuing the IP address. If no response is received, the IP address is delivered; otherwise, the next available address in the range is attempted.
+Configure the DHCP server to ping the address you want to assign to a client before issuing the IP address. If there is no response, DHCP delivers the IP address; otherwise, it attempts the next available address in the range.
 
 {{< tabs "TabID295 ">}}
 {{< tab "NVUE Commands ">}}
@@ -396,7 +396,7 @@ cumulus@switch:~$ nv set system dhcp-server6 pool 10.1.10.0/24 ping-check on
 ### Assign Port-based IP Addresses
 <!-- vale on -->
 
-You can assign an IP address and other DHCP options based on physical location or port regardless of MAC address to clients that are attached directly to the Cumulus Linux switch through a switch port. This is helpful when swapping out switches and servers; you can avoid the inconvenience of collecting the MAC address and sending it to the network administrator to modify the DHCP server configuration.
+You can assign an IP address and other DHCP options based on physical location or port regardless of MAC address to clients that attach directly to the Cumulus Linux switch through a switch port. This is helpful when swapping out switches and servers; you can avoid the inconvenience of collecting the MAC address and sending it to the network administrator to modify the DHCP server configuration.
 
 {{< tabs "TabID384 ">}}
 {{< tab "NVUE Commands ">}}

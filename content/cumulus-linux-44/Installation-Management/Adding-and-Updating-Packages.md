@@ -9,9 +9,9 @@ To manage additional applications in the form of packages and to install the lat
 
 {{%notice warning%}}
 Updating, upgrading, and installing packages with `apt` causes disruptions to network services:
-- Upgrading a package might result in services being restarted or stopped as part of the upgrade process.
-- Installing a package might disrupt core services by changing core service dependency packages. In some cases, installing new packages might also upgrade additional existing packages due to dependencies.
-- If services are stopped, you might need to reboot the switch for those services to restart.
+- Upgrading a package can cause services to restart or stop.
+- Installing a package sometimes disrupts core services by changing core service dependency packages. In some cases, installing new packages also upgrades additional existing packages due to dependencies.
+- If services stop, you need to reboot the switch to restart the services.
 {{%/notice%}}
 
 ## Update the Package Cache
@@ -52,7 +52,7 @@ Use the `-E` option with `sudo` whenever you run any `apt-get` command. This opt
 
 ## List Available Packages
 
-After the cache is populated, use the `apt-cache` command to search the cache and find the packages in which you are interested or to get information about an available package.
+After the cache populates, use the `apt-cache` command to search the cache and find the packages of interest or to get information about an available package.
 
 Here are examples of the `search` and `show` sub-commands:
 
@@ -118,7 +118,7 @@ Filename: pool/upstream/t/tcpdump/tcpdump_4.9.3-1~deb10u1_amd64.deb
 ```
 
 {{%notice note%}}
-The search commands look for the search terms not only in the package name but in other parts of the package information; the search matches on more packages than you might expect.
+The search commands look for the search terms not only in the package name but in other parts of the package information; the search matches on more packages than you expect.
 {{%/notice%}}
 
 ## List Packages Installed on the System
@@ -185,7 +185,7 @@ To show the version of a specific package installed on the system:
 {{< tabs "TabID202 ">}}
 {{< tab "NCLU Command" >}}
 
-The following example command shows which version of the `vrf` package is installed on the system:
+The following example command shows which version of the `vrf` package is on the system:
 
 ```
 cumulus@switch:~$ net show package version vrf
@@ -195,7 +195,7 @@ cumulus@switch:~$ net show package version vrf
 {{< /tab >}}
 {{< tab "NVUE Command ">}}
 
-The following example command shows which version of the `vrf` package is installed on the system:
+The following example command shows which version of the `vrf` package is on the system:
 
 ```
 cumulus@switch:~$ nv show platform software installed vrf
@@ -209,7 +209,7 @@ version      1.0-cl4.4.0u0                         Version
 {{< /tab >}}
 {{< tab "Linux Command ">}}
 
-The following example command shows which version of the `vrf` package is installed on the system:
+The following example command shows which version of the `vrf` package is on the system:
 
 ```
 cumulus@switch:~$ dpkg -l vrf
@@ -233,20 +233,20 @@ cumulus@switch:~$ sudo -E apt-get update
 cumulus@switch:~$ sudo -E apt-get upgrade
 ```
 
-The packages that are to be upgraded are listed and you are prompted to continue.
+The system lists the packages for upgrade and prompts you to continue.
 
 The above commands upgrade all installed versions with their latest versions but do not install any new packages.
 
 ## Add New Packages
 
-To add a new package, first ensure the package is not already installed on the system:
+To add a new package, first ensure the package is not already on the system:
 
 ```
 cumulus@switch:~$ dpkg -l | grep <name of package>
 ```
 
-- If the package is installed already, you can update the package from the Cumulus Linux repository as part of the package upgrade process, which upgrades all packages on the system. See {{<link url="#upgrade-packages" text="Upgrade Packages">}} above.
-- If the package is *not* already installed, add it by running `sudo -E apt-get install <name of package>`. This retrieves the package from the Cumulus Linux repository and installs it on your system together with any other packages on which this package might depend. The following example adds the `tcpreplay` package to the system:
+- If the package is already on the system, you can update the package from the Cumulus Linux repository as part of the package upgrade process, which upgrades all packages on the system. See {{<link url="#upgrade-packages" text="Upgrade Packages">}} above.
+- If the package is *not* already on the system, add it by running `sudo -E apt-get install <name of package>`. This retrieves the package from the Cumulus Linux repository and installs it on your system together with any other dependent packages. The following example adds the `tcpreplay` package to the system:
 
 ```
 cumulus@switch:~$ sudo -E apt-get update
@@ -269,19 +269,19 @@ cumulus@switch:~$ sudo -E apt-get install <package1> <package2> <package3>
 ```
 
 {{%notice tip%}}
-In some cases, installing a new package might also upgrade additional existing packages due to dependencies. To view these additional packages before you install, run the `apt-get install --dry-run` command.
+In some cases, installing a new package also upgrades additional existing packages due to dependencies. To view these additional packages before you install, run the `apt-get install --dry-run` command.
 {{%/notice%}}
 
 ## Add Packages From Another Repository
 
 As shipped, Cumulus Linux searches the Cumulus Linux repository for available packages. You can add additional repositories to search by adding them to the list of sources that `apt-get` consults. See `man sources.list` for more information.
 
-NVIDIA has added features or made bug fixes to certain packages; you must not replace these packages with versions from other repositories. Cumulus Linux is configured to ensure that the packages from the Cumulus Linux repository are always preferred over packages from other repositories.
+NVIDIA adds features or makes bug fixes to certain packages; do not replace these packages with versions from other repositories.
 
 If you want to install packages that are not in the Cumulus Linux repository, the procedure is the same as above, but with one additional step.
 
 {{%notice note%}}
-Packages that are not part of the Cumulus Linux Repository are not typically tested and might not be supported by Cumulus Linux Technical Support.
+NVIDIA does not test and Cumulus Linux Technical Support does not support packages that are not part of the Cumulus Linux repository.
 {{%/notice%}}
 
 Installing packages outside of the Cumulus Linux repository requires the use of `sudo -E apt-get`; however, depending on the package, you can use `easy-install` and other commands.
@@ -295,7 +295,7 @@ To install a new package, complete the following steps:
     cumulus@switch:~$ dpkg -l | grep <name of package>
     ```
 
-2. If the package is installed already, ensure it is the version you need. If it is an older version, update the package from the Cumulus Linux repository:
+2. If the package is already on the system, ensure it is the version you need. If it is an older version, update the package from the Cumulus Linux repository:
 
     ```
     cumulus@switch:~$ sudo -E apt-get update
@@ -303,14 +303,14 @@ To install a new package, complete the following steps:
     cumulus@switch:~$ sudo -E apt-get upgrade
     ```
 
-3. If the package is not on the system, the package source location is most likely **not** in the `/etc/apt/sources.list` file. If the source for the new package is **not** in `sources.list`, edit and add the appropriate source to the file. For example, add the following if you want a package from the Debian repository that is **not** in the Cumulus Linux repository:
+3. If the package is not on the system, the package source location is **not** in the `/etc/apt/sources.list` file. Edit and add the appropriate source to the file. For example, add the following if you want a package from the Debian repository that is **not** in the Cumulus Linux repository:
 
     ```
     deb http://http.us.debian.org/debian buster main
     deb http://security.debian.org/ buster/updates main
     ```
 
-    Otherwise, the repository might be listed in `/etc/apt/sources.list` but is commented out. To uncomment the repository, remove the `#` at the start of the line, then save the file.
+    Otherwise, `/etc/apt/sources.list` lists the repository but comments it out. To uncomment the repository, remove the `#` at the start of the line, then save the file.
 
 4. Run `sudo -E apt-get update`, then install the package and upgrade:
 
@@ -322,9 +322,9 @@ To install a new package, complete the following steps:
 
 ## Add Packages from the Cumulus Linux Local Archive
 
-Cumulus Linux contains a local archive embedded in the Cumulus Linux image. This archive contains the packages needed to install `{{<link title="ifplugd" text="ifplugd">}}`, {{<link url="LDAP-Authentication-and-Authorization" text="LDAP">}}, {{<link url="RADIUS-AAA" text="RADIUS">}} or  {{<link url="TACACS" text="TACACS+">}} without needing a network connection.
+Cumulus Linux contains a local archive embedded in the Cumulus Linux image. This archive, `cumulus-local-apt-archive`, contains the packages you need to install `{{<link title="ifplugd" text="ifplugd">}}`, {{<link url="LDAP-Authentication-and-Authorization" text="LDAP">}}, {{<link url="RADIUS-AAA" text="RADIUS">}} or  {{<link url="TACACS" text="TACACS+">}} without a network connection.
 
-The archive is called `cumulus-local-apt-archive` and is referenced in the  `/etc/apt/cumulus-local-apt-archive-sources.list` file. It contains the following packages:
+The archive contains the following packages:
 
 - audisp-tacplus
 - ifplugd
@@ -339,7 +339,7 @@ The archive is called `cumulus-local-apt-archive` and is referenced in the  `/et
 - libtacplus-map1
 - nslcd
 
-You add these packages normally with `apt-get update && apt-get install`, as {{<link url="#add-packages-from-another-repository" text="described above">}}.
+Add these packages with `apt-get update && apt-get install`, as {{<link url="#add-packages-from-another-repository" text="described above">}}.
 
 ## Related Information
 

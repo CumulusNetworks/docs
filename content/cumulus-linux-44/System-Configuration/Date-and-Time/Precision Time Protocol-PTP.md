@@ -34,7 +34,7 @@ Cumulus Linux supports:
 - Hardware time stamping for PTP packets. This allows PTP to avoid inaccuracies caused by message transfer delays and improves the accuracy of time synchronization.
 
 You cannot run both PTP and NTP on the switch.
-By default, PTP is enabled in the default VRF and on any new VRFs you create. You can disable PTP on a VRF to isolate PTP traffic.
+By default, Cumulus Linux enables PTP in the default VRF and in any new VRFs you create. You can disable PTP on a VRF to isolate PTP traffic.
 {{%/notice%}}
 
 ## Basic Configuration
@@ -45,13 +45,13 @@ Basic PTP configuration requires you:
 - Configure the interfaces on the switch that you want to use for PTP. Each interface must be a layer 3 routed interface with an IP address. You do not need to specify which is a master interface and which is a slave interface; the PTP Best Master Clock Algorithm (BMCA) determines the master and slave.
 
 The basic configuration shown below uses the *default* PTP settings:
-- Clock mode is set to Boundary. This is the only clock mode that Cumulus Linux supports.
-- PTP profile is set to default-1588; the profile specified in the IEEE 1588 standard. This is the only profile that Cumulus Linux supports.
-- {{<link url="#ptp-clock-domain" text="PTP clock domain">}} is set to 0.
-- {{<link url="#ptp-priority" text="PTP Priority1 and Priority2">}} are set to 128.
-- {{<link url="#one-step-and-two-step-mode" text="Hardware packet time stamping mode" >}} is set to two-step.
-- {{<link url="#transport-mode" text="Transport mode">}} is set to IPv4.
-- {{<link url="#diffserv-code-point-dscp" text="DSCP" >}} is set to 43 for both general and event messages.
+- The clock mode is Boundary. This is the only clock mode that Cumulus Linux supports.
+- The PTP profile is default-1588; the profile in the IEEE 1588 standard. This is the only profile that Cumulus Linux supports.
+- {{<link url="#ptp-clock-domain" text="The PTP clock domain">}} is 0.
+- {{<link url="#ptp-priority" text="PTP Priority1 and Priority2">}} are both 128.
+- {{<link url="#one-step-and-two-step-mode" text="The hardware packet time stamping mode" >}} is two-step.
+- {{<link url="#transport-mode" text="The transport mode">}} is IPv4.
+- {{<link url="#diffserv-code-point-dscp" text="The DSCP" >}} is 43 for both general and event messages.
 - {{<link url="#acceptable-master-table" text="Announce messages from any master are accepted">}}.
 - {{<link url="#message-mode" text="Message Mode">}} is multicast.
 - The delay mechanism is End-to-End (E2E).
@@ -501,13 +501,13 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ### Message Mode
 
 Cumulus Linux supports the following PTP message modes:
-- *Multicast*, where the ports subscribe to two multicast addresses, one for event messages with timestamps and the other for general messages without timestamps. The Sync message that the master sends is a multicast message; all slave ports receive this message because the slaves need the master's time. The slave ports in turn generate a Delay Request to the master. This is a multicast message that the master for which the message is intended and other slave ports receive. Similarly, all slave ports in addition to the intended slave port receive the master's Delay Response. The slave ports receiving the unintended Delay Requests and Responses need to drop the packets. This can affect network bandwidth, especially if there are hundreds of slave ports.
+- *Multicast*, where the ports subscribe to two multicast addresses, one for event messages with timestamps and the other for general messages without timestamps. The Sync message that the master sends is a multicast message; all slave ports receive this message because the slaves need the time from the master. The slave ports in turn generate a Delay Request to the master. This is a multicast message that the master for which the message is intended and other slave ports receive. Similarly, all slave ports in addition to the intended slave port receive the master's Delay Response. The slave ports receiving the unintended Delay Requests and Responses need to drop the packets. This can affect network bandwidth if there are hundreds of slave ports.
 - *Mixed*, where Sync and Announce messages are multicast messages but Delay Request and Response messages are unicast. This avoids the issue seen in multicast message mode where every slave port sees Delay Requests and Responses from every other slave port.
-
+<!-- vale off -->
    {{%notice warning%}}
 Mixed mode is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) in Cumulus Linux.
 {{%/notice%}}
-
+<!-- vale on -->
 Multicast mode is the default setting. To set the message mode to *mixed* on an interface:
 
 {{< tabs "TabID494 ">}}
@@ -558,11 +558,11 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tabs >}}
 
 ### TTL for a PTP Message
-
+<!-- vale off -->
 {{%notice warning%}}
 TTL for a PTP message is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) in Cumulus Linux.
 {{%/notice%}}
-
+<!-- vale on -->
 To restrict the number of hops a PTP message can travel, set the TTL on the PTP interface. You can set a value between 1 and 255.
 
 {{< tabs "TabID462 ">}}
@@ -611,10 +611,10 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 ### Acceptable Master Table
 
-The acceptable master table option is a security feature that prevents a rogue player from pretending to be the Grandmaster to take over the PTP network. To use this feature, you configure the clock IDs of known Grandmasters in the acceptable master table and set the acceptable master table option on a PTP port. The BMC algorithm checks if the Grandmaster received on the Announce message is in this table before proceeding with the master selection. This option is disabled by default on PTP ports.
-
+The acceptable master table option is a security feature that prevents a rogue player from pretending to be the Grandmaster to take over the PTP network. To use this feature, you configure the clock IDs of known Grandmasters in the acceptable master table and set the acceptable master table option on a PTP port. The BMC algorithm checks if the Grandmaster received on the Announce message is in this table before proceeding with the master selection. Cumulus Linux disables this option by default on PTP ports.
+<!-- vale off -->
 The following example command adds the Grandmaster clock ID 24:8a:07:ff:fe:f4:16:06 to the acceptable master table and enable the PTP acceptable master table option for swp1:
-
+<!-- vale on -->
 {{< tabs "TabID614 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -781,12 +781,12 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 ## PTP on a VRF
 
-By default, PTP is enabled on the default VRF and on any VRFs you create. You can isolate traffic to a specific VRF by disabling PTP on any other VRFs.
-
+By default, Cumulus Linux enables PTP in the default VRF and in any VRFs you create. To isolate traffic to a specific VRF, disable PTP on any other VRFs.
+<!-- vale off -->
 {{%notice warning%}}
 PTP in a VRF other than the default is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) in Cumulus Linux.
 {{%/notice%}}
-
+<!-- vale on -->
 {{< tabs "TabID777 ">}}
 {{< tab "NVUE Commands ">}}
 

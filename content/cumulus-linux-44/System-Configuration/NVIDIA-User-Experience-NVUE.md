@@ -12,7 +12,7 @@ NVUE follows a declarative model, removing context-specific commands and setting
 
 ## Start the NVUE Service
 
-NVUE is installed by default in Cumulus Linux but the NVUE service is disabled. To run NVUE commands, you must enable and start the NVUE service (`nvued`):
+Cumulus Linux installs NVUE by default but disables the NVUE service. To run NVUE commands, you must enable and start the NVUE service (`nvued`):
 
 ```
 cumulus@switch:~$ sudo systemctl enable nvued
@@ -81,9 +81,9 @@ NVUE commands all begin with `nv` and fall into one of three syntax categories:
 - Configuration management (`nv config`).
 
 ### Command Completion
-
+<!-- vale off -->
 As you enter commands, you can get help with the valid keywords or options using the Tab key. For example, using Tab completion with `nv set` displays the possible options for the command, and returns you to the command prompt to complete the command.
-
+<!-- vale on -->
 ```
 cumulus@switch:~$ nv set <<press Tab>>
 acl        evpn       mlag       platform   router     system     
@@ -93,9 +93,9 @@ cumulus@switch:~$ nv set
 ```
 
 ### Command Help
-
+<!-- vale off -->
 As you enter commands, you can get help with command syntax by entering `-h` or `--help` at various points within a command entry. For example, to find out what options are available for `nv set interface`, enter `nv set interface -h` or `nv set interface --help`.
-
+<!-- vale on -->
 ```
 cumulus@switch:~$ nv set interface -h
 Usage:
@@ -116,12 +116,12 @@ General Options:
 You can list all the NVUE commands by running `nv list-commands`. See {{<link url="#list-all-nvue-commands" text="List All NVUE Commands">}} below.
 
 ### Command History
-
-At the command prompt, press the Up Arrow and Down Arrow keys to move back and forth through the list of commands previously entered. When you find a given command, you can run the command by pressing Enter. Optionally, you can modify the command before you run it.
-
+<!-- vale off -->
+At the command prompt, press the Up Arrow and Down Arrow keys to move back and forth through the list of commands you entered. When you find a given command, you can run the command by pressing Enter. Optionally, you can modify the command before you run it.
+<!-- vale on -->
 ## Command Categories
 
-The NVUE CLI has a flat structure; however, the commands are grouped into three functional categories:
+The NVUE CLI has a flat structure; however, the commands are in three functional categories:
 
 - Configuration
 - Monitoring
@@ -130,18 +130,18 @@ The NVUE CLI has a flat structure; however, the commands are grouped into three 
 ### Configuration Commands
 
 The NVUE configuration commands modify switch configuration. You can set and unset configuration options.
-
-The `nv set` and `nv unset` commands are grouped into the following categories. Each command group includes subcommands. Use command completion (Tab key) to list the subcommands.
-
+<!-- vale off -->
+The `nv set` and `nv unset` commands are in the following categories. Each command group includes subcommands. Use command completion (Tab key) to list the subcommands.
+<!-- vale on -->
 | <div style="width:300px">Command Group | Description |
 | ------- | ----------- |
 | `nv set acl`<br>`nv unset acl` | Configures ACLs in Cumulus Linux.|
 | `nv set bridge`<br>`nv unset bridge` | Configures a bridge domain. This is where you configure the bridge type (such as VLAN-aware), 802.1Q encapsulation, the STP state and priority, and the VLANs in the bridge domain. |
 | `nv set evpn`<br>`nv unset evpn` | Configures EVPN. This is where you enable and disable the EVPN control plane, and set EVPN route advertise options, default gateway configuration for centralized routing, multihoming, and duplicate address detection options. |
 | `nv set interface <interface-id>`<br>`nv unset interface <interface-id>` | Configures the switch interfaces. Use this command to configure bond interfaces, bridge interfaces, interface IP addresses, VLAN IDs, and links (MTU, FEC, speed, duplex, and so on).|
-| `nv set mlag`<br>`nv unset mlag` | Configures MLAG. This is where you configure the backup IP address or interface, MLAG system MAC address, peer IP address, MLAG priority, and the delay before bonds are brought up. |
+| `nv set mlag`<br>`nv unset mlag` | Configures MLAG. This is where you configure the backup IP address or interface, MLAG system MAC address, peer IP address, MLAG priority, and the delay before bonds come up. |
 | `nv set nve`<br>`nv unset nve` | Configures network virtualization (VXLAN) settings. This is where you configure the UDP port for VXLAN frames, control dynamic MAC learning over VXLAN tunnels, enable and disable ARP/ND suppression, and configure how Cumulus Linux handles BUM traffic in the overlay.|
-| `nv set platform`<br>`nv unset platform` | Configures the hostname of the switch and sets how configuration apply operations are performed (such as which files to ignore and which files to overwrite). |
+| `nv set platform`<br>`nv unset platform` | Configures the hostname of the switch and sets how configuration apply operations work (which files to ignore and which files to overwrite). |
 | `nv set qos`<br>`nv unset qos` | Configures QoS RoCE. |
 | `nv set router`<br>`nv unset router` | Configures router policies (prefix list rules and route maps), global BGP options (enable and disable BGP, set the ASN and the router ID, and configure BGP graceful restart and shutdown), global OSPF options (enable and disable OSPF, set the router ID, and configure OSPF timers), and PBR. |
 | `nv set service`<br>`nv unset service` | Configures DHCP relays and servers, NTP, PTP, LLDP, and syslog. |
@@ -149,9 +149,9 @@ The `nv set` and `nv unset` commands are grouped into the following categories. 
 | `nv set vrf  <vrf-id>`<br>`nv unset vrf <vrf-id>` | Configures VRFs. This is where you configure VRF-level router configuration including PTP, BGP, OSPF, and EVPN. |
 
 ### Monitoring Commands
-
-The NVUE monitoring commands show various parts of the network configuration. For example, you can show the complete network configuration or only interface configuration. The monitoring commands are grouped into the following categories. Each command group includes subcommands. Use command completion (Tab key) to list the subcommands.
-
+<!-- vale off -->
+The NVUE monitoring commands show various parts of the network configuration. For example, you can show the complete network configuration or only interface configuration. The monitoring commands are in the following categories. Each command group includes subcommands. Use command completion (Tab key) to list the subcommands.
+<!-- vale on -->
 | <div style="width:300px">Command Group | Description |
 | ------- | ----------- |
 | `nv show acl` | Shows ACL configuration. |
@@ -193,16 +193,16 @@ cumulus@leaf01:mgmt:~$
 ```
 
 {{%notice note%}}
-If there are no pending or applied configuration changes, the `nv show` command only shows the running (opertional) configuration.
+If there are no pending or applied configuration changes, the `nv show` command only shows the running configuration.
 {{%/notice%}}
 
-Aditional options are available for the `nv show` commands. For example, you can choose the configuration you want to show (pending, applied, startup, or operational). You can also turn on colored output, and paginate specific output.
+Additional options are available for the `nv show` commands. For example, you can choose the configuration you want to show (pending, applied, startup, or operational). You can also turn on colored output, and paginate specific output.
 
 | <div style="width:200px">Option | Description |
 | ------ | ----------- |
 | `--applied`       | Shows configuration applied with the `nv config apply` command. For example, `nv show --applied interface bond1`. |
 | `--color`         | Turns colored output on or off. For example, `nv show --color on interface bond1`|
-| `--help`          | Shows help for the NVUE commands. |
+| `--help`          | Shows `help` for the NVUE commands. |
 | `--operational`   | Shows the running configuration (the actual system state). For example, `nv show --operational interface bond1` shows the running configuration for bond1. The running and applied configuration should be the same. If different, inspect the logs. |
 | `--output`        | Shows command output in table format (auto), json format or yaml format. For example:<br>`nv show --ouptut auto interface bond1`<br>`nv show --ouptut json interface bond1`<br>`nv show --ouptut yaml interface bond1` |
 | `--paginate`      | Paginates the output. For example, `nv show --paginate on interface bond1`. |
@@ -227,7 +227,7 @@ stale-routes-time             360                           Specifies an upper-b
 Cumulus Linux includes show legacy commands that provide the same output as the NCLU show commands. To use the show legacy commands, the NCLU service (`netd`) must be running.
 
 {{%notice note%}}
-When the NVUE service is running, NCLU commands (`net add`, `net del`, `net show`) are disabled to prevent you from configuring the switch with both NVUE and NVUE commands. For example, if you try to run the `net show interface` command, you see the error `Using NCLU with 'nvued' running is not supported`.
+When the NVUE service is running, Cumulus Linux disables NCLU commands (`net add`, `net del`, `net show`) to prevent you from configuring the switch with both NVUE and NVUE commands. For example, if you try to run the `net show interface` command, you see the error `Using NCLU with 'nvued' running is not supported`.
 {{%/notice%}}
 
 To run the show legacy commands, replace `net show` with `nv show --legacy`.
@@ -303,8 +303,8 @@ The NVUE configuration management commands manage and apply configurations.
 
 | <div style="width:450px">Command | Description |
 | ------- | ----------- |
-| `nv config apply` | Applies the pending configuration to become the applied configuration.<br>You can also use these prompt options:<ul><li>`--y` or `--assume-yes` to automatically reply `yes` to all prompts.</li><li>`--assume-no` to automatically reply `no` to all prompts.</li></ul> {{%notice note%}}The configuration is applied but not saved and does not persist after a reboot.{{%/notice%}}You can also use these apply options:<br>`--confirm` applies the configuration change but requires you to confirm the applied configuration. If you do not confirm within ten minutes, the configuration is rolled back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `apply --confirm 60` requires you to confirm within one hour.<br>`--confirm-status` shows the amount of time left before the automatic rollback.|
-| `nv config detach` | Detaches the configuration from the current pending configuration. The detached configuration is called `pending` and includes a timestamp with extra characters. For example: `pending_20210128_212626_4WSY`|
+| `nv config apply` | Applies the pending configuration to become the applied configuration.<br>You can also use these prompt options:<ul><li>`--y` or `--assume-yes` to automatically reply `yes` to all prompts.</li><li>`--assume-no` to automatically reply `no` to all prompts.</li></ul> {{%notice note%}}Cumulus Linux applies but does not save the configuration; the configuration does not persist after a reboot.{{%/notice%}}You can also use these apply options:<br>`--confirm` applies the configuration change but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `apply --confirm 60` requires you to confirm within one hour.<br>`--confirm-status` shows the amount of time left before the automatic rollback.|
+| `nv config detach` | Detaches the configuration from the current pending configuration. Cumulus Linux names the detached configuration `pending` and includes a timestamp with extra characters. For example: `pending_20210128_212626_4WSY`|
 | `nv config diff <revision> <revision>` | Shows differences between configurations, such as the pending configuration and the applied configuration or the detached configuration and the pending configuration.|
 | `nv config history <nvue-file>` | Shows the apply history for the revision. |
 | `nv config patch <nvue-file>` | Updates the pending configuration with the specified YAML configuration file. |
@@ -334,7 +334,7 @@ nv show router policy community-list
 ...
 ```
 
-You can show the list of commands for a command grouping and for subcommands. For example, to show the list of interface commands:
+You can show the list of commands for a command grouping. For example, to show the list of interface commands:
 
 ```
 cumulus@switch:~$ nv list-commands interface
@@ -353,9 +353,9 @@ nv show interface <interface-id> bond mlag
 nv show interface <interface-id> bridge
 ...
 ```
-
+<!-- vale off -->
 Use the Tab key to get help for the command lists you want to see. For example, to show the list of command options available for the interface swp1, run:
-
+<!-- vale on -->
 ```
 cumulus@switch:~$ nv list-commands interface swp1 <<press Tab>>
 acl     bond    bridge  evpn    ip      link    ptp     qos     router 
@@ -363,11 +363,11 @@ acl     bond    bridge  evpn    ip      link    ptp     qos     router
 
 ## NVUE Configuration File
 
-When you save network configuration using NVUE, the configuration is written to the `/etc/nvue.d/startup.yaml` file.
+When you save network configuration using NVUE, Cumulus Linux writes the configuration to the `/etc/nvue.d/startup.yaml` file.
 
 NVUE also writes to underlying Linux files, such as `/etc/network/interfaces` and `/etc/frr/frr.conf`, when you apply a configuration. You can view these configuration files; however NVIDIA recommends that you do not manually edit them while using NVUE.
 
-You can edit or replace the contents of the `/etc/nvue.d/startup.yaml` file. NVUE applies the configuration in the `/etc/nvue.d/startup.yaml` file during system boot only if the `nvue-startup.service` is running. If this service is not running, the running configuration that was last applied is loaded when the switch boots.
+You can edit or replace the contents of the `/etc/nvue.d/startup.yaml` file. NVUE applies the configuration in the `/etc/nvue.d/startup.yaml` file during system boot only if the `nvue-startup.service` is running. If this service is not running, the running configuration that you apply last loads when the switch boots.
 
 To start `nvue-startup.service`:
 
@@ -499,7 +499,7 @@ bash                  GNU Bourne Again SHell                                    
 
 ### Show Interface Configuration
 
-The following example command shows the running (operationa), applied, and pending swp1 interface configuration.
+The following example command shows the running, applied, and pending swp1 interface configuration.
 
 ```
 cumulus@leaf01:~$ nv show interface swp1
@@ -550,7 +550,7 @@ cumulus@switch:~$ nv config save
 
 ### Detach a Pending Configuration
 
-The following example configures the IP address of the loopback interface, then detaches the configuration from the current pending configuration. The detached configuration is saved to a file `changeset/cumulus/<date>_<time>_xxxx` that includes a timestamp with extra characters to distinguish it from other pending configurations; for example, `changeset/cumulus/2021-06-11_18.35.06_FPKP`.
+The following example configures the IP address of the loopback interface, then detaches the configuration from the current pending configuration. Cumulus Linux saves the detached configuration to a file `changeset/cumulus/<date>_<time>_xxxx` that includes a timestamp with extra characters to distinguish it from other pending configurations; for example, `changeset/cumulus/2021-06-11_18.35.06_FPKP`.
 
 ```
 cumulus@switch:~$ nv set interface lo ip address 10.10.10.1
@@ -596,11 +596,11 @@ cumulus@switch:~$ nv config patch /deps/nv-02/13/2021.yaml
 
 ## How Is NVUE Different from NCLU?
 
-This section lists some of the differences between NVUE CLI and the NCLU CLI to help you navigate configuration.
+This section lists some of the differences between NVUE CLI and the NCLU CLI.
 
 ### Configuration File
 
-When you save network configuration using NVUE, the configuration is written to the `/etc/nvue.d/startup.yaml` file.
+When you save network configuration using NVUE, Cumulus Linux saves the configuration in the `/etc/nvue.d/startup.yaml` file.
 
 NVUE also writes to underlying Linux files when you apply a configuration, such as the `/etc/network/interfaces` and `/etc/frr/frr.conf` files. You can view these configuration files; however NVIDIA recommends that you do not manually edit them while using NVUE.
 

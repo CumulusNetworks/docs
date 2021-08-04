@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 210
 toc: 4
 ---
-The Cumulus Linux default ACL configuration is split into three parts: `iptables`, `ip6tables`, and `ebtables`. The sections below describe the default configurations for each part. You can see the default file by clicking the Default ACL Configuration link:
+The Cumulus Linux default ACL configuration includes `iptables`, `ip6tables`, and `ebtables`. The sections below describe the default configurations for each one. You can see the default file by clicking the Default ACL Configuration link:
 
 {{<expand "Default ACL Configuration">}}
 
@@ -185,7 +185,7 @@ Bridge chain: OUTPUT, entries: 0, policy: ACCEPT
 {{</expand>}}
 
 ## iptables
-
+<!-- vale off -->
 |Action/Value <img width=250/>|Protocol/IP Address<img width=450/>|
 |---------------------------- |---------------------------------- |
 | Drop<br>Destination IP: Any | Source IPv4:<br>240.0.0.0/5<br>loopback/8<br>224.0.0.0/4<br>255.255.255.255|
@@ -230,7 +230,7 @@ Set class is internal to the switch - it does not set any precedence bits.
 | Set Class: 2<br>Police: packet rate: 400 burst rate: 100<br>Any switchport input interface | ARP |
 | Catch All:<br>Allow all traffic<br>Any switchport input interface | IPv4<br>IPv6 |
 | Catch All (applied at end):<br>Set class: 0<br>Police: packet rate 100 burst rate 100<br>Any switchport | ALL OTHER |
-
+<!-- vale on -->
 {{%notice note%}}
 Set class is internal to the switch. It does not set any precedence bits.
 {{%/notice%}}

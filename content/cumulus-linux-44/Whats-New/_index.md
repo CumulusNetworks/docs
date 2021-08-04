@@ -42,4 +42,4 @@ The NVUE commands and outputs are subject to change.
 
 ### Unsupported Platforms
 
-Cumulus Linux 4.4 supports NVIDIA Spectrum-based ASIC platforms only. This release removes support for Broadcom-based networking ASICs. Broadcom-based ASICs continue to be supported throughout the life of the Cumulus Linux 3.7 and 4.3 releases.
+Cumulus Linux 4.4 supports NVIDIA Spectrum-based ASIC platforms only. This release removes support for Broadcom-based networking ASICs. NVIDIA continues to support Broadcom-based ASICs throughout the life of the Cumulus Linux 3.7 and 4.3 releases.

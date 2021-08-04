@@ -20,10 +20,10 @@ Smart System Manager includes the following modes:
 You can restart the switch in one of the following modes.
 
 - **cold** Restarts the system and resets all the hardware devices on the switch (including the switching ASIC).
-- **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The restart process maintain the forwarding entries of the switching ASIC and the data plane is not affected. However, if you upgrade the SDK, `switchd` resets and reconfigures the ASIC, which interrupts the data plane. Traffic outage is significantly lower in this mode.
+- **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The restart process maintain the forwarding entries of the switching ASIC and the data plane is not affected. However, if you upgrade the SDK, `switchd` resets and reconfigures the ASIC, which interrupts the data plane. Traffic outage is much lower in this mode.
 - **warm** restarts the system with minimal impact to traffic and without affecting the data plane. Warm mode diverts traffic from itself and restarts the system without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. However, if no alternate paths exist, the switch continues forwarding with the existing entries with no interruptions.
 
-   When you restart the switch in warm mode, BGP performs a graceful restart if the BGP Graceful Restart option is enabled. To enable BGP Graceful Restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
+   When you restart the switch in warm mode, BGP performs a graceful restart if the BGP Graceful Restart option is on. To enable BGP Graceful Restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
 
    {{%notice note%}}
    A warm boot disrupts bonds, VXLAN traffic, and IP multicast traffic until reboot completes.
@@ -170,7 +170,7 @@ Depending on your configuration and network topology, complete isolation is not 
 
 ### Enable Maintenance Mode
 
-Run the following command to enable maintenance mode. When maintenance mode is enabled, Smart System Manager performs a {{<link url="Optional-BGP-Configuration/#graceful-bgp-shutdown" text="graceful BGP shutdown">}}, redirects traffic over the peerlink and brings down the MLAG port link. `switchd` maintains full capability.
+Run the following command to enable maintenance mode. When maintenance mode is on, Smart System Manager performs a {{<link url="Optional-BGP-Configuration/#graceful-bgp-shutdown" text="graceful BGP shutdown">}}, redirects traffic over the peerlink and brings down the MLAG port link. `switchd` maintains full capability.
 
 {{< tabs "150 ">}}
 {{< tab "NCLU Command ">}}
@@ -226,7 +226,7 @@ Before you disable maintenance mode, be sure to bring the ports back up.
 
 ### Disable Maintenance Mode
 
-Run the following command to disable maintenance mode and restore normal operation. When maintenance mode is disabled, Smart System Manager performs a soft restart, runs a BGP graceful restart, and brings the MLAG port link back up. `switchd` maintains full capability.
+Run the following command to disable maintenance mode and restore normal operation. When maintenance mode is off, Smart System Manager performs a soft restart, runs a BGP graceful restart, and brings the MLAG port link back up. `switchd` maintains full capability.
 
 {{< tabs "210 ">}}
 {{< tab "NCLU Command ">}}
@@ -252,7 +252,7 @@ cumulus@switch:~$ sudo csmgrctl -m0
 
 ### Show Maintenance Mode Status
 
-To see if maintenance mode is enabled, run the NCLU `net system maintenance show status` command or the Linux `sudo csmgrctl -s` command. For example:
+To see the status of maintenance mode, run the NCLU `net system maintenance show status` command or the Linux `sudo csmgrctl -s` command. For example:
 
 ```
 cumulus@switch:~$ net system maintenance show status

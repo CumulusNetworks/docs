@@ -398,7 +398,7 @@ To compare this data with the same data at a previous time:
 
     {{< figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-past-week-230.png" width="500" >}}
 
-    In this case, notice that the alarms have reduced significantly in the last week. If the changes are unexpected, you can investigate     further by looking at another time frame, determining if more nodes are now running LLDP than previously, looking for changes in the     topology, and so forth.
+    In this case, notice that the alarms have reduced significantly in the last week. If the changes are unexpected, you can investigate     further by looking at another timeframe, determining if more nodes are now running LLDP than previously, looking for changes in the     topology, and so forth.
 
 ### View Devices with the Most Unestablished LLDP Sessions
 

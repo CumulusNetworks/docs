@@ -13,7 +13,7 @@ All our security issues are tracked on the mailing list and referenced in {{<lin
 
 ## Security Policy
 
-Since Cumulus Linux is based on the Debian distribution, Cumulus Networks will, within a reasonable time frame, address security problems in accordance with the {{<exlink url="http://www.debian.org/security/" text="Debian policies in place">}}.
+Since Cumulus Linux is based on the Debian distribution, Cumulus Networks will, within a reasonable timeframe, address security problems in accordance with the {{<exlink url="http://www.debian.org/security/" text="Debian policies in place">}}.
 
 Every Cumulus Linux release will include all applicable security patches available prior to the build date. Any new vulnerabilities listed by Debian after the release will be evaluated and made available as a package update in the {{<exlink url="http://apt.cumulusnetworks.com/repo" text="Cumulus Linux repository">}}.
 

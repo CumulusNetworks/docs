@@ -251,7 +251,7 @@ To compare this data with the same data at a previous time:
 
     {{<figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-past-week-230.png" width="500" >}}
 
-You can now see whether there are significant differences between this time and the original time. If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running EVPN than previously, looking for changes in the topology, and so forth.
+You can now see whether there are significant differences between this time and the original time. If the changes are unexpected, you can investigate further by looking at another timeframe, determining if more nodes are now running EVPN than previously, looking for changes in the topology, and so forth.
 
 {{</tab>}}
 
@@ -373,7 +373,7 @@ To compare this data with the same data at a previous time:
 
     {{<figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-most-l2-pst-mo-300.png" width="500">}}
 
-If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running EVPN than previously, looking for changes in the topology, and so forth.
+If the changes are unexpected, you can investigate further by looking at another timeframe, determining if more nodes are now running EVPN than previously, looking for changes in the topology, and so forth.
 
 {{</tab>}}
 
@@ -495,7 +495,7 @@ To compare this data with the same data at a previous time:
 
     {{< figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-most-l3-pst-wk-230.png" width="500" >}}
 
-If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running EVPN than previously, looking for changes in the topology, and so forth.
+If the changes are unexpected, you can investigate further by looking at another timeframe, determining if more nodes are now running EVPN than previously, looking for changes in the topology, and so forth.
 
 {{</tab>}}
 

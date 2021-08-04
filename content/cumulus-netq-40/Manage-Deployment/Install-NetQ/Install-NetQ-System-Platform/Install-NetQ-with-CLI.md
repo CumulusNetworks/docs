@@ -44,7 +44,7 @@ cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/insta
 You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address&gt;</code> in place of <code>interface &lt;ifname&gt;</code> above.
 {{</notice>}}
 
-Run the `netq show opta-health` command to verify all applications are operating properly. Please allow 10-15 minutes for all applications to come up and report their status.
+Run the `netq show opta-health` command to verify all applications are operating properly. Allow 10-15 minutes for all applications to come up and report their status.
 
 ```
 cumulus@hostname:~$ netq show opta-health

@@ -430,7 +430,7 @@ Tue Oct 27 22:29:07 2020  leaf04            30     no     peerlink              
 
 ### View MAC Address Changes for a Given Time Frame
 
-View a listing of changes for a MAC address for a given time frame using the `netq show mac-history` command with the `between` option. When shown, the caret (^) notation indicates no change in this value from the row above.
+View a listing of changes for a MAC address for a given timeframe using the `netq show mac-history` command with the `between` option. When shown, the caret (^) notation indicates no change in this value from the row above.
 
 This example shows changes for a MAC address of *44:38:39:00:00:5d* between now three and seven days ago.
 
@@ -506,7 +506,7 @@ Sat Oct 24 22:28:59 2020  leaf04            30     no     peerlink              
 
 ### View Only the Differences in MAC Address Changes
 
-Instead of viewing the full chronology of change made for a MAC address within a given time frame, you can view only the differences between two snapshots using the `netq show mac-history` command with the `diff` option. When shown, the caret (^) notation indicates no change in this value from the row above.
+Instead of viewing the full chronology of change made for a MAC address within a given timeframe, you can view only the differences between two snapshots using the `netq show mac-history` command with the `diff` option. When shown, the caret (^) notation indicates no change in this value from the row above.
 
 This example shows only the differences in the changes for a MAC address of *44:38:39:00:00:5d* between now and an hour ago.
 

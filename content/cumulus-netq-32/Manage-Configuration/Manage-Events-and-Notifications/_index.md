@@ -14,11 +14,11 @@ Three types of events are available in NetQ:
 
 The NetQ UI provides two event workflows and and two summary tables:
 
-- Alarms card workflow: tracks critical severity system and TCA events for a given time frame
-- Info card workflow: tracks all warning, info, and debug severity system and TCA events for a given time frame
+- Alarms card workflow: tracks critical severity system and TCA events for a given timeframe
+- Info card workflow: tracks all warning, info, and debug severity system and TCA events for a given timeframe
 - All Events table: lists all system events in the last 24 hours
 - What Just Happened table: lists the 1000 most recent WJH events in the last 24 hours
 
-The NetQ CLI provides the `netq show events` command to view system and TCA events for a given time frame. The `netq show wjh-drop` command lists all WJH events or those with a selected drop type.
+The NetQ CLI provides the `netq show events` command to view system and TCA events for a given timeframe. The `netq show wjh-drop` command lists all WJH events or those with a selected drop type.
 
 To take advantage of these events, use the instructions contained in this topic to configure one or more notification channels for system and threshold-based events and setup WJH for selected switches.

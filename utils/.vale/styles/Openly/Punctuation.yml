@@ -6,6 +6,4 @@ scope: text
 ignorecase: false
 nonword: true
 swap:
-  e\.g\.: eg
-  i\.e\.: ie
-  \b(?:eg|ie)[^,]: eg, or ie,
+  

@@ -6,13 +6,13 @@ toc: 3
 ---
 Cumulus Linux provides the option of using Virtual Router Redundancy (VRR) or Virtual Router Redundancy Protocol (VRRP).
 
-- **VRR** enables hosts to communicate with any redundant router without reconfiguration, by running dynamic router protocols or router redundancy protocols. Redundant routers respond to Address Resolution Protocol (ARP) requests from hosts. Routers are configured to respond in an identical manner, but if one fails, the other redundant routers continue to respond, leaving the hosts with the impression that nothing has changed. VRR is typically used in an MLAG configuration.
+- **VRR** enables hosts to communicate with any redundant router without reconfiguration, by running dynamic router protocols or router redundancy protocols. Redundant routers respond to Address Resolution Protocol (ARP) requests from hosts. Routers respond in an identical manner, but if one fails, the other redundant routers continue to respond. You use VRR with MLAG
 
-   Use VRR when you have multiple devices connected to a single logical connection, such as an MLAG bond. A device connected to an MLAG bond believes there is a single device on the other end of the bond and only forwards one copy of the transit frames. If this frame is destined to the virtual MAC address and you are running VRRP, it is possible that the frame is sent to the link connected to the VRRP standby device, which does not forward the frame appropriately. By having the virtual MAC active on both MLAG devices, it ensures either MLAG device handles the frame it receives correctly.
+   Use VRR when you connect multiple devices to a single logical connection, such as an MLAG bond. A device that connects to an MLAG bond believes there is a single device on the other end of the bond and only forwards one copy of the transit frames. If the destination of this frame is the virtual MAC address and you are running VRRP, the frame can go to the link connected to the VRRP standby device, which does not forward the frame to the right destination. With the virtual MAC active on both MLAG devices, either MLAG device handles the frame it receives.
 
-- **VRRP** allows a single virtual default gateway to be shared between two or more network devices in an active/standby configuration. The physical VRRP router that forwards packets at any given time is called the master. If this VRRP router fails, another VRRP standby router automatically takes over as master. VRRP is used in a non-MLAG configuration.
+- **VRRP** allows two or more network devices in an active or standby configuration to share a single virtual default gateway. The physical VRRP router that forwards packets at any given time is the master. If this VRRP router fails, another VRRP standby router automatically takes over as master. You use VRRP without MLAG.
 
-   Use VRRP when you have multiple distinct devices that connect to a layer 2 segment through multiple logical connections (not through a single bond). VRRP elects a single active forwarder that *owns* the virtual MAC address while it is active. This prevents the forwarding database of the layer 2 domain from continuously updating in response to MAC flaps as frames sourced from the virtual MAC address are received from discrete logical connections.
+   Use VRRP when you have multiple distinct devices that connect to a layer 2 segment through multiple logical connections (not through a single bond). VRRP elects a single active forwarder that *owns* the virtual MAC address while it is active. This prevents the forwarding database of the layer 2 domain from continuously updating in response to MAC flaps because the switch receives frames sourced from the virtual MAC address from discrete logical connections.
 
 {{%notice note%}}
 You cannot configure both VRR and VRRP on the same switch.
@@ -24,10 +24,10 @@ The diagram below illustrates a basic VRR-enabled network configuration.
 
 {{< img src = "/images/cumulus-linux/mlag-dual-connect.png" >}}
 
-The network includes three hosts and two routers running Cumulus Linux that are configured with {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="multi-chassis link aggregation">}} (MLAG).
-- As the bridges in each of the redundant routers are connected, they each receive and reply to ARP requests for the virtual router IP address.
-- Each ARP request made by a host receives replies from each switch; these replies are identical, and the host receiving the replies either ignores replies after the first, or accepts them and overwrites the previous identical reply.
-- A range of MAC addresses is reserved for use with VRR to prevent MAC address conflicts with other interfaces in the same bridged network. The reserved range is `00:00:5E:00:01:00` to `00:00:5E:00:01:ff`.
+The network includes three hosts and two routers running Cumulus Linux that use {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="multi-chassis link aggregation">}} (MLAG).
+- As the bridges in each of the redundant routers connect, they each receive and reply to ARP requests for the virtual router IP address.
+- Each ARP request by a host receives replies from each switch; these replies are identical, and the host receiving the replies either ignores replies after the first, or accepts them and overwrites the previous identical reply.
+- VRR reserves a range of MAC addresses to prevent MAC address conflicts with other interfaces in the same bridged network. The reserved range is `00:00:5E:00:01:00` to `00:00:5E:00:01:ff`.
 
    Use MAC addresses from the reserved range when configuring VRR. The reserved MAC address range for VRR is the same as for the Virtual Router Redundancy Protocol (VRRP).
 
@@ -36,10 +36,10 @@ The network includes three hosts and two routers running Cumulus Linux that are 
 The routers implement the layer 2 network interconnecting the hosts and the redundant routers. To configure the routers, add a bridge with the following interfaces to each router:
 
 - One bond interface or switch port interface to each host. For networks using MLAG, use bond interfaces. Otherwise, use switch port interfaces.
-- One or more interfaces to each peer router. To accommodate higher bandwidth between the routers and to offer link redundancy, multiple inter-peer links are typically bonded interfaces. The VLAN interface must have a unique IP address for both the physical and virtual interface; the unique address is used when the switch initiates an ARP request.
+- One or more interfaces to each peer router. To accommodate higher bandwidth between the routers and to offer link redundancy, multiple inter-peer links are typically bonded interfaces. The VLAN interface must have a unique IP address for both the physical and virtual interface; the switch uses the unique address when it initiates an ARP request.
 
 {{%notice note%}}
-Cumulus Linux only supports VRR on switched virtual interfaces (SVIs). VRR is not supported on physical interfaces or virtual subinterfaces.
+Cumulus Linux only supports VRR on switched virtual interfaces (SVIs). You cannot configure VRR on physical interfaces or virtual subinterfaces.
 {{%/notice%}}
 
 The example commands below create a VLAN-aware bridge interface for a VRR-enabled network. The example assumes you have already configured a VLAN-aware bridge with VLAN 10 and that VLAN 10 has an IP address:
@@ -428,16 +428,16 @@ iface uplink:400 inet static
 
 ## VRRP
 
-VRRP allows for a single virtual default gateway to be shared among two or more network devices in an active standby configuration. The VRRP router that forwards packets at any given time is called the master. If this VRRP router fails, another VRRP standby router automatically takes over as master. The master sends VRRP advertisements to other VRRP routers in the same virtual router group, which include the priority and state of the master. VRRP router priority determines the role that each virtual router plays and who becomes the new master if the master fails.
+VRRP allows two or more network devices in an active standby configuration to share a single virtual default gateway. The VRRP router that forwards packets at any given time is the master. If this VRRP router fails, another VRRP standby router automatically takes over as master. The master sends VRRP advertisements to other VRRP routers in the same virtual router group, which include the priority and state of the master. VRRP router priority determines the role that each virtual router plays and who becomes the new master if the master fails.
 
-All virtual routers use 00:00:5E:00:01:XX for IPv4 gateways or 00:00:5E:00:02:XX for IPv6 gateways as their MAC address. The last byte of the address is the Virtual Router IDentifier (VRID), which is different for each virtual router in the network. This MAC address is used by only one physical router at a time, which replies with this address when ARP requests or neighbor solicitation packets are sent for the IP addresses of the virtual router.
+All virtual routers use 00:00:5E:00:01:XX for IPv4 gateways or 00:00:5E:00:02:XX for IPv6 gateways as their MAC address. The last byte of the address is the Virtual Router IDentifier (VRID), which is different for each virtual router in the network. Only one physical router uses this MAC address at a time. The router replies with this address when it receives ARP requests or neighbor solicitation packets for the IP addresses of the virtual router.
 
 {{%notice note%}}
 - Cumulus Linux supports both VRRPv2 and VRRPv3. The default protocol version is VRRPv3.
-- 255 virtual routers are supported per switch.
-- VRRP is not supported in an MLAG environment.
-- To configure VRRP on an SVI or {{<link url="Traditional-Bridge-Mode" text="traditional mode bridge">}}, you need to edit the `etc/network/interfaces` and `/etc/frr/frr.conf` files. The NCLU commands are not supported with SVIs or traditional mode bridges.
-- VRRP is supported with EVPN and on layer 3 interfaces and subinterfaces that are part of a VRF.
+- You can configure a maximum of 255 virtual routers on a switch.
+- You cannot use VRRP with MLAG.
+- To configure VRRP on an SVI or {{<link url="Traditional-Bridge-Mode" text="traditional mode bridge">}}, you need to edit the `etc/network/interfaces` and `/etc/frr/frr.conf` files. NCLU commands do not support SVIs or traditional mode bridges.
+- You can use VRRP with EVPN, and on layer 3 interfaces and subinterfaces that are part of a VRF.
 {{%/notice%}}
 
 {{<exlink url="https://tools.ietf.org/html/rfc5798#section-4.1" text="RFC 5798">}} describes VRRP in detail.
@@ -451,20 +451,20 @@ The following example illustrates a basic VRRP configuration.
 To configure VRRP, specify the following information on each switch:
 
 - **A virtual router ID (VRID) that identifies the group of VRRP routers**. You must specify the same ID across all virtual routers in the group.
-- **One or more virtual IP addresses that are assigned to the virtual router group**. These are IP addresses that do not directly connect to a specific interface. Inbound packets sent to a virtual IP address are redirected to a physical network interface.
+- **One or more virtual IP addresses for the virtual router group**. These IP addresses do not directly connect to a specific interface. The switch redirects inbound packets to a virtual IP address to a physical network interface.
 
-You can also set these optional parameters. If you do not set these parameters, the defaults are used:
+You can also set these optional parameters:
 
 | Optional Parameter | Default Value | Description|
 | -----------| -------------| ------------- |
 | `priority` | 100 | The priority level of the virtual router within the virtual router group, which determines the role that each virtual router plays and what happens if the master fails. Virtual routers have a priority between 1 and 254; the router with the highest priority becomes the master. |
 | `advertisement interval` | 1000 milliseconds | The advertisement interval is the interval between successive advertisements by the master in a virtual router group. You can specify a value between 10 and 40950.|
-| `preempt` | enabled | Preempt mode lets the router take over as master for a virtual router group if it has a higher priority than the current master. Preempt mode is enabled by default. To disable preempt mode, you need to edit the `/etc/frr/frr.conf` file and add the line `no vrrp <VRID> preempt` to the interface stanza, then restart the FRR service.|
+| `preempt` | enabled | Preempt mode lets the router take over as master for a virtual router group if it has a higher priority than the current master. Preempt mode is on by default. To disable preempt mode, edit the `/etc/frr/frr.conf` file to add the line `no vrrp <VRID> preempt` to the interface stanza, then restart the FRR service.|
 
 The following example commands configure two switches (spine01 and spine02) that form one virtual router group (VRID 44) with IPv4 address 10.0.0.1/24 and IPv6 address 2001:0db8::1/64. *spine01* is the master; it has a priority of 254. *spine02* is the backup VRRP router.
 
 {{%notice note%}}
-A primary address is required for the parent interface to use as the source address on VRRP advertisement packets.
+The parent interface must use a primary address as the source address on VRRP advertisement packets.
 {{%/notice%}}
 
 {{< tabs "TabID448 ">}}

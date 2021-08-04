@@ -5,7 +5,7 @@ weight: 620
 toc: 3
 ---
 
-A VXLAN connects layer 2 domains across a layer 3 fabric; however, layer 2 protocol packets, such as LLDP, LACP, STP, and CDP are normally terminated at the ingress VTEP. If you want the VXLAN to behave more like a wire or hub, where protocol packets are tunneled instead of being terminated locally, you can enable *bridge layer 2 protocol tunneling*.
+A VXLAN connects layer 2 domains across a layer 3 fabric; however, layer 2 protocol packets, such as LLDP, LACP, STP, and CDP stop at the ingress VTEP. If you want the VXLAN to behave more like a wire or hub, where the switch tunnels protocol packets instead of terminating them locally, you can enable *bridge layer 2 protocol tunneling*.
 
 ## Configure Bridge Layer 2 Protocol Tunneling
 
@@ -181,18 +181,18 @@ details partner lacp pdu:
 ### Pseudowire Example
 
 In this example:
-- There are only two VTEPs in the VXLAN. VTEP1 and VTEP2 point to each other as the only remote VTEP.
-- The bridge on each VTEP is configured in 802.1ad mode.
+- Only two VTEPs are in the VXLAN. VTEP1 and VTEP2 point to each other as the only remote VTEP.
+- The bridge on each VTEP is in 802.1ad mode.
 - The host interface is an 802.1Q VLAN trunk.
-- The `bridge-l2protocol-tunnel` is set to `all`.
-- The VTEP host-facing port is in access mode and the PVID is mapped to the VNI.
+- The setting for `bridge-l2protocol-tunnel` is `all`.
+- The VTEP host-facing port is in access mode and the PVID maps to the VNI.
 
 {{<img src="/images/cumulus-linux/pseudoWire.png">}}
 
 ## Considerations
 
 Use caution when enabling bridge layer 2 protocol tunneling:
-- Layer 2 protocol tunneling is not a full-featured pseudo-wire solution; there is no end-to-end link status tracking or feedback.
-- Layer 2 protocols typically run on a link-local scope. Running the protocols through a tunnel across a layer 3 fabric incurs significantly higher latency, which might require you to tune protocol timers.
+- Layer 2 protocol tunneling is not a full-featured pseudo-wire solution; End-to-end link status tracking or feedback does not exist.
+- Layer 2 protocols typically run on a link-local scope. Running the protocols through a tunnel across a layer 3 fabric incurs higher latency, which require you to tune protocol timers.
 - The lack of end to end link or tunnel status feedback and the higher protocol timeout values make for a higher protocol convergence time when there are changes.
 - If the remote endpoint is a Cisco endpoint using LACP, you must configure `etherchannel misconfig guard` on the Cisco device.

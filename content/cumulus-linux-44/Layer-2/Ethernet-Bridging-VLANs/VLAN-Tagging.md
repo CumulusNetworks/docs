@@ -6,9 +6,9 @@ toc: 4
 ---
 This topic shows two examples of VLAN tagging, one basic and one more advanced. Both examples show streamlined interface configuration from `ifupdown2`.
 
-## VLAN Tagging, a Basic Example
+## Basic VLAN Tagging Example
 
-A simple configuration demonstrating VLAN tagging involves two hosts connected to a switch.
+The following simple VLAN tagging configuration shows two hosts that connect to a switch.
 <!-- vale off -->
 {{< img src = "/images/cumulus-linux/vlan-tagging-trunks-bond-simple.png" >}}
 <!-- vale on -->
@@ -39,9 +39,9 @@ auto swp2.130
 iface swp2.130
 ```
 
-## VLAN Tagging, an Advanced Example
+## Advanced VLAN Tagging Example
 
-This example of VLAN tagging is more complex, involving three hosts and two switches, with several bridges and a bond connecting them all.
+The following advanced VLAN tagging configuration shows three hosts and two switches, with several bridges and a bond that connects them all.
 <!-- vale off -->
 {{< img src = "/images/cumulus-linux/vlan-tagging-trunks-bond-adv.png" >}}
 <!-- vale on -->
@@ -50,7 +50,7 @@ This example of VLAN tagging is more complex, involving three hosts and two swit
 - *host3* connects to bridge *br-vlan120* with 802.1q frames tagged for *vlan120* and to bridge *v130* with 802.1q frames tagged for *vlan130*.
 - *bond2* carries tagged and untagged frames in this example.
 
-Although not explicitly designated, the bridge member ports function as 802.1Q *access ports* and *trunk ports*. In the example above, comparing Cumulus Linux with a traditional Cisco device:
+The bridge member ports function as 802.1Q *access ports* and *trunk ports*. To compare Cumulus Linux with a traditional Cisco device:
 
 - *swp1* is equivalent to a trunk port with untagged and *vlan100*.
 - *swp2* is equivalent to a trunk port with *vlan100* and *vlan120*.
@@ -130,7 +130,7 @@ iface v130
 #
 ```
 
-To verify:
+To verify the configuration:
 
 ```
 cumulus@switch:~$ sudo mstpctl showbridge br-tag100
@@ -242,7 +242,7 @@ Slave queue ID: 0
 ```
 
 {{%notice warning%}}
-A single bridge cannot contain multiple subinterfaces of the **same** port as members. Attempting to apply such a configuration results in an error:
+A single bridge cannot contain multiple subinterfaces of the **same** port. If you try to apply this configuration, you see an error:
 
 ```
 cumulus@switch:~$ sudo brctl addbr another_bridge
@@ -253,12 +253,12 @@ bridge cannot contain multiple subinterfaces of the same port: swp9, swp9.100
 
 ## VLAN Translation
 
-By default, Cumulus Linux does not allow VLAN subinterfaces associated with different VLAN IDs to be part of the same bridge. Base interfaces are not explicitly associated with any VLAN IDs and are exempt from this restriction.
+By default, Cumulus Linux does not allow VLAN subinterfaces associated with different VLAN IDs to be part of the same bridge. Base interfaces do not associate with any VLAN IDs and are exempt from this restriction.
 
-In some cases, it might be useful to relax this restriction. For example, two servers might be connected to the switch using VLAN trunks, but the VLAN numbering provisioned on the two servers are not consistent. You can choose to just bridge two VLAN subinterfaces of different VLAN IDs from the servers. You do this by enabling the `sysctl net.bridge.bridge-allow-multiple-vlans`. Packets entering a bridge from a member VLAN subinterface egress another member VLAN subinterface with the VLAN ID translated.
+In some cases, it is useful to relax this restriction. For example, when two servers connect to the switch using VLAN trunks, but the VLAN numbering on the two servers is not consistent. You can bridge two VLAN subinterfaces of different VLAN IDs from the servers by enabling the `sysctl net.bridge.bridge-allow-multiple-vlans` option. Packets that enter a bridge from a member VLAN subinterface egress another member VLAN subinterface with the VLAN ID translated.
 
 {{%notice note%}}
-A bridge in {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}} cannot have VLAN translation enabled; only bridges configured in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} can use VLAN translation.
+You cannot enable VLAN translation on a bridge in {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}; only bridges in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} can use VLAN translation.
 {{%/notice%}}
 
 The following example enables the VLAN translation `sysctl`:
@@ -270,9 +270,7 @@ cumulus@switch:~$ sudo sysctl -p /etc/sysctl.d/multiple_vlans.conf
 net.bridge.bridge-allow-multiple-vlans = 1
 ```
 
-If the `sysctl` is enabled and you want to disable it, run the above example, setting the `sysctl net.bridge.bridge-allow-multiple-vlans` to *0*.
-
-After `sysctl` is enabled, you can add ports with different VLAN IDs to the same bridge. In the following example, packets entering the bridge `br-mix` from swp10.100 are bridged to swp11.200 with the VLAN ID translated from 100 to 200:
+After you enable `sysctl`, you can add ports with different VLAN IDs to the same bridge. In the following example, the switch bridges packets that enter the bridge `br-mix` from swp10.100 to swp11.200. Cumulus Linux translates the VLAN ID from 100 to 200:
 
 ```
 cumulus@switch:~$ sudo brctl addif br_mix swp10.100 swp11.200

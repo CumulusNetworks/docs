@@ -8,7 +8,6 @@ Switches running Cumulus Linux can integrate with VMware NSX-V to act as hardwar
 
 {{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv.png" >}}
 
-Cumulus Linux also supports integration with VMware NSX in high availability mode. Refer to {{<link url="OVSDB-Server-High-Availability">}}.
 
 ## Get Started
 

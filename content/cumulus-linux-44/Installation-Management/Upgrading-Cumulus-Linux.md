@@ -261,7 +261,7 @@ For networks with MLAG deployments, you can only upgrade to Cumulus Linux 4.4 fr
 {{%notice info%}}
 During upgrade, MLAG bonds stay single-connected while the switches are running different major releases; for example, while leaf01 is running 3.7.12 and leaf02 is running 4.4.0.
 
-The bonding driver changes how it derives the *actor port key*, which causes the port key to have a different value for links with the same speed or duplex settings across different major releases. The port key from the LACP partner must remain consistent between all bond members for all bonds to be synchronized. When each MLAG switch sends LACPDUs with different port keys, only links to one MLAG switch synchronize.
+The bonding driver changes how it derives the *actor port key*, which causes the port key to have a different value for links with the same speed or duplex settings across different major releases. The port key from the LACP partner must remain consistent between all bond members for all bonds to synchronize. When each MLAG switch sends LACPDUs with different port keys, only links to one MLAG switch synchronize.
 {{%/notice%}}
 
 1. Verify the switch is in the secondary role:

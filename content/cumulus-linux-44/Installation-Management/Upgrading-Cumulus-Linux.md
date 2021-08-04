@@ -5,12 +5,12 @@ weight: 50
 toc: 3
 ---
 {{%notice warning%}}
-The default password for the *cumulus* user account is `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts before you upgrade. You can use ONIE command line options to change the default password automatically during the Cumulus Linux image installation process. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image#onie-installation-options" text="ONIE Installation Options">}}.
+The default password for the *cumulus* user account is `cumulus`. The first time you log into Cumulus Linux, you **must** change this default password. Be sure to update any automation scripts before you upgrade. You can use ONIE command line options to change the default password automatically during the Cumulus Linux image installation process. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image#onie-installation-options" text="ONIE Installation Options">}}.
 {{%/notice%}}
 
 This topic describes how to upgrade Cumulus Linux on your switch.
 
-Consider deploying, provisioning, configuring, and upgrading switches using automation, even with small networks or test labs. During the upgrade process, you can quickly upgrade dozens of devices in a repeatable manner. Using tools like Ansible, Chef, or Puppet for configuration management greatly increases the speed and accuracy of the next major upgrade; these tools also enable the quick swap of failed switch hardware.
+Consider deploying, provisioning, configuring, and upgrading switches using automation, even with small networks or test labs. During the upgrade process, you can upgrade dozens of devices in a repeatable manner. Using tools like Ansible, Chef, or Puppet for configuration management greatly increases the speed and accuracy of the next major upgrade; these tools also enable the quick swap of failed switch hardware.
 
 ## Before You Upgrade
 
@@ -21,7 +21,7 @@ Be sure to read the knowledge base article
 
 ### Back up Configuration Files
 
-Understanding the location of configuration data is required for successful upgrades, migrations, and backup. As with other Linux distributions, the `/etc` directory is the primary location for all configuration data in Cumulus Linux. The following list is a likely set of files that you need to back up and migrate to a new release. Make sure you examine any file that has been changed. Make the following files and directories part of a backup strategy.
+Understanding the location of configuration data is important for successful upgrades, migrations, and backup. As with other Linux distributions, the `/etc` directory is the primary location for all configuration data in Cumulus Linux. The following list is the set of files that you need to back up and migrate to a new release. Make sure you examine any changed files. Make the following files and directories part of a backup strategy.
 
 {{< tabs "TabID25 ">}}
 {{< tab "Network Configuration Files ">}}
@@ -84,7 +84,7 @@ Understanding the location of configuration data is required for successful upgr
 {{< /tab >}}
 {{< /tabs >}}
 
-If you are using certain forms of network virtualization, such as {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V" text="VMware NSX-V">}}, you might have updated the `/usr/share/openvswitch/scripts/ovs-ctl-vtep` file. This file is not marked as a configuration file; therefore, if the file contents change in a newer release of Cumulus Linux, they overwrite any changes you made to the file. Be sure to back up this file and the database file `conf.db` before upgrading.
+If you use certain forms of network virtualization, such as {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V" text="VMware NSX-V">}}, you update the `/usr/share/openvswitch/scripts/ovs-ctl-vtep` file. This file is not marked as a configuration file; therefore, if the file contents change in a newer release of Cumulus Linux, they overwrite any changes you make to the file. Be sure to back up this file and the database file `conf.db` before upgrading.
 
 {{%notice note%}}
 The following commands verify which files have changed compared to the previous Cumulus Linux install. Be sure to back up any changed files.
@@ -131,10 +131,10 @@ Be aware of the following when installing the Cumulus Linux image:
 
 - Installing a Cumulus Linux image is destructive; any configuration files on the switch are not saved; copy them to a different server before you start the Cumulus Linux image install.
 - You must move configuration data to the new OS using ZTP or automation while the OS is first booted, or soon afterwards using out-of-band management.
-- Moving a configuration file might cause issues.
+- Moving a configuration file can cause issues.
 - Identifying all the locations of configuration data is not always an easy task. See [Before You Upgrade Cumulus Linux](#before-you-upgrade-cumulus-linux) above.
-- Merge conflicts with configuration file changes in the new release might go undetected.
-- If configuration files are not restored correctly, you might be unable to ssh to the switch from in-band management. Out-of-band connectivity (eth0 or console) is recommended.
+- Merge conflicts with configuration file changes in the new release sometimes go undetected.
+- If configuration files do not restore correctly, you are be unable to ssh to the switch from in-band management. Use out-of-band connectivity (eth0 or console).
 - You *must* reinstall and reconfigure third-party applications after upgrade.
 
 <!--*Package upgrade** is recommended if you are upgrading from Cumulus Linux 4.0.0 to a later 4.x release, or if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install).
@@ -261,7 +261,7 @@ For networks with MLAG deployments, you can only upgrade to Cumulus Linux 4.4 fr
 {{%notice info%}}
 During upgrade, MLAG bonds stay single-connected while the switches are running different major releases; for example, while leaf01 is running 3.7.12 and leaf02 is running 4.4.0.
 
-This is due to a change in the bonding driver to handle how the *actor port key* is derived, which causes the port key to have a different value for links with the same speed or duplex settings across different major releases. The port key received from the LACP partner must remain consistent between all bond members for all bonds to be synchronized. When each MLAG switch sends LACPDUs with different port keys, only links to one MLAG switch are in sync.
+The bonding driver changes how it derives the *actor port key*, which causes the port key to have a different value for links with the same speed or duplex settings across different major releases. The port key from the LACP partner must remain consistent between all bond members for all bonds to be synchronized. When each MLAG switch sends LACPDUs with different port keys, only links to one MLAG switch synchronize.
 {{%/notice%}}
 
 1. Verify the switch is in the secondary role:

@@ -4,9 +4,9 @@ author: NVIDIA
 weight: 90
 toc: 3
 ---
-Use *Zero touch provisioning* (ZTP) to deploy network devices quickly in large-scale environments. On first boot, Cumulus Linux invokes ZTP, which executes the provisioning automation used to deploy the device for its intended role in the network.
+Use *Zero touch provisioning* (ZTP) to deploy network devices in large-scale environments. On first boot, Cumulus Linux invokes ZTP, which executes the provisioning automation that deploys the device for its intended role in the network.
 
-The provisioning framework allows for a one-time, user-provided script to be executed. You can develop this script using a variety of automation tools and scripting languages. You can also use it to add the switch to a configuration management (CM) platform such as {{<exlink url="http://puppet.com/" text="Puppet">}}, {{<exlink url="https://www.chef.io" text="Chef">}}, {{<exlink url="https://cfengine.com" text="CFEngine">}} or a custom, proprietary tool.
+The provisioning framework allows you to execute a one-time, user-provided script. You can develop this script using a variety of automation tools and scripting languages. You can also use it to add the switch to a configuration management (CM) platform such as {{<exlink url="http://puppet.com/" text="Puppet">}}, {{<exlink url="https://www.chef.io" text="Chef">}}, {{<exlink url="https://cfengine.com" text="CFEngine">}} or a custom, proprietary tool.
 
 While developing and testing the provisioning logic, you can use the `ztp` command in Cumulus Linux to manually invoke your provisioning script on a device.
 
@@ -31,7 +31,7 @@ You can also trigger the ZTP process manually by running the `ztp --run <URL>` c
 ## Use a USB Drive
 
 {{%notice note%}}
-This feature has been tested only with *thumb* drives, not an actual external large USB hard drive.
+NVIDIA tests this feature only with *thumb* drives, not an external large USB hard drive.
 {{%/notice%}}
 If the `ztp` process does not discover a local script, it tries one time to locate an inserted but unmounted USB drive. If it discovers one, it begins the ZTP process.
 Cumulus Linux supports the use of a FAT32, FAT16, or VFAT-formatted USB drive as an installation source for ZTP scripts. You must plug in the USB drive **before** you power up the switch.
@@ -45,31 +45,31 @@ Follow these steps to perform ZTP using a USB drive:
 
 1. Copy the installation image to the USB drive.
 2. The `ztp` process searches the root filesystem of the newly mounted drive for filenames matching an {{<exlink url="https://opencomputeproject.github.io/onie/user-guide/index.html#directly-connected-scenario" text="ONIE-style waterfall">}} (see the patterns and examples above), looking for the most specific name first, and ending at the most generic.
-3. The contents of the script are parsed to ensure it contains the `CUMULUS-AUTOPROVISIONING` flag (see {{<link url="#write-ztp-scripts" text="example scripts">}}).
+3. ZTP parses the contents of the script to ensure it contains the `CUMULUS-AUTOPROVISIONING` flag (see {{<link url="#write-ztp-scripts" text="example scripts">}}).
 
 {{%notice note%}}
-The USB drive is mounted to a temporary directory under `/tmp` (for example, `/tmp/tmpigGgjf/`). To reference files on the USB drive, use the environment variable `ZTP_USB_MOUNTPOINT` to refer to the USB root partition.
+The USB drive mounts to a temporary directory under `/tmp` (for example, `/tmp/tmpigGgjf/`). To reference files on the USB drive, use the environment variable `ZTP_USB_MOUNTPOINT` to refer to the USB root partition.
 {{%/notice%}}
 
 ## ZTP Over DHCP
 
 If the `ztp` process does not discover a local ONIE script or applicable USB drive, it checks DHCP every ten seconds for up to five minutes for the presence of a ZTP URL specified in `/var/run/ztp.dhcp`. The URL can be any of HTTP, HTTPS, FTP, or TFTP.
 
-For ZTP using DHCP, provisioning initially takes place over the management network and is initiated through a DHCP hook. A DHCP option is used to specify a configuration script. This script is then requested from the Web server and executed locally on the switch.
+For ZTP using DHCP, provisioning initially takes place over the management network and initiates through a DHCP hook. A DHCP option specifies a configuration script. The ZTP process requests this script from the Web server and the script executes locally.
 
 The ZTP process over DHCP follows these steps:
 
-1. The first time you boot Cumulus Linux, eth0 is configured for DHCP and makes a DHCP request.
+1. The first time you boot Cumulus Linux, eth0 makes a DHCP request.
 2. The DHCP server offers a lease to the switch.
-3. If option 239 is present in the response, the ZTP process starts.
+3. If option 239 is in the response, the ZTP process starts.
 4. The ZTP process requests the contents of the script from the URL, sending additional {{<link url="#inspect-http-headers" text="HTTP headers">}} containing details about the switch.
-5. The contents of the script are parsed to ensure it contains the `CUMULUS-AUTOPROVISIONING` flag (see {{<link url="#write-ztp-scripts" text="example scripts">}}).
+5. ZTP parses the contents of the script to ensure it contains the `CUMULUS-AUTOPROVISIONING` flag (see {{<link url="#write-ztp-scripts" text="example scripts">}}).
 6. If provisioning is necessary, the script executes locally on the switch with root privileges.
-7. The return code of the script is examined. If it is 0, the provisioning state is marked as complete in the autoprovisioning configuration file.
+7. ZTP examines the return code of the script. If the return code is 0, ZTP marks the provisioning state as complete in the autoprovisioning configuration file.
 
 ### Trigger ZTP Over DHCP
 
-If provisioning has not already occurred, you can trigger the ZTP process over DHCP when eth0 is set to use DHCP and one of the following events occur:
+If you have not yet provisioned the switch, you can trigger the ZTP process over DHCP when eth0 uses DHCP and one of the following events occur:
 
 - The switch boots.
 - You plug a cable into or unplug a cable from the eth0 port.
@@ -79,7 +79,7 @@ You can also run the `ztp --run <URL>` command, where the `URL` is the path to t
 
 ### Configure the DHCP Server
 
-During the DHCP process over eth0, Cumulus Linux requests DHCP option 239. This option is used to specify the custom provisioning script.
+During the DHCP process over eth0, Cumulus Linux requests DHCP option 239. This option specifies the custom provisioning script.
 
 For example, the `/etc/dhcp/dhcpd.conf` file for an ISC DHCP server looks like:
 
@@ -92,7 +92,7 @@ option cumulus-provision-url code 239 = text;
 }
 ```
 
-Additionally, you can specify the hostname of the switch with the `host-name` option:
+In addition, you can specify the hostname of the switch with the `host-name` option:
 
 ```
 subnet 192.168.0.0 netmask 255.255.255.0 {
@@ -108,13 +108,13 @@ Do not use an underscore (_) in the hostname; underscores are not permitted in h
 
 ### DHCP on Front Panel Ports
 
-In case eth0 is not operational or you prefer to use a front panel port, you can configure ZTP to bring all the front panel ports that are operational and run DHCP on any active interface. The list of active ports is reassessed on every retry cycle. When the DHCP lease is received and option 239 is present in the response, ZTP begins executing the script.
+In case eth0 is not operational or you prefer to use a front panel port, you can configure ZTP to bring all the front panel ports that are operational and run DHCP on any active interface. ZTP reassesses the list of active ports on every retry cycle. When it receives the DHCP lease and option 239 is present in the response, ZTP begins executing the script.
 
 To configure ZTP to bring up the front panel ports and run DHCP on any active interface, add the `CUMULUS-AUTOPROVISIONING-FRONT-PANEL` directive to the local ZTP script.
 
 ### Inspect HTTP Headers
 
-The following HTTP headers are sent in the request to the webserver to retrieve the provisioning script:
+The following HTTP headers in the request to the web server retrieve the provisioning script:
 
 ```
 Header                        Value                 Example
@@ -141,19 +141,18 @@ You must include the following line in any of the supported scripts that you exp
 # CUMULUS-AUTOPROVISIONING
 ```
 
-This line is required somewhere in the script file for execution to occur.
 {{%/notice%}}
 
-The script must contain the `CUMULUS-AUTOPROVISIONING` flag. You can include this flag in a comment or remark; the flag does not need to be echoed or written to `stdout`.
+The script must contain the `CUMULUS-AUTOPROVISIONING` flag. You can include this flag in a comment or remark; you do not need to echo or write the flag to `stdout`.
 
-You can write the script in any language currently supported by Cumulus Linux, such as:
+You can write the script in any language that Cumulus Linux supports, such as:
 
 - Perl
 - Python
 - Ruby
 - Shell
 
-The script must return an exit code of 0 upon success, as this triggers the autoprovisioning process to be marked as complete in the autoprovisioning configuration file.
+The script must return an exit code of 0 upon success, as this marks the process as complete in the autoprovisioning configuration file.
 
 The following script installs Cumulus Linux from a USB drive and applies a configuration:
 
@@ -198,15 +197,15 @@ Several ZTP example scripts are available in the {{<exlink url="https://github.c
 
 ## Continue Provisioning
 
-Typically ZTP exits after executing the script locally and does not continue. To continue with provisioning so that you do not have to intervine manually or embed an Ansible callback into the script, you can add the `CUMULUS-AUTOPROVISION-CASCADE` directive.
+Typically ZTP exits after executing the script locally and does not continue. To continue with provisioning so that you do not have to intervene manually or embed an Ansible callback into the script, you can add the `CUMULUS-AUTOPROVISION-CASCADE` directive.
 
 ## Best Practices
 
-ZTP scripts come in different forms and frequently perform many of the same tasks. As BASH is the most common language used for ZTP scripts, the following BASH snippets are provided to help you perform common tasks with robust error checking.
+ZTP scripts come in different forms and frequently perform the same tasks. As BASH is the most common language for ZTP scripts, use the following BASH snippets to perform common tasks with robust error checking.
 
 ### Set the Default Cumulus User Password
 
-The default *cumulus* user account password is `cumulus`. When you log into Cumulus Linux for the first time, you must provide a new password for the *cumulus* account, then log back into the system. This password change at first login is **required**.
+The default *cumulus* user account password is `cumulus`. When you log into Cumulus Linux for the first time, you must provide a new password for the *cumulus* account, then log back into the system.
 
 Add the following function to your ZTP script to change the default *cumulus* user account password to a clear-text password. The example changes the password `cumulus` to `MyP4$$word`.
 
@@ -220,7 +219,7 @@ function set_password(){
 set_password
 ```
 
-If you have an insecure management network, set the password with an encrypted hash instead of a clear-text password. Using an encrypted hash is recommended.
+If you have an insecure management network, set the password with an encrypted hash instead of a clear-text password.
 
 - First, generate a sha-512 password hash with the following python commands. The example commands generate a sha-512 password hash for the password `MyP4$$word`.
 
@@ -268,7 +267,7 @@ function ping_until_reachable(){
 
 ### Check the Cumulus Linux Release
 
-The following script segment demonstrates how to check which Cumulus Linux release is running currently and upgrades the node if the release is not the *target release*. If the release *is* the target release, normal ZTP tasks execute. This script calls the `ping_until_reachable` script (described above) to make sure the server holding the image server and the ZTP script is reachable.
+The following script segment demonstrates how to check which Cumulus Linux release is running and upgrades the node if the release is not the *target release*. If the release *is* the target release, normal ZTP tasks execute. This script calls the `ping_until_reachable` script (described above) to make sure the server holding the image server and the ZTP script is reachable.
 
 ```
 function init_ztp(){
@@ -317,10 +316,10 @@ function set_hostname(){
 ### NCLU in ZTP Scripts
 
 {{%notice note%}}
-Not all aspects of NCLU are supported when running during ZTP. Use traditional Linux methods of providing configuration to the switch during ZTP.
+You cannot use all NCLU commands with ZTP.
 {{%/notice%}}
 
-When you use NCLU in ZTP scripts, add the following loop to make sure NCLU has time to start up before being called.
+When you use NCLU in ZTP scripts, add the following loop to make sure NCLU has time to start up.
 
 ```
 # Waiting for NCLU to finish starting up
@@ -338,7 +337,7 @@ net commit
 
 ## Test ZTP Scripts
 
-There are a few commands you can use to test and debug your ZTP scripts.
+Use these commands to test and debug your ZTP scripts.
 
 You can use verbose mode to debug your script and see where your script failed. Include the `-v` option when you run ZTP:
 
@@ -356,7 +355,7 @@ error: ZTP Manual: Payload returned code 1
 error: Script returned failure
 ```
 
-To see if ZTP is enabled and to see results of the most recent execution, you can run the `ztp -s` command.
+To see results of the most recent ZTP execution, you can run the `ztp -s` command.
 
 ```
 cumulus@switch:~$ ztp -s
@@ -501,7 +500,7 @@ cumulus@leaf01:~$ sudo cat /var/log/syslog | grep ztp
 2018-04-24T15:06:39.175959+00:00 leaf01 ztp [13404]: ZTP script failed. Exiting...
 ```
 
-Errors in syslog for ZTP like those shown above often occur if the script is created (or edited as some point) on a Windows machine. Check to make sure that the `\r\n` characters are *not* present in the end-of-line encodings.
+Errors in syslog for ZTP like those shown above often occur if you create or edit the script on a Windows machine. Check to make sure that the `\r\n` characters are *not* present in the end-of-line encodings.
 
 Use the `cat -v ztp.sh` command to view the contents of the script and search for any hidden characters.
 
@@ -553,15 +552,15 @@ cumulus@switch:~$ sudo ztp -e
 ```
 
 {{%notice note%}}
-Enabling ZTP means that ZTP tries to run the next time the switch boots. However, if ZTP already ran on a previous boot up or if a manual configuration has been found, ZTP exits without trying to look for a script.
+When you enable ZTP, it tries to run the next time the switch boots. However, if ZTP already ran on a previous boot up or if there is a manual configuration, ZTP exits without trying to look for a script.
 
-ZTP checks for these manual configurations during bootup:
+ZTP checks for these manual configurations when the switch boots:
 - Password changes
 - Users and groups changes
 - Packages changes
 - Interfaces changes
 
-When the switch is booted for the very first time, ZTP records the state of important files that are most likely going to be modified after that the switch is configured. If ZTP is still enabled after a reboot, ZTP compares the recorded state to the current state of these files. If they do not match, ZTP considers that the switch has already been provisioned and exits. These files are only erased after a reset.
+When the switch boots for the first time, ZTP records the state of important files that can update after you configure the switch. After a reboot, ZTP compares the recorded state to the current state of these files. If they do not match, ZTP considers the switch as already provisioned and exits. ZTP only deletes these files after a reset.
 {{%/notice%}}
 
 To reset ZTP to its original state, use the `-R` option. This removes the `ztp` directory and ZTP runs the next time the switch reboots.
@@ -597,5 +596,5 @@ URL            None
 
 ## Considerations
 
-- During the development of a provisioning script, the switch might need to be rebooted.
-- You can use the Cumulus Linux `onie-select -i` command to cause the switch to reprovision itself and install a network operating system again using ONIE.
+- While you are writing a provisioning script, you sometimes need to reboot the switch.
+- You can use the Cumulus Linux `onie-select -i` command to reprovision the switch and install a network operating system again using ONIE.

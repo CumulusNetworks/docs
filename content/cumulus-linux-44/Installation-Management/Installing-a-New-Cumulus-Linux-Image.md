@@ -5,17 +5,17 @@ weight: 40
 toc: 3
 ---
 {{%notice warning%}}
-The default password for the *cumulus* user account is `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts before installing a new image. Cumulus Linux provides command line options to change the default password automatically during the installation process. Refer to [ONIE Installation Options](#onie-installation-options).
+The default password for the *cumulus* user account is `cumulus`. The first time you log into Cumulus Linux, you **must** change this default password. Be sure to update any automation scripts before installing a new image. Cumulus Linux provides command line options to change the default password automatically during the installation process. Refer to [ONIE Installation Options](#onie-installation-options).
 {{%/notice%}}
 
 You can install a new Cumulus Linux image using {{<exlink url="http://www.onie.org/" text="ONIE">}}, an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on bare metal switches.
 
 Before you install Cumulus Linux, the switch can be in two different states:
 
-- No image is installed on the switch (the switch is only running ONIE).
-- Cumulus Linux is already installed on the switch but you want to use ONIE to reinstall Cumulus Linux or upgrade to a newer version.
+- The switch does not contain an image (the switch is only running ONIE).
+- Cumulus Linux is already on the switch but you want to use ONIE to reinstall Cumulus Linux or upgrade to a newer version.
 
-The sections below describe some of the different ways you can install the Cumulus Linux image. Steps are provided for both installing directly from ONIE (if no image is installed on the switch) and from Cumulus Linux (if the image is already installed on the switch). For additional methods to find and install the Cumulus Linux image, see the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html" text="ONIE Design Specification">}}.
+The sections below describe some of the different ways you can install the Cumulus Linux image. Steps show how to install directly from ONIE (if no image is on the switch) and from Cumulus Linux (if the image is already on the switch). For additional methods to find and install the Cumulus Linux image, see the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html" text="ONIE Design Specification">}}.
 
 You can download a Cumulus Linux image from the {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="MyMellanox Downloads">}} page.
 
@@ -43,7 +43,7 @@ To install Cumulus Linux using a DHCP/web server *with* DHCP options, set up a D
 {{< img src = "/images/cumulus-linux/install-image-onie-dhcp.png" >}}
 
 {{%notice note%}}
-The most common method is to send DHCP option 114 with the entire URL to the web server (this can be the same system). However, there are many other ways to use DHCP even if you do not have full control over DHCP. See the ONIE user guide for help with {{<exlink url="https://opencomputeproject.github.io/onie/design-spec/discovery.html#partial-installer-urls" text="partial installer URLs">}} and {{<exlink url="https://opencomputeproject.github.io/onie/user-guide/index.html#advanced-dhcp-2-vivso" text="advanced DHCP options">}}; both articles list more supported DHCP options.
+The most common way is to send DHCP option 114 with the entire URL to the web server (this can be the same system). However, there are other ways you can use DHCP even if you do not have full control over DHCP. See the ONIE user guide for information on {{<exlink url="https://opencomputeproject.github.io/onie/design-spec/discovery.html#partial-installer-urls" text="partial installer URLs">}} and {{<exlink url="https://opencomputeproject.github.io/onie/user-guide/index.html#advanced-dhcp-2-vivso" text="advanced DHCP options">}}; both articles list more supported DHCP options.
 {{%/notice%}}
 
 Here is an example DHCP configuration with an {{<exlink url="http://www.isc.org/downloads/dhcp/" text="ISC DHCP server">}}:
@@ -254,11 +254,11 @@ Installing Cumulus Linux using a USB drive is fine for a single switch here and 
 
     {{< expand "Optional: Prepare a USB Drive inside Cumulus Linux"  >}}
 
-a. Insert your USB drive into the USB port on the switch running Cumulus Linux and log in to the switch. Examine output from `cat /proc/partitions` and `sudo fdisk -l [device]` to determine on which device your USB drive can be found. For example, `sudo fdisk -l /dev/sdb`.
+a. Insert your USB drive into the USB port on the switch running Cumulus Linux and log in to the switch. Examine output from `cat /proc/partitions` and `sudo fdisk -l [device]` to determine the location of your USB drive. For example, `sudo fdisk -l /dev/sdb`.
 
    These instructions assume your USB drive is the `/dev/sdb` device, which is typical if you insert the USB drive after the machine is already booted. However, if you insert the USB drive during the boot process, it is possible that your USB drive is the `/dev/sda` device. Make sure to modify the commands below to use the proper device for your USB drive.
 
-b. Create a new partition table on the USB drive. (The `parted` utility should already be installed. However, if it is not, install it with `sudo -E apt-get install parted`.)
+b. Create a new partition table on the USB drive. If the `parted` utility is not on the system, install it with `sudo -E apt-get install parted`.
 
    ```
    sudo parted /dev/sdb mklabel msdos
@@ -294,7 +294,7 @@ e. To continue installing Cumulus Linux, mount the USB drive to move files:
 
     You can also use any of the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes mentioned here">}}.
 
-    When using a Mac or Windows computer to rename the installation file, the file extension might still be present. Make sure to remove the file extension otherwise ONIE is not able to detect the file.
+    When using a MAC or Windows computer to rename the installation file, the file extension can still be present. Make sure you remove the file extension so that ONIE can detect the file.
 
 4. Insert the USB drive into the switch, then prepare the switch for installation:
 
@@ -311,7 +311,7 @@ e. To continue installing Cumulus Linux, mount the USB drive to move files:
 
     {{< img src = "/images/cumulus-linux/install-image-GNUx86-2.png" >}}
 
-7. The USB drive is recognized and mounted automatically. The image file is located and automatic installation of Cumulus Linux begins.
+7. The switch recognizes the USB drive and mounts it automatically. Cumulus Linux installation begins.
 
 8. After installation completes, the switch automatically reboots into the newly installed instance of Cumulus Linux.
 
@@ -339,7 +339,7 @@ You can run more than one option in the same command.
 
 ### Set the cumulus User Password
 
-The default *cumulus* user account password is `cumulus`. When you log into Cumulus Linux for the first time, you must provide a new password for the *cumulus* account, then log back into the system. This password change is **required**.
+The default *cumulus* user account password is `cumulus`. When you log into Cumulus Linux for the first time, you must provide a new password for the *cumulus* account, then log back into the system.
 
 To automate this process, you can specify a new password from the command line of the installer with the `--password '<clear text-password>'` option. For example, to change the default *cumulus* user password to `MyP4$$word`:
 
@@ -347,7 +347,7 @@ To automate this process, you can specify a new password from the command line o
 ONIE:/ # ./cumulus-linux-4.4.0-mlx-amd64.bin --password 'MyP4$$word'
 ```
 
-To provide a hashed password instead of a clear text password, use the `--hashed-password '<hash>'` option. Using an encrypted hash is recommended to maintain a secure management network.
+To provide a hashed password instead of a clear text password, use the `--hashed-password '<hash>'` option. An encrypted hash maintains a secure management network.
 
 1. Generate a sha-512 password hash with the following python command. The example command generates a sha-512 password hash for the password `MyP4$$word`.
 
@@ -363,7 +363,7 @@ To provide a hashed password instead of a clear text password, use the `--hashed
    ```
 
 {{%notice note%}}
-If you specify both the `--password` and `--hashed-password` options, the `--hashed-password` option takes precedence and the `--password` option is ignored.
+If you specify both the `--password` and `--hashed-password` options, the `--hashed-password` option takes precedence and the switch ignores he `--password` option.
 {{%/notice%}}
 
 <!--### Apply a Cumulus Linux License
@@ -392,7 +392,7 @@ ONIE:/ # ./cumulus-linux-4.4.0-mlx-amd64.bin --ztp initial-conf.ztp
 
 The ZTP script must contain the `CUMULUS-AUTOPROVISIONING` string near the beginning of the file and must reside on the ONIE filesystem. Refer to {{<link url="Zero-Touch-Provisioning-ZTP" text="Zero Touch Provisioning - ZTP">}}.
 
-If you use the `--ztp` option together with any of the other command line options, the ZTP script takes precedence and the other command line options are ignored.
+If you use the `--ztp` option together with any of the other command line options, the ZTP script takes precedence and the switch ignores other command line options.
 
 ## Edit the Cumulus Linux Image (Advanced)
 
@@ -402,7 +402,7 @@ The Cumulus Linux disk image file contains a BASH script that includes a set of 
 
 ### Example Image File
 
-The Cumulus Linux disk image file is a self-extracting executable. The executable part of the file is a BASH script and is located at the beginning of the file. Towards the beginning of this BASH script are a set of variables set to an empty string:
+The Cumulus Linux disk image file is a self-extracting executable. The executable part of the file is a BASH script at the beginning of the file. Towards the beginning of this BASH script are a set of variables with empty strings:
 
 ```
 ...
@@ -419,7 +419,7 @@ CL_INSTALLER_EXTRACTDIR=""
 CL_INSTALLER_PAYLOAD_SHA256="72a8c3da28cda7a610e272b67fa1b3a54c50248bf6abf720f73ff3d10e79ae76"
 ```
 
-The variables you can set are described below:
+You can set these variables:
 
 | Variable | Description |
 | -------- | ----------- |
@@ -432,7 +432,7 @@ The variables you can set are described below:
 
 ### Edit the Image File
 
-Because the Cumulus Linux image file is mostly a binary file, you cannot use standard text editors to edit the file directly. Instead, you must split the file into two parts, edit the first part, then put the two parts back together.
+Because the Cumulus Linux image file is a binary file, you cannot use standard text editors to edit the file directly. Instead, you must split the file into two parts, edit the first part, then put the two parts back together.
 
 1. Copy the first 20 lines to an empty file:
 
@@ -458,7 +458,7 @@ cat cumulus-linux-4.4.0-mlx-amd64.bin.1 cumulus-linux-4.4.0-mlx-amd64.bin.2 > cu
 5. Calculate the new checksum and update the `CL_INSTALLER_PAYLOAD_SHA256` variable.  
 `sed -e '1,/^exit_marker$/d' "cumulus-linux-4.4.0-mlx-amd64.bin.final" | sha256sum | awk '{ print $1 }'`
 
-This is an example of a modified image file:
+This following example shows a modified image file:
 
 ```
 ...
@@ -505,14 +505,14 @@ If you install the modified installation image and specify installer command lin
 
 ## Secure Boot
 
-Secure Boot ensures that each binary image loaded during system boot is validated with key signatures that correspond to a stored trusted key in firmware.
+Secure Boot validates each binary image loaded during system boot with key signatures that correspond to a stored trusted key in firmware.
 
 {{%notice note%}}
-Secure Boot is supported on the NVIDIA SN3700C-S switch.
+Secure Boot is only on the NVIDIA SN3700C-S switch.
 {{%/notice%}}
-
-Secure Boot settings are located in the BIOS Security menu. To access BIOS, press `Ctrl+B` through the serial console during system boot while the BIOS version is printed:
-
+<!-- vale off -->
+Secure Boot settings are in the BIOS Security menu. To access BIOS, press `Ctrl+B` through the serial console during system boot while the BIOS version prints:
+<!-- vale on -->
     {{< img src = "/images/cumulus-linux/SB-BIOS-post.png" >}}
 
 To access the BIOS menu, use `admin` which is the default BIOS password:
@@ -527,11 +527,11 @@ To validate or change the Secure Boot mode, navigate to **Security** and select 
 
     {{< img src = "/images/cumulus-linux/SB-BIOS-secboot.png" >}}
 
-In the Secure Boot menu, you can enable and disable Secure Boot mode. To install an unsigned version of Cumulus Linux or access ONIE without being prompted for a username and password, set Secure Boot to disabled: 
+In the Secure Boot menu, you can enable and disable Secure Boot mode. To install an unsigned version of Cumulus Linux or access ONIE without a prompt for a username and password, set Secure Boot to `disabled`:
 
     {{< img src = "/images/cumulus-linux/SB-BIOS-secbootEnableDisable.png" >}}
 
-To access ONIE when Secure Boot is enabled, authentication is necessary. The default username and password are both `root`:
+To access ONIE when Secure Boot is `enabled`, authentication is necessary. The default username and password are both `root`:
 
 ```
 ​ONIE: Rescue Mode ...

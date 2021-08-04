@@ -72,7 +72,7 @@ As an optional step, you can set PAM configuration keywords by editing the `/usr
 
 {{%notice note%}}
 
-The value of the VSA (Vendor Specific Attribute) `shell:priv-lvl` determines the privilege level for the user on the switch. If the attribute does not return, the user is unprivileged. The following shows an example using the `freeradius` server for a fully privileged user.
+The value of the VSA (Vendor Specific Attribute) `shell:priv-lvl` determines the privilege level for the user on the switch. If the attribute does not return, the user does not have privileges. The following shows an example using the `freeradius` server for a fully privileged user.
 
 ```
 Service-Type = Administrative-User,
@@ -109,7 +109,7 @@ The login process creates the home directory `/home/dave` if it does not already
 
 The configuration file `/etc/nss_mapuser.conf` configures the plugins. The file includes the mapped account name, which is `radius_user` by default. You can change the mapped account name by editing the file. The `nss_mapuser (5)` man page describes the configuration file.
 
-A flat file mapping is based on the session number assigned during login, which persists across `su` and `sudo`. The mapping is removed at logout.
+A flat file mapping derives from the session number assigned during login, which persists across `su` and `sudo`. Cumulus Linux removes the mapping at logout.
 
 ## Local Fallback Authentication
 
@@ -232,8 +232,8 @@ cumulus@switch:~$ sudo delgroup radius_users
 
 ## Considerations
 
-- If two or more RADIUS users are logged in simultaneously, a UID lookup only returns the user that logged in first. Any processes that either user runs is attributed to both, and all files that either user creates are attributed to the first name matched. This is similar to adding two local users to the password file with the same UID and GID, and is an inherent limitation of using the UID for the fixed user from the password file. The current algorithm returns the first name matching the UID from the mapping file; this might be the first or second user that logged in.
-- When you have both the TACACS+ and the RADIUS AAA client installed, RADIUS login is not attempted. As a workaround, do not install both the TACACS+ and the RADIUS AAA client on the same switch.
+- If two or more RADIUS users log in simultaneously, a UID lookup only returns the user that logs in first. Any process that either user runs applies to both, and all files that either user creates apply to the first name matched. This process is similar to adding two local users to the password file with the same UID and GID, and is an inherent limitation of using the UID for the fixed user from the password file. The current algorithm returns the first name matching the UID from the mapping file; this is either the first or second user that logs in.
+- When you install both the TACACS+ and the RADIUS AAA client, Cumulus Linux does not attempt the RADIUS login. As a workaround, do not install both the TACACS+ and the RADIUS AAA client on the same switch.
 
 ## Related Information
 

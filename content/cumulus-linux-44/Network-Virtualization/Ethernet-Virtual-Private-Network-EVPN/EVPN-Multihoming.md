@@ -12,11 +12,11 @@ toc: 4
 - Provides a single BGP-EVPN control plane
 - Allows multi-vendor interoperability
 
-EVPN-MH uses {{<link url="#supported-evpn-route-types" text="BGP-EVPN type-1, type-2 and type-4 routes">}} to discover Ethernet segments (ES) and to forward traffic to those Ethernet segments. The MAC and neighbor databases are synchronized between the Ethernet segment peers through these routes as well. An *{{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="Ethernet segment">}}* is a group of switch links that are attached to the same server. Each Ethernet segment has an unique Ethernet segment ID (`es-id`) across the entire PoD.
+EVPN-MH uses {{<link url="#supported-evpn-route-types" text="BGP-EVPN type-1, type-2 and type-4 routes">}} to discover Ethernet segments (ES) and to forward traffic to those Ethernet segments. The MAC and neighbor databases synchronize between the Ethernet segment peers through these routes as well. An *{{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="Ethernet segment">}}* is a group of switch links that attach to the same server. Each Ethernet segment has an unique Ethernet segment ID (`es-id`) across the entire PoD.
 
 To configure EVPN-MH, you set an Ethernet segment system MAC address and a local Ethernet segment ID on a static or LACP bond. These two parameters generate the unique MAC-based ESI value ({{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="type-3">}}) automatically:
 
-- The Ethernet segment system MAC address is used for the LACP system identifier.
+- The Ethernet segment system MAC address is the LACP system identifier.
 - The local Ethernet segment ID configuration defines a local discriminator to uniquely enumerate each bond that shares the same Ethernet segment system MAC address.
 - The resulting 10-byte ESI value has the following format, where the MMs denote the 6-byte Ethernet segment system MAC address and the XXs denote the 3-byte local Ethernet segment ID value:
 
@@ -39,7 +39,7 @@ You must enable the following features to use EVPN-MH:
 - {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}}
 - {{<link url="EVPN-Enhancements/#arp-and-nd-suppression" text="ARP suppression">}}
 
-Head End Replication is enabled by default with EVPN multihoming. If you prefer to use EVPN BUM traffic handling with EVPN-PIM on multihomed sites via Type-4/ESR routes, configure EVPN-PIM as described in {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN BUM Traffic with PIM-SM">}}.
+Cumulus Linux uses Head End Replication by default with EVPN multihoming. If you prefer to use EVPN BUM traffic handling with EVPN-PIM on multihomed sites via Type-4/ESR routes, configure EVPN-PIM as described in {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN BUM Traffic with PIM-SM">}}.
 
 {{%notice warning%}}
 To use EVPN-MH, you must remove any MLAG configuration on the switch:
@@ -53,9 +53,9 @@ To use EVPN-MH, you must remove any MLAG configuration on the switch:
 ### Supported Features
 
 - Known unicast traffic multihoming through type-1/EAD (Ethernet auto discovery) routes and type-2 (non-zero ESI) routes. Includes all-active redundancy using aliasing and support for fast failover.
-- {{<link url="LACP-Bypass">}} is supported.
-  - When an EVPN-MH bond enters LACP bypass state, BGP stops advertising EVPN type-1 and type-4 routes for that bond. Split-horizon and designated forwarder filters are disabled.
-  - When an EVPN-MH bond exits the LACP bypass state, BGP starts advertising EVPN type-1 and type-4 routes for that bond. Split-horizon and designated forwarder filters are enabled.
+- {{<link url="LACP-Bypass">}}.
+  - When an EVPN-MH bond enters LACP bypass state, BGP stops advertising EVPN type-1 and type-4 routes for that bond. The switch disables split-horizon and designated forwarder filters.
+  - When an EVPN-MH bond exits the LACP bypass state, BGP starts advertising EVPN type-1 and type-4 routes for that bond. The switch disables plit-horizon and designated forwarder filters.
 - EVI (*EVPN virtual instance*). Cumulus Linux supports VLAN-based service only, so the EVI is just a layer 2 VNI.
 - Supported {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="ASICs">}} include NVIDIA Spectrum A1, Spectrum 2 and Spectrum 3.
 
@@ -86,20 +86,20 @@ To configure EVPN-MH:
 3. Set the Ethernet segment system MAC address.
 4. Configure multihoming uplinks.
 
-These settings are applied to interfaces, typically bonds.
+These settings apply to interfaces, typically bonds.
 
 An Ethernet segment configuration has these characteristics:
 
 - The Ethernet segment ID is a 24-bit integer (1-16777215).
 - Each interface (bond) needs its own Ethernet segment ID.
-- Static and LACP bonds can be associated with an Ethernet segment ID.
+- You can associate static and LACP bonds with an Ethernet segment ID.
 
-A *designated forwarder* (DF) is elected for each Ethernet segment. The DF forwards flooded traffic received through the VXLAN overlay to the locally attached Ethernet segment. Specify a preference on an Ethernet segment for the DF election, as this leads to predictable failure scenarios. The EVPN VTEP with the highest DF preference setting becomes the DF. The DF preference setting defaults to _32767_.
+The switch selects a *designated forwarder* (DF) for each Ethernet segment. The DF forwards flooded traffic received through the VXLAN overlay to the locally attached Ethernet segment. Specify a preference on an Ethernet segment for the DF election, as this leads to predictable failure scenarios. The EVPN VTEP with the highest DF preference setting becomes the DF. The DF preference setting defaults to _32767_.
 
 NCLU (and NVUE) generates the EVPN-MH configuration and reloads FRR and `ifupdown2`. The configuration appears in both the `/etc/network/interfaces` file and in `/etc/frr/frr.conf` file.
 
 {{%notice note%}}
-When EVPN-MH is enabled, all SVI MAC addresses are advertised as type 2 routes. You do not need to configure a unique SVI IP address or configure the BGP EVPN address family with `advertise-svi-ip`.
+When you enable EVPN-MH, all SVI MAC addresses advertise as type-2 routes. You do not need to configure a unique SVI IP address or configure the BGP EVPN address family with `advertise-svi-ip`.
 {{%/notice%}}
 <!-- vale off -->
 ### Enable EVPN-MH
@@ -107,7 +107,7 @@ When EVPN-MH is enabled, all SVI MAC addresses are advertised as type 2 routes. 
 {{< tabs "TabID105 ">}}
 {{<tab "NCLU Commands">}}
 
-NCLU commands are not supported; use Linux commands.
+You cannot enable EVPN-MH with NCLU commands; use Linux commands.
 
 {{< /tab >}}
 {{<tab "NVUE Commands">}}
@@ -120,7 +120,7 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Set the `evpn.multihoming.enable` variable in the `/etc/cumulus/switchd.conf` file to `TRUE`, then restart the `switchd` service. The variable is disabled by default.
+Set the `evpn.multihoming.enable` variable in the `/etc/cumulus/switchd.conf` file to `TRUE`, then restart the `switchd` service. Cumulus Linux disables this variable by default.
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/cumulus/switchd.conf
@@ -292,11 +292,11 @@ interface bond3
 
 ### Enable uplink Tracking
 
-When all uplinks go down, the VTEP loses connectivity to the VXLAN overlay. To prevent traffic loss, Cumulus Linux tracks the operational state of the uplink. When all the uplinks are down, the Ethernet segment bonds on the switch are in a protodown or error-disabled state. An MH uplink is any routed interface where locally-encapsulated VXLAN traffic is routed (after encapsulation) or any routed interface receiving VXLAN traffic (before decapsulation) that is decapsulated by the local device.
+When all uplinks go down, the VTEP loses connectivity to the VXLAN overlay. To prevent traffic loss, Cumulus Linux tracks the operational state of the uplink. When all the uplinks are down, the Ethernet segment bonds on the switch are in a protodown or error-disabled state. An MH uplink is any routed interface to which the switch routes locally encapsulated VXLAN traffic (after encapsulation) or any routed interface receiving VXLAN traffic (before decapsulation) that the local device decapsulates.
 
 {{%notice info%}}
-Split-horizon and Designated-Forwarder filters are only applied to interfaces configured as MH uplinks.
-If you configure EVPN-MH without MH uplinks, BUM traffic might be duplicated or looped back to the same ES where it is received. This can cause MAC flaps or other issues on multihomed devices.
+Split-horizon and Designated-Forwarder filters only apply to interfaces that are MH uplinks.
+If you configure EVPN-MH without MH uplinks, BUM traffic duplicates or loops back to the same ES. This can cause MAC flaps or other issues on multihomed devices.
 {{%/notice%}}
 
 {{<tabs "uplink tracking">}}
@@ -403,9 +403,9 @@ interface swp4
 ### Global Settings
 
 You can set these global settings for EVPN-MH:
-- `mac-holdtime` specifies the duration for which a switch maintains SYNC MAC entries after the EVPN type-2 route of the Ethernet segment peer is deleted. During this time, the switch attempts to independently establish reachability of the MAC address on the local Ethernet segment. The hold time can be between 0 and 86400 seconds. The default is 1080 seconds.
-- `neigh-holdtime` specifies the duration for which a switch maintains SYNC neighbor entries after the EVPN type-2 route of the Ethernet segment peer is deleted. During this time, the switch attempts to independently establish reachability of the host on the local Ethernet segment. The hold time can be between 0 and 86400 seconds. The default is 1080 seconds.
-- `redirect-off` disables fast failover of traffic destined to the access port via the VXLAN overlay. This only applies to Cumulus VX (fast failover is only supported on the ASIC).
+- `mac-holdtime` specifies the duration for which a switch maintains SYNC MAC entries after the switch deletes the EVPN type-2 route of the Ethernet segment peer. During this time, the switch attempts to independently establish reachability of the MAC address on the local Ethernet segment. The hold time can be between 0 and 86400 seconds. The default is 1080 seconds.
+- `neigh-holdtime` specifies the duration for which a switch maintains SYNC neighbor entries after the switch deletes the EVPN type-2 route of the Ethernet segment peer. During this time, the switch attempts to independently establish reachability of the host on the local Ethernet segment. The hold time can be between 0 and 86400 seconds. The default is 1080 seconds.
+- `redirect-off` disables fast failover of traffic destined to the access port through the VXLAN overlay. This only applies to Cumulus VX.
 - `startup-delay` specifies the duration for which a switch holds the Ethernet segment-bond in a protodown state after a reboot or process restart. This allows the initialization of the VXLAN overlay to complete. The delay can be between 0 and 216000 seconds. The default is 180 seconds.
 
 To configure a MAC hold time for 1000 seconds, run the following commands:
@@ -664,7 +664,7 @@ debug zebra vxlan
 
 ### Fast failover
 
-When an Ethernet segment link goes down, the attached VTEP notifies all other VTEPs using a single EAD-ES withdraw. This is done by way of an Ethernet segment bond redirect.
+When an Ethernet segment link goes down, the attached VTEP notifies all other VTEPs using a single EAD-ES withdraw. Cumulus Linux uses an Ethernet segment bond redirect.
 
 Fast failover also triggers:
 
@@ -673,7 +673,7 @@ Fast failover also triggers:
 
 ### Disable Next Hop Group Sharing in the ASIC
 
-Container sharing for both layer 2 and layer 3 next hop groups is enabled by default when EVPN-MH is configured. These settings are stored in the `evpn.multihoming.shared_l2_groups` and `evpn.multihoming.shared_l3_groups` variables.
+When you configure EVPN-MH, container sharing for both layer 2 and layer 3 next hop groups is on by default. The switch stores these settings in the `evpn.multihoming.shared_l2_groups` and `evpn.multihoming.shared_l3_groups` variables.
 
 Disabling container sharing allows for faster failover when an Ethernet segment link flaps.
 
@@ -690,7 +690,7 @@ cumulus@switch:~$ sudo systemctl restart switchd.service
 <!-- vale off -->
 ### Disable EAD-per-EVI Route Advertisements
 <!-- vale on -->
-{{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} requires type-1/EAD (Ethernet Auto-discovery) routes to be advertised two ways:
+{{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} requires the switch to advertise type-1/EAD (Ethernet Auto-discovery) routes:
 
 - As EAD-per-ES (Ethernet Auto-discovery per Ethernet segment) routes
 - As EAD-per-EVI (Ethernet Auto-discovery per EVPN instance) routes
@@ -3622,7 +3622,7 @@ bridge-vlan-aware yes
 <!-- vale off -->
 ### EVPN-MH with EVPN-PIM
 <!-- vale on -->
-The following example commands configure EVPN multihoming with PIM using traditional VXLAN devices. NVUE commands are not supported currently for PIM.
+The following example commands configure EVPN multihoming with PIM using traditional VXLAN devices. You cannot configure PIM with NVUE commands.
 
 {{< tabs "TabID2213 ">}}
 {{<tab "NCLU Commands">}}

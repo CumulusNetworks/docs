@@ -6,7 +6,7 @@ toc: 3
 ---
 In VXLAN-based networks, there are a range of complexities and challenges in determining the destination *virtual tunnel endpoints* (VTEPs) for any given VXLAN. At scale, various solutions, including controller-based options, such as VMware NSX and new standards like {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}} try to address these complexities, however, they also have their own complexities.
 
-*Static VXLAN tunnels* serve to connect two VTEPs in a given environment. Static VXLAN tunnels are the simplest deployment mechanism for small scale environments and are interoperable with other vendors that adhere to VXLAN standards. Because you simply map which VTEPs are in a particular VNI, you can avoid the tedious process of defining connections to every VLAN on every other VTEP on every other rack.
+*Static VXLAN tunnels* serve to connect two VTEPs in a given environment. Static VXLAN tunnels are the simplest deployment mechanism for small scale environments and are interoperable with other vendors that adhere to VXLAN standards. Because you map which VTEPs are in a particular VNI, you can avoid the tedious process of defining connections to every VLAN on every other VTEP on every other rack.
 
 {{%notice note%}}
 Cumulus Linux supports *more* than one VXLAN ID per VLAN-aware bridge. However, more than one VXLAN ID per traditional bridge is not supported.
@@ -18,7 +18,7 @@ To configure static VXLAN tunnels, you create VXLAN devices. Cumulus Linux suppo
 - *Traditional VXLAN devices*, where you configure unique VXLAN devices and add each device to the bridge.
 - *Single VXLAN devices*, where all VXLAN tunnels with the same settings (local tunnel IP address and VXLAN remote IP addresses) can share the same VXLAN device and you only need to add the single VXLAN device to the bridge.
 
-The following topology is used in the configuration examples. Each IP address corresponds to the loopback address of the switch.
+The configuration examples use the following topology. Each IP address corresponds to the loopback address of the switch.
 <!-- vale off -->
 {{< img src = "/images/cumulus-linux/static-vxlan-tunnel-example.png" >}}
 <!-- vale on -->
@@ -698,7 +698,7 @@ cumulus@leaf01:mgmt:~$ sudo bridge fdb show | grep 00:00:00:00:00:00
 ```
 
 {{%notice note%}}
-In Cumulus Linux, bridge learning is disabled and ARP suppression is enabled by default on VXLAN interfaces. You can change the default behavior to set bridge learning on and ARP suppression off for all VNIs by creating a policy file called `bridge.json` in the `/etc/network/ifupdown2/policy.d/` directory. For example:
+Cumulus Linux disables bridge learning and enables ARP suppression by default on VXLAN interfaces. You can change the default behavior to set bridge learning on and ARP suppression off for all VNIs by creating a policy file called `bridge.json` in the `/etc/network/ifupdown2/policy.d/` directory. For example:
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/network/ifupdown2/policy.d/bridge.json

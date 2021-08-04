@@ -79,7 +79,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 You can configure multiple bridges to logically divide a switch into multiple layer 2 domains. This allows for hosts to communicate with other hosts in the same domain, while separating them from hosts in other domains.
 
-The example below shows a multiple bridge configuration, where host-1 and host-2 are connected to bridge-A, and host-3 and host-4 are connected to bridge-B:
+The example below shows a multiple bridge configuration, where host-1 and host-2 connect to bridge-A, and host-3 and host-4 connect to bridge-B:
 
 - host-1 and host-2 can communicate with each other
 - host-3 and host-4 can communicate with each other
@@ -118,7 +118,7 @@ The {{<exlink url="http://www.ieee802.org/1/pages/802.1Q.html" text=" standard">
 A bridge in traditional mode has no concept of trunks, just tagged or untagged frames. With a trunk of 200 VLANs, there would need to be 199 bridges, each containing a tagged physical interface, and one bridge containing the native untagged VLAN.
 
 {{%notice note%}}
-The interaction of tagged and un-tagged frames on the same trunk often leads to undesired and unexpected behavior. A switch that uses VLAN 1 for the native VLAN might send frames to a switch that uses VLAN 2 for the native VLAN, merging those two VLANs and their spanning tree state.
+The interaction of tagged and un-tagged frames on the same trunk often leads to undesired and unexpected behavior. A switch that uses VLAN 1 for the native VLAN can send frames to a switch that uses VLAN 2 for the native VLAN, merging those two VLANs and their spanning tree state.
 {{%/notice%}}
 
 {{< img src = "/images/cumulus-linux/ethernet-bridging-trunk1.png" >}}

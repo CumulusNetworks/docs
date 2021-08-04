@@ -8,13 +8,13 @@ This section describes EVPN enhancements.
 
 ## Define RDs and RTs
 
-When FRR learns about a local VNI and there is no explicit configuration for that VNI in FRR, the route distinguisher (RD), and import and export route targets (RTs) for this VNI are automatically derived. The RD uses *RouterId:VNI-Index* and the import and export RTs use *AS:VNI*. For routes that come from a layer 2 VNI (type-2 and type-3), the RD uses the `vxlan-local-tunnelip` from the layer 2 VNI interface instead of the RouterId (`vxlan-local-tunnelip:VNI`). The RD and RTs are used in the EVPN route exchange.
+When FRR learns about a local VNI and there is no explicit configuration for that VNI in FRR, the switch derives the route distinguisher (RD), and import and export route targets (RTs) for this VNI automatically. The RD uses *RouterId:VNI-Index* and the import and export RTs use *AS:VNI*. For routes that come from a layer 2 VNI (type-2 and type-3), the RD uses the `vxlan-local-tunnelip` from the layer 2 VNI interface instead of the RouterId (`vxlan-local-tunnelip:VNI`). EVPN route exchange uses the RD and RTs.
 
-The RD disambiguates EVPN routes in different VNIs (as they may have the same MAC and/or IP address) while the RTs describe the VPN membership for the route. The *VNI-Index* used for the RD is a unique, internally generated number for a VNI. It only has local significance; on remote switches, its only role is for route disambiguation. This number is used instead of the VNI value itself because this number has to be less than or equal to 65535. In the RT, the AS is always encoded as a 2-byte value to allow room for a large VNI. If the router has a 4-byte AS, only the lower 2 bytes are used. This ensures a unique RT for different VNIs while having the same RT for the same VNI across routers in the same AS.
+The RD disambiguates EVPN routes in different VNIs (as they may have the same MAC and/or IP address) while the RTs describe the VPN membership for the route. The *VNI-Index* for the RD is a unique number that the switch generates. It only has local significance; on remote switches, its only role is for route disambiguation. The switch uses this number instead of the VNI value itself because this number has to be less than or equal to 65535. In the RT, the AS is always a 2-byte value to allow room for a large VNI. If the router has a 4-byte AS, it only uses the lower 2 bytes. This ensures a unique RT for different VNIs while having the same RT for the same VNI across routers in the same AS.
 
-For eBGP EVPN peering, the peers are in a different AS so using an automatic RT of *AS:VNI* does not work for route import. Therefore, the import RT is treated as *\*:VNI* to determine which received routes are applicable to a particular VNI. This only applies when the import RT is auto-derived and not configured.
+For eBGP EVPN peering, the peers are in a different AS so using an automatic RT of *AS:VNI* does not work for route import. Therefore, Cumulus Linux treats the import RT as *\*:VNI* to determine which received routes apply to a particular VNI. This only applies when the switch auto-derives the import RT.
 
-If you do *not* want RDs and RTs to be derived automatically, you can define them manually. The following example commands are per VNI. <!--You must specify these commands under `address-family l2vpn evpn` in BGP.-->
+If you do *not* want to derive RDs and RTs automatically, you can define them manually. The following example commands are per VNI. <!--You must specify these commands under `address-family l2vpn evpn` in BGP.-->
 
 {{< tabs "TabID19 ">}}
 {{< tab "NCLU Commands ">}}
@@ -85,7 +85,7 @@ cumulus@leaf01:~$ nv set evpn evi 10 route-target import 65102:10
 cumulus@leaf01:~$ nv config apply
 ```
 
-The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+The NVUE commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
@@ -101,7 +101,7 @@ cumulus@leaf03:~$ nv set evpn evi 10 route-target import 65101:10
 cumulus@leaf03:~$ nv config apply
 ```
 
-The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+The NVUE commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
 cumulus@leaf03:~$ sudo cat /etc/nvue.d/startup.yaml
@@ -369,7 +369,7 @@ address-family l2vpn evpn
 
 You can use EVPN with an {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or static route underlay. This is a more complex configuration than using eBGP. In this case, iBGP advertises EVPN routes directly between VTEPs and the spines are unaware of EVPN or BGP.
 
-The leaf switches peer with each other in a full mesh within the EVPN address family without using route reflectors. The leafs generally peer to their loopback addresses, which are advertised in OSPF. The receiving VTEP imports routes into a specific VNI with a matching route target community.
+The leafs peer with each other in a full mesh within the EVPN address family without using route reflectors. The leafs generally peer to their loopback addresses, which advertise in OSPF. The receiving VTEP imports routes into a specific VNI with a matching route target community.
 
 {{< tabs "TabID292 ">}}
 {{< tab "NCLU Commands ">}}
@@ -467,7 +467,7 @@ cumulus@leaf01:~$ nv set interface swp52 router ospf network-type point-to-point
 cumulus@leaf01:~$ nv config apply
 ```
 
-The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+The NVUE commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
@@ -650,17 +650,15 @@ Router ospf
 
 ## ARP and ND Suppression
 
-ARP suppression with EVPN allows a VTEP to suppress ARP flooding over VXLAN tunnels as much as possible. A local proxy handles ARP requests received from locally attached hosts for remote hosts. ARP suppression is the implementation for IPv4; ND suppression is the implementation for IPv6.
+ARP suppression with EVPN allows a VTEP to suppress ARP flooding over VXLAN tunnels as much as possible. A local proxy handles ARP requests from locally attached hosts for remote hosts. ARP suppression is for IPv4; ND suppression is for IPv6.
 
-ARP/ND suppression is enabled by default on all VNIs in Cumulus Linux to reduce flooding of ARP/ND packets over VXLAN tunnels.
+Cumulus Linux enables ARP and ND suppression by default on all VNIs to reduce ARP and ND packet flooding over VXLAN tunnels.
 
 {{%notice note%}}
-
-ARP/ND suppression only suppresses the flooding of known hosts. ARP/ND requests for unknown hosts are still flooded. To disable all flooding refer to the {{<link title="#Disable BUM Flooding" text="Disable BUM Flooding" >}} section.
-
+ARP and ND suppression only suppresses the flooding of known hosts. To disable all flooding refer to the {{<link title="#Disable BUM Flooding" text="Disable BUM Flooding" >}} section.
 {{%/notice%}}
 
-In a centralized routing deployment, you must configure layer 3 interfaces even if the switch is configured only for layer 2 (you are not using VXLAN routing). To avoid unnecessary layer 3 information from being installed, you can turn off IP forwarding.
+In a centralized routing deployment, you must configure layer 3 interfaces even if you configure the switch only for layer 2 (you are not using VXLAN routing). To avoid installing unnecessary layer 3 information, you can turn off IP forwarding.
 
 The following example commands turn off IPv4 and IPv6 forwarding on VLAN 10 and VLAN 20.
 
@@ -747,7 +745,7 @@ iface bridge1
 ...
 ```
 
-When deploying EVPN and VXLAN using a hardware profile *other* than the default {{<link url="Supported-Route-Table-Entries#forwarding-table-profiles" text="Forwarding Table Profile">}}, ensure that the Linux kernel ARP `sysctl` settings `gc_thresh2` and `gc_thresh3` are both set to a value larger than the number of neighbor (ARP/ND) entries anticipated in the deployment. To configure these settings, edit the `/etc/sysctl.d/neigh.conf` file, then reboot the switch. If your network has more hosts than the values used in the example below, change the `sysctl` entries accordingly.
+When deploying EVPN and VXLAN using a hardware profile *other* than the default {{<link url="Supported-Route-Table-Entries#forwarding-table-profiles" text="Forwarding Table Profile">}}, ensure that the Linux kernel ARP `sysctl` settings `gc_thresh2` and `gc_thresh3` both have a value larger than the number of neighbor (ARP and ND) entries you expect in the deployment. To configure these settings, edit the `/etc/sysctl.d/neigh.conf` file, then reboot the switch. If your network has more hosts than the values in the example below, change the `sysctl` entries accordingly.
 
 {{< expand " Example /etc/sysctl.d/neigh.conf file"  >}}
 
@@ -763,7 +761,7 @@ net.ipv6.neigh.default.gc_thresh2=8192
 
 {{< /expand >}}
 
-Keep ARP and ND suppression enabled to reduce flooding of ARP/ND packets over VXLAN tunnels. However, if you need to disable ARP and ND suppression, follow the example commands below.
+Keep ARP and ND suppression on to reduce ARP and ND packet flooding over VXLAN tunnels. However, if you need to disable ARP and ND suppression, follow the example commands below.
 
 {{< tabs "TabID593 ">}}
 {{< tab "NCLU Commands ">}}
@@ -811,7 +809,7 @@ iface vni20
 
 ## Configure Static MAC Addresses
 
-MAC addresses that are intended to be pinned to a particular VTEP can be provisioned on the VTEP as a static bridge FDB entry. EVPN picks up these MAC addresses and advertises them to peers as remote static MACs. You configure static bridge FDB entries for MACs under the bridge configuration:
+You can configure a MAC address that you intend to pin to a particular VTEP on the VTEP as a static bridge FDB entry. EVPN picks up these MAC addresses and advertises them to peers as remote static MACs. You configure static bridge FDB entries for MAC addresses under the bridge configuration:
 
 {{< tabs "TabID641 ">}}
 {{< tab "NCLU Commands ">}}
@@ -861,7 +859,7 @@ iface br10
 
 ## Filter EVPN Routes
 
-A common deployment scenario for large data centers is to sub divide the data center into multiple pods with full host mobility within a pod but only do prefix-based routing across pods. You can achieve this by only exchanging EVPN type-5 routes across pods.
+It is common to sub divide the data center into multiple pods with full host mobility within a pod but only do prefix-based routing across pods. You can achieve this by only exchanging EVPN type-5 routes across pods.
 
 The following example commands configure EVPN to advertise type-5 routes:
 
@@ -910,8 +908,8 @@ You must apply the route map for the configuration to take effect. See {{<link u
 In a typical EVPN deployment, you *reuse* SVI IP addresses on VTEPs across multiple racks. However, if you use *unique* SVI IP addresses across multiple racks and you want the local SVI IP address to be reachable via remote VTEPs, you can enable the advertise SVI IP/MAC address option. This option advertises the SVI IP/MAC address as a type-2 route and eliminates the need for any flooding over VXLAN to reach the IP address from a remote VTEP or rack.
 
 {{%notice note%}}
-- When you enable the advertise SVI IP/MAC address option, the anycast IP/MAC address pair is not advertised. Be sure **not** to enable both the `advertise-svi-ip` option and the `advertise-default-gw` option at the same time. (The `advertise-default-gw` option configures the gateway VTEPs to advertise their IP/MAC address. See {{<link url="Inter-subnet-Routing#centralized-routing" text="Advertising the Default Gateway">}}.
-- If your switch is in an MLAG configuration, refer to {{<link url="Inter-subnet-Routing#advertise-primary-ip-address" text="Advertise Primary IP Address">}}.
+- When you enable the advertise SVI IP/MAC address option, the anycast IP and MAC address pair is not advertised. Be sure **not** to enable both the `advertise-svi-ip` option and the `advertise-default-gw` option at the same time. (The `advertise-default-gw` option configures the gateway VTEPs to advertise their IP and MAC address. See {{<link url="Inter-subnet-Routing#centralized-routing" text="Advertising the Default Gateway">}}.
+- If you use MLAG on your switch, refer to {{<link url="Inter-subnet-Routing#advertise-primary-ip-address" text="Advertise Primary IP Address">}}.
 {{%/notice%}}
 
 To advertise *all* SVI IP/MAC addresses on the switch, run these commands:
@@ -1120,7 +1118,7 @@ cumulus@leaf01:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-To show that BUM flooding is disabled, run the NCLU `net show bgp l2vpn evpn vni` command or the vtysh `show bgp l2vpn evpn vni` command. For example:
+To show that BUM flooding is off, run the NCLU `net show bgp l2vpn evpn vni` command or the vtysh `show bgp l2vpn evpn vni` command. For example:
 
 ```
 cumulus@leaf01:~$ net show bgp l2vpn evpn vni
@@ -1139,17 +1137,17 @@ Flags: * - Kernel
 * 4001       L3   10.1.20.2:5           65101:4001                65101:4001               RED
 ```
 
-Run the NCLU `net show bgp l2vpn evpn route type multicast` command to make sure no locally originated EVPN type-3 routes are listed.
+Run the NCLU `net show bgp l2vpn evpn route type multicast` command to make sure there are no EVPN type-3 routes that originate locally.
 
 ## Extended Mobility
 
-Cumulus Linux supports scenarios where the IP to MAC binding for a host or virtual machine changes across the move. In addition to the simple mobility scenario where a host or virtual machine with a binding of `IP1`, `MAC1` moves from one rack to another, Cumulus Linux supports additional scenarios where a host or virtual machine with a binding of `IP1`, `MAC1` moves and takes on a new binding of `IP2`, `MAC1` or `IP1`, `MAC2`. The EVPN protocol mechanism to handle extended mobility continues to use the MAC mobility extended community and is the same as the standard mobility procedures. Extended mobility defines how the sequence number in this attribute is computed when binding changes occur.
+Cumulus Linux supports scenarios where the IP to MAC binding for a host or virtual machine changes across the move. In addition to the simple mobility scenario where a host or virtual machine with a binding of `IP1`, `MAC1` moves from one rack to another, Cumulus Linux supports additional scenarios where a host or virtual machine with a binding of `IP1`, `MAC1` moves and takes on a new binding of `IP2`, `MAC1` or `IP1`, `MAC2`. The EVPN protocol mechanism to handle extended mobility continues to use the MAC mobility extended community and is the same as the standard mobility procedures. Extended mobility defines how to compute the sequence number in this attribute when binding changes occur.
 
-Extended mobility not only supports virtual machine *moves*, but also where one virtual machine shuts down and another is provisioned on a different rack that uses the IP address or the MAC address of the previous virtual machine. For example, in an EVPN deployment with OpenStack, where virtual machines for a tenant are provisioned and shut down very dynamically, a new virtual machine can use the same IP address as an earlier virtual machine but with a different MAC address.
+Extended mobility not only supports virtual machine *moves*, but also where one virtual machine shuts down and you provision another on a different rack that uses the IP address or the MAC address of the previous virtual machine. For example, in an EVPN deployment with OpenStack, where virtual machines for a tenant are provision and shut down dynamically, a new virtual machine can use the same IP address as an earlier virtual machine but with a different MAC address.
 
-The support for extended mobility is enabled by default and does not require any additional configuration.
+Cumulus Linux enables extended mobility by default.
 
-You can examine the sequence numbers associated with a host or virtual machine MAC address and IP address with the NCLU `net show evpn mac vni <vni> mac <address>` command or the vtysh `show evpn mac vni <vni> mac <address>` command. For example:
+To examine the sequence numbers for a host or virtual machine MAC address and IP address, run the NCLU `net show evpn mac vni <vni> mac <address>` command or the vtysh `show evpn mac vni <vni> mac <address>` command. For example:
 
 ```
 cumulus@switch:~$ net show evpn mac vni 10100 mac 00:02:00:00:00:42
@@ -1169,24 +1167,24 @@ IP: 10.1.1.74
 
 ## Duplicate Address Detection
 
-Cumulus Linux is able to detect duplicate MAC and IPv4/IPv6 addresses on hosts or virtual machines in a VXLAN-EVPN configuration. The Cumulus Linux switch (VTEP) considers a host MAC or IP address to be duplicate if the address moves across the network more than a certain number of times within a certain number of seconds (five moves within 180 seconds by default). In addition to legitimate host or VM mobility scenarios, address movement can occur when IP addresses are misconfigured on hosts or when packet looping occurs in the network due to faulty configuration or behavior.
+Cumulus Linux can detect duplicate MAC and IPv4 or IPv6 addresses on hosts or virtual machines in a VXLAN-EVPN configuration. The Cumulus Linux switch (VTEP) considers a host MAC or IP address to be duplicate if the address moves across the network more than a certain number of times within a certain number of seconds (five moves within 180 seconds by default). In addition to legitimate host or VM mobility scenarios, address movement can occur when you configure IP addresses incorrectly on a host or when packet looping occurs in the network due to faulty configuration or behavior.
 
-Duplicate address detection is enabled by default and triggers when:
+Cumulus Linux enables duplicate address detection by default, which triggers when:
 
-- Two hosts have the same MAC address (the host IP addresses might be the same or different)
+- Two hosts have the same MAC address (the host IP addresses are the same or different)
 - Two hosts have the same IP address but different MAC addresses
 
-By default, when a duplicate address is detected, Cumulus Linux flags the address as a duplicate and generates an error in syslog so that you can troubleshoot the reason and address the fault, then clear the duplicate address flag. No functional action is taken on the address.
+By default, when the switch detects a duplicate address, it flags the address as a duplicate and generates an error in syslog so that you can troubleshoot the reason and address the fault, then clear the duplicate address flag. The switch does not take any functional action on the address.
 
 {{%notice note%}}
-- If a MAC address is flagged as a duplicate, all IP addresses associated with that MAC are flagged as duplicates. However, in an MLAG configuration, only one of the MLAG peers might flag the associated IP addresses as duplicates.
+- If the switch flags a MAC address as duplicate, it also flags all IP addresses associated with that MAC as duplicates. However, in an MLAG configuration, sometimes only one of the MLAG peers flags the associated IP addresses as duplicates.
 
-- In an MLAG configuration, MAC mobility detection runs independently on each switch in the MLAG pair. Based on the sequence in which local learning and, or route withdrawal from the remote VTEP occurs, a type-2 route might have its MAC mobility counter incremented only on one of the switches in the MLAG pair. In rare cases, it is possible for neither VTEP to increment the MAC mobility counter for the type-2 prefix.
+- In an MLAG configuration, MAC mobility detection runs independently on each switch in the MLAG pair. Based on the sequence in which local learning and, or route withdrawal from the remote VTEP occurs, the MAC mobility counter for a type-2 route increments only on one of the switches in the MLAG pair. In rare cases, it is possible for neither VTEP to increment the MAC mobility counter for the type-2 prefix.
 {{%/notice%}}
 
 ### When Does Duplicate Address Detection Trigger?
 
-The VTEP that sees an address move from remote to local begins the detection process by starting a timer. Each VTEP runs duplicate address detection independently. Detection always starts with the first mobility event from *remote* to *local*. If the address is initially remote, the detection count can start with the very first move for the address. If the address is initially local, the detection count starts only with the second or higher move for the address. If an address is undergoing a mobility event between remote VTEPs, duplicate detection is not started.
+The VTEP that sees an address move from remote to local begins the detection process by starting a timer. Each VTEP runs duplicate address detection independently. Detection always starts with the first mobility event from *remote* to *local*. If the address is initially remote, the detection count can start with the first move for the address. If the address is initially local, the detection count starts only with the second or higher move for the address. If an address is undergoing a mobility event between remote VTEPs, duplicate detection does not start.
 
 The following illustration shows VTEP-A, VTEP-B, and VTEP-C in an EVPN configuration. Duplicate address detection triggers on VTEP-A when there is a duplicate MAC address for two hosts attached to VTEP-A and VTEP-B. However, duplicate detection does *not* trigger on VTEP-A when mobility events occur between two remote VTEPs (VTEP-B and VTEP-C).
 
@@ -1239,13 +1237,13 @@ To disable duplicate address detection, see {{<link url="#disable-duplicate-addr
 
 ### Example syslog Messages
 
-The following example shows the syslog message that is generated when Cumulus Linux detects a MAC address as a duplicate during a local update:
+The following example shows the syslog message that generates when Cumulus Linux detects a MAC address as a duplicate during a local update:
 
 ```
 2018/11/06 18:55:29.463327 ZEBRA: [EC 4043309149] VNI 1001: MAC 00:01:02:03:04:11 detected as duplicate during local update, last VTEP 172.16.0.16
 ```
 
-The following example shows the syslog message that is generated when Cumulus Linux detects an IP address as a duplicate during a remote update:
+The following example shows the syslog message that generates when Cumulus Linux detects an IP address as a duplicate during a remote update:
 
 ```
 2018/11/09 22:47:15.071381 ZEBRA: [EC 4043309151] VNI 1002: MAC aa:22:aa:aa:aa:aa IP 10.0.0.9 detected as duplicate during remote update, from VTEP 172.16.0.16
@@ -1253,26 +1251,26 @@ The following example shows the syslog message that is generated when Cumulus Li
 
 ### Freeze a Detected Duplicate Address
 
-Cumulus Linux provides a *freeze* option that takes action on a detected duplicate address. You can freeze the address *permanently* (until you intervene) or for a *defined amount of time*, after which it is cleared automatically.
+Cumulus Linux provides a *freeze* option that takes action on a detected duplicate address. You can freeze the address *permanently* (until you intervene) or for a *defined amount of time*, after which it clears automatically.
 
-When you enable the freeze option and a duplicate address is detected:
+When you enable the freeze option and the switch detects a duplicate address:
 
-- If the MAC or IP address is learned from a remote VTEP at the time it is frozen, the forwarding information in the kernel and hardware is not updated, leaving it in the prior state. Any future remote updates are processed but they are not reflected in the kernel entry. If the remote VTEP sends a MAC-IP route withdrawal, the local VTEP removes the frozen remote entry. Then, if the local VTEP has a locally learned entry already present in its kernel, FRRouting originates a corresponding MAC-IP route and advertises it to all remote VTEPs.
-- If the MAC or IP address is locally learned on this VTEP at the time it is frozen, the address is not advertised to remote VTEPs. Future local updates are processed but are not advertised to remote VTEPs. If FRR receives a local entry delete event, the frozen entry is removed from the FRR database. Any remote updates (from other VTEPs) change the state of the entry to remote but the entry is not installed in the kernel (until cleared).
+- If the switch learns the MAC or IP address from a remote VTEP at the time it freezes, the forwarding information in the kernel and hardware does not update, leaving it in the prior state. Any future remote updates process but they do not reflect in the kernel entry. If the remote VTEP sends a MAC-IP route withdrawal, the local VTEP removes the frozen remote entry. Then, if the local VTEP has a locally learned entry already present in its kernel, FRRouting originates a corresponding MAC-IP route and advertises it to all remote VTEPs.
+- If the MAC or IP address is locally learned on this VTEP at the time it freezes, the address does not advertise to remote VTEPs. Future local updates process but do not advertise to remote VTEPs. If FRR receives a local entry delete event, it removes the frozen entry from the FRR database. Any remote updates (from other VTEPs) change the state of the entry to remote but the entry does not install in the kernel (until cleared).
 
-**To recover from a freeze**, shut down the faulty host or VM or fix any other misconfiguration in the network. If the address is frozen *permanently,* issue the {{<link url="#clear-duplicate-addresses" text="clear command">}} on the VTEP where the address is marked as duplicate. If the address is frozen for a defined period of time, it is cleared automatically after the timer expires (you can clear the duplicate address before the timer expires with the {{<link url="#clear-duplicate-addresses" text="clear command">}}).
+**To recover from a freeze**, shut down the faulty host or VM or fix any other misconfiguration in the network. If the address freezes *permanently,* run the {{<link url="#clear-duplicate-addresses" text="clear command">}} on the VTEP where the address is duplicate. If the address freezes for a defined period of time, it clears automatically after the timer expires (you can clear the duplicate address before the timer expires with the {{<link url="#clear-duplicate-addresses" text="clear command">}}).
 
 {{%notice note%}}
-If you issue the clear command or the timer expires before you address the fault, duplicate address detection might occur repeatedly.
+If you run the clear command or the timer expires before you address the fault, duplicate address detection can continue to occur.
 {{%/notice%}}
 
-After you clear a frozen address, if it is present behind a remote VTEP, the kernel and hardware forwarding tables are updated. If the address is locally learned on this VTEP, the address is advertised to remote VTEPs. All VTEPs get the correct address as soon as the host communicates . Silent hosts are learned only after the faulty entries age out, or you intervene and clear the faulty MAC and ARP table entries.
+After you clear a frozen address, if it is present behind a remote VTEP, the kernel and hardware forwarding tables update. If this VTEP learns the address locally, the address advertises to remote VTEPs. All VTEPs get the correct address as soon as the host communicates. The switch only learns silent hosts after the faulty entries age out, or you intervene and clear the faulty MAC and ARP table entries.
 
 ### Configure the Freeze Option
 
 To enable Cumulus Linux to *freeze* detected duplicate addresses, run the `net add bgp l2vpn evpn dup-addr-detection freeze <duration>|permanent` command. The duration can be any number of seconds between 30 and 3600.
 
-The following example command freezes duplicate addresses for a period of 1000 seconds, after which it is cleared automatically:
+The following example command freezes duplicate addresses for a period of 1000 seconds, after which it clears automatically:
 
 {{< tabs "TabID1095 ">}}
 {{< tab "NCLU Commands ">}}
@@ -1311,10 +1309,10 @@ cumulus@switch:~$
 {{< /tabs >}}
 
 {{%notice note%}}
-Set the freeze timer to be three times the duplicate address detection window. For example, if the duplicate address detection window is set to the default of 180 seconds, set the freeze timer to 540 seconds.
+Set the freeze timer to be three times the duplicate address detection window. For example, if the duplicate address detection window is 180 seconds, set the freeze timer to 540 seconds.
 {{%/notice%}}
 
-The following example command freezes duplicate addresses permanently (until you issue the {{<link url="#clear-duplicate-addresses" text="clear command">}}):
+The following example command freezes duplicate addresses permanently (until you run the {{<link url="#clear-duplicate-addresses" text="clear command">}}):
 
 {{< tabs "TabID1135 ">}}
 {{< tab "NCLU Commands ">}}
@@ -1368,7 +1366,7 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-The NVUE Command is not currently supported.
+You cannot run NVUE commands to clear a duplicate MAC or IP address.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1398,7 +1396,7 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-NVUE Command is not currently supported.
+You cannot run NVUE commands to clear duplicate addresses.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1416,12 +1414,12 @@ cumulus@switch:~$
 
 {{%notice note%}}
 - In an MLAG configuration, you need to run the clear command on both the MLAG primary and secondary switch.
-- When you clear a duplicate MAC address, all its associated IP addresses are also cleared. However, you cannot clear an associated IP address if its MAC address is still in a duplicate state.
+- When you clear a duplicate MAC address, all its associated IP addresses also clear. However, you cannot clear an associated IP address if its MAC address is still in a duplicate state.
 {{%/notice%}}
 
 ### Disable Duplicate Address Detection
 
-By default, duplicate address detection is enabled and a syslog error is generated when a duplicate address is detected. To disable duplicate address detection, run the following command.
+Duplicate address detection is on by default. The switch generates a syslog error when it detects a duplicate address. To disable duplicate address detection, run the following command.
 
 {{< tabs "TabID1238 ">}}
 {{< tab "NCLU Commands ">}}
@@ -1463,7 +1461,7 @@ When you disable duplicate address detection, Cumulus Linux clears the configura
 
 ### Show Detected Duplicate Address Information
 
-During the duplicate address detection process, you can see the start time and current detection count with the NCLU `net show evpn mac vni <vni_id> mac <mac_addr>` command or the vtysh `show evpn mac vni <vni_id> mac <mac_addr>` command. The following command example shows that detection started for MAC address 00:01:02:03:04:11 for VNI 1001 on Tuesday, Nov 6 at 18:55:05 and the number of moves detected is 1.
+During the duplicate address detection process, you can see the start time and current detection count with the NCLU `net show evpn mac vni <vni_id> mac <mac_addr>` command or the vtysh `show evpn mac vni <vni_id> mac <mac_addr>` command. The following command example shows that detection starts for MAC address 00:01:02:03:04:11 for VNI 1001 on Tuesday, Nov 6 at 18:55:05 and Cumulus Linux detects one move.
 
 ```
 cumulus@switch:~$ net show evpn mac vni 1001 mac 00:01:02:03:04:11
@@ -1475,7 +1473,7 @@ MAC: 00:01:02:03:04:11
     10.0.1.26 Active
 ```
 
-After the duplicate MAC address is cleared, the NCLU `net show evpn mac vni <vni_id> mac <mac_addr>` command or the vtysh `show evpn mac vni <vni_id> mac <mac_addr>` command shows:
+After the duplicate MAC address clears, the NCLU `net show evpn mac vni <vni_id> mac <mac_addr>` command or the vtysh `show evpn mac vni <vni_id> mac <mac_addr>` command shows:
 
 ```
 MAC: 00:01:02:03:04:11

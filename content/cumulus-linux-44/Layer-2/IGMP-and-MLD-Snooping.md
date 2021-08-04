@@ -4,9 +4,9 @@ author: NVIDIA
 weight: 520
 toc: 3
 ---
-Internet Group Management Protocol (IGMP) snooping and Multicast Listener Discovery (MLD) snooping prevent hosts on a local network from receiving traffic for a multicast group they have not explicitly joined. IGMP snooping is used for IPv4 environments and MLD snooping is used for IPv6 environments.
+Internet Group Management Protocol (IGMP) snooping and Multicast Listener Discovery (MLD) snooping prevent hosts on a local network from receiving traffic for a multicast group they have not explicitly joined. IGMP snooping is for IPv4 environments and MLD snooping is for IPv6 environments.
 
-IGMP and MLD snooping are implemented in the bridge driver in the Cumulus Linux kernel and are enabled by default. If you disable IGMP or MLD snooping, multicast traffic is flooded to all the bridge ports in the bridge. Similarly, in the absence of receivers in a VLAN, multicast traffic is flooded to all ports in the VLAN.
+The bridge driver in Cumulus Linux kernel includes IGMP and MLD snooping. If you disable IGMP or MLD snooping, multicast traffic floods to all the bridge ports in the bridge. Similarly, in the absence of receivers in a VLAN, multicast traffic floods to all ports in the VLAN.
 
 {{< img src = "/images/cumulus-linux/igmp_snoop_diagram.png" >}}
 
@@ -59,7 +59,7 @@ To disable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoo
 
 ## Configure the IGMP and MLD Querier
 
-In the absence of a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is called the querier or the designated router. The querier generates query messages to check group membership, and processes membership reports and leave messages.
+Without a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is the querier or the designated router. The querier generates query messages to check group membership, and processes membership reports and leave messages.
 
 To configure the querier on the switch for a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, enable the multicast querier on the bridge and add the source IP address of the queries to the VLAN.
 
@@ -137,7 +137,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 ## Optimized Multicast Flooding (OMF)
 
-IGMP Snooping restricts multicast forwarding only to the ports where IGMP report messages are received. If no IGMP reports are received, multicast traffic is flooded to all ports in the bridge domain (this traffic is known as unregistered multicast (URMC) traffic). To restrict this flooding to only mrouter ports, you can enable OMF.
+IGMP snooping restricts multicast forwarding only to the ports that receive IGMP report messages. If the ports do not receive IGMP reports, multicast traffic floods to all ports in the bridge domain (also know as unregistered multicast (URMC) traffic). To restrict this flooding to only mrouter ports, you can enable OMF.
 
 To enable OMF:
 
@@ -165,10 +165,10 @@ To enable OMF:
    bridge.unreg_v4_mcast_prune = TRUE
    bridge.unreg_v6_mcast_prune = TRUE
    ```
-
+<!-- vale off -->
    {{<cl/restart-switchd>}}
-
-When IGMP reports are sent for a multicast group, OMF has no effect; normal IGMP Snooping behavior is followed.
+<!-- vale on -->
+When IGMP reports go to a multicast group, OMF has no effect; normal IGMP snooping occurs.
 
 {{%notice note%}}
 OMF increases memory usage, which can impact scaling on Spectrum 1 switches.
@@ -176,7 +176,7 @@ OMF increases memory usage, which can impact scaling on Spectrum 1 switches.
 
 ## Disable IGMP and MLD Snooping
 
-If you do not use mirroring functions or other types of multicast traffic, you can disable IGMP and MLD Snooping.
+If you do not use mirroring functions or other types of multicast traffic, you can disable IGMP and MLD snooping.
 
 {{< tabs "TabID114 ">}}
 {{< tab "NCLU Commands ">}}

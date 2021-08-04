@@ -4,21 +4,21 @@ author: NVIDIA
 weight: 430
 toc: 4
 ---
-VLAN-aware bridge mode in Cumulus Linux implements a configuration model for large-scale layer 2 environments, with *one single instance* of {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="spanning tree protocol">}}. Each physical bridge member port is configured with the list of allowed VLANs as well as its port VLAN ID, either primary VLAN Identifier (PVID) or native VLAN. MAC address learning, filtering and forwarding are *VLAN-aware*. This significantly reduces the configuration size, and eliminates the large overhead of managing the port and VLAN instances as subinterfaces, replacing them with lightweight VLAN bitmaps and state updates.
+VLAN-aware bridge mode in Cumulus Linux implements a configuration model for large-scale layer 2 environments, with *one single instance* of {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="spanning tree protocol">}}. Each physical bridge member port includes the list of allowed VLANs as well as the port VLAN ID, either the primary VLAN Identifier (PVID) or native VLAN. MAC address learning, filtering and forwarding are *VLAN-aware*. This reduces the configuration size, and eliminates the large overhead of managing the port and VLAN instances as subinterfaces, replacing them with lightweight VLAN bitmaps and state updates.
 
 On NVIDIA Spectrum-2 and Spectrum-3 switches, Cumulus Linux supports multiple VLAN-aware bridges but with the following limitations:
 
-- MLAG is not supported with multiple VLAN-aware bridges
-- The same port cannot be part of multiple VLAN-aware bridges
-- The same VNIs cannot appear in multiple VLAN-aware bridges
-- VLAN translation is not supported with multiple VLAN-aware bridges
-- Double tagged VLAN interfaces are not supported with multiple VLAN-aware bridges
+- You cannot use MLAG with multiple VLAN-aware bridges
+- You cannot use the same port with multiple VLAN-aware bridges
+- You cannot use the same VNIs in multiple VLAN-aware bridges
+- You cannot use VLAN translation with multiple VLAN-aware bridges
+- You cannot use double tagged VLAN interfaces with multiple VLAN-aware bridges
 - You cannot associate multiple single VXLAN devices (SVDs) with a single VLAN-aware bridge
-- IGMPv3 is not supported
+- Cumulus Linux does not support IGMPv3.
 <!-- vale off -->
 ## Configure a VLAN-aware Bridge
 <!-- vale on -->
-The example below shows the commands required to create a VLAN-aware bridge configured for STP that contains two switch ports and includes 3 VLANs; tagged VLANs 10 and 20, and untagged (native) VLAN 1.
+The example commands below create a VLAN-aware bridge for STP that contains two switch ports and includes 3 VLANs; tagged VLANs 10 and 20, and untagged (native) VLAN 1.
 
 {{< img src = "/images/cumulus-linux/ethernet-bridging-basic-trunking1.png" >}}
 
@@ -47,7 +47,7 @@ iface bridge
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-With NVUE, there is a default bridge called `br_default`, which has no ports assigned to it. The example below configures this default bridge.
+With NVUE, there is a default bridge called `br_default`, which has no ports assigned. The example below configures this default bridge.
 
 ```
 cumulus@switch:~$ nv set interface swp1-2 bridge domain br_default
@@ -59,7 +59,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file and add the bridge. An example configuration is shown below.
+Edit the `/etc/network/interfaces` file and add the bridge:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -110,8 +110,8 @@ iface br_default
 ```
 
 {{%notice note%}}
-- If you specify `bridge-vids` or `bridge-pvid` at the bridge level, these configurations are inherited by all ports in the bridge. However, specifying any of these settings for a specific port overrides the setting in the bridge.
-- Do not bridge the management port eth0 with any switch ports. For example, if you create a bridge with eth0 and swp1, the bridge does not work correctly and might disrupt access to the management interface.
+- If you specify `bridge-vids` or `bridge-pvid` at the bridge level, all ports in the bridge inherit these configurations. However, specifying any of these settings for a specific port overrides the setting in the bridge.
+- Do not bridge the management port eth0 with any switch ports. For example, if you create a bridge with eth0 and swp1, the bridge does not work correctly and disrupts access to the management interface.
 {{%/notice%}}
 <!-- vale off -->
 ## Configure Multiple VLAN-aware Bridges
@@ -155,7 +155,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file and add the bridge. An example configuration is shown below.
+Edit the `/etc/network/interfaces` file and add the bridge:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -186,7 +186,7 @@ cumulus@switch:~$ ifreload -a
 {{< /tabs >}}
 
 {{%notice note%}}
-NVIDIA Spectrum switches currently support a maximum of 6000 VLAN elements. The total number of VLAN elements is calculated as the number of VLANs times the number of bridges configured. For example, 6 bridges, each containing 1000 VLANS totals 6000 VLAN elements.
+NVIDIA Spectrum switches support a maximum of 6000 VLAN elements and calculate the total number of VLAN elements as the number of VLANs times the number of configured bridges. For example, 6 bridges, each containing 1000 VLANS totals 6000 VLAN elements.
 {{%/notice%}}
 
 ## Reserved VLAN Range
@@ -260,7 +260,7 @@ cumulus@switch:~$ ifreload -a
 
 ## Access Ports and Tagged Packets
 
-Access ports ignore all tagged packets. In the configuration below, swp1 and swp2 are configured as access ports, while all untagged traffic goes to VLAN 10:
+Access ports ignore all tagged packets. In the configuration below, swp1 and swp2 are access ports, while all untagged traffic goes to VLAN 10:
 <!-- vale off -->
 {{< img src = "/images/cumulus-linux/ethernet-bridging-vlan_untagged_access_ports1.png" >}}
 <!-- vale on -->
@@ -493,7 +493,7 @@ iface bridge1_vlan10
 {{< /tab >}}
 {{< /tabs >}}
 
-When you configure a switch initially, all southbound bridge ports might be down; therefore, by default, the SVI is also down. You can force the SVI to always be up by disabling interface state tracking so that the SVI is always in the UP state, even if all member ports are down. Other implementations describe this feature as *no autostate*. This is beneficial if you want to perform connectivity testing.
+The first time you configure a switch, all southbound bridge ports are down; therefore, by default, the SVI is also down. You can force the SVI to always be up by disabling interface state tracking so that the SVI is always in the UP state, even if all member ports are down. Other implementations describe this feature as *no autostate*. This is beneficial if you want to perform connectivity testing.
 
 To keep the SVI perpetually UP, create a dummy interface, then make the dummy interface a member of the bridge.
 
@@ -660,7 +660,7 @@ cumulus@switch:~$ sudo bridge fdb show
 
 ## Example Configuration
 
-The following example configuration contains an access port and switch port that are *pruned*; they only send and receive traffic tagged to and from a specific set of VLANs declared by the `bridge-vids` attribute. It also contains other switch ports that send and receive traffic from all the defined VLANs.
+The following example configuration contains a *pruned* access port and switch port; the ports only send and receive traffic tagged to and from a specific set of VLANs that the `bridge-vids` attribute specifies. The example also contains other switch ports that send and receive traffic from all the defined VLANs.
 
 ```
 ...
@@ -705,7 +705,7 @@ iface swp49
 
 ### Spanning Tree Protocol (STP)
 
-- STP is enabled on a per-bridge basis.
+- STP runs on a per-bridge basis.
 - `mstpd` remains the user space protocol daemon.
 - Cumulus Linux supports {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="Rapid Spanning Tree Protocol (RSTP)">}}.
 

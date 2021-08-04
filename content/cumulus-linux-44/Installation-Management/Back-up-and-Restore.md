@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 70
 toc: 3
 ---
-You can back up the current configuration on a switch and restore the configuration on the **same switch** or on another Cumulus Linux switch of the **same type and release**. The backup is a compressed tar file that includes all configuration files installed by Debian packages and marked as configuration files. In addition, the backup contains files in the `/etc` directory that are not installed by a Debian package but are modified when you install a new image or enable/disable certain services (such as the Cumulus license file).
+You can back up the current configuration on a switch and restore the configuration on the **same switch** or on another Cumulus Linux switch of the **same type and release**. The backup is a compressed tar file that includes all Debian package configuration files. In addition, the backup contains files in the `/etc` directory that a Debian package does not install but change when you install a new image or enable and disable certain services.
 
 Cumulus Linux automatically creates a backup of the configuration files on the switch after you install the Cumulus Linux image, in case you want to return to the initial switch configuration. NCLU automatically
 creates a backup of the configuration files when you run the `net commit` command and restores a previous configuration when you run the `net rollback` command.
@@ -23,7 +23,7 @@ cumulus@switch:~$ sudo config-backup
 
 If you run this command without any options, Cumulus Linux creates a backup of the current configuration and stores the backup file in the `/var/lib/config-backup/backups` directory. The filename includes the date and time you run the backup, and the switch name; for example, `config_backup-2019-04-23-21.30.47_leaf01`. You can restore the backup with the `config-restore` command, described below.
 
-The switch can store up to 30 *non-permanent* backup files (a maximum of 25 MB of disc space) in addition to the permanent backup files (see the `-p` option below). When this limit is reached, Cumulus Linux keeps the oldest and the newest backup files, then starts removing the second oldest file up to the second newest file.
+The switch can store up to 30 *non-permanent* backup files (a maximum of 25 MB of disc space) in addition to the permanent backup files (see the `-p` option below). When you reach this limit, Cumulus Linux keeps the oldest and the newest backup files, then starts removing the second oldest file up to the second newest file.
 
 {{%notice note%}}
 
@@ -37,10 +37,10 @@ The `config-backup` command includes the following options:
 |--- |--- |
 |`-h`|Displays this list of command options.|
 |`-d`|Enables debugging output, which shows status messages during the backup process.|
-|`-D <description>`|Adds a description, which is shown in the archive file list when you run the `config-restore -l` command.|
+|`-D <description>`|Adds a description, which shows in the archive file list when you run the `config-restore -l` command.|
 |`-p`|Adds -perm to the end of the backup filename to mark it as permanent. For example, `config_backup-2019-04-23-21.30.47_leaf01-perm`. Be careful when using this option. Permanent backup files are not removed.|
-|`-q`|Runs the command in quiet mode. No status messages are shown, only errors.|
-|`-t <type>`|Specifies the type of configuration, which is shown in the archive file list when you run the `config-restore -l` command. You can provide any short text. For example, you can specify `pre`, `post`, or `pre-restore`.|
+|`-q`|Runs the command in quiet mode. No status messages display, only errors.|
+|`-t <type>`|Specifies the type of configuration, which shows in the archive file list when you run the `config-restore -l` command. You can provide any short text. For example, you can specify `pre`, `post`, or `pre-restore`.|
 |`-v`|Enables verbose mode to show messages during the backup process.|
 |`-X <pattern>`|Excludes certain files that match a specified pattern. For example, to exclude all backup files ending with a tilde (~), use the `-X .*~$` option.|
 <!-- vale off -->
@@ -78,7 +78,7 @@ cumulus@switch:~$ sudo config-restore -n 10
 cumulus@switch:~$ sudo config-restore -N
 ```
 
-After the backup file is restored successfully, you are prompted to restart any affected services or reboot the switch if necessary.
+After you restore the backup file, restart any affected services or reboot the switch if necessary.
 
 Cumulus Linux reports any issues encountered during restore and prompts you to continue or stop.
 
@@ -106,8 +106,8 @@ The `config-restore` command includes the following options:
 | `-l`| Lists all backup files archived on the switch and includes the file number, type, and description.|
 | `-N`| Restores the newest (most recent) backup file.|
 | `-n <number>`| Specifies the backup file by number (shown by `-l`).|
-| `-q`|Runs the command in quiet mode. No status messages are displayed, only errors.|
-| `-T`| Runs the command in test mode; does not restore the configuration but shows what would be restored.|
+| `-q`|Runs the command in quiet mode. No status messages display, only errors.|
+| `-T`| Runs the command in test mode; does not restore the configuration but shows what to restore.|
 | `-v`| Enables verbose mode to display status messages during restore.|
 <!-- vale off -->
 ### config-restore Command Examples

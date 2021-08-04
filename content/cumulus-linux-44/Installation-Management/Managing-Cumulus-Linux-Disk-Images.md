@@ -12,7 +12,7 @@ To install a new Cumulus Linux image, refer to {{<link title="Installing a New C
 
 Reprovisioning the system deletes all system data from the switch.
 
-To stage an ONIE installer from the network (where ONIE automatically locates the installer), run the `onie-select -i` command. A reboot is required for the reinstall to begin.
+To stage an ONIE installer from the network (where ONIE automatically locates the installer), run the `onie-select -i` command. You must reboot the switch to start the install process.
 
 ```
 cumulus@switch:~$ sudo onie-select -i
@@ -33,7 +33,7 @@ Cancelling pending install at next reboot...done.
 ```
 
 To stage an installer located in a specific location, run the `onie-install -i <location>` command. You can specify a local, absolute or relative path, an HTTP or HTTPS server, SCP or FTP server. You can also stage a Zero Touch Provisioning (ZTP) script along with the installer.
-The `onie-install` command is typically used with the `-a` option to activate installation. If you do not specify the `-a` option, a reboot is required for the reinstall to begin.
+You typically use the `onie-install` command with the `-a` option to activate installation. If you do not specify the `-a` option, you must reboot the switch to start the installation process.
 
 The following example stages the installer located at `http://203.0.113.10/image-installer` together with the ZTP script located at `http://203.0.113.10/ztp-script` and activates installation and ZTP:
 
@@ -72,7 +72,7 @@ Enabling uninstall at next reboot...done.
 Reboot required to take effect.
 ```
 
-A reboot is required for the uninstallation process to begin.
+You must reboot the switch to start the uninstallation process.
 
 {{%notice tip%}}
 
@@ -103,7 +103,7 @@ Reboot required to take effect.
 
 {{%notice note%}}
 
-A reboot is required to boot into rescue mode.
+You must reboot the system to boot into rescue mode.
 
 {{%/notice%}}
 

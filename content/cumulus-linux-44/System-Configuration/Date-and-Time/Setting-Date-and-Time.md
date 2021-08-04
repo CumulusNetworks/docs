@@ -54,7 +54,7 @@ For more information, see the Debian {{<exlink url="http://www.debian.org/doc/ma
 
 ## Set the Date and Time
 
-The switch contains a battery backed hardware clock that maintains the time while the switch is powered off and between reboots. When the switch is running, the Cumulus Linux operating system maintains its own software clock.
+The switch contains a battery backed hardware clock that maintains the time while the switch powers off and between reboots. When the switch is running, the Cumulus Linux operating system maintains its own software clock.
 
 During boot up, the switch copies the time from the hardware clock to the operating system software clock. The software clock takes care of all the timekeeping. During system shutdown, the switch copies the software clock back to the battery backed hardware clock.
 

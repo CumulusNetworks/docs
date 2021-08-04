@@ -147,7 +147,7 @@ None
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Filter output to view status for the switch or host with this name |
 | fresh | NA | Filter output for devices where the NetQ Agent is communicating with the appliance or VM as expected |
-| dead | NA | Filter output for devices where the NetQ Agent has been decommisioned by a user |
+| dead | NA | Filter output for devices where the NetQ Agent has been decommissioned by a user |
 | rotten | NA | Filter output for devices where the NetQ Agent has not communicated with the appliance or VM in the last two minutes |
 | opta | NA | Filter output for the NetQ Agent installed on the appliance or VM |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
@@ -1562,7 +1562,7 @@ Count of matching link records: 10
 ## netq show interface-stats
 <!-- vale on -->
 
-Displays performance statistics for the physical interfaces on switches in your network. The NetQ Agent collects the statistics every 30 seconds. Statistics are not collected for non-physical interfaces, such as bonds, bridges, and VXLANs. You can filter the output by interface or to view only error statistics. The ouput provides the following information for each switch and interface:
+Displays performance statistics for the physical interfaces on switches in your network. The NetQ Agent collects the statistics every 30 seconds. Statistics are not collected for non-physical interfaces, such as bonds, bridges, and VXLANs. You can filter the output by interface or to view only error statistics. The output provides the following information for each switch and interface:
 
 - **Transmit**: tx_bytes, tx_carrier, tx_colls, tx_drop, tx_errs, tx_packets
 - **Receive**: rx_bytes, rx_drop, rx_errs, rx_frame, rx_multicast, rx_packets
@@ -1824,7 +1824,7 @@ netq [<hostname>] show inventory os
 | vendor | \<asic-vendor\>, \<board-vendor\>, \<disk-vendor\>, \<memory-vendor\> | Only display results for the ASIC, board, disk, or memory vendor with this name |
 | model | \<asic-model\>, \<board-model\> | Only display results for ASIC or board model with this name |
 | model-id | \<asic-model-id\> | Only display results for ASIC models with this ID |
-| arch | \<cpu-arch\> | Only display results for CPUs with this architecure |
+| arch | \<cpu-arch\> | Only display results for CPUs with this architecture |
 | transport | \<disk-transport\> | Only display results for disks with this transport method |
 | type | \<memory-type\> | Only display results for memory of this type |
 | version | \<os-version\> | Only display results for operating systems of this version |
@@ -1994,7 +1994,7 @@ netq show ipv6 addresses
 | NA | \<ipv4/prefixlen\> | Only display results for switches and hosts with this IPv4 address and prefix |
 | NA | \<ipv6\> | Only display results for switches and hosts with this IPv6 address |
 | NA | \<ipv6/prefixlen\> | Only display results for switches and hosts with this IPv6 address and prefix |
-| vrf | \<vrf\> | Only dispaly results for switches and hosts using this virtual route forwarding interface |
+| vrf | \<vrf\> | Only display results for switches and hosts using this virtual route forwarding interface |
 | subnet | NA | Only display results for addresses in the subnet |
 | supernet | NA | Only display results for addresses in the supernet |
 | gateway | NA | Only display results for addresses in the gateway |
@@ -2600,7 +2600,7 @@ Refer to {{<link title="Monitor Container Environments Using Kubernetes API Serv
 
 ## netq show impact kubernetes
 
-Displays the impact on pods, services, replica sets or deployments when a specific ToR switch becomes unavilable.
+Displays the impact on pods, services, replica sets or deployments when a specific ToR switch becomes unavailable.
 
 {{<notice tip>}}
 Kubernetes monitoring must be enabled on NetQ Agents. Refer to the <code>netq config add agent</code> command to enable monitoring.
@@ -2672,7 +2672,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 ### Sample Usage
 
-Show impact on service availabilty based on the loss of particular node
+Show impact on service availability based on the loss of particular node
 
 ```
 cumulus@host:~$ netq server11 show impact kubernetes service name calico-etcd
@@ -3243,7 +3243,7 @@ netq show notification
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | channel | NA | Display all channel configurations |
-| filter | NA | Displayy all filter configurations |
+| filter | NA | Display all filter configurations |
 | rule | NA | Display all rule configurations |
 | proxy | NA | Display the proxy configuration |
 
@@ -3569,7 +3569,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
-| NA | \<remote-interface\> | Only display results for the host inteface with this name |
+| NA | \<remote-interface\> | Only display results for the host interface with this name |
 | area | \<area-id\> | Only display results for devices in this routing domain |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |

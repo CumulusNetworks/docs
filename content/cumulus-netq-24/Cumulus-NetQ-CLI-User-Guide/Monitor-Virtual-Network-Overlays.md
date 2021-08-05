@@ -186,7 +186,7 @@ configuration and status of the EVPN setup using the `netq show evpn`
 command. You can filter the EVPN information by a VNI (VXLAN network
 identifier), and view the current information or for a time in the past.
 The command also enables visibility into changes that have occurred in
-the configuration during a specific time frame. The syntax for the
+the configuration during a specific timeframe. The syntax for the
 command is:
 
  ```

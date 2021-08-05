@@ -299,7 +299,7 @@ To compare this data with the same data at a previous time:
 
     {{<figure src="/images/netq/ntwk-svcs-all-mlag-large-most-sessions-6hr-230.png" width="500" >}}
 
-<div style="padding-left: 18px;">If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running MLAG than previously, looking for changes in the topology, and so forth.</div>
+<div style="padding-left: 18px;">If the changes are unexpected, you can investigate further by looking at another timeframe, determining if more nodes are now running MLAG than previously, looking for changes in the topology, and so forth.</div>
 
 {{</tab>}}
 

@@ -6,7 +6,7 @@ toc: 3
 ---
 `switchd` is the daemon at the heart of Cumulus Linux. It communicates between the switch and Cumulus Linux, and all the applications running on Cumulus Linux.
 
-The `switchd` configuration is stored in `/etc/cumulus/switchd.conf`.
+Cumulus Linux stores the `switchd` configuration in the `/etc/cumulus/switchd.conf` file.
 
 ## The switchd File System
 
@@ -72,7 +72,7 @@ cumulus@switch:~$ sudo tree /cumulus/switchd/
 
 ## Configure switchd Parameters
 
-To configure the `switchd` parameters, edit the `/etc/cumulus/switchd.conf` file. An example is provided below.
+To configure the `switchd` parameters, edit the `/etc/cumulus/switchd.conf` file.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf

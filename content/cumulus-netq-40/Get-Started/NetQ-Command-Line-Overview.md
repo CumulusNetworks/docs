@@ -15,7 +15,7 @@ The NetQ command line interface only runs on switches and server hosts implement
 
 ## CLI Access
 
-When NetQ is installed or upgraded, the CLI may also be installed  and enabled on your NetQ server or appliance and hosts. Refer to the {{<link url="Install-NetQ">}} topic for details.
+When NetQ is installed or upgraded, the CLI can also be installed and enabled on your NetQ server or appliance and hosts. Refer to the {{<link url="Install-NetQ">}} topic for details.
 
 To access the CLI from a switch or server:
 
@@ -191,7 +191,7 @@ The `netq` `check` commands enable the network administrator to validate the cur
 <!-- vale on -->
 The commands take the form of `netq check <network-protocol-or-service> [options]`, where the options vary according to the protocol or service.
 
-This example shows the output for the `netq check bgp` command, followed by the same command using the `json` option. If there had been any failures, they would be have been listed below the summary results or in the *failedNodes* section, respectively.
+This example shows the output for the `netq check bgp` command, followed by the same command using the `json` option. If there were any failures, they would appear below the summary results or in the *failedNodes* section, respectively.
 
 ```
 cumulus@switch:~$ netq check bgp

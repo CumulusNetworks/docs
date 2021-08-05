@@ -34,7 +34,7 @@ When you want to validate the operation of one or more network protocols and ser
 ### Create an On-demand Validation
 <!-- vale on -->
 
-You can create on-demand validations that contain checks for protocols or services that you suspect may have issues.
+You can create on-demand validations that contain checks for protocols or services that you suspect might have issues.
 
 Using the NetQ UI, you can create an on-demand validation for multiple protocols or services at the same time. This is handy when the protocols are strongly related regarding a possible issue or if you only want to create one validation request.
 
@@ -238,7 +238,7 @@ Router ID Test               : passed
 
 ### Run an Existing Scheduled Validation On Demand
 
-You may find that although you have a validation scheduled to run at a later time, you would like to run it now.
+Sometimes you have a validation scheduled to run at a later time, but you need to run it now.
 
 To run a scheduled validation now:
 
@@ -265,7 +265,7 @@ After you have started an on-demand validation, the results are displayed based 
 The On-demand Validation Result card workflow enables you to view the results of on-demand validation requests. When a request has started processing, the associated large Validation Result card is displayed on your workbench with an indicator that it is running. When multiple network protocols or services are included in a validation, a validation result card is opened for each protocol and service. After an on-demand validation request has completed, the results are available in the same Validation Result cards.
 
 {{<notice tip>}}
-It may take a few minutes for results to appear if the load on the NetQ system is heavy at the time of the run.
+It might take a few minutes for results to appear if the load on the NetQ system is heavy at the time of the run.
 {{</notice>}}
 
 To view the results:
@@ -278,7 +278,7 @@ To view the results:
 
    {{%notice note%}}
 
-You may have more than one card open for a given protocol or service, so be sure to use the date and time on the card to ensure you are viewing the correct card.  
+You can have more than one card open for a given protocol or service, so be sure to use the date and time on the card to ensure you are viewing the correct card.  
 
    {{%/notice%}}
 
@@ -290,9 +290,9 @@ You may have more than one card open for a given protocol or service, so be sure
 
    {{<figure src="/images/netq/validation-result-error-details-bgp-4.0.0.png" width="700">}}
 
-5. To view all data available for all on-demand validation results for a given protocol, click **Show All Results** to switch to the full screen card.    
+5. To view all data available for all on-demand validation results for a given protocol, click **Show All Results** to switch to the full screen card.
 
-You may find that comparing various results gives you a clue as to why certain devices are experiencing more warnings or failures. For example, more failures occurred between certain times or on a particular device.
+Comparing various results can give you a clue as to why certain devices are experiencing more warnings or failures. For example, more failures occurred between certain times or on a particular device.
 
 {{</tab>}}
 
@@ -1233,7 +1233,7 @@ To analyze the results:
 
     - Return to the validation jobs list by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" width="14" height="14">}}.
 
-    You may find that comparing various results gives you a clue as to why certain devices are experiencing more warnings or failures. For  example, more failures occurred between certain times or on a particular device.
+    Comparing various results can give you a clue as to why certain devices are experiencing more warnings or failures. For  example, more failures occurred between certain times or on a particular device.
 
 ### Manage Scheduled Validations
 

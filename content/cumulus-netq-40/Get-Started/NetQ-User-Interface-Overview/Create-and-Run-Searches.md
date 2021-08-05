@@ -35,5 +35,5 @@ To re-run a recent search:
     {{< figure src="/images/netq/search-rerun-222.png" width="300" >}}
 
     {{<notice note>}}
-You may need to click <strong>See All # Results</strong> to find the desired search. If you do not find it in the list, you may still be able to find it in the <strong>Recent Actions</strong> list.
+You might have to click <strong>See All # Results</strong> to find the desired search. If you do not find it in the list, you can still find it in the <strong>Recent Actions</strong> list.
     {{</notice>}} -->

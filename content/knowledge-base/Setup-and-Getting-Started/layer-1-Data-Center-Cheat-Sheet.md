@@ -1,7 +1,7 @@
 ---
 title: Layer 1 Data Center Cheat Sheet
 author: NVIDIA
-weight: 285
+weight: 20
 toc: 4
 ---
 Your reference sheet for going web-scale with NVIDIA Spectrum switches and LinkX transceivers. 
@@ -366,7 +366,7 @@ All splitted/non-splitted ports also support lower 10/25/40GbE speeds. For lower
 {{< /tabs >}}
 
 {{% notice note %}}
-Check out all platform's speeds and breakout options in [Switch Port Attributes]({{<ref "cumulus-linux-44/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes.md" >}}) page.
+Check out all platform's speeds and breakout options in [Switch Port Attributes]({{<ref "cumulus-linux-44/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes.md#breakout-ports" >}}) page.
 <!--
 upate the pathc to the latest docs version and add pointer to /#breakout-ports section
 -->

@@ -8,7 +8,7 @@ Cards present information about your network for monitoring and troubleshooting.
 
 ## Card Sizes
 
-The various sizes of cards enable you to view your content at just the right level. For each aspect that you are monitoring there is typically a single card that presents increasing amounts of data over its four sizes. For example, a snapshot of your total inventory may be sufficient, but to monitor the distribution of hardware vendors may require a bit more space.
+The various sizes of cards enable you to view your content at just the right level. For each aspect that you are monitoring there is typically a single card that presents increasing amounts of data over its four sizes. For example, a snapshot of your total inventory might be sufficient, but to monitor the distribution of hardware vendors might require a bit more space.
 
 ### Card Size Summary
 
@@ -55,7 +55,7 @@ The various sizes of cards enable you to view your content at just the right lev
 
 ### Small Cards
 
-Small cards are most effective at providing a quick view of the performance or statistical value of a given aspect of your network. They are commonly comprised of an icon to identify the aspect being monitored, summary performance or statistics in the form of a graph and/or counts, and often an indication of any related events. Other content items may be present. Some examples include a Devices Inventory card, a Switch Inventory card, an Alarm Events card, an Info Events card, and a Network Health card, as shown here:
+Small cards are most effective at providing a quick view of the performance or statistical value of a given aspect of your network. They are commonly comprised of an icon to identify the aspect being monitored, summary performance or statistics in the form of a graph and/or counts, and often an indication of any related events. Other content items might be present. Some examples include a Devices Inventory card, a Switch Inventory card, an Alarm Events card, an Info Events card, and a Network Health card, as shown here:
 
 {{<figure src="/images/netq/access-data-small-group-230.png" width="700">}}
 
@@ -263,7 +263,7 @@ To change the card size:
 
     One-quarter width opens a small card. One-half width opens a medium card. Three-quarters width opens a large card. Full width opens a full-screen card.
 
-3. Click the Picker. The card changes to the selected size, and may move its location on the workbench.
+3. Click the Picker. The card changes to the selected size, and might move its location on the workbench.
 
 ### View a Description of the Card Content
 

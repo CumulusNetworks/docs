@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 811
 toc: 4
 ---
-The following table lists all system event messages organized by type. These messages can be viewed through third-party notification applications. For details about configuring notifications for these events, refer to {{<link title="Configure System Event Notifications">}}.
+The following table lists all system event messages organized by type. You can view these messages through third-party notification applications. For details about configuring notifications for these events, refer to {{<link title="Configure System Event Notifications">}}.
 
 ## Agent Events
 
@@ -54,6 +54,7 @@ The following table lists all system event messages organized by type. These mes
 <td>Agent state changed to fresh</td>
 <td>Agent state changed to fresh</td>
 </tr>
+<!-- vale off -->
 <tr>
 <td>agent</td>
 <td>NetQ Agent state was reset</td>
@@ -67,6 +68,7 @@ The following table lists all system event messages organized by type. These mes
 <td>Info</td>
 <td>Agent version has been changed old_version:@old_version  and new_version:@new_version. Agent reset at @sys_uptime</td>
 <td>Agent version has been changed old_version:2.1.2  and new_version:2.3.1. Agent reset at 1573079725</td>
+<!-- vale on -->
 </tr>
 </tbody>
 </table>
@@ -122,6 +124,7 @@ The following table lists all system event messages organized by type. These mes
 </body>
 </table>
 <!-- vale on -->
+
 ## BTRFS Events
 
 <table>
@@ -151,7 +154,7 @@ The following table lists all system event messages organized by type. These mes
 </tr>
 <tr>
 <td>btrfsinfo</td>
-<td>Indicates if space would be freed by a rebalance operation on the disk</td>
+<td>Indicates if a rebalance operation can free up space on the disk</td>
 <td>Critical</td>
 <td>@info : @details</td>
 <td>data storage efficiency : space left after allocation greater than chunk size 6170849.2","</td>
@@ -310,7 +313,7 @@ The following table lists all system event messages organized by type. These mes
 </tr>
 <tr>
 <td>clag</td>
-<td>CLAG bond in Conflicted state was updated with new bonds</td>
+<td>CLAG bond in Conflicted state updated with new bonds</td>
 <td>Info</td>
 <td>Clag conflicted bond changed from @old_conflicted_bonds to @new_conflicted_bonds</td>
 <td>Clag conflicted bond changed from swp7 swp8 to @swp9 swp10</td>

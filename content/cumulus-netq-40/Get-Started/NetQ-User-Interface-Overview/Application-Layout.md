@@ -42,7 +42,7 @@ Found in the header, the graph and performance rating provide a view into the he
 {{< figure src="/images/netq/quick-ntwk-health-header-400.png" width="200" >}}
 
 {{<notice note>}}
-On initial start up of the application, it may take up to an hour to reach an accurate health indication as some processes only run every 30 minutes.
+On initial start up of the application, it can take up to an hour to reach an accurate health indication as some processes only run every 30 minutes.
 {{</notice>}}
 
 ## Workbenches

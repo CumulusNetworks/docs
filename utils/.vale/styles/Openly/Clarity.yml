@@ -5,4 +5,4 @@ level: warning
 ignorecase: false
 # swap maps tokens in form of bad: good
 swap:
-  help: assist
+  

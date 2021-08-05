@@ -19,7 +19,7 @@ Unlike other network operations tools, NetQ delivers significant operational imp
 
 ## Demystify Overlay Networks
 
-While overlay networks provide significant advantages in network management, it can be difficult to troubleshoot issues that occur in the overlay one node at a time. You are unable to correlate what events (configuration changes, power outages, and so forth.) may have caused problems in the network and when they occurred. Only a sampling of data is available to use for your analysis. By contrast, with NetQ deployed, you have a networkwide view of the overlay network, can correlate events with what is happening now or in the past, and have real-time data to fill out the complete picture of your network health and operation.
+While overlay networks provide significant advantages in network management, it can be difficult to troubleshoot issues that occur in the overlay one node at a time. You are unable to correlate what events (configuration changes, power outages, and so forth) might have caused problems in the network and when they occurred. Only a sampling of data is available to use for your analysis. By contrast, with NetQ deployed, you have a networkwide view of the overlay network, can correlate events with what is happening now or in the past, and have real-time data to fill out the complete picture of your network health and operation.
 
 In summary:
 

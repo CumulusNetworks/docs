@@ -117,6 +117,31 @@ In the top right of the Air window next to the **Logout** link, a gear icon for 
 
 {{<img src="/images/guides/nvidia-air/UserSettingsGear.png" width="100px">}}
 
-Clicking the gear loads the User Settings page, where you can upload your public SSH key. These SSH keys are automatically uploaded to the oob-mgmt-server. Creating a simulation and enabling SSH allows for passwordless authentication.
+Clicking the gear loads the User Settings page.
+
+### API Tokens
+
+API tokens can be used to execute authenticated activities using the Air API/SDK.
+
+{{<img src="/images/guides/nvidia-air/UserAPITokenTab.png" width="300px">}}
+
+
+To generate a token, enter the requisite data into the field and click `CREATE`.
+
+{{<img src="/images/guides/nvidia-air/UserAPITokenCreate.png" width="300px">}}
+
+This will generate a token that you can use for access to the API/SDK.
+
+{{<img src="/images/guides/nvidia-air/UserAPITokenGenerated.png" width="300px">}}
+
+
+### SSH Keys
+
+The `SSH Keys` tab on the right is a place where you can upload your public SSH key.
+
+{{<img src="/images/guides/nvidia-air/UserSSHKeysTab.png" width="300px">}}
+
+
+These SSH keys are automatically uploaded to the oob-mgmt-server. Creating a simulation and enabling SSH allows for passwordless authentication.
 
 {{<img src="/images/guides/nvidia-air/UserSSHKeys.png" width="800px">}}

@@ -369,6 +369,11 @@ All splitted/non-splitted ports also support lower 10/25/40GbE speeds. For lower
 Check out all platform's speeds and breakout options in [Switch Port Attributes]({{<kb_link latest="cl" url="Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes.md#breakout-ports" >}}) page.
 {{% /notice %}}
 
+{{%notice info%}}
+Port breakouts is not functional when using QSA. To use QSFP28, QSFP56 or QSFP56-DD interfaces as 10/25/50GbE (via QSA adapter), the speed must be manually set on the interface by command. 
+{{%/notice%}}
+
+
 ## Oversubscription Calculation
 
 Oversubscription is the difference in host bandwidth (downlinks) vs. network capacity (uplinks). These calculations are shown from the point of view of a ToR Switch. A 1:1 oversubscription ratio ensures no network bottlenecks, but may result in excess capacity during non-peak times.</br> 

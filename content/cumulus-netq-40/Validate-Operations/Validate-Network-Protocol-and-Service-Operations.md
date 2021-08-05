@@ -407,7 +407,7 @@ cumulus@switch:~$ netq check bgp include 0,2
 cumulus@switch:~$ netq check bgp exclude 1
 ```
 
-Either way, a successful validation output would be similar to the following:
+Either way, a successful validation output should be similar to the following:
 
 ```
 bgp check result summary:

@@ -55,7 +55,7 @@ In summary:
 
 ## Track Connectivity with NetQ Trace
 
-Conventional trace only traverses the data path looking for problems, and does so on a node to node basis. For paths with a small number of hops that might be fine, but in larger networks, it can become extremely time consuming. With NetQ both the data and control paths are verified providing additional information. It discovers misconfigurations along all hops in one go, speeding the time to resolution.
+Conventional trace only traverses the data path looking for problems, and does so on a node to node basis. For paths with a small number of hops that might be fine, but in larger networks, it can become very time consuming. With NetQ both the data and control paths are verified providing additional information. It discovers misconfigurations along all hops in one go, speeding the time to resolution.
 
 In summary:
 

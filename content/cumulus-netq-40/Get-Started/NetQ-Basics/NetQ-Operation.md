@@ -9,7 +9,7 @@ In either in-band or out-of-band deployments, NetQ offers networkwide configurat
 
 ## The NetQ Agent
 
-From a software perspective, a network switch has software associated with the hardware platform, the operating system, and communications. For data centers, the software on a network switch would be similar to the diagram shown here.
+From a software perspective, a network switch has software associated with the hardware platform, the operating system, and communications. For data centers, the software on a network switch is similar to the diagram shown here.
 
 {{<figure src="/images/netq/netq-agent-operation-diag.png" width="500">}}
 

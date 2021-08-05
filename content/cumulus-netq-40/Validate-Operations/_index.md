@@ -204,7 +204,7 @@ netq-cli:
   
 Then run `netq config restart cli` to apply the change.
 
-If you update your scripts to work with the new version of the commands, simply change the `old-check` value to *false* or remove it. Then restart the CLI.
+If you update your scripts to work with the new version of the commands, just change the `old-check` value to *false* or remove it. Then restart the CLI.
 
 {{%notice tip%}}
 Use `netq check mlag` in place of `netq check clag` from NetQ 2.4 onward. `netq check clag` remains available for automation scripts, but you should begin migrating to `netq check mlag` to maintain compatibility with future NetQ releases.

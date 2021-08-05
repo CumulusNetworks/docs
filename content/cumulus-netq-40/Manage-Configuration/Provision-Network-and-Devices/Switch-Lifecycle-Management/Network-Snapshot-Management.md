@@ -28,7 +28,7 @@ To create a snapshot:
 
         {{<figure src="/images/netq/snapshot-create-snap-dialog-now-310.png" width="400">}}
 
-    - For the network state at a previous date and time, click **Past**, then click in **Start Time** field to use the calendar to step through selection of the date and time. You may need to scroll down to see the entire calendar.
+    - For the network state at a previous date and time, click **Past**, then click in **Start Time** field to use the calendar to step through selection of the date and time. You might need to scroll down to see the entire calendar.
 
         {{<figure src="/images/netq/snapshot-create-snap-dialog-past-310.png" width="400">}}
 
@@ -40,7 +40,7 @@ To create a snapshot:
 The Node and Services options are mandatory, and cannot be selected or unselected.
     {{</notice>}}
     {{<notice info>}}
-If you remove services, be aware that snapshots taken in the past or future may not be equivalent when performing a network state comparison.
+If you remove services, be aware that snapshots taken in the past or future might not be equivalent when performing a network state comparison.
     {{</notice>}}
 
     This example removes the OSPF and Route services from the snapshot being created.

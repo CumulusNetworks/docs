@@ -21,7 +21,7 @@ When WJH capabilities are combined with NetQ, you have the ability to home in on
 
 {{%notice info%}}
 
-By default, Cumulus Linux 4.0.0 and later provides the NetQ Agent and CLI. Depending on the version of Cumulus Linux running on your NVIDIA switch, you may need to upgrade the NetQ Agent and optionally the CLI to the latest release.
+By default, Cumulus Linux 4.0.0 and later provides the NetQ Agent and CLI. Depending on the version of Cumulus Linux running on your NVIDIA switch, you might need to upgrade the NetQ Agent and optionally the CLI to the latest release.
 
 ```
 cumulus@<hostname>:~$ sudo apt-get update

@@ -38,7 +38,7 @@ Use the Grafana CLI to install the NetQ plugin. For more detail about this comma
 
 {{%notice info%}}
 
-The Grafana plugin is unsigned. In order to install it, you need to update the `grafana.ini` file then restart the Grafana service:
+The Grafana plugin is unsigned. Before you can install it, you need to update the `grafana.ini` file then restart the Grafana service:
 
 1. Edit `/etc/grafana/grafana.ini` and add `allow_loading_unsigned_plugins = netq-dashboard` to the file.
 

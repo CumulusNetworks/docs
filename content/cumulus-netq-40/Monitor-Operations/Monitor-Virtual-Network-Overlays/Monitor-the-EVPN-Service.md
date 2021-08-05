@@ -626,7 +626,7 @@ leaf04            4001       10.0.1.2         L3               Vrf RED        ye
 ### View Devices with the Most EVPN-related Alarms
 <!-- vale on -->
 
-Switches experiencing a large number of EVPN alarms may indicate a configuration or performance issue that needs further investigation. You can view the switches sorted by the number of EVPN alarms and then use the Switches card workflow or the Events|Alarms card workflow to gather more information about possible causes for the alarms.
+Switches experiencing a large number of EVPN alarms can indicate a configuration or performance issue that needs further investigation. You can view the switches sorted by the number of EVPN alarms and then use the Switches card workflow or the Events|Alarms card workflow to gather more information about possible causes for the alarms.
 
 {{<tabs "View EVPN events">}}
 

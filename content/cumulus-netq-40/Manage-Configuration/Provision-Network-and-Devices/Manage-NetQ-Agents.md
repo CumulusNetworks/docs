@@ -340,7 +340,7 @@ The NetQ Agent contains a pre-configured set of modular commands that run period
 
 For example, if your network is not running OSPF, you can disable the command that polls for OSPF events. Or you can decrease the polling interval for LLDP from the default of 60 seconds to 120 seconds. By not polling for selected data or polling less frequently, you can reduce switch CPU usage by the NetQ Agent.
 
-Depending on the switch platform, some supported protocol commands may not be executed by the NetQ Agent. For example, if a switch has no VXLAN capability, then all VXLAN-related commands get skipped by agent.
+Depending on the switch platform, the NetQ Agent might not execute some supported protocol commands. For example, if a switch has no VXLAN capability, then the agent skips all VXLAN-related commands.
 
 You cannot create new commands in this release.
 

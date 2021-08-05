@@ -22,7 +22,7 @@ The NetQ UI provides several views that enable users to easily track the overall
 
 ### View Overall Health of a Switch
 
-When you want to view an overview of the current or past health of a particular switch, open the NetQ UI small Switch card. It is unlikely that you would have this card open for every switch in your network at the same time, but it is useful for tracking selected switches that may have been problematic in the recent past or that you have recently installed. The card shows you alarm status, a summary health score, and health trend.
+When you want to view an overview of the current or past health of a particular switch, open the NetQ UI small Switch card. It is unlikely that you would have this card open for every switch in your network at the same time, but it is useful for tracking selected switches that might have been problematic in the recent past or that you have recently installed. The card shows you alarm status, a summary health score, and health trend.
 
 To view the summary:
 
@@ -671,7 +671,7 @@ Address                   Hostname          Interface                 VRF       
 
 ### View All Software Packages
 
-If you are having an issue with a particular switch, you may want to verify what software is installed and whether it needs updating.
+If you are having an issue with a particular switch, you might want to verify what software is installed and whether it needs updating.
 
 You can view all the software that was installed on a given switch using the NetQ UI or NetQ CLI to quickly validate versions and total software installed.
 
@@ -879,7 +879,7 @@ You can view these statistics and utilization data using the NetQ UI or the NetQ
 
     {{<figure src="/images/netq/dev-switch-large-interfaces-tab-230.png" width="500">}}
 
-3. Select an interface from the list, scrolling down until you find it. By default the interfaces are sorted by Name, but you may find it easier to sort by the highest transmit or receive utilization using the filter above the list.
+3. Select an interface from the list, scrolling down until you find it. By default the interfaces are sorted by Name, but you might find it easier to sort by the highest transmit or receive utilization using the filter above the list.
 
     The charts update according to your selection. Scroll up and down to view the individual statistics. Look for high usage, a large number of drops or errors.
 

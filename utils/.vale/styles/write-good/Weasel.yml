@@ -3,7 +3,6 @@ message: "'%s' is a weasel word!"
 ignorecase: true
 level: warning
 tokens:
-  - accidentally
   - allegedly
   - alternatively
   - angrily
@@ -26,7 +25,6 @@ tokens:
   - carelessly
   - cautiously
   - cheerfully
-  - closely
   - coldly
   - consequently
   - courageously
@@ -43,10 +41,8 @@ tokens:
   - elegantly
   - enormously
   - enthusiastically
-  - especially
   - eventually
   - exceedingly
-  - extremely
   - fairly
   - faithfully
   - fatally
@@ -134,14 +130,12 @@ tokens:
   - sharply
   - shortly
   - shyly
-  - significantly
   - silently
   - simply
   - sleepily
   - slowly
   - smartly
   - smelly
-  - smoothly
   - softly
   - solemnly
   - sparkly

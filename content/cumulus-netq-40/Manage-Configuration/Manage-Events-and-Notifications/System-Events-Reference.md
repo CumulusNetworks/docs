@@ -328,7 +328,9 @@ The following table lists all system event messages organized by type. You can v
 </body>
 </table>
 
-## CL Support Evemts
+<!-- vale off -->
+## CL Support Events
+<!-- vale on -->
 
 <table>
 <colgroup>
@@ -340,6 +342,7 @@ The following table lists all system event messages organized by type. You can v
 </colgroup>
 <thead>
 <tr class="header">
+<!-- vale off -->
 <th>Type</th>
 <th>Trigger</th>
 <th>Severity</th>
@@ -355,6 +358,7 @@ The following table lists all system event messages organized by type. You can v
 <td>HostName @hostname has new CL SUPPORT file</td>
 <td>HostName leaf01 has new CL SUPPORT file</td>
 </tr>
+<!-- vale on -->
 </body>
 </table>
 
@@ -378,6 +382,7 @@ The following table lists all system event messages organized by type. You can v
 </tr>
 </thead>
 <tbody>
+<!-- vale off -->
 <tr>
 <td>configdiff</td>
 <td>Configuration file deleted on a device</td>
@@ -398,6 +403,7 @@ The following table lists all system event messages organized by type. You can v
 <td>Info</td>
 <td>@hostname config file @type was modified</td>
 <td>spine03 config file /etc/frr/frr.conf was modified</td>
+<!-- vale on -->
 </tr>
 </body>
 </table>
@@ -423,6 +429,7 @@ The following table lists all system event messages organized by type. You can v
 </thead>
 <tbody>
 <tr>
+<!-- vale off -->
 <td>evpn</td>
 <td>A VNI was configured and moved from the up state to the down state</td>
 <td>Critical</td>
@@ -449,6 +456,7 @@ The following table lists all system event messages organized by type. You can v
 <td>Info</td>
 <td>VNI @vni vni state changed from @old_adv_all_vni_state to @new_adv_all_vni_state</td>
 <td>VNI 11 vni state changed from false to true</td>
+<!-- vale on -->
 </tr>
 </body>
 </table>
@@ -477,6 +485,7 @@ The following table lists all system event messages organized by type. You can v
 <td>lcm</td>
 <td>Cumulus Linux backup started for a switch or host</td>
 <td>Info</td>
+<!-- vale off -->
 <td>CL configuration backup started for hostname @hostname</td>
 <td>CL configuration backup started for hostname spine01</td>
 </tr>
@@ -601,6 +610,7 @@ The following table lists all system event messages organized by type. You can v
 </tr>
 </body>
 </table>
+<!-- vale on -->
 
 ## Link Events
 
@@ -884,6 +894,7 @@ The following table lists all system event messages organized by type. You can v
 </thead>
 <tbody>
 <tr>
+<!-- vale off -->
 <td>resource</td>
 <td>A physical resource has been deleted from a device</td>
 <td>Critical</td>
@@ -911,6 +922,7 @@ The following table lists all system event messages organized by type. You can v
 <td>Resource Utils added for @hostname</td>
 <td>Resource Utils added for spine04</td>
 </tr>
+<!-- vale on -->
 </body>
 </table>
 
@@ -936,10 +948,12 @@ The following table lists all system event messages organized by type. You can v
 <tbody>
 <tr>
 <td>runningconfigdiff</td>
+<!-- vale off -->
 <td>Running configuration file has been modified</td>
 <td>Info</td>
 <td>@commandname config result was modified</td>
 <td>@commandname config result was modified</td>
+<!-- vale on -->
 </tr>
 </body>
 </table>
@@ -1108,6 +1122,7 @@ The following table lists all system event messages organized by type. You can v
 </thead>
 <tbody>
 <tr>
+<!-- vale off -->
 <td>version</td>
 <td>An unknown version of the operating system was detected</td>
 <td>Critical</td>
@@ -1127,6 +1142,7 @@ The following table lists all system event messages organized by type. You can v
 <td>Critical</td>
 <td>expected release version @ver</td>
 <td>expected release version cl3.6.2</td>
+<!-- vale on -->
 </tr>
 <tr>
 <td>version</td>

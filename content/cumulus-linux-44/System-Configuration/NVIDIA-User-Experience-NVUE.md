@@ -63,7 +63,7 @@ cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:
 ...
 ```
 <!-- vale off -->
-For information about using the NVUE API, refer to the {{<kb_link url="cumulus-linux-44/api" text="NVUE API documentation.">}}
+For information about using the NVUE API, refer to the {{<mib_link url="cumulus-linux-44/api/index.html" text="NVUE API documentation.">}}
 <!-- vale on -->
 ## NVUE CLI
 

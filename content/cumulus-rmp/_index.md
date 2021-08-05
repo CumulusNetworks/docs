@@ -86,7 +86,7 @@ For more information about each feature, follow the links below to the
 
 | **Layer 3 Support**                                         | **Cumulus RMP** | **Cumulus Linux** |
 | ----------------------------------------------------------- | --------------- | ----------------- |
-| [Static routing](/cumulus-linux-37/Layer-3/Routing/)        | ✓               | ✓                 |
+| {{<kb_link text="Static routing" url="content/cumulus-linux-37/Layer-3/Routing.md" >}}        | ✓               | ✓                 |
 | ECMP                                                        |                 | ✓                 |
 | ECMP resilient hashing                                      |                 | ✓                 |
 | OSPF                                                        |                 | ✓                 |
@@ -94,7 +94,7 @@ For more information about each feature, follow the links below to the
 | FRRouting                                                   |                 | ✓                 |
 | BFD                                                         |                 | ✓                 |
 | IPv6                                                        |                 | ✓                 |
-| [Management VRF](/cumulus-linux-37/Layer-3/Management-VRF/) | ✓               | ✓                 |
+| {{<kb_link text="Management VRF" url="content/cumulus-linux-37/Layer-3/Management-VRF.md" >}} | ✓               | ✓                 |
 | Virtual routing and forwarding (VRF)                        |                 | ✓                 |
 
 &nbsp;

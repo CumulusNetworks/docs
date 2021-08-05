@@ -84,9 +84,9 @@ iface bond0
     address 14.0.0.9/30
     address 2001:ded:beef:2::1/64
 ```
-
+<!-- vale off -->
 `ifquery --syntax-help` provides help on all possible attributes supported in the `interfaces` file. For complete syntax on the `interfaces` file, see `man interfaces` and `man ifupdown-addons-interfaces`.
-
+<!-- vale on -->
 You can use `ifquery --print-savedstate` to check the `ifupdown2` state database. `ifdown` works only on interfaces present in this state database.
 
 ```
@@ -129,7 +129,7 @@ cumulus@switch:~$ sudo mako-render /etc/network/interfaces.d/<interfaces_stub_fi
 
 ## ifdown Cannot Find an Interface that Exists
 
-If you are trying to bring down an interface that you know exists, use `ifdown` with the `--use-current-config` option to force `ifdown` to check the current `/etc/network/interfaces` file to find the interface. This can solve issues where the `ifup` command issues for that interface are interrupted before it updates the state database. For example:
+If you try to bring down an interface that you know exists, use `ifdown` with the `--use-current-config` option to force `ifdown` to check the current `/etc/network/interfaces` file to find the interface. For example:
 
 ```
 cumulus@switch:~$ sudo ifdown br0
@@ -172,7 +172,7 @@ iface br0
     address 2001::10/64
 ```
 
-Notice that bond1 is a member of br0. If bond1 is removed, you must remove the reference to it from the br0 configuration. Otherwise, if you reload the configuration with `ifreload -a`, bond1 is still part of br0.
+bond1 is a member of br0. If you remove bond1, you must remove the reference to it from the br0 configuration. Otherwise, if you reload the configuration with `ifreload -a`, bond1 remains part of br0.
 
 ## MTU Set on a Logical Interface Fails with Error: "Numerical result out of range"
 
@@ -210,8 +210,8 @@ warning: bridge configuration failed (missing ports)
 
 This error can occur when the bridge port does not have a valid hardware address.
 
-This occurs typically when the interface being added to the bridge is an incomplete bond; a bond without slaves is incomplete and does not have a valid hardware address.
+This can occur when the interface you add to the bridge is an incomplete bond; a bond without slaves is incomplete and does not have a valid hardware address.
 
-## MLAG Peerlink Interface Drops Many Packets
+## MLAG Peerlink Interface Drops Packets
 
-Losing a large number of packets across an MLAG peerlink interface might not be a problem. This can occur to prevent looping of BUM (broadcast, unknown unicast and multicast) packets. For more details, and for information on how to detect these drops, read the {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG chapter">}}.
+Losing a large number of packets across an MLAG peerlink interface is often not a problem. This can occur to prevent BUM (broadcast, unknown unicast and multicast) packet looping. For more details, and for information on how to detect these drops, read the {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG chapter">}}.

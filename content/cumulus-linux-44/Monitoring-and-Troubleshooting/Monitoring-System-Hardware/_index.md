@@ -60,7 +60,7 @@ Run `apt-get` to install the `lshw` program on the switch, which also retrieves 
 
 ## smond Daemon
 
-The `smond` daemon monitors system units like power supply and fan, updates the corresponding LEDs, and logs the change in state. Changes in system unit state are detected by the `cpld` registers. `smond` utilizes these registers to read all sources, which determines the health of the unit and updates the system LEDs.
+The `smond` daemon monitors system units like power supply and fan, updates the corresponding LEDs, and logs the change in state. The `cpld` registers detect changes in system unit state. `smond` utilizes these registers to read all sources, which determines the health of the unit and updates the system LEDs.
 
 Run the  `sudo smonctl` command to display sensor information for the various system units:
 
@@ -133,7 +133,7 @@ fan2:        13560 RPM
 
 {{%notice note%}}
 - Output from the `sensors` command varies depending upon the switch.
-- If only one PSU is plugged in, the fan is at maximum speed.
+- If you only plug in one PSU, the fan is at maximum speed.
 {{%/notice%}}
 
 The following table shows the `sensors` command options.
@@ -150,7 +150,7 @@ The following table shows the `sensors` command options.
 
 Cumulus Linux includes a simplified version of the `wd_keepalive(8)` daemon than the one provided in the standard `watchdog` Debian package. `wd_keepalive` writes to a file called `/dev/watchdog` periodically (at least one time per minute) to prevent the switch from resetting. Each write delays the reboot time by another minute. After one minute of inactivity, where `wd_keepalive` does not write to `/dev/watchdog`, the switch resets itself.
 
-The watchdog is enabled by default on all supported switches and starts when you boot the switch (before `switchd` starts).
+Cumulus Linux enables the watchdog by default, which starts when you boot the switch (before `switchd` starts).
 
 To disable the watchdog, disable and stop the `wd_keepalive` service:
 

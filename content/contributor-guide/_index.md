@@ -7,8 +7,8 @@ cascade:
   product: Documentation Contributor Guide
 ---
 Welcome to the Cumulus Networks documentation Contributor Guide!
-All of the technical user documentation for [Cumulus Linux](/cumulus-linux/),
-[Cumulus NetQ](/cumulus-netq/), [Cumulus VX](/cumulus-vx/) and our other products are now included in a public-facing [GitHub repository](https://github.com/CumulusNetworks/docs). This enables you to provide suggestions for improvements and new content using a GitHub workflow.
+All of the technical user documentation for {{<kb_link text="NVIDIA Cumulus Linux" latest="cl" url="_index.md" >}},
+{{<kb_link text="NVIDIA NetQ" latest="netq" url="_index.md" >}}, {{<kb_link text="NVIDIA Cumulus VX" url="cumulus-vx/_index.md" >}} and our other products are now included in a public-facing [GitHub repository](https://github.com/CumulusNetworks/docs). This enables you to provide suggestions for improvements and new content using a GitHub workflow.
 
 This guide explains how to set up a local environment in which to make your suggested changes and how to submit those changes for approval and inclusion in the documentation set.
 

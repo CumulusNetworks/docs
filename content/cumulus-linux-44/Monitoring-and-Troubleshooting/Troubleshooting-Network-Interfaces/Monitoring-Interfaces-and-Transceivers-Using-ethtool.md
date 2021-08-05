@@ -5,7 +5,7 @@ weight: 1100
 toc: 4
 ---
 
-The `ethtool` command enables you to query or control the network driver and hardware settings. It takes the device name (like swp1) as an argument. When the device name is the only argument to `ethtool`, it prints the current settings of the network device. See `man ethtool(8)` for details. Not all options are currently supported on switch port interfaces.
+The `ethtool` command enables you to query or control the network driver and hardware settings. It takes the device name (like swp1) as an argument. When the device name is the only argument to `ethtool`, it prints the network device settings. See `man ethtool(8)` for details.
 
 {{%notice tip%}}
 The `l1-show` command is the preferred tool for monitoring Ethernet data. See the {{<link url="Troubleshoot-Layer-1">}} guide for details.
@@ -38,7 +38,7 @@ Link detected: yes
 ```
 
 {{%notice note%}}
-The switch hardware contains the {{<link url="Switch-Port-Attributes" text="active port settings">}}. The output of `ethtool swpXX` shows the port settings stored in the kernel. The `switchd` process keeps the hardware and kernel in sync for the important port settings (speed, auto-negotiation, and link detected) when they change. However, many of the fields in `ethtool`, such as Supported Link Modes and Advertised Link Modes, are not updated based on the actual module inserted in the port and therefore can be incorrect or misleading.
+The switch hardware contains the {{<link url="Switch-Port-Attributes" text="active port settings">}}. The output of `ethtool swpXX` shows the port settings in the kernel. The `switchd` process keeps the hardware and kernel in sync for the important port settings (speed, auto-negotiation, and link detected). However, some fields in `ethtool`, such as Supported Link Modes and Advertised Link Modes, do not update based on the actual module in the port and therefore can show incorrect or misleading results.
 {{%/notice%}}
 
 To query interface statistics:
@@ -92,8 +92,8 @@ Cleared counters
 
 | Option<img width=300/> | Description<img width=600/> |
 |----------------------- |---------------------------- |
-| `-c` | Copies and clears statistics. It does not clear counters in the kernel or hardware.<br><br>**Note**: The -c argument is applied per user ID by default. You can override it by using the `-t` argument to save statistics to a different directory. |
-| `-d` | Deletes saved statistics, either the uid or the specified tag.<br><br>**Note**: The `-d` argument is applied per user ID by default. You can override it by using the `-t` argument to save statistics to a different directory. |
+| `-c` | Copies and clears statistics but does not clear counters in the kernel or hardware.<br><br>**Note**: The -c argument applies per user ID. You can override it with the `-t` argument to save statistics to a different directory. |
+| `-d` | Deletes saved statistics, either the uid or the specified tag.<br><br>**Note**: The `-d` argument applies per user ID. You can override it with the `-t` argument to save statistics to a different directory. |
 | `-D` | Deletes all saved statistics. |
 | `-l` | Lists saved tags. |
 | `-r` | Displays raw statistics (unmodified output of `cl-netstat`). |
@@ -102,9 +102,9 @@ Cleared counters
 
 ## Monitor Switch Port SFP/QSFP Hardware Information Using ethtool
 
-To see hardware capabilities and measurement information on the SFP or QSFP module installed in a particular port, use the `ethtool -m` command. If the SFP/QSFP supports Digital Optical Monitoring (that is, the `Optical diagnostics support` field in the output below is set to *Yes*), the optical power levels and thresholds are also printed below the standard hardware details.
+To see hardware capabilities and measurement information on the SFP or QSFP module in a particular port, use the `ethtool -m` command. If the SFP/QSFP supports Digital Optical Monitoring (the `Optical diagnostics support` field is *Yes* in the output below), the optical power levels and thresholds also show below the standard hardware details.
 
-In the sample output below, you can see that this module is a 1000BASE-SX short-range optical module, manufactured by JDSU, part number PLRXPL-VI-S24-22. The second half of the output displays the current readings of the Tx power levels (`Laser output power`) and Rx power (`Receiver signal average optical power`), temperature, voltage and alarm threshold settings.
+In the sample output below, you can see that this module is a 1000BASE-SX short-range optical module, manufactured by JDSU, part number PLRXPL-VI-S24-22. The second half of the output displays the current readings of the `Tx` power levels (`Laser output power`) and Rx power (`Receiver signal average optical power`), temperature, voltage and alarm threshold settings.
 
 ```
 cumulus@switch$ sudo ethtool -m swp3

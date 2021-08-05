@@ -65,7 +65,7 @@ switching is **not** supported on Spectrum.
 The maximum transmission unit (MTU) size for a virtual network interface
 should be 50 bytes smaller than the MTU for the physical interfaces on
 the switch. For more information on setting MTU, read 
-[Layer 1 and Switch Port Attributes](/cumulus-linux-36/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#mtu-for-a-bridge).
+{{<link text="Layer 1 and Switch Port Attributes" title="Switch Port Attributes#mtu-for-a-bridge" >}}.
 
 ## Useful Links
 

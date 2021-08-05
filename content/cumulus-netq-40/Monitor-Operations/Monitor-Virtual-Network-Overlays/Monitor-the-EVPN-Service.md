@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 980
 toc: 4
 ---
-EVPN (Ethernet Virtual Private Network) enables network administrators in the data center to deploy a virtual layer 2 bridge overlay on top of a layer 3 IP network, creating access, or a tunnel, between two locations. This connects devices in different layer 2 domains or sites running VXLANs and their associated underlays. For an overview and how to configure EVPN in your data center network, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/" text="Ethernet Virtual Private Network-EVPN">}}.
+EVPN (Ethernet Virtual Private Network) enables network administrators in the data center to deploy a virtual layer 2 bridge overlay on top of a layer 3 IP network, creating access, or a tunnel, between two locations. This connects devices in different layer 2 domains or sites running VXLANs and their associated underlays. For an overview and how to configure EVPN in your data center network, refer to {{<kb_link latest="cl" url="Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/_index.md" text="Ethernet Virtual Private Network-EVPN">}}.
 
 NetQ enables operators to view the health of the EVPN service on a networkwide and a per session basis, giving greater insight into all aspects of the service. This is accomplished through two card workflows, one for the service and one for the session, and in the NetQ CLI with the `netq show evpn` command.
 
@@ -810,7 +810,7 @@ With NetQ, you can monitor the performance of a single EVPN session using the Ne
     - Full-screen: view details of sessions-import/export route, type, origin IP address, VNI, VNI/gateway advertisement, and so forth
 - `netq <hostname> show evpn vni` command: view configuration and status for session (hostname, VNI), VTEP address, import and export route, and last time a change was made
 
-For an overview and how to configure EVPN in your data center network, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/" text="Ethernet Virtual Private Network - EVPN">}}.
+For an overview and how to configure EVPN in your data center network, refer to {{<kb_link latest="cl" url="Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/_index.md" text="Ethernet Virtual Private Network - EVPN">}}.
 
 {{<notice note>}}
 To access the single session cards, you must open the full-screen Network Services|All EVPN Sessions card, click the <strong>All Sessions</strong> tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18"/> (Open Card).

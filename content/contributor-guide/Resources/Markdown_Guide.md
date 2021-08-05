@@ -55,7 +55,7 @@ Note that the reference text is not displayed.
 
 For example, this Markdown renders the following images:
 
-![Trace Request Small](/images/old_doc_images/sch-trace-request-small-card.png)
+![Trace Request Small]{{<img src="/images/old_doc_images/sch-trace-request-small-card.png" >}}
 
 ![EVPN Arch](/images/cumulus-linux/evpn-basic-clos.png)
 

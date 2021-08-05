@@ -28,15 +28,15 @@ command before you configure Cumulus Linux on the switch.
 
 You can add additional user accounts as needed. Like the *cumulus*
 account, these accounts must use `sudo` to 
-[execute privileged commands](/cumulus-linux-36/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges);
+{{<link text="Using sudo to Delegate Privileges" title="Using sudo to Delegate Privileges" >}};
 be sure to include them in the *sudo* group.
 
 To access the switch without a password, you need to 
-[boot into a single shell/user mode](/cumulus-linux-36/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery).
+{{<link text="boot into a single shell/user mode" url="Single-User-Mode-Boot-Recovery" >}}.
 
 You can add and configure user accounts in Cumulus Linux with read-only
 or edit permissions for NCLU. For more information, see 
-[Configuring User Accounts](/cumulus-linux-36/System-Configuration/Network-Command-Line-Utility-NCLU/).
+{{<link text="Configuring User Accounts" url="Network-Command-Line-Utility-NCLU/" >}}.
 
 ## Enabling Remote Access for the root User
 

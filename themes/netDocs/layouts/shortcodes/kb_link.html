@@ -1,24 +1,20 @@
+{{- $anchor_set := split (.Get "url") "#" -}}
 {{- $.Scratch.Set "page_found" false -}}
-{{- /* "Only files in /static will have extensions" */ -}}
-{{ if ((.Get "url") | path.Ext) }}
-    {{ .Scratch.Set "file_path" (printf "static/%s" (.Get "url")) }}
-    {{ if fileExists (.Scratch.Get "file_path") }}
-        {{- $.Scratch.Set "page_found" true -}}
-    {{ end }}
-{{ else }}
-    {{- /* "Check if it's an md file" */ -}}
-    {{ .Scratch.Set "file_path" (printf "content/%s.md" (path.Dir (.Get "url") | printf "%s")) }}
-    {{ if fileExists (.Scratch.Get "file_path") }}
-        {{- $.Scratch.Set "page_found" true -}}
-    {{ else }}
-        {{ .Scratch.Set "file_path" (printf "content/%s/_index.md" (path.Dir (.Get "url") | printf "%s")) }}
-        {{ if fileExists (.Scratch.Get "file_path") }}
-            {{- $.Scratch.Set "page_found" true -}}
-        {{ end }}
-    {{ end }}
-{{ end }}
-{{ if (.Scratch.Get "page_found") }}
-    <a rel="canonical" href="{{ (.Get "url") | urlize | absURL }}" target="_blank">{{- default (.Get "url") (.Get "text") -}}</a>
-{{ else }}
-    {{ errorf "kb_link failed to find a home for %s on %s. Path: %s" (printf "content/%s.md" (path.Dir (.Get "url") | printf "%s"))  .Position (.Scratch.Get "file_path") }}
-{{ end }}
+{{- if eq (.Get "latest") "cl" -}}
+    {{- .Scratch.Set "file_path" (printf "/%s/%s" .Site.Params.cl_latest (index $anchor_set 0)) -}}
+{{- else if eq (.Get "latest") "netq" -}}
+    {{- .Scratch.Set "file_path" (printf "/%s/%s" .Site.Params.netq_latest (index $anchor_set 0)) -}}
+{{- else if eq (.Get "latest") "sonic" -}}
+    {{- .Scratch.Set "file_path" (printf "/%s/%s" .Site.Params.sonic_latest (index $anchor_set 0)) -}}
+{{- else -}}
+    {{- .Scratch.Set "file_path" (printf "/%s" (index $anchor_set 0)) -}}
+{{- end -}}
+{{- if fileExists (.Scratch.Get "file_path") -}}
+    {{- $.Scratch.Set "page_found" true -}}
+{{- end -}}
+{{- if (.Scratch.Get "page_found") -}}
+    <!--<a rel="canonical" href="{{- (.Site.GetPage (.Scratch.Get "file_path")) | urlize | absURL -}}#{{((index $anchor_set 1) | plainify | htmlUnescape | anchorize) -}}" target="_blank">{{- default (.Get "url") (.Get "text") -}}</a>-->
+    {{with .Site.GetPage (.Scratch.Get "file_path") }}<a href="{{.RelPermalink}}">{{end}}{{.Get "text"}}</a>
+{{- else -}}
+    {{- errorf "kb_link failed to find a home for %s. (latest: %s). URL: %s File: %s" (printf (path.Dir (.Get "url") | printf "%s")) (.Get "latest") (.Scratch.Get "file_path") .Position}}
+{{- end -}}

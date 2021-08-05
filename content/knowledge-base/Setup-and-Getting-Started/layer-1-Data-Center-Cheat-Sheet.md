@@ -366,10 +366,7 @@ All splitted/non-splitted ports also support lower 10/25/40GbE speeds. For lower
 {{< /tabs >}}
 
 {{% notice note %}}
-Check out all platform's speeds and breakout options in [Switch Port Attributes]({{<ref "cumulus-linux-44/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes.md#breakout-ports" >}}) page.
-<!--
-upate the pathc to the latest docs version and add pointer to /#breakout-ports section
--->
+Check out all platform's speeds and breakout options in [Switch Port Attributes]({{<kb_link latest="cl" url="Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes.md#breakout-ports" >}}) page.
 {{% /notice %}}
 
 ## Oversubscription Calculation

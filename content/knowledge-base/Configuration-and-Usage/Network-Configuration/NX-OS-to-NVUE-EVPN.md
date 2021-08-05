@@ -3,7 +3,7 @@ title: NX-OS to NVUE EVPN Configuration
 weight: 300
 ---
 
-Cumulus Linux version 4.4 introduces a new CLI called {{<kb_link url="cumulus-linux-44/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}}. NVUE is a complete object model for Cumulus Linux, which makes translating configurations from one vendor to another much more reliable the first time you use Cumulus Linux and across Cumulus Linux versions.
+Cumulus Linux version 4.4 introduces a new CLI called {{<kb_link latest="cl" url="System-Configuration/NVIDIA-User-Experience-NVUE.md" text="NVUE">}}. NVUE is a complete object model for Cumulus Linux, which makes translating configurations from one vendor to another much more reliable the first time you use Cumulus Linux and across Cumulus Linux versions.
 
 This KB article describes how to take a basic NX-OS configuration for EVPN and translate it to NVUE. The example confiuration is based on [this Cisco Configuration Example](https://www.cisco.com/c/en/us/support/docs/ip/border-gateway-protocol-bgp/200952-Configuration-and-Verification-VXLAN-wit.html).
 
@@ -19,9 +19,9 @@ This KB article describes how to take a basic NX-OS configuration for EVPN and t
 |`feature vpc`|   _none_ |  |
 |`feature nv overlay`|   _none_ |  |
 |`fabric forwarding anycast-gateway-mac 0001.0001.0001`| `nv set system global anycast-mac 44:38:39:BE:EF:AA` | |
-|`ip pim rp-address 192.168.9.9 group-list 224.0.0.0/4`| _none_ | NVIDIA recommends you use Head End Replication for EVPN, removing the need for PIM. For scale-out deployments {{<kb_link url="cumulus-linux-44/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/EVPN-PIM/" text="PIM Replication" >}} is supported.|
+|`ip pim rp-address 192.168.9.9 group-list 224.0.0.0/4`| _none_ | NVIDIA recommends you use Head End Replication for EVPN, removing the need for PIM. For scale-out deployments {{<kb_link latest="cl" url="Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/EVPN-PIM.md" text="PIM Replication" >}} is supported.|
 |`ip pim ssm range 232.0.0.0/8`| _none_ |
-|`vlan 1,10,20,30,40`| `nv set bridge domain br_default vlan 30,40` | {{<kb_link url="cumulus-linux-44/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/" text="Ethernet Bridging" >}}
+|`vlan 1,10,20,30,40`| `nv set bridge domain br_default vlan 30,40` | {{<kb_link latest="cl" url="Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode.md" text="Ethernet Bridging" >}}
 |`vlan 10`| _none_ | The layer 3 VNI does not require a unique VLAN interface. |
 |` name L3-VNI-VLAN-10`|  _none_ | |
 |` vn-segment 10000010`|  _none_ | |
@@ -29,7 +29,7 @@ This KB article describes how to take a basic NX-OS configuration for EVPN and t
 |` vn-segment 10000030`| _none_ | The `vn-segment` and `vlan` are defined in a single command with NVUE. |
 |`vlan 40`| `nv set bridge domain br_default vlan 40 vni 10000040` | |
 |` vn-segment 10000040`| _none_ | |
-|`vpc domain 2`| `nv set mlag backup 10.197.204.103` | Cumulus Linux {{<kb_link url="cumulus-linux-44/Layer-2/Multi-Chassis-Link-Aggregation-MLAG" text="MLAG" >}} uses remote and local peering to ensure uptime.|
+|`vpc domain 2`| `nv set mlag backup 10.197.204.103` | Cumulus Linux {{<kb_link latest="cl" url="Layer-2/Multi-Chassis-Link-Aggregation-MLAG.md" text="Multi-Chassis Link Aggregation - MLAG" >}} uses remote and local peering to ensure uptime.|
 |` peer-keepalive destination 10.197.204.103`| `nv set mlag peer-ip linklocal` | You can determine the local peer IP automatically with link-local addresses. |
 |`interface Vlan10`| _none_ | The layer 3 VNI does not require a unique VLAN interface. |
 |` no shutdown`| _none_ | |
@@ -68,7 +68,7 @@ This KB article describes how to take a basic NX-OS configuration for EVPN and t
 |` channel-group 34 mode active`|  _none_ | |
 |`interface Ethernet1/2`|   _none_ | |
 |` no switchport`| _none_ | Interfaces are layer 3 by default. |
-|` ip address 192.168.39.3/24`| _none_ | NVIDIA recommends {{<kb_link url="cumulus-linux-44/Layer-3/Border-Gateway-Protocol-BGP/Basic-BGP-Configuration/#bgp-unnumbered" text="BGP Unnumbered" >}} for the underlay, removing the need for an IP address. |
+|` ip address 192.168.39.3/24`| _none_ | NVIDIA recommends {{<kb_link latest="cl" url="Layer-3/Border-Gateway-Protocol-BGP/Basic-BGP-Configuration.md#bgp-unnumbered" text="BGP Unnumbered" >}} for the underlay, removing the need for an IP address. |
 |` ip router ospf UNDERLAY area 0.0.0.0`| _none_ | NVIDIA recommends BGP Unnumbered. | 
 |` ip pim sparse-mode`| _none_ | NVIDIA recommends Head End Replication. |
 |` no shutdown`| _none_ | | 

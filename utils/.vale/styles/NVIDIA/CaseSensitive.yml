@@ -13,4 +13,3 @@ swap:
   VxLAN: VXLAN
   VXlan: VXLAN
   vlan-aware: VLAN-aware
-  linux: Linux

@@ -69,7 +69,7 @@ The start time (<code>text-time</code>) and end time (<code>text-endtime</code>)
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -116,7 +116,7 @@ Tue Nov 24 19:51:11 2020  server04          uplink       10.1.10.104            
 
 ## netq show agents
 
-Displays basic configuration, health, and connectivity status for all nodes or a specific node running NetQ Agent in your network fabric. This command gives you an easy way to see if any NetQ Agents or their nodes have lost power, may have difficulty communicating with the telemetry server, and whether agents are running different versions of software. Any of these situations could cause problems in the operation of your network.
+Displays basic configuration, health, and connectivity status for all nodes or a specific node running NetQ Agent in your network fabric. This command gives you an easy way to see if any NetQ Agents or their nodes have lost power, if they have difficulty communicating with the telemetry server, or whether agents are running different versions of software. Any of these situations could cause problems in the operation of your network.
 
 The output provides:
 
@@ -155,7 +155,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -288,7 +288,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -423,7 +423,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -478,7 +478,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -558,7 +558,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -655,7 +655,7 @@ netq [<hostname>] show cl-resource forwarding
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -709,7 +709,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -767,7 +767,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -848,7 +848,7 @@ netq [<hostname>] show dom type (module_temp|module_voltage)
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -947,7 +947,7 @@ netq <hostname> show interface-stats
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1081,7 +1081,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1204,7 +1204,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1366,7 +1366,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1478,7 +1478,7 @@ netq <hostname> show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1595,7 +1595,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1706,7 +1706,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1835,7 +1835,7 @@ netq [<hostname>] show inventory os
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2003,7 +2003,7 @@ netq show ipv6 addresses
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2130,7 +2130,7 @@ netq <hostname> show ipv6 neighbors
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2270,7 +2270,7 @@ netq show ipv6 routes
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2350,7 +2350,7 @@ netq show job-status <text-opta-ip>
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2522,7 +2522,7 @@ netq [<hostname>] show kubernetes service
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2664,7 +2664,7 @@ netq <hostname> show impact kubernetes deployment
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2751,7 +2751,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2845,7 +2845,7 @@ netq [<hostname>] show mac-commentary
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2911,7 +2911,7 @@ netq [<hostname>] show mac-history
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3014,7 +3014,7 @@ netq <hostname> show macs
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3107,7 +3107,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3186,7 +3186,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3255,7 +3255,7 @@ netq show notification
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3381,7 +3381,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3452,7 +3452,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3515,7 +3515,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3576,7 +3576,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3656,7 +3656,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3738,7 +3738,7 @@ netq [<hostname>] show resource-util
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3884,7 +3884,7 @@ netq [<hostname>] show sensors
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -4020,7 +4020,7 @@ netq [<hostname>] show services
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -4152,7 +4152,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -4241,7 +4241,7 @@ netq show trace summary
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -4354,7 +4354,7 @@ netq show unit-tests vxlan [json]
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -4410,7 +4410,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -4490,7 +4490,7 @@ netq show validation summary
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -4593,7 +4593,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -4676,7 +4676,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -4816,7 +4816,7 @@ netq [<hostname>] show wjh-drop <text-drop-type>
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |

@@ -17,11 +17,11 @@ user documentation.
 |Bridge|Device that connects two communication networks or network segments. Occurs at OSI Model Layer 2, Data Link Layer.|
 |Clos|Multistage circuit switching network used by the telecommunications industry, first formalized by Charles Clos in 1952.|
 |Device|UI term referring to a switch, host, or chassis or combination of these. Typically used when describing hardware and components versus a software or network topology. See also Node.|
-|Event|Change or occurrence in network or component; may or may not trigger a notification. In the NetQ UI, there are two types of events: Alarms which indicate a critical severity event, and Info which indicate warning, informational, and debugging severity events.|
+|Event|Change or occurrence in network or component; possibly triggering a notification. In the NetQ UI, there are two types of events: Alarms which indicate a critical severity event, and Info which indicate warning, informational, and debugging severity events.|
 |Fabric|Network topology where a set of network nodes is interconnected through one or more network switches.|
 |Fresh|Node that has been heard from in the last 90 seconds.|
 |High Availability|Software used to provide a high percentage of uptime (running and available) for network devices.|
-|Host|Device that is connected to a TCP/IP network. May run one or more virtual machines.|
+|Host|Device that is connected to a TCP/IP network. Can run one or more virtual machines.|
 |Hypervisor|Software which creates and runs virtual machines. Also called a virtual machine monitor.|
 |Info|In UI, event with warning, informational, or debugging severity.|
 |IP Address|An Internet Protocol address is comprised of a series of numbers assigned to a network device to uniquely identify it on a given network. Version 4 addresses are 32 bits and written in dotted decimal notation with 8-bit binary numbers separated by decimal points. Example: 10.10.10.255. Version 6 addresses are 128 bits and written in 16-bit hexadecimal numbers separated by colons. Example: 2018:3468:1B5F::6482:D673.|

@@ -172,7 +172,7 @@ leaf01            swp54                     down       40G        off     QSFP+ 
 
 ### View Components from a Given Vendor
 
-By filtering for a specific cable vendor, you can collect information such as how many ports use components from that vendor and when they were last updated. This information may be useful when you run a cost analysis of your network. 
+By filtering for a specific cable vendor, you can collect information such as how many ports use components from that vendor and when they were last updated. This information can be useful when you run a cost analysis of your network.
 
 This example shows all the ports that are using components by an *OEM* vendor.
 

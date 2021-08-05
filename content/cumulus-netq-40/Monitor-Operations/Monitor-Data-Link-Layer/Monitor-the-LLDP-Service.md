@@ -559,7 +559,7 @@ leaf01            swp51                     spine01           swp1              
 ### View Switches with the Most LLDP-related Alarms
 <!-- vale on -->
 
-Switches or hosts experiencing a large number of LLDP alarms may indicate a configuration or performance issue that needs further investigation. You can view this information using the NetQ UI or NetQ CLI.
+Switches or hosts experiencing a large number of LLDP alarms might indicate a configuration or performance issue that needs further investigation. You can view this information using the NetQ UI or NetQ CLI.
 
 {{<tabs "View switches with most LLDP alarms">}}
 
@@ -719,7 +719,7 @@ Where to go next depends on what data you see, but a few options include:
 - Sort on various parameters:
     - by **Message** to determine the frequency of particular events
     - by **Severity** to determine the most critical events
-    - by **Time** to find events that may have occurred at a particular time to try to correlate them with other system events
+    - by **Time** to find events that might have occurred at a particular time to try to correlate them with other system events
 - Open one of the other full-screen tabs in this flow to focus on devices or sessions
 - Export data to a file for use in another analytics tool by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> and providing a name for the data file.
 - Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
@@ -961,7 +961,7 @@ To view the configuration file changes:
 
 7. Hover over the card and click <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/> to open the **LLDP Configuration File Evolution** tab.
 
-8. Select the time of interest on the left; when a change may have impacted the performance. Scroll down if needed.
+8. Select the time of interest on the left; when a change might have impacted the performance. Scroll down if needed.
 
 9. Choose between the **File** view and the **Diff** view (selected option is dark; File by default).
 
@@ -1098,6 +1098,6 @@ Where to go next depends on what data you see, but a few options include:
 - Sort on other parameters:
   - By **Message** to determine the frequency of particular events.
   - By **Severity** to determine the most critical events.
-  - By **Time** to find events that may have occurred at a particular time to try to correlate them with other system events.
+  - By **Time** to find events that might have occurred at a particular time to try to correlate them with other system events.
 - Export data to a file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
 - Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.

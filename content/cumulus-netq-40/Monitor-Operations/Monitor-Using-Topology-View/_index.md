@@ -117,7 +117,7 @@ The JSON file will be similar to this example:
 
 ### Rearrange the Topology Layout
 
-The network topology is generated automatically by NetQ and the nodes are positioned automatically. In large topologies, the position of the nodes may not be suitable for easy viewing. You can move the components of the topology around on screen to suit your needs. You can save the new layout so other users can see it.
+The network topology is generated automatically by NetQ and the nodes are positioned automatically. In large topologies, the position of the nodes might not be suitable for easy viewing. You can move the components of the topology around on screen to suit your needs. You can save the new layout so other users can see it.
 
 1. Consider the following topology:
 

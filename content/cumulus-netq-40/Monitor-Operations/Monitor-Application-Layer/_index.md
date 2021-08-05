@@ -52,7 +52,7 @@ spine04           yes      oob-mgmt-server   3       ntpq
 
 ## View Devices that are Out of Time Synchronization
 
-When a device is out of time synchronization with the NetQ server, the collected data may be improperly processed. For example, the wrong timestamp could be applied to a piece of data, or that data might be included in an aggregated metric when is should have been included in the next bucket of the aggregated metric. This would make the presented data be slightly off or give an incorrect impression.
+When a device is out of time synchronization with the NetQ server, the collected data might be improperly processed. For example, the wrong timestamp could be applied to a piece of data, or that data might be included in an aggregated metric when is should have been included in the next bucket of the aggregated metric. This would make the presented data be slightly off or give an incorrect impression.
 
 This example shows all devices in the network that are out of time synchronization, and therefore need to be investigated.
 
@@ -66,7 +66,7 @@ internet          no       -                 16      ntpq
 
 ## View Time Synchronization for a Given Device
 
-You may only be concerned with the behavior of a particular device. Checking for time synchronization is a common troubleshooting step to take.
+You might only be concerned with the behavior of a particular device. Checking for time synchronization is a common troubleshooting step to take.
 
 This example shows the time synchronization status for the *leaf01* switch.
 

@@ -97,7 +97,7 @@ leaf04            10     bond1,vni10                         yes  Wed Oct 28 15:
 
 ## View VLAN Information for a Time in the Past
 
-You can view the VLAN configuration information across the network or for a given device at a time in the past using the `around` option of the `netq show vlan` command. This can be helpful when you think there may have been changes made.
+You can view the VLAN configuration information across the network or for a given device at a time in the past using the `around` option of the `netq show vlan` command. This can be helpful when you think changes might have been made.
 
 This example shows the VLAN configuration in the last 24 hours and 30 days ago. Note that some SVIs have been removed.
 

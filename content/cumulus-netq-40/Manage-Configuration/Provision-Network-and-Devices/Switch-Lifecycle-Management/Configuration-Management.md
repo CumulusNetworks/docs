@@ -59,7 +59,7 @@ You can specify your template in any order, but to complete the configuration, y
 
 1. Provide a name for the template. This field is required and can be a maximum of 22 characters, including spaces.
 
-2. Accept the VRF selection of *Management*, or optionally change it to *Default*. Note that changing the VRF may cause some agents to become unresponsive.
+2. Accept the VRF selection of *Management*, or optionally change it to *Default*. Note that changing the VRF might cause some agents to become unresponsive.
 
 3. Click **Save and Continue to SNMP** or select another tab.
 
@@ -352,7 +352,7 @@ Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Re
 
 6. Once you have finished the template configuration, you are returned to the network templates library.
 
-    This shows the new template you created and which forms have been included in the template. You may only have one or two of the forms in a given template.
+    This shows the new template you created and which forms have been included in the template. You might only have one or two of the forms in a given template.
 
     {{<figure src="/images/netq/lcm-ntwk-template-library-320.png" width="700">}}
 
@@ -1072,7 +1072,7 @@ You must have at least one port interface profile specified to configure a port 
 
 4. If you want to break out selected ports, choose the split value from the dropdown.
 
-    In the example above, swp1 has its speed set to 100 Gbps. On the Mellanox SN2700 switch being configured here, this port can then be broken into two 50 Gbps speed interfaces or four 25 Gbps speed interfaces. Some limitations on other ports may occur when you breakout a given port. In this case, if we were to choose a 4x breakout, swp2 would become unavailable and you would not be able to configure that port.
+    In the example above, swp1 has its speed set to 100 Gbps. On the Mellanox SN2700 switch being configured here, this port can then be broken into two 50 Gbps speed interfaces or four 25 Gbps speed interfaces. Some limitations on other ports can occur when you break out a given port. In this case, if we were to choose a 4x breakout, swp2 would become unavailable and you would not be able to configure that port.
 
     {{<figure src="/images/netq/lcm-switch-config-ifs-ports-brkout-330.png" width="100">}}
 

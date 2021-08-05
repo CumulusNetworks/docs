@@ -408,7 +408,7 @@ You can view the BGP configuration information for a given ASN from the NetQ UI 
 2. Locate the **ASN** column.
 
     {{<notice tip>}}
-You may want to pause the auto-refresh feature during this process to avoid the page update while you are browsing the data.
+You might want to pause the auto-refresh feature during this process to avoid the page update while you are browsing the data.
     {{</notice>}}
 
 3. Click the header to sort on that column.
@@ -452,7 +452,7 @@ leaf04            swp51(spine01)               default         65102      65199 
 ### View Devices with the Most BGP-related Alarms
 <!-- vale on -->
 
-Switches or hosts experiencing a large number of BGP alarms may indicate a configuration or performance issue that needs further investigation. You can view this information using the NetQ UI or NetQ CLI.
+Switches or hosts experiencing a large number of BGP alarms might indicate a configuration or performance issue that needs further investigation. You can view this information using the NetQ UI or NetQ CLI.
 
 {{<tabs "TabID455" >}}
 
@@ -548,7 +548,7 @@ Where to go next depends on what data you see, but a couple of options include:
 - Sort on various parameters:
     - by **Message** to determine the frequency of particular events
     - by **Severity** to determine the most critical events
-    - by **Time** to find events that may have occurred at a particular time to try to correlate them with other system events
+    - by **Time** to find events that might have occurred at a particular time to try to correlate them with other system events
 - Open one of the other full screen tabs in this flow to focus on devices or sessions
 - Export the data for use in another analytics tool, by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> and providing a name for the data file.
 
@@ -858,7 +858,7 @@ To view the configuration file changes:
 
 7. Hover over the card and click <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/> to open the **BGP Configuration File Evolution** tab.
 
-8. Select the time of interest on the left; when a change may have impacted the performance. Scroll down if needed.
+8. Select the time of interest on the left; when a change might have impacted the performance. Scroll down if needed.
 
 9. Choose between the **File** view and the **Diff** view (selected option is dark; File by default).
 

@@ -16,7 +16,7 @@ This topic includes all commands that begin with `netq a*` and `netq b*`.
 Enables suppression of any of the various system events, excluding them from event displays. By default all events are delivered. You can suppress events for:
 
 - Two years (default): useful when you do not want to see the events (essentially never show them)
-- A period of time: useful when you want to temporarily suppress events due to maintenance (typically days), or when testing a new network configuration where the switch may generate many messages that are expected and not needed beyond this time period (typically minutes or hours)
+- A period of time: useful when you want to temporarily suppress events due to maintenance (typically days), or when testing a new network configuration where the switch might generate many messages that are expected and not needed beyond this time period (typically minutes or hours)
 
 Events are automatically sent after the designated amount of time has passed.
 
@@ -49,7 +49,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -138,7 +138,7 @@ netq add notification channel syslog
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -226,7 +226,7 @@ netq add notification filter
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -289,7 +289,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -347,7 +347,7 @@ netq add notification proxy
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -427,7 +427,7 @@ netq add tca tca_id
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -460,7 +460,7 @@ Successfully added/updated tca
 
 ## netq add trace
 
-Create an on-demand trace and see the results in the On-demand Trace Results card of the NetQ UI rather than in text form in your terminal window. Refer to {{<link title="Verify Network Connectivity">}} for additional information. Note that the tracing function only knows about addresses that have already been learned. If you find that a path is invalid or incomplete, you may need to ping the identified device so that its address becomes known.
+Create an on-demand trace and see the results in the On-demand Trace Results card of the NetQ UI rather than in text form in your terminal window. Refer to {{<link title="Verify Network Connectivity">}} for additional information. Note that the tracing function only knows about addresses that have already been learned. If you find that a path is invalid or incomplete, you could ping the identified device so that its address becomes known.
 
 ### Syntax
 
@@ -497,7 +497,7 @@ netq add trace <ip>
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -528,7 +528,7 @@ cumulus@switch:~$ netq add trace 44:38:39:00:00:3e vlan 10 from 44:38:39:00:00:3
 
 ## netq add trace name
 
-Create a scheduled trace and see the results in the Scheduled Trace Results card of the NetQ UI rather than in text form in your terminal window. Refer to {{<link title="Verify Network Connectivity">}} for additional information. Note that the tracing function only knows about addresses that have already been learned. If you find that a path is invalid or incomplete, you may need to ping the identified device so that its address becomes known.
+Create a scheduled trace and see the results in the Scheduled Trace Results card of the NetQ UI rather than in text form in your terminal window. Refer to {{<link title="Verify Network Connectivity">}} for additional information. Note that the tracing function only knows about addresses that have already been learned. If you find that a path is invalid or incomplete, you could ping the identified device so that its address becomes known.
 
 ### Syntax
 
@@ -573,7 +573,7 @@ netq add trace name
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -634,7 +634,7 @@ netq add validation
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -683,7 +683,7 @@ netq add validation
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -744,7 +744,7 @@ netq bootstrap worker
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -798,7 +798,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -855,7 +855,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |

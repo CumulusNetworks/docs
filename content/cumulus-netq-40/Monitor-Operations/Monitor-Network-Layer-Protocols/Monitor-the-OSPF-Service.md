@@ -235,7 +235,7 @@ Where to go next depends on what data you see, but a couple of options include:
 
 ### View Devices with the Most OSPF-related Alarms
 
-Switches or hosts experiencing a large number of OSPF alarms may indicate a configuration or performance issue that needs further investigation. You can view the devices sorted by the number of OSPF alarms and then use the Switches card workflow or the Alarms card workflow to gather more information about possible causes for the alarms. compare the number of nodes running OSPF with unestablished sessions with the alarms present at the same time to determine if there is any correlation between the issues and the ability to establish an OSPF session.
+Switches or hosts experiencing a large number of OSPF alarms might indicate a configuration or performance issue that needs further investigation. You can view the devices sorted by the number of OSPF alarms and then use the Switches card workflow or the Alarms card workflow to gather more information about possible causes for the alarms. compare the number of nodes running OSPF with unestablished sessions with the alarms present at the same time to determine if there is any correlation between the issues and the ability to establish an OSPF session.
 
 To view switches with the most OSPF alarms:
 
@@ -505,7 +505,7 @@ To view the configuration file changes:
 
 6. Hover over the card and click <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/> to open the **Configuration File Evolution** tab.
 
-7. Select the time of interest on the left; when a change may have impacted the performance. Scroll down if needed.
+7. Select the time of interest on the left; when a change might have impacted the performance. Scroll down if needed.
 
 8. Choose between the **File** view and the **Diff** view (selected option is dark; File by default).
 

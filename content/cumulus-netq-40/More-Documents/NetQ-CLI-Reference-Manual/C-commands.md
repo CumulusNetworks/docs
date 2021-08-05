@@ -14,15 +14,15 @@ This topic includes all commands that begin with `netq c*`, including all `netq 
 
 Three sets of validation commands are available, all for verifying the health and performance of network protocols and services:
 
-- The original on-demand validation commands. These commands all begin with `netq check`. They are used to validate various elements in your network fabric at the current time or a time in the past. They allow filtering by hostname, can include or exclude selected tests, and some have additional options. The results are presented in the NetQ CLI immediately.
-- The newer set of validation commands are used to create on-demand or scheduled validations with the results being displayed in the NetQ UI Validation Result cards. These commands begin with `netq add validation`. They are used to validate various elements in your network fabric currently or on a regular basis. No filtering on results is available within the commands as that is accomplished through the NetQ UI.
+- The original on-demand validation commands. These commands all begin with `netq check`. You use them to validate various elements in your network fabric at the current time or a time in the past. They allow filtering by hostname, can include or exclude selected tests, and some have additional options. The results appear in the NetQ CLI immediately.
+- Use the newer set of validation commands to create on-demand or scheduled validations with the results appearing in the NetQ UI Validation Result cards. These commands begin with `netq add validation`. They are used to validate various elements in your network fabric currently or on a regular basis. No filtering on results is available within the commands as you do that through the NetQ UI.
 - The validation management commands. These present a list of all jobs and job settings, and the ability to remove validations.
 
 Refer to {{<link title="Validation Checks">}} for a description of the tests run as part of each validation. The `netq check` commands are described here. The others are described elsewhere based on the command names.
 
 **About Config Commands**
 
-The `netq config` commands must be run with sudo privileges.
+You must run the `netq config` commands with sudo privileges.
 
 - - -
 
@@ -67,7 +67,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -180,7 +180,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -259,7 +259,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -386,7 +386,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -533,7 +533,7 @@ the same |
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -631,7 +631,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -763,7 +763,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -906,7 +906,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -999,7 +999,7 @@ oob-mgmt-server   vagrant                   1500   -                 -          
 
 ## netq check ntp
 
-Verifies network time synchronization using NTP for all nodes (leafs, spines, and hosts) in your network fabric. Nodes that are not in time synchronization with the NetQ appliance or VM may report data with an incorrect timestamp or lose communication altogether.
+Verifies network time synchronization using NTP for all nodes (leafs, spines, and hosts) in your network fabric. Nodes that are not in time synchronization with the NetQ appliance or VM might report data with an incorrect timestamp or lose communication altogether.
 
 The output displays the status (passed/failed/skipped) of all tests and a summary including:
 
@@ -1043,7 +1043,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1131,7 +1131,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1235,7 +1235,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1322,7 +1322,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1425,7 +1425,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1490,7 +1490,7 @@ netq config add agent cluster-servers
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1546,7 +1546,7 @@ netq config add agent command
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1600,7 +1600,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1650,7 +1650,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1699,7 +1699,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1765,7 +1765,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1821,7 +1821,7 @@ netq config add agent opta-discovery-servers
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1867,7 +1867,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1921,7 +1921,7 @@ netq config add agent server
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1968,7 +1968,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2014,7 +2014,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2071,7 +2071,7 @@ netq config add agent wjh-drop-filter
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2128,7 +2128,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2195,7 +2195,7 @@ netq config add cli server
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2251,7 +2251,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2292,7 +2292,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2334,7 +2334,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2378,7 +2378,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2424,7 +2424,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2469,7 +2469,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2514,7 +2514,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2559,7 +2559,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2602,7 +2602,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2646,7 +2646,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2689,7 +2689,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2743,7 +2743,7 @@ netq config del agent wjh-drop-filter
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2794,7 +2794,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2840,7 +2840,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2882,7 +2882,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2921,7 +2921,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2965,7 +2965,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3010,7 +3010,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3051,7 +3051,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3146,7 +3146,7 @@ netq config show agent commands
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3196,7 +3196,7 @@ agent_stats           300  yes       Netq Predefined Command
 ## netq config show agent cpu-limit
 <!-- vale on -->
 
-Displays the maximum percentage of CPU resources of the switch that a NetQ Agent may use. When restricted by the `netq config add agent cpu-limit` command, the value is between 40 and 60 percent.
+Displays the maximum percentage of CPU resources of the switch that a NetQ Agent might use. When restricted by the `netq config add agent cpu-limit` command, the value is between 40 and 60 percent.
 
 For more detail about this feature, refer to this [Knowledge Base]({{<ref "knowledge-base/Configuration-and-Usage/Cumulus-NetQ/NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches">}}) article.
 
@@ -3221,7 +3221,7 @@ netq config show agent cpu-limit
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3283,7 +3283,7 @@ netq config show agent frr-monitor
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3346,7 +3346,7 @@ netq config show agent kubernetes-monitor
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3399,7 +3399,7 @@ netq config show agent loglevel
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3449,7 +3449,7 @@ netq config show agent sensors
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3503,7 +3503,7 @@ netq config show agent stats
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3562,7 +3562,7 @@ netq config show agent wjh
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3609,7 +3609,7 @@ netq config show agent wjh-threshold
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3652,7 +3652,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3716,7 +3716,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3765,7 +3765,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3806,7 +3806,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3851,7 +3851,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3892,7 +3892,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |

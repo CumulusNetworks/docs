@@ -93,7 +93,7 @@ By default, auto-refresh is enabled and configured to update every 30 seconds.
 
 To disable or pause auto-refresh of your workbenches, click the **Refresh** icon. This toggles between the two states, *Running* and *Paused*, where <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-play-1.svg" width="18"/> indicates it is currently disabled and <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" width="18"/> indicates it is currently enabled.
 
-While having the workbenches update regularly is good most of the time, you may find that you want to pause the auto-refresh feature when you are troubleshooting and you do not want the data to change on a given set of cards temporarily. In this case, you can disable the auto-refresh and then enable it again when you are finished.
+While having the workbenches update regularly is good most of the time, you might find that you want to pause the auto-refresh feature when you are troubleshooting and you do not want the data to change on a given set of cards temporarily. In this case, you can disable the auto-refresh and then enable it again when you are finished.
 
 ### View Current Settings
 

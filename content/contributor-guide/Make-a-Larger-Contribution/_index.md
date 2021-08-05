@@ -394,7 +394,7 @@ To create a sparse checkout:
        echo "config.yml" >> .git/info/sparse-checkout
        echo "static/mibs" >> .git/info/sparse-checkout
 
-6. Add the content you wish to modify to the Git sparse checkout. This includes both the files in the `/content` directory as well as any relevant images in `/static/images` directory. For example, to make contributions or modifications to {{<kb_link url="knowledge-base" text="Knowledge Base" >}} articles add both the `/content/knowledge-base` and `/static/images/knowledge-base` directories.
+6. Add the content you wish to modify to the Git sparse checkout. This includes both the files in the `/content` directory as well as any relevant images in `/static/images` directory. For example, to make contributions or modifications to {{<kb_link url="knowledge-base/_index.md" text="Knowledge Base" >}} articles add both the `/content/knowledge-base` and `/static/images/knowledge-base` directories.
 
        echo "content/knowledge-base/` >> .git/info/sparse-checkout
        echo "static/images/knowledge-base/` >> .git/info/sparse-checkout

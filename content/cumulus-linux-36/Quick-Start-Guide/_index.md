@@ -139,7 +139,7 @@ All accounts except `root` are permitted remote SSH login; you can use
 change the system configuration require this elevated level of access.
 
 For more information about `sudo`, read 
-[Using sudo to Delegate Privileges](/cumulus-linux-36/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges).
+{{<link text="Using sudo to Delegate Privileges" title="Using sudo to Delegate Privileges" >}}.
 
 #### Serial Console Management
 
@@ -293,7 +293,7 @@ as described above.
 
 If you are using 4x10G DAC or AOC cables, or want to break out 100G or
 40G switch ports, configure the breakout ports. For more details, see
-[Layer 1 and Switch Port Attributes](/cumulus-linux-36/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#configuring-breakout-ports).
+{{<link text="Layer 1 and Switch Port Attributes" title="Switch Port Attributes#configuring-breakout-ports" >}}.
 
 ### Testing Cable Connectivity
 

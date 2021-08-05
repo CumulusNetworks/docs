@@ -3,7 +3,7 @@ title: NX-OS to NVUE Common Commands
 weight: 300
 ---
 
-Cumulus Linux version 4.4 introduces a new CLI called {{<kb_link url="cumulus-linux-44/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}}. NVUE is a complete object model for Cumulus Linux, which makes translating configurations from one vendor to another much more reliable the first time you use Cumulus Linux and across Cumulus Linux versions.
+Cumulus Linux version 4.4 introduces a new CLI called {{<kb_link latest="cl" url="System-Configuration/NVIDIA-User-Experience-NVUE.md" text="NVUE">}}. NVUE is a complete object model for Cumulus Linux, which makes translating configurations from one vendor to another much more reliable the first time you use Cumulus Linux and across Cumulus Linux versions.
 
 This KB article describes how to translate common NX-OS configurations to NVUE commands.
 
@@ -65,7 +65,7 @@ cumulus@switch:~$ nv set interface <interface> bridge domain br_default
 | `spanning-tree port type network` | `nv set interface <interface> bridge domain br_default stp network on` | |
 | `spanning-tree bpduguard enable` | `nv set interface <interface> bridge domain br_default stp bpdu-guard on` | |
 | `spanning-tree bpdufilter enable` | `nv set interface <interface> bridge domain br_default stp bpdu-filter on` | |
-| `spanning-tree vlan 1 priority <priority>` | `nv set bridge domain br_default stp priority <priority>` | Cumulus Linux only supports {{<kb_link url="cumulus-linux-44/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#stp-for-a-vlan-aware-bridge" text="RSTP." >}} |
+| `spanning-tree vlan 1 priority <priority>` | `nv set bridge domain br_default stp priority <priority>` | Cumulus Linux only supports {{<kb_link latest="cl" url="Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree.md" text="RSTP." >}} |
 
 ## Bonds and Port Channels
 
@@ -84,7 +84,7 @@ Cumulus Linux uses `MLAG` (Multi-chassis Link Aggregation) to describe the featu
 
 In MLAG configuration, Cumulus Linux also uses the concept of a vPC *peer link*. To keep MLAG pairs in sync when a direct connection fails, Cumulus Linux uses *mlag backup IP* instead of the vPC *peer-keepalive link*.
 
-For more information about MLAG, refer to the {{<kb_link url="cumulus-linux-44/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="Multi-Chassis Link Aggregation - MLAG" >}} section of the Cumulus Linux User Guide.
+For more information about MLAG, refer to the s section of the Cumulus Linux User Guide.
 
 | NX-OS Command | NVUE Command | Comments |
 | -----         | -----        | -----    |
@@ -116,7 +116,7 @@ ACLs in Cumulus Linux are based on Linux iptables and behave differently from NX
 - There is no implicit deny. ACLs must end in a `match any` and `action deny` rule to drop all unmatched traffic.
 - There is no support for wildcard masks. You must list subnets individually.
 
-For more information, refer to the {{<kb_link url="cumulus-linux-44/System-Configuration/Netfilter-ACLs/" text="Netfilter - ACLs" >}} section of the Cumulus Linux User Guide.
+For more information, refer to the {{<kb_link latest="cl" url="System-Configuration/Netfilter-ACLs/_index.md" text="Netfilter - ACLs" >}} section of the Cumulus Linux User Guide.
 
 | NX-OS Command | NVUE Command | Comments |
 | -----         | -----        | -----    |

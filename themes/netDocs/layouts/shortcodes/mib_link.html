@@ -1,0 +1,7 @@
+{{ .Scratch.Set "static_path" (printf "static/%s" (.Get "url")) }}
+{{ if fileExists (.Scratch.Get "static_path") }}
+    {{- $.Scratch.Set "page_found" true -}}
+    <a rel="canonical" href="{{ (.Get "url") | urlize | absURL }}" target="_blank">{{- default (.Get "url") (.Get "text") -}}</a>
+{{ else }}
+    {{ errorf "kb_link failed to find a home for %s on %s. Path: %s" (printf "static/%s.md" (path.Dir (.Get "url") | printf "%s"))  .Position (.Scratch.Get "file_path") }}
+{{ end }}

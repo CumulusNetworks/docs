@@ -183,7 +183,7 @@ reload the configuration with `ifreload -a`, bond1 is still part of br0.
 ## MTU Set on a Logical Interface Fails with Error: "Numerical result out of range"
 
 This error occurs when the
-[MTU](/cumulus-linux-36/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#mtu)
+{{<link text="MTU" title="Switch Port Attributes#mtu" >}}
 you are trying to set on an interface is higher than the MTU of the
 lower interface or dependent interface. Linux expects the upper
 interface to have an MTU less than or equal to the MTU on the lower

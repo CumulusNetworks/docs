@@ -17,7 +17,7 @@ After installing your NetQ software and the NetQ {{<version>}} Agent on each swi
 - Ubuntu 18.04
 
 {{<notice note>}}
-If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NetQ repository.
+If your network uses a proxy server for external connections, you should first {{<kb_link latest="cl" url="System-Configuration/Configuring-a-Global-Proxy.md" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NetQ repository.
 {{</notice>}}
 
 ## Prepare for NetQ CLI Installation on a RHEL, CentOS or Ubuntu Server
@@ -102,7 +102,7 @@ If NTP is not already installed and configured, follow these steps:
 
 {{<tab "RHEL7 or CentOS">}}
 
-1. Install {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Setting-Date-and-Time/" text="NTP">}} on the server. Servers must be in time synchronization with the NetQ Appliance or VM to enable useful statistical analysis.
+1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server. Servers must be in time synchronization with the NetQ Appliance or VM to enable useful statistical analysis.
 
     ```
     root@rhel7:~# sudo yum install ntp
@@ -141,7 +141,7 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 {{<tab "Ubuntu">}}
 
-1.  Install {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Setting-Date-and-Time/" text="NTP">}} on the server, if not already installed. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+1.  Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server, if not already installed. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
 
     ```
     root@ubuntu:~# sudo apt-get install ntp
@@ -330,7 +330,7 @@ A simple process installs the NetQ CLI on a switch or host.
 To install the NetQ CLI you need to install `netq-apps` on each switch. This is available from the NVIDIA networking repository.
 
 {{<notice note>}}
-If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NVIDIA networking repository.
+If your network uses a proxy server for external connections, you should first {{<kb_link latest="cl" url="System-Configuration/Configuring-a-Global-Proxy.md" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NVIDIA networking repository.
 {{</notice>}}
 
 To obtain the NetQ Agent package:
@@ -397,7 +397,7 @@ The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux
 To install the NetQ CLI you need to install `netq-apps` on each switch. This is available from the NVIDIA networking repository.
 
 {{<notice note>}}
-If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NVIDIA networking repository.
+If your network uses a proxy server for external connections, you should first {{<kb_link latest="cl" url="System-Configuration/Configuring-a-Global-Proxy.md" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NVIDIA networking repository.
 {{</notice>}}
 
 To obtain the NetQ Agent package:

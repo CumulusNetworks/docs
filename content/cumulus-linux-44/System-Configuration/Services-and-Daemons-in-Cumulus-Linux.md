@@ -82,7 +82,7 @@ cumulus@switch:~$ sudo systemctl status
 - **status** returns the status of the specified service.
 - **start** starts the service.
 - **stop** stops the service.
-- **restart** stops, then starts the service, all the while maintaining state. If there are dependent services or services that mark the restarted service as *Required*, the other services also restart. For example, running `systemctl restart frr.service` restarts any of the routing protocol services that are enabled and running, such as `bgpd` or `ospfd`.
+- **restart** stops, then starts the service, all the while maintaining state. If there are dependent services or services that mark the restarted service as *Required*, the other services also restart. For example, running `systemctl restart frr.service` restarts any of the routing protocol services that you enable and that are running, such as `bgpd` or `ospfd`.
 - **reload** reloads the configuration for the service.
 - **enable** enables the service to start when the system boots, but does not start it unless you use the `systemctl start SERVICENAME.service` command or reboot the switch.
 - **disable** disables the service, but does not stop it unless you use the `systemctl stop SERVICENAME.service` command or reboot the switch. You can start or stop a disabled service.
@@ -170,7 +170,7 @@ Service frr                enabled    inactive
 ...
 ```
 
-You can also run the `systemctl list-unit-files --type service` command to list all services on the switch and see which ones are enabled:
+You can also run the `systemctl list-unit-files --type service` command to list all services on the switch and to see their status:
 
 ```
 cumulus@switch:~$ systemctl list-unit-files --type service

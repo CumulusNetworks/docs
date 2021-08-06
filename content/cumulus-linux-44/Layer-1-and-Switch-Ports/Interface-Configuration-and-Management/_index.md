@@ -24,10 +24,10 @@ To bring down the physical connection to a single interface, run the `sudo ifdow
 cumulus@switch:~$ sudo ifdown swp1
 ```
 
-The `ifdown` command always deletes logical interfaces after bringing them down. When you bring down the physical connection to an interface, it is brought back up automatically after any future reboots or configuration changes with `ifreload -a`.
+The `ifdown` command always deletes logical interfaces after bringing them down. When you bring down the physical connection to an interface, it comes back up automatically after you reboot the switch or apply configuration changes with `ifreload -a`.
 
 {{%notice note%}}
-By default, `ifupdown` is quiet. Use the verbose option (`-v`) to show commands as they are executed when bringing an interface down or up.
+By default, `ifupdown` is quiet. Use the verbose option (`-v`) to show commands as they execute when you bring an interface down or up.
 {{%/notice%}}
 
 ### Bring Up an Interface Administratively
@@ -152,8 +152,7 @@ All `ifupdown2` commands (`ifup`, `ifdown`, `ifquery`, `ifreload`) can take a cl
 cumulus@switch:~$ sudo ifreload --allow=mgmt
 ```
 
-Use the `-a` option to bring up or down all interfaces that are marked with the common `auto` class in the
-`/etc/network/interfaces` file.
+Use the `-a` option to bring up or down all interfaces with the common `auto` class in the `/etc/network/interfaces` file.
 
 To administratively bring up all interfaces marked `auto`, run:
 
@@ -174,7 +173,7 @@ cumulus@switch:~$ sudo ifreload -a
 ```
 
 {{%notice note%}}
-Certain syntax checks are done by default. As a precaution, apply configurations only if the syntax check passes. Use the following compound command:
+Cumulus Linux checks syntax by default. As a precaution, apply configurations only if the syntax check passes. Use the following compound command:
 
 ```
 cumulus@switch:~$ sudo bash -c "ifreload -s -a && ifreload -a"
@@ -225,15 +224,15 @@ iface lo inet loopback
 {{< /tabs >}}
 
 {{%notice note%}}
-- If the IP address is configured without a subnet mask, it automatically becomes a /32 IP address. For example, 10.10.10.1 is 10.10.10.1/32.
+- If the IP address has no subnet mask, it automatically becomes a /32 IP address. For example, 10.10.10.1 is 10.10.10.1/32.
 - You can configure multiple IP addresses for the loopback interface.
 {{%/notice%}}
 
 ## Child Interfaces
 
-By default, `ifupdown2` recognizes and uses any interface present on the system that is listed as a dependent (child) of an interface (for example, a VLAN, bond, or physical interface). You do not need to list interfaces in the `/etc/network/interfaces` file unless the interfaces need specific configuration for {{<link url="Switch-Port-Attributes" text="MTU, link speed, and so on">}}. If you need to delete a child interface, delete all references to that interface from the `/etc/network/interfaces` file.
+By default, `ifupdown2` recognizes and uses any interface present on the system that is a dependent (child) of an interface (for example, a VLAN, bond, or physical interface). You do not need to list interfaces in the `/etc/network/interfaces` file unless the interfaces need specific configuration for {{<link url="Switch-Port-Attributes" text="MTU, link speed, and so on">}}. If you need to delete a child interface, delete all references to that interface from the `/etc/network/interfaces` file.
 
-In the following example, swp1 and swp2 do not need an entry in the `interfaces` file. The following stanzas defined in `/etc/network/interfaces` provide the exact same configuration:
+In the following example, swp1 and swp2 do not need an entry in the `interfaces` file. The following stanzas in `/etc/network/interfaces` provide the exact same configuration:
 
 **With Child Interfaces Defined**
 
@@ -297,7 +296,7 @@ iface br-100
 
 ## Interface Dependencies
 
-`ifupdown2` understands interface dependency relationships. When you run `ifup` and `ifdown` with all interfaces, the commands always run with all interfaces in dependency order. When you run `ifup` and `ifdown` with the interface list on the command line, the default behavior is to *not* run with dependents; however, if there are any built-in dependents, they are brought up or down.
+`ifupdown2` understands interface dependency relationships. When you run `ifup` and `ifdown` with all interfaces, the commands always run with all interfaces in dependency order. When you run `ifup` and `ifdown` with the interface list on the command line, the default behavior is to *not* run with dependents; however, if there are any built-in dependents, they do come up or go down.
 
 To run with dependents when you specify the interface list, use the `--with-depends` option. The `--with-depends` option walks through all dependents in the dependency tree rooted at the interface you specify. Consider the following example configuration:
 
@@ -335,7 +334,7 @@ cumulus@switch:~$ sudo ifdown --with-depends br2001
 `ifdown2` always deletes logical interfaces after bringing them down. Use the `--admin-state` option if you only want to administratively bring the interface up or down. In the above example, `ifdown br2001` deletes `br2001`.
 {{%/notice%}}
 
-To guide you through which interfaces are brought down and up, use the `--print-dependency` option.
+To guide you through which interfaces go down and come up, use the `--print-dependency` option.
 
 For example, run `ifquery --print-dependency=list -a` to show the dependency list for all interfaces:
 
@@ -391,7 +390,7 @@ digraph G {
 }
 ```
 
-You can use `dot` to render the graph on an external system where `dot` is installed.
+You can use `dot` to render the graph on an external system.
 
 {{< img src = "/images/cumulus-linux/layer1-interfaces.png" >}}
 
@@ -405,9 +404,9 @@ cumulus@switch:~$ sudo ifquery --print-dependency=dot -a >interfaces_all.dot
 
 ## Subinterfaces
 
-On Linux, an *interface* is a network device that can be either physical, (for example, swp1) or virtual (for example, vlan100). A *VLAN subinterface* is a VLAN device on an interface, and the VLAN ID is appended to the parent interface using dot (.) VLAN notation. For example, a VLAN with ID 100 that is a subinterface of swp1 is named swp1.100. The dot VLAN notation for a VLAN device name is a standard way to specify a VLAN device on Linux.
+On Linux, an *interface* is a network device that can be either physical, (for example, swp1) or virtual (for example, vlan100). A *VLAN subinterface* is a VLAN device on an interface, and the VLAN ID appends to the parent interface using dot (.) VLAN notation. For example, a VLAN with ID 100 that is a subinterface of swp1 is swp1.100. The dot VLAN notation for a VLAN device name is a standard way to specify a VLAN device on Linux.
 
-A VLAN subinterface only receives traffic  {{<link url="VLAN-Tagging" text="tagged">}} for that VLAN; therefore, swp1.100 only receives packets tagged with VLAN 100 on switch port swp1. Any packets transmitted from swp1.100 are tagged with VLAN 100.
+A VLAN subinterface only receives traffic  {{<link url="VLAN-Tagging" text="tagged">}} for that VLAN; therefore, swp1.100 only receives packets that have a VLAN 100 tag on switch port swp1. Any packets that transmit from swp1.100 have a VLAN 100 tag.
 
 In an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} configuration, the peer link interface that connects the two switches in the MLAG pair has a VLAN subinterface named 4094. The peerlink.4094 subinterface only receives traffic tagged for VLAN 4094.
 
@@ -417,7 +416,7 @@ If you are using a VLAN subinterface, do not add that VLAN under the bridge stan
 
 ## Parent Interfaces
 
-When you run `ifup` on a logical interface (like a bridge, bond, or VLAN interface), if the `ifup` results in the creation of the logical interface, it implicitly tries to execute on the interface's upper (or parent) interfaces as well.
+When you run `ifup` on a logical interface (like a bridge, bond, or VLAN interface), if the `ifup` creates the logical interface, it also tries to execute on the upper (or parent) interfaces of the interface.
 
 Consider this example configuration:
 
@@ -433,14 +432,14 @@ iface bond1
 
 If you run `ifdown bond1`, `ifdown` deletes bond1 and the VLAN interface on bond1 (bond1.100); it also removes bond1 from the bridge br100. Next, when you run `ifup bond1`, it creates bond1 and the VLAN interface on bond1 (bond1.100); it also executes `ifup br100` to add the bond VLAN interface (bond1.100) to the bridge br100.
 
-There can be cases where an upper interface (like br100) is not in the right state, which can result in warnings. The warnings are mostly harmless.
+There can be cases where an upper interface (like br100) is not in the right state, which can result in warnings. The warnings are harmless.
 
 If you want to disable these warnings, set `skip_upperifaces=1` in the `/etc/network/ifupdown2/ifupdown2.conf` file.
 
-With `skip_upperifaces=1`, you have to explicitly execute `ifup` on the upper interfaces. In this case, you must run `ifup br100` after an `ifup bond1` to add bond1 back to bridge br100.
+With `skip_upperifaces=1`, you have to execute `ifup` on the upper interfaces. In this case, you must run `ifup br100` after an `ifup bond1` to add bond1 back to bridge br100.
 
 {{%notice note%}}
-If you specify a subinterface, such as swp1.100, then run `ifup swp1.100`, the swp1 interface is created automatically in the kernel. Consider also specifying the parent interface swp1. A parent interface is one where any physical layer configuration can reside, such as `link-speed 1000` or `link-duplex full`. If you create only swp1.100 and not swp1, you cannot run `ifup swp1`.
+If you specify a subinterface, such as swp1.100, then run `ifup swp1.100`, Cumulus Linux creates the swp1 interface automatically in the kernel. Consider also specifying the parent interface swp1. A parent interface is one where any physical layer configuration can reside, such as `link-speed 1000` or `link-duplex full`. If you create only swp1.100 and not swp1, you cannot run `ifup swp1`.
 {{%/notice%}}
 
 ## Interface IP Addresses
@@ -533,7 +532,7 @@ You can add a description (alias) to an interface.
 Interface descriptions also appear in the {{<link url="Simple-Network-Management-Protocol-SNMP" text="SNMP">}} OID {{<mib_link text="IF-MIB::ifAlias" url="mibs/IF-MIB.txt" >}}
 
 {{%notice note%}}
-- Interface descriptions are limited to 256 characters.
+- Interface descriptions can have a maximum of 256 characters.
 - Avoid using apostrophes or non-ASCII characters. Cumulus Linux does not parse these characters.
 {{%/notice%}}
 
@@ -711,7 +710,7 @@ iface br1
 
 ## Mako Templates
 
-`ifupdown2` supports {{<exlink url="http://www.makotemplates.org/" text="Mako-style templates">}}. The Mako template engine is run over the `interfaces` file before parsing.
+`ifupdown2` supports {{<exlink url="http://www.makotemplates.org/" text="Mako-style templates">}}. The Mako template engine processes the `interfaces` file before parsing.
 
 Use the template to declare cookie-cutter bridges and to declare addresses in the `interfaces` file:
 
@@ -754,10 +753,10 @@ addon_scripts_support=1
 
 `ifupdown2` sets the following environment variables when executing commands:
 
-- `$IFACE` represents the physical name of the interface being processed; for example, `br0` or vxlan42. The name is obtained from the `/etc/network/interfaces` file.
-- `$LOGICAL` represents the logical name (configuration name) of the interface being processed.
+- `$IFACE` represents the physical name of the interface; for example, `br0` or vxlan42. The name comes from the `/etc/network/interfaces` file.
+- `$LOGICAL` represents the logical name (configuration name) of the interface.
 - `$METHOD` represents the address method; for example, loopback, DHCP, DHCP6, manual, static, and so on.
-- `$ADDRFAM` represents the address families associated with the interface, formatted in a comma-separated list for example, `"inet,inet6"`.
+- `$ADDRFAM` represents the address families associated with the interface in a comma-separated list; for example, `"inet,inet6"`.
 
 ## Troubleshooting
 
@@ -881,9 +880,9 @@ cumulus@switch$ ip link show swp1
 
 ## Considerations
 
-Even though `ifupdown2` supports the inclusion of multiple `iface` stanzas for the same interface, use a single `iface` stanza for each interface. If you must specify more than one `iface` stanza; for example, if the configuration for a single interface comes from many places, like a template or a sourced file, make sure the stanzas do not specify the same interface attributes. Otherwise, unexpected behavior can result.
+Even though `ifupdown2` supports the inclusion of multiple `iface` stanzas for the same interface, use a single `iface` stanza for each interface. If you must specify more than one `iface` stanza; for example, if the configuration for a single interface comes from many places, like a template or a sourced file, make sure the stanzas do not specify the same interface attributes. Otherwise, you see unexpected behavior.
 
-In the following example, swp1 is configured in two places: the `/etc/network/interfaces` file and the `/etc/network/interfaces.d/speed_settings` file. `ifupdown2` correctly parses this configuration because the same attributes are not specified in multiple `iface` stanzas.
+In the following example, swp1 is in two file: `/etc/network/interfaces` and `/etc/network/interfaces.d/speed_settings`. `ifupdown2` parses this configuration because the same attributes are not in multiple `iface` stanzas.
 
 ```
 cumulus@switch:~$ sudo cat /etc/network/interfaces
@@ -908,14 +907,14 @@ iface swp1
 <!-- vale on -->
 
 For `sysctl` commands in the `pre-up`, `up`, `post-up`, `pre-down`, `down`, and `post-down` lines that use the
-`$IFACE` variable, if the interface name contains a dot (.), `ifupdown2` does not change the name to work with `sysctl`. For example, the interface name `bridge.1` is not converted to `bridge/1`.
+`$IFACE` variable, if the interface name contains a dot (.), `ifupdown2` does not change the name to work with `sysctl`. For example, the interface name `bridge.1` does not convert to `bridge/1`.
 
 <!-- vale off -->
 <!-- specific commands in title -->
 ### ifupdown2 and the gateway Parameter
 <!-- vale on -->
 
-The default route created by the `gateway` parameter in ifupdown2 is not installed in FRRouting, therefore cannot be redistributed into other routing protocols. Define a static default route instead, which is installed in FRR and redistributed, if needed.
+The default route that the `gateway` parameter creates in ifupdown2 does not install in FRRouting, therefore does not redistribute into other routing protocols. Define a static default route instead, which installs in FRR and redistributes, if needed.
 
 The following shows an example of the `/etc/network/interfaces` file when you use a static route instead of a gateway parameter:
 
@@ -928,7 +927,7 @@ up ip route add default via 172.16.3.2
 
 ### Interface Name Limitations
 
-Interface names are limited to 15 characters in length, the first character cannot be a number and the name cannot include a dash (-). In addition, any name that matches with the regular expression `.{0,13}\-v.*` is not supported.
+Interface names can be a maximum of 15 characters. You cannot use a number for the first character and you cannot include a dash (-) in the name. In addition, you cannot use any name that matches with the regular expression `.{0,13}\-v.*`.
 
 If you encounter issues, remove the interface name from the `/etc/network/interfaces` file, then restart the `networking.service`.
 
@@ -939,7 +938,7 @@ cumulus@switch:~$ sudo systemctl restart networking.service
 
 ### IP Address Scope
 
-`ifupdown2` does not honor the configured IP address scope setting in the `/etc/network/interfaces` file, treating all addresses as global. It does not report an error. Consider this example configuration:
+`ifupdown2` does not honor the configured IP address scope setting in the `/etc/network/interfaces` file and treats all addresses as global. It does not report an error. Consider this example configuration:
 
 ```
 auto swp2

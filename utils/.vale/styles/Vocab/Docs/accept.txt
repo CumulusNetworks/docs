@@ -55,7 +55,7 @@ Reflectometer
 (RoCE|roce)
 (RX|rx)
 (SDK|sdk)
-SETQOS
+(SETQOS|setqos)
 (SSD|ssd)
 SSM
 Supermicro
@@ -64,7 +64,7 @@ Supermicro
 (TCP|tcp)
 (TFTP|tftp)
 (TTL|ttl)
-ToS
+(ToS|tos)
 Topo
 (TX|tx)
 (UDP|udp)
@@ -244,7 +244,6 @@ rocommunity
 rsyslog
 rwcommunity
 sbin
-setqos
 shortcode
 smond
 snmpd
@@ -270,7 +269,6 @@ tacadmin
 tacplus
 tclass
 tcpdump
-tos
 traceroute
 txt
 ub

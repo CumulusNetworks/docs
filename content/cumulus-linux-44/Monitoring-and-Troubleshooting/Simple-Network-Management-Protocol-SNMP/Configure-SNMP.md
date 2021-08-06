@@ -12,11 +12,7 @@ The most basic SNMP configuration requires you to specify:
 
 By default, the SNMP configuration has a listening address of localhost (127.0.0.1), which allows the agent (the `snmpd` daemon) to respond to SNMP requests originating on the switch itself. This is a secure method that allows checking the SNMP configuration without exposing the switch to outside attacks. In order for an external SNMP NMS to poll a Cumulus Linux switch, you must configure the `snmpd` daemon running on the switch to listen to one or more IP addresses on interfaces that have a link state UP.
 
-The SNMPv3 username is the recommended option instead of the read-only community name, as it is more secure; it does not expose the user credentials and can also encrypt packet contents. However, a read-only community password is required for SNMPv1 or SNMPv2c environments so that the `snmpd` daemon can respond to requests. The read-only community string allows polling of the various MIB objects on the device itself.
-
-{{%notice note%}}
-NVUE commands are not supported for SNMP.
-{{%/notice%}}
+Use the SNMPv3 username instead of the read-only community name. The SNMPv3 username does not expose the user credentials and can encrypt packet contents. However, SNMPv1 and SNMPv2c environments require read-only community passwords so that the `snmpd` daemon can respond to requests. The read-only community string enables you to poll various MIB objects on the device.
 
 ## Start the SNMP Daemon
 
@@ -57,22 +53,20 @@ After the service starts, you can use SNMP to manage various components on the s
 Use NCLU to configure `snmpd` even though NCLU does not provide functionality to configure every `snmpd` feature. You are not restricted to using NCLU for configuration and can edit the `/etc/snmp/snmpd.conf` file and control `snmpd` with `systemctl` commands.
 
 {{%notice info%}}
-If you need to manually edit the SNMP configuration &mdash; for example, if the necessary option has not been implemented in NCLU &mdash; you need to edit the configuration directly in the `/etc/snmp/snmpd.conf` file.
+If you need to manually edit the SNMP configuration &mdash; for example, if the necessary option does not exist in NCLU &mdash; edit the configuration directly in the `/etc/snmp/snmpd.conf` file.
 
 Use caution when editing this file. Be aware that `snmpd` caches SNMPv3 usernames and passwords in the /`var/lib/snmp/snmpd.conf` file. Make sure you stop `snmpd` and remove the old entries when making changes. Otherwise, Cumulus Linux uses the old usernames and passwords in the `/var/lib/snmp/snmpd.conf` file instead of the ones in the `/etc/snmp/snmpd.conf` file.
 
-The next time you use NCLU to update your SNMP configuration, if NCLU is unable to correctly parse the syntax, some of the options might be overwritten.
-
 Make sure you do not delete the `snmpd.conf` file; this can cause issues with the package manager the next time you update Cumulus Linux.
 
-The `snmpd` daemon uses the `/etc/snmp/snmpd.conf` configuration file for most of its configuration. The syntax of the most important keywords are defined in the following table.
+The `snmpd` daemon uses the `/etc/snmp/snmpd.conf` configuration file for most of its configuration. The following table defines the syntax for the most important keywords.
 {{%/notice%}}
 
 ### Configure the Listening IP Addresses
 
-For security reasons, the listening address is set to the localhost by default so that the SNMP agent only responds to requests originating on the switch itself. You can also configure listening only on the IPv6 localhost address. When using IPv6 addresses or localhost, you can use a `readonly-community-v6` for SNMPv1 and SNMPv2c requests. For SNMPv3 requests, you can use the `username` command to restrict access. See {{<link url="#configure-the-snmpv3-username" text="Configure the SNMPv3 Username">}} below.
+For security reasons, the listening address is the localhost by default so that the SNMP agent only responds to requests originating on the switch itself. You can also configure listening only on the IPv6 localhost address. When using IPv6 addresses or localhost, you can use a `readonly-community-v6` for SNMPv1 and SNMPv2c requests. For SNMPv3 requests, you can use the `username` command to restrict access. See {{<link url="#configure-the-snmpv3-username" text="Configure the SNMPv3 Username">}} below.
 
-The IP address must exist on an interface that has link UP on the switch where `snmpd` is being used. By default, this is set to `udp:127.0.0.1:161`, so `snmpd` only responds to requests (such as `snmpwalk`, `snmpget`, `snmpgetnext`) originating from the switch. A wildcard setting of *udp:161,udp6:161* forces `snmpd` to listen on all IPv4 and IPv6 interfaces for incoming SNMP requests.
+The IP address must exist on an interface that has link UP on the switch where you use `snmpd`. By default, the IP address is `udp:127.0.0.1:161`, so `snmpd` only responds to requests (such as `snmpwalk`, `snmpget`, `snmpgetnext`) that originate from the switch. A wildcard setting of *udp:161,udp6:161* forces `snmpd` to listen on all IPv4 and IPv6 interfaces for incoming SNMP requests.
 
 You can configure multiple IP addresses and bind to a particular IP address within a particular VRF table.
 
@@ -127,9 +121,7 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
 
-Edit the `/etc/snmp/snmpd.conf` file and add the IP address, protocol and port for `snmpd` to listen for incoming requests. An example configuration is shown below.
-
-You can use multiple lines to define multiple listening addresses or use a comma-separated list on a single line.
+Edit the `/etc/snmp/snmpd.conf` file and add the IP address, protocol and port for `snmpd` to listen for incoming requests. You can use multiple lines to define multiple listening addresses or use a comma-separated list on a single line.
 
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
@@ -144,7 +136,7 @@ agentAddress udp:66.66.66.66:161,udp:77.77.77.77:161,udp6:[2001::1]:161
 
 #### SNMP and VRFs
 
-Cumulus Linux provides a listening address for VRFs along with trap and inform support. You can configure `snmpd` to listen to a specific IPv4 or IPv6 address on an interface within a particular VRF. With VRFs, identical IP addresses can exist in different VRF tables. This command restricts listening to a particular IP address within a particular VRF. If the VRF name is not given, the default VRF is used.
+Cumulus Linux provides a listening address for VRFs along with trap and inform support. You can configure `snmpd` to listen to a specific IPv4 or IPv6 address on an interface within a particular VRF. With VRFs, identical IP addresses can exist in different VRF tables. This command restricts listening to a particular IP address within a particular VRF. If you do not provide a VRF name, Cumulus Linux uses the default VRF.
 
 {{< tabs "SNMP and VRFs" >}}
 {{< tab "NCLU Commands" >}}
@@ -186,17 +178,17 @@ agentAddress udp:66.66.66.66:161,udp:77.77.77.77:161,udp6:[2001::1]:161
 
 NVIDIA recommends you use an SNMPv3 username and password instead of the read-only community string as the more secure way to use SNMP because SNMPv3 does not expose the password in the `GetRequest` and `GetResponse` packets and can also encrypt packet contents. You can configure multiple usernames for different user roles with different levels of access to various MIBs.
 
-SNMPv3 usernames are added to the `/etc/snmp/snmpd.conf` file, along with plain text authentication and encryption pass phrases.
+You add SNMPv3 usernames, together with plain text authentication and encryption pass phrases, to the `/etc/snmp/snmpd.conf` file.
 
 {{%notice note%}}
-The default `snmpd.conf` file contains a default user, *_snmptrapusernameX*. This username cannot be used for authentication, but is required for SNMP traps.
+The default `snmpd.conf` file contains the default user `_snmptrapusernameX`. You cannot use this username for authentication. SNMP traps require this username.
 {{%/notice%}}
 
-You have three choices for authenticating the user:
+You can authenticate the user in the following ways:
 
-- No authentication password (if you specify `auth-none`)
-- MD5 password
-- SHA password
+- With no authentication password (if you specify `auth-none`)
+- With an MD5 password
+- With a SHA password
 
 {{< tabs "username" >}}
 {{< tab "NCLU Commands" >}}
@@ -233,7 +225,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-You can restrict a user to a particular OID tree. The OID can be either a string of period separated decimal numbers or a unique text string that identifies an SNMP MIB object. The MIBs included in Cumulus Linux are located in `/usr/share/snmp/mibs/`. If the MIB you want to use is not installed by default, you must install it with the latest Debian `snmp-mibs-downloader` package.
+You can restrict a user to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in `/usr/share/snmp/mibs/`. If the MIB you want to use does not install by default, you must install it with the latest Debian `snmp-mibs-downloader` package.
 
 ```
 cumulus@switch:~$ net add snmp-server username limiteduser1 auth-md5 md5password1 encrypt-aes myaessecret oid 1.3.6.1.2.1.1
@@ -241,7 +233,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-Or you can restrict a user to a predefined view if one is specified.
+You can restrict a user to a predefined view:
 
 ```
 cumulus@switch:~$ net add snmp-server username limiteduser1 auth-md5 md5password1 encrypt-aes myaessecret viewname rocket
@@ -268,11 +260,11 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
 
-Three directives define an internal SNMPv3 username that are required for `snmpd` to retrieve information and send built-in traps or for those configured with the `monitor` command (see {{<link url="#configure-snmp-trap-and-inform-messages" text="below">}}):
+Three directives define an internal SNMPv3 username that you need for `snmpd` to retrieve information and send built-in traps or for traps you configure with the `monitor` command (see {{<link url="#configure-snmp-trap-and-inform-messages" text="below">}}):
 
-- `createuser`: the default SNMPv3 username.
-- `iquerysecName`: the default SNMPv3 username to use when making internal queries to retrieve monitored expressions &mdash; either for evaluating the monitored expression or building a notification payload. These internal queries always use SNMPv3, even if normal querying of the agent is done using SNMPv1 or SNMPv2c. The `iquerysecname` directive is purely concerned with defining which user should be used, not with actually setting this user up.
-- `rouser`: the username for these SNMPv3 queries.
+- `createuser` is the default SNMPv3 username.
+- `iquerysecName` is the default SNMPv3 username you use when making internal queries to retrieve monitored expressions &mdash; either to evaluate the monitored expression or build a notification payload. These internal queries always use SNMPv3, even if you query the agent using SNMPv1 or SNMPv2c. The `iquerysecname` directive only defines which user to use.
+- `rouser` is the username for these SNMPv3 queries.
 
 Edit the `/etc/snmp/snmpd.conf` file and add the `createuser`, `iquerysecName`, `rouser` commands. The example configuration here configures *snmptrapusernameX* as the username using the `createUser` command.
 
@@ -348,7 +340,7 @@ The minimum password length is eight characters and the arguments `-a` and `-x` 
 
 This adds a `createUser` command in `/var/lib/snmp/snmpd.conf`. Do **not** edit this file by hand unless you are removing usernames. You can edit this file and restrict access to certain parts of the MIB by adding `noauth`, `auth` or `priv` to allow unauthenticated access, require authentication, or to enforce use of encryption.
 
-The `snmpd` daemon reads the information from the `/var/lib/snmp/snpmd.conf` file and then the line is removed (eliminating the storage of the master password for that user) and replaced with the key that is derived from it (using the EngineID). This key is a localized key, so that if it is stolen, it cannot be used to access other agents. To remove the two users `userMD5withDES` and `userSHAwithAES`, stop the `snmpd` daemon and edit the `/var/lib/snmp/snmpd.conf` file. Remove the lines containing the username, then restart the `snmpd` daemon as in step 3 above.
+The `snmpd` daemon reads the information from the `/var/lib/snmp/snpmd.conf` file and then removes the line (so that Cumulus Linux does not store the master password for that user) and replaces it with the key it derives (using the EngineID). The key is a localized key so that if someone steals the password, they cannot use it to access other agents. To remove the two users `userMD5withDES` and `userSHAwithAES`, stop the `snmpd` daemon and edit the `/var/lib/snmp/snmpd.conf` file. Remove the lines containing the username, then restart the `snmpd` daemon as in step 3 above.
 
 {{%/notice%}}
 
@@ -381,7 +373,7 @@ cumulus@switch:~$ net commit
 
 Edit the `/etc/snmp/snmpd.conf` file and add the `view` command.
 
-The `systemonly` view is used by `rocommunity` to create a password for access to only these branches of the OID tree.
+`rocommunity` uses the `systemonly` view to create a password that can only access these branches of the OID tree.
 
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
@@ -397,11 +389,11 @@ view systemonly included .1.3.6.1.2.1.3
 
 ### Configure the Community String
 
-The `snmpd` authentication for SNMPv1 and SNMPv2c is disabled by default in Cumulus Linux. You enable it by providing a password (called a community string) for SNMPv1 or SNMPv2c environments so that the `snmpd` daemon can respond to requests. By default, this provides access to the full OID tree for such requests, regardless of from where they were sent. No default password is set, so `snmpd` does not respond to any requests that arrive unless you set the read-only community password.
+Cumulus Linux disables `snmpd` authentication for SNMPv1 and SNMPv2c by default. To enable authentication, provide a password (community string) for SNMPv1 or SNMPv2c environments so that the `snmpd` daemon can respond to requests. By default, this provides access to the full OID tree for such requests, regardless of their source. Cumulus Linux does not set a default password so `snmpd` does not respond to any requests that arrive unless you set the read-only community password.
 
-For SNMPv1 and SNMPv2c you can specify a read-only community string. For SNMPv3, you can specify a read-only or a read-write community string (provided you are not using the preferred {{<link url="#configure-the-snmpv3-username" text="username method">}}  described above), but you must configure the read-write community string directly in the `snmpd.conf` file; you cannot use NCLU to configure it. If you configure a read-write community string, then edit the SNMP configuration later with NCLU, the read-write community configuration is preserved.
+For SNMPv1 and SNMPv2c, you can specify a read-only community string. For SNMPv3, you can specify a read-only or a read-write community string (as long as you are not using the preferred {{<link url="#configure-the-snmpv3-username" text="username method">}}; see above). You must configure the read-write community string in the `snmpd.conf` file; you cannot use NCLU. When you configure a read-write community string, you can edit the SNMP configuration later with NCLU.
 
-You can specify a source IP address token to restrict access to only that host or network given.
+You can specify a source IP address token to restrict access to only that a host or network.
 
 You can also specify a view to restrict the subset of the OID tree.
 
@@ -410,9 +402,9 @@ You can also specify a view to restrict the subset of the OID tree.
 
 The following example configuration:
 
-- Sets the read only community string to `simplepassword` for SNMP requests
-- Restricts requests to only those sourced from hosts in the 192.168.200.10/24 subnet
-- Restricts viewing to the `mysystem` view defined with the `viewname` command
+- Sets the read-only community string to `simplepassword` for SNMP requests.
+- Restricts requests to only those that come from hosts in the 192.168.200.10/24 subnet.
+- Restricts viewing to the `mysystem` view, which you define with the `viewname` command.
 
 ```
 cumulus@switch:~$ net add snmp-server viewname mysystem included 1.3.6.1.2.1.1
@@ -432,7 +424,7 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
 
-You enable the community string by providing a community string and then setting `rocommunity` (for read-only access) or `rwcommunity` (for read-write access). Other options you can specify are described below.
+To enable the community string, provide a community string, then set `rocommunity` (for read-only access) or `rwcommunity` (for read-write access).
 
 - `rocommunity`/`rwcommunity`: `rwcommunity` is for a read-only community; `rwcommunity` is for read-write access. Specify one or the other.
 - `public`: The plain text password or community string.
@@ -597,21 +589,21 @@ cumulus@switch:~$ sudo snmpwalk -v2c -cpublic localhost 1.3.6.1.2.1.14
 <!-- vale off -->
 ### Enable the .1.3.6.1.2.1 Range
 <!-- vale on -->
-Some MIBs, including storage information, are not included by default in `snmpd.conf` in Cumulus Linux. This results in some default views on common network tools (like `librenms`) to return less than optimal data. You can include more MIBs by enabling the complete .1.3.6.1.2.1 range. This simplifies the configuration file, removing the concern that any required MIBs might be missed by the monitoring system. Various MIBs included were added to the default SNMPv3 configuration and include the following:
+The `snmpd.conf` file in Cumulus Linux does not include certain MIBs by default. This results in some default views on common network tools (like `librenms`) to return less than optimal data. To include more MIBs, enable the complete .1.3.6.1.2.1 range. The default SNMPv3 configuration includes:
 
 - ENTITY-MIB
 - ENTITY-SENSOR MIB
 - Parts of the BRIDGE-MIB and Q-BRIDGE-MIBs
 
 {{%notice warning%}}
-This configuration grants access to a large number of MIBs, including all SNMPv2-MIB, which might reveal more data than expected. In addition to being a security vulnerability, it might consume more CPU resources.
+This configuration grants access to a large number of MIBs, including all SNMPv2-MIB, which shows more data than you expect. In addition to being a security vulnerability, it consumes more CPU resources.
 {{%/notice%}}
 
 To enable the .1.3.6.1.2.1 range, make sure the view commands include the required MIB objects.
 
 ## Restore the Default SNMP Configuration
 
-The following command removes all custom entries in the `/etc/snmp/snmpd.conf` file and replaces them with defaults, including for all SNMPv3 usernames and read only communities. A `listening-address` for the localhost is configured in its place.
+The following command removes all custom entries in the `/etc/snmp/snmpd.conf` file and replaces them with defaults, including for all SNMPv3 usernames and read only communities. The command configures a `listening-address` for the localhost.
 
 ```
 cumulus@switch:~$ net del snmp-server all
@@ -620,7 +612,7 @@ cumulus@switch:~$ net commit
 
 ## Set up the Custom MIBs on the NMS
 
-No changes are required in the `/etc/snmp/snmpd.conf` file on the switch to support the custom MIBs. The following lines are already included by default and provide support for both the Cumulus Counters and the Cumulus Resource Query MIBs.
+You do not need to change the `/etc/snmp/snmpd.conf` file on the switch to support the custom MIBs. The file includes the following lines by default and provides support for both the Cumulus Counters and the Cumulus Resource Query MIBs.
 
 ```
 cumulus@switch:~$ cat /etc/snmp/snmpd.conf
@@ -631,7 +623,7 @@ pass_persist .1.3.6.1.4.1.40310.2 /usr/share/snmp/cl_drop_cntrs_pp.py
 ...
 ```
 
-However, you need to copy several files to the NMS server for the custom Cumulus MIB to be recognized on the NMS server.
+You need to copy several files to the NMS server for it to recognize the custom Cumulus MIB.
 
 - `/usr/share/snmp/mibs/Cumulus-Snmp-MIB.txt`
 - `/usr/share/snmp/mibs/Cumulus-Counters-MIB.txt`
@@ -639,7 +631,7 @@ However, you need to copy several files to the NMS server for the custom Cumulus
 
 ## Pass Persist Scripts
 
-The pass persist scripts in Cumulus Linux use the {{<exlink url="http://net-snmp.sourceforge.net/wiki/index.php/Tut:Extending_snmpd_using_shell_scripts#Pass_persist" text="pass_persist extension">}} to Net-SNMP. The scripts are stored in `/usr/share/snmp` and include:
+The pass persist scripts in Cumulus Linux use the {{<exlink url="http://net-snmp.sourceforge.net/wiki/index.php/Tut:Extending_snmpd_using_shell_scripts#Pass_persist" text="pass_persist extension">}} to Net-SNMP. The scripts are in `/usr/share/snmp` and include:
 
 - `bgp4_pp.py`
 - `bridge_pp.py`
@@ -652,7 +644,7 @@ The pass persist scripts in Cumulus Linux use the {{<exlink url="http://net-snmp
 - `snmpifAlias_pp.py`
 - `sysDescr_pass.py`
 
-All the scripts are enabled by default in Cumulus Linux, except for `bgp4_pp.py`, which is handled by {{<link url="FRRouting" text="FRRouting">}}.
+Cumulus Linux enables all the scripts by default except for `bgp4_pp.py`, which {{<link url="FRRouting" text="FRRouting">}} uses.
 
 ## Example Configuration
 

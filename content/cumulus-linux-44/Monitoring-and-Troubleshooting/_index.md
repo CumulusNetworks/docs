@@ -282,7 +282,7 @@ The following message logs to `/var/log/syslog` when you run `systemctl daemon-r
 systemd[1]: Failed to reset devices.list on /system.slice: Invalid argument
 ```
 
-This message is harmless, you can ignore it. It logs when `systemd` attempts to change group attributes that are read only. Cumulus Linux modifies the upstream version of `systemd` to not log this message by default.
+This message is harmless, you can ignore it. It logs when `systemd` attempts to change group attributes that are read-only. Cumulus Linux modifies the upstream version of `systemd` to not log this message by default.
 
 The `systemctl daemon-reload` command runs when you install Debian packages. You see the message multiple times when upgrading packages.
 

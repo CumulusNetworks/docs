@@ -15,4 +15,3 @@ Currently, the available documents here include the following:
 - {{<link title="Production Ready Automation Guide">}} 
 - {{<link title="Cumulus Linux Security Guide">}}
 - {{<link title="NVIDIA Cumulus Linux Deployment Guide for VMware NSX-T">}}
-<!-- - {{<link title="Campus Architecture Solution Guide">}} -->

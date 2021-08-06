@@ -63,6 +63,7 @@ into: /usr/local/var/lib/grafana/plugins
 ```
 
 For NetQ 3.3.0 and earlier, use this command:
+
 ```
 grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip plugins install netq-dashboard
 installing netq-dashboard @
@@ -71,6 +72,7 @@ into: /usr/local/var/lib/grafana/plugins
 
 ✔ Installed netq-dashboard successfully
 ```
+
 After installing the plugin a restart of Grafana is required. Restart Grafana according to your implementation.
 
 ## Set Up the NetQ Data Source
@@ -104,7 +106,7 @@ Now that you have the plugin installed, you need to configure access to the NetQ
 6. Enter the URL used to access the database:
     - Cloud: *api.netq.cumulusnetworks.com*
     - On-premises: *\<hostname-or-ipaddr-of-netq-appl-or-vm\>/api*
-    - Cumulus in the Cloud (CITC): *air.netq.cumulusnetworks.com*
+    - Cumulus in the Cloud (CITC): *plugin.air.netq.cumulusnetworks.com/*
 
 <!-- 7. Select which statistics you want to view from the **Module** dropdown; either *procdevstats* or *ethtool*. -->
 

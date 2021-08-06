@@ -21,7 +21,7 @@ Cumulus Linux is an open, native Linux distribution that allows for choice in ha
 
 Cumulus Linux is fully featured networking software providing the entire suite of enterprise networking features, including:
 
-- Layer 2 {{<kb_link text="spanning tree protocol" latest="cl" url="/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/" >}}
+- Layer 2 {{<kb_link latest="cl" url="Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree.md" text="spanning tree protocol" >}}
 - Layer 1 diagnostics with [TDR](/cumulus-linux/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/TDR-Cable-Diagnostics/)
 - Layer 3 [OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF/), [BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/) and [multicast](/cumulus-linux/Layer-3/Routing/#static-multicast-routes)
 - [VXLAN](/cumulus-linux/Network-Virtualization/) and [BGP-EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#enable-evpn-between-bgp-neighbors)

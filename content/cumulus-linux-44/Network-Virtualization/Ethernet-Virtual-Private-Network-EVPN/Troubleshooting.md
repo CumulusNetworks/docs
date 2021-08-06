@@ -19,7 +19,7 @@ You can use various `iproute2` and `NCLU` commands to examine links, VLAN mappin
 - `ip neighbor show`
 - `ip route show [table <vrf-name>]`
 
-A sample output of `ip -d link show type vxlan` is shown below for one VXLAN interface. Relevant parameters are the VNI value, the state, the local IP address for the VXLAN tunnel, the UDP port number (4789) and the bridge of which the interface is part (*bridge* in the example below). The output also shows that MAC learning is disabled (*off*) on the VXLAN interface.
+The sample output below shows `ip -d link show type vxlan` for one VXLAN interface. Relevant parameters are the VNI value, the state, the local IP address for the VXLAN tunnel, the UDP port number (4789) and the bridge of which the interface is part (*bridge* in the example below). The output also shows that MAC learning is *off* on the VXLAN interface.
 
 ```
 cumulus@leaf01:~$ ip -d link show type vxlan
@@ -32,9 +32,9 @@ cumulus@leaf01:~$ ip -d link show type vxlan
 
 The following example output for the `net show bridge macs` command shows:
 
-- bond1 is an access ports with VLAN ID 10. This is mapped to VXLAN interface vni10.
+- bond1 is an access port with VLAN ID 10, which maps to VXLAN interface vni10.
 - 26:76:e6:93:32:78 is the server01 host MAC learned on bond1.
-- A remote VTEP that participates in VLAN ID 10 is 10.0.1.2 (the FDB entries have a MAC address of 00:00:00:00:00:00). These entries are used for BUM traffic replication.
+- A remote VTEP that participates in VLAN ID 10 is 10.0.1.2 (the FDB entries have a MAC address of 00:00:00:00:00:00). BUM traffic replication uses these entries.
 - 68:0f:31:ae:3d:7a is a remote host MAC of server04 reachable over the VXLAN tunnel via VTEP 10.0.1.2.
 
 ```
@@ -71,7 +71,7 @@ untagged          vni10      c8:7d:bc:96:71:f3  10.0.1.2    static     self, sti
 The following example output for the `net show neighbor` command shows:
 
 - 10.1.10.101 is a locally attached host server01 on VLAN 10. Interface `vlan10-v0` is the virtual VRR address for VLAN10.
-- 10.1.10.104 is remote-host, server04 on VLAN10. This is indicated by the STATE `zebra` showing that it is an EVPN learned entry. Use `net show bridge macs` to see information about which VTEP the host is behind.
+- 10.1.10.104 is remote-host, server04 on VLAN10. The STATE `zebra` shows that it is an EVPN learned entry. Use `net show bridge macs` to see information about which VTEP the host is behind.
 - 10.1.20.105 is remote-host, server05 on VLAN 20.
 
 ```
@@ -143,7 +143,7 @@ spine04(swp54)  4      65199       814       805        0    0    0 00:37:35    
 Total number of neighbors 4
 ```
 
-Run the NCLU `net show route` command or the vtysh `show route` command to examine the underlay routing and determine how remote VTEPs are reached. The following example shows output from a leaf switch:
+Run the NCLU `net show route` command or the vtysh `show route` command to examine the underlay routing and determine how the switch reaches remote VTEPs. The following example shows output from a leaf switch:
 {{<notice note>}}
 This is the routing table of the global (underlay) routing table. Use the `vrf` keyword to see routes for specific VRFs where the hosts reside.
 {{</notice>}}
@@ -214,7 +214,7 @@ Total number of neighbors 4
 
 ## Show EVPN VNIs
 
-Run the NCLU `net show bgp l2vpn evpn vni` command or the vtysh `show bgp l2vpn evpn vni` command to display the configured VNIs on a network device participating in BGP EVPN. This command is only relevant on a VTEP. If you have configured symmetric routing, this command displays the special layer 3 VNIs that are configured per tenant VRF.
+Run the NCLU `net show bgp l2vpn evpn vni` command or the vtysh `show bgp l2vpn evpn vni` command to display the configured VNIs on a network device participating in BGP EVPN. This command is only relevant on a VTEP. For symmetric routing, this command displays the special layer 3 VNIs for each tenant VRF.
 
 The following example from leaf01 shows three layer 2 VNIs (10, 20 and 30) as well as two layer 3 VNIs (4001, 4002).
 
@@ -247,7 +247,7 @@ VNI        Type VxLAN IF              # MACs   # ARPs   # Remote VTEPs  Tenant V
 4002       L3   vniBLUE               0        0        n/a             BLUE
 ```
 
-Run the NCLU `net show evpn vni <vni>` command or the vtysh `show evpn vni <vni>` command to examine EVPN information for a specific VNI in detail. The following example output shows details for the layer 2 VNI 10 as well as for the layer 3 VNI 4001. For the layer 2 VNI, the remote VTEPs that contain that VNI are shown. For the layer 3 VNI, the router MAC and associated layer 2 VNIs are shown. The state of the layer 3 VNI depends on the state of its associated VRF as well as the states of its underlying VXLAN interface and SVI.
+Run the NCLU `net show evpn vni <vni>` command or the vtysh `show evpn vni <vni>` command to examine EVPN information for a specific VNI in detail. The following example output shows details for the layer 2 VNI 10 as well as for the layer 3 VNI 4001. For the layer 2 VNI, the output shows the remote VTEPs that contain that VNI. For the layer 3 VNI, the router shows the router MAC and associated layer 2 VNIs. The state of the layer 3 VNI depends on the state of its associated VRF as well as the states of its underlying VXLAN interface and SVI.
 
 ```
 cumulus@leaf01:mgmt:~$ net show evpn vni 10
@@ -299,7 +299,7 @@ c0:8a:e6:03:96:d0 local        peerlink                       10    0/0
 
 Run the NCLU `net show evpn mac vni all` command or the vtysh `show evpn mac vni all` command to examine MAC addresses for all VNIs.
 
-You can examine the details for a specific MAC addresse or query all remote MAC addresses behind a specific VTEP:
+You can examine the details for a specific MAC addresses or query all remote MAC addresses behind a specific VTEP:
 
 ```
 cumulus@leaf01:mgmt:~$ net show evpn mac vni 10 mac 94:8e:1c:0d:77:93
@@ -358,8 +358,7 @@ Run the NCLU `net show evpn rmac vni all` command or the vtysh `show evpn rmac v
 
 ## Examine Gateway Next Hops
 
-For symmetric routing, you can run the NCLU `net show evpn next-hops vni <vni>` command or the vtysh `show evpn next-hops vni <vni>` command to examine the gateway next hops. This command is only relevant for a layer 3 VNI. In general, the gateway next hop IP addresses correspond to the remote VTEP IP addresses. Remote host and prefix routes are installed
- sing these next hops:
+For symmetric routing, you can run the NCLU `net show evpn next-hops vni <vni>` command or the vtysh `show evpn next-hops vni <vni>` command to examine the gateway next hops. This command is only relevant for a layer 3 VNI. The gateway next hop IP addresses correspond to the remote VTEP IP addresses. Cumulus Linux installs the remote host and prefix routes using these next hops:
 
 ```
 cumulus@leaf01:mgmt:~$ net show evpn next-hops vni 4001
@@ -384,7 +383,7 @@ Ip: 10.0.1.2
 
 ## Show the VRF Routing Table in FRRouting
 
-Run the `net show route vrf <vrf-name>` command to examine the VRF routing table. In the context of EVPN, this command is relevant for symmetric routing to verify that remote host and prefix routes are installed in the VRF routing table and point to the appropriate gateway next hop.
+Run the `net show route vrf <vrf-name>` command to examine the VRF routing table. Use this command for symmetric routing to verify that remote host and prefix routes are in the VRF routing table and point to the appropriate gateway next hop.
 
 ```
 cumulus@leaf01:mgmt:~$ net show route vrf RED
@@ -408,11 +407,11 @@ B>* 10.1.20.105/32 [20/0] via 10.0.1.2, vlan4001 onlink, weight 1, 00:20:07
 ...
 ```
 
-In the output above, the next hops for these routes are specified by EVPN to be *onlink*, or reachable over the specified SVI. This is necessary because this interface is not required to have an IP address. Even if the interface is configured with an IP address, the next hop is not on the same subnet as it is usually the IP address of the remote VTEP (part of the underlay IP network).
+In the output above, EVPN specifies the next hops for these routes to be *onlink*, or reachable over the specified SVI. This is necessary because this interface does not need to have an IP address. Even if the interface has an IP address, the next hop is not on the same subnet as it is typically the IP address of the remote VTEP (part of the underlay IP network).
 
 ## Show the Global BGP EVPN Routing Table
 
-Run the NCLU `net show bgp l2vpn evpn route` command or the vtysh `show bgp l2vpn evpn route` command to display all EVPN routes, both local and remote. The routes displayed here are based on RD as they are across VNIs and VRFs:
+Run the NCLU `net show bgp l2vpn evpn route` command or the vtysh `show bgp l2vpn evpn route` command to display all EVPN routes, both local and remote. Cumulus Linux bases the routes on the RD as they are across VNIs and VRFs:
 
 ```
 cumulus@leaf01:mgmt:~$ net show bgp l2vpn evpn route
@@ -488,7 +487,7 @@ Route Distinguisher: 10.10.10.3:3
 ...
 ```
 
-You can filter the routing table based on EVPN route type. The available options are shown below:
+You can filter the routing table based on EVPN route type. The available options are:
 
 ```
 cumulus@leaf01:mgmt:~$ net show bgp l2vpn evpn route type
@@ -539,14 +538,14 @@ Displayed 4 paths for requested prefix
 
 {{%notice note%}}
 
-- Only global VNIs are supported. Even though VNI values are exchanged in the type-2 and type-5 routes, the received values are not used when installing the routes into the forwarding plane; the local configuration is used. You must ensure that the VLAN to VNI mappings and the layer 3 VNI assignment for a tenant VRF are uniform throughout the network.
-- If the remote host is dual attached, the next hop for the EVPN route is the anycast IP address of the remote {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} pair, when MLAG is active.
+- Only use global VNIs. Even though the switch exchanges VNI values in the type-2 and type-5 routes, Cumulus Linux does not use the received values when installing the routes into the forwarding plane but uses the local configuration instead. Ensure that the VLAN to VNI mappings and the layer 3 VNI assignment for a tenant VRF are the same throughout the network.
+- If the remote host is dual attached, the next hop for the EVPN route is the anycast IP address of the remote {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} pair when MLAG is active.
 
 {{%/notice%}}
 
 ## Show the VNI EVPN Routing Table
 
-Received EVPN routes are maintained in the global EVPN routing table (described above), even if there are no appropriate local VNIs to **import** them into. For example, a spine switch maintains the global EVPN routing table even though there are no VNIs present on it. When local VNIs are present, received EVPN routes are imported into the per-VNI routing tables based on the route target attributes. You can examine the per-VNI routing table with the `net show bgp l2vpn evpn route vni <vni>` command:
+The switch maintains the received EVPN routes in the global EVPN routing table (described above), even if there are no appropriate local VNIs to **import** them into. For example, a spine maintains the global EVPN routing table even though there are no VNIs present in the table. When local VNIs are present, the switch imports received EVPN routes into the per-VNI routing tables according to the route target attributes. You can examine the per-VNI routing table with the `net show bgp l2vpn evpn route vni <vni>` command:
 
 ```
 cumulus@leaf01:mgmt:~$ net show bgp l2vpn evpn route vni 10
@@ -594,7 +593,7 @@ To display the VNI routing table for all VNIs, run the `net show bgp l2vpn evpn 
 
 ## Show the VRF BGP Routing Table
 
-For symmetric routing, received type-2 and type-5 routes are imported into the VRF routing table (against the corresponding address family: IPv4 unicast or IPv6 unicast) based on a match on the route target attributes. Run the NCLU `net show bgp vrf <vrf-name> ipv4 unicast` command or the `net show bgp vrf <vrf-name> ipv6 unicast` command to examine the BGP VRF routing table. The equivalent vtysh commands are `show bgp vrf <vrf-name> ipv4 unicast` and `show bgp vrf <vrf-name> ipv6 unicast`.
+For symmetric routing, the switch imports received type-2 and type-5 routes into the VRF routing table (according to address family: IPv4 unicast or IPv6 unicast) based on a match on the route target attributes. Run the NCLU `net show bgp vrf <vrf-name> ipv4 unicast` command or the `net show bgp vrf <vrf-name> ipv6 unicast` command to examine the BGP VRF routing table. The equivalent vtysh commands are `show bgp vrf <vrf-name> ipv4 unicast` and `show bgp vrf <vrf-name> ipv6 unicast`.
 
 ```
 cumulus@leaf01:mgmt:~$ net show bgp vrf RED ipv4 unicast
@@ -628,16 +627,16 @@ Displayed  2 routes and 16 total paths
 
 ## Support for EVPN Neighbor Discovery (ND) Extended Community
 
-In an EVPN VXLAN deployment with ARP and ND suppression where the VTEPs are only configured for layer 2, EVPN needs to carry additional information for the attached devices so proxy ND can provide the correct information to attached hosts. Without this information, hosts might not be able to configure their default routers or might lose their existing default router information. Cumulus Linux supports the EVPN Neighbor Discovery (ND) Extended Community with a type field value of 0x06, a sub-type field value of 0x08 (ND Extended Community), and a router flag; this enables the switch to determine if a particular IPv6-MAC pair belongs to a host or a router.
+In EVPN VXLAN with ARP and ND suppression where you only configure the VTEPs for layer 2, EVPN needs to carry additional information for the attached devices so proxy ND can provide the correct information to attached hosts. Without this information, hosts cannot configure their default routers or lose their existing default router information. Cumulus Linux supports the EVPN Neighbor Discovery (ND) Extended Community with a type field value of 0x06, a subtype field value of 0x08 (ND Extended Community), and a router flag; this enables the switch to determine if a particular IPv6-MAC pair belongs to a host or a router.
 
-The **router flag** (R-bit) is used in:
+The following configurations use the **router flag** (R-bit):
 
-- A centralized VXLAN routing configuration with a gateway router.
-- A layer 2 switch deployment with ARP/ND suppression.
+- Centralized VXLAN routing with a gateway router.
+- A layer 2 switch with ARP and ND suppression.
 
-When the MAC/IP (type-2) route contains the IPv6-MAC pair and the R-bit is set, the route belongs to a router. If the R-bit is set to zero, the route belongs to a host. If the router is in a local LAN segment, the switch implementing the proxy ND function learns of this information by snooping on neighbor advertisement messages for the associated IPv6 address. This information is then exchanged with other EVPN peers by using the ND extended community in BGP updates.
+When the MAC/IP (type-2) route contains the IPv6-MAC pair with the R-bit flag, the route belongs to a router. If the R-bit is zero, the route belongs to a host. If the router is in a local LAN segment, the switch implementing the proxy ND function learns of this information by snooping on neighbor advertisement messages for the associated IPv6 address. Other EVPN peers exchange this information by using the ND extended community in BGP updates.
 
-To show the EVPN arp-cache that gets populated by the neighbor table and see if the IPv6-MAC entry belongs to a router, run either the NCLU `net show evpn arp-cache vni <vni> ip <address>` command or the vtysh `show evpn arp-cache vni <vni> ip <address>` command. For example:
+To show that the neighbor table includes the EVPN arp-cache and that the IPv6-MAC entry belongs to a router, run either the NCLU `net show evpn arp-cache vni <vni> ip <address>` command or the vtysh `show evpn arp-cache vni <vni> ip <address>` command. For example:
 
 ```
 cumulus@leaf01:mgmt:~$ net show evpn arp-cache vni 20 ip 10.1.20.105
@@ -650,10 +649,9 @@ IP: 10.1.20.105
  Local Seq: 0 Remote Seq: 0
 ```
 
-
 ## Examine MAC Moves
 
-The first time a MAC moves from behind one VTEP to behind another, BGP associates a MAC Mobilit (MM) extended community attribute of sequence number 1, with the type-2 route for that MAC. From there, each time this MAC moves to a new VTEP, the MM sequence number increments by 1. You can examine the MM sequence number associated with a MAC's type-2 route with the NCLU `net show bgp l2vpn evpn route vni <vni> mac <mac>` command or the vtysh `show bgp l2vpn evpn route vni <vni> mac <mac>` command. The example output below shows the type-2 route for a MAC that has moved three times:
+The first time a MAC moves from behind one VTEP to behind another, BGP associates a MAC Mobility (MM) extended community attribute of sequence number 1, with the type-2 route for that MAC. From there, each time this MAC moves to a new VTEP, the MM sequence number increments by 1. You can examine the MM sequence number associated with a MAC's type-2 route with the NCLU `net show bgp l2vpn evpn route vni <vni> mac <mac>` command or the vtysh `show bgp l2vpn evpn route vni <vni> mac <mac>` command. The example output below shows the type-2 route for a MAC that has moved three times:
 
 ```
 cumulus@switch:~$ net show bgp l2vpn evpn route vni 10109 mac 00:02:22:22:22:02
@@ -699,7 +697,7 @@ To troubleshoot EVPN, enable FRR debug logs. The relevant debug options are:
 |------- | ----------- |
 |`debug zebra vxlan` | Traces VNI addition and deletion (local and remote) as well as MAC and neighbor addition and deletion (local and remote). |
 | `debug zebra kernel` | Traces actual netlink messages exchanged with the kernel, which includes everything, not just EVPN.|
-|`debug bgp updates` | Traces BGP update exchanges, including all  updates. Output is extended to show EVPN specific information. |
+|`debug bgp updates` | Traces BGP update exchanges, including all updates. The output also shows EVPN specific information. |
 | `debug bgp zebra` | Traces interactions between BGP and zebra for EVPN (and other) routes. |
 
 ## ICMP echo Replies and the ping Command
@@ -728,6 +726,6 @@ PING 10.0.10.1 (10.0.10.1) 56(84) bytes of data.
 rtt min/avg/max/mdev = 0.000/1.000/4.001/1.732 ms
 ```
 
-This is expected behavior with Cumulus Linux; when you send an ICMP echo request to an IP address that is not in the same subnet using the `ping -I` command, Cumulus Linux creates a failed ARP entry for the destination IP address.
+When you send an ICMP echo request to an IP address that is not in the same subnet using the `ping -I` command, Cumulus Linux creates a failed ARP entry for the destination IP address.
 
 For more information, refer to [this article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/ICMP-Ping-Doesn-t-Work-when-Specifying-I-Option" >}}).

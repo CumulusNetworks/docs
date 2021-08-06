@@ -50,7 +50,7 @@ traceroute to www.google.com (74.125.239.49), 30 hops max, 60 byte packets
 <!-- vale off -->
 ## Run Commands in a Non-default VRF
 <!-- vale on -->
-You can use `ip vrf exec` to run commands in a non-default VRF context. This is particularly useful for network utilities like `ping`, `traceroute`, and `nslookup`.
+You can use `ip vrf exec` to run commands in a non-default VRF context, which is useful for network utilities like `ping`, `traceroute`, and `nslookup`.
 
 The full syntax is `ip vrf exec <vrf-name> <command> <arguments>`. For example:
 
@@ -58,13 +58,13 @@ The full syntax is `ip vrf exec <vrf-name> <command> <arguments>`. For example:
 cumulus@switch:~$ sudo ip vrf exec Tenant1 nslookup google.com - 8.8.8.8
 ```
 
-By default, `ping` and `ping6`, and `traceroute` and `traceroute6` all use the default VRF and use a mechanism that checks the VRF context of the current shell, which you can see when you run `ip vrf id` - at the time one of these commands is run. If the shell's VRF context is *mgmt*, then these commands are run in the default VRF context.
+By default, `ping` and `ping6`, and `traceroute` and `traceroute6` all use the default VRF and use a mechanism that checks the VRF context of the current shell, which you can see when you run `ip vrf id`. If the VRF context of the shell is *mgmt*, these commands run in the default VRF context.
 
 `ping` and `traceroute` have additional arguments that you can use to specify an egress interface or a source address. In the default VRF, the source interface flag (`ping -I` or `traceroute -i`) specifies the egress interface for the `ping` or `traceroute` operation. However, you can use the source interface flag instead to specify a non-default VRF to use for the command. Doing so causes the routing lookup for the destination address to occur in that VRF.
 <!-- vale off -->
 With `ping -I`, you can specify the source interface or the source IP address but you cannot use the flag more than once. Either choose an egress interface/VRF or a source IP address. For `traceroute`, you can use `traceroute -s` to specify the source IP address.
 <!-- vale on -->
-You gain additional flexibility if you run `ip vrf exec` in combination with `ping`/`ping6`  or `traceroute`/`traceroute6`, as the VRF context is specified outside of the `ping` and `traceroute` commands. This allows for the most granular control of `ping` and `traceroute`, as you can specify both the VRF and the source interface flag.
+You gain additional flexibility if you run `ip vrf exec` in combination with `ping`/`ping6`  or `traceroute`/`traceroute6`, as the VRF context is outside of the `ping` and `traceroute` commands. This allows for the most granular control of `ping` and `traceroute`, as you can specify both the VRF and the source interface flag.
 
 For `ping`, use the following syntax:
 
@@ -94,7 +94,7 @@ cumulus@switch:~$ sudo ip vrf exec Tenant1 traceroute -i swp1 -s 192.0.1.1 8.8.8
 cumulus@switch:~$ sudo ip vrf exec Tenant1 traceroute6 -i swp1 -s 2001:db8::1 2001:4860:4860::8888
 ```
 
-The VRF context for `ping` and `traceroute` commands is shifted automatically to the default VRF context, therefore, you must use the source interface flag to specify the management VRF. Typically, there is only a single interface in the management VRF (eth0) and only a single IPv4 address or IPv6 global unicast address assigned to it. You cannot specify both a source interface and a source IP address with `ping -I`.
+The VRF context for `ping` and `traceroute` commands move automatically to the default VRF context, therefore, you must use the source interface flag to specify the management VRF. Typically, there is only a single interface in the management VRF (eth0) and only a single IPv4 address or IPv6 global unicast address assigned to it. You cannot specify both a source interface and a source IP address with `ping -I`.
 
 ## Manipulate the System ARP Cache
 
@@ -216,7 +216,7 @@ You can use `tcpdump` to monitor control plane traffic (traffic sent to and comi
 
 For more information on `tcpdump`, read the {{<exlink url="http://www.tcpdump.org/#documentation" text="documentation">}} and the {{<exlink url="http://www.tcpdump.org/manpages/tcpdump.1.html" text="man page">}}.
 
-The following example incorporates a few `tcpdump` options:
+The following example incorporates `tcpdump` options:
 
 - `-i bond0` captures packets from bond0 to the CPU and from the CPU to bond0
 - `host 169.254.0.2` filters for this IP address

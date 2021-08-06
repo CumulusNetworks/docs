@@ -27,7 +27,7 @@ All three methods are described below.
 - A SPAN and ERSPAN destination interface that is oversubscribed might result in data plane buffer depletion and buffer drops. Exercise caution when enabling SPAN and ERSPAN when the aggregate speed of all source ports exceeds the destination port.
 - Because SPAN and ERSPAN is done in hardware, eth0 is not supported as a destination.
 - Cumulus Linux does not support IPv6 ERSPAN destinations.
-- ERSPAN does not cause the kernel to send ARP requests to resolve the next hop for the ERSPAN destination. If an ARP entry for the destination or next hop does not already exist in the kernel, you need to manually resolve this before mirrored traffic is sent (use ping or arping).
+- ERSPAN does not cause the kernel to send ARP requests to resolve the next hop for the ERSPAN destination. If an ARP entry for the destination or next hop does not already exist in the kernel, you need to manually resolve this before sending mirrored traffic (use `ping` or `arping`).
 - Mirroring to the same interface that is being monitored causes a recursive flood of traffic and might impact traffic on other interfaces.
 {{%/notice%}}
 
@@ -67,7 +67,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-The following example commands mirror all packets recieved on swp1, and copy and transmit the packets from source IP address 10.10.10.1 to destination IP address 10.10.10.234 through a GRE tunnel:
+The following example commands mirror all packets that swp1 receive, and copy and transmit the packets from source IP address 10.10.10.1 to destination IP address 10.10.10.234 through a GRE tunnel:
 
 ```
 cumulus@switch:~$ net add port-mirror session 1 ingress erspan src-port swp1 src-ip 10.10.10.1 dest-ip 10.10.10.234
@@ -128,7 +128,7 @@ cumulus@switch:~$ net commit
 - To configure SPAN with NVUE, run the `nv set system port-mirror session <session-id> span <option>` command.
 - To configure ERSPAN with NVUE, run the `nv set system port-mirror session <session-id> erspan <option>` command.
 
-SPAN and ERSPAN configuration requires a seesion ID, which is a number between 0 and 7.
+SPAN and ERSPAN configuration requires a session ID, which is a number between 0 and 7.
 
 You can set the following SPAN and ERSPAN options:
 - Source port (`src-port`)
@@ -161,7 +161,7 @@ cumulus@switch:~$ nv set system port-mirror session 1 span dest-port swp2
 cumulus@switch:~$ nv config apply
 ```
 
-The following example commands mirror all packets recieved on swp1, and copy and transmit the packets from source IP address 10.10.10.1 to destination IP address 10.10.10.234 through a GRE tunnel:
+The following example commands mirror all packets that swp1 receives, and copy and transmit the packets from source IP address 10.10.10.1 to destination IP address 10.10.10.234 through a GRE tunnel:
 
 ```
 cumulus@switch:~$ nv set system port-mirror session 1 erspan src-port swp1

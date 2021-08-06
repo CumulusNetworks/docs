@@ -4,9 +4,9 @@ author: NVIDIA
 weight: 1140
 toc: 4
 ---
-{{<exlink url="http://www.sflow.org/index.php" text="sFlow">}} is a monitoring protocol that samples network packets, application operations, and system counters. sFlow collects both interface counters and sampled 5-tuple packet information so that you can monitor your network traffic as well as your switch state and performance metrics. An outside server, known as an *sFlow collector*, is required to collect and analyze this data.
+{{<exlink url="http://www.sflow.org/index.php" text="sFlow">}} is a monitoring protocol that samples network packets, application operations, and system counters. sFlow collects both interface counters and sampled 5-tuple packet information so that you can monitor your network traffic as well as your switch state and performance metrics. To collect and analyze this data, you need an outside server; an *sFlow collector*.
 
-`hsflowd` is the daemon that samples and sends sFlow data to configured collectors. By default, `hsflowd` is disabled and does *not* start automatically when the switch boots up.
+`hsflowd` is the daemon that samples and sends sFlow data to configured collectors. By default, Cumulus Linux disables `hsflowd` and it does *not* start automatically when the switch boots up.
 
 {{%notice note%}}
 If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-within-the-management-vrf" text="these steps">}} to configure the service.
@@ -40,7 +40,7 @@ _sflow._udp TXT (
 The above snippet instructs `hsflowd` to send sFlow data to collector1 on port 6343 and to collector2 on port 6344. `hsflowd` polls counters every 20 seconds and samples 1 out of every 2048 packets.
 
 {{%notice note%}}
-The maximum samples per second delivered from the hardware is limited to 16K. You can configure the number of samples per second in the `/etc/cumulus/datapath/traffic.conf` file, as shown below:
+The hardware can deliver a maximum of 16K samples per second. You can configure the number of samples per second in the `/etc/cumulus/datapath/traffic.conf` file:
 
 ```
 # Set sflow/sample ingress cpu packet rate and burst in packets/sec
@@ -56,7 +56,7 @@ Start the sFlow daemon:
 cumulus@switch:~$ sudo systemctl start hsflowd.service
 ```
 
-No additional configuration is required in the `/etc/hsflowd.conf` file.
+You do not need to configure anything else in the `/etc/hsflowd.conf` file.
 <!-- vale off -->
 ### Manually Configure /etc/hsflowd.conf
 <!-- vale on -->
@@ -96,9 +96,9 @@ Some collectors require each source to transmit on a different port, others list
 To configure the IP address for the sFlow agent, configure one of the following in the `/etc/hsflowd.conf` file (following the recommendations in the {{<exlink url="https://sflow.net/host-sflow-linux-config.php" text="sFlow documentation">}}):
 
 - The agent CIDR. For example, `agent.cidr = 10.0.0.0/8`. The IP address must fall within this range.
-- The agent interface. For example, if the agent is using eth0, select the IP address associated with this interface.
+- The agent interface. For example, if the agent is using eth0, select the IP address for this interface.
 
-To check which agent IP is selected, run this command:
+To check the agent IP, run this command:
 
 ```
 cumulus@switch:~$ grep agentIP /etc/hsflowd.auto

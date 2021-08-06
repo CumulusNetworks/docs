@@ -459,7 +459,7 @@ You can use MIB names instead of OIDs, which greatly improves the readability of
 <!-- vale off -->
 The Net-SNMP trap daemon configured in `/etc/snmp/snmpd.conf` *receives* SNMP traps. You configure how *incoming* traps are processed in the `/etc/snmp/snmptrapd.conf` file. With Net-SNMP release 5.3 and later, you must specify who is authorized to send traps and informs to the notification receiver (and what types of processing these are allowed to trigger). You can specify three processing types:
 <!-- vale on -->
-- *log* logs the details of the notification in a specified file to standard output (or stderr), or through syslog (or similar).
+- *log* logs the details of the notification in a specified file to standard output (or `stderr`), or through syslog (or similar).
 - *execute* passes the details of the trap to a specified handler program, including embedded Perl.
 - *net* forwards the trap to another notification receiver.
 

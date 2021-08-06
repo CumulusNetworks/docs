@@ -307,17 +307,17 @@ Configured State
     Autoneg: On                         FEC: Auto
 ```
 
-- Admin state:  
+- `Admin state`:  
   - *Admin Up* means the kernel has enabled the port with NCLU, NVUE, `ifupdown2`, or temporarily with `ip set line <swp> up`.
   - *Admin Down* means the kernel has disabled the port.
-- Speed:  
+- `Speed`:  
   - The configured speed in the kernel.  
   - The maximum speed is set in the `/etc/cumulus/ports.conf` file.
   - You can lower the speed with NCLU, NVUE, or `ifupdown2`.
-  - If auto-negotiation is enabled, this output displays the negotiated or autodetected speed.
-- MTU: The configured MTU setting in the kernel.
-- Autoneg: The configured auto-negotiation state in the kernel. See {{<link url="#auto-negotiation" text="Auto-negotiation">}} for more information.
-- FEC: The configured state of FEC in the kernel. See {{<link url="#fec" text="FEC">}}, above for more information.
+  - If auto-negotiation is enabled, this output displays the negotiated or auto-detected speed.
+- `MTU`: The configured MTU setting in the kernel.
+- `Autoneg`: The configured auto-negotiation state in the kernel. See {{<link url="#auto-negotiation" text="Auto-negotiation">}} for more information.
+- `FEC`: The configured state of FEC in the kernel. See {{<link url="#fec" text="FEC">}}, above for more information.
 
 ### Operational State
 
@@ -334,12 +334,12 @@ The operational state shows the current state of the link in the kernel and in t
       LLDP Neighbor:      switch-1, swp43
 ```
 
-- Link Status and Speed: The kernel state and hardware state should match, unless the link is in some unstable or transitory state.
-- Autoneg/Autodetect: See {{<link url="#auto-negotiation" text="Auto-negotiation">}} above for more information.
-- FEC: The operational state of FEC on the link. See {{<link url="#fec" text="FEC">}} above for more information.
-- TX Power/RX Power: These values are read from the module DDM/DOM fields to indicate the optical power strength measured on the module if the module implements the feature. Sometimes both are supported, sometimes only RX, sometimes neither. This is not applicable to DAC and twisted pair interfaces.
-- Topo File Neighbor: If the `/etc/ptm.d/topology.dot` file is populated and the `ptmd` daemon is active, the entry matching this interface is shown.
-- LLDP Neighbor: If the `lldpd` daemon is running and LLDP data is received from the neighbor, the neighbor information is shown here.
+- `Link Status` and `Speed`: The kernel state and hardware state should match, unless the link is in some unstable or transitory state.
+- `Autoneg` and `Autodetect`: See {{<link url="#auto-negotiation" text="Auto-negotiation">}} above for more information.
+- `FEC`: The operational state of FEC on the link. See {{<link url="#fec" text="FEC">}} above for more information.
+- `TX Power` and `RX Power`: These values are read from the module DDM/DOM fields to indicate the optical power strength measured on the module if the module implements the feature. Sometimes both are supported, sometimes only RX, sometimes neither. This is not applicable to DAC and twisted pair interfaces.
+- `Topo File Neighbor`: If the `/etc/ptm.d/topology.dot` file is populated and the `ptmd` daemon is active, the entry matching this interface is shown.
+- `LLDP Neighbor`: If the `lldpd` daemon is running and LLDP data is received from the neighbor, the neighbor information is shown here.
 
 ### Port Hardware State
 
@@ -459,7 +459,7 @@ Module Info
 ```
 
 - Does the module vendor name and vendor part number match the module that is believed to be installed? Is this port the correct port with the link problem? Is the right module installed?
-- Does the module type match the technology that is expected for this link? For example, if there is a 100G DAC installed, then is this value *Type: 100G-CR4*? See {{<link url="#compliance-codes-ethernet-type-ethmode-type-interface-type" text="Compliance Codes, Ethernet Type, Ethmode Type, Interface Type">}} for more informatioon.
+- Does the module type match the technology that is expected for this link? For example, if there is a 100G DAC installed, then is this value *Type: 100G-CR4*? See {{<link url="#compliance-codes-ethernet-type-ethmode-type-interface-type" text="Compliance Codes, Ethernet Type, Ethmode Type, Interface Type">}} for more information.
 - Does the device at the remote end recognize the module as the same Ethernet type that the local switch recognizes? Vendor outputs differ. If the remote device is not a Cumulus Linux device, consult the vendor documentation to determine how to display the Ethernet type for the installed module.
 
 ### Examine Configured State
@@ -470,11 +470,11 @@ Configured State
     Autoneg: On                         FEC: Auto
 ```
 
-- Admin: Is the link *Admin Up*? Is the link configured and enabled?
-- Speed: Is the configured speed correct? Does it match the configured speed on the remote side?
-- MTU: Does the MTU match on both sides? Note that an MTU mismatch does not prevent the link from coming up, but it does affect traffic forwarding.
-- Autoneg: Does this setting match what is configured and expected? See {{<link url="#auto-negotiation" text="Auto-negotiation">}}.
-- FEC: Is the FEC setting correctly configured? See {{<link url="#fec" text="FEC">}}.
+- `Admin`: Is the link *Admin Up*? Is the link configured and enabled?
+- `Speed`: Is the configured speed correct? Does it match the configured speed on the remote side?
+- `MTU`: Does the MTU match on both sides? Note that an MTU mismatch does not prevent the link from coming up, but it does affect traffic forwarding.
+- `Autoneg`: Does this setting match what is configured and expected? See {{<link url="#auto-negotiation" text="Auto-negotiation">}}.
+- `FEC`: Is the FEC setting correctly configured? See {{<link url="#fec" text="FEC">}}.
 
 ### Examine Operational State
 
@@ -489,19 +489,19 @@ Operational State
     LLDP Neighbor:      qct-ix8-51, swp3
 ```
 
-- Link status (Kernel and Hardware): What is the current state of both?  
+- `Link status` (Kernel and Hardware): What is the current state of both?  
   - Normally these values should be in sync.
   - When troubleshooting a link down issue, one or both of these values is *down* (usually both).
   - In a link flapping issue, one or both of these values might change every second or less, so the output of this field might not represent the value in the next moment in time.
-- Speed (Kernel and Hardware): Does the operational speed match the configured speed?
+- `Speed` (Kernel and Hardware): Does the operational speed match the configured speed?
   - When the link is up, the kernel and hardware operational values should be in sync with each other and the configured speed.
   - When the link is down and auto-negotiation is enabled, the kernel value is *Unknown!* because the hardware has not synchronized to a speed.
   - When the link is down and auto-negotiation is disabled, the kernel speed displays the configured value. The *Hardware* field might show various values, depending on implementation of the particular hardware interface.
-- Autoneg/Autodetect: Normally the operational value matches the configured value. This is informational only, but it is useful to know if autodetect is enabled. See {{<link url="#auto-negotiation" text="auto-negotiation">}} and {{<link url="#autodetect" text="autodetect">}}.
-- FEC: This field is only useful for informational purposes. It displays the actual FEC only when the link is up.
+- `Autoneg` and `Autodetect`: Normally the operational value matches the configured value. This is informational only, but it is useful to know if `autodetect` is enabled. See {{<link url="#auto-negotiation" text="auto-negotiation">}} and {{<link url="#autodetect" text="autodetect">}}.
+- `FEC`: This field is only useful for informational purposes. It displays the actual FEC only when the link is up.
   - When the link is down, the operational FEC is *None*.
   - When the link is up, this field shows the actual FEC value working on the link.
-- TX/RX Power (optical modules only): If the module supports laser power DDM/DOM, are these values in working ranges?
+- `TX Power` and `RX Power` (optical modules only): If the module supports laser power DDM/DOM, are these values in working ranges?
   - Check the *Laser send power high/low alarm* and *Laser receive power high/low warning* thresholds in the output of `ethtool -m <swp>` to see what the expected low and high values are.
   - A short range module should send in the range of 0.6 and 1.0 mW and should work with receive power in the range of > 0.05 mW.
   - Long range optical modules have TX power above 1.0 mW.
@@ -513,8 +513,8 @@ Operational State
       - If the TX Power is *0.0001*, then the module lasers are likely to be disabled for some reason.
       - If the RX Power is *0.0001*, then no signal is being received on the module receivers.
     - On a QSFP module, check the value for each of the four lanes. Sometimes only one lane is failing and the entire link is down as a result.
-- Topo File Neighbor: If a `ptmd` topology file is configured on the switch, this helps to quickly identify the expected link neighbor.
-- LLDP Neighbor: Does this match the expected neighbor and port?
+- `Topo File Neighbor`: If a `ptmd` topology file is configured on the switch, this helps to quickly identify the expected link neighbor.
+- `LLDP Neighbor`: Does this match the expected neighbor and port?
   - This value is the neighbor and port reported via LLDP.
   - If the link is down, this value is normally blank.
 
@@ -531,21 +531,21 @@ Port Hardware State:
     Troubleshooting Info: Auto-negotiation no partner detected.
 ```
 
-- Compliance Code:
+- `Compliance Code`:
   - Does the interface type recognized by the firmware match the type of module installed? Does the firmware correctly recognize the module type?
-- Cable type: Does the cable type recognized by the firmware match the type installed?
-- Speed:
+- `Cable Type`: Does the cable type recognized by the firmware match the type installed?
+- `Speed`:
   - Does the speed match the expected speed?
   - If auto-negotiation is enabled and the link is down, *N/A* might be displayed, or not the expected speed.
-- Autodetect:
+- `Autodetect`:
   - If *Enabled*, then perhaps the link algorithm is failing with the neighbor.  
   - Try disabling auto-negotiation and setting a forced speed.  
   - See {{<link url="#auto-negotiation" text="auto-negotiation">}} and {{<link url="#autodetect" text="autodetect">}} for more guidance.
-- Eyes/Grade:  
+- `Eyes` and `Grade`:  
   - If the link is not up, all zeros are displayed.  
   - If the link is up, the RX eye (mV) and grade values are displayed.  
   - See {{<link url="#eyes" text="Eyes">}} for more information.
-- Troubleshooting Info:
+- `Troubleshooting Info`:
   - What does the firmware assess as the problem? Although this information is at the end of the output, this is sometimes the first place to look for basic guidance.
   - Examples:
     - `The port is closed by command. Please check that the interface is enabled.` Configure the port so it is set to *Admin Up*.
@@ -642,7 +642,7 @@ Signal integrity issues are often a root cause of different types of symptoms:
 - If the signal integrity is too marginal, the link might flap with or without FEC enabled.
 - If the signal integrity is marginal, the link might display physical error counts. Depending on the link speed and cable type, the module or cable might be expected to have some margin of error in signal integrity. In these cases, FEC is expected or required to be used to correct errors to reach the target IEEE bit error rate (BER) of 10<sup>-12</sup> on the link. See {{<link url="#fec" text="FEC">}} for guidance.
 
-  If FEC is enabled and the bitstream cannot be recovered acceptably, the link stays down. If the signal integrity is marginal, but bad enough that FEC cannot correct an acceptable rate of errors, the link flaps when FEC signals a restart of the link to attempt to restore an acceptable bitstream.  
+  If FEC is enabled and the bit stream cannot be recovered acceptably, the link stays down. If the signal integrity is marginal, but bad enough that FEC cannot correct an acceptable rate of errors, the link flaps when FEC signals a restart of the link to attempt to restore an acceptable bit stream.  
 
 To see error counters for a port, run the `ethtool -S <swp> | grep Errors` command. If FEC is enabled, these counters only count errors that were not corrected by FEC.
 

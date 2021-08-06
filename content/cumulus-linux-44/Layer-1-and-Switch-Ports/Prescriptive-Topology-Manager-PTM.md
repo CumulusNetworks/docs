@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 370
 toc: 3
 ---
-In data center topologies, right cabling is time-consuming and error prone. Prescriptive Topology Manager (PTM) is a dynamic cabling verification tool to help detect and eliminate errors. It takes a Graphviz-DOT specified network cabling plan (something many operators already generate), stored in a `topology.dot` file, and couples it with runtime information derived from LLDP to verify that the cabling matches the specification. The check is performed on every link transition on each node in the network.
+In data center topologies, right cabling is time consuming and error prone. Prescriptive Topology Manager (PTM) is a dynamic cabling verification tool that can detect and eliminate errors. PTM uses a Graphviz-DOT specified network cabling plan in a `topology.dot` file and couples it with runtime information from LLDP to verify that the cabling matches the specification. The check occurs on every link transition on each node in the network.
 
 You can customize the `topology.dot` file to control `ptmd` at both the global/network level and the node/port level.
 
@@ -13,12 +13,12 @@ PTM runs as a daemon, named `ptmd`.
 ## Supported Features
 
 - Topology verification using LLDP. `ptmd` creates a client connection to the LLDP daemon, `lldpd`, and retrieves the neighbor relationship between the nodes/ports in the network and compares them against the prescribed topology specified in the `topology.dot` file.
-- Only physical interfaces, such as swp1 or eth0, are currently supported. Cumulus Linux does not support specifying virtual interfaces, such as bonds or subinterfaces, such as eth0.200 in the topology file.
-- Forwarding path failure detection using {{<exlink url="http://tools.ietf.org/html/rfc5880" text="Bidirectional Forwarding Detection">}} (BFD); however, demand mode is not supported. For more information on how BFD operates in Cumulus Linux, read the {{<link title="Bidirectional Forwarding Detection - BFD">}} chapter and read `man ptmd(8)`.
+- PTM only supports physical interfaces, such as swp1 or eth0. You cannot specify virtual interfaces, such as bonds or subinterfaces in the topology file.
+- Cumulus Linux does not support forwarding path failure detection using {{<exlink url="http://tools.ietf.org/html/rfc5880" text="Bidirectional Forwarding Detection">}} (BFD); however, you can use demand mode. For more information on how BFD operates in Cumulus Linux, refer to {{<link title="Bidirectional Forwarding Detection - BFD">}} and `man ptmd(8)`.
 - Integration with FRRouting (PTM to FRRouting notification).
 - Client management: `ptmd` creates an abstract named socket `/var/run/ptmd.socket` on startup. Other applications can connect to this socket to receive notifications and send commands.
 - Event notifications: see Scripts below.
-- User configuration via a `topology.dot` file; {{<link url="#configure-ptm" text="see below">}}.
+- User configuration through a `topology.dot` file; {{<link url="#configure-ptm" text="see below">}}.
 
 ## Configure PTM
 
@@ -26,7 +26,7 @@ PTM runs as a daemon, named `ptmd`.
 
 PTM supports {{<exlink url="http://en.wikipedia.org/wiki/DOT_%28graph_description_language%29" text="undirected graphs">}}.
 
-At startup, `ptmd` connects to `lldpd`, the LLDP daemon, over a Unix socket and retrieves the neighbor name and port information. It then compares the retrieved port information with the configuration information that it read from the topology file. If there is a match, it is a PASS, else it is a FAIL.
+At startup, `ptmd` connects to `lldpd` (the LLDP daemon) over a Unix socket and retrieves the neighbor name and port information. It then compares the retrieved port information with the configuration information that it reads from the topology file. If there is a match, it is a PASS, otherwise it is a FAIL.
 
 {{%notice note%}}
 PTM performs its LLDP neighbor check using the PortID ifname TLV information.
@@ -34,13 +34,13 @@ PTM performs its LLDP neighbor check using the PortID ifname TLV information.
 
 ## ptmd Scripts
 
-`ptmd` executes scripts at `/etc/ptm.d/if-topo-pass` and `/etc/ptm.d/if-topo-fail`for each interface that goes through a change and runs `if-topo-pass` when an LLDP or BFD check passes or `if-topo-fails` when the check fails. The scripts receive an argument string that is the result of the `ptmctl` command, described in the {{%link url="#ptmd-service-commands" text="`ptmd` commands below"%}}.
+`ptmd` executes scripts at `/etc/ptm.d/if-topo-pass` and `/etc/ptm.d/if-topo-fail`for each interface that goes through a change and runs `if-topo-pass` when an LLDP or BFD check passes or `if-topo-fails` when the check fails. The scripts receive an argument string that is the result of the `ptmctl` command; see {{%link url="#ptmd-service-commands" text="`ptmd` commands below"%}}.
 
-Modify these default scripts as needed.
+You can modify these default scripts.
 
 ## Configuration Parameters
 
-You can configure `ptmd` parameters in the topology file. The parameters are classified as host-only, global, per-port/node and templates.
+You can configure `ptmd` parameters in the topology file. The parameters are host-only, global, per-port/node and templates.
 
 <!-- vale off -->
 <!-- Vale issue #253 -->
@@ -74,7 +74,7 @@ graph G {
 
 ### Global Parameters
 
-*Global parameters* apply to every port listed in the topology file. There are two global parameters: LLDP and BFD. LLDP is enabled by default; if no keyword is present, default values are used for all ports. However, BFD is disabled if no keyword is present, unless there is a per-port override configured. For example:
+*Global parameters* apply to every port in the topology file. There are two global parameters: LLDP and BFD. LLDP is on by default; if no keyword is present, PTM uses the default values for all ports. However, BFD is off if no keyword is present unless a per-port override exists. For example:
 
 ```
 graph G {
@@ -132,12 +132,12 @@ In this template, LLDP1 and LLDP2 are templates for LLDP parameters. BFD1 and BF
 - `upMinTx` is the minimum transmit interval, which defaults to *300ms*, specified in milliseconds.
 - `requiredMinRx` is the minimum interval between received BFD packets, which defaults to *300ms*, specified in milliseconds.
 - `detectMult` is the detect multiplier, which defaults to *3*, and can be any non-zero value.
-- `afi` is the address family to be supported for the edge. The address family must be one of the following:
-  - *v4*: BFD sessions are built for only IPv4 connected peer. This is the default value.
-  - *v6*: BFD sessions are built for only IPv6 connected peer.
-  - *both*: BFD sessions are built for both IPv4 and IPv6 connected peers.
+- `afi` is the address family for the edge. The address family must be one of the following:
+  - *v4*: BFD sessions build for only IPv4 connected peers. This is the default value.
+  - *v6*: BFD sessions build for only IPv6 connected peers.
+  - *both*: BFD sessions builds for both IPv4 and IPv6 connected peers.
 
-The following is an example of a topology with BFD applied at the port level:
+The following is an example of a topology with BFD at the port level:
 
 ```
 graph G {
@@ -150,7 +150,7 @@ graph G {
 - `match_type`, which defaults to the interface name (`ifname`), but can accept a port description (`portdescr`) instead if you want `lldpd` to compare the topology against the port description instead of the interface name. You can set this parameter globally or at the per-port level.
 - `match_hostname`, which defaults to the hostname (`hostname`), but enables PTM to match the topology using the fully qualified domain name (`fqdn`) supplied by LLDP.
 
-The following is an example of a topology with LLDP applied at the port level:
+The following is an example of a topology with LLDP at the port level:
 
 ```
 graph G {
@@ -176,13 +176,13 @@ BFD provides low overhead and rapid detection of failures in the paths between t
 
 ## Check Link State With FRRouting
 
-The FRRouting routing suite enables additional checks to ensure that routing adjacencies are formed only on links that have connectivity conformant to the specification, as determined by `ptmd`.
+The FRRouting routing suite enables additional checks to ensure that routing adjacencies form only on links that have connectivity that conform to the specification that `ptmd` defines.
 
 {{%notice note%}}
 You only need to do this to check link state; you do not need to enable PTM to determine BFD status.
 {{%/notice%}}
 
-When the global `ptm-enable` option is enabled, every interface has an implied `ptm-enable` line in the configuration stanza in the interfaces file.
+When you enable the global `ptm-enable` option, every interface has an implied `ptm-enable` line in the configuration stanza in the `/etc/network/interfaces` file.
 
 To enable the global `ptm-enable` option, run the following FRRouting command:
 
@@ -224,7 +224,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-With PTM enabled on an interface, the `zebra` daemon connects to `ptmd` over a Unix socket. Any time there is a change of status for an interface, `ptmd` sends notifications to `zebra`. Zebra maintains a `ptm-status` flag per interface and evaluates routing adjacency based on this flag. To check the per-interface `ptm-status`, run the NVUE `nv show interface <interface>` command or the vtysh `show interface <interface>` command.
+With PTM on an interface, the `zebra` daemon connects to `ptmd` over a Unix socket. Any time there is a change of status for an interface, `ptmd` sends notifications to `zebra`. Zebra maintains a `ptm-status` flag per interface and evaluates routing adjacency based on this flag. To check the per-interface `ptm-status`, run the NVUE `nv show interface <interface>` command or the vtysh `show interface <interface>` command.
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -276,11 +276,11 @@ cumulus@switch:~$ sudo systemctl status ptmd.service
 
 The examples below contain the following keywords in the output of the `cbl status` column:
 
-| cbl status Keyword<img width=200/> | Definition<img width=400/> |
+| `cbl` status Keyword<img width=200/> | Definition<img width=400/> |
 |-------- |-------- |
-| pass | The interface is defined in the topology file, LLDP information is received on the interface, and the LLDP information for the interface matches the information in the topology file. |
-| fail | The interface is defined in the topology file, LLDP information is received on the interface, and the LLDP information for the interface does not match the information in the topology file. |
-| N/A | The interface is defined in the topology file, but no LLDP information is received on the interface. The interface might be down or disconnected, or the neighbor is not sending LLDP packets.<br>The `N/A` and `fail` status might indicate a wiring problem to investigate.<br>The `N/A` status is not shown when you use the `-l` option with `ptmctl`; only interfaces that are receiving LLDP information are shown. |
+| pass | The topology file defines the interface, the interface receives LLDP information, and the LLDP information for the interface matches the information in the topology file. |
+| fail | The topology file defines the interface, the interface receives LLDP information, and the LLDP information for the interface does not match the information in the topology file. |
+| N/A | The topology file defines the interface but the interface does not receive LLDP information. The interface might be down or disconnected, or the neighbor is not sending LLDP packets.<br>The `N/A` and `fail` status might indicate a wiring problem to investigate.<br>The `N/A` status does not show when you use the `-l` option with `ptmctl`; The output shows only interfaces that are receiving LLDP information. |
 
 For basic output, use `ptmctl` without any options:
 
@@ -330,7 +330,7 @@ swp1  11.0.0.2    Up     N/A           singlehop  N/A
 N/A   12.12.12.1  Up     12.12.12.4    multihop   N/A
 ```
 
-To return LLDP information, use the `-l` option. It returns only the active neighbors currently being tracked by `ptmd`.
+To return LLDP information, use the `-l` option. The output returns only the active neighbors that `ptmd` is tracking.
 
 ```
 cumulus@switch:~$ sudo ptmctl -l
@@ -407,7 +407,7 @@ If you edit `topology.dot` file from a Windows system, be sure to double check t
 
 ## Basic Topology Example
 
-This is a basic example DOT file and its corresponding topology diagram. Use the same `topology.dot` file on all switches and do not split the file per device; this allows for easy automation by pushing/pulling the same exact file on each device.
+The following example shows a basic example DOT file and its corresponding topology diagram. Use the same `topology.dot` file on all switches and do not split the file for each device to allow for easy automation by using the same exact file on each device.
 
 ```
 graph G {
@@ -426,13 +426,13 @@ graph G {
 
 ## Considerations
 
-### ptmd in Incorrect Failure State while Zebra Interface Is Enabled
+### ptmd Is in an Incorrect Failure State
 
-When `ptmd` is incorrectly in a failure state and the Zebra interface is enabled, PIF BGP sessions do not establish the route, but the subinterface on top of it does establish routes.
+When `ptmd` is in an incorrect failure state and you enable the Zebra interface, PIF BGP sessions do not establish the route but the subinterface does establish routes.
 
-If the subinterface is configured on the physical interface and the physical interface is incorrectly marked as being in a PTM FAIL state, routes on the physical interface are not processed in FRR, but the subinterface is working.
+If the subinterface is on the physical interface and PTM marks the physical interface in a PTM FAIL state, FRR does not process routes on the physical interface, but the subinterface is working.
 
-### Cannot Use Commas in PortDescr
+### Commas in Port Descriptions
 
 If an LLDP neighbor advertises a `PortDescr` that contains commas, `ptmctl -d` splits the string on the commas and misplaces its components in other columns. Do not use commas in your port descriptions.
 

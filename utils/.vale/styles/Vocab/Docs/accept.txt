@@ -10,6 +10,7 @@ Broadcom
 (CLAG|clag)
 (CPU|cpu)
 CUE
+(DSCP|dscp)
 (EVPN|evpn)
 Edgecore
 Ethertype
@@ -48,6 +49,7 @@ PDF
 (PSU|psu)
 (PTM|ptm)
 (PVID|pvid)
+(QoS|qos)
 (RSA|rsa)
 Reflectometer
 (RoCE|roce)
@@ -67,7 +69,7 @@ Topo
 (TX|tx)
 (UDP|udp)
 (URL|url)
-VIDs
+(VIDs|vids)
 (VLAN|vlan)
 (VMware|vmware)
 (VNI|vni)
@@ -156,7 +158,6 @@ dhcpd
 dhcrelay
 downlinks
 dport
-dscp
 ebtables
 ethtool
 facto
@@ -233,7 +234,6 @@ prepended
 ptmctl
 ptmd
 pwmd
-qos
 raccess
 rbash
 rdnbrd
@@ -278,6 +278,7 @@ uncomment
 unconfigure
 unencrypted
 uninstallation
+unmounted
 unregister
 unscalable
 untrusted
@@ -285,7 +286,6 @@ uplinks?
 userspace
 usr
 util
-vids
 vtysh
 wpasupplicant
 xls

@@ -8,7 +8,7 @@ This chapter introduces the basics for monitoring and troubleshooting Cumulus Li
 
 ## Serial Console
 
-The serial console is a useful tool for debugging issues, especially if you reboot the switch often or if you do not have a reliable network connection.
+Use the serial console to debug issues if you reboot the switch often or if you do not have a reliable network connection.
 
 The default serial console baud rate is 115200, which is the baud rate {{<exlink url="http://opencomputeproject.github.io/onie" text="ONIE">}} uses.
 
@@ -17,7 +17,7 @@ The default serial console baud rate is 115200, which is the baud rate {{<exlink
 On x86 switches, you configure serial console baud rate by editing `grub`.
 
 {{%notice warning%}}
-Incorrect configuration settings in `grub` can cause the switch to be inaccessible via the console. Review `grub` changes carefully before you implement them.
+Incorrect configuration settings in `grub` cause the switch to be inaccessible through the console. Review `grub` changes before you implement them.
 {{%/notice%}}
 
 The valid values for the baud rate are:
@@ -34,7 +34,7 @@ The valid values for the baud rate are:
 
 To change the serial console baud rate:
 
-1. Edit the `/etc/default/grub` file. The two relevant lines in `/etc/default/grub` are as follows; replace the *115200* value with a valid value specified above in the `--speed` variable in the first line and in the `console` variable in the second line:
+1. Edit the `/etc/default/grub` file and provide a valid value for the `--speed` and `console` variables:
 
    ```
    GRUB_SERIAL_COMMAND="serial --port=0x2f8 --speed=115200 --word=8 --parity=no --stop=1"
@@ -53,7 +53,7 @@ To change the serial console baud rate:
 
 ### Change the Console Log Level
 
-By default, the console prints all log messages except debug messages. To tune console logging to be less verbose so that certain levels of messages are not printed, run the `dmesg -n <level>` command, where the log levels are:
+By default, the console prints all log messages except debug messages. To tune console logging to be less verbose so that certain levels of messages do not print, run the `dmesg -n <level>` command, where the log levels are:
 
 | Level | Description                                                                          |
 | ----- | ------------------------------------------------------------------------------------ |
@@ -66,7 +66,7 @@ By default, the console prints all log messages except debug messages. To tune c
 | 6     | Informational messages.                                                              |
 | 7     | Debug messages.                                                                      |
 
-Only messages with a value lower than the level specified are printed to the console. For example, if you specify level **3**, only level 2 (critical conditions), level 1 (serious conditions), and level 0 (emergency messages) are printed to the console:
+Only messages with a value lower than the level specified print to the console. For example, if you specify level **3**, only level 2 (critical conditions), level 1 (serious conditions), and level 0 (emergency messages) print to the console:
 
 ```
 cumulus@switch:~$ sudo dmesg -n 3
@@ -78,7 +78,7 @@ You can also run `dmesg --console-level <level>` command, where the log levels a
 cumulus@switch:~$ sudo dmesg --console-level crit
 ```
 
-The `dmesg` command is applied until the next reboot.
+The `dmesg` command applies until the next reboot.
 
 For more details about the `dmesg` command, run `man dmesg`.
 
@@ -86,7 +86,7 @@ For more details about the `dmesg` command, run `man dmesg`.
 
 Two commands are helpful for getting general information about the switch and the version of Cumulus Linux you are running. These are helpful with system diagnostics and if you need to submit a support request.
 
-For information about the version of Cumulus Linux running on the switch, run the `net show version`,command which displays the contents of `/etc/lsb-release`:
+For information about the version of Cumulus Linux running on the switch, run the `net show version` command:
 
 ```
 cumulus@switch:~$ net show version
@@ -115,9 +115,9 @@ Ports............ 32 x 100G-QSFP28
 <!-- vale off -->
 ## Diagnostics Using cl-support
 <!-- vale on -->
-You can use `cl-support` to generate a single export file that contains various details and the configuration from a switch. This is useful for remote debugging and troubleshooting. For more information about `cl-support`, read {{<link url="Understanding-the-cl-support-Output-File">}}.
+You can use `cl-support` to generate a single export file that contains various details about switch configuration, and is useful for remote debugging and troubleshooting. For more information about `cl-support`, read {{<link url="Understanding-the-cl-support-Output-File">}}.
 
-Run `cl-support` before you submit a support request as this file helps in the investigation of issues.
+Run `cl-support` to investigate issues before you submit a support request.
 
 ```
 cumulus@switch:~$ sudo cl-support -h
@@ -142,7 +142,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-This creates a file called `/etc/rsyslog.d/11-remotesyslog.conf` in the `rsyslog` directory. The file has the following content:
+The configuration creates the file `/etc/rsyslog.d/11-remotesyslog.conf` in the `rsyslog` directory. The file has the following content:
 
 ```
 cumulus@switch:~$ cat /etc/rsyslog.d/11-remotesyslog.conf
@@ -152,26 +152,26 @@ cumulus@switch:~$ cat /etc/rsyslog.d/11-remotesyslog.conf
 
 ### Log Technical Details
 
-Logging on Cumulus Linux is done with {{<exlink url="http://www.rsyslog.com/" text="rsyslog">}}. `rsyslog` provides both local logging to the `syslog` file as well as the ability to export logs to an external `syslog` server. High precision timestamps are enabled for all `rsyslog` log files; for example:
+{{<exlink url="http://www.rsyslog.com/" text="rsyslog">}} performs logging on Cumulus Linux. `rsyslog` provides both local logging to the `syslog` file and the ability to export logs to an external `syslog` server. All `rsyslog` log files use high precision timestamps:
 
 ```
 2015-08-14T18:21:43.337804+00:00 cumulus switchd[3629]: switchd.c:1409 switchd version 1.0-cl2.5+5
 ```
 
-There are applications in Cumulus Linux that can write directly to a log file without going through `rsyslog`. These files are typically located in `/var/log/`.
+Cumulus Linux includes applications in the `/var/log/` directory that write directly to a log file without going through `rsyslog`.
 
 {{%notice note%}}
-All Cumulus Linux rules are stored in separate files in `/etc/rsyslog.d/`, which are called at the end of the `GLOBAL DIRECTIVES` section of `/etc/rsyslog.conf`. As a result, the `RULES` section at the end of `rsyslog.conf` is ignored because the messages have to be processed by the rules in `/etc/rsyslog.d` and then dropped by the last line in `/etc/rsyslog.d/99-syslog.conf`.
+All Cumulus Linux rules are in separate files in `/etc/rsyslog.d/`, which `rsyslog` calls at the end of the `GLOBAL DIRECTIVES` section of the `/etc/rsyslog.conf` file. `rsyslog` ignores the `RULES` section at the end of the `rsyslog.conf` file; the rules in the `/etc/rsyslog.d` file must process the messages, which the last line in the `/etc/rsyslog.d/99-syslog.conf` file drops.
 {{%/notice%}}
 
 ### Local Logging
 
-Most logs within Cumulus Linux are sent through `rsyslog`, which writes them to files in the `/var log` directory. There are default rules in the `/etc/rsyslog.d/` directory that define where the logs are written:
+Cumulus Linux sends logs through `rsyslog`, which writes them to files in the `/var log` directory. There are default rules in the `/etc/rsyslog.d/` directory that define where the logs write:
 
 | Rule | Purpose  |
 | ------- | ------ |
 | 10-rules.conf | Sets defaults for log messages, include log format and log rate limits. |
-| 15-crit.conf | Logs `crit`, `alert` or `emerg` log messages to `/var/log/crit.log` to ensure they are not rotated away rapidly.|
+| 15-crit.conf | Logs `crit`, `alert` or `emerg` log messages to `/var/log/crit.log` to ensure they do not rotate away.|
  20-clagd.conf | Logs `clagd` messages to `/var/log/clagd.log` for {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}.|
 | 22-linkstate.conf | Logs link state changes for all physical and logical network links to `/var/log/linkstate`. |
 | 25-switchd.conf | Logs `switchd` messages to `/var/log/switchd.log`. |
@@ -179,15 +179,15 @@ Most logs within Cumulus Linux are sent through `rsyslog`, which writes them to 
 | 35-rdnbrd.conf | Logs `rdnbrd` messages to `/var/log/rdnbrd.log` for {{<link url="Redistribute-Neighbor">}}. |
 | 40-netd.conf | Logs `netd` messages to `/var/log/netd.log` for NCLU. |
 | 45-frr.conf  | Logs routing protocol messages to `/var/log/frr/frr.log`. This includes BGP and OSPF log messages.  |
-| 99-syslog.conf | All remaining processes that use `rsyslog` are sent to `/var/log/syslog`. |
+| 99-syslog.conf | Sends all remaining processes that use `rsyslog` to `/var/log/syslog`. |
 
-Log files that are rotated are compressed into an archive. Processes that do not use `rsyslog` write to their own log files within the `/var/log` directory. For more information on specific log files, see {{<link url="Troubleshooting-Log-Files">}}.
+Cumulus Linux rotates and compresses log files into an archive. Processes that do not use `rsyslog` write to their own log files within the `/var/log` directory. For more information on specific log files, see {{<link url="Troubleshooting-Log-Files">}}.
 
 ### Enable Remote syslog
 
-By default, not all log messages are sent to a remote server. To send other log files (such as `switchd` logs) to a `syslog` server, follow these steps:
+Cumulus Linux does not send all log messages to a remote server. To send other log files (such as `switchd` logs) to a `syslog` server, follow these steps:
 
-1. Create a file in `/etc/rsyslog.d/`. Make sure the filename starts with a number lower than 99 so that it executes before log messages are dropped in, such as `20-clagd.conf` or `25-switchd.conf`. The example file below is called `/etc/rsyslog.d/11-remotesyslog.conf`. Add content similar to the following:
+1. Create a file in `/etc/rsyslog.d/`. Make sure the filename starts with a number lower than 99 so that it executes before log messages go in, such as `20-clagd.conf` or `25-switchd.conf`. The name of the example file below is `/etc/rsyslog.d/11-remotesyslog.conf`. Add content similar to the following:
 
    ```
    ## Logging switchd messages to remote syslog server
@@ -199,8 +199,8 @@ By default, not all log messages are sent to a remote server. To send other log 
 
    {{%notice note%}}
 - For TCP-based syslog, use two @@ before the IP address *@@192.168.1.2:514*.
-- Running `syslog` over TCP places a burden on the switch to queue packets in the `syslog` buffer. This may cause detrimental effects if the remote `syslog` server becomes unavailable.
-- The numbering of the files in `/etc/rsyslog.d/` dictates how the rules are installed into `rsyslog.d`. Lower numbered rules are processed first, and `rsyslog` processing *terminates* with the `stop` keyword. For example, the `rsyslog` configuration for FRR is stored in the `45-frr.conf` file with an explicit `stop` at the bottom of the file. FRR messages are logged to the `/var/log/frr/frr.log` file on the local disk only (these messages are not sent to a remote server using the default configuration). To log FRR messages remotely in addition to writing FRR messages to the local disk, rename the `99-syslog.conf` file to `11-remotesyslog.conf`. FRR messages are first processed by the `11-remotesyslog.conf` rule (transmit to remote server), then continue to be processed by the `45-frr.conf` file (write to local disk in the `/var/log/frr/frr.log` file).
+- Running `syslog` over TCP places a burden on the switch to queue packets in the `syslog` buffer. This has a detrimental effect if the remote `syslog` server becomes unavailable.
+- The file numbering in `/etc/rsyslog.d/` dictates how the rules install into `rsyslog.d`. Lower numbered rules process first and `rsyslog` processing *terminates* with the `stop` keyword. For example, the `rsyslog` configuration for FRR is in the `45-frr.conf` file with an explicit `stop` at the bottom of the file. FRR messages log to the `/var/log/frr/frr.log` file on the local disk only (these messages do not go to a remote server using the default configuration). To log FRR messages remotely in addition to writing FRR messages to the local disk, rename the `99-syslog.conf` file to `11-remotesyslog.conf`. The `11-remotesyslog.conf` rule (transmit to remote server)processes FRR messages first, then the `45-frr.conf` file continues to process the messages (write to local disk in the `/var/log/frr/frr.log` file).
 - Do not use the `imfile` module with any file written by `rsyslogd`.
 {{%/notice%}}
 
@@ -212,7 +212,7 @@ By default, not all log messages are sent to a remote server. To send other log 
 
 ### Write to syslog with Management VRF Enabled
 
-You can write to syslog with {{<link url="Management-VRF" text="management VRF">}} enabled by applying the following configuration; this configuration is commented out in the `/etc/rsyslog.d/11-remotesyslog.conf` file:
+You can write to syslog with {{<link url="Management-VRF" text="management VRF">}} enabled by applying the following configuration; the `/etc/rsyslog.d/11-remotesyslog.conf` file comments out this configuration.
 
 ```
 cumulus@switch:~$ cat /etc/rsyslog.d/11-remotesyslog.conf
@@ -231,13 +231,14 @@ action(type="omfwd" Target="10.0.0.1" Device="mgmt" Port="514" Protocol="udp")
 <!-- vale off -->
 ### Rate-limit syslog Messages
 <!-- vale on -->
-If you want to limit the number of `syslog` messages that can be written to the `syslog` file from individual processes, add the following configuration to the `/etc/rsyslog.conf` file. Adjust the interval and burst values to rate-limit messages to the appropriate levels required by your environment. For more information, read the {{<exlink url="http://www.rsyslog.com/doc/v8-stable/configuration/modules/imuxsock.html" text="rsyslog documentation">}}.
+If you want to limit the number of `syslog` messages that write to the `syslog` file from individual processes, add the following configuration to the `/etc/rsyslog.conf` file. Adjust the interval and burst values to rate-limit messages to the appropriate levels required by your environment. For more information, read the {{<exlink url="http://www.rsyslog.com/doc/v8-stable/configuration/modules/imuxsock.html" text="rsyslog documentation">}}.
 
 ```
 module(load="imuxsock"
       SysSock.RateLimit.Interval="2" SysSock.RateLimit.Burst="50")
 ```
-The following test script shows an example of rate-limit output in Cumulus Linux
+
+The following test script shows an example of rate-limit output.
 
 {{< expand "Example test script" >}}
 
@@ -275,15 +276,15 @@ root@leaf1:mgmt-vrf:/home/cumulus# tail -n 60 /var/log/syslog
 <!-- vale off -->
 ### Harmless syslog Error: Failed to reset devices.list
 <!-- vale on -->
-The following message is logged to `/var/log/syslog` when you run `systemctl daemon-reload` and during system boot:
+The following message logs to `/var/log/syslog` when you run `systemctl daemon-reload` and during system boot:
 
 ```
 systemd[1]: Failed to reset devices.list on /system.slice: Invalid argument
 ```
 
-This message is harmless, and can be ignored. It is logged when `systemd` attempts to change group attributes that are read only. The upstream version of `systemd` has been modified to not log this message by default.
+This message is harmless, you can ignore it. It logs when `systemd` attempts to change group attributes that are read only. Cumulus Linux modifies the upstream version of `systemd` to not log this message by default.
 
-The `systemctl daemon-reload` command is often issued when Debian packages are installed, so the message may be seen multiple times when upgrading packages.
+The `systemctl daemon-reload` command runs when you install Debian packages. You see the message multiple times when upgrading packages.
 
 ### Troubleshoot syslog
 
@@ -309,9 +310,9 @@ Dec 09 00:48:58 leaf01 systemd[1]: Started System Logging Service.
 
 #### Verify your rsyslog Configuration
 
-After making manual changes to any files in the `/etc/rsyslog.d` directory, use the `sudo rsyslogd -N1` command to identify any errors in the configuration files that might prevent the `rsyslog` service from starting.
+After making manual changes to any files in the `/etc/rsyslog.d` directory, use the `sudo rsyslogd -N1` command to identify any errors in the configuration files that prevent the `rsyslog` service from starting.
 
-In the following example, a closing parenthesis is missing in the `11-remotesyslog.conf` file, which is used to configure `syslog` for management VRF:
+In the following example, a closing parenthesis is missing in the `11-remotesyslog.conf` file, which configures `syslog` for management VRF:
 
 ```
 cumulus@leaf01:mgmt-vrf:~$ cat /etc/rsyslog.d/11-remotesyslog.conf
@@ -335,15 +336,15 @@ rsyslogd: End of config validation run. Bye.
 
 #### tcpdump
 
-If a syslog server is not accessible to validate that `syslog` messages are being exported, you can use `tcpdump`.
+If a syslog server is not accessible to validate that `syslog` messages are exporting, you can use `tcpdump`.
 
-In the following example, a syslog server has been configured at 192.168.0.254 for UDP syslogs on port 514:
+In the following example, a syslog server uses 192.168.0.254 for UDP syslog messages on port 514:
 
 ```
 cumulus@leaf01:mgmt-vrf:~$ sudo tcpdump -i eth0 host 192.168.0.254 and udp port 514
 ```
 
-A simple way to generate `syslog` messages is to use `sudo` in another session, such as `sudo date`. Using `sudo` generates an `authpriv` log.
+To generate `syslog` messages, use `sudo` in another session such as `sudo date`. Using `sudo` generates an `authpriv` log.
 
 ```
 cumulus@leaf01:mgmt-vrf:~$ sudo tcpdump -i eth0 host 192.168.0.254 and udp port 514

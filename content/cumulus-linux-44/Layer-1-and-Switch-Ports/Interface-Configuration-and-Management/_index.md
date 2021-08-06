@@ -102,7 +102,7 @@ For additional information on interface administrative state and physical state,
 
 ## Interface Classes
 
-`ifupdown2` enables you to group interfaces into separate classes. A class is a user-defined label that groups interfaces that share a common function (such as uplink, downlink or compute). You specify classes in the `/etc/network/interfaces` file.
+`ifupdown2` enables you to group interfaces into separate classes. A class is a user-defined label that groups interfaces that share a common function (such as `uplink`, `downlink` or `compute`). You specify classes in the `/etc/network/interfaces` file.
 
 The most common class is *auto*, which you configure like this:
 

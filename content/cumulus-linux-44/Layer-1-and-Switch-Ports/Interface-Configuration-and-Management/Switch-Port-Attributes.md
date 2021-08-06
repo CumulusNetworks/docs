@@ -166,11 +166,10 @@ cumulus@switch:~$ ip link show dev swp1
 For the link to come up, the two interfaces on each end must use the same FEC setting.
 
 {{%notice note%}}
-There is a very small latency overhead required for FEC. For most applications, this small amount of latency is preferable to error packet retransmission latency.
+FEC requires small latency overhead. For most applications, this small amount of latency is preferable to error packet retransmission latency.
 {{%/notice%}}
 
-There are two FEC types:
-
+The two FEC types are:
 - Reed Solomon (**RS**), IEEE 802.3 Clause 108 (CL108) on individual 25G channels and Clause 91 on 100G (4channels). This is the highest FEC algorithm, providing the best bit-error correction.
 - Base-R (**BaseR**), Fire Code (FC), IEEE 802.3 Clause 74 (CL74). Base-R provides less protection from bit errors than RS FEC but adds less latency.
 
@@ -277,7 +276,7 @@ When linking to a non-Spectrum peer, the firmware lets the peer decide. The Spec
 
 | Cable Type | <div style="width:300px">FEC Mode |
 |------------|----------|
-| 25G pptical cables | Let peer decide|
+| 25G optical cables | Let peer decide|
 | 25G 1,2 meters: CA-N, loss <13db | Let peer decide|
 | 25G 2.5,3 meters: CA-S, loss <16db | Let peer decide|
 | 25G 2.5,3,4,5 meters: CA-L, loss > 16db | Let peer decide|
@@ -1627,7 +1626,7 @@ If you change the port speed in the `/etc/cumulus/ports.conf` file but the speed
 
 ### NVIDIA SN2100 Switch and eth0 Link Speed
 
-After rebooting the Melllanox SN2100 switch, eth0 always has a speed of 100Mb/s. If you bring the interface down and then back up again, the interface negotiates 1000Mb. This only occurs the first time the interface comes up.
+After rebooting the NVIDIA SN2100 switch, eth0 always has a speed of 100Mb/s. If you bring the interface down and then back up again, the interface negotiates 1000Mb. This only occurs the first time the interface comes up.
 
 To work around this issue, add the following commands to the `/etc/rc.local` file to flap the interface automatically when the switch boots:
 

@@ -8,7 +8,7 @@ Data centers today have a large number of network switches manufactured by diffe
 
 ## Network Port LEDs
 
-A network port LED indicates the state of the link, such as link UP or Tx/Rx activity. Here are the requirements for these LEDs:
+A network port LED indicates the state of the link, such as link UP or transmit and receive activity. Here are the requirements for these LEDs:
 
 - **Number of LEDs per port** - Ports that cannot be split; for example, 1G ports must have 1 LED per port. Ports that can be split have 1 LED per split port. For example, a 40G port that you can split into 4 10G ports has 4 LEDs, one per split port.
 - **Location** - A port LED must be placed right above the port. This prevents the LEDs from being hidden by drooping cables. If the port can be split, the LED for each split port must also be placed above the port. The LEDs must be evenly spaced and be inside the edges of the ports to prevent confusion.

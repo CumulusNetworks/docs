@@ -4,13 +4,13 @@ author: NVIDIA
 weight: 580
 toc: 4
 ---
-Without EVPN and PIM-SM, HER is the default way to replicate BUM traffic to remote VTEPs, where the ingress VTEP generates as many copies as VTEPs for each overlay BUM packet. This might not be optimal in certain deployments.
+Without EVPN and PIM-SM, HER is the default way to replicate BUM traffic to remote VTEPs, where the ingress VTEP generates the same number of copies as VTEPs for each overlay BUM packet. In certain deployments, this is not optimal.
 
-The following example shows a EVPN-PIM configuration, where underlay multicast is used to distribute BUM traffic. A multicast distribution tree (MDT) optimizes the flow of overlay BUM in the underlay network.
+The following example shows a EVPN-PIM configuration, where underlay multicast distributes BUM traffic. A multicast distribution tree (MDT) optimizes the flow of overlay BUM in the underlay network.
 
 {{< img src = "/images/cumulus-linux/evpn-pim.png" >}}
 
-In the above example, host01 sends an ARP request to resolve host03. leaf01 (in addition to flooding the packet to host02) sends an encapsulated packet over the underlay network, which is forwarded using the MDT to leaf02 and leaf03.
+In the above example, host01 sends an ARP request to resolve host03. leaf01 (in addition to flooding the packet to host02) sends an encapsulated packet over the underlay network, which the spine forwards using the MDT to leaf02 and leaf03.
 
 For PIM-SM, type-3 routes do not result in any forwarding entries. Cumulus Linux does **not** advertise type-3 routes for a layer 2 VNI when BUM mode for that VNI is PIM-SM.
 
@@ -22,11 +22,9 @@ To configure multicast VXLAN tunnels, you need to configure PIM-SM in the underl
 - Configure static RP on all the PIM routers.
 - Configure MSDP on the RPs for RP redundancy.
 
-The configuration steps needed to configure PIM-SM in the underlay are provided in {{<link url="Protocol-Independent-Multicast-PIM">}}.
+For the configuration steps to configure PIM-SM in the underlay, refer to {{<link url="Protocol-Independent-Multicast-PIM">}}.
 
 In addition to the PIM-SM configuration, you need to run the following commands on each VTEP to provide the layer 2 VNI to MDT mapping.
-
-NVUE commands are not supported.
 
 {{< tabs "TabID37 ">}}
 {{< tab "NCLU Commands ">}}
@@ -135,9 +133,9 @@ VNI: 10
 
 The following example shows an EVPN-PIM configuration on the VTEP, where:
 
-- PIM is enabled on swp51 thru swp54, and the loopback interface (shown in the example `/etc/frr/frr.conf` file below).
-- The group mapping 10.10.100.100 is configured for a static RP (shown at the top of the `/etc/frr/frr.conf` file example below).
-- Multicast group 224.0.0.10 is mapped to VNI10, multicast group 224.0.0.20 is mapped to VNI20, and multicast group 224.0.0.30 is mapped to VNI30 (shown in the example `/etc/network/interfaces` file below).
+- PIM is on swp51 thru swp54 and the loopback interface (see the example `/etc/frr/frr.conf` file below).
+- The group mapping 10.10.100.100 is for a static RP (see the top of the `/etc/frr/frr.conf` file example below).
+- Multicast group 224.0.0.10 maps to VNI10, multicast group 224.0.0.20 maps to VNI20, and multicast group 224.0.0.30 maps to VNI30 (see the example `/etc/network/interfaces` file below).
 
 {{< tabs "TabID87 ">}}
 {{< tab "/etc/frr/frr.conf file ">}}

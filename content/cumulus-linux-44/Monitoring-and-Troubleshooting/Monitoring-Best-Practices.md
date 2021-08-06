@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1240
 toc: 3
 ---
-The following monitoring processes are considered best practices for reviewing and troubleshooting potential issues with Cumulus Linux environments. In addition, several of the more common issues have been listed, with potential solutions included.
+The following monitoring processes are best practices for reviewing and troubleshooting potential issues with Cumulus Linux environments.
 
 This document describes:
 
@@ -13,19 +13,19 @@ This document describes:
 
 ## Trend Analysis Using Metrics
 
-A metric is a quantifiable measure that is used to track and assess the status of a specific infrastructure component. It is a check collectedover time. Examples of metrics include bytes on an interface, CPU utilization, and total number of routes.
+A metric is a quantifiable measure that tracks and assesses the status of a specific infrastructure component. Examples of metrics include bytes on an interface, CPU utilization, and total number of routes.
 
-Metrics are more valuable when used for trend analysis.
+Metrics are more valuable when you use them for trend analysis.
 
 ## Generate Alerts with Triggered Logging
 
-Triggered issues are normally sent to `syslog`, but can go to another log file depending on the feature. In Cumulus Linux, `rsyslog` handles all logging, including local and remote logging. Logs are the best method to use for generating alerts when the system transitions from a stable steady state.
+Cumulus Linux typically sends triggered issues to `syslog`, but can send issues to another log file depending on the feature. `rsyslog` handles all logging, including local and remote logging. Logs are the best method to use for generating alerts when the system transitions from a stable steady state.
 
-Sending logs to a centralized collector, then creating alerts based on critical logs is an optimal solution for alerting.
+Sending logs to a centralized collector, then creating alerts that you base on critical logs is an optimal solution.
 
 ## Log Formatting
 
-Most log files in Cumulus Linux use a standard presentation format. For example, consider this `syslog` entry:
+Most log files in Cumulus Linux use a standard presentation format. For example:
 
 ```
 2017-03-08T06:26:43.569681+00:00 leaf01 sysmonitor: Critically high CPU use: 99%
@@ -36,11 +36,11 @@ Most log files in Cumulus Linux use a standard presentation format. For example,
 - *sysmonitor* is the process that is the source of the message.
 - *Critically high CPU use: 99%* is the message.
 
-For brevity and legibility, the timestamp and hostname have been omitted from the examples in this chapter.
+For brevity and legibility, this section omits the timestamp and hostname from examples.
 
 ## Hardware
 
-The `smond` process provides monitoring functionality for various switch hardware elements. Minimum or maximum values are output depending on the flags applied to the basic command. The hardware elements and applicable commands and flags are listed in the table below.
+The `smond` process provides monitoring for various switch hardware elements. Minimum or maximum values depend on the flags you apply to the basic command. The table below lists the hardware elements and applicable commands and flags.
 
 | Hardware Element | Monitoring Commands | Interval Poll |
 |----------------- |-------------------- |-------------- |
@@ -64,11 +64,11 @@ Not all switch models include a sensor for monitoring power consumption and volt
 
 ## System Data
 
-Cumulus Linux includes several ways to monitor system data. In addition, alerts are issued in high risk situations.
+Cumulus Linux includes several ways to monitor system data. In addition, you can receive alerts in high risk situations.
 
 ### CPU Idle Time
 
-When a CPU reports five high CPU alerts within a span of five minutes, an alert is logged.
+When a CPU reports five high CPU alerts within a span of five minutes, the switch logs an alert.
 
 {{%notice warning%}}
 Short bursts of high CPU can occur during `switchd` churn or routing protocol startup. Do not set alerts for these short bursts.
@@ -82,7 +82,7 @@ Short bursts of high CPU can occur during `switchd` churn or routing protocol st
 |--------- |------------- |------------ |
 | High CPU | <pre>/var/log/syslog</pre> | <pre>sysmonitor: Critically high CPU use: 99%<br>systemd[1]: Starting Monitor system resources (cpu, memory, disk)...<br>systemd[1]: Started Monitor system resources (cpu, memory, disk).<br>sysmonitor: High CPU use: 89%<br>systemd[1]: Starting Monitor system resources (cpu, memory, disk)...<br>systemd[1]: Started Monitor system resources (cpu, memory, disk).<br>sysmonitor: CPU use no longer high: 77% |
 
-Cumulus Linux 3.0 and later monitors CPU, memory, and disk space via `sysmonitor`. The configurations for the thresholds are stored in `/etc/cumulus/sysmonitor.conf`. More information is available with `man sysmonitor`.
+Cumulus Linux monitors CPU, memory, and disk space with `sysmonitor`. The configurations for the thresholds are in `/etc/cumulus/sysmonitor.conf`. For more information, see `man sysmonitor`.
 
 | CPU measure  | Thresholds            |
 | ------------ | --------------------- |
@@ -103,11 +103,11 @@ In Cumulus Linux, `systemd` monitors and restarts processes.
 
 | Process Element | Monitoring Commands |
 |---------------- |-------------------- |
-| View processes monitored by systemd | <pre>cumulus@switch:~$ systemctl status</pre> |
+| View processes that `systemd` monitors | <pre>cumulus@switch:~$ systemctl status</pre> |
 
 ## Layer 1 Protocols and Interfaces
 
-Link and port state interface transitions are logged to `/var/log/syslog` and `/var/log/switchd.log`.
+Link and port state interface transitions log to `/var/log/syslog` and `/var/log/switchd.log`.
 
 | Interface Element | Monitoring Commands |
 |------------------ |-------------------- |
@@ -116,13 +116,13 @@ Link and port state interface transitions are logged to `/var/log/syslog` and `/
 | Port state | <pre>cumulus@switch:~$ ip link show<br>cumulus@switch:~$ net show interface all json</pre> |
 | Bond state | <pre>cumulus@switch:~$ cat /proc/net/bonding/[bond]<br>cumulus@switch:~$ net show interface all json</pre> |
 
-Interface counters are obtained from either querying the hardware or the Linux kernel. The two outputs should align, but the Linux kernel aggregates the output from the hardware.
+You obtain interface counters from either querying the hardware or the Linux kernel. The Linux kernel aggregates the output from the hardware.
 
 | Interface Counter Element | Monitoring Commands | Interval Poll|
 |-------------------------- |-------------------- |------------- |
 | Interface counters | <pre>cumulus@switch:~$ cat /sys/class/net/[iface]/statistics/[stat_name]<br>cumulus@switch:~$ net show counters json<br>cumulus@switch:~$ cl-netstat -j<br>cumulus@switch:~$ ethtool -S [ iface]</pre> | 10 seconds |
 
-| Layer 1 Logs |L og Location | Log Entries |
+| Layer 1 Logs |Log Location | Log Entries |
 |------------- |------------- |------------ |
 | Link failure/Link flap | <pre>/var/log/switchd.log</pre> | <pre>switchd[5692]: nic.c:213 nic_set_carrier: swp17: setting kernel carrier: down<br>switchd[5692]: netlink.c:291 libnl: swp1, family 0, ifi 20, oper down<br>switchd[5692]: nic.c:213 nic_set_carrier: swp1: setting kernel carrier: up<br>switchd[5692]: netlink.c:291 libnl: swp17, family 0, ifi 20, oper up</pre> |
 | Unidirectional link | <pre>/var/log/switchd.log<br>/var/log/ptm.log</pre>|<pre>ptmd[7146]: ptm_bfd.c:2471 Created new session 0x1 with peer 10.255.255.11 port swp1<br>ptmd[7146]: ptm_bfd.c:2471 Created new session 0x2 with peer fe80::4638:39ff:fe00:5b port swp1<br>ptmd[7146]: ptm_bfd.c:2471 Session 0x1 down to peer 10.255.255.11, Reason 8<br>ptmd[7146]: ptm_bfd.c:2471 Detect timeout on session 0x1 with peer 10.255.255.11, in state 1</pre> |
@@ -139,7 +139,7 @@ Interface counters are obtained from either querying the hardware or the Linux k
 | MLAG port negotiation Flapping | <pre>/var/log/syslog</pre>|<pre>mstpd: one_clag_cmd: setting (0) mac 00:00:00:00:00:00 <server01, None><br>mstpd: one_clag_cmd: setting (1) mac 44:38:39:00:00:03 <server01, None></pre> |
 | | <pre>/var/log/clagd.log</pre> | <pre>clagd[14291]: server01 is no longer dual connected<br>clagd[14291]: server01 is now dual connected.</pre> |
 
-Prescriptive Topology Manager (PTM) uses LLDP information to compare against a `topology.dot` file that describes the network. It has built in alerting capabilities, so it is preferable to use PTM on the switch instead of polling LLDP information regularly. The PTM code is available with the Cumulus Linux {{<exlink url="https://github.com/CumulusNetworks/ptm" text="GitHub repository">}}. Additional PTM, BFD, and associated logs are documented in the code.
+PTM uses LLDP information to compare against a `topology.dot` file that describes the network. It has built in alerting capabilities. Use PTM on the switch instead of polling LLDP information regularly. You can install PTM from the Cumulus Linux {{<exlink url="https://github.com/CumulusNetworks/ptm" text="GitHub repository">}}.
 
 {{%notice note%}}
 Consider tracking peering information through PTM. For more information, refer to the {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager documentation">}}.
@@ -152,7 +152,7 @@ Consider tracking peering information through PTM. For more information, refer t
 
 ## Layer 2 Protocols
 
-Spanning tree is a protocol that prevents loops in a layer 2 infrastructure. In a stable state, the spanning tree protocol should stably converge. Monitoring the Topology Change Notifications (TCN) in STP helps identify when new BPDUs are received.
+Spanning tree is a protocol that prevents loops in a layer 2 infrastructure. In a stable state, the spanning tree protocol converges. Monitor the Topology Change Notifications (TCN) in STP to identify when new BPDUs arrive.
 
 | Interface Counter Element | Monitoring Commands | Interval Poll |
 |-------------------------- |-------------------- |-------------- |
@@ -167,7 +167,7 @@ Spanning tree is a protocol that prevents loops in a layer 2 infrastructure. In 
 
 ## Layer 3 Protocols
 
-When FRRouting boots up for the first time, there is a different log file for each daemon that is activated. If the log file is ever edited (for example, through vtysh or `frr.conf`), the integrated configuration sends all logs to the same file.
+When FRRouting boots up for the first time, there is a different log file for each activated daemon. If you edit the log file (for example, through vtysh or `frr.conf`), the integrated configuration sends all logs to the same file.
 
 To send FRRouting logs to syslog, apply the configuration `log syslog` in vtysh.
 
@@ -175,7 +175,7 @@ To send FRRouting logs to syslog, apply the configuration `log syslog` in vtysh.
 
 When monitoring BGP, check if BGP peers are operational. There is not much value in alerting on the current operational state of the peer; monitoring the transition is more valuable, which you can do by monitoring `syslog`.
 
-Monitoring the routing table provides trending on the size of the infrastructure. This is especially useful when integrated with host-based solutions (such as Routing on the Host) when the routes track with the number of applications available.
+Monitoring the routing table provides trending on the size of the infrastructure. This is useful when you integrate with host-based solutions (such as Routing on the Host) when the routes track with the number of applications available.
 
 | BGP Element | Monitoring Commands | Interval Poll |
 |------------ |-------------------- |-------------- |
@@ -190,7 +190,7 @@ Monitoring the routing table provides trending on the size of the infrastructure
 
 When monitoring OSPF, check if OSPF peers are operational. There is not much value in alerting on the current operational state of the peer; monitoring the transition is more valuable, which you can do by monitoring `syslog`.
 
-Monitoring the routing table provides trending on the size of the infrastructure. This is especially useful when integrated with host-based solutions (such as Routing on the Host) when the routes track with the number of applications available.
+Monitoring the routing table provides trending on the size of the infrastructure. This is useful when you integrate with host-based solutions (such as Routing on the Host) when the routes track with the number of applications available.
 
 | OSPF Element |Monitoring Commands |Interval Poll |
 |------------- |------------------- |------------- |
@@ -223,7 +223,7 @@ The table below describes the various log files.
 | syslog | Catch all log file. Identifies memory leaks and CPU spikes. | <pre>/var/log/syslog</pre> |
 | switchd functionality | Hardware Abstraction Layer (HAL). | <pre>/var/log/switchd.log</pre> |
 | Routing daemons | FRRouting zebra daemon details. | <pre>/var/log/daemon.log</pre> |
-| Routing protocol | The log file is configurable in FRRouting. When FRRouting first boots, it uses the non-integrated configuration so each routing protocol has its own log file. After booting up, FRRouting switches over to using the integrated configuration, so that all logs go to a single place.<br><br>To edit the location of the log files, use the log file <location> command. By default, FRRouting logs are not sent to syslog. Use the log syslog <level> command to send logs through rsyslog and into /var/log/syslog.<br><br>**Note**: To write syslog debug messages to the log file, you must run the log syslog debug command to configure FRR with syslog severity 7 (debug); otherwise, when you issue a debug command such as, `debug bgp neighbor-events`, no output is sent to /var/log/frr/frr.log.<br><br>However, when you manually define a log target with the log file /var/log/frr/debug.log command, FRR automatically defaults to severity 7 (debug) logging and the output is logged to /var/log/frr/frr.log.|<pre>/var/log/frr/zebra.log<br>/var/log/frr/{protocol}.log<br>/var/log/frr/frr.log</pre> |
+| Routing protocol | The log file is configurable in FRRouting. When FRRouting first boots, it uses the non-integrated configuration so each routing protocol has its own log file. After booting up, FRRouting switches over to using the integrated configuration, so that all logs go to a single place.<br><br>To edit the location of the log files, use the log file <location> command. By default, Cumulus Linux does not send FRRouting logs to syslog. Use the log syslog <level> command to send logs through `rsyslog` and into `/var/log/syslog`.<br><br>**Note**: To write syslog debug messages to the log file, you must run the log syslog debug command to configure FRR with syslog severity 7 (debug); otherwise, when you issue a debug command such as `debug bgp neighbor-events`, no output logs to `/var/log/frr/frr.log`.<br><br>However, when you manually define a log target with the log file `/var/log/frr/debug.log` command, FRR automatically defaults to severity 7 (debug) logging and the output logs to `/var/log/frr/frr.log`.|<pre>/var/log/frr/zebra.log<br>/var/log/frr/{protocol}.log<br>/var/log/frr/frr.log</pre> |
 
 ## Protocols and Services
 

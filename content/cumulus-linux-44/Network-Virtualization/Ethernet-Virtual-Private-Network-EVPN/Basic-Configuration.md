@@ -80,7 +80,7 @@ cumulus@spine01:~$ net add bgp l2vpn evpn neighbor swp1 activate
 {{< /tab >}}
 {{< /tabs >}}
 
-4. FRR is not aware of any local VNIs or MAC addresses, or neighbors associated with those VNIs until you enable the BGP control plane for all VNIs configured on the switch by setting the `advertise-all-vni` option.
+4. FRR is not aware of any local VNIs, MAC addresses, or neighbors associated with those VNIs until you enable the BGP control plane for all VNIs configured on the switch by setting the `advertise-all-vni` option.
 
 ```
 cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-all-vni
@@ -89,7 +89,7 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{%notice note%}}
-This configuration is only needed on leaf switches that are VTEPs. EVPN routes received from a BGP peer are accepted, even without this explicit EVPN configuration. These routes are maintained in the global EVPN routing table. However, they only become effective (imported into the per-VNI routing table and appropriate entries installed in the kernel) when the VNI corresponding to the received route is locally known.
+You only need this configuration on leafs that are VTEPs. The switch accepts EVPN routes from a BGP peer even without this explicit EVPN configuration and maintains the routes in the global EVPN routing table. However, Cumulus Linux only imports the routes into the per-VNI routing table and installs the appropriate entries in the kernel when the VNI corresponding to the received route is locally known.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -104,7 +104,7 @@ This configuration is only needed on leaf switches that are VTEPs. EVPN routes r
    cumulus@leaf01:~$ nv config apply
    ```
 
-   To create a traditional VXLAN device, where each VNI is represented as a separate device instead of a set of VNIs in a single device model, see {{<link url="VXLAN-Devices" text="VXLAN-Devices">}}.
+   To create a traditional VXLAN device, where each VNI represents a separate device instead of a set of VNIs in a single device model, see {{<link url="VXLAN-Devices" text="VXLAN-Devices">}}.
 
 2. Configure BGP. The following example commands assign an ASN and router ID to leaf01 and spine01, specify the interfaces between the two BGP peers, and the prefixes to originate. For complete information on how to configure BGP, see {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol - BGP">}}.
 
@@ -336,7 +336,7 @@ cumulus@spine01:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-3. Activate the EVPN address family and enable EVPN between BGP neighbors. The following example commands enable EVPN between leaf01 and spine01. The commands automatically provision all locally configured VNIs to be advertised by the BGP control plane.
+3. Activate the EVPN address family and enable EVPN between BGP neighbors. The following example commands enable EVPN between leaf01 and spine01. The commands automatically provision all locally configured VNIs so the BGP control plane can advertise them.
 
    {{< tabs "TabID338 ">}}
 {{< tab "leaf01 ">}}
@@ -404,7 +404,7 @@ neighbor swp1 activate
 {{< /tabs >}}
 
 {{%notice note%}}
-The `advertise-all-vni` option is only needed on leaf switches that are VTEPs. EVPN routes received from a BGP peer are accepted, even without this explicit EVPN configuration. These routes are maintained in the global EVPN routing table. However, they only become effective (imported into the per-VNI routing table and appropriate entries installed in the kernel) when the VNI corresponding to the received route is locally known.
+You only need to set the `advertise-all-vni` option on leafs that are VTEPs. The switch accepts EVPN routes from a BGP peer even without this option. The routes are in the global EVPN routing table but Cumulus Linux only imports them into the per-VNI routing table and installs the appropriate entries in the kernel when the VNI corresponding to the received route is locally known.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -417,9 +417,9 @@ For EVPN in VXLAN active-active mode, both switches in the MLAG pair establish E
 For active-active configuration, make sure that:
 
 - The `clagd-vxlan-anycast-ip` and `vxlan-local-tunnelip` parameters are under the loopback stanza on both peers.
-- The anycast address is advertised to the routed fabric from both peers.
-- The VNIs are configured identically on both peers.
-- The peerlink must belong to the bridge.
+- Both peers advertise the anycast address to the routed fabric.
+- The VNI configuration is identical on both peers.
+- The peerlink belongs to the bridge.
 
 MLAG synchronizes information between the two switches in the MLAG pair; EVPN does not synchronize.
 
@@ -429,9 +429,9 @@ For information about active-active VTEPs and anycast IP behavior, and for failu
 
 ## Considerations
 
-- When EVPN is enabled on a VTEP, all locally defined VNIs on that switch and other information (such as MAC addresses) are advertised to EVPN peers. There is no provision to only announce certain VNIs.
-- ND suppression is supported on Spectrum_A1 and above.
-- ARP suppression is enabled by default in Cumulus Linux. However, in a {{<link url="VXLAN-Active-active-Mode" text="VXLAN active-active">}} configuration, ARPs are sometimes *not* suppressed. This is because the neighbor entries are not synchronized between the two switches operating in active-active mode by a control plane. This has no impact on forwarding.
-- You must configure the overlay (tenants) in a specific VRF and separate from the underlay, which resides in the default VRF. Layer 3 VNI mapping for the default VRF is not supported.
-- EVPN is not supported when {{<link title="Redistribute Neighbor" >}} is also configured. Enabling both features simultaneously causes instability in IPv4 and IPv6 neighbor entries.
-- To conform to {{<exlink url="https://tools.ietf.org/html/rfc6514#section-5" text="RFC 6514">}}, Cumulus Linux implements a stricter check on a received type-3 route to ensure that it has the PMSI attribute with the replication type set to *ingress-replication*.
+- When you enable EVPN on a VTEP, the switch advertises all its locally defined VNIs and other information, such as MAC addresses, to EVPN peers. There is no provision to only announce certain VNIs.
+- You can only use ND suppression on Spectrum_A1 and above.
+-  Cumulus Linux enables ARP suppression by default. However, in a {{<link url="VXLAN-Active-active-Mode" text="VXLAN active-active">}} configuration, if the switch does not suppress ARPs, the control plane does not synchronize neighbor entries between the two switches operating in active-active mode. You do not see any impact on forwarding.
+- You must configure the overlay (tenants) in a specific VRF and separate from the underlay, which resides in the default VRF. Cumulus Linux does not support layer 3 VNI mapping for the default VRF.
+- You cannot configure EVPN with {{<link title="Redistribute Neighbor" >}}. Enabling both features simultaneously causes instability in IPv4 and IPv6 neighbor entries.
+- To conform to {{<exlink url="https://tools.ietf.org/html/rfc6514#section-5" text="RFC 6514">}}, Cumulus Linux implements a stricter check on a received type-3 route to ensure that the PMSI attribute is *ingress-replication*.

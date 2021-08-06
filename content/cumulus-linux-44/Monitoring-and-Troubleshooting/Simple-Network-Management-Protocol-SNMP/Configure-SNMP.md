@@ -268,7 +268,7 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
 
-There are three directives that define an internal SNMPv3 username that are required for `snmpd` to retrieve information and send built-in traps or for those configured with the `monitor` command (see {{<link url="#configure-snmp-trap-and-inform-messages" text="below">}}):
+Three directives define an internal SNMPv3 username that are required for `snmpd` to retrieve information and send built-in traps or for those configured with the `monitor` command (see {{<link url="#configure-snmp-trap-and-inform-messages" text="below">}}):
 
 - `createuser`: the default SNMPv3 username.
 - `iquerysecName`: the default SNMPv3 username to use when making internal queries to retrieve monitored expressions &mdash; either for evaluating the monitored expression or building a notification payload. These internal queries always use SNMPv3, even if normal querying of the agent is done using SNMPv1 or SNMPv2c. The `iquerysecname` directive is purely concerned with defining which user should be used, not with actually setting this user up.
@@ -318,7 +318,7 @@ rwuser user999
 ```
 
 {{%notice tip%}}
-The following example shows a more advanced but slightly more secure method of configuring SNMPv3 users without creating clear text passwords:
+The following example shows a more advanced but slightly more secure method of configuring SNMPv3 users without creating `cleartext` passwords:
 
 1. Install the `net-snmp-config` script that is in `libsnmp-dev` package:
 
@@ -346,7 +346,7 @@ The minimum password length is eight characters and the arguments `-a` and `-x` 
    cumulus@switch:~$ sudo systemctl start snmpd.service
    ```
 
-This adds a `createUser` command in `/var/lib/snmp/snmpd.conf`. Do **not** edit this file by hand unless you are removing usernames. You can edit this file and restrict access to certain parts of the MIB by adding *noauth*, *auth* or *priv* to allow unauthenticated access, require authentication, or to enforce use of encryption.
+This adds a `createUser` command in `/var/lib/snmp/snmpd.conf`. Do **not** edit this file by hand unless you are removing usernames. You can edit this file and restrict access to certain parts of the MIB by adding `noauth`, `auth` or `priv` to allow unauthenticated access, require authentication, or to enforce use of encryption.
 
 The `snmpd` daemon reads the information from the `/var/lib/snmp/snpmd.conf` file and then the line is removed (eliminating the storage of the master password for that user) and replaced with the key that is derived from it (using the EngineID). This key is a localized key, so that if it is stolen, it cannot be used to access other agents. To remove the two users `userMD5withDES` and `userSHAwithAES`, stop the `snmpd` daemon and edit the `/var/lib/snmp/snmpd.conf` file. Remove the lines containing the username, then restart the `snmpd` daemon as in step 3 above.
 
@@ -361,9 +361,9 @@ To restrict MIB tree exposure, you can define a view for an SNMPv3 username or c
 
 You can define a specific view multiple times and fine tune to provide or restrict access using the `included` or `excluded` command to specify branches of certain MIB trees.
 
-By default, the `snmpd.conf` file contains many views within the *systemonly* view.
-<!-- vale off -->
-{{< tabs "viewname" >}}
+By default, the `snmpd.conf` file contains many views within the `systemonly` view.
+
+{{< tabs "366 " >}}
 {{< tab "NCLU Commands" >}}
 <!-- vale on -->
 ```
@@ -381,7 +381,7 @@ cumulus@switch:~$ net commit
 
 Edit the `/etc/snmp/snmpd.conf` file and add the `view` command.
 
-The *systemonly* view is used by `rocommunity` to create a password for access to only these branches of the OID tree.
+The `systemonly` view is used by `rocommunity` to create a password for access to only these branches of the OID tree.
 
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
@@ -409,20 +409,20 @@ You can also specify a view to restrict the subset of the OID tree.
 {{< tab "NCLU Commands" >}}
 
 The following example configuration:
-<!-- vale off -->
-- Sets the read only community string to *simplepassword* for SNMP requests
+
+- Sets the read only community string to `simplepassword` for SNMP requests
 - Restricts requests to only those sourced from hosts in the 192.168.200.10/24 subnet
-- Restricts viewing to the *mysystem* view defined with the `viewname` command
-<!-- vale on -->
+- Restricts viewing to the `mysystem` view defined with the `viewname` command
+
 ```
 cumulus@switch:~$ net add snmp-server viewname mysystem included 1.3.6.1.2.1.1
 cumulus@switch:~$ net add snmp-server readonly-community simplepassword access 192.168.200.10/24 view mysystem
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
-<!-- vale off -->
-This example creates a read-only community password *showitall* that allows access to the entire OID tree for requests originating from any source IP address.
-<!-- vale on -->
+
+This example creates a read-only community password `showitall` that allows access to the entire OID tree for requests originating from any source IP address.
+
 ```
 cumulus@switch:~$ net add snmp-server readonly-community showitall access any
 cumulus@switch:~$ net pending
@@ -432,10 +432,10 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
 
-You enable the community string by providing a community string and then setting **rocommunity** (for read-only access) or **rwcommunity** (for read-write access). Other options you can specify are described below.
+You enable the community string by providing a community string and then setting `rocommunity` (for read-only access) or `rwcommunity` (for read-write access). Other options you can specify are described below.
 
 - `rocommunity`/`rwcommunity`: `rwcommunity` is for a read-only community; `rwcommunity` is for read-write access. Specify one or the other.
-- `public`: The plain text password/community string.
+- `public`: The plain text password or community string.
 
   {{%notice info%}}
 NVIDIA strongly recommends you change this password to something else.
@@ -443,11 +443,11 @@ NVIDIA strongly recommends you change this password to something else.
 
 - `default`: Allows connections from any system.
 - `localhost`: Allows requests only from the local host. A restricted source can either be a specific hostname (or address), or a subnet, represented as IP/MASK (like 10.10.10.0/255.255.255.0), or IP/BITS (like 10.10.10.0/24), or the IPv6 equivalents.
-- `-V`: Restricts viewing to a specific {{<link url="#configure-an-snmp-view-name" text="view">}}. For example, *systemonly* is one SNMP view. This is a user-defined value.
+- `-V`: Restricts viewing to a specific {{<link url="#configure-an-snmp-view-name" text="view">}}. For example, `systemonly` is one SNMP view. This is a user-defined value.
 
 Edit the `/etc/snmp/snmpd.conf` file and add the community string.
 
-In the following example, the first line sets the read-only community string to *turtle* for SNMP requests sourced from the *192.168.200.10/24* subnet and restricts viewing to the *systemonly* view defined with the `-V` option. The second line creates a read-only community string that allows access to the entire OID tree from any source IP address.
+In the following example, the first line sets the read-only community string to `turtle` for SNMP requests sourced from the *192.168.200.10/24* subnet and restricts viewing to the `systemonly` view defined with the `-V` option. The second line creates a read-only community string that allows access to the entire OID tree from any source IP address.
 
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf

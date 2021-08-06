@@ -5,7 +5,7 @@ weight: 1170
 toc: 4
 ---
 
-Below are the MIBs supported by Cumulus Linux, as well as suggested uses for them. The overall Cumulus Linux MIB is defined in the `/usr/share/snmp/mibs/Cumulus-Snmp-MIB.txt` file.
+Below are the MIBs that Cumulus Linux supports, as well as suggested uses for them. The `/usr/share/snmp/mibs/Cumulus-Snmp-MIB.txt` file defines the overall Cumulus Linux MIB.
 
 | <div style="width:250px">MIB Name | Suggested Uses |
 | -------- | -------------- |
@@ -40,9 +40,9 @@ Below are the MIBs supported by Cumulus Linux, as well as suggested uses for the
 
 ## List All Installed MIBs
 
-Due to licensing restrictions, not all supported MIBs are installed in Cumulus Linux. The MIBs that are not installed require the "non-free" archive to be added to `/etc/apt/sources.list`. To see which MIBs are installed on your switch, run `ls /usr/share/snmp/mibs/`.
+Due to licensing restrictions, Cumulus Linux does not install all MIBs. For the MIBs that Cumulus Linux does not install, you must add the "non-free" archive to `/etc/apt/sources.list`. To see which MIBs are on your switch, run `ls /usr/share/snmp/mibs/`.
 
-To install more MIBs, you need to install `snmp-mibs-downloader` and then either remove or comment out the "non-free" repository in `/etc/apt/sources.list`. This is described {{<link url="Configure-SNMP-Traps/#enable-mib-to-oid-translation" text="here">}}.
+To install more MIBs, you need to install `snmp-mibs-downloader` and then either remove or comment out the "non-free" repository in `/etc/apt/sources.list`. Refer to {{<link url="Configure-SNMP-Traps/#enable-mib-to-oid-translation" text="Enable MIB-to-OID Translation">}}.
 
 {{<expand "Installed MIBs">}}
 

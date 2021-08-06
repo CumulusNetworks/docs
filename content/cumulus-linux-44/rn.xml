@@ -46,24 +46,12 @@ Fixed: 1.17-3+deb10u2</td>
 <td></td>
 </tr>
 <tr>
-<td>2734463</td>
-<td>The state of the VNI interface shows UP on the MLAG local switch when it is not configured on the peer switch.</td>
-<td>3.7.8-3.7.15, 4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2734126</td>
 <td>CVE-2021-33910: The Qualys Research Labs discovered that an attacker-controlled allocation using the alloca() function could result in memory
 corruption, allowing to crash systemd and hence the entire operating system.  Details can be found at https://www.qualys.com/2021/07/20/cve-2021-33910/denial-of-service-systemd.txt .
 Vulnerable: &lt;= 241-7~deb10u7
 Fixed: 241-7~deb10u8</td>
 <td>4.0.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2734121</td>
-<td>Only some BUM traffic arriving on a layer 2 VNI is decapsulated and flooded. ARP requests are forwarded and flooded as expected but DHCP Discovers (Ethernet broadcast DMAC, IP broadcast DIP) and broadcast pings (IP broadcast + subnet broadcast) are not forwarded or decapsulated.</td>
-<td>4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -152,13 +140,6 @@ To work around this issue, use traditional route leaking with the {{import vrf}}
 </tr>
 <tr>
 <td>2701000</td>
-<td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
-To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
-<td>4.3.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2700701</td>
 <td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
 To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
 <td>4.3.0-4.4.0</td>
@@ -293,13 +274,6 @@ To work around this issue, disable pruning for IPv6 multicast by setting {{bridg
 <td>2556811</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2556659</td>
-<td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
-Vulnerable: &lt;= 2.8.90-1-cl4u5</td>
-<td>4.0.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>

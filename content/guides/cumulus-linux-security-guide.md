@@ -497,7 +497,6 @@ The following example is a starting point to build on. This is a base 802.1X con
     cumulus@switch:~$ net commit
     ```
 
-For a deeper dive into campus features, read the [campus architecture guide](../campus-architecture-guide/).
 
 #### Disable USB Ports
 

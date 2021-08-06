@@ -9,12 +9,7 @@ level: warning
 swap:
   tx: TX
   rx: RX
-  VLAN: vlan
-  VLAN: Vlan
-  VXLAN: vxlan
-  VXLAN: Vxlan
-  VXLAN: VXlan
-  VLAN-aware: vlan-aware
-  VNI: vni
-  Linux: linux
-  NAT: nat
+  Vlan: VLAN
+  VxLAN: VXLAN
+  VXlan: VXLAN
+  vlan-aware: VLAN-aware

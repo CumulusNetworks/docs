@@ -42,12 +42,6 @@ Fixed: 241-7~deb10u8</td>
 <td></td>
 </tr>
 <tr>
-<td>2734121</td>
-<td>Only some BUM traffic arriving on a layer 2 VNI is decapsulated and flooded. ARP requests are forwarded and flooded as expected but DHCP Discovers (Ethernet broadcast DMAC, IP broadcast DIP) and broadcast pings (IP broadcast + subnet broadcast) are not forwarded or decapsulated.</td>
-<td>4.3.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2734119</td>
 <td>The ESI line of {{show bgp l2vpn evpn route}} command always shows VNI: 0. This is a cosmetic software issue.</td>
 <td>4.3.0-4.4.0</td>
@@ -105,13 +99,6 @@ This is a cosmetic software issue and not indicative of a hardware failure on th
 </tr>
 <tr>
 <td>2701000</td>
-<td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
-To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
-<td>4.3.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2700701</td>
 <td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
 To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
 <td>4.3.0-4.4.0</td>
@@ -1668,12 +1655,6 @@ Fixed: 241-7~deb10u8</td>
 <td></td>
 </tr>
 <tr>
-<td>2734121</td>
-<td>Only some BUM traffic arriving on a layer 2 VNI is decapsulated and flooded. ARP requests are forwarded and flooded as expected but DHCP Discovers (Ethernet broadcast DMAC, IP broadcast DIP) and broadcast pings (IP broadcast + subnet broadcast) are not forwarded or decapsulated.</td>
-<td>4.3.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2734119</td>
 <td>The ESI line of {{show bgp l2vpn evpn route}} command always shows VNI: 0. This is a cosmetic software issue.</td>
 <td>4.3.0-4.4.0</td>
@@ -1747,13 +1728,6 @@ This is a cosmetic software issue and not indicative of a hardware failure on th
 </tr>
 <tr>
 <td>2701000</td>
-<td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
-To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
-<td>4.3.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2700701</td>
 <td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
 To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
 <td>4.3.0-4.4.0</td>

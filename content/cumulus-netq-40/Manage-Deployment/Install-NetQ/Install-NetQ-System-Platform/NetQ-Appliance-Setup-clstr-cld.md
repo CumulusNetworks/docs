@@ -43,7 +43,7 @@ Change the password and specify the hostname and IP address for each appliance b
 
     Kubernetes requires that hostnames are composed of a sequence of labels concatenated with dots. For example, "en.wikipedia.org" is a hostname. Each label must be from 1 to 63 characters long. The entire hostname, including the delimiting dots, has a maximum of 253 ASCII characters.
 
-    The Internet standards (RFCs) for protocols specify that labels may contain only the ASCII letters a through z (in lower case), the digits 0 through 9, and the hyphen-minus character ('-').
+    The Internet standards (RFCs) for protocols specify that labels can contain only the ASCII letters a through z (in lower case), the digits 0 through 9, and the hyphen-minus character ('-').
 
     Use the following command:
 

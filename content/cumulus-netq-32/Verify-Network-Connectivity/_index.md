@@ -942,7 +942,7 @@ To schedule a trace:
 
 4. In the **Destination** field, enter IP address of the device where you want to end the trace.
 
-5. Select a time frame under **Schedule** to specify how often you want to run the trace.
+5. Select a timeframe under **Schedule** to specify how often you want to run the trace.
 
     {{<figure src="/images/netq/schedule-frequency-selection-222.png" width="300">}}
 
@@ -1025,7 +1025,7 @@ To schedule a trace from the NetQ UI:
 
 5. Enter a **VRF** interface if you are using anything other than the default VRF.
 
-6. Select a time frame under **Schedule** to specify how often you want to run the trace.
+6. Select a timeframe under **Schedule** to specify how often you want to run the trace.
 
     {{<figure src="/images/netq/schedule-frequency-selection-222.png" width="300">}}
 
@@ -1111,7 +1111,7 @@ To schedule a layer 2 trace:
 
 5. In the **VLAN** field, enter the VLAN ID associated with the destination device.
 
-6. Select a time frame under **Schedule** to specify how often you want to run the trace.
+6. Select a timeframe under **Schedule** to specify how often you want to run the trace.
 
     {{<figure src="/images/netq/schedule-frequency-selection-222.png" width="300">}}
 

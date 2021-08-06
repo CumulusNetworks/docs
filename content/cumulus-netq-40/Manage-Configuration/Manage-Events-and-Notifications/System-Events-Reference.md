@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 811
 toc: 4
 ---
-The following table lists all system event messages organized by type. These messages can be viewed through third-party notification applications. For details about configuring notifications for these events, refer to {{<link title="Configure System Event Notifications">}}.
+The following table lists all system event messages organized by type. You can view these messages through third-party notification applications. For details about configuring notifications for these events, refer to {{<link title="Configure System Event Notifications">}}.
 
 ## Agent Events
 
@@ -54,6 +54,7 @@ The following table lists all system event messages organized by type. These mes
 <td>Agent state changed to fresh</td>
 <td>Agent state changed to fresh</td>
 </tr>
+<!-- vale off -->
 <tr>
 <td>agent</td>
 <td>NetQ Agent state was reset</td>
@@ -67,6 +68,7 @@ The following table lists all system event messages organized by type. These mes
 <td>Info</td>
 <td>Agent version has been changed old_version:@old_version  and new_version:@new_version. Agent reset at @sys_uptime</td>
 <td>Agent version has been changed old_version:2.1.2  and new_version:2.3.1. Agent reset at 1573079725</td>
+<!-- vale on -->
 </tr>
 </tbody>
 </table>
@@ -122,6 +124,7 @@ The following table lists all system event messages organized by type. These mes
 </body>
 </table>
 <!-- vale on -->
+
 ## BTRFS Events
 
 <table>
@@ -151,7 +154,7 @@ The following table lists all system event messages organized by type. These mes
 </tr>
 <tr>
 <td>btrfsinfo</td>
-<td>Indicates if space would be freed by a rebalance operation on the disk</td>
+<td>Indicates if a rebalance operation can free up space on the disk</td>
 <td>Critical</td>
 <td>@info : @details</td>
 <td>data storage efficiency : space left after allocation greater than chunk size 6170849.2","</td>
@@ -310,7 +313,7 @@ The following table lists all system event messages organized by type. These mes
 </tr>
 <tr>
 <td>clag</td>
-<td>CLAG bond in Conflicted state was updated with new bonds</td>
+<td>CLAG bond in Conflicted state updated with new bonds</td>
 <td>Info</td>
 <td>Clag conflicted bond changed from @old_conflicted_bonds to @new_conflicted_bonds</td>
 <td>Clag conflicted bond changed from swp7 swp8 to @swp9 swp10</td>
@@ -325,7 +328,9 @@ The following table lists all system event messages organized by type. These mes
 </body>
 </table>
 
-## CL Support Evemts
+<!-- vale off -->
+## CL Support Events
+<!-- vale on -->
 
 <table>
 <colgroup>
@@ -337,6 +342,7 @@ The following table lists all system event messages organized by type. These mes
 </colgroup>
 <thead>
 <tr class="header">
+<!-- vale off -->
 <th>Type</th>
 <th>Trigger</th>
 <th>Severity</th>
@@ -352,6 +358,7 @@ The following table lists all system event messages organized by type. These mes
 <td>HostName @hostname has new CL SUPPORT file</td>
 <td>HostName leaf01 has new CL SUPPORT file</td>
 </tr>
+<!-- vale on -->
 </body>
 </table>
 
@@ -375,6 +382,7 @@ The following table lists all system event messages organized by type. These mes
 </tr>
 </thead>
 <tbody>
+<!-- vale off -->
 <tr>
 <td>configdiff</td>
 <td>Configuration file deleted on a device</td>
@@ -395,6 +403,7 @@ The following table lists all system event messages organized by type. These mes
 <td>Info</td>
 <td>@hostname config file @type was modified</td>
 <td>spine03 config file /etc/frr/frr.conf was modified</td>
+<!-- vale on -->
 </tr>
 </body>
 </table>
@@ -420,6 +429,7 @@ The following table lists all system event messages organized by type. These mes
 </thead>
 <tbody>
 <tr>
+<!-- vale off -->
 <td>evpn</td>
 <td>A VNI was configured and moved from the up state to the down state</td>
 <td>Critical</td>
@@ -446,6 +456,7 @@ The following table lists all system event messages organized by type. These mes
 <td>Info</td>
 <td>VNI @vni vni state changed from @old_adv_all_vni_state to @new_adv_all_vni_state</td>
 <td>VNI 11 vni state changed from false to true</td>
+<!-- vale on -->
 </tr>
 </body>
 </table>
@@ -474,6 +485,7 @@ The following table lists all system event messages organized by type. These mes
 <td>lcm</td>
 <td>Cumulus Linux backup started for a switch or host</td>
 <td>Info</td>
+<!-- vale off -->
 <td>CL configuration backup started for hostname @hostname</td>
 <td>CL configuration backup started for hostname spine01</td>
 </tr>
@@ -598,6 +610,7 @@ The following table lists all system event messages organized by type. These mes
 </tr>
 </body>
 </table>
+<!-- vale on -->
 
 ## Link Events
 
@@ -881,6 +894,7 @@ The following table lists all system event messages organized by type. These mes
 </thead>
 <tbody>
 <tr>
+<!-- vale off -->
 <td>resource</td>
 <td>A physical resource has been deleted from a device</td>
 <td>Critical</td>
@@ -908,6 +922,7 @@ The following table lists all system event messages organized by type. These mes
 <td>Resource Utils added for @hostname</td>
 <td>Resource Utils added for spine04</td>
 </tr>
+<!-- vale on -->
 </body>
 </table>
 
@@ -933,10 +948,12 @@ The following table lists all system event messages organized by type. These mes
 <tbody>
 <tr>
 <td>runningconfigdiff</td>
+<!-- vale off -->
 <td>Running configuration file has been modified</td>
 <td>Info</td>
 <td>@commandname config result was modified</td>
 <td>@commandname config result was modified</td>
+<!-- vale on -->
 </tr>
 </body>
 </table>
@@ -1105,6 +1122,7 @@ The following table lists all system event messages organized by type. These mes
 </thead>
 <tbody>
 <tr>
+<!-- vale off -->
 <td>version</td>
 <td>An unknown version of the operating system was detected</td>
 <td>Critical</td>
@@ -1124,6 +1142,7 @@ The following table lists all system event messages organized by type. These mes
 <td>Critical</td>
 <td>expected release version @ver</td>
 <td>expected release version cl3.6.2</td>
+<!-- vale on -->
 </tr>
 <tr>
 <td>version</td>

@@ -24,8 +24,7 @@ There are two ways you can upgrade Cumulus Linux:
     when moving between major versions or if you want to install a clean
     image.
 
-The entire upgrade process is described in [Upgrading Cumulus
-Linux](/cumulus-linux-36/Installation-Management/Upgrading-Cumulus-Linux).
+The entire upgrade process is described in {{<link text="Upgrading Cumulus Linux" title="Upgrading Cumulus Linux" >}}.
 
 ## x86 vs ARM Switches
 

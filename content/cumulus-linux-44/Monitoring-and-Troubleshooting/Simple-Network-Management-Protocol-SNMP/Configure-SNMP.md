@@ -365,7 +365,7 @@ By default, the `snmpd.conf` file contains many views within the `systemonly` vi
 
 {{< tabs "366 " >}}
 {{< tab "NCLU Commands" >}}
-
+<!-- vale on -->
 ```
 cumulus@switch:~$ net add snmp-server viewname cumulusOnly included .1.3.6.1.4.1.40310
 cumulus@switch:~$ net add snmp-server viewname cumulusCounters included .1.3.6.1.4.1.40310.2

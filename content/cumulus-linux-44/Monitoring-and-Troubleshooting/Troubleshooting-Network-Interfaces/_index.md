@@ -212,6 +212,6 @@ This error can occur when the bridge port does not have a valid hardware address
 
 This can occur when the interface you add to the bridge is an incomplete bond; a bond without slaves is incomplete and does not have a valid hardware address.
 
-## MLAG Peerlink Interface Drops Packets
+## MLAG Interface Drops Packets
 
 Losing a large number of packets across an MLAG peerlink interface is often not a problem. This can occur to prevent BUM (broadcast, unknown unicast and multicast) packet looping. For more details, and for information on how to detect these drops, read the {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG chapter">}}.

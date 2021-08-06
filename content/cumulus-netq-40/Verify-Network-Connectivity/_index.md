@@ -68,7 +68,7 @@ You can improve the readability of the output using color as well. Run `netq con
 
 ### Known Addresses
 
-The tracing function only knows about addresses that have already been learned. If you find that a path is invalid or incomplete, you may need to ping the identified device so that its address becomes known.
+The tracing function only knows about addresses that have already been learned. If you find that a path is invalid or incomplete, you might need to ping the identified device so that its address becomes known.
 
 <!-- vale off -->
 ## Create On-demand Traces
@@ -312,7 +312,7 @@ netq trace <ip> from (<src-hostname>|<ip-src>) vrf <vrf> [json|detail|pretty]
 
 Note the syntax requires the *destination* device address first and then the *source* device address or hostname.
 
-This example shows a trace from 10.1.10.101 (source, server01) to 10.1.10.104 (destination, server04) through VRF RED in detail output. It first identifies the addresses for the source and destination devices and a VRF between them using `netq show ip addresses` then runs the trace. Note that the VRF name is case sensitive. The trace job may take some time to compile all the available paths, especially if there are many of them.
+This example shows a trace from 10.1.10.101 (source, server01) to 10.1.10.104 (destination, server04) through VRF RED in detail output. It first identifies the addresses for the source and destination devices and a VRF between them using `netq show ip addresses` then runs the trace. Note that the VRF name is case sensitive. The trace job might take some time to compile all the available paths, especially if there are many of them.
 
 ```
 cumulus@switch:~$ netq server01 show ip addresses
@@ -845,7 +845,7 @@ Once the job is completed, the results are displayed.
 {{<img src="/images/netq/od-trace-result-medium-success-fail-320.png" width="420">}}
 </div>
 
-In the example on the left, we see that the trace was successful. 16 paths were found between the devices, each with five hops and with an overall MTU of 9,000. In the example on the right, we see that the trace failed. Two of the available paths were unsuccessful and a single device may be the problem.
+In the example on the left, we see that the trace was successful. 16 paths were found between the devices, each with five hops and with an overall MTU of 9,000. In the example on the right, we see that the trace failed. Two of the available paths were unsuccessful and a single device might be the problem.
 
 If there was a difference between the minimum and maximum number of hops or other failures, viewing the results on the large card might provide additional information.
 
@@ -919,7 +919,7 @@ Note that in our example, paths 9-12 have only three hops because they do not tr
 
 ## Create Scheduled Traces
 
-There may be paths through your network that you consider critical or particularly important to your everyday operations. In these cases, it might be useful to create one or more traces to periodically confirm that at least one path is available between the relevant two devices. You can create scheduled traces at layer 2 or layer 3 in your network, from the NetQ UI and the NetQ CLI.
+There might be paths through your network that you consider critical or particularly important to your everyday operations. In these cases, it might be useful to create one or more traces to periodically confirm that at least one path is available between the relevant two devices. You can create scheduled traces at layer 2 or layer 3 in your network, from the NetQ UI and the NetQ CLI.
 
 ### Create a Layer 3 Scheduled Trace
 
@@ -952,7 +952,7 @@ To schedule a trace:
 
 4. In the **Destination** field, enter IP address of the device where you want to end the trace.
 
-5. Select a time frame under **Schedule** to specify how often you want to run the trace.
+5. Select a timeframe under **Schedule** to specify how often you want to run the trace.
 
     {{<figure src="/images/netq/schedule-frequency-selection-222.png" width="300">}}
 
@@ -1035,7 +1035,7 @@ To schedule a trace from the NetQ UI:
 
 5. Enter a **VRF** interface if you are using anything other than the default VRF.
 
-6. Select a time frame under **Schedule** to specify how often you want to run the trace.
+6. Select a timeframe under **Schedule** to specify how often you want to run the trace.
 
     {{<figure src="/images/netq/schedule-frequency-selection-222.png" width="300">}}
 
@@ -1121,7 +1121,7 @@ To schedule a layer 2 trace:
 
 5. In the **VLAN** field, enter the VLAN ID associated with the destination device.
 
-6. Select a time frame under **Schedule** to specify how often you want to run the trace.
+6. Select a timeframe under **Schedule** to specify how often you want to run the trace.
 
     {{<figure src="/images/netq/schedule-frequency-selection-222.png" width="300">}}
 
@@ -1176,7 +1176,7 @@ View the results in the NetQ UI. Refer to {{<link title="Verify Network Connecti
 
 ### Run a Scheduled Trace on Demand
 
-You may find that, although you have a schedule for a particular trace, you want to have visibility into the connectivity data now. You can run a scheduled trace on demand from the small, medium and large Trace Request cards.
+You might find that, although you have a schedule for a particular trace, you want to have visibility into the connectivity data now. You can run a scheduled trace on demand from the small, medium and large Trace Request cards.
 
 To run a scheduled trace now:
 

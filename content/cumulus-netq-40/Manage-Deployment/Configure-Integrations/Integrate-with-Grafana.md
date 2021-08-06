@@ -38,7 +38,7 @@ Use the Grafana CLI to install the NetQ plugin. For more detail about this comma
 
 {{%notice info%}}
 
-The Grafana plugin is unsigned. In order to install it, you need to update the `grafana.ini` file then restart the Grafana service:
+The Grafana plugin is unsigned. Before you can install it, you need to update the `grafana.ini` file then restart the Grafana service:
 
 1. Edit `/etc/grafana/grafana.ini` and add `allow_loading_unsigned_plugins = netq-dashboard` to the file.
 
@@ -96,7 +96,7 @@ Now that you have the plugin installed, you need to configure access to the NetQ
 6. Enter the URL used to access the database:
     - Cloud: *plugin.netq.cumulusnetworks.com*
     - On-premises: *\<hostname-or-ipaddr-of-netq-appl-or-vm\>/plugin*
-    - Cumulus in the Cloud (CITC): *air.netq.cumulusnetworks.com*
+    - Cumulus in the Cloud (CITC): *plugin.air.netq.cumulusnetworks.com*
 
 <!-- 7. Select which statistics you want to view from the **Module** dropdown; either *procdevstats* or *ethtool*. -->
 

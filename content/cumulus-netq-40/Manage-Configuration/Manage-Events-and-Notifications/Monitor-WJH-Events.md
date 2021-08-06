@@ -21,7 +21,7 @@ When WJH capabilities are combined with NetQ, you have the ability to home in on
 
 {{%notice info%}}
 
-By default, Cumulus Linux 4.0.0 and later provides the NetQ Agent and CLI. Depending on the version of Cumulus Linux running on your NVIDIA switch, you may need to upgrade the NetQ Agent and optionally the CLI to the latest release.
+By default, Cumulus Linux 4.0.0 and later provides the NetQ Agent and CLI. Depending on the version of Cumulus Linux running on your NVIDIA switch, you might need to upgrade the NetQ Agent and optionally the CLI to the latest release.
 
 ```
 cumulus@<hostname>:~$ sudo apt-get update
@@ -610,6 +610,8 @@ The data NetQ sends to the gNMI agent is in the form of WJH drop reasons. The re
 
 #### L1 Drop Reasons
 
+<!-- L1 aggregate drops do not have severity column as it's missing from the SDK, and hence it's not exported -->
+
 | Reason ID | Reason | Description |
 | --------- | ------ | ----------- |
 | 10021 | Port admin down | Validate port configuration |
@@ -693,7 +695,8 @@ The data NetQ sends to the gNMI agent is in the form of WJH drop reasons. The re
 | --------- | ------ | -------- | ----------- |
 | 503 | Tail drop | Warning | Monitor network congestion |
 | 504 | WRED | Warning | Monitor network congestion |
-| 505 | Port TC Congestion Threshold Crossed | Notice | Monitor network congestion 506 Packet Latency Threshold Crossed Notice Monitor network congestion |
+| 505 | Port TC Congestion Threshold Crossed | Notice | Monitor network congestion |
+| 506 | Packet Latency Threshold Crossed | Notice | Monitor network congestion |
 
 ### Related Information
 

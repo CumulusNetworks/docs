@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 800
 toc: 4
 ---
-NetQ offers multiple ways to view your event status. The NetQ UI provides a graphical and tabular view and the NetQ CLI provides a tabular view of system and threshold-based (TCA) events. System events include events associated with network protocols and services operation, hardware and software status, and system services. TCA events include events associated with digital optics, ACL and forwarding resources, interface statistics, resource utilization, and sensors. You can view all events across the entire network or all events on a device. For each of these, you can filter your view of events based on event type, severity, and time frame.
+NetQ offers multiple ways to view your event status. The NetQ UI provides a graphical and tabular view and the NetQ CLI provides a tabular view of system and threshold-based (TCA) events. System events include events associated with network protocols and services operation, hardware and software status, and system services. TCA events include events associated with digital optics, ACL and forwarding resources, interface statistics, resource utilization, and sensors. You can view all events across the entire network or all events on a device. For each of these, you can filter your view of events based on event type, severity, and timeframe.
 
 Refer to {{<link title="Configure System Event Notifications">}} and {{<link title="Configure Threshold-Based Event Notifications">}} for information about configuring and managing these events.
 
@@ -298,7 +298,7 @@ You can view system and TCA events by their severity on a networkwide basis with
 - `netq show events level` command
 
 {{<notice tip>}}
-System events may be of info, error, warning, critical or debug severity. TCA events may be of info or critical severity.
+System event severities include info, error, warning, critical or debug. TCA event severities include info or critical.
 {{</notice>}}
 
 {{<tabs "TabID312" >}}
@@ -333,7 +333,7 @@ To view the summary, open the small Alarms card.
 
 {{< figure src="/images/netq/events-alarms-small-231.png" width="200" >}}
 
-In this example, there are a small number of alarms (2), the number of alarms is decreasing (down arrow), and there are fewer alarms right now than the average number of alarms during this time period. This would indicate no further investigation is needed. Note that with such a small number of alarms, the rating may be a bit skewed.
+In this example, there are a small number of alarms (2), the number of alarms is decreasing (down arrow), and there are fewer alarms right now than the average number of alarms during this time period. This would indicate no further investigation is needed. Note that with such a small number of alarms, the rating might be a bit skewed.
 
 ### View the Distribution of Alarms
 
@@ -447,8 +447,8 @@ To view the summary with the large Info card, open the card. The left side of th
 
 While you can see the relative relationship between info and alarm events on the small Info card, the medium and large cards provide considerably more information. Open either of these to view individual line charts for the events. Generally, alarms have some corollary info events. For example, when a network service becomes unavailable, a critical alarm is often issued, and when the service becomes available again, an info event of severity warning is generated. For this reason, you might see some level of tracking between the info and alarm counts and distributions. Some other possible scenarios:
 
-- When a critical alarm is resolved, you may see a temporary increase in info events as a result.
-- When you get a burst of info events, you may see a follow-on increase in critical alarms, as the info events may have been   warning you of something beginning to go wrong.
+- When a critical alarm is resolved, you might see a temporary increase in info events as a result.
+- When you get a burst of info events, you might see a follow-on increase in critical alarms, as the info events might have been   warning you of something beginning to go wrong.
 - You set logging to debug, and a large number of info events of severity debug are seen. You would not expect to see an increase in critical alarms.
 
 #### View All Info Events Sorted by Time of Occurrence
@@ -536,7 +536,7 @@ You can view system and TCA events by their severity on a given device with the 
 - `netq <hostname> show events level` command
 
 {{<notice tip>}}
-System events may be of info, error, warning, critical or debug severity. TCA events may be of info or critical severity.
+System event severities include info, error, warning, critical or debug severity. TCA event severities include info or critical.
 {{</notice>}}
 
 {{<tabs "TabID545" >}}

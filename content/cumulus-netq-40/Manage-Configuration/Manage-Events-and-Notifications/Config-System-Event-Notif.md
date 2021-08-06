@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 780
 toc: 3
 ---
-To take advantage of the various event messages generated and processed by NetQ, you must integrate with third-party event notification applications. You can integrate NetQ with <!-- vale off -->Syslog<!-- vale on -->, PagerDuty, Slack, and Email. You may integrate with one or more of these applications simultaneously.
+To take advantage of the various event messages generated and processed by NetQ, you must integrate with third-party event notification applications. You can integrate NetQ with <!-- vale off -->Syslog<!-- vale on -->, PagerDuty, Slack, and Email. You can integrate with one or more of these applications simultaneously.
 
 In an on-premises deployment, the NetQ On-premises Appliance or VM receives the raw data stream from the NetQ Agents, processes the data, stores, and delivers events to the Notification function. Notification then filters and sends messages to any configured notification applications. In a cloud deployment, the NetQ Cloud Appliance or VM passes the raw data stream on to the NetQ Cloud service for processing and delivery.
 
@@ -14,7 +14,7 @@ In an on-premises deployment, the NetQ On-premises Appliance or VM receives the 
 
 {{<notice note>}}
 
-You may choose to implement a proxy server (that sits between the NetQ Appliance or VM and the integration channels) that receives, processes and distributes the notifications rather than having them sent directly to the integration channel. If you use such a proxy, you must configure NetQ with the proxy information.
+You can implement a proxy server (that sits between the NetQ Appliance or VM and the integration channels) that receives, processes and distributes the notifications rather than having them sent directly to the integration channel. If you use such a proxy, you must configure NetQ with the proxy information.
 
 {{</notice>}}
 
@@ -1388,7 +1388,7 @@ PSU: up, down</td>
 
 {{<notice note>}}
 
-Rule names are case sensitive, and no wildcards are permitted. Rule names may contain spaces, but must be enclosed with single quotes in commands. It is easier to use dashes in place of spaces or mixed case for better readability. For example, use bgpSessionChanges or BGP-session-changes or BGPsessions, instead of 'BGP Session Changes'. Use Tab completion to view the command options syntax.
+Rule names are case sensitive, and no wildcards are permitted. Rule names can contain spaces, but must be enclosed with single quotes in commands. It is easier to use dashes in place of spaces or mixed case for better readability. For example, use *bgpSessionChanges* or *BGP-session-changes* or *BGPsessions*, instead of *BGP Session Changes*. Use Tab completion to view the command options syntax.
 
 {{</notice>}}
 
@@ -1454,7 +1454,7 @@ You can limit or direct event messages using filters. Filters are created based 
 
 As filters are created, they are added to the bottom of a filter list. By default, filters are processed in the order they appear in this list (from top to bottom) until a match is found. This means that each event message is first evaluated by the first filter listed, and if it matches then it is processed, ignoring all other filters, and the system moves on to the next event message received. If the event does not match the first filter, it is tested against the second filter, and if it matches then it is processed and the system moves on to the next event received. And so forth. Events that do not match any filter are ignored.
 
-You may need to change the order of filters in the list to ensure you capture the events you want and drop the events you do not want. This is possible using the *before* or *after* keywords to ensure one rule is processed before or after another.
+You mght have to change the order of filters in the list to ensure you capture the events you want and drop the events you do not want. This is possible using the *before* or *after* keywords to ensure one rule is processed before or after another.
 
 This diagram shows an example with four defined filters with sample output results.
 
@@ -1462,7 +1462,7 @@ This diagram shows an example with four defined filters with sample output resul
 
 {{<notice note>}}
 
-Filter names may contain spaces, but <em>must</em> be enclosed with single quotes in commands. It is easier to use dashes in place of spaces or mixed case for better readability. For example, use bgpSessionChanges or BGP-session-changes or BGPsessions, instead of 'BGP Session Changes'. Filter names are also case sensitive.
+Filter names can contain spaces, but <em>must</em> be enclosed with single quotes in commands. It is easier to use dashes in place of spaces or mixed case for better readability. For example, use bgpSessionChanges or BGP-session-changes or BGPsessions, instead of 'BGP Session Changes'. Filter names are also case sensitive.
 
 {{</notice>}}
 
@@ -1567,7 +1567,7 @@ newFEC          7          info             slk-netq-events  fecSupport
 
 NetQ can generate many network events. You can configure whether to suppress any events from appearing in NetQ output. By default, all events are delivered.
 
-You can suppress an event until a certain period of time; otherwise, the event is suppressed for 2 years. Providing an end time eliminates the generation of messages for a short period of time, which is useful when you are testing a new network configuration and the switch may be generating many messages.
+You can suppress an event until a certain period of time; otherwise, the event is suppressed for 2 years. Providing an end time eliminates the generation of messages for a short period of time, which is useful when you are testing a new network configuration and the switch might be generating many messages.
 
 You can suppress events for the following types of messages:
 
@@ -2188,7 +2188,7 @@ pd-netq-events  pagerduty        info             integration-key: 1234567
 
 ### Delete an Event Notification Rule
 
-You may find after some experience with a given rule that you want to edit or remove the rule to better meet your needs. You can remove rules if they are not part of an existing notification configuration using the NetQ CLI.
+You might find after some experience with a given rule that you want to edit or remove the rule to better meet your needs. You can remove rules if they are not part of an existing notification configuration using the NetQ CLI.
 
 To remove notification rules, run:
 
@@ -2216,7 +2216,7 @@ sysconf         configdiff       updated
 
 ### Delete an Event Notification Filter
 
-You may find after some experience with a given filter that you want to edit or remove the filter to better meet your current needs. You can remove filters if they are not part of an existing notification configuration using the NetQ CLI.
+You might find after some experience with a given filter that you want to edit or remove the filter to better meet your current needs. You can remove filters if they are not part of an existing notification configuration using the NetQ CLI.
 
 To remove notification filters, run:
 

@@ -56,7 +56,7 @@ To view this count for all of the components on the switch:
 
 3. Scroll down to see additional components.
 
-By default, the data is shown for switches with a fresh communication status. You can choose to look at the data for switches in the rotten state instead. For example, if you wanted to see if there was any correlation to a version of OS to the switch having a rotten status, you could select **Rotten Switches** from the dropdown at the top of the card and see if they all use the same OS (count would be 1). It may not be the cause of the lack of communication, but you get the idea.
+By default, the data is shown for switches with a fresh communication status. You can choose to look at the data for switches in the rotten state instead. For example, if you wanted to see if there was any correlation to a version of OS to the switch having a rotten status, you could select **Rotten Switches** from the dropdown at the top of the card and see if they all use the same OS (count would be 1). It might not be the cause of the lack of communication, but you get the idea.
 
 ### View the Distribution of Any Component Deployed
 
@@ -554,7 +554,7 @@ leaf01            vx                   x86_64               3.2.0
 
 ### View All Software Packages Installed on Switches
 
-If you are having an issue with a particular switch, you may want to verify what software is installed and whether it needs updating.
+If you are having an issue with a particular switch, you should verify what software is installed and whether it needs updating.
 
 To view package information for a switch, run:
 
@@ -848,7 +848,7 @@ cumulus@switch:~$ netq show services json
 ...
 ```
 
-If you want to view the service information for a given device, simply use the `hostname` option when running the command.
+If you want to view the service information for a given device, use the `hostname` option when running the command.
 
 ### View Information about a Given Service on All Devices
 

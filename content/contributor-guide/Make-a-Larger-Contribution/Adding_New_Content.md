@@ -211,13 +211,31 @@ Address Families Test        : passed
 Router ID Test               : passed
 ```
 ### Add a Link
-
-To preserve portability of pages, a [Hugo shortcode](https://gohugo.io/content-management/shortcodes/#what-a-shortcode-is) is used for all pages within the same section.
-
-The `link` shortcode is used with the `title` argument. Use the `Title` value in the front matter of the page being linked. For example, to link to the "Give Simple Feedback" chapter use the shortcode `{{</* link title="Give Simple Feedback" */>}}`. By default the link title is the link text used. The text can be specified with the `text` attribute. For example, `{{</* link title="Give Simple Feedback" text="How to give feedback"*/>}}` generates the link {{< link title="Give Simple Feedback" text="How to give feedback" >}}.
-
+#### External Links
 For external links standard markdown link syntax can be used. The link text is placed in brackets `[]`, followed by the full URL in parenthesis `()`. For example `[Link to Cumulus](https://www.cumulusnetworks.com)` generates the link [Link to Cumulus](https://docs.nvidia.com/networking-ethernet-software/). 
 
 {{% notice note %}}
 Do not put a space between the brackets and parenthesis.
 {{% /notice %}}
+
+#### Across Products
+To link betwen products use the Hugo built-in `ref` function with standard Markdown links. Using the same syntax for External links with brackets `[]` and parenthesis `()`. 
+
+To properly generate the URL of the linked page the `ref` code takes in the path of the file to link. For example, to link to the Cumulus Linux 4.3 page on NTP:  
+
+`[NTP]({{</* ref "/cumulus-linux-43/System-Configuration/Setting-Date-and-Time"*/>}})`
+
+To link to the latest release of a product, for example `/cumulus-linux` or `/cumulus-netq`, do not link directly but use the `kb_link` shortcode and provide the parameter `latest` along with the file path of the page. For example, to link to the latest Cumulus Linux NTP page
+
+`{{</* kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP"*/>}}`
+
+The value `latest` supports `cl`, `netq` or `sonic`. 
+For root pages (`_index.md`) the `_index.md` filename must be included.
+
+#### Within a Product
+To preserve portability of pages, a [Hugo shortcode](https://gohugo.io/content-management/shortcodes/#what-a-shortcode-is) is used for all pages within the same section.
+
+The `link` shortcode is used with the `title` argument. Use the `Title` value in the front matter of the page being linked. For example, to link to the "Give Simple Feedback" chapter use the shortcode `{{</* link title="Give Simple Feedback" */>}}`. By default the link title is the link text used. The text can be specified with the `text` attribute. For example, `{{</* link title="Give Simple Feedback" text="How to give feedback"*/>}}` generates the link {{< link title="Give Simple Feedback" text="How to give feedback" >}}.
+
+
+

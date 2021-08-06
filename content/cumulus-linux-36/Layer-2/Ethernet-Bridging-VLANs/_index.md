@@ -8,7 +8,7 @@ Ethernet bridges provide a means for hosts to communicate through layer
 2, by connecting all of the physical and logical interfaces in the
 system into a single layer 2 domain. The bridge is a logical interface
 with a MAC address and an
-[MTU](/cumulus-linux-36/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#mtu)
+{{<link text="MTU" title="Switch Port Attributes#mtu" >}}
 (maximum transmission unit). The bridge MTU is the minimum MTU among all
 its members. By default, the bridge's MAC address is copied from eth0.
 The bridge can also be assigned an IP address, as discussed

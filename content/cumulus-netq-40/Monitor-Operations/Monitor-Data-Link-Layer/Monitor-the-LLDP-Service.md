@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 890
 toc: 4
 ---
-LLDP is used by network devices for advertising their identity, capabilities, and neighbors on a LAN. You can view this information for one or more devices. You can also view the information at an earlier point in time or view changes that have occurred to the information during a specified time period. For an overview and how to configure LLDP in your network, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/" text="Link Layer Discovery Protocol">}}.
+LLDP is used by network devices for advertising their identity, capabilities, and neighbors on a LAN. You can view this information for one or more devices. You can also view the information at an earlier point in time or view changes that have occurred to the information during a specified time period. For an overview and how to configure LLDP in your network, refer to {{<kb_link latest="cl" url="Layer-2/Link-Layer-Discovery-Protocol.md" text="Link Layer Discovery Protocol">}}.
 
 NetQ enables operators to view the overall health of the LLDP service on a networkwide and a per session basis, giving greater insight into all aspects of the service. This is accomplished in the NetQ UI through two card workflows, one for the service and one for the session and in the NetQ CLI with the `netq show lldp` command.
 
@@ -361,7 +361,7 @@ To compare this data with the same data at a previous time:
 
     {{<figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-past-week-300.png" width="500" >}}
 
-<div style="padding-left: 18px;">In this case, notice that their are fewer nodes running the protocol, but the total number of sessions running has nearly doubled. If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running LLDP than previously, looking for changes in the topology, and so forth.</div>
+<div style="padding-left: 18px;">In this case, notice that their are fewer nodes running the protocol, but the total number of sessions running has nearly doubled. If the changes are unexpected, you can investigate further by looking at another timeframe, determining if more nodes are now running LLDP than previously, looking for changes in the topology, and so forth.</div>
 
 {{</tab>}}
 
@@ -559,7 +559,7 @@ leaf01            swp51                     spine01           swp1              
 ### View Switches with the Most LLDP-related Alarms
 <!-- vale on -->
 
-Switches or hosts experiencing a large number of LLDP alarms may indicate a configuration or performance issue that needs further investigation. You can view this information using the NetQ UI or NetQ CLI.
+Switches or hosts experiencing a large number of LLDP alarms might indicate a configuration or performance issue that needs further investigation. You can view this information using the NetQ UI or NetQ CLI.
 
 {{<tabs "View switches with most LLDP alarms">}}
 
@@ -719,7 +719,7 @@ Where to go next depends on what data you see, but a few options include:
 - Sort on various parameters:
     - by **Message** to determine the frequency of particular events
     - by **Severity** to determine the most critical events
-    - by **Time** to find events that may have occurred at a particular time to try to correlate them with other system events
+    - by **Time** to find events that might have occurred at a particular time to try to correlate them with other system events
 - Open one of the other full-screen tabs in this flow to focus on devices or sessions
 - Export data to a file for use in another analytics tool by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> and providing a name for the data file.
 - Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
@@ -838,7 +838,7 @@ leaf02            swp3                      server03          mac:44:38:39:00:00
 
 ## Monitor a Single LLDP Session
 
-With NetQ, you can monitor the number of nodes running the LLDP service, view neighbor state changes, and compare with events occurring at the same time, as well as monitor the running LLDP configuration and changes to the configuration file. For an overview and how to configure LLDP in your data center network, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/" text="Link Layer Discovery Protocol">}}.
+With NetQ, you can monitor the number of nodes running the LLDP service, view neighbor state changes, and compare with events occurring at the same time, as well as monitor the running LLDP configuration and changes to the configuration file. For an overview and how to configure LLDP in your data center network, refer to {{<kb_link latest="cl" url="Layer-2/Link-Layer-Discovery-Protocol.md" text="Link Layer Discovery Protocol">}}.
 
 {{<notice note>}}
 
@@ -961,7 +961,7 @@ To view the configuration file changes:
 
 7. Hover over the card and click <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/> to open the **LLDP Configuration File Evolution** tab.
 
-8. Select the time of interest on the left; when a change may have impacted the performance. Scroll down if needed.
+8. Select the time of interest on the left; when a change might have impacted the performance. Scroll down if needed.
 
 9. Choose between the **File** view and the **Diff** view (selected option is dark; File by default).
 
@@ -1098,6 +1098,6 @@ Where to go next depends on what data you see, but a few options include:
 - Sort on other parameters:
   - By **Message** to determine the frequency of particular events.
   - By **Severity** to determine the most critical events.
-  - By **Time** to find events that may have occurred at a particular time to try to correlate them with other system events.
+  - By **Time** to find events that might have occurred at a particular time to try to correlate them with other system events.
 - Export data to a file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
 - Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.

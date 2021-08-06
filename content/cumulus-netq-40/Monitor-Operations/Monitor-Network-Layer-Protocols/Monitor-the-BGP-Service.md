@@ -12,7 +12,7 @@ BGP is the routing protocol that runs the Internet. It is an increasingly popula
 - Has many robust vendor implementations.
 - Is very mature as a protocol and comes with many years of operational experience.
 
-{{<exlink url="https://tools.ietf.org/html/rfc7938" text="RFC 7938">}} provides further details of the use of BGP within the data center. For an overview and how to configure BGP to run in your data center network, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/" text="Border Gateway Protocol - BGP">}}.
+{{<exlink url="https://tools.ietf.org/html/rfc7938" text="RFC 7938">}} provides further details of the use of BGP within the data center. For an overview and how to configure BGP to run in your data center network, refer to {{<kb_link latest="cl" url="Layer-3/Border-Gateway-Protocol-BGP/_index.md" text="Border Gateway Protocol - BGP">}}.
 
 NetQ enables operators to view the health of the BGP service on a networkwide or per session basis, giving greater insight into all aspects of the service. This is accomplished in the NetQ UI through two card workflows, one for the service and one for the session and in the NetQ CLI with the `netq show bgp` command.
 
@@ -253,7 +253,7 @@ To compare this data with the same data at a previous time:
 
     {{<figure src="/images/netq/ntwk-svcs-all-bgp-large-summary-tab-past-week-300.png" width="500">}}
 
-<div style="padding-left: 18px;">You can now see whether there are significant differences between this time and the original time. If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running BGP than previously, looking for changes in the topology, and so forth.</div>
+<div style="padding-left: 18px;">You can now see whether there are significant differences between this time and the original time. If the changes are unexpected, you can investigate further by looking at another timeframe, determining if more nodes are now running BGP than previously, looking for changes in the topology, and so forth.</div>
 
 {{</tab>}}
 
@@ -408,7 +408,7 @@ You can view the BGP configuration information for a given ASN from the NetQ UI 
 2. Locate the **ASN** column.
 
     {{<notice tip>}}
-You may want to pause the auto-refresh feature during this process to avoid the page update while you are browsing the data.
+You might want to pause the auto-refresh feature during this process to avoid the page update while you are browsing the data.
     {{</notice>}}
 
 3. Click the header to sort on that column.
@@ -452,7 +452,7 @@ leaf04            swp51(spine01)               default         65102      65199 
 ### View Devices with the Most BGP-related Alarms
 <!-- vale on -->
 
-Switches or hosts experiencing a large number of BGP alarms may indicate a configuration or performance issue that needs further investigation. You can view this information using the NetQ UI or NetQ CLI.
+Switches or hosts experiencing a large number of BGP alarms might indicate a configuration or performance issue that needs further investigation. You can view this information using the NetQ UI or NetQ CLI.
 
 {{<tabs "TabID455" >}}
 
@@ -548,7 +548,7 @@ Where to go next depends on what data you see, but a couple of options include:
 - Sort on various parameters:
     - by **Message** to determine the frequency of particular events
     - by **Severity** to determine the most critical events
-    - by **Time** to find events that may have occurred at a particular time to try to correlate them with other system events
+    - by **Time** to find events that might have occurred at a particular time to try to correlate them with other system events
 - Open one of the other full screen tabs in this flow to focus on devices or sessions
 - Export the data for use in another analytics tool, by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> and providing a name for the data file.
 
@@ -708,7 +708,7 @@ spine04           swp4(leaf04)                 default         65199      65102 
 
 ## Monitor a Single BGP Session
 
-With NetQ, you can monitor a single session of the BGP service, view session state changes, and compare with alarms occurring at the same time, as well as monitor the running BGP configuration and changes to the configuration file. For an overview and how to configure BGP to run in your data center network, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/" text="Border Gateway Protocol - BGP">}}.
+With NetQ, you can monitor a single session of the BGP service, view session state changes, and compare with alarms occurring at the same time, as well as monitor the running BGP configuration and changes to the configuration file. For an overview and how to configure BGP to run in your data center network, refer to {{<kb_link latest="cl" url="Layer-3/Border-Gateway-Protocol-BGP/_index.md" text="Border Gateway Protocol - BGP">}}.
 
 {{<notice note>}}
 To access the single session cards, you must open the full-screen Network Services|All BGP Sessions card, click the <strong>All Sessions</strong> tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18"/> (Open Card).
@@ -858,7 +858,7 @@ To view the configuration file changes:
 
 7. Hover over the card and click <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/> to open the **BGP Configuration File Evolution** tab.
 
-8. Select the time of interest on the left; when a change may have impacted the performance. Scroll down if needed.
+8. Select the time of interest on the left; when a change might have impacted the performance. Scroll down if needed.
 
 9. Choose between the **File** view and the **Diff** view (selected option is dark; File by default).
 

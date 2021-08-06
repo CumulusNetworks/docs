@@ -376,7 +376,7 @@ cumulus@spine01:~$
 {{< /tabs >}}
 
 You can confirm the configuration with the NCLU command `net show bgp neighbor <neighbor>` or with the vtysh command `show ip bgp neighbor <neighbor>`.
-
+<!-- vale off -->
 {{< expand "net show bgp neighbor <neighbor> example" >}}
 
 The following example shows that Cumulus Linux establishes a session with the peer. The output shows `Peer Authentication Enabled` towards the end.

@@ -279,7 +279,7 @@ To view the changes in the kernel, use the `brctl` command:
 ### Layer 3 Port Configuration
 
 To configure a front panel port or bridge interface as a layer 3 port,
-use {{<kb_link text="NCLU" url="cumulus-linux-37/System-Configuration/Network-Command-Line-Utility-NCLU/">}}.
+use {{<kb_link text="NCLU" url="cumulus-linux-37/System-Configuration/Network-Command-Line-Utility-NCLU.md">}}.
 
 In the following configuration example, the front panel port swp1 is
 configured as a layer 3 access port:

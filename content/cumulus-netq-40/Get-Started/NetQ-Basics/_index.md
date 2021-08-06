@@ -19,7 +19,7 @@ Unlike other network operations tools, NetQ delivers significant operational imp
 
 ## Demystify Overlay Networks
 
-While overlay networks provide significant advantages in network management, it can be difficult to troubleshoot issues that occur in the overlay one node at a time. You are unable to correlate what events (configuration changes, power outages, and so forth.) may have caused problems in the network and when they occurred. Only a sampling of data is available to use for your analysis. By contrast, with NetQ deployed, you have a networkwide view of the overlay network, can correlate events with what is happening now or in the past, and have real-time data to fill out the complete picture of your network health and operation.
+While overlay networks provide significant advantages in network management, it can be difficult to troubleshoot issues that occur in the overlay one node at a time. You are unable to correlate what events (configuration changes, power outages, and so forth) might have caused problems in the network and when they occurred. Only a sampling of data is available to use for your analysis. By contrast, with NetQ deployed, you have a networkwide view of the overlay network, can correlate events with what is happening now or in the past, and have real-time data to fill out the complete picture of your network health and operation.
 
 In summary:
 
@@ -55,7 +55,7 @@ In summary:
 
 ## Track Connectivity with NetQ Trace
 
-Conventional trace only traverses the data path looking for problems, and does so on a node to node basis. For paths with a small number of hops that might be fine, but in larger networks, it can become extremely time consuming. With NetQ both the data and control paths are verified providing additional information. It discovers misconfigurations along all hops in one go, speeding the time to resolution.
+Conventional trace only traverses the data path looking for problems, and does so on a node to node basis. For paths with a small number of hops that might be fine, but in larger networks, it can become very time consuming. With NetQ both the data and control paths are verified providing additional information. It discovers misconfigurations along all hops in one go, speeding the time to resolution.
 
 In summary:
 

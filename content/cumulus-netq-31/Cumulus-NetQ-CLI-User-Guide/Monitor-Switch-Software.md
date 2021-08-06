@@ -160,7 +160,7 @@ Remember to use measurement units on the time values.
     spine02           Cumulus Linux   ok         Tue Apr 2 14:01:05 2019
 
 You can filter the results to show license changes during a particular
-time frame for a particular device. This example shows that there have
+timeframe for a particular device. This example shows that there have
 been no changes to the license state on spine01 between now and 24 hours
 ago.
 

@@ -148,7 +148,7 @@ You can use either the Swagger UI or a terminal window with `bash` and `curl` co
 
 {{<tab "Swagger UI" >}}
 
-API requests are easy to execute in the Swagger UI. Simply select the endpoint of interest and try it out.
+API requests are easy to execute in the Swagger UI. Just select the endpoint of interest and try it out.
 
 1. Select the endpoint from the definition dropdown at the top right of the application.
 
@@ -196,7 +196,7 @@ The following HTTP status codes might be presented in the API responses:
 | 200 | Success | Request was successfully processed. | Review response. |
 | 400  | Bad Request | Invalid input was detected in request. | Check the syntax of your request and make sure it matches the schema. |
 | 401  | Unauthorized | Authentication has failed or credentials were not provided. | Provide or verify your credentials, or request access from your administrator. |
-| 403  | Forbidden | Request was valid, but user may not have needed permissions. | Verify your credentials or request an account from your administrator. |
+| 403  | Forbidden | Request was valid, but user might not have the needed permissions. | Verify your credentials or request an account from your administrator. |
 | 404  | Not Found | Requested resource could not be found. | Try the request again after a period of time or verify status of resource. |
 | 409  | Conflict | Request cannot be processed due to conflict in current state of the resource. | Verify status of resource and remove conflict. |
 | 500  | Internal Server Error | Unexpected condition has occurred. | Perform general troubleshooting and try the request again. |
@@ -204,7 +204,7 @@ The following HTTP status codes might be presented in the API responses:
 
 ## Example Requests and Responses
 
-Some command requests and their responses are shown here, but feel free to run your own requests. To run a request, you will need your authorization token. When using the `curl` commands, the responses have been piped through a python tool to make them more readable. You may chose to do so as well.
+Some command requests and their responses are shown here, but feel free to run your own requests. To run a request, you will need your authorization token. When using the `curl` commands, the responses have been piped through a python tool to make them more readable. You can choose to do so as well.
 
 ### Validate Networkwide Status of the BGP Service
 

@@ -743,7 +743,7 @@ Successfully added/updated tca TCA_CPU_UTILIZATION_UPPER_1
 
 ### Suppress a TCA Rule
 
-During troubleshooting or maintenance of switches you may want to suppress a rule to prevent erroneous event messages. This can be accomplished using the NetQ UI or the NetQ CLI.
+During troubleshooting or maintenance of switches you might want to suppress a rule to prevent erroneous event messages. This can be accomplished using the NetQ UI or the NetQ CLI.
 
 {{<tabs "TabID2718" >}}
 
@@ -751,7 +751,7 @@ During troubleshooting or maintenance of switches you may want to suppress a rul
 
 The TCA rules have three possible states iin the NetQ UI:
 
-- **Active**: Rule is operating, delivering events. This would be the normal operating state.
+- **Active**: Rule is operating, delivering events. This is the normal operating state.
 - **Suppressed**: Rule is disabled until a designated date and time. When that time occurs, the rule is automatically reenabled. This state is useful during troubleshooting or maintenance of a switch when you do not want erroneous events being generated.
 - **Disabled**: Rule is disabled until a user manually reenables it. This state is useful when you are unclear when you want the rule to be reenabled. This is not the same as deleting the rule.
 
@@ -815,7 +815,7 @@ Whereas suppression temporarily disables a rule, you can deactivate a rule to di
 
 The TCA rules have three possible states in the NetQ UI:
 
-- **Active**: Rule is operating, delivering events. This would be the normal operating state.
+- **Active**: Rule is operating, delivering events. This is the normal operating state.
 - **Suppressed**: Rule is disabled until a designated date and time. When that time occurs, the rule is automatically reenabled. This state is useful during troubleshooting or maintenance of a switch when you do not want erroneous events being generated.
 - **Disabled**: Rule is disabled until a user manually reenables it. This state is useful when you are unclear when you want the rule to be reenabled. This is not the same as deleting the rule.
 
@@ -884,7 +884,7 @@ To reenable the rule, set the `is_active` option to *true*.
 
 ### Delete a TCA Rule
 
-You might find that you no longer want to receive event notifications for a particular TCA event. In that case, you can either disable the event if you think you may want to receive them again or delete the rule altogether. Refer to {{<link title="#Disable a TCA Rule" text="Disable a TCA Rule">}} for the first case. Follow the instructions here to remove the rule using either the NetQ UI or NetQ CLI.
+You might find that you no longer want to receive event notifications for a particular TCA event. In that case, you can either disable the event if you think you might want to receive them again or delete the rule altogether. Refer to {{<link title="#Disable a TCA Rule" text="Disable a TCA Rule">}} for the first case. Follow the instructions here to remove the rule using either the NetQ UI or NetQ CLI.
 
 {{<tabs "TabID2858" >}}
 
@@ -927,7 +927,7 @@ Successfully deleted TCA TCA_RXBYTES_UPPER_1
 
 ## Resolve Scope Conflicts
 
-There may be occasions where the scope defined by the multiple rules for a given TCA event may overlap each other. In such cases, the TCA rule with the most specific scope that is still true is used to generate the event.
+There might be occasions where the scope defined by the multiple rules for a given TCA event might overlap each other. In such cases, the TCA rule with the most specific scope that is still true is used to generate the event.
 
 To clarify this, consider this example. Three events have occurred:
 

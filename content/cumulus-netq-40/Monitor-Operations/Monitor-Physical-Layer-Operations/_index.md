@@ -15,7 +15,7 @@ With NetQ, a network administrator can monitor OSI Layer 1 physical components o
 - Identify mismatched links
 - Identify changes in your physical layer, and when they occurred, indicating such items as bonds and links going down or flapping
 
-NetQ uses {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/" text="LLDP">}} (Link Layer Discovery Protocol) to collect port information. NetQ can also identify peer ports connected to DACs (Direct Attached Cables) and AOCs (Active Optical Cables) without using LLDP, even if the link is not UP.
+NetQ uses {{<kb_link latest="cl" url="Layer-2/Link-Layer-Discovery-Protocol.md" text="LLDP">}} (Link Layer Discovery Protocol) to collect port information. NetQ can also identify peer ports connected to DACs (Direct Attached Cables) and AOCs (Active Optical Cables) without using LLDP, even if the link is not UP.
 
 ## View Component Information
 
@@ -172,7 +172,7 @@ leaf01            swp54                     down       40G        off     QSFP+ 
 
 ### View Components from a Given Vendor
 
-By filtering for a specific cable vendor, you can collect information such as how many ports use components from that vendor and when they were last updated. This information may be useful when you run a cost analysis of your network. 
+By filtering for a specific cable vendor, you can collect information such as how many ports use components from that vendor and when they were last updated. This information can be useful when you run a cost analysis of your network.
 
 This example shows all the ports that are using components by an *OEM* vendor.
 

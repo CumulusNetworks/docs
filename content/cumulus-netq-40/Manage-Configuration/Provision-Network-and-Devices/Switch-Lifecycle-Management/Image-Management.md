@@ -29,7 +29,7 @@ For example, if you have both Cumulus Linux 3.7.3 and 3.7.11 versions, some runn
 
 If you have specified a default network OS and/or NetQ version, the NetQ UI also verifies that the necessary versions of the default image are available based on the known switch inventory, and if not, lists those that are missing.
 
-While it is not required that you upload images that NetQ determines to be missing, not doing so may cause failures when you attempt to upgrade your switches.
+While you do not have to upload images that NetQ determines to be missing, not doing so might cause failures when you attempt to upgrade your switches.
 
 ## Upload Images
 
@@ -412,7 +412,7 @@ cumulus@switch:~$ netq lcm show cl-images json
 
 ## Remove Images from Local Repository
 
-After you upgrade all your switches beyond a particular release, you may want to remove those images from the LCM repository to save space on the server.
+After you upgrade all your switches beyond a particular release, you can remove those images from the LCM repository to save space on the server.
 
 To remove images:
 

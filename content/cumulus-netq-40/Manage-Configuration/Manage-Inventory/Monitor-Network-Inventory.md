@@ -1663,7 +1663,7 @@ leaf02            vx                   x86_64               3.6.2.1
 
 ### View All Software Packages Installed
 
-If you are having an issue with several switches, you may want to verify what software packages are installed on them and compare that to the recommended packages for a given Cumulus Linux release.
+If you are having an issue with several switches, you should verify what software packages are installed on them and compare that to the recommended packages for a given Cumulus Linux release.
 
 To view installed package information for your switches, run:
 
@@ -1719,7 +1719,7 @@ netq show recommended-pkg-version [release-id <text-release-id>] [package-name <
 ```
 
 {{<notice tip>}}
-The output may be rather lengthy if this command is run for all releases and packages. If desired, run the command using the <code>release-id</code> and/or <code>package-name</code> options to shorten the output.
+The output can be rather lengthy if this command is run for all releases and packages. If desired, run the command using the <code>release-id</code> and/or <code>package-name</code> options to shorten the output.
 {{</notice>}}
 
 This example looks for switches running Cumulus Linux 3.7.1 and `switchd`. The result is a single switch, *leaf12*, that has older software and is recommended for update.

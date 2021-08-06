@@ -14,7 +14,7 @@ Verifies network connectivity on-demand between two devices at layer 2 or layer 
 
 {{<notice tip>}}
 
-The tracing function only knows about addresses that have already been learned. If you find that a path is invalid or incomplete, you may need to ping the identified device so that its address becomes known.
+The tracing function only knows about addresses that have already been learned. If you find that a path is invalid or incomplete, you should ping the identified device so that its address becomes known.
 
 {{</notice>}}
 
@@ -69,7 +69,7 @@ netq trace
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -201,7 +201,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |

@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 960
 toc: 4
 ---
-OSPF maintains the view of the network topology conceptually as a directed graph. Each router represents a vertex in the graph. Each link between neighboring routers represents a unidirectional edge and has an associated weight (called cost) that is either automatically derived from its bandwidth or administratively assigned. Using the weighted topology graph, each router computes a shortest path tree (SPT) with itself as the root, and applies the results to build its forwarding table. For more information about OSPF operation and how to configure OSPF to run in your data center network, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF/" text="Open Shortest Path First - OSPF">}} or {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-3/Open-Shortest-Path-First-v3-OSPFv3/" text="Open Shortest Path First v3 - OSPFv3">}}.
+OSPF maintains the view of the network topology conceptually as a directed graph. Each router represents a vertex in the graph. Each link between neighboring routers represents a unidirectional edge and has an associated weight (called cost) that is either automatically derived from its bandwidth or administratively assigned. Using the weighted topology graph, each router computes a shortest path tree (SPT) with itself as the root, and applies the results to build its forwarding table. For more information about OSPF operation and how to configure OSPF to run in your data center network, refer to {{<kb_link latest="cl" url="Layer-3/OSPF/Open-Shortest-Path-First-v2-OSPFv2.md" text="Open Shortest Path First - OSPF">}} or {{<kb_link latest="cl" url="Layer-3/OSPF/Open-Shortest-Path-First-v3-OSPFv3.md" text="Open Shortest Path First v3 - OSPFv3">}}.
 
 If you have OSPF running on your switches and hosts, NetQ enables you to view the health of the OSPF service on a networkwide and a per session basis, giving greater insight into all aspects of the service. For each device, you can view its associated interfaces, areas, peers, state, and type of OSPF running (numbered or unnumbered). Additionally, you can view the information at an earlier point in time and filter against a particular device, interface, or area.
 
@@ -172,7 +172,7 @@ To compare this data with the same data at a previous time:
 
     {{<figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-past-week-300.png" width="500">}}
 
-<div style="padding-left: 18px;">You can now see whether there are significant differences between this time and the original time. If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running OSPF than previously, looking for changes in the topology, and so forth.</div>
+<div style="padding-left: 18px;">You can now see whether there are significant differences between this time and the original time. If the changes are unexpected, you can investigate further by looking at another timeframe, determining if more nodes are now running OSPF than previously, looking for changes in the topology, and so forth.</div>
 
 {{</tab>}}
 
@@ -235,7 +235,7 @@ Where to go next depends on what data you see, but a couple of options include:
 
 ### View Devices with the Most OSPF-related Alarms
 
-Switches or hosts experiencing a large number of OSPF alarms may indicate a configuration or performance issue that needs further investigation. You can view the devices sorted by the number of OSPF alarms and then use the Switches card workflow or the Alarms card workflow to gather more information about possible causes for the alarms. compare the number of nodes running OSPF with unestablished sessions with the alarms present at the same time to determine if there is any correlation between the issues and the ability to establish an OSPF session.
+Switches or hosts experiencing a large number of OSPF alarms might indicate a configuration or performance issue that needs further investigation. You can view the devices sorted by the number of OSPF alarms and then use the Switches card workflow or the Alarms card workflow to gather more information about possible causes for the alarms. compare the number of nodes running OSPF with unestablished sessions with the alarms present at the same time to determine if there is any correlation between the issues and the ability to establish an OSPF session.
 
 To view switches with the most OSPF alarms:
 
@@ -367,7 +367,7 @@ With NetQ, you can monitor the performance of a single OSPF session using the Ne
     - Full-screen: view all session attributes and all events
 - `netq <hostname> show ospf` command: view configuration and status for session by hostname, including interface, area, type, state, peer hostname, peer interface, and the last time this information changed
 
-For an overview and how to configure OSPF to run in your data center network, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF/" text="Open Shortest Path First - OSPF">}} or {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-3/Open-Shortest-Path-First-v3-OSPFv3/" text="Open Shortest Path First v3 - OSPFv3">}}.
+For an overview and how to configure OSPF to run in your data center network, refer to {{<kb_link latest="cl" url="Layer-3/OSPF/Open-Shortest-Path-First-v2-OSPFv2.md" text="Open Shortest Path First - OSPF">}} or {{<kb_link latest="cl" url="Layer-3/OSPF/Open-Shortest-Path-First-v3-OSPFv3.md" text="Open Shortest Path First v3 - OSPFv3">}}.
 
 {{<notice note>}}
 To access the single session cards, you must open the full screen Network Services|All OSPF Sessions card, click the <strong>All Sessions</strong> tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Open Card).
@@ -505,7 +505,7 @@ To view the configuration file changes:
 
 6. Hover over the card and click <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/> to open the **Configuration File Evolution** tab.
 
-7. Select the time of interest on the left; when a change may have impacted the performance. Scroll down if needed.
+7. Select the time of interest on the left; when a change might have impacted the performance. Scroll down if needed.
 
 8. Choose between the **File** view and the **Diff** view (selected option is dark; File by default).
 

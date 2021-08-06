@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 920
 toc: 4
 ---
-Multi-Chassis Link Aggregation (MLAG) is used to enable a server or switch with a two-port bond (such as a link aggregation group/LAG, EtherChannel, port group or trunk) to connect those ports to different switches and operate as if they are connected to a single, logical switch. This provides greater redundancy and greater system throughput. Dual-connected devices can create LACP bonds that contain links to each physical switch. Therefore, active-active links from the dual-connected devices are supported even though they are connected to two different physical switches. For an overview and how to configure MLAG in your network, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="Multi-Chassis Link Aggregation - MLAG">}}.
+Multi-Chassis Link Aggregation (MLAG) is used to enable a server or switch with a two-port bond (such as a link aggregation group/LAG, EtherChannel, port group or trunk) to connect those ports to different switches and operate as if they are connected to a single, logical switch. This provides greater redundancy and greater system throughput. Dual-connected devices can create LACP bonds that contain links to each physical switch. Therefore, active-active links from the dual-connected devices are supported even though they are connected to two different physical switches. For an overview and how to configure MLAG in your network, refer to {{<kb_link latest="cl" url="Layer-2/Multi-Chassis-Link-Aggregation-MLAG.md" text="Multi-Chassis Link Aggregation - MLAG">}}.
 
 {{%notice note%}}
 
@@ -159,7 +159,7 @@ You can determine whether there are any bonds in your MLAG configuration with on
 
 4. Browse the sessions looking for either a blank value in the **Dual Bonds** column, or with one or more bonds listed in the **Single Bonds** column, to determine whether or not the devices participating in these sessions are incorrectly configured.
 
-5. Optionally, change the time period of the data on either size card to determine when the configuration may have changed from a dual to a single bond.
+5. Optionally, change the time period of the data on either size card to determine when the configuration might have changed from a dual to a single bond.
 
 {{</tab>}}
 
@@ -299,7 +299,7 @@ To compare this data with the same data at a previous time:
 
     {{<figure src="/images/netq/ntwk-svcs-all-mlag-large-most-sessions-6hr-230.png" width="500" >}}
 
-<div style="padding-left: 18px;">If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running MLAG than previously, looking for changes in the topology, and so forth.</div>
+<div style="padding-left: 18px;">If the changes are unexpected, you can investigate further by looking at another timeframe, determining if more nodes are now running MLAG than previously, looking for changes in the topology, and so forth.</div>
 
 {{</tab>}}
 
@@ -389,7 +389,7 @@ leaf01(P)         leaf02            44:38:39:be:ef:aa  up         up     8     8
 ### View Switches with the Most MLAG-related Alarms
 <!-- vale on -->
 
-Switches experiencing a large number of MLAG alarms may indicate a configuration or performance issue that needs further investigation. You can view this information using the NetQ UI or NetQ CLI.
+Switches experiencing a large number of MLAG alarms might indicate a configuration or performance issue that needs further investigation. You can view this information using the NetQ UI or NetQ CLI.
 
 {{<tabs "TabID392" >}}
 
@@ -466,7 +466,7 @@ Where to go next depends on what data you see, but a few options include:
 - Sort on various parameters:
     - By **Message** to determine the frequency of particular events.
     - By **Severity** to determine the most critical events.
-    - By **Time** to find events that may have occurred at a particular time to try to correlate them with other system events.
+    - By **Time** to find events that might have occurred at a particular time to try to correlate them with other system events.
 - Export the data to a file for use in another analytics tool by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
 - Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
@@ -572,7 +572,7 @@ leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8
 
 ## Monitor a Single MLAG Session
 
-With NetQ, you can monitor the number of nodes running the MLAG service, view switches with the most peers alive and not alive, and view alarms triggered by the MLAG service. For an overview and how to configure MLAG in your data center network, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="Multi-Chassis Link Aggregation - MLAG">}}.
+With NetQ, you can monitor the number of nodes running the MLAG service, view switches with the most peers alive and not alive, and view alarms triggered by the MLAG service. For an overview and how to configure MLAG in your data center network, refer to {{<kb_link latest="cl" url="Layer-2/Multi-Chassis-Link-Aggregation-MLAG.md" text="Multi-Chassis Link Aggregation - MLAG">}}.
 
 {{%notice note%}}
 
@@ -698,7 +698,7 @@ To view the configuration file changes:
 
 7. Hover over the card and click <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/> to open the **Configuration File Evolution** tab.
 
-8. Select the time of interest on the left; when a change may have impacted the performance. Scroll down if needed.
+8. Select the time of interest on the left; when a change might have impacted the performance. Scroll down if needed.
 
 9. Choose between the **File** view and the **Diff** view (selected option is dark; File by default).  
 
@@ -794,6 +794,6 @@ Where to go next depends on what data you see, but a few options include:
 - Sort on other parameters:
     - By **Message** to determine the frequency of particular events.
     - By **Severity** to determine the most critical events.
-    - By **Time** to find events that may have occurred at a particular time to try to correlate them with other system events.
+    - By **Time** to find events that might have occurred at a particular time to try to correlate them with other system events.
 - Export the data to a file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
 - Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.

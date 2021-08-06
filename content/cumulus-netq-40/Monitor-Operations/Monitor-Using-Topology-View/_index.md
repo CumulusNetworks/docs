@@ -16,7 +16,7 @@ This opens the full screen view of your network topology.
 
 {{<figure src="/images/netq/topo-main-page-ref-topo-240.png" width="700">}}
 
-This document uses the Cumulus Networks {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Network-Solutions/Cumulus-Networks-Services-Demos#reference-topology" text="reference topology">}} for all examples.
+This document uses the Cumulus Networks [reference topology](https://gitlab.com/cumulus-consulting/goldenturtle/cldemo2) for all examples.
 
 To close the view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
@@ -117,7 +117,7 @@ The JSON file will be similar to this example:
 
 ### Rearrange the Topology Layout
 
-The network topology is generated automatically by NetQ and the nodes are positioned automatically. In large topologies, the position of the nodes may not be suitable for easy viewing. You can move the components of the topology around on screen to suit your needs. You can save the new layout so other users can see it.
+The network topology is generated automatically by NetQ and the nodes are positioned automatically. In large topologies, the position of the nodes might not be suitable for easy viewing. You can move the components of the topology around on screen to suit your needs. You can save the new layout so other users can see it.
 
 1. Consider the following topology:
 

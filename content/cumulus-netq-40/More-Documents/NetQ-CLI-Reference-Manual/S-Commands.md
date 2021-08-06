@@ -69,7 +69,7 @@ The start time (<code>text-time</code>) and end time (<code>text-endtime</code>)
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -116,7 +116,7 @@ Tue Nov 24 19:51:11 2020  server04          uplink       10.1.10.104            
 
 ## netq show agents
 
-Displays basic configuration, health, and connectivity status for all nodes or a specific node running NetQ Agent in your network fabric. This command gives you an easy way to see if any NetQ Agents or their nodes have lost power, may have difficulty communicating with the telemetry server, and whether agents are running different versions of software. Any of these situations could cause problems in the operation of your network.
+Displays basic configuration, health, and connectivity status for all nodes or a specific node running NetQ Agent in your network fabric. This command gives you an easy way to see if any NetQ Agents or their nodes have lost power, if they have difficulty communicating with the telemetry server, or whether agents are running different versions of software. Any of these situations could cause problems in the operation of your network.
 
 The output provides:
 
@@ -147,7 +147,7 @@ None
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Filter output to view status for the switch or host with this name |
 | fresh | NA | Filter output for devices where the NetQ Agent is communicating with the appliance or VM as expected |
-| dead | NA | Filter output for devices where the NetQ Agent has been decommisioned by a user |
+| dead | NA | Filter output for devices where the NetQ Agent has been decommissioned by a user |
 | rotten | NA | Filter output for devices where the NetQ Agent has not communicated with the appliance or VM in the last two minutes |
 | opta | NA | Filter output for the NetQ Agent installed on the appliance or VM |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
@@ -155,7 +155,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -288,7 +288,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -423,7 +423,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -478,7 +478,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -558,7 +558,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -655,7 +655,7 @@ netq [<hostname>] show cl-resource forwarding
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -709,7 +709,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -767,7 +767,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -848,7 +848,7 @@ netq [<hostname>] show dom type (module_temp|module_voltage)
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -947,7 +947,7 @@ netq <hostname> show interface-stats
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1075,13 +1075,13 @@ None
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | level | info, error, warning, critical, or debug | Only display events with this severity level |
-| type | <!-- vale off -->agents, bgp, btrfsinfo, clag, clsupport, configdiff, evpn, interfaces, interfaces-physical, lcm, lldp, macs, mtu, ntp, os, ospf, roceconfig, sensors, services, tca_roce, trace, vlan or vxlan<!-- vale on --> | Display events for the type with this name |
+| type | agents, bgp, btrfsinfo, clag, clsupport, configdiff, evpn, interfaces, interfaces-physical, lcm, lldp, macs, mtu, ntp, os, ospf, roceconfig, sensors, services, tca_roce, trace, vlan or vxlan | Display events for the type with this name |
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1204,7 +1204,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1366,7 +1366,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1478,7 +1478,7 @@ netq <hostname> show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1562,7 +1562,7 @@ Count of matching link records: 10
 ## netq show interface-stats
 <!-- vale on -->
 
-Displays performance statistics for the physical interfaces on switches in your network. The NetQ Agent collects the statistics every 30 seconds. Statistics are not collected for non-physical interfaces, such as bonds, bridges, and VXLANs. You can filter the output by interface or to view only error statistics. The ouput provides the following information for each switch and interface:
+Displays performance statistics for the physical interfaces on switches in your network. The NetQ Agent collects the statistics every 30 seconds. Statistics are not collected for non-physical interfaces, such as bonds, bridges, and VXLANs. You can filter the output by interface or to view only error statistics. The output provides the following information for each switch and interface:
 
 - **Transmit**: tx_bytes, tx_carrier, tx_colls, tx_drop, tx_errs, tx_packets
 - **Receive**: rx_bytes, rx_drop, rx_errs, rx_frame, rx_multicast, rx_packets
@@ -1595,7 +1595,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1706,7 +1706,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1824,7 +1824,7 @@ netq [<hostname>] show inventory os
 | vendor | \<asic-vendor\>, \<board-vendor\>, \<disk-vendor\>, \<memory-vendor\> | Only display results for the ASIC, board, disk, or memory vendor with this name |
 | model | \<asic-model\>, \<board-model\> | Only display results for ASIC or board model with this name |
 | model-id | \<asic-model-id\> | Only display results for ASIC models with this ID |
-| arch | \<cpu-arch\> | Only display results for CPUs with this architecure |
+| arch | \<cpu-arch\> | Only display results for CPUs with this architecture |
 | transport | \<disk-transport\> | Only display results for disks with this transport method |
 | type | \<memory-type\> | Only display results for memory of this type |
 | version | \<os-version\> | Only display results for operating systems of this version |
@@ -1835,7 +1835,7 @@ netq [<hostname>] show inventory os
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -1994,7 +1994,7 @@ netq show ipv6 addresses
 | NA | \<ipv4/prefixlen\> | Only display results for switches and hosts with this IPv4 address and prefix |
 | NA | \<ipv6\> | Only display results for switches and hosts with this IPv6 address |
 | NA | \<ipv6/prefixlen\> | Only display results for switches and hosts with this IPv6 address and prefix |
-| vrf | \<vrf\> | Only dispaly results for switches and hosts using this virtual route forwarding interface |
+| vrf | \<vrf\> | Only display results for switches and hosts using this virtual route forwarding interface |
 | subnet | NA | Only display results for addresses in the subnet |
 | supernet | NA | Only display results for addresses in the supernet |
 | gateway | NA | Only display results for addresses in the gateway |
@@ -2003,7 +2003,7 @@ netq show ipv6 addresses
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2130,7 +2130,7 @@ netq <hostname> show ipv6 neighbors
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2270,7 +2270,7 @@ netq show ipv6 routes
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2350,7 +2350,7 @@ netq show job-status <text-opta-ip>
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2522,7 +2522,7 @@ netq [<hostname>] show kubernetes service
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2600,7 +2600,7 @@ Refer to {{<link title="Monitor Container Environments Using Kubernetes API Serv
 
 ## netq show impact kubernetes
 
-Displays the impact on pods, services, replica sets or deployments when a specific ToR switch becomes unavilable.
+Displays the impact on pods, services, replica sets or deployments when a specific ToR switch becomes unavailable.
 
 {{<notice tip>}}
 Kubernetes monitoring must be enabled on NetQ Agents. Refer to the <code>netq config add agent</code> command to enable monitoring.
@@ -2664,7 +2664,7 @@ netq <hostname> show impact kubernetes deployment
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2672,7 +2672,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 ### Sample Usage
 
-Show impact on service availabilty based on the loss of particular node
+Show impact on service availability based on the loss of particular node
 
 ```
 cumulus@host:~$ netq server11 show impact kubernetes service name calico-etcd
@@ -2751,7 +2751,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2845,7 +2845,7 @@ netq [<hostname>] show mac-commentary
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -2911,7 +2911,7 @@ netq [<hostname>] show mac-history
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3014,7 +3014,7 @@ netq <hostname> show macs
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3107,7 +3107,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3186,7 +3186,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3243,7 +3243,7 @@ netq show notification
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | channel | NA | Display all channel configurations |
-| filter | NA | Displayy all filter configurations |
+| filter | NA | Display all filter configurations |
 | rule | NA | Display all rule configurations |
 | proxy | NA | Display the proxy configuration |
 
@@ -3255,7 +3255,7 @@ netq show notification
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3381,7 +3381,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3452,7 +3452,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3515,7 +3515,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3569,14 +3569,14 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
-| NA | \<remote-interface\> | Only display results for the host inteface with this name |
+| NA | \<remote-interface\> | Only display results for the host interface with this name |
 | area | \<area-id\> | Only display results for devices in this routing domain |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3656,7 +3656,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3738,7 +3738,7 @@ netq [<hostname>] show resource-util
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -3884,7 +3884,7 @@ netq [<hostname>] show sensors
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -4020,7 +4020,7 @@ netq [<hostname>] show services
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -4152,7 +4152,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -4241,7 +4241,7 @@ netq show trace summary
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -4354,7 +4354,7 @@ netq show unit-tests vxlan [json]
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -4410,7 +4410,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -4490,7 +4490,7 @@ netq show validation summary
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -4593,7 +4593,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -4676,7 +4676,7 @@ None
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
@@ -4816,7 +4816,7 @@ netq [<hostname>] show wjh-drop <text-drop-type>
 
 ### Command History
 
-A release is included if there were changes to the command, otherwise it is not listed.
+A release appears here if there were changes to the command; otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |

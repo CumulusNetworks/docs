@@ -69,7 +69,7 @@ The link MTU validation tests look for consistency across an interface and appro
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
 | 0 | Link MTU Consistency | Checks for consistency of MTU setting on two sides of a physical interface |
-| 1 | VLAN interface | Checks if the MTU of an SVI is no smaller than the parent interface, substracting the VLAN tag size |
+| 1 | VLAN interface | Checks if the MTU of an SVI is no smaller than the parent interface, subtracting the VLAN tag size |
 | 2 | Bridge interface | Checks if the MTU on a bridge is not arbitrarily smaller than the smallest MTU among its members |
 
 ## MLAG Validation Tests
@@ -80,7 +80,7 @@ The MLAG validation tests look for misconfigurations, peering status, and bond e
 | :---------: | --------- | ----------- |
 | 0 | Peering | Checks if: <ul><li>MLAG peerlink is up</li><li>MLAG peerlink bond slaves are down (not in full capacity and redundancy)</li><li>Peering is established between two nodes in a MLAG pair</li></ul> |
 | 1 | Backup IP | Checks if: <ul><li>MLAG backup IP configuration is missing on a MLAG node</li><li>MLAG backup IP is correctly pointing to the MLAG peer and its connectivity is available</li></ul> |
-| 2 | Clag Sysmac | Checks if: <ul><li>MLAG Sysmac is consistently configured on both nodes in a MLAG pair</li><li>Any duplication of a MLAG sysmac exists within a bridge domain </li></ul> |
+| 2 | CLAG Sysmac | Checks if: <ul><li>MLAG Sysmac is consistently configured on both nodes in a MLAG pair</li><li>Any duplication of a MLAG sysmac exists within a bridge domain </li></ul> |
 | 3 | VXLAN <!-- vale off -->Anycast IP<!-- vale on --> | Checks if the VXLAN anycast IP address is consistently configured on both nodes in an MLAG pair |
 | 4 | Bridge Membership | Checks if the MLAG peerlink is part of bridge |
 | 5 | Spanning Tree | Checks if: <ul><li>STP is enabled and running on the MLAG nodes</li><li>MLAG peerlink role is correct from STP perspective</li><li>The bridge ID is consistent between two nodes of a MLAG pair</li><li>The VNI in the bridge has BPDU guard and BPDU filter enabled</li></ul> |

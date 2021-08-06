@@ -32,11 +32,11 @@ management network overlaid on top, where NetQ is deployed.
 
 The physical *network* hardware includes:
 
-- **Spine** switches: where data is aggregated and distributed ; also known as an aggregation switch, end-of-row (EOR) switch or distribution switch
+- **Spine** switches: where data is aggregated and distributed; also known as an aggregation switch, end-of-row (EOR) switch or distribution switch
 - **Leaf** switches: where servers connect to the network; also known as a Top of Rack (TOR) or access switch
 - **Server** hosts: where applications are hosted and data served to the user through the network
 - **Exit** switch: where connections to outside the data center occur; also known as Border Leaf or Service Leaf
-- **Edge** server (optional): where the firewall is the demarcation point, peering may occur through the exit switch layer to Internet (PE) devices
+- **Edge** server (optional): where the firewall is the demarcation point, peering can occur through the exit switch layer to Internet (PE) devices
 - **Internet** device (PE): where provider edge (PE) equipment communicates at layer 3 with the network fabric
 
 The diagram shows physical connections (in the form of grey lines)

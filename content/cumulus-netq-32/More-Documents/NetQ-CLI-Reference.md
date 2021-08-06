@@ -1046,7 +1046,7 @@ Indicates how far to go back in time for the network state information. The <tex
 <1-xx>d: number of days
 Use number of days to go back weeks, months, or years. [how much data is stored by default?] Also note there is no space between the number and unit of time.
 Between <text-time> and <text-endtime>
-Indicates the time frame for which you want to view changes. [explain how this works--which variable is the more recent time???]
+Indicates the timeframe for which you want to view changes. [explain how this works--which variable is the more recent time???]
 json
 Display the output in JSON file format instead of the default on-screen text format.
 Command History
@@ -1190,7 +1190,7 @@ Syntax
 		[json]
 Required Arguments	
 Between <text-time> and <text-endtime>
-Indicates the time frame for which you want to view changes. [explain how this works--which variable is the more recent time???]
+Indicates the timeframe for which you want to view changes. [explain how this works--which variable is the more recent time???]
 Optional Arguments
 hostname
 Text used to identify a particular node in your network fabric; for example, leaf01 or swp3.

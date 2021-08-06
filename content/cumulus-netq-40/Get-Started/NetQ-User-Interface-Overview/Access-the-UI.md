@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 100
 toc: 4
 ---
-The NetQ UI is a web-based application. Logging in and logging out are simple and quick. Users working with a cloud deployment of NetQ can reset their password if it is forgotten.
+The NetQ UI is a web-based application. Logging in and logging out are simple and quick. Users working with a cloud deployment of NetQ can reset forgotten passwords.
 
 ## Log In to NetQ
 

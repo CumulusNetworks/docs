@@ -1,10 +1,6 @@
 ---
 title: Example Install Scripts
-author: Cumulus Networks
-weight: 50
-product: Cumulus Networks Guides
-version: "1.0"
-draft: true
+weight: 47
 ---
 This section provides the following package dependency install scripts:
 

@@ -1,8 +1,9 @@
 ---
 title: Campus Architecture Solution Guide
 author: Cumulus Networks
+weight: 20
 product: Cumulus Networks Guides
-Draft: true
+draft: true
 ---
 
 ## Executive Summary

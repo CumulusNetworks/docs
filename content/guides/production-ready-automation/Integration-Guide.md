@@ -1,10 +1,6 @@
 ---
 title: Customize Production Ready Automation
-author: Cumulus Networks
-weight: 40
-product: Cumulus Networks Guides
-version: "1.0"
-draft: true
+weight: 45
 ---
 This section provides guidance on how to customize and adapt the main individual pieces of the Cumulus Production Ready Automation to suit your own needs and to work for your own environment.
 

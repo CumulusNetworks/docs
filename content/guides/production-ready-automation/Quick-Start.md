@@ -1,10 +1,6 @@
 ---
 title: Quick Start
-author: Cumulus Networks
-weight: 20
-product: Cumulus Networks Guides
-version: "1.0"
-draft: true
+weight: 41
 ---
 This quick start provides a quick and easy way to run your own Vagrant, libvirt, and KVM server, with procedures on how to:
 

@@ -25,7 +25,7 @@ Modern Ethernet modules come in one of two form factors:
 
 Each form factor contains an EEPROM with information about the capabilities of the module and various groups of required or optional registers to query or control aspects of the module when needed. The main values are decoded in the output from the `ethtool -m <swp>` command.
 
-The memory locations for the fields in the EEPROM and the common registers are defined in the SFF/MSA specifications:
+The SFF/MSA specifications define the memory locations for the fields in the EEPROM and the common registers:
 
 - SFP: {{<exlink url="https://members.snia.org/document/dl/25916" text="SFF-8472">}}: *Management Interface for SFP+* (PDF)
 - QSFP: {{<exlink url="https://members.snia.org/document/dl/26418" text="SFF-8636">}} *Management Interface for 4-lane Modules and Cables* (PDF)
@@ -39,7 +39,7 @@ Identifiers used in the first byte of the module memory map:
 <!-- vale on -->
 ### Encoding
 
-Two parts of high-speed Ethernet are grouped under *encoding* in the output from the `ethtool -m <swp>` command:
+Two parts of high-speed Ethernet are under *encoding* in the output from the `ethtool -m <swp>` command:
 
 - The way to represent bits on the wire or optical fiber:
   - NRZ (also known as PAM2) has two voltage (or laser) levels signifying a 0 and 1. Negative voltage level = 0, positive voltage = 1. Used on all Ethernet technologies below lane speeds of 50Gbps.
@@ -280,7 +280,7 @@ Port:  swp43
       Troubleshooting Info: No issue was observed.
 ```
 
-The output is organized into the following sections:
+The output is in the following sections:
 
 - Module Info: Shows basic information about the module, according to the module EEPROM.
 - Configured State: Shows configuration information of the port, as defined in the kernel.
@@ -289,7 +289,7 @@ The output is organized into the following sections:
 
 ## Module Information
 
-The vendor name, vendor part number, identifier (QSFP/SFP type), and type (compliance codes) are read from the vendor EEPROM. See {{<link url="#compliance-codes-ethernet-type-ethmode-type-interface-type" text="Compliance Codes, Ethernet Type, Ethmode Type, Interface type">}} above for an explanation.
+The vendor name, vendor part number, identifier (QSFP/SFP type), and type (compliance codes) comes from the vendor EEPROM. See {{<link url="#compliance-codes-ethernet-type-ethmode-type-interface-type" text="Compliance Codes, Ethernet Type, Ethmode Type, Interface type">}} above for an explanation.
 
 ```
 Module Info
@@ -299,7 +299,7 @@ Module Info
 
 ### Configured State
 
-The configured state reflects the configuration that has been applied to the kernel via `ifupdown2` or NCLU. The `switchd` daemon translates the kernel state to the platform hardware state and keeps them in sync.
+The configured state reflects the configuration you apply to the kernel with `ifupdown2` or NCLU. The `switchd` daemon translates the kernel state to the platform hardware state and keeps them in sync.
 
 ```
 Configured State
@@ -312,9 +312,9 @@ Configured State
   - *Admin Down* means the kernel has disabled the port.
 - `Speed`:  
   - The configured speed in the kernel.  
-  - The maximum speed is set in the `/etc/cumulus/ports.conf` file.
+  - The maximum speed is in the `/etc/cumulus/ports.conf` file.
   - You can lower the speed with NCLU, NVUE, or `ifupdown2`.
-  - If auto-negotiation is enabled, this output displays the negotiated or auto-detected speed.
+  - If you enable auto-negotiation, this output displays the negotiated or auto-detected speed.
 - `MTU`: The configured MTU setting in the kernel.
 - `Autoneg`: The configured auto-negotiation state in the kernel. See {{<link url="#auto-negotiation" text="Auto-negotiation">}} for more information.
 - `FEC`: The configured state of FEC in the kernel. See {{<link url="#fec" text="FEC">}}, above for more information.
@@ -334,12 +334,12 @@ The operational state shows the current state of the link in the kernel and in t
       LLDP Neighbor:      switch-1, swp43
 ```
 
-- `Link Status` and `Speed`: The kernel state and hardware state should match, unless the link is in some unstable or transitory state.
+- `Link Status` and `Speed`: The kernel state and hardware state matches, unless the link is in some unstable or transitory state.
 - `Autoneg` and `Autodetect`: See {{<link url="#auto-negotiation" text="Auto-negotiation">}} above for more information.
 - `FEC`: The operational state of FEC on the link. See {{<link url="#fec" text="FEC">}} above for more information.
-- `TX Power` and `RX Power`: These values are read from the module DDM/DOM fields to indicate the optical power strength measured on the module if the module implements the feature. Sometimes both are supported, sometimes only RX, sometimes neither. This is not applicable to DAC and twisted pair interfaces.
-- `Topo File Neighbor`: If the `/etc/ptm.d/topology.dot` file is populated and the `ptmd` daemon is active, the entry matching this interface is shown.
-- `LLDP Neighbor`: If the `lldpd` daemon is running and LLDP data is received from the neighbor, the neighbor information is shown here.
+- `TX Power` and `RX Power`: These values come from the module DDM/DOM fields to indicate the optical power strength measured on the module if the module implements the feature. The switch supports, both, only RX, or neither. This does not apply to DAC and twisted pair interfaces.
+- `Topo File Neighbor`: If you populate the `/etc/ptm.d/topology.dot` file and the `ptmd` daemon is active, the entry matching this interface shows.
+- `LLDP Neighbor`: If the `lldpd` daemon is running and the switch receives LLDP data from the neighbor, the neighbor information shows here.
 
 ### Port Hardware State
 
@@ -368,7 +368,7 @@ The root cause of a layer 1 problem falls into one of these three categories:
 
 - Configuration issues: A misconfiguration on one neighbor or the other, or a configuration mismatch between the neighbors.
 - Hardware issues: Failures in fiber patches or modules and, on rare occasions, a QSFP or SFP port.
-- Switch driver errors in handling a particular module type. These are very rare and can usually be worked around.
+- Switch driver errors in handling a particular module type. These errors are rare and you can usually work around them.
 
 To resolve a layer 1 problem, follow these steps:
 
@@ -382,7 +382,7 @@ To resolve a layer 1 problem, follow these steps:
 
 ### Classify the Layer 1 Problem
 
-Layer 1 problems can be classified as follows:
+You can classify layer 1 problems as follows:
 
 - {{<link url="#troubleshoot-down-or-flapping-links" text="Link down or flapping">}}
 - {{<link url="#troubleshoot-physical-errors-on-a-link" text="Physical errors on link">}}; these are not the same as *drops*, which are layer 2 or layer 3 switching issues
@@ -409,7 +409,7 @@ Try swapping the modules and fibers to determine which component is bad:
 - Swap the modules between the local and remote. Does the test indicate the symptoms move with the module or stay on the same neighbor?
 - Loopback tests: Move one of the modules to the neighbor and connect the two modules back-to-back in the same switch, ideally with the same cable. What does the test indicate now? Now, move both modules to the other side and repeat. Try to isolate the issue to a single fiber, module, port, platform or configuration.
 - Replace each module one at a time with a different module of the same type; the current module could be bad.
-- Replace each module with a different module from a different vendor, preferably one that is supported on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux HCL">}}.
+- Replace each module with a different module from a different vendor. Use a module that the Cumulus Linux switch supports. Check the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux HCL">}}.
 
 ## Troubleshoot Down or Flapping Links
 
@@ -419,7 +419,7 @@ A down or flapping link can exhibit any or all the following symptoms:
 - `ip link show <swp>` returns *<NO-CARRIER,BROADCAST,MULTICAST,UP>*. An *up* link returns something like *<BROADCAST,MULTICAST,UP,LOWER_UP>*.
 - `ip link show` changes every second or two, indicating the link is flapping up or down.
 - Log messages in `/var/log/linkstate` indicate the carrier is flapping up or down.
-- No LLDP data is received, or it is flapping.
+- The switch does not receive any LLDP data, or the link is flapping.
 
 To begin troubleshooting, examine the output of `l1-show` on both ends of the link if possible. The output contains all the pertinent information to help troubleshoot the link.
 
@@ -458,8 +458,8 @@ Module Info
     Identifier: 0x03 (SFP)              Type: 10g-sr
 ```
 
-- Does the module vendor name and vendor part number match the module that is believed to be installed? Is this port the correct port with the link problem? Is the right module installed?
-- Does the module type match the technology that is expected for this link? For example, if there is a 100G DAC installed, then is this value *Type: 100G-CR4*? See {{<link url="#compliance-codes-ethernet-type-ethmode-type-interface-type" text="Compliance Codes, Ethernet Type, Ethmode Type, Interface Type">}} for more information.
+- Does the module vendor name and vendor part number match the module that connects to the switch? Is this port the correct port with the link problem? Is the right module installed?
+- Does the module type match the technology for this link? For example, if there is a 100G DAC, is this value *Type: 100G-CR4*? See {{<link url="#compliance-codes-ethernet-type-ethmode-type-interface-type" text="Compliance Codes, Ethernet Type, Ethmode Type, Interface Type">}} for more information.
 - Does the device at the remote end recognize the module as the same Ethernet type that the local switch recognizes? Vendor outputs differ. If the remote device is not a Cumulus Linux device, consult the vendor documentation to determine how to display the Ethernet type for the installed module.
 
 ### Examine Configured State
@@ -473,7 +473,7 @@ Configured State
 - `Admin`: Is the link *Admin Up*? Is the link configured and enabled?
 - `Speed`: Is the configured speed correct? Does it match the configured speed on the remote side?
 - `MTU`: Does the MTU match on both sides? Note that an MTU mismatch does not prevent the link from coming up, but it does affect traffic forwarding.
-- `Autoneg`: Does this setting match what is configured and expected? See {{<link url="#auto-negotiation" text="Auto-negotiation">}}.
+- `Autoneg`: Does this setting match the configuration and is it what you expect? See {{<link url="#auto-negotiation" text="Auto-negotiation">}}.
 - `FEC`: Is the FEC setting correctly configured? See {{<link url="#fec" text="FEC">}}.
 
 ### Examine Operational State
@@ -495,9 +495,9 @@ Operational State
   - In a link flapping issue, one or both of these values might change every second or less, so the output of this field might not represent the value in the next moment in time.
 - `Speed` (Kernel and Hardware): Does the operational speed match the configured speed?
   - When the link is up, the kernel and hardware operational values should be in sync with each other and the configured speed.
-  - When the link is down and auto-negotiation is enabled, the kernel value is *Unknown!* because the hardware has not synchronized to a speed.
-  - When the link is down and auto-negotiation is disabled, the kernel speed displays the configured value. The *Hardware* field might show various values, depending on implementation of the particular hardware interface.
-- `Autoneg` and `Autodetect`: Normally the operational value matches the configured value. This is informational only, but it is useful to know if `autodetect` is enabled. See {{<link url="#auto-negotiation" text="auto-negotiation">}} and {{<link url="#autodetect" text="autodetect">}}.
+  - When the link is down and auto-negotiation is on, the kernel value is *Unknown!* because the hardware does not synchronize to a speed.
+  - When the link is down and auto-negotiation is off, the kernel speed displays the configured value. The *Hardware* field shows various values, depending on implementation of the particular hardware interface.
+- `Autoneg` and `Autodetect`: Normally the operational value matches the configured value. This is informational only, but it is useful to know if `autodetect` is on. See {{<link url="#auto-negotiation" text="auto-negotiation">}} and {{<link url="#autodetect" text="autodetect">}}.
 - `FEC`: This field is only useful for informational purposes. It displays the actual FEC only when the link is up.
   - When the link is down, the operational FEC is *None*.
   - When the link is up, this field shows the actual FEC value working on the link.
@@ -506,16 +506,16 @@ Operational State
   - A short range module should send in the range of 0.6 and 1.0 mW and should work with receive power in the range of > 0.05 mW.
   - Long range optical modules have TX power above 1.0 mW.
   - When in doubt, consult the technical specifications for the particular module.
-  - A value of *0.0000* or *0.0* indicates that the module does not support DDM/DOM TX or RX power, or no signal is being transmitted or received.
-    - If the TX Power is *0.0000* or *0.0*, then either the module does not support TX DDM/DOM or the module lasers are disabled for some reason.
-    - If the RX Power is *0.0000* or *0.0*, then either the module does not support RX DDM/DOM or no signal is being received on the module receivers.
-    - A value of *0.0001* indicates that the module supports DDM/DOM, but no signal is being transmitted or received.
-      - If the TX Power is *0.0001*, then the module lasers are likely to be disabled for some reason.
-      - If the RX Power is *0.0001*, then no signal is being received on the module receivers.
+  - A value of *0.0000* or *0.0* indicates that the module does not support DDM/DOM TX or RX power, or the module is not transmitting or receiving a signal.
+    - If the TX Power is *0.0000* or *0.0*, then either the module does not support TX DDM/DOM or the module lasers are off for some reason.
+    - If the RX Power is *0.0000* or *0.0*, then either the module does not support RX DDM/DOM or the module receivers are not receiving a signal.
+    - A value of *0.0001* indicates that the module supports DDM/DOM, but the module is not receiving or transmitting a signal.
+      - If the TX Power is *0.0001*, then the module lasers are likely disabled for some reason.
+      - If the RX Power is *0.0001*, then the module receivers are not receiving a signal.
     - On a QSFP module, check the value for each of the four lanes. Sometimes only one lane is failing and the entire link is down as a result.
-- `Topo File Neighbor`: If a `ptmd` topology file is configured on the switch, this helps to quickly identify the expected link neighbor.
+- `Topo File Neighbor`: If you configure a `ptmd` topology file on the switch, you can identify the link neighbor you expect.
 - `LLDP Neighbor`: Does this match the expected neighbor and port?
-  - This value is the neighbor and port reported via LLDP.
+  - This value is the neighbor and port that LLDP reports.
   - If the link is down, this value is normally blank.
 
 ### Examine Port Hardware State
@@ -533,32 +533,32 @@ Port Hardware State:
 
 - `Compliance Code`:
   - Does the interface type recognized by the firmware match the type of module installed? Does the firmware correctly recognize the module type?
-- `Cable Type`: Does the cable type recognized by the firmware match the type installed?
+- `Cable Type`: Does the cable type that the firmware recognizes match the installed cable type?
 - `Speed`:
   - Does the speed match the expected speed?
-  - If auto-negotiation is enabled and the link is down, *N/A* might be displayed, or not the expected speed.
+  - If auto-negotiation is on and the link is down, *N/A* or a speed you do not expect displays.
 - `Autodetect`:
-  - If *Enabled*, then perhaps the link algorithm is failing with the neighbor.  
+  - If *Enabled*, the link algorithm might be failing with the neighbor.  
   - Try disabling auto-negotiation and setting a forced speed.  
   - See {{<link url="#auto-negotiation" text="auto-negotiation">}} and {{<link url="#autodetect" text="autodetect">}} for more guidance.
 - `Eyes` and `Grade`:  
-  - If the link is not up, all zeros are displayed.  
-  - If the link is up, the RX eye (mV) and grade values are displayed.  
+  - If the link is not up, all zeros display.  
+  - If the link is up, the RX eye (mV) and grade values display.  
   - See {{<link url="#eyes" text="Eyes">}} for more information.
 - `Troubleshooting Info`:
   - What does the firmware assess as the problem? Although this information is at the end of the output, this is sometimes the first place to look for basic guidance.
   - Examples:
-    - `The port is closed by command. Please check that the interface is enabled.` Configure the port so it is set to *Admin Up*.
-    - `The cable is unplugged.` There is no module detected. Check to see if a module is installed in this port, or reseat the module.
+    - `The port is closed by command. Please check that the interface is enabled.` Configure the port so it is *Admin Up*.
+    - `The cable is unplugged.` The firmware does not detect a module. Check to see if a module is in this port, or reseat the module.
     - `Auto-negotiation no partner detected.` The link is down because it does not see the neighbor. This is not very helpful to determine the cause alone.
       - Check the configurations on both sides for an auto-negotiation or FEC configuration mismatch.
-      - If the link is a fiber link and the module supports RX/TX Power DDM/DOM, check the *RX Power* and *TX Power* values in the *Operational State* output of `l1-show` to help determine which component might have failed.
+      - If the link is a fiber link and the module supports RX/TX Power DDM/DOM, check the *RX Power* and *TX Power* values in the *Operational State* output of `l1-show` to help determine which component fails.
       - Follow the steps in {{<link url="#isolate-faulty-hardware" text="Isolate Faulty Hardware">}}; use this value or the *RX/TX Power* DDM/DOM value as the test.
-    - `Force Mode no partner detected.` Auto-negotiation or autodetect is disabled, link is down because it does not see the neighbor. This is not very helpful to determine the cause alone.
+    - `Force Mode no partner detected.` Auto-negotiation or autodetect is off, link is down because it does not see the neighbor. This is not very helpful to determine the cause alone.
       - Check the configurations on both sides for a speed, auto-negotiation, or FEC configuration mismatch.
-      - If the link is a fiber link and the module supports RX/TX Power DDM/DOM, check the *RX Power* and *TX Power* values in the *Operational State* output of `l1-show` to help determine which component might have failed.
+      - If the link is a fiber link and the module supports RX/TX Power DDM/DOM, check the *RX Power* and *TX Power* values in the *Operational State* output of `l1-show` to help determine which component fails.
       - Follow the steps in {{<link url="#isolate-faulty-hardware" text="Isolate Faulty Hardware">}}; use this value or the *RX/TX Power* DDM/DOM value as the test.
-    - `Neighbor is sending remote faults`. This end of the link is receiving data from the neighbor, but the neighbor is not receiving recognizable data from the local port. See *RX Fault* in {{<link url="#signal-integrity" text="Signal Integrity">}} above for details. The local device is not transmitting, the remote receiver is not receiving recognizable data or is broken, or the path to the remote is broken.
+    - `Neighbor is sending remote faults`. This end of the link is receiving data from the neighbor, but the neighbor is not receiving recognizable data from the local port. See *RX Fault* in {{<link url="#signal-integrity" text="Signal Integrity">}} above for details. The local device is not transmitting, the remote receiver is not receiving recognizable data or is receiving broken data.
 
 ### RX Signal Failure Examples
 
@@ -622,41 +622,41 @@ Port:  swp8
 
 ## Troubleshoot Physical Errors on a Link
 
-Physical errors on a link are a result of signal integrity issues, or the required FEC type is not configured on a particular module/cable type.  
+Physical errors on a link occur if you have signal integrity issues or you do not configure the required FEC type on a particular module or cable type.  
 
-The target bit error rate (BER) in high-speed Ethernet is 10<sup>-12</sup>. When BER exceeds this value it might be necessary to address this issue by either configuring the correct FEC setting or replacing a marginal module, cable, or fiber patch. If the resulting BER on a link with correctly configured FEC is still unacceptable, you need to replace one of the hardware components in the link to resolve the errors.
+The target bit error rate (BER) in high-speed Ethernet is 10<sup>-12</sup>. When BER exceeds this value, either configure the correct FEC setting or replace a marginal module, cable, or fiber patch. If the resulting BER on a link with correctly configured FEC is still unacceptable, you need to replace one of the hardware components in the link to resolve the errors.
 
 See {{<link url="#fec" text="FEC">}} and {{<link url="#troubleshoot-signal-integrity-issues" text="Troubleshoot Signal Integrity Issues">}} for more details.
 
-To see error counters for a port, run the `ethtool -S <swp> | grep Errors` command. If FEC is enabled, these counters only count errors that were not corrected by FEC.
+To see error counters for a port, run the `ethtool -S <swp> | grep Errors` command. If FEC is on, these counters only count errors that FEC does not correct.
 
-On NVIDIA switches, counts of bit errors that are corrected by FEC on a link can be seen when you run the `sudo l1-show <swp> --pcs-errors` command.
+On NVIDIA switches, to see the bit error count that FEC corrects on a link, run the `sudo l1-show <swp> --pcs-errors` command.
 
-Because errors can occur during link up and down transitions, it is best to check error counters over a period of time to ensure they are incrementing regularly instead of displaying stale counts from when the link last transitioned up or down. The `/var/log/linkstate` log files show historical link up/down transitions on a switch.
+Because errors can occur during link up and down transitions, it is best to check error counters over a period of time to ensure they are incrementing regularly instead of displaying stale counts from when the link last transitions up or down. The `/var/log/linkstate` log files show historical link up and link down transitions on a switch.
 
 ## Troubleshoot Signal Integrity Issues
 
 Signal integrity issues are often a root cause of different types of symptoms:
 
 - If the signal integrity is very poor or non-existent, the link stays down.
-- If the signal integrity is too marginal, the link might flap with or without FEC enabled.
-- If the signal integrity is marginal, the link might display physical error counts. Depending on the link speed and cable type, the module or cable might be expected to have some margin of error in signal integrity. In these cases, FEC is expected or required to be used to correct errors to reach the target IEEE bit error rate (BER) of 10<sup>-12</sup> on the link. See {{<link url="#fec" text="FEC">}} for guidance.
+- If the signal integrity is too marginal, the link might flap with or without FEC on.
+- If the signal integrity is marginal, the link might display physical error counts. Depending on the link speed and cable type, the module or cable can have some margin of error in signal integrity. In these cases, use FEC to correct errors to reach the target IEEE bit error rate (BER) of 10<sup>-12</sup> on the link. See {{<link url="#fec" text="FEC">}} for guidance.
 
-  If FEC is enabled and the bit stream cannot be recovered acceptably, the link stays down. If the signal integrity is marginal, but bad enough that FEC cannot correct an acceptable rate of errors, the link flaps when FEC signals a restart of the link to attempt to restore an acceptable bit stream.  
+  If FEC is on and the bit stream does not recover acceptably, the link stays down. If the signal integrity is marginal, but bad enough that FEC cannot correct an acceptable rate of errors, the link flaps when FEC signals a restart of the link to attempt to restore an acceptable bit stream.  
 
-To see error counters for a port, run the `ethtool -S <swp> | grep Errors` command. If FEC is enabled, these counters only count errors that were not corrected by FEC.
+To see error counters for a port, run the `ethtool -S <swp> | grep Errors` command. If FEC is on, these counters only count errors that FEC does not correct.
 
-To see counts of bit errors that are corrected by FEC on a link, run the `sudo l1-show <swp> --pcs-errors` command.
+To see counts of bit errors that FEC corrects on a link, run the `sudo l1-show <swp> --pcs-errors` command.
 
 Signal integrity issues are physical issues and usually, you must replace some hardware component in the link to fix the link. Follow the steps in {{<link url="#isolate-faulty-hardware" text="Isolate Faulty Hardware">}} to isolate and replace the failed hardware component.
 
-On rare occasions, if a module is not recognized correctly and is configured as the wrong type (active instead of passive), it can cause a signal integrity issue.
+On rare occasions, if the switch does not recognize a module correctly and is the wrong type (active instead of passive), it can cause a signal integrity issue.
 
 See {{<link url="#active-and-passive-modules-and-cables" text="Active and Passive Modules and Cables">}}, {{<link url="#compliance-codes-ethernet-type-ethmode-type-interface-type" text="Compliance Codes, Ethernet Type, Ethmode Type, Interface Type">}} and {{<link url="#examine-module-information" text="Examine Module Information">}} for more details.
 
 ## Troubleshoot MTU Size Mismatches
 
-Usually an MTU size mismatch is discovered when higher layer protocols like OSPF adjacencies fail or non-fragmentable packets are lost. Generally, an MTU settings mismatch does not affect link operational status.
+Usually there is an MTU size mismatch when higher layer protocols like OSPF adjacencies fail or you lose non-fragmentable packets. Generally, an MTU settings mismatch does not affect link operational status.
 
 To troubleshoot a suspected MTU problem, review the *Configured State* section in the output of `l1-show`:
 
@@ -671,7 +671,7 @@ Configured State
 
 ## Troubleshoot High Power Module Issues
 
-The SFF specifications allow for modules of different power consumption levels along with a request/grant procedure to enable higher levels.
+The SFF specifications allow for modules of different power consumption levels along with a request and grant procedure to enable higher levels.
 
 An SFP module can have 3 different power classes:
 
@@ -698,15 +698,15 @@ After hardware initialization, Cumulus Linux enables *normal power mode* on QSFP
 
 All Cumulus Linux switches support 3.5W across all QSFP ports simultaneously.
 
-Some modules require *high power modes* for driving long distance lasers. Power classes 5-8 &mdash; 4.0W, 4.5W, 5.0W, 10.0W &mdash; are high power modes. If a high power mode is needed by the module, it can request it and be granted if the switch or port supports it.
+Some modules require *high power modes* for driving long distance lasers. Power classes 5-8 &mdash; 4.0W, 4.5W, 5.0W, 10.0W &mdash; are high power modes. If a module needs a high power mode, it can request it, which the switch grants if the port supports it.
 
-To determine if a switch support higher power modes, consult the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux HCL">}} and the hardware manufacturer specifications for power limitations for a switch in question.
+To determine if a switch supports higher power modes, consult the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux HCL">}} and the hardware manufacturer specifications for power limitations for a switch.
 
 NVIDIA switches vary in their support of high power modules. For example, on some NVIDIA Spectrum 1 switches, only the first and last two QSFP ports support up to QSFP power class 6 (4.5W) and only the first and last two SFP ports support SFP power class 3 (2.0W) modules. Other Spectrum 1 switches do not support high power ports at all. Consult the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux HCL">}} and the hardware manufacturer specifications for exact details of which ports support high power modules.
 
 The total bus power rating is the default power rating per port type (SFP: 1.5W, QSFP: 3.5W) multiplied by the number of ports of each type present on the bus.
 
-To see the requested and enabled status for high power module, review the output of `sudo ethtool -m`. The following output is from a device of power class between 1 and 4 (1.5W to 3.5W). High power class is not requested by the module or enabled by the switch.
+To see the requested and enabled status for high power module, review the output of `sudo ethtool -m`. The following output is from a device of power class between 1 and 4 (1.5W to 3.5W). The module does not request a high power class or the switch does not enable it.
 
 ```
 cumulus@switch:mgmt:~# sudo ethtool -m swp53
@@ -717,7 +717,7 @@ cumulus@switch:mgmt:~# sudo ethtool -m swp53
         Extended identifier description           : High Power Class (> 3.5 W) not enabled <= high power mode not requested or enabled
 ```
 
-The following is the output from a power class 7 (5.0W) module. The module is requesting power class 7, but it not is supported or enabled by the switch. The switch only supports power class 6 on this port.
+The following is the output from a power class 7 (5.0W) module. The module is requesting power class 7, but the  switch does not support or enable it. The switch only supports power class 6 on this port.
 
 ```
 cumulus@switch:mgmt:~# sudo ethtool -m swp49
@@ -730,7 +730,7 @@ cumulus@switch:mgmt:~# sudo ethtool -m swp49
  
 ```
 
-The following is the output from a power class 6 (4.5W) module. The module is requesting power class 6, and it is enabled by the switch.
+The following is the output from a power class 6 (4.5W) module. The module is requesting power class 6 and the switch enables it.
 
 ```
 cumulus@switch:mgmt:~# sudo ethtool -m swp3
@@ -745,36 +745,36 @@ cumulus@switch:mgmt:~# sudo ethtool -m swp3
 
 Ethernet switches contain multiple I2C buses set up for the switch CPU to communicate low speed control information with the port modules, fans, and power supplies within the system.
 
-On rare occasions, a port module with a defective I2C component or firmware can fail so badly that it locks up one or more I2C buses. Depending on the particular hardware design of a switch and the way in which the failure occurs, different symptoms of this failure are displayed. Often traffic continues to work for a while in this failed condition, but sometimes the failure can cause modules to be incorrectly configured, resulting in link failures or increased error rates on a link. In the worst case, the switch reboots or locks up.
+On rare occasions, a port module with a defective I2C component or firmware can fail and lock up one or more I2C buses. Depending on the particular hardware design of a switch and the way in which the failure occurs, different symptoms of this failure display. Often traffic continues to work for a while in this failed condition, but sometimes the failure can cause modules to be incorrectly configured, resulting in link failures or increased error rates on a link. In the worst case, the switch reboots or locks up.
 
-Because I2C issues are in the low speed control circuitry of a module, they are not caused or affected by the high speed traffic rates on the data side of the module. They are not caused by software bugs in Cumulus Linux.
+Because I2C issues are in the low speed control circuitry of a module, high speed traffic rates do not affect the data side of the module. Software bugs in Cumulus Linux do not cause these issues.
 
-When the I2C bus has issues or lockups, installed port modules might no longer show up in the output of `sudo l1-show <swp>` or `sudo ethtool -m <swp>`. A significant number of `smbus` or `i2c` or `EEPROM read` errors might be present in `/var/log/syslog`. After one module has locked up the bus, some or all the other modules then exhibit problems, making it nearly impossible to tell which module is causing the failure.  
+When the I2C bus has issues or lockups, installed port modules might no longer show up in the output of `sudo l1-show <swp>` or `sudo ethtool -m <swp>`. A significant number of `smbus` or `i2c` or `EEPROM read` errors might be present in `/var/log/syslog`. After one module locks up the bus, some or all the other modules then exhibit problems, making it nearly impossible to tell which module is causing the failure.  
 
-The overwhelming number of I2C lockups are caused by failed I2C components or defective designs in port modules. Most failures are caused by low priced vendor modules, but even high price, high quality modules can fail, only with much lower incidence; they have a higher MTBF rating. If an I2C issue is suspected, the first place to look is at the installed modules that are not on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux HCL">}}. The Cumulus Linux HCL is populated with modules that are known to work in Cumulus Linux switches, which also have a solid track record in customer networks.
+Failed I2C components or defective designs in port modules cause an overwhelming number of I2C lockups. Low priced vendor modules cause most failures, but even high price, high quality modules can fail, only with much lower incidence; they have a higher MTBF rating. If you suspect an I2C issue, first look at the installed modules that are not on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux HCL">}}. The Cumulus Linux HCL includes modules that work in Cumulus Linux switches, which also have a solid track record in customer networks.
 
-You might resolve the issue if you remove each port module one by one until the problem clears; this might indicate which module caused the failure. However, often the bus is blocked in a way that requires a reboot or power cycle to clear the I2C failure. Clearing the failure in one of these ways works for a while, but when the conditions are right again, hours, days or months later, the marginal I2C component might fail again and lock up the switch.
+You might resolve the issue if you remove each port module one by one until the problem clears; this might indicate which module causes the failure. However, often the bus blocks in a way that requires a reboot or power cycle to clear the I2C failure. Clearing the failure in one of these ways works for a while, but when the conditions are right again, hours, days or months later, the marginal I2C component might fail again and lock up the switch.
 
-In the worst situations, a switch might have multiple bad or marginal I2C modules from the same vendor batch installed, making it difficult to determine which module or modules are bad.
+In the worst situations, a switch might have multiple bad or marginal I2C modules from the same vendor batch, making it difficult to determine which module or modules are bad.
 
-Because I2C problems can be very pernicious, often showing up again much later after the problem is cleared, deal with them rapidly and forcefully.
+Because I2C problems can be very pernicious, often showing up again much later after the problem clears, deal with them quickly and forcefully.
 
-To verify that an I2C failure is occurring, run `sudo tail -F /var/log/syslog` and look for `smbus` or `i2c` or `EEPROM read` errors appearing repeatedly or in bursts.
+To verify that an I2C failure is occurring, run `sudo tail -F /var/log/syslog` and look for `smbus` or `i2c` or `EEPROM read` errors that continue to appear or appear in bursts.
 
-Based on the failure scenario when the issue is discovered, choose when to address this issue; immediately or during a maintenance window.
+Based on the failure scenario when tyou discover the issue, choose when to address this issue; immediately or during a maintenance window.
 
-- If traffic or the switch operation is affected negatively and traffic cannot be routed through a redundant network, something must be done immediately.
-- If traffic can be routed around the failing switch, allowing troubleshooting to proceed on the failed switch, proceed to reroute traffic to find an appropriate time to troubleshoot the failing switch.
-- To troubleshoot the failure and restore the switch to working, the following options are available based on the urgency of the situation:
+- If traffic or the switch operates negatively and you cannot route traffic through a redundant network, you must do something immediately.
+- If you can route traffic around the failing switch, allowing troubleshooting to proceed on the failed switch, proceed to reroute traffic to find an appropriate time to troubleshoot the failing switch.
+- To troubleshoot the failure and restore the switch to working, use the following options according to the urgency of the situation:
   - Remove port modules one-by-one to see if the condition clears. This provides low probability of clearing the I2C failure, but possibly provides lower impact to traffic. If successful, this approach might reveal the problem module.
-  - Restart `switchd` by running the `sudo systemctl reset-failed ; sudo systemctl restart switchd` command. Verify the condition is cleared after the restart is complete. This provides a medium probability of clearing the I2C failure and a medium impact to traffic. It does not provide a way to discover which module failed.
-  - Reboot the switch and verify the condition is cleared after the reboot is complete. This provides a high probability of clearing the I2C failure, but also a high impact to traffic. It does not provide a way to discover which module failed.
-  - Power cycle the switch and verify the condition is cleared after the reboot is complete. This provides a very high probability of clearing the I2C failure, but also a very high impact to traffic. It does not provide a way to discover which module failed.
+  - Restart `switchd` by running the `sudo systemctl reset-failed ; sudo systemctl restart switchd` command. Verify the condition clears after the restart completes. This provides a medium probability of clearing the I2C failure and a medium impact to traffic. It does not provide a way to discover which module failed.
+  - Reboot the switch and verify the condition clears after the reboot completes. This provides a high probability of clearing the I2C failure, but also a high impact to traffic. It does not provide a way to discover which module failed.
+  - Power cycle the switch and verify the condition clears after the reboot completes. This provides a very high probability of clearing the I2C failure, but also a very high impact to traffic. It does not provide a way to discover which module failed.
   - If the I2C failure recurs soon after a power cycle, you need to combine a binary strategy of removing half the modules at a time and power cycling.
   - If after removing all the modules, and power cycling, the I2C errors are still occurring, the next step is to remove each power supply and fan one by one between power cycles to see if one of those devices is blocking the I2C bus.
-  - If all modules are removed and each power supply and fan has been tested independently, and the I2C failures are still occurring, then the final step is to replace the switch.
+  - If you remove all modules and each power supply and you test the fan independently, and the I2C failures are still occurring, then the final step is to replace the switch.
   
-If the switch is operational again due to one of the above methods, but the module that caused the problem has not been identified, try the following approach:
+If the switch is operational again due to one of the above methods, but you have not identified the module that caused, try the following approach:
 
 - If there is a history in the `syslog` files of occasional errors on one module in advance of the failure, remove or replace that module first.
 - If there are modules from vendors not on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux HCL">}}, seek to replace those modules with high priority.

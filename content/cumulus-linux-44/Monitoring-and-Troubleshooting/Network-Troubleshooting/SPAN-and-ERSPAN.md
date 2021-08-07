@@ -4,9 +4,9 @@ author: NVIDIA
 weight: 1145
 toc: 4
 ---
-SPAN (Switched Port Analyzer) enables you to mirror all packets that come in from or go out of an interface (the *SPAN source*), and copy and transmit the packets out of a local port or CPU (the *SPAN destination*) for monitoring. The SPAN destination port is also referred to as a mirror-to-port (MTP). The original packet is still switched, while a mirrored copy of the packet is sent out of the MTP.
+SPAN (Switched Port Analyzer) enables you to mirror all packets that come in from or go out of an interface (the *SPAN source*), and copy and transmit the packets out of a local port or CPU (the *SPAN destination*) for monitoring. The SPAN destination port is also referred to as a mirror-to-port (MTP). The original packet is still switched, while a mirrored copy of the packet goes out of the MTP.
 
-ERSPAN (Encapsulated Remote SPAN) enables the mirrored packets to be sent to a monitoring node located anywhere across the routed network. The switch finds the outgoing port of the mirrored packets by looking up the destination IP address in its routing table. The original layer 2 packet is encapsulated with GRE for IP delivery. The encapsulated packets have the following format:
+ERSPAN (Encapsulated Remote SPAN) enables the mirrored packets go to a monitoring node located anywhere across the routed network. The switch finds the outgoing port of the mirrored packets by looking up the destination IP address in its routing table. The switch encapsulates the original layer 2 packet with GRE for IP delivery. The encapsulated packets have the following format:
 
 ```
  ----------------------------------------------------------
@@ -20,15 +20,13 @@ You can configure SPAN and ERSPAN in one of the following ways:
 - With ACL rules
 - Manually by editing the `/etc/cumulus/switchd.d/port-mirror.conf` file (for advanced users)
 
-All three methods are described below.
-
 {{%notice note%}}
-- Mirrored traffic is not guaranteed. If the MTP is congested, mirrored packets might be discarded.
-- A SPAN and ERSPAN destination interface that is oversubscribed might result in data plane buffer depletion and buffer drops. Exercise caution when enabling SPAN and ERSPAN when the aggregate speed of all source ports exceeds the destination port.
-- Because SPAN and ERSPAN is done in hardware, eth0 is not supported as a destination.
+- Mirrored traffic is not guaranteed. A congested MTP results in discarded mirrored packets.
+- A oversubscribed SPAN and ERSPAN destination interface might result in data plane buffer depletion and buffer drops. Exercise caution when enabling SPAN and ERSPAN when the aggregate speed of all source ports exceeds the destination port.
+- Because SPAN and ERSPAN happens in hardware, you cannot use eth0 as a destination.
 - Cumulus Linux does not support IPv6 ERSPAN destinations.
 - ERSPAN does not cause the kernel to send ARP requests to resolve the next hop for the ERSPAN destination. If an ARP entry for the destination or next hop does not already exist in the kernel, you need to manually resolve this before sending mirrored traffic (use `ping` or `arping`).
-- Mirroring to the same interface that is being monitored causes a recursive flood of traffic and might impact traffic on other interfaces.
+- Mirroring to the same interface that you are monitoring causes a recursive flood of traffic and might impact traffic on other interfaces.
 {{%/notice%}}
 
 ## NCLU Configuration
@@ -36,14 +34,14 @@ All three methods are described below.
 - To configure SPAN with NCLU, run the `net add port-mirror session <session-id> (ingress|egress) span src-port <interface> dst-port <interface>` command.
 - To configure ERSPAN with NCLU, run the `net add port-mirror session <session-id> (ingress|egress) erspan src-port <interface> src-ip <interface> dst-ip <ip-address>` command.
 
-The command parameters are described below.
+The following table describes the command parameters.
 
 | <div style="width:250px">Parameter | Description |
 | --------- | ----------- |
 | `session <id>` | The session ID. This is a number between 0 and 7. |
 | `ingress|egress` | The session direction:<ul><li> Ingress, where packets received on a port are sent to a sniffer port (SPAN) or destination IP address (ERSPAN).</li><li>Egress, where packets transmitted by the port are sent to the sniffer port (SPAN) or destination IP address (ERSPAN).</li></ul><br>To configure both ingress and egress, create two sessions.|
 | `src-port <interface>` | The interface or list of interfaces on which the mirror session applies. You can specify swp or bond interfaces. Separate the interfaces in the list with a comma; for example swp1,swp45,swp46.{{%notice note%}}For ERSPAN, you can specify only one interface.{{%/notice%}}|
-| `dst-port <interface>` | The interface to which the frame is mirrored for SPAN. A traffic analyzer, monitor or a host can be connected to this interface to observe the traffic sniffed from the source interface. Only swp interfaces are supported.<br><br>On NVIDIA Spectrum switches, Cumulus Linux supports a maximum of three analyzer ports. On NVIDIA switches with the Spectrum-2 and Spectrum-3 ASIC, Cumulus Linux supports a maximum of eight analyzer ports. You can configure multiple sessions to a single analyzer port.|
+| `dst-port <interface>` | The interface where the switch mirrors the frame for SPAN. You can connect a traffic analyzer, monitor or a host to this interface to observe the traffic from the source interface. You can only use switch ports (swps).<br><br>On NVIDIA Spectrum switches, Cumulus Linux supports a maximum of three analyzer ports. On NVIDIA switches with the Spectrum-2 and Spectrum-3 ASIC, Cumulus Linux supports a maximum of eight analyzer ports. You can configure multiple sessions to a single analyzer port.|
 | `src-ip <ip-address>` | The source IP address for ERSPAN encapsulation. This is typically the loopback address of the switch. |
 | `dst-ip <ip-address>` | The destination IP address for ERSPAN encapsulation. This is typically the loopback address of the destination device.|
 
@@ -59,7 +57,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-The following example commands mirror all packets that are sent out of swp1, and copy and transmit the packets to swp2 for monitoring:
+The following example commands mirror all packets that go out of swp1, and copy and transmit the packets to swp2 for monitoring:
 
 ```
 cumulus@switch:~$ net add port-mirror session 1 egress span src-port swp1 dest-port swp2
@@ -67,7 +65,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-The following example commands mirror all packets that swp1 receive, and copy and transmit the packets from source IP address 10.10.10.1 to destination IP address 10.10.10.234 through a GRE tunnel:
+The following example commands mirror all packets that swp1 receives, and copy and transmit the packets from source IP address 10.10.10.1 to destination IP address 10.10.10.234 through a GRE tunnel:
 
 ```
 cumulus@switch:~$ net add port-mirror session 1 ingress erspan src-port swp1 src-ip 10.10.10.1 dest-ip 10.10.10.234
@@ -75,7 +73,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-The following example commands mirror all packets that are sent out of swp1, and copy and transmit the packets from source IP address 10.10.10.1 to destination IP address 10.10.10.234 through a GRE tunnel:
+The following example commands mirror all packets that go out of swp1, and copy and transmit the packets from source IP address 10.10.10.1 to destination IP address 10.10.10.234 through a GRE tunnel:
 
 ```
 cumulus@switch:~$ net add port-mirror session 1 egress erspan src-port swp1 src_ip 10.10.10.1 dest_ip 10.10.10.234
@@ -84,8 +82,6 @@ cumulus@switch:~$ net commit
 ```
 
 ### Show Session Configuration
-
-Run the following commands to show the currently configured SPAN and ERSPAN sessions:
 
 To show SPAN and ERSPAN configuration for a specific session:
 
@@ -152,7 +148,7 @@ cumulus@switch:~$ nv set system port-mirror session 1 span dest-port swp2
 cumulus@switch:~$ nv config apply
 ```
 
-The following example commands mirror all packets that are sent out of swp1, and copy and transmit the packets to swp2 for monitoring:
+The following example commands mirror all packets that go out of swp1, and copy and transmit the packets to swp2 for monitoring:
 
 ```
 cumulus@switch:~$ nv set system port-mirror session 1 span direction egress
@@ -170,7 +166,7 @@ cumulus@switch:~$ nv set system port-mirror session 1 erspan destination dst-ip 
 cumulus@switch:~$ nv config apply
 ```
 
-The following example commands mirror all packets that are sent out of swp1, and copy and transmit the packets from source IP address 10.10.10.1 to destination IP address 10.10.10.234 through a GRE tunnel:
+The following example commands mirror all packets that go out of swp1, and copy and transmit the packets from source IP address 10.10.10.1 to destination IP address 10.10.10.234 through a GRE tunnel:
 
 ```
 cumulus@switch:~$ nv set system port-mirror session 1 erspan direction egress
@@ -210,16 +206,16 @@ cumulus@switch:~$ nv config apply
 <!-- vale off -->
 ## cl-acltool Configuration
 <!-- vale on -->
-You can configure SPAN and ERSPAN with `cl-acltool`, the {{<link url="Netfilter-ACLs" text="same utility used for security ACL configuration">}}. The match criteria for SPAN and ERSPAN is usually an interface; for more granular match terms, use {{<link url="#selective-spanning" text="selective spanning">}}. The SPAN source interface can be a port, a subinterface, or a bond interface. Ingress traffic on interfaces can be matched, and on switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}, egress traffic can be matched. See the {{<link url="#limitations-for-span-and-erspan" text="list of limitations">}} below.
+You can configure SPAN and ERSPAN with `cl-acltool`, the {{<link url="Netfilter-ACLs" text="same utility used for security ACL configuration">}}. The match criteria for SPAN and ERSPAN is usually an interface; for more granular match terms, use {{<link url="#selective-spanning" text="selective spanning">}}. The SPAN source interface can be a port, a subinterface, or a bond interface. You can match ingress traffic on interfaces. On switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}, you can match egress traffic. See the {{<link url="#limitations-for-span-and-erspan" text="list of limitations">}} below.
 
-Cumulus Linux supports a maximum of two SPAN destinations. Multiple rules (SPAN sources) can point to the same SPAN destination, although a given SPAN source cannot specify two SPAN destinations. The SPAN destination (MTP) interface can be a physical port, subinterface, bond interface or CPU.  The SPAN and ERSPAN action is independent of security ACL actions. If packets match both a security ACL rule and a SPAN rule, both actions are carried out.
+Cumulus Linux supports a maximum of two SPAN destinations. Multiple rules (SPAN sources) can point to the same SPAN destination, although a given SPAN source cannot specify two SPAN destinations. The SPAN destination (MTP) interface can be a physical port, subinterface, bond interface or CPU. The SPAN and ERSPAN action is independent of security ACL actions. If packets match both a security ACL rule and a SPAN rule, both actions apply.
 
 {{%notice note%}}
 Always place your rule files under `/etc/cumulus/acl/policy.d/`.
 {{%/notice%}}
 
 - Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
-- SPAN ACL rules for an output interface that is a subinterface are not supported.
+- Cumulus Linux does not support SPAN ACL rules for an output interface that is a subinterface.
 - Multiple rules (SPAN sources) can point to the same SPAN destination, but a given SPAN source *cannot* specify two SPAN destinations.
 
 ### SPAN for Switch Ports
@@ -297,7 +293,7 @@ cumulus@switch:~$ sudo cl-acltool -i  -P /etc/cumulus/acl/policy.d/span.rules
 ```
 {{%/notice%}}
 
-4. Verify that the SPAN rules are installed:
+4. Verify that the you installed the SPAN rules:
 
    ```
    cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN
@@ -307,7 +303,7 @@ cumulus@switch:~$ sudo cl-acltool -i  -P /etc/cumulus/acl/policy.d/span.rules
 
 ### SPAN Sessions that Reference an Outgoing Interface
 
-SPAN sessions that reference an outgoing interface create the mirrored packets based on the ingress interface before the routing decision. For example, the following rule captures traffic that is ultimately destined to leave swp1 but mirrors the packets when they arrive on swp49. The rule transmits packets that reference the original VLAN tag and source/destination MAC address at the time the packet is originally received on swp49.
+SPAN sessions that reference an outgoing interface create the mirrored packets according to the ingress interface before the routing decision. For example, the following rule captures traffic that is ultimately destined to leave swp1 but mirrors the packets when they arrive on swp49. The rule transmits packets that reference the original VLAN tag, and source and destination MAC address at the time that swp49 originally receives the packet.
 
 ```
 -A FORWARD --out-interface swp1 -j SPAN --dport swp2
@@ -345,7 +341,7 @@ Using `cl-acltool` with the `--out-interface` rule applies to transit traffic on
    done.
    ```
 
-3. Verify that the SPAN rules are installed:
+3. Verify that you installed the SPAN rules:
 
    ```
    cumulus@switch:~$ sudo iptables -L -v | grep SPAN
@@ -354,15 +350,15 @@ Using `cl-acltool` with the `--out-interface` rule applies to transit traffic on
 
 ### CPU port as the SPAN Destination
 
-You can set the CPU port as a SPAN destination interface to mirror data plane traffic to the CPU. The SPAN traffic is sent to a separate network interface mirror where you can analyze it with `tcpdump`. This is a useful feature if you do not have any free external ports on the switch for monitoring. SPAN traffic does not appear on switch ports.
+You can set the CPU port as a SPAN destination interface to mirror data plane traffic to the CPU. The SPAN traffic goes to a separate network interface mirror where you can analyze it with `tcpdump`. This is a useful feature if you do not have any free external ports on the switch for monitoring. SPAN traffic does not appear on switch ports.
 
 Cumulus Linux controls how much traffic reaches the CPU so that mirrored traffic does not overwhelm the CPU.
 
 {{%notice note%}}
-Egress mirroring for control plane generated traffic to the CPU port is not supported.
+Cumulus Linux does not support egress mirroring for control plane generated traffic to the CPU port.
 {{%/notice%}}
 
-To use the CPU port as the SPAN destination, create a file in the `/etc/cumulus/acl/policy.d/` directory and add the rules. The following example rule matches on swp1 ingress traffic that has the source IP Address 10.10.1.1. When a match occurs, the traffic is mirrored to the CPU:
+To use the CPU port as the SPAN destination, create a file in the `/etc/cumulus/acl/policy.d/` directory and add the rules. The following example rule matches on swp1 ingress traffic that has the source IP Address 10.10.1.1. When a match occurs, the traffic mirrors to the CPU:
 
 ```
 [iptables]
@@ -370,7 +366,7 @@ To use the CPU port as the SPAN destination, create a file in the `/etc/cumulus/
 ```
 
 This example rule matches on swp1 egress traffic that has the source IP Address 10.10.1.1.
-When a match occurs, the traffic is mirrored to the CPU:
+When a match occurs, the traffic mirrors to the CPU:
 
 ```
 [iptables]
@@ -448,7 +444,7 @@ This section describes how to configure ERSPAN.
      done.
      ```
 
-3. Verify that the ERSPAN rules are installed:
+3. Verify that you installed the ERSPAN rules:
 
      ```
      cumulus@switch:~$ sudo iptables -L -v | grep SPAN
@@ -456,7 +452,7 @@ This section describes how to configure ERSPAN.
      ```
 
 - `src-ip` can be any IP address, even if it does not exist in the routing table.
-- `dst-ip` must be an IP address reachable through the routing table and front-panel port (not the management port) or SVI. Use ping or ip route get <ip> to verify that the destination IP address is reachable. Setting the --ttl option is recommended.
+- `dst-ip` must be an IP address reachable through the routing table and front-panel port (not the management port) or SVI. Use ping or ip route get <ip> to verify that the destination IP address is reachable. Set the `--ttl` option.
 
 If a SPAN destination IP address is not available, or if the interface type prevents you from using a laptop as a SPAN destination, refer to [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Configure-ERSPAN-to-a-Cumulus-Linux-Switch" >}}).
 
@@ -479,7 +475,7 @@ To mirror ICMP packets from all ports:
 -A FORWARD --in-interface swp+ -s 20.0.0.2 -p icmp -j ERSPAN --src-ip 10.0.0.1 --dst-ip 10.10.10.234
 ```
 
-To mirror forwarded UDP packets received from port swp1s0, towards destination IP address 10.10.10.234 and destination port 53:
+To mirror forwarded UDP packets from port swp1s0, towards destination IP address 10.10.10.234 and destination port 53:
 
 ```
 -A FORWARD --in-interface swp1s0 -d 20.0.1.2 -p udp --dport 53 -j ERSPAN --src-ip 10.0.0.1 --10.10.10.234
@@ -499,19 +495,19 @@ To mirror all forwarded TCP packets with only FIN set:
 
 ### Selective Spanning
 
-To reduce the volume of copied data, you can configure SPAN and ERSPAN traffic rules to limit the traffic spanned.
+To reduce the volume of copied data, you can configure SPAN and ERSPAN traffic rules to limit the traffic it spans.
 
-Cumulus Linux supports selective spanning for `iptables` only. `ip6tables` and `ebtables` are not supported.
+Cumulus Linux supports selective spanning for `iptables` only.
 
-The following matching fields are supported:
+You can match on the following fields:
 
 - IPv4 SIP/DIP
 - IP protocol
 - Layer 4 (TCP/UDP) src/dst port
 - TCP flags
-- An ingress port/wildcard (swp+) can be specified in addition
+- An ingress port or wildcard (swp+)
 
-With ERSPAN, a maximum of two `--src-ip --dst-ip` pairs are supported. Exceeding this limit produces an error when you install the rules with `cl-acltool`.
+ERSPAN supports a maximum of two `--src-ip --dst-ip` pairs. Exceeding this limit produces an error when you install the rules with `cl-acltool`.
 
 ### Remove Rules
 
@@ -522,7 +518,7 @@ cumulus@switch:~$ sudo rm  /etc/cumulus/acl/policy.d/span.rules
 cumulus@switch:~$ sudo cl-acltool -i
 ```
 
-To verify that the rules are removed:
+To verify that the you removed the rules:
 
 ```
 cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN

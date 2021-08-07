@@ -63,8 +63,6 @@ cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:
 ...
 ```
 
-For information about using the NVUE API, refer to the {{<ref "/api/index.html" text="NVUE API documentation.">}}
-
 ## NVUE CLI
 
 The NVUE CLI has a flat structure as opposed to a modal structure. This means that you can run all commands from the primary prompt instead of only in a specific mode.

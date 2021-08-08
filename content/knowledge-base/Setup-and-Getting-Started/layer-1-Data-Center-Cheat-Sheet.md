@@ -370,7 +370,7 @@ Check out all platform's speeds and breakout options in [Switch Port Attributes]
 {{% /notice %}}
 
 {{%notice info%}}
-Port breakouts is not functional when using QSA. To use QSFP28, QSFP56 or QSFP56-DD interfaces as 10/25/50GbE (via QSA adapter), the speed must be manually set on the interface by command. 
+A single SFP (10/25/50G) transceiver can be used in a QSFP (100/200/400G) port with the help of *QSFP-to-SFP Adapter* (QSA). The port speed should be set to the SFP speed by by *nv set interface <interface> link speed <speed>* command. Do not configure this port as a breakout port.
 {{%/notice%}}
 
 

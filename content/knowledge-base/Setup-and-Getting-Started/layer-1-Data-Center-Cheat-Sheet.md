@@ -489,7 +489,7 @@ The following interface configurations are supported with PAM4 (above 100G):
 
 **SFP+** - Small Form-factor Pluggable Plus. SFP+ supports one channel of 10 Gigabit Ethernet using NRZ signaling. 
 
-{{<figure src="images/knowledge-base/L1-Cheat-Sheet/sfp+.png">}}
+{{<figure src="images/knowledge-base/L1-Cheat-Sheet/sfp.png">}}
 
 **SFP28** - Small Form-factor Pluggable 28. SFP28 supports one channel of 25 Gigabit Ethernet using NRZ signaling.
 

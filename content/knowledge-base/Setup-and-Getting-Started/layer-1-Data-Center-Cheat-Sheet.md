@@ -370,7 +370,7 @@ Check out all platform's speeds and breakout options in [Switch Port Attributes]
 {{% /notice %}}
 
 {{%notice info%}}
-A single SFP (10/25/50G) transceiver can be used in a QSFP (100/200/400G) port with the help of *QSFP-to-SFP Adapter* (QSA). The port speed should be set to the SFP speed by by *nv set interface <interface> link speed <speed>* command. Do not configure this port as a breakout port.
+A single SFP (10/25/50G) transceiver can be used in a QSFP (100/200/400G) port with the help of *QSFP-to-SFP Adapter* (QSA). The port speed should be set to the SFP speed by by *nv set interface `<interface>` link speed `<speed>`* command. Do not configure this port as a breakout port.
 {{%/notice%}}
 
 

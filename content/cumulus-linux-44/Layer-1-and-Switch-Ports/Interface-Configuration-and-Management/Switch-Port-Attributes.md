@@ -1306,7 +1306,7 @@ Maximum 400G ports: 32
 {{< /tabs >}}
 
 {{%notice note%}}
-- A single SFP (10/25/50G) transceiver can be used in a QSFP (100/200/400G) port with the help of *QSFP-to-SFP Adapter* (QSA). The port speed should be set to the SFP speed by by `nv set interface `<interface>` link speed `<speed>`* command. Do not configure this port as a breakout port.
+- A single SFP (10/25/50G) transceiver can be used in a QSFP (100/200/400G) port with the help of *QSFP-to-SFP Adapter* (QSA). The port speed should be set to the SFP speed by "*nv set interface `<interface>` link speed `<speed>`*" command. Do not configure this port as a breakout port.
 - If you break out a port, then reload the `switchd` service on a switch running in *nonatomic* ACL mode, temporary disruption to traffic occurs while the ACLs reinstall.
 - Cumulus Linux does not support port ganging.
 - Switches with the Spectrum 1 ASIC have a limit of 64 logical ports. If you want to break ports out to 4x25G or 4x10G:

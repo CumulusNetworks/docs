@@ -22,8 +22,8 @@ The following example commands configure the frequency of LLDP updates to 100 an
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set system lldp tx-interval 100
-cumulus@switch:~$ nv set system lldp tx-hold-multiplier 3
+cumulus@switch:~$ nv set service lldp tx-interval 100
+cumulus@switch:~$ nv set service lldp tx-hold-multiplier 3
 cumulus@switch:~$ nv config apply
 ```
 

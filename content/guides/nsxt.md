@@ -1,7 +1,8 @@
 ---
 title: NVIDIA Cumulus Linux Deployment Guide for VMware NSX-T
 author: NVIDIA Networking
-product: NVIDIA Networking Guides
+weight: 50
+product: Cumulus Networks Guides
 ---
 
 VMware NSX-T provides an agile software-defined infrastructure to build cloud-native application environments. It aims to provide automation, simplicity in operations, networking, and security.

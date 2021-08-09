@@ -52,7 +52,7 @@ The NCLU commands save the configuration in the `/etc/cumulus/switchd.d/port-mir
 The following example commands mirror all packets received on swp1, and copy and transmit the packets to swp2 for monitoring:
 
 ```
-cumulus@switch:~$ net add port-mirror session 1 ingress span src-port swp1 dest-port swp2
+cumulus@switch:~$ net add port-mirror session 1 ingress span src-port swp1 dst-port swp2
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -60,7 +60,7 @@ cumulus@switch:~$ net commit
 The following example commands mirror all packets that go out of swp1, and copy and transmit the packets to swp2 for monitoring:
 
 ```
-cumulus@switch:~$ net add port-mirror session 1 egress span src-port swp1 dest-port swp2
+cumulus@switch:~$ net add port-mirror session 1 egress span src-port swp1 dst-port swp2
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -68,7 +68,7 @@ cumulus@switch:~$ net commit
 The following example commands mirror all packets that swp1 receives, and copy and transmit the packets from source IP address 10.10.10.1 to destination IP address 10.10.10.234 through a GRE tunnel:
 
 ```
-cumulus@switch:~$ net add port-mirror session 1 ingress erspan src-port swp1 src-ip 10.10.10.1 dest-ip 10.10.10.234
+cumulus@switch:~$ net add port-mirror session 1 ingress erspan src-port swp1 src-ip 10.10.10.1 dst-ip 10.10.10.234
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -76,7 +76,7 @@ cumulus@switch:~$ net commit
 The following example commands mirror all packets that go out of swp1, and copy and transmit the packets from source IP address 10.10.10.1 to destination IP address 10.10.10.234 through a GRE tunnel:
 
 ```
-cumulus@switch:~$ net add port-mirror session 1 egress erspan src-port swp1 src_ip 10.10.10.1 dest_ip 10.10.10.234
+cumulus@switch:~$ net add port-mirror session 1 egress erspan src-port swp1 src-ip 10.10.10.1 dst-ip 10.10.10.234
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -144,7 +144,7 @@ The following example commands mirror all packets received on swp1, and copy and
 ```
 cumulus@switch:~$ nv set system port-mirror session 1 span direction ingress 
 cumulus@switch:~$ nv set system port-mirror session 1 span src-port swp1 
-cumulus@switch:~$ nv set system port-mirror session 1 span dest-port swp2
+cumulus@switch:~$ nv set system port-mirror session 1 span destination swp2
 cumulus@switch:~$ nv config apply
 ```
 
@@ -153,7 +153,7 @@ The following example commands mirror all packets that go out of swp1, and copy 
 ```
 cumulus@switch:~$ nv set system port-mirror session 1 span direction egress
 cumulus@switch:~$ nv set system port-mirror session 1 span src-port swp1
-cumulus@switch:~$ nv set system port-mirror session 1 span dest-port swp2
+cumulus@switch:~$ nv set system port-mirror session 1 span destination swp2
 cumulus@switch:~$ nv config apply
 ```
 

@@ -1,10 +1,6 @@
 ---
 title: Run Production Ready Automation
-author: Cumulus Networks
-weight: 30
-product: Cumulus Networks Guides
-version: "1.0"
-draft: true
+weight: 43
 ---
 This section discusses how you can run the Cumulus Production Ready Automation unmodified on your own system in your enterprise. You can test, learn, and experience Cumulus Linux driven by best practice Ansible automation, and test drive the officially-supported golden standard configurations and architecture.
 

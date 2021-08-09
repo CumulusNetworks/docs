@@ -366,11 +366,11 @@ All splitted/non-splitted ports also support lower 10/25/40GbE speeds. For lower
 {{< /tabs >}}
 
 {{% notice note %}}
-Check out all platform's speeds and breakout options in [Switch Port Attributes]({{<kb_link latest="cl" url="Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes.md#breakout-ports" >}}) page.
+Check out all platform's speeds and breakout options in [Switch Port Attributes]({{<kb_link latest="cl" url="/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes.md#breakout-ports" >}}) page.
 {{% /notice %}}
 
 {{%notice info%}}
-Port breakouts is not functional when using QSA. To use QSFP28, QSFP56 or QSFP56-DD interfaces as 10/25/50GbE (via QSA adapter), the speed must be manually set on the interface by command. 
+A single SFP (10/25/50G) transceiver can be used in a QSFP (100/200/400G) port with the help of *QSFP-to-SFP Adapter* (QSA). The port speed should be set to the SFP speed by "*nv set interface `<interface>` link speed `<speed>`*" command. Do not configure this port as a breakout port.
 {{%/notice%}}
 
 
@@ -489,7 +489,7 @@ The following interface configurations are supported with PAM4 (above 100G):
 
 **SFP+** - Small Form-factor Pluggable Plus. SFP+ supports one channel of 10 Gigabit Ethernet using NRZ signaling. 
 
-{{<figure src="images/knowledge-base/L1-Cheat-Sheet/sfp+.png">}}
+{{<figure src="images/knowledge-base/L1-Cheat-Sheet/sfp.png">}}
 
 **SFP28** - Small Form-factor Pluggable 28. SFP28 supports one channel of 25 Gigabit Ethernet using NRZ signaling.
 

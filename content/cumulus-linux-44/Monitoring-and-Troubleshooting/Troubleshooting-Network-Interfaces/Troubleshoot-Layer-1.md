@@ -23,7 +23,7 @@ Modern Ethernet modules come in one of two form factors:
 - Small Form factor Pluggables (SFP)
 - Quad Small Form factor Pluggables (QSFP)
 
-Each form factor contains an EEPROM with information about the capabilities of the module and various groups of required or optional registers to query or control aspects of the module when needed. The main values are decoded in the output from the `ethtool -m <swp>` command.
+Each form factor contains an EEPROM with information about the capabilities of the module and various groups of required or optional registers to query or control aspects of the module when needed. The output from the `ethtool -m <swp>` command decodes the main values.
 
 The SFF/MSA specifications define the memory locations for the fields in the EEPROM and the common registers:
 

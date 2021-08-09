@@ -297,7 +297,7 @@ FIB entry for 10.10.10.101/32
 10.10.10.101/32 via 10.0.1.0 dev swp1 proto bgp metric 20 onlink
 ```
 
-If BGP learns an IPv4 prefix with only an IPv6 global next hop address (for example, when it learns the route through a route reflector), the command output shows the IPv6 global address as the next hop value and shows that it learns recursively through the link-local address of the route reflector. When you use a global IPv6 address as a next hop for route installation in the FRR RIB, the switch still converts it into an IPv4 link-local address for installation into the kernel.
+If BGP learns an IPv4 prefix with only an IPv6 global next hop address (when it learns the route through a route reflector), the command output shows the IPv6 global address as the next hop value. The command also shows that it learns recursively through the link-local address of the route reflector. When you use a global IPv6 address as a next hop for route installation in the FRR RIB, the switch still converts it into an IPv4 link-local address for installation into the kernel.
 
 ```
 cumulus@leaf01:~$ net show bgp ipv4 unicast summary

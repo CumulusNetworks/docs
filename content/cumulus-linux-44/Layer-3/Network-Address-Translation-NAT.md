@@ -31,7 +31,7 @@ The following illustration shows a basic NAT configuration.
 
 ## Static NAT
 
-Static NAT provides a one-to-one mapping between a private IP address inside your network and a public IP address. For example, if you have a web server with the private IP address 10.0.0.10 and you want a remote host to be able to make a request to the web server using the IP address 172.30.58.80, you must configure a static NAT mapping between the two IP addresses.
+Static NAT provides a one-to-one mapping between a private IP address inside your network and a public IP address. For example, if you have a web server with the private IP address 10.0.0.10 and you want a remote host to make a request to the web server using the IP address 172.30.58.80, you configure a static NAT mapping between the two IP addresses.
 
 Static NAT entries do not time out from the translation table.
 

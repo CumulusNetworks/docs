@@ -117,7 +117,7 @@ If you need to restore the FRRouting configuration to the default running config
 
 Back up `frr.conf` (or any configuration files you want to remove) before proceeding.
 
-1. Confirm that `service integrated-vtysh-config` is enabled:
+1. Confirm that `service integrated-vtysh-config` is running:
 
     ``` 
     cumulus@switch:~$ net show configuration | grep integrated

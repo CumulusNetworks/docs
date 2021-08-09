@@ -311,7 +311,7 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 
 ### IPv6 Route Replacement
 
-When the next hop information for an IPv6 prefix changes (for example, with the addition or removal of ECMP paths, or when the next hop IP address, interface, or tunnel changes), FRR deletes the existing route to that prefix from the kernel, then adds a new route with all the relevant new information. In certain situations, Cumulus Linux does not maintain resilient hashing for IPv6 flows.
+When the router adds or removes ECMP paths, or when the next hop IP address, interface, or tunnel changes, the next hop information for an IPv6 prefix can change. FRR deletes the existing route to that prefix from the kernel, then adds a new route with all the relevant new information. In certain situations, Cumulus Linux does not maintain resilient hashing for IPv6 flows.
 
 To work around this issue, you can enable IPv6 route replacement.
 

@@ -51,7 +51,11 @@ The following illustration demonstrates a histogram showing how many times the q
 
 The `asic-monitor` service manages the ASIC monitoring tool  (`systemd` manages the `asic-monitor` service). The `asic-monitor` service reads the `/etc/cumulus/datapath/monitor.conf` configuration file to determine what statistics to collect and when to trigger. The service always starts; however, if the configuration file is empty, the service exits.
 
-The `monitor.conf` configuration file provides information about the type of data to collect, the switch ports to monitor, how and when to start reading the ASIC (such as when the switch reaches a specific queue length or number of dropped packets), and what actions to take (create a snapshot file, send a message to the `/var/log/syslog` file, or collect more data).
+The `monitor.conf` configuration file provides the following information:
+- The type of data to collect.
+- The switch ports to monitor.
+- How and when to start reading the ASIC (when the switch reaches a specific queue length or number of dropped packets).
+- What actions to take (create a snapshot file, send a message to the `/var/log/syslog` file, or collect more data).
 
 To configure ASIC monitoring, edit the `/etc/cumulus/datapath/monitor.conf` file and restart the `asic-monitor` service. The `asic-monitor` service reads the new configuration file and then runs until you stop it.
 

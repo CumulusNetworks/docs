@@ -4059,7 +4059,7 @@ cumulus@spine01:~$ net add loopback lo pim
 cumulus@spine01:~$ net add loopback lo pim use-source 10.10.10.101
 cumulus@spine01:~$ net add interface swp1-4 pim
 cumulus@spine01:~$ net add interface swp1-4 alias to leaf
-cumulus@spine01:~$ net add pim rp 10.10.10.101/32 10.10.100.100/32
+cumulus@spine01:~$ net add pim rp 10.10.10.101
 cumulus@spine01:~$ net add pim ecmp
 cumulus@spine01:~$ net add pim keep-alive-timer 3600
 cumulus@spine01:~$ net add bgp autonomous-system 65100
@@ -4085,7 +4085,7 @@ cumulus@spine02:~$ net add loopback lo pim
 cumulus@spine02:~$ net add loopback lo pim use-source 10.10.10.101
 cumulus@spine02:~$ net add interface swp1-4 pim
 cumulus@spine02:~$ net add interface swp1-4 alias to leaf
-cumulus@spine02:~$ net add pim rp 10.10.10.102/32 10.10.100.100/32
+cumulus@spine02:~$ net add pim rp 10.10.10.102
 cumulus@spine02:~$ net add pim ecmp
 cumulus@spine02:~$ net add pim keep-alive-timer 3600
 cumulus@spine02:~$ net add bgp autonomous-system 65100
@@ -5198,7 +5198,7 @@ interface swp3
  ip pim
 interface swp4
  ip pim
-ip pim rp 10.10.10.101/32 10.10.100.100/32
+ip pim rp 10.10.10.101
 ip pim ecmp
 ip pim keep-alive-timer 3600
 router bgp 65100
@@ -5234,7 +5234,7 @@ interface swp3
  ip pim
 interface swp4
  ip pim
-ip pim rp 10.10.10.102/32 10.10.100.100/32
+ip pim rp 10.10.10.102
 ip pim ecmp
 ip pim keep-alive-timer 3600
 router bgp 65100

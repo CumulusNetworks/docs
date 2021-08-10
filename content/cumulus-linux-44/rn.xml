@@ -7,6 +7,52 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2750630</td>
+<td>The NVUE {{nv set service ptp on}} command does not enable and start the {{ptp4l}} and {{phc2sys}}  services.</td>
+<td>4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2748923</td>
+<td>If you include a dash when configuring a bond name, you see an
+internal server error.</td>
+<td>4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2747606</td>
+<td>CVE-2021-3246: a buffer overflow in libsndfile, a library
+for reading/writing audio files, which could result in denial of service
+or potentially the execution of arbitrary code when processing a
+malformed audio file.
+Vulnerable: 1.0.28-6
+Fixed: 1.0.28-6+deb10u1</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2747605</td>
+<td>CVE-2021-3246: a buffer overflow in libsndfile, a library
+for reading/writing audio files, which could result in denial of service
+or potentially the execution of arbitrary code when processing a
+malformed audio file.
+Vulnerable: 1.0.28-6
+Fixed: 1.0.28-6+deb10u1</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2747604</td>
+<td>CVE-2021-3246: a buffer overflow in libsndfile, a library
+for reading/writing audio files, which could result in denial of service
+or potentially the execution of arbitrary code when processing a
+malformed audio file.
+Vulnerable: 1.0.28-6
+Fixed: 1.0.28-6+deb10u1</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2739690</td>
 <td>CVE-2021-22918: An out-of-bounds read was discovered in the uv__idna_to_ascii() function of Libuv, an asynchronous event notification library, which could result in denial of service or information disclosure.
 Vulnerable: 1.24.1-1
@@ -39,6 +85,22 @@ Fixed: 1.17-3+deb10u2</td>
 <td></td>
 </tr>
 <tr>
+<td>2739639</td>
+<td>CVE-2021-36222: It was discovered that the Key Distribution Center (KDC) in krb5, the MIT implementation of Kerberos, is prone to a NULL pointer dereference flaw. An unauthenticated attacker can take advantage of this flaw to cause a denial of service (KDC crash) by sending a request containing a PA-ENCRYPTED-CHALLENGE padata element without using FAST.
+Vulnerable: &lt;= 1.17-3+deb10u1
+Fixed: 1.17-3+deb10u2</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2739638</td>
+<td>CVE-2021-36222: It was discovered that the Key Distribution Center (KDC) in krb5, the MIT implementation of Kerberos, is prone to a NULL pointer dereference flaw. An unauthenticated attacker can take advantage of this flaw to cause a denial of service (KDC crash) by sending a request containing a PA-ENCRYPTED-CHALLENGE padata element without using FAST.
+Vulnerable: &lt;= 1.17-3+deb10u1
+Fixed: 1.17-3+deb10u2</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2736244</td>
 <td>When you run the vtysh command to enable BGP graceful restart on a peer multiple times, the command fails with the following error:
 % The Graceful Restart command used is not valid at this moment.</td>
@@ -47,6 +109,15 @@ Fixed: 1.17-3+deb10u2</td>
 </tr>
 <tr>
 <td>2734126</td>
+<td>CVE-2021-33910: The Qualys Research Labs discovered that an attacker-controlled allocation using the alloca() function could result in memory
+corruption, allowing to crash systemd and hence the entire operating system.  Details can be found at https://www.qualys.com/2021/07/20/cve-2021-33910/denial-of-service-systemd.txt .
+Vulnerable: &lt;= 241-7~deb10u7
+Fixed: 241-7~deb10u8</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2734122</td>
 <td>CVE-2021-33910: The Qualys Research Labs discovered that an attacker-controlled allocation using the alloca() function could result in memory
 corruption, allowing to crash systemd and hence the entire operating system.  Details can be found at https://www.qualys.com/2021/07/20/cve-2021-33910/denial-of-service-systemd.txt .
 Vulnerable: &lt;= 241-7~deb10u7
@@ -117,6 +188,14 @@ This is a cosmetic software issue and not indicative of a hardware failure on th
 <td>If you reduce the reserved VLAN range in the {{/etc/cumulus/switchd.conf}} file to below 32 and you make multiple VLAN or bridge configuration changes, the VLANs might not be created in hardware and you might see the log message {{hal_mlx_l2.c:3045 ERR vlan create failed}}.
 The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/switchd.conf}} file is 32 VLANs for single VLAN-aware bridge configurations.</td>
 <td>4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2716838</td>
+<td>CVE-2021-22918: An out-of-bounds read was discovered in the uv__idna_to_ascii() function of Libuv, an asynchronous event notification library, which could result in denial of service or information disclosure.
+Vulnerable: 1.24.1-1
+Fixed: 1.24.1-1+deb 10u1</td>
+<td>4.0.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>

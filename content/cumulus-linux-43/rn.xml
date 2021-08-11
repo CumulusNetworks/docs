@@ -677,6 +677,14 @@ To work around this issue, configure a static route in FRR.
 <td></td>
 </tr>
 <tr>
+<td>2554261</td>
+<td>On Broadcom switches, when you create a VNI interface, switchd might crash with the following log message: 
+
+   {{switchd[6628]: log.c:72 CRIT backend/bcm/hal_bcm_vxlan.c:1285: &lt;unknown&gt;: Assertion &apos;0' failed.}}</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2554222</td>
 <td>The NCLU command to enable bridge learning fails.
 As a work around, enable bridge learning in the {{/etc/network/interface}} file. For example:
@@ -2501,6 +2509,14 @@ To work around this issue, configure a static route in FRR.
 <td>In a VRRP configuration, BGP unnumbered sessions for VRFs fail to establish after a networking restart.</td>
 <td>4.2.0-4.3.0</td>
 <td>4.4.0</td>
+</tr>
+<tr>
+<td>2554261</td>
+<td>On Broadcom switches, when you create a VNI interface, switchd might crash with the following log message: 
+
+   {{switchd[6628]: log.c:72 CRIT backend/bcm/hal_bcm_vxlan.c:1285: &lt;unknown&gt;: Assertion &apos;0' failed.}}</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2554222</td>

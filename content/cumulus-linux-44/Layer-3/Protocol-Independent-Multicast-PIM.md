@@ -13,7 +13,7 @@ PIM-SM is a *pull* multicast distribution method; multicast traffic only goes th
 PIM-SM has three configuration options:
 - [ASM](## "Any-source Mulitcast") relies on rendezvous points to connect multicast senders and receivers that dynamically determine the shortest path through the network.
 - [SSM](## "Source Specific Multicast") requires multicast receivers to know from which source they want to receive multicast traffic instead of relying on multicast rendezvous points.
-- [BiDir](## "Bidirectional PIM") forwards all traffic through the multicast rendezvous point (RP) instead of tracking multicast source IPs, allowing for greater scale but inefficient traffic forwarding.
+- [BiDir](## "Bidirectional PIM") forwards all traffic through the multicast rendezvous point (RP) instead of tracking multicast source IPs, allowing for greater scale but can cause inefficient traffic forwarding.
 
 Cumulus Linux supports ASM and SSM only.
 
@@ -21,10 +21,10 @@ For additional information on PIM-SM, refer to {{<exlink url="https://tools.ietf
 
 ## Example PIM Topology
 
-The following illustration shows a basic PIM configuration:
-- leaf01 is the [FHR](## "First Hop Router"), which controls the PIM register process.
+The following illustration shows a basic PIM [ASM](## "Any-source Mulitcast") configuration:
+- leaf01 is the [FHR](## "First Hop Router"), which controls the PIM register process. The FHR is the device to which the multicast sources connect.
 - leaf02 is the [LHR](## "Last Hop Router"), which is the last router in the path and attaches to an interested multicast receiver.
-- spine01 is the [RP](## "Rendezvous Point"), which allows for the discovery of multicast sources and multicast receivers. The RP sends PIM Register Stop messages to the FHR.
+- spine01 is the [RP](## "Rendezvous Point"), which receives multicast data from sources and forwards traffic down a shared distribution tree to the receivers.
 
 {{< figure src = "/images/cumulus-linux/pim-basic-example.png" >}}
 
@@ -32,8 +32,8 @@ The following illustration shows a basic PIM configuration:
 
 To configure PIM:
 - Enable PIM on all interfaces that face a multicast source or multicast receiver, as well the interface with the RP address. `PIM Hello` messages go to the link-local multicast group 224.0.0.13. Other routers on the segment with PIM that hear the PIM Hello messages, build a PIM neighbor with the sending device. PIM neighbors are stateless; PIM endpoints do not exchange neighbor relationship confirmation.
-- Enable [IGMP](## "Internet Group Management Protocol") on all interfaces with an attached host. You must configure IGMP on all interfaces where multicast receivers exist. IGMP version 3 is the default. Only specify the version if you want to use IGMP version 2. Fo [SSM](## "Source Specific Multicast"), you must use IGMP version 3.
-- For [ASM](## "Any-source Mulitcast"), configure a group mapping for a static RP. Each PIM enabled device must configure a static RP to a group mapping and all PIM-SM enabled devices must have the same RP to group mapping configuration. IP PIM RP group ranges can overlap. Cumulus Linux performs a longest prefix match (LPM) to determine the RP.
+- Enable [IGMP](## "Internet Group Management Protocol") on all interfaces that attach to a host and all interfaces that attach to a multicast receiver. IGMP version 3 is the default. Only specify the version if you want to use IGMP version 2. Fo [SSM](## "Source Specific Multicast"), you must use IGMP version 3.
+- For [ASM](## "Any-source Mulitcast"), on each PIM enabled switch, specify the IP address of the RP that receives multicast traffic. You can also configure PIM to send traffic from specific multicast groups to specific RPs.
 
 {{%notice note%}}
 SSM uses prefix lists to configure a receiver to only allow traffic to a multicast address from a single source. This removes the need for an RP because the receiver must know the source before accepting traffic. To enable SSM, you only need to enable PIM and IGMPv3 on the interfaces.
@@ -53,7 +53,7 @@ In Cumulus Linux 4.4, you cannot configure PIM with NVUE commands.
 cumulus@leaf01:~$ net add interface swp1 pim
 cumulus@leaf01:~$ net add interface swp51 pim
 cumulus@leaf01:~$ net add interface swp1 igmp
-cumulus@leaf01:~$ net add pim rp 10.10.100.100
+cumulus@leaf01:~$ net add pim rp 10.10.10.101
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -65,7 +65,7 @@ cumulus@leaf01:~$ net commit
 cumulus@leaf02:~$ net add interface swp1 pim
 cumulus@leaf02:~$ net add interface swp51 pim
 cumulus@leaf02:~$ net add interface swp1 igmp
-cumulus@leaf02:~$ net add pim rp 10.10.100.100
+cumulus@leaf02:~$ net add pim rp 10.10.10.101
 cumulus@leaf02:~$ net pending
 cumulus@leaf02:~$ net commit
 ```
@@ -78,7 +78,6 @@ cumulus@spine01:~$ net add interface swp1 pim
 cumulus@spine01:~$ net add interface swp1 igmp
 cumulus@spine01:~$ net add interface swp2 pim
 cumulus@spine01:~$ net add interface swp2 igmp
-cumulus@spine01:~$ net add loopback lo pim use-source 10.10.10.101
 cumulus@spine01:~$ net add pim rp 10.10.10.101 
 cumulus@spine01:~$ net pending
 cumulus@spine01:~$ net commit
@@ -130,7 +129,7 @@ The FRRouting package includes PIM. For proper PIM operation, PIM depends on Zeb
 5. **For ASM**, configure a group mapping for a static RP:
 
    ```
-   leaf01(config)# ip pim rp 10.10.100.100
+   leaf01(config)# ip pim rp 10.10.10.101
    leaf01(config)# exit
    leaf01# write memory
    leaf01#  exit
@@ -175,7 +174,7 @@ The FRRouting package includes PIM. For proper PIM operation, PIM depends on Zeb
 5. **For ASM**, configure a group mapping for a static RP:
 
    ```
-   leaf02(config)# ip pim rp 10.10.100.100
+   leaf02(config)# ip pim rp 10.10.10.101
    leaf02(config)# exit
    leaf02# write memory
    leaf02# exit
@@ -212,7 +211,6 @@ The FRRouting package includes PIM. For proper PIM operation, PIM depends on Zeb
 4. Enable IGMP on all interfaces that have attached hosts.
 
    ```
-   spine01(config)#
    spine01(config)# interface swp1
    spine01(config-if)# ip igmp
    spine01(config-if)# exit
@@ -225,8 +223,6 @@ The FRRouting package includes PIM. For proper PIM operation, PIM depends on Zeb
 
    ```
    spine01(config)# ip pim rp 10.10.10.101
-   spine01(config)# interface lo
-   spine01(config-if)# ip pim use-source 10.10.10.101
    spine01(config-if)# end
    spine01# write memory
    spine01# exit
@@ -235,6 +231,29 @@ The FRRouting package includes PIM. For proper PIM operation, PIM depends on Zeb
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The above commands configure the switch to send all multicast traffic to RP 10.10.10.101. The following commands configure PIM to send traffic from multicast group 224.10.0.0/16 to RP 192.168.0.2 and traffic from multicast group 224.10.2.0/24 to RP 192.168.0.1:
+
+{{< tabs "TabID240 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add pim rp 10.10.10.101 224.10.0.0/16
+cumulus@leaf01:~$ net add pim rp 10.10.10.102 224.10.2.0/24
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+spine01# configure terminal
+spine01(config)# ip pim rp 10.10.10.101 224.10.0.0/16
+spine01(config)# ip pim rp 10.10.10.102 224.10.2.0/16
+```
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -249,7 +268,7 @@ When the LHR receives the first multicast packet, it sends a [PIM (S,G) join](##
 
 You can configure SPT switchover per group (SPT infinity), which allows for some groups to never switch to a shortest path tree. The LHR now sends both (*,G) joins and (S,G) RPT prune messages towards the RP.
 
-To configure a group to never follow the SPT, create the necessary prefix lists, then configure SPT switchover for the `spt-range` prefix list:
+To configure a group to never follow the SPT, create the necessary prefix lists, then configure SPT switchover for the prefix list:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -273,16 +292,16 @@ Source          Group           Proto  Input      Output     TTL  Uptime
 
 ### SSM Multicast Group Ranges
 
-PIM considers `232.0.0.0/8` the default SSM multicast group range. To change the SSM range, define a prefix list and apply it. You can change the default SSM group or add additional group ranges as SSM groups.
+For [SSM](## "Source Specific Multicast"), `232.0.0.0/8` is the default multicast group range. To change the multicast group range, define a prefix list and apply it. You can change the default group or add additional group ranges.
 
 {{%notice note%}}
-**All** SSM ranges must be in the prefix list, including `232.0.0.0/8`.
+You must include `232.0.0.0/8` in the prefix list.
 {{%/notice%}}
 
 {{< tabs "TabID825 ">}}
 {{< tab "NCLU Commands ">}}
 
-Create a prefix list with the `permit` keyword to match address ranges that you want to treat as SSM groups and the `deny` keyword for the ranges you do not want to treat as SSM-enabled ranges:
+Create a prefix list with the `permit` keyword to match address ranges that you want to treat as multicast groups and the `deny` keyword for the address ranges you do not want to treat as multicast groups:
 
 ```
 cumulus@switch:~$ net add routing prefix-list ipv4 my-custom-ssm-range seq 5 permit 232.0.0.0/8 ge 32
@@ -310,7 +329,7 @@ PIM: ip prefix-list my-custom-ssm-range: 1 entries
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
-Create a prefix list with the `permit` keyword to match address ranges that you want to treat as SSM groups and the `deny` keyword for the ranges you do not want to treat as SSM-enabled ranges:
+Create a prefix list with the `permit` keyword to match address ranges that you want to treat as multicast groups and the `deny` keyword for the address ranges you do not want to treat as multicast groups:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -421,7 +440,7 @@ Address         Interface      Nexthop
 
 ### IP Multicast Boundaries
 
-Multicast boundaries enable you to limit the distribution of multicast traffic by setting boundaries to push multicast to a subset of the network. With boundaries in place, the switch drops or accepts incoming IGMP or PIM joins according to the prefix-list. You configure the boundary by applying an IP multicast boundary OIL (outgoing interface list) on an interface.
+Use multicast boundaries to limit the distribution of multicast traffic by setting boundaries to push multicast to a subset of the network. With boundaries in place, the switch drops or accepts incoming IGMP or PIM joins according to the prefix-list. You configure the boundary by applying an IP multicast boundary OIL (outgoing interface list) on an interface.
 
 To configure the multicast boundary, first create a prefix list, then run the following commands:
 
@@ -725,7 +744,7 @@ You can configure the switch to allow joins from all upstream neighbors or you c
 {{< tabs "TabID997 ">}}
 {{< tab "NCLU Commands ">}}
 
-There are no NCLU commands for this feature.
+NCLU does not provide commands for this feature.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1390,126 +1409,52 @@ Source                     Group               RP  Local  SPT    Uptime
 44.1.11.2              239.1.1.2        100.1.1.1      n    n  00:00:25
 ```
 
-## Example Configurations
+## Example Configuration
+
+The following example shows 
+
 <!-- vale off -->
-{{< expand "Complete Multicast Network Configuration Example"  >}}
+{{< tabs "TabID1395 ">}}
+{{< tab "NCLU Commands">}}
 
-```
-RP# show run
-Building configuration...
-Current configuration:
-!
-log syslog
-ip multicast-routing
-ip pim rp 192.168.0.1 224.0.0.0/4
-username cumulus nopassword
-!
-!
-interface lo
- description RP Address interface
- ip ospf area 0.0.0.0
- ip pim sm
-!
-interface swp1
- description interface to FHR
- ip ospf area 0.0.0.0
- ip ospf network point-to-point
- ip pim sm
-!
-interface swp2
- description interface to LHR
- ip ospf area 0.0.0.0
- ip ospf network point-to-point
- ip pim sm
-!
-router ospf
- ospf router-id 192.168.0.1
-!
-line vty
-!
-end
-```
+{{< tabs "TabID1398 ">}}
+{{< tab "leaf01 ">}}
 
-```
-FHR# show run
-!
-log syslog
-ip multicast-routing
-ip pim rp 192.168.0.1 224.0.0.0/4
-username cumulus nopassword
-!
-interface bridge10.1
- description Interface to multicast source
- ip ospf area 0.0.0.0
- ip ospf network point-to-point
- ip pim sm
-!
-interface lo
- ip ospf area 0.0.0.0
- ip pim sm
-!
-interface swp49
- description interface to RP
- ip ospf area 0.0.0.0
- ip ospf network point-to-point
- ip pim sm
-!
-interface swp50
- description interface to LHR
- ip ospf area 0.0.0.0
- ip ospf network point-to-point
- ip pim sm
- !
-router ospf
- ospf router-id 192.168.1.1
-!
-line vty
-!
-end
-```
+{{< /tab >}}
+{{< tab "leaf02 ">}}
 
-```
-LHR# show run
-!
-log syslog
-ip multicast-routing
-ip pim rp 192.168.0.1 224.0.0.0/4
-username cumulus nopassword
-!
-interface bridge10.1
- description interface to multicast receivers
- ip igmp
- ip ospf area 0.0.0.0
- ip ospf network point-to-point
- ip pim sm
-!
-interface lo
- ip ospf area 0.0.0.0
- ip pim sm
-!
-interface swp49
- description interface to RP
- ip ospf area 0.0.0.0
- ip ospf network point-to-point
- ip pim sm
-!
-interface swp50
- description interface to FHR
- ip ospf area 0.0.0.0
- ip ospf network point-to-point
- ip pim sm
-!
-router ospf
- ospf router-id 192.168.2.2
-!
-line vty
-!
-end
-```
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+{{< /tab >}}
+{{< tab "spine02 ">}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "/etc/network/interfaces ">}}
+
+{{< tabs "TabID1416 ">}}
+{{< tab "leaf01 ">}}
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+{{< /tab >}}
+{{< tab "spine02 ">}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
 <!-- vale on -->
-{{< /expand >}}
 
 ## Considerations
 
-- Cumulus Linux does not support non-native forwarding (register decapsulation). Expect initial packet loss while the PIM \*,G tree is building from the rendezvous point to the FHR to trigger native forwarding.
+- Cumulus Linux does not support non-native forwarding (register decapsulation). Expect initial packet loss while the PIM \*,G tree is building from the RP to the FHR to trigger native forwarding.
 - Cumulus Linux does not build an S,G mroute when forwarding over an \*,G tree.

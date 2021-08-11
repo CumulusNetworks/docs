@@ -366,7 +366,7 @@ All splitted/non-splitted ports also support lower 10/25/40GbE speeds. For lower
 {{< /tabs >}}
 
 {{% notice note %}}
-Check out all platform's speeds and breakout options in [Switch Port Attributes]({{<kb_link latest="cl" url="/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes.md#breakout-ports" >}}) page.
+Check out all platform's speeds and breakout options in {{<kb_link latest="cl" url="Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes.md#breakout-ports" text="Switch Port Attributes" >}} page.
 {{% /notice %}}
 
 {{%notice info%}}

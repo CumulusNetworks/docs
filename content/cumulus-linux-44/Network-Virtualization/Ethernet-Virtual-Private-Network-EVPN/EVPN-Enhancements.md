@@ -79,32 +79,20 @@ address-family l2vpn evpn
 {{< tab "leaf01 ">}}
 
 ``` 
-cumulus@leaf01:~$ nv set evpn evi 10 route-target 10.10.10.1:20
+cumulus@leaf01:~$ nv set evpn evi 10 rd 10.10.10.1:20
 cumulus@leaf01:~$ nv set evpn evi 10 route-target export 65101:10
 cumulus@leaf01:~$ nv set evpn evi 10 route-target import 65102:10
 cumulus@leaf01:~$ nv config apply
-```
-
-The NVUE commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
-
-```
-cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 
 {{< /tab >}}
 {{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf03:~$ nv set evpn evi 10 route-target 10.10.10.3:20
+cumulus@leaf03:~$ nv set evpn evi 10 rd 10.10.10.3:20
 cumulus@leaf03:~$ nv set evpn evi 10 route-target export 65102:10
 cumulus@leaf03:~$ nv set evpn evi 10 route-target import 65101:10
 cumulus@leaf03:~$ nv config apply
-```
-
-The NVUE commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
-
-```
-cumulus@leaf03:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 
 {{< /tab >}}
@@ -261,12 +249,6 @@ cumulus@leaf01:~$ nv set evpn evi 20 route-target both 65101:10
 cumulus@leaf01:~$ nv config apply
 ```
 
-The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
-
-```
-cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
-```
-
 {{< /tab >}}
 {{< tab "leaf03 ">}}
 
@@ -275,12 +257,6 @@ cumulus@leaf03:~$ nv set evpn evi 10 route-target import 65101:10
 cumulus@leaf03:~$ nv set evpn evi 10 route-target import 65101:20
 cumulus@leaf03:~$ nv set evpn evi 20 route-target both 65102:10
 cumulus@leaf03:~$ nv config apply
-```
-
-The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
-
-```
-cumulus@leaf03:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 
 {{< /tab >}}

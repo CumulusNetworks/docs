@@ -606,9 +606,9 @@ The following steps configure a Cumulus switch to use the MSDP:
 
 PIM in a VRF enables PIM trees and multicast data traffic to run inside a layer 3 virtualized network, with a separate tree per domain or tenant. Each VRF has its own multicast tree with its own RPs, sources, and so on. Therefore, you can have one tenant per corporate division, client, or product.
 
-If you do not enable MP-BGP VPN, VRFs on different switches typically connect or peer over subinterfaces, where each subinterface is in its own VRF.
+If you do not enable [MP-BGP](## "Multi Protocol BGP ") [MPLS VPN](## "Multiprotocol Label Switching virtual private network"), VRFs on different switches typically connect or peer over subinterfaces, where each subinterface is in its own VRF.
 
-To configure PIM in a VRF:.
+To configure PIM in a VRF:
 
 {{< tabs "TabID1170 ">}}
 {{< tab "NCLU Commands ">}}
@@ -616,10 +616,10 @@ To configure PIM in a VRF:.
 Add the VRFs and associate them with switch ports:
 
 ```
-cumulus@switch:~$ net add vrf blue
-cumulus@switch:~$ net add vrf purple
-cumulus@switch:~$ net add interface swp1 vrf blue
-cumulus@switch:~$ net add interface swp2 vrf purple
+cumulus@switch:~$ net add vrf RED
+cumulus@switch:~$ net add vrf BLUE
+cumulus@switch:~$ net add interface swp1 vrf RED
+cumulus@switch:~$ net add interface swp2 vrf BLUE
 ```
 
 Add PIM configuration:
@@ -627,12 +627,12 @@ Add PIM configuration:
 ```
 cumulus@switch:~$ net add interface swp1 pim sm
 cumulus@switch:~$ net add interface swp2 pim sm
-cumulus@switch:~$ net add bgp vrf blue auto 65001
-cumulus@switch:~$ net add bgp vrf purple auto 65000
-cumulus@switch:~$ net add bgp vrf blue router-id 10.1.1.1
-cumulus@switch:~$ net add bgp vrf purple router-id 10.1.1.2
-cumulus@switch:~$ net add bgp vrf blue neighbor swp1 interface remote-as external
-cumulus@switch:~$ net add bgp vrf purple neighbor swp2 interface remote-as external
+cumulus@switch:~$ net add bgp vrf RED auto 65001
+cumulus@switch:~$ net add bgp vrf BLUE auto 65000
+cumulus@switch:~$ net add bgp vrf RED router-id 10.1.1.1
+cumulus@switch:~$ net add bgp vrf BLUE router-id 10.1.1.2
+cumulus@switch:~$ net add bgp vrf RED neighbor swp1 interface remote-as external
+cumulus@switch:~$ net add bgp vrf BLUE neighbor swp2 interface remote-as external
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -647,18 +647,18 @@ cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
 auto swp1
 iface swp1
-    vrf blue
+    vrf RED
 
 auto swp2
 iface swp2
-    vrf purple
+    vrf BLUE
 
-auto blue
-iface blue
+auto RED
+iface RED
     vrf-table auto
 
-auto purple
-iface purple
+auto BLUE
+iface BLUE
     vrf-table auto
 ...
 ```
@@ -674,11 +674,11 @@ switch(config-if)# exit
 switch(config)# interface swp2
 switch(config-if)# ip pim sm
 switch(config-if)# exit
-switch(config)# router bgp 65001 vrf blue
+switch(config)# router bgp 65001 vrf RED
 switch(config-router)# bgp router-id 10.1.1.2
 switch(config-router)# neighbor swp1 interface remote-as external
 switch(config-router)# exit
-switch(config)# router bgp 65000 vrf purple
+switch(config)# router bgp 65000 vrf BLUE
 switch(config-router)# bgp router-id 10.1.1.1
 switch(config-router)# neighbor swp2 interface remote-as external
 switch(config-router)# end
@@ -693,7 +693,7 @@ cumulus@switch:~$
 To verify the configuration, run the NCLU `net show mroute vrf <vrf-name>` command or the vtysh `show ip mroute vrf <vrf-name>` command:
 
 ```
-cumulus@fhr:~$ net show mroute vrf blue
+cumulus@fhr:~$ net show mroute vrf RED
 Source          Group           Proto  Input      Output     TTL  Uptime
 11.1.0.1        239.1.1.1       IGMP   swp32s0    swp32s1    1    00:01:13
                                 IGMP              br0.200    1    00:01:13

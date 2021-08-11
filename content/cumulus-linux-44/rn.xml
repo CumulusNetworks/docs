@@ -108,6 +108,12 @@ Fixed: 1.17-3+deb10u2</td>
 <td></td>
 </tr>
 <tr>
+<td>2736108</td>
+<td>When you change the VRRP advertisement interval on the master, the {{master advertisement interval}} field in the {{show vrrp}} command output does not show the updated value.</td>
+<td>4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2734126</td>
 <td>CVE-2021-33910: The Qualys Research Labs discovered that an attacker-controlled allocation using the alloca() function could result in memory
 corruption, allowing to crash systemd and hence the entire operating system.  Details can be found at https://www.qualys.com/2021/07/20/cve-2021-33910/denial-of-service-systemd.txt .
@@ -482,6 +488,14 @@ To work around this issue, configure {{ip pim use-source}} on each unnumbered in
 To work around this issue, configure a static route in FRR.
 </td>
 <td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2554261</td>
+<td>On Broadcom switches, when you create a VNI interface, switchd might crash with the following log message: 
+
+   {{switchd[6628]: log.c:72 CRIT backend/bcm/hal_bcm_vxlan.c:1285: &lt;unknown&gt;: Assertion &apos;0' failed.}}</td>
+<td>4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>

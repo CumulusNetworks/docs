@@ -32,7 +32,7 @@ The following illustration shows a basic PIM [ASM](## "Any-source Mulitcast") co
 
 To configure PIM:
 - Enable PIM on all interfaces that face a multicast source or multicast receiver, as well the interface with the RP address. `PIM Hello` messages go to the link-local multicast group 224.0.0.13. Other routers on the segment with PIM that hear the PIM Hello messages, build a PIM neighbor with the sending device. PIM neighbors are stateless; PIM endpoints do not exchange neighbor relationship confirmation.
-- Enable [IGMP](## "Internet Group Management Protocol") on all interfaces that attach to a host and all interfaces that attach to a multicast receiver. IGMP version 3 is the default. Only specify the version if you want to use IGMP version 2. Fo [SSM](## "Source Specific Multicast"), you must use IGMP version 3.
+- Enable [IGMP](## "Internet Group Management Protocol") on all interfaces that attach to a host and all interfaces that attach to a multicast receiver. IGMP version 3 is the default. Only specify the version if you want to use IGMP version 2. For [SSM](## "Source Specific Multicast"), you must use IGMP version 3.
 - For [ASM](## "Any-source Mulitcast"), on each PIM enabled switch, specify the IP address of the RP that receives multicast traffic. You can also configure PIM to send traffic from specific multicast groups to specific RPs.
 
 {{%notice note%}}
@@ -782,54 +782,36 @@ cumulus@switch:~$
 
 <!-- vale off -->
 <!-- vale.ai Issue #253 -->
-## Configure PIM Active-Active with MLAG
+## PIM Active-Active with MLAG
 <!-- vale on -->
 
-### Multicast Sender
-
-When a multicast sender attaches to an MLAG bond, the sender hashes the outbound multicast traffic over a single member of the bond. Traffic arrives on one of the MLAG enabled switches. Regardless of which switch receives the traffic, it goes over the MLAG peer link to the other MLAG-enabled switch, because the peerlink is always the multicast router port and always receives the multicast stream.
+When a **multicast sender** attaches to an MLAG bond, the sender hashes the outbound multicast traffic over a single member of the bond. Traffic arrives on one of the MLAG enabled switches. Regardless of which switch receives the traffic, it goes over the MLAG peer link to the other MLAG-enabled switch, because the peerlink is always the multicast router port and always receives the multicast stream.
 
 {{%notice note%}}
 Traffic from multicast sources attached to an MLAG bond always goes over the MLAG peerlink. Be sure to
 {{<link url="Multi-Chassis-Link-Aggregation-MLAG#peer-link-sizing" text="size the peerlink appropriately">}} to accommodate this traffic.
 {{%/notice%}}
 
-The PIM DR for the VLAN where the source resides sends the PIM register towards the RP. The PIM DR is the PIM speaker with the highest IP address on the segment. After the PIM register process is complete and traffic is flowing along the Shortest Path Tree (SPT), either MLAG switch forwards traffic towards the receivers.
+The [PIM DR](## "PIM Designated Router") for the VLAN where the source resides sends the PIM register towards the RP. The PIM DR is the PIM speaker with the highest IP address on the segment. After the PIM register process is complete and traffic is flowing along the [SPT](## "Shortest Path Tree "), either MLAG switch forwards traffic towards the receivers.
+
+PIM joins sent towards the source can be ECMP load shared by upstream PIM neighbors. Either MLAG member can receive the PIM join and forward traffic, regardless of DR status.
+
+A dual-attached **multicast receiver** sends an IGMP join on the attached VLAN. One of the MLAG switches receives the IGMP join, then adds the IGMP join to the IGMP Join table and layer 2 MDB table. The layer 2 MDB table, like the unicast MAC address table, synchronizes through MLAG control messages over the peerlink. This allows both MLAG switches to program IGMP and MDB table forwarding information. Both switches send *,G PIM Join messages towards the RP. If the source is already sending, both MLAG switches receive the multicast stream.
+
+{{%notice note%}}
+Traditionally, the PIM DR is the only node to send the PIM *,G Join. To provide resiliency in case of failure, both MLAG switches send PIM *,G Joins towards the RP to receive the multicast stream.
+{{%/notice%}}
+
+To prevent duplicate multicast packets, PIM elects a [DF](## "PIM Designated Forwarder"), which is the `primary` member of the MLAG pair. The MLAG secondary switch puts the VLAN in the Outgoing Interface List (OIL), preventing duplicate multicast traffic.
+
+### Example Traffic Flow
 
 The examples below show the flow of traffic between server02 and server03:
-
-- **Step 1**: server02 sends traffic to leaf02. leaf02 forwards traffic to leaf01 because the peerlink is a multicast router port. leaf01 also receives a PIM register from leaf02. leaf02 syncs the *,G table from leaf01 as an MLAG active-active peer.
-- **Step 2**: leaf02 has the *,G route indicating that it must forward traffic towards spine01. Either leaf02 or leaf01 sends this traffic directly based on which MLAG switch receives it from the attached source. In this case, leaf02 receives the traffic on the MLAG bond and forwards it directly upstream.
 
 | Step 1 | Step 2 |
 |--------|--------|
 |{{< figure src = "/images/cumulus-linux/pim-mlag-topology1.png" >}}|{{< figure src = "/images/cumulus-linux/pim-mlag-topology2.png" >}}|
-
-To show the PIM DR, run the vtysh `show ip pim interface` command. The following example shows that in Vlan12 the DR is 10.1.2.12.
-
-```
-cumulus@leaf01:mgmt:~$ show ip pim interface
-Interface         State          Address  PIM Nbrs           PIM DR  FHR IfChannels
-lo                   up        10.0.0.11         0            local    0          0
-pimreg               up          0.0.0.0         0            local    0          0
-swp51                up        10.0.0.11         1        10.0.0.21    0          4
-swp52                up        10.0.0.11         1        10.0.0.22    0          0
-vlan12               up        10.1.2.11         1        10.1.2.12    0          2
-```
-
-PIM joins sent towards the source can be ECMP load shared by upstream PIM neighbors (spine01 and spine02 in the example above). Either MLAG member can receive the PIM join and forward traffic, regardless of DR status.
-
-### Multicast Receiver
-
-A dual-attached multicast receiver sends an IGMP join on the attached VLAN. The specific interface that receives the traffic depends on the host. One of the MLAG switches receives the IGMP join, then adds the IGMP join to the IGMP Join table and layer 2 MDB table. The layer 2 MDB table, like the unicast MAC address table, synchronizes through MLAG control messages over the peerlink. This allows both MLAG switches to program IGMP and MDB table forwarding information.
-
-Both switches send *,G PIM Join messages towards the RP. If the source is already sending, both MLAG switches receive the multicast stream.
-
-{{%notice note%}}
-Traditionally, the PIM DR is the only node to send the PIM *,G Join, but to provide resiliency in case of failure, both MLAG switches send PIM *,G Joins towards the RP to receive the multicast stream.
-{{%/notice%}}
-
-To prevent duplicate multicast packets, PIM elects a Designated Forward (DF), which is the `primary` member of the MLAG pair. The MLAG secondary switch puts the VLAN in the Outgoing Interface List (OIL), preventing duplicate multicast traffic.
+| 1. server02 sends traffic to leaf02.<br>2. leaf02 forwards traffic to leaf01 because the peerlink is a multicast router port.<br>3.  leaf01 also receives a PIM register from leaf02.<br>4. leaf02 syncs the *,G table from leaf01 as an MLAG active-active peer. | 1. leaf02 has the *,G route indicating that it must forward traffic towards spine01.<br>2. Either leaf02 or leaf01 sends this traffic directly based on which MLAG switch receives it from the attached source.<br>3. In this case, leaf02 receives the traffic on the MLAG bond and forwards it directly upstream.|
 
 ### Configure PIM with MLAG
 
@@ -872,7 +854,7 @@ To use a multicast sender or receiver over a dual-attached MLAG bond, you must c
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
-1. Configure `ip pim active-active` on the VLAN interface where the multicast source or receiver exists along with the required `ip igmp` command.
+1. On the VLAN interface where the multicast source or receiver exists, configure `ip pim active-active` and `ip igmp`.
 
    ```
    cumulus@leaf01:~$ sudo vtysh
@@ -1420,14 +1402,54 @@ The following example shows
 {{< tabs "TabID1398 ">}}
 {{< tab "leaf01 ">}}
 
+```
+cumulus@leaf01:~$ net add loopback lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ net add interface swp1,swp2,swp49,swp50,swp51
+cumulus@leaf01:~$ net add bgp autonomous-system 65101
+cumulus@leaf01:~$ net add bgp router-id 10.10.10.1
+cumulus@leaf01:~$ net add bgp neighbor swp51 remote-as external
+cumulus@leaf01:~$ net add bgp ipv4 unicast network 10.10.10.1/32
+cumulus@leaf01:~$ net add interface swp1 pim
+cumulus@leaf01:~$ net add interface swp51 pim
+cumulus@leaf01:~$ net add interface swp1 igmp
+cumulus@leaf01:~$ net add pim rp 10.10.10.101
+cumulus@leaf01:~$ net commit
+```
+
 {{< /tab >}}
 {{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:~$ net add loopback lo ip address 10.10.10.2/32
+cumulus@leaf02:~$ net add interface swp1,swp2,swp49,swp50,swp51
+cumulus@leaf02:~$ net add bgp autonomous-system 65102
+cumulus@leaf02:~$ net add bgp router-id 10.10.10.2
+cumulus@leaf02:~$ net add bgp neighbor swp51 remote-as external
+cumulus@leaf02:~$ net add bgp ipv4 unicast network 10.10.10.2/32
+cumulus@leaf02:~$ net add interface swp1 pim
+cumulus@leaf02:~$ net add interface swp51 pim
+cumulus@leaf02:~$ net add interface swp1 igmp
+cumulus@leaf02:~$ net add pim rp 10.10.10.101
+cumulus@leaf02:~$ net commit
+```
 
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
-{{< /tab >}}
-{{< tab "spine02 ">}}
+```
+cumulus@spine01:~$ net add loopback lo ip address 10.10.10.101/32
+cumulus@spine01:~$ net add interface swp1,swp2,
+cumulus@spine01:~$ net add bgp autonomous-system 65199
+cumulus@spine01:~$ net add bgp router-id 10.10.10.101
+cumulus@spine01:~$ net add bgp neighbor swp1 remote-as external
+cumulus@spine01:~$ net add bgp neighbor swp2 remote-as external
+cumulus@spine01:~$ net add interface swp1 pim
+cumulus@spine01:~$ net add interface swp1 igmp
+cumulus@spine01:~$ net add interface swp2 pim
+cumulus@spine01:~$ net add interface swp2 igmp
+cumulus@spine01:~$ net add pim rp 10.10.10.101 
+cumulus@spine01:~$ net commit
+```
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1435,17 +1457,225 @@ The following example shows
 {{< /tab >}}
 {{< tab "/etc/network/interfaces ">}}
 
-{{< tabs "TabID1416 ">}}
+{{< tabs "TabID1458 ">}}
 {{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/network/interfaces
+auto lo
+iface lo inet loopback
+    address 10.10.10.1/32
+
+auto swp1
+iface swp1
+
+auto swp2
+iface swp2
+
+auto swp49
+iface swp49
+
+auto swp50
+iface swp50
+
+auto swp51
+iface swp51
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+    post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
+```
 
 {{< /tab >}}
 {{< tab "leaf02 ">}}
 
+```
+cumulus@leaf02:mgmt:~$ sudo cat /etc/network/interfaces
+auto lo
+iface lo inet loopback
+    address 10.10.10.2/32
+
+auto swp1
+iface swp1
+
+auto swp2
+iface swp2
+
+auto swp49
+iface swp49
+
+auto swp50
+iface swp50
+
+auto swp51
+iface swp51
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+    post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
+```
+
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
+```
+cumulus@spine01:mgmt:~$ sudo cat /etc/network/interfaces
+auto lo
+iface lo inet loopback
+    address 10.10.10.101/32
+
+auto swp1
+iface swp1
+
+auto swp2
+iface swp2
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+    post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
+```
+
 {{< /tab >}}
-{{< tab "spine02 ">}}
+{{< tab "server01 ">}}
+
+```
+cumulus@server01:~$ sudo cat /etc/network/interfaces
+# The loopback network interface
+auto lo
+iface lo inet loopback
+# The OOB network interface
+auto eth0
+iface eth0 inet dhcp
+# The data plane network interfaces
+auto eth1
+iface eth1 inet manual
+  address 10.1.10.101
+  netmask 255.255.255.0
+  mtu 9000
+  post-up ip route add 10.0.0.0/8 via 10.1.10.1
+auto eth2
+  post-up ip link set promisc on dev eth2
+```
+
+{{< /tab >}}
+{{< tab "server02 ">}}
+
+```
+cumulus@server02:~$ sudo cat /etc/network/interfaces
+# The loopback network interface
+auto lo
+iface lo inet loopback
+# The OOB network interface
+auto eth0
+iface eth0 inet dhcp
+# The data plane network interfaces
+auto eth1
+iface eth1 inet manual
+  address 10.1.20.102
+  netmask 255.255.255.0
+  mtu 9000
+  post-up ip route add 10.0.0.0/8 via 10.1.20.1
+auto eth2
+iface eth2 inet manual
+  post-up ip link set promisc on dev eth2
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "/etc/network/interfaces ">}}
+
+{{< tabs "TabID1608 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
+router bgp 65101
+ bgp router-id 10.10.10.1
+ neighbor swp51 interface
+ neighbor swp51 remote-as external
+ address-family ipv4 unicast
+  network 10.10.10.1/32
+ exit-address-family
+interface lo
+ ip pim 
+interface swp1
+ ip pim
+ ip igmp
+interface swp51
+ ip pim
+ip pim rp 10.10.10.101
+cumulus@leaf01:mgmt:~$
+```
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
+router bgp 65102
+ bgp router-id 10.10.10.2
+ neighbor swp51 interface
+ neighbor swp51 remote-as external
+ address-family ipv4 unicast
+  network 10.10.10.2/32
+ exit-address-family
+interface lo
+ ip pim
+interface swp1
+ ip pim
+ ip igmp
+interface swp51
+ ip pim
+ip pim rp 10.10.10.101
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
+router bgp 65199
+ bgp router-id 10.10.10.101
+ neighbor swp1 interface
+ neighbor swp1 remote-as external
+ neighbor swp2 interface
+ neighbor swp2 remote-as external
+interface lo
+ ip pim 
+interface swp1
+ ip pim
+ ip igmp
+interface swp2
+ ip pim
+ ip igmp
+ip pim rp 10.10.10.101
+```
 
 {{< /tab >}}
 {{< /tabs >}}

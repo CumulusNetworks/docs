@@ -75,6 +75,14 @@ Fixed: 1.17-3+deb10u2</td>
 <td></td>
 </tr>
 <tr>
+<td>2736249</td>
+<td>If you configure BGP graceful restart in the {{/etc/frr/frr.conf}} file, then apply the configuration with {{systemctl reload frr}}, the configuration fails to apply and you see the following error:
+   Job for frr.service failed.
+See "systemctl status frr.service" and "journalctl -xe" for details.</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2734126</td>
 <td>CVE-2021-33910: The Qualys Research Labs discovered that an attacker-controlled allocation using the alloca() function could result in memory
 corruption, allowing to crash systemd and hence the entire operating system.  Details can be found at https://www.qualys.com/2021/07/20/cve-2021-33910/denial-of-service-systemd.txt .
@@ -1735,6 +1743,14 @@ See "systemctl status frr.service" and "journalctl -xe" for details.
 Vulnerable: &lt;= 1.17-3+deb10u1
 Fixed: 1.17-3+deb10u2</td>
 <td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2736249</td>
+<td>If you configure BGP graceful restart in the {{/etc/frr/frr.conf}} file, then apply the configuration with {{systemctl reload frr}}, the configuration fails to apply and you see the following error:
+   Job for frr.service failed.
+See "systemctl status frr.service" and "journalctl -xe" for details.</td>
+<td>4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>

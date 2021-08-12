@@ -94,6 +94,14 @@ Fixed: 1.17-3+deb10u2</td>
 <td></td>
 </tr>
 <tr>
+<td>2736249</td>
+<td>If you configure BGP graceful restart in the {{/etc/frr/frr.conf}} file, then apply the configuration with {{systemctl reload frr}}, the configuration fails to apply and you see the following error:
+   Job for frr.service failed.
+See "systemctl status frr.service" and "journalctl -xe" for details.</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2736244</td>
 <td>When you run the vtysh command to enable BGP graceful restart on a peer multiple times, the command fails with the following error:
 % The Graceful Restart command used is not valid at this moment.</td>

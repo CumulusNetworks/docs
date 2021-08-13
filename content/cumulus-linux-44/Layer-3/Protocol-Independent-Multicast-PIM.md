@@ -894,8 +894,6 @@ To use a multicast sender or receiver over a dual-attached MLAG bond, you must c
 
 ### Verify PIM Configuration
 
-The following outputs use the {{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant" text="Cumulus Reference Topology">}} with `cldemo-pim`.
-
 {{< tabs "TabID501 ">}}
 {{< tab "NCLU Commands ">}}
 
@@ -1426,9 +1424,9 @@ cumulus@leaf02:~$ net add bgp autonomous-system 65102
 cumulus@leaf02:~$ net add bgp router-id 10.10.10.2
 cumulus@leaf02:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf02:~$ net add bgp ipv4 unicast network 10.10.10.2/32
-cumulus@leaf02:~$ net add interface swp1 pim
+cumulus@leaf02:~$ net add interface swp2 pim
 cumulus@leaf02:~$ net add interface swp51 pim
-cumulus@leaf02:~$ net add interface swp1 igmp
+cumulus@leaf02:~$ net add interface swp2 igmp
 cumulus@leaf02:~$ net add pim rp 10.10.10.101
 cumulus@leaf02:~$ net commit
 ```
@@ -1595,10 +1593,13 @@ iface eth1 inet manual
   address 10.1.20.102
   netmask 255.255.255.0
   mtu 9000
-  post-up ip route add 10.0.0.0/8 via 10.1.20.1
+  post-up ip link set promisc on dev eth1
 auto eth2
 iface eth2 inet manual
-  post-up ip link set promisc on dev eth2
+  address 10.1.20.102
+  netmask 255.255.255.0
+  mtu 9000
+  post-up ip route add 10.0.0.0/8 via 10.1.20.1
 ```
 
 {{< /tab >}}
@@ -1646,7 +1647,7 @@ router bgp 65102
  exit-address-family
 interface lo
  ip pim
-interface swp1
+interface swp2
  ip pim
  ip igmp
 interface swp51

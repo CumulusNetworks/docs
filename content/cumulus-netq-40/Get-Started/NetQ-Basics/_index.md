@@ -31,7 +31,7 @@ In summary:
 
 ## Protect Network Integrity with NetQ Validation
 
-Network configuration changes can cause the creation of many trouble tickets because you cannot test a new configuration before deploying it. When the tickets start pouring in, you are stuck with a large amount of data that is collected and stored in multiple tools making correlation of the events to the resolution required difficult at best. Isolating faults in the past is challenging. By contract, with NetQ deployed, you can proactively verify a configuration change as inconsistencies and misconfigurations can be caught before deployment. And historical data is readily available to correlate past events with current issues.
+Network configuration changes can cause the creation of many trouble tickets because you cannot test a new configuration before deploying it. When the tickets start pouring in, you <!-- vale off -->are stuck with a large amount of data that is collected<!-- vale on --> and stored in multiple tools, making correlation of the events to the resolution required difficult at best. Isolating faults in the past is challenging. By contract, with NetQ deployed, you can proactively verify a configuration change as inconsistencies and can catch misconfigurations before deployment. And historical data is readily available to correlate past events with current issues.
 
 In summary:
 
@@ -50,17 +50,17 @@ In summary:
 | Without NetQ | With NetQ |
 | ------------ | --------- |
 | Large amount of data and multiple tools to correlate the logs/events with the issues | Rolled up and correlated network status, view events and status together |
-| Past events are lost | Historical data gathered and stored for comparison with current network state |
+| Past events <!-- vale off -->are lost<!-- vale on --> | Historical data gathered and stored for comparison with current network state |
 | Manual, node-by-node troubleshooting | View issues on all devices all at one time, pointing to the source of the problem |
 
 ## Track Connectivity with NetQ Trace
 
-Conventional trace only traverses the data path looking for problems, and does so on a node to node basis. For paths with a small number of hops that might be fine, but in larger networks, it can become very time consuming. With NetQ both the data and control paths are verified providing additional information. It discovers misconfigurations along all hops in one go, speeding the time to resolution.
+Conventional trace only traverses the data path looking for problems, and does so on a node to node basis. For paths with a small number of hops that might be fine, but in larger networks, it can become very time consuming. NetQ verifies both the data and control paths, providing additional information. It discovers misconfigurations along all hops in one go, speeding the time to resolution.
 
 In summary:
 
 | Without NetQ                                            | With NetQ                                                            |
 | ------------------------------------------------------- | -------------------------------------------------------------------- |
-| Trace covers only data path; hard to check control path | Both data and control paths are verified                             |
+| Trace covers only data path; hard to check control path | Verifies both data and control paths                                 |
 | View portion of entire path                             | View all paths between devices at one time to find problem paths     |
 | Node-to-node check on misconfigurations                 | View any misconfigurations along all hops from source to destination |

@@ -4,7 +4,8 @@ author: NVIDIA
 weight: 730
 toc: 4
 ---
-With the NetQ UI and CLI, a user can monitor the inventory on a networkwide basis for all switches and hosts, or all switches. Inventory includes such items as the number of each device and what operating systems are installed. Additional details are available about the hardware and software components on individual switches, such as  the motherboard, ASIC, microprocessor, disk, memory, fan and power supply information. This is extremely useful for understanding the dependence on various vendors and versions when planning upgrades or evaluating the scope of any other required changes.
+
+With the NetQ UI and CLI, a user can monitor the inventory on a networkwide basis for all switches and hosts, or all switches. Inventory includes such items as the number of each device and its operating system. Additional details are available about the hardware and software components on individual switches, such as the motherboard, ASIC, microprocessor, disk, memory, fan and power supply information. This is extremely useful for understanding the dependence on various vendors and versions when planning upgrades or evaluating the scope of any other required changes.
 
 The commands and cards available to obtain this type of information help you to answer questions such as:
 
@@ -30,7 +31,7 @@ The NetQ CLI provides detailed network inventory information through its `netq s
 
 ## View Networkwide Inventory Summary
 
-All devices in your network can be viewed from either the NetQ UI or NetQ CLI.
+You can view all devices in your network from either the NetQ UI or NetQ CLI.
 
 {{<tabs "View worldwide inventory summary">}}
 
@@ -38,7 +39,7 @@ All devices in your network can be viewed from either the NetQ UI or NetQ CLI.
 
 ### View the Number of Each Device Type in Your Network
 
-You can view the number of switches and hosts deployed in your network. As you grow your network this can be useful for validating that devices have been added as scheduled.
+You can view the number of switches and hosts deployed in your network. As you grow your network this can be useful for validating the addition of devices as scheduled.
 
 To view the quantity of devices in your network, locate or open the small or medium Inventory|Devices card. The medium-sized card provide operating system distribution across the network in addition to the device count.
 
@@ -128,7 +129,7 @@ It can be useful to know the quantity and ratio of many components deployed in y
 
 2. Hover over the card, and change to the large size card using the size picker.
 
-   By default the Switches tab is shown displaying the total number of switches, ASIC vendors, OS versions, NetQ Agent versions, and specific platforms deployed across all your switches.
+   By default the Switches tab shows the total number of switches, ASIC vendors, OS versions, NetQ Agent versions, and specific platforms deployed across all your switches.
 
    You can hover over any of the segments in a component distribution chart to highlight a specific type of the given component. When you *hover*, a tooltip appears displaying:
 
@@ -343,7 +344,7 @@ Motherboard and platform information is available from the NetQ UI and NetQ CLI.
 
 2. Hover over the card, and change to the full-screen card using the size picker.
 
-3. The **All Switches** tab is selected by default. Scroll to the right to view the various Platform parameters for your switches. Optionally drag and drop the relevant columns next to each other.
+3. The **All Switches** tab is active by default. Scroll to the right to view the various Platform parameters for your switches. Optionally drag and drop the relevant columns next to each other.
 
     {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-320.png" width="700">}}
 
@@ -449,7 +450,7 @@ CPU information is available from the NetQ UI and NetQ CLI.
 
 2. Hover over the card, and change to the full-screen card using the size picker.
 
-3. The **All Switches** tab is selected by default. Scroll to the right to view the various CPU parameters. Optionally drag and drop relevant columns next to each other.
+3. The **All Switches** tab is active by default. Scroll to the right to view the various CPU parameters. Optionally drag and drop relevant columns next to each other.
 
     {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-320.png" width="700">}}
 
@@ -509,7 +510,7 @@ st1-s1            x86_64   Intel(R) Atom(TM)  S1220       1.60GHz    4
 st1-s2            x86_64   Intel(R) Atom(TM)  S1220       1.60GHz    4
 ```
 
-You can filter the results of the command to view which switches employ a particular CPU architecture using the *arch* keyword. This example shows how to determine which architectures are deployed in your network, and then shows all devices with an *x86\_64* architecture.
+You can filter the results of the command to view which switches employ a particular CPU architecture using the *arch* keyword. This example shows how to determine all the currently deployed architectures in your network, and then shows all devices with an *x86\_64* architecture.
 
 ```
 cumulus@switch:~$ netq show inventory cpu arch
@@ -1601,7 +1602,7 @@ spine03           CL              3.7.12                               Mon Aug 1
 spine04           CL              3.7.12                               Mon Aug 10 19:55:08 2020
 ```
 
-You can filter the results of the command to view only devices with a particular operating system or version. This can be especially helpful when you suspect that a particular device has not been upgraded as expected.
+You can filter the results of the command to view only devices with a particular operating system or version. This can be especially helpful when you suspect that a particular device upgrade did not work as expected.
 
 This example shows all devices with the Cumulus Linux version 3.7.12 installed.
 
@@ -1623,7 +1624,7 @@ spine04           CL              3.7.12                               Mon Aug 1
 
 ### View the Supported Cumulus Linux Packages
 
-When you are troubleshooting an issue with a switch, you might want to know what versions of the Cumulus Linux operating system are supported on that switch and on a switch that is not having the same issue.
+When you are troubleshooting an issue with a switch, you might want to know all the supported versions of the Cumulus Linux operating system that are available for that switch and on a switch that is not having the same issue.
 
 To view package information for your switches, run:
 
@@ -1663,7 +1664,7 @@ leaf02            vx                   x86_64               3.6.2.1
 
 ### View All Software Packages Installed
 
-If you are having an issue with several switches, you should verify what software packages are installed on them and compare that to the recommended packages for a given Cumulus Linux release.
+If you are having an issue with several switches, you should verify all the packages installed on them and compare that to the recommended packages for a given Cumulus Linux release.
 
 To view installed package information for your switches, run:
 
@@ -1719,10 +1720,10 @@ netq show recommended-pkg-version [release-id <text-release-id>] [package-name <
 ```
 
 {{<notice tip>}}
-The output can be rather lengthy if this command is run for all releases and packages. If desired, run the command using the <code>release-id</code> and/or <code>package-name</code> options to shorten the output.
+The output can be rather lengthy if you run this command for all releases and packages. If desired, run the command using the <code>release-id</code> and/or <code>package-name</code> options to shorten the output.
 {{</notice>}}
 
-This example looks for switches running Cumulus Linux 3.7.1 and `switchd`. The result is a single switch, *leaf12*, that has older software and is recommended for update.
+This example looks for switches running Cumulus Linux 3.7.1 and `switchd`. The result is a single switch, *leaf12*, that has older software and should get an update.
 
 ```
 cumulus@switch:~$ netq show recommended-pkg-version release-id 3.7.1 package-name switchd
@@ -1732,7 +1733,7 @@ Hostname          Release ID           ASIC Vendor          CPU Arch            
 leaf12            3.7.1                vx                   x86_64               switchd              1.0-cl3u30           Wed Feb  5 04:36:30 2020
 ```
 
-This example looks for switches running Cumulus Linux 3.7.1 and `ptmd`. The result is a single switch, *server01*, that has older software and is recommended for update.
+This example looks for switches running Cumulus Linux 3.7.1 and `ptmd`. The result is a single switch, *server01*, that has older software and should get an update.
 
 ```
 cumulus@switch:~$ netq show recommended-pkg-version release-id 3.7.1 package-name ptmd
@@ -1742,7 +1743,7 @@ Hostname          Release ID           ASIC Vendor          CPU Arch            
 server01            3.7.1                vx                   x86_64               ptmd                 3.0-2-cl3u8          Wed Feb  5 04:36:30 2020
 ```
 
-This example looks for switches running Cumulus Linux 3.7.1 and `lldpd`. The result is a single switch, *server01*, that has older software and is recommended for update.
+This example looks for switches running Cumulus Linux 3.7.1 and `lldpd`. The result is a single switch, *server01*, that has older software and should get an update.
 
 ```
 cumulus@switch:~$ netq show recommended-pkg-version release-id 3.7.1 package-name lldpd
@@ -1752,7 +1753,7 @@ Hostname          Release ID           ASIC Vendor          CPU Arch            
 server01            3.7.1                vx                   x86_64               lldpd                0.9.8-0-cl3u11       Wed Feb  5 04:36:30 2020
 ```
 
-This example looks for switches running Cumulus Linux 3.6.2 and `switchd`. The result is a single switch, *leaf04*, that has older software and is recommended for update.
+This example looks for switches running Cumulus Linux 3.6.2 and `switchd`. The result is a single switch, *leaf04*, that has older software and should get an update.
 
 ```
 cumulus@noc-pr:~$ netq show recommended-pkg-version release-id 3.6.2 package-name switchd
@@ -1984,10 +1985,9 @@ netq show agents [fresh | rotten ] [around <text-time>] [json]
 
 Use the `fresh` keyword to view only the NetQ Agents that are in current communication with the NetQ Platform or NetQ Collector. Use the `rotten` keyword to view those that are not. Use the `around` keyword to view the state of NetQ Agents at an earlier time.
 
-This example shows the current NetQ Agent state on all devices. View the **Status** column which indicates whether the agent is up and current, labelled *Fresh*, or down and stale, labelled *Rotten*. Additional information is provided about the agent status, including whether it is time synchronized, how long it has been up, and the last time its state changed. You can also see the version running. Ideally, this version should be the same as the NetQ release you are running, and is the same across all your devices.
+This example shows the current NetQ Agent state on all devices. The **Status** column indicates whether the agent is up and current, labelled *Fresh*, or down and stale, labelled *Rotten*. Additional information includes the agent status &mdash; whether it is time synchronized, how long it has been up, and the last time its state changed. You can also see the version running. Ideally, this version should be the same as the NetQ release you are running, and is the same across all your devices.
 
 ```
-
 cumulus@switch:~$ netq show agents
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed

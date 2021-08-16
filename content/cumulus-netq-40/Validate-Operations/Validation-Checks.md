@@ -4,13 +4,16 @@ author: NVIDIA
 weight: 1005
 toc: 3
 ---
-NetQ provides the information you need to validate the health of your network fabric, devices, and interfaces. Whether you use the NetQ UI or the NetQ CLI to create and run validations, the underlying checks are the same. The number of checks and the type of checks are tailored to the particular protocol or element being validated.
 
-The Test Number column in the tables below is used with the NetQ CLI when you want to include or exclude specific tests with the `netq check` command. You can get the test numbers when you run the `netq show unit-tests` command.
+<!-- vale off -->
+NetQ provides the information you need to validate the health of your network fabric, devices, and interfaces. Whether you use the NetQ UI or the NetQ CLI to create and run validations, the underlying checks are the same. The number of checks and the type of checks are tailored to the particular protocol or element being validated.
+<!-- vale on -->
+
+Use the value in the Test Number column in the tables below with the NetQ CLI when you want to include or exclude specific tests with the `netq check` command. You can get the test numbers when you run the `netq show unit-tests` command.
 
 ## NetQ Agent Validation Tests
 
-NetQ Agent validation looks for an agent status of Rotten for each node in the network. A *Fresh* status indicates the Agent is running as expected. The Agent sends a heartbeat every 30 seconds, and if three consecutive heartbeats are missed, its status changes to *Rotten*. This is accomplished with the following test:
+NetQ Agent validation looks for an agent status of Rotten for each node in the network. A *Fresh* status indicates the Agent is running as expected. The Agent sends a heartbeat every 30 seconds, and if it does not send three consecutive heartbeats, its status changes to *Rotten*. You can accomplish this with the following test:
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -18,7 +21,7 @@ NetQ Agent validation looks for an agent status of Rotten for each node in the n
 
 ## BGP Validation Tests
 
-The BGP validation tests look for indications of the session sanity (status and configuration). This is accomplished with the following tests:
+The BGP validation tests look for indications of the session sanity (status and configuration). You can accomplish this with the following tests:
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -28,7 +31,7 @@ The BGP validation tests look for indications of the session sanity (status and 
 
 ## Cumulus Linux Version Tests
 
-The Cumulus Linux version tests looks for version consistency. This is accomplished with the following tests:
+The Cumulus Linux version tests looks for version consistency. You can accomplish this with the following tests:
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -36,7 +39,7 @@ The Cumulus Linux version tests looks for version consistency. This is accomplis
 
 ## EVPN Validation Tests
 
-The EVPN validation tests look for indications of the session sanity and configuration consistency. This is accomplished with the following tests:
+The EVPN validation tests look for indications of the session sanity and configuration consistency. You can accomplish this with the following tests:
 
 <!-- vale off -->
 | Test Number | Test Name | Description |
@@ -53,7 +56,7 @@ The EVPN validation tests look for indications of the session sanity and configu
 
 ## Interface Validation Tests
 
-The interface validation tests look for consistent configuration between two nodes. This is accomplished with the following tests:
+The interface validation tests look for consistent configuration between two nodes. You can accomplish this with the following tests:
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -64,7 +67,7 @@ The interface validation tests look for consistent configuration between two nod
 
 ## Link MTU Validation Tests
 
-The link MTU validation tests look for consistency across an interface and appropriate size MTU for VLAN and bridge interfaces. This is accomplished with the following tests:
+The link MTU validation tests look for consistency across an interface and appropriate size MTU for VLAN and bridge interfaces. You can accomplish this with the following tests:
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -74,25 +77,25 @@ The link MTU validation tests look for consistency across an interface and appro
 
 ## MLAG Validation Tests
 
-The MLAG validation tests look for misconfigurations, peering status, and bond error states. This is accomplished with the following tests:
+The MLAG validation tests look for misconfigurations, peering status, and bond error states. You can accomplish this with the following tests:
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
-| 0 | Peering | Checks if: <ul><li>MLAG peerlink is up</li><li>MLAG peerlink bond slaves are down (not in full capacity and redundancy)</li><li>Peering is established between two nodes in a MLAG pair</li></ul> |
+| 0 | Peering | Checks if: <ul><li>MLAG peerlink is up</li><li>MLAG peerlink bond slaves are down (not in full capacity and redundancy)</li><li>Peering <!-- vale off -->is established<!-- vale on --> between two nodes in a MLAG pair</li></ul> |
 | 1 | Backup IP | Checks if: <ul><li>MLAG backup IP configuration is missing on a MLAG node</li><li>MLAG backup IP is correctly pointing to the MLAG peer and its connectivity is available</li></ul> |
 | 2 | CLAG Sysmac | Checks if: <ul><li>MLAG Sysmac is consistently configured on both nodes in a MLAG pair</li><li>Any duplication of a MLAG sysmac exists within a bridge domain </li></ul> |
 | 3 | VXLAN <!-- vale off -->Anycast IP<!-- vale on --> | Checks if the VXLAN anycast IP address is consistently configured on both nodes in an MLAG pair |
 | 4 | Bridge Membership | Checks if the MLAG peerlink is part of bridge |
-| 5 | Spanning Tree | Checks if: <ul><li>STP is enabled and running on the MLAG nodes</li><li>MLAG peerlink role is correct from STP perspective</li><li>The bridge ID is consistent between two nodes of a MLAG pair</li><li>The VNI in the bridge has BPDU guard and BPDU filter enabled</li></ul> |
+| 5 | Spanning Tree | Checks if: <ul><li>STP <!-- vale off -->is enabled<!-- vale on --> and running on the MLAG nodes</li><li>MLAG peerlink role is correct from STP perspective</li><li>The bridge ID is consistent between two nodes of a MLAG pair</li><li>The VNI in the bridge has BPDU guard and BPDU filter enabled</li></ul> |
 | 6 | Dual Home | Checks for: <ul><li>MLAG bonds that are not in dually connected state</li><li>Dually connected bonds have consistent VLAN and MTU configuration on both sides</li><li>STP has consistent view of bonds' dual connectedness</li></ul> |
 | 7 | Single Home | Checks for: <ul><li>Singly connected bonds</li><li>STP has consistent view of bond's single connectedness</li></ul> |
 | 8 | Conflicted Bonds | Checks for bonds in MLAG conflicted state and shows the reason |
 | 9 | ProtoDown Bonds | Checks for bonds in protodown state and shows the reason |
-| 10 | SVI | Checks if: <ul><li>An SVI is configured on both sides of a MLAG pair</li><li>SVI on both sides have consistent MTU setting</li></ul> |
+| 10 | SVI | Checks if: <ul><li>Both sides of a MLAG pair have an SVI configured</li><li>SVI on both sides have consistent MTU setting</li></ul> |
 
 ## NTP Validation Tests
 
-The NTP validation test looks for poor operational status of the NTP service. This is accomplished with the following test:
+The NTP validation test looks for poor operational status of the NTP service. You can accomplish this with the following test:
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -100,7 +103,7 @@ The NTP validation test looks for poor operational status of the NTP service. Th
 
 ## OSPF Validation Tests
 
-The OSPF validation tests look for indications of the service health and configuration consistency. This is accomplished with the following tests:
+The OSPF validation tests look for indications of the service health and configuration consistency. You can accomplish this with the following tests:
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -114,7 +117,7 @@ The OSPF validation tests look for indications of the service health and configu
 
 ## Sensor Validation Tests
 
-The sensor validation tests looks for chassis power supply, fan, and temperature sensors that are in a bad state. This is accomplished with the following tests:
+The sensor validation tests looks for chassis power supply, fan, and temperature sensors that are in a bad state. You can accomplish this with the following tests:
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -124,7 +127,7 @@ The sensor validation tests looks for chassis power supply, fan, and temperature
 
 ## VLAN Validation Tests
 
-The VLAN validation tests look for configuration consistency between two nodes. This is accomplished with the following tests:
+The VLAN validation tests look for configuration consistency between two nodes. You can accomplish this with the following tests:
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -133,7 +136,7 @@ The VLAN validation tests look for configuration consistency between two nodes. 
 
 ## VXLAN Validation Tests
 
-The VXLAN validation tests look for configuration consistency across all VTEPs. This is accomplished with the following tests:
+The VXLAN validation tests look for configuration consistency across all VTEPs. You can accomplish this with the following tests:
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |

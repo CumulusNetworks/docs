@@ -5,7 +5,7 @@ weight: 160
 toc: 3
 ---
 
-The NetQ CLI provides access to all network state and event information collected by the NetQ Agents. It behaves the same way most CLIs behave, with groups of commands used to display related information, the ability to use TAB completion when entering commands, and to get help for given commands and options. The commands are grouped into four categories: check, show, config, and trace.
+The NetQ CLI provides access to all network state and event information collected by the NetQ Agents. It behaves the same way most CLIs behave, with groups of commands used to display related information, the ability to use TAB completion when entering commands, and to get help for given commands and options. There are four categories of commands: check, show, config, and trace.
 
 {{<notice note>}}
 
@@ -15,7 +15,7 @@ The NetQ command line interface only runs on switches and server hosts implement
 
 ## CLI Access
 
-When NetQ is installed or upgraded, the CLI can also be installed and enabled on your NetQ server or appliance and hosts. Refer to the {{<link url="Install-NetQ">}} topic for details.
+When you install or upgrade NetQ, you can also install and enable the CLI on your NetQ server or appliance and hosts. Refer to the {{<link url="Install-NetQ">}} topic for details.
 
 To access the CLI from a switch or server:
 
@@ -60,7 +60,7 @@ This section describes the core structure and behavior of the NetQ CLI. It inclu
 
 ### Command Line Structure
 
-The NetQ command line has a flat structure as opposed to a modal structure. Thus, all commands can be run from the standard command prompt instead of only in a specific mode, at the same level.
+The NetQ command line has a flat structure as opposed to a modal structure. Thus, you can run all commands from the standard command prompt instead of only in a specific mode, at the same level.
 
 ### Command Syntax
 
@@ -97,18 +97,20 @@ Thus some valid commands are:
 
 ### Command Output
 
-The command output presents results in color for many commands. Results with errors are shown in <span style="color: #ff0000;">red</span>, and warnings are shown in <span style="color: #ffcc00;">yellow</span>. Results without errors or warnings are shown in either black or <span style="color: #00ff00;">green</span>. VTEPs are shown in <span style="color: #0000ff;">blue</span>. A node in the *pretty* output is shown in **bold**, and a router interface is wrapped in angle brackets (\< \>). To view the output with only black text, run the `netq config del color` command. You can view output with colors again by running `netq config add color`.
+The command output presents results in color for many commands. Results with errors appear in <span style="color: #ff0000;">red</span>, and warnings appear in <span style="color: #ffcc00;">yellow</span>. Results without errors or warnings appear in either black or <span style="color: #00ff00;">green</span>. VTEPs appear in <span style="color: #0000ff;">blue</span>. A node in the *pretty* output appears in **bold**, and angle brackets (\< \>) wrap around a router interface. To view the output with only black text, run the `netq config del color` command. You can view output with colors again by running `netq config add color`.
 
-All check and show commands are run with a default timeframe of now to one hour ago, unless you specify an approximate time using the `around` keyword or a range using the `between` keyword. For example, running `netq check bgp` shows the status of BGP over the last hour. Running `netq show bgp around 3h` shows the status of BGP three hours ago.
+All check and show commands have a default timeframe of now to one hour ago, unless you specify an approximate time using the `around` keyword or a range using the `between` keyword. For example, running `netq check bgp` shows the status of BGP over the last hour. Running `netq show bgp around 3h` shows the status of BGP three hours ago.
 
 ### Command Prompts
 
 NetQ code examples use the following prompts:
 
+<!-- vale off -->
 - `cumulus@switch:~$` Indicates the user *cumulus* is logged in to a switch to run the example command
 - `cumulus@host:~$` Indicates the user *cumulus* is logged in to a host to run the example command
 - `cumulus@netq-appliance:~$` Indicates the user *cumulus* is logged in to either the NetQ Appliance or NetQ Cloud Appliance to run the command
 - `cumulus@hostname:~$` Indicates the user *cumulus* is logged in to a switch, host or appliance to run the example command
+<!-- vale on -->
 
 To use the NetQ CLI, the switches must be running the Cumulus Linux or SONiC operating system (OS), NetQ Platform or NetQ Collector software, the NetQ Agent, and the NetQ CLI. The hosts must be running CentOS, RHEL, or Ubuntu OS, the NetQ Agent, and the NetQ CLI. Refer to the {{<link url="Install-NetQ">}} topic for details.
 
@@ -136,7 +138,7 @@ cumulus@switch:~$ netq check
 
 ### Command Help
 
-As you enter commands, you can get help with command syntax by entering `help` at various points within a command entry. For example, to find out what options are available for a BGP check, enter `help` after entering some of the `netq check` command. In this example, you can see that there are no additional required parameters and three optional parameters, `hostnames`, `vrf` and `around`, that can be used with a BGP check.
+As you enter commands, you can get help with command syntax by entering `help` at various points within a command entry. For example, to find out what options are available for a BGP check, enter `help` after entering some of the `netq check` command. In this example, you can see that there are no additional required parameters and you can use three optional parameters &mdash; `hostnames`, `vrf` and `around` &mdash; with a BGP check.
 
 ```
 cumulus@switch:~$ netq check bgp help
@@ -159,7 +161,7 @@ cumulus@switch:~$ netq help verbose
 
 ### Command History
 
-The CLI stores commands issued within a session, which enables you to review and rerun commands that have already been run. At the command prompt, press the **Up Arrow** and **Down Arrow** keys to move back and forth through the list of commands previously entered. When you have found a given command, you can run the command by pressing **Enter**, just as you would if you had entered it manually. Optionally you can modify the command before you run it.
+The CLI stores commands issued within a session, which enables you to review and rerun commands that you already ran. At the command prompt, press the **Up Arrow** and **Down Arrow** keys to move back and forth through the list of commands previously entered. When you have found a given command, you can run the command by pressing **Enter**, just as you would if you had entered it manually. Optionally you can modify the command before you run it.
 
 ## Command Categories
 
@@ -172,7 +174,8 @@ While the CLI has a flat structure, the commands can be conceptually grouped int
 
 ### Validation Commands
 
-The `netq` `check` commands enable the network administrator to validate the current or historical state of the network by looking for errors and misconfigurations in the network. The commands run fabric-wide validations against various configured protocols and services to determine how well the network is operating. Validation checks can be performed for the following:
+The `netq` `check` commands enable the network administrator to validate the current or historical state of the network by looking for errors and misconfigurations in the network. The commands run fabric-wide validations against various configured protocols and services to determine how well the network is operating. You can perform validation checks for the following:
+
 <!-- vale off -->
 - **agents**: NetQ Agents operation on all switches and hosts
 - **bgp**: BGP (Border Gateway Protocol) operation across the network
@@ -189,6 +192,7 @@ The `netq` `check` commands enable the network administrator to validate the cur
 - **vlan**: VLAN (Virtual Local Area Network) operation
 - **vxlan**: VXLAN (Virtual Extensible LAN) data path operation
 <!-- vale on -->
+
 The commands take the form of `netq check <network-protocol-or-service> [options]`, where the options vary according to the protocol or service.
 
 This example shows the output for the `netq check bgp` command, followed by the same command using the `json` option. If there were any failures, they would appear below the summary results or in the *failedNodes* section, respectively.
@@ -295,10 +299,8 @@ cumulus@switch:~$ netq check bgp json
 
 ### Monitoring Commands
 
-The `netq show` commands enable the network administrator to view
-details about the current or historical configuration and status of the
-various protocols or services. The configuration and status can be shown
-for the following:
+The `netq show` commands enable the network administrator to view details about the current or historical configuration and status of the various protocols or services. You can view the configuration and status for the following:
+
 <!-- vale off -->
 - **address-history**: Address history info for a IP address / prefix
 - **agents**: NetQ Agents status on switches and hosts
@@ -347,7 +349,8 @@ for the following:
 - **vxlan**: VXLAN data path status
 - **wjh-drop**: dropped packet data from NVIDIA&reg; Mellanox&reg; What Just Happened&reg;
 <!-- vale on -->
-The commands take the form of `netq [<hostname>] show <network-protocol-or-service> [options]`, where the options vary according to the protocol or service. The commands can be restricted from showing the information for *all* devices to showing information for a selected device using the `hostname` option.
+
+The commands take the form of `netq [<hostname>] show <network-protocol-or-service> [options]`, where the options vary according to the protocol or service. You can restrict the commands from showing the information for *all* devices to showing information only for a selected device using the `hostname` option.
 
 The following examples show the standard and filtered output for the  `netq show agents` command.
 
@@ -398,7 +401,7 @@ The agent commands enable the network administrator to configure individual NetQ
 The agent configuration commands enable you to add and remove agents from switches and hosts, start and stop agent operations, debug the agent, specify default commands, and enable or disable a variety of monitoring features (including Kubernetes, sensors, FRR (FRRouting), CPU usage limit, and What Just Happened).
 
 {{<notice note>}}
-Commands apply to one agent at a time, and are run from the switch or host where the NetQ Agent resides.
+Commands apply to one agent at a time; you run them from the switch or host where the NetQ Agent resides.
 {{</notice>}}
 
 The agent configuration commands include:
@@ -445,7 +448,7 @@ After making configuration changes to your agents, you must restart the agent fo
 The `netq config cli` commands enable the network administrator to configure and manage the CLI component. These commands enable you to add or remove CLI (essentially enabling/disabling the service), start and restart it, and view the configuration of the service.
 
 {{<notice note>}}
-Commands apply to one device at a time, and are run from the switch or host where the CLI is run.
+Commands apply to one device at a time, and you run them from the switch or host where you run the CLI.
 {{</notice>}}
 
 The CLI configuration commands include:
@@ -479,7 +482,7 @@ netq config add cli server api.netq.cumulusnetworks.com access-key <user-access-
 
 #### NetQ System Configuration Commands
 
-The following commands are provided for managing the NetQ system itself:
+You use the following commands to manage the NetQ system itself:
 
 - **bootstrap**: Loads the installation program onto the network switches and hosts in either a single server or server cluster arrangement.
 - **decommission**: Decommissions a switch or host.
@@ -522,7 +525,7 @@ Refer to {{<link title="Configure System Event Notifications">}} for details abo
 #### Threshold-based Event Notification Commands
 <!-- vale on -->
 
-NetQ supports a set of events that are triggered by crossing a user-defined threshold, called {{<link title="Configure Threshold-Based Event Notifications" text="TCA events">}}. You configure and manage TCA events using the following commands:
+NetQ supports {{<link title="Configure Threshold-Based Event Notifications" text="TCA events">}}, a set of events that <!--vale off -->are triggered<!-- vale on --> by crossing a user-defined threshold. You configure and manage TCA events using the following commands:
 
 ```
 netq add tca [event_id <text-event-id-anchor>] [tca_id <text-tca-id-anchor>] [scope <text-scope-anchor>] [severity info | severity critical] [is_active true | is_active false] [suppress_until <text-suppress-ts>] [threshold_type user_set | threshold_type vendor_set] [ threshold <text-threshold-value> ] [channel <text-channel-name-anchor> | channel drop <text-drop-channel-name>]

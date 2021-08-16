@@ -132,7 +132,7 @@ You can view hardware components deployed on each switch in your network.
 
 ### View ASIC Information for a Switch
 
-ASIC information for a switch can be viewed from either the NetQ CLI or NetQ UI.
+You can view the ASIC information for a switch from either the NetQ CLI or NetQ UI.
 
 {{<tabs "TabID96" >}}
 
@@ -522,7 +522,7 @@ netq-ts           Ubuntu          18.04                                Tue Jul 1
 
 ### View the Cumulus Linux Packages on a Switch
 
-When you are troubleshooting an issue with a switch, you might want to know what versions of the Cumulus Linux operating system are supported on that switch and on a switch that is not having the same issue.
+When you are troubleshooting an issue with a switch, you might want to know which supported versions of the Cumulus Linux operating system are available for that switch and on a switch that is not having the same issue.
 
 To view package information for your switches, run:
 
@@ -554,7 +554,7 @@ leaf01            vx                   x86_64               3.2.0
 
 ### View All Software Packages Installed on Switches
 
-If you are having an issue with a particular switch, you should verify what software is installed and whether it needs updating.
+If you are having an issue with a particular switch, you should verify all the installed software and whether it needs updating.
 
 To view package information for a switch, run:
 
@@ -603,7 +603,7 @@ spine01           ntp                      1:4.2.8p10-cl3u2     Cumulus Linux 3.
 
 ### View Recommended Software Packages
 
-If you have a software manifest, you can determine what software packages and versions are recommended based on the Cumulus Linux release. You can then compare that to what is installed on your switch(es) to determine if it differs from the manifest. Such a difference might occur if one or more packages have been upgraded separately from the Cumulus Linux software itself.
+If you have a software manifest, you can determine the recommended packages and versions for a particular Cumulus Linux release. You can then compare that to the software already installed on your switch(es) to determine if it differs from the manifest. Such a difference might occur if you upgraded one or more packages separately from the Cumulus Linux software itself.
 
 To view recommended package information for a switch, run:
 
@@ -611,7 +611,7 @@ To view recommended package information for a switch, run:
 netq <hostname> show recommended-pkg-version [release-id <text-release-id>] [package-name <text-package-name>] [json]
 ```
 
-This example shows packages that are recommended for upgrade on the *leaf12* switch, namely *switchd*.
+This example shows the recommended packages for upgrading the *leaf12* switch, namely *switchd*.
 
 ```
 cumulus@switch:~$ netq leaf12 show recommended-pkg-version
@@ -621,7 +621,7 @@ Hostname          Release ID           ASIC Vendor          CPU Arch            
 leaf12            3.7.1                vx                   x86_64               switchd              1.0-cl3u30           Wed Feb  5 04:36:30 2020
 ```
 
-This example shows packages that are recommended for upgrade on the *server01* switch, namely *lldpd*.
+This example shows the recommended packages for upgrading the *server01* switch, namely *lldpd*.
 
 ```
 cumulus@switch:~$ netq server01 show recommended-pkg-version
@@ -631,7 +631,7 @@ Hostname          Release ID           ASIC Vendor          CPU Arch            
 server01            3.7.1                vx                   x86_64               lldpd                0.9.8-0-cl3u11       Wed Feb  5 04:36:30 2020
 ```
 
-This example shows the version of the switchd package that is recommended for use with Cumulus Linux 3.7.2.
+This example shows the recommended version of the `switchd` package for use with Cumulus Linux 3.7.2.
 
 ```
 cumulus@switch:~$ netq act-5712-09 show recommended-pkg-version release-id 3.7.2 package-name switchd
@@ -641,7 +641,7 @@ Hostname          Release ID           ASIC Vendor          CPU Arch            
 act-5712-09       3.7.2                bcm                  x86_64               switchd              1.0-cl3u31           Wed Feb  5 04:36:30 2020
 ```
 
-This example shows the version of the switchd package that is recommended for use with Cumulus Linux 3.1.0. Note the version difference from the example for Cumulus Linux 3.7.2.
+This example shows the recommended version of the `switchd` package for use with Cumulus Linux 3.1.0. Note the version difference from the example for Cumulus Linux 3.7.2.
 
 ```
 cumulus@noc-pr:~$ netq act-5712-09 show recommended-pkg-version release-id 3.1.0 package-name switchd
@@ -655,7 +655,7 @@ act-5712-09       3.1.0                bcm                  x86_64              
 
 ### Validate NetQ Agents are Running
 
-You can confirm that NetQ Agents are running on switches and hosts (if installed) using the `netq show agents` command. Viewing the **Status** column of the output indicates whether the agent is up and current, labelled *Fresh*, or down and stale, labelled *Rotten*. Additional information is provided about the agent status, including whether it is time synchronized, how long it has been up, and the last time its state changed.
+You can confirm that NetQ Agents are running on switches and hosts (if installed) using the `netq show agents` command. Viewing the **Status** column of the output indicates whether the agent is up and current, labelled *Fresh*, or down and stale, labelled *Rotten*. Additional information includes the agent status &mdash; whether it is time synchronized, how long it has been up, and the last time its state changed.
 
 This example shows NetQ Agent state on all devices.
 
@@ -695,7 +695,7 @@ You can narrow your focus in several ways:
 
 ## Monitor Software Services
 
-Cumulus Linux, SONiC and NetQ run many services to deliver the various features of these products. You can monitor their status using the `netq show services` command. The services related to system-level operation are described here. Monitoring of other services, such as those related to routing, are described with those topics. NetQ automatically monitors the following services:
+Cumulus Linux, SONiC and NetQ run many services to deliver the various features of these products. You can monitor their status using the `netq show services` command. This section describes services related to system-level operation. For monitoring other services, such as those related to routing, see those topics. NetQ automatically monitors the following services:
 
 - **aclinit**: `aclinit` service
 - **acltool**: `acltool` service
@@ -745,7 +745,9 @@ netq [<hostname>] show events [level info | level error | level warning | level 
 
 ### View All Services on All Devices
 
-This example shows all available services on each device and whether each is enabled, active, and monitored, along with how long the service has been running and the last time it was changed.
+<!-- vale off -->
+This example shows all available services on each device and whether each is enabled, active, and monitored, along with how long the service has been running and the last time it changed.
+<!-- vale on -->
 
 {{<notice tip>}}
 
@@ -854,7 +856,7 @@ If you want to view the service information for a given device, use the `hostnam
 
 You can view the status of a given service at the current time, at a prior point in time, or view the changes that have occurred for the service during a specified timeframe.
 
-This example shows how to view the status of the NTP service across the network. In this case, VRF is configured so the NTP service runs on both the default and management interface. You can perform the same command with the other services, such as `bgpd`, `lldpd`, and `clagd`.
+This example shows how to view the status of the NTP service across the network. In this case, the VRF configuration has the NTP service running on both the default and management interface. You can perform the same command with the other services, such as `bgpd`, `lldpd`, and `clagd`.
 
     cumulus@switch:~$ netq show services ntp
     Matching services records:

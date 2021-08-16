@@ -8,8 +8,10 @@ Workbenches are an integral structure of the NetQ UI. They are where you collect
 
 Two types of workbenches are available:
 
-- **Default**: Provided by NVIDIA for use as they exist; changes made to these workbenches *cannot* be saved
-- **Custom**: Created by users when default workbenches need some adjustments to better meet your needs or a completely different collection of cards is wanted; changes made to these workbenches are saved automatically
+<!-- vale off -->
+- **Default**: Provided by NVIDIA for use as they exist; you *cannot* save changes you make to these workbenches
+- **Custom**: Created by users when default workbenches need some adjustments to better meet your needs or you want a completely different collection of cards; changes made to these workbenches are saved automatically
+<!-- vale on -->
 
 Both types of workbenches display a set of cards. Default workbenches are public (available for viewing by all users), whereas custom workbenches are private (only viewable by the user who created them).
 

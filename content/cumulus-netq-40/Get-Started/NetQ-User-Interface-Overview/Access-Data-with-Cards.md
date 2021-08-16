@@ -4,7 +4,10 @@ author: NVIDIA
 weight: 140
 toc: 4
 ---
+
+<!-- vale off -->
 Cards present information about your network for monitoring and troubleshooting. This is where you can expect to spend most of your time. Each card describes a particular aspect of the network. Cards are available in multiple sizes, from small to full screen. The level of the content on a card varies with the size of the card, with the highest level of information on the smallest card to the most detailed information on the full-screen card. Cards are collected onto a {{<link title="Focus Your Monitoring Using Workbenches" text="workbench">}} where you see all the data relevant to a task or set of tasks. You can add and remove cards from a workbench, move between cards and card sizes, change the time period of the data shown on a card, and make copies of cards to show different levels of data at the same time.
+<!-- vale on -->
 
 ## Card Sizes
 
@@ -55,7 +58,7 @@ The various sizes of cards enable you to view your content at just the right lev
 
 ### Small Cards
 
-Small cards are most effective at providing a quick view of the performance or statistical value of a given aspect of your network. They are commonly comprised of an icon to identify the aspect being monitored, summary performance or statistics in the form of a graph and/or counts, and often an indication of any related events. Other content items might be present. Some examples include a Devices Inventory card, a Switch Inventory card, an Alarm Events card, an Info Events card, and a Network Health card, as shown here:
+Small cards are most effective at providing a quick view of the performance or statistical value of a given aspect of your network. They commonly comprise an icon to identify the aspect <!-- vale off -->being monitored<!-- vale on -->, summary performance or statistics in the form of a graph and/or counts, and often an indication of any related events. Other content items might be present. Some examples include a Devices Inventory card, a Switch Inventory card, an Alarm Events card, an Info Events card, and a Network Health card, as shown here:
 
 {{<figure src="/images/netq/access-data-small-group-230.png" width="700">}}
 

@@ -1174,12 +1174,6 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td></td>
 </tr>
 <tr>
-<td>2548181</td>
-<td>On the Mellanox SN3800 switch, 4x25G DAC breakouts are not supported.</td>
-<td>4.1.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2548117</td>
 <td>In OVSDB traditional bridge mode, adding or removing a VLAN binding causes a traffic forwarding outage for around 20 seconds or more on adjacent VLAN bindings. Cumulus Linux does not support _traditional_ bridge mode with VMware NSX.</td>
 <td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
@@ -1188,12 +1182,6 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <tr>
 <td>2548062</td>
 <td>When ports are split to 4x25G, RS FEC needs to explicitly configured on both ends (especially when interoperating with non-Mellanox switches).</td>
-<td>4.1.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2548060</td>
-<td>On the Mellanox SN3800 switch, links do not come up when the ports are configured for 40G.</td>
 <td>4.1.0-4.4.0</td>
 <td></td>
 </tr>
@@ -3579,12 +3567,6 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td></td>
 </tr>
 <tr>
-<td>2548181</td>
-<td>On the Mellanox SN3800 switch, 4x25G DAC breakouts are not supported.</td>
-<td>4.1.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2548117</td>
 <td>In OVSDB traditional bridge mode, adding or removing a VLAN binding causes a traffic forwarding outage for around 20 seconds or more on adjacent VLAN bindings. Cumulus Linux does not support _traditional_ bridge mode with VMware NSX.</td>
 <td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
@@ -3593,12 +3575,6 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <tr>
 <td>2548062</td>
 <td>When ports are split to 4x25G, RS FEC needs to explicitly configured on both ends (especially when interoperating with non-Mellanox switches).</td>
-<td>4.1.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2548060</td>
-<td>On the Mellanox SN3800 switch, links do not come up when the ports are configured for 40G.</td>
 <td>4.1.0-4.4.0</td>
 <td></td>
 </tr>
@@ -6376,12 +6352,6 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td></td>
 </tr>
 <tr>
-<td>2548181</td>
-<td>On the Mellanox SN3800 switch, 4x25G DAC breakouts are not supported.</td>
-<td>4.1.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2548117</td>
 <td>In OVSDB traditional bridge mode, adding or removing a VLAN binding causes a traffic forwarding outage for around 20 seconds or more on adjacent VLAN bindings. Cumulus Linux does not support _traditional_ bridge mode with VMware NSX.</td>
 <td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
@@ -6390,12 +6360,6 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <tr>
 <td>2548062</td>
 <td>When ports are split to 4x25G, RS FEC needs to explicitly configured on both ends (especially when interoperating with non-Mellanox switches).</td>
-<td>4.1.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2548060</td>
-<td>On the Mellanox SN3800 switch, links do not come up when the ports are configured for 40G.</td>
 <td>4.1.0-4.4.0</td>
 <td></td>
 </tr>

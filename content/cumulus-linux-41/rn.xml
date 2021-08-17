@@ -1958,12 +1958,6 @@ For the detailed security status of linux, refer to its security tracker page at
 <td>4.2.0-4.4.0</td>
 </tr>
 <tr>
-<td>2548181</td>
-<td>On the Mellanox SN3800 switch, 4x25G DAC breakouts are not supported.</td>
-<td>4.1.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2548151</td>
 <td>On the Mellanox Spectrum switch in an EVPN symmetric configuration with MLAG, simultaneously shutting down the layer 3 interfaces that serve as uplinks to the VXLAN fabric might result in traffic loss of up to 15 seconds.</td>
 <td>4.1.0-4.4.0</td>
@@ -1984,12 +1978,6 @@ For the detailed security status of linux, refer to its security tracker page at
 <tr>
 <td>2548062</td>
 <td>When ports are split to 4x25G, RS FEC needs to explicitly configured on both ends (especially when interoperating with non-Mellanox switches).</td>
-<td>4.1.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2548060</td>
-<td>On the Mellanox SN3800 switch, links do not come up when the ports are configured for 40G.</td>
 <td>4.1.0-4.4.0</td>
 <td></td>
 </tr>
@@ -4756,12 +4744,6 @@ For the detailed security status of linux, refer to its security tracker page at
 <td>4.2.0-4.4.0</td>
 </tr>
 <tr>
-<td>2548181</td>
-<td>On the Mellanox SN3800 switch, 4x25G DAC breakouts are not supported.</td>
-<td>4.1.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2548151</td>
 <td>On the Mellanox Spectrum switch in an EVPN symmetric configuration with MLAG, simultaneously shutting down the layer 3 interfaces that serve as uplinks to the VXLAN fabric might result in traffic loss of up to 15 seconds.</td>
 <td>4.1.0-4.4.0</td>
@@ -4782,12 +4764,6 @@ For the detailed security status of linux, refer to its security tracker page at
 <tr>
 <td>2548062</td>
 <td>When ports are split to 4x25G, RS FEC needs to explicitly configured on both ends (especially when interoperating with non-Mellanox switches).</td>
-<td>4.1.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2548060</td>
-<td>On the Mellanox SN3800 switch, links do not come up when the ports are configured for 40G.</td>
 <td>4.1.0-4.4.0</td>
 <td></td>
 </tr>

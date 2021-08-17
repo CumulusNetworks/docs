@@ -393,7 +393,7 @@ cumulus@switch:~$ nv config apply
 The example below shows the NVUE commands required to define the DNS server for the switch:
 
 ```
-cumulus@switch:~$ nv set service dhcp-server 192.168.200.1
+cumulus@switch:~$ nv set service dns mgmt server 192.168.200.1
 cumulus@switch:~$ nv config apply
 ```
 

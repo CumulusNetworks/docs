@@ -355,16 +355,9 @@ show` command:
         link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
 
 {{%notice note%}}
+All slave interfaces within a bond have the same MAC address as the bond. Typically, the first slave you add to the bond donates its MAC address as the bond MAC address, whereas the MAC addresses of the other slaves are the bond MAC address. The bond MAC address is the source MAC address for all traffic leaving the bond and provides a single destination MAC address to address traffic to the bond. 
 
-All slave interfaces within a bond have the same MAC address as the
-bond. Typically, the first slave added to the bond donates its MAC
-address as the bond MAC address, whereas the MAC addresses of the other
-slaves are set to the bond MAC address.
-
-The bond MAC address is used as the source MAC address for all traffic
-leaving the bond and provides a single destination MAC address to
-address traffic to the bond.
-
+<br/> If you remove a bond slave interface that a bond derived its MAC address from, then traffic will be impacted when the bond interface flaps to update its MAC address.
 {{%/notice%}}
 
 ## Caveats and Errata

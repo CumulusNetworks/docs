@@ -4,18 +4,21 @@ author: NVIDIA
 weight: 1120
 toc: 3
 ---
-This reference describes the cards available with the NetQ {{<version>}} graphical user interface (NetQ UI). Each item and field on the four sizes of cards is shown. You can open cards using one of two methods:
+
+This reference describes the cards available with the NetQ {{<version>}} graphical user interface (NetQ UI), including each item and field on the four sizes of cards. You can open cards using one of two methods:
 
 - Search for the card by name in the Global Search field in the application header
 - Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Select a card category or scroll down. Click the desired card. Click **Open Cards**.
 
 Cards opened on the default NetQ Workbench are not saved. Create a new workbench and open cards there to save and view the cards at a later time.
 
+<!-- vale off -->
 Cards are listed in alphabetical order by name.
+<!-- vale on -->
 
 ## Event Cards
 
-The event cards are located on the default NetQ Workbench. They can also be added to user-created workbenches.
+The event cards appear on the default NetQ Workbench. You can also add them to user-created workbenches.
 
 ### Events|Alarms Card
 
@@ -47,7 +50,7 @@ The small Alarms card displays:
 <ul>
 <li><strong>Pointing upward and <strong>bright pink</strong></strong>: alarm count is higher than the last two time periods, an increasing trend</li>
 <li><strong>Pointing downward and <strong>green</strong></strong>: alarm count is lower than the last two time periods, a decreasing trend</li>
-<li><strong>No arrow</strong>: alarm count is unchanged over the last two time periods, trend is steady</li>
+<li><strong>No arrow</strong>: alarm count did not change over the last two time periods, trend is steady</li>
 </ul></td>
 </tr>
 <tr class="odd">
@@ -89,7 +92,9 @@ The medium Alarms card displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
+<!-- vale off -->
 <td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+<!-- vale on -->
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></td>
@@ -130,7 +135,9 @@ The *Alarm Summary* tab displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
+<!-- vale off -->
 <td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+<!-- vale on -->
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-clock.svg", height="18", width="18"/></td>
@@ -140,15 +147,15 @@ The *Alarm Summary* tab displays:
 <td>Alarm Distribution</td>
 <td><p><strong>Chart</strong>: Distribution of all alarms received from each category during the designated time period:
 <ul><li>NetQ Agent</li><li>BTRFS Information</li><li>CL Support</li><li>Config Diff</li><li>Installed Packages</li><li>Link</li><li>LLDP</li><li>MTU</li><li>Node</li><li>Port</li><li>Resource</li><li>Running Config Diff</li><li>Sensor</li><li>Services</li><li>SSD Utilization</li><li>TCA Interface Stats</li><li>TCA Resource Utilization</li><li>TCA Sensors</li></ul>  
-The categories are displayed in descending order based on total count of alarms, with the largest number of alarms is shown at the top, followed by the next most, down to the chart with the fewest alarms.</p>
+The categories sort in descending order based on total count of alarms, with the largest number of alarms appearing at the top, followed by the next most, down to the chart with the fewest alarms.</p>
 <p><strong>Count</strong>: Total number of alarms received from each category during the designated time period.</p></td>
 </tr>
 <tr class="even">
 <td>Table</td>
 <td>Listing of items that match the filter selection for the selected alarm categories:
 <ul>
-<li><strong>Events by Most Recent</strong>: Most recent event are listed at the top</li>
-<li><strong>Devices by Event Count</strong>: Devices with the most events are listed at the top</li>
+<li><strong>Events by Most Recent</strong>: Most recent event appear at the top</li>
+<li><strong>Devices by Event Count</strong>: Devices with the most events appear at the top</li>
 </ul></td>
 </tr>
 <tr class="odd">
@@ -184,7 +191,9 @@ The full screen Alarms card provides tabs for all events.
 </tr>
 <tr class="odd">
 <td>Default Time</td>
+<!-- vale off -->
 <td>Range of time in which the displayed data was collected.</td>
+<!-- vale on -->
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
@@ -196,7 +205,7 @@ The full screen Alarms card provides tabs for all events.
 </tr>
 <tr class="odd">
 <td>All Alarms</td>
-<td>Displays all alarms received in the time period. By default, the requests list is sorted by the date and time that the event occurred (<strong>Time</strong>). This tab provides the following additional data about each request:
+<td>Displays all alarms received in the time period. By default, the requests list sorts by the date and time that the event occurred (<strong>Time</strong>). This tab provides the following additional data about each request:
 <ul>
 <li><strong>Source</strong>: Hostname of the given event</li>
 <li><strong>Message</strong>: Text describing the alarm or info event that occurred</li>
@@ -376,7 +385,7 @@ The full screen Info card provides tabs for all events.
 </tr>
 <tr class="odd">
 <td>Default Time</td>
-<td>Range of time in which the displayed data was collected.</td>
+<td><!-- vale off -->Range of time in which the displayed data was collected.<!-- vale on --></td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
@@ -1137,7 +1146,7 @@ The full screen Network Health card displays all events in the network.
 </tr>
 <tr class="odd">
 <td>Default Time</td>
-<td>Range of time in which the displayed data was collected.</td>
+<td><!-- vale off -->Range of time in which the displayed data was collected.<!-- vale on --></td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
@@ -2824,7 +2833,7 @@ The medium LLDP Session card displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected.</td>
+<td><!-- vale off -->Range of time in which the displayed data was collected.<!-- vale on --></td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
@@ -2889,7 +2898,7 @@ The *Session Summary* tab displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected.</td>
+<td><!-- vale off -->Range of time in which the displayed data was collected.<!-- vale on --></td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>

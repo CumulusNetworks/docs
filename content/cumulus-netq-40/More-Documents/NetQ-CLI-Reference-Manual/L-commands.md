@@ -28,7 +28,7 @@ netq lcm add
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| cl-image | \<text-image-path\> | Add the Cumulus Linux .bin file from this location. The full path is required, including the file name. |
+| cl-image | \<text-image-path\> | Add the Cumulus Linux .bin file from this location. You must specify the full path, including the file name. |
 
 ### Options
 
@@ -60,7 +60,7 @@ cumulus@switch:~$ netq lcm add cl-image /path/to/download/cumulus-linux-4.2.0-ml
 
 ## netq lcm add credentials
 
-Configures the access credentials for all switches that you plan to manage with the NetQ lifecycle management feature. One set of credentials can be defined. Choose between basic SSH authentication using a username and password or SSH public/private key authentication. You must have sudoer permission to properly configure switches when using the SSH Key method.
+Configures the access credentials for all switches that you plan to manage with the NetQ lifecycle management feature. You can define set of credentials. Choose between basic SSH authentication using a username and password or SSH public/private key authentication. You must have sudoer permission to properly configure switches when using the SSH Key method.
 
 {{<notice tip>}}
 The default credentials for Cumulus Linux have changed from <!-- vale off -->cumulus/CumulusLinux!<!-- vale on --> to cumulus/cumulus for releases 4.2 and later. For details, read <a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/">Cumulus Linux User Accounts</a>.
@@ -80,9 +80,9 @@ netq lcm add
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | credentials | NA | Adds switch credentials for software installation and upgrade management |
-| username | \<text-switch-username\> | Specifies the username that is allowed to configure switches |
-| password | \<text-switch-password\> | Specifies the password associated with the username that is required to configure switches |
-| ssh-key | \<text-ssh-key\> | Specifies the *private* key required to configure switches. The *public* key must already be installed on each switch. |
+| username | \<text-switch-username\> | Specifies the username for the user who can configure switches |
+| password | \<text-switch-password\> | Specifies the password associated with the username so that user can configure switches |
+| ssh-key | \<text-ssh-key\> | Specifies the *private* key required to configure switches. You must have already installed the *public* key on each switch. |
 
 ### Options
 
@@ -181,7 +181,7 @@ netq lcm add
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| netq-image | \<text-netq-image-path\> | Add the NetQ Debian package from this location. The full path is required, including the file name. |
+| netq-image | \<text-netq-image-path\> | Add the NetQ Debian package from this location. You need to specify the full path, including the file name. |
 
 ### Options
 
@@ -214,7 +214,7 @@ cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.0.0-ub18
 
 ## netq lcm add role
 
-Assigns or changes a role for one or more switches that defines its placement in a Clos topology and influences the order in which switches are upgraded.
+Assigns or changes a role for one or more switches that defines its placement in a Clos topology and influences the order in which you can upgrade switches.
 
 ### Syntax
 
@@ -415,7 +415,7 @@ cumulus@switch:~$ netq lcm del netq-image image_68db386683c796d86422f2172c103494
 
 ## netq lcm discover
 
-Searches for switches that do not have NetQ installed based on IP addresses or from a file. After they are discovered, can add them to the lifecycle management repository and upgrade Cumulus Linux. Use the `netq lcm show discovery-job` command to view the results of this command.
+Searches for switches that do not have NetQ installed based on IP addresses or from a file. After discovery, you can add them to the lifecycle management repository and upgrade Cumulus Linux. Use the `netq lcm show discovery-job` command to view the results of this command.
 
 ### Syntax
 
@@ -428,7 +428,7 @@ netq lcm discover
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| ip-range | \<text-ip-range\> | Search for switches with this IP address or within this address range. Ranges can be contiguous, for example 192.168.0.24-64, or non-contiguous, for example 192.168.0.24-64,128-190,225, but they must be contained within a single subnet. A maximum of 50 addresses can be included in an address range. |
+| ip-range | \<text-ip-range\> | Search for switches with this IP address or within this address range. Ranges can be contiguous, for example 192.168.0.24-64, or non-contiguous, for example 192.168.0.24-64,128-190,225, but they must reside within a single subnet. You can include a maximum of 50 addresses in an address range. |
 | csv-file | \<text-csv-file-path\> | Search for switches in this CSV file containing the IP address, and optionally, the hostname and port for each switch on the network. If the port is blank, NetQ uses switch port 22 by default. They can be in any order you like, but the data must match that order. |
 
 ### Options
@@ -732,7 +732,7 @@ fw2               192.168.200.62            44:38:39:00:01:8E  x86_64   4.2.0   
 
 ## netq lcm show netq-config
 
-Displays the configuration of all NetQ configuration profiles created in the NetQ UI, including the name and identifier, which is the default profile, VRF used, whether What Just Happened or CPU usage limiting is enabled, and logging level.
+Displays the configuration of all NetQ configuration profiles created in the NetQ UI, including the name and identifier, which is the default profile, VRF used, whether you enabled What Just Happened or CPU usage limiting, and logging level.
 
 ### Syntax
 

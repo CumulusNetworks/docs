@@ -6,15 +6,16 @@ toc: 3
 right_toc_levels: 1
 pdfhidden: true
 ---
+
 This topic includes all commands that begin with `netq t*`, `netq u*`, `netq v*`, `netq w*`, `netq x*`, `netq y*`, and `netq z*`.
 
 ## netq trace
 
-Verifies network connectivity on-demand between two devices at layer 2 or layer 3. Results are shown in the terminal window.
+Verifies network connectivity on-demand between two devices at layer 2 or layer 3. Results appear in the terminal window.
 
 {{<notice tip>}}
 
-The tracing function only knows about addresses that have already been learned. If you find that a path is invalid or incomplete, you should ping the identified device so that its address becomes known.
+The tracing function only knows about already learned addresses. If you find that a path is invalid or incomplete, you should ping the identified device so that its address becomes known.
 
 {{</notice>}}
 
@@ -62,7 +63,7 @@ netq trace
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | vrf | \<vrf\> | Only use paths through this VRF |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display results in JSON file format instead of default on-screen text format |
 | detail | NA | Display results in a tabular format with a row per hop and a set of rows per path, useful for traces with higher hop counts where the pretty output wraps lines, making it harder to interpret the results. This is the default output when not specified. |
 | pretty | NA | Display results lined up by paths in a pseudo-graphical manner to help visualize the multiple paths |
@@ -193,7 +194,7 @@ netq upgrade bundle <text-bundle-url>
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| bundle | \<text-bundle-url\> | Upgrade this appliance or VM with the `NetQ-x.y.z.tgz` package at this location; the full path is required |
+| bundle | \<text-bundle-url\> | Upgrade this appliance or VM with the `NetQ-x.y.z.tgz` package at this location; you must specify the full path |
 
 ### Options
 

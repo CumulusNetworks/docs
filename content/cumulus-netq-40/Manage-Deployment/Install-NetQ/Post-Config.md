@@ -5,20 +5,20 @@ weight: 395
 toc: 3
 ---
 
-This topic describes how to configure deployment options that can only be performed after you finish installing or upgrading NetQ.
+This topic describes how to configure deployment options that you can perform only after you finish installing or upgrading NetQ.
 
 ## Install a Custom Signed Certificate
 
 The NetQ UI ships with a self-signed certificate that is sufficient for non-production environments or cloud deployments. For on-premises deployments, however, you receive a warning from your browser that this default certificate is not trusted when you first log in to the NetQ UI. You can avoid this by installing your own signed certificate.
 
-The following items are needed to perform the certificate installation:
+You need the following items to perform the certificate installation:
 
 - A valid X509 certificate.
 - A private key file for the certificate.
 - A DNS record name configured to access the NetQ UI.
 
   The FQDN should match the common name of the certificate. If you use a wild card in the common name &mdash; for example, if the common name of the certificate is _*.example.com_ &mdash; then the NetQ telemetry server should reside on a subdomain of that domain, accessible via a URL like _netq.example.com_.
-- NetQ must be installed and running.
+- NetQ is running.
 
   You can verify this by running the `netq show opta-health` command.
 
@@ -55,7 +55,7 @@ You can install a certificate using the Admin UI or the NetQ CLI.
         --cert <name of your cert file>.crt
     ```
 
-1. Verify that the secret is created.
+1. Verify that you created the secret successfully.
 
     ```
     cumulus@netq-ts:~$ kubectl get secret
@@ -109,7 +109,7 @@ You can install a certificate using the Admin UI or the NetQ CLI.
     ingress.extensions/netq-gui-ingress-external configured
     ```
     
-    A message like the one here is shown if your ingress rule is successfully configured.
+    A message like the one here appears if your ingress rule is successfully configured.
 
 {{</tab>}}
 
@@ -119,7 +119,7 @@ Your custom certificate should now be working. Verify this by opening the NetQ U
 
 ## Update Your Cloud Activation Key
 
-The cloud activation key is the one used to access the cloud services, not the authorization keys used for configuring the CLI. It is provided by NVIDIA when your premises is set up. It is called the *config-key*.
+You use the cloud activation key (called the *config-key*) to access the cloud services, not the authorization keys you use for configuring the CLI. NVIDIA provides the key when you set up your premises.
 
 On occasion, you might want to update your cloud service activation key. For example, if you mistyped the key during installation and now your existing key does not work, or you received a new key for your premises from NVIDIA.
 
@@ -160,7 +160,7 @@ cumulus@<hostname>:~$ netq install standalone activate-job config-key <text-opta
 Installation of NetQ with a server cluster sets up the master and two worker nodes. To expand your cluster to include up to a total of 10 nodes, use the Admin UI.
 
 {{<notice note>}}
-Adding additional worker nodes increases availability, but does not increase scalability currently. A maximum of 5000 nodes is supported regardless of the number of worker nodes in your cluster.
+Adding additional worker nodes increases availability, but does not increase scalability currently. NetQ supports a maximum of 5000 nodes regardless of the number of worker nodes in your cluster.
 {{</notice>}}
 
 To add more worker nodes:

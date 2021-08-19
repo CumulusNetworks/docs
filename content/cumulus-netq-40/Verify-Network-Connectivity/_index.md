@@ -59,22 +59,21 @@ When entering a time value, you must include a numeric value *and* the unit of m
 
 Three output formats are available for the on-demand trace with results in a terminal window.
 
-- **JSON**: Results are listed in a .json file, good for exporting to other applications or software.
-- **Pretty**: Results are lined up by paths in a pseudo-graphical manner to help visualize the multiple paths.
-- **Detail**: Results are displayed in a tabular format with a row per hop and a set of rows per path, useful for traces with higher hop counts where the pretty output wraps lines,
-making it harder to interpret the results. This is the default output when not specified.
+- **JSON**: Lists results in a JSON file, good for exporting to other applications or software.
+- **Pretty**: Lines up results by paths in a pseudo-graphical manner to help visualize the multiple paths.
+- **Detail**: Displays results in a tabular format with a row per hop and a set of rows per path, useful for traces with higher hop counts where the pretty output wraps lines, making it harder to interpret the results. This is the default output when not specified.
 
 You can improve the readability of the output using color as well. Run `netq config add color` to turn color on. Run `netq config del color` to turn color off.
 
 ### Known Addresses
 
-The tracing function only knows about addresses that have already been learned. If you find that a path is invalid or incomplete, you might need to ping the identified device so that its address becomes known.
+The tracing function only knows about already learned addresses. If you find that a path is invalid or incomplete, you might need to ping the identified device so that its address becomes known.
 
 <!-- vale off -->
 ## Create On-demand Traces
 <!-- vale on -->
 
-You can view the current connectivity between two devices in your network by creating an on-demand trace. These can be performed at layer 2 or layer 3 using the NetQ UI or the NetQ CLI.
+You can view the current connectivity between two devices in your network by creating an on-demand trace. You can perform these traces at layer 2 or layer 3 using the NetQ UI or the NetQ CLI.
 
 <!-- vale off -->
 ### Create a Layer 3 On-demand Trace Request
@@ -86,7 +85,7 @@ It is helpful to verify the connectivity between two devices when you suspect an
 
 {{<tab "On-demand Trace Request" >}}
 
-1. Determine the IP addresses of the two devices to be traced.
+1. Determine the IP addresses of the two devices you want to trace.
 
     1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu), then **IP Addresses** under the **Network** section.
 
@@ -159,7 +158,7 @@ Path MTU: 9216
  leaf01 swp51 -- swp1 spine01 swp5 -- swp51 border01 lo
 ```
 
-Each row of the pretty output shows one of the 12 available paths. Each path is described by hops using the following format:
+Each row of the pretty output shows one of the 12 available paths, with each path described by hops using the following format:
 
 source hostname and source egress port -- ingress port of first hop and device hostname and egress port -- n*(ingress port of next hop and device hostname and egress port) -- ingress port of destination device hostname
 
@@ -251,7 +250,7 @@ cumulus@switch:~$ netq add trace 10.10.10.63 from 10.10.10.1
 Running job None src 10.10.10.1 dst 10.10.10.63
 ```
 
-Confirmation of the on-demand job is provided. Refer to {{<link title="Verify Network Connectivity#view-layer-3-on-demand-trace-results" text="View Layer 3 On-demand Trace Results">}} for details.
+The trace provides confirmation of the on-demand job. Refer to {{<link title="Verify Network Connectivity#view-layer-3-on-demand-trace-results" text="View Layer 3 On-demand Trace Results">}} for details.
 
 {{</tab>}}
 
@@ -269,7 +268,7 @@ You can guide a layer 3 trace through a particular VRF interface using the NetQ 
 
 To create the trace request:
 
-1. Determine the IP addresses of the two devices to be traced.
+1. Determine the IP addresses of the two devices you want to trace.
 
     1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu), then **IP Addresses** under the **Network** section.
 
@@ -494,7 +493,7 @@ This example shows a trace from 10.1.10.101 (source, server01) to 10.1.10.104 (d
 cumulus@switch:~$ netq add trace 10.1.10.104 from 10.1.10.101 vrf RED
 ```
 
-Confirmation of the on-demand job is provided. Refer to {{<link title="Verify Network Connectivity#View Layer 3 On-demand Trace Results" text="View Layer 3 On-demand Trace Results">}} for details.
+The trace provides confirmation of the on-demand job. Refer to {{<link title="Verify Network Connectivity#View Layer 3 On-demand Trace Results" text="View Layer 3 On-demand Trace Results">}} for details.
 
 {{</tab>}}
 
@@ -769,7 +768,7 @@ This example shows a trace from 44:38:39:00:00:32 (source, server01) to 44:38:39
 cumulus@switch:~$ netq add trace 44:38:39:00:00:3e vlan 10 from 44:38:39:00:00:32
 ```
 
-Confirmation of the on-demand job is provided. Refer to {{<link title="Verify Network Connectivity#view-layer-2-on-demand-trace-results" text="View Layer 2 On-demand Trace Results">}} for details.
+The trace provides confirmation of the on-demand job. Refer to {{<link title="Verify Network Connectivity#view-layer-2-on-demand-trace-results" text="View Layer 2 On-demand Trace Results">}} for details.
 
 {{</tab>}}
 
@@ -779,7 +778,7 @@ Confirmation of the on-demand job is provided. Refer to {{<link title="Verify Ne
 ## View On-demand Trace Results
 <!-- vale on -->
 
-After you have started an on-demand trace, the results are displayed either in the NetQ UI On-demand Trace Result card or by running the `netq show trace results` command.
+After you have started an on-demand trace, the results appear either in the NetQ UI On-demand Trace Result card or by running the `netq show trace results` command.
 
 <!-- vale off -->
 ### View Layer 3 On-demand Trace Results
@@ -791,7 +790,7 @@ View the results for a layer 3 trace based on how you created the request.
 
 {{<tab "Trace Request card" >}}
 
-After you click **Run Now**, the corresponding results card is opened on your workbench. While it is working on the trace, a notice is shown on the card indicating it is running.
+After you click **Run Now**, the corresponding results card opens on your workbench. While it is working on the trace, a notice appears on the card indicating it is running.
 
 {{<figure src="/images/netq/od-trace-result-medium-l3-running-320.png" width="200">}}
 
@@ -992,7 +991,7 @@ To create a layer 3 scheduled trace and see the results in the Scheduled Trace R
 netq add trace name <text-new-trace-name> <ip> from (<src-hostname>|<ip-src>) interval <text-time-min>
 ```
 
-This example shows the creation of a scheduled trace between *leaf01* (source, *10.10.10.1*) and *border01* (destination, *10.10.10.63*) with a name of *L01toB01Daily* that is run on an daily basis. The `interval` option value is *1440* minutes, as denoted by the units indicator (*m*).
+This example shows the creation of a scheduled trace between *leaf01* (source, *10.10.10.1*) and *border01* (destination, *10.10.10.63*) with a name of *L01toB01Daily* that runs on an daily basis. The `interval` option value is *1440* minutes, as denoted by the units indicator (*m*).
 
 ```
 cumulus@switch:~$ netq add trace name Lf01toBor01Daily 10.10.10.63 from 10.10.10.1 interval 1440m
@@ -1015,7 +1014,7 @@ Use the instructions here, based on how you want to create the trace using the N
 
 To schedule a trace from the NetQ UI:
 
-1. Determine the IP addresses of the two devices to be traced.
+1. Determine the IP addresses of the two devices you want to trace.
 
     1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu), then **IP Addresses** under the **Network** section.
 
@@ -1075,7 +1074,7 @@ To create a layer 3 scheduled trace that uses a VRF other than default and then 
 netq add trace name <text-new-trace-name> <ip> from (<src-hostname>|<ip-src>) vrf <vrf> interval <text-time-min>
 ```
 
-This example shows the creation of a scheduled trace between *server01* (source, *10.1.10.101*) and *server04* (destination, *10.1.10.104*) with a name of *Svr01toSvr04Hrly* that is run on an hourly basis. The `interval` option value is *60* minutes, as denoted by the units indicator (*m*).
+This example shows the creation of a scheduled trace between *server01* (source, *10.1.10.101*) and *server04* (destination, *10.1.10.104*) with a name of *Svr01toSvr04Hrly* that runs on an hourly basis. The `interval` option value is *60* minutes, as denoted by the units indicator (*m*).
 
 ```
 cumulus@switch:~$ netq add trace name Svr01toSvr04Hrly 10.1.10.104 from 10.10.10.1 interval 60m
@@ -1161,7 +1160,7 @@ To create a layer 2 scheduled trace and then see the results in the Scheduled Tr
 netq add trace name <text-new-trace-name> <mac> vlan <1-4096> from (<src-hostname> | <ip-src>) [vrf <vrf>] interval <text-time-min>
 ```
 
-This example shows the creation of a scheduled trace between *server01* (source, *10.1.10.101*) and *server04* (destination, *44:38:39:00:00:3e*) on VLAN 10 with a name of *Svr01toSvr04x3Hrs* that is run every three hours. The `interval` option value is *180* minutes, as denoted by the units indicator (*m*).
+This example shows the creation of a scheduled trace between *server01* (source, *10.1.10.101*) and *server04* (destination, *44:38:39:00:00:3e*) on VLAN 10 with a name of *Svr01toSvr04x3Hrs* that runs every three hours. The `interval` option value is *180* minutes, as denoted by the units indicator (*m*).
 
 ```
 cumulus@switch:~$ netq add trace name Svr01toSvr04x3Hrs 44:38:39:00:00:3e vlan 10 from 10.1.10.101 interval 180m
@@ -1356,7 +1355,7 @@ You can modify and remove scheduled traces at any time as described here. An adm
 
 ### Modify a Scheduled Trace
 
-After reviewing the results of a scheduled trace for a period of time, you might want to modify how often it is run or the VRF or VLAN used. You can do this using the NetQ UI.
+After reviewing the results of a scheduled trace for a period of time, you might want to modify how often you run it or use the VRF or VLAN. You can do this using the NetQ UI.
 
 {{%notice note%}}
 

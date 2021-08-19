@@ -10,11 +10,11 @@ For a list of supported WJH events, refer to the {{<link title="WJH Event Messag
 
 {{<notice tip>}}
 
-If your switches are sourced from a vendor other than NVIDIA, this view is blank as no data is collected.
+If you sourced your switches from a vendor other than NVIDIA, this view is blank as WJH collects no data.
 
 {{</notice>}}
 
-When WJH capabilities are combined with NetQ, you have the ability to home in on losses, anywhere in the fabric, from a single management console. You can:
+When you combine WJH capabilities with NetQ, you have the ability to home in on losses, anywhere in the fabric, from a single management console. You can:
 
 - View any current or historic drop information, including the reason for the drop
 - Identify problematic flows or endpoints, and pin-point exactly where communication is failing in the network
@@ -35,7 +35,9 @@ cumulus@<hostname>:~$ sudo netq config restart cli
 
 ## Configure the WJH Feature
 
-WJH is enabled by default on NVIDIA switches and no configuration is required in Cumulus Linux 4.0.0; however, you must enable the NetQ Agent to collect the data.
+<!-- vale off -->
+WJH is enabled by default on NVIDIA switches and Cumulus Linux 4.0.0 requires no configuration; however, you must enable the NetQ Agent to collect the data.
+<!-- vale on -->
 
 To enable WJH in NetQ on any switch or server:
 
@@ -51,7 +53,7 @@ To enable WJH in NetQ on any switch or server:
     cumulus@switch:~$ sudo netq config restart agent
     ```
 
-When you are finished viewing the WJH metrics, you might want to stop the NetQ Agent from collecting WJH data to reduce network traffic. Use `netq config del agent wjh` followed by `netq config restart agent` to disable the WJH feature on the given switch.
+When you finish viewing the WJH metrics, you might want to stop the NetQ Agent from collecting WJH data to reduce network traffic. Use `netq config del agent wjh` followed by `netq config restart agent` to disable the WJH feature on the given switch.
 
 {{<notice note>}}
 
@@ -61,7 +63,7 @@ Using <em>wjh_dump.py</em> on an NVIDIA platform that is running Cumulus Linux a
 
 ## Configure Latency and Congestion Thresholds
 
-WJH latency and congestion metrics depend on threshold settings to trigger the events. Packet latency is measured as the time spent inside a single system (switch). Congestion is measured as a percentage of buffer occupancy on the switch. When specified, WJH triggers events when the high and/or low thresholds are crossed.
+WJH latency and congestion metrics depend on threshold settings to trigger the events. WJH measures packet latency as the time spent inside a single system (switch). WJH measures congestion as a percentage of buffer occupancy on the switch. When specified, WJH triggers events when they cross high and/or low thresholds.
 
 To configure these thresholds, run:
 
@@ -85,7 +87,7 @@ cumulus@switch:~$ sudo netq config add agent wjh-threshold congestion 4 swp1 200
 
 ## Configure Filters
 
-You can filter the WJH events at the NetQ Agent before it is processed by the NetQ system. Filtering is performed on a drop-type basis. You can filter the drop type further by specifying one or more drop reasons or severity. Filter events by creating a NetQ Configuration profile in the NetQ UI or using the `netq config add agent wjh-drop-filter` command in the NetQ CLI.
+You can filter the WJH events at the NetQ Agent before the NetQ system processes it. You perform filtering on a drop-type basis. You can filter the drop type further by specifying one or more drop reasons or severity. Filter events by creating a NetQ Configuration profile in the NetQ UI or using the `netq config add agent wjh-drop-filter` command in the NetQ CLI.
 
 For a complete list of drop types and reasons, refer to the {{<link title="WJH Event Messages Reference">}}.
 
@@ -107,7 +109,7 @@ To configure the NetQ Agent to filter WJH drops:
 
    {{<img src="/images/netq/lcm-netq-config-profile-create-wjh-custom-330.png" width="400px">}}
 
-1. By default, all drop reasons and severities are selected. Uncheck any drop reasons or severity you *do not* want to use to generate WJH events, then click **Done**.
+1. By default, WJH includes all drop reasons and severities. Uncheck any drop reasons or severity you *do not* want to use to generate WJH events, then click **Done**.
 
 1. Click **Add** to save the configuration profile, or click **Close** to discard it.
 
@@ -173,7 +175,7 @@ You can view the WJH metrics from the NetQ UI or the NetQ CLI.
 
 2. Click **What Just Happened** under the **Network** column.
 
-    This view displays events based on conditions detected in the data plane. The most recent 1000 events from the last 24 hours are presented for each drop category.
+    This view displays events based on conditions detected in the data plane. Each drop category contains the most recent 1000 events from the last 24 hours.
 
     {{<figure src="/images/netq/main-menu-ntwk-wjh-l1-240.png" width="700">}}
 
@@ -544,10 +546,10 @@ In this release, the gNMI agent supports *capability* and *stream subscribe* req
 
 To configure the gNMI agent, you need to enable it on every switch you want to use with gNMI. Optionally, you can update these default settings:
 
-- **Log level**: The log level is set to *info*. You can change the default setting to *debug*, *warning*, or *error*.
+- **Log level**: The default log level is *info*. You can change the default setting to *debug*, *warning*, or *error*.
 - **Default gNMI port**: The gNMI agent listens over port 9339 by default. You can change this setting in case you use that port in another application.
 
-The configuration is written to `/etc/netq/netq.yml`.
+The `/etc/netq/netq.yml` file stores the configuration.
 
 To configure the gNMI agent on a switch:
 
@@ -567,7 +569,9 @@ To configure the gNMI agent on a switch:
 
 ### gNMI Client Requests
 
+<!-- vale off -->
 You use your gNMI client on a host server to request capabilities and data the agent is subscribed to.
+<!-- vale on -->
 
 To make a subscribe request, run:
 
@@ -627,7 +631,6 @@ The data NetQ sends to the gNMI agent is in the form of WJH drop reasons. The re
 | 10031 | Other reason | Other L1 drop reason|
 
 #### L2 Drop Reasons
-<!-- vale on -->
 
 | Reason ID | Reason | Severity | Description |
 | --------- | ------ | -------- | ----------- |
@@ -671,21 +674,22 @@ The data NetQ sends to the gNMI agent is in the form of WJH drop reasons. The re
 | 325 | Router interface loopback | Warning | Validate the interface configuration |
 | 326 | Packet size is larger than router interface MTU | Warning | Validate the router interface MTU configuration |
 | 327 | TTL value is too small | Warning | Actual path is longer than the TTL |
+<!-- vale on -->
 
 #### Tunnel Drop Reasons
 
 | Reason ID | Reason | Severity | Description |
 | --------- | ------ | -------- | ----------- |
-| 402 | Overlay switch - Source MAC is multicast | Error | Bad packet was received from the peer |
-| 403 | Overlay switch - Source MAC equals destination MAC | Error | Bad packet was received from the peer |
-| 404 | Decapsulation error | Error | Bad packet was received from the peer |
+| 402 | Overlay switch - Source MAC is multicast | Error | The peer sent a bad packet |
+| 403 | Overlay switch - Source MAC equals destination MAC | Error | The peer sent a bad packet |
+| 404 | Decapsulation error | Error | The peer sent a bad packet |
 
 #### ACL Drop Reasons
 
 | Reason ID | Reason | Severity | Description |
 | --------- | ------ | -------- | ----------- |
 | 601 | Ingress port ACL | Notice | Validate ACL configuration |
-| 602 | Ingress router ACL | Notice | Validate ACL configuration | 
+| 602 | Ingress router ACL | Notice | Validate ACL configuration |
 | 603 | Egress router ACL | Notice | Validate ACL configuration |
 | 604 | Egress port ACL | Notice | Validate ACL configuration |
 

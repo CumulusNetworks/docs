@@ -23,6 +23,7 @@ Displays the reason why an ACL has dropped packets.
 
 Displays the reason why the server buffer has dropped packets.
 
+<!-- vale off -->
 | Reason | Description|
 | --- | --- |
 | Tail drop | Tail drop is enabled, and buffer queue is filled to maximum capacity |
@@ -94,11 +95,13 @@ In addition to the reason, the information provided for these drops includes:
 | Protocol | ID of the communication protocol running on this link |
 | Ingress Port | Port accepting incoming traffic |
 | OPID | Operation identifier; used for internal purposes |
+<!-- vale on -->
 
 ## Router Drops
 
 Displays the reason why the server is unable to route a packet.
 
+<!-- vale off -->
 | Reason | Description|
 | --- | --- |
 | Non-routable packet |  Packet has no route in routing table |
@@ -127,6 +130,7 @@ Displays the reason why the server is unable to route a packet.
 | Router interface loopback | Packet has destination IP address that is local. For example, SIP = 1.1.1.1, DIP = 1.1.1.128. |
 | Packet size is larger than MTU | Packet has larger MTU configured than the VLAN |
 | TTL value is too small | Packet has TTL value of 1 |
+<!-- vale on -->
 
 ## Tunnel Drops
 

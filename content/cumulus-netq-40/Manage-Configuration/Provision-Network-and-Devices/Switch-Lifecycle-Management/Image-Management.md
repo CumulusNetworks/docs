@@ -5,7 +5,7 @@ weight: 630
 toc: 4
 ---
 
-You manage NetQ and network OS (Cumulus Linux and SONiC) images with LCM. They are managed in a similar manner.
+You manage NetQ and network OS (Cumulus Linux and SONiC) images with LCM. You manage them in a similar manner.
 
 You can upload Cumulus Linux and SONiC binary images to a local LCM repository for upgrading your switches. You can upload NetQ Debian packages to the local LCM repository for installation or upgrade. You can upload images from an external drive.
 
@@ -95,7 +95,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
     {{<figure src="/images/netq/lcm-import-netq-sonic-image-success-400.png" width="250">}}
 
-<div style="padding-left: 18px;">If the upload was not successful, an <em>Image Import Failed</em> message is shown. Close the Import Image dialog and try uploading the file again.
+<div style="padding-left: 18px;">If the upload was not successful, an <em>Image Import Failed</em> message appears. Close the Import Image dialog and try uploading the file again.
 </div>
 
 8. Click **Done**.
@@ -162,13 +162,13 @@ If you have already specified a default image, you must click <strong>Manage</st
 
     {{<figure src="/images/netq/lcm-import-netq-sonic-image-success-400.png" width="250">}}
 
-<div style="padding-left: 18px;">If the upload was not successful, an <em>Image Import Failed</em> message is shown. Close the Import Image dialog and try uploading the file again.</div>
+<div style="padding-left: 18px;">If the upload was not successful, an <em>Image Import Failed</em> message appears. Close the Import Image dialog and try uploading the file again.</div>
 
 8. Click **Done**.
 
 9. Click **Uploaded** to verify the images are in the repository.
 
-   When all the missing images have been uploaded, the Missing list is empty.
+   After you upload all the missing images, the Missing list is empty.
 
 10. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the LCM dashboard.
 
@@ -322,9 +322,9 @@ cumulus@switch:~$ netq lcm add default-version netq-images <text-netq-version>
 
 {{</tabs>}}
 
-In the CLI, you can check which version of the network OS or NetQ has been configured as the default.
+In the CLI, you can check which version of the network OS or NetQ is the default.
 
-To see which version of Cumulus Linux has been configured as the default, run `netq lcm show default-version cl-images`:
+To see which version of Cumulus Linux is the default, run `netq lcm show default-version cl-images`:
 
 ```
 cumulus@switch:~$ netq lcm show default-version cl-images 
@@ -336,7 +336,7 @@ a535a4ad23ca300d52c3      594775435.dirty
                           zc24426ca.bin
 ```
 
-To see which version of NetQ has been configured as the default, run `netq lcm show default-version netq-images`:
+To see which version of NetQ is the default, run `netq lcm show default-version netq-images`:
 
 ```
 cumulus@switch:~$ netq lcm show default-version netq-images 
@@ -473,7 +473,7 @@ To remove Cumulus Linux images, run:
     cumulus@switch:~$ netq lcm del cl-image image_c6e812f0081fb03b9b8625a3c0af14eb82c35d79997db4627c54c76c973ce1ce
     ```
 
-3. Verify it has been removed.
+3. Verify the command removed the image.
 
     ```
     cumulus@switch:~$ netq lcm show cl-images json
@@ -528,7 +528,7 @@ netq lcm del netq-image <text-image-id>
     cumulus@switch:~$ netq lcm del netq-image image_68db386683c796d86422f2172c103494fef7a820d003de71647315c5d774f834
     ```
 
-3. Verify it has been removed.
+3. Verify the command removed the image.
 
     ```
     cumulus@switch:~$ netq lcm show netq-images json

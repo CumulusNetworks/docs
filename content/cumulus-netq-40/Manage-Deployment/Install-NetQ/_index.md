@@ -4,14 +4,15 @@ author: NVIDIA
 weight: 190
 toc: 3
 ---
-The NetQ software contains several components that must be installed, including the NetQ applications, the database, and the NetQ Agents. NetQ can be deployed two ways:
+
+The NetQ software contains several components that you must install, including the NetQ applications, the database, and the NetQ Agents. You can deploy NetQ in one of two ways:
 
 <!-- vale off -->
-- **Hosted on premises**: This deployment model is used when you want to host a single NetQ site and have it be entirely contained on your premises. In this implementation, all NetQ components including the NetQ Platform software, hardware, and database are located on your premises. The NetQ applications and database are installed as a single entity, called the *NetQ Platform*, and are run on the *NetQ On-premises Appliance* or *NetQ On-premises virtual machine (VM)*. Note that you are responsible for installing, configuring and maintaining all NetQ components. This deployment model is called the *on-premises solution* in this documentation. It is suitable for organizations with data residency requirements like GDPR (general data protection regulation).
-- **Hosted remotely**: This deployment model is used when you want to either set up multiple NetQ premises or use the NetQ Cloud service. In this implementation the NetQ aggregation and forwarding application software, called the *NetQ Collector*, is installed and run on the *NetQ Cloud Appliance* or *NetQ Cloud VM* on premises with a common database and all other applications installed in a single NetQ site or in the NetQ Cloud. In the multi-site implementation, you are responsible for all software, hardware, and the database. In the cloud service implementation, you are responsible for the on-premises NetQ Collector and NVIDIA is responsible for the data storage in the NetQ Cloud. This deployment model is called the *remote solution* in this documentation.
+- **Hosted on premises**: Use this deployment model when you want to host a single NetQ site and have it be entirely contained on your premises. In this implementation, all NetQ components including the NetQ Platform software, hardware, and database are located on your premises. The NetQ applications and database are installed as a single entity, called the *NetQ Platform*, and are run on the *NetQ On-premises Appliance* or *NetQ On-premises virtual machine (VM)*. Note that you are responsible for installing, configuring and maintaining all NetQ components. This deployment model is called the *on-premises solution* in this documentation. It is suitable for organizations with data residency requirements like GDPR (general data protection regulation).
+- **Hosted remotely**: Use this deployment model when you want to either set up multiple NetQ premises or use the NetQ Cloud service. In this implementation the NetQ aggregation and forwarding application software, called the *NetQ Collector*, is installed and run on the *NetQ Cloud Appliance* or *NetQ Cloud VM* on premises with a common database and all other applications installed in a single NetQ site or in the NetQ Cloud. In the multi-site implementation, you are responsible for all software, hardware, and the database. In the cloud service implementation, you are responsible for the on-premises NetQ Collector and NVIDIA is responsible for the data storage in the NetQ Cloud. This deployment model is called the *remote solution* in this documentation.
 <!-- vale on -->
 
-With either deployment model, the NetQ Agents reside on the switches and hosts being monitored in your network.
+With either deployment model, the NetQ Agents reside on the switches and hosts they monitor in your network.
 
 ## NetQ Data Flow
 
@@ -45,7 +46,7 @@ The documentation walks you through these choices and then provides the instruct
 ### Cluster Deployments
 
 Deploying the NetQ servers in a cluster arrangement has many benefits even though it's a more complex configuration. The primary benefits of having multiple servers that run the software and store the data are reduced potential downtime and increased availability.
-    
+
 The default clustering implementation has three servers: 1 master and 2 workers. However, NetQ supports up to 10 worker nodes in a cluster, and up to 5000 devices in total (switches, servers and hosts). When you configure the cluster, {{<link url="Install-NetQ-Agents/#configure-netq-agent" text="configure the NetQ Agents">}} to connect to these three nodes in the cluster first by providing the IP addresses as a comma-separated list. If you later {{<link title="Post Installation Configuration Options#add-more-nodes-to-your-server-cluster" text="add more nodes">}} to the cluster, you do not need to configure these nodes again.
 
 The Agents connect to the server using gRPC.

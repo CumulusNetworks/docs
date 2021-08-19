@@ -15,9 +15,11 @@ Decommissions a switch or host currently running NetQ Agent. This removes inform
 
 You might need to decommission a switch when you:
 
+<!-- vale off -->
 - Change the hostname of the switch or host being monitored
 - Move the switch or host being monitored from one data center to another
 - RMA the switch or host being monitored
+<!-- vale on -->
 
 ### Syntax
 
@@ -278,7 +280,7 @@ Successfully deleted TCA TCA_RXBYTES_UPPER_1
 Removes a scheduled trace, whether created using the NetQ UI or CLI. Use `netq show trace summary` to obtain the relevant trace name.
 
 {{<notice note>}}
-Both standard user and administrative users can remove scheduled traces. No notification is generated on removal. Be sure to communicate with other users before removing a scheduled trace to avoid confusion and support issues.
+Both standard user and administrative users can remove scheduled traces. The removal does not generate a notification. Be sure to communicate with other users before removing a scheduled trace to avoid confusion and support issues.
 {{</notice>}}
 
 ### Syntax

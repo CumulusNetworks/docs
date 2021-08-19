@@ -5,7 +5,7 @@ weight: 280
 toc: 4
 ---
 
-After installing your {{<link url="Install-NetQ" text="NetQ software">}}, you should install the NetQ {{<version>}} Agents on each switch you want to monitor. NetQ Agents can be installed on switches and servers running:
+After installing your {{<link url="Install-NetQ" text="NetQ software">}}, you should install the NetQ {{<version>}} Agents on each switch you want to monitor. You can install NetQ Agents on switches and servers running:
 
 - Cumulus Linux 3.3.2-3.7.x, 4.0.0 and later
 - SONiC 202012 and later
@@ -22,7 +22,7 @@ For switches running Cumulus Linux and SONiC, you need to:
 
 For servers running RHEL, CentOS, or Ubuntu, you need to:
 
-- Verify the minimum package versions are installed
+- Verify you installed the minimum package versions
 - Verify the server is running `lldpd`
 - Install and configure NTP, if needed
 - Obtain NetQ software packages
@@ -35,7 +35,9 @@ If your network uses a proxy server for external connections, you should first {
 
 {{<tab "Cumulus Linux">}}
 
-### Verify NTP is Installed and Configured
+<!-- vale off -->
+### Verify NTP Is Installed and Configured
+<!-- vale on -->
 
 Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch. The switch must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
 
@@ -83,7 +85,7 @@ deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-{{<version>}}
 ```
 
 {{<notice tip>}}
-The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-latest</code> can be used if you want to always retrieve the latest posted version of NetQ.
+You  can use the <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
 {{</notice>}}
 
 {{</tab>}}
@@ -100,7 +102,7 @@ deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-{{<version>}}
 ```
 
 {{<notice tip>}}
-The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> can be used if you want to always retrieve the latest posted version of NetQ.
+You can use the <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
 {{</notice>}}
 
 Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
@@ -117,7 +119,9 @@ cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-app
 
 {{<tab "SONiC">}}
 
-### Verify NTP is Installed and Configured
+<!-- vale off -->
+### Verify NTP Is Installed and Configured
+<!-- vale on -->
 
 Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch. The switch must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
 
@@ -142,7 +146,7 @@ If NTP is not running:
 - Verify the IP address or hostname of the NTP server in the `/etc/sonic/config_db.json` file, and then
 - Reenable and start the NTP service using the `sudo config reload -n` command
 
-Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
+Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock synchronized with NTP.
 
 ```
 admin@switch:~$ show ntp
@@ -186,7 +190,7 @@ To obtain the NetQ Agent package:
 
 ### Verify Service Package Versions
 
-Before you install the NetQ Agent on a Red Hat or CentOS server, make sure the following packages are installed and running these minimum versions:
+Before you install the NetQ Agent on a Red Hat or CentOS server, make sure you install and run at least the minimum versions of the following packages:
 
 - iproute-3.10.0-54.el7\_2.1.x86\_64
 - lldpd-0.9.7-5.el7.x86\_64
@@ -195,7 +199,7 @@ Before you install the NetQ Agent on a Red Hat or CentOS server, make sure the f
 
 ### Verify the Server is Running lldpd and wget
 
-Make sure you are running lldp**d**, not lldp**ad**. CentOS does not include `lldpd` by default, nor does it include `wget`, which is required for the installation.
+Make sure you are running lldp**d**, not lldp**ad**. CentOS does not include `lldpd` by default, nor does it include `wget`; however,the installation requires it.
 
 To install this package, run the following commands:
 
@@ -234,7 +238,7 @@ If NTP is not already installed and configured, follow these steps:
 If you are running NTP in your out-of-band management network with VRF, specify the VRF (`ntp@<vrf-name>` versus just `ntp`) in the above commands.
    {{%/notice%}}
 
-4.  Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
+4.  Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock synchronized with NTP.
 
     ```
     root@rhel7:~# ntpq -pn
@@ -283,8 +287,8 @@ To obtain the NetQ Agent package:
 
 ### Verify Service Package Versions
 
-Before you install the NetQ Agent on an Ubuntu server, make sure the
-following packages are installed and running these minimum versions:
+Before you install the NetQ Agent on an Ubuntu server, make sure you install and run at least the minimum versions of the following packages:
+
 <!-- vale off -->
 - iproute 1:4.3.0-1ubuntu3.16.04.1 all
 - iproute2 4.3.0-1ubuntu3 amd64
@@ -294,7 +298,7 @@ following packages are installed and running these minimum versions:
 
 ### Verify the Server is Running lldpd
 
-Make sure you are running lldp**d**, not lldp**ad**. Ubuntu does not include `lldpd` by default, which is required for the installation.
+Make sure you are running lldp**d**, not lldp**ad**. Ubuntu does not include `lldpd` by default; however, the installation requires it.
 
 To install this package, run the following commands:
 
@@ -334,7 +338,7 @@ If NTP is not already installed and configured, follow these steps:
 If you are running NTP in your out-of-band management network with VRF, specify the VRF (<code>ntp@&lt;vrf-name&gt;</code> versus just <code>ntp</code>) in the above commands.
    {{</notice>}}
 
-   4. Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
+   4. Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock synchronized with NTP.
 
           root@ubuntu:~# ntpq -pn
           remote           refid            st t when poll reach   delay   offset  jitter
@@ -461,7 +465,7 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
 {{</tabs>}}
 
     {{<notice note>}}
-The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as <code>netq-4.0</code> - use that instead.
+The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.0</code> &mdash; use that instead.
     {{</notice>}}
 
 {{</tab>}}
@@ -493,7 +497,7 @@ To install the NetQ Agent (this example uses Cumulus Linux but the steps are the
 
     {{<netq-install/agent-version version="4.0.0" opsys="cl">}}
 
-3. Restart `rsyslog` so log files are sent to the correct destination.
+3. Restart `rsyslog` so it sends log files to the correct destination.
 
     ```
     cumulus@switch:~$ sudo systemctl restart rsyslog.service
@@ -524,7 +528,7 @@ To install the NetQ Agent (this example uses Cumulus Linux but the steps are the
 
     - netq-agent_<strong>4.0.0</strong>-deb10u<strong>34</strong>~1622184065.3c77d9bd_amd64.deb
 
-3. Restart `rsyslog` so log files are sent to the correct destination.
+3. Restart `rsyslog` so it sends log files to the correct destination.
 
     ```
     admin@switch:~$ sudo systemctl restart rsyslog.service
@@ -538,7 +542,7 @@ To install the NetQ Agent (this example uses Cumulus Linux but the steps are the
 
 To install the NetQ Agent:
 
-1.  Install the Bash completion and NetQ packages on the server.
+1. Install the Bash completion and NetQ packages on the server.
 
     ```
     root@rhel7:~# sudo yum -y install bash-completion
@@ -553,13 +557,13 @@ To install the NetQ Agent:
 
     {{<netq-install/agent-version version="4.0.0" opsys="rh">}}
 
-3. Restart `rsyslog` so log files are sent to the correct destination.
+3. Restart `rsyslog` so it sends log files to the correct destination.
 
     ```
     root@rhel7:~# sudo systemctl restart rsyslog
     ```
 
-4.  Continue with NetQ Agent Configuration in the next section.
+4. Continue with NetQ Agent Configuration in the next section.
 
 {{</tab>}}
 
@@ -567,7 +571,7 @@ To install the NetQ Agent:
 
 To install the NetQ Agent:
 
-1.  Install the software packages on the server.
+1. Install the software packages on the server.
 
     ```
     root@ubuntu:~# sudo apt-get update
@@ -582,13 +586,13 @@ To install the NetQ Agent:
 
     {{<netq-install/agent-version version="4.0.0" opsys="ub">}}
 
-3. Restart `rsyslog` so log files are sent to the correct destination.
+3. Restart `rsyslog` so it sends log files to the correct destination.
 
 ```
 root@ubuntu:~# sudo systemctl restart rsyslog.service
 ```
 
-4.  Continue with NetQ Agent Configuration in the next section.
+4. Continue with NetQ Agent Configuration in the next section.
 
 {{</tab>}}
 
@@ -596,10 +600,10 @@ root@ubuntu:~# sudo systemctl restart rsyslog.service
 
 ## Configure NetQ Agent
 
-After the NetQ Agents have been installed on the switches you want to monitor, the NetQ Agents must be configured to obtain useful and relevant data.
+After you install the NetQ Agents on the switches you want to monitor, you must configure them to obtain useful and relevant data.
 
 {{%notice note%}}
-The NetQ Agent is aware of and communicates through the designated VRF. If you do not specify one, the default VRF (named *default*) is used. If you later change the VRF configured for the NetQ Agent (using a lifecycle management configuration profile, for example), you might cause the NetQ Agent to lose communication.
+The NetQ Agent is aware of and communicates through the designated VRF. If you do not specify one, it uses the default VRF (named *default*). If you later change the VRF configured for the NetQ Agent (using a lifecycle management configuration profile, for example), you might cause the NetQ Agent to lose communication.
 {{%/notice%}}
 
 Two methods are available for configuring a NetQ Agent:
@@ -635,7 +639,7 @@ You can configure the NetQ Agent in the `netq.yml` configuration file contained 
 
 ### Configure NetQ Agents Using the NetQ CLI
 
-If the CLI is configured, you can use it to configure the NetQ Agent to send telemetry data to the NetQ Appliance or VM. To configure the NetQ CLI, refer to {{<link title="Install NetQ CLI">}}.
+If you configured the NetQ CLI, you can use it to configure the NetQ Agent to send telemetry data to the NetQ Appliance or VM. To configure the NetQ CLI, refer to {{<link title="Install NetQ CLI">}}.
 
 {{<notice info>}}
 If you intend to use a VRF for agent communication (recommended), refer to {{<link url="#configure-the-agent-to-use-a-vrf" text="Configure the Agent to Use VRF">}}. If you intend to specify a port for communication, refer to {{<link url="#configure-the-agent-to-communicate-over-a-specific-port" text="Configure the Agent to Communicate over a Specific Port">}}.
@@ -661,7 +665,9 @@ A couple of additional options are available for configuring the NetQ Agent. If 
 
 ### Configure the Agent to Use a VRF
 
-By default, NetQ uses the *default* VRF for communication between the NetQ Appliance or VM and NetQ Agents. While optional, NVIDIA strongly recommends that you configure NetQ Agents to communicate with the NetQ Appliance or VM only via a {{<kb_link latest="cl" url="Layer-3/VRFs/Virtual-Routing-and-Forwarding-VRF.md" text="VRF">}}, including a {{<kb_link latest="cl" url="Layer-3/VRFs/Management-VRF.md" text="management VRF">}}. To do so, you need to specify the VRF name when configuring the NetQ Agent. For example, if the management VRF is configured and you want the agent to communicate with the NetQ Appliance or VM over it, configure the agent like this:
+<!-- vale off -->
+By default, NetQ uses the *default* VRF for communication between the NetQ Appliance or VM and NetQ Agents. While optional, NVIDIA strongly recommends that you configure NetQ Agents to communicate with the NetQ Appliance or VM only via a {{<kb_link latest="cl" url="Layer-3/VRFs/Virtual-Routing-and-Forwarding-VRF.md" text="VRF">}}, including a {{<kb_link latest="cl" url="Layer-3/VRFs/Management-VRF.md" text="management VRF">}}. To do so, you need to specify the VRF name when configuring the NetQ Agent. For example, if you configured the management VRF and you want the agent to communicate with the NetQ Appliance or VM over it, configure the agent like this:
+<!-- vale on -->
 
 ```
 sudo netq config add agent server 192.168.1.254 vrf mgmt

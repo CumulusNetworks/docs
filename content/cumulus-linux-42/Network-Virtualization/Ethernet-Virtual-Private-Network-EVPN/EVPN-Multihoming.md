@@ -568,7 +568,7 @@ cumulus@switch:~$
 You can use the `net show bgp l2vpn evpn route` command to view type-1 EAD routes. Just include the `ead` route type option.
 
 ```
-cumulus@switch:~$ net show bgp evpn l2vpn route type ead
+cumulus@switch:~$ net show bgp l2vpn evpn route type ead
 BGP table version is 30, local router ID is 172.16.0.21
 Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
 Origin codes: i - IGP, e - EGP, ? - incomplete

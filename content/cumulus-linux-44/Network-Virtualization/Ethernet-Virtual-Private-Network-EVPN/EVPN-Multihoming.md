@@ -836,7 +836,7 @@ VNI      ESI                            Flags VTEPs
 To view type-1 EAD routes, run the NCLU `net show bgp l2vpn evpn route` command or the vtysh `show bgp l2vpn evpn route` command with the `ead` route type option. For example:
 
 ```
-cumulus@switch:~$ net show bgp evpn l2vpn route type ead
+cumulus@switch:~$ net show bgp l2vpn evpn route type ead
 BGP table version is 3, local router ID is 10.10.10.1
 Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
 Origin codes: i - IGP, e - EGP, ? - incomplete

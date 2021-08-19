@@ -395,7 +395,7 @@ iface bond3
 <!-- vale on -->
 {{< img src = "/images/cumulus-linux/evpn-pim-anycast-vteps.png" >}}
 
-To configure EVPN-PIM in VXLAN active-active mode, enable PIM on the peer link on each MLAG peer switch (**in addition to** the configuration described in {{<link url="#configure-multicast-vxlan-tunnels" text="Configure Multicast VXLAN Tunnels">}}, above).
+To configure EVPN-PIM with an MLAG pair in VXLAN active-active mode, enable PIM on the peer link subinterface of each MLAG peer switch (**in addition to** the configuration described in {{<link url="#configure-multicast-vxlan-tunnels" text="Configure Multicast VXLAN Tunnels">}}, above).
 
 {{< tabs "TabID318 ">}}
 {{< tab "NCLU Commands ">}}

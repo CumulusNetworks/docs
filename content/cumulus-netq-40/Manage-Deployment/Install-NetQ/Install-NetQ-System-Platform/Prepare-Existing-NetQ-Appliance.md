@@ -4,9 +4,10 @@ author: NVIDIA
 weight: 235
 toc: 5
 ---
+
 This topic describes how to prepare a NetQ 3.3.x or earlier NetQ Appliance before installing NetQ {{<version>}}. The steps are the same for both the on-premises and cloud appliances. The only difference is the software you download for each platform. After you complete the steps included here, you are ready to perform a fresh installation of NetQ {{<version>}}.
 
-The preparation workflow is summarized in this figure:
+The figure below summarizes the preparation workflow:
 
 {{<figure src="/images/netq/install-appl-prep-workflow-300.png" width="700">}}
 
@@ -29,7 +30,7 @@ To prepare your appliance:
         cumulus@<hostname>:~$ ./backuprestore.sh --backup --localdir /opt/<backup-directory>
         ```
 
-    2. Verify the backup file has been created.
+    2. Verify the backup file creation was successful.
 
         ```
         cumulus@<hostname>:~$ cd /opt/<backup-directory>
@@ -44,7 +45,7 @@ To prepare your appliance:
     Note these tips when installing:
 
     - Ignore the instructions for MAAS.
-    - Ubuntu OS should be installed on the SSD disk. Select Micron SSD with ~900 GB at step #9 in the {{<exlink url="https://www.fosslinux.com/6406/how-to-install-ubuntu-server-18-04-lts.htm" text="Ubuntu instructions">}}.
+    - You should install the Ubuntu OS on the SSD disk. Select Micron SSD with ~900 GB at step #9 in the {{<exlink url="https://www.fosslinux.com/6406/how-to-install-ubuntu-server-18-04-lts.htm" text="Ubuntu instructions">}}.
 
         {{<figure src="/images/netq/install-ubuntu-ssd-selection-240.png" width="700">}}
 
@@ -87,7 +88,7 @@ To prepare your appliance:
 
 - Create and/or edit the  */etc/netplan/01-ethernet.yaml* Netplan configuration file.
 
-    In this example the interface, *eno1*, is given a static IP address of *192.168.1.222* with a gateway at *192.168.1.1* and DNS server at *8.8.8.8* and *8.8.4.4*.
+    In this example the interface, *eno1*, has a static IP address of *192.168.1.222* with a gateway at *192.168.1.1* and DNS server at *8.8.8.8* and *8.8.4.4*.
 
     ```
     # This file describes the network interfaces available on your system
@@ -135,7 +136,7 @@ To prepare your appliance:
         ```
 
         {{<notice note>}}
-The use of <code>netq-latest</code> in this example means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as <code>netq-3.1</code> - use that instead.
+The use of <code>netq-latest</code> in this example means that a <code>get</code> to the repository always retrieves the latest version of NetQ; this applies even for major version updates. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.0</code> &mdash; use that instead.
         {{</notice>}}
 
 6. Install Python.

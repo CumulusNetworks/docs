@@ -5,6 +5,8 @@ weight: 1108
 toc: 3
 pdfhidden: true
 ---
+
+<!-- vale off -->
 This topic lists all commands that have been deprecated from NetQ 1.4.1 and later releases. They are listed alphabetically by command name.
 
 | Command | Alternate Command | Last Available Release |
@@ -24,3 +26,4 @@ This topic lists all commands that have been deprecated from NetQ 1.4.1 and late
 | netq query \<wildcard-query\> [json] | None | 1.4.1 |
 | netq query show fields \<netq-table\> | None | 1.4.1 |
 | netq query show tables | None | 1.4.1 |
+<!-- vale on -->

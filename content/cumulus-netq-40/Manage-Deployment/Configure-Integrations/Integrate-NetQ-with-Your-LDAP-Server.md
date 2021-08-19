@@ -4,7 +4,10 @@ author: NVIDIA
 weight: 540
 toc: 3
 ---
-With this release and an administrator role, you are able to integrate the NetQ role-based access control (RBAC) with your lightweight directory access protocol (LDAP) server in on-premises deployments. NetQ maintains control over role-based permissions for the NetQ application. Currently there are two roles, admin and user. With the integration, user authentication is handled through LDAP and your directory service, such as Microsoft Active Directory, Kerberos, OpenLDAP, and Red Hat Directory Service. A copy of each user from LDAP is stored in the local NetQ database.
+
+<!-- vale off -->
+With this release and an administrator role, you can integrate the NetQ role-based access control (RBAC) with your lightweight directory access protocol (LDAP) server in on-premises deployments. NetQ maintains control over role-based permissions for the NetQ application. Currently there are two roles, *admin* and *user*. With the RBAC integration, LDAP handles user authentication and your directory service, such as Microsoft Active Directory, Kerberos, OpenLDAP, and Red Hat Directory Service. A copy of each user from LDAP is stored in the local NetQ database.
+<!-- vale on -->
 
 Integrating with an LDAP server does not prevent you from configuring local users (stored and managed in the NetQ database) as well.
 
@@ -16,14 +19,14 @@ LDAP integration requires information about how to connect to your LDAP server, 
 
 ### Provide Your LDAP Server Information
 
-To connect to your LDAP server, you need the URI and bind credentials. The URI identifies the location of the LDAP server. It is comprised of a  FQDN (fully qualified domain name) or IP address, and the port of the LDAP server where the LDAP client can connect. For example: myldap.mycompany.com or 192.168.10.2. Typically port 389 is used for connection over TCP or UDP. In production environments, a secure connection with SSL can be deployed. In this case, the port used is typically 636. Setting the **Enable SSL** toggle automatically sets the server port to 636.
+To connect to your LDAP server, you need the URI and bind credentials. The URI identifies the location of the LDAP server. It comprises a FQDN (fully qualified domain name) or IP address, and the port of the LDAP server where the LDAP client can connect. For example: *myldap.mycompany.com* or *192.168.10.2*. Typically you use port 389 for connection over TCP or UDP. In production environments, you deploy a secure connection with SSL. In this case, the port used is typically 636. Setting the **Enable SSL** toggle automatically sets the server port to 636.
 
 ### Specify Your Authentication Method
 
 Two methods of user authentication are available: anonymous and basic.
 
 - **Anonymous**: LDAP client does not require any authentication. The user can access all resources anonymously. This is not commonly used for production environments.
-- **Basic**: (Also called Simple) LDAP client must provide a bind DN and password to authenticate the connection. When selected, the **Admin** credentials appear: Bind DN and Bind Password. The distinguished name (DN) is defined using a string of variables. Some common variables include:
+- **Basic**: (Also called Simple) LDAP client must provide a bind DN and password to authenticate the connection. When selected, the **Admin** credentials appear: Bind DN and Bind Password. You define the distinguished name (DN) using a string of variables. Some common variables include:
 
     | Syntax | Description or Usage |
     | -------- | -------------------------- |
@@ -35,22 +38,22 @@ Two methods of user authentication are available: anonymous and basic.
     - **Bind DN**: DN of user with administrator access to query the LDAP server; used for binding with the server. For example, `uid =admin,ou=ntwkops,dc=mycompany,dc=com`.
     - **Bind Password**: Password associated with Bind DN.
 
-    The Bind DN and password are sent as clear text. Only users with these credentials are allowed to perform LDAP operations.
+    The Bind DN and password get sent as clear text. Only users with these credentials can perform LDAP operations.
 
 If you are unfamiliar with the configuration of your LDAP server, contact your administrator to ensure you select the appropriate authentication method and credentials.
 
 ### Define User Attributes
 
-Two attributes are required to define a user entry in a directory:
+You need the following two attributes to define a user entry in a directory:
 
 - **Base DN**: Location in directory structure where search begins. For example, `dc=mycompany,dc=com`.
-- **User ID**: Type of identifier used to specify an LDAP user. This can vary depending on the authentication service you are using. For example,  <!-- vale off -->user ID (UID)<!-- vale on --> or email address can be used with OpenLDAP, whereas sAMAccountName might be used with Active Directory.
+- **User ID**: Type of identifier used to specify an LDAP user. This can vary depending on the authentication service you are using. For example, you can use the <!-- vale off -->user ID (UID)<!-- vale on --> or email address with OpenLDAP, whereas you might use the sAMAccountName with Active Directory.
 
 Optionally, you can specify the first name, last name, and email address of the user.
 
 ### Set Search Attributes
 
-While optional, specifying search scope indicates where to start and how deep a given user can search within the directory. The data to search for is specified in the search query.
+While optional, specifying search scope indicates where to start and how deep a given user can search within the directory. You specify the data to search for in the search query.
 
 Search scope options include:
 
@@ -59,13 +62,13 @@ Search scope options include:
 - **One Level**: Search for immediate children of user; not at base or for any descendants
 - **Subordinate**: Search for subordinates at any depth of user; but not at base
 
-A typical search query for users would be *{userIdAttribute}={userId}*.
+A typical search query for users could be *{userIdAttribute}={userId}*.
 
 Now that you are familiar with the various LDAP configuration parameters, you can configure the integration of your LDAP server with NetQ using the instructions in the next section.
 
 ## Create an LDAP Configuration
 
-One LDAP server can be configured per bind DN (distinguished name). After you configure LDAP, you can validate the connectivity (and configuration) and save the configuration.
+You can configure one LDAP server per bind DN (distinguished name). After you configure LDAP, you can validate the connectivity (and configuration) and save the configuration.
 
 To create an LDAP configuration:
 
@@ -204,5 +207,5 @@ You can remove LDAP users in the same manner as local users.
 4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" width="18" height="18"/> in the Edit menu.
 
 {{%notice tip%}}
-If an LDAP user is deleted in LDAP it is not automatically deleted from NetQ; however, the login credentials for these LDAP users stop working immediately.
+If you delete an LDAP user in LDAP it is not automatically deleted from NetQ; however, the login credentials for these LDAP users stop working immediately.
 {{%/notice%}}

@@ -51,7 +51,7 @@ Follow these steps to setup and configure your VM on a cluster of servers in an 
 12. Open your hypervisor and set up the VM in the same manner as for the master node.
 
     {{<notice note>}}
-Make a note of the private IP address you assign to the worker node. It is needed for later installation steps.
+Make a note of the private IP address you assign to the worker node. You need it for later installation steps.
     {{</notice>}}
 
 13. Verify the worker node is ready for installation. Fix any errors indicated before installing the NetQ software.

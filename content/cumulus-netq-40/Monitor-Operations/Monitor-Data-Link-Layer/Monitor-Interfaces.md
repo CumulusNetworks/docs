@@ -4,7 +4,8 @@ author: NVIDIA
 weight: 880
 toc: 3
 ---
-Interface (link) health can be monitored using the `netq show interfaces` command. You can view status of the links, whether they are operating over a VRF interface, the MTU of the link, and so forth. Using the `hostname` option enables you to view only the interfaces for a given device. View changes to interfaces using the `netq show events` command.
+
+You can monitor interface (link) health using the `netq show interfaces` command. You can view status of the links, whether they are operating over a VRF interface, the MTU of the link, and so forth. Using the `hostname` option enables you to view only the interfaces for a given device. View changes to interfaces using the `netq show events` command.
 
 The syntax for these commands is:
 
@@ -16,7 +17,7 @@ netq [<hostname>] show events [level info | level error | level warning | level 
 
 ### View Status for All Interfaces
 
-Viewing the status of all interfaces at one time can be helpful when you are trying to compare configuration or status of a set of links, or generally when changes have been made.
+Viewing the status of all interfaces at one time can be helpful when you are trying to compare the configuration or status of a set of links, or generally when changes occurred.
 
 This example shows all interfaces networkwide.
 
@@ -59,7 +60,7 @@ leaf01            peerlink                  bond             up         default 
 
 ## View Interface Status for a Given Device
 
-If you are interested in only a the interfaces on a specific device, you can view only those.
+You can choose to view the status of interfaces only on a specific device.
 
 This example shows all interfaces on the *spine01* device.
 
@@ -188,7 +189,7 @@ Count of matching link records: 11
 
 ## View Changes to Interfaces
 
-If you suspect that an interface is not working as expected, seeing a drop in performance or a large number of dropped messages for example, you can view changes that have been made to interfaces networkwide.
+If you suspect that an interface is not working as expected, seeing a drop in performance or a large number of dropped messages for example, you can view any changes made to interfaces networkwide.
 
 This example shows info level events for all interfaces in your network.
 
@@ -212,7 +213,7 @@ server02          link                     info             HostName server02 ch
 
 ## View Aliases for Interfaces
 
-You can see which interfaces have been configured with aliases.
+You can see which interfaces have aliases.
 
 ```
 cumulus@switch:~$ netq show interfaces alias swp2
@@ -234,11 +235,13 @@ spine03           swp2                                                     up   
 spine04           swp2                                                     up      Mon Jan 11 05:56:35 2021
 ```
 
-If you do not specify a switch port or host, all configured aliases are displayed.
+If you do not specify a switch port or host, the command returns all configured aliases.
 
 ## Check for MTU Inconsistencies
 
-The maximum transmission unit (MTU) determines the largest size packet or frame that can be transmitted across a given communication link. When the MTU is not configured to the same value on both ends of the link, communication problems can occur. With NetQ, you can verify that the MTU is correctly specified for each link using the netq check mtu command.
+<!-- vale off -->
+The maximum transmission unit (MTU) determines the largest size packet or frame that can be transmitted across a given communication link. When the MTU is not configured to the same value on both ends of the link, communication problems can occur. With NetQ, you can verify that the MTU is correctly specified for each link using the `netq check mtu` command.
+<!-- vale on -->
 
 This example shows that four switches have inconsistently specified link MTUs. Now the network administrator or operator can reconfigure the switches and eliminate the communication issues associated with this misconfiguration.
 

@@ -3,11 +3,12 @@ title: Monitor Container Environments Using Kubernetes API Server
 author: NVIDIA
 weight: 760
 ---
+
 The NetQ Agent monitors many aspects of containers on your network by integrating with the Kubernetes API server. In particular, the NetQ Agent tracks:
 
 - **Identity**: Every container's IP and MAC address, name, image, and more. NetQ can locate containers across the fabric based on a container's name, image, IP or MAC address, and protocol and port pair.
 - **Port mapping on a network**: Protocol and ports exposed by a container. NetQ can identify containers exposing a specific protocol and port pair on a network.
-- **Connectivity**: Information about network connectivity for a container, including adjacency, and can identify containers that can be affected by a top of rack switch.
+- **Connectivity**: Information about network connectivity for a container, including adjacency and identifying  a top of rack switch's effects on containers.
 
 This topic assumes a reasonable familiarity with Kubernetes terminology and architecture.
 

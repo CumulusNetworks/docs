@@ -15,10 +15,10 @@ This topic includes all commands that begin with `netq c*`, including all `netq 
 Three sets of validation commands are available, all for verifying the health and performance of network protocols and services:
 
 - The original on-demand validation commands. These commands all begin with `netq check`. You use them to validate various elements in your network fabric at the current time or a time in the past. They allow filtering by hostname, can include or exclude selected tests, and some have additional options. The results appear in the NetQ CLI immediately.
-- Use the newer set of validation commands to create on-demand or scheduled validations with the results appearing in the NetQ UI Validation Result cards. These commands begin with `netq add validation`. They are used to validate various elements in your network fabric currently or on a regular basis. No filtering on results is available within the commands as you do that through the NetQ UI.
+- Use the newer set of validation commands to create on-demand or scheduled validations with the results appearing in the NetQ UI Validation Result cards. These commands begin with `netq add validation`. You use them to validate various elements in your network fabric currently or on a regular basis. No filtering on results is available within the commands as you do that through the NetQ UI.
 - The validation management commands. These present a list of all jobs and job settings, and the ability to remove validations.
 
-Refer to {{<link title="Validation Checks">}} for a description of the tests run as part of each validation. The `netq check` commands are described here. The others are described elsewhere based on the command names.
+Refer to {{<link title="Validation Checks">}} for a description of the tests run as part of each validation. This topic describes the `netq check` commands, with the others described elsewhere based on the command names.
 
 **About Config Commands**
 
@@ -33,7 +33,7 @@ Validates the communication status of all nodes (leafs, spines, and hosts) runni
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed the validation
-- Number of nodes that have not been heard from in 90 seconds (rotten)
+- Number of nodes that have been silent for 90 seconds (rotten)
 - Number of nodes with warnings
 
 ### Syntax
@@ -61,7 +61,7 @@ None
 | check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
@@ -133,15 +133,16 @@ Agent Health Test   : passed
 - - -
 <!-- vale off -->
 ## netq check bgp
-<!-- vale on -->
+
 Validates that all configured route peering is established in your network fabric by looking for consistency across BGP sessions; in particular, whether duplicate router IDs exist and if any sessions are in the unestablished state. If you have nodes that implement virtual routing and forwarding (VRF), you can request status based on the relevant routing table. VRF is commonly configured in multi-tenancy deployments to maintain separate domains for each tenant.
+<!-- vale on -->
 
 The output displays the status (passed/failed/skipped) of all tests and a summary including:
 
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed the validation
-- Number of nodes that have not been heard from in 90 seconds (rotten)
+- Number of nodes that have been silent for 90 seconds (rotten)
 - Number of nodes with warnings
 - Total number of BGP sessions at the specified time
 - Number of sessions that have failed to establish a connection
@@ -169,11 +170,11 @@ None
 | ---- | ---- | ---- |
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
-| vrf | \<vrf\> | When a VRF is configured, the accepted values include: <ul><li>default: use the default routing table</li><li> mgmt: use management routing table</li><li>\<custom\>: use user-defined routing table</li></ul> |
+| vrf | \<vrf\> | When you configure a VRF, the accepted values include: <ul><li>default: use the default routing table</li><li> mgmt: use management routing table</li><li>\<custom\>: use user-defined routing table</li></ul> |
 | check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings.. |
@@ -248,12 +249,12 @@ None
 | ---- | ---- | ---- |
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
-| match-version | \<cl-ver\> | Identifies all switches with a Cumulus Linux version other than the one specified with this option. `cl-ver` values are specified in x.y.z format, for example 4.2.0.
-| min-version | \<cl-ver\> | Identifies all switches with a Cumulus Linux version older than the one specified with this option. `cl-ver` values are specified in x.y.z format, for example 3.7.12. |
+| match-version | \<cl-ver\> | Identifies all switches with a Cumulus Linux version other than the one specified with this option. Specify `cl-ver` values in *x.y.z* format, for example 4.2.0.
+| min-version | \<cl-ver\> | Identifies all switches with a Cumulus Linux version older than the one specified with this option. Specify `cl-ver` values in *x.y.z* format, for example 3.7.12. |
 | check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
 
@@ -351,7 +352,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed the validation
-- Number of nodes that have not been heard from in 90 seconds (rotten)
+- Number of nodes that have been silent for 90 seconds (rotten)
 - Number of nodes with warnings
 
 ### Syntax
@@ -379,7 +380,7 @@ None
 | check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
@@ -494,7 +495,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed the validation
-- Number of nodes that have not been heard from in 90 seconds (rotten)
+- Number of nodes that have been silent for 90 seconds (rotten)
 - Number of nodes with warnings
 - Total number of VNIs
 - Number of failed BGP sessions
@@ -527,7 +528,7 @@ the same |
 | check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
 
@@ -593,11 +594,11 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed validation
-- Number of nodes that have not been heard from in 90 seconds (rotten)
+- Number of nodes that have been silent for 90 seconds (rotten)
 - Number of nodes with warnings
 - Number of ports validated
 - Number of ports that failed validation
-- Number of unverified ports (no peer was found for node)
+- Number of unverified ports (no peer found for the node)
 
 ### Syntax
 
@@ -624,7 +625,7 @@ None
 | check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings.. |
@@ -728,7 +729,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed the validation
-- Number of nodes that have not been heard from in 90 seconds (rotten)
+- Number of nodes that have been silent for 90 seconds (rotten)
 - Number of nodes with warnings
 
 ### Syntax
@@ -756,7 +757,7 @@ None
 | check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
@@ -859,14 +860,14 @@ SVI Test                 : passed
 
 ## netq check mtu
 
-Verifies consistency of the maximum transmission unit (MTU) across all links in your network fabric. MTU consistency is verified at the level that is appropriate to the specific type of link. For example, bond interfaces have their MTU enforced at the bond level and not at the individual slave level. For MLAG/CLAG bonds, verification confirms whether both ends of the bond have the same MTU value configured for their local instance of the bond. You can also view nodes without a peer link.
+Verifies consistency of the maximum transmission unit (MTU) across all links in your network fabric. The command verifies the MTU consistency at the level appropriate to the specific type of link. For example, bond interfaces have their MTU enforced at the bond level and not at the individual slave level. For MLAG/CLAG bonds, verification confirms whether both ends of the bond have the same MTU value configured for their local instance of the bond. You can also view nodes without a peer link.
 
 The output displays the status (passed/failed/skipped) of all tests and a summary including:
 
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed validation
-- Number of nodes that have not been heard from in 90 seconds (rotten)
+- Number of nodes that have been silent for 90 seconds (rotten)
 - Number of nodes with warnings
 - Number of links validated
 - Number of links that failed validation
@@ -899,7 +900,7 @@ None
 | check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
@@ -1006,7 +1007,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed validation
-- Number of nodes that have not been heard from in 90 seconds (rotten)
+- Number of nodes that have been silent for 90 seconds (rotten)
 - Number of nodes with warnings
 - Number of nodes found that are unknown to NetQ
 - Number of NTP servers available for synchronization
@@ -1036,7 +1037,7 @@ None
 | check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
@@ -1088,15 +1089,16 @@ fw2               no       2020-11-18 19:50:46
 - - -
 <!-- vale off -->
 ## netq check ospf
-<!-- vale on -->
+
 Validates that all configured route peering is established in your network fabric by looking for consistency across OSPF sessions; in particular, whether duplicate router IDs exist and if any sessions are in the unestablished state.
+<!-- vale on -->
 
 The output displays the status (passed/failed/skipped) of all tests and a summary including:
 
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed validation (reporting session failures)
-- Number of nodes that have not been heard from in 90 seconds (rotten)
+- Number of nodes that have been silent for 90 seconds (rotten)
 - Number of nodes with warnings
 - Number of nodes with failed adjacencies
 - Total number of adjacencies
@@ -1125,7 +1127,7 @@ None
 | check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
@@ -1198,7 +1200,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed validation
-- Number of nodes that have not been heard from in 90 seconds (rotten)
+- Number of nodes that have been silent for 90 seconds (rotten)
 - Number of nodes with warnings
 - Number of sensors validated
 - Number of sensors that failed validation
@@ -1228,7 +1230,7 @@ None
 | check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
@@ -1285,7 +1287,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed validation
-- Number of nodes that have not been heard from in 90 seconds (rotten)
+- Number of nodes that have been silent for 90 seconds (rotten)
 - Number of nodes with warnings
 - Total number of links found
 - Number of links that failed validation
@@ -1316,7 +1318,7 @@ None
 | check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
@@ -1392,7 +1394,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed validation
-- Number of nodes that have not been heard from in 90 seconds (rotten)
+- Number of nodes that have been silent for 90 seconds (rotten)
 - Number of nodes with warnings
 
 ### Syntax
@@ -1419,7 +1421,7 @@ None
 | check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
@@ -1464,7 +1466,7 @@ BUM replication Test    : passed
 ## netq config add agent cluster-servers
 <!-- vale on -->
 
-Configures the server cluster where the NetQ Agents on monitored switches and hosts should send their collected data. You can also provide a specific port or VRF to use for the communication. Note that you must restart the NetQ Agent for the configuration to be enabled.
+Configures the server cluster where the NetQ Agents on monitored switches and hosts should send their collected data. You can also provide a specific port or VRF to use for the communication. Note that you must restart the NetQ Agent to enable the configuration.
 
 ### Syntax
 
@@ -1516,7 +1518,7 @@ cumulus@switch:~$ netq config restart agent
 
 ## netq config add agent command
 
-The NetQ Agent contains a pre-configured set of modular commands that run periodically and send event and resource data to the NetQ appliance or VM. This command lets you fine tune which events the agent can poll and vary the frequency of polling. Note that you must restart the NetQ Agent for the configuration to be enabled.
+The NetQ Agent contains a pre-configured set of modular commands that run periodically and send event and resource data to the NetQ appliance or VM. This command lets you fine tune which events the agent can poll and vary the frequency of polling. Note that you must restart the NetQ Agent to enable the configuration.
 
 Refer to the {{<link title="Manage NetQ Agents/#change-netq-agent-polling-data-and-frequency" text="NetQ User Guide">}} for details of the commands, including their service keys and default polling intervals.
 
@@ -1577,7 +1579,7 @@ Command Service ospf-neighbor-json is disabled
 
 ## netq config add agent cpu-limit
 
-Configures the NetQ Agent use no more than a specified maximum percentage (between 40 and 60 percent) of the CPU resources of the switch. If the command is run without a value, NetQ assumes a limit of 40%. Cumulus Linux versions 3.6 or later or 4.1.0 or later must be running on the switch for this setting to take effect. Note that you must restart the NetQ Agent for the configuration to be enabled.
+Configures the NetQ Agent use no more than a specified maximum percentage (between 40 and 60 percent) of the CPU resources of the switch. If you run the command without a value, NetQ assumes a limit of 40%. Cumulus Linux versions 3.6 or later or 4.1.0 or later must be running on the switch for this setting to take effect. Note that you must restart the NetQ Agent to enable the configuration.
 
 For more detail about this feature, refer to this [Knowledge Base]({{<ref "knowledge-base/Configuration-and-Usage/Cumulus-NetQ/NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches">}}) article.
 
@@ -1596,7 +1598,7 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| NA | \<text-limit-number\> | Set the threshold for the maximum percentage of CPU resource that the NetQ Agent is allowed to use |
+| NA | \<text-limit-number\> | Set the threshold for the maximum percentage of CPU resources that the NetQ Agent can use |
 
 ### Command History
 
@@ -1629,7 +1631,7 @@ Restarting netq-agent... Success!
 
 ## netq config add agent frr-monitor
 
-Configures the NetQ Agent to monitor the Free Range Router (FRR) function when running in a Docker container. Typically FRR is run as a service. Note that you must restart the NetQ Agent for the configuration to be enabled.
+Configures the NetQ Agent to monitor the Free Range Router (FRR) function when running in a Docker container. Typically FRR runs as a service. Note that you must restart the NetQ Agent to enable the configuration.
 
 ### Syntax
 
@@ -1678,7 +1680,7 @@ Restarting netq-agent... Success!
 
 ## netq config add agent kubernetes-monitor
 
-Configures the NetQ Agent to monitor kubernetes containers on the switch and to set how often to collect this information (between 10 and 120 seconds). Note that you must restart the NetQ Agent for the configuration to be enabled.
+Configures the NetQ Agent to monitor kubernetes containers on the switch and to set how often to collect this information (between 10 and 120 seconds). Note that you must restart the NetQ Agent to enable the configuration.
 
 ### Syntax
 
@@ -1737,14 +1739,14 @@ Restarting netq-agent... Success!
 
 ## netq config add agent loglevel
 
-Configures the amount of information to log about the NetQ Agent activity, from only critical issues to every available message. Identified issues are logged to */var/log/netq-agent.log* file. The default log level is *info*.
+Configures the amount of information to log about the NetQ Agent activity, from only critical issues to every available message. Identified issues get logged to */var/log/netq-agent.log* file. The default log level is *info*.
 
 - Error: Logs only events classified as errors
 - Warning: Logs events classified as warnings and errors
 - Info: Logs events classified as info, warning, and errors
 - Debug: Logs all events
 
-It is recommended to return a log level of info or higher after you have completed debugging. Note that you must restart the NetQ Agent for the configuration to be enabled.
+You should return a log level of info or higher after you finish debugging. Note that you must restart the NetQ Agent for to enable the configuration.
 
 ### Syntax
 
@@ -1795,7 +1797,7 @@ Restarting netq-agent... Success!
 
 Configures the range of IP addresses to search as part of the lifecycle management discovery process (when NetQ is looking for Cumulus Linux switches not running NetQ).
 
-Ranges can be contiguous, for example *192.168.0.24-64*, or non-contiguous, for example *192.168.0.24-64,128-190,235*, but they must be contained within a single subnet. A maximum of 50 addresses can be included in an address range; if necessary, break the range into smaller ranges.
+Ranges can be contiguous, for example *192.168.0.24-64*, or non-contiguous, for example *192.168.0.24-64,128-190,235*, but they must be within a single subnet. You can include a maximum of 50 addresses in an address range; if necessary, break the range into smaller ranges.
 
 ### Syntax
 
@@ -1816,8 +1818,8 @@ netq config add agent opta-discovery-servers
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| vrf | \<text-vrf-name\> | Look for Cumulus Linux switches with the specified IP addresses that use the VRF with this name. When unspecified, the *default* VRF is used. |
-| port | \<text-discovery-server-port\> | Look for Cumulus Linux switches with the specified IP addresses that use this port. When unspecified, port 31980 is used. |
+| vrf | \<text-vrf-name\> | Look for Cumulus Linux switches with the specified IP addresses that use the VRF with this name. When unspecified, the command uses the *default* VRF. |
+| port | \<text-discovery-server-port\> | Look for Cumulus Linux switches with the specified IP addresses that use this port. When unspecified, the command uses port 31980. |
 
 ### Command History
 
@@ -1847,7 +1849,7 @@ Restarting netq-agent... Success!
 
 ## netq config add agent sensors
 
-Configures the NetQ Agent to collect information from the sensors on the switch chassis, including fan, power supply, and temperature data. This command must be run from the chassis.
+Configures the NetQ Agent to collect information from the sensors on the switch chassis, including fan, power supply, and temperature data. You must run this command from the chassis.
 
 ### Syntax
 
@@ -2042,7 +2044,7 @@ Restarting netq-agent... Success!
 
 ## netq config add agent wjh-drop-filter
 
-Filters the WJH events at the NetQ Agent before it is processed by the NetQ system. Filtering is performed on a drop-type basis. You can filter the drop type further by specifying one or more drop reasons or severities. This command only applies to NVIDIA Spectrum switches.
+Filters the WJH events at the NetQ Agent before the NetQ system processes them. NetQ performs the filtering on a drop-type basis. You can filter the drop type further by specifying one or more drop reasons or severities. This command only applies to NVIDIA Spectrum switches.
 
 ### Syntax
 
@@ -2066,8 +2068,8 @@ netq config add agent wjh-drop-filter
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| drop-reasons | \<text-wjh-drop-reasons\> | Only collect and send WJH events with these drop reasons. When more than one drop reason is desired, this value should be formatted as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}}. |
-| severity | \<text-drop-severity-list\> | Only collect and send WJH events with these severities. When more than one severity is desired, this value should be formatted as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
+| drop-reasons | \<text-wjh-drop-reasons\> | Only collect and send WJH events with these drop reasons. When you desire more than one drop reason, you should format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}}. |
+| severity | \<text-drop-severity-list\> | Only collect and send WJH events with these severities. When you desire more than one severity, you should format this value as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
 
 ### Command History
 
@@ -2097,7 +2099,9 @@ Restarting netq-agent... Success!
 
 ## netq config add agent wjh-threshold
 
-WJH latency and congestion metrics depend on threshold settings to trigger the events. Packet latency is measured as the time spent inside a single system (switch). Congestion is measured as a percentage of buffer occupancy on the switch. When configured, the NetQ Agent collects and sends these WJH triggered events when the high and low thresholds are crossed. This command only applies to NVIDIA Spectrum switches.
+WJH latency and congestion metrics depend on threshold settings to trigger the events. NetQ measures packet latency as the time spent inside a single system (switch). It measures congestion as a percentage of buffer occupancy on the switch. When configured, the NetQ Agent collects and sends these WJH triggered events when a metric crosses the high and low thresholds.
+
+This command only applies to NVIDIA Spectrum switches.
 
 ### Syntax
 
@@ -2117,8 +2121,8 @@ netq config add agent wjh-threshold
 | wjh-threshold | NA | Collect and send WJH latency or congestion events triggered by the specified high and low thresholds |
 | latency | NA | Collect and send WJH latency events |
 | congestion | NA | Collect and send WJH congestion events |
-| NA | \<text-tc-list\> or all | Only send events for these traffic classes, or use *all* for all traffic classes. When more than one traffic class is desired, this value should be formatted as a comma-separated list, without spaces. |
-| NA | \<text-port-list\> or all | Only send events occurring on these ports, or use *all* for all ports. When more than one port is desired, this value should be formatted as a comma-separated list, without spaces. For example *swp1,swp2,swp3,swp4*. |
+| NA | \<text-tc-list\> or all | Only send events for these traffic classes, or use *all* for all traffic classes. When you desire more than one traffic class, you should format this value should as a comma-separated list, without spaces. |
+| NA | \<text-port-list\> or all | Only send events occurring on these ports, or use *all* for all ports. When you desire more than one port, you should format this value as a comma-separated list, without spaces. For example *swp1,swp2,swp3,swp4*. |
 | NA | \<text-th-hi\> | Trigger an event when the latency is greater than this amount of time, or when buffer occupancy is greater than this percentage. |
 | NA | \<text-th-lo\> | Trigger an event when the latency is less than this amount of time, or when buffer occupancy is less than this percentage. |
 
@@ -2160,7 +2164,7 @@ cumulus@switch:~$ sudo netq config add agent wjh-threshold congestion 4 swp1 200
 <!-- vale off -->
 ## netq config add cli server
 <!-- vale on -->
-Configures the NetQ CLI on the switch or host where this command is run. The `access-key` and `secret-key` options or the `cli-keys-file` option are required for cloud deployments, as well as the `premises` option.
+Configures the NetQ CLI on the switch or host where you run this command. Cloud deployments require the `access-key` and `secret-key` options or the `cli-keys-file` option, as well as the `premises` option.
 
 When the NetQ CLI is not configured, you can run only `netq config` and `netq help` commands, and you must use `sudo` to run them.
 
@@ -2190,7 +2194,7 @@ netq config add cli server
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| vrf | \<text-vrf-name\> | Use this VRF for communication with the telemetry server (NetQ appliance, VM, or cloud gateway). This should be the same VRF where the routing tables are set for connectivity to the telemetry server. Typically this is the management VRF. |
+| vrf | \<text-vrf-name\> | Use this VRF for communication with the telemetry server (NetQ appliance, VM, or cloud gateway). This should be the same VRF where you set the routing tables for connectivity to the telemetry server. Typically this is the management VRF. |
 | port | \<text-gateway-port\> | Use this port for communication with the telemetry server (NetQ appliance, VM, or cloud gateway). The default port is 32708 for on-premises deployments and 443  for cloud deployments. |
 
 ### Command History
@@ -2231,7 +2235,9 @@ cumulus@switch:~# sudo netq config restart cli
 
 ## netq config add color
 
+<!-- vale off -->
 Configures command output to presents results in color for many commands. Results with errors are shown in <span style="color: #ff0000;">red</span>, and warnings are shown in <span style="color: #ffcc00;">yellow</span>. Results without errors or warnings are shown in either black or <span style="color: #00ff00;">green</span>. VTEPs are shown in <span style="color: #0000ff;">blue</span>. A node in the *pretty* output of a trace command is shown in **bold**, and a router interface is wrapped in angle brackets (\< \>). Outputs are shown with color cues as soon as you run the command.
+<!-- vale on -->
 
 ### Syntax
 
@@ -2738,8 +2744,8 @@ netq config del agent wjh-drop-filter
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| drop-reasons | \<text-wjh-drop-reasons\> | Delete WJH event filter with these drop reasons. When more than one drop reason is desired, this value should be formatted as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}}. |
-| severity | \<text-drop-severity-list\> | Delete WJH event filter with these severities. When more than one severity is desired, this value should be formatted as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
+| drop-reasons | \<text-wjh-drop-reasons\> | Delete WJH event filter with these drop reasons. When you desire more than one drop reason, you should format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}}. |
+| severity | \<text-drop-severity-list\> | Delete WJH event filter with these severities. When you desire more than one severity, you should format this value as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
 
 ### Command History
 
@@ -2786,7 +2792,7 @@ netq config del agent wjh-threshold
 | wjh-threshold | NA | Remove latency or congestion events triggered by thresholds |
 | latency | NA | Remove latency event thresholds |
 | congestion | NA | Remove congestion event thresholds |
-| NA | \<text-tc-list\> or all | Remove latency or congestion events for these traffic classes, or use *all* for all traffic classes. When more than one traffic class is desired, this value should be formatted as a comma-separated list, without spaces. |
+| NA | \<text-tc-list\> or all | Remove latency or congestion events for these traffic classes, or use *all* for all traffic classes. When you desire more than one traffic class, you should format this value as a comma-separated list, without spaces. |
 
 ### Options
 
@@ -2942,7 +2948,7 @@ None
 
 ## netq config restart
 
-Restart the NetQ Agent or CLI daemons on a switch. This is used after making changes to the NetQ Agent or CLI configurations.
+Restarts the NetQ Agent or CLI daemons on a switch. Use this command after making changes to the NetQ Agent or CLI configurations.
 
 ### Syntax
 
@@ -3119,7 +3125,7 @@ cumulus@switch:~$ netq config show agent json
 
 ## netq config show agent commands
 
-The NetQ Agent contains a pre-configured set of modular commands that run periodically and send event and resource data to the NetQ appliance or VM. This command displays the configuration of these commands, including the definition of the commands, which are active, and how often they are run. You can also filter by the service key to view a given command.
+The NetQ Agent contains a pre-configured set of modular commands that run periodically and send event and resource data to the NetQ appliance or VM. This command displays the configuration of these commands, including the definition of the commands, which are active, and how often they run. You can also filter by the service key to view a given command.
 
 ### Syntax
 
@@ -3211,7 +3217,7 @@ netq config show agent cpu-limit
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| cpu-limit | NA | View the maximum percentage of CPU resource that the NetQ Agent is allowed to use |
+| cpu-limit | NA | View the maximum percentage of CPU resource that the NetQ Agent can use |
 
 ### Options
 
@@ -3321,9 +3327,9 @@ false
 
 <!-- vale off -->
 ## netq config show agent kubernetes-monitor
-<!-- vale on -->
 
-Displays the NetQ Agent kubernetes monitoring configuration on a switch, included whether it is enabled and the polling period.
+Displays the NetQ Agent Kubernetes monitoring configuration on a switch, included whether it is enabled and the polling period.
+<!-- vale on -->
 
 ### Syntax
 
@@ -3371,7 +3377,7 @@ kubernetes  true                 120
 
 ## netq config show agent loglevel
 
-Displays the amount of information logged about the NetQ Agent activity, from only critical issues to every available message. Identified issues are logged to */var/log/netq-agent.log* file. The default log level is *info*.
+Displays the amount of information logged about the NetQ Agent activity, from only critical issues to every available message. Identified issues get logged to the `/var/log/netq-agent.log` file. The default log level is *info*.
 
 - Error: Logs only events classified as errors
 - Warning: Logs events classified as warnings and errors
@@ -3480,7 +3486,7 @@ cumulus@chassis:~$ netq config show agent sensors
 
 ## netq config show agent stats
 
-Displays whether the NetQ Agent is configured for interface statistics monitoring on a switch (true) or not (false).
+Displays whether you configured the NetQ Agent for interface statistics monitoring on a switch (true) or not (false).
 
 ### Syntax
 
@@ -3539,7 +3545,7 @@ cumulus@switch:~$ netq config show agent stats json
 
 ## netq config show agent wjh
 
-Displays whether the NetQ Agent is configured for What Just Happened event monitoring on an NVIDIA Spectrum switch. Refer to {{<link title="Configure and Monitor What Just Happened" text="WJH configuration">}} for setting up WJH monitoring.
+Displays whether you configured the NetQ Agent for What Just Happened event monitoring on an NVIDIA Spectrum switch. Refer to {{<link title="Configure and Monitor What Just Happened" text="WJH configuration">}} for setting up WJH monitoring.
 
 ### Syntax
 
@@ -3586,7 +3592,7 @@ cumulus@chassis:~$ netq config show agent wjh
 ## netq config show agent wjh-threshold
 <!-- vale on -->
 
-Displays whether the NetQ Agent is configured with WJH latency and congestion thresholds on an  NVIDIA Spectrum switch.
+Displays whether you configured the NetQ Agent with WJH latency and congestion thresholds on an NVIDIA Spectrum switch.
 
 ### Syntax
 

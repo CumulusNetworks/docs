@@ -4,11 +4,12 @@ author: NVIDIA
 weight: 695
 toc: 3
 ---
+
 You can decommission a switch or host at any time. You might need to do this when you:
 
-- Change the hostname of the switch or host being monitored
-- Move the switch or host being monitored from one data center to another
-- RMA the switch or host being monitored
+- Change the hostname of the monitored switch or host
+- Move the monitored switch or host from one data center to another
+- RMA the monitored switch or host
 
 {{%notice note%}}
 

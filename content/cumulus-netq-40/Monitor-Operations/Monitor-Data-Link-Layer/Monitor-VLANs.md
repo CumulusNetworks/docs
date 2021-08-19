@@ -34,13 +34,13 @@ When entering a time value, you must include a numeric value *and* the unit of m
 - **s**: seconds
 - **now**
 
-When using the `between` option, the start time (`text-time`) and end time (`text-endtime`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
+When using the `between` option, you can enter the start time (`text-time`) and end time (`text-endtime`) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 
 {{%/notice%}}
 
 ## View VLAN Information for All Devices
 
-You can view the configuration information for all VLANs in your network by running the `netq show vlan` command. It lists VLANs by device, and indicates any switch virtual interfaces (SVIs) configured and the last time this configuration was changed.
+You can view the configuration information for all VLANs in your network by running the `netq show vlan` command. It lists VLANs by device, and indicates any switch virtual interfaces (SVIs) configured and the last time this configuration changed.
 
 This example shows the VLANs configured across a network based on the NVIDIA reference architecture.
 
@@ -59,7 +59,7 @@ leaf04            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28
 
 ## View ALL VLAN Information for a Given Device
 
-You can view the configuration information for all VLANs running on a specific device using the `netq <hostname> show vlan` command. It lists VLANs running on the device, the ports used, whether an SVI is configured, and the last time this configuration was changed.
+You can view the configuration information for all VLANs running on a specific device using the `netq <hostname> show vlan` command. It lists VLANs running on the device, the ports used, whether an SVI is present, and the last time this configuration changed.
 
 This example shows the VLANs configured on the *leaf02* switch.
 
@@ -97,9 +97,11 @@ leaf04            10     bond1,vni10                         yes  Wed Oct 28 15:
 
 ## View VLAN Information for a Time in the Past
 
-You can view the VLAN configuration information across the network or for a given device at a time in the past using the `around` option of the `netq show vlan` command. This can be helpful when you think changes might have been made.
+You can view the VLAN configuration information across the network or for a given device at a time in the past using the `around` option of the `netq show vlan` command. This can be helpful when you think changes might have occurred.
 
+<!-- vale off -->
 This example shows the VLAN configuration in the last 24 hours and 30 days ago. Note that some SVIs have been removed.
+<!-- vale on -->
 
 ```
 cumulus@switch:~$ netq show vlan
@@ -153,10 +155,7 @@ leaf02            4002   vniBLUE                             yes  Wed Oct 28 15:
 
 ## View VLAN Interface Information
 
-You can view the current or past state of the interfaces associated with
-VLANs using the `netq show interfaces` command. This provides the status
-of the interface, its specified MTU, whether it is running over a VRF,
-and the last time it was changed.
+You can view the current or past state of the interfaces associated with VLANs using the `netq show interfaces` command. This provides the status of the interface, its specified MTU, whether it is running over a VRF, and the last time it changed.
 
 ```
 cumulus@switch:~$ netq show interfaces type vlan
@@ -210,12 +209,7 @@ Count of matching link records: 6
 
 ### View MAC Addresses Associated with a VLAN
 
-You can determine the MAC addresses associated with a given VLAN using
-the `netq show macs vlan` command. The command also provides the
-hostnames of the devices, the egress port for the interface, whether the
-MAC address originated from the given device, whether it learns the MAC
-address from the peer (remote=yes), and the last time the configuration
-was changed.
+You can determine the MAC addresses associated with a given VLAN using the `netq show macs vlan` command. The command also provides the hostnames of the devices, the egress port for the interface, whether the MAC address originated from the given device, whether it learns the MAC address from the peer (`remote=yes`), and the last time the configuration changed.
 
 This example shows the MAC addresses associated with VLAN *10*.
 
@@ -276,10 +270,9 @@ yes    52:37:ca:35:d3:70  10     leaf01            vni10                        
 
 ### View MAC Addresses Associated with an Egress Port
 
-You can filter that information down to just the MAC addresses on a device that are associated with a given VLAN that use a particular egress port. Use the `netq <hostname> show macs` command with the `egress-port` and `vlan` options.
+You can filter information down to just the MAC addresses associated with a given VLAN on a device that use a particular egress port. Use the `netq <hostname> show macs` command with the `egress-port` and `vlan` options.
 
-This example shows MAC addresses associated with the *leaf02* switch and
-VLAN *10* that use the *bridge* port.
+This example shows MAC addresses associated with the *leaf02* switch and VLAN *10* that use the *bridge* port.
 
 ```
 cumulus@netq-ts:~$ netq leaf02 show macs egress-port bridge vlan 10

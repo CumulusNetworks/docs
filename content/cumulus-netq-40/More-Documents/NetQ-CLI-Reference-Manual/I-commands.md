@@ -13,7 +13,7 @@ This topic includes all commands that begin with `netq i*`, `netq j*`, and `netq
 
 You can install NetQ with a single command or you can perform the individual steps using multiple commands. Generally, using the single command option is *strongly recommended*. However, the individual commands can be useful for troubleshooting the installation process when it fails. You might need to {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="create a support ticket">}} to take full advantage of the individual commands.
 
-These commands can only be used after the physical server or VM has been bootstrapped. Refer to {{<link title="A and B Commands/#netq-bootstrap" text="netq bootstrap">}}.
+You can use these commands only after bootstrapping the physical server or VM. Refer to {{<link title="A and B Commands/#netq-bootstrap" text="netq bootstrap">}}.
 
 {{<figure src="/images/netq/cliref-install-onprem-single-server-330.png" width="500" caption="On-premises single server">}}
 
@@ -95,7 +95,7 @@ netq install cluster full
 | full | NA | Install a server cluster, running all initialization and configuration commands automatically |
 | interface | \<text-opta-ifname\> | Install a server cluster with a master node using this interface to communicate with the NetQ Agents on the worker nodes |
 | ip-addr | \<text-ip-addr\> | Install a server cluster with a master node with this IP address to communicate with the NetQ Agents on the worker nodes |
-| bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; a full path is required |
+| bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; you must specify a full path |
 | workers | \<text-worker-01\> \<text-worker-02\> | Install the worker nodes with these IP addresses |
 
 ### Options
@@ -204,13 +204,13 @@ netq install cluster join-workers
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | join-workers | NA | Identify at least one worker node for the server cluster |
-| NA | \<text-worker-node-01\> | IP address of server to be configured as the first worker node in this server cluster |
+| NA | \<text-worker-node-01\> | IP address of server to configure as the first worker node in this server cluster |
 
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| NA | \<text-worker-node-02\> | IP address of server to be configured as the second worker node in this server cluster |
+| NA | \<text-worker-node-02\> | IP address of server to configure as the second worker node in this server cluster |
 
 ### Command History
 
@@ -241,7 +241,7 @@ cumulus@<hostname>:~$ netq install cluster join-workers 192.168.10.23 192.168.10
 ## netq install cluster infra-job
 <!-- vale on -->
 
-After initialization and worker nodes have been configured, this command installs the Kafka service and operators to aid in installation of the NetQ software.
+After initialization and configuring the worker nodes, this command installs the Kafka service and operators to aid in installation of the NetQ software.
 
 Alternately, use {{<link title="#netq-install-cluster-full" text="netq install cluster full">}} (on-premises) or {{<link title="#netq-install-opta-cluster" text="netq install opta cluster">}} (remote/cloud) to perform this and all other steps of a NetQ installation with a single command.
 
@@ -290,7 +290,7 @@ cumulus@<hostname>:~$ netq install cluster infra-job
 ## netq install cluster install-job
 <!-- vale on -->
 
-After all the infrastructure has been prepared and configured, this command installs the NetQ software using the NetQ installation file that you have previously downloaded and stored.
+After you prepare and configure all the infrastructure, this command installs the NetQ software using the NetQ installation file that you previously downloaded and stored.
 
 Obtain the software release bundle from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
 
@@ -308,7 +308,7 @@ netq install cluster install-job
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | install-job | NA | Install the NetQ software |
-| bundle | \<text-bundle-url\> | Install the `NetQ-x.y.z.tgz` installation file at this location; the full path is required |
+| bundle | \<text-bundle-url\> | Install the `NetQ-x.y.z.tgz` installation file at this location; you must specify a full path |
 
 ### Options
 
@@ -341,9 +341,9 @@ cumulus@<hostname>:~$ netq install cluster install-job bundle /mnt/installables/
 
 <!-- vale off -->
 ## netq install opta activate-job
-<!-- vale on -->
 
-Activates the NetQ Collector software after an initial server or server cluster (master and two worker nodes) is configured and installed. Activation requires a configuration key that can be obtained from an email titled <!-- vale off -->*A new site has been added to your NVIDIA Cumulus NetQ account* <!-- vale on -->(sent to your NetQ administrator).
+Activates the NetQ Collector software after you configure and install an initial server or server cluster (master and two worker nodes). Activation requires a configuration key that you can obtain from an email titled *A new site has been added to your NVIDIA Cumulus NetQ account* (sent to your NetQ administrator).
+<!-- vale on -->
 
 ### Syntax
 
@@ -387,13 +387,16 @@ cumulus@switch:~$ netq install opta activate-job config-key ju8Kl4IhZ3cucHJvZDEu
 
 ## netq install opta cluster
 
-Installs the NetQ Collector software on a master node and two worker nodes. For cloud deployments, it installs the software on the NetQ Cloud Appliance or VM. For a multi-site on-premises deployment, it installs the software on one or two secondary servers at the external premises. You must have the hostname, IP address, or interface of the servers, the NetQ software bundle, and configuration key to run the command. A proxy can also be configured.
+Installs the NetQ Collector software on a master node and two worker nodes. For cloud deployments, it installs the software on the NetQ Cloud Appliance or VM. For a multi-site on-premises deployment, it installs the software on one or two secondary servers at the external premises. You must have the hostname, IP address, or interface of the servers, the NetQ software bundle, and configuration key to run the command. You can also configure a proxy.
 
 Obtain the software release bundle from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
 
 Obtain the config-key as follows:
+
+<!-- vale off -->
 - Cloud: Locate and retrieve key from email titled *A new site has been added to your NVIDIA Cumulus NetQ account* (sent to your NetQ administrator)
 - Remote: Follow the instructions in {{<link title="Manage the NetQ UI/#configure-multiple-premises" text="Configure Multiple Premises">}}
+<!-- vale on -->
 
 ### Syntax
 
@@ -413,7 +416,7 @@ netq install opta cluster full
 | full | NA | Install a server with NetQ Collector software, running all initialization and configuration commands automatically |
 | interface | \<text-opta-ifname\> | Install a server cluster with a master node using this interface to communicate with the NetQ Agents on the worker nodes |
 | ip-addr | \<text-ip-addr\> | Install a server cluster with a master node with this IP address to communicate with the NetQ Agents on the worker nodes |
-| bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; a full path is required |
+| bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; you must specify a full path |
 | workers | \<text-worker-01\> \<text-worker-02\> | Install the worker nodes with these IP addresses |
 | conifg-key | \<text-opta-key\> | Use this unique key to activate the software |
 
@@ -421,8 +424,8 @@ netq install opta cluster full
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| proxy-host | \<text-proxy-host\> | Use the proxy server with this hostname or IP address instead of directly connecting to the NetQ Cloud Appliance or VM; a port must also be specified |
-| proxy-port | \<text-proxy-port\> | Use this port on the proxy server instead of directly connecting to the NetQ Cloud Appliance or VM; a proxy host must also be specified |
+| proxy-host | \<text-proxy-host\> | Use the proxy server with this hostname or IP address instead of directly connecting to the NetQ Cloud Appliance or VM; you must also specify a port |
+| proxy-port | \<text-proxy-port\> | Use this port on the proxy server instead of directly connecting to the NetQ Cloud Appliance or VM; you must also specify a proxy host |
 
 ### Command History
 
@@ -450,11 +453,13 @@ cumulus@<hostname>:~$ netq install opta cluster full interface en01 bundle /mnt/
 
 ## netq install opta standalone
 
-Installs the NetQ Collector software on a single cloud server (NetQ Cloud Appliance or VM) with a single command. You must have the hostname, IP address, or interface of the server, the NetQ software bundle, and configuration key to run the command. A proxy can also be configured.
+Installs the NetQ Collector software on a single cloud server (NetQ Cloud Appliance or VM) with a single command. You must have the hostname, IP address, or interface of the server, the NetQ software bundle, and configuration key to run the command. You can also configure a proxy.
 
 Obtain the software release bundle from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
 
-Obtain the config-key from the email sent to your NetQ administrator titled <!-- vale off -->*A new site has been added to your NVIDIA Cumulus NetQ account*.<!-- vale on -->
+<!-- vale off -->
+Obtain the config-key from the email sent to your NetQ administrator titled *A new site has been added to your NVIDIA Cumulus NetQ account*.
+<!-- vale on -->
 
 ### Syntax
 
@@ -473,15 +478,15 @@ netq install opta standalone full
 | full | NA | Install a server with NetQ Collector software, running all initialization and configuration commands automatically |
 | interface | \<text-opta-ifname\> | Install NetQ on the server with this interface as the communication interface for the NetQ Agents on the monitored switches and hosts |
 | ip-addr | \<text-ip-addr\> | Install NetQ on the server with this IP address to communicate with the NetQ Agents on the monitored switches and hosts |
-| bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; a full path is required |
+| bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; you must specify a full path |
 | conifg-key | \<text-opta-key\> | Use this unique key to activate the software |
 
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| proxy-host | \<text-proxy-host\> | Use the proxy server with this hostname or IP address instead of directly connecting to the NetQ Cloud Appliance or VM; a port must also be specified |
-| proxy-port | \<text-proxy-port\> | Use this port on the proxy server instead of directly connecting to the NetQ Cloud Appliance or VM; a proxy host must also be specified |
+| proxy-host | \<text-proxy-host\> | Use the proxy server with this hostname or IP address instead of directly connecting to the NetQ Cloud Appliance or VM; you must also specify a port |
+| proxy-port | \<text-proxy-port\> | Use this port on the proxy server instead of directly connecting to the NetQ Cloud Appliance or VM; you must also specify a proxy host |
 
 ### Command History
 
@@ -519,7 +524,7 @@ netq install patch
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| NA | \<text-tarball-name\> | Install the software patch contained in the tarball at this location; full path is required |
+| NA | \<text-tarball-name\> | Install the software patch contained in the tarball at this location; you must specify a full path |
 
 ### Options
 
@@ -550,7 +555,7 @@ cumulus@<hostname>:~$ netq install patch /mnt/installables/NetQ-4.0.0-patch.tgz
 ## netq install standalone activate-job
 <!-- vale on -->
 
-Activates a NetQ instance after the software has been installed. Activation requires a configuration key that can be obtained from support.
+Activates a NetQ instance after you install the software. Activation requires a configuration key that you can obtain from support.
 
 Alternately, use {{<link title="#netq-install-standalone-full" text="netq install standalone full">}} to perform this and all other steps of a NetQ installation with a single command.
 
@@ -619,7 +624,7 @@ netq install standalone full
 | full | NA | Install a server with NetQ software, running all initialization and configuration commands automatically |
 | interface | \<text-opta-ifname\> | Install NetQ on the server with this interface as the communication interface for the NetQ Agents on the monitored switches and hosts |
 | ip-addr | \<text-ip-addr\> | Install NetQ on the server with this IP address to communicate with the NetQ Agents on the monitored switches and hosts |
-| bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; a full path is required |
+| bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; you must specify a full path |
 
 ### Options
 
@@ -754,7 +759,7 @@ cumulus@<hostname>:~$ netq install standalone init-job
 ## netq install standalone install-job
 <!-- vale on -->
 
-After all the infrastructure has been prepared and configured, this command installs the NetQ Platform software on the NetQ On-premises Appliance or VM using the NetQ installation file that you have previously downloaded and stored.
+After you prepare and configure all the infrastructure, this command installs the NetQ Platform software on the NetQ On-premises Appliance or VM using the NetQ installation file that you previously downloaded and stored.
 
 Obtain the software release bundle from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
 
@@ -772,7 +777,7 @@ netq install standalone install-job
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | install-job | NA | Install the NetQ software |
-| bundle | \<text-bundle-url\> | Install the `NetQ-x.y.z.tgz` installation file at this location; the full path is required |
+| bundle | \<text-bundle-url\> | Install the `NetQ-x.y.z.tgz` installation file at this location; you must specify the full path |
 
 ### Options
 

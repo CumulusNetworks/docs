@@ -376,13 +376,13 @@ netq add notification channel email <text-channel-name> to <text-email-toids>
 netq show notification channel [json]
 ```
 
-The configuration is different depending on whether you are using the on-premises or cloud version of NetQ. No SMTP configuration is required  for cloud deployments as the NetQ cloud service uses the NetQ SMTP server to push email notifications.
+The configuration is different depending on whether you are using the on-premises or cloud version of NetQ. Do not configure SMTP for cloud deployments as the NetQ cloud service uses the NetQ SMTP server to push email notifications.
 
 For an **on-premises** deployment:
 
 1. Set up an SMTP server. The server can be internal or public.
 
-2. Create a user account (login and password) on the SMTP server. Notifications are sent to this address.
+2. Create a user account (login and password) on the SMTP server. NetQ sends notifications to this address.
 
 3. Create the notification channel using this form of the CLI command:
 
@@ -465,7 +465,7 @@ Successfully added/updated channel cloud-email
 
 ### Create a Rule
 
-The second step is to create and verify a rule that accepts a set of events. Rules for system events are created using the NetQ CLI.
+The second step is to create and verify a rule that accepts a set of events. You create rules for system events using the NetQ CLI.
 
 To create and verify the specification of a rule, run:
 
@@ -476,7 +476,7 @@ netq show notification rule [json]
 
 Refer to {{<link title="#create-rules">}} for a list of available keys and values.
 
-This example creates a rule named *all-interfaces*, using the key *ifname* and the value *ALL* to indicate that all events from all interfaces should be sent to any channel with this rule.
+This example creates a rule named *all-interfaces*, using the key *ifname* and the value *ALL*, which sends all events from all interfaces to any channel with this rule.
 
 ```
 cumulus@switch:~$ netq add notification rule all-interfaces key ifname value ALL
@@ -493,7 +493,7 @@ Refer to {{<link title="#Configure Threshold-based Event Notifications" text="Ad
 
 ### Create a Filter
 
-The final step is to create a filter to tie the rule to the channel. Filters are created for system events using the NetQ CLI.
+The final step is to create a filter to tie the rule to the channel. You create filters for system events using the NetQ CLI.
 
 To create and verify a filter, run:
 
@@ -574,11 +574,11 @@ Refer to {{<link title="#Configure Threshold-based Event Notifications" text="Ad
 
 ## Configure Advanced NetQ Event Notifications
 
-If you want to create more granular notifications based on such items as selected devices, characteristics of devices, or protocols, or you want to use a proxy server, you need more than the basic notification configuration. Details for creating these more complex notification configurations are included here.
+If you want to create more granular notifications based on such items as selected devices, characteristics of devices, or protocols, or you want to use a proxy server, you need more than the basic notification configuration. The following section includes details for creating these more complex notification configurations.
 
 ### Configure a Proxy Server
 
-To send notification messages through a proxy server instead of directly to a notification channel, you configure NetQ with the hostname and optionally a port of a proxy server. If no port is specified, NetQ defaults to port 80. Only one proxy server is currently  supported. To simplify deployment, configure your proxy server before configuring channels, rules, or filters.
+To send notification messages through a proxy server instead of directly to a notification channel, you configure NetQ with the hostname and optionally a port of a proxy server. If you do not specify a port, NetQ defaults to port 80. Only one proxy server is currently  supported. To simplify deployment, configure your proxy server before configuring channels, rules, or filters.
 
 To configure and verify the proxy server, run:
 
@@ -718,7 +718,7 @@ where:
 </tr>
 <tr class="even">
 <td>tag &lt;text-slack-tag&gt;</td>
-<td>Optional tag appended to the Slack notification to highlight particular channels or people. The tag value must be preceded by the @ sign. For example, <em>@netq-info</em>.</td>
+<td>Optional tag appended to the Slack notification to highlight particular channels or people. An <strong>@</strong> sign must precede the tag value. For example, <em>@netq-info</em>.</td>
 </tr>
 </tbody>
 </table>
@@ -832,7 +832,7 @@ This example creates an email channel named *onprem-email* that uses the *smtpse
 
 1. Set up an SMTP server. The server can be internal or public.
 
-2. Create a user account (login and password) on the SMTP server. Notifications are sent to this address.
+2. Create a user account (login and password) on the SMTP server. NetQ sends notifications to this address.
 
 3. Create the notification channel.
 
@@ -912,9 +912,9 @@ This example creates an email channel named *cloud-email* that uses the NetQ SMT
 
 ### Create Rules
 
-Each rule is comprised of a single key-value pair. The key-value pair indicates what messages to include or drop from event information sent to a notification channel. You can create more than one rule for a single filter. Creating multiple rules for a given filter can provide a very defined filter. For example, you can specify rules around hostnames or interface names, enabling you to filter messages specific to those hosts or interfaces. You should have already defined channels (as described earlier).
+A single key-value pair comprises each rule. The key-value pair indicates what messages to include or drop from event information sent to a notification channel. You can create more than one rule for a single filter. Creating multiple rules for a given filter can provide a very defined filter. For example, you can specify rules around hostnames or interface names, enabling you to filter messages specific to those hosts or interfaces. You should have already defined channels (as described earlier).
 
-A fixed set of valid rule keys are defined. Values are entered as regular expressions and *vary according to your deployment*.
+NetQ includes a predefined fixed set of valid rule keys. You enter values as regular expressions, which *vary according to your deployment*.
 
 #### Rule Keys and Values
 
@@ -1388,7 +1388,7 @@ PSU: up, down</td>
 
 {{<notice note>}}
 
-Rule names are case sensitive, and no wildcards are permitted. Rule names can contain spaces, but must be enclosed with single quotes in commands. It is easier to use dashes in place of spaces or mixed case for better readability. For example, use *bgpSessionChanges* or *BGP-session-changes* or *BGPsessions*, instead of *BGP Session Changes*. Use Tab completion to view the command options syntax.
+Rule names are case sensitive, and you cannot use wildcards. Rule names can contain spaces, but you must enclose them with single quotes in commands. It is easier to use dashes in place of spaces or mixed case for better readability. For example, use *bgpSessionChanges* or *BGP-session-changes* or *BGPsessions*, instead of *BGP Session Changes*. Use Tab completion to view the command options syntax.
 
 {{</notice>}}
 
@@ -1450,11 +1450,11 @@ platform.
 
 ### Create Filters
 
-You can limit or direct event messages using filters. Filters are created based on rules you define; like those in the previous section. Each filter contains one or more rules. When a message matches the rule, it is sent to the indicated destination. Before you can create filters, you need to have already defined the rules and configured channels (as described earlier).
+You can limit or direct event messages using filters. Filters get created based on rules you define, like those in the previous section. Each filter contains one or more rules. When a message matches the rule, it gets sent to the indicated destination. Before you can create filters, you need to have already defined the rules and configured channels (as described earlier).
 
-As filters are created, they are added to the bottom of a filter list. By default, filters are processed in the order they appear in this list (from top to bottom) until a match is found. This means that each event message is first evaluated by the first filter listed, and if it matches then it is processed, ignoring all other filters, and the system moves on to the next event message received. If the event does not match the first filter, it is tested against the second filter, and if it matches then it is processed and the system moves on to the next event received. And so forth. Events that do not match any filter are ignored.
+As you create filters, they get added to the bottom of a filter list. By default, NetQ processes filters in the order they appear in this list (from top to bottom) until it finds a match. This means that NetQ first evaluates each event message by the first filter listed, and if it matches then NetQ it, ignoring all other filters, and the system moves on to the next event message received. If the event does not match the first filter, NetQ tests it against the second filter, and if it matches then NetQ processes it and the system moves on to the next event received, and so forth. NetQ ignores events that do not match any filter.
 
-You mght have to change the order of filters in the list to ensure you capture the events you want and drop the events you do not want. This is possible using the *before* or *after* keywords to ensure one rule is processed before or after another.
+You mght have to change the order of filters in the list to ensure you capture the events you want and drop the events you do not want. This is possible using the *before* or *after* keywords to ensure one rule gets processed before or after another.
 
 This diagram shows an example with four defined filters with sample output results.
 
@@ -1478,7 +1478,7 @@ Create a Filter for a Given VNI in Your EVPN Overlay:
     cumulus@switch:~$ netq add notification filter vni42 severity warning rule evpnVni channel pd-netq-events
     Successfully added/updated filter vni42
 
-Create a Filter for when a Configuration File has been Updated:
+Create a Filter for when a Configuration File gets Updated:
 
     cumulus@switch:~$ netq add notification filter configChange severity info rule sysconf channel slk-netq-events
     Successfully added/updated filter configChange
@@ -1527,8 +1527,7 @@ platform.
 
 #### Reorder Filters
 
-When you look at the results of the `netq show notification filter` command above, you might notice that although you have the drop-based filter first (no point in looking at something you are going to drop anyway, so that is good), but the critical severity events are processed last, per the current definitions. If you wanted to process those before
-lesser severity events, you can reorder the list using the `before` and `after` options.
+When you look at the results of the `netq show notification filter` command above, you might notice that although you have the drop-based filter first (no point in looking at something you are going to drop anyway, so that is good), but the critical severity events get last, per the current definitions. If you wanted to process those before lesser severity events, you can reorder the list using the `before` and `after` options.
 
 For example, to put the two critical severity event filters just below the drop filter:
 
@@ -1565,9 +1564,9 @@ newFEC          7          info             slk-netq-events  fecSupport
 
 ### Suppress Events
 
-NetQ can generate many network events. You can configure whether to suppress any events from appearing in NetQ output. By default, all events are delivered.
+NetQ can generate many network events. You can configure whether to suppress any events from appearing in NetQ output. By default, all events get delivered.
 
-You can suppress an event until a certain period of time; otherwise, the event is suppressed for 2 years. Providing an end time eliminates the generation of messages for a short period of time, which is useful when you are testing a new network configuration and the switch might be generating many messages.
+You can suppress an event until a certain period of time; otherwise, the event gets suppressed for 2 years. Providing an end time eliminates the generation of messages for a short period of time, which is useful when you are testing a new network configuration and the switch might be generating many messages.
 
 You can suppress events for the following types of messages:
 
@@ -1767,7 +1766,7 @@ eventsconfig_10      job_cl_upgrade_2d89c sensor               {"sensor":"*","ne
                      fw2
 ```
 
-When you filter for a message type, you must include the `show-filter-conditions` keyword to show the conditions associated with that message type and the hierarchy in which they are processed.
+When you filter for a message type, you must include the `show-filter-conditions` keyword to show the conditions associated with that message type and the hierarchy in which they get processed.
 
 ```
 cumulus@switch:~$ netq show events-config message_type evpn show-filter-conditions
@@ -1781,11 +1780,11 @@ evpn                     hostname                                   1           
 
 ## Examples of Advanced Notification Configurations
 
-Putting all these channel, rule, and filter definitions together you create a complete notification configuration. The following are example notification configurations are created using the three-step process outlined above.
+By putting all these channel, rule, and filter definitions together, you create a complete notification configuration. Using the three-step process outlined above, you can configure notifications like the following examples.
 
 ### Create a Notification for BGP Events from a Selected Switch
 
-This example creates a notification integration with a PagerDuty channel called *pd-netq-events*. It then creates a rule *bgpHostname* and a filter called *4bgpSpine* for any notifications from *spine-01*. The result is that any info severity event messages from Spine-01 are filtered to the *pd-netq-events* channel.
+This example creates a notification integration with a PagerDuty channel called *pd-netq-events*. It then creates a rule *bgpHostname* and a filter called *4bgpSpine* for any notifications from *spine-01*. The result is that any info severity event messages from Spine-01 get filtered to the *pd-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
     Successfully added/updated channel pd-netq-events
@@ -1816,7 +1815,7 @@ This example creates a notification integration with a PagerDuty channel called 
 
 ### Create a Notification for Warnings on a Given EVPN VNI
 
-This example creates a notification integration with a PagerDuty channel called *pd-netq-events*. It then creates a rule *evpnVni* and a filter called *3vni42* for any warnings messages from VNI 42 on the EVPN overlay network. The result is that any warning severity event messages from VNI 42 are filtered to the *pd-netq-events* channel.
+This example creates a notification integration with a PagerDuty channel called *pd-netq-events*. It then creates a rule *evpnVni* and a filter called *3vni42* for any warnings messages from VNI 42 on the EVPN overlay network. The result is that any warning severity event messages from VNI 42 get filtered to the *pd-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
     Successfully added/updated channel pd-netq-events
@@ -1851,7 +1850,7 @@ This example creates a notification integration with a PagerDuty channel called 
 
 ### Create a Notification for Configuration File Changes
 
-This example creates a notification integration with a Slack channel called *slk-netq-events*. It then creates a rule *sysconf* and a filter called *configChange* for any configuration file update messages. The result is that any configuration update messages are filtered to the *slk-netq-events* channel.
+This example creates a notification integration with a Slack channel called *slk-netq-events*. It then creates a rule *sysconf* and a filter called *configChange* for any configuration file update messages. The result is that any configuration update messages get filtered to the *slk-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
@@ -1889,7 +1888,7 @@ This example creates a notification integration with a Slack channel called *slk
 
 ### Create a Notification for When a Service Goes Down
 
-This example creates a notification integration with a Slack channel called *slk-netq-events*. It then creates a rule *svcStatus* and a filter called *svcDown* for any services state messages indicating a service is no longer operational. The result is that any service down messages are filtered to the *slk-netq-events* channel.
+This example creates a notification integration with a Slack channel called *slk-netq-events*. It then creates a rule *svcStatus* and a filter called *svcDown* for any services state messages indicating a service is no longer operational. The result is that any service down messages get filtered to the *slk-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
@@ -1972,7 +1971,7 @@ This example creates a notification integration with a Slack channel called *slk
 
 ### Create a Notification for a Given Device that Has a Tendency to Overheat (Using Multiple Rules)
 
-This example creates a notification when switch *leaf04* has passed over the high temperature threshold. Two rules were needed to create this notification, one to identify the specific device and one to identify the temperature trigger. NetQ then sends the message to the *pd-netq-events* channel.
+This example creates a notification when switch *leaf04* has passed over the high temperature threshold. Two rules were necessary to create this notification, one to identify the specific device and one to identify the temperature trigger. NetQ then sends the message to the *pd-netq-events* channel.
 
 ```
 cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890

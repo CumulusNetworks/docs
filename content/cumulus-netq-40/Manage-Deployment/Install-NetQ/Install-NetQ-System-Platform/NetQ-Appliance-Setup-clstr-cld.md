@@ -5,9 +5,10 @@ weight: 232
 toc: 5
 bookhidden: true
 ---
+
 This topic describes how to prepare your cluster of NetQ Cloud Appliances for installation of the NetQ Collector software.
 
-Each <!-- vale off -->box<!-- vale on --> that was shipped to you contains:
+Each system shipped to you contains:
 
 - Your NVIDIA Cumulus NetQ Cloud Appliance (a Supermicro SuperServer E300-9D)
 - Hardware accessories, such as power cables and rack mounting gear (note that network cables and optics ship separately)
@@ -41,7 +42,7 @@ Change the password and specify the hostname and IP address for each appliance b
 
 3. The default hostname for the NetQ Cloud Appliance is *netq-appliance*. Change the hostname to fit your naming conventions while meeting Internet and Kubernetes naming standards.
 
-    Kubernetes requires that hostnames are composed of a sequence of labels concatenated with dots. For example, "en.wikipedia.org" is a hostname. Each label must be from 1 to 63 characters long. The entire hostname, including the delimiting dots, has a maximum of 253 ASCII characters.
+    Kubernetes requires that hostnames comprise a sequence of labels concatenated with dots. For example, *en.wikipedia.org* is a hostname. Each label must be from 1 to 63 characters long. The entire hostname, including the delimiting dots, has a maximum of 253 ASCII characters.
 
     The Internet standards (RFCs) for protocols specify that labels can contain only the ASCII letters a through z (in lower case), the digits 0 through 9, and the hyphen-minus character ('-').
 
@@ -53,7 +54,7 @@ Change the password and specify the hostname and IP address for each appliance b
 
 4. Identify the IP address.
 
-    The appliance contains two Ethernet ports. Port *eno1*, is dedicated for out-of-band management. This is where NetQ Agents should send the telemetry data collected from your monitored switches and hosts. By default, eno1 uses DHCPv4 to get its IP address. You can view the assigned IP address using the following command:
+    The appliance contains two Ethernet ports. It uses port *eno1* for out-of-band management. This is where NetQ Agents should send the telemetry data collected from your monitored switches and hosts. By default, eno1 uses DHCPv4 to get its IP address. You can view the assigned IP address using the following command:
 
     ```
     cumulus@hostname:~$ ip -4 -brief addr show eno1
@@ -118,7 +119,7 @@ Now that the appliances are up and running, verify that the software is availabl
 7. Configure the IP address, hostname, and password using the same steps as for the master node. Refer to {{<link url="#configure-the-password-hostname-and-ip-address" text="Configure the Password, Hostname, and IP Address">}}.
 
     {{<notice note>}}
-Make a note of the private IP addresses you assign to the master and worker nodes. They are needed for later installation steps.
+Make a note of the private IP addresses you assign to the master and worker nodes. You need them for later installation steps.
     {{</notice>}}
 
 8. Verify that the needed packages are present and of the correct release, version {{<version>}}.

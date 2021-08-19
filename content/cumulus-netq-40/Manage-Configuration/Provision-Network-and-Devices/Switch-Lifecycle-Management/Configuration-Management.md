@@ -57,7 +57,7 @@ You can specify your template in any order, but to complete the configuration, y
 
 {{<tab "General" >}}
 
-1. Provide a name for the template. This field is required and can be a maximum of 22 characters, including spaces.
+1. Provide a name for the template. You must provide a name, which can have a maximum of 22 characters, including spaces.
 
 2. Accept the VRF selection of *Management*, or optionally change it to *Default*. Note that changing the VRF might cause some agents to become unresponsive.
 

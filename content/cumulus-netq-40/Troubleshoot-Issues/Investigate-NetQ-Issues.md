@@ -4,6 +4,7 @@ author: NVIDIA
 weight: 1060
 toc: 4
 ---
+
 Monitoring of systems inevitably leads to the need to troubleshoot and resolve the issues found. In fact network management follows a common pattern as shown in this diagram.
 
 {{<figure src="/images/netq/NQ-mgmt-wkflow.png">}}
@@ -109,7 +110,7 @@ NetQ records network events and stores them in its database. You can:
 - View the events using the Events|Alarms and Events|Info cards in the NetQ UI, then use the Trace Request card to track the connection between nodes
 - Use `netq show events` command to look for any changes made to the runtime configuration that could have triggered the alert, then use `netq trace` to track the connection between the nodes
 
-The `netq trace` command traces the route of an IP or MAC address from one endpoint to another. It works across bridged, routed and VXLAN connections, computing the path using available data instead of sending real traffic &mdash; this way, it can be run from anywhere. It performs MTU and VLAN consistency checks for every link along the path.
+The `netq trace` command traces the route of an IP or MAC address from one endpoint to another. It works across bridged, routed and VXLAN connections, computing the path using available data instead of sending real traffic &mdash; this way, you can run it from anywhere. It performs MTU and VLAN consistency checks for every link along the path.
 
 Refer to {{<link title="Manage Events and Notifications">}} and {{<link title="Verify Network Connectivity">}} for more information.
 

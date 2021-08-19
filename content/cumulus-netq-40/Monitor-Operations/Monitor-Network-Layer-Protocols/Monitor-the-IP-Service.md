@@ -4,6 +4,7 @@ author: NVIDIA
 weight: 940
 toc: 3
 ---
+
 With NetQ, a user can monitor IP (Internet Protocol) addresses, neighbors, and routes, including viewing the current status and the status an earlier point in time.
 
 It helps answer questions such as:
@@ -15,8 +16,7 @@ It helps answer questions such as:
 - When did changes occur to my IP configuration?
 <!-- vale on -->
 
-The `netq show ip` command is used to obtain the address, neighbor, and
-route information from the devices. Its syntax is:
+You use the `netq show ip` command to obtain the address, neighbor, and route information from the devices. Its syntax is:
 
 ```
 netq <hostname> show ip addresses [<remote-interface>] [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [around <text-time>] [count] [json]
@@ -46,7 +46,7 @@ When entering a time value, you must include a numeric value *and* the unit of m
 - **s**: seconds
 - **now**
 
-For the `between` option, the start (`text-time`) and end time (`text-endtime`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
+For the `between` option, you can enter the start (`text-time`) and end time (`text-endtime`) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 {{%/notice%}}
 
 ## View IP Address Information
@@ -130,8 +130,7 @@ fe80::4638:39ff:fe00:15/6 spine03           swp3                      default   
 
 You can filter the IP address information by hostname, interface, or VRF.
 
-This example shows the *IPv4* address information for the *eth0* interface
-on all devices.
+This example shows the *IPv4* address information for the *eth0* interface on all devices.
 
 ```
 cumulus@switch:~$ netq show ip addresses eth0
@@ -194,9 +193,9 @@ fe80::4638:39ff:fe00:17a/ leaf01            eth0                                
 
 ### View When IP Address Information Last Changed
 
-You can view the last time that address information was changed using the `netq show ip/ipv6 addresses` commands.
+You can view the last time that address information changed using the `netq show ip/ipv6 addresses` commands.
 
-This example shows the last time *IPv4* address information had changed for all devices ago. Note the value in the Last Changed column.
+This example shows the last time *IPv4* address information changed for all devices ago. Note the value in the Last Changed column.
 
 ```
 cumulus@switch:~$ netq show ip addresses
@@ -230,7 +229,7 @@ Address                   Hostname          Interface                 VRF       
 
 ### Obtain a Count of IP Addresses Used on a Device
 
-If you are concerned that a particular device an overload of addresses in use, you can quickly view the address count using the `count` option.
+If you have concerns that a particular device an overload of addresses in use, you can quickly view the address count using the `count` option.
 
 This example shows the number of *IPv4* and *IPv6* addresses on the *leaf01* switch.
 
@@ -322,7 +321,7 @@ fe80::4638:39ff:fe00:40   leaf02            vlan20                    44:38:39:0
 fe80::4638:39ff:fe00:f    leaf02            swp54                     44:38:39:00:00:0f  default         no     Mon Oct 19 22:28:30 2020
 ```
 
-This example shows all *IPv4* neighbors using the *RED* VRF. Note that capitalization is considered for the VRF name.
+This example shows all *IPv4* neighbors using the *RED* VRF. Note that the VRF name is case sensitive.
 
 ```
 cumulus@switch:~$ netq show ip neighbors vrf RED
@@ -534,11 +533,11 @@ Count of matching routes records: 3
 
 It is useful when debugging to be able to see when the IP address configuration changed for an interface. The `netq show address-history` command makes this information available. It enables you to see:
 
-- each change that was made chronologically
-- changes made between two points in time, using the `between` option
-- only the difference between to points in time using the `diff` option
-- to order the output by selected output fields using the `listby` option
-- each change that was made for the IP address on a particular interface, using the `ifname` option
+- Each change made chronologically.
+- Changes made between two points in time, using the `between` option.
+- Only the difference between to points in time using the `diff` option.
+- To order the output by selected output fields using the `listby` option.
+- Each change made for the IP address on a particular interface, using the `ifname` option.
 
 And as with many NetQ commands, the default time range used is now to one hour ago. You can view the output in JSON format as well.
 
@@ -558,7 +557,7 @@ When entering a time value, you must include a numeric value *and* the unit of m
 - **s**: seconds
 - **now**
 
-For the `between` option, the start (`text-time`) and end time (`text-endtime`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
+For the `between` option, you can enter the start (`text-time`) and end time (`text-endtime`) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 
 {{%/notice%}}
 
@@ -614,11 +613,11 @@ Tue Sep 29 17:25:08 2020  leaf01            vlan10       10.1.10.2              
 
 It is useful when debugging to be able to see when the neighbor configuration changed for an IP address. The `netq show neighbor-history` command makes this information available. It enables you to see:
 
-- each change that was made chronologically
-- changes made between two points in time, using the `between` option
-- only the difference between to points in time using the `diff` option
-- to order the output by selected output fields using the `listby` option
-- each change that was made for the IP address on a particular interface, using the `ifname` option
+- Each change that made chronologically.
+- Changes made between two points in time, using the `between` option.
+- Only the difference between to points in time using the `diff` option.
+- To order the output by selected output fields using the `listby` option.
+- Each change made for the IP address on a particular interface, using the `ifname` option.
 
 And as with many NetQ commands, the default time range used is now to one hour ago. You can view the output in JSON format as well.
 
@@ -638,7 +637,7 @@ When entering a time value, you must include a numeric value *and* the unit of m
 - **s**: seconds
 - **now**
 
-For the `between` option, the start (`text-time`) and end time (`text-endtime`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
+For the `between` option, you can enter the start (`text-time`) and end time (`text-endtime`) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 
 {{%/notice%}}
 

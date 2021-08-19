@@ -36,13 +36,13 @@ When entering a time value, you must include a numeric value <em>and</em> the un
 <li><strong>s</strong>: seconds</li>
 <li><strong>now</strong></li>
 </ul>
-For the <code>between</code> option, the start (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
+For the <code>between</code> option, you can enter the start (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 
 {{</notice>}}
 
 ### View Detailed Cable Information for All Devices
 
-You can view what cables are connected to each interface port for all devices, including the module type, vendor, part number and performance characteristics. You can also view the cable information for a given device by adding a hostname to the `show` command.
+You can view which cables connect to each interface port for all devices, including the module type, vendor, part number and performance characteristics. You can also view the cable information for a given device by adding a hostname to the `show` command.
 
 This example shows cable information and status for all interface ports on all devices.
 
@@ -211,9 +211,9 @@ leaf02            swp52                     up         1G         off     QSFP+ 
 
 ### View Changes to Physical Components
 
-Because components are often changed, NetQ enables you to determine what, if any, changes have been made to the physical components on your devices. This can be helpful during deployments or upgrades.
+Because components are often changed, NetQ enables you to determine what, if any, changes you made to the physical components on your devices. This can be helpful during deployments or upgrades.
 
-You can select how far back in time you want to go, or select a time range using the between keyword. Note that time values must include units to be valid. If no changes are found, a "No matching cable records found" message is displayed.
+You can select how far back in time you want to go, or select a time range using the between keyword. Note that time values must include units to be valid. If there are no changes, a "No matching cable records found" message appears.
 
 This example illustrates each of these scenarios for all devices in the network.
 
@@ -273,7 +273,7 @@ Utilization statistics provide a view into the operation of the devices in your 
 
 ### View Compute Resources Utilization
 
-You can quickly determine how many compute resources&mdash;CPU, disk and memory&mdash;are being consumed by the switches on your network.
+You can quickly determine how many compute resources &mdash; CPU, disk and memory &mdash; the switches on your network consume.
 
 To obtain this information, run the relevant command:
 
@@ -282,7 +282,7 @@ netq <hostname> show resource-util [cpu | memory] [around <text-time>] [json]
 netq <hostname> show resource-util disk [<text-diskname>] [around <text-time>] [json]
 ```
 
-When no options are included the output shows the percentage of CPU and memory being consumed as well as the amount and percentage of disk space being consumed. You can use the `around` option to view the information for a particular time.
+When you specify no options, the output shows the percentage of CPU and memory the switch consumed as well as the amount and percentage of disk space it consumed. You can use the `around` option to view the information for a particular time.
 
 This example shows the CPU, memory, and disk utilization for all devices.
 
@@ -363,7 +363,7 @@ The `ethtool` command provides a wealth of statistics about network interfaces. 
 netq [<hostname>] show ethtool-stats port <physical-port> (rx | tx) [extended] [around <text-time>] [json]
 ```
 
-You can use the `around` option to view the information for a particular time. If no changes are found, a "No matching ethtool_stats records found" message is displayed.
+You can use the `around` option to view the information for a particular time. If there are no changes, a "No matching ethtool_stats records found" message appears.
 
 This example shows the *transmit* statistics for switch port *swp50* on a the *leaf01* switch in the network.
 
@@ -544,7 +544,7 @@ Where the various options are:
 - `physical-port` limits the output to a particular port
 - `around` enables viewing of the data at a time in the past
 - `json` outputs results in JSON format
-- `text-port` limits output to a particular host and port; `hostname` is required with this option
+- `text-port` limits output to a particular host and port; this option requires a `hostname`
 - `tx`, `rx` limits output to the transmit or receive values, respectively
 
 This example shows the statistics for all interfaces on all devices.
@@ -1127,7 +1127,7 @@ cumulus@switch:~$ netq spine02 show cl-resource forwarding  json
 
 ### View SSD Utilization Networkwide
 
-For NetQ Appliances that have 3ME3 solid state drives (SSDs) installed (primarily in on-premises deployments), you can view the utilization of the drive on-demand. An alarm is generated for drives that drop below 10% health, or have more than a two percent loss of health in 24 hours, indicating the need to rebalance the drive. Tracking SSD utilization over time enables you to see any downward trend or instability of the drive before you receive an alarm.
+For NetQ Appliances that have 3ME3 solid state drives (SSDs) installed (primarily in on-premises deployments), you can view the utilization of the drive on demand. An alarm gets generated when a drive drops below 10% health, or has more than a two percent loss of health in 24 hours, indicating the need to rebalance the drive. Tracking SSD utilization over time enables you to see any downward trend or instability of the drive before you receive an alarm.
 
 To view SDD utilization, run:
 
@@ -1147,11 +1147,11 @@ This output indicates that the one drive found of this type, on the *spine02* sw
 
 ### View Disk Storage After BTRFS Allocation Networkwide
 
-Customers running Cumulus Linux 3.x which uses the BTRFS (b-tree file system) might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, NVIDIA recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when rebalancing should be performed.
+Customers running Cumulus Linux 3.x which uses the BTRFS (b-tree file system) might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, NVIDIA recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when to rebalance.
 
-For details about when a rebalance is recommended, refer to [When to Rebalance BTRFS Partitions]({{<ref "/knowledge-base/Configuration-and-Usage/Storage/When-to-Rebalance-BTRFS-Partitions">}}).
+For details about when to rebalance a partition, refer to [When to Rebalance BTRFS Partitions]({{<ref "/knowledge-base/Configuration-and-Usage/Storage/When-to-Rebalance-BTRFS-Partitions">}}).
 
-To view the disk utilization and whether a rebalance is recommended, run:
+To view the disk utilization and whether you need to perform a rebalance, run:
 
 ```
 netq show cl-btrfs-util [around <text-time>] [json]

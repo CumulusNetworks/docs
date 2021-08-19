@@ -4,9 +4,10 @@ author: NVIDIA
 weight: 680
 toc: 4
 ---
-LCM provides the ability to upgrade Cumulus Linux on one or more switches in your network through the NetQ UI or the NetQ CLI. Up to five upgrade jobs can be run simultaneously; however, a given switch can only be contained in one running job at a time.
 
-Upgrades can be performed between following Cumulus Linux releases:
+LCM provides the ability to upgrade Cumulus Linux on one or more switches in your network through the NetQ UI or the NetQ CLI. You can run up to five upgrade jobs simultaneously; however, a given switch can only appear in one running job at a time.
+
+You can upgrade Cumulus Linux from between the following releases:
 
 - 3.6.z to later versions of 3.y.z
 - 4.x to later versions of 4.y.z
@@ -161,7 +162,7 @@ Upgrade Cumulus Linux on switches through either the NetQ UI or NetQ CLI:
 
     {{<figure src="/images/netq/lcm-upgrade-switches-preview-single-roll-320.png" width="700" caption="All roles the same">}}
 
-<div style="padding-left: 18px;">When some of your switches have roles assigned, any switches without roles are upgraded last and are grouped under the label *Stage1*.</div>
+<div style="padding-left: 18px;">When some of your switches have roles assigned, any switches without roles get upgraded last and get grouped under the label <em>Stage1</em>.</div>
 
     {{<figure src="/images/netq/lcm-upgrade-switches-preview-job-someroles-310.png" width="700" caption="Some roles assigned">}}
 
@@ -245,11 +246,11 @@ After starting the upgrade you can monitor the progress of your upgrade job and 
 
 You can track the progress of your upgrade job from the Preview page or the Upgrade History page of the NetQ UI.
 
-From the preview page, a green circle with rotating arrows is shown above each step as it is working. Alternately, you can close the detail of the job and see a summary of all current and past upgrade jobs on the Upgrade History page. The job started most recently is shown at the bottom, and the data is refreshed every minute.
+From the preview page, a green circle with rotating arrows appears each step as it is working. Alternately, you can close the detail of the job and see a summary of all current and past upgrade jobs on the Upgrade History page. The job started most recently appears at the bottom, and the data refreshes every minute.
 
 {{<notice tip>}}
 
-If you are disconnected while the job is in progress, it might appear as if nothing is happening. Try closing (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}}) and reopening your view (click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18">}}), or refreshing the page.
+If you get disconnected while the job is in progress, it might appear as if nothing is happening. Try closing (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}}) and reopening your view (click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18">}}), or refreshing the page.
 
 {{</notice>}}
 
@@ -385,7 +386,7 @@ To see only Cumulus Linux upgrade jobs, run `netq lcm show status cl-image job-I
 
 ### Postcheck Failures
 
-Upgrades can be considered successful and still have post-check warnings. For example, the OS has been updated, but not all services are fully up and running after the upgrade. If one or more of the post-checks fail, warning messages are provided in the Post-Upgrade Tasks section of the preview. Click the warning category to view the detailed messages.
+A successful upgrade can still have post-check warnings. For example, you updated the OS, but not all services are fully up and running after the upgrade. If one or more of the post-checks fail, warning messages appear in the Post-Upgrade Tasks section of the preview. Click the warning category to view the detailed messages.
 
 Expand the following dropdown to view common failures, their causes and corrective actions.
 
@@ -446,7 +447,7 @@ Some of the common reasons for upgrade failures and the errors they present:
 
 ## Upgrade Cumulus Linux on Switches Without NetQ Agent Installed
 
-When you want to update Cumulus Linux on switches without NetQ installed, NetQ provides the LCM switch discovery feature. The feature browses your network to find all Cumulus Linux switches, with and without NetQ currently installed and determines the versions of Cumulus Linux and NetQ installed. The results of switch discovery are then used to install or upgrade Cumulus Linux and NetQ on all discovered switches in a single procedure rather than in two steps. Up to five jobs can be run simultaneously; however, a given switch can only be contained in one running job at a time.
+When you want to update Cumulus Linux on switches without NetQ installed, NetQ provides the LCM switch discovery feature. The feature browses your network to find all Cumulus Linux switches, with and without NetQ currently installed and determines the versions of Cumulus Linux and NetQ installed. The results of switch discovery are then used to install or upgrade Cumulus Linux and NetQ on all discovered switches in a single procedure rather than in two steps. You can run up to five jobs simultaneously; however, a given switch can only appear in one running job at a time.
 
 If all your Cumulus Linux switches already have NetQ 2.4.x or later installed, you can upgrade them directly. Refer to {{<link title="#upgrade-cumulus-linux-on-switches-with-netq-agent-installed" text="Upgrade Cumulus Linux">}}.
 
@@ -525,20 +526,20 @@ Click **Remove** if you decide to use a different file or want to use IP address
 
     {{</tabs>}}
 
-5. Note that the switch access credentials defined in {{<link title="Manage Switch Credentials">}} are used to access these switches. If you have issues accessing the switches, you might need to update your credentials.
+5. Note that you can use the switch access credentials defined in {{<link title="Manage Switch Credentials">}} to access these switches. If you have issues accessing the switches, you might need to update your credentials.
 
 6. Click **Next**.
 
-    When the network discovery is complete, NetQ presents the number of Cumulus Linux switches it has found. They are displayed in categories:
+    When the network discovery is complete, NetQ presents the number of Cumulus Linux switches it found. Each switch can be in one of the following categories:
 
     - **Discovered without NetQ**: Switches found without NetQ installed
     - **Discovered with NetQ**: Switches found with some version of NetQ installed
     - **Discovered but Rotten**: Switches found that are unreachable
-    - **Incorrect Credentials**: Switches found that cannot be reached because the provided access credentials do not match those for the switches
+    - **Incorrect Credentials**: Switches found that cannot are unreachable because the provided access credentials do not match those for the switches
     - **OS not Supported**: Switches found that are running Cumulus Linux version not supported by the LCM upgrade feature
     - **Not Discovered**: IP addresses which did not have an associated Cumulus Linux switch
 
-    If no switches are found for a particular category, that category is not displayed.
+    If the discovery process does not find any switches for a particular category, then it does not display that category.
 
     {{<figure src="/images/netq/lcm-discover-select-switches-tab-310.png" width="500">}}
 
@@ -627,12 +628,12 @@ N/A               10.0.1.12                 N/A                N/A      N/A     
 cumulus@switch:~$ 
 ```
 
-When the network discovery is complete, NetQ presents the number of Cumulus Linux switches it has found. They are displayed with their discovery status, which can be one of the following:
+When the network discovery is complete, NetQ presents the number of Cumulus Linux switches it has found. The output displays their discovery status, which can be one of the following:
 
 - **Discovered without NetQ**: Switches found without NetQ installed
 - **Discovered with NetQ**: Switches found with some version of NetQ installed
 - **Discovered but Rotten**: Switches found that are unreachable
-- **Incorrect Credentials**: Switches found that cannot be reached because the provided access credentials do not match those for the switches
+- **Incorrect Credentials**: Switches found that are unreachable because the provided access credentials do not match those for the switches
 - **OS not Supported**: Switches found that are running Cumulus Linux version not supported by the LCM upgrade feature
 - **NOT\_FOUND**: IP addresses which did not have an associated Cumulus Linux switch
 

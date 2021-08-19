@@ -4,7 +4,8 @@ author: NVIDIA
 weight: 670
 toc: 4
 ---
-The lifecycle management (LCM) feature enables you to upgrade to NetQ 4.0.0 on switches with an existing NetQ Agent 2.4.x-3.2.1 release using the NetQ UI. You can upgrade only the NetQ Agent or upgrade both the NetQ Agent and the NetQ CLI at the same time. Up to five jobs can be run simultaneously; however, a given switch can only be contained in one running job at a time.
+
+The lifecycle management (LCM) feature enables you to upgrade to NetQ 4.0.0 on switches with an existing NetQ Agent 2.4.x-3.2.1 release using the NetQ UI. You can upgrade only the NetQ Agent or upgrade both the NetQ Agent and the NetQ CLI at the same time. You can run up to five jobs simultaneously; however, a given switch can only appear in one running job at a time.
 
 The upgrade workflow includes the following steps:
 
@@ -168,12 +169,12 @@ If the switches have not been assigned a role, then do not use the `order` optio
 
 ## Analyze the NetQ Agent Upgrade Results
 
-After starting the upgrade you can monitor the progress in the NetQ UI. Progress can be monitored from the preview page or the Upgrade History page.
+After starting the upgrade you can monitor the progress in the NetQ UI. You can monitor the progress from the preview page or the Upgrade History page.
 
-From the preview page, a green circle with rotating arrows is shown on each switch as it is working. Alternately, you can close the detail of the job and see a summary of all current and past upgrade jobs on the NetQ Install and Upgrade History page. The job started most recently is shown at the top, and the data is refreshed periodically.
+From the preview page, a green circle with rotating arrows appears for each switch as it is working. Alternately, you can close the detail of the job and see a summary of all current and past upgrade jobs on the NetQ Install and Upgrade History page. The job started most recently appears at the top, and the data refreshes periodically.
 
 {{<notice tip>}}
-If you are disconnected while the job is in progress, it might appear as if nothing is happening. Try closing (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}}) and reopening your view (click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18">}}), or refreshing the page.
+If you get while the job is in progress, it might appear as if nothing is happening. Try closing (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}}) and reopening your view (click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18">}}), or refreshing the page.
 {{</notice>}}
 
 ### Monitor the NetQ Agent Upgrade Job

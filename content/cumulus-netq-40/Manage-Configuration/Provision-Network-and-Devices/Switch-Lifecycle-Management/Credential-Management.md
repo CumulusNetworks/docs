@@ -4,7 +4,8 @@ author: NVIDIA
 weight: 640
 toc: 4
 ---
-Switch access credentials are needed for performing installations and upgrades of software. You can choose between basic authentication (SSH username/password) and SSH (Public/Private key) authentication. These credentials apply to all switches. If some of your switches have alternate access credentials, you must change them or modify the credential information before attempting installations or upgrades with the lifecycle management feature.
+
+You must have switch access credentials to install and upgrade software on a switch. You can choose between basic authentication (SSH username/password) and SSH (Public/Private key) authentication. These credentials apply to all switches. If some of your switches have alternate access credentials, you must change them or modify the credential information before attempting installations or upgrades with the lifecycle management feature.
 
 ## Specify Switch Credentials
 
@@ -65,7 +66,7 @@ You must have sudoer permission to properly configure switches when using the SS
 2. Copy the SSH *public* key to each switch that you want to upgrade using one of the following methods:
 
     - Manually copy the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
-    - Run `ssh-copy-id USER@<switch_ip>` on the server where the SSH key pair was generated for each switch
+    - Run `ssh-copy-id USER@<switch_ip>` on the server where you generated the SSH key pair for each switch
 
 3. Copy the SSH *private* key into the entry field in the Create Switch Access card.
 
@@ -114,7 +115,7 @@ You must have sudoer permission to properly configure switches when using the SS
 2. Copy the SSH *public* key to each switch that you want to upgrade using one of the following methods:
 
     - Manually copy the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
-    - Run `ssh-copy-id USER@<switch_ip>` on the server where the SSH key pair was generated for each switch
+    - Run `ssh-copy-id USER@<switch_ip>` on the server where you generated the SSH key pair for each switch
 
 3. Add these credentials to the switch.
 
@@ -128,7 +129,7 @@ You must have sudoer permission to properly configure switches when using the SS
 
 ## View Switch Credentials
 
-You can view the type of credentials being used to access your switches in the NetQ UI. You can view the details of the credentials using the NetQ CLI.
+You can view the type of credentials used to access your switches in the NetQ UI. You can view the details of the credentials using the NetQ CLI.
 
 {{<tabs "TabID133" >}}
 
@@ -136,7 +137,7 @@ You can view the type of credentials being used to access your switches in the N
 
 1. Open the LCM dashboard.
 
-2. On the Access card, either **Basic** or **SSH** is indicated.
+2. On the Access card, select either **Basic** or **SSH**.
 
 {{</tab>}}
 
@@ -144,7 +145,7 @@ You can view the type of credentials being used to access your switches in the N
 
 To see the credentials, run `netq lcm show credentials`.
 
-If an SSH key is used for the credentials, the public key is displayed in the command output:
+If you use an SSH key for the credentials, the public key appears in the command output:
 
 ```
 cumulus@switch:~$ netq lcm show credentials
@@ -153,7 +154,7 @@ Type             SSH Key        Username         Password         Last Changed
 SSH              MY-SSH-KEY                                       Tue Apr 28 19:08:52 2020
 ```
 
-If a username and password is used for the credentials, the username is displayed in the command output but the password is masked:
+If you use a username and password for the credentials, the username appears in the command output with the password masked:
 
 ```
 cumulus@switch:~$ netq lcm show credentials
@@ -180,7 +181,7 @@ To change your access credentials:
 
 2. On the Access card, click the *Click here to change access mode* link in the center of the card.
 
-3. Select the authentication method you want to use; **SSH** or **Basic Authentication**. Basic authentication is selected by default.
+3. Select the authentication method you want to use; **SSH** or **Basic Authentication**. Basic authentication is the default selection.
 
 4. Based on your selection:
 
@@ -220,7 +221,7 @@ You must have sudoer permission to properly configure switches when using the SS
 2. Copy the SSH *public* key to each switch that you want to upgrade using one of the following methods:
 
     - Manually copy the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
-    - Run `ssh-copy-id USER@<switch_ip>` on the server where the SSH key pair was generated for each switch
+    - Run `ssh-copy-id USER@<switch_ip>` on the server where you generated the SSH key pair for each switch
 
 3. Add these new credentials to the switch.
 
@@ -236,4 +237,4 @@ You must have sudoer permission to properly configure switches when using the SS
 
 You can remove the access credentials for switches using the NetQ CLI. Note that without valid credentials, you cannot upgrade your switches.
 
-To remove the credentials, run `netq lcm del credentials`. Verify they are removed by running `netq lcm show credentials`.
+To remove the credentials, run `netq lcm del credentials`. Verify their removal by running `netq lcm show credentials`.

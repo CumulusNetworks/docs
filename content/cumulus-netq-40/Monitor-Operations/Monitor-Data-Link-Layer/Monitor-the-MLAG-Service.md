@@ -4,20 +4,21 @@ author: NVIDIA
 weight: 920
 toc: 4
 ---
-Multi-Chassis Link Aggregation (MLAG) is used to enable a server or switch with a two-port bond (such as a link aggregation group/LAG, EtherChannel, port group or trunk) to connect those ports to different switches and operate as if they are connected to a single, logical switch. This provides greater redundancy and greater system throughput. Dual-connected devices can create LACP bonds that contain links to each physical switch. Therefore, active-active links from the dual-connected devices are supported even though they are connected to two different physical switches. For an overview and how to configure MLAG in your network, refer to {{<kb_link latest="cl" url="Layer-2/Multi-Chassis-Link-Aggregation-MLAG.md" text="Multi-Chassis Link Aggregation - MLAG">}}.
+
+You use *Multi-Chassis Link Aggregation (MLAG)* to enable a server or switch with a two-port bond (such as a link aggregation group/LAG, EtherChannel, port group or trunk) to connect those ports to different switches and operate as if they have a connection to a single, logical switch. This provides greater redundancy and greater system throughput. Dual-connected devices can create LACP bonds that contain links to each physical switch. Therefore, NetQ supports active-active links from the dual-connected devices even though each switch connects to a different physical switch. For an overview and how to configure MLAG in your network, refer to {{<kb_link latest="cl" url="Layer-2/Multi-Chassis-Link-Aggregation-MLAG.md" text="Multi-Chassis Link Aggregation - MLAG">}}.
 
 {{%notice note%}}
 
 **MLAG or CLAG?**
-The Cumulus Linux implementation of MLAG is referred to by other vendors as MLAG, MC-LAG or VPC. The NetQ UI uses the MLAG terminology predominantly. However, the management daemon, named `clagd`, and other options in the code, such as `clag-id`, remain for historical purposes.
+Other vendors refer to the Cumulus Linux implementation of MLAG as MLAG, MC-LAG or VPC. The NetQ UI uses the MLAG terminology predominantly. However, the management daemon, named `clagd`, and other options in the code, such as `clag-id`, remain for historical purposes.
 
 {{%/notice%}}
 
-NetQ enables operators to view the health of the MLAG service on a networkwide and a per session basis, giving greater insight into all aspects of the service. This is accomplished in the NetQ UI through two card workflows, one for the service and one for the session and in the NetQ CLI with the `netq show mlag` command.
+NetQ enables operators to view the health of the MLAG service on a networkwide and a per session basis, giving greater insight into all aspects of the service. You accomplish this in the NetQ UI through two card workflows, one for the service and one for the session, and in the NetQ CLI with the `netq show mlag` command.
 
 {{%notice tip%}}
 
-Any prior scripts or automation that use the older `netq show clag` command continue to work as the command has not been removed yet.
+Any prior scripts or automation that use the older `netq show clag` command continue to work as the command still exists in the operating system.
 
 {{%/notice%}}
 
@@ -30,7 +31,7 @@ With NetQ, you can monitor MLAG performance across the network:
     - Medium: view number of nodes running MLAG service, number and distribution of sessions and alarms, number of sessions with inactive backup IPs, and number of bonds with single connections
     - Large: view number of nodes running MLAG service, number of sessions and alarms, number of sessions with inactive backup IPs, switches with the most established/unestablished sessions, devices with the most alarms
     - Full-screen: view all switches, all sessions, and all alarms
-- `netq show mlag` command: view host, peer, system MAC address, state, information about the bonds, and last time a change was made for each session running MLAG
+- `netq show mlag` command: view host, peer, system MAC address, state, information about the bonds, and last time each session running MLAG had a change
 
 {{%notice note%}}
 
@@ -43,7 +44,7 @@ When entering a time value in the `netq show mlag` command, you must include a n
 - **s**: seconds
 - **now**
 
-When using the `between` option, the start time (`text-time`) and end time (`text-endtime`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
+When using the `between` option, you can enter the start time (`text-time`) and end time (`text-endtime`) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 
 {{%/notice%}}
 
@@ -89,7 +90,7 @@ leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8
 
 It is useful to know the number of network nodes running the MLAG protocol over a period of time, as it gives you insight into the amount of traffic associated with and breadth of use of the protocol. It is also useful to compare the number of nodes running MLAG with the alarms present at the same time to determine if there is any correlation between the issues and the ability to establish an MLAG session.
 
-Nodes which have a large number of unestablished sessions might be misconfigured or experiencing communication issues. This is visible with the NetQ UI.
+Nodes with a large number of unestablished sessions might have a misconfiguration or might be experiencing communication issues. This is visible with the NetQ UI.
 
 {{<tabs "TabID94" >}}
 
@@ -119,7 +120,7 @@ netq show mlag
 
 Count the switches in the output.
 
-This example shows two border and four leaf switches, for a total of six switches running the protocol. The device in each session acting in the primary role is marked with (P).
+This example shows two border and four leaf switches, for a total of six switches running the protocol. NetQ marks the device in each session acting in the primary role with (P).
 
 ```
 cumulus@switch~$ netq show mlag
@@ -183,7 +184,7 @@ leaf03(P)         leaf04            44:38:39:be:ef:bb  up         up     8     8
 leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8     Tue Oct 27 10:48:18 2020
 ```
 
-This example shows that more bonds were configured 30 days ago than in the last 24 hours, but still none of those bonds had single links.
+This example shows that you configured more bonds 30 days ago than in the last 24 hours, but in either case, none of those bonds had single links.
 
 ```
 cumulus@switch:~$ netq show mlag around 30d
@@ -269,7 +270,7 @@ To view these sessions:
 
 ### View Devices with the Most MLAG Sessions
 
-You can view the load from MLAG on your switches using the large Network Services|All MLAG Sessions card. This data enables you to see which switches are handling the most MLAG traffic currently, validate that is what is expected based on your network design, and compare that with data from an earlier time to look for any differences.
+You can view the load from MLAG on your switches using the large Network Services|All MLAG Sessions card. This data enables you to see which switches are handling the most MLAG traffic currently, validate that is what you expect based on your network design, and compare that with data from an earlier time to look for any differences.
 
 {{<tabs "TabID274" >}}
 
@@ -281,7 +282,7 @@ To view switches and hosts with the most MLAG sessions:
 
 2. Select **Switches with Most Sessions** from the filter above the table.
 
-    The table content is sorted by this characteristic, listing nodes running the most MLAG sessions at the top. Scroll down to view those with the fewest sessions.
+    The table content sorts by this characteristic, listing nodes running the most MLAG sessions at the top. Scroll down to view those with the fewest sessions.
 
     {{<figure src="/images/netq/ntwk-svcs-all-mlag-large-most-sessions-230.png" width="500" >}}
 
@@ -337,7 +338,7 @@ To view switches with the most unestablished MLAG sessions:
 
 2. Select **Switches with Most Unestablished Sessions** from the filter above the table.
 
-    The table content is sorted by this characteristic, listing nodes with the most unestablished MLAG sessions at the top. Scroll down to view those with the fewest unestablished sessions.
+    The table content sorts by this characteristic, listing nodes with the most unestablished MLAG sessions at the top. Scroll down to view those with the fewest unestablished sessions.
 
     {{<figure src="/images/netq/ntwk-svcs-all-mlag-large-most-unestab-230.png" width="500" >}}
 
@@ -405,7 +406,7 @@ To view switches with most MLAG alarms:
 
 3. Select **Events by Most Active Device** from the filter above the table.
 
-    The table content is sorted by this characteristic, listing nodes with the most MLAG alarms at the top. Scroll down to view those with the fewest alarms.
+    The table content sorts by this characteristic, listing nodes with the most MLAG alarms at the top. Scroll down to view those with the fewest alarms.
 
     {{<figure src="/images/netq/ntwk-svcs-all-mlag-large-alarms-tab-230.png" width="500" >}}
 
@@ -457,7 +458,7 @@ To view all MLAG events:
 
 3. Click **All Alarms** tab.
 
-    By default, events are listed in most recent to least recent order.
+    By default, events sort by most recent to least recent.
     
     {{<figure src="/images/netq/ntwk-svcs-all-mlag-fullscr-all-alarms-tab-241.png" width="700">}}
 
@@ -582,7 +583,7 @@ To access the single session cards, you must open the full-screen Network Servic
 
 ### Granularity of Data Shown Based on Time Period
 
-On the medium and large single MLAG session cards, the status of the peers is represented in heat maps stacked vertically; one for peers that are reachable (alive), and one for peers that are unreachable (not alive). Depending on the time period of data on the card, the number of smaller time blocks used to indicate the status varies. A vertical stack of time blocks, one from each map, includes the results from all checks during that time. The results are shown by how saturated the color is for each block. If all peers during that time period were alive for the entire time block, then the top block is 100% saturated (white) and the not alive block is zero percent saturated (gray). As peers that are not alive increase in saturation, the peers that are alive block is proportionally reduced in saturation. An example heat map for a time period of 24 hours is shown here with the most common time periods in the table showing the resulting time blocks.
+On the medium and large single MLAG session cards, vertically stacked heat maps represent the status of the peers; one for peers that are reachable (alive), and one for peers that are unreachable (not alive). Depending on the time period of data on the card, the number of smaller time blocks used to indicate the status varies. A vertical stack of time blocks, one from each map, includes the results from all checks during that time. The amount of saturation for each block indicates how many peers were alive. If all peers during that time period were alive for the entire time block, then the top block is 100% saturated (white) and the not alive block is zero percent saturated (gray). As peers that are not alive increase in saturation, the amount of saturation diminishes proportionally for peers that are in the alive block. The example below shows a heat map for a time period of 24 hours with the most common time periods in the table showing the resulting time blocks.
 
 {{<figure src="/images/netq/ntwk-svcs-single-mlag-result-granularity-230.png" width="300">}}
 

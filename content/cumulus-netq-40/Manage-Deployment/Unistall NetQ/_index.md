@@ -46,7 +46,7 @@ If you only want to remove the agent or the CLI, but not both, specify just the 
 
 {{%/notice%}}
 
-To verify the packages have been removed from the switch, run:
+To verify the removal of the packages from the switch, run:
 
 ```
 cumulus@switch:~$ dpkg-query -l netq-agent
@@ -91,7 +91,7 @@ If you only want to remove the agent or the CLI, but not both, specify just the 
 
 {{%/notice%}}
 
-To verify the packages have been removed from the switch, run:
+To verify the removal of the packages from the switch, run:
 
 ```
 root@rhel7:~# rpm -q netq-agent
@@ -125,7 +125,7 @@ First remove the data collected to free up used disk space. Then remove the soft
   cumulus@switch:~$ sudo apt-get purge netq-agent netq-apps
   ```
 
-4. Verify the packages have been removed from the switch.
+4. Verify the removal of the packages from the switch.
 
   ```
   cumulus@switch:~$ dpkg-query -l netq-agent

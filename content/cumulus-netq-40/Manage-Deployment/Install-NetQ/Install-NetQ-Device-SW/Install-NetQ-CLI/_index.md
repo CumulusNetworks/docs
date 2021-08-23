@@ -24,7 +24,7 @@ If your network uses a proxy server for external connections, you should first {
 
 For servers running RHEL 7, CentOS or Ubuntu OS, you need to:
 
-- Verify the minimum service packages versions are installed
+- Verify you installed the minimum service packages versions
 - Verify the server is running `lldpd`
 - Install and configure NTP, if needed
 - Obtain NetQ software packages
@@ -35,7 +35,7 @@ You do not take any of these steps on Cumulus Linux or SONiC.
 
 {{<tabs "Verify Package Versions">}}
 
-Before you install the NetQ Agent on a server, make sure the following packages are installed and running these minimum versions:
+Before you install the NetQ Agent on a server, make sure you install and run at least the minimum versions of the following packages:
 
 {{<tab "RHEL7 or CentOS">}}
 <!-- vale off -->
@@ -61,7 +61,7 @@ Before you install the NetQ Agent on a server, make sure the following packages 
 
 ### Verify What CentOS and Ubuntu Are Running
 
-For CentOS and Ubuntu, make sure you are running lldp**d**, not lldp**ad**. CentOS and Ubuntu do not include `lldpd` by default, which is required for the installation. In addition, CentOS does not include `wget`, which is also required for the installation.
+For CentOS and Ubuntu, make sure you are running lldp**d**, not lldp**ad**. CentOS and Ubuntu do not include `lldpd` by default, even though the installation requires it. In addition, CentOS does not include `wget`, even though the installation requires it.
 
 {{<tabs "Configure NetQ Agent">}}
 
@@ -125,7 +125,7 @@ If NTP is not already installed and configured, follow these steps:
 If you are running NTP in your out-of-band management network with VRF, specify the VRF (<code>ntp@&lt;vrf-name&gt;</code> versus just <code>ntp</code>) in the above commands.
    {{</notice>}}
 
-4.  Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
+4. Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock synchronized with NTP.
 
     ```
     root@rhel7:~# ntpq -pn
@@ -168,7 +168,7 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 If you are running NTP in your out-of-band management network with VRF, specify the VRF (<code>ntp@&lt;vrf-name&gt;</code> versus just <code>ntp</code>) in the above commands.
    {{</notice>}}
 
-4. Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
+4. Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock synchronized with NTP.
 
     ```
     root@ubuntu:~# ntpq -pn
@@ -266,7 +266,6 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 {{</tabs>}}
 
-
 {{</tab>}}
 
 {{</tabs>}}
@@ -316,7 +315,7 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
 {{</tabs>}}
 
     {{<notice note>}}
-The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as <code>netq-3.1</code> - use that instead.
+The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.0</code> &mdash; use that instead.
     {{</notice>}}
 
 ## Install NetQ CLI
@@ -351,7 +350,7 @@ deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-4.0
 ```
 
 {{<notice tip>}}
-The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> can be used if you want to always retrieve the latest posted version of NetQ.
+You can use the <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
 {{</notice>}}
 
 {{</tab>}}
@@ -366,7 +365,7 @@ deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.0
 ```
 
 {{<notice tip>}}
-The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> can be used if you want to always retrieve the latest posted version of NetQ.
+You can use the <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
 {{</notice>}}
 
 {{</tab>}}
@@ -504,11 +503,11 @@ Two methods are available for configuring the NetQ CLI:
 - Run NetQ CLI commands on the switch
 - Edit the configuration file on the switchtext="Configure CLI Using File">}}
 
-By default, the NetQ CLI is not configured during the NetQ installation. The configuration is stored in `/etc/netq/netq.yml`.
+By default, you do not configure the NetQ CLI during the NetQ installation. The configuration resides in the `/etc/netq/netq.yml` file.
 
 While the CLI is not configured, you can run only `netq config` commands and `netq help` commands, and you must use `sudo` to run them.
 
-At minimum, you need to configure the NetQ CLI and NetQ Agent to communicate with the telemetry server. To do so, configure the NetQ Agent and the NetQ CLI so that they are running in the VRF where the routing tables are set for connectivity to the telemetry server. Typically this is the management VRF.
+At minimum, you need to configure the NetQ CLI and NetQ Agent to communicate with the telemetry server. To do so, configure the NetQ Agent and the NetQ CLI so that they are running in the VRF where the routing tables have connectivity to the telemetry server. Typically this is the management VRF.
 
 To configure the NetQ CLI, run the following command, then restart the NetQ CLI. This example assumes the telemetry server is reachable via the IP address 10.0.1.1 over port 32000 and the management VRF (*mgmt*).
 
@@ -521,7 +520,7 @@ To configure the NetQ Agent, read {{<link url="Install-NetQ-Agents/#configure-ad
 
 ### Configure NetQ CLI Using the CLI
 
-The steps to configure the CLI are different depending on whether the NetQ software has been installed for an on-premises or cloud deployment. Follow the instructions for your deployment type.
+The steps to configure the CLI are different depending on whether you installed the NetQ software for an on-premises or cloud deployment. Follow the instructions for your deployment type.
 
 {{<tabs "Configure CLI with CLI">}}
 

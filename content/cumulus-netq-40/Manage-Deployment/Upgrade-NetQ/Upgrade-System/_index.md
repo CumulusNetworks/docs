@@ -4,11 +4,12 @@ author: NVIDIA
 weight: 410
 toc: 4
 ---
+
 The first step in upgrading your NetQ installation to NetQ {{<version>}} is to upgrade your NetQ appliances or VMs. This topic describes how to upgrade this for both on-premises and remote deployments.
 
 ## Prepare for Upgrade
 
-Three important steps are required to prepare for upgrade of your NetQ Platform:
+You must complete the following three important steps to prepare to upgrade your NetQ Platform:
 
 - Download the necessary software tarballs
 - Update the Debian packages on physical server and VMs
@@ -133,7 +134,7 @@ To complete the preparation:
 
 2. Shutdown the VM.
 
-3. Check the size of the existing disk on the server hosting the VM to confirm it is 32 GB. In this example, the size is shown in the **virtual size** field.
+3. Check the size of the existing disk on the server hosting the VM to confirm it is 32 GB. In this example, the size appears in the **virtual size** field.
 
     ```
     root@server:/var/lib/libvirt/images# qemu-img info netq-3.1.0-ubuntu-18.04-tscloud-qemu.qcow2

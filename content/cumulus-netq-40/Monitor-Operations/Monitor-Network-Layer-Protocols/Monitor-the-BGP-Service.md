@@ -14,7 +14,7 @@ BGP is the routing protocol that runs the Internet. It is an increasingly popula
 
 {{<exlink url="https://tools.ietf.org/html/rfc7938" text="RFC 7938">}} provides further details of the use of BGP within the data center. For an overview and how to configure BGP to run in your data center network, refer to {{<kb_link latest="cl" url="Layer-3/Border-Gateway-Protocol-BGP/_index.md" text="Border Gateway Protocol - BGP">}}.
 
-NetQ enables operators to view the health of the BGP service on a networkwide or per session basis, giving greater insight into all aspects of the service. This is accomplished in the NetQ UI through two card workflows, one for the service and one for the session and in the NetQ CLI with the `netq show bgp` command.
+NetQ enables operators to view the health of the BGP service on a networkwide or per session basis, giving greater insight into all aspects of the service. You accomplish this in the NetQ UI through two card workflows, one for the service and one for the session, and in the NetQ CLI with the `netq show bgp` command.
 
 ## Monitor the BGP Service Networkwide
 
@@ -38,7 +38,7 @@ When entering a time value in the <code>netq show evpn</code> command, you must 
 <li><strong>now</strong>
 </ul>
 
-<p>When using the <code>between</code> option, the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p>
+<p>When using the <code>between</code> option, you can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p>
 {{</notice>}}
 
 ### View Service Status Summary
@@ -59,7 +59,7 @@ To view the summary, open the small Network Services|All BGP Sessions card.
 
 To view the summary, run `netq show bgp`.
 
-This example shows each node, their neighbor, VRF, ASN, peer ASN, received address IPv4/IPv6/EVPN prefix, and last time this was changed.
+This example shows each node, their neighbor, VRF, ASN, peer ASN, received address IPv4/IPv6/EVPN prefix, and last time something changed.
 
 ```
 cumulus@switch:~$ netq show bgp
@@ -223,7 +223,7 @@ spine04           swp4(leaf04)                 default         65199      65102 
 
 ### View Devices with the Most BGP Sessions
 
-You can view the load from BGP on your switches and hosts using the large Network Services|All BGP Sessions card or the NetQ CLI. This data enables you to see which switches are handling the most BGP sessions currently, validate that is what is expected based on your network design, and compare that with data from an earlier time to look for any differences.
+You can view the load from BGP on your switches and hosts using the large Network Services|All BGP Sessions card or the NetQ CLI. This data enables you to see which switches are handling the most BGP sessions currently, validate your expectations based on your network design, and compare that with data from an earlier time to look for any differences.
 
 {{<tabs "TabID228" >}}
 
@@ -235,7 +235,7 @@ To view switches and hosts with the most BGP sessions:
 
 2. Select **Switches With Most Sessions** from the filter above the table.  
 
-    The table content is sorted by this characteristic, listing nodes running the most BGP sessions at the top. Scroll down to view those with the fewest sessions.
+    The table content sorts on this characteristic, listing nodes running the most BGP sessions at the top. Scroll down to view those with the fewest sessions.
 
     {{<figure src="/images/netq/ntwk-svcs-all-bgp-large-summary-tab-300.png" width="500">}}
 
@@ -338,7 +338,7 @@ To view switches with the most unestablished BGP sessions:
 
 2. Select **Switches with Most Unestablished Sessions** from the filter above the table.  
 
-    The table content is sorted by this characteristic, listing nodes with the most unestablished BGP sessions at the top. Scroll down to view those with the fewest unestablished sessions.
+    The table content sorts on this characteristic, listing nodes with the most unestablished BGP sessions at the top. Scroll down to view those with the fewest unestablished sessions.
 
     {{<figure src="/images/netq/ntwk-svcs-allbgp-large-unestab-sessions-300.png" width="500">}}
 
@@ -468,7 +468,7 @@ To view switches with the most BGP alarms:
 
 3. Select **Switches with Most Alarms** from the filter above the table.  
 
-    The table content is sorted by this characteristic, listing nodes with the most BGP alarms at the top. Scroll down to view those with the fewest alarms.
+    The table content sorts on this characteristic, listing nodes with the most BGP alarms at the top. Scroll down to view those with the fewest alarms.
 
     {{<figure src="/images/netq/ntwk-svcs-all-bgp-large-alarms-tab-300.png" width="500" >}}
 
@@ -539,7 +539,7 @@ To view all BGP events:
 
 2. Click **All Alarms** tab in the navigation panel.  
 
-    By default, events are listed in most recent to least recent order.
+    By default, events appear in most recent to least recent order.
 
     {{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-alarms-tab-300.png" width="700">}}
 
@@ -722,7 +722,7 @@ To open the BGP single session card, verify that both the peer hostname and peer
 
 ### Granularity of Data Shown Based on Time Period
 
-On the medium and large single BGP session cards, the status of the sessions is represented in heat maps stacked vertically; one for established sessions, and one for unestablished sessions. Depending on the time period of data on the card, the number of smaller time blocks used to indicate the status varies. A vertical stack of time blocks, one from each map, includes the results from all checks during that time. The results are shown by how saturated the color is for each block. If all sessions during that time period were established for the entire time block, then the top block is 100% saturated (white) and the not established block is zero percent saturated (gray). As sessions that are not established increase in saturation, the sessions that are established block is proportionally reduced in saturation. An example heat map for a time period of 24 hours is shown here with the most common time periods in the table showing the resulting time blocks.
+On the medium and large single BGP session cards, vertically stacked heat maps represent the status of the sessions; one for established sessions, and one for unestablished sessions. Depending on the time period of data on the card, the number of smaller time blocks indicate that the status varies. A vertical stack of time blocks, one from each map, includes the results from all checks during that time. The results appear by how saturated the color is for each block. If only established sessions occurred during that time period for the entire time block, then the top block is 100% saturated (white) and the unestablished block is zero percent saturated (gray). As unestablished sessions increase in saturation, the established sessions block is proportionally reduced in saturation. An example heat map for a time period of 24 hours appears here with the most common time periods in the table showing the resulting time blocks.
 
 {{<figure src="/images/netq/ntwk-svcs-single-bgp-result-granularity-230.png" width="300">}}
 
@@ -808,7 +808,9 @@ leaf04            swp51(spine01)               default         65102      65199 
 
 ### View BGP Session State Changes
 
-You can view the state of a given BGP session from the medium and large Network Service|All BGP Sessions card in the NetQ UI. For a given time period, you can determine the stability of the BGP session between two devices. If you experienced connectivity issues at a particular time, you can use these cards to help verify the state of the session. If it was not established more than it was established, you can then investigate further into possible causes.
+<!-- vale off -->
+You can view the state of a given BGP session from the medium and large Network Service|All BGP Sessions card in the NetQ UI. For a given time period, you can determine the stability of the BGP session between two devices. If you experienced connectivity issues at a particular time, you can use these cards to help verify the state of the session. If the session is unestablished more than it was established, you can then investigate further into possible causes.
+<!-- vale on -->
 
 To view the state transitions for a given BGP session, on the *medium* BGP Session card:
 

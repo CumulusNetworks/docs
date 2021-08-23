@@ -4,7 +4,8 @@ author: NVIDIA
 weight: 815
 toc: 2
 ---
-After the network has been deployed, the day-to-day tasks of monitoring the devices, protocols and services begin. The topics in this section provide instructions for monitoring:
+
+After you deploy the network, the day-to-day tasks of monitoring the devices, protocols and services begin. The topics in this section provide instructions for monitoring:
 
 - Switches and hosts
 - Physical, data link, network, and application layer protocols and services

@@ -1381,7 +1381,7 @@ To break out a port into four 10G ports, you must **also** disable the next port
 
 ```
 cumulus@switch:~$ nv set interface swp1 link breakout 4x10G
-cumulus@switch:~$ nv set interface swp2 breakout disabled
+cumulus@switch:~$ nv set interface swp2 link breakout disabled
 cumulus@switch:~$ nv config apply
 ```
 

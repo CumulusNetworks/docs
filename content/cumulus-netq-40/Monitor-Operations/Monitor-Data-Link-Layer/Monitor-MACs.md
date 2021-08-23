@@ -14,13 +14,15 @@ With NetQ, you can:
 - View commentary on changes to MAC addresses (MAC commentary)
 - View events related to MAC addresses
 
+<!-- vale off -->
 MAC addresses are associated with switch interfaces. They are classified as:
 
 - **Origin**: MAC address is owned by a particular switch, on one or more interfaces. A MAC address typically has only one origin node. The exceptions are when MLAG is configured, the MAC on the VRR interfaces for the MLAG pair is the same, and when EVPN is configured, the MAC is distributed across the layer 3 gateways.
 - **Remote**: MAC address is learned or distributed by the control plane on a tunnel interface pointing to a particular remote location. For a given MAC address and VLAN there is only one first-hop switch (or switch pair), but multiple nodes can have the same remote MAC address.
 - **Local** (not origin and not remote): MAC address is learned on a bridge and points to an interface on another switch. If the LLDP neighbor of the interface is a host, then this switch is the first-hop switch where the MAC address is learned. For a given MAC address and VLAN there is only one first-hop switch, except if the switches are part of an MLAG pair, and the interfaces on both switches form a dually or singly connected bond.
+<!-- vale on -->
 
-The NetQ UI provides a listing of current MAC Addresses that can be filtered by hostname, timestamp, MAC address, VLAN, and origin. The list can be sorted by these parameters and also remote, static, and next hop.
+The NetQ UI provides a listing of current MAC addresses that you can filter by hostname, timestamp, MAC address, VLAN, and origin. You can sort the list by these parameters and also remote, static, and next hop.
 
 The NetQ CLI provides the following commands:
 
@@ -44,7 +46,7 @@ When entering a time value, you must include a numeric value *and* the unit of m
 - **s**: seconds
 - **now**
 
-When using the `between` option, the start time (`text-time`) and end time (`text-endtime`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
+When using the `between` option, you can enter the start time (`text-time`) and end time (`text-endtime`) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 
 {{%/notice%}}
 
@@ -390,13 +392,15 @@ leaf04            vlan30-v0                 macvlan          up         BLUE    
 
 ## View the History of a MAC Address
 
-It is useful when debugging to be able to see A MAC address is learned, And where it moved in the network after that, if there was a duplicate at any time, and so forth. The `netq show mac-history` command makes this information available. It enables you to see:
+<!-- vale off -->
+It is useful when debugging to be able to see whether a MAC address is learned, where it moved in the network after that, if there was a duplicate at any time, and so forth. The `netq show mac-history` command makes this information available. It enables you to see:
+<!-- vale on -->
 
-- each change that was made chronologically
-- changes made between two points in time, using the `between` option
-- only the differences in the changes between two points in time using the `diff` option
-- the output ordered by selected output fields using the `listby` option
-- each change that was made for the MAC address on a particular VLAN, using the `vlan` option
+- Each change made chronologically.
+- Changes made between two points in time, using the `between` option.
+- Only the differences in the changes between two points in time using the `diff` option.
+- The output ordered by selected output fields using the `listby` option.
+- Each change made for the MAC address on a particular VLAN, using the `vlan` option.
 
 The default time range used is now to one hour ago. You can view the output in JSON format as well.
 
@@ -531,7 +535,7 @@ Tue Oct 27 22:29:07 2020  leaf04            ^      ^      ^                ^    
 
 ### View MAC Address Changes by a Given Attribute
 
-You can order the output of the MAC address changes by many of the attributes associated with the changes that can be made using the `netq show mac-history` command with the `listby` option. For example, you can order the output by hostname, link, destination, and so forth.
+You can order the output of the MAC address changes by many of the attributes associated with the changes that you can make using the `netq show mac-history` command with the `listby` option. For example, you can order the output by hostname, link, destination, and so forth.
 
 This example shows the history of MAC address *44:38:39:00:00:5d* ordered by hostname. When shown, the caret (^) notation indicates no change in this value from the row above.
 
@@ -576,19 +580,21 @@ Tue Oct 27 22:29:07 2020  leaf04            10     no     peerlink              
 
 ### View MAC Address Commentary
 
-You can get more descriptive information about changes to a given MAC address on a specific VLAN. Commentary is provided for the following MAC address-related events based on their classification (refer to the definition of these at the beginning of this topic):
+You can get more descriptive information about changes to a given MAC address on a specific VLAN. Commentary is available for the following MAC address-related events based on their classification (refer to the definition of these at the beginning of this topic):
 
+<!-- vale off -->
 | Event Triggers | Example Commentary |
 | --- | --- |
 | A MAC address is created, or the MAC address on the interface is changed via the `hwaddress` option in */etc/network/interface* | leaf01 00:00:5e:00:00:03 configured on interface vlan1000-v0 |
 | An interface becomes a slave in, or is removed from, a bond | leaf01 00:00:5e:00:00:03 configured on interface vlan1000-v0|
 | An interface is a bridge and it inherits a different MAC address due to a membership change | leaf01 00:00:5e:00:00:03 configured on interface vlan1000-v0 |
-| A remote MAC address is learned or installed by control plane on a tunnel interface | <!-- vale off -->44:38:39:00:00:5d learned/installed on vni vni10 pointing to remote dest 10.0.1.34 <!-- vale on -->|
+| A remote MAC address is learned or installed by control plane on a tunnel interface | 44:38:39:00:00:5d learned/installed on vni vni10 pointing to remote dest 10.0.1.34 |
 | A remote MAC address is flushed or expires | leaf01 44:38:39:00:00:5d is flushed or expired |
 | A remote MAC address moves from behind one remote switch to another remote switch or becomes a local MAC address | leaf02: 00:08:00:00:aa:13 moved from remote dest 27.0.0.22 to remote dest 27.0.0.34 <br> 00:08:00:00:aa:13 moved from remote dest 27.0.0.22 to local interface hostbond2 |
 | A MAC address is learned at the first-hop switch (or MLAG switch pair) | leaf04 (and MLAG peer leaf05): 44:38:39:00:00:5d learned on first hop switch, pointing to local interface bond4 |
 | A local MAC address is flushed or expires | leaf04 (and MLAG peer leaf05) 44:38:39:00:00:5d is flushed or expires from bond4 |
 | A local MAC address moves from one interface to another interface or to another switch | leaf04: 00:08:00:00:aa:13 moved from hostbond2 to hostbond3 <br> 00:08:00:00:aa:13 moved from hostbond2 to remote dest 27.0.0.13 |
+<!-- vale on -->
 
 {{<tabs "MAC commentary" >}}
 
@@ -655,7 +661,9 @@ Mon Aug 24 2020 14:16:32  leaf02           1003   leaf02: 00:00:5e:00:01:01 conf
 
 #### MAC Address Configured on Server and Learned from a Peer
 
+<!-- vale off -->
 In this example, the 00:08:00:00:aa:13 MAC address was configured on server01. As a result, both leaf11 and leaf12 learned this address on the next hop interface serv01bond2 (learned locally), whereas, the leaf01 switch learned this address remotely on vx-34 (learned remotely).
+<!-- vale on -->
 
 ```
 cumulus@server11:~$ netq show mac-commentary 00:08:00:00:aa:13 vlan 1000 between now and 5hr 
@@ -669,7 +677,9 @@ Tue Aug 25 2020 10:29:23  leaf01           1000     leaf01: 00:08:00:00:aa:13 le
 
 #### MAC Address Removed
 
+<!-- vale off -->
 In this example the bridge FDB entry for the 00:02:00:00:00:a0 MAC address, interface VlanA-1, and VLAN 100 was deleted impacting leaf11 and leaf12.
+<!-- vale on -->
 
 ```
 cumulus@server11:~$ netq show mac-commentary 00:02:00:00:00:a0 vlan 100 between now and 5hr 
@@ -683,7 +693,7 @@ Tue Aug 25 2020 13:06:52  leaf11           100    leaf11: 00:02:00:00:00:a0 unco
 
 #### MAC Address Moved on Server and Learned from a Peer
 
-The MAC address on server11 was changed from 00:08:00:00:aa:13. In this example, the MAC which was learned remotely on leaf01  is now a locally learned MAC address from its local interface swp6. Similarly, the locally learned MAC address on leaf11 and leaf12 are now learned from remote dest 27.0.0.22.
+The MAC address on server11 changed from 00:08:00:00:aa:13. In this example, the MAC learned remotely on leaf01 is now a locally learned MAC address from its local interface swp6. Similarly, the locally learned MAC addresses on leaf11 and leaf12 are now learned from remote dest 27.0.0.22.
 
 ```
 cumulus@server11:~$ netq show mac-commentary 00:08:00:00:aa:13 vlan 1000 between now and 5hr
@@ -719,7 +729,9 @@ Mon Aug 24 2020 14:15:03  leaf12          105    leaf12: 00:02:00:00:00:1c learn
 
 #### MAC Address Flushed
 
+<!-- vale off -->
 In this example, the interface VlanA-1 associated with the 00:02:00:00:00:2d MAC address and VLAN 1008 is deleted, impacting leaf11 and leaf12.
+<!-- vale on -->
 
 ```
 cumulus@server11:~$ netq show mac-commentary 00:02:00:00:00:2d vlan 1008 between now and 5hr 
@@ -728,7 +740,7 @@ Last Updated              Hostname         VLAN   Commentary
 ------------------------- ---------------- ------ --------------------------------------------------------------------------------
 Mon Aug 24 2020 14:14:33  leaf11           1008   leaf11:  00:02:00:00:00:2d learned/installed on vni vx-42 pointing to remote dest 27.0.0.22
 Mon Aug 24 2020 14:15:03  leaf12           1008   leaf12:  00:02:00:00:00:2d learned/installed on vni vx-42 pointing to remote dest 27.0.0.22
-Mon Aug 24 2020 14:16:03  leaf01           1008   leaf01:     00:02:00:00:00:2d learned on MLAG peer dually connected interface swp8
+Mon Aug 24 2020 14:16:03  leaf01           1008   leaf01:  00:02:00:00:00:2d learned on MLAG peer dually connected interface swp8
 Tue Aug 25 2020 11:36:06  leaf11           1008   leaf11:  00:02:00:00:00:2d is flushed or expired
 Tue Aug 25 2020 11:36:06  leaf11           1008   leaf11:  00:02:00:00:00:2d on vni 1008 remote dest changed to 27.0.0.22
 ```

@@ -141,7 +141,7 @@ spine01           agent                    critical         Netq-agent rebooted 
 
 ### View Status of All Interfaces
 
-You can view all configured interfaces on a switch in one place making it easier to see inconsistencies in the configuration, quickly see when changes were made, and the operational status.
+You can view all configured interfaces on a switch in one place making it easier to see inconsistencies in the configuration, quickly see when changes occurred, and the operational status.
 
 {{<tabs "TabID146" >}}
 
@@ -461,7 +461,7 @@ Optionally, filter the output with the following options:
 
 - `ipv4` or `ipv4/prefixlen` to view a particular IPv4 route on the switch
 - `vrf` to view routes using a given VRF
-- `origin` to view routes that are owned by the switch
+- `origin` to view routes that the switch owns
 - `around` to view routes at a time in the past
 
 This example shows all IP routes for the *spine01* switch:
@@ -671,9 +671,9 @@ Address                   Hostname          Interface                 VRF       
 
 ### View All Software Packages
 
-If you are having an issue with a particular switch, you might want to verify what software is installed and whether it needs updating.
+If you are having an issue with a particular switch, you might want to verify all installed software and whether it needs updating.
 
-You can view all the software that was installed on a given switch using the NetQ UI or NetQ CLI to quickly validate versions and total software installed.
+You can view all the software installed on a given switch using the NetQ UI or NetQ CLI to quickly validate versions and total software installed.
 
 {{<tabs "View all packages">}}
 
@@ -776,7 +776,9 @@ To view the compute resources utilization:
 
 2. Hover over the card and click <img src="https://icons.cumulusnetworks.com/06-Business-Products/12-Analytics/analytics-bars.svg" height="18" width="18"/>.
 
+<!-- vale off -->
 3. The card is divided into two sections, displaying hardware-related performance through a series of charts.
+<!-- vale on-->
 
     {{<figure src="/images/netq/dev-switch-large-utilization-tab-230.png" width="500">}}
 
@@ -792,7 +794,7 @@ To view the compute resources utilization:
 
 {{<tab "NetQ CLI" >}}
 
-You can quickly determine how many compute resources &mdash; CPU, disk and memory &mdash; are being consumed by the switches on your network.
+You can quickly determine how many compute resources &mdash; CPU, disk and memory &mdash; the switches on your network consume.
 
 To obtain this information, run the relevant command:
 
@@ -801,7 +803,9 @@ netq <hostname> show resource-util [cpu | memory] [around <text-time>] [json]
 netq <hostname> show resource-util disk [<text-diskname>] [around <text-time>] [json]
 ```
 
+<!-- vale off -->
 When no options are included the output shows the percentage of CPU and memory being consumed as well as the amount and percentage of disk space being consumed. You can use the `around` option to view the information for a particular time.
+<!-- vale on -->
 
 This example shows the CPU, memory, and disk utilization for the *leaf01* switch.
 
@@ -834,7 +838,7 @@ Hostname          Memory Utilization   Last Updated
 leaf01            72.1                 Wed Sep 16 20:52:12 2020
 ```
 
-This example shows only the disk utilization for the *leaf01* switch. If you have more than one disk in your switch, utilization data for all disks are displayed. If you want to view the data for only one of the disks, you must specify a disk name.
+This example shows only the disk utilization for the *leaf01* switch. If you have more than one disk in your switch, the output displays utilization data for all disks. If you want to view the data for only one of the disks, you must specify a disk name.
 
 ```
 cumulus@switch:~$ netq leaf01 show resource-util disk
@@ -906,7 +910,7 @@ Where the various options are:
 - `physical-port` limits the output to a particular port
 - `around` enables viewing of the data at a time in the past
 - `json` outputs results in JSON format
-- `text-port` limits output to a particular host and port; `hostname` is required with this option
+- `text-port` limits output to a particular host and port; this option requires a `hostname`
 - `tx`, `rx` limits output to the transmit or receive values, respectively
 
 This example shows the interface statistics for the *leaf01* switch for all its physical interfaces.
@@ -1121,7 +1125,7 @@ cumulus@switch:~$ netq spine02 show cl-resource forwarding  json
 
 ### View SSD Utilization
 
-For NetQ Appliances that have 3ME3 solid state drives (SSDs) installed (primarily in on-premises deployments), you can view the utilization of the drive on-demand. An alarm is generated for drives that drop below 10% health, or have more than a two percent loss of health in 24 hours, indicating the need to rebalance the drive. Tracking SSD utilization over time enables you to see any downward trend or instability of the drive before you receive an alarm.
+For NetQ Appliances that have 3ME3 solid state drives (SSDs) installed (primarily in on-premises deployments), you can view the utilization of the drive on-demand. NetQ generates an alarm for drives that drop below 10% health, or have more than a two percent loss of health in 24 hours, indicating the need to rebalance the drive. Tracking SSD utilization over time enables you to see any downward trend or instability of the drive before you receive an alarm.
 
 {{<tabs "View SSD utilization" >}}
 
@@ -1165,9 +1169,9 @@ This output indicates that this drive is in a good state overall with 80% of its
 
 ### View Disk Storage After BTRFS Allocation
 
-Customers running Cumulus Linux 3.x which uses the BTRFS (b-tree file system) might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, NVIDIA recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when rebalancing should be performed.
+Customers running Cumulus Linux 3.x which uses the BTRFS (b-tree file system) might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, NVIDIA recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when they should rebalance.
 
-For details about when a rebalance is recommended, refer to [When to Rebalance BTRFS Partitions]({{<ref "/knowledge-base/Configuration-and-Usage/Storage/When-to-Rebalance-BTRFS-Partitions">}}).
+For details about when to perform a recommended rebalance, refer to [When to Rebalance BTRFS Partitions]({{<ref "/knowledge-base/Configuration-and-Usage/Storage/When-to-Rebalance-BTRFS-Partitions">}}).
 
 {{<tabs "TabID414" >}}
 
@@ -1696,7 +1700,7 @@ Digital optics module information is available regarding the performance degrada
 
     Click the interface name if visible in the list on the left, scroll down the list to find it, or search for interface.
 
-5. Choose the digital optical monitoring (DOM) parameter of interest from the dropdown. The cart is updated according to your selections.
+5. Choose the digital optical monitoring (DOM) parameter of interest from the dropdown. The card updates according to your selections.
 
     {{<figure src="/images/netq/dev-switch-large-dom-tab-320.png" width="500">}}
 

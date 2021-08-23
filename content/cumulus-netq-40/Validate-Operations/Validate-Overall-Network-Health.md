@@ -4,7 +4,8 @@ author: NVIDIA
 weight: 1010
 toc: 3
 ---
-The Network Health card in the NetQ UI lets you view the overall health of your network at a glance, giving you a high-level understanding of how well your network is operating. Overall network health shown in this card is based on successful validation results.
+
+The Network Health card in the NetQ UI lets you view the overall health of your network at a glance, giving you a high-level understanding of how well your network is operating. Successful validation results determine overall network health shown in this card.
 
 ## View Network Health Summary
 

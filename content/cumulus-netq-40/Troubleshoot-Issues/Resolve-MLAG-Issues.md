@@ -79,14 +79,10 @@ SVI Test                 : passed
 ```
 
 {{%notice note%}}
-The `clag` keyword has been deprecated and replaced by the `mlag` keyword. The
-`clag` keyword continues to work for now, but you should start using the `mlag`
-keyword instead. Keep in mind you should also update any scripts that use the `clag`
-keyword.
+NVIDIA deprecated the `clag` keyword, replacing it with the `mlag` keyword. The `clag` keyword continues to work for now, but you should start using the `mlag` keyword instead. Keep in mind you should also update any scripts that use the `clag` keyword.
 {{%/notice%}}
 
-When you are logged directly into a switch, you can run `clagctl` to get
-the state:
+When you log directly into a switch, you can run `clagctl` to get the state:
 
 ```
 cumulus@switch:/var/log$ sudo clagctl
@@ -116,7 +112,7 @@ vx-34            vx-34            -       -                    -
 ## Scenario 2: Dual-connected Bond Is Down
 <!-- vale on -->
 
-When dual connectivity is lost in an MLAG configuration, you receive messages from NetQ similar to the following:
+When an MLAG configuration loses dual connectivity, you receive messages from NetQ similar to the following:
 
     2017-05-22T23:14:40.290918+00:00 noc-pr netq-notifier[5501]: WARNING: LINK: 1 link(s) are down. They are: spine01 hostbond5
     2017-05-22T23:14:53.081480+00:00 noc-pr netq-notifier[5501]: WARNING: CLAG: 1 node(s) have failures. They are: spine01
@@ -186,7 +182,7 @@ leaf03(P)         leaf04            44:38:39:ff:ff:02  up         up     12    1
 leaf04            leaf03(P)         44:38:39:ff:ff:02  up         up     12    12    Thu Feb  7 18:31:30 2019
 ```
 
-When you are logged directly into a switch, you can run `clagctl` to get the state:
+When you log directly into a switch, you can run `clagctl` to get the state:
 
 ```
 cumulus@switch:/var/log$ sudo clagctl
@@ -279,8 +275,7 @@ nodes are up:
     leaf03(P)         leaf04            44:38:39:ff:ff:02  up         up     12    12    Thu Feb  7 18:31:26 2019
     leaf04            leaf03(P)         44:38:39:ff:ff:02  up         up     12    12    Thu Feb  7 18:31:30 2019
 
-When you are logged directly into a switch, you can run `clagctl` to get
-the state:
+When you log directly into a switch, you can run `clagctl` to get the state:
 
     cumulus@switch:/var/log$ sudo clagctl
      
@@ -308,7 +303,7 @@ the state:
 ## Scenario 4: Remote-side clagd Stopped by systemctl Command
 <!-- vale on -->
 
-In the event the `clagd` service is stopped via the `systemctl` command, NetQ Notifier sends messages similar to the following:
+If you stop the `clagd` service via the `systemctl` command, NetQ Notifier sends messages similar to the following:
 
     2017-05-22T23:51:19.539033+00:00 noc-pr netq-notifier[5501]: WARNING: VXLAN: 1 node(s) have failures. They are: leaf01
     2017-05-22T23:51:19.622379+00:00 noc-pr netq-notifier[5501]: WARNING: LINK: 2 link(s) flapped and are down. They are: leaf01 hostbond5, leaf01 hostbond4
@@ -359,8 +354,7 @@ You can retrieve the output in JSON format for export to another tool:
         }
     }
 
-When you are logged directly into a switch, you can run `clagctl` to get
-the state:
+When you log directly into a switch, you can run `clagctl` to get the state:
 
 ```
 cumulus@switch:~$ sudo clagctl

@@ -13,10 +13,10 @@ This topic includes all commands that begin with `netq a*` and `netq b*`.
 ## netq add events-config
 <!-- vale on -->
 
-Enables suppression of any of the various system events, excluding them from event displays. By default all events are delivered. You can suppress events for:
+Enables suppression of any of the various system events, excluding them from event displays. By default NetQ delivers all events. You can suppress events for:
 
 - Two years (default): useful when you do not want to see the events (essentially never show them)
-- A period of time: useful when you want to temporarily suppress events due to maintenance (typically days), or when testing a new network configuration where the switch might generate many messages that are expected and not needed beyond this time period (typically minutes or hours)
+- A period of time: useful when you want to temporarily suppress events due to maintenance (typically days), or when testing a new network configuration where the switch might generate many messages you expect but do not need beyond this time period (typically minutes or hours)
 
 Events are automatically sent after the designated amount of time has passed.
 
@@ -42,7 +42,7 @@ None
 | ---- | ---- | ---- |
 | events_config_id | \<text-events-config-id-anchor\> | Identifier for existing configuration; use to edit existing configuration |
 | events_config_name | \<text-events-config-name-anchor\> | User-defined name for the configuration |
-| message_type | \<text-message-type-anchor\> | <!-- vale off -->Type of message to be suppressed. Values include *agent*, *bgp*, *btrfsinfo*, *clag*, *clsupport*, *configdiff*, *evpn*, *link*, *ntp*, *ospf*, *sensor*, *services*, and *ssdutil*. <!-- vale on -->|
+| message_type | \<text-message-type-anchor\> | <!-- vale off -->Type of message to suppress. Values include *agent*, *bgp*, *btrfsinfo*, *clag*, *clsupport*, *configdiff*, *evpn*, *link*, *ntp*, *ospf*, *sensor*, *services*, and *ssdutil*. <!-- vale on -->|
 | scope | \<text-events-scope-anchor\> | Rule, in the form of a regular expression, indicating which devices, subset of devices or attributes to suppress |
 | is_active | true, false | Enables or disables configuration |
 | suppress_until | \<text-suppress-until\> | Amount of time, in seconds, to suppress the specified events |
@@ -72,7 +72,7 @@ netq add events-config events_config_name mybtrfs message_type ospf scope '[{"sc
 
 ## netq add notification channel
 
-NetQ events are presented to the user through event notification channels. NetQ supports four channel types: email, PagerDuty, Slack, or `syslog`. This command configures these channels.
+NetQ presents events to the user through event notification channels. NetQ supports four channel types: email, PagerDuty, Slack, or `syslog`. This command configures these channels.
 
 {{<notice note>}}
 You must have at least one channel, one rule, and one filter to fully configure a notification.
@@ -119,7 +119,7 @@ netq add notification channel syslog
 | slack | NA | Create a Slack channel to receive event notifications |
 | syslog | NA | Create a <!-- vale off -->Syslog<!-- vale on --> channel to receive event notifications |
 | NA | \<text-channel-name\> | Name of the channel |
-| to | \<text-email-toids\> | Comma-separated list of recipient email addresses; no spaces are allowed |
+| to | \<text-email-toids\> | Comma-separated list of recipient email addresses; you cannot add spaces |
 | integration-key | \<text-integration-key\> | {{<exlink url="https://support.pagerduty.com/docs/services-and-integrations#create-a-generic-events-api-integration/" text="Service or routing key">}} generated for your PagerDuty Service. Default is an empty string (""). |
 | webhook | \<text-webhook-url\> | Incoming webhook created in your Slack instance |
 | hostname | \<text-syslog-hostname\> | Name of the syslog server to receive notifications |
@@ -134,7 +134,7 @@ netq add notification channel syslog
 | login | \<text-email-id\> | Email address for authentication |
 | password | \<text-email-password\> | Password for authentication |
 | severity | info, warning, error, debug | Only send notifications with this severity. Default severity is info. |
-| tag | \<text-slack-tag\> | Short text appended to a Slack notification to highlight particular channels or people. The tag value must be preceded by the @ sign. For example, @netq-info or @net-admin. |
+| tag | \<text-slack-tag\> | Short text appended to a Slack notification to highlight particular channels or people. You must prepend the tag value with the @ sign. For example, *@netq-info* or *@net-admin*. |
 
 ### Command History
 
@@ -191,7 +191,7 @@ Refer to the {{<link title="Configure System Event Notifications">}} topic in th
 
 ## netq add notification filter
 
-Event notification filters tie notification rules to the notification channels. Filters can limit events being sent to only those with a given severity. You can insert filters before or after other filters to achieve the level of filtering desired. Refer to {{<link title="Configure System Event Notifications/#create-filters" text="Create Filters">}} for implementation details and additional examples.
+Event notification filters tie notification rules to the notification channels. Filters can limit events so only those with a given severity get sent. You can insert filters before or after other filters to achieve the level of filtering desired. Refer to {{<link title="Configure System Event Notifications/#create-filters" text="Create Filters">}} for implementation details and additional examples.
 
 {{<notice note>}}
 You must have at least one channel, one rule, and one filter to fully configure a notification.
@@ -213,16 +213,16 @@ netq add notification filter
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<text-filter-name\> | Name of the filter |
-| rule | \<text-rule-name-anchor\> | Name of the rule where this filter is to be applied |
+| rule | \<text-rule-name-anchor\> | Name of the rule for where to apply this filter |
 
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| severity | info, warning, error, debug | Only filter notifications with this severity. Default severity is info. |
-| channel | \<text-channel-name-anchor\> | Name of the rule where this filter is to be applied |
-| before | \<text-filter-name-anchor\> | Insert this filter before the filter with this name |
-| after | \<text-filter-name-anchor\> | Insert this filter after the filter with this name |
+| severity | info, warning, error, debug | Only filter notifications with this severity. Default severity is *info*. |
+| channel | \<text-channel-name-anchor\> | Name of the rule for where to apply this filter.|
+| before | \<text-filter-name-anchor\> | Insert this filter before the filter with this name. |
+| after | \<text-filter-name-anchor\> | Insert this filter after the filter with this name. |
 
 ### Command History
 
@@ -260,7 +260,7 @@ Successfully added/updated filter notify-all-ifs
 
 ## netq add notification rule
 
-Event notification rules define which events are included in or excluded from a notification. Rules are comprised of a key-value pair. Each key has a defined set of values available for filtering against. Refer to {{<link title="Configure System Event Notifications/#create-rules" text="Create Rules">}} for implementation details and additional examples.
+Event notification rules define which events to include in or exclude from a notification. Rules are a key-value pair. Each key has a defined set of values available for filtering against. Refer to {{<link title="Configure System Event Notifications/#create-rules" text="Create Rules">}} for implementation details and additional examples.
 
 {{<notice note>}}
 You must have at least one channel, one rule, and one filter to fully configure a notification.
@@ -323,7 +323,7 @@ Successfully added/updated rule evpnVni
 
 ## netq add notification proxy
 
-To send event notification messages through a proxy server instead of directly to a notification channel, you configure NetQ with the hostname, and optionally a port, of a proxy server. If no port is specified, NetQ defaults to port 80. Only one proxy server is currently supported. To simplify deployment, configure your proxy server before configuring channels, rules, or filters.
+To send event notification messages through a proxy server instead of directly to a notification channel, you configure NetQ with the hostname, and optionally a port, of a proxy server. If you do not specify a port, NetQ defaults to port 80. Only one proxy server is currently supported. To simplify deployment, configure your proxy server before configuring channels, rules, or filters.
 
 ### Syntax
 
@@ -374,7 +374,7 @@ Successfully configured notifier proxy proxy4:80
 
 ## netq add tca
 
-NetQ supports a set of events that are triggered by crossing a user-defined threshold, called TCA events. These events allow detection and prevention of network failures for selected ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, and sensor events. A complete list can be found in the {{<link title="TCA Event Messages Reference">}}.
+NetQ supports a set of events that trigger after crossing a user-defined threshold, called TCA events. These events allow detection and prevention of network failures for selected ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, and sensor events. You can find a complete list in the {{<link title="TCA Event Messages Reference">}}.
 
 A TCA event notification configuration must contain one rule. Each rule must contain a scope and a threshold. Optionally, you can specify an associated channel.  *Note: If a rule is not associated with a channel, the event information is only reachable from the database.* If you want to deliver events to one or more notification channels (Email, syslog, Slack, or PagerDuty), create them first using {{<link title="#netq add notification channel">}}.
 
@@ -411,7 +411,7 @@ netq add tca tca_id
 | ---- | ---- | ---- |
 | event_id | \<text-event-id-anchor\> | Create threshold-based event rule for the type of event with this ID |
 | tca_id | \<text-tca-id-anchor\> | Modify the existing threshold-based event with this ID |
-| scope | \<text-scope-anchor\> | Regular expression that filters the events. When two parameters are used, they are separated by a comma, but no space. When an asterisk (*) is used alone, it must be entered inside either single or double quotes. |
+| scope | \<text-scope-anchor\> | Regular expression that filters the events. When you use two parameters, separate them with a comma, but no space. When you use an asterisk (*) alone, you must surround it with either single or double quotes. |
 | threshold | \<text-threshold-value\> | Value when crossed that triggers the event |
 
 ### Options
@@ -460,7 +460,7 @@ Successfully added/updated tca
 
 ## netq add trace
 
-Create an on-demand trace and see the results in the On-demand Trace Results card of the NetQ UI rather than in text form in your terminal window. Refer to {{<link title="Verify Network Connectivity">}} for additional information. Note that the tracing function only knows about addresses that have already been learned. If you find that a path is invalid or incomplete, you could ping the identified device so that its address becomes known.
+Create an on-demand trace and see the results in the On-demand Trace Results card of the NetQ UI rather than in text form in your terminal window. Refer to {{<link title="Verify Network Connectivity">}} for additional information. Note that the tracing function only knows about already learned addresses. If you find that a path is invalid or incomplete, you could ping the identified device so that its address becomes known.
 
 ### Syntax
 
@@ -528,7 +528,7 @@ cumulus@switch:~$ netq add trace 44:38:39:00:00:3e vlan 10 from 44:38:39:00:00:3
 
 ## netq add trace name
 
-Create a scheduled trace and see the results in the Scheduled Trace Results card of the NetQ UI rather than in text form in your terminal window. Refer to {{<link title="Verify Network Connectivity">}} for additional information. Note that the tracing function only knows about addresses that have already been learned. If you find that a path is invalid or incomplete, you could ping the identified device so that its address becomes known.
+Create a scheduled trace and see the results in the Scheduled Trace Results card of the NetQ UI rather than in text form in your terminal window. Refer to {{<link title="Verify Network Connectivity">}} for additional information. Note that the tracing function only knows about already learned addresses. If you find that a path is invalid or incomplete, you could ping the identified device so that its address becomes known.
 
 ### Syntax
 
@@ -606,7 +606,7 @@ Successfully added/updated Svr01toSvr04x3Hrs running every 180m
 
 ## netq add validation name
 
-Creates a validation for various protocols and services to be run on a regular interval, with results displayed inline. A maximum of 15 scheduled validations can be configured, not including the default scheduled validations.
+Creates a validation for various protocols and services to run on a regular interval, with results displayed inline. You can configure a maximum of 15 scheduled validations, not including the default scheduled validations.
 
 ### Syntax
 
@@ -623,7 +623,7 @@ netq add validation
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | name | user defined | Unique name for the validation |
-| type | <!-- vale off -->agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, sensors, vlan or vxlan <!-- vale on -->| Protocol or service to be validated |
+| type | <!-- vale off -->agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, sensors, vlan or vxlan <!-- vale on -->| Protocol or service to validate |
 | interval | \<text-time-min\> | Frequency to run the validation, in minutes. Value must include time unit of *m*, minutes. Default scheduled validations per type run every 60 minutes. |
 
 ### Options
@@ -673,7 +673,7 @@ netq add validation
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| type | agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, sensors, vlan or vxlan | Protocol or service to be validated |
+| type | agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, sensors, vlan or vxlan | Protocol or service to validate |
 
 ### Options
 
@@ -776,7 +776,7 @@ cumulus@switch:~$ netq bootstrap worker tarball /mnt/installables/netq-bootstrap
 
 ## netq bootstrap reset
 
-Reset the node to prepare it for loading the installation program. In on-premises deployments with database on site, you can choose whether to save the current data or discard it (default) during the reset process. All data is saved by default in remotely hosted database deployments.
+Reset the node to prepare it for loading the installation program. In on-premises deployments with database on site, you can choose whether to save the current data or discard it (default) during the reset process. NetQ saves all data by default in remotely hosted database deployments.
 
 ### Syntax
 

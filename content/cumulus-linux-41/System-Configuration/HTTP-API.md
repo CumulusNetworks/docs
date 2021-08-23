@@ -29,6 +29,12 @@ cumulus@switch:~$ sudo systemctl start restserver
 cumulus@switch:~$ sudo systemctl stop restserver
 ```
 
+Use the `systemctl disable` command to disable the service from running at startup:
+
+```
+cumulus@switch:~$ sudo systemctl disable restserver
+```
+
 {{%notice note%}}
 
 Each service runs as a background daemon.

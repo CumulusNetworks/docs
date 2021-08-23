@@ -5,7 +5,7 @@ weight: 20
 toc: 4
 ---
 
-Many commands have changed in this release to accommodate the addition of new options or to simplify their syntax. Additionally, new commands have been added and others have been removed. A summary of those changes is provided here.
+Many commands have changed in this release to accommodate the addition of new options or to simplify their syntax. Additionally, NVIDIA added new commands while removing others. This topic provides a summary of those changes.
 
 ## New Commands
 
@@ -20,13 +20,13 @@ The following table summarizes the new commands available with this release.
 | netq add check-filter | Creates a filter for validations. | 4.0.0 |
 | netq del check-filter | Deletes the specified check filter. | 4.0.0 |
 | netq show check-filter | Shows all check filters. | 4.0.0 |
-| netq [&lt;hostname>] show roce-counters | Displays the RoCE counters. | 4.0.0 |                             
+| netq [&lt;hostname>] show roce-counters | Displays the RoCE counters. | 4.0.0 |
 | netq [&lt;hostname>] show roce-config | Displays the RoCE configuration. | 4.0.0 |
 | netq [&lt;hostname>] show roce-counters pool | Displays the RoCE counter pools. | 4.0.0 |
 
 ## Modified Commands
 
-The following table summarizes the commands that have been changed with this release.
+The following table summarizes the commands that have changed with this release.
 
 | Updated Command | What Changed | Version |
 | --------------- | ------------ | ------- |
@@ -40,7 +40,9 @@ The following table summarizes the commands that have been changed with this rel
 
 ## Removed Commands
 
+<!-- vale off -->
 The following table summarizes the commands that have been removed in this release.
+<!-- vale on -->
 
 | Updated Command | Version |
 | --------------- | ------- |

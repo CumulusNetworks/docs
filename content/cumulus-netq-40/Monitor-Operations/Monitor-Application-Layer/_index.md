@@ -52,9 +52,11 @@ spine04           yes      oob-mgmt-server   3       ntpq
 
 ## View Devices that are Out of Time Synchronization
 
-When a device is out of time synchronization with the NetQ server, the collected data might be improperly processed. For example, the wrong timestamp could be applied to a piece of data, or that data might be included in an aggregated metric when is should have been included in the next bucket of the aggregated metric. This would make the presented data be slightly off or give an incorrect impression.
+<!-- vale off -->
+When a device is out of time synchronization with the NetQ server, the collected data might be improperly processed. For example, the wrong timestamp could be applied to a piece of data, or that data might be included in an aggregated metric when is should have been included in the next bucket of the aggregated metric. This could make the presented data slightly off or give an incorrect impression.
+<!-- vale on -->
 
-This example shows all devices in the network that are out of time synchronization, and therefore need to be investigated.
+This example shows all devices in the network that are out of time synchronization, and therefore need further investigation.
 
 ```
 cumulus@switch:~$ netq show ntp out-of-sync
@@ -66,7 +68,7 @@ internet          no       -                 16      ntpq
 
 ## View Time Synchronization for a Given Device
 
-You might only be concerned with the behavior of a particular device. Checking for time synchronization is a common troubleshooting step to take.
+You might have a concern only with the behavior of a particular device. Checking for time synchronization is a common troubleshooting step to take.
 
 This example shows the time synchronization status for the *leaf01* switch.
 
@@ -80,7 +82,7 @@ leaf01            yes      kilimanjaro       2       ntpq
 
 ## View NTP Status for a Time in the Past
 
-If you find a device that is out of time synchronization, you can use the `around` option to get an idea when the synchronization was broken.
+If you find a device that is out of time synchronization, you can use the `around` option to get an idea when the synchronization broke.
 
 This example shows the time synchronization status for all devices one week ago. Note that there are no errant devices in this example. You might try looking at the data for a few days ago. If there was an errant device a week ago, you might try looking farther back in time.
 

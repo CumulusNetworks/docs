@@ -5,20 +5,20 @@ weight: 520
 toc: 3
 ---
 
-It is recommended that you back up your NetQ data according to your company policy. Typically this includes after key configuration changes and on a scheduled basis.
+You should back up your NetQ data according to your company policy. Typically this includes after key configuration changes and on a scheduled basis.
 
-These topics describe how to backup and also restore your NetQ data for NetQ On-premises Appliance and VMs.
+These topics describe how to back up and also restore your NetQ data for the NetQ On-premises Appliance and VMs.
 
 {{<notice note>}}
-These procedures <em>do not</em> apply to your NetQ Cloud Appliance or VM. Data backup is handled automatically with the NetQ cloud service.
+These procedures <em>do not</em> apply to your NetQ Cloud Appliance or VM. The NetQ cloud service handles data backups automatically.
 {{</notice>}}
 
 ## Back Up Your NetQ Data
 
-NetQ data is stored in a Cassandra database. A backup is performed by running scripts provided with the software and located in the `/usr/sbin` directory. When a backup is performed, a single tar file is created. The file is stored on a local drive that you specify and is named `netq_master_snapshot_<timestamp>.tar.gz`. Currently, only one backup file is supported, and includes the entire set of data tables. It is replaced each time a new backup is created.
+NetQ stores its data in a Cassandra database. You perform backups by running scripts provided with the software and located in the `/usr/sbin` directory. When you run a backup, it creates a single `tar` file named `netq_master_snapshot_<timestamp>.tar.gz` on a local drive that you specify. NetQ supports only one backup file currently, and includes the entire set of data tables. A new backuup replaces the previous backup.
 
 {{<notice note>}}
-If the rollback option is selected during the lifecycle management upgrade process (the default behavior), a backup is created automatically.
+If you select the rollback option during the lifecycle management upgrade process (the default behavior), LCM automatically creates a backup.
 {{</notice>}}
 
 To manually create a backup:
@@ -52,7 +52,7 @@ You can abbreviate the <code>backup</code> and <code>localdir</code> options of 
    [Fri 26 Jul 2019 02:35:48 PM UTC] - Backup finished successfully!
    ```
 
-2. Verify the backup file has been created.
+2. Verify the backup file creation was successful.
 
    ```
    cumulus@switch:~$ cd /opt/<backup-directory>

@@ -366,7 +366,7 @@ This example indicates that all nodes running BGP and all BGP sessions are runni
 
 ### Perform a BGP Validation for a Particular VRF
 
-Using the `vrf <vrf>` option of the `netq check bgp` command, you can validate the BGP service where communication is occurring through a particular virtual route. In this example, the VRF of interest is named *vrf1*.
+Using the `vrf <vrf>` option of the `netq check bgp` command, you can validate the BGP service where communication is occurring through a particular virtual route. In this example, the name of the VRF of interest is *vrf1*.
 
 ```
 cumulus@switch:~$ netq check bgp vrf vrf1
@@ -928,7 +928,7 @@ SVI Test                 : passed,
 
 {{<tab "NTP">}}
 
-The default validation checks for synchronization of the NTP server with all nodes in the network. It is always important to have your devices in time synchronization to ensure configuration and management events can be tracked and correlations can be made between events.
+The default validation checks for synchronization of the NTP server with all nodes in the network. It is always important to have your devices in time synchronization to ensure that you can track configuration and management events and can make correlations between events.
 
 This example shows that *server04* has an error.
 
@@ -997,7 +997,7 @@ Refer to {{<link url="Validation-Checks/#ospf-validation-tests" text="OSPF Valid
 
 Hardware platforms have a number sensors to provide environmental data about the switches. Knowing these are all within range is a good check point for maintenance.
 
-For example, if you had a temporary HVAC failure and you are concerned that some of your nodes are beginning to overheat, you can run this validation to determine if any switches have already reached the maximum temperature threshold.
+For example, if you had a temporary HVAC failure and you have concerns that some of your nodes are beginning to overheat, you can run this validation to determine if any switches have already reached the maximum temperature threshold.
 
 ```
 cumulus@switch:~$ netq check sensors
@@ -1024,7 +1024,7 @@ Refer to {{<link url="Validation-Checks/#sensor-validation-tests" text="Sensor V
 
 {{<tab "VLAN">}}
 
-Validate that VLANS are configured and operating properly:
+Validate the VLAN configuration and that they are operating properly:
 
 ```
 cumulus@switch:~$ netq check vlan
@@ -1050,7 +1050,7 @@ Refer to {{<link url="Validation-Checks/#vlan-validation-tests" text="VLAN Valid
 
 {{<tab "VXLAN">}}
 
-Validate that VXLANs are configured and operating properly:
+Validate the VXLAN configuration and that they are operating properly:
 
 ```
 cumulus@switch:~$ netq check vxlan
@@ -1067,7 +1067,7 @@ BUM replication Test    : passed,
 ```
 
 {{%notice tip%}}
-Both asymmetric and symmetric VXLAN configurations are validated with this command.
+This command validates both asymmetric and symmetric VXLAN configurations.
 {{%/notice%}}
 
 Refer to {{<link url="Validation-Checks/#vxlan-validation-tests" text="VXLAN Validation Tests">}} for descriptions of these tests.
@@ -1082,7 +1082,7 @@ When you want to see validation results on a regular basis, it is useful to conf
 
 {{%notice note%}}
 
-By default, a scheduled validation for each protocol and service is run every hour. You do not need to create a scheduled validation for these unless you want it to run at a different interval. Default validations cannot be removed, but are not counted as part of the 15-validation limit.
+By default, a scheduled validation for each protocol and service runs every hour. You do not need to create a scheduled validation for these unless you want it to run at a different interval. You cannot remove the default validations, but they do not count as part of the 15-validation limit.
 
 {{%/notice%}}
 
@@ -1090,9 +1090,9 @@ By default, a scheduled validation for each protocol and service is run every ho
 
 You can create scheduled validations using the NetQ UI and the NetQ CLI.
 
-You might want to create a scheduled validation that runs more often than the default validation if you are investigating an issue with a protocol or service. You might also want to create a scheduled validation that runs less often than the default validation if you are interested in a longer term performance trend. Use the following instructions based on how you want to create the validation.
+You might want to create a scheduled validation that runs more often than the default validation if you are investigating an issue with a protocol or service. You might also want to create a scheduled validation that runs less often than the default validation if you prefer a longer term performance trend. Use the following instructions based on how you want to create the validation.
 
-Sometimes it is useful to run validations on more than one protocol simultaneously. This gives a view into any potential relationship between the protocols or services status. For example, you might want to compare NTP with Agent validations if NetQ Agents are losing connectivity or the data appears to be collected at the wrong time. It would help determine if loss of time synchronization is causing the issue. You create simultaneous validations using the NetQ UI only.
+Sometimes it is useful to run validations on more than one protocol simultaneously. This gives a view into any potential relationship between the protocols or services status. For example, you might want to compare NTP with Agent validations if NetQ Agents are losing connectivity or the data <!-- vale off -->appears to be collected<!-- vale on --> at the wrong time. It would help determine if loss of time synchronization is causing the issue. You create simultaneous validations using the NetQ UI only.
 
 {{<tabs "New Scheduled Validation">}}
 
@@ -1149,11 +1149,11 @@ You might want to remove this validation after you complete your analysis. Refer
 
 ### View Scheduled Validation Results
 
-After creating scheduled validations with either the NetQ UI or the NetQ CLI, the results are shown in the Scheduled Validation Result card. When a request has completed processing, you can access the Validation Result card from the full-screen Validations card. Each protocol and service has its own validation result card, but the content is similar on each.
+After creating scheduled validations with either the NetQ UI or the NetQ CLI, the results appear in the Scheduled Validation Result card. When a request has completed processing, you can access the Validation Result card from the full-screen Validations card. Each protocol and service has its own validation result card, but the content is similar on each.
 
 #### Granularity of Data Shown Based on Time Period
 
-On the medium and large Validation Result cards, the status of the runs is represented in heat maps stacked vertically; one for passing runs, one for runs with warnings, and one for runs with failures. Depending on the time period of data on the card, the number of smaller time blocks indicate that the status varies. A vertical stack of time blocks, one from each map, includes the results from all checks during that time. The results are shown by how saturated the color is for each block. If all validations during that time period pass, then the middle block is 100% saturated (white) and the warning and failure blocks are zero % saturated (gray). As warnings and errors increase in saturation, the passing block is proportionally reduced in saturation. An example heat map for a time period of 24 hours is shown here with the most common time periods in the table showing the resulting time blocks and regions.
+On the medium and large Validation Result cards, vertically stacked heat maps represent the status of the runs; one for passing runs, one for runs with warnings, and one for runs with failures. Depending on the time period of data on the card, the number of smaller time blocks indicate that the status varies. A vertical stack of time blocks, one from each map, includes the results from all checks during that time. The results appear by how saturated the color is for each block. If all validations during that time period pass, then the middle block is 100% saturated (white) and the warning and failure blocks are zero % saturated (gray). As warnings and errors increase in saturation, the passing block is proportionally reduced in saturation. The example heat map for a time period of 24 hours shown here uses the most common time periods from the table showing the resulting time blocks and regions.
 
 {{<figure src="/images/netq/sch-valid-result-granularity-230.png" width="300">}}
 

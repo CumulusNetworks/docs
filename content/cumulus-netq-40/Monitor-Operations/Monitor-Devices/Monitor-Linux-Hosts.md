@@ -4,9 +4,12 @@ author: NVIDIA
 weight: 840
 toc: 3
 ---
+
 Running NetQ on Linux hosts provides unprecedented network visibility, giving the network operator a complete view of the entire infrastructure's network connectivity instead of just from the network devices.
 
+<!-- vale off -->
 The NetQ Agent is supported on the following Linux hosts:
+<!-- vale on -->
 
 - CentOS 7
 - Red Hat Enterprise Linux 7.1

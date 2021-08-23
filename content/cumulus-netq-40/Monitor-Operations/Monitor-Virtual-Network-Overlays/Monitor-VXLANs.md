@@ -5,7 +5,7 @@ weight: 990
 toc: 3
 ---
 
-VXLANs provide a way to create a virtual network on top of layer 2 and layer 3 technologies. They are intended for organizations, such as data centers, that require larger scale without additional infrastructure and more flexibility than is available with existing infrastructure equipment. 
+VXLANs provide a way to create a virtual network on top of layer 2 and layer 3 technologies. Organizations, such as data centers, use them because they require larger scale without additional infrastructure and more flexibility than is available with existing infrastructure equipment.
 
 With NetQ, a network administrator can monitor VXLANs in the data center. NetQ provides the ability to:
 
@@ -39,12 +39,12 @@ When entering a time value, you must include a numeric value *and* the unit of m
 - **s**: seconds
 - **now**
 
-For the `between` option, the start (`<text-time>`) and end time (`text-endtime>`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
+For the `between` option, you can enter the start (`<text-time>`) and end time (`text-endtime>`) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 {{%/notice%}}
 
 ## View All VXLANs in Your Network
 
-You can view a list of configured VXLANs for all devices, including the VNI (VXLAN network identifier), protocol, address of associated VTEPs (VXLAN tunnel endpoint), replication list, and the last time it was changed. You can also view VXLAN information for a given device by adding a hostname to the `show` command. You can filter the results by VNI.
+You can view a list of configured VXLANs for all devices, including the VNI (VXLAN network identifier), protocol, address of associated VTEPs (VXLAN tunnel endpoint), replication list, and the last time it changed. You can also view VXLAN information for a given device by adding a hostname to the `show` command. You can filter the results by VNI.
 
 This example shows all configured VXLANs across the network. In this network, there are three VNIs (13, 24, and 104001) associated with three VLANs (13, 24, 4001), EVPN is the virtual protocol deployed, and the configuration was last changed around 23 hours ago.
 
@@ -70,7 +70,7 @@ leaf04            24         EVPN   10.0.0.134       24     10.0.0.112(leaf02, l
 leaf04            104001     EVPN   10.0.0.134       4001                                       Fri Feb  8 01:35:49 2019
 ```
 
-This example shows the events and configuration changes that have occurred on the VXLANs in your network in the last 24 hours. In this case, the EVPN configuration was added to each of the devices in the last 24 hours.
+This example shows the events and configuration changes that occurred on the VXLANs in your network in the last 24 hours. In this case, the change involved adding the EVPN configuration to each of the devices in the last 24 hours.
 
 ```
 cumulus@switch:~$ netq show events type vxlan between now and 24h

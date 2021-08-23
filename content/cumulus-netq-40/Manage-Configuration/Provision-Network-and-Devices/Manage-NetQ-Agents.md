@@ -4,7 +4,10 @@ author: NVIDIA
 weight: 700
 toc: 3
 ---
-At various points in time, you might want to change which network nodes are being monitored by NetQ or look more closely at a network node for troubleshooting purposes. Adding the NetQ Agent to a switch or host is described in {{<link url="Install-NetQ" text="Install NetQ">}}. Viewing the status of an Agent, disabling an Agent, managing NetQ Agent logging, and configuring the events the agent collects are presented here.
+
+At various points in time, you might want to change which network nodes NetQ monitors or look more closely at a network node for troubleshooting purposes. To learn about adding the NetQ Agent to a switch or host, read {{<link url="Install-NetQ" text="Install NetQ">}}.
+
+This topic describes viewing the status of an Agent, disabling an Agent, managing NetQ Agent logging, and configuring the events the agent collects.
 
 ## View NetQ Agent Status
 
@@ -66,13 +69,13 @@ netq-ts           Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e 
 
 ## View NetQ Agent Configuration
 
-You can view the current configuration of a NetQ Agent to determine what data is being collected and where it is being sent. To view this configuration, run:
+You can view the current configuration of a NetQ Agent to determine what data it collects and where it sends that data. To view this configuration, run:
 
 ```
 netq config show agent [kubernetes-monitor|loglevel|stats|sensors|frr-monitor|wjh|wjh-threshold|cpu-limit] [json]
 ```
 
-This example shows a NetQ Agent in an on-premises deployment, talking to an appliance or VM at 127.0.0.1 using the default ports and VRF. No special configuration is included to monitor kubernetes, FRR, interface statistics, sensors, WJH. No limit has been set on the CPU usage or alter the default logging level.
+This example shows a NetQ Agent in an on-premises deployment, talking to an appliance or VM at 127.0.0.1 using the default ports and VRF. There is no special configuration to monitor Kubernetes, FRR, interface statistics, sensors, or WJH, and there are no limits on CPU usage or change to the default logging level.
 
 ```
 cumulus@switch:~$ netq config show agent
@@ -92,7 +95,7 @@ vrf                    default    default
 
 To view the configuration of a particular aspect of a NetQ Agent, use the various options.
 
-This example show a NetQ Agent that has been configured with a CPU limit of 60%.
+This example show a NetQ Agent configured with a CPU limit of 60%.
 
 ```
 cumulus@switch:~$ netq config show agent cpu-limit
@@ -114,7 +117,7 @@ The agent configuration commands enable you to do the following:
 
 {{<notice note>}}
 
-Commands apply to one agent at a time, and are run from the switch or host where the NetQ Agent resides.
+Commands apply to one agent at a time, and you run them on the switch or host where the NetQ Agent resides.
 
 {{</notice>}}
 
@@ -142,7 +145,7 @@ cumulus@switch~:$ netq config restart agent
 ### Disable and Reenable a NetQ Agent
 <!-- vale on -->
 
-You can temporarily disable NetQ Agent on a node. Disabling the NetQ Agent maintains the data already collected in the NetQ database, but stops the NetQ Agent from collecting new data until it is reenabled.
+You can temporarily disable the NetQ Agent on a node. Disabling the NetQ Agent maintains the data already collected in the NetQ database, but stops the NetQ Agent from collecting new data until you reenable it.
 
 To disable a NetQ Agent, run:
 
@@ -234,7 +237,7 @@ To configure the agent to send data to the servers in your cluster, run:
 netq config add agent cluster-servers <text-opta-ip-list> [port <text-opta-port>] [vrf <text-vrf-name>]
 ```
 
-The list of IP addresses  must be separated by commas, but no spaces. You can optionally specify a port or VRF.
+You must separate the list of IP addresses by commas, but no spaces. You can optionally specify a port or VRF.
 
 This example configures the NetQ Agent on a switch to send the data to three servers located at *10.0.0.21*, *10.0.0.22*, and *10.0.0.23* using the *rocket* VRF.
 
@@ -250,8 +253,7 @@ cumulus@switch:~$ netq config del agent cluster-servers
 
 ### Configure Logging to Troubleshoot a NetQ Agent
 
-The logging level used for a NetQ Agent determines what types of events
-are logged about the NetQ Agent on the switch or host.
+The logging level used for a NetQ Agent determines what types of events get logged about the NetQ Agent on the switch or host.
 
 First, you need to decide what level of logging you want to configure. You can configure the logging level to be the same for every NetQ Agent, or selectively increase or decrease the logging level for a NetQ Agent on a problematic node.
 
@@ -271,7 +273,7 @@ You can view the NetQ Agent log directly. Messages have the following structure:
 | timestamp | Date and time event occurred in UTC format|
 | node | Hostname of network node where event occurred |
 | service \[PID\] | Service and Process IDentifier that generated the event |
-| level | Logging level in which the given event is classified; *debug*, *error*, *info*, or *warning* |
+| level | Logging level assigned for the given event: *debug*, *error*, *info*, or *warning* |
 | message | Text description of event, including the node where the event occurred |
 
 For example:
@@ -318,7 +320,7 @@ cumulus@switch:~$ netq config restart agent
 
 #### Disable Agent Logging
 
-If you have set the logging level to *debug* for troubleshooting, it is recommended that you either change the logging level to a less heavy mode or completely disable agent logging altogether when you are finished troubleshooting.
+If you set the logging level to *debug* for troubleshooting, NVIDIA recommends that you either change the logging level to a less heavy mode or completely disable agent logging altogether when you finish troubleshooting.
 
 To change the logging level from debug to another level, run:
 
@@ -376,19 +378,19 @@ ospf-neighbor-json             60  yes       ['/usr/bin/vtysh', '-c', 'show ip o
 ospf-interface-json            60  yes       ['/usr/bin/vtysh', '-c', 'show ip ospf vrf all interface json']
 ```
 
-The NetQ predefined commands are described as follows:
+The NetQ predefined commands include:
 
 - **agent_stats**: Collects statistics about the NetQ Agent every five (5) minutes.
 - **agent_util_stats**: Collects switch CPU and memory utilization by the NetQ Agent every 30 seconds.
-- **cl-support-json**: Polls the switch every three (3) minutes to determine if a `cl-support` file was generated.
-- **config-mon-json**: Polls the */etc/network/interfaces*, */etc/frr/frr.conf*, */etc/lldpd.d/README.conf* and */etc/ptm.d/topology.dot* files every two (2) minutes to determine if the contents of any of these files has changed. If a change has occurred, the contents of the file and its modification time are transmitted to the NetQ appliance or VM.
+- **cl-support-json**: Polls the switch every three (3) minutes to determine if an agent generated a `cl-support` file.
+- **config-mon-json**: Polls the */etc/network/interfaces*, */etc/frr/frr.conf*, */etc/lldpd.d/README.conf* and */etc/ptm.d/topology.dot* files every two (2) minutes to determine if the contents of any of these files has changed. If a change occurred, the agent transmits the contents of the file and its modification time to the NetQ appliance or VM.
 - **ports**: Polls for optics plugged into the switch every hour.
 - **proc-net-dev**: Polls for network statistics on the switch every 30 seconds.
 - **running-config-mon-json**: Polls the `clagctl` parameters every 30 seconds and sends a diff of any changes to the NetQ appliance or VM.
 
 ### Modify the Polling Frequency
 
-You can change the polling frequency of a modular command. The frequency is specified in seconds. For example, to change the polling frequency of the `lldp-json` command to 60 seconds from its default of 120 seconds, run:
+You can change the polling frequency (in seconds) of a modular command. For example, to change the polling frequency of the `lldp-json` command to 60 seconds from its default of 120 seconds, run:
 
 ```
 cumulus@switch:~$ netq config add agent command service-key lldp-json poll-period 60

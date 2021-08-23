@@ -3,11 +3,12 @@ title: Monitor Container Environments Using Kubernetes API Server
 author: NVIDIA
 weight: 760
 ---
+
 The NetQ Agent monitors many aspects of containers on your network by integrating with the Kubernetes API server. In particular, the NetQ Agent tracks:
 
 - **Identity**: Every container's IP and MAC address, name, image, and more. NetQ can locate containers across the fabric based on a container's name, image, IP or MAC address, and protocol and port pair.
 - **Port mapping on a network**: Protocol and ports exposed by a container. NetQ can identify containers exposing a specific protocol and port pair on a network.
-- **Connectivity**: Information about network connectivity for a container, including adjacency, and can identify containers that can be affected by a top of rack switch.
+- **Connectivity**: Information about network connectivity for a container, including adjacency and identifying  a top of rack switch's effects on containers.
 
 This topic assumes a reasonable familiarity with Kubernetes terminology and architecture.
 
@@ -17,12 +18,14 @@ The NetQ Agent interfaces with the Kubernetes API server and listens to Kubernet
 
 The NetQ Kubernetes integration enables network administrators to:
 
+<!-- vale off -->
 - Identify and locate pods, deployment, replica-set and services deployed within the network using IP, name, label, and so forth.
 - Track network connectivity of all pods of a service, deployment and replica set.
 - Locate what pods have been deployed adjacent to a top of rack (ToR) switch.
-- Check what pod, services, replica set or deployment can be impacted by a specific ToR switch.
+- Check the impact on a pod, services, replica set or deployment by a specific ToR switch.
+<!-- vale on -->
 
-NetQ also helps network administrators identify changes within a Kubernetes cluster and determine if such changes had an adverse effect on the network performance (caused by a noisy neighbor for example). Additionally, NetQ helps the infrastructure administrator determine how Kubernetes workloads are distributed within a network.
+NetQ also helps network administrators identify changes within a Kubernetes cluster and determine if such changes had an adverse effect on the network performance (caused by a noisy neighbor for example). Additionally, NetQ helps the infrastructure administrator determine the distribution of Kubernetes workloads within a network.
 
 ### Requirements
 
@@ -53,9 +56,11 @@ A large set of commands are available to monitor Kubernetes configurations, incl
 
 ## Enable Kubernetes Monitoring
 
+<!-- vale off -->
 {{<notice note>}}
 For Kubernetes monitoring, the NetQ Agent must be installed, running, and enabled on the hosts providing the Kubernetes service.
 {{</notice>}}
+<!-- vale on -->
 
 To enable NetQ Agent monitoring of the containers using the Kubernetes API, you must configure the following on the Kubernetes master node:
 
@@ -88,7 +93,7 @@ To enable NetQ Agent monitoring of the containers using the Kubernetes API, you 
 
 ## View Status of Kubernetes Clusters
 
-Run the `netq show kubernetes cluster` command to view the status of all Kubernetes clusters in the fabric. The following example shows two clusters; one with *server11* as the master server and the other with *server12* as the master server. Both are healthy and their associated worker nodes are listed.
+Run the `netq show kubernetes cluster` command to view the status of all Kubernetes clusters in the fabric. The following example shows two clusters; one with *server11* as the master server and the other with *server12* as the master server. Both are healthy and both list their associated worker nodes.
 
     cumulus@host:~$ netq show kubernetes cluster
     Matching kube_cluster records:
@@ -139,7 +144,7 @@ Optionally, use the `json` option to present the results in JSON format.
 
 ### View Changes to a Cluster
 
-If data collection from the NetQ Agents is not occurring as it did previously, you can verify that no changes have been made to the Kubernetes cluster configuration using the `around` option. Be sure to include the unit of measure with the around value. Valid units include:
+If data collection from the NetQ Agents is not occurring as it did previously, verify that no changes made to the Kubernetes cluster configuration use the `around` option. Be sure to include the unit of measure with the around value. Valid units include:
 
 - **w**: weeks
 - **d**: days
@@ -148,7 +153,7 @@ If data collection from the NetQ Agents is not occurring as it did previously, y
 - **s**: seconds
 - **now**
 
-This example shows changes that have been made to the cluster in the last hour. This example shows the addition of the two master nodes and the various worker nodes for each cluster.
+This example shows changes that made to the cluster in the last hour. This example shows the addition of the two master nodes and the various worker nodes for each cluster.
 
     cumulus@host:~$ netq show kubernetes cluster around 1h
     Matching kube_cluster records:
@@ -486,7 +491,7 @@ You can view information about the pods on the node. The first example shows all
 
 ### View Status of the Replication Controller on a Node
 
-When replicas have been created, you are then able to view information about the replication controller:
+After you create the replicas, you can then view information about the replication controller:
 
     cumulus@host:~$ netq server11 show kubernetes replication-controller
     No matching kube_replica records found
@@ -515,9 +520,9 @@ You can search for information about your Kubernetes clusters using labels. A la
 
 ## View Container Connectivity
 
-You can view the connectivity graph of a Kubernetes pod, seeing its replica set, deployment or service level. The connectivity graph starts with the server where the pod is deployed, and shows the peer for each server interface. This data is displayed in a similar manner as the `netq trace` command, showing the interface name, the outbound port on that interface, and the inbound port on the peer.
+You can view the connectivity graph of a Kubernetes pod, seeing its replica set, deployment or service level. The connectivity graph starts with the server where you deployed the pod, and shows the peer for each server interface. This data appears in a similar manner as the `netq trace` command, showing the interface name, the outbound port on that interface, and the inbound port on the peer.
 
-In this example shows connectivity at the deployment level, where the *nginx-8586cf59-wjwgp* replica is in a pod on the *server22* node. It has four possible commumication paths, through interfaces *swp1-4* out varying ports to peer interfaces *swp7* and *swp20* on *torc-21*, *torc-22*, *edge01* and *edge02* nodes. Similarly, the connections are shown for two additional nginx replicas.
+In this example shows connectivity at the deployment level, where the *nginx-8586cf59-wjwgp* replica is in a pod on the *server22* node. It has four possible commumication paths, through interfaces *swp1-4* out varying ports to peer interfaces *swp7* and *swp20* on *torc-21*, *torc-22*, *edge01* and *edge02* nodes. Similarly, it shows the connections for two additional `nginx` replicas.
 
     cumulus@host:~$ netq server11 show kubernetes deployment name nginx connectivity
     nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-21

@@ -4,9 +4,10 @@ author: NVIDIA
 weight: 890
 toc: 4
 ---
-LLDP is used by network devices for advertising their identity, capabilities, and neighbors on a LAN. You can view this information for one or more devices. You can also view the information at an earlier point in time or view changes that have occurred to the information during a specified time period. For an overview and how to configure LLDP in your network, refer to {{<kb_link latest="cl" url="Layer-2/Link-Layer-Discovery-Protocol.md" text="Link Layer Discovery Protocol">}}.
 
-NetQ enables operators to view the overall health of the LLDP service on a networkwide and a per session basis, giving greater insight into all aspects of the service. This is accomplished in the NetQ UI through two card workflows, one for the service and one for the session and in the NetQ CLI with the `netq show lldp` command.
+Network devices use LLDP to advertise their identity, capabilities, and neighbors on a LAN. You can view this information for one or more devices. You can also view the information at an earlier point in time or view changes that have occurred to the information during a specified time period. For an overview and how to configure LLDP in your network, refer to {{<kb_link latest="cl" url="Layer-2/Link-Layer-Discovery-Protocol.md" text="Link Layer Discovery Protocol">}}.
+
+NetQ enables operators to view the overall health of the LLDP service on a networkwide and a per session basis, giving greater insight into all aspects of the service. You accomplish this in the NetQ UI through two card workflows, one for the service and one for the session and in the NetQ CLI with the `netq show lldp` command.
 
 ## Monitor the LLDP Service Networkwide
 
@@ -17,7 +18,7 @@ With NetQ, you can monitor LLDP performance across the network:
     - Medium: view number of nodes running LLDP service, number of sessions, and number of alarms
     - Large: view number of nodes running LLDP service, number of sessions and alarms, number of sessions without neighbors, switches with the most established/unestablished sessions
     - Full-screen: view all switches, all sessions, and all alarms
-- `netq show evpn` command: view associated host interface, peer hostname and interface, and last time a change was made for each session running LLDP
+- `netq show evpn` command: view associated host interface, peer hostname and interface, and last time a change occurred for each session running LLDP
 
 {{%notice note%}}
 
@@ -30,7 +31,7 @@ When entering a time value in the `netq show lldp` command, you must include a n
 - **s**: seconds
 - **now**
 
-When using the `between` option, the start time (`text-time`) and end time (`text-endtime`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
+When using the `between` option, you can enter the start time (`text-time`) and end time (`text-endtime`) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 
 {{%/notice%}}
 
@@ -171,9 +172,9 @@ server12          swp2                      leaf02            swp8              
 
 ### View the Distribution of Nodes, Alarms, and Sessions
 
-It is useful to know the number of network nodes running the LLDP protocol over a period of time and how many sessions are established on a given node, as it gives you insight into the amount of traffic associated with and breadth of use of the protocol. Additionally, if there are a large number of alarms, it is worth investigating either the service or particular devices.
+It is useful to know the number of network nodes running the LLDP protocol over a period of time and the number of established sessions on a given node, as it gives you insight into the amount of traffic associated with and breadth of use of the protocol. Additionally, if there are a large number of alarms, it is worth investigating either the service or particular devices.
 
-Nodes which have a large number of unestablished sessions might be misconfigured or experiencing communication issues. This is visible with the NetQ UI.
+Nodes which have a large number of unestablished sessions might have a misconfiguration or is experiencing communication issues. This is visible with the NetQ UI.
 
 {{<tabs "TabID178" >}}
 
@@ -501,7 +502,7 @@ To view switches with the most unestablished LLDP sessions:
 
 2. Select **Switches with Most Unestablished Sessions** from the filter above the table.  
 
-    The table content is sorted by this characteristic, listing nodes with the most unestablished LLDP sessions at the top. Scroll down to view those with the fewest unestablished sessions.
+    The table content sorts by this characteristic, listing nodes with the most unestablished LLDP sessions at the top. Scroll down to view those with the fewest unestablished sessions.
 
     {{<figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-most-unestab-300.png" width="500">}}
 
@@ -575,7 +576,7 @@ To view switches with most LLDP alarms:
 
 3. Select **Events by Most Active Device** from the filter above the  table.
 
-    The table content is sorted by this characteristic, listing nodes with the most LLDP alarms at the top. Scroll down to view those with the fewest alarms.
+    The table content sorts by this characteristic, listing nodes with the most LLDP alarms at the top. Scroll down to view those with the fewest alarms.
 
     {{<figure src="/images/netq/ntwk-svcs-all-lldp-large-alarms-tab.png" width="500" >}}
 
@@ -710,7 +711,7 @@ To view all LLDP events:
 
 3. Click the **All Alarms** tab.
 
-    By default, events are listed in most recent to least recent order.
+    By default, events sort by most recent to least recent.
 
     {{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-alarms-tab-241.png" width="700">}}
 
@@ -848,7 +849,7 @@ To access the single session cards, you must open the full-screen Network Servic
 
 ### Granularity of Data Shown Based on Time Period
 
-On the medium and large single LLDP session cards, the status of the neighboring peers is represented in heat maps stacked vertically; one for peers that are reachable (neighbor detected), and one for peers that are unreachable (neighbor not detected). Depending on the time period of data on the card, the number of smaller time blocks used to indicate the status varies. A vertical stack of time blocks, one from each map, includes the results from all checks during that time. The results are shown by how saturated the color is for each block. If all peers during that time period were detected for the entire time block, then the top block is 100% saturated (white) and the neighbor not detected block is zero percent saturated (gray). As peers become reachable, the neighbor detected block increases in saturation, the peers that are unreachable (neighbor not detected) block is proportionally reduced in saturation. An example heat map for a time period of 24 hours is shown here with the most common time periods in the table showing the resulting time blocks.
+On the medium and large single LLDP session cards, vertically stacked heat maps represent the status of the neighboring peers; one for peers that are reachable (neighbor detected), and one for peers that are unreachable (neighbor not detected). Depending on the time period of data on the card, the number of smaller time blocks used to indicate the status varies. A vertical stack of time blocks, one from each map, includes the results from all checks during that time. The results appear by how saturated the color is for each block. If LLDP detected all peers during that time period for the entire time block, then the top block is 100% saturated (white) and the neighbor not detected block is zero percent saturated (gray). As peers become reachable, the neighbor detected block increases in saturation, the peers that are unreachable (neighbor not detected) block is proportionally reduced in saturation. This example shows a heat map for a time period of 24 hours with the most common time periods in the table showing the resulting time blocks.
 
 {{<figure src="/images/netq/ntwk-svcs-single-lldp-result-granularity-230.png" width="300">}}
 

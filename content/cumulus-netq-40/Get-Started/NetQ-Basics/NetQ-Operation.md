@@ -58,7 +58,7 @@ The NetQ CLI enables validation of your network health through two sets of comma
 
 ### Monitor Communication Paths
 
-The trace engine is used to validate the available communication paths between two network devices. The corresponding `netq trace` command enables you to view all of the paths between the two devices and if there are any breaks in the paths. This example shows two successful paths between server12 and leaf11, all with an MTU of 9152. The first command shows the output in path by path tabular mode. The second command show the same output as a tree.
+The trace engine validates the available communication paths between two network devices. The corresponding `netq trace` command enables you to view all of the paths between the two devices and if there are any breaks in the paths. This example shows two successful paths between server12 and leaf11, all with an MTU of 9152. The first command shows the output in path by path tabular mode. The second command shows the same output as a tree.
 
     cumulus@switch:~$ netq trace 10.0.0.13 from 10.0.0.21
     Number of Paths: 2
@@ -84,18 +84,18 @@ The trace engine is used to validate the available communication paths between t
      hostd-12 bond1.1002 -- swp8 leaf12 <vlan1002> peerlink-1 -- swp6 <vlan1002> leaf11 vlan1002
               bond1.1002 -- swp8 leaf11 vlan1002
 
-This output is read as:
+To better understand the output in greater detail:
 
   - Path 1 traverses the network from server12 out bond1.1002 into leaf12 interface swp8 out VLAN1002 peerlink-1 into VLAN1002 interface swp6 on leaf11
   - Path 2 traverses the network from server12 out bond1.1002 into VLAN1002 interface swp8 on leaf11
 
-If the MTU does not match across the network, or any of the paths or parts of the paths have issues, that data is called out in the summary at the top of the output and shown in red along the paths, giving you a starting point for troubleshooting.
+If the MTU does not match across the network, or any of the paths or parts of the paths have issues, that data appears in the summary at the top of the output and shown in red along the paths, giving you a starting point for troubleshooting.
 
 ### View Historical State and Configuration
 
-You can run all check, show and trace commands for the current status and for a prior point in time. For example, this is useful when you receive messages from the night before, but are not seeing any problems now. You can use the `netq check` command to look for configuration or operational issues around the time that the messages are timestamped. Then use the `netq show` commands to see information about how the devices in question were configured at that time or if there were any changes in a given timeframe. Optionally, you can use the `netq trace` command to see what the connectivity looked like between any problematic nodes at that time. This example shows problems occurred on spine01, leaf04, and server03 last night. The network administrator received notifications and wants to investigate. The diagram is followed by the commands to run to determine the cause of a BGP error on spine01. Note that the commands use the `around` option to see the results for last night and that they can be run from any switch in the network.
+You can run all check, show and trace commands for the current status and for a prior point in time. For example, this is useful when you receive messages from the night before, but are not seeing any problems now. You can use the `netq check` command to look for configuration or operational issues around the time that NetQ timestamped the messages. Then use the `netq show` commands to see information about the configuration at that time of the device in question or if there were any changes in a given timeframe. Optionally, you can use the `netq trace` command to see what the connectivity looked like between any problematic nodes at that time. This example shows problems occurred on spine01, leaf04, and server03 last night. The network administrator received notifications and wants to investigate. Below the diagram are the commands to run to determine the cause of a BGP error on spine01. Note that the commands use the `around` option to see the results for last night and that you can run them from any switch in the network.
 
-{{< figure src="/images/netq/netq-ops-historic-230.png" width="700" >}}
+{{<figure src="/images/netq/netq-ops-historic-230.png" width="700">}}
 
     cumulus@switch:~$ netq check bgp around 30m
     Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24,
@@ -429,13 +429,13 @@ This example shows the difference between the timestamp displays.
 
 {{%notice note%}}
 
-If a NetQ Agent is restarted on a device, the timestamps for existing objects are not updated to reflect this new restart time. Their timestamps are preserved relative to the original start time of the Agent. A rare exception is if the device is rebooted between the time it takes the Agent being stopped and restarted; in this case, the time is still relative to the start time of the Agent.
+Restarting a NetQ Agent on a device does not update the timestamps for existing objects to reflect this new restart time. NetQ preserves their timestamps relative to the original start time of the Agent. A rare exception is if you reboot the device between the time it takes the Agent to stop and restart; in this case, the time is still relative to the start time of the Agent.
 
 {{%/notice%}}
 
 ## Exporting NetQ Data
 
-Data from the NetQ Platform can be exported in a couple of ways:
+You can export data from the NetQ Platform in a couple of ways:
 
 - Use the `json` option to output command results to JSON format for parsing in other applications
 - Use the UI to export data from the full screen cards

@@ -4,8 +4,7 @@ author: NVIDIA
 weight: 0
 toc: 3
 ---
-Beyond knowing what physical components are deployed, it is valuable to know that they are configured and operating correctly. NetQ enables you to confirm that peer connections are present, discover any misconfigured
-ports, peers, or unsupported modules, and monitor for link flaps.
+Beyond knowing what physical components are in the deployment, it is valuable to know that their configurations are correct and they operate correctly. NetQ enables you to confirm that peer connections are present, discover any misconfigured ports, peers, or unsupported modules, and monitor for link flaps.
 
 NetQ checks peer connections using LLDP. For DACs and AOCs, NetQ determines the peers using their serial numbers in the port EEPROMs, even if the link is not UP.
 
@@ -47,7 +46,7 @@ You can verify that the following configurations are the same on both sides of a
 - Link speed
 - Auto-negotiation setting
 
-The `netq check interfaces` command is used to determine if any of the interfaces have any continuity errors. This command only checks the physical interfaces; it does not check bridges, bonds or other software constructs. You can check all interfaces at one time. It enables you to compare the current status of the interfaces, as well as their status at an earlier point in time. The command syntax is:
+You use the `netq check interfaces` command to determine if any of the interfaces have any continuity errors. This command only checks the physical interfaces; it does not check bridges, bonds or other software constructs. You can check all interfaces at one time. It enables you to compare the current status of the interfaces, as well as their status at an earlier point in time. The command syntax is:
 
 ```
 netq check interfaces [around <text-time>] [json]
@@ -55,7 +54,7 @@ netq check interfaces [around <text-time>] [json]
 
 {{%notice tip%}}
 
-If NetQ cannot determine a peer for a given device, the port is marked as *unverified*.
+If NetQ cannot determine a peer for a given device, the port shows as *unverified*.
 
 {{%/notice%}}
 
@@ -87,7 +86,7 @@ leaf03            swp52                                                         
 
 ### Find Mismatched Peers
 
-This example uses the *and* keyword to check the connections between two peers. You can see an error, so you check the physical peer information and discover that the incorrect peer has been specified. After fixing it, run the check again, and see that there are no longer any interface errors.
+This example uses the *and* keyword to check the connections between two peers. You can see an error, so you check the physical peer information and discover that someone specified an incorrect peer. After fixing it, run the check again, and see that there are no longer any interface errors.
 
 ```
 cumulus@switch:~$ netq check interfaces
@@ -108,7 +107,7 @@ Checked Ports: 1, Failed Ports: 0, Unverified Ports: 0
 
 ### Find Mismatched Link Speeds
 
-This example checks for configuration mismatches and finds a link speed mismatch on server03. The link speed on swp49 is *40G* and the peer port swp50 is *unspecified*.
+This example checks for configuration mismatches and finds a link speed mismatch on server03. The link speed on swp49 is *40G* and the peer port swp50 shows as *unspecified*.
 
 ```
 cumulus@switch:~$ netq check interfaces

@@ -62,6 +62,7 @@ cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:
       }
 ...
 ```
+For information about using the NVUE API, refer to the {{<mib_link url="cumulus-linux-44/api/index.html" text="NVUE API documentation.">}}
 
 ## NVUE CLI
 
@@ -392,7 +393,7 @@ cumulus@switch:~$ nv config apply
 The example below shows the NVUE commands required to define the DNS server for the switch:
 
 ```
-cumulus@switch:~$ nv set service dhcp-server 192.168.200.1
+cumulus@switch:~$ nv set service dns mgmt server 192.168.200.1
 cumulus@switch:~$ nv config apply
 ```
 

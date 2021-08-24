@@ -1393,7 +1393,7 @@ Source                     Group               RP  Local  SPT    Uptime
 
 ## Example Configuration
 
-The following example shows 
+The following example shows
 
 <!-- vale off -->
 {{< tabs "TabID1395 ">}}

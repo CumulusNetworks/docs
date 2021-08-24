@@ -62,9 +62,9 @@ cumulus@leaf01:~$ net commit
 {{< tab "leaf02 ">}}
 
 ```
-cumulus@leaf02:~$ net add interface swp1 pim
+cumulus@leaf02:~$ net add interface swp2 pim
 cumulus@leaf02:~$ net add interface swp51 pim
-cumulus@leaf02:~$ net add interface swp1 igmp
+cumulus@leaf02:~$ net add interface swp2 igmp
 cumulus@leaf02:~$ net add pim rp 10.10.10.101
 cumulus@leaf02:~$ net pending
 cumulus@leaf02:~$ net commit
@@ -155,7 +155,7 @@ The FRRouting package includes PIM. For proper PIM operation, PIM depends on Zeb
    ```
    cumulus@leaf02:~$ sudo vtysh
    leaf02# configure terminal
-   leaf02(config)# interface swp1
+   leaf02(config)# interface swp2
    leaf02(config-if)# ip pim
    leaf02(config-if)# exit
    leaf02(config)# interface swp51
@@ -166,7 +166,7 @@ The FRRouting package includes PIM. For proper PIM operation, PIM depends on Zeb
 4. Enable IGMP on all interfaces that have attached hosts.
 
    ```
-   leaf02(config)# interface swp1
+   leaf02(config)# interface swp2
    leaf02(config-if)# ip igmp
    leaf02(config-if)# exit
    ```
@@ -235,7 +235,7 @@ The FRRouting package includes PIM. For proper PIM operation, PIM depends on Zeb
 {{< /tab >}}
 {{< /tabs >}}
 
-The above commands configure the switch to send all multicast traffic to RP 10.10.10.101. The following commands configure PIM to send traffic from multicast group 224.10.0.0/16 to RP 192.168.0.2 and traffic from multicast group 224.10.2.0/24 to RP 192.168.0.1:
+The above commands configure the switch to send all multicast traffic to RP 10.10.10.101. The following commands configure PIM to send traffic from multicast group 224.10.0.0/16 to RP 10.10.10.101 and traffic from multicast group 224.10.2.0/24 to RP 10.10.10.102:
 
 {{< tabs "TabID240 ">}}
 {{< tab "NCLU Commands ">}}
@@ -808,10 +808,13 @@ To prevent duplicate multicast packets, PIM elects a [DF](## "PIM Designated For
 
 The examples below show the flow of traffic between server02 and server03:
 
-| Step 1 | Step 2 |
+| Step 1 |  |
 |--------|--------|
-|{{< figure src = "/images/cumulus-linux/pim-mlag-topology1.png" >}}|{{< figure src = "/images/cumulus-linux/pim-mlag-topology2.png" >}}|
-| 1. server02 sends traffic to leaf02.<br>2. leaf02 forwards traffic to leaf01 because the peerlink is a multicast router port.<br>3.  leaf01 also receives a PIM register from leaf02.<br>4. leaf02 syncs the *,G table from leaf01 as an MLAG active-active peer. | 1. leaf02 has the *,G route indicating that it must forward traffic towards spine01.<br>2. Either leaf02 or leaf01 sends this traffic directly based on which MLAG switch receives it from the attached source.<br>3. In this case, leaf02 receives the traffic on the MLAG bond and forwards it directly upstream.|
+|{{< figure src = "/images/cumulus-linux/pim-mlag-citc-topology1.png" >}}| **1**. server02 sends traffic to leaf02.<br><br>**2**. leaf02 forwards traffic to leaf01 because the peerlink is a multicast router port.<br><br>**3**. leaf01 also receives a PIM register from leaf02.<br><br>**4**. leaf02 syncs the *,G table from leaf01 as an MLAG active-active peer. |
+
+| Step 2 |  |
+|--------|--------|
+| {{< figure src = "/images/cumulus-linux/pim-mlag-citc-topology2.png" >}} | **1**. leaf02 has the *,G route indicating that it must forward traffic towards spine01.<br><br>**2**. Either leaf02 or leaf01 sends this traffic directly based on which MLAG switch receives it from the attached source.<br><br>**3**. In this case, leaf02 receives the traffic on the MLAG bond and forwards it directly upstream.|
 
 ### Configure PIM with MLAG
 
@@ -823,8 +826,8 @@ To use a multicast sender or receiver over a dual-attached MLAG bond, you must c
 1. On the VLAN interface where multicast sources or receivers exist, configure `pim active-active` and `igmp`.
 
    ```
-   cumulus@switch:~$ net add vlan 12 pim active-active
-   cumulus@switch:~$ net add vlan 12 igmp
+   cumulus@switch:~$ net add vlan 10 pim active-active
+   cumulus@switch:~$ net add vlan 10 igmp
    cumulus@switch:~$ net pending
    cumulus@switch:~$ net commit
    ```
@@ -858,9 +861,8 @@ To use a multicast sender or receiver over a dual-attached MLAG bond, you must c
 
    ```
    cumulus@leaf01:~$ sudo vtysh
-
    leaf01# configure terminal
-   leaf01(config)# interface vlan12
+   leaf01(config)# interface vlan10
    leaf01(config-if)# ip pim active-active
    leaf01(config-if)# ip igmp
    ```
@@ -1606,7 +1608,7 @@ iface eth2 inet manual
 {{< /tabs >}}
 
 {{< /tab >}}
-{{< tab "/etc/network/interfaces ">}}
+{{< tab "/etc/frr/frr.conf ">}}
 
 {{< tabs "TabID1608 ">}}
 {{< tab "leaf01 ">}}

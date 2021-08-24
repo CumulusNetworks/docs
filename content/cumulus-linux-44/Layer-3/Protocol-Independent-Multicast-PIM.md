@@ -1600,11 +1600,9 @@ cumulus@server01:~$ sudo cat /etc/network/interfaces
 # The loopback network interface
 auto lo
 iface lo inet loopback
-
 # The OOB network interface
 auto eth0
 iface eth0 inet dhcp
-
 # The data plane network interfaces
 auto eth1
 iface eth1 inet manual
@@ -1621,11 +1619,9 @@ iface eth1 inet manual
 cumulus@server02:~$ sudo cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
-
 # The OOB network interface
 auto eth0
 iface eth0 inet dhcp
-
 # The data plane network interfaces
 auto eth2
 iface eth2 inet manual

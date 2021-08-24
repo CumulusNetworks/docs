@@ -1544,7 +1544,10 @@ Source                     Group               RP  Local  SPT    Uptime
 44.1.11.2              239.1.1.2        100.1.1.1      n    n  00:00:25
 ```
 
-## Example Configurations
+## Example Configuration
+
+The following example shows
+
 <!-- vale off -->
 {{< expand "Complete Multicast Network Configuration Example"  >}}
 

@@ -39,7 +39,7 @@ To configure PIM:
 SSM uses prefix lists to configure a receiver to only allow traffic to a multicast address from a single source. This removes the need for an RP because the receiver must know the source before accepting traffic. To enable SSM, you only need to enable PIM and IGMPv3 on the interfaces.
 {{%/notice%}}
 
-These commands configure leaf01, leaf02 and spine01 as shown in the topology example above.
+These example commands configure leaf01, leaf02 and spine01 as shown in the topology example above.
 
 In Cumulus Linux 4.4, you cannot configure PIM with NVUE commands.
 
@@ -264,7 +264,7 @@ This section describes optional configuration procedures.
 
 ### ASM SPT Infinity
 
-When the LHR receives the first multicast packet, it sends a [PIM (S,G) join](## "a single PIM message with a list of groups to join. ") towards the FHR to forward traffic through the network. This builds the [SPT](## "shortest path tree "), or the tree that is the shortest path to the source. When the traffic arrives over the SPT, a PIM (S,G) RPT prune goes up the shared tree towards the RP. This removes multicast traffic from the shared tree; multicast data only goes over the SPT.
+When the [LHR](## "Last Hop Router") receives the first multicast packet, it sends a [PIM (S,G) join](## "a single PIM message with a list of groups to join. ") towards the [FHR](## "First Hop Router") to forward traffic through the network. This builds the [SPT](## "shortest path tree "), or the tree that is the shortest path to the source. When the traffic arrives over the SPT, a PIM (S,G) RPT prune goes up the shared tree towards the [RP](## "Rendezvous Point"). This removes multicast traffic from the shared tree; multicast data only goes over the SPT.
 
 You can configure SPT switchover per group (SPT infinity), which allows for some groups to never switch to a shortest path tree. The LHR now sends both (*,G) joins and (S,G) RPT prune messages towards the RP.
 
@@ -440,7 +440,7 @@ Address         Interface      Nexthop
 
 ### IP Multicast Boundaries
 
-Use multicast boundaries to limit the distribution of multicast traffic by setting boundaries to push multicast to a subset of the network. With boundaries in place, the switch drops or accepts incoming IGMP or PIM joins according to the prefix-list. You configure the boundary by applying an IP multicast boundary OIL (outgoing interface list) on an interface.
+Use multicast boundaries to limit the distribution of multicast traffic by setting boundaries to push multicast to a subset of the network. With boundaries in place, the switch drops or accepts incoming IGMP or PIM joins according to the prefix list. You configure the boundary by applying an IP multicast boundary OIL (outgoing interface list) on an interface.
 
 To configure the multicast boundary, first create a prefix list, then run the following commands:
 
@@ -481,7 +481,7 @@ When an RP discovers a new source (a PIM-SM register message), it sends an [SA](
 - Cumulus Linux only supports one MSDP mesh group.
 {{%/notice%}}
 
-The following steps configure a Cumulus switch to use the MSDP:
+The following steps configure a Cumulus switch to use MSDP:
 
 {{< tabs "TabID1032 ">}}
 {{< tab "NCLU Commands ">}}
@@ -695,10 +695,10 @@ To verify the configuration, run the NCLU `net show mroute vrf <vrf-name>` comma
 ```
 cumulus@fhr:~$ net show mroute vrf RED
 Source          Group           Proto  Input      Output     TTL  Uptime
-11.1.0.1        239.1.1.1       IGMP   swp32s0    swp32s1    1    00:01:13
+11.1.0.1        239.1.1.1       IGMP   swp2       swp2       1    00:01:13
                                 IGMP              br0.200    1    00:01:13
 *               239.1.1.2       IGMP   mars       pimreg1001 1    00:01:13
-                                IGMP              swp32s1    1    00:01:12
+                                IGMP              swp2       1    00:01:12
                                 IGMP              br0.200    1    00:01:13
 ```
 
@@ -1404,11 +1404,16 @@ The following example shows
 
 ```
 cumulus@leaf01:~$ net add loopback lo ip address 10.10.10.1/32
-cumulus@leaf01:~$ net add interface swp1,swp2,swp49,swp50,swp51
+cumulus@leaf01:~$ net add interface swp1,swp49,swp50,swp51
+cumulus@leaf01:~$ net add bridge bridge ports swp1
+cumulus@leaf01:~$ net add vlan 10 ip address 10.1.10.1/24
+cumulus@leaf01:~$ net add bridge bridge pvid 10
 cumulus@leaf01:~$ net add bgp autonomous-system 65101
 cumulus@leaf01:~$ net add bgp router-id 10.10.10.1
 cumulus@leaf01:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf01:~$ net add bgp ipv4 unicast network 10.10.10.1/32
+cumulus@leaf01:~$ net add bgp ipv4 unicast network 10.1.10.0/24
+cumulus@leaf01:~$ net add loopback lo pim
 cumulus@leaf01:~$ net add interface swp1 pim
 cumulus@leaf01:~$ net add interface swp51 pim
 cumulus@leaf01:~$ net add interface swp1 igmp
@@ -1421,11 +1426,16 @@ cumulus@leaf01:~$ net commit
 
 ```
 cumulus@leaf02:~$ net add loopback lo ip address 10.10.10.2/32
-cumulus@leaf02:~$ net add interface swp1,swp2,swp49,swp50,swp51
+cumulus@leaf02:~$ net add interface swp2,swp49,swp50,swp51
+cumulus@leaf02:~$ net add bridge bridge ports swp2
+cumulus@leaf02:~$ net add vlan 20 ip address 10.2.10.1/24
+cumulus@leaf02:~$ net add bridge bridge pvid 20
 cumulus@leaf02:~$ net add bgp autonomous-system 65102
 cumulus@leaf02:~$ net add bgp router-id 10.10.10.2
 cumulus@leaf02:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf02:~$ net add bgp ipv4 unicast network 10.10.10.2/32
+cumulus@leaf02:~$ net add bgp ipv4 unicast network 10.2.10.0/24
+cumulus@leaf02:~$ net add loopback lo pim
 cumulus@leaf02:~$ net add interface swp2 pim
 cumulus@leaf02:~$ net add interface swp51 pim
 cumulus@leaf02:~$ net add interface swp2 igmp
@@ -1443,6 +1453,8 @@ cumulus@spine01:~$ net add bgp autonomous-system 65199
 cumulus@spine01:~$ net add bgp router-id 10.10.10.101
 cumulus@spine01:~$ net add bgp neighbor swp1 remote-as external
 cumulus@spine01:~$ net add bgp neighbor swp2 remote-as external
+cumulus@spine01:~$ net add bgp ipv4 unicast network 10.10.10.101/32
+cumulus@spine01:~$ net add loopback lo pim
 cumulus@spine01:~$ net add interface swp1 pim
 cumulus@spine01:~$ net add interface swp1 igmp
 cumulus@spine01:~$ net add interface swp2 pim
@@ -1469,9 +1481,6 @@ iface lo inet loopback
 auto swp1
 iface swp1
 
-auto swp2
-iface swp2
-
 auto swp49
 iface swp49
 
@@ -1480,6 +1489,13 @@ iface swp50
 
 auto swp51
 iface swp51
+
+auto bridge
+iface bridge
+    bridge-ports swp1
+    bridge-pvid 10
+    bridge-vids 10
+    bridge-vlan-aware yes
 
 auto mgmt
 iface mgmt
@@ -1491,6 +1507,14 @@ auto eth0
 iface eth0 inet dhcp
     vrf mgmt
     post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
+
+source /etc/network/interfaces.d/*.cfg
+
+auto vlan10
+iface vlan10
+    address 10.1.10.1/24
+    vlan-id 10
+    vlan-raw-device bridge
 ```
 
 {{< /tab >}}
@@ -1502,9 +1526,6 @@ auto lo
 iface lo inet loopback
     address 10.10.10.2/32
 
-auto swp1
-iface swp1
-
 auto swp2
 iface swp2
 
@@ -1517,6 +1538,13 @@ iface swp50
 auto swp51
 iface swp51
 
+auto bridge
+iface bridge
+    bridge-ports swp2
+    bridge-pvid 20
+    bridge-vids 20
+    bridge-vlan-aware yes
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -1527,6 +1555,14 @@ auto eth0
 iface eth0 inet dhcp
     vrf mgmt
     post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
+
+source /etc/network/interfaces.d/*.cfg
+
+auto vlan20
+iface vlan20
+    address 10.2.10.1/24
+    vlan-id 20
+    vlan-raw-device bridge
 ```
 
 {{< /tab >}}
@@ -1564,9 +1600,11 @@ cumulus@server01:~$ sudo cat /etc/network/interfaces
 # The loopback network interface
 auto lo
 iface lo inet loopback
+
 # The OOB network interface
 auto eth0
 iface eth0 inet dhcp
+
 # The data plane network interfaces
 auto eth1
 iface eth1 inet manual
@@ -1574,8 +1612,6 @@ iface eth1 inet manual
   netmask 255.255.255.0
   mtu 9000
   post-up ip route add 10.0.0.0/8 via 10.1.10.1
-auto eth2
-  post-up ip link set promisc on dev eth2
 ```
 
 {{< /tab >}}
@@ -1583,25 +1619,20 @@ auto eth2
 
 ```
 cumulus@server02:~$ sudo cat /etc/network/interfaces
-# The loopback network interface
 auto lo
 iface lo inet loopback
+
 # The OOB network interface
 auto eth0
 iface eth0 inet dhcp
+
 # The data plane network interfaces
-auto eth1
-iface eth1 inet manual
-  address 10.1.20.102
-  netmask 255.255.255.0
-  mtu 9000
-  post-up ip link set promisc on dev eth1
 auto eth2
 iface eth2 inet manual
-  address 10.1.20.102
+  address 10.2.10.102
   netmask 255.255.255.0
   mtu 9000
-  post-up ip route add 10.0.0.0/8 via 10.1.20.1
+  post-up ip route add 10.0.0.0/8 via 10.2.10.1
 ```
 
 {{< /tab >}}
@@ -1616,22 +1647,28 @@ iface eth2 inet manual
 ```
 cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
+ip pim rp 10.10.10.101 224.0.0.0/4
+service integrated-vtysh-config
+!
+interface lo
+ ip pim
+!
+interface swp1
+ ip igmp
+ ip pim
+!
+interface swp51
+ ip pim
+!
 router bgp 65101
  bgp router-id 10.10.10.1
  neighbor swp51 interface
  neighbor swp51 remote-as external
  address-family ipv4 unicast
   network 10.10.10.1/32
+  network 10.1.10.0/24
  exit-address-family
-interface lo
- ip pim 
-interface swp1
- ip pim
- ip igmp
-interface swp51
- ip pim
-ip pim rp 10.10.10.101
-cumulus@leaf01:mgmt:~$
+!
 ```
 
 {{< /tab >}}
@@ -1646,6 +1683,7 @@ router bgp 65102
  neighbor swp51 remote-as external
  address-family ipv4 unicast
   network 10.10.10.2/32
+  network 10.2.10.0/24
  exit-address-family
 interface lo
  ip pim
@@ -1669,8 +1707,11 @@ router bgp 65199
  neighbor swp1 remote-as external
  neighbor swp2 interface
  neighbor swp2 remote-as external
+ address-family ipv4 unicast
+  network 10.10.10.101/32
+ exit-address-family
 interface lo
- ip pim 
+ ip pim
 interface swp1
  ip pim
  ip igmp

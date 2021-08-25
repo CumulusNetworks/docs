@@ -1393,7 +1393,9 @@ Source                     Group               RP  Local  SPT    Uptime
 
 ## Example Configuration
 
-The following example shows
+| Traffic flow  |     |
+| ------------- | --- |
+| {{< figure src = "/images/cumulus-linux/pim-config-example.png" >}} | **1**. server01 is the source, which sends traffic to leaf01, the FHR.<br><br>**2**. leaf01 has the *,G route indicating that it must forward traffic towards spine01.<br><br>**3**. spine01 is the RP, which receives multicast data and forwards traffic down a shared distribution tree to the receiver through leaf02, the LHR.<br><br>**4**. leaf02 forwards the traffic directly to the attached interested multicast receiver, server02. |
 
 <!-- vale off -->
 {{< tabs "TabID1395 ">}}

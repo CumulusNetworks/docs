@@ -31,7 +31,7 @@ The following illustration shows a basic PIM [ASM](## "Any-source Mulitcast") co
 ## Basic PIM Configuration
 
 To configure PIM:
-- Enable PIM on all interfaces that face a multicast source or multicast receiver, as well the interface with the RP address. `PIM Hello` messages go to the link-local multicast group 224.0.0.13. Other routers on the segment with PIM that hear the PIM Hello messages, build a PIM neighbor with the sending device. PIM neighbors are stateless; PIM endpoints do not exchange neighbor relationship confirmation.
+- Enable PIM on all interfaces that connect to a multicast source or receiver, as well the interface with the RP address. `PIM Hello` messages go to the link-local multicast group 224.0.0.13. Other routers on the segment with PIM that hear the PIM Hello messages, build a PIM neighbor with the sending device. PIM neighbors are stateless; PIM endpoints do not exchange neighbor relationship confirmation.
 - Enable [IGMP](## "Internet Group Management Protocol") on all interfaces that attach to a host and all interfaces that attach to a multicast receiver. IGMP version 3 is the default. Only specify the version if you want to use IGMP version 2. For [SSM](## "Source Specific Multicast"), you must use IGMP version 3.
 - For [ASM](## "Any-source Mulitcast"), on each PIM enabled switch, specify the IP address of the RP that receives multicast traffic. You can also configure PIM to send traffic from specific multicast groups to specific RPs.
 
@@ -257,6 +257,10 @@ spine01(config)# ip pim rp 10.10.10.102 224.10.2.0/16
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{%notice note%}}
+If the interface that attaches to a multicast source or receiver is a VLAN, you must enable PIM and IGMP on the VLAN not the bridge interface.
+{{%/notice%}}
 
 ## Optional PIM Configuration
 
@@ -690,45 +694,67 @@ cumulus@switch:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-To verify the configuration, run the NCLU `net show mroute vrf <vrf-name>` command or the vtysh `show ip mroute vrf <vrf-name>` command:
-
-```
-cumulus@fhr:~$ net show mroute vrf RED
-Source          Group           Proto  Input      Output     TTL  Uptime
-11.1.0.1        239.1.1.1       IGMP   swp2       swp2       1    00:01:13
-                                IGMP              br0.200    1    00:01:13
-*               239.1.1.2       IGMP   mars       pimreg1001 1    00:01:13
-                                IGMP              swp2       1    00:01:12
-                                IGMP              br0.200    1    00:01:13
-```
-
 ### BFD for PIM Neighbors
 
-You can use {{<link url="Bidirectional-Forwarding-Detection-BFD" text="bidirectional forward detection">}} (BFD) for PIM neighbors to detect link failures. When you configure an interface, include the `pim bfd` option. For example:
+You can use {{<link url="Bidirectional-Forwarding-Detection-BFD" text="bidirectional forward detection">}} (BFD) for PIM neighbors to detect link failures. When you configure an interface, include the `pim bfd` option. The following example commands configure BFD between leaf01 and spine01:
 
-{{< tabs "TabID1270 ">}}
+{{< tabs "TabID709 ">}}
 {{< tab "NCLU Commands ">}}
 
+{{< tabs "TabID712 ">}}
+{{< tab "leaf01 ">}}
+
 ```
-cumulus@switch:~$ net add interface swp1 pim bfd
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add interface swp51 pim bfd
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ net add interface swp1 pim bfd
+cumulus@spine01:~$ net pending
+cumulus@spine01:~$ net commit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
-```
-cumulus@switch:~$ sudo vtysh
+{{< tabs "TabID736 ">}}
+{{< tab "leaf01 ">}}
 
-switch# configure terminal
-switch(config)# interface swp1
-switch(config-if)# ip pim bfd
-switch(config-if)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
 ```
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# interface swp51
+leaf01(config-if)# ip pim bfd
+leaf01(config-if)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ sudo vtysh
+spine01# configure terminal
+spine01(config)# interface swp1
+spine01(config-if)# ip pim bfd
+spine01(config-if)# end
+spine01# write memory
+spine01# exit
+cumulus@spine01:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -894,14 +920,9 @@ To use a multicast sender or receiver over a dual-attached MLAG bond, you must c
 
 ## Troubleshooting
 
-### Verify PIM Configuration
+### PIM Show Commands
 
-{{< tabs "TabID501 ">}}
-{{< tab "NCLU Commands ">}}
-
-**Source Starts First**
-
-The FHR builds an mroute but the upstream state is *Prune*. The interface receiving multicast includes the FHR flag. Run the NCLU `net show` commands to review detailed output for the FHR. For example:
+To show the contents of the IP multicast routing table, run the NCLU `net show mroute` command or the vtysh `show ip mroute` command. To You can verify the (S,G) and (*,G) state entries from the flags and that the incoming and outgoing interfaces are correct:
 
 ```
 cumulus@fhr:~$ net show mroute
@@ -913,16 +934,23 @@ Source          Group           Flags    Proto  Input            Output         
 10.1.10.101     239.1.1.1       SFP      none   vlan10           none             0    --:--:-- 
 ```
 
+To see the active source on the switch, run the NCLU `net show pim upstream` command or the vtysh `show ip pim upstream` command:
+
 ```
 cumulus@fhr:~$ net show pim upstream
 Iif    Source        Group     State   Uptime    JoinTimer  RSTimer   KATimer   RefCnt
 vlan10 10.1.10.101   239.1.1.1 Prune   00:07:40  --:--:--   00:00:36  00:02:50  1
 ```
 
+To show upstream information for S,G’s and the desire to join the multicast tree, run the NCLU `net show pim upstream-join-desired` command or the vtysh `show ip pim upstream-join-desired` command:
+
 ```
 cumulus@fhr:~$ net show pim upstream-join-desired
-Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
+Source          Group           EvalJD
+10.1.10.101     239.1.1.1       yes 
 ```
+
+To show the PIM interfaces on the switch, run the NCLU `net show pim interface` command or the vtysh `show ip pim interface` command:
 
 ```
 cumulus@fhr:mgmt:~$ net show pim interface
@@ -932,12 +960,7 @@ swp51                up       10.10.10.1         1     10.10.10.101    0        
 vlan10               up        10.1.10.1         0            local    1          0
 ```
 
-```
-cumulus@fhr:~$ net show pim state
-Codes: J -> Pim Join, I -> IGMP Report, S -> Source, * -> Inherited from (*,G), V -> VxLAN, M -> Muted
-Active Source           Group            RPT  IIF               OIL
-1      10.1.10.101      239.1.1.1        n    vlan10 
-```
+The `net show pim interface detail` or vtysh `show ip pim interface detail` command show more detail about the PIM interfaces on the switch:
 
 ```
 cumulus@fhr:~$ net show pim interface detail
@@ -961,83 +984,7 @@ FHR - First Hop Router
 ...
 ```
 
-The RP does not include an mroute state but the `net show pim upstream` output includes the Source and Group:
-
-```
-cumulus@rp01:~$ net show mroute
-Source          Group           Proto  Input      Output     TTL  Uptime
-```
-
-```
-cumulus@rp01:~$ net show pim upstream
-Iif             Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-swp51           10.1.10.101     239.1.1.1       Prune       05:07:32 --:--:--  --:--:--  00:02:46  1 
-```
-
-As a receiver joins the group, the mroute output interface on the FHR transitions from *none* to the [RPF](## "Reverse Path Forwarding") interface of the RP:
-
-```
-cumulus@fhr:~$ net show mroute
-Source          Group           Proto  Input      Output     TTL  Uptime
-10.1.10.101     239.1.1.1       PIM    vlan10     swp51      1    00:05:40
-```
-
-```
-cumulus@fhr:~$ net show pim upstream
-Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-vlan10    10.1.10.101     239.1.1.1       Prune       00:48:23 --:--:--  00:00:00  00:00:37       2
-```
-
-```
-cumulus@fhr:~$ net show pim upstream-join-desired
-Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
-swp51     10.1.10.101     239.1.1.1       no         yes   no         yes         yes
-```
-
-```
-cumulus@fhr:~$ net show pim state
-Source           Group        IIF      OIL
-10.1.10.101      239.1.1.1    vlan10   swp51
-```
-
-```
-cumulus@rp01:~$ net show mroute
-Source          Group           Proto  Input      Output     TTL  Uptime
-*               239.1.1.1       PIM    lo         swp2       1    00:09:59
-```
-
-```
-cumulus@rp01:~$ net show pim upstream
-Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-swp51        *               239.1.1.1       Joined      00:10:01 00:00:59  --:--:--  --:--:--       1
-```
-
-```
-cumulus@rp01:~$ net show pim upstream-join-desired
-Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
-swp2      *               239.1.1.1       no         yes   no         yes         yes
-```
-
-```
-cumulus@rp01:~$ net show pim state
-Codes: J -> Pim Join, I -> IGMP Report, S -> Source, * -> Inherited from (*,G), V -> VxLAN, M -> Muted
-Active Source           Group            RPT  IIF               OIL
-1      *                239.1.1.1        y    lo                swp2( J   ) 
-```
-
-**Receiver Joins First**
-
-On the LHR attached to the receiver:
-
-```
-cumulus@lhr:~$ net show mroute
-IP Multicast Routing Table
-Flags: S - Sparse, C - Connected, P - Pruned
-       R - RP-bit set, F - Register flag, T - SPT-bit set
-
-Source          Group           Flags    Proto  Input            Output           TTL  Uptime
-*               239.1.1.1       SC       IGMP   swp51            vlan20           1    05:24:14
-```
+To show local membership information for a PIM interface, run the NCLU `net show pim local-membership` or vtysh `show ip pim local-membership` command:
 
 ```
 cumulus@lhr:~$ net show pim local-membership
@@ -1045,25 +992,16 @@ Interface         Address          Source           Group            Membership
 vlan20            10.2.10.1        *                239.1.1.1        INCLUDE 
 ```
 
+To show information about known S,G’s, the incoming interface and the OIL, run the NCLU `net show pim state` command or the vtysh `show ip pim state` command:
+
 ```
-cumulus@lhr:~$ net show pim state
+cumulus@fhr:~$ net show pim state
 Codes: J -> Pim Join, I -> IGMP Report, S -> Source, * -> Inherited from (*,G), V -> VxLAN, M -> Muted
 Active Source           Group            RPT  IIF               OIL
-1      *                239.1.1.1        y    swp51             vlan20
+1      10.1.10.101      239.1.1.1        n    vlan10 
 ```
 
-```
-cumulus@lhr:~$ net show pim upstream
-Iif             Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-swp51           *               239.1.1.1       J           05:26:05 00:00:32  --:--:--  --:--:--       1 
-```
-
-```
-cumulus@lhr:~$ net show pim upstream-join-desired
-Source          Group           EvalJD
-*               239.1.1.1       yes   
-10.1.10.101     239.1.1.1       yes 
-```
+To verify that the receiver is sending IGMP reports (joins) for the group, run the NCLU `net show igmp groups` or the vtysh `show ip igmp groups` command:
 
 ```
 cumulus@lhr:~$ net show igmp groups
@@ -1073,266 +1011,13 @@ Interface   Address      Group        Mode Timer      Srcs V   Uptime
 vlan20      10.2.10.1    239.1.1.1    EXCL 00:02:18   1    3   05:27:33 
 ```
 
+To show IGMP source information, run the NCLU `net show igmp sources` command or the vtysh `show ip igmp sources` command:
+
 ```
 cumulus@lhr:~$ net show igmp sources
 Interface        Address         Group           Source          Timer Fwd Uptime  
 vlan20           10.2.10.1       239.1.1.1       *               03:13   Y 05:28:42 
 ```
-
-**On the RP**
-
-```
-cumulus@rp01:~$ net show mroute
-IP Multicast Routing Table
-Flags: S - Sparse, C - Connected, P - Pruned
-       R - RP-bit set, F - Register flag, T - SPT-bit set
-
-Source          Group           Flags    Proto  Input            Output           TTL  Uptime
-*               239.1.1.1       S        PIM    lo               swp2             1    05:29:47
-```
-
-```
-cumulus@rp01:~$ net show pim state
-Codes: J -> Pim Join, I -> IGMP Report, S -> Source, * -> Inherited from (*,G), V -> VxLAN, M -> Muted
-Active Source           Group            RPT  IIF               OIL
-1      *                239.1.1.1        y    lo                swp2( J   ) 
-```
-
-```
-cumulus@rp01:~$ net show pim upstream
-Iif             Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-lo              *               239.1.1.1       J           05:30:39 00:00:20  --:--:--  --:--:--       1 
-```
-
-```
-cumulus@rp01:~$ net show pim upstream-join-desired
-Interface Source        Group           LostAssert Joins PimInclude JoinDesired EvalJD
-swp1      *             239.2.2.2       no         yes   no         yes         yes
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-**Source Starts First**
-
-The FHR builds an mroute but the upstream state is *Prune*. The interface receiving multicast includes the FHR flag.
-
-Use the vtysh `show ip` commands to review detailed output for the FHR. For example:
-
-```
-cumulus@fhr:~$ sudo vtysh
-fhr# show ip mroute
-Source         Group           Proto  Input      Output     TTL  Uptime
-10.1.10.101    239.1.1.1       none   vlan10     none       0    --:--:--
-```
-
-```
-fhr# show ip pim upstream
-Iif     Source      Group       State Uptime   JoinTimer  RSTimer  KATimer  RefCnt
-vlan10  10.1.10.101 239.1.1.1   Prune 00:07:40  --:--:--  00:00:36 00:02:50 1
-```
-
-```
-fhr# show ip pim upstream-join-desired
-Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
-```
-
-```
-fhr# show ip pim interface
-Interface      State    Address    PIM Nbrs     PIM DR  FHR   IfChannels
-lo             up       10.10.10.1        0      local    0            0
-swp51          up       10.10.10.1        10.10.10.101    0            0
-vlan10         up       10.1.10.1        0      local    0            0
-```
-
-```
-fhr# show ip pim state
-Source           Group            IIF    OIL
-10.1.10.101      239.1.1.1        vlan10
-```
-
-```
-fhr# show ip pim interface detail
-Interface  : vlan10
-State      : up
-Address    : 10.1.10.1 (primary)
-             fe80::4638:39ff:fe00:31/64
-
-Designated Router
------------------
-Address   : 10.1.10.1
-Priority  : 1(0)
-Uptime    : --:--:--
-Elections : 1
-Changes   : 0
-
-Hellos
-------
-Period         : 30
-Timer          : 00:00:07
-StatStart      : 05:40:23
-Receive        : 0
-Receive Failed : 0
-Send           : 681
-Send Failed    : 0
-Generation ID  : 0931e911
-
-Flags
------
-All Multicast   : no
-Broadcast       : yes
-Deleted         : no
-Interface Index : 59
-Multicast       : yes
-Multicast Loop  : 0
-Promiscuous     : no
-...
-```
-
-The RP does not create an mroute state but the `show ip pim upstream` output includes the Source and Group:
-
-```
-rp01# show ip mroute
-Source          Group           Proto  Input      Output     TTL  Uptime
-```
-
-```
-rp01# show ip pim upstream
-Iif             Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-lo              10.1.10.101     239.1.1.1       Prune       05:40:23 --:--:--  --:--:--  00:02:46       1
-```
-
-As a receiver joins the group, the mroute output interface on the FHR transitions from *none* to the [RPF](## "Reverse Path Forwarding") interface of the RP:
-
-```
-fhr# show ip mroute
-Source          Group           Proto  Input      Output     TTL  Uptime
-10.1.10.101     239.1.1.1       PIM    vlan10     swp2       1    00:05:40
-```
-
-```
-fhr# show ip pim upstream
-Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-vlan10    10.1.10.101     239.1.1.1       Prune       00:48:23 --:--:--  00:00:00  00:00:37       2
-```
-
-```
-fhr# show ip pim upstream-join-desired
-Interface  Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
-vlan10     10.1.10.101     239.1.1.1       no         yes   no         yes         yes
-```
-
-```
-fhr# show ip pim state
-Source           Group            IIF    OIL
-10.1.10.101     239.1.1.1         vlan10 swp51
-```
-
-```
-rp01# show ip mroute
-Source          Group           Proto  Input      Output     TTL  Uptime
-*               239.1.1.1       PIM    lo         swp2       1    00:09:59
-```
-
-```
-rp01# show ip pim upstream
-Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-lo        *               239.1.1.1       Joined      00:10:01 00:00:59  --:--:--  --:--:--       1
-```
-
-```
-rp01# show ip pim upstream-join-desired
-Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
-swp2      *               239.1.1.1       no         yes   no         yes         yes
-```
-
-```
-rp01# show ip pim state
-Source           Group            IIF    OIL
-*                239.1.1.1        lo     swp2
-```
-
-**Receiver Joins First**
-
-On the LHR attached to the receiver:
-
-```
-lhr# show ip mroute
-IP Multicast Routing Table
-Flags: S - Sparse, C - Connected, P - Pruned
-       R - RP-bit set, F - Register flag, T - SPT-bit set
-
-Source          Group           Flags    Proto  Input            Output           TTL  Uptime
-                                         IGMP                    vlan20           1
-```
-
-```
-lhr# show ip pim local-membership
-Interface         Address          Source           Group            Membership
-vlan20            10.2.10.1        *                239.1.1.1        INCLUDE
-```
-
-```
-lhr# show ip pim state
-Codes: J -> Pim Join, I -> IGMP Report, S -> Source, * -> Inherited from (*,G), V -> VxLAN, M -> Muted
-Active Source           Group            RPT  IIF               OIL
-1      *                239.1.1.1        y    swp51             vlan20
-```
-
-```
-lhr# show ip pim upstream
-Iif             Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-swp51           *               239.1.1.1       J           05:54:56 00:00:40  --:--:--  --:--:--       1
-```
-
-```
-lhr# show ip pim upstream-join-desired
-Source          Group           EvalJD
-*               239.1.1.1       yes   
-```
-
-```
-lhr# show ip igmp groups
-Total IGMP groups: 1
-Watermark warn limit(Not Set): 0
-Interface        Address         Group           Mode Timer    Srcs V Uptime  
-vlan20           10.2.10.1       239.1.1.1       EXCL 00:02:35    1 3 05:56:26
-```
-
-```
-lhr# show ip igmp sources
-Interface        Address         Group           Source          Timer Fwd Uptime  
-vlan20           10.2.10.1       239.1.1.1       *               04:14   Y 05:56:53
-```
-
-On the RP:
-
-```
-rp01# show ip mroute
-Source          Group           Proto  Input      Output     TTL  Uptime
-*               239.2.2.2       PIM    lo         swp2       1    00:00:03
-```
-
-```
-rp01# show ip pim state
-Source           Group            IIF    OIL
-*                239.2.2.2        lo     swp2
-```
-
-```
-rp01# show ip pim upstream
-Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-lo        *               239.2.2.2       Joined      00:05:17 00:00:43  --:--:--  --:--:--       1
-```
-
-```
-rp01# show ip pim upstream-join-desired
-Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
-*               239.2.2.2       no         yes   no         yes         yes
-```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ### FHR Stuck in Registering Process
 
@@ -1476,16 +1161,12 @@ lo              10.1.10.101     239.1.1.1       Prune       00:08:03 --:--:--  -
 
 ### No mroute Entry Present in Hardware
 
-Use the `cl-resource-query` command to verify that the hardware IP multicast entry is the maximum value:
+Use the `cl-resource-query` command or the NCLU `net show system asic | grep Mcast` command to verify that the hardware IP multicast entry is the maximum value:
 
 ```
 cumulus@switch:~$ cl-resource-query  | grep Mcast
 Total Mcast Routes:         450,   0% of maximum value    450
 ```
-
-{{%notice note%}}
-You can also run the NCLU command equivalent:`net show system asic | grep Mcast`.
-{{%/notice%}}
 
 For Spectrum chipsets, refer to {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM Resource Profiles for Spectrum Switches">}}.
 
@@ -1529,11 +1210,11 @@ The following example configures PIM on leaf01 (the [FHR](## "First Hop Router")
 
 | Traffic Flow along the Shared Tree |     |
 | ------------- | --- |
-| {{< figure src = "/images/cumulus-linux/pim-config-example.png" >}} | **1**. The FHR (leaf01) receives a multicast data packet from the source, encapsulates the packet in a unicast PIM register message, then sends it to the RP (spine01)<br><br>**2**. The RP builds an (S,G) mroute, decapsulates the multicast packet, then forwards it along the (*,G) tree towards the receiver (server02).<br><br>**3**. The LHR (leaf02) receives multicast traffic and sees that it has a shorter path to the source. It requests the multicast stream from leaf01 and simultaneously sends the multicast stream to the receiver.|
+| {{< figure src = "/images/cumulus-linux/pim-config-example.png" >}} | **1**. The FHR (leaf01) receives a multicast data packet from the source, encapsulates the packet in a unicast PIM register message, then sends it to the RP (spine01).<br><br>**2**. The RP builds an (S,G) mroute, decapsulates the multicast packet, then forwards it along the (*,G) tree towards the receiver (server02).<br><br>**3**. The LHR (leaf02) receives multicast traffic and sees that it has a shorter path to the source. It requests the multicast stream from leaf01 and simultaneously sends the multicast stream to the receiver.|
 
 | Traffic Flow for the Shortest Path Tree |     |
 | ------------- | --- |
-| {{< figure src = "/images/cumulus-linux/pim-config-example2.png" >}} | **1**. The FHR (leaf01) hears a PIM join directly from the LHR (leaf02) and forwards multicast traffic directly to leaf02.<br><br>**2**. leaf02 receives the multicast packet both from leaf01 and spine01, discards the packet from spine01, and prunes itself from the RP.<br><br>**3**. spine01 receives a prune message from leaf02 and instructs the FHR to stop sending PIM register messages<br><br>**4**. Traffic continues directly between leaf01 and leaf02. |
+| {{< figure src = "/images/cumulus-linux/pim-config-example2.png" >}} | **1**. The FHR hears a PIM join directly from the LHR and forwards multicast traffic directly to leaf02.<br><br>**2**. leaf02 receives the multicast packet both from leaf01 and spine01. It discards the packet from spine01 and prunes itself from the RP.<br><br>**3**. spine01 receives a prune message from leaf02 and instructs the FHR to stop sending PIM register messages<br><br>**4**. Traffic continues directly between leaf01 and leaf02. |
 
 <!-- vale off -->
 {{< tabs "TabID1395 ">}}

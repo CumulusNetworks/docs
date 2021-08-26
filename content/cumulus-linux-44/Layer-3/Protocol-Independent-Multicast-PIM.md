@@ -909,8 +909,8 @@ IP Multicast Routing Table
 Flags: S - Sparse, C - Connected, P - Pruned
        R - RP-bit set, F - Register flag, T - SPT-bit set
 
-Source          Group           Flags    Proto  Input            Output           TTL  Uptime
-10.1.10.101     239.1.1.1       SFT      PIM    vlan10           swp51            1    00:01:03
+Source          Group        Proto  Input       Output    TTL  Uptime
+10.1.10.101     239.1.1.1    none   vlan10      none       0   00:01:03
 ```
 
 ```
@@ -928,7 +928,6 @@ Interface Source          Group           LostAssert Joins PimInclude JoinDesire
 cumulus@fhr:mgmt:~$ net show pim interface
 Interface         State          Address  PIM Nbrs           PIM DR  FHR IfChannels
 lo                   up       10.10.10.1         0            local    0          0
-pimreg               up          0.0.0.0         0            local    0          0
 swp51                up       10.10.10.1         1     10.10.10.101    0          0
 vlan10               up        10.1.10.1         0            local    1          0
 ```
@@ -1005,7 +1004,7 @@ Source          Group           Proto  Input      Output     TTL  Uptime
 ```
 cumulus@rp01:~$ net show pim upstream
 Iif             Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-lo              *               239.1.1.1       J           05:07:32 00:00:27  --:--:--  --:--:--  1 
+lo              10.1.10.101     239.1.1.1       Prune       05:07:32 --:--:--  --:--:--  00:02:46  1 
 ```
 
 As a receiver joins the group, the mroute output interface on the FHR transitions from *none* to the [RPF](## "Reverse Path Forwarding") interface of the RP:
@@ -1070,8 +1069,7 @@ Flags: S - Sparse, C - Connected, P - Pruned
        R - RP-bit set, F - Register flag, T - SPT-bit set
 
 Source          Group           Flags    Proto  Input            Output           TTL  Uptime
-*               239.1.1.1       SC       IGMP   swp51            pimreg           1    05:24:14
-                                         IGMP                    vlan20           1 
+*               239.1.1.1       SC       IGMP   swp51            vlan20           1    05:24:14
 ```
 
 ```
@@ -1084,7 +1082,7 @@ vlan20            10.2.10.1        *                239.1.1.1        INCLUDE
 cumulus@lhr:~$ net show pim state
 Codes: J -> Pim Join, I -> IGMP Report, S -> Source, * -> Inherited from (*,G), V -> VxLAN, M -> Muted
 Active Source           Group            RPT  IIF               OIL
-1      *                239.1.1.1        y    swp51             pimreg(I    ), vlan20(I    ) 
+1      *                239.1.1.1        y    swp51             vlan20
 ```
 
 ```
@@ -1093,11 +1091,13 @@ Iif             Source          Group           State       Uptime   JoinTimer R
 swp51           *               239.1.1.1       J           05:26:05 00:00:32  --:--:--  --:--:--       1 
 ```
 
+```
 cumulus@lhr:~$ net show pim upstream-join-desired
 Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
 vlan20       *            239.2.2.2       no         no    yes        yes         yes
 ```
 
+```
 cumulus@lhr:~$ net show igmp groups
 Total IGMP groups: 1
 Watermark warn limit(Not Set): 0
@@ -1155,7 +1155,7 @@ Use the vtysh `show ip` commands to review detailed output for the FHR. For exam
 cumulus@fhr:~$ sudo vtysh
 fhr# show ip mroute
 Source         Group           Proto  Input      Output     TTL  Uptime
-10.1.10.101    239.1.1.1       none   vlan10     swp51       0    --:--:--
+10.1.10.101    239.1.1.1       none   vlan10     none       0    --:--:--
 ```
 
 ```
@@ -1173,9 +1173,8 @@ Interface Source          Group           LostAssert Joins PimInclude JoinDesire
 fhr# show ip pim interface
 Interface      State    Address    PIM Nbrs     PIM DR  FHR   IfChannels
 lo             up       10.10.10.1        0      local    0            0
-pimreg         up          0.0.0.0        0      local    0            0
 swp51          up       10.10.10.1        10.10.10.101    0            0
-vlan10         up        10.1.10.1        0      local    0            0
+vlan10         up       10.1.10.1        0      local    0            0
 ```
 
 ```
@@ -1232,7 +1231,7 @@ Source          Group           Proto  Input      Output     TTL  Uptime
 ```
 rp01# show ip pim upstream
 Iif             Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-lo              *               239.1.1.1       J           05:40:23 00:00:36  --:--:--  --:--:--       1
+lo              10.1.10.101     239.1.1.1       Prune       05:40:23 --:--:--  --:--:--  00:02:46       1
 ```
 
 As a receiver joins the group, the mroute output interface on the FHR transitions from *none* to the [RPF](## "Reverse Path Forwarding") interface of the RP:
@@ -1282,7 +1281,7 @@ swp2      *               239.1.1.1       no         yes   no         yes       
 ```
 rp01# show ip pim state
 Source           Group            IIF    OIL
-*                239.1.1.1        lo     swp12
+*                239.1.1.1        lo     swp2
 ```
 
 **Receiver Joins First**
@@ -1296,7 +1295,6 @@ Flags: S - Sparse, C - Connected, P - Pruned
        R - RP-bit set, F - Register flag, T - SPT-bit set
 
 Source          Group           Flags    Proto  Input            Output           TTL  Uptime
-*               239.1.1.1       SC       IGMP   swp51            pimreg           1    05:53:20
                                          IGMP                    vlan20           1
 ```
 
@@ -1310,7 +1308,7 @@ vlan20            10.2.10.1        *                239.1.1.1        INCLUDE
 lhr# show ip pim state
 Codes: J -> Pim Join, I -> IGMP Report, S -> Source, * -> Inherited from (*,G), V -> VxLAN, M -> Muted
 Active Source           Group            RPT  IIF               OIL
-1      *                239.1.1.1        y    swp51             pimreg(I    ), vlan20(I    )
+1      *                239.1.1.1        y    swp51             vlan20
 ```
 
 ```

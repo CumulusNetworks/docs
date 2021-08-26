@@ -909,14 +909,14 @@ IP Multicast Routing Table
 Flags: S - Sparse, C - Connected, P - Pruned
        R - RP-bit set, F - Register flag, T - SPT-bit set
 
-Source          Group        Proto  Input       Output    TTL  Uptime
-10.1.10.101     239.1.1.1    none   vlan10      none       0   00:01:03
+Source          Group           Flags    Proto  Input            Output           TTL  Uptime
+10.1.10.101     239.1.1.1       SFP      none   vlan10           none             0    --:--:-- 
 ```
 
 ```
 cumulus@fhr:~$ net show pim upstream
-Iif    Source      Group     State Uptime  JoinTimer RSTimer  KATimer  RefCnt
-vlan10 10.1.10.101 239.1.1.1 Prune 00:07:40 --:--:-- 00:00:36 00:02:50 1
+Iif    Source        Group     State   Uptime    JoinTimer  RSTimer   KATimer   RefCnt
+vlan10 10.1.10.101   239.1.1.1 Prune   00:07:40  --:--:--   00:00:36  00:02:50  1
 ```
 
 ```
@@ -934,8 +934,9 @@ vlan10               up        10.1.10.1         0            local    1        
 
 ```
 cumulus@fhr:~$ net show pim state
-Source           Group            IIF    OIL
-10.1.10.101      239.1.1.1        vlan10
+Codes: J -> Pim Join, I -> IGMP Report, S -> Source, * -> Inherited from (*,G), V -> VxLAN, M -> Muted
+Active Source           Group            RPT  IIF               OIL
+1      10.1.10.101      239.1.1.1        n    vlan10 
 ```
 
 ```
@@ -954,44 +955,10 @@ Uptime    : --:--:--
 Elections : 1
 Changes   : 0
 
-
-Hellos
-------
-Period         : 30
-Timer          : 00:00:02
-StatStart      : 05:05:59
-Receive        : 0
-Receive Failed : 0
-Send           : 612
-Send Failed    : 0
-Generation ID  : 0931e911
-
-
-Flags
------
-All Multicast   : no
-Broadcast       : yes
-Deleted         : no
-Interface Index : 59
-Multicast       : yes
-Multicast Loop  : 0
-Promiscuous     : no
-
-
-Join Prune Interval
--------------------
-LAN Delay                    : yes
-Effective Propagation Delay  : 0 msec
-Effective Override Interval  : 0 msec
-Join Prune Override Interval : 0 msec
-
-
-LAN Prune Delay
----------------
-Propagation Delay           : 500 msec
-Propagation Delay (Highest) : 0 msec
-Override Interval           : 2500 msec
-Override Interval (Highest) : 0 msec 
+FHR - First Hop Router
+----------------------
+239.1.1.1 : 10.1.10.101 is a source, uptime is 00:03:08
+...
 ```
 
 The RP does not include an mroute state but the `net show pim upstream` output includes the Source and Group:
@@ -1004,7 +971,7 @@ Source          Group           Proto  Input      Output     TTL  Uptime
 ```
 cumulus@rp01:~$ net show pim upstream
 Iif             Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-lo              10.1.10.101     239.1.1.1       Prune       05:07:32 --:--:--  --:--:--  00:02:46  1 
+swp51           10.1.10.101     239.1.1.1       Prune       05:07:32 --:--:--  --:--:--  00:02:46  1 
 ```
 
 As a receiver joins the group, the mroute output interface on the FHR transitions from *none* to the [RPF](## "Reverse Path Forwarding") interface of the RP:
@@ -1042,7 +1009,7 @@ Source          Group           Proto  Input      Output     TTL  Uptime
 ```
 cumulus@rp01:~$ net show pim upstream
 Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-lo        *               239.1.1.1       Joined      00:10:01 00:00:59  --:--:--  --:--:--       1
+swp51        *               239.1.1.1       Joined      00:10:01 00:00:59  --:--:--  --:--:--       1
 ```
 
 ```
@@ -1093,8 +1060,9 @@ swp51           *               239.1.1.1       J           05:26:05 00:00:32  -
 
 ```
 cumulus@lhr:~$ net show pim upstream-join-desired
-Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
-vlan20       *            239.2.2.2       no         no    yes        yes         yes
+Source          Group           EvalJD
+*               239.1.1.1       yes   
+10.1.10.101     239.1.1.1       yes 
 ```
 
 ```
@@ -1559,9 +1527,13 @@ The following example configures PIM on leaf01 (the [FHR](## "First Hop Router")
 - spine01 connects to leaf02 (the LHR) through swp2.
 - leaf02 connects to server02 (the receiver) through a VLAN-aware bridge (VLAN 20).
 
-| Traffic flow  |     |
+| Traffic Flow along the Shared Tree |     |
 | ------------- | --- |
-| {{< figure src = "/images/cumulus-linux/pim-config-example.png" >}} | **1**. server01 is the source, which sends traffic to leaf01, the FHR.<br><br>**2**. leaf01 has the *,G route indicating that it must forward traffic towards spine01.<br><br>**3**. spine01 is the RP, which receives multicast data and forwards traffic down a shared distribution tree to the receiver through leaf02, the LHR.<br><br>**4**. leaf02 forwards the traffic directly to the attached interested multicast receiver, server02. |
+| {{< figure src = "/images/cumulus-linux/pim-config-example.png" >}} | **1**. The FHR (leaf01) receives a multicast data packet from the source, encapsulates the packet in a unicast PIM register message, then sends it to the RP (spine01)<br><br>**2**. The RP builds an (S,G) mroute, decapsulates the multicast packet, then forwards it along the (*,G) tree towards the receiver (server02).<br><br>**3**. The LHR (leaf02) receives multicast traffic and sees that it has a shorter path to the source. It requests the multicast stream from leaf01 and simultaneously sends the multicast stream to the receiver.|
+
+| Traffic Flow for the Shortest Path Tree |     |
+| ------------- | --- |
+| {{< figure src = "/images/cumulus-linux/pim-config-example2.png" >}} | **1**. The FHR (leaf01) hears a PIM join directly from the LHR (leaf02) and forwards multicast traffic directly to leaf02.<br><br>**2**. leaf02 receives the multicast packet both from leaf01 and spine01, discards the packet from spine01, and prunes itself from the RP.<br><br>**3**. spine01 receives a prune message from leaf02 and instructs the FHR to stop sending PIM register messages<br><br>**4**. Traffic continues directly between leaf01 and leaf02. |
 
 <!-- vale off -->
 {{< tabs "TabID1395 ">}}
@@ -1582,8 +1554,8 @@ cumulus@leaf01:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf01:~$ net add bgp ipv4 unicast network 10.10.10.1/32
 cumulus@leaf01:~$ net add bgp ipv4 unicast network 10.1.10.0/24
 cumulus@leaf01:~$ net add loopback lo pim
-cumulus@leaf01:~$ net add interface swp1 pim
 cumulus@leaf01:~$ net add interface swp51 pim
+cumulus@leaf01:~$ net add vlan 10 pim
 cumulus@leaf01:~$ net add vlan 10 igmp
 cumulus@leaf01:~$ net add pim rp 10.10.10.101
 cumulus@leaf01:~$ net commit
@@ -1604,8 +1576,8 @@ cumulus@leaf02:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf02:~$ net add bgp ipv4 unicast network 10.10.10.2/32
 cumulus@leaf02:~$ net add bgp ipv4 unicast network 10.2.10.0/24
 cumulus@leaf02:~$ net add loopback lo pim
-cumulus@leaf02:~$ net add interface swp2 pim
 cumulus@leaf02:~$ net add interface swp51 pim
+cumulus@leaf02:~$ net add vlan 20 pim
 cumulus@leaf02:~$ net add vlan 20 igmp
 cumulus@leaf02:~$ net add pim rp 10.10.10.101
 cumulus@leaf02:~$ net commit

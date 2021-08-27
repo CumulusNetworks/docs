@@ -268,7 +268,7 @@ This section describes optional configuration procedures.
 
 ### ASM SPT Infinity
 
-When the [LHR](## "Last Hop Router") receives the first multicast packet, it sends a [PIM (S,G) join](## "a single PIM message with a list of groups to join. ") towards the [FHR](## "First Hop Router") to forward traffic through the network. This builds the [SPT](## "shortest path tree "), or the tree that is the shortest path to the source. When the traffic arrives over the SPT, a PIM (S,G) RPT prune goes up the shared tree towards the [RP](## "Rendezvous Point"). This removes multicast traffic from the shared tree; multicast data only goes over the SPT.
+When the LHR receives the first multicast packet, it sends a [PIM (S,G) join](## "a single PIM message with a list of groups to join. ") towards the FHR to forward traffic through the network. This builds the [SPT](## "shortest path tree "), or the tree that is the shortest path to the source. When the traffic arrives over the SPT, a PIM (S,G) RPT prune goes up the shared tree towards the RP. This removes multicast traffic from the shared tree; multicast data only goes over the SPT.
 
 You can configure SPT switchover per group (SPT infinity), which allows for some groups to never switch to a shortest path tree. The LHR now sends both (*,G) joins and (S,G) RPT prune messages towards the RP.
 
@@ -696,7 +696,7 @@ cumulus@switch:~$
 
 ### BFD for PIM Neighbors
 
-You can use {{<link url="Bidirectional-Forwarding-Detection-BFD" text="bidirectional forward detection">}} (BFD) for PIM neighbors to detect link failures. When you configure an interface, include the `pim bfd` option. The following example commands configure BFD between leaf01 and spine01:
+You can use {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}} for PIM neighbors to detect link failures. When you configure an interface, include the `pim bfd` option. The following example commands configure BFD between leaf01 and spine01:
 
 {{< tabs "TabID709 ">}}
 {{< tab "NCLU Commands ">}}
@@ -1201,7 +1201,7 @@ Source                     Group               RP  Local  SPT    Uptime
 
 ## Example Configuration
 
-The following example configures PIM on leaf01 (the [FHR](## "First Hop Router")), leaf02 (the [LHR](## "Last Hop Router")) and spine01 (the [RP](## "Rendezvous Point")), and BGP unnumbered on leaf01, leaf02 and spine01.
+The following example configures PIM and BGP on leaf01, leaf02, and spine01.
 
 - server01 (the source) connects to leaf01 (the FHR) through a VLAN-aware bridge (VLAN 10).
 - leaf01 connects to spine01 (the RP) through swp51.
@@ -1210,11 +1210,11 @@ The following example configures PIM on leaf01 (the [FHR](## "First Hop Router")
 
 | Traffic Flow along the Shared Tree |     |
 | ------------- | --- |
-| {{< figure src = "/images/cumulus-linux/pim-config-example.png" >}} | **1**. The FHR (leaf01) receives a multicast data packet from the source, encapsulates the packet in a unicast PIM register message, then sends it to the RP (spine01).<br><br>**2**. The RP builds an (S,G) mroute, decapsulates the multicast packet, then forwards it along the (*,G) tree towards the receiver (server02).<br><br>**3**. The LHR (leaf02) receives multicast traffic and sees that it has a shorter path to the source. It requests the multicast stream from leaf01 and simultaneously sends the multicast stream to the receiver.|
+| {{< figure src = "/images/cumulus-linux/pim-config-example.png" >}} | <br><br><br><br>**1**. The FHR receives a multicast data packet from the source, encapsulates the packet in a unicast PIM register message, then sends it to the RP.<br><br>**2**. The RP builds an (S,G) mroute, decapsulates the multicast packet, then forwards it along the (*,G) tree towards the receiver.<br><br>**3**. The LHR receives multicast traffic and sees that it has a shorter path to the source. It requests the multicast stream from leaf01 and simultaneously sends the multicast stream to the receiver.|
 
 | Traffic Flow for the Shortest Path Tree |     |
 | ------------- | --- |
-| {{< figure src = "/images/cumulus-linux/pim-config-example2.png" >}} | **1**. The FHR hears a PIM join directly from the LHR and forwards multicast traffic directly to leaf02.<br><br>**2**. leaf02 receives the multicast packet both from leaf01 and spine01. It discards the packet from spine01 and prunes itself from the RP.<br><br>**3**. spine01 receives a prune message from leaf02 and instructs the FHR to stop sending PIM register messages<br><br>**4**. Traffic continues directly between leaf01 and leaf02. |
+| {{< figure src = "/images/cumulus-linux/pim-config-example2.png" >}} | <br><br><br><br>**1**. The FHR hears a PIM join directly from the LHR and forwards multicast traffic directly to leaf02.<br><br>**2**. leaf02 receives the multicast packet both from leaf01 and spine01. It discards the packet from spine01 and prunes itself from the RP.<br><br>**3**. spine01 receives a prune message from leaf02 and instructs the FHR to stop sending PIM register messages<br><br>**4**. Traffic continues directly between leaf01 and leaf02. |
 
 <!-- vale off -->
 {{< tabs "TabID1395 ">}}
@@ -1269,7 +1269,6 @@ cumulus@leaf02:~$ net commit
 
 ```
 cumulus@spine01:~$ net add loopback lo ip address 10.10.10.101/32
-cumulus@spine01:~$ net add interface swp1,swp2,
 cumulus@spine01:~$ net add bgp autonomous-system 65199
 cumulus@spine01:~$ net add bgp router-id 10.10.10.101
 cumulus@spine01:~$ net add bgp neighbor swp1 remote-as external
@@ -1298,34 +1297,27 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.1/32
-
 auto swp1
 iface swp1
-
 auto swp49
 iface swp49
-
 auto swp51
 iface swp51
-
 auto bridge
 iface bridge
     bridge-ports swp1
     bridge-pvid 10
     bridge-vids 10
     bridge-vlan-aware yes
-
 auto mgmt
 iface mgmt
     vrf-table auto
     address 127.0.0.1/8
     address ::1/128
-
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
     post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
-
 auto vlan10
 iface vlan10
     address 10.1.10.1/24
@@ -1341,34 +1333,27 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.2/32
-
 auto swp2
 iface swp2
-
 auto swp49
 iface swp49
-
 auto swp51
 iface swp51
-
 auto bridge
 iface bridge
     bridge-ports swp2
     bridge-pvid 20
     bridge-vids 20
     bridge-vlan-aware yes
-
 auto mgmt
 iface mgmt
     vrf-table auto
     address 127.0.0.1/8
     address ::1/128
-
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
     post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
-
 auto vlan20
 iface vlan20
     address 10.2.10.1/24
@@ -1384,19 +1369,15 @@ cumulus@spine01:mgmt:~$ sudo cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.101/32
-
 auto swp1
 iface swp1
-
 auto swp2
 iface swp2
-
 auto mgmt
 iface mgmt
     vrf-table auto
     address 127.0.0.1/8
     address ::1/128
-
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt

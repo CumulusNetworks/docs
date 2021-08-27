@@ -259,7 +259,9 @@ spine01(config)# ip pim rp 10.10.10.102 224.10.2.0/16
 {{< /tabs >}}
 
 {{%notice note%}}
-If the interface that attaches to a multicast source or receiver is a VLAN, you must enable PIM and IGMP on the VLAN not the bridge interface.
+- If the interface that attaches to a multicast source or receiver is a VLAN, you must enable PIM and IGMP on the VLAN not the bridge interface.
+- NVIDIA recommends that you do not use a spine switch as an RP when using eBGP in a Clos network. See the [PIM Overview knowledge-base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/PIM-Overview" >}}).
+- zebra does not resolve the next hop for the RP through the default route. To prevent multicast forwarding from failing, either provide a specific route to the RP or run the vtysh `ip nht resolve-via-default` configuration command to resolve the next hop for the RP through the default route.
 {{%/notice%}}
 
 ## Optional PIM Configuration
@@ -369,7 +371,7 @@ PIM: ip prefix-list my-custom-ssm-range: 1 entries
 
 PIM uses [RPF](## "Reverse Path Forwarding") to choose an upstream interface to build a forwarding state. If you configure [ECMP](## "Equal Cost Multipaths"), PIM chooses the RPF based on the ECMP hash algorithm.
 
-You can configure PIM to use all the available next hops when installing mroutes. For example, if you have four-way ECMP, PIM spreads the S,G and \*,G mroutes across the four different paths.
+You can configure PIM to use all the available next hops when installing mroutes. For example, if you have four-way ECMP, PIM spreads the [S,G](## "Represents the source entry. S is the multicast source IP. G is the multicast group.") and [\*,G](## "Represents the RP Tree. \* is a wildcard indicating any multicast source. G is the multicast group.") mroutes across the four different paths.
 
 You can also configure PIM to recalculate all stream paths over one of the ECMP paths if the switch loses a path. Otherwise, only the streams that are using the lost path move to alternate ECMP paths. This recalculation does not affect existing groups.
 
@@ -922,7 +924,7 @@ To use a multicast sender or receiver over a dual-attached MLAG bond, you must c
 
 ### PIM Show Commands
 
-To show the contents of the IP multicast routing table, run the NCLU `net show mroute` command or the vtysh `show ip mroute` command. To You can verify the (S,G) and (*,G) state entries from the flags and that the incoming and outgoing interfaces are correct:
+To show the contents of the IP multicast routing table, run the NCLU `net show mroute` command or the vtysh `show ip mroute` command. You can verify the (S,G) and (*,G) state entries from the flags and check that the incoming and outgoing interfaces are correct:
 
 ```
 cumulus@fhr:~$ net show mroute
@@ -942,7 +944,7 @@ Iif    Source        Group     State   Uptime    JoinTimer  RSTimer   KATimer   
 vlan10 10.1.10.101   239.1.1.1 Prune   00:07:40  --:--:--   00:00:36  00:02:50  1
 ```
 
-To show upstream information for S,G’s and the desire to join the multicast tree, run the NCLU `net show pim upstream-join-desired` command or the vtysh `show ip pim upstream-join-desired` command:
+To show upstream information for S,Gs and the desire to join the multicast tree, run the NCLU `net show pim upstream-join-desired` command or the vtysh `show ip pim upstream-join-desired` command:
 
 ```
 cumulus@fhr:~$ net show pim upstream-join-desired
@@ -960,7 +962,7 @@ swp51                up       10.10.10.1         1     10.10.10.101    0        
 vlan10               up        10.1.10.1         0            local    1          0
 ```
 
-The `net show pim interface detail` or vtysh `show ip pim interface detail` command show more detail about the PIM interfaces on the switch:
+The `net show pim interface detail` or vtysh `show ip pim interface detail` command shows more detail about the PIM interfaces on the switch:
 
 ```
 cumulus@fhr:~$ net show pim interface detail
@@ -992,7 +994,7 @@ Interface         Address          Source           Group            Membership
 vlan20            10.2.10.1        *                239.1.1.1        INCLUDE 
 ```
 
-To show information about known S,G’s, the incoming interface and the OIL, run the NCLU `net show pim state` command or the vtysh `show ip pim state` command:
+To show information about known S,Gs, the [IIF](## "Incoming Interface") and the [OIL](## "Outgoing Interface"), run the NCLU `net show pim state` command or the vtysh `show ip pim state` command:
 
 ```
 cumulus@fhr:~$ net show pim state
@@ -1021,7 +1023,7 @@ vlan20           10.2.10.1       239.1.1.1       *               03:13   Y 05:28
 
 ### FHR Stuck in Registering Process
 
-When a multicast source starts, the FHR sends unicast PIM register messages from the [RPF](## "Reverse Path Forwarding") interface towards the source. After the RP receives the PIM register, it sends a `PIM register stop` message to the FHR to end the register process. If an issue occurs with this communication, the FHR becomes stuck in the registering process, which can result in high CPU because the FHR CPU generates and sends PIM register packets to the RP CPU.
+When a multicast source starts, the FHR sends unicast PIM register messages from the [RPF](## "Reverse Path Forwarding") interface towards the source. After the RP receives the PIM register, it sends a `PIM register stop` message to the FHR to end the register process. If an issue occurs with this communication, the FHR becomes stuck in the registering process, which can result in high CPU (the FHR CPU generates and sends PIM register packets to the RP CPU).
 
 To assess this issue:
 
@@ -1050,7 +1052,7 @@ To troubleshoot the issue:
    ```
    cumulus@rp01:~$ sudo tcpdump -i swp1
    tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
-   listening on swp30, link-type EN10MB (Ethernet), capture size 262144 bytes
+   listening on swp1, link-type EN10MB (Ethernet), capture size 262144 bytes
    23:33:17.524982 IP 10.1.10.101 > 10.10.10.101: PIMv2, Register, length 66
    ```
 
@@ -1075,12 +1077,12 @@ To troubleshoot the issue:
    PIM Packet debugging is on
 
    cumulus@fhr:~$ sudo tail -f /var/log/frr/frr.log
-   2016/10/19 23:59:38 PIM: Recv PIM REGSTOP packet from 10.0.0.21 to 172.16.5.1 on swp51: ttl=255 pim_version=2 pim_msg_size=18 checksum=5a39
+   2016/10/19 23:59:38 PIM: Recv PIM REGSTOP packet from 10.10.10.101 to 10.10.10.1 on swp51: ttl=255 pim_version=2 pim_msg_size=18 checksum=5a39
    ```
 
 ### LHR Does Not Build \*,G
 
-If you do not enable both PIM **and** IGMP on an interface facing a receiver, the LHR does not build a \*,G.
+If you do not enable both PIM **and** IGMP on an interface facing a receiver, the LHR does not build [\*,G](## "Represents the RP Tree. \* is a wildcard indicating any multicast source. G is the multicast group.").
 
 ```
 lhr# show run
@@ -1093,24 +1095,24 @@ interface vlan20
 To troubleshoot this issue, ensure that the receiver sends IGMPv3 joins when you enable both PIM and IGMP:
 
 ```
-cumulus@lhr:~$ sudo tcpdump -i br0 igmp
+cumulus@lhr:~$ sudo tcpdump -i vlan20 igmp
 tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
-listening on br0, link-type EN10MB (Ethernet), capture size 262144 bytes
-00:03:55.789744 IP 172.16.1.101 > igmp.mcast.net: igmp v3 report, 1 group record(s)
+listening on vlan20, link-type EN10MB (Ethernet), capture size 262144 bytes
+00:03:55.789744 IP 10.2.10.1 > igmp.mcast.net: igmp v3 report, 1 group record(s)
 ```
 
 ### No mroute Created on FHR
 
 To troubleshoot this issue:
 
-1. Verify that the switch is receiving multicast traffic:
+1. Verify that the FHR is receiving multicast traffic:
 
    ```
    cumulus@fhr:~$ sudo tcpdump -i vlan10
    tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
    listening on vlan10, link-type EN10MB (Ethernet), capture size 262144 bytes
-   22:59:15.104267 IP 10.1.10.1 > pim-routers.mcast.net: PIMv2, Hello, length 56
-   22:59:23.223443 IP 10.1.10.1 > all-systems.mcast.net: igmp query v3
+   19:57:58.429632 IP 10.1.10.101.42420 > 239.1.1.1.1000: UDP, length 8
+   19:57:59.431250 IP 10.1.10.101.42420 > 239.1.1.1.1000: UDP, length 8
    ```
 
 2. Verify PIM configuration on the interface facing the source:
@@ -1138,8 +1140,8 @@ To troubleshoot this issue:
 
    ```
    fhr# show ip pim rp-info
-   RP address       group/prefix-list   OIF         I am RP
-   10.10.10.101     224.0.0.0/4         swp51       no
+   RP address       group/prefix-list   OIF               I am RP    Source
+   10.10.10.101     224.0.0.0/4         swp51             no         Static
    ```
 
 ### No S,G on RP for an Active Group
@@ -1156,19 +1158,19 @@ You can see the active source on the RP with either the NCLU `net show pim upstr
 ```
 cumulus@rp01:~$ net show pim upstream
 Iif             Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-lo              10.1.10.101     239.1.1.1       Prune       00:08:03 --:--:--  --:--:--  00:02:20       1
+vlan10          10.1.10.101     239.1.1.1       Prune       00:08:03 --:--:--  --:--:--  00:02:20       1
 ```
 
 ### No mroute Entry Present in Hardware
 
-Use the `cl-resource-query` command or the NCLU `net show system asic | grep Mcast` command to verify that the hardware IP multicast entry is the maximum value:
+Use the `cl-resource-query | grep Mcast` command or the NCLU `net show system asic | grep Mcast` command to verify that the hardware IP multicast entry is the maximum value:
 
 ```
 cumulus@switch:~$ cl-resource-query  | grep Mcast
 Total Mcast Routes:         450,   0% of maximum value    450
 ```
 
-For Spectrum chipsets, refer to {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM Resource Profiles for Spectrum Switches">}}.
+Refer to {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM Resource Profiles for Spectrum Switches">}}.
 
 ### Verify MSDP Session State
 
@@ -1177,15 +1179,15 @@ To verify the state of MSDP sessions, run either the NCLU `net show msdp mesh-gr
 ```
 cumulus@switch:~$ net show msdp mesh-group
 Mesh group : pod1
-  Source : 100.1.1.1
+  Source : 10.1.10.101
   Member                 State
-  100.1.1.2        established
-  100.1.1.3        established
+  10.1.10.102        established
+  10.1.10.103        established
 
 cumulus@switch:~$ net show msdp peer
-Peer                       Local        State    Uptime   SaCnt
-100.1.1.2              100.1.1.1  established  00:07:21       0
-100.1.1.3              100.1.1.1  established  00:07:21       0
+Peer                    Local         State     Uptime    SaCnt
+10.1.10.102       10.1.10.101   established    00:07:21       0
+10.1.10.103       10.1.10.101   established    00:07:21       0
 ```
 
 ### View the Active Sources
@@ -1194,9 +1196,9 @@ To review the active sources that the switch learns locally (through PIM registe
 
 ```
 cumulus@switch:~$ net show msdp sa
-Source                     Group               RP  Local  SPT    Uptime
-44.1.11.2              239.1.1.1        100.1.1.1      n    n  00:00:40
-44.1.11.2              239.1.1.2        100.1.1.1      n    n  00:00:25
+Source                Group               RP   Local    SPT      Uptime
+10.1.10.101       239.1.1.1     10.10.10.101       n      n    00:00:40
+10.1.10.101       239.1.1.2    100.10.10.101       n      n    00:00:25
 ```
 
 ## Example Configuration
@@ -1214,7 +1216,7 @@ The following example configures PIM and BGP on leaf01, leaf02, and spine01.
 
 | Traffic Flow for the Shortest Path Tree |     |
 | ------------- | --- |
-| {{< figure src = "/images/cumulus-linux/pim-config-example2.png" >}} | <br><br><br><br>**1**. The FHR hears a PIM join directly from the LHR and forwards multicast traffic directly to leaf02.<br><br>**2**. leaf02 receives the multicast packet both from leaf01 and spine01. It discards the packet from spine01 and prunes itself from the RP.<br><br>**3**. spine01 receives a prune message from leaf02 and instructs the FHR to stop sending PIM register messages<br><br>**4**. Traffic continues directly between leaf01 and leaf02. |
+| {{< figure src = "/images/cumulus-linux/pim-config-example2.png" >}} | <br><br><br><br>**1**. The FHR hears a PIM join directly from the LHR and forwards multicast traffic directly to it.<br><br>**2**. The LHR receives the multicast packet both from the FHR and the RP. The LHR discards the packet from the RP and prunes itself from the RP.<br><br>**3**. The RP receives a prune message from the LHR and instructs the FHR to stop sending PIM register messages<br><br>**4**. Traffic continues directly between the FHR and the LHR. |
 
 <!-- vale off -->
 {{< tabs "TabID1395 ">}}

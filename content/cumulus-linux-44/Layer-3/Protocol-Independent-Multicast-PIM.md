@@ -31,12 +31,14 @@ The following illustration shows a basic PIM [ASM](## "Any-source Mulitcast") co
 ## Basic PIM Configuration
 
 To configure PIM:
-- Enable PIM on all interfaces that connect to a multicast source or receiver, as well the interface with the RP address. `PIM Hello` messages go to the link-local multicast group 224.0.0.13. Other routers on the segment with PIM that hear the PIM Hello messages, build a PIM neighbor with the sending device. PIM neighbors are stateless; PIM endpoints do not exchange neighbor relationship confirmation.
+- Enable PIM on all interfaces that connect to a multicast source or receiver, and on the interface with the RP address. 
 - Enable [IGMP](## "Internet Group Management Protocol") on all interfaces that attach to a host and all interfaces that attach to a multicast receiver. IGMP version 3 is the default. Only specify the version if you want to use IGMP version 2. For [SSM](## "Source Specific Multicast"), you must use IGMP version 3.
 - For [ASM](## "Any-source Mulitcast"), on each PIM enabled switch, specify the IP address of the RP that receives multicast traffic. You can also configure PIM to send traffic from specific multicast groups to specific RPs.
 
+  [SSM](## "Source Specific Multicast") uses prefix lists to configure a receiver to only allow traffic to a multicast address from a single source. This removes the need for an RP because the receiver must know the source before accepting traffic. To enable SSM, you only need to enable PIM and IGMPv3 on the interfaces.
+
 {{%notice note%}}
-SSM uses prefix lists to configure a receiver to only allow traffic to a multicast address from a single source. This removes the need for an RP because the receiver must know the source before accepting traffic. To enable SSM, you only need to enable PIM and IGMPv3 on the interfaces.
+If the interface that attaches to a multicast source or receiver is a VLAN, you must enable PIM and IGMP on the VLAN, not the interface.
 {{%/notice%}}
 
 These example commands configure leaf01, leaf02 and spine01 as shown in the topology example above.
@@ -259,7 +261,7 @@ spine01(config)# ip pim rp 10.10.10.102 224.10.2.0/16
 {{< /tabs >}}
 
 {{%notice note%}}
-- If the interface that attaches to a multicast source or receiver is a VLAN, you must enable PIM and IGMP on the VLAN not the bridge interface.
+- `PIM Hello` messages go to the link-local multicast group 224.0.0.13. Other PIM routers on the segment that hear the PIM Hello messages, build a PIM neighbor with the sending device. PIM neighbors are stateless; PIM endpoints do not exchange neighbor relationship confirmation.
 - NVIDIA recommends that you do not use a spine switch as an RP when using eBGP in a Clos network. See the [PIM Overview knowledge-base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/PIM-Overview" >}}).
 - zebra does not resolve the next hop for the RP through the default route. To prevent multicast forwarding from failing, either provide a specific route to the RP or run the vtysh `ip nht resolve-via-default` configuration command to resolve the next hop for the RP through the default route.
 {{%/notice%}}
@@ -290,10 +292,10 @@ To view the configured prefix list, run the vtysh `show ip mroute` command or th
 
 ```
 switch# show ip mroute
-Source          Group           Proto  Input      Output     TTL  Uptime
-*               235.0.0.0       IGMP   swp1       pimreg     1    00:03:3
-                                IGMP              br1        1    00:03:38
-*               238.0.0.0       IGMP   swp1       br1        1    00:02:08
+Source          Group           Proto   Input     Output     TTL  Uptime
+*               235.0.0.0       IGMP     swp1     pimreg     1    00:03:3
+                                IGMP              vlan10     1    00:03:38
+*               238.0.0.0       IGMP     swp1     vlan10     1    00:02:08
 ```
 
 ### SSM Multicast Group Ranges
@@ -446,9 +448,9 @@ Address         Interface      Nexthop
 
 ### IP Multicast Boundaries
 
-Use multicast boundaries to limit the distribution of multicast traffic by setting boundaries to push multicast to a subset of the network. With boundaries in place, the switch drops or accepts incoming IGMP or PIM joins according to the prefix list. You configure the boundary by applying an IP multicast boundary OIL (outgoing interface list) on an interface.
+Use multicast boundaries to limit the distribution of multicast traffic and push multicast to a subset of the network. With boundaries in place, the switch drops or accepts incoming IGMP or PIM joins according to a prefix list. To configure the boundary, apply an IP multicast boundary OIL (outgoing interface list) on an interface.
 
-To configure the multicast boundary, first create a prefix list, then run the following commands:
+First create a prefix list, then run the following commands:
 
 {{< tabs "TabID983 ">}}
 {{< tab "NCLU Commands ">}}
@@ -478,12 +480,12 @@ cumulus@switch:~$
 
 ### MSDP
 
-You can use the [MSDP](## "Multicast Source Discovery Protocol") to connect multiple PIM-SM multicast domains using the PIM-SM RPs. If you configure anycast RPs with the same IP address on multiple multicast switches (on the loopback interface), you can use more than one RP per multicast group.
+You can use [MSDP](## "Multicast Source Discovery Protocol") to connect multiple PIM-SM multicast domains using the PIM-SM RPs. If you configure anycast RPs with the same IP address on multiple multicast switches (on the loopback interface), you can use more than one RP per multicast group.
 
 When an RP discovers a new source (a PIM-SM register message), it sends an [SA](## "source-active") message to each MSDP peer. The peer then determines if there are any interested receivers.
 
 {{%notice note%}}
-- Cumulus Linux supports MSDP for anycastRP configuration, not multiple multicast domains. You must configure each MSDP peer in a full mesh. The switch does not forward received SA messages.
+- Cumulus Linux supports MSDP for anycastRP, not multiple multicast domains. You must configure each MSDP peer in a full mesh. The switch does not forward received SA messages.
 - Cumulus Linux only supports one MSDP mesh group.
 {{%/notice%}}
 
@@ -507,7 +509,7 @@ The following steps configure a Cumulus switch to use MSDP:
    cumulus@switch:$ net commit
    ```
 
-3. Configure the MSDP mesh group for all active RPs. The following example uses 3 RPs:
+3. Configure the MSDP mesh group for all active RPs. The following example uses three RPs:
 
    The mesh group must include all RPs in the domain as members, with a unique address as the source. This configuration results in MSDP peerings between all RPs.
 
@@ -569,7 +571,7 @@ The following steps configure a Cumulus switch to use MSDP:
    rp01(config)# ip pim rp 10.1.1.100 224.0.0.0/4
    ```
 
-4. Configure the MSDP mesh group for all active RPs (the following example uses 3 RPs):
+4. Configure the MSDP mesh group for all active RPs (the following example uses three RPs):
 
    The mesh group must include all RPs in the domain as members, with a unique address as the source. This configuration results in MSDP peerings between all RPs.
 
@@ -810,7 +812,7 @@ cumulus@switch:~$
 
 <!-- vale off -->
 <!-- vale.ai Issue #253 -->
-## PIM Active-Active with MLAG
+## PIM Active-active with MLAG
 <!-- vale on -->
 
 When a **multicast sender** attaches to an MLAG bond, the sender hashes the outbound multicast traffic over a single member of the bond. Traffic arrives on one of the MLAG enabled switches. Regardless of which switch receives the traffic, it goes over the MLAG peer link to the other MLAG-enabled switch, because the peerlink is always the multicast router port and always receives the multicast stream.
@@ -830,7 +832,7 @@ A dual-attached **multicast receiver** sends an IGMP join on the attached VLAN. 
 Traditionally, the PIM DR is the only node to send the PIM *,G Join. To provide resiliency in case of failure, both MLAG switches send PIM *,G Joins towards the RP to receive the multicast stream.
 {{%/notice%}}
 
-To prevent duplicate multicast packets, PIM elects a [DF](## "PIM Designated Forwarder"), which is the `primary` member of the MLAG pair. The MLAG secondary switch puts the VLAN in the Outgoing Interface List (OIL), preventing duplicate multicast traffic.
+To prevent duplicate multicast packets, PIM elects a [DF](## "PIM Designated Forwarder"), which is the `primary` member of the MLAG pair. The MLAG secondary switch puts the VLAN in the [OIL](## "Outgoing Interface List"), preventing duplicate multicast traffic.
 
 ### Example Traffic Flow
 
@@ -921,6 +923,8 @@ To use a multicast sender or receiver over a dual-attached MLAG bond, you must c
 {{< /tabs >}}
 
 ## Troubleshooting
+
+This section provides various commands to help you examine your PIM configuration and provides troubleshooting tips.
 
 ### PIM Show Commands
 
@@ -1201,7 +1205,7 @@ Source                Group               RP   Local    SPT      Uptime
 10.1.10.101       239.1.1.2    100.10.10.101       n      n    00:00:25
 ```
 
-## Example Configuration
+## Example PIM Configuration
 
 The following example configures PIM and BGP on leaf01, leaf02, and spine01.
 

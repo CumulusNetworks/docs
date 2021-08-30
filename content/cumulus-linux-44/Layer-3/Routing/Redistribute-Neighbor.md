@@ -56,7 +56,63 @@ The following example configuration uses the following topology.
 
 ### Configure the Leafs
 
-1. Edit the `/etc/network/interfaces` file to configure the ports that face the host. Use the same IP address on both interfaces that face the host, as well as a /32 prefix. In this case, swp1 and swp2 face server01 and server02:
+{{< tabs "TabID59 ">}}
+{{< tab "NCLU Commands ">}}
+
+1. Configure the same IP address with a /32 prefix on both interfaces that face the host. In this example, swp1 and swp2 face server01 and server02:
+
+    ```
+    cumulus@leaf01:~$ net add loopback lo ip address 10.0.0.11/32
+    cumulus@leaf01:~$ net add interface swp1-2 ip address 10.0.0.11/32
+    cumulus@leaf01:~$ net pending
+    cumulus@leaf01:~$ net commit
+    ```
+
+2. Enable the daemon so it starts at bootup, then start the daemon:
+
+    ```
+    cumulus@leaf01:~$ sudo systemctl enable rdnbrd.service
+    cumulus@leaf01:~$ sudo systemctl restart rdnbrd.service
+    ```
+
+3. Configure routing:
+
+    1. Define a route map that matches on the host-facing interfaces:
+
+        ```
+        cumulus@leaf01:~$ net add routing route-map REDIST_NEIGHBOR permit 10 match interface swp1
+        cumulus@leaf01:~$ net add routing route-map REDIST_NEIGHBOR permit 20 match interface swp2
+        ```
+
+    2. Import routing table 10 and apply the route map:
+
+        ```
+        cumulus@leaf01:~$ net add routing import-table 10 route-map REDIST_NEIGHBOR
+        ```
+
+    3. Redistribute the imported *table* routes in into the appropriate routing protocol.
+
+        ****BGP:****
+
+        ```
+        cumulus@leaf01:~$ net add bgp autonomous-system 65001
+        cumulus@leaf01:~$ net add bgp ipv4 unicast redistribute table 10
+        cumulus@leaf01:~$ net pending
+        cumulus@leaf01:~$ net commit
+        ```
+
+        **OSPF:**
+
+        ```
+        cumulus@leaf01:~$ net add ospf redistribute table 1
+        cumulus@leaf01:~$ net pending
+        cumulus@leaf01:~$ net commit
+        ```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+1. Edit the `/etc/network/interfaces` file to configure the same IP address with a /32 prefix on both interfaces that face the host. In this example, swp1 and swp2 face server01 and server02:
 
     ```
     cumulus@leaf01:~$ sudo nano /etc/network/interfaces
@@ -142,7 +198,10 @@ The following example configuration uses the following topology.
         cumulus@leaf01:~$
         ```
 
-The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. The following example uses OSPF as the routing protocol:
+{{< /tab >}}
+{{< /tabs >}}
+
+The commands save the configuration in the `/etc/frr/frr.conf` file.
 
 ```
 frr defaults datacenter

@@ -23,7 +23,7 @@ This affects failed neighbor entries on routed interfaces that are not SVIs.</td
 <tr>
 <td>2754791</td>
 <td>Remote MAC addreses in zebra are out of sync with {{bgpd}}. The zebra MAC addresses point to an incorrect (old) VTEP IP  address and the sequence number is one higher than in BGP. </td>
-<td>4.3.0-4.4.0</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -258,8 +258,9 @@ Fixed: 1.14.2-2+deb10u4</td>
 </tr>
 <tr>
 <td>2671381</td>
-<td>Remote MAC addreses in zebra are out of sync with {{bgpd}}. The zebra MAC addresses point to an incorrect (old) VTEP IP  address and the sequence number is one higher than in BGP. </td>
-<td>4.3.0-4.4.0</td>
+<td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
+When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
+<td>4.0.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -951,6 +952,12 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td>2548062</td>
 <td>When ports are split to 4x25G, RS FEC needs to explicitly configured on both ends (especially when interoperating with non-Mellanox switches).</td>
 <td>4.1.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2548044</td>
+<td>When a remote VTEP withdraws a type-3 EVPN route, Cumulus Linux purges all MAC address and neighbor entries installed in the corresponding layer 2 VNI through that remote VTEP from the local EVPN and kernel forwarding tables. This purge occurs even if the remote VTEP does not withdraw type-2 routes carrying the MAC address or neighbor entries. The entries stay missing from the local EVPN and kernel forwarding tables until BGP updates the MAC address and neighbor.</td>
+<td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1696,7 +1703,7 @@ This affects failed neighbor entries on routed interfaces that are not SVIs.</td
 <tr>
 <td>2754791</td>
 <td>Remote MAC addreses in zebra are out of sync with {{bgpd}}. The zebra MAC addresses point to an incorrect (old) VTEP IP  address and the sequence number is one higher than in BGP. </td>
-<td>4.3.0-4.4.0</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1966,8 +1973,9 @@ Fixed: 1.14.2-2+deb10u4</td>
 </tr>
 <tr>
 <td>2671381</td>
-<td>Remote MAC addreses in zebra are out of sync with {{bgpd}}. The zebra MAC addresses point to an incorrect (old) VTEP IP  address and the sequence number is one higher than in BGP. </td>
-<td>4.3.0-4.4.0</td>
+<td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
+When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
+<td>4.0.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2845,6 +2853,12 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td></td>
 </tr>
 <tr>
+<td>2548044</td>
+<td>When a remote VTEP withdraws a type-3 EVPN route, Cumulus Linux purges all MAC address and neighbor entries installed in the corresponding layer 2 VNI through that remote VTEP from the local EVPN and kernel forwarding tables. This purge occurs even if the remote VTEP does not withdraw type-2 routes carrying the MAC address or neighbor entries. The entries stay missing from the local EVPN and kernel forwarding tables until BGP updates the MAC address and neighbor.</td>
+<td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2547903</td>
 <td>CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c in libxml2 before 2.9.10 has a memory leak related to newDoc-&gt;oldNs.
 Vulnerable: 2.9.4+dfsg1-7
@@ -3470,6 +3484,12 @@ To work around this issue, when you create a new virtual interface, set net.ipv6
 <td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 </tr>
 <tr>
+<td>CM-30164</td>
+<td>The /usr/share/zoneinfo/leap-seconds.list file expires periodically and results in log messages being generated about that expiration.&lt;br/&gt;
+To work around this issue, you must update the file from &lt;a href="https://www.ietf.org/timezones/data/leap-seconds.list" class="external-link" rel="nofollow"&gt;https://www.ietf.org/timezones/data/leap-seconds.list&lt;/a&gt; or upgrade the tzdata package to the newest version.</td>
+<td>4.0.0-4.2.1</td>
+</tr>
+<tr>
 <td>2556334</td>
 <td>On the Mellanox SN-4700 switch, when you use a 2x100G configuration, the links do not come up.</td>
 <td></td>
@@ -3976,12 +3996,6 @@ bridge fdb add 50:6b:4b:ee:ee:ee dev swp31 vlan 24 master [ static | dynamic ]
 <td>2550973</td>
 <td>After you enable ROCE with the {{net add interface &lt;switch-port&gt; storage-optimized pfc}} command, you cannot verify the command because it is not shown in the {{net show config}} command output.</td>
 <td>4.1.1-4.2.1</td>
-</tr>
-<tr>
-<td>2550918</td>
-<td>The {{/usr/share/zoneinfo/leap-seconds.list}} file expires periodically and results in log messages being generated about that expiration.
-To work around this issue, you must update the file from https://www.ietf.org/timezones/data/leap-seconds.list or upgrade the {{tzdata}} package to the newest version.</td>
-<td>4.0.0-4.2.1</td>
 </tr>
 <tr>
 <td>2550906</td>

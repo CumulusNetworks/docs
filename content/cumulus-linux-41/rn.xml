@@ -20,6 +20,13 @@ To work around this issue, when you create a new virtual interface, set net.ipv6
 <td>3.7.14.2, 4.3.0</td>
 </tr>
 <tr>
+<td>CM-30164</td>
+<td>The /usr/share/zoneinfo/leap-seconds.list file expires periodically and results in log messages being generated about that expiration.&lt;br/&gt;
+To work around this issue, you must update the file from &lt;a href="https://www.ietf.org/timezones/data/leap-seconds.list" class="external-link" rel="nofollow"&gt;https://www.ietf.org/timezones/data/leap-seconds.list&lt;/a&gt; or upgrade the tzdata package to the newest version.</td>
+<td>4.0.0-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>CM-29890</td>
 <td>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</td>
 <td>3.7.12-3.7.14.2, 4.1.1-4.3.0</td>
@@ -241,6 +248,13 @@ Fixed: 4.3.1-6-cl3.7.16u1</td>
 result in denial of service and potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.14.2-2+deb10u3
 Fixed: 1.14.2-2+deb10u4</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2671381</td>
+<td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
+When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
 </tr>
@@ -1272,13 +1286,6 @@ zebra increments the local MAC mobility sequence number and considers the MAC ad
 <td>4.2.1-4.4.0</td>
 </tr>
 <tr>
-<td>2550918</td>
-<td>The {{/usr/share/zoneinfo/leap-seconds.list}} file expires periodically and results in log messages being generated about that expiration.
-To work around this issue, you must update the file from https://www.ietf.org/timezones/data/leap-seconds.list or upgrade the {{tzdata}} package to the newest version.</td>
-<td>4.0.0-4.2.1</td>
-<td>4.3.0-4.4.0</td>
-</tr>
-<tr>
 <td>2550906</td>
 <td>After you delete a bond, the deleted bond members have the deleted bond MAC address instead of their original MAC address, which might result in traffic being discarded. 
 To work around this issue, perform a full switch restart.</td>
@@ -1985,6 +1992,12 @@ For the detailed security status of linux, refer to its security tracker page at
 <td>2548062</td>
 <td>When ports are split to 4x25G, RS FEC needs to explicitly configured on both ends (especially when interoperating with non-Mellanox switches).</td>
 <td>4.1.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2548044</td>
+<td>When a remote VTEP withdraws a type-3 EVPN route, Cumulus Linux purges all MAC address and neighbor entries installed in the corresponding layer 2 VNI through that remote VTEP from the local EVPN and kernel forwarding tables. This purge occurs even if the remote VTEP does not withdraw type-2 routes carrying the MAC address or neighbor entries. The entries stay missing from the local EVPN and kernel forwarding tables until BGP updates the MAC address and neighbor.</td>
+<td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2968,6 +2981,13 @@ To work around this issue, when you create a new virtual interface, set net.ipv6
 <td>4.3.0</td>
 </tr>
 <tr>
+<td>CM-30164</td>
+<td>The /usr/share/zoneinfo/leap-seconds.list file expires periodically and results in log messages being generated about that expiration.&lt;br/&gt;
+To work around this issue, you must update the file from &lt;a href="https://www.ietf.org/timezones/data/leap-seconds.list" class="external-link" rel="nofollow"&gt;https://www.ietf.org/timezones/data/leap-seconds.list&lt;/a&gt; or upgrade the tzdata package to the newest version.</td>
+<td>4.0.0-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>CM-28249</td>
 <td>On the Mellanox switch, when you modify the buffer and queue configuration without restarting switchd, you might see a one second interruption in forwarding.</td>
 <td>4.0.0-4.3.0</td>
@@ -3183,6 +3203,13 @@ Fixed: 4.3.1-6-cl3.7.16u1</td>
 result in denial of service and potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.14.2-2+deb10u3
 Fixed: 1.14.2-2+deb10u4</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2671381</td>
+<td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
+When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
 </tr>
@@ -4101,13 +4128,6 @@ zebra increments the local MAC mobility sequence number and considers the MAC ad
 <td>4.2.1-4.4.0</td>
 </tr>
 <tr>
-<td>2550918</td>
-<td>The {{/usr/share/zoneinfo/leap-seconds.list}} file expires periodically and results in log messages being generated about that expiration.
-To work around this issue, you must update the file from https://www.ietf.org/timezones/data/leap-seconds.list or upgrade the {{tzdata}} package to the newest version.</td>
-<td>4.0.0-4.2.1</td>
-<td>4.3.0-4.4.0</td>
-</tr>
-<tr>
 <td>2550796</td>
 <td>On a Broadcom switch with the Trident2+ ASIC, ACL rules for VLANs are not applied after a reboot and the counters remain at zero.
 To work around this issue, either do not set {{acl.non_atomic_update_mode = TRUE}} in the {{/etc/cumulus/switchd.conf}} file or run the {{cl-acltool -i}} command after the reboot to install the  ACLs.</td>
@@ -4777,6 +4797,12 @@ For the detailed security status of linux, refer to its security tracker page at
 <td>2548062</td>
 <td>When ports are split to 4x25G, RS FEC needs to explicitly configured on both ends (especially when interoperating with non-Mellanox switches).</td>
 <td>4.1.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2548044</td>
+<td>When a remote VTEP withdraws a type-3 EVPN route, Cumulus Linux purges all MAC address and neighbor entries installed in the corresponding layer 2 VNI through that remote VTEP from the local EVPN and kernel forwarding tables. This purge occurs even if the remote VTEP does not withdraw type-2 routes carrying the MAC address or neighbor entries. The entries stay missing from the local EVPN and kernel forwarding tables until BGP updates the MAC address and neighbor.</td>
+<td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>

@@ -56,8 +56,6 @@ The following example configuration uses the following topology.
 
 ### Configure the Leafs
 
-The following steps configure leaf01 but you can follow the same steps on any leaf.
-
 1. Edit the `/etc/network/interfaces` file to configure the ports that face the host. Use the same IP address on both interfaces that face the host, as well as a /32 prefix. In this case, swp1 and swp2 face server01 and server02:
 
     ```
@@ -104,10 +102,10 @@ The following steps configure leaf01 but you can follow the same steps on any le
         leaf01(config-route-map)# match interface swp2
         ```
 
-    3. Apply that route map to routes imported into *table*:
+    3. Apply that route map to routes imported into *table*. The following example command applies the route map and sets the administrative distance to use for the routes to 20. The administrative distance is optional.
 
         ```
-        leaf01(config)# ip protocol table route-map REDIST_NEIGHBOR
+        leaf01(config)# ip import-table 10 distance 20 route-map REDIST_NEIGHBOR
         ```
 
     4. Redistribute the imported *table* routes into the appropriate routing protocol.

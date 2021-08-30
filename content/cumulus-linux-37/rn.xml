@@ -89,6 +89,44 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>2769687</td>
+<td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
+Vulnerable: &lt;= 7.38.0-4+deb8u20
+Fixed: 7.38.0-4+deb8u21</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769633</td>
+<td>CVE-2021-3672: in c-ares, an asynchronous name resolver, missing input validation of host names returned by Domain Name Servers can lead to output of wrong hostnames.
+Vulnerable: &lt;= 1.10.0-2+deb8u2
+Fixed: 1.10.0-2+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769632</td>
+<td>CVE-2020-10753 CVE-2021-3524: A flaw was found in the Red Hat Ceph Storage RadosGW (Ceph Object Gateway). The vulnerability is related to the injection of HTTP headers via a CORS ExposeHeader tag. The newline character in the ExposeHeader tag in the CORS configuration file generates a header injection in the response when the CORS request is made.
+Vulnerable: &lt;= 0.80.7-2+deb8u4
+Fixed: 0.80.7-2+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769631</td>
+<td>CVE-2021-38165: lynx has a a remote authentication credential leak (e.g. with URIs like https://user:pass@example.com) that allows remote attackers to discover cleartext credentials in SSL connection data.
+Vulnerable: &lt;= 2.8.9dev1-2+deb8u1
+Fixed: 2.8.9dev1-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2754791</td>
+<td>Remote MAC addreses in zebra are out of sync with {{bgpd}}. The zebra MAC addresses point to an incorrect (old) VTEP IP  address and the sequence number is one higher than in BGP. </td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2743132</td>
 <td>CVE-2021-3246: An issue has been found in libsndfile, a library for reading/writing audio files. A crafted WAV file can trigger a heap buffer overflow and might allow exectution of arbitrary code.
 Vulnerable: &lt;= 1.0.25-9.1+deb8u5
@@ -157,6 +195,13 @@ Fixed: 5.43-2+deb9u2~deb8u3</td>
 Vulnerable: &lt;= 1.6.3-2+deb8u8
 Fixed: 1.6.2-2+dev8u9</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2702131</td>
+<td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
+When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -891,6 +936,12 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <tr>
 <td>2548117</td>
 <td>In OVSDB traditional bridge mode, adding or removing a VLAN binding causes a traffic forwarding outage for around 20 seconds or more on adjacent VLAN bindings. Cumulus Linux does not support _traditional_ bridge mode with VMware NSX.</td>
+<td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2548044</td>
+<td>When a remote VTEP withdraws a type-3 EVPN route, Cumulus Linux purges all MAC address and neighbor entries installed in the corresponding layer 2 VNI through that remote VTEP from the local EVPN and kernel forwarding tables. This purge occurs even if the remote VTEP does not withdraw type-2 routes carrying the MAC address or neighbor entries. The entries stay missing from the local EVPN and kernel forwarding tables until BGP updates the MAC address and neighbor.</td>
 <td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
 </tr>
@@ -2266,6 +2317,44 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>2769687</td>
+<td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
+Vulnerable: &lt;= 7.38.0-4+deb8u20
+Fixed: 7.38.0-4+deb8u21</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769633</td>
+<td>CVE-2021-3672: in c-ares, an asynchronous name resolver, missing input validation of host names returned by Domain Name Servers can lead to output of wrong hostnames.
+Vulnerable: &lt;= 1.10.0-2+deb8u2
+Fixed: 1.10.0-2+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769632</td>
+<td>CVE-2020-10753 CVE-2021-3524: A flaw was found in the Red Hat Ceph Storage RadosGW (Ceph Object Gateway). The vulnerability is related to the injection of HTTP headers via a CORS ExposeHeader tag. The newline character in the ExposeHeader tag in the CORS configuration file generates a header injection in the response when the CORS request is made.
+Vulnerable: &lt;= 0.80.7-2+deb8u4
+Fixed: 0.80.7-2+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769631</td>
+<td>CVE-2021-38165: lynx has a a remote authentication credential leak (e.g. with URIs like https://user:pass@example.com) that allows remote attackers to discover cleartext credentials in SSL connection data.
+Vulnerable: &lt;= 2.8.9dev1-2+deb8u1
+Fixed: 2.8.9dev1-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2754791</td>
+<td>Remote MAC addreses in zebra are out of sync with {{bgpd}}. The zebra MAC addresses point to an incorrect (old) VTEP IP  address and the sequence number is one higher than in BGP. </td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2743132</td>
 <td>CVE-2021-3246: An issue has been found in libsndfile, a library for reading/writing audio files. A crafted WAV file can trigger a heap buffer overflow and might allow exectution of arbitrary code.
 Vulnerable: &lt;= 1.0.25-9.1+deb8u5
@@ -2334,6 +2423,13 @@ Fixed: 5.43-2+deb9u2~deb8u3</td>
 Vulnerable: &lt;= 1.6.3-2+deb8u8
 Fixed: 1.6.2-2+dev8u9</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2702131</td>
+<td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
+When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -3485,6 +3581,12 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td></td>
 </tr>
 <tr>
+<td>2548044</td>
+<td>When a remote VTEP withdraws a type-3 EVPN route, Cumulus Linux purges all MAC address and neighbor entries installed in the corresponding layer 2 VNI through that remote VTEP from the local EVPN and kernel forwarding tables. This purge occurs even if the remote VTEP does not withdraw type-2 routes carrying the MAC address or neighbor entries. The entries stay missing from the local EVPN and kernel forwarding tables until BGP updates the MAC address and neighbor.</td>
+<td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2548024</td>
 <td>On the Dell Z9100 switch, 100G-SR4 modules might not link up reliably in certain ports. 
 swp1, 2, 3, 9, 10, 23, 24, 30, 31, and 32 might be affected
@@ -4485,6 +4587,38 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>2769687</td>
+<td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
+Vulnerable: &lt;= 7.38.0-4+deb8u20
+Fixed: 7.38.0-4+deb8u21</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769633</td>
+<td>CVE-2021-3672: in c-ares, an asynchronous name resolver, missing input validation of host names returned by Domain Name Servers can lead to output of wrong hostnames.
+Vulnerable: &lt;= 1.10.0-2+deb8u2
+Fixed: 1.10.0-2+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769632</td>
+<td>CVE-2020-10753 CVE-2021-3524: A flaw was found in the Red Hat Ceph Storage RadosGW (Ceph Object Gateway). The vulnerability is related to the injection of HTTP headers via a CORS ExposeHeader tag. The newline character in the ExposeHeader tag in the CORS configuration file generates a header injection in the response when the CORS request is made.
+Vulnerable: &lt;= 0.80.7-2+deb8u4
+Fixed: 0.80.7-2+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769631</td>
+<td>CVE-2021-38165: lynx has a a remote authentication credential leak (e.g. with URIs like https://user:pass@example.com) that allows remote attackers to discover cleartext credentials in SSL connection data.
+Vulnerable: &lt;= 2.8.9dev1-2+deb8u1
+Fixed: 2.8.9dev1-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2743132</td>
 <td>CVE-2021-3246: An issue has been found in libsndfile, a library for reading/writing audio files. A crafted WAV file can trigger a heap buffer overflow and might allow exectution of arbitrary code.
 Vulnerable: &lt;= 1.0.25-9.1+deb8u5
@@ -4553,6 +4687,13 @@ Fixed: 5.43-2+deb9u2~deb8u3</td>
 Vulnerable: &lt;= 1.6.3-2+deb8u8
 Fixed: 1.6.2-2+dev8u9</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2702131</td>
+<td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
+When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -5739,6 +5880,12 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <tr>
 <td>2548117</td>
 <td>In OVSDB traditional bridge mode, adding or removing a VLAN binding causes a traffic forwarding outage for around 20 seconds or more on adjacent VLAN bindings. Cumulus Linux does not support _traditional_ bridge mode with VMware NSX.</td>
+<td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2548044</td>
+<td>When a remote VTEP withdraws a type-3 EVPN route, Cumulus Linux purges all MAC address and neighbor entries installed in the corresponding layer 2 VNI through that remote VTEP from the local EVPN and kernel forwarding tables. This purge occurs even if the remote VTEP does not withdraw type-2 routes carrying the MAC address or neighbor entries. The entries stay missing from the local EVPN and kernel forwarding tables until BGP updates the MAC address and neighbor.</td>
 <td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
 </tr>
@@ -7260,6 +7407,38 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>2769687</td>
+<td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
+Vulnerable: &lt;= 7.38.0-4+deb8u20
+Fixed: 7.38.0-4+deb8u21</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769633</td>
+<td>CVE-2021-3672: in c-ares, an asynchronous name resolver, missing input validation of host names returned by Domain Name Servers can lead to output of wrong hostnames.
+Vulnerable: &lt;= 1.10.0-2+deb8u2
+Fixed: 1.10.0-2+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769632</td>
+<td>CVE-2020-10753 CVE-2021-3524: A flaw was found in the Red Hat Ceph Storage RadosGW (Ceph Object Gateway). The vulnerability is related to the injection of HTTP headers via a CORS ExposeHeader tag. The newline character in the ExposeHeader tag in the CORS configuration file generates a header injection in the response when the CORS request is made.
+Vulnerable: &lt;= 0.80.7-2+deb8u4
+Fixed: 0.80.7-2+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769631</td>
+<td>CVE-2021-38165: lynx has a a remote authentication credential leak (e.g. with URIs like https://user:pass@example.com) that allows remote attackers to discover cleartext credentials in SSL connection data.
+Vulnerable: &lt;= 2.8.9dev1-2+deb8u1
+Fixed: 2.8.9dev1-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2743132</td>
 <td>CVE-2021-3246: An issue has been found in libsndfile, a library for reading/writing audio files. A crafted WAV file can trigger a heap buffer overflow and might allow exectution of arbitrary code.
 Vulnerable: &lt;= 1.0.25-9.1+deb8u5
@@ -7328,6 +7507,13 @@ Fixed: 5.43-2+deb9u2~deb8u3</td>
 Vulnerable: &lt;= 1.6.3-2+deb8u8
 Fixed: 1.6.2-2+dev8u9</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2702131</td>
+<td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
+When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -8656,6 +8842,12 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <tr>
 <td>2548117</td>
 <td>In OVSDB traditional bridge mode, adding or removing a VLAN binding causes a traffic forwarding outage for around 20 seconds or more on adjacent VLAN bindings. Cumulus Linux does not support _traditional_ bridge mode with VMware NSX.</td>
+<td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2548044</td>
+<td>When a remote VTEP withdraws a type-3 EVPN route, Cumulus Linux purges all MAC address and neighbor entries installed in the corresponding layer 2 VNI through that remote VTEP from the local EVPN and kernel forwarding tables. This purge occurs even if the remote VTEP does not withdraw type-2 routes carrying the MAC address or neighbor entries. The entries stay missing from the local EVPN and kernel forwarding tables until BGP updates the MAC address and neighbor.</td>
 <td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
 </tr>
@@ -10234,6 +10426,38 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>2769687</td>
+<td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
+Vulnerable: &lt;= 7.38.0-4+deb8u20
+Fixed: 7.38.0-4+deb8u21</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769633</td>
+<td>CVE-2021-3672: in c-ares, an asynchronous name resolver, missing input validation of host names returned by Domain Name Servers can lead to output of wrong hostnames.
+Vulnerable: &lt;= 1.10.0-2+deb8u2
+Fixed: 1.10.0-2+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769632</td>
+<td>CVE-2020-10753 CVE-2021-3524: A flaw was found in the Red Hat Ceph Storage RadosGW (Ceph Object Gateway). The vulnerability is related to the injection of HTTP headers via a CORS ExposeHeader tag. The newline character in the ExposeHeader tag in the CORS configuration file generates a header injection in the response when the CORS request is made.
+Vulnerable: &lt;= 0.80.7-2+deb8u4
+Fixed: 0.80.7-2+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769631</td>
+<td>CVE-2021-38165: lynx has a a remote authentication credential leak (e.g. with URIs like https://user:pass@example.com) that allows remote attackers to discover cleartext credentials in SSL connection data.
+Vulnerable: &lt;= 2.8.9dev1-2+deb8u1
+Fixed: 2.8.9dev1-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2743132</td>
 <td>CVE-2021-3246: An issue has been found in libsndfile, a library for reading/writing audio files. A crafted WAV file can trigger a heap buffer overflow and might allow exectution of arbitrary code.
 Vulnerable: &lt;= 1.0.25-9.1+deb8u5
@@ -10302,6 +10526,13 @@ Fixed: 5.43-2+deb9u2~deb8u3</td>
 Vulnerable: &lt;= 1.6.3-2+deb8u8
 Fixed: 1.6.2-2+dev8u9</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2702131</td>
+<td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
+When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -11673,6 +11904,12 @@ codecs.</td>
 <td>When you remove, then re-add an NSX VTEP binding, the VXLAN VTEP interface is not recreated.</td>
 <td>3.7.9-3.7.12, 4.0.0-4.4.0</td>
 <td>3.7.13-3.7.15</td>
+</tr>
+<tr>
+<td>2548044</td>
+<td>When a remote VTEP withdraws a type-3 EVPN route, Cumulus Linux purges all MAC address and neighbor entries installed in the corresponding layer 2 VNI through that remote VTEP from the local EVPN and kernel forwarding tables. This purge occurs even if the remote VTEP does not withdraw type-2 routes carrying the MAC address or neighbor entries. The entries stay missing from the local EVPN and kernel forwarding tables until BGP updates the MAC address and neighbor.</td>
+<td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2548024</td>
@@ -13053,6 +13290,38 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td>CM-15812</td>
 <td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2769687</td>
+<td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
+Vulnerable: &lt;= 7.38.0-4+deb8u20
+Fixed: 7.38.0-4+deb8u21</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769633</td>
+<td>CVE-2021-3672: in c-ares, an asynchronous name resolver, missing input validation of host names returned by Domain Name Servers can lead to output of wrong hostnames.
+Vulnerable: &lt;= 1.10.0-2+deb8u2
+Fixed: 1.10.0-2+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769632</td>
+<td>CVE-2020-10753 CVE-2021-3524: A flaw was found in the Red Hat Ceph Storage RadosGW (Ceph Object Gateway). The vulnerability is related to the injection of HTTP headers via a CORS ExposeHeader tag. The newline character in the ExposeHeader tag in the CORS configuration file generates a header injection in the response when the CORS request is made.
+Vulnerable: &lt;= 0.80.7-2+deb8u4
+Fixed: 0.80.7-2+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769631</td>
+<td>CVE-2021-38165: lynx has a a remote authentication credential leak (e.g. with URIs like https://user:pass@example.com) that allows remote attackers to discover cleartext credentials in SSL connection data.
+Vulnerable: &lt;= 2.8.9dev1-2+deb8u1
+Fixed: 2.8.9dev1-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -15550,6 +15819,38 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>2769687</td>
+<td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
+Vulnerable: &lt;= 7.38.0-4+deb8u20
+Fixed: 7.38.0-4+deb8u21</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769633</td>
+<td>CVE-2021-3672: in c-ares, an asynchronous name resolver, missing input validation of host names returned by Domain Name Servers can lead to output of wrong hostnames.
+Vulnerable: &lt;= 1.10.0-2+deb8u2
+Fixed: 1.10.0-2+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769632</td>
+<td>CVE-2020-10753 CVE-2021-3524: A flaw was found in the Red Hat Ceph Storage RadosGW (Ceph Object Gateway). The vulnerability is related to the injection of HTTP headers via a CORS ExposeHeader tag. The newline character in the ExposeHeader tag in the CORS configuration file generates a header injection in the response when the CORS request is made.
+Vulnerable: &lt;= 0.80.7-2+deb8u4
+Fixed: 0.80.7-2+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769631</td>
+<td>CVE-2021-38165: lynx has a a remote authentication credential leak (e.g. with URIs like https://user:pass@example.com) that allows remote attackers to discover cleartext credentials in SSL connection data.
+Vulnerable: &lt;= 2.8.9dev1-2+deb8u1
+Fixed: 2.8.9dev1-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2743132</td>
 <td>CVE-2021-3246: An issue has been found in libsndfile, a library for reading/writing audio files. A crafted WAV file can trigger a heap buffer overflow and might allow exectution of arbitrary code.
 Vulnerable: &lt;= 1.0.25-9.1+deb8u5
@@ -17476,6 +17777,38 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <td>CM-15812</td>
 <td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2769687</td>
+<td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
+Vulnerable: &lt;= 7.38.0-4+deb8u20
+Fixed: 7.38.0-4+deb8u21</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769633</td>
+<td>CVE-2021-3672: in c-ares, an asynchronous name resolver, missing input validation of host names returned by Domain Name Servers can lead to output of wrong hostnames.
+Vulnerable: &lt;= 1.10.0-2+deb8u2
+Fixed: 1.10.0-2+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769632</td>
+<td>CVE-2020-10753 CVE-2021-3524: A flaw was found in the Red Hat Ceph Storage RadosGW (Ceph Object Gateway). The vulnerability is related to the injection of HTTP headers via a CORS ExposeHeader tag. The newline character in the ExposeHeader tag in the CORS configuration file generates a header injection in the response when the CORS request is made.
+Vulnerable: &lt;= 0.80.7-2+deb8u4
+Fixed: 0.80.7-2+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769631</td>
+<td>CVE-2021-38165: lynx has a a remote authentication credential leak (e.g. with URIs like https://user:pass@example.com) that allows remote attackers to discover cleartext credentials in SSL connection data.
+Vulnerable: &lt;= 2.8.9dev1-2+deb8u1
+Fixed: 2.8.9dev1-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -19716,6 +20049,38 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <td></td>
 </tr>
 <tr>
+<td>2769687</td>
+<td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
+Vulnerable: &lt;= 7.38.0-4+deb8u20
+Fixed: 7.38.0-4+deb8u21</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769633</td>
+<td>CVE-2021-3672: in c-ares, an asynchronous name resolver, missing input validation of host names returned by Domain Name Servers can lead to output of wrong hostnames.
+Vulnerable: &lt;= 1.10.0-2+deb8u2
+Fixed: 1.10.0-2+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769632</td>
+<td>CVE-2020-10753 CVE-2021-3524: A flaw was found in the Red Hat Ceph Storage RadosGW (Ceph Object Gateway). The vulnerability is related to the injection of HTTP headers via a CORS ExposeHeader tag. The newline character in the ExposeHeader tag in the CORS configuration file generates a header injection in the response when the CORS request is made.
+Vulnerable: &lt;= 0.80.7-2+deb8u4
+Fixed: 0.80.7-2+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769631</td>
+<td>CVE-2021-38165: lynx has a a remote authentication credential leak (e.g. with URIs like https://user:pass@example.com) that allows remote attackers to discover cleartext credentials in SSL connection data.
+Vulnerable: &lt;= 2.8.9dev1-2+deb8u1
+Fixed: 2.8.9dev1-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2743132</td>
 <td>CVE-2021-3246: An issue has been found in libsndfile, a library for reading/writing audio files. A crafted WAV file can trigger a heap buffer overflow and might allow exectution of arbitrary code.
 Vulnerable: &lt;= 1.0.25-9.1+deb8u5
@@ -21384,6 +21749,38 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td>CM-15812</td>
 <td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2769687</td>
+<td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
+Vulnerable: &lt;= 7.38.0-4+deb8u20
+Fixed: 7.38.0-4+deb8u21</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769633</td>
+<td>CVE-2021-3672: in c-ares, an asynchronous name resolver, missing input validation of host names returned by Domain Name Servers can lead to output of wrong hostnames.
+Vulnerable: &lt;= 1.10.0-2+deb8u2
+Fixed: 1.10.0-2+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769632</td>
+<td>CVE-2020-10753 CVE-2021-3524: A flaw was found in the Red Hat Ceph Storage RadosGW (Ceph Object Gateway). The vulnerability is related to the injection of HTTP headers via a CORS ExposeHeader tag. The newline character in the ExposeHeader tag in the CORS configuration file generates a header injection in the response when the CORS request is made.
+Vulnerable: &lt;= 0.80.7-2+deb8u4
+Fixed: 0.80.7-2+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769631</td>
+<td>CVE-2021-38165: lynx has a a remote authentication credential leak (e.g. with URIs like https://user:pass@example.com) that allows remote attackers to discover cleartext credentials in SSL connection data.
+Vulnerable: &lt;= 2.8.9dev1-2+deb8u1
+Fixed: 2.8.9dev1-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -23388,6 +23785,38 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td></td>
 </tr>
 <tr>
+<td>2769687</td>
+<td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
+Vulnerable: &lt;= 7.38.0-4+deb8u20
+Fixed: 7.38.0-4+deb8u21</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769633</td>
+<td>CVE-2021-3672: in c-ares, an asynchronous name resolver, missing input validation of host names returned by Domain Name Servers can lead to output of wrong hostnames.
+Vulnerable: &lt;= 1.10.0-2+deb8u2
+Fixed: 1.10.0-2+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769632</td>
+<td>CVE-2020-10753 CVE-2021-3524: A flaw was found in the Red Hat Ceph Storage RadosGW (Ceph Object Gateway). The vulnerability is related to the injection of HTTP headers via a CORS ExposeHeader tag. The newline character in the ExposeHeader tag in the CORS configuration file generates a header injection in the response when the CORS request is made.
+Vulnerable: &lt;= 0.80.7-2+deb8u4
+Fixed: 0.80.7-2+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769631</td>
+<td>CVE-2021-38165: lynx has a a remote authentication credential leak (e.g. with URIs like https://user:pass@example.com) that allows remote attackers to discover cleartext credentials in SSL connection data.
+Vulnerable: &lt;= 2.8.9dev1-2+deb8u1
+Fixed: 2.8.9dev1-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2743132</td>
 <td>CVE-2021-3246: An issue has been found in libsndfile, a library for reading/writing audio files. A crafted WAV file can trigger a heap buffer overflow and might allow exectution of arbitrary code.
 Vulnerable: &lt;= 1.0.25-9.1+deb8u5
@@ -25133,6 +25562,38 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <td></td>
 </tr>
 <tr>
+<td>2769687</td>
+<td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
+Vulnerable: &lt;= 7.38.0-4+deb8u20
+Fixed: 7.38.0-4+deb8u21</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769633</td>
+<td>CVE-2021-3672: in c-ares, an asynchronous name resolver, missing input validation of host names returned by Domain Name Servers can lead to output of wrong hostnames.
+Vulnerable: &lt;= 1.10.0-2+deb8u2
+Fixed: 1.10.0-2+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769632</td>
+<td>CVE-2020-10753 CVE-2021-3524: A flaw was found in the Red Hat Ceph Storage RadosGW (Ceph Object Gateway). The vulnerability is related to the injection of HTTP headers via a CORS ExposeHeader tag. The newline character in the ExposeHeader tag in the CORS configuration file generates a header injection in the response when the CORS request is made.
+Vulnerable: &lt;= 0.80.7-2+deb8u4
+Fixed: 0.80.7-2+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769631</td>
+<td>CVE-2021-38165: lynx has a a remote authentication credential leak (e.g. with URIs like https://user:pass@example.com) that allows remote attackers to discover cleartext credentials in SSL connection data.
+Vulnerable: &lt;= 2.8.9dev1-2+deb8u1
+Fixed: 2.8.9dev1-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2743132</td>
 <td>CVE-2021-3246: An issue has been found in libsndfile, a library for reading/writing audio files. A crafted WAV file can trigger a heap buffer overflow and might allow exectution of arbitrary code.
 Vulnerable: &lt;= 1.0.25-9.1+deb8u5
@@ -26527,6 +26988,38 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>CM-15812</td>
 <td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2769687</td>
+<td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
+Vulnerable: &lt;= 7.38.0-4+deb8u20
+Fixed: 7.38.0-4+deb8u21</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769633</td>
+<td>CVE-2021-3672: in c-ares, an asynchronous name resolver, missing input validation of host names returned by Domain Name Servers can lead to output of wrong hostnames.
+Vulnerable: &lt;= 1.10.0-2+deb8u2
+Fixed: 1.10.0-2+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769632</td>
+<td>CVE-2020-10753 CVE-2021-3524: A flaw was found in the Red Hat Ceph Storage RadosGW (Ceph Object Gateway). The vulnerability is related to the injection of HTTP headers via a CORS ExposeHeader tag. The newline character in the ExposeHeader tag in the CORS configuration file generates a header injection in the response when the CORS request is made.
+Vulnerable: &lt;= 0.80.7-2+deb8u4
+Fixed: 0.80.7-2+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769631</td>
+<td>CVE-2021-38165: lynx has a a remote authentication credential leak (e.g. with URIs like https://user:pass@example.com) that allows remote attackers to discover cleartext credentials in SSL connection data.
+Vulnerable: &lt;= 2.8.9dev1-2+deb8u1
+Fixed: 2.8.9dev1-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -27951,6 +28444,38 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>CM-15812</td>
 <td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2769687</td>
+<td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
+Vulnerable: &lt;= 7.38.0-4+deb8u20
+Fixed: 7.38.0-4+deb8u21</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769633</td>
+<td>CVE-2021-3672: in c-ares, an asynchronous name resolver, missing input validation of host names returned by Domain Name Servers can lead to output of wrong hostnames.
+Vulnerable: &lt;= 1.10.0-2+deb8u2
+Fixed: 1.10.0-2+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769632</td>
+<td>CVE-2020-10753 CVE-2021-3524: A flaw was found in the Red Hat Ceph Storage RadosGW (Ceph Object Gateway). The vulnerability is related to the injection of HTTP headers via a CORS ExposeHeader tag. The newline character in the ExposeHeader tag in the CORS configuration file generates a header injection in the response when the CORS request is made.
+Vulnerable: &lt;= 0.80.7-2+deb8u4
+Fixed: 0.80.7-2+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769631</td>
+<td>CVE-2021-38165: lynx has a a remote authentication credential leak (e.g. with URIs like https://user:pass@example.com) that allows remote attackers to discover cleartext credentials in SSL connection data.
+Vulnerable: &lt;= 2.8.9dev1-2+deb8u1
+Fixed: 2.8.9dev1-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -29476,6 +30001,38 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>CM-15812</td>
 <td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2769687</td>
+<td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
+Vulnerable: &lt;= 7.38.0-4+deb8u20
+Fixed: 7.38.0-4+deb8u21</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769633</td>
+<td>CVE-2021-3672: in c-ares, an asynchronous name resolver, missing input validation of host names returned by Domain Name Servers can lead to output of wrong hostnames.
+Vulnerable: &lt;= 1.10.0-2+deb8u2
+Fixed: 1.10.0-2+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769632</td>
+<td>CVE-2020-10753 CVE-2021-3524: A flaw was found in the Red Hat Ceph Storage RadosGW (Ceph Object Gateway). The vulnerability is related to the injection of HTTP headers via a CORS ExposeHeader tag. The newline character in the ExposeHeader tag in the CORS configuration file generates a header injection in the response when the CORS request is made.
+Vulnerable: &lt;= 0.80.7-2+deb8u4
+Fixed: 0.80.7-2+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769631</td>
+<td>CVE-2021-38165: lynx has a a remote authentication credential leak (e.g. with URIs like https://user:pass@example.com) that allows remote attackers to discover cleartext credentials in SSL connection data.
+Vulnerable: &lt;= 2.8.9dev1-2+deb8u1
+Fixed: 2.8.9dev1-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -31047,6 +31604,38 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <td></td>
 </tr>
 <tr>
+<td>2769687</td>
+<td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
+Vulnerable: &lt;= 7.38.0-4+deb8u20
+Fixed: 7.38.0-4+deb8u21</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769633</td>
+<td>CVE-2021-3672: in c-ares, an asynchronous name resolver, missing input validation of host names returned by Domain Name Servers can lead to output of wrong hostnames.
+Vulnerable: &lt;= 1.10.0-2+deb8u2
+Fixed: 1.10.0-2+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769632</td>
+<td>CVE-2020-10753 CVE-2021-3524: A flaw was found in the Red Hat Ceph Storage RadosGW (Ceph Object Gateway). The vulnerability is related to the injection of HTTP headers via a CORS ExposeHeader tag. The newline character in the ExposeHeader tag in the CORS configuration file generates a header injection in the response when the CORS request is made.
+Vulnerable: &lt;= 0.80.7-2+deb8u4
+Fixed: 0.80.7-2+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769631</td>
+<td>CVE-2021-38165: lynx has a a remote authentication credential leak (e.g. with URIs like https://user:pass@example.com) that allows remote attackers to discover cleartext credentials in SSL connection data.
+Vulnerable: &lt;= 2.8.9dev1-2+deb8u1
+Fixed: 2.8.9dev1-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2743132</td>
 <td>CVE-2021-3246: An issue has been found in libsndfile, a library for reading/writing audio files. A crafted WAV file can trigger a heap buffer overflow and might allow exectution of arbitrary code.
 Vulnerable: &lt;= 1.0.25-9.1+deb8u5
@@ -31923,6 +32512,38 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <td>CM-15812</td>
 <td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2769687</td>
+<td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
+Vulnerable: &lt;= 7.38.0-4+deb8u20
+Fixed: 7.38.0-4+deb8u21</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769633</td>
+<td>CVE-2021-3672: in c-ares, an asynchronous name resolver, missing input validation of host names returned by Domain Name Servers can lead to output of wrong hostnames.
+Vulnerable: &lt;= 1.10.0-2+deb8u2
+Fixed: 1.10.0-2+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769632</td>
+<td>CVE-2020-10753 CVE-2021-3524: A flaw was found in the Red Hat Ceph Storage RadosGW (Ceph Object Gateway). The vulnerability is related to the injection of HTTP headers via a CORS ExposeHeader tag. The newline character in the ExposeHeader tag in the CORS configuration file generates a header injection in the response when the CORS request is made.
+Vulnerable: &lt;= 0.80.7-2+deb8u4
+Fixed: 0.80.7-2+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2769631</td>
+<td>CVE-2021-38165: lynx has a a remote authentication credential leak (e.g. with URIs like https://user:pass@example.com) that allows remote attackers to discover cleartext credentials in SSL connection data.
+Vulnerable: &lt;= 2.8.9dev1-2+deb8u1
+Fixed: 2.8.9dev1-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>

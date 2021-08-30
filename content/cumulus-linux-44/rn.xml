@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2780211</td>
+<td>When you use the NVUE {{nv set vrf default router bgp peer &lt;peer&gt; local-as asn &lt;asn&gt;}} command to configure a local AS, Cumulus Linux does not update the {{etc/frr/frr.conf}} file.</td>
+<td>4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2771871</td>
 <td>IPv4 any IPv6 neighbor entries in a FAILED state are incorrectly programmed into hardware as FORWARD entries instead of TRAP entries. Traffic is forwarded to these neighbors with a destination MAC address of 00:00:00:00:00:00 instead of trapping them to the CPU to resolve the correct MAC address.
 
@@ -23,7 +29,7 @@ This affects failed neighbor entries on routed interfaces that are not SVIs.</td
 <tr>
 <td>2754791</td>
 <td>Remote MAC addreses in zebra are out of sync with {{bgpd}}. The zebra MAC addresses point to an incorrect (old) VTEP IP  address and the sequence number is one higher than in BGP. </td>
-<td>4.3.0-4.4.0</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -52,15 +58,8 @@ Fixed: 5.50-1.2~deb10u2</td>
 <td></td>
 </tr>
 <tr>
-<td>2750630</td>
-<td>The NVUE {{nv set service ptp on}} command does not enable and start the {{ptp4l}} and {{phc2sys}}  services.</td>
-<td>4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2748923</td>
-<td>If you include a dash when configuring a bond name, you see an
-internal server error.</td>
+<td>If you include a dash when configuring a bond name, you see an internal server error.</td>
 <td>4.4.0</td>
 <td></td>
 </tr>
@@ -282,6 +281,12 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td></td>
 </tr>
 <tr>
+<td>2684925</td>
+<td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
+<td>4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2682976</td>
 <td>CVE-2021-28902, CVE-2021-28903, CVE-2021-28904, CVE-2021-28905, CVE-2021-28906: Several vulnerabilities have been announced in libyang that can cause a crash.
 Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
@@ -296,8 +301,9 @@ Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
 </tr>
 <tr>
 <td>2671381</td>
-<td>Remote MAC addreses in zebra are out of sync with {{bgpd}}. The zebra MAC addresses point to an incorrect (old) VTEP IP  address and the sequence number is one higher than in BGP. </td>
-<td>4.3.0-4.4.0</td>
+<td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
+When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
+<td>4.0.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -765,6 +771,12 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td>2548062</td>
 <td>When ports are split to 4x25G, RS FEC needs to explicitly configured on both ends (especially when interoperating with non-Mellanox switches).</td>
 <td>4.1.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2548044</td>
+<td>When a remote VTEP withdraws a type-3 EVPN route, Cumulus Linux purges all MAC address and neighbor entries installed in the corresponding layer 2 VNI through that remote VTEP from the local EVPN and kernel forwarding tables. This purge occurs even if the remote VTEP does not withdraw type-2 routes carrying the MAC address or neighbor entries. The entries stay missing from the local EVPN and kernel forwarding tables until BGP updates the MAC address and neighbor.</td>
+<td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>

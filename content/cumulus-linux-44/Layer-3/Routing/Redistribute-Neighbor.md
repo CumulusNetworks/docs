@@ -102,7 +102,13 @@ The following example configuration uses the following topology.
         leaf01(config-route-map)# match interface swp2
         ```
 
-    3. Apply that route map to routes imported into *table*. The following example command applies the route map and sets the administrative distance to use for the routes to 20. The administrative distance is optional.
+    3. Apply that route map to routes imported into *table*:
+
+        ```
+        leaf01(config)# ip import-table 10 route-map REDIST_NEIGHBOR
+        ```
+
+        To set the administrative distance to use for the routes, add the `distance` option before the route map name:
 
         ```
         leaf01(config)# ip import-table 10 distance 20 route-map REDIST_NEIGHBOR

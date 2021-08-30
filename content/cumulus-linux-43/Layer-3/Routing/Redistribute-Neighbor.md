@@ -61,13 +61,11 @@ The following example configuration is based on the {{<exlink url="https://githu
 
 ### Configure the Leafs
 
-The following steps demonstrate how to configure leaf01, but you can follow the same steps on any of the leafs.
-
 {{< tabs "TabID68 ">}}
 
 {{< tab "NCLU Commands ">}}
 
-1. Configure the host facing ports using the same IP address on both host-facing interfaces as well as a /32 prefix. In this case, swp1 and swp2 are configured as they are the ports facing server01 and server02:
+1. Configure the same IP address with a /32 prefix on both interfaces that face the host. In this example, swp1 and swp2 face server01 and server02:
 
     ```
     cumulus@leaf01:~$ net add loopback lo ip address 10.0.0.11/32
@@ -85,46 +83,42 @@ The following steps demonstrate how to configure leaf01, but you can follow the 
 
 3. Configure routing:
 
-    1. Define a route-map that matches on the host-facing interfaces:
+    1. Define a route map that matches on the host-facing interfaces:
 
         ```
         cumulus@leaf01:~$ net add routing route-map REDIST_NEIGHBOR permit 10 match interface swp1
         cumulus@leaf01:~$ net add routing route-map REDIST_NEIGHBOR permit 20 match interface swp2
         ```
 
-    2. Import routing table 10 and apply the route-map:
+    2. Import routing table 10 and apply the route map:
 
         ```
         cumulus@leaf01:~$ net add routing import-table 10 route-map REDIST_NEIGHBOR
         ```
 
-    3. Redistribute the imported *table* routes in into the appropriate routing protocol.
+    3. Redistribute the imported *table* routes into the appropriate routing protocol.
 
         ****BGP:****
 
         ```
         cumulus@leaf01:~$ net add bgp autonomous-system 65001
         cumulus@leaf01:~$ net add bgp ipv4 unicast redistribute table 10
+        cumulus@leaf01:~$ net pending
+        cumulus@leaf01:~$ net commit
         ```
 
         **OSPF:**
 
         ```
         cumulus@leaf01:~$ net add ospf redistribute table 1
+        cumulus@leaf01:~$ net pending
+        cumulus@leaf01:~$ net commit
         ```
 
-4. Save the configuration by committing your changes.
-
-    ```
-    cumulus@leaf01:~$ net pending
-    cumulus@leaf01:~$ net commit
-    ```
-
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
-1. Edit the `/etc/network/interfaces` file to configure the host facing ports, using the same IP address on both host-facing interfaces as well as a /32 prefix. In this case, swp1 and swp2 are configured as they are the ports facing server01 and server02:
+1. Edit the `/etc/network/interfaces` file to configure the same IP address with a /32 prefix on both interfaces that face the host. In this example, swp1 and swp2 face server01 and server02:
 
     ```
     cumulus@leaf01:~$ sudo nano /etc/network/interfaces
@@ -161,7 +155,7 @@ The following steps demonstrate how to configure leaf01, but you can follow the 
         leaf01(config)# ip import-table 10
         ```
 
-    2. Define a route-map that matches on the host-facing interface:
+    2. Define a route map that matches on the host-facing interface:
 
         ```
         leaf01(config)# route-map REDIST_NEIGHBOR permit 10
@@ -170,13 +164,19 @@ The following steps demonstrate how to configure leaf01, but you can follow the 
         leaf01(config-route-map)# match interface swp2
         ```
 
-    3. Apply that route-map to routes imported into *table*:
+    3. Apply that route map to routes imported into *table*:
 
         ```
-        leaf01(config)# ip protocol table route-map REDIST_NEIGHBOR
+        leaf01(config)# ip import-table 10 route-map REDIST_NEIGHBOR
         ```
 
-    4. Redistribute the imported *table* routes in into the appropriate routing protocol.
+        To set the administrative distance to use for the routes, add the `distance` option before the route map name:
+
+        ```
+        leaf01(config)# ip import-table 10 distance 20 route-map REDIST_NEIGHBOR
+        ```
+
+    4. Redistribute the imported *table* routes into the appropriate routing protocol.
 
         **BGP:**
 
@@ -205,10 +205,9 @@ The following steps demonstrate how to configure leaf01, but you can follow the 
         ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. The following example uses OSPF as the routing protocol:
+The commands save the configuration in the `/etc/frr/frr.conf` file.
 
 ```
 frr defaults datacenter

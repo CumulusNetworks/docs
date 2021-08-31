@@ -10,9 +10,21 @@ This document supports the Cumulus Linux 4.4 release, and lists new platforms an
 - For a list of open and fixed issues in Cumulus Linux 4.4, see the {{<link title="Cumulus Linux 4.4 Release Notes" text="Cumulus Linux 4.4 Release Notes">}}.
 - To upgrade to Cumulus Linux 4.4, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 <!-- vale off -->
-## What's New in Cumulus Linux 4.4
+## What's New in Cumulus Linux 4.4.1
 <!-- vale on -->
-Cumulus Linux 4.4 supports new platforms, provides bug fixes, and contains several new features and improvements.
+Cumulus Linux 4.4.1 supports provides bug fixes and contains several enhancements.
+
+### Enhancements
+
+- Extensions to the {{<link url="Supported-MIBs" text="Entity-Sensor-MIB">}} to provide power supply status (Operational; Failed; PowerOff; NotPresent), admin status (On; Off), fan status (Operational; Failed; PowerOff; NotPresent), sensor status (Normal; Warning; Alert; Critical; NotPresent; NotOperational), available and used memory, and CPU utilization (last 5secs; 1min; 5mins)
+- {{<link url="Netfilter-ACLs/#reflexive-acls" text="reflexive ACLs">}}
+- Option to drop packets that exceed egress layer 3 MTU
+- Matching ECN bits in ACL
+
+<!-- vale off -->
+## What's New in Cumulus Linux 4.4.0
+<!-- vale on -->
+Cumulus Linux 4.4.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
 
 ### New Platforms
 
@@ -42,7 +54,7 @@ The NVUE commands and outputs are subject to change.
 
 ### Unsupported Platforms
 
-Cumulus Linux 4.4 supports NVIDIA Spectrum-based ASIC platforms only. Cumulus Linux 3.7 and 4.3 continue to support Broadcom-based networking ASICs.
+Cumulus Linux 4.4 supports NVIDIA Spectrum-based switches only. Cumulus Linux 3.7 and 4.3 continue to support Broadcom-based networking ASICs.
 
 ### Deprecated Features
 Cumulus Linux 4.4. no longer supports GRE and OVSDB High Availability.

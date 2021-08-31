@@ -24,16 +24,16 @@ To install Cumulus VX, run the `onie-nos-install <URL to cumulus-linux-vx-amd64.
 
 ## Convert the Topology for Cumulus Linux on Demand
 
-Cumulus Networks offers {{<exlink url="https://www.nvidia.com/en-us/networking/linux-on-demand/" text="Cumulus Linux on demand">}} to help you get familiar with Cumulus Linux. This introductory lab tutorial includes various self-paced labs that let you practice configuring Cumulus Linux and use features such as NCLU, FRR, and BGP unnumbered.
+NVIDIA offers {{<exlink url="https://www.nvidia.com/en-us/networking/linux-on-demand/" text="Cumulus Linux on demand">}} to help you get familiar with Cumulus Linux. This introductory lab tutorial includes various self-paced labs that let you practice configuring Cumulus Linux and use features such as NCLU, FRR, and BGP unnumbered.
 
 The Cumulus Linux on demand labs use the following topology:
 
 {{< img src="/images/cumulus-vx/testdrive-topology.png" width="400" >}}
 
-To be able to follow the labs, you need to convert the two leaf and one spine topology we use in this documentation to the topology used in the labs.
+To be able to follow the labs, you need to convert the two leaf and one spine topology used in this documentation to the topology used in the labs.
 
 {{%notice tip%}}
-As an alternative to using Cumulus VX with the Cumulus Linux on demand labs, you can use {{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network.
+As an alternative to using Cumulus VX with the Cumulus Linux on demand labs, you can use {{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see NVIDIA technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network.
 {{%/notice%}}
 
 To convert the topology, you need to:
@@ -146,19 +146,19 @@ After you change the ports and create server01 and server02, you are ready to go
 
 The topology converter can help you to simulate a custom network topology directly on your laptop or on a dedicated server. The topology can be extremely complete; you can simulate hosts as well as network equipment.
 
-The topology converter translates a graphviz topology file (`.dot` file), which describes the network topology link-by-link, into a Vagrantfile, which fully represents the topology. Vagrantfiles are used by Vagrant to define VM settings and connections. You can then simulate the topology with either VirtualBox and Vagrant or with KVM-QEMU and Vagrant.
+The topology converter translates a Graphviz topology file (`.dot` file), which describes the network topology link-by-link, into a Vagrantfile, which fully represents the topology. Vagrant uses Vagrantfiles to define VM settings and connections. You can then simulate the topology with either VirtualBox and Vagrant or with KVM-QEMU and Vagrant.
 
 The topology converter:
 
 - Remaps interfaces on VX switches and hosts to match the interfaces used in the provided topology file.
 - Removes extra Ruby-based logic from the Vagrantfile to provide simple human-readable output.
-- Generates a Vagrantfile that contains servers and switches and anything else that can be found in a Vagrant Box image.
+- Generates a Vagrantfile that contains servers and switches and anything else found in a Vagrant <!-- vale off -->Box<!-- vale on --> image.
 
 ### Install the Topology Converter
 
 Follow the steps below to install the required tools, and download the topology converter script and required files.
 
-This procedure assumes you are on a system running Linux and have a vagrant box image available.
+This procedure assumes you are on a system running Linux and have a Vagrant <!-- vale off -->Box<!-- vale on --> image available.
 
 1. Install the tools required to run the topology converter:
 
@@ -212,7 +212,7 @@ This procedure assumes you are on a system running Linux and have a vagrant box 
    local@host:$ python3 ./topology_converter.py ./topology.dot -p libvirt
    ```
 
-   The topology converter reads the provided topology file line by line, and learns information about each node and each link in the topology. This information is stored in a variables datastructure. A `jinja2` template (`/templates/Vagrantfile.j2`) is used to create a Vagrantfile based on the variables datastructure.
+   The topology converter reads the provided topology file line by line, and learns information about each node and each link in the topology. It stores this information in a `variables` datastructure. You use a `jinja2` template (`/templates/Vagrantfile.j2`) to create a Vagrantfile based on the `variables` datastructure.
 
 3. Start the simulation with the `vagrant up` command. With Livirt, start the simulation with the `vagrant up --provider=libvirt` command.
 

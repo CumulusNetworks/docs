@@ -9,7 +9,9 @@ This section describes how to install and set up Cumulus VX within VirtualBox an
 
 {{% vx/intro %}}
 
+<!-- vale off -->
 These steps were tested with Cumulus VX 4.2, VirtualBox version 6.1.12, and Vagrant version 2.2.9 on macOS version 10.14.6.
+<!-- vale on -->
 
 ## Create and Configure the VMs
 
@@ -23,7 +25,8 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 ### Create VMs and Network Connections
 
 {{% notice note %}}
-The Cumulus VX box image defines the CPU, memory, and disk requirements. Cumulus VX requires at least 768MB of RAM and 6GB of disk space.
+
+The Cumulus VX VirtualBox image defines the CPU, memory, and disk requirements. Cumulus VX requires at least 768MB of RAM and 6GB of disk space.
 
 CumulusVX versions 4.3 and later requires 2 vCPUs.
 

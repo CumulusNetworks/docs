@@ -13,7 +13,9 @@ This section describes how to install and set up Cumulus VX with KVM/QEMU and Li
 
 {{% vx/intro %}}
 
+<!-- vale off -->
 These steps were tested with Cumulus VX 4.2, KVM/QEMU version 1:4.2-3ubuntu6.3, and Libvirt version 6.0.0 on Ubuntu Linux version 20.04.
+<!-- vale on -->
 
 ## Create and Configure the VMs
 
@@ -47,7 +49,7 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
    - leaf02.qcow2
    - spine01.qcow2
 
-2. Run the following commands to configure each VM. Make sure you specify the location of the VM at the end of the command. In the example commands below, the VMs are installed in `/var/lib/libvirt/images/`.
+2. Run the following commands to configure each VM. Make sure you specify the location of the VM at the end of the command. In the example commands below, you install the VMs in `/var/lib/libvirt/images/`.
 
 {{%notice note%}}
 The following commands define the CPU, memory, and disk requirements for Cumulus VX, which requires at least 768MB of RAM and 6GB of disk space.

@@ -901,7 +901,7 @@ cumulus@switch:~$ net del vlan 20 acl ipv4 rflx_tcp_egress outbound
 cumulus@switch:~$ net commit
 ```
 
-### Match ECN Bits on the TCP IP Header
+### Match on ECN Bits in the TCP IP Header
 
 ECN allows end-to-end notification of network congestion without dropping packets. You can add ACL rules to match on these ECN fields of the TCP IPv4 header:
 - CWR (Congestion Window Received)

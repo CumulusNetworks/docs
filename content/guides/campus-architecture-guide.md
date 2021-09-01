@@ -6,9 +6,7 @@ product: Cumulus Networks Guides
 draft: true
 ---
 
-## Executive Summary
-
-Cumulus Networks, with the potent combination of the Cumulus Linux network operating system and the Cumulus NetQ real-time visibility and telemetry platform, brings the proven success of open and disaggregated networking from the data center into campus networks. The Cumulus Networks vision of open standards driving open networking hardware with software disaggregation creates powerful opportunities to significantly reduce both CapEx and OpEx and streamline network operations.
+NVIDIA, with the potent combination of the Cumulus Linux network operating system and the Cumulus NetQ real-time visibility and telemetry platform, brings the proven success of open and disaggregated networking from the data center into campus networks. The NVIDIA vision of open standards driving open networking hardware with software disaggregation creates powerful opportunities to significantly reduce both CapEx and OpEx and streamline network operations.
 
 This guide walks a network architect or administrator through the various technology options, design considerations and recommended choices for building a highly available modern campus network.
 
@@ -18,7 +16,7 @@ Cumulus Linux is the industry-leading open network operating system (NOS) that d
 
 Incumbent and traditional networking vendors create lock-in by bundling a proprietary operating system on custom built and proprietary networking hardware. Open networking switches often contain the same hardware forwarding chipsets as traditional vendors. When you need to run Linux on a server today, you have your choice of any bare metal server from any manufacturer that meets your needs and budget. The commitment to the operating system is a separate choice from the hardware that it runs on.
 
-Cumulus Linux is an open, native Linux distribution that allows for choice in hardware to provide a wide range of speeds, feeds and features. By being an open NOS, administrators are provided with maximum hardware and application choice. The same monitoring and operational tools already in use for Linux systems in the enterprise today can be easily reused to operate and monitor the network infrastructure.
+Cumulus Linux is an open, native Linux distribution that allows for choice in hardware to provide a wide range of speeds, feeds and features. By being an open NOS, administrators have maximum hardware and application choice. You can easily reuse the same monitoring and operational tools already in use for Linux systems in the enterprise today to operate and monitor the network infrastructure.
 
 Cumulus Linux is fully featured networking software providing the entire suite of enterprise networking features, including:
 
@@ -32,7 +30,7 @@ Cumulus Linux is fully featured networking software providing the entire suite o
 - [SNMPv2c/v3](/cumulus-linux/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP/)
 - [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU/), a full network CLI with tab completion, built-in documentation and commit/rollback
 
-Since Cumulus Linux is a full Linux distribution based on Debian, administrators have the full power of a Linux system at their fingertips. This provides the ability to run containers or on-box agents for functions like streaming telemetry via NetQ, Telegraf or Prometheus or native automation support for tools like Ansible, Saltstack or Puppet.
+Because Cumulus Linux is a full Linux distribution based on Debian, administrators have the full power of a Linux system at their fingertips. This provides the ability to run containers or on-system agents for functions like streaming telemetry via NetQ, Telegraf or Prometheus or native automation support for tools like Ansible, Saltstack or Puppet.
 
 ## Cumulus Hardware Partners
 
@@ -42,7 +40,7 @@ Refer to the [hardware compatibility list](https://www.nvidia.com/en-us/networki
 
 ## Cumulus NetQ Streaming Telemetry Platform
 
-Built using the same open, modern, web-scale principals that inspires Cumulus Linux, [Cumulus NetQ](https://www.nvidia.com/en-us/networking/ethernet-switching/netq/) is a highly-scalable, modern network operations toolset that provides unprecedented visibility to your network operations in real time. Cumulus NetQ is designed from the ground up to process large amounts of data to deliver real-time insights and perform complex network-wide troubleshooting and validation tasks at nearly any scale.
+Built using the same open, modern, web-scale principals that inspires Cumulus Linux, [Cumulus NetQ](https://www.nvidia.com/en-us/networking/ethernet-switching/netq/) is a highly scalable, modern network operations toolset that provides unprecedented visibility to your network operations in real time. By design, Cumulus NetQ can process large amounts of data to deliver realtime insights and perform complex networkwide troubleshooting and validation tasks at nearly any scale.
 
 Adding Cumulus NetQ to a network powered by Cumulus Linux heightens visibility, eases troubleshooting, and enriches existing monitoring and operational strategies with an all-in-one tool that provides information such as:
 
@@ -50,12 +48,12 @@ Adding Cumulus NetQ to a network powered by Cumulus Linux heightens visibility, 
 - Port status
 - MAC address locations and movement over time
 - Network service health (BGP, OSPF, NTP and more)
-- L2 and L3 path tracing
+- Layer 2 and layer 3 path tracing
 - Network service and routing protocol validations
 
 Cumulus NetQ provides a rich graphical UI, a command line interface, as well as a RESTful API to provide maximum flexibility to retrieve data about the real-time state of the entire network, and you can even go back in time.
 
-In addition to monitoring Cumulus Linux network nodes, Cumulus NetQ agents can be installed on other Linux servers to extend visibility out to beyond the edge of the network. Cumulus NetQ agents monitor the Linux kernel and stream timestamped event and health data to a telemetry server either on premises or in the cloud. With this system-wide, timestamped telemetry, Cumulus NetQ delivers rich analytics and verifications, even against historical data points in the past, providing another dimension to troubleshooting and operations capabilities. The Cumulus NetQ agent can be installed on bare metal Linux hosts or inside Linux VMs.
+In addition to monitoring Cumulus Linux network nodes, you can install Cumulus NetQ agents on other Linux servers to extend visibility out to beyond the edge of the network. Cumulus NetQ agents monitor the Linux kernel and stream timestamped event and health data to a telemetry server either on premises or in the cloud. With this system-wide, timestamped telemetry, Cumulus NetQ delivers rich analytics and verifications, even against historical data points in the past, providing another dimension to troubleshooting and operations capabilities. You can install the Cumulus NetQ agent on bare metal Linux hosts or inside Linux VMs.
 
 The Cumulus NetQ agent currently supports:
 
@@ -64,39 +62,39 @@ The Cumulus NetQ agent currently supports:
 - Red Hat Enterprise Linux (RHEL) 7.1
 - CentOS 7
 
-All data from the Cumulus NetQ agent is streamed to the Cumulus NetQ appliance. This appliance is [available](https://support.mellanox.com/s/) as either a bare metal appliance from NVIDIA or as a virtual appliance for use on nearly any hypervisor.
+The Cumulus NetQ agent streams all the data it collects to the Cumulus NetQ appliance. This appliance is [available](https://support.mellanox.com/s/) as either a bare metal appliance from NVIDIA or as a virtual appliance for use on nearly any hypervisor.
 
 ## Campus Networks Overview
 
-Traditionally, a campus network refers to the portion of a network architecture that delivers connectivity to end users and connected devices across a single geographic location. The size and other physical characteristics of the single geographic location can vary significantly. A campus network may be a single floor, wing, building or cluster of buildings. Campus networks are built by connecting groups of smaller LANs over small physical areas.
+Traditionally, a campus network refers to the portion of a network architecture that delivers connectivity to end users and connected devices across a single geographic location. The size and other physical characteristics of the single geographic location can vary significantly. A campus network can be a single floor, wing, building or cluster of buildings. You build campus networks by connecting groups of smaller LANs over small physical areas.
 
 The enterprise that owns the campus network normally owns and manages the physical wires and data infrastructure. Often, these physical characteristics guide and constrain design and architecture options in addition to business and application requirements. As a matter of practice, campus networks usually aim to build the fastest functional network that the physical infrastructure can support.
 
 Enterprise IT is consistently under pressure to reduce costs while maintaining a highly available infrastructure to drive business functions. Automation of the network and its operations is proving to be the most useful strategy to deliver a range of benefits. The momentum of automation and its success in data centers and cloud environments are creating new opportunities for similar CapEx and OpEx reductions throughout the rest of the enterprise. Those that take advantage of automation enjoy benefits such as:
 
-- **Reduced human error:** Changes and updates can be tested and verified before being programmatically deployed. This eliminates typos and procedural errors to reduce overall risk.
-- **Increased uptime:** Fewer impacting errors are made as a result of fewer manual operations. Programmatic changes are deployed more quickly and require less time, especially at scale.
+- **Reduced human error:** Test and verify changes and updates before programmatically deploying them. This eliminates typos and procedural errors to reduce overall risk.
+- **Increased uptime:** Make fewer impacting errors as a result of fewer manual operations. Deploy programmatic changes more quickly and using less time, especially at scale.
 - **Increased agility:** More rapid deployments allow for more frequent changes based on user demand and business needs.
-- **Improved monitoring and management:** Automation tools can be used to improve and customize monitoring and management to suit nearly any use case or requirement.
+- **Improved monitoring and management:** Use automation tools to improve and customize monitoring and management to suit nearly any use case or requirement.
 - **Advanced troubleshooting:** Flexibly collect any information for any problem as often as needed.
-- **Operational efficiency:** Network operators can manage larger numbers of network devices. Resources can be shifted to addressing other technical debt or on higher value tasks.
+- **Operational efficiency:** Network operators can manage larger numbers of network devices. Shift resources to address other technical debt or on higher value tasks.
 
-The networking industry is being revolutionized and more fully enabled by automation. By providing the full and untethered power of Linux to its users, Cumulus Linux is the original "automation first" network operating system allowing you to manage your network nodes as if they were any other Linux server.
+Automation is revolutionizing and more fully enabling the networking industry. By providing the full and untethered power of Linux to its users, Cumulus Linux is the original "automation first" network operating system, allowing you to manage your network nodes as if they were any other Linux server.
 
 ## Principles of Campus Network Design
 
-As network designs and architectures are being planned, it is important to consider emerging networking trends and future needs of the enterprise. Several dimensions influence and guide campus design, such as:
+As you plan your network designs and architectures, it is important to consider emerging networking trends and future needs of the enterprise. Several dimensions influence and guide campus design, such as:
 
-- **Future growth and scalability:** Networks can be designed in ways today that can have significant impact on how they grow and scale. Making a small design concession in the spirit of scalability is often a wise choice even if future plans seem clear.
+- **Future growth and scalability:** You can design networks in ways today that can have significant impact on how they grow and scale. Making a small design concession in the spirit of scalability is often a wise choice even if future plans are clear.
 - **Existing infrastructure:** Copper cables can only reach 10Gbps on Cat 6 cable. Cat 5e can support more than 1Gbps. Features like 802.3bz can use existing copper to achieve more than 1Gbps.
-- **Security and segmentation:** Regulatory compliance and security best practices can create a number of design challenges for isolation and controlling traffic flows. These decisions need to be considered early in the design phase.
+- **Security and segmentation:** Regulatory compliance and security best practices can create many design challenges for isolation and controlling traffic flows. Consider these decisions early in the design phase.
 - **Cost:** Budgetary requirements drive several matters of choice. Redundancy is often at odds with cost.
-- **Bandwidth needs and oversubscription:** Understanding high level traffic flows for applications that are used in a local area of the campus may create the need for higher speed or additional links between devices in the topology.
-- **Operations and management:** What is it like to use and manage the devices that form the network infrastructure? How quickly and easily can changes be made? How easy is it to monitor the devices and how easy is it to troubleshoot when things go wrong?
+- **Bandwidth needs and oversubscription:** Understanding high level traffic flows for applications deployed in a local area of the campus can create the need for higher speed or additional links between devices in the topology.
+- **Operations and management:** What is it like to use and manage the devices that form the network infrastructure? How quickly and easily can you make changes? How easy is it to monitor the devices and how easy is it to troubleshoot when things go wrong?
 
-The structure of the campus network is based on the concepts of hierarchy and modularity. Like all complex systems, networks are designed, built and grow as discrete sets of smaller building blocks. This allows for flexibility and customization depending on needs local to the users or business applications in that area and the ability to scale or expand by adding additional building blocks. A hierarchy allows for each layer or tier to specialize and optimize for its unique role.
+Hierarchy and modularity are the basis for the structure of the campus network. Like all complex systems, you design, build and grow networks as discrete sets of smaller building blocks. This allows for flexibility and customization depending on needs local to the users or business applications in that area and the ability to scale or expand by adding additional building blocks. A hierarchy allows for each layer or tier to specialize and optimize for its unique role.
 
-Classically, a campus network hierarchy is modeled as three tiers:
+Classically, a campus network hierarchy has three tiers:
 
 1. Core
 2. Distribution (Aggregation)
@@ -296,7 +294,7 @@ This provides several key benefits:
 - Routing at the access layer enables a more efficient path for devices on the same switch.
 - Distribution layer switches are not paired and do not run MLAG. The distribution layer can be more easily scaled out beyond a pair of switches.
 
-Cumulus Networks recommends using [eBGP Unnumbered](#bgp-unnumbered) to build and maintain the set of layer 3 links between the access and distribution switches. BGP Unnumbered uses auto-generated IPv6 link local addresses and several intuitive configuration optimizations to drastically reduce configuration and deployment complexity. For more information on [eBGP Unnumbered](#bgp-unnumbered), refer to the [Cumulus Linux user guide](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/#configure-bgp-unnumbered-interfaces).
+NVIDIA recommends using [eBGP Unnumbered](#bgp-unnumbered) to build and maintain the set of layer 3 links between the access and distribution switches. BGP Unnumbered uses auto-generated IPv6 link local addresses and several intuitive configuration optimizations to drastically reduce configuration and deployment complexity. For more information on [eBGP Unnumbered](#bgp-unnumbered), refer to the [Cumulus Linux user guide](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/#configure-bgp-unnumbered-interfaces).
 
 {{<figure src="/images/guides/campus-SingleSiteLargeBuilding.jpg" caption="Campus networks with a distribution layer. **Left**: A classic campus network with layer 2 bonds interconnecting the access and distribution layer. Routing for access VLANs occurs at the distribution layer. **Right**: An alternative design using layer 3 ECMP uplinks from the access layer and BGP Unnumbered. Routing for access VLANs occurs at the access layer switches.">}}
 
@@ -309,7 +307,7 @@ In this configuration, distribution layer switches only route IP packets between
 
 | Tier | Supported Platforms |
 | ---- | ------------------- |
-| Access | Any model on the Cumulus HCL. See 1G models [here](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/). |
+| Access | Any model on the Cumulus HCL. See the [1G models](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/). |
 | Distribution | Any Broadcom Trident3, Trident II+ or Mellanox Spectrum-based platform is preferred. Broadcom Tomahawk family is acceptable. |
 | Border | Any Broadcom Trident3, Trident II+ or Mellanox Spectrum-based platform is preferred. Broadcom Tomahawk family is acceptable. |
 
@@ -414,7 +412,7 @@ cumulus@Host_C:~$ 10.1.3.101 show eth1
 
 {{< /tabs >}}
 
-In this design, [Proxy ARP ]({{<ref "/cumulus-linux-41/Layer-3/Address-Resolution-Protocol-ARP#configure-proxy-arp" >}}) is configured on the VLAN attached to the host so that the switch responds to all ARP requests when a host sends an ARP request to a system on its subnet.
+In this design, you configure [Proxy ARP]({{<ref "/cumulus-linux-41/Layer-3/Address-Resolution-Protocol-ARP#configure-proxy-arp" >}}) on the VLAN attached to the host so that the switch responds to all ARP requests when a host sends an ARP request to a system on its subnet.
 
 If you have many switches and need the VLAN across all the switches, you can specify a unique IP address on all the SVIs in the subnet, or you can use the anycast gateway with VRR. To conserve IP addresses, repeat physical IP addresses on a switch or switch pair (if you use MLAG).
 
@@ -626,16 +624,15 @@ FIB entry for 10.1.3.101
 In this deployment, you can perform segmentation in one of two ways:
 
 - Use [VRF ]({{<ref "/cumulus-linux-43/Layer-3/VRFs/Virtual-Routing-and-Forwarding-VRF" >}}) (depending on the scale and design).
-- Use [802.1x Dynamic ACL (DACL) ]({{<ref "/cumulus-linux-43/Layer-1-and-Switch-Ports/802.1X-Interfaces.md#dynamic-acls" >}}) with a NAC. This option is more suitable and scalable in this design. A host joining the network can be authenticated and policies pushed to the access switch through `iptable` rules or an access control list (ACL) to restrict the network resource access of that particular host.
+- Use [802.1x Dynamic ACL (DACL)]({{<ref "/cumulus-linux-43/Layer-1-and-Switch-Ports/802.1X-Interfaces.md#dynamic-acls" >}}) with a NAC. This option is more suitable and scalable in this design. `iptables` rules can authenticate a host joining the network and can push policies to the access switch; an access control list (ACL) can restrict the network resource access of that particular host.
 
 ### EVPN VXLAN
 
-Layer 3 ECMP-based designs can be further improved to add layer 2 extension across the network. As discussed in the
-[EVPN and VXLAN section](#evpn-and-vxlan), it's possible to realize the reliability and scalability of a layer 3 design and also deliver layer 2 connectivity to devices across access switches and across the layer 3 ECMP network. Cumulus Linux makes EVPN and VXLAN easy to use, especially when combined with a network built using BGP Unnumbered. EVPN also uses BGP, so the same protocol seamlessly drives both functions.
+Layer 3 ECMP-based designs can be further improved to add layer 2 extension across the network. As discussed in the [EVPN and VXLAN section](#evpn-and-vxlan), it is possible to realize the reliability and scalability of a layer 3 design and also deliver layer 2 connectivity to devices across access switches and across the layer 3 ECMP network. Cumulus Linux makes EVPN and VXLAN easy to use, especially when combined with a network built using BGP Unnumbered. EVPN also uses BGP, so the same protocol seamlessly drives both functions.
 
-Routing between VLANs in a VXLAN topology presents a few choices. For performance and best scalability, symmetric mode with IRB (integrated routing and bridging), is the recommended inter-subnet routing strategy. In this mode, routing always occurs at the access switch. For inter-subnet traffic local to the switch (or pair), symmetric mode routes the packet at the access switch and the packet takes the optimal path. For more information on EVPN symmetric mode, see the documentation [here](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#symmetric-routing).
+Routing between VLANs in a VXLAN topology presents a few choices. For performance and best scalability, symmetric mode with IRB (integrated routing and bridging), is the recommended inter-subnet routing strategy. In this mode, routing always occurs at the access switch. For inter-subnet traffic local to the switch (or pair), symmetric mode routes the packet at the access switch and the packet takes the optimal path. For more information on EVPN symmetric mode, see the [user guide](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#symmetric-routing).
 
-The design in the figure below prescribes for a VTEP to be configured at every switch in the access and distribution layer. Both access layer and distribution layer switches must perform VXLAN encapsulation and decapsulation and support routing in and out of VXLAN tunnels.
+The design in the figure below prescribes for configuring a VTEP at every switch in the access and distribution layer. Both access layer and distribution layer switches must perform VXLAN encapsulation and decapsulation and support routing in and out of VXLAN tunnels.
 
 {{<figure src="/images/guides/campus-SingleSite_LargeBuilding-Layer3withVXLAN.jpg" caption="An example modern campus design. EVPN VXLAN provides VLAN extension and layer 2 connectivity across the campus. Distribution and access layer switches are both VTEPs and perform VXLAN encapsulation for the network.">}}
 
@@ -682,7 +679,7 @@ EVPN and VXLAN is the solution to enable campus network designers to build a tru
 
 There are two main variations of a large scale EVPN VXLAN campus when there is a dedicated layer 3 campus core. The main difference being at which layer the VTEPs are implemented. A traditional layer 2 access and aggregation block can be constructed with layer 2 trunks and MLAG bonding, with VTEPs at the distribution layer. However, use caution to avoid creating large layer 2 domains, extended over large numbers of switches with this design.
 
-Cumulus Networks does not recommend implementing VTEP functionality in the core layer. Core switches should only perform simple IP routing to more closely adhere to [core layer design principles](#core-tier). This may require that a set of border switches be used to provide VXLAN encapsulation/decapsulation to other areas of the campus depending upon the particular needs and use cases.
+NVIDIA does not recommend implementing VTEP functionality in the core layer. Core switches should only perform simple IP routing to more closely adhere to [core layer design principles](#core-tier). This may require that a set of border switches be used to provide VXLAN encapsulation/decapsulation to other areas of the campus depending upon the particular needs and use cases.
 
 {{<figure src="/images/guides/campus-multipledistributionlayerswithcore-VXLANatdistrolayer.jpg" caption="An EVPN VXLAN-enabled campus with VTEPs at the distribution layer. Access switches use layer 2 bonds to an MLAG pair of distribution switches. Access VLANs can be extended through the core to other distribution access blocks or to an EVPN VXLAN-enabled data center.">}}
 
@@ -696,8 +693,8 @@ Distribution layer or border switches serve as VTEPs; thus, they carry the most 
 
 | Tier | Supported Platforms |
 | ---- | ------------------- |
-| Access | Any model on the Cumulus HCL. See 1G models [here](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/). |
-| Distribution | Any Broadcom Trident3, Trident II+ or Mellanox Spectrum-based platform is preferred. Broadcom Tomahawk family is acceptable, although routing in and out of VXLAN tunnels (RIOT) on Tomahawk platforms introduces a[few limitations and extra configuration](/cumulus-linux/Network-Virtualization/VXLAN-Routing/#tomahawk-and-tomahawk). |
+| Access | Any model on the Cumulus HCL. See the [1G models](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/). |
+| Distribution | Any Broadcom Trident3, Trident II+ or Mellanox Spectrum-based platform is preferred. Broadcom Tomahawk family is acceptable, although routing in and out of VXLAN tunnels (RIOT) on Tomahawk platforms introduces a [few limitations and extra configuration](/cumulus-linux/Network-Virtualization/VXLAN-Routing/#tomahawk-and-tomahawk). |
 | Border | Any Broadcom Trident3, Trident II+ or Mellanox Spectrum-based platform is preferred. Broadcom Tomahawk family is acceptable, although routing in and out of VXLAN tunnels (RIOT) on Tomahawk platforms introduces a [few limitations and extra configuration](/cumulus-linux/Network-Virtualization/VXLAN-Routing/#tomahawk-and-tomahawk). |
 | Core | Any model on the Cumulus HCL. |
 
@@ -800,7 +797,7 @@ Path MTU: 1500
 
 </pre>
 
-Fabric-wide service validations and health checks bring accurate alerting and diagnostics, and can provide prebuilt comprehensive testing for CI/CD automated workflows. NetQ agents stream a wide breadth of both control plane and data plane information that can be cross referenced and checked to better represent the status of the entire network instead of individual pieces. Services like BGP, EVPN, MLAG and NTP can be verified as the total of all nodes working together in addition to physical interface settings, licenses, and environmental sensors.
+Fabric-wide service validations and health checks bring accurate alerting and diagnostics, and can provide prebuilt comprehensive testing for CI/CD automated workflows. NetQ agents stream a wide breadth of both control plane and data plane information that can be cross referenced and checked to better represent the status of the entire network instead of individual pieces. You can verify services like BGP, EVPN, MLAG and NTP as the total of all nodes working together in addition to physical interface settings, licenses, and environmental sensors.
 
 {{<figure src="/images/guides/campus-netq-bgp-validation.png" caption="On-demand validation of a BGP fabric from the NetQ GUI">}}
 
@@ -907,7 +904,7 @@ Address                   Hostname          Interface                 VRF       
 
 #### netq check
 
-The ability to check `bgp`, `evpn`, `clag`, `interfaces`, `license`, `mtu`, `ntp`, `ospf`/`ospf6`, `sensors`, `vlan` and `vxlan` are supported.
+The `netq check` command supports the ability to check `bgp`, `evpn`, `clag`, `interfaces`, `license`, `mtu`, `ntp`, `ospf`/`ospf6`, `sensors`, `vlan` and `vxlan`.
 
 <pre>
 cumulus@oob-mgmt-server:~$ netq check sensors
@@ -947,4 +944,4 @@ Path MTU: 1500
 ## Notes
 
 [^1]:
-     A design this large must be built using layer 3 links
+     You must build a design this large using layer 3 links.

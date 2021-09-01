@@ -901,6 +901,111 @@ cumulus@switch:~$ net del vlan 20 acl ipv4 rflx_tcp_egress outbound
 cumulus@switch:~$ net commit
 ```
 
+### Match ECN Bits on the TCP IP Header
+
+ECN allows end-to-end notification of network congestion without dropping packets. You can add ACL rules to match on these ECN fields of the TCP IPv4 header:
+- CWR (Congestion Window Received)
+- ECE (ECN-Echo)
+- ECT (ECN Capable Transport)
+
+The **CWR** bit notifies the other endpoint of the connection that it received and reacted to an ECE. The default is to match when the bit is set. You can reverse the match by using an explanation point (!).
+
+To match on the CWR bit:
+
+{{< tabs "TabID915 ">}}
+{{< tab "NCLU Commands ">}}
+
+Run the `net add acl ipv4 <rule-name> <action> tcp cwr` command:
+
+```
+cumulus@switch:~$ net add acl ipv4 cwr-rule accept tcp cwr
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "Manual commands ">}}
+
+Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the rule under `[iptables]`:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules
+[iptables]
+-A FORWARD -i swp1 -p tcp -m ecn ecn-tcp-cwr -j ACCEPT 
+```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The **ECE** bit is set after one of the endpoints receives a packet with the [CE](## "Congestion Experienced") bit set by a router. The endpoint then sets the ECE bit in the returning ACK packet to notify the other endpoint that it needs to slow down. The other endpoint sends a CWR packet. The default is to match when the bit is set. You can reverse the match by using an explanation point. (!)
+
+{{< tabs "TabID947 ">}}
+{{< tab "NCLU Commands ">}}
+
+Run the `net add acl ipv4 <rule-name> <action> tcp ece` command:
+
+```
+cumulus@switch:~$ net add acl ipv4 ece-rule accept tcp ece
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "Manual commands">}}
+
+Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the rule under `[iptables]`:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules
+[iptables]
+-A FORWARD -i swp1 -p tcp -m ecn ecn-tcp-ece -j ACCEPT 
+```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The **ECT** codepoints negotiate if the connection is ECN capable by setting one of the two bits to 1. Routers also use the ECT bit to indicate that they are experiencing congestion by setting both the ECT codepoints to 1. You can reverse the match by using an explanation point. (!)
+
+{{< tabs "TabID979 ">}}
+{{< tab "NCLU Commands ">}}
+
+Run the `net add acl ipv4 <acl-name> <action> tcp ecn <value>` command. You can specify a value between 0 and 3.
+
+```
+cumulus@switch:~$ net add acl ipv4 ect-rule accept tcp ecn 1
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "Manual commands">}}
+
+Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the rule under `[iptables]`:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules
+[iptables]
+-A FORWARD -i swp1 -p tcp -m ecn ecn-ip-ect 1 -j ACCEPT
+```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Example Configuration
 
 The following example demonstrates how Cumulus Linux applies several different rules.

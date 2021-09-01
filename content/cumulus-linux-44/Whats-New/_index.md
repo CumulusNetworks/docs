@@ -16,7 +16,7 @@ Cumulus Linux 4.4.1 supports provides bug fixes and contains several enhancement
 
 ### Enhancements
 
-- Extensions to the {{<link url="Supported-MIBs" text="Entity-Sensor-MIB">}} to provide power supply status (Operational; Failed, PowerOff, NotPresent), admin status (On; Off), fan status (Operational, Failed, PowerOff, NotPresent), sensor status (Normal, Warning, Alert, Critical, NotPresent, NotOperational), available and used memory, and CPU utilization (last 5secs, 1min, 5mins)
+- Extensions to the {{<link url="Supported-MIBs" text="Entity-Sensor-MIB">}} provide memory and temperature sensor information, power supply and fan status.
 - Netfilter-ACL rules:
   - {{<link url="Netfilter-ACLs/#reflexive-acls" text="reflexive ACLs">}}
   - Option to drop packets that exceed egress layer 3 MTU

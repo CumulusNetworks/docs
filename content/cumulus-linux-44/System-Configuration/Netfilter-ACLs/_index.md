@@ -164,7 +164,7 @@ To always start `switchd` with nonatomic updates:
 During regular *non-incremental nonatomic updates*, traffic stops, then continues after all the new configuration is in the hardware.
 {{%/notice%}}
 
-### Use iptables, ip6tables, and ebtables Directly
+### iptables, ip6tables, and ebtables
 
 Do not use `iptables`, `ip6tables`, `ebtables` directly; installed rules only apply to the Linux kernel and Cumulus Linux does not hardware accelerate. When you run `cl-acltool -i`, Cumulus Linux resets all rules and deletes anything that is not in `/etc/cumulus/acl/policy.conf`.
 
@@ -800,6 +800,211 @@ cumulus@switch:~$ net commit
 {{%notice note%}}
 Cumulus Linux does not support the keyword `iprouter` (typically used for traffic that goes to the CPU, where the destination MAC address is that of the router but the destination IP address is not the router).
 {{%/notice%}}
+
+### Reflexive ACLs
+
+{{%notice note%}}
+Cumulus Linux 4.4.1 and later supports reflexive ACLs.
+{{%/notice%}}
+
+Reflexive ACLs enable you to control and restrict unwanted connections and flows throught the switch. For example, you can configure reflexive ACLs to allow and police established flows that want to access a service on a layer 4 port in a subnet. Instead of installing a new static rule for each incoming connection, the switch evaluates packets as they come in and installs dynamic ACCEPT ACLs for each connection.
+
+Cumulus Linux supports reflexive ACLs for TCP, UDP, and ICMP IPv4 traffic for connections that originate outside a network (from a host in the ISP network) and connections that originate inside the network. Reflexive ACLs restrict unestablished flows by policing them.
+
+You configure reflexive ACL rules on an SVI or layer 3 interface with NCLU.
+
+1. Enable reflexive ACLs:
+
+   {{< tabs "TabID818 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add reflexive-acl-enable
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "Edit /etc/cumulus/switchd.conf ">}}
+
+In the `/etc/cumulus/switchd.conf` file, uncomment and change the `rflx.reflexive_acl_enable` setting to TRUE, then restart `switchd`.
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+...
+rflx.reflexive_acl_enable = TRUE
+```
+<!-- vale off -->
+{{<cl/restart-switchd>}}
+<!-- vale on -->
+
+{{< /tab >}}
+{{< /tabs >}}
+
+2. Configure these rule types:
+   - An ingress rule with conntrack parameters (invalid, new, established, related, untracked).
+   - An egress rule with conntrack parameters (invalid, new, established, related, untracked).
+   - An ingress rule with the same IP address, port, and protocol matches as the conntrack rule with a POLICE action.
+   - An egress rule with the same IP address, port, and protocol matches as the conntrack rule with a POLICE action.
+
+   The following example rules configure TCP reflexive ACLs with a POLICE action:
+
+   ```
+   cumulus@switch:~$ net add policer-template rflx_policer mode packet rate 2000 burst 2000
+   cumulus@switch:~$ net add acl ipv4 rflx_tcp_ingress accept conntrack established,related tcp source-ip any source-port 1000 dest-ip 192.168.2.1/24 dest-port 80
+   cumulus@switch:~$ net add acl ipv4 rflx_tcp_ingress police rflx_policer tcp source-ip any source-port 1000 dest-ip 192.168.2.1/24 dest-port 80
+   cumulus@switch:~$ net add acl ipv4 rflx_tcp_egress accept conntrack established,related tcp source-ip 192.168.2.1/24 source-port 80 dest-ip any dest-port 1000
+   cumulus@switch:~$ net add acl ipv4 rflx_tcp_egress police rflx_policer tcp source-ip 192.168.2.1/24 source-port 80 dest-ip any dest-port 1000
+   ```
+
+3. Configure the interface on which you want to use the reflexive ACLs:
+
+   ```
+   cumulus@switch:~$ net add vlan 20 acl ipv4 rflx_tcp_ingress inbound
+   cumulus@switch:~$ net add vlan 20 acl ipv4 rflx_tcp_egress outbound
+   cumulus@switch:~$ net commit
+   ```
+
+For UDP and ICMP flows, you can police a new connection until the connection establishes by setting the timeout interval for inactvity:
+
+```
+cumulus@switch:~$ net add reflexive-acl age-poll-interval 8
+cumulus@switch:~$ net commit
+```
+
+You can also set the rate (in packets per second) for trapped packets and for the unreplied ingress flow:
+
+```
+cumulus@switch:~$ net add reflexive-acl trap-group-policer-rate 500
+cumulus@switch:~$ net add reflexive-acl unreplied-ingress-policer-rate 2000
+cumulus@switch:~$ net commit
+```
+
+To show the reflexive ACL rules and see all interfaces with reflexive ACLs, run the following NCL show commands.
+
+| Command | Description |
+| ------- | ----------- |
+| `net show reflexive acl` | Shows all reflexive ACL rules. |
+| `net show reflexive acl status` | Shows all interfaces with reflexive ACLs togther with the rules and actions. |
+| `net show interface <interface> counters reflex acl` | Shows the reflexive ACL counters on an interface. |
+
+```
+cumulus@switch:~$ net show reflexive acl status
+
+```
+
+You can remove a reflexive ACL from an interface with the `net del <interface> acl ipv4 rflx_tcp_ingress`
+and `net del <interface> acl ipv4 rflx_tcp_egress` commands:
+
+```
+cumulus@switch:~$ net del vlan 20 acl ipv4 rflx_tcp_ingress inbound
+cumulus@switch:~$ net del vlan 20 acl ipv4 rflx_tcp_egress outbound
+cumulus@switch:~$ net commit
+```
+
+### Match on ECN Bits in the TCP IP Header
+
+ECN allows end-to-end notification of network congestion without dropping packets. You can add ACL rules to match on these ECN fields of the TCP IPv4 header:
+- CWR (Congestion Window Received)
+- ECE (ECN-Echo)
+- ECT (ECN Capable Transport)
+
+The **CWR** bit notifies the other endpoint of the connection that it received and reacted to an ECE. The default is to match when the bit is set. You can reverse the match by using an explanation point (!).
+
+To match on the CWR bit:
+
+{{< tabs "TabID915 ">}}
+{{< tab "NCLU Commands ">}}
+
+Run the `net add acl ipv4 <rule-name> <action> tcp cwr` command:
+
+```
+cumulus@switch:~$ net add acl ipv4 cwr-rule accept tcp cwr
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "Manual commands ">}}
+
+Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the rule under `[iptables]`:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules
+[iptables]
+-A FORWARD -i swp1 -p tcp -m ecn ecn-tcp-cwr -j ACCEPT 
+```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The **ECE** bit is set after one of the endpoints receives a packet with the [CE](## "Congestion Experienced") bit set by a router. The endpoint then sets the ECE bit in the returning ACK packet to notify the other endpoint that it needs to slow down. The other endpoint sends a CWR packet. The default is to match when the bit is set. You can reverse the match by using an explanation point. (!)
+
+{{< tabs "TabID947 ">}}
+{{< tab "NCLU Commands ">}}
+
+Run the `net add acl ipv4 <rule-name> <action> tcp ece` command:
+
+```
+cumulus@switch:~$ net add acl ipv4 ece-rule accept tcp ece
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "Manual commands">}}
+
+Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the rule under `[iptables]`:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules
+[iptables]
+-A FORWARD -i swp1 -p tcp -m ecn ecn-tcp-ece -j ACCEPT 
+```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The **ECT** codepoints negotiate if the connection is ECN capable by setting one of the two bits to 1. Routers also use the ECT bit to indicate that they are experiencing congestion by setting both the ECT codepoints to 1. You can reverse the match by using an explanation point. (!)
+
+{{< tabs "TabID979 ">}}
+{{< tab "NCLU Commands ">}}
+
+Run the `net add acl ipv4 <acl-name> <action> tcp ecn <value>` command. You can specify a value between 0 and 3.
+
+```
+cumulus@switch:~$ net add acl ipv4 ect-rule accept tcp ecn 1
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "Manual commands">}}
+
+Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the rule under `[iptables]`:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules
+[iptables]
+-A FORWARD -i swp1 -p tcp -m ecn ecn-ip-ect 1 -j ACCEPT
+```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Example Configuration
 

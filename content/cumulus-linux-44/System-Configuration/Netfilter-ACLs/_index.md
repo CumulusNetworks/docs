@@ -224,18 +224,6 @@ By default, each entry occupies one double wide entry, except if the entry is on
 You can only use port ranges for ingress rules.
 {{%/notice%}}
 
-### Match on VLAN IDs on Layer 2 Interfaces
-
-You can match on VLAN IDs on layer 2 interfaces for ingress rules. The following example matches on a VLAN and DSCP class, and sets the internal class of the packet. For extended matching on IP fields, combine this rule with ingress iptable rules.
-
-```
-[ebtables]
--A FORWARD -p 802_1Q --vlan-id 100 -j mark --mark-set 0x66
-
-[iptables]
--A FORWARD -i swp31 -m mark --mark 0x66 -m dscp --dscp-class CS1 -j SETCLASS --class 2
-```
-
 ## Install and Manage ACL Rules with NCLU
 
 NCLU provides an easy way to create custom ACLs. The rules you create live in the `/var/lib/cumulus/nclu/nclu_acl.conf` file, which Cumulus Linux converts to a rules file, `/etc/cumulus/acl/policy.d/50_nclu_acl.rules`. The rules you create with NCLU are independent of the default files in `/etc/cumulus/acl/policy.d/` `00control_plane.rules` and `99control_plane_catch_all.rules`. If you update the content in these files after a Cumulus Linux upgrade, you do not lose the rules.
@@ -546,12 +534,12 @@ INPUT FORWARD OUTPUT
 |**Standard Targets**|ACCEPT, DROP|RETURN, CONTINUE, Jump, Fall Thru|
 |**Extended Targets**|ULOG<br>LOG<br>Unique to Cumulus Linux:<br>SPAN<br>ERSPAN<br>POLICE<br>TRICOLORPOLICE<br>SETCLASS|
 
-### Other Unsupported Rules
+### Unsupported Rules
 
 - Rules that have no matches and accept all packets in a chain are currently ignored.
 - Chain default rules (that are ACCEPT) are also ignored.
 
-#### Considerations
+### Splitting Rules Across the Ingress TCAM and the Egress TCAM
 
 Splitting rules across the ingress TCAM and the egress TCAM causes the ingress IPv6 part of the rule to match packets going to all destinations, which can interfere with the regular expected linear rule match in a sequence. For example:
 
@@ -801,6 +789,18 @@ cumulus@switch:~$ net commit
 Cumulus Linux does not support the keyword `iprouter` (typically used for traffic that goes to the CPU, where the destination MAC address is that of the router but the destination IP address is not the router).
 {{%/notice%}}
 
+### Match on VLAN IDs on Layer 2 Interfaces
+
+You can match on VLAN IDs on layer 2 interfaces for ingress rules. The following example matches on a VLAN and DSCP class, and sets the internal class of the packet. For extended matching on IP fields, combine this rule with ingress iptable rules.
+
+```
+[ebtables]
+-A FORWARD -p 802_1Q --vlan-id 100 -j mark --mark-set 0x66
+
+[iptables]
+-A FORWARD -i swp31 -m mark --mark 0x66 -m dscp --dscp-class CS1 -j SETCLASS --class 2
+```
+
 ### Reflexive ACLs
 
 {{%notice note%}}
@@ -903,7 +903,7 @@ cumulus@switch:~$ net commit
 
 ### Match on ECN Bits in the TCP IP Header
 
-ECN allows end-to-end notification of network congestion without dropping packets. You can add ACL rules to match on these ECN fields of the TCP IPv4 header:
+ECN allows end-to-end notification of network congestion without dropping packets. You can add ACL rules to match on the following ECN fields of the TCP IPv4 header:
 - CWR (Congestion Window Received)
 - ECE (ECN-Echo)
 - ECT (ECN Capable Transport)
@@ -1148,7 +1148,7 @@ Cumulus Linux does not support all `iptables`, `ip6tables`, or `ebtables` rules.
 
 ### ACL Log Policer Limits Traffic
 
-To protect the CPU from overloading, Cumulus Linux limits traffic copied to the CPU to 1 pkt/s by an ACL Log Policer.
+To protect the CPU from overloading, Cumulus Linux limits traffic copied to the CPU to 1 packet per second by an ACL Log Policer.
 
 ### Bridge Traffic Limitations
 
@@ -1160,7 +1160,7 @@ You cannot forward logged packets. The hardware cannot both forward a packet and
 
 ### SPAN Sessions that Reference an Outgoing Interface
 
-SPAN sessions that reference an outgoing interface create mirrored packets based on the ingress interface before the routing/switching decision. See {{<link url="SPAN-and-ERSPAN#span-sessions-that-reference-an-outgoing-interface" text="SPAN Sessions that Reference an Outgoing Interface">}} and {{<link url="SPAN-and-ERSPAN/#use-the-cpu-port-as-the-span-destination" text="Use the CPU Port as the SPAN Destination">}} in the Network Troubleshooting section.
+SPAN sessions that reference an outgoing interface create mirrored packets based on the ingress interface before the routing decision. See {{<link url="SPAN-and-ERSPAN#span-sessions-that-reference-an-outgoing-interface" text="SPAN Sessions that Reference an Outgoing Interface">}} and {{<link url="SPAN-and-ERSPAN/#use-the-cpu-port-as-the-span-destination" text="Use the CPU Port as the SPAN Destination">}} in the Network Troubleshooting section.
 <!-- vale off -->
 ### iptables Interactions with cl-acltool
 <!-- vale on -->

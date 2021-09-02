@@ -27,7 +27,7 @@ The `switchd` daemon is responsible for setting up the physical ports. When `swi
 
 Typically, `switchd` fails to start when the Cumulus Linux license is missing.
 
-If your license is installed and `switchd` still fails to start, capture any errors that may occur and generate the `cl-support` files, then send them to the Cumulus Networks support team.
+If your license is installed and `switchd` still fails to start, capture any errors that may occur and generate the `cl-support` files, then send them to the NVIDIA support team.
 
 Follow the appropriate steps below.
 
@@ -38,7 +38,7 @@ If a valid license is not installed, the physical ports will not come up. Verify
     $ sudo cl-license
     No license installed!
 
-Contact the Cumulus Networks support team to obtain a license.
+Contact the NVIDIA support team to obtain a license.
 
 ### switchd Fails to Start with the Error: *Syntax error parsing "thdi\_input\_port\_xon\_enables.xe0-xe127"*
 

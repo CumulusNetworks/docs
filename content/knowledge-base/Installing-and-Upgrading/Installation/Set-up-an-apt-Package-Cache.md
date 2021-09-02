@@ -9,7 +9,7 @@ toc: 4
 
 ### Air-gapped Networks
 
-Package mirroring is handy when switches do not have a direct connection to the Internet to receive updates or install software. Instead of reaching out to the Cumulus Networks repository on the Internet, switches configured to use a local mirror can reach out to a locally trusted target that has been configured.
+Package mirroring is handy when switches do not have a direct connection to the Internet to receive updates or install software. Instead of reaching out to the NVIDIA repository on the Internet, switches configured to use a local mirror can reach out to a locally trusted target that has been configured.
 
 ### Granular Control of Software Versions
 
@@ -17,7 +17,7 @@ Package mirroring is also a way to lock down switches from updating packages, as
 
 {{<img src="/images/knowledge-base/apt-pkg-cache-Standard-Package-Workflow.png" alt="Standard package workflow" width="500px">}}
 
-***Standard package workflow:*** *Packages downloaded directly from the Cumulus Networks repository by each switch.*
+***Standard package workflow:*** *Packages downloaded directly from the NVIDIA repository by each switch.*
 
 ### Speed, Efficiency and Bandwidth Reduction
 
@@ -29,7 +29,7 @@ Switches that are configured to receive their packages from a local mirror get t
 
 In traditional Linux form, there are a number of package mirroring tools available for Debian.
 
-The `apt-mirror` program can copy the entire Cumulus Networks repository, so you can point your local switches at the local copy of the repository. This approach works, but is a bit more heavyweight than you may want. For that reason, we recommend using the `apt-cacher-ng` program.
+The `apt-mirror` program can copy the entire NVIDIA repository, so you can point your local switches at the local copy of the repository. This approach works, but is a bit more heavyweight than you may want. For that reason, we recommend using the `apt-cacher-ng` program.
 
 `apt-cacher-ng` has been around for quite some time now and has many proponents. It replaces the original `apt-cacher` program as it is more robust.
 
@@ -39,7 +39,7 @@ The `apt-mirror` program can copy the entire Cumulus Networks repository, so you
 - **Reduced WAN bandwidth consumption**: `apt-cacher-ng` downloads each package only once and caches it for subsequent requests from other switches.
 - **Faster package downloads**: `apt-cacher-ng` reduces download time for all but the first request from a switch.
 - **Easy client configuration**: Change a single file. Instead of changing repository URLs to point to new repositories, you simply add a new proxy to the configuration.
-- **Easy installation**: Single package install, with no additional configuration in most cases. Simply install and go! There is no need to install an additional web server.
+- **Easy installation**: Single package install, with no additional configuration in most cases. Simply install and go. You have no need to install an additional web server.
 
 ## Installing and Configuring apt-cacher
 
@@ -81,7 +81,7 @@ Remember to update the IP address to reflect the IP address of your server runni
 
 ### Don't Mix Packages from Different Distributions
 
-Cumulus Networks strongly recommends you do not install packages from one Linux distribution onto another distribution. For example, do **not** install any Ubuntu packages on a Cumulus Linux switch, since Cumulus Linux is based on Debian.
+NVIDIA strongly recommends you do not install packages from one Linux distribution onto another distribution. For example, do **not** install any Ubuntu packages on a Cumulus Linux switch, since Cumulus Linux is based on Debian.
 
 ### Freezing Package State
 

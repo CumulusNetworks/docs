@@ -112,9 +112,10 @@ Most BGP commands require the VRF to be included in the command. This includes t
 
 ## Access Control Lists (ACLs)
 
-ACLs in Cumulus Linux are based on Linux iptables and behave differently from NX-OS in the following ways:
-- There is no implicit deny. ACLs must end in a `match any` and `action deny` rule to drop all unmatched traffic.
-- There is no support for wildcard masks. You must list subnets individually.
+ACLs in Cumulus Linux are based on Linux `iptables` and behave differently from NX-OS in the following ways:
+
+- No implicit deny. ACLs must end in a `match any` and `action deny` rule to drop all unmatched traffic.
+- No support for wildcard masks. You must list subnets individually.
 
 For more information, refer to the {{<kb_link latest="cl" url="System-Configuration/Netfilter-ACLs/_index.md" text="Netfilter - ACLs" >}} section of the Cumulus Linux User Guide.
 

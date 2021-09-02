@@ -36,7 +36,7 @@ The default *mode type* is called DEFAULT. When an interface is in DEFAULT mode,
 
 - Link is detected
 
-There is also a mode type called DORMANT. When an interface is in DORMANT mode, there is additional criteria for the interface state to transition to UP. In DORMANT mode, the interface state transitions to UP when both of the following conditions are met:
+When an interface is in *DORMANT* mode, there are additional criteria for the interface state to transition to UP. In DORMANT mode, the interface state transitions to UP when both of the following conditions are met:
 
 - Link is detected
 - MLAG has finished setting up everything for the bond
@@ -90,7 +90,7 @@ Here is sample output of a bond (bond2) where swp5 is a member of bond2. Not
 
 ## Additional Resources
 
-For additional reading, please refer to the following resources:
+For additional reading, refer to the following resources:
 
 - {{<exlink url="https://tools.ietf.org/html/rfc2863" text="RFC 2863">}}
 - {{<exlink url="https://www.kernel.org/doc/Documentation/networking/operstates.txt" text="kernel.org documentation on operational states">}}

@@ -5,13 +5,13 @@ weight: 331
 toc: 4
 ---
 
-Cumulus Networks provides this document as a suggested procedure for qualifying a transceiver module or cable that does not appear on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux Hardware Compatibility List">}} (HCL) as a recommended pluggable. Cumulus Networks will not actively prevent any non-recommended pluggable from functioning and does not restrict the use of self-qualified pluggables. However, Cumulus Networks recommends customers use the pluggables listed on the HCL. Customers who wish to use a non-recommended pluggable can follow the suggested procedure outlined in this document. For concerns about pluggables that are not listed, please {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="contact your Cumulus Networks">}} sales team.
+NVIDIA provides this document as a suggested procedure for qualifying a transceiver module or cable that does not appear on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux Hardware Compatibility List">}} (HCL) as a recommended pluggable. NVIDIA will not actively prevent any non-recommended pluggable from functioning and does not restrict the use of self-qualified pluggables. However, NVIDIA recommends customers use the pluggables listed on the HCL. Customers who wish to use a non-recommended pluggable can follow the suggested procedure outlined in this document. For concerns about pluggables that are not listed, {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="contact your NVIDIA">}} sales team.
 
 ## Example Connections
 
 This procedure is valid for qualifying all types of transceivers and cables in a device undergoing testing. Customers can choose the same types or a combination of different transceivers for this test.
 
-The following diagram illustrates an example where the top and bottom ports are connected with a cable as a loopback. The example includes cabling and configuration for the testing of both 40G QSFP and 10/1G SFP. Cumulus Networks recommends that different speed components be tested independently. The example includes both in order to simplify the presentation.
+The following diagram illustrates an example where the top and bottom ports are connected with a cable as a loopback. The example includes cabling and configuration for the testing of both 40G QSFP and 10/1G SFP. NVIDIA recommends that different speed components be tested independently. The example includes both in order to simplify the presentation.
 
 {{<img src="/images/knowledge-base/transceiver-cable-self-qual.png" alt="Loopback cable port connections" width="600px">}}
 
@@ -176,7 +176,7 @@ The following checklist and test plan constitutes successful results.
 </tr>
 <tr class="odd">
 <td><pre><code>$ iperf TCP stream</code></pre></td>
-<td><p>Bidirectional traffic with Cumulus Linux snake test matches transfer rate of two traffic generators’ endpoints when connected back-to-back.</p></td>
+<td><p>Bidirectional traffic with Cumulus Linux snake test matches transfer rate of two traffic generators' endpoints when connected back-to-back.</p></td>
 <td> </td>
 </tr>
 <tr class="even">
@@ -203,7 +203,7 @@ $ sudo systemctl restart switchd.service</code></pre></td>
 <tr class="even">
 <td><p>Reboot the switch and repeat same tests and checkpoints again.</p></td>
 <td><p>All checks/tests iterations are successful.</p></td>
-<td><p>During some transceivers' qualification cycle, Cumulus Networks observed occasionally that marginal and disqualified transceivers exhibited failures with 10-25% failure rates across switch reboots.</p></td>
+<td><p>During the qualification cycle for some transceivers, NVIDIA observed occasionally that marginal and disqualified transceivers exhibited failures with 10-25% failure rates across switch reboots.</p></td>
 </tr>
 </tbody>
 </table>

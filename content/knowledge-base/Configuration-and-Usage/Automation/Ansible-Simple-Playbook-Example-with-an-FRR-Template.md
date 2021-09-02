@@ -5,7 +5,7 @@ weight: 325
 toc: 4
 ---
 
-This article describes a very simple Ansible example. Use it to learn Ansible; **don't** use it as a production-level script. Please refer to the {{<link url="Demos-and-Training" text="Demos and Training section">}} for more robust examples with Ansible and other DevOp tools.
+This article describes a very simple Ansible example. Use it to learn Ansible; **don't** use it as a production-level script. Refer to the {{<link url="Demos-and-Training" text="Demos and Training section">}} for more robust examples with Ansible and other DevOp tools.
 
 {{<img src="/images/knowledge-base/ansible-simple-playbook.png" alt="Ansible simple playbook" width="500px">}}
 
@@ -28,23 +28,20 @@ The following was performed on Ubuntu:
     cumulus@wbench:~$ sudo apt-get update
     cumulus@wbench:~$ sudo apt-get install ansible
 
-If you don't have Ubuntu, you can install Ansible on Red Hat, Debian,
-CentOS, MacOS, any BSD distro, and so on. {{<exlink url="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html" text="See this page on ansible.com">}}.
+If you don't have Ubuntu, you can install Ansible on Red Hat, Debian, CentOS, MacOS, any BSD distro, and so on. {{<exlink url="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html" text="See this page on ansible.com">}}.
 
 ## Configure the Necessary Files
 
-Simply cut and paste the code snippets from the code blocks below. Here
-are all the pieces of code used in the example.
+Simply cut and paste the code snippets from the code blocks below. Here are all the pieces of code used in the example.
 
 ### Inventory File
 
-The inventory is a single file called `host` with the contents \"leaf1\"
-inside.
+The inventory is a single file called `host` with the contents \"leaf1\" inside.
 
     cumulus@wbench:~$ cat host
     leaf1
 
-Again, this is a very simple example. Please {{<exlink url="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#intro-inventory" text="read more about creating inventory files on ansible.com">}}.
+Again, this is a very simple example. Read more about {{<exlink url="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#intro-inventory" text="creating inventory files">}}.
 
 ### Playbook .yml File
 
@@ -71,9 +68,9 @@ This `sample-playbook.yml` contains one variable, two tasks, and a handler. Each
 | --------- | ----------- |
 | hosts:leaf1 | Only run this playbook on the host leaf1. |
 | vars | These are the variables defined for the playbook. There is only one variable, called `description`. |
-| remote\_user | This is the user who will run the playbook on the remote system. |
-| tasks | There are two tasks listed, one uses the {{<exlink url="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html" text="template module">}} and one uses the {{<exlink url="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html" text="service module">}}. |
-| handlers | Handlers are tasks that only run if a task notifies it. A task will only notify it if something has changed. In this example, FRR gets restarted only if `frr.conf` changes. |
+| remote\_user | This is the user who runs the playbook on the remote system. |
+| tasks | A list of two tasks, one using the {{<exlink url="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html" text="template module">}} and one using the {{<exlink url="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html" text="service module">}}. |
+| handlers | Handlers are tasks that only run if a task notifies it. A task only notifies it if something has changed. In this example, FRR gets restarted only if `frr.conf` changes. |
   
 ### jinja2 Template File
 

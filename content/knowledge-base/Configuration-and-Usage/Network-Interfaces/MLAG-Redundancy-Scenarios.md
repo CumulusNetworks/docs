@@ -64,7 +64,7 @@ In the following example, the bridge *vlans* contains the two MLAG bonds, Bond1 
 
 In steady state, the MLAG pair must appear to the connected layer 2 network as a single switch. Therefore both primary and secondary MLAG switches use the `clagd-sys-mac` address as the common STP bridge ID on all ports. Both primary and secondary switches transmit BPDUs on orphan and single-connected ports. Only the primary switch **sends** BPDUs on dual-connected bonds. Both the primary and secondary **receive** BPDUs on dual-connected bonds.
 
-There is no requirement for MLAG peers to be the spanning tree root. However, as with all layer 2 topologies, the forwarding topology can be affected by the location of the root bridge. Therefore, it is useful to set the spanning tree priority using `mstpctl-treeprio` to aid in the selection of an optimal root. When configuring `mstpctl-treeprio`, both peers should be configured with the same priority.
+MLAG peers do not have to be the spanning tree root. However, as with all layer 2 topologies, the forwarding topology can be affected by the location of the root bridge. Therefore, it is useful to set the spanning tree priority using `mstpctl-treeprio` to aid in the selection of an optimal root. When configuring `mstpctl-treeprio`, both peers should be configured with the same priority.
 
 `mstpctl showall` is used to show spanning tree status, including specific MLAG spanning tree state information. For dual-connected bonds, the MLAG dual-connected MAC address is the MAC address of the dual-connected LACP bond partner.
 
@@ -82,7 +82,7 @@ When a bond is single-connected, the MLAG dual-connected MAC address is null.
 
 ### Scenario 1: Peer Link Failure, clagd-backup-ip Is Active
 
-Cumulus Networks recommends specifying a backup link to check the health of the peer switch in the event that the peer link goes down. The backup link serves to distinguish between a peer-link failure and a peer switch failure.
+NVIDIA recommends specifying a backup link to check the health of the peer switch in the event that the peer link goes down. The backup link serves to distinguish between a peer-link failure and a peer switch failure.
 
 You configure the backup link using `clagd-backup-ip`. If `clagd-backup-ip` is active (that is, the backup IP address is reachable) when a peer link failure occurs, the secondary switch uses it to determine whether the primary peer is still active (or alive — the switch is up; however, the peer link could be down). Since the primary is still active, the primary peer will continue to use pre-existing LACP system IDs for all bonds. The primary will also continue to use `clagd-sys-mac` as the STP bridge ID for all ports.
 

@@ -30,8 +30,10 @@ In looking at the routing table:
     169.254.0.0/16 dev eth1  scope link  metric 1000
     192.168.72.0/24 dev eth0  proto kernel  scope link  src 192.168.72.136
 
-- Notice the connected route of 5.5.5.0/24 on eth1 (since the assigned address is 5.5.5.5 and is on the 255.255.255.0 subnet)
-- There is also a 3.3.0.0/16 static route configured on this Ubuntu VM.
+Notice the following:
+
+- The connected route of 5.5.5.0/24 on eth1 (since the assigned address is 5.5.5.5 and is on the 255.255.255.0 subnet)
+- A 3.3.0.0/16 static route configured on this Ubuntu VM
 
 Next, simulate no connection on eth1 (for example, the cable was pulled out). You can do this by assigning the Ethernet device in the VM to a dead interface:
 
@@ -64,7 +66,7 @@ With the link on the Ubuntu VM reset and the link set to UP in VMware Fusion (th
     * eth1: ifplugd process for device eth1 running as pid 4512. 
     user@ubuntu:~$ ip link show eth1 3: eth1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT group default qlen 1000 link/ether 00:0c:29:8e:9e:3a brd ff:ff:ff:ff:ff:ff
 
-At this point, the cable has been "cut", which you can see in the routing table:
+At this point, the cable has been "cut," which you can see in the routing table:
 
     user@ubuntu:~$ ip link show eth1
     3: eth1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT group default qlen 1000
@@ -90,7 +92,7 @@ Notice that everything is added back as before. `ifplugd` has helped the server 
 
 ## Configuring ifplugd on Ubuntu 14.10
 
-The following examples use {{<exlink url="https://launchpad.net/ubuntu/+source/ifupdown" text="ifupdown">}} (not {{<exlink url="https://github.com/CumulusNetworks/ifupdown2" text="ifupdown2">}} in Cumulus Networks and not {{<exlink url="https://wiki.debian.org/NetworkManager" text="network-manager">}}.
+The following examples use {{<exlink url="https://launchpad.net/ubuntu/+source/ifupdown" text="ifupdown">}} (not {{<exlink url="https://github.com/CumulusNetworks/ifupdown2" text="ifupdown2">}} in NVIDIA and not {{<exlink url="https://wiki.debian.org/NetworkManager" text="network-manager">}}.
 
 1.  Run `apt-get update` to grab the latest package information:  
 
@@ -132,12 +134,12 @@ The following examples use {{<exlink url="https://launchpad.net/ubuntu/+source/i
     | Flag | Description |
     | ---- | ----------- |
     | \-q  | Don't call the script for network shutdown when the daemon quits. |
-    | \-f  | Ignore detection failures, retry instead. Failure is treated as "no link".  |
+    | \-f  | Ignore detection failures, retry instead. Failure is treated as "no link."  |
     | \-u0 | Specifies the delay for configuring the interface. |
     | \-d0 | Specifies the delay for de-configuring the interface. |
     | \-w  | When daemonizing (creating a background process), wait until the background process finishes with the initial link beat detection. When this is enabled, the parent process will return the link status on exit. 2 means a link beat is detected, 3 means a link beat is not detected; everything else is an error. |
     | \-I  | Don't exit on a nonzero return value of the program executed on link change.  |
-    | \-M  | Don't fail when the network interface is not available. Instead, use NETLINK to monitor device availability. The is useful for PCMCIA devices and similar. |
+    | \-M  | Don't fail when the network interface is not available. Instead, use `netlink` to monitor device availability. The is useful for PCMCIA devices and similar. |
 
     To start `ifplugd`, use the `service ifplugd start` command:
 

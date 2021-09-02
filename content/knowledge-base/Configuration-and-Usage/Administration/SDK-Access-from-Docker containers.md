@@ -14,13 +14,14 @@ The Docker engine installation procedure depends on the Cumulus Linux release yo
 
 ## Applications that Require Integration with the Networking Dataplane
 
-There are two main classes of applications that require integration with the networking dataplane:
+Two main classes of applications require integration with the networking dataplane:
+
 - Applications that interact with the system through standard interfaces; for example, installing routes or ACLs in the Linux kernel through `netlink` or command lines (Linux tools such as `iproute2`). The kernel dataplane settings are offloaded to the ASIC through `switchd`. Using standard interfaces allows for more portable applications. 
 - Applications that require more native access to the forwarding ASIC through the ASIC SDK to access hardware capabilities that are not exposed through the Linux kernel and other standard interfaces.
 
 ## Direct Application Access to the ASIC SDK
 
-The Mellanox `sx_sdk` is a standalone process, which supports access from multiple application clients simultaneously through the `sx_api` library with IPC communications. For a containerized application to get access to the SDK, you need to make the `sx_api` and a few other files available to the container while the SDK process continues to run natively on the container host.
+The NVIDIA Spectrum `sx_sdk` is a standalone process, which supports access from multiple application clients simultaneously through the `sx_api` library with IPC communications. For a containerized application to get access to the SDK, you need to make the `sx_api` and a few other files available to the container while the SDK process continues to run natively on the container host.
 
 Cumulus Linux provides two options. You can either:
 - Copy the required files to the container at runtime.

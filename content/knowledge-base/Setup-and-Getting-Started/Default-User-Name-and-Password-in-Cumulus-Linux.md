@@ -7,7 +7,7 @@ toc: 3
 
 ## Issue
 
-What is the default user name and password in Cumulus Linux?
+What is the default username and password in Cumulus Linux?
 
 ## Environment
 
@@ -17,12 +17,12 @@ What is the default user name and password in Cumulus Linux?
 
 In Cumulus Linux 4.2 and later:
 
-- User name: `cumulus`
+- Username: `cumulus`
 - Password: `cumulus`
 
  In Cumulus Linux 4.1.z and earlier:
 
-- User name: `cumulus`
+- Username: `cumulus`
 - Password: `CumulusLinux!`
 
 For more information, see the [Cumulus Linux user guide]({{<ref "/cumulus-linux-43/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts" >}}).

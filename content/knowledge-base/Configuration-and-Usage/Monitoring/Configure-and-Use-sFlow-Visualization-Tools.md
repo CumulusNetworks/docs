@@ -11,7 +11,7 @@ This article introduces you to monitoring and walks you through configuration of
 
 Monitoring can provide important insight into your network. Many tools, both open source and commercial, exist to help you monitor the traffic flowing through your network as well as the performance of your switches and routers. Cumulus Linux, in versions 2.1 and up, supports the Host sFlow protocol. Host sFlow can sample traffic going through your network as well as metrics and counters on the switches, to give a holistic view of your network.  A variety of network gear and system operating systems also {{<exlink url="http://www.sflow.org/products/network.php" text="support sFlow">}}.
 
-There are two important pieces to successfully setting up sFlow:
+The two important pieces to successfully setting up sFlow are:
 
 - Setting up the hosts
 - Setting up the collectors

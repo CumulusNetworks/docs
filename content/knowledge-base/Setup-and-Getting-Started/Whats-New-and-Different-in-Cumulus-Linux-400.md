@@ -7,7 +7,7 @@ toc: 3
 
 Cumulus Linux 4.0.0 is the biggest update to the operating system in years\! We've changed many things both cosmetic and under the hood, including a new kernel and several new platforms — but we've also removed some platforms and features — so it's a good idea for you to understand all that's changed **before** you upgrade.
 
-As always, please read the [release notes]({{<ref "/cumulus-linux-40/Whats-New/rn" >}}) to learn about all the open and fixed issues in this release.
+As always, read the [release notes]({{<ref "/cumulus-linux-40/Whats-New/rn" >}}) to learn about all the open and fixed issues in this release.
 
 **For more recent releases, you can always get the latest Cumulus Linux information [here]({{<ref "/cumulus-linux-40/Whats-New" >}}).**
 
@@ -17,9 +17,9 @@ Cumulus Linux 4.0.0 supports the following new platforms, new features, and enha
 
 New platforms include:
 
-- EdgeCore Minipack AS8000 (100G Tomahawk3)
-- Mellanox SN3700C (100G Spectrum-2)
-- Mellanox SN3700 (200G Spectrum-2)
+- Edgecore Minipack AS8000 (100G Tomahawk3)
+- NVIDIA Spectrum SN3700C (100G Spectrum-2)
+- NVIDIA Spectrum SN3700 (200G Spectrum-2)
   - Note that Cumulus Linux 4.0.0 currently supports 100G speeds
 - HPE SN2745M (100G Spectrum)
 
@@ -31,11 +31,13 @@ New features and enhancements include:
 - [EVPN BUM traffic handling]({{<ref "/cumulus-linux-40/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/EVPN-PIM" >}}) using PIM-SM on  Broadcom switches
 - [PIM active-active with MLAG]({{<ref "/cumulus-linux-40/Layer-3/Protocol-Independent-Multicast-PIM#pim-active-active-with-mlag" >}})
 - [Port security]({{<ref "/cumulus-linux-40/Layer-1-and-Switch-Ports/Port-Security" >}}) on Broadcom switches
-- [What Just Happened]({{<ref "/cumulus-linux-40/Monitoring-and-Troubleshooting/Network-Troubleshooting/Mellanox-WJH" >}}) (WJH) for Mellanox switches to stream detailed and contextual telemetry for off-box analysis with tools such as Cumulus NetQ
+<!-- vale off -->
+- [What Just Happened]({{<ref "/cumulus-linux-40/Monitoring-and-Troubleshooting/Network-Troubleshooting/Mellanox-WJH" >}}) (WJH) for NVIDIA Spectrum switches to stream detailed and contextual telemetry for off-box analysis with tools such as Cumulus NetQ
+<!-- vale on -->
 - A new [backup and restore utility]({{<ref "/cumulus-linux-40/Installation-Management/Back-up-and-Restore" >}})
 - [Advertise primary IP address type-5 routes]({{<ref "/cumulus-linux-40/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing#advertise-primary-ip-address" >}}) in an EVPN symmetric configuration in VXLAN active-active mode
 - [BGP best path reason]({{<ref "/cumulus-linux-40/Layer-3/Border-Gateway-Protocol-BGP" >}}) shown in command outputs
-- On Mellanox switches, certain [buffer and queue configuration settings]({{<ref "/cumulus-linux-40/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management" >}}) no longer require `switchd` restart
+- On NVIDIA Spectrum switches, certain [buffer and queue configuration settings]({{<ref "/cumulus-linux-40/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management" >}}) no longer require `switchd` restart
 - The [FRRouting]({{<ref "/cumulus-linux-40/Layer-3/FRRouting-Overview" >}}) `daemons` and `daemons.conf` files have been merged together into the `daemons` file, which may affect your automation scripts
 - The NetQ agent and CLI are installed by default in Cumulus Linux; these packages are also present in the `apt.cumulusnetworks.com` repository and are updated as new versions of NetQ become available
 - The following files have been added to the Cumulus Linux base image:
@@ -67,12 +69,12 @@ The following list identifies all the platforms supported in Cumulus Linux 4.0.0
     - Dell Z9264F-ON
     - Edgecore AS7816-64X
     - Edgecore AS7726-32X
-    - EdgeCore Minipack AS8000
+    - Edgecore Minipack AS8000
     - HPE SN2745M
     - Lenovo NE10032O
-    - Mellanox SN2700
-    - Mellanox SN3700
-    - Mellanox SN3700C
+    - NVIDIA Spectrum SN2700
+    - NVIDIA Spectrum SN3700
+    - NVIDIA Spectrum SN3700C
     - QCT QuantaMesh BMS T7032-IX1
     - QCT QuantaMesh BMS T7032-IX7
 - 40G  
@@ -86,7 +88,7 @@ The following list identifies all the platforms supported in Cumulus Linux 4.0.0
     - Edgecore AS7326-56X
     - Fiberstore N8500-48B6C
     - Lenovo NE2572O
-    - Mellanox SN2410
+    - NVIDIA Spectrum SN2410
     - QCT QuantaMesh BMS T4048-IX8
 - 10G
     - Dell S4048-ON
@@ -99,11 +101,11 @@ The following list identifies all the platforms supported in Cumulus Linux 4.0.0
 
 ## Platforms No Longer Supported
 
-Cumulus Networks does not support these platforms in Cumulus Linux 4.0.0 (they are still supported in Cumulus Linux 3.7.z until that version reaches its end of life). Do **not** install Cumulus Linux 4.0.0 on any of these platforms as it will not run correctly:
+NVIDIA does not support these platforms in Cumulus Linux 4.0.0 (they are still supported in Cumulus Linux 3.7.z until that version reaches its end of life). Do **not** install Cumulus Linux 4.0.0 on any of these platforms as it will not run correctly:
 
 - Cumulus Express CX-10256-S/Edgecore OMP-800 (100G Tomahawk)
 - Dell S6000-ON (40G Trident2)
-- EdgeCore Wedge-100 (100G Tomahawk)
+- Edgecore Wedge-100 (100G Tomahawk)
 - Facebook Backpack (100G Tomahawk)
 - Facebook Voyager (100G Tomahawk)
 
@@ -127,8 +129,8 @@ The following platforms are supported on Cumulus Linux 3.7.z but are not support
 - Edgecore AS5712-54X
 - Edgecore AS7312-54XS
 - Edgecore AS7712-32X
-- Mellanox SN2010
-- Mellanox SN2100
+- NVIDIA Spectrum SN2010
+- NVIDIA Spectrum SN2100
 - Penguin Arctica 3200xlp
 - Penguin Arctica 4804ip
 - Penguin Arctica 4804iq
@@ -139,9 +141,9 @@ The following platforms are supported on Cumulus Linux 3.7.z but are not support
 - QCT QuantaMesh BMS T3048-LY7
 - QCT QuantaMesh BMS T3048-LY8
 - QCT QuantaMesh BMS T3048-LY9
-- SuperMicro SSE-C3632S
-- SuperMicro SSE-G3648B
-- SuperMicro SSE-X3648S
+- Supermicro SSE-C3632S
+- Supermicro SSE-G3648B
+- Supermicro SSE-X3648S
 
 ## Features Removed
 

@@ -1,6 +1,6 @@
 ---
 title: Calculating the Limitation of a Linux Bridge in Traditional Mode
-author: Cumulus Networks
+author: NVIDIA
 weight: 391
 toc: 4
 ---
@@ -9,11 +9,11 @@ This article covers where the 200 VLAN limit for a Linux bridge in traditional m
 
 ## Interface Scale
 
-Through testing, the soft limit for configured interfaces (including subinterfaces, bridges, VXLANs, and so forth) is around 9600. Above 9600, the boot time will increase; however, as the acceptable boot time is up to the operator, this is only a soft limit. While the limit is not unique to Cumulus Linux, the testing was performed on Cumulus Networks machines with various processors and RAM.
+Through testing, the soft limit for configured interfaces (including subinterfaces, bridges, VXLANs, and so forth) is around 9600. Above 9600, the boot time will increase; however, as the acceptable boot time is up to the operator, this is only a soft limit. While the limit is not unique to Cumulus Linux, the testing was performed on various NVIDIA-supported switches with various processors and RAM.
 
 ## Configured Interfaces
 
-Configured interfacss include:
+Configured interfaces include:
 
 - Subinterfaces (swp1.5, swp1.10, swp1.30)
 - Bridges

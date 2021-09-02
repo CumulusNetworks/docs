@@ -7,7 +7,7 @@ toc: 4
 
 Some SSD (solid-state disk or flash) drive models commonly used in network switches require the use of the TRIM command to function properly. By default, Cumulus Linux, like most other Linux distributions, does not enable TRIM. This command enables the operating system to keep the firmware up to date on empty areas of the drive to ensure that writes work correctly. Over time, without this notification, when extensive logging or debugging to the SSD is enabled, the firmware may take longer to perform write operations, which can in turn cause driver timeouts. These disk errors may eventually lead to the filesystem being mounted as read-only.
 
-For customers running versions 3.0.0 through 3.7.3, Cumulus Networks is distributing a package to address this issue. Since these SSD drives are widespread in networking hardware, all customers using 3IE3, 3IE4 or 3ME3 SSDs should install this package. Customers without the affected SSDs will see no behavioral change. Installing the package should have no adverse effects. This functionality will be handled automatically by Cumulus Linux 3.7.4 and later.
+For customers running versions 3.0.0 through 3.7.3, NVIDIA is distributing a package to address this issue. Since these SSD drives are widespread in networking hardware, all customers using 3IE3, 3IE4 or 3ME3 SSDs should install this package. Customers without the affected SSDs will see no behavioral change. Installing the package should have no adverse effects. This functionality will be handled automatically by Cumulus Linux 3.7.4 and later.
 
 ## Issue Description
 
@@ -25,7 +25,7 @@ On the 3IE3, 3IE4 and 3ME3 drives, with some firmware versions, the TRIM option 
 
 Cumulus Linux versions 3.0.0 through 3.7.3.
 
-Cumulus Networks supports a large number of devices with 3IE3, 3IE4 and 3ME3 SSDs. To determine if you have the affected hardware, run:
+NVIDIA supports a large number of devices with 3IE3, 3IE4 and 3ME3 SSDs. To determine if you have the affected hardware, run:
 
     cumulus@switch:~$ ls /dev/disk/by-id | egrep '3ME3|3IE3|3IE4'
 
@@ -33,7 +33,7 @@ If the command has no output, then you aren't affected.
 
 ## Resolution
 
-Cumulus Networks is distributing a package named `cumulus-trim` that is compatible with Cumulus Linux versions 3.0.0 through 3.7.3 that mitigates the potential for customer devices to encounter this failure. Cumulus Linux 3.7.4 and later releases will detect drives that require TRIM and enable the *discard* option when creating the `/etc/fstab` file during the installation of the network operating system. The `/etc/fstab` file will also be updated to enable the *discard* option when running `apt-get upgrade` to upgrade to Cumulus Linux 3.7.4 or later.
+NVIDIA is distributing a package named `cumulus-trim` that is compatible with Cumulus Linux versions 3.0.0 through 3.7.3 that mitigates the potential for customer devices to encounter this failure. Cumulus Linux 3.7.4 and later releases will detect drives that require TRIM and enable the *discard* option when creating the `/etc/fstab` file during the installation of the network operating system. The `/etc/fstab` file will also be updated to enable the *discard* option when running `apt-get upgrade` to upgrade to Cumulus Linux 3.7.4 or later.
 
 ## Installation
 

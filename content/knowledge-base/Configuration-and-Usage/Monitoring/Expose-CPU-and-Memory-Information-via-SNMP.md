@@ -17,10 +17,12 @@ How do I expose CPU and memory statistics via SNMP? What is the MIB/OID?
 
 The relevant OIDs are:
 
+<!-- vale off -->
 - CPU: .1.3.6.1.4.1.2021.11
     ({{<exlink url="http://www.net-snmp.org/docs/mibs/UCD-SNMP-MIB.txt" text="UCD-SNMP-MIB::systemStats">}})
 - Memory: .1.3.6.1.4.1.2021.4
     ({{<exlink url="http://www.net-snmp.org/docs/mibs/UCD-SNMP-MIB.txt" text="UCD-SNMP-MIB::memory">}})
+<!-- vale on -->
 
 To configure SNMP to expose CPU and memory information:
 

@@ -25,7 +25,6 @@ To verify that your license is installed, run the `cl-license` command.
     cumulus@switch:~$ cl-license
     user@example.com|$ampleL1cen$et3xt
 
-For more information on the use of `cl-license`, please refer to the
-[Quick Start Guide]({{<ref "/cumulus-linux-43/Quick-Start-Guide" >}}).
+For more information on the use of `cl-license`, refer to the [Quick Start Guide]({{<ref "/cumulus-linux-43/Quick-Start-Guide" >}}).
 
 To check the version of Cumulus Linux you are running, {{<link url="Verify-Software-and-Hardware-Version-Information" text="read this article">}}.

@@ -571,9 +571,7 @@ Rule 2: `-A FORWARD --out-interface vlan101 -p icmp6 -j DROP`
 
 Rule 2 never matches on ingress. Both rules share the same mark.
 
-## Common Examples
-
-### Control Plane and Data Plane Traffic
+## Control Plane and Data Plane Traffic
 
 You can configure quality of service for traffic on both the control plane and the data plane. By using QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds.
 
@@ -635,7 +633,7 @@ SNMP_SERVERS_4 = "192.168.0.1/32"
 
 {{< /expand >}}
 
-### Set DSCP on Transit Traffic
+## Set DSCP on Transit Traffic
 
 The examples here use the *mangle* table to modify the packet as it transits the switch. DSCP is in {{<exlink url="https://en.wikipedia.org/wiki/Differentiated_services#Configuration_guidelines" text="decimal notation">}} in the examples below.
 
@@ -655,7 +653,7 @@ The examples here use the *mangle* table to modify the packet as it transits the
 -t mangle -A FORWARD -p tcp -s 10.0.0.17/32 --sport 10000:20000 -d 10.0.100.27/32 --dport 10000:20000 -j DSCP --set-dscp 34
 ```
 
-### Verify DSCP Values on Transit Traffic
+## Verify DSCP Values on Transit Traffic
 
 The examples here use the DSCP match criteria in combination with other IP, TCP, and interface matches to identify traffic and count the number of packets.
 
@@ -674,7 +672,7 @@ The examples here use the DSCP match criteria in combination with other IP, TCP,
 -A FORWARD -p tcp -s 10.0.0.17/32 --sport 10000:20000 -d 10.0.100.27/32 --dport 10000:20000 -m dscp --dscp 34 -j ACCEPT
 ```
 
-### Check the Packet and Byte Counters for ACL Rules
+## Check the Packet and Byte Counters for ACL Rules
 
 To verify the counters using the above example rules, first send test traffic matching the patterns through the network. The following example generates traffic with `{{<exlink url="http://www.netsniff-ng.org" text="mz">}}` (or `mausezahn`), which you can install on host servers or on Cumulus Linux switches. After you send traffic to validate the counters, they match on switch1 using `cl-acltool`.
 
@@ -753,7 +751,7 @@ Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
     0     0 ACCEPT     tcp  --  any    any     10.0.0.17            10.0.100.27          tcp spts:webmin:20000 dpts:webmin:2002Still working
 ```
 
-### Filter Specific TCP Flags
+## Filter Specific TCP Flags
 
 The example solution below creates rules on the INPUT and FORWARD chains to drop ingress IPv4 and IPv6 TCP packets when you set the SYN bit and reset the RST, ACK, and FIN bits. The default for the INPUT and FORWARD chains allows all other packets. The ACL apply to ports swp20 and swp21. After configuring this ACL, you cannot establish new TCP sessions that originate from ingress ports swp20 and swp21. You can establish TCP sessions that originate from any other port.
 
@@ -772,7 +770,7 @@ The `--syn` flag in the above rule matches packets with the SYN bit set and the 
 -A INPUT,FORWARD --in-interface $INGRESS_INTF -p tcp --tcp-flags SYN,RST,ACK,FIN SYN -j DROP
 ```
 
-### Control Who Can SSH into the Switch
+## Control Who Can SSH into the Switch
 
 Run the following NCLU commands to control who can SSH into the switch.
 In the following example, 10.0.0.11/32 is the interface IP address (or loopback IP address) of the switch and 10.255.4.0/24 can SSH into the switch.
@@ -789,7 +787,7 @@ cumulus@switch:~$ net commit
 Cumulus Linux does not support the keyword `iprouter` (typically used for traffic that goes to the CPU, where the destination MAC address is that of the router but the destination IP address is not the router).
 {{%/notice%}}
 
-### Match on VLAN IDs on Layer 2 Interfaces
+## Match on VLAN IDs on Layer 2 Interfaces
 
 You can match on VLAN IDs on layer 2 interfaces for ingress rules. The following example matches on a VLAN and DSCP class, and sets the internal class of the packet. For extended matching on IP fields, combine this rule with ingress iptable rules.
 
@@ -801,7 +799,7 @@ You can match on VLAN IDs on layer 2 interfaces for ingress rules. The following
 -A FORWARD -i swp31 -m mark --mark 0x66 -m dscp --dscp-class CS1 -j SETCLASS --class 2
 ```
 
-### Reflexive ACLs
+## Reflexive ACLs
 
 {{%notice note%}}
 Cumulus Linux 4.4.1 and later supports reflexive ACLs.
@@ -811,7 +809,7 @@ Reflexive ACLs enable you to control and restrict unwanted connections and flows
 
 Cumulus Linux supports reflexive ACLs for TCP, UDP, and ICMP IPv4 traffic for connections that originate outside a network (from a host in the ISP network) and connections that originate inside the network. Reflexive ACLs restrict unestablished flows by policing them.
 
-You configure reflexive ACL rules on an SVI or layer 3 interface with NCLU.
+To configure reflexive ACL rules:
 
 1. Enable reflexive ACLs:
 
@@ -833,9 +831,8 @@ cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
 ...
 rflx.reflexive_acl_enable = TRUE
 ```
-<!-- vale off -->
+
 {{<cl/restart-switchd>}}
-<!-- vale on -->
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -901,14 +898,48 @@ cumulus@switch:~$ net del vlan 20 acl ipv4 rflx_tcp_egress outbound
 cumulus@switch:~$ net commit
 ```
 
-### Match on ECN Bits in the TCP IP Header
+## Match on ECN Bits in the TCP IP Header
 
 [ECN](## "Explicit Congestion otification") allows end-to-end notification of network congestion without dropping packets. You can add ACL rules to match on the following ECN fields of the TCP IPv4 header:
-- CWR (Congestion Window Received)
 - ECE (ECN-Echo)
+- CWR (Congestion Window Received)
 - ECT (ECN Capable Transport)
 
 By default, ECN rules match a packet with the bit set. You can reverse the match by using an explanation point (!).
+
+After an endpoint receives a packet with the [CE](## "Congestion Experienced") bit set by a router, it sets the ECE bit in the returning ACK packet to notify the other endpoint that it needs to slow down.
+
+To match on the ECE bit:
+
+{{< tabs "TabID947 ">}}
+{{< tab "NCLU Commands ">}}
+
+Run the `net add acl ipv4 <rule-name> <action> tcp ece` command:
+
+```
+cumulus@switch:~$ net add acl ipv4 ece-rule accept tcp ece
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "Manual commands">}}
+
+Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules
+[iptables]
+-A FORWARD -i swp1 -p tcp -m ecn ecn-tcp-ece -j ACCEPT 
+```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 The **CWR** bit notifies the other endpoint of the connection that it received and reacted to an ECE.
 
@@ -927,46 +958,12 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "Manual commands ">}}
 
-Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the rule under `[iptables]`:
+Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules
 [iptables]
 -A FORWARD -i swp1 -p tcp -m ecn ecn-tcp-cwr -j ACCEPT 
-```
-
-Apply the rule:
-
-```
-cumulus@switch:~$ sudo cl-acltool -i
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-The **ECE** bit is set after one of the endpoints receives a packet with the [CE](## "Congestion Experienced") bit set by a router. The endpoint then sets the ECE bit in the returning ACK packet to notify the other endpoint that it needs to slow down. The other endpoint sends a CWR packet.
-
-To match on the ECE bit:
-
-{{< tabs "TabID947 ">}}
-{{< tab "NCLU Commands ">}}
-
-Run the `net add acl ipv4 <rule-name> <action> tcp ece` command:
-
-```
-cumulus@switch:~$ net add acl ipv4 ece-rule accept tcp ece
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "Manual commands">}}
-
-Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the rule under `[iptables]`:
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules
-[iptables]
--A FORWARD -i swp1 -p tcp -m ecn ecn-tcp-ece -j ACCEPT 
 ```
 
 Apply the rule:
@@ -995,7 +992,7 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "Manual commands">}}
 
-Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the rule under `[iptables]`:
+Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules

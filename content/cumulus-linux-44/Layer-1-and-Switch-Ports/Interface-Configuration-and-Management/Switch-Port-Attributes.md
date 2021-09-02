@@ -161,10 +161,12 @@ cumulus@switch:~$ ip link show dev swp1
 
 ### Drop Packets that Exceed the Egress Layer 3 MTU
 
-When a packet is larger in size than the MTU value of the layer 3 interface, the switch forwards the packets that are within the IP MTU value. However, the switch fragments packets larger than the MTU value that have the [DF](## "Don’t Fragment") bit *unset* and drops IP packets that have the [DF](## "Don’t Fragment") bit set. To drop all IP packets instead of fragmenting packets, you can run the following command:
+The switch forwards all packets that are within the MTU value set for the egress layer 3 interface. However, when packets are larger in size than the MTU value, the switch fragments the packets that do *not* have the [DF](## "Don’t Fragment") bit set and drops the packets that *do* have the [DF](## "Don’t Fragment") bit set.
+
+To drop all IP packets instead of fragmenting packets, you can run the following command:
 
 {{< tabs "TabID166 ">}}
-{{< tab "NCLU Commands ">}}
+{{< tab "NCLU Command ">}}
 
 ```
 cumulus@switch:~$ net add trap l3-mtu-err trap-action off
@@ -172,7 +174,7 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "Linux Commands ">}}
+{{< tab "Linux Command ">}}
 
 ```
 cumulus@switch:~$ echo "false" > /cumulus/switchd/config/trap/l3-mtu-err/enable

@@ -20,7 +20,9 @@ Cumulus Linux 4.4.1 supports provides bug fixes and contains several enhancement
 - Netfilter-ACL rules:
   - {{<link url="Netfilter-ACLs/#reflexive-acls" text="Reflexive ACLs">}}
   - {{<link url="Netfilter-ACLs/#match-on-ecn-bits-in-the-tcp-ip-header" text="Match on ECN bits in the TCP IP Header">}}
+  - NCLU commands now support the MAC address mask, and support both a MAC address and IP address in the same rule.
 - Option to {{<link url="Switch-Port-Attributes/#drop-packets-that-exceed-the-egress-layer-3-mtu" text="drop packets that exceed the egress layer 3 MTU">}}
+
 <!-- vale off -->
 ## What's New in Cumulus Linux 4.4.0
 <!-- vale on -->

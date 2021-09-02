@@ -876,18 +876,7 @@ cumulus@switch:~$ net add reflexive-acl unreplied-ingress-policer-rate 2000
 cumulus@switch:~$ net commit
 ```
 
-To show the reflexive ACL rules and see all interfaces with reflexive ACLs, run the following NCL show commands.
-
-| Command | Description |
-| ------- | ----------- |
-| `net show reflexive acl` | Shows all reflexive ACL rules. |
-| `net show reflexive acl status` | Shows all interfaces with reflexive ACLs togther with the rules and actions. |
-| `net show interface <interface> counters reflex acl` | Shows the reflexive ACL counters on an interface. |
-
-```
-cumulus@switch:~$ net show reflexive acl status
-
-```
+To show all interfaces with reflexive ACL rules, run the NCL `net show reflexive-acl status` command.
 
 You can remove a reflexive ACL from an interface with the `net del <interface> acl ipv4 rflx_tcp_ingress`
 and `net del <interface> acl ipv4 rflx_tcp_egress` commands:

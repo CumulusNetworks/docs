@@ -20,7 +20,7 @@ Cumulus Linux 4.4.1 supports provides bug fixes and contains several enhancement
 - Netfilter-ACL rules:
   - {{<link url="Netfilter-ACLs/#reflexive-acls" text="Reflexive ACLs">}}
   - {{<link url="Netfilter-ACLs/#match-on-ecn-bits-in-the-tcp-ip-header" text="Match on ECN bits in the TCP IP Header">}}
-- Option to drop packets that exceed egress layer 3 MTU
+- Option to {{<link url="Switch-Port-Attributes/#drop-packets-that-exceed-the-egress-layer-3-mtu" text="drop packets that exceed the egress layer 3 MTU">}}
 <!-- vale off -->
 ## What's New in Cumulus Linux 4.4.0
 <!-- vale on -->

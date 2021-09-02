@@ -903,12 +903,14 @@ cumulus@switch:~$ net commit
 
 ### Match on ECN Bits in the TCP IP Header
 
-ECN allows end-to-end notification of network congestion without dropping packets. You can add ACL rules to match on the following ECN fields of the TCP IPv4 header:
+[ECN](## "Explicit Congestion otification") allows end-to-end notification of network congestion without dropping packets. You can add ACL rules to match on the following ECN fields of the TCP IPv4 header:
 - CWR (Congestion Window Received)
 - ECE (ECN-Echo)
 - ECT (ECN Capable Transport)
 
-The **CWR** bit notifies the other endpoint of the connection that it received and reacted to an ECE. The default is to match when the bit is set. You can reverse the match by using an explanation point (!).
+By default, ECN rules match a packet with the bit set. You can reverse the match by using an explanation point (!).
+
+The **CWR** bit notifies the other endpoint of the connection that it received and reacted to an ECE.
 
 To match on the CWR bit:
 
@@ -942,7 +944,9 @@ cumulus@switch:~$ sudo cl-acltool -i
 {{< /tab >}}
 {{< /tabs >}}
 
-The **ECE** bit is set after one of the endpoints receives a packet with the [CE](## "Congestion Experienced") bit set by a router. The endpoint then sets the ECE bit in the returning ACK packet to notify the other endpoint that it needs to slow down. The other endpoint sends a CWR packet. The default is to match when the bit is set. You can reverse the match by using an explanation point. (!)
+The **ECE** bit is set after one of the endpoints receives a packet with the [CE](## "Congestion Experienced") bit set by a router. The endpoint then sets the ECE bit in the returning ACK packet to notify the other endpoint that it needs to slow down. The other endpoint sends a CWR packet.
+
+To match on the ECE bit:
 
 {{< tabs "TabID947 ">}}
 {{< tab "NCLU Commands ">}}
@@ -974,7 +978,9 @@ cumulus@switch:~$ sudo cl-acltool -i
 {{< /tab >}}
 {{< /tabs >}}
 
-The **ECT** codepoints negotiate if the connection is ECN capable by setting one of the two bits to 1. Routers also use the ECT bit to indicate that they are experiencing congestion by setting both the ECT codepoints to 1. You can reverse the match by using an explanation point. (!)
+The **ECT** codepoints negotiate if the connection is ECN capable by setting one of the two bits to 1. Routers also use the ECT bit to indicate that they are experiencing congestion by setting both the ECT codepoints to 1.
+
+To match on the ECT bit:
 
 {{< tabs "TabID979 ">}}
 {{< tab "NCLU Commands ">}}

@@ -169,7 +169,7 @@ To drop all IP packets instead of fragmenting packets, you can run the following
 {{< tab "NCLU Command ">}}
 
 ```
-cumulus@switch:~$ net add trap l3-mtu-err trap-action off
+cumulus@switch:~$ net add trap l3-mtu-err action off
 cumulus@switch:~$ net commit
 ```
 
@@ -177,7 +177,7 @@ cumulus@switch:~$ net commit
 {{< tab "Linux Command ">}}
 
 ```
-cumulus@switch:~$ echo "false" > /cumulus/switchd/config/trap/l3-mtu-err/enable
+cumulus@switch:~$ echo "0 >" /cumulus/switchd/config/trap/l3-mtu-err/enable
 ```
 
 {{< /tab >}}

@@ -11,9 +11,9 @@ PIM operates in [PIM-SM](## "Sparse Mode") or [PIM-DM](## "Dense Mode") mode. Cu
 PIM-SM is a *pull* multicast distribution method; multicast traffic only goes through the network if receivers explicitly ask for it. When a receiver *pulls* multicast traffic, it must notify the network periodically that it wants to continue the multicast stream.
 
 PIM-SM has three configuration options:
-- [ASM](## "Any-source Mulitcast") relies on rendezvous points to connect multicast senders and receivers that dynamically determine the shortest path through the network.
-- [SSM](## "Source Specific Multicast") requires multicast receivers to know from which source they want to receive multicast traffic instead of relying on multicast rendezvous points.
-- [BiDir](## "Bidirectional PIM") forwards all traffic through the multicast rendezvous point (RP) instead of tracking multicast source IPs, allowing for greater scale but can cause inefficient traffic forwarding.
+- [ASM](## "Any-source Mulitcast") relies on a multicast rendezvous point (RP) to connect multicast senders and receivers that dynamically determine the shortest path through the network.
+- [SSM](## "Source Specific Multicast") requires multicast receivers to know from which source they want to receive multicast traffic instead of relying on an RP.
+- [BiDir](## "Bidirectional PIM") forwards all traffic through the RP instead of tracking multicast source IPs, allowing for greater scale but can cause inefficient traffic forwarding.
 
 Cumulus Linux supports ASM and SSM only.
 
@@ -33,13 +33,9 @@ The following illustration shows a basic PIM [ASM](## "Any-source Mulitcast") co
 To configure PIM:
 - Enable PIM on all interfaces that connect to a multicast source or receiver, and on the interface with the RP address. 
 - Enable [IGMP](## "Internet Group Management Protocol") on all interfaces that attach to a host and all interfaces that attach to a multicast receiver. IGMP version 3 is the default. Only specify the version if you want to use IGMP version 2. For [SSM](## "Source Specific Multicast"), you must use IGMP version 3.
-- For [ASM](## "Any-source Mulitcast"), on each PIM enabled switch, specify the IP address of the RP that receives multicast traffic. You can also configure PIM to send traffic from specific multicast groups to specific RPs.
+- For [ASM](## "Any-source Mulitcast"), on each PIM enabled switch, specify the IP address of the RP for the multicast group. You can also configure PIM to send traffic from specific multicast groups to specific RPs.
 
   [SSM](## "Source Specific Multicast") uses prefix lists to configure a receiver to only allow traffic to a multicast address from a single source. This removes the need for an RP because the receiver must know the source before accepting traffic. To enable SSM, you only need to enable PIM and IGMPv3 on the interfaces.
-
-{{%notice note%}}
-If the interface that attaches to a multicast source or receiver is a VLAN, you must enable PIM and IGMP on the VLAN, not the interface.
-{{%/notice%}}
 
 These example commands configure leaf01, leaf02 and spine01 as shown in the topology example above.
 
@@ -52,9 +48,9 @@ In Cumulus Linux 4.4, you cannot configure PIM with NVUE commands.
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ net add interface swp1 pim
+cumulus@leaf01:~$ net add vlan 10 pim
+cumulus@leaf01:~$ net add vlan 10 igmp
 cumulus@leaf01:~$ net add interface swp51 pim
-cumulus@leaf01:~$ net add interface swp1 igmp
 cumulus@leaf01:~$ net add pim rp 10.10.10.101
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
@@ -64,9 +60,9 @@ cumulus@leaf01:~$ net commit
 {{< tab "leaf02 ">}}
 
 ```
-cumulus@leaf02:~$ net add interface swp2 pim
+cumulus@leaf02:~$ net add vlan 20 pim
+cumulus@leaf02:~$ net add vlan 20 igmp
 cumulus@leaf02:~$ net add interface swp51 pim
-cumulus@leaf02:~$ net add interface swp2 igmp
 cumulus@leaf02:~$ net add pim rp 10.10.10.101
 cumulus@leaf02:~$ net pending
 cumulus@leaf02:~$ net commit
@@ -77,9 +73,7 @@ cumulus@leaf02:~$ net commit
 
 ```
 cumulus@spine01:~$ net add interface swp1 pim
-cumulus@spine01:~$ net add interface swp1 igmp
 cumulus@spine01:~$ net add interface swp2 pim
-cumulus@spine01:~$ net add interface swp2 igmp
 cumulus@spine01:~$ net add pim rp 10.10.10.101 
 cumulus@spine01:~$ net pending
 cumulus@spine01:~$ net commit
@@ -112,7 +106,7 @@ The FRRouting package includes PIM. For proper PIM operation, PIM depends on Zeb
    ```
    cumulus@leaf01:~$ sudo vtysh
    leaf01# configure terminal
-   leaf01(config)# interface swp1
+   leaf01(config)# interface vlan10
    leaf01(config-if)# ip pim
    leaf01(config-if)# exit
    leaf01(config)# interface swp51
@@ -123,7 +117,7 @@ The FRRouting package includes PIM. For proper PIM operation, PIM depends on Zeb
 4. Enable IGMP on all interfaces that have attached hosts.
 
    ```
-   leaf01(config)# interface swp1
+   leaf01(config)# interface vlan10
    leaf01(config-if)# ip igmp
    leaf01(config-if)# exit
    ```
@@ -157,7 +151,7 @@ The FRRouting package includes PIM. For proper PIM operation, PIM depends on Zeb
    ```
    cumulus@leaf02:~$ sudo vtysh
    leaf02# configure terminal
-   leaf02(config)# interface swp2
+   leaf02(config)# interface vlan20
    leaf02(config-if)# ip pim
    leaf02(config-if)# exit
    leaf02(config)# interface swp51
@@ -168,7 +162,7 @@ The FRRouting package includes PIM. For proper PIM operation, PIM depends on Zeb
 4. Enable IGMP on all interfaces that have attached hosts.
 
    ```
-   leaf02(config)# interface swp2
+   leaf02(config)# interface vlan20
    leaf02(config-if)# ip igmp
    leaf02(config-if)# exit
    ```
@@ -210,18 +204,7 @@ The FRRouting package includes PIM. For proper PIM operation, PIM depends on Zeb
    spine01(config-if)# exit
    ```
 
-4. Enable IGMP on all interfaces that have attached hosts.
-
-   ```
-   spine01(config)# interface swp1
-   spine01(config-if)# ip igmp
-   spine01(config-if)# exit
-   spine01(config)# interface swp2
-   spine01(config)# ip igmp
-   spine01(config-if)# exit
-   ```
-
-5. **For ASM**, configure a group mapping for a static RP:
+4. **For ASM**, configure a group mapping for a static RP:
 
    ```
    spine01(config)# ip pim rp 10.10.10.101
@@ -261,7 +244,6 @@ spine01(config)# ip pim rp 10.10.10.102 224.10.2.0/16
 {{< /tabs >}}
 
 {{%notice note%}}
-- `PIM Hello` messages go to the link-local multicast group 224.0.0.13. Other PIM routers on the segment that hear the PIM Hello messages, build a PIM neighbor with the sending device. PIM neighbors are stateless; PIM endpoints do not exchange neighbor relationship confirmation.
 - NVIDIA recommends that you do not use a spine switch as an RP when using eBGP in a Clos network. See the [PIM Overview knowledge-base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/PIM-Overview" >}}).
 - zebra does not resolve the next hop for the RP through the default route. To prevent multicast forwarding from failing, either provide a specific route to the RP or run the vtysh `ip nht resolve-via-default` configuration command to resolve the next hop for the RP through the default route.
 {{%/notice%}}
@@ -485,7 +467,7 @@ You can use [MSDP](## "Multicast Source Discovery Protocol") to connect multiple
 When an RP discovers a new source (a PIM-SM register message), it sends an [SA](## "source-active") message to each MSDP peer. The peer then determines if there are any interested receivers.
 
 {{%notice note%}}
-- Cumulus Linux supports MSDP for anycastRP, not multiple multicast domains. You must configure each MSDP peer in a full mesh. The switch does not forward received SA messages.
+- Cumulus Linux supports MSDP for anycast RP, not multiple multicast domains. You must configure each MSDP peer in a full mesh. The switch does not forward received SA messages.
 - Cumulus Linux only supports one MSDP mesh group.
 {{%/notice%}}
 
@@ -497,14 +479,14 @@ The following steps configure a Cumulus switch to use MSDP:
 1. Add an anycast IP address to the loopback interface for each RP in the domain:
 
    ```
-   cumulus@rp01:~$ net add loopback lo ip address 10.1.1.1/32
-   cumulus@rp01:~$ net add loopback lo ip address 10.1.1.100/32
+   cumulus@rp01:~$ net add loopback lo ip address 10.10.10.101/32
+   cumulus@rp01:~$ net add loopback lo ip address 10.100.100.100/32
    ```
 
 2. On every multicast switch, configure the group to RP mapping using the anycast address:
 
    ```
-   cumulus@switch:$ net add pim rp 10.1.1.100 224.0.0.0/4
+   cumulus@switch:$ net add pim rp 10.100.100.100 224.0.0.0/4
    cumulus@switch:$ net pending
    cumulus@switch:$ net commit
    ```
@@ -514,30 +496,30 @@ The following steps configure a Cumulus switch to use MSDP:
    The mesh group must include all RPs in the domain as members, with a unique address as the source. This configuration results in MSDP peerings between all RPs.
 
    ```
-   cumulus@rp01:$ net add msdp mesh-group cumulus member 100.1.1.2
-   cumulus@rp01:$ net add msdp mesh-group cumulus member 100.1.1.3
+   cumulus@rp01:$ net add msdp mesh-group cumulus member 10.100.100.102
+   cumulus@rp01:$ net add msdp mesh-group cumulus member 10.100.100.103
 
-   cumulus@rp02:$ net add msdp mesh-group cumulus member 100.1.1.1
-   cumulus@rp02:$ net add msdp mesh-group cumulus member 100.1.1.3
+   cumulus@rp02:$ net add msdp mesh-group cumulus member 10.100.100.101
+   cumulus@rp02:$ net add msdp mesh-group cumulus member 10.100.100.103
 
-   cumulus@rp03:$ net add msdp mesh-group cumulus member 100.1.1.1
-   cumulus@rp03:$ net add msdp mesh-group cumulus member 100.1.1.2
+   cumulus@rp03:$ net add msdp mesh-group cumulus member 10.100.100.101
+   cumulus@rp03:$ net add msdp mesh-group cumulus member 10.100.100.102
    ```
 
 4. Pick the local loopback address as the source of the MSDP control packets:
 
    ```
-   cumulus@rp01:$ net add msdp mesh-group cumulus source 100.1.1.1
+   cumulus@rp01:$ net add msdp mesh-group cumulus source 10.10.10.101
 
-   cumulus@rp02:$ net add msdp mesh-group cumulus source 100.1.1.2
+   cumulus@rp02:$ net add msdp mesh-group cumulus source 10.10.10.102
 
-   cumulus@rp03:$ net add msdp mesh-group cumulus source 100.1.1.3
+   cumulus@rp03:$ net add msdp mesh-group cumulus source 10.10.10.103
    ```
 
 5. Inject the anycast IP address into the IGP of the domain. If the network uses unnumbered BGP as the IGP, avoid using the anycast IP address to establish unicast or multicast peerings. For PIM-SM, ensure that you use the unique address as the PIM hello source by setting the source:
 
    ```
-   cumulus@rp01:$ net add loopback lo pim use-source 100.1.1.1
+   cumulus@rp01:$ net add loopback lo pim use-source 10.100.100.100
    cumulus@rp01:$ net pending
    cumulus@rp01:$ net commit
    ```
@@ -551,8 +533,8 @@ The following steps configure a Cumulus switch to use MSDP:
    cumulus@rp01:~$ sudo nano /etc/network/interfaces
    auto lo
    iface lo inet loopback
-      address 10.0.0.11/32
-      address 10.1.1.1/32
+      address 10.10.10.101/32
+      address 10.100.100.100/32
    ...
    ```
 
@@ -568,7 +550,7 @@ The following steps configure a Cumulus switch to use MSDP:
    cumulus@rp01:~$ sudo vtysh
 
    rp01# configure terminal
-   rp01(config)# ip pim rp 10.1.1.100 224.0.0.0/4
+   rp01(config)# ip pim rp 10.100.100.100 224.0.0.0/4
    ```
 
 4. Configure the MSDP mesh group for all active RPs (the following example uses three RPs):
@@ -576,29 +558,29 @@ The following steps configure a Cumulus switch to use MSDP:
    The mesh group must include all RPs in the domain as members, with a unique address as the source. This configuration results in MSDP peerings between all RPs.
 
    ```
-   rp01(config)# ip msdp mesh-group cumulus member 100.1.1.2
-   rp01(config)# ip msdp mesh-group cumulus member 100.1.1.3
+   rp01(config)# ip msdp mesh-group cumulus member 10.100.100.102
+   rp01(config)# ip msdp mesh-group cumulus member 10.100.100.103
 
-   rp02(config)# ip msdp mesh-group cumulus member 100.1.1.1
-   rp02(config)# ip msdp mesh-group cumulus member 100.1.1.3
+   rp02(config)# ip msdp mesh-group cumulus member 10.100.100.101
+   rp02(config)# ip msdp mesh-group cumulus member 10.100.100.103
 
-   rp03(config)# ip msdp mesh-group cumulus member 100.1.1.1
-   rp03(config)# ip msdp mesh-group cumulus member 100.1.1.2
+   rp03(config)# ip msdp mesh-group cumulus member 10.100.100.101
+   rp03(config)# ip msdp mesh-group cumulus member 10.100.100.102
    ```
 
 5. Pick the local loopback address as the source of the MSDP control packets
 
    ```
-   rp01# ip msdp mesh-group cumulus source 100.1.1.1
-   rp02# ip msdp mesh-group cumulus source 100.1.1.2
-   rp03# ip msdp mesh-group cumulus source 100.1.1.3
+   rp01(config)# ip msdp mesh-group cumulus source 10.10.10.101
+   rp02(config)# ip msdp mesh-group cumulus source 10.10.10.102
+   rp03(config)# ip msdp mesh-group cumulus source 10.10.10.103
    ```
 
 6. Inject the anycast IP address into the IGP of the domain. If the network uses unnumbered BGP as the IGP, avoid using the anycast IP address to establish unicast or multicast peerings. For PIM-SM, ensure that you use the unique address as the PIM hello source by setting the source:
 
    ```
    rp01# interface lo
-   rp01(config-if)# ip pim use-source 100.1.1.1
+   rp01(config-if)# ip pim use-source 100.100.100.100
    rp01(config-if)# end
    rp01# write memory
    rp01# exit
@@ -610,7 +592,7 @@ The following steps configure a Cumulus switch to use MSDP:
 
 ### PIM in a VRF
 
-{{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRFs">}} divide the routing table on a per-tenant basis to provide separate layer 3 networks over a single layer 3 infrastructure. With a VRF, each tenant has its own virtualized layer 3 network, so IP addresses can overlap between tenants.
+{{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRFs">}} divide the routing table on a per-tenant basis to provide separate layer 3 networks over a single layer 3 infrastructure. With a VRF, each tenant has its own virtualized layer 3 network so IP addresses can overlap between tenants.
 
 PIM in a VRF enables PIM trees and multicast data traffic to run inside a layer 3 virtualized network, with a separate tree per domain or tenant. Each VRF has its own multicast tree with its own RPs, sources, and so on. Therefore, you can have one tenant per corporate division, client, or product.
 
@@ -840,7 +822,7 @@ The examples below show the flow of traffic between server02 and server03:
 
 | Step 1 |  |
 |--------|--------|
-|{{< figure src = "/images/cumulus-linux/pim-mlag-citc-topology1.png" >}}| **1**. server02 sends traffic to leaf02.<br><br>**2**. leaf02 forwards traffic to leaf01 because the peerlink is a multicast router port.<br><br>**3**. leaf01 also receives a PIM register from leaf02.<br><br>**4**. leaf02 syncs the *,G table from leaf01 as an MLAG active-active peer. |
+|{{< figure src = "/images/cumulus-linux/pim-mlag-citc-topology1.png" >}}| **1**. server02 sends traffic to leaf02.<br><br>**2**. leaf02 forwards traffic to leaf01 because the peerlink is a multicast router port.<br><br>**3**. spine01 receives a PIM register from leaf01, the DR.<br><br>**4**. leaf02 syncs the *,G table from leaf01 as an MLAG active-active peer. |
 
 | Step 2 |  |
 |--------|--------|
@@ -856,10 +838,10 @@ To use a multicast sender or receiver over a dual-attached MLAG bond, you must c
 1. On the VLAN interface where multicast sources or receivers exist, configure `pim active-active` and `igmp`.
 
    ```
-   cumulus@switch:~$ net add vlan 10 pim active-active
-   cumulus@switch:~$ net add vlan 10 igmp
-   cumulus@switch:~$ net pending
-   cumulus@switch:~$ net commit
+   cumulus@leaf01:~$ net add vlan 10 pim active-active
+   cumulus@leaf01:~$ net add vlan 10 igmp
+   cumulus@leaf01:~$ net pending
+   cumulus@leaf01:~$ net commit
    ```
 
    Enabling PIM active-active automatically enables PIM on that interface.
@@ -924,7 +906,7 @@ To use a multicast sender or receiver over a dual-attached MLAG bond, you must c
 
 ## Troubleshooting
 
-This section provides various commands to help you examine your PIM configuration and provides troubleshooting tips.
+This section provides commands to examine your PIM configuration and provides troubleshooting tips.
 
 ### PIM Show Commands
 
@@ -1025,13 +1007,11 @@ Interface        Address         Group           Source          Timer Fwd Uptim
 vlan20           10.2.10.1       239.1.1.1       *               03:13   Y 05:28:42 
 ```
 
-### FHR Stuck in Registering Process
+### FHR Stuck in the Registering Process
 
 When a multicast source starts, the FHR sends unicast PIM register messages from the [RPF](## "Reverse Path Forwarding") interface towards the source. After the RP receives the PIM register, it sends a `PIM register stop` message to the FHR to end the register process. If an issue occurs with this communication, the FHR becomes stuck in the registering process, which can result in high CPU (the FHR CPU generates and sends PIM register packets to the RP CPU).
 
-To assess this issue:
-
-Review the FHR. You can see the output interface of `pimreg` here. If this does not change to an interface within a couple of seconds, it is possible that the FHR remains in the registering process.
+To assess this issue, review the FHR. You can see the output interface of `pimreg` here. If this does not change to an interface within a couple of seconds, it is possible that the FHR remains in the registering process.
 
 ```
 cumulus@fhr:~$ net show mroute
@@ -1105,7 +1085,7 @@ listening on vlan20, link-type EN10MB (Ethernet), capture size 262144 bytes
 00:03:55.789744 IP 10.2.10.1 > igmp.mcast.net: igmp v3 report, 1 group record(s)
 ```
 
-### No mroute Created on FHR
+### No mroute Created on the FHR
 
 To troubleshoot this issue:
 
@@ -1130,7 +1110,7 @@ To troubleshoot this issue:
    !
    ```
 
-3. If you configure PIM, verify that the [RPF](## "Reverse Path Forwarding") interface for the source matches the interface that receives multicast traffic:
+3. Verify that the [RPF](## "Reverse Path Forwarding") interface for the source matches the interface that receives multicast traffic:
 
    ```
    fhr# show ip rpf 10.1.10.1
@@ -1148,7 +1128,7 @@ To troubleshoot this issue:
    10.10.10.101     224.0.0.0/4         swp51             no         Static
    ```
 
-### No S,G on RP for an Active Group
+### No S,G on the RP for an Active Group
 
 An RP does not build an mroute when there are no active receivers for a multicast group even though the FR creates the mroute.
 
@@ -1165,7 +1145,7 @@ Iif             Source          Group           State       Uptime   JoinTimer R
 vlan10          10.1.10.101     239.1.1.1       Prune       00:08:03 --:--:--  --:--:--  00:02:20       1
 ```
 
-### No mroute Entry Present in Hardware
+### No mroute Entry in Hardware
 
 Use the `cl-resource-query | grep Mcast` command or the NCLU `net show system asic | grep Mcast` command to verify that the hardware IP multicast entry is the maximum value:
 
@@ -1176,9 +1156,9 @@ Total Mcast Routes:         450,   0% of maximum value    450
 
 Refer to {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM Resource Profiles for Spectrum Switches">}}.
 
-### Verify MSDP Session State
+### Verify the MSDP Session State
 
-To verify the state of MSDP sessions, run either the NCLU `net show msdp mesh-group` command or the vtysh `show ip msdp mesh-group` command:
+To verify the state of MSDP sessions, run the NCLU `net show msdp mesh-group` command or the vtysh `show ip msdp mesh-group` command:
 
 ```
 cumulus@switch:~$ net show msdp mesh-group
@@ -1196,7 +1176,7 @@ Peer                    Local         State     Uptime    SaCnt
 
 ### View the Active Sources
 
-To review the active sources that the switch learns locally (through PIM registers) and from MSDP peers, run either the NCLU `net show msdp sa` command or the vtysh `show ip msdp sa` command:
+To review the active sources that the switch learns locally (through PIM registers) and from MSDP peers, run the NCLU `net show msdp sa` command or the vtysh `show ip msdp sa` command:
 
 ```
 cumulus@switch:~$ net show msdp sa
@@ -1282,9 +1262,7 @@ cumulus@spine01:~$ net add bgp neighbor swp2 remote-as external
 cumulus@spine01:~$ net add bgp ipv4 unicast network 10.10.10.101/32
 cumulus@spine01:~$ net add loopback lo pim
 cumulus@spine01:~$ net add interface swp1 pim
-cumulus@spine01:~$ net add interface swp1 igmp
 cumulus@spine01:~$ net add interface swp2 pim
-cumulus@spine01:~$ net add interface swp2 igmp
 cumulus@spine01:~$ net add pim rp 10.10.10.101 
 cumulus@spine01:~$ net commit
 ```
@@ -1504,10 +1482,8 @@ interface lo
  ip pim
 interface swp1
  ip pim
- ip igmp
 interface swp2
  ip pim
- ip igmp
 ip pim rp 10.10.10.101
 ```
 

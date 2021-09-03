@@ -5,13 +5,7 @@ weight: 701
 toc: 4
 ---
 
-Cumulus Linux users familiar with Cisco IOS may look for the same level
-of information from commands they have learned and used over time. One
-of the most common commands used in Cisco IOS
-is `show version`,
-which displays the currently loaded software along with hardware and
-device information. This same level of information can be found in
-Cumulus Linux using the following commands:
+Cumulus Linux users familiar with Cisco IOS may look for the same level of information from commands they have learned and used over time. One of the most common commands used in Cisco IOS is `show version`, which displays the currently loaded software along with hardware and device information. This same level of information can be found in Cumulus Linux using the following commands:
 
 - `cat /etc/lsb-release`
 - `cl-img-select`
@@ -19,9 +13,7 @@ Cumulus Linux using the following commands:
 
 ## Use cat /etc/lsb-release to Verify the Running System Image
 
-The following command displays the version of Cumulus Linux running in
-the current slot, and will be updated to reflect version changes
-accomplished via `apt-get`:
+The following command displays the version of Cumulus Linux running in the current slot, and will be updated to reflect version changes accomplished via `apt-get`:
 
     cumulus@switch:~$ cat /etc/lsb-release   
     DISTRIB_ID=Cumulus Networks  
@@ -30,7 +22,7 @@ accomplished via `apt-get`:
 
 ## Use decode-syseeprom to Verify Hardware Model, Version and Other Vendor-specific Details
 
-Similar to how Cisco offers the `show idprom` command for IOS and `show sprom` for NX-OS, Cumulus Networks created the `decode-syseeprom` command to provide a universal {{<exlink url="http://en.wikipedia.org/wiki/EEPROM" text="EEPROM">}} format that delivers a consistent way to display hardware platform-specific information. All vendors approved on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux hardware compatibility list">}} adhere to this EEPROM format to be certified for Cumulus Linux.
+Similar to how Cisco offers the `show idprom` command for IOS and `show sprom` for NX-OS, NVIDIA created the `decode-syseeprom` command to provide a universal {{<exlink url="http://en.wikipedia.org/wiki/EEPROM" text="EEPROM">}} format that delivers a consistent way to display hardware platform-specific information. All vendors approved on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux hardware compatibility list">}} adhere to this EEPROM format to be certified for Cumulus Linux.
 
 For example:
 
@@ -65,8 +57,7 @@ Determining the ONIE version depends on the hardware architecture. The following
 
 ### x86
 
-Reading the ONIE version on an x86 switch requires temporarily mounting
-the ONIE partition as follows.
+Reading the ONIE version on an x86 switch requires temporarily mounting the ONIE partition as follows.
 
 1.  Temporarily mount the ONIE partition read-only in order to read the
     ONIE version:\
@@ -85,9 +76,7 @@ the ONIE partition as follows.
 
 ### PowerPC and ARM
 
-The `fw_printenv` command is a U-Boot tool inherited from the standard
-Debian distribution. It can be used to query the `onie_version`, the
-version of ONIE installed with U-Boot.
+The `fw_printenv` command is a U-Boot tool inherited from the standard Debian distribution. It can be used to query the `onie_version`, the version of ONIE installed with U-Boot.
 
 For example:
 

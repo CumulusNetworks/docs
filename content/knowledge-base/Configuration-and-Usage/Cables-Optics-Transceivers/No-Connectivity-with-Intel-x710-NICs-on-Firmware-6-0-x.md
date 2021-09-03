@@ -34,7 +34,7 @@ Hardware (ASIC):
 - Broadcom Trident II
 - Broadcom Trident II+
 - Broadcom Tomahawk
-- Mellanox Spectrum
+- NVIDIA Spectrum
 
 Hardware (server side transceiver):
 
@@ -42,7 +42,7 @@ Hardware (server side transceiver):
 
 ## Workaround
 
-There are two workarounds to this issue:
+You can choose from two workarounds to avoid this issue:
 
 - Downgrade the firmware on the Intel x710 NIC to 5.x.x.
 - Using the Intel x710 6.0.x firmware, force the link speed and auto-negotiation settings on the server and on the switch.  

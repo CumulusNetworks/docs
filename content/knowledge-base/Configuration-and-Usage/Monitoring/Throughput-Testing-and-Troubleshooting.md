@@ -67,7 +67,7 @@ version 2. For bandwidth testing, iPerf3 is preferred over iPerf1 or 2.
 
 {{%notice note%}}
 
-Cumulus Networks tested iPerf3 and identified some functionality issues on Debian Wheezy 7.9, while we noticed no issues on Debian Jessie 8.3. iPerf versions 1 and 2 work on Debian Wheezy.
+NVIDIA tested iPerf3 and identified some functionality issues on Debian Wheezy 7.9, while we noticed no issues on Debian Jessie 8.3. iPerf versions 1 and 2 work on Debian Wheezy.
 
 {{%/notice%}}
 
@@ -224,18 +224,11 @@ modern networks. Factors that matter in testing:
     modifier
 - Concurrent connections on port, controlled using the -P modifier
 
-By default iPerf uses TCP/UDP port 5201/5001 (depending on version) for
-ports during transfer. This does not work too well for ECMP testing.
-Specifying the `-P` flag tells iPerf to spawn multiple client threads,
-where the source port uses 5201 as well as a series of ephemeral ports.
-But when using this method, it is also normal to see a lot of these
-messages: `bind failed: Address already in use`. 
+By default iPerf uses TCP/UDP port 5201/5001 (depending on version) for ports during transfer. This does not work too well for ECMP testing. Specifying the `-P` flag tells iPerf to spawn multiple client threads, where the source port uses 5201 as well as a series of ephemeral ports. But when using this method, it is also normal to see a lot of these messages: `bind failed: Address already in use`.
 
 ### iPerf (version 2)
 
-When installing iPerf from the distribution\'s repository, it is most
-likely version 2. This is a rather old piece of software, and is not
-really maintained anymore.
+When installing iPerf from the distribution\'s repository, it is most likely version 2. This is a rather old piece of software, and is not really maintained anymore.
 
 #### Multicast
 

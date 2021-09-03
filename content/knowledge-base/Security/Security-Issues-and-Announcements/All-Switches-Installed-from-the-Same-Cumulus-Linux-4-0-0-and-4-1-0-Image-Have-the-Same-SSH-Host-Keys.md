@@ -27,6 +27,6 @@ After generating new SSH host keys, SSH clients that have previously logged into
 
 ## Notes
 
-- This issue is fixed in Cumulus Linux 4.1.1. However, Cumulus Networks recommends you generate new SSH host keys as this is the most reliable solution.
+- This issue is fixed in Cumulus Linux 4.1.1. However, NVIDIA recommends you generate new SSH host keys as this is the most reliable solution.
 - If you upgrade from Cumulus Linux 4.0.0 or 4.1.0 to version 4.1.1 or later using `apt-get` and you didn't generate new SSH host keys, you will need to generate new SSH host keys after the upgrade.
 - If you perform a fresh install of Cumulus Linux 4.1.1 or later using a disk image, you will lose your existing local configuration.

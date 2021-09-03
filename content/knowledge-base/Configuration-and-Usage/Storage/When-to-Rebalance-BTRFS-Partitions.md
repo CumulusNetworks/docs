@@ -5,7 +5,7 @@ weight: 451
 toc: 4
 ---
 
-Customers running Cumulus Linux, 3.y.z, which uses BTRFS (the b-tree file system), might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, Cumulus Networks recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when rebalancing should be performed.
+Customers running Cumulus Linux, 3.y.z, which uses BTRFS (the b-tree file system), might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, NVIDIA recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when rebalancing should be performed.
 
 This article describes one approach to determine the proper time to perform a BTRFS rebalance.
 
@@ -15,7 +15,7 @@ The issue presents itself when BTRFS is running and just the right pattern of di
 
 ## When to Rebalance
 
-There are several factors to consider when determining when a rebalance should be performed:
+When determining when you should perform a rebalance, consider these several factors:
 
 - How often should a check be performed?
 - Does the partition have a large amount of allocated space?
@@ -27,14 +27,14 @@ It is assumed that this problem happens gradually, with just the right disk I/O 
 
 ### Allocated Space Check
 
-There is no need to execute a rebalance if BTRFS has not allocated a significant portion of the partition. A 15 GB partition in which BTRFS has allocated only 4 GB has plenty of unallocated space and is in no need of a rebalance. A rebalance on such a volume would free up little or no allocated space. Therefore, the first check is to determine if BTRFS has allocated a significant portion of the partition, where "significant portion” is defined as the greater of:
+You do not need to execute a rebalance if BTRFS has not allocated a significant portion of the partition. A 15 GB partition in which BTRFS has allocated only 4 GB has plenty of unallocated space and is in no need of a rebalance. A rebalance on such a volume would free up little or no allocated space. Therefore, the first check is to determine if BTRFS has allocated a significant portion of the partition, where "significant portion" is defined as the greater of:
 
 - 80% of the partition size, or
 - all but 2 GB of partition size.
 
 By this definition, a 14.66 GB partition qualifies as having a significant portion of disk allocated if either the maximum of (14.66 x 0.80) or (14.66 - 2) is true. That calculates to a maximum of 11.728 GB or 12.66 GB. Since 12.66 GB is greater than 11.728 GB, then 12.66 GB is the determining factor of significant allocation for the disk.
 
-These parameters were chosen because BTRFS appears to allocate chunks as large as 1/10th the size of the partition, up to a maximum of 1 GB. The desire is to have at least one chunk unallocated to use during the rebalance operation. Running a rebalance when the unallocated portion of a partition crosses the 2 GB or 20 % threshold guarantees that at least one chunk is free for the rebalance operation.
+These parameters were chosen because BTRFS appears to allocate chunks as large as 1/10 the size of the partition, up to a maximum of 1 GB. The desire is to have at least one chunk unallocated to use during the rebalance operation. Running a rebalance when the unallocated portion of a partition crosses the 2 GB or 20 % threshold guarantees that at least one chunk is free for the rebalance operation.
 
 If a partition goes from the condition where there is not a significant portion of its space allocated, to less than one chunk unallocated, there is a danger that the rebalance operation cannot be performed. In this case the check interval may need to be reduced. The amount of allocated space is not sufficient for determining if a rebalance operation should be performed. Consider, for example, if the partition is truly 97% full of data, the allocated space check would show that a significant portion of the partition is allocated. A rebalance, in this case, would not free up used space because the disk is actually almost full. Therefore, another criteria must be added to determine if a rebalance operation is needed.
 

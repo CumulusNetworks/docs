@@ -5,11 +5,11 @@ weight: 412
 toc: 4
 ---
 
-While the long term strategy for many data centers is to automate the configuration of Cumulus Networks switches, this is often overkill for smaller environments.
+While the long term strategy for many data centers is to automate the configuration of NVIDIA switches, this is often overkill for smaller environments.
 
 However, manually adding all of the switch ports to the configuration file can be a painfully dreary task. So it's a good thing NCLU supports [globs]({{<ref "/cumulus-linux-43/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/#use-globs-for-port-lists" >}}) so you can use one to quickly define a range or ports.
 
-But if you're old school and want to use the tools available through the native Bash shell, this article shows you how to quickly add the switch ports using a Bash script.
+However, if you are old school and want to use the tools available through the native Bash shell, this article shows you how to quickly add the switch ports using a Bash script.
 
 1.  Determine the switch port identifiers on your device using the `ip link show` command:
 
@@ -106,7 +106,7 @@ The script in step 3 works as written &mdash; just copy it onto your switch (adj
 
 {{%notice tip%}}
 
-There are multiple ways to accomplish the tasks described in shell scripting. This example uses my preferred methods &mdash; consult other resources (for example, {{<exlink url="http://www.cyberciti.biz/faq/category/bash-shell/" text="nixCraft">}}) for a more complete discussion of scripting tools.
+You can accomplish the tasks described in shell scripting using multiple methods. This example uses some preferred methods &mdash; consult other resources (for example, {{<exlink url="http://www.cyberciti.biz/faq/category/bash-shell/" text="nixCraft">}}) for a more complete discussion of scripting tools.
 
 {{%/notice%}}
 

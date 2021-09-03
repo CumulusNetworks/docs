@@ -5,7 +5,7 @@ weight: 711
 toc: 4
 ---
 
-All packages that are included in the official Cumulus Linux distribution are available from Cumulus Networks repository servers. Depending upon the version of Cumulus Linux you are running, the repository is organized differently.
+All packages that are included in the official Cumulus Linux distribution are available from NVIDIA repository servers. Depending upon the version of Cumulus Linux you are running, the repository is organized differently.
 
 ## Cumulus Linux Repos for Versions 4.0.0 and Later
 
@@ -127,14 +127,14 @@ All previous security and maintenance updates.</td>
 <td><strong>marketplace</strong>**</td>
 <td><p>Optional third party packages, (for example, Puppet from Puppet Labs).<br />
 Community-contributed packages.</p>
-<p><strong>Not affiliated with or related to the Cumulus Networks Solutions Marketplace.</strong> </p></td>
+<p><strong>Not affiliated with or related to the NVIDIA Solutions Marketplace.</strong> </p></td>
 <td>CumulusLinux-3-marketplace</td>
 <td>N/A</td>
 </tr>
 </tbody>
 </table>
 
-\* For more information on Cumulus Linux versioning, please refer to {{<link url="Cumulus-Linux-Release-Versioning-and-Support-Policy">}}.
+\* For more information on Cumulus Linux versioning, refer to {{<link url="Cumulus-Linux-Release-Versioning-and-Support-Policy">}}.
 
 \*\* In development. Does not contain packages as of the Cumulus Linux 3.0 initial release.
 
@@ -142,7 +142,7 @@ The *mainline*, *security* and *updates* sources are enabled by default. In addi
 
 To maintain access to the latest Cumulus Linux updates, keep the *updates* source enabled.
 
-If you're an early adopter or are testing out new features that are not yet in Cumulus Linux mainline, you can enable the *early-access* source.
+If you're an early adopter or are testing out new features that are not yet in Cumulus Linux mainline, you can enable the `early-access` source.
 
 You can enable non-default sources by uncommenting the corresponding lines in `/etc/apt/sources.list`:
 
@@ -165,7 +165,7 @@ You can enable non-default sources by uncommenting the corresponding lines in `/
 
 The contents of each repository component in `sources.list` can be described as follows:
 
-- **cumulus:** Contains packages maintained by Cumulus Networks.
+- **cumulus:** Contains packages maintained by NVIDIA.
 - **upstream**: Contains unmodified packages from an upstream community.
 - **commercial**: Contains packages from third party vendors.
 - **community**: Contains community-contributed packages.

@@ -5,7 +5,7 @@ weight: 715
 toc: 4
 ---
 
-There are many cases where it is not possible to transfer files off of a switch that is being analyzed. One unique opportunity that Cumulus Linux offers is the ability to collect this information via a text console; even for files which do not contain text. This document highlights a technique to share smaller (\~2MB or less) packet captures or `cl-support` files in text-based form using a console to extract the packet capture from the isolated network device.
+Often it is not possible to transfer files off of a switch that you are analyzing. One unique opportunity that Cumulus Linux offers is the ability to collect this information via a text console; even for files which do not contain text. This document highlights a technique to share smaller (\~2MB or less) packet captures or `cl-support` files in text-based form using a console to extract the packet capture from the isolated network device.
 
 ## Issue
 

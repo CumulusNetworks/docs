@@ -52,7 +52,7 @@ This KB article describes how to take a basic NX-OS configuration for EVPN and t
 |` switchport mode trunk`|  _none_ | The peerlink is a trunk port by default. | 
 |` spanning-tree port type network`| _none_ | Enabled by default. | 
 |` vpc peer-link`| _none_ | This is done with the name `peerlink`. |
-|`interface nve1`| _none_ | There is no explicit NVUE interface. |
+|`interface nve1`| _none_ | NVUE does not have an explicit interface. |
 |` no shutdown`|  _none_ | | 
 |` source-interface loopback2`| `nv set nve vxlan source address 192.168.33.33` | You configure NVUE interface settings globally with `nv set nve vxlan` commands.|
 |` host-reachability protocol bgp`|  _none_ | |

@@ -5,7 +5,7 @@ weight: 103
 toc: 3
 ---
 
-This simple document provides a checklist for users like network administrators, who may be new to Linux in general, or Cumulus Linux specifically. Refer to this list when you power on your Cumulus Linux switch for the first time. It links to Cumulus Linux technical documentation, other knowledge base articles, and to external sites, and covers topics like configuration, comparing Cumulus Linux to other vendors' CLI, and validated design guides.
+This simple document provides a checklist for users like network administrators, who might be new to Linux itself, or just to Cumulus Linux specifically. Refer to this list when you power on your Cumulus Linux switch for the first time. It links to Cumulus Linux technical documentation, other knowledge base articles, and to external sites, and covers topics like configuration, comparing Cumulus Linux to other vendors' CLI, and validated design guides.
 
 ## Adding and Managing User Accounts
 
@@ -66,7 +66,7 @@ Learn how to use the nano text editor ([cheat sheet --- external link](http://ww
 
 1.  [Adding and updating packages]({{<ref "/cumulus-linux-43/Installation-Management/Adding-and-Updating-Packages" >}})
 2.  [Upgrading Cumulus Linux]({{<ref "/cumulus-linux-43/Installation-Management/Upgrading-Cumulus-Linux" >}})
-3.  [What files should I back up when updating Cumulus Linux via image install?]({{<ref "/cumulus-linux-43/Installation-Management/Upgrading-Cumulus-Linux#before-you-upgrade" >}})
+3.  [What files should to back up when updating Cumulus Linux via image install]({{<ref "/cumulus-linux-43/Installation-Management/Upgrading-Cumulus-Linux#before-you-upgrade" >}})
 
 ## Suggested Further Reading
 

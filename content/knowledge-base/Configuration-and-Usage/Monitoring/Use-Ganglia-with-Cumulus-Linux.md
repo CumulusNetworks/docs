@@ -5,7 +5,7 @@ weight: 376
 toc: 4
 ---
 
-{{<exlink url="http://ganglia.sourceforge.net/" text="Ganglia">}}, a BSD-licensed open-source project, is a scalable distributed monitoring system for high-performance computing systems such as clusters and grids.According to the {{<exlink url="http://ganglia.sourceforge.net/" text="official Ganglia website">}}, the implementation is robust, has been ported to an extensive set of operating systems and processor architectures, and is currently in use on thousands of clusters around the world. Ganglia has been used to link clusters across university campuses and around the world and can scale to handle clusters with 2000 nodes.
+{{<exlink url="http://ganglia.sourceforge.net/" text="Ganglia">}}, a BSD-licensed open-source project, is a scalable distributed monitoring system for high-performance computing systems such as clusters and grids. According to the {{<exlink url="http://ganglia.sourceforge.net/" text="official Ganglia website">}}, the implementation is robust, has been ported to an extensive set of operating systems and processor architectures, and is currently in use on thousands of clusters around the world. Ganglia has been used to link clusters across university campuses and around the world and can scale to handle clusters with 2000 nodes.
 
 Since Cumulus Linux is Linux, Ganglia also works great to monitor switches as well as servers. This article provides setup instructions for using Ganglia on Cumulus Linux.
 
@@ -177,7 +177,7 @@ Ganglia was originally meant for hosts (servers) so originally most applications
 
     {{<img src="/images/knowledge-base/ganglia-front_panel_ports.png">}}
 
-We can also see that while swp10-13 do not have any traffic running across them, unlike swp45, which has traffic running. And of course Ganglia allows us to zoom in to get more statistics with their Web interface.
+You can also see that while swp10-13 do not have any traffic running across them, unlike swp45, which has traffic running. And of course Ganglia allows us to zoom in to get more statistics with their Web interface.
 
 {{<img src="/images/knowledge-base/ganglia-swp45.png">}}
 

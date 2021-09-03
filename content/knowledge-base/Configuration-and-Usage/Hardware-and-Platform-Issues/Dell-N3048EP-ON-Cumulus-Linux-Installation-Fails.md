@@ -7,7 +7,7 @@ toc: 3
 
 ## Issue
 
-Cumulus Linux cannot be installed on early revisions of the Dell N3048EP-ON switch.
+You cannot install Cumulus Linux on early revisions of the Dell N3048EP-ON switch.
 
 ## Description
 

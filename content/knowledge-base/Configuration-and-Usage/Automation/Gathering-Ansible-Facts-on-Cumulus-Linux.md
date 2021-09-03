@@ -5,7 +5,7 @@ weight: 322
 toc: 4
 ---
 
-This article outlines the process for using {{<exlink url="http://www.ansible.com/home" text="Ansible">}} in a lab environment to gather information (which Ansible calls facts) about a Cumulus Linux switch, where Ansible is run off of a physical server or virtual machine on the same network as the switch.
+This article outlines the process for using {{<exlink url="http://www.ansible.com/home" text="Ansible">}} in a lab environment to gather information (which Ansible calls facts) about a Cumulus Linux switch, where Ansible runs on a physical server or in a virtual machine on the same network as the switch.
 
 ## Requirements
 
@@ -29,19 +29,19 @@ This article outlines the process for using {{<exlink url="http://www.ansible.co
         user at server in ~
         $
 
-2.  Utilize the {{<exlink url="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/setup_module.html" text="Ansible setup command">}}, where sw1 is the DNS name of your switch1, where `-m` means which module you are selecting to run, `--ask-pass` will prompt you for the password (most automation environments {{<exlink url="https://wiki.archlinux.org/index.php/SSH_Keys#Simple_method" text="utilize SSH keys for authentication">}} instead of passwords), `-vvvv` gives you all the debugs (not needed but will help you troubleshoot) and `-u root` makes the user root instead of your login to the host device running Ansible.
+2.  Utilize the {{<exlink url="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/setup_module.html" text="Ansible setup command">}}, where sw1 is the DNS name of your switch1, where `-m` means which module you are selecting to run, `--ask-pass` prompts you for the password (most automation environments {{<exlink url="https://wiki.archlinux.org/index.php/SSH_Keys#Simple_method" text="utilize SSH keys for authentication">}} instead of passwords), `-vvvv` gives you all the debugs (it is not needed but does help you troubleshoot) and `-u root` makes the user root instead of your username to the host device running Ansible.
 
         ansible sw1 -m setup --ask-pass -vvvv -u root
 
-3.  Ansible will connect to the switch utilizing the provided user (in this case, root) and the provided password. This should be the exact same way a user would connect to the switch via SSH. If able to connect, Ansible will run the setup module and gather facts about the Cumulus switch.
+3.  Ansible connects to the switch utilizing the provided user (in this case, root) and the provided password. This should be the exact same way a user would connect to the switch via SSH. If able to connect, Ansible runs the setup module and gather facts about the Cumulus switch.
+<!-- vale off -->
+## What Facts Are Gathered?
+<!-- vale on -->
+Ansible gathers many facts. This article uses a DNI et-7448bf model running Cumulus Linux 2.0.1 as the example setup. Some facts highlighted here are important for writing a playbook. You can find the entire results of the setup command {{<link url="#example-ansible_facts" text="below">}}.
 
-## What Facts are Gathered?
+The version of Cumulus Linux.
 
-Ansible will gather numerous facts. For this article, a DNI et-7448bf model running Cumulus Linux 2.0.1 was used. Some facts will be highlighted here that were found important for a playbook being written. The entire results of the setup command can be found {{<link url="#example-ansible_facts" text="below">}}.
-
-The version of Cumulus Linux
-
-- What is returned by the setup command?  
+- What does the setup command return?
 
     ```
      "ansible_lsb": {
@@ -58,11 +58,11 @@ The version of Cumulus Linux
          command: /usr/cumulus/bin/cl-img-install -f http://192.168.100.1/{{ image }}
          when: ansible_lsb.release not in image
 
-The above task in a playbook can use any fact gathered in the setup command (run automatically on any playbook unless purposelessly turned off). This example utilizes the `ansible_lsb.release` variable obtained in setup and compares it to the example playbook's specific variable of `{{image}}`. The playbook being written would upgrade the Cumulus switch for this task utilizing the [cl-img-install]({{<ref "/cumulus-linux-43/Installation-Management/Managing-Cumulus-Linux-Disk-Images" >}}) command. {{<exlink url="https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html" text="Creating a conditional statement">}} utilizing "when:" keeps you from wasting time installing unless the image given by the user running this playbook was different than the image currently running on the switch `{{ansible_lsb.release}}`.
+The above task in a playbook can use any fact gathered in the setup command (run automatically on any playbook unless purposelessly turned off). This example utilizes the `ansible_lsb.release` variable obtained in setup and compares it to the example playbook's specific variable of `{{image}}`. This playbook would upgrade the switch for this task utilizing the [cl-img-install]({{<ref "/cumulus-linux-43/Installation-Management/Managing-Cumulus-Linux-Disk-Images" >}}) command. {{<exlink url="https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html" text="Creating a conditional statement">}} utilizing "when:" keeps you from wasting time installing unless the image given by the user running this playbook was different than the image currently running on the switch `{{ansible_lsb.release}}`.
 
 ### The Hostname
 
-- What is returned by the setup command?  
+- What does the setup command return?
 
     ```
      "ansible_hostname": "sw1",
@@ -74,11 +74,11 @@ The above task in a playbook can use any fact gathered in the setup command (run
          lineinfile: dest=/etc/motd regexp='^sw.*bin$' line='{{ ansible_hostname }} - running version {{ image }}' backrefs=yes
          register: result
 
-This example utilizes the hostname as well as the internal variable `{{image}}`, which is not returned by the Ansible setup gathering the facts. The above task updates the MOTD on the Cumulus Linux switch with the current hostname and what image the switch is running. An example would be: `sw1 - running version CumulusLinux-2.0.1-powerpc.bin`.
+This example utilizes the hostname as well as the internal variable `{{image}}`, which is not returned by the Ansible setup gathering the facts. The above task updates the MOTD on the Cumulus Linux switch with the current hostname and what image the switch is running. An example is: `sw1 - running version CumulusLinux-2.0.1-powerpc.bin`.
 
 ### The Management MAC Address
 
-- What is returned by the setup command?  
+- What does the setup command return?
 
         "ansible_eth0": { 
           "active": true, 
@@ -107,7 +107,7 @@ This example utilizes the hostname as well as the internal variable `{{image}}`,
          shell: "echo {{ansible_hostname}}: Script Completed Successfully at {{ansible_date_time.time}} - Version {{ansible_lsb.release}} MAC for eth0 is {{ansible_etho.macaddress}} >> /tmp/upgrade-script.log"
          delegate_to: 127.0.0.1
 
-An example output for this task would be `"sw1: Script Completed Successfully at 18:53:24 - Version 2.0.1 MAC for eth0 is 44:38:39:00:34:10"`. The script above outputs that text to a file it creates called `upgrade-script.log`, located in the `/tmp/` directory.
+Example output for this task is `"sw1: Script Completed Successfully at 18:53:24 - Version 2.0.1 MAC for eth0 is 44:38:39:00:34:10"`. The script above outputs that text to a file it creates called `upgrade-script.log`, located in the `/tmp/` directory.
 
 ## Example Ansible Facts
 

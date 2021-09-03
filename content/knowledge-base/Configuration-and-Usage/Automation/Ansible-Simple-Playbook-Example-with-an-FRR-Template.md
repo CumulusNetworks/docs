@@ -5,7 +5,7 @@ weight: 325
 toc: 4
 ---
 
-This article describes a very simple Ansible example. Use it to learn Ansible; **don't** use it as a production-level script. Refer to the {{<link url="Demos-and-Training" text="Demos and Training section">}} for more robust examples with Ansible and other DevOp tools.
+This article describes a very simple Ansible example. Use it to learn Ansible; **do not** use it as a production-level script. Refer to the {{<link url="Demos-and-Training" text="Demos and Training section">}} for more robust examples with Ansible and other DevOps tools.
 
 {{<img src="/images/knowledge-base/ansible-simple-playbook.png" alt="Ansible simple playbook" width="500px">}}
 
@@ -23,16 +23,16 @@ Optional files used in this example:
 
 ## Install Ansible
 
-The following was performed on Ubuntu:
+Run the following commands on Ubuntu:
 
     cumulus@wbench:~$ sudo apt-get update
     cumulus@wbench:~$ sudo apt-get install ansible
 
-If you don't have Ubuntu, you can install Ansible on Red Hat, Debian, CentOS, MacOS, any BSD distro, and so on. {{<exlink url="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html" text="See this page on ansible.com">}}.
+If you do not have Ubuntu, you can install Ansible on Red Hat, Debian, CentOS, MacOS, any BSD distro, and so on. {{<exlink url="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html" text="See this page on ansible.com">}}.
 
 ## Configure the Necessary Files
 
-Simply cut and paste the code snippets from the code blocks below. Here are all the pieces of code used in the example.
+Cut and paste the code snippets from the code blocks below. Here are all the pieces of code used in the example.
 
 ### Inventory File
 
@@ -62,7 +62,7 @@ Again, this is a very simple example. Read more about {{<exlink url="https://doc
         - name: restart frr
           service: name=frr state=restarted
 
-This `sample-playbook.yml` contains one variable, two tasks, and a handler. Each component is described below:
+This `sample-playbook.yml` contains one variable, two tasks, and a handler. The following table describes each component:
 
 | Component | Description |
 | --------- | ----------- |
@@ -85,12 +85,7 @@ replaces the {{description}} with the one listed under `vars`:
 
 ## Run the Playbook
 
-Use the `ansible-playbook` command to run the `sample-playbook.yml`
-file. Use the optional argument `-i` to point to the inventory file. If
-the `-i` option is not used, and there is no `ansible.cfg` folder
-indicating otherwise, Ansible will automatically use
-`/etc/ansible/hosts`. Alternately, instead of creating the file host
-with leaf1 in it, simply add leaf1 to `/etc/ansible/hosts`.
+Use the `ansible-playbook` command to run the `sample-playbook.yml` file. Use the optional argument `-i` to point to the inventory file. If the `-i` option is not used, and there is no `ansible.cfg` folder indicating otherwise, Ansible automatically uses `/etc/ansible/hosts`. Alternately, instead of creating the file host with leaf1 in it, just add leaf1 to `/etc/ansible/hosts`.
 
     cumulus@wbench:~$ ansible-playbook sample-playbook.yml -i host
 
@@ -111,10 +106,7 @@ with leaf1 in it, simply add leaf1 to `/etc/ansible/hosts`.
     PLAY RECAP ********************************************************************
     leaf1                      : ok=4    changed=2    unreachable=0    failed=0
 
-The playbook above runs both tasks. Since FRR was changed, it
-notifies the tasks, which restarts the FRR service. The playbook
-assumes that FRR was already running, otherwise this playbook will
-fail.
+The playbook above runs both tasks. Because it changed FRR, it notifies the tasks, which restarts the FRR service. The playbook assumes that FRR was already running, otherwise this playbook is going to fail.
 
 ## Related Information
 

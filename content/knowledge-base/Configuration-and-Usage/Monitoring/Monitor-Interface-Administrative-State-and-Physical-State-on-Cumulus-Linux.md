@@ -12,7 +12,7 @@ Logging is useful for determining:
 - Admin state (whether the port/bridge/bond up or down)
 - Physical state (whether the connection for the port/bridge/bond up or down)
 
-... and the current level is not enough in `/var/log/`.
+When the current level is not enough in `/var/log/`.
 
 ## Environment
 
@@ -31,19 +31,19 @@ Use the Linux `ip monitor` tool to monitor link state.
 
 ### Running in the Background
 
-What if I want to run it in the background and redirect it to a log?
+What if you want to run it in the background and redirect it to a log?
 
 Cumulus Linux is Linux so use the `&` and `>` to redirect the output:
 
     cumulus@switch:~$ sudo sh -c "ip -timestamp monitor link > /var/log/link.log" &
 
-The redirect (\>) in the previous example requires you to use the quotation marks around the two commands subjected to the redirection clause (\>) so that both commands are run as the root user. If using the root account (disabled by default on Cumulus Linux 2.0 and later) there is no need:
+The redirect (\>) in the previous example requires you to use the quotation marks around the two commands subjected to the redirection clause (\>) so that the root user runs both commands. If using the root account (disabled by default on Cumulus Linux 2.0 and later) there is no need:
 
     root@switch:~# ip -timestamp monitor link > /var/log/link.log &
 
 ### Automatically Logging on Boot
 
-What if I automatically want to log link activity, even if the switch is rebooted?
+What if you automatically want to log link activity, even if the switch reboots?
 
 Utilize the `rc.local` startup script located at `/etc/rc.local`. Here `rc.local` is already configured on a Cumulus Linux switch:
 
@@ -68,9 +68,9 @@ Utilize the `rc.local` startup script located at `/etc/rc.local`. Here `rc.local
 
 ### Looking at the Log Output
 
-What does admin state vs. physical state look like in the log?
+What does admin state versus physical state look like in the log?
 
-Let's go ahead and turn a port off and on and look at the log.
+To see the difference, turn a port off and on and look at the log.
 
     cumulus@switch:~$ sudo ip link set swp1 down
 
@@ -88,7 +88,7 @@ Let's go ahead and turn a port off and on and look at the log.
 
 Cumulus Linux provides a link state log, that outputs to `/var/log/linkstate`, and provides concise records of all physical and logical network link state changes. In particular, the output shows up/down changes, for both physical and admin links.
 
-This log has been added as link state changes occur far less often than other logged events, and a separate log ensures link state changes are recorded for a longer period of time, as the information will not be rotated out with the rest of `syslog`.
+This log exists because link state changes occur far less often than other logged events, and a separate log ensures the recording of link state changes for a longer period of time, as the information does not rotate out with the rest of `syslog`.
 
     cumulus@leaf01:mgmt-vrf:~$ sudo tail /var/log/linkstate
     2017-05-22T11:21:07.085595-04:00 leaf01 switchd[19517]: sync_base.c:596 swp51: ifindex 54, admin down
@@ -103,7 +103,7 @@ This log has been added as link state changes occur far less often than other lo
 
 ### Admin/Physical State Troubleshooting Table
 
-Now let's look at every possible scenario to make troubleshooting easier.
+Now look at every possible scenario to make troubleshooting easier.
 
 | Admin State | Physical State | ip link show Output |
 | ----------- | -------------- | ------------------- |

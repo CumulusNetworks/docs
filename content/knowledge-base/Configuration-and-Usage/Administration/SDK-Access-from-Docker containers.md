@@ -9,14 +9,14 @@ Because Cumulus Linux is Linux, you can install and run containers on the system
 To install the Docker engine, refer to [Docker on Cumulus Linux]({{<ref "/cumulus-linux-43/Network-Solutions/Docker-on-Cumulus-Linux" >}}).
 
 {{%notice note%}}
-The Docker engine installation procedure depends on the Cumulus Linux release you are running. For an NVIDIA Spectrum switch running Cumulus Linux 4.3.0 and later, a Docker package is installed as part of the installation or upgrade process. The Docker package includes Docker Engine, and dependencies and configuration files required to run the Docker service.
+The Docker engine installation procedure depends on the Cumulus Linux release you are running. For an NVIDIA Spectrum switch running Cumulus Linux 4.3.0 and later, the installation or upgrade process installs a Docker package. The Docker package includes Docker Engine, and dependencies and configuration files required to run the Docker service.
 {{%/notice%}}
 
 ## Applications that Require Integration with the Networking Dataplane
 
 Two main classes of applications require integration with the networking dataplane:
 
-- Applications that interact with the system through standard interfaces; for example, installing routes or ACLs in the Linux kernel through `netlink` or command lines (Linux tools such as `iproute2`). The kernel dataplane settings are offloaded to the ASIC through `switchd`. Using standard interfaces allows for more portable applications. 
+- Applications that interact with the system through standard interfaces; for example, installing routes or ACLs in the Linux kernel through `netlink` or command lines (Linux tools such as `iproute2`). `switchd` offloads the kernel dataplane settings      to the ASIC. Using standard interfaces allows for more portable applications.
 - Applications that require more native access to the forwarding ASIC through the ASIC SDK to access hardware capabilities that are not exposed through the Linux kernel and other standard interfaces.
 
 ## Direct Application Access to the ASIC SDK
@@ -92,13 +92,13 @@ You can write the SDK files to the container image. However, you might need to p
 
 ## Exclusive SDK access to the Container
 
-The above workflow assumes `switchd` continues to run on the system, and that SDK access is shared between `switchd` and the containerized application.
+The above workflow assumes `switchd` continues to run on the system, and `switchd` and the containerized application both share SDK access.
 
 One advantage of this shared access arrangement is that Cumulus Linux and `switchd` take care of SDK initialization, including linux interface creation, hardware port breakout, and full forwarding ASIC initialization. Cumulus Linux can continue to handle all network configuration and forwarding ASIC programming, while the container application focuses on specific use cases and specific ASIC resource management, such as installing ACL rules.
 
-One disadvantage of this shared access arrangement is that if the application needs to write to the same ASIC resources that `switchd` needs to access, potential conflicts can arise. It may be possible to compartmentalize some resources (ACL regions), but this is not possible for all resources.
+One disadvantage of this shared access arrangement is that if the application needs to write to the same ASIC resources that `switchd` needs to access, potential conflicts can arise. It might be possible to compartmentalize some resources (ACL regions), but this is not possible for all resources.
 
-If exclusive SDK access is required for the containerized application, you must disable `switchd` and `update-ports` services on Cumulus Linux so that the application is fully responsible for handling Linux interface life cycle, port breakout, and ASIC initialization.
+If you require exclusive SDK access for the containerized application, you must disable `switchd` and `update-ports` services on Cumulus Linux so that the application is fully responsible for handling Linux interface life cycle, port breakout, and ASIC initialization.
 
 ```
 cumulus@switch:mgmt:~$ sudo systemctl disable switchd.service
@@ -110,7 +110,7 @@ Removed /etc/systemd/system/switchd.service.wants/update-ports.service.
 
 ## Security Considerations
 
-With Cumulus Linux, an administrator has full access to all the security measures and tools that are available in the container ecosystems to secure containers and protect the container host. For example, the docker daemon architecture allows for an authorization plugin that can be used to provide fine grain capability and access control to what a container can and cannot do. One such plugin provider is {{<exlink url="https://www.openpolicyagent.org/docs/latest/docker-authorization/" text="Open Policy Agent">}}.
+With Cumulus Linux, an administrator has full access to all the security measures and tools that are available in the container ecosystems to secure containers and protect the container host. For example, the docker daemon architecture allows for an authorization plugin that can provide fine grain capability and access control to what a container can and cannot do. One such plugin provider is {{<exlink url="https://www.openpolicyagent.org/docs/latest/docker-authorization/" text="Open Policy Agent">}}.
 
 A configuration like the one below, together with an enabled authorization plugin in the `docker.conf` file, ensures no container can run with the `–privilege` option:
 

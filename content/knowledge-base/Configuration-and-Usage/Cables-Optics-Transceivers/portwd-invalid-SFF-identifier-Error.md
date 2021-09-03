@@ -51,11 +51,11 @@ If you encounter this message and believe the optic is not behaving as expected,
 
 ## Suppressing Log Messages
 
-The "Invalid SFF Identifer" log message is generated constantly in your `/var/log/syslog`, making it harder to interpret other log messages. You can prevent the logging of this message by adding the following line to your `rsyslog` configuration:
+The "Invalid SFF Identifer" log message generates constantly in your `/var/log/syslog`, making it harder to interpret other log messages. You can prevent the logging of this message by adding the following line to your `rsyslog` configuration:
 
     :msg, contains, "invalid SFF identifier:" ~
 
-This configuration needs to be added before the `/var/log/syslog` file is defined. The simplest way to do this is to create a file named `/etc/rsyslogd.d/1-suppress.conf` and put the entry in this file:
+You need to add this configuration before the system defines the `/var/log/syslog` file. The simplest way to do this is to create a file named `/etc/rsyslogd.d/1-suppress.conf` and put the entry in this file:
 
 1.  Create the file:  
 

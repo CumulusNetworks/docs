@@ -14,7 +14,7 @@ This article applies to the following issues:
 
 {{%notice note%}}
 
-This data has to be processed by the control plane, which impacts the CPU of the destination switch.
+The control plane has to process this data, which impacts the CPU of the destination switch.
 
 {{%/notice%}}
 
@@ -37,7 +37,7 @@ Normal ERSPAN setup rules apply; see the [Network Troubleshooting chapter]({{<re
 
         cumulus@switch:~$ sudo cl-acltool -i
 
-3.  Verify the SPAN rules were installed:  
+3.  Verify you installed the SPAN rules:  
 
         cumulus@switch:~$ cl-acltool -L all | grep SPAN
         41229 4368K ERSPAN all -- swp50 any anywhere anywhere ERSPAN src-ip:192.168.0.1 dst-ip:192.168.0.2
@@ -45,7 +45,7 @@ Normal ERSPAN setup rules apply; see the [Network Troubleshooting chapter]({{<re
 
 {{%notice note%}}
 
-The destination switch does not expect the ERSPAN packets, so it generates ICMP destination unreachable packets as a result. These packets are included in any capture you take.
+The destination switch does not expect the ERSPAN packets, so it generates ICMP destination unreachable packets as a result. Any capture you take includes these packets.
 
 {{%/notice%}}
 

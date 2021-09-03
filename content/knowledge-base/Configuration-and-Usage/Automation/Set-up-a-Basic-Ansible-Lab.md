@@ -20,7 +20,7 @@ On the server, set up the following:
 
 ## Network Addresses
 
-For this example the 192.168.0.0/24 subnet is being used.
+This example uses the 192.168.0.0/24 subnet.
 
 | IP Address   | Entity               |
 | ------------ | -------------------- |

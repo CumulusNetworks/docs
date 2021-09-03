@@ -5,25 +5,25 @@ weight: 376
 toc: 4
 ---
 
-{{<exlink url="http://ganglia.sourceforge.net/" text="Ganglia">}}, a BSD-licensed open-source project, is a scalable distributed monitoring system for high-performance computing systems such as clusters and grids. According to the {{<exlink url="http://ganglia.sourceforge.net/" text="official Ganglia website">}}, the implementation is robust, has been ported to an extensive set of operating systems and processor architectures, and is currently in use on thousands of clusters around the world. Ganglia has been used to link clusters across university campuses and around the world and can scale to handle clusters with 2000 nodes.
+{{<exlink url="http://ganglia.sourceforge.net/" text="Ganglia">}}, a BSD-licensed open-source project, is a scalable distributed monitoring system for high-performance computing systems such as clusters and grids. According to the {{<exlink url="http://ganglia.sourceforge.net/" text="official Ganglia website">}}, the implementation is robust, is compatible with an extensive set of operating systems and processor architectures, and is currently in use on thousands of clusters around the world. You can use Ganglia to link clusters across university campuses and around the world and can scale to handle clusters with 2000 nodes.
 
-Since Cumulus Linux is Linux, Ganglia also works great to monitor switches as well as servers. This article provides setup instructions for using Ganglia on Cumulus Linux.
+Because Cumulus Linux is Linux, Ganglia also works great to monitor switches as well as servers. This article provides setup instructions for using Ganglia on Cumulus Linux.
 
 ## Requirements
 
 - A {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux switch">}}
-- A host running {{<exlink url="http://httpd.apache.org/" text="apache">}} on the same network. For the example shown we used Debian wheezy.
+- A host running {{<exlink url="http://httpd.apache.org/" text="apache">}} on the same network. The example here uses Debian wheezy.
 - Access to the {{<exlink url="http://repo3.cumulusnetworks.com/repo/pool/" text="Cumulus Linux repo">}} from the network where the host and switch reside.
 
 ## Set Up the Host
 
-1.  The host, where the Web front end will reside for collection, must have three parts installed:
+1.  The host, where the web front end is going to reside for collection, must have three parts installed:
 
     - `ganglia-monitor`, also known as `gmond` (Ganglia monitoring daemon)
     - `gmetad`, which stands for Ganglia meta daemon
     - `ganglia-webfrontend`, which contains the PHP-based real-time dynamic Web pages
 
-    All three are described on {{<exlink url="https://en.wikipedia.org/wiki/Ganglia_(software)" text="Wikipedia">}} and in {{<exlink url="http://sourceforge.net/apps/trac/ganglia/wiki/ganglia_quick_start" text="the Ganglia documentation">}}.
+    You can learn more about these parts in {{<exlink url="https://en.wikipedia.org/wiki/Ganglia_(software)" text="Wikipedia">}} and in {{<exlink url="http://sourceforge.net/apps/trac/ganglia/wiki/ganglia_quick_start" text="the Ganglia documentation">}}.
 
 2.  Install these components on the host:
 
@@ -31,12 +31,12 @@ Since Cumulus Linux is Linux, Ganglia also works great to monitor switches as we
 
 3.  If you are unfamiliar with `apache`, the host needs to have the `/etc/ganglia-webfrontend/apache.conf` copied to `/etc/apache2/sites-enabled/` to enable the Ganglia Web front end, which defaults to http://\<the-host-ip\>/ganglia where \<the-host-ip\> is the IP of the host used, like http://10.0.1.1/ganglia.
 
-4.  Configure the data sources. In this case, we are configuring the Cumulus Linux switch and the local host (Web server). On Debian wheezy, this file is located at `/etc/ganglia/gmetad.conf`.
+4.  Configure the data sources. In this case, you are configuring the Cumulus Linux switch and the local host (Web server). On Debian wheezy, you can find this file at `/etc/ganglia/gmetad.conf`.
 
         data_source "server" localhost server.lab.test 10.0.1.1
         data_source "sw1" sw1.lab.test 10.0.1.11
 
-5.  Cumulus Linux supports both multicast and unicast traffic with Ganglia. We are going to configure unicast rather than the default multicast because many environments do not want multicast. This is a personal preference and has no bearing on the output provided by Ganglia. First, edit `/etc/ganglia/gmond.conf` and set the `send_metadata_interval`. In this example we use 30 seconds.
+5.  Cumulus Linux supports both multicast and unicast traffic with Ganglia. You are going to configure unicast rather than the default multicast because many environments do not want multicast. This is a personal preference and has no bearing on the output provided by Ganglia. First, edit `/etc/ganglia/gmond.conf` and set the `send_metadata_interval`. This example uses 30 seconds.
 
         globals {
           daemonize = yes
@@ -52,7 +52,7 @@ Since Cumulus Linux is Linux, Ganglia also works great to monitor switches as we
           send_metadata_interval = 30
         }
 
-6.  Set up the cluster. This information must match between the host and the nodes it is listening to. The example below uses RDU, which stands for Raleigh, Durham (two amazing cities in central North Carolina). Continue editing `/etc/ganglia/gmond.conf`.
+6.  Set up the cluster. This information must match between the host and the nodes it is listening to. The example below uses RDU, which stands for Raleigh and Durham (two cities in central North Carolina). Continue editing `/etc/ganglia/gmond.conf`.
     
         cluster {
           name = "RDU"
@@ -76,19 +76,19 @@ Since Cumulus Linux is Linux, Ganglia also works great to monitor switches as we
         cumulus@switch$ sudo service ganglia-monitor restart
         cumulus@switch$ sudo service gmetad restart
 
-9.  At this point you should start seeing server statistics show up in Ganglia by viewing them at http://\<the-host-ip\>/ganglia. It is simply seeing its own data. As you can see in this example, we sometimes interchange DNS and IP, making sure DNS is set up or only utilize the reachable IPs.
+9.  At this point you should start seeing server statistics show up in Ganglia by viewing them at *http://\<the-host-ip\>/ganglia*. It is just seeing its own data. This example sometimes interchanges DNS and IP, making sure DNS is set up or only utilizing the reachable IPs.
 
 ## Set Up the Switch
 
-1.  The switch, or node, where we want to monitor traffic must have just one package installed:
+1.  The switch, or node, where you want to monitor traffic must have just one package installed:
 
     - `ganglia-monitor`, also known as `gmond` (Ganglia monitoring daemon)
 
-2.  `gmond` has been added to the Cumulus Linux repo. Install `ganglia-monitor` by running:
+2.  With `gmond` added to the Cumulus Linux repo, install `ganglia-monitor` by running:
 
         cumulus@switch$ sudo apt-get install ganglia-monitor
 
-3.  As with the host (Web server), we are going to configure unicast for this example. First set up the `send_metadata_interval` by editing `/etc/ganglia/gmond.conf`. In this example we use 30 seconds.
+3.  As with the host (Web server), you are configuring unicast for this example. First set up the `send_metadata_interval` by editing `/etc/ganglia/gmond.conf`. This example uses 30 seconds.
 
         globals {
           daemonize = yes
@@ -104,7 +104,7 @@ Since Cumulus Linux is Linux, Ganglia also works great to monitor switches as we
           send_metadata_interval = 30
         }
 
-4.  Set up the cluster; edit `/etc/ganglia/gmond.conf`. This information must match between the switch and the host configured above. In our example we used RDU.
+4.  Set up the cluster; edit `/etc/ganglia/gmond.conf`. This information must match between the switch and the host configured above. This example uses RDU.
 
         cluster {
           name = "RDU"
@@ -124,7 +124,7 @@ Since Cumulus Linux is Linux, Ganglia also works great to monitor switches as we
 
         cumulus@switch$ sudo service ganglia-monitor restart
 
-7.  After a minute the PHP front end on the host (server) will start getting enough data to see in the graphs. They will look like the following:
+7.  After a minute, the PHP front end on the host (server) starts getting enough data to see in the graphs. They look like the following:
 
     - First select sw1 and pick a metric like CPU speed.  
 
@@ -134,11 +134,11 @@ Since Cumulus Linux is Linux, Ganglia also works great to monitor switches as we
 
     {{<img src="/images/knowledge-base/ganglia-sw1.png">}}
 
-8.  You can now use all of Ganglia's features the same as someone would on servers.
+8.  You can now use any Ganglia features just like you would on servers.
 
 ## Multiple Interfaces Module
 
-Ganglia was originally meant for hosts (servers) so originally most applications only used 1-2 interfaces. However, with Cumulus Linux, multiple front panel ports that show up as swp1-\>swpMAX where MAX is the last front panel port. Some users will want to see not aggregate packet counts for the box but packet counts per-interface to watch utilization. Fortunately there is already an open source module that is easy to add to Ganglia called {{<exlink url="https://github.com/ganglia/gmond_python_modules/tree/master/network/iface/python_modules" text="multi\_interface">}}.
+Ganglia was originally meant for hosts (servers) so originally most applications only used 1-2 interfaces. However, with Cumulus Linux, multiple front panel ports that show up as swp1-\>swpMAX where MAX is the last front panel port. Some users might not want to see aggregate packet counts for the switch but packet counts per-interface to watch utilization. To do this, you can add an open source module to Ganglia called {{<exlink url="https://github.com/ganglia/gmond_python_modules/tree/master/network/iface/python_modules" text="multi\_interface">}}.
 
 1.  Download {{<exlink url="https://github.com/ganglia/gmond_python_modules/tree/master/network/iface/python_modules" text="multi_interface.py">}}.
 
@@ -177,7 +177,7 @@ Ganglia was originally meant for hosts (servers) so originally most applications
 
     {{<img src="/images/knowledge-base/ganglia-front_panel_ports.png">}}
 
-You can also see that while swp10-13 do not have any traffic running across them, unlike swp45, which has traffic running. And of course Ganglia allows us to zoom in to get more statistics with their Web interface.
+You can also see that while swp10-13 do not have any traffic running across them, unlike swp45, which has traffic running. Ganglia also allows you to zoom in to get more statistics with their Web interface.
 
 {{<img src="/images/knowledge-base/ganglia-swp45.png">}}
 

@@ -5,7 +5,7 @@ weight: 380
 toc: 4
 ---
 
-`{{<exlink url="https://www.kernel.org/doc/Documentation/networking/netconsole.txt" text="netconsole">}}` is a Linux feature that allows you to redirect kernel messages output from `dmesg` to a location across the network using UDP. You can capture and store these messages on a `syslog` server to investigate issues on a Cumulus Linux switch where the `dmesg` output is generated. This is useful where a physical console is not connected and you need to debug kernel events, such as system crashes and unexpected reboots.
+`{{<exlink url="https://www.kernel.org/doc/Documentation/networking/netconsole.txt" text="netconsole">}}` is a Linux feature that allows you to redirect kernel messages output from `dmesg` to a location across the network using UDP. You can capture and store these messages on a `syslog` server to investigate issues on the Cumulus Linux switch that is generating the `dmesg` output. This is useful where a physical console is not connected and you need to debug kernel events, such as system crashes and unexpected reboots.
 
 `netconsole` is not a replacement for a physical console. It does not provide an interactive console to the switch; it is a remote logging service only. `netconsole` is also not available until the network has initialized on boot. Log data from early in the boot cycle is not captured. Use `netconsole` whenever a physical console is not available to log data.
 
@@ -29,7 +29,7 @@ To configure the `netconsole` module on your Cumulus Linux switch:
    cumulus@switch:~$ echo 'options netconsole netconsole=[...]' | sudo tee /etc/modprobe.d/netconsole.conf
    ```
 
-   In the above command, replace `[...]` with the desired configuration. The format for the options is as follows (default values are shown in parentheses):
+   In the above command, replace `[...]` with the desired configuration. The format for the options is as follows (with default values in parentheses):
 
    ```
    netconsole=[+][src-port]@[src-ip]/[<dev>],[tgt-port]@<tgt-ip>/[tgt-macaddr]
@@ -43,8 +43,8 @@ To configure the `netconsole` module on your Cumulus Linux switch:
             tgt-macaddr  Ethernet MAC address of the next hop to the syslog server (broadcast)
    ```
 
-    - Only the `tgt-ip` parameter is required by the `netconsole` module; other parameters use their default value if unspecified.
-    - Because the `netconsole` module might be loaded before `dev` is configured, you must specify `src-ip`.
+    - The `netconsole` module requires only the `tgt-ip` parameter; other parameters use their default value if unspecified.
+    - Because the `netconsole` module might get loaded before you configure `dev`, you must specify `src-ip`.
     - If the `syslog` server is not on the same Ethernet segment as the source device, you must specify `tgt-macaddr`.
     - It is more efficient to specify `tgt-macaddr` than to use the default, which is an Ethernet broadcast.
 
@@ -63,15 +63,15 @@ To configure the `netconsole` module on your Cumulus Linux switch:
        ```
        cumulus@switch:~$ ip route get <tgt-ip> vrf mgmt
        ```
-
+       <!-- vale off -->
        Look at the output of the `ip route get` command. If it is in the following format (without a `via` keyword), the `syslog` server is on the same Ethernet segment. The value to use for the `dev` parameter is the `dev` value reported in the output, `eth0` in this example. The _nexthop ip_ is the first field.
-
+       <!-- vale on -->
        ```
        10.230.130.20 dev eth0 table mgmt src 10.230.130.211 uid 1000
        ```
-
-       If the output of the `ip route get` command is in the following format (with a `via` keyword), the `syslog` server is reached through a gateway. The value to use for the `dev` parameter is the `dev` value reported in the output, `eth0` in this example. The _nexthop ip_ is the `via` value, 10.230.130.1 in this example.
-
+       <!-- vale off -->
+       If the output of the `ip route get` command is in the following format (with a `via` keyword), you reached the `syslog` server through a gateway. The value to use for the `dev` parameter is the `dev` value reported in the output, `eth0` in this example. The _nexthop ip_ is the `via` value, 10.230.130.1 in this example.
+       <!-- vale on -->
        ```
        10.230.15.31 via 10.230.130.1 dev eth0 table mgmt src 10.230.130.211 uid 1000
        ```
@@ -103,7 +103,7 @@ To configure the `netconsole` module on your Cumulus Linux switch:
 
 3.  You can increase or decrease the amount of data you want to log.
 
-      - To increase the amount of data being logged by the kernel (see {{<exlink url="https://linuxconfig.org/introduction-to-the-linux-kernel-log-levels" text="Introduction to the Linux kernel log levels at linuxconfig.org">}}), adjust the log level. By default, a Cumulus Linux switch logs kernel data at level 3 (KERN\_ERR). It might be useful to log all the data when trying to debug an issue. To do this, increase the kernel `printk` value to *7* in the `/etc/systctl.d/99-sysctl.conf` file:
+      - To increase the amount of data the kernel logs (see {{<exlink url="https://linuxconfig.org/introduction-to-the-linux-kernel-log-levels" text="Introduction to the Linux kernel log levels at linuxconfig.org">}}), adjust the log level. By default, a Cumulus Linux switch logs kernel data at level 3 (KERN\_ERR). It might be useful to log all the data when trying to debug an issue. To do this, increase the kernel `printk` value to *7* in the `/etc/systctl.d/99-sysctl.conf` file:
 
       ```
       $ echo 'kernel.printk = 7 4 1 7' | sudo tee -a /etc/sysctl.d/99-sysctl.conf
@@ -115,7 +115,7 @@ To configure the `netconsole` module on your Cumulus Linux switch:
         cumulus@switch:~$ echo 'options netconsole netconsole=@10.230.130.211/eth0,514@10.230.15.31/d8:c4:97:b5:be:b7 oops_only=1' | sudo tee /etc/modprobe.d/netconsole.conf
         ```
 
-4.  Reboot the switch. The settings are applied during the boot sequence.
+4.  Reboot the switch. The boot sequence applies the settings.
 
     ```
     cumulus@switch:~$ sudo reboot
@@ -123,7 +123,7 @@ To configure the `netconsole` module on your Cumulus Linux switch:
 
 ### Create a Running Configuration
 
-The following procedure only impacts the running kernel on the switch; this is known as a non-persistent configuration. After the switch reboots, these settings are lost.
+The following procedure only impacts the running kernel (otherwise known as a non-persistent configuration) on the switch. After the switch reboots, you lose these settings.
 
 To create a running configuration on a Cumulus Linux switch:
 
@@ -212,7 +212,7 @@ You can test this setup in one of two ways:
 
 ### Append Data to the Kernel Log
 
-To create a new kernel log message and verify that it is recorded on the `syslog` server, run the following command on the switch configured with `netconsole`:
+To create a new kernel log message and verify that the `syslog` server recorded it, run the following command on the switch configured with `netconsole`:
 
 ```
 cumulus@switch:~$ echo "<0>test message $(date +%s)" | sudo tee /dev/kmsg
@@ -223,7 +223,7 @@ Confirm that the same message output by this command is also recorded on the `sy
 ### Crash a Switch
 
 {{%notice warning%}}
-This causes a catastrophic failure of the switch and results in an immediate reboot. Ensure your network is prepared for this to occur and you understand the consequences.
+This causes a catastrophic failure of the switch and results in an immediate reboot. Ensure your network is ready for this to occur and you understand the consequences.
 {{%/notice%}}
 
 To invoke a kernel panic to test the process, log in to the switch you want to crash and run the following command:

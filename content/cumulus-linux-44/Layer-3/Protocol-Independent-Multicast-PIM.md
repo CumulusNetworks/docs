@@ -496,14 +496,14 @@ The following steps configure a Cumulus switch to use MSDP:
    The mesh group must include all RPs in the domain as members, with a unique address as the source. This configuration results in MSDP peerings between all RPs.
 
    ```
-   cumulus@rp01:$ net add msdp mesh-group cumulus member 10.100.100.102
-   cumulus@rp01:$ net add msdp mesh-group cumulus member 10.100.100.103
+   cumulus@rp01:$ net add msdp mesh-group cumulus member 100.1.1.2
+   cumulus@rp01:$ net add msdp mesh-group cumulus member 100.1.1.3
 
-   cumulus@rp02:$ net add msdp mesh-group cumulus member 10.100.100.101
-   cumulus@rp02:$ net add msdp mesh-group cumulus member 10.100.100.103
+   cumulus@rp02:$ net add msdp mesh-group cumulus member 100.1.1.1
+   cumulus@rp02:$ net add msdp mesh-group cumulus member 100.1.1.3
 
-   cumulus@rp03:$ net add msdp mesh-group cumulus member 10.100.100.101
-   cumulus@rp03:$ net add msdp mesh-group cumulus member 10.100.100.102
+   cumulus@rp03:$ net add msdp mesh-group cumulus member 100.1.1.1
+   cumulus@rp03:$ net add msdp mesh-group cumulus member 100.1.1.2
    ```
 
 4. Pick the local loopback address as the source of the MSDP control packets:

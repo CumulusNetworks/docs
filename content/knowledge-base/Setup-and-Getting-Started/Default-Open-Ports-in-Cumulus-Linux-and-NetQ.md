@@ -7,7 +7,7 @@ toc: 3
 
 ## Cumulus Linux Ports
 
-The following ports are opened when a switch running Cumulus Linux 3.2 or later boots up:
+When a switch running Cumulus Linux 3.2 or later boots up, it opens the following ports:
 
 | Internet Protocol | Port | Protocol |
 | ----------------- | ---- | -------- |
@@ -26,7 +26,7 @@ The following ports are opened when a switch running Cumulus Linux 3.2 or later
 
 *\*Has a dynamically assigned port.*
 
-The ports can be seen with the following command:
+You can see the ports with the following command:
 
     cumulus@switch:~$ sudo netstat -nlp --inet --inet6
 
@@ -69,7 +69,7 @@ The following ports must be open to use the NetQ 2.4 and later software:
 | 32708    | TCP          | API Gateway              |
 | 22       | TCP          | SSH                      |
 
-For cluster-based deployments, the following ports must also be opened for internal cluster communication:
+For cluster-based deployments, the following ports must also be open for internal cluster communication:
 
 | Port     | Protocol     | Access                          |
 | -------- | ------------ | ------------------------------- |

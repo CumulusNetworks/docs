@@ -7,11 +7,11 @@ toc: 4
 
 ## Issue
 
-The `/etc/network/interfaces` file gets really long and cumbersome. What if multiple ports have similar configurations? Is there a way automate this without having to use something like Ansible or Puppet, or without making a custom Python/bash script?
+The `/etc/network/interfaces` file gets very long and cumbersome. What if multiple ports have similar configurations? Is there a way automate this without having to use something like Ansible or Puppet, or without making a custom Python/bash script?
 
 ## Solution
 
-{{<exlink url="http://www.makotemplates.org/" text="Mako templates">}} are supported by `ifupdown2` on Cumulus Linux. Template engines are usually used for generating HTML content, but they work great for large network configurations. Read the {{<exlink url="http://docs.makotemplates.org/en/latest/" text="Mako documentation">}} for more information.
+`ifupdown2` supports {{<exlink url="http://www.makotemplates.org/" text="Mako templates">}} on Cumulus Linux. Template engines are usually used for generating HTML content, but they work great for large network configurations. Read the {{<exlink url="http://docs.makotemplates.org/en/latest/" text="Mako documentation">}} for more information.
 
 ## Examples
 
@@ -34,7 +34,7 @@ This requires `apt-get install python-ipaddr` if not already installed.
 
 ## Notes
 
-To correctly comment Mako code, make sure to comment out the code twice (using two hash marks — \#\#). Otherwise, you may see the following error when running `ifquery` on an interface:
+To correctly comment Mako code, make sure to comment out the code twice (using two hash marks — \#\#). Otherwise, you might see the following error when running `ifquery` on an interface:
 
     cumulus@switch:~$ ifquery swp1
     error: /etc/network/interfaces: failed to render template (Undefined). Continue without template rendering ...

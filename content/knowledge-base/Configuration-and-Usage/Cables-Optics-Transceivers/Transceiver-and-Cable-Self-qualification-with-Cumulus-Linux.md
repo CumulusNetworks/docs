@@ -5,13 +5,13 @@ weight: 331
 toc: 4
 ---
 
-Cumulus Networks provides this document as a suggested procedure for qualifying a transceiver module or cable that does not appear on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux Hardware Compatibility List">}} (HCL) as a recommended pluggable. Cumulus Networks will not actively prevent any non-recommended pluggable from functioning and does not restrict the use of self-qualified pluggables. However, Cumulus Networks recommends customers use the pluggables listed on the HCL. Customers who wish to use a non-recommended pluggable can follow the suggested procedure outlined in this document. For concerns about pluggables that are not listed, please {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="contact your Cumulus Networks">}} sales team.
+NVIDIA provides this document as a suggested procedure for qualifying a transceiver module or cable that does not appear on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux Hardware Compatibility List">}} (HCL) as a recommended pluggable. NVIDIA does not actively prevent any non-recommended pluggable from functioning and does not restrict the use of self-qualified pluggables. However, NVIDIA recommends customers use the pluggables listed on the HCL. Customers who wish to use a non-recommended pluggable can follow the suggested procedure outlined in this document. For concerns about pluggables that are not listed, {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="contact your NVIDIA">}} sales team.
 
 ## Example Connections
 
 This procedure is valid for qualifying all types of transceivers and cables in a device undergoing testing. Customers can choose the same types or a combination of different transceivers for this test.
 
-The following diagram illustrates an example where the top and bottom ports are connected with a cable as a loopback. The example includes cabling and configuration for the testing of both 40G QSFP and 10/1G SFP. Cumulus Networks recommends that different speed components be tested independently. The example includes both in order to simplify the presentation.
+The following diagram illustrates an example where the top and bottom ports connect with a cable as a loopback. The example includes cabling and configuration for the testing of both 40G QSFP and 10/1G SFP. NVIDIA recommends that you test different speed components independently. The example includes both to simplify the presentation.
 
 {{<img src="/images/knowledge-base/transceiver-cable-self-qual.png" alt="Loopback cable port connections" width="600px">}}
 
@@ -63,7 +63,7 @@ Modify the `/etc/network/interfaces` file with the following bridge configuratio
         bridge_ports swp45 swp44
         up ip link set l_4 up
 
-The following bridge configuration is expected after you reboot the switch being tested. Rebooting instead of reloading the configuration ensures that all optics are detected and properly configured when the system starts up.
+You should expect to see the following bridge configuration after you reboot the switch you are testing. Rebooting instead of reloading the configuration ensures that the system detects and properly configures all optics when the it starts up.
 
     cumulus@switch~$ sudo brctl show
     bridge name    bridge id                 STP enabled       interfaces
@@ -122,14 +122,14 @@ For generating `iperf` traffic, use options like the following (for example):
     TG2$ sudo iperf -c 101.0.1.1 -i 3 -t 600 -p 9000 –d
 
 Where:
-
+<!-- vale off -->
 - \-B is bound to an interface
-- \-p is TCP port number
-- \-c is iperf destination
-- \-i is print to screen interval
-- \-t is duration of the test in seconds
+- \-p is the TCP port number
+- \-c is the iperf destination
+- \-i is the print to screen interval
+- \-t is the duration of the test in seconds
 - \-d is bidirectional traffic
-
+<!-- vale on -->
 Confirm that `ping` and `iperf` traffic reach the destination and the
 bandwidth matches the expected rate (subject to the transceiver's
 supported speed and the server CPU). Connect two servers back-to-back
@@ -140,9 +140,9 @@ first to capture baseline server performance characteristics.
 Use the following Cumulus Linux command to check each transceiver's EEPROM and Digital Optical Monitoring (DOM) information:
 
     cumulus@switch~$ sudo ethtool –m swp<id>
-
+<!-- vale off -->
 ## Cumulus Linux-based Error Counters Check
-
+<!-- vale on -->
 The following commands indicate error and drop counters occurred during and after the test:
 
     cumulus@switch~$ sudo ethtool -S swp<id> | grep -i error
@@ -155,7 +155,7 @@ The following commands indicate error and drop counters occurred during and afte
 
 ## PASS/FAIL Criteria
 
-The following checklist and test plan constitutes successful results.
+The following checklist and test plan comprise successful results.
 
 <table>
 <colgroup>
@@ -176,7 +176,7 @@ The following checklist and test plan constitutes successful results.
 </tr>
 <tr class="odd">
 <td><pre><code>$ iperf TCP stream</code></pre></td>
-<td><p>Bidirectional traffic with Cumulus Linux snake test matches transfer rate of two traffic generators’ endpoints when connected back-to-back.</p></td>
+<td><p>Bidirectional traffic with Cumulus Linux snake test matches transfer rate of two traffic generators' endpoints when connected back-to-back.</p></td>
 <td> </td>
 </tr>
 <tr class="even">
@@ -203,7 +203,7 @@ $ sudo systemctl restart switchd.service</code></pre></td>
 <tr class="even">
 <td><p>Reboot the switch and repeat same tests and checkpoints again.</p></td>
 <td><p>All checks/tests iterations are successful.</p></td>
-<td><p>During some transceivers' qualification cycle, Cumulus Networks observed occasionally that marginal and disqualified transceivers exhibited failures with 10-25% failure rates across switch reboots.</p></td>
+<td><p>During the qualification cycle for some transceivers, NVIDIA observed that marginal and disqualified transceivers exhibited failures with 10-25% failure rates across switch reboots.</p></td>
 </tr>
 </tbody>
 </table>

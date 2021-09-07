@@ -45,7 +45,7 @@ The method described in the article applies ONLY to Windows Server 2008. This me
 
 1. Update PAM to support automatic creation of directories (optional).
 
-   This information is from {{<exlink url="https://wiki.debian.org/LDAP/PAM" text="the Debian wiki">}}. The alternative is to set the "homeDirectory" attribute for users in AD to "/home/cumulus", and all users map to the pre-defined user account.
+   This information is from {{<exlink url="https://wiki.debian.org/LDAP/PAM" text="the Debian wiki">}}. The alternative is to set the `homeDirectory` attribute for users in AD to */home/cumulus*, and all users map to the predefined user account.
 
    Create the following file `/usr/share/pam-configs/mkhomedir`:
 

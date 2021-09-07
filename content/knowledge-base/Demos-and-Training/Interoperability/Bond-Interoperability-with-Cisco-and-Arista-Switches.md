@@ -65,8 +65,8 @@ Here is the recommended way to configure a bond in Cumulus Linux:
         bond-xmit-hash-policy layer3+4
 
 - `bond-slaves` equates to the members of the bond. In this case, swp1 and swp2 are members of bond0; `bond-mode` 802.3ad is required for an LACP bond.
-- `bond-miimon 100` is the failure inspection frequency. The default value is 0, but Cumulus Networks recommends 100.
-- `bond-lacp-rate 1` means fast LACP, which is discussed in the Fast vs Slow LACP Rates section below; Cumulus Networks recommends using fast LACP.
+- `bond-miimon 100` is the failure inspection frequency. The default value is 0, but NVIDIA recommends 100.
+- `bond-lacp-rate 1` means fast LACP, which is discussed in the Fast vs Slow LACP Rates section below; NVIDIA recommends using fast LACP.
 - `bond-min-links` is followed by a integer indicating the number of links that need to be up for the bond to become active.
 - `bond-xmit-hash-policy` must be set to layer3+4 so it is evenly distributed.
 
@@ -135,7 +135,7 @@ The following output is a snippet of the information received:
     ------+-------------+-----------+-----------------------------------------------
     1      Po1(SU)         LACP      Gi0/19(P)   Gi0/20(P)
 
-Notice that the port channel is up on both ports and looks good! To see the LACPDU's speed on the Cisco side, run the following command:
+Notice that the port channel is up on both ports and looks good. To see the LACPDU's speed on the Cisco side, run the following command:
 
     show etherchannel detail
 

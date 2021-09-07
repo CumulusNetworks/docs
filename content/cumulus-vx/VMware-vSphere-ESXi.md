@@ -9,7 +9,9 @@ This section describes how to install and set up Cumulus VX in VMWare vSphere to
 
 {{% vx/intro %}}
 
+<!-- vale off -->
 These steps were tested with Cumulus VX 4.2, VMware vSphere (ESXi) 6.7.0, and VSphere web client (HTML5) version 6.7.0.30000.
+<!-- vale on -->
 
 ## Create and Configure the VMs
 
@@ -28,12 +30,12 @@ Follow these steps for each VM (leaf01, leaf02, and spine01):
 3. Select the Cumulus VX OVA image you downloaded, then click **Next**.
 4. In the **Virtual machine name** field, enter `leaf01`, then click **Next**.
 
-   {{< img src="/images/cumulus-vx/vsphere-add-name.png" width="400" >}}
+   {{<img src="/images/cumulus-vx/vsphere-add-name.png" width="400">}}
 
 5. Select a compute source (ESXi host), then click **Next**.
-6. The Cumulus VX image is preconfigured, so no more setup options are required. Click **Next** until you see the `Ready to Complete` dialog, then click **Finish**.
+6. The Cumulus VX image comes preconfigured, so there is no need for further setup. Click **Next** until you see the `Ready to Complete` dialog, then click **Finish**.
 
-   The Cumulus VX OVA image is imported and deployed as a VM. After the deployment process is complete, the VM appears in the list of VMs in the left pane.
+   You import and deploy the Cumulus VX OVA image as a VM. After the deployment process is complete, the VM appears in the list of VMs in the left pane.
 
    {{% notice note %}}
    The Cumulus VX OVA image defines the CPU, memory, and disk requirements. Cumulus VX requires at least 768MB of RAM and 6GB of disk space.
@@ -91,7 +93,7 @@ Create the network connections between leaf01, leaf02, and spine01.
 {{< /tabs >}}
 
       {{% notice note %}}
-Adapter 1 is a shared management interface. In the examples shown above, it is disabled for simplicity.
+Adapter 1 is a shared management interface. The examples above show it as disabled for simplicity.
 {{% /notice %}}
 
 3. Start the VMs and launch the Console for each VM.

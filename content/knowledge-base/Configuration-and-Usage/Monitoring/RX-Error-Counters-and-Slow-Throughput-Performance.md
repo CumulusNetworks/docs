@@ -7,19 +7,17 @@ toc: 4
 
 ## Issue
 
-There may be slow throughput performance in a switch and RX error
-counters are incrementing, as well as possibly TX error counters.  These
-error counters may be seen in the output of different commands:
+There might be slow throughput performance in a switch and RX error counters are incrementing, as well as possibly TX error counters. You might see these error counters in the output of different commands:
 
 - `cl-netstat`
 - `ip -s link show`
 - `ethtool -S`
 
-If you want to monitor the output of these commands to see the statistics live as they change, use the Linux `watch` command. For more information on using this command, please refer to the following {{<link url="Using-the-watch-Command" text="article">}}.
-
+If you want to monitor the output of these commands to see the statistics live as they change, use the Linux `watch` command. For more information on using this command, refer to the following {{<link url="Using-the-watch-Command" text="article">}}.
+<!-- vale off -->
 ### cl-netstat Shows RX\_ERR
-
-RX error counters can be seen in the output of `cl-netstat` as \"RX\_ERR\", as shown below.
+<!-- vale on -->
+You can see RX error counters in the output of `cl-netstat` as `RX_ERR`, as shown below.
 
     cumulus@switch$ cl-netstat
     Kernel Interface table
@@ -31,16 +29,14 @@ RX error counters can be seen in the output of `cl-netstat` as \"RX\_ERR\", as s
     swp2      9000 0   3023667770 10728822    978 0      9840616134      0      0      0 BMRU
     swp3      9000 0  24315580462 14877988   1307 0     80763548753      0      0      0 BMRU
     swp4      9000 0  13869960451 8452232    897 0       7477191326      0      0      0 BMRU
-
+<!-- vale off -->
 *\<Output is truncated\>*
-
-For additional information on how to use the `cl-netstat` command,
-please read [the user guide]({{<ref "/cumulus-linux-43/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool" >}}).
+<!-- vale on -->
+For additional information on how to use the `cl-netstat` command, read [the user guide]({{<ref "/cumulus-linux-43/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool" >}}).
 
 ### ip -s link show Shows RX errors
 
-RX error counters can be seen in the output of `ip -s link show`, as
-shown below.
+You can see RX error counters in the output of `ip -s link show`, as shown below.
 
     cumulus@switch$ ip -s link show swp5
     7: swp5: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9000 qdisc pfifo_fast state UP mode DEFAULT qlen 500 
@@ -52,7 +48,7 @@ shown below.
 
 ### ethtool -S Shows HwIfInErrors
 
-RX error counters can be seen in the output of `ethtool -S <interface>` as \"HwIfInErrors\", as shown below.
+You can see RX error counters in the output of `ethtool -S <interface>` as `HwIfInErrors`, as shown below.
 
     cumulus@switch$ ethtool -S swp1
     NIC statistics:
@@ -90,63 +86,29 @@ RX error counters can be seen in the output of `ethtool -S <interface>` as \"HwI
 
 ### Cause of the Errors
 
-These RX\_ERR or HwIfInErrors indicate some Ethernet data frames are
-being corrupted somewhere along the transmission line, typically due to
-some bad cable or transceiver. These errors may be detected as part of
-the cyclic redundancy check (CRC) algorithm in the Frame Check Sequences
-(FCS) calculation.
+These RX\_ERR or HwIfInErrors indicate some Ethernet data frames became corrupted somewhere along the transmission line, typically due to some bad cable or transceiver. The cyclic redundancy check (CRC) algorithm in the Frame Check Sequences (FCS) calculation might detect these errors.
 
-When the switch receives a frame, it runs its own checksum on the frame
-and compares the resulting CRC value to the value in the Ethernet frame.
-If they are not equal, it means some bits were corrupted and thus the
-switch counts these as RX errors. In half-duplex mode, some FCS errors
-may be normal. In full-duplex mode, FCS errors are not normal.
+When the switch receives a frame, it runs its own checksum on the frame and compares the resulting CRC value to the value in the Ethernet frame. If they are not equal, it means some bits got corrupted and thus the switch counts these as RX errors. In half-duplex mode, some FCS errors might be normal. In full-duplex mode, FCS errors are not normal.
 
 ### Propagation of the Errors
 
-When a platform detects an FCS error, what the platform does with the
-Ethernet frame depends on which switching mode is configured, one of
-either cut-through or store and forward. In cut-through mode, the frame
-with the FCS error may be propagated to the next switch. In store and
-forward mode, the frame with the FCS error will be discarded.
-
+When a platform detects an FCS error, what the platform does with the Ethernet frame depends on which switching mode you configured, one of either cut-through or store and forward. In cut-through mode, the frame with the FCS error might propagate to the next switch. In store and forward mode, the frame with the FCS error gets discarded.
+<!-- vale off -->
 #### Cut-through Switching Mode
-
-The cut-through mode of forwarding is used to minimize the latency
-(delay) through the switch by beginning the forwarding process before
-the entire packet has been received from the upstream sender. The data
-may begin to be transmitted while it is still being received on the
-inbound interface which minimizes the time the packet is held in the
-switch and thus minimizes delays in propagation. The disadvantage is
-that data frames with FCS errors may be propagated to the next hop
-because transmission out of the switch begins before the FCS error is
-detected. Since the next hop switch would have begun receiving this
-packet with no indication of a problem with the packet, it may also
-begin transmitting to its outbound interface before detecting the FCS
-error, thereby propagating the error even further.
+<!-- vale on -->
+You use the cut-through mode of forwarding to minimize the latency (delay) through the switch by beginning the forwarding process before receiving the entire packet from the upstream sender. The data might begin transmitting while the inbound interface is still receiving it, which minimizes the time the switch holds the packet, and thus minimizes delays in propagation. The disadvantage is that data frames with FCS errors might propagate to the next hop because transmission out of the switch begins before detecting the FCS error. Becaus the next hop switch would have begun receiving this packet with no indication of a problem with the packet, it might also begin transmitting to its outbound interface before detecting the FCS error, thereby propagating the error even further.
 
 #### Store and Forward Switching Mode
 
-As the name implies, store and forward waits until the entire packet has
-been received and validated before starting the transmit process on the
-outbound interface. This allows the switch to verify that the received
-packet is valid before sending it onward, but it increases latency by
-holding each packet longer in buffers in the switch.  It may also
-increase buffer utilization by having each packet utilize the resources
-for a longer period of time.  If store and forward is configured, the
-platform is able to detect FCS errors before beginning transmission, and
-thus can discard the frame and not propagate the errors to the next hop.
+As the name implies, store and forward waits until the switch receives and validates the entire packet before starting the transmit process on the outbound interface. This allows the switch to verify that the received packet is valid before sending it onward, but it increases latency by holding each packet longer in buffers in the switch. It might also increase buffer utilization by having each packet utilize the resources for a longer period of time.  If you configure store and forward, the platform is able to detect FCS errors before beginning transmission, and thus can discard the frame and not propagate the errors to the next hop.
 
 ## Resolution
 
 ### Replace the Bad Components
 
-The frame corruption occurs because of some bad component somewhere in
-the data path, such as cables or transceivers. Trace the RX errors
-upstream across all the hops in the end-to-end data path
+The frame corruption occurs because of some bad component somewhere in the data path, such as cables or transceivers. Trace the RX errors upstream across all the hops in the end-to-end data path
 
-You can use `lldpctl` to trace the ports upstream, hop-by-hop. Here is
-an example output:
+You can use `lldpctl` to trace the ports upstream, hop-by-hop. Here is an example output:
 
     cumulus@switch$ lldpctl 
     -------------------------------------------------------------------------------
@@ -177,34 +139,20 @@ an example output:
         PortDescr:    swp7
     -------------------------------------------------------------------------------
 
-Once you have identified the source point, try replacing the cable or
-transceiver to resolve the component introducing the data corruption.
+After you identify the source point, try replacing the cable or transceiver to resolve the component introducing the data corruption.
 
 ### Change the Switching Mode
 
-While cut-through forwarding decreases latency and buffer consumption,
-one of its disadvantages is that packets are not verified as valid
-before they begin transmission on the outbound interface.  Thus
-forwarding may begin out the output interface before the FCS error is
-detected.
+While cut-through forwarding decreases latency and buffer consumption, one of its disadvantages is that packets are not verified as valid before they begin transmission on the outbound interface. Thus forwarding might begin out of the output interface before detecting the FCS error.
 
-By changing from cut-through to store and forward mode of forwarding
-operation, each packet is verified as correct before the forwarding
-process begins, limiting the reach of any corrupt packets.  This
-verification comes at the cost of potential increased latency and buffer
-consumption.
+By changing from cut-through to store and forward mode of forwarding operation, Cumulus Linux verifies each packet as correct before the forwarding process begins, limiting the reach of any corrupt packets.  This verification comes at the cost of potential increased latency and buffer consumption.
 
-You will need to configure the switches in the data path, particularly:
+You need to configure these switches in the data path:
 
-- The switches upstream from the switch with the RX errors (that is,
-    the *previous* switches in the data path) to eliminate the RX
-    errors on the switch in question
-- The switch showing the RX errors to prevent it from propagating the
-    errors to the downstream switch (that is, the *next* switch in the
-    data path)
+- The switches upstream from the switch with the RX errors (that is, the *previous* switches in the data path) to eliminate the RX errors on the switch in question
+- The switch showing the RX errors to prevent it from propagating the errors to the downstream switch (that is, the *next* switch in the data path)
 
-To change the forwarding behavior from cut-through to store and forward
-on switches with Broadcom ASICs:
+To change the forwarding behavior from cut-through to store and forward on switches with Broadcom ASICs:
 
 1.  Run the following command:
 
@@ -221,11 +169,10 @@ on switches with Broadcom ASICs:
         cut_through_enable = false
 
 4.  To let the change in forwarding mode take effect, restart `switchd`.
-    Please note that restarting the `switchd` daemon is minimally
-    disruptive.
+    Note that restarting the `switchd` daemon is minimally disruptive.
 
         cumulus@switch$ sudo service switchd restart
 
 ## Considerations
 
-While these instructions are being provided on how to change the mode of operation for forwarding on a Cumulus Linux switch, the default setting of cut-though is the recommended value in almost every circumstance.  If you make this change on a switch for testing purposes, you should continue to monitor its performance.
+While these instructions discuss how to change the mode of operation for forwarding on a Cumulus Linux switch, the default setting of cut-though is the recommended value in almost every circumstance.  If you make this change on a switch for testing purposes, you should continue to monitor its performance.

@@ -6,7 +6,7 @@ toc: 4
 ---
 
 {{%notice info%}}
-
+<!-- vale off -->
 Cumulus Networks released patches that fix these vulnerabilities. For information on how to apply the patches, read {{<link url="Spectre-and-Meltdown-Vulnerability-Fixes" text="this article">}}.
 
 {{%/notice%}}
@@ -14,7 +14,7 @@ Cumulus Networks released patches that fix these vulnerabilities. For informatio
 {{%notice note%}}
 This issue was announced on the Cumulus Networks {{<exlink url="https://lists.cumulusnetworks.com/pipermail/cumulus-security-announce/2018-January/000011.html" text="security announcement mailing list">}}
 on January 4, 2018.
-
+<!-- vale on -->
 {{%/notice%}}
 
 CPU hardware implementations are vulnerable to side-channel attacks referred to as Meltdown and Spectre. These attacks are described in detail by CERT/CC's Vulnerability Note {{<exlink url="https://www.kb.cert.org/vuls/id/584653" text="VU#584653">}}, the United Kingdom National Cyber Security Centre's guidance on Meltdown and Spectre, Google Project Zero (link is external), and the Institute of Applied Information Processing and Communications (IAIK) at Graz University of Technology (TU Graz). The Linux kernel mitigations for this vulnerability are referred to as KAISER, and subsequently KPTI, which aim to improve separation of kernel and user memory pages.
@@ -27,4 +27,4 @@ The Common Vulnerabilities and Exposures formally associated with Meltdown and S
 
 To exploit these vulnerabilities in Cumulus Linux, an attacker needs to have local access to the system.
 
-Cumulus Networks is evaluating, porting, and testing patches to Cumulus Linux. Cumulus will release software updates as soon as they become available, and we will announce any updates on the {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-security-announce" text="cumulus-security-announce">}} mailing list. At this point, the performance impact of the fixes is unclear; the extent of the impact depends on the operating system, the nature of the fix and the workload of the system.
+NVIDIA is evaluating, porting, and testing patches to Cumulus Linux. Cumulus will release software updates as soon as they become available, and we will announce any updates on the {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-security-announce" text="cumulus-security-announce">}} mailing list. At this point, the performance impact of the fixes is unclear; the extent of the impact depends on the operating system, the nature of the fix and the workload of the system.

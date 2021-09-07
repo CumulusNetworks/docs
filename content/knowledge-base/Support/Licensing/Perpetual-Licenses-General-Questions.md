@@ -7,9 +7,9 @@ toc: 4
 
 ## How can I evaluate Cumulus Linux?
 
-If you don't have a network switch on our {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="hardware compatibility list">}} (HCL) available for testing, reserve a {{<exlink url="https://www.nvidia.com/en-us/networking/cumulus-linux-free-trial/" text="Cumulus in the Cloud">}} simulation and try out a test setup in your browser. 
+If you don't have a network switch on our {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="hardware compatibility list">}} (HCL) available for testing, reserve a {{<exlink url="https://www.nvidia.com/en-us/networking/cumulus-linux-free-trial/" text="Cumulus in the Cloud">}} simulation and try out a test setup in your browser.
 
-If you already have hardware from our HCL, fill out {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="this form">}} and a Cumulus Networks representative will contact you.
+If you already have hardware from our HCL, fill out {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="this form">}} and an NVIDIA representative will contact you.
 
 ## How Is Cumulus Linux licensed?
 
@@ -36,9 +36,9 @@ Contact our {{<exlink url="mailto:sales@cumulusnetworks.com" text="sales team">}
 
 ## How can I order a Cumulus Linux license?
 
-Cumulus Networks partners with approved resellers and distributors to facilitate your license procurement. Sign up on {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="our website">}} for assistance and information on our approved resellers.
+NVIDIA partners with approved resellers and distributors to facilitate your license procurement. Sign up on {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="our website">}} for assistance and information on our approved resellers.
 
-Cumulus Networks does not sell any hardware; our resellers often do. Check our {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="HCL">}} for the list of our supported hardware.
+NVIDIA does not sell any hardware; our resellers often do. Check our {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="HCL">}} for the list of our supported hardware.
 
 ## On how many switches can I run Cumulus Linux?
 
@@ -50,7 +50,7 @@ Cumulus Linux subscriptions are not tied to the specific hardware acquired at t
 
 - You are keeping within the number of licenses noted in your account entitlement inventory.
 - The replacement switch has the same maximum port speed, such as 25G.
-- The replacement switch has the same type of ASIC, such as Broadcom Tomahawk or Mellanox Spectrum.
+- The replacement switch has the same type of ASIC, such as Broadcom Tomahawk or NVIDIA Spectrum.
 - The license has the same term.
 
 Because Cumulus Linux subscriptions are not tied to hardware, you can stock extra switches that meet the above requirements as backups to quickly replace any failing hardware. For instance, if you purchase 2 Cumulus Linux, 10G, 1 year subscriptions, you can run Cumulus Linux on two switches concurrently. If one of the two switches you are using fails, you can install the Cumulus Linux license file that is on that failing hardware to one of your spare switches, so long as it meets the requirements specified above.
@@ -59,16 +59,16 @@ Because Cumulus Linux subscriptions are not tied to hardware, you can stock extr
 
 Upon purchase of a Cumulus Linux license you will be granted access to the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox Customer Portal">}}. After logging in to the portal, you can view your complete license history including active, pending, and expired Software Updates and Support contracts.
 
-## How can I get a copy of the Cumulus Networks EULA (end-user license agreement)?
+## How can I get a copy of the NVIDIA EULA (end-user license agreement)?
 
-Please click the following link to view {{<exlink url="https://docs.nvidia.com/cuda/archive/9.1/pdf/EULA.pdf" text="our EULA">}}.
+Click the following link to view {{<exlink url="https://docs.nvidia.com/cuda/archive/9.1/pdf/EULA.pdf" text="the EULA">}}.
 
 ## When does my Software Updates and Support contract start?
 
-- **New license with a Software Updates and Support contract:** Upon purchase, you have 45 days to activate your license and Software Updates and Support contract through the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox Customer Portal">}}. The date when you activate your contract is the start date. If not activated before 45 days, your contract will automatically activate on the 45th day after purchase.
+- **New license with a Software Updates and Support contract:** Upon purchase, you have 45 days to activate your license and Software Updates and Support contract through the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox Customer Portal">}}. The date when you activate your contract is the start date. If not activated before 45 days, your contract will automatically activate on the forty-fifth day after purchase.
 
     If you procured your license through Dell, your contract will start within 2 business days after you claim your license from our portal.
-- **Renewal:** Renewals start on the last active date of the contract, regardless of when the renewal is purchased. For example, your Cumulus Linux 10G 1 year support contract starts on 2/2/2016 and expires on 2/2/2017. Its renewal will start on 2/2/2017.
+- **Renewal:** Renewals start on the last active date of the contract, regardless of when the renewal is purchased. For example, your Cumulus Linux 10G 1 year support contract starts on February 2, 2016 and expires on February 2, 2017. Its renewal starts on February 2, 2017.
 - **Co-term:** Co-terminable contract start on the last active date of the contract, the same as renewals. For more information on co-terms, contact your account team.
 
 ## What happens when the Software Updates and Support contract expires?

@@ -5,7 +5,9 @@ weight: 255
 toc: 4
 ---
 
-Cumulus Networks developed ifupdown2" to improve network configuration for standard Debian and Ubuntu instances, and has been the standard interface configuration tool for Cumulus Linux since version 2.1. This article describes how to install `ifupdown2` on Ubuntu hosts.
+<!-- vale off -->
+Cumulus Networks developed `ifupdown2` to improve network configuration for standard Debian and Ubuntu instances, and has been the standard interface configuration tool for Cumulus Linux since version 2.1. This article describes how to install `ifupdown2` on Ubuntu hosts.
+<!-- vale on -->
 
 ## Verify Ubuntu Version
 

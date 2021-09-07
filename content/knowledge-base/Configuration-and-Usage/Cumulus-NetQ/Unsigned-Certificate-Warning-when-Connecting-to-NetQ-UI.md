@@ -6,9 +6,9 @@ toc: 4
 ---
 
 ## Issue
-
+<!-- vale off -->
 When I try to connect to the NetQ UI to configure my on-premises setup, I get a warning from my browser that the certificate is untrusted.
-
+<!-- vale on -->
 ## Environment
 
 - Cumulus NetQ 3.0.0 - 3.1.0
@@ -17,12 +17,12 @@ When I try to connect to the NetQ UI to configure my on-premises setup, I get a 
 
 The Cumulus NetQ UI ships with a self-signed certificate, which is why your browser issues a warning. You can avoid seeing this issue by installing your own signed certificate.
 
-In order to use a custom certificate, you need the following:
+To use a custom certificate, you need the following:
 
 - A valid X509 certificate.
 - A private key file for the certificate.
 - A DNS record name configured to access the NetQ UI. The FQDN should match the common name of the certificate. If you use a wild card in the common name &mdash; for example, if the common name of the certificate is _*.example.com_ &mdash; then the NetQ telemetry server should reside on a subdomain of that domain, accessible via a URL like _netq.example.com_.
-- Cumulus NetQ must be installed and running. You can verify this by running the `netq show opta-health` command.
+- You must install and run Cumulus NetQ. You can verify this by running the `netq show opta-health` command.
 
 To install a custom certificate:
 
@@ -34,7 +34,7 @@ To install a custom certificate:
            --key <name of your key file>.key \
            --cert <name of your cert file>.crt
 
-1. Verify that the secret is created:
+1. Verify that you created the secret:
 
        cumulus@netq-ts:~$ kubectl get secret
 

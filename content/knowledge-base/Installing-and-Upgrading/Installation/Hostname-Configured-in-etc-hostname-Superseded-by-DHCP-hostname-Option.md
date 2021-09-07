@@ -23,7 +23,7 @@ This condition can occur when a switch running Cumulus Linux obtains a DHCP leas
 
 If you try to reboot the switch in order to change to the new hostname configured in `/etc/hostname` while the previous DHCP lease is still active, the DHCP hostname option cached locally on the switch in `/var/lib/dhcp/dhclient.eth0.leases` and/or the hostname option received from an active DHCP server supersedes the name manually configured in `/etc/hostname`.
 
-Note that even if the DHCP server is not explicitly configured to offer a lease containing the hostname option, it may continue to send a previous version of the switch hostname configured in `/etc/hostname` because the *send-hostname* option is enabled by default in `/etc/dhcp/dhclient.conf` on Cumulus Linux. This causes the switch to send the locally-configured hostname in DHCP Discover and Request messages. The DHCP server may cache this value and continue to offer it back in subsequent DHCP offers to the switch as long as the original lease is active, which supersedes any new changes made to `/etc/hostname` on the switch.
+Note that even if the DHCP server is not explicitly configured to offer a lease containing the hostname option, it may continue to send a previous version of the switch hostname configured in `/etc/hostname` because the *send-hostname* option is enabled by default in `/etc/dhcp/dhclient.conf` on Cumulus Linux. This causes the switch to send the locally configured hostname in DHCP Discover and Request messages. The DHCP server may cache this value and continue to offer it back in subsequent DHCP offers to the switch as long as the original lease is active, which supersedes any new changes made to `/etc/hostname` on the switch.
 
 ## Resolution
 

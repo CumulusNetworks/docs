@@ -148,8 +148,8 @@ Some of the event IDs have changed. If you have TCA rules configured for digital
 | Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | Destination IP is loopback address | Cannot read packet as destination IP address is a loopback address (dip=>127.0.0.0/8) |
 | Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | Egress router interface is disabled | Packet destined to a different subnet cannot be routed because egress router interface is disabled |
 | Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | Ingress router interface is disabled | Packet destined to a different subnet cannot be routed because ingress router interface is disabled |
-| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | IPv4 destination IP is link local | Packet has IPv4 destination address that is a local link |
-| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | IPv4 destination IP is local network (destination=0.0.0.0/8) | Packet has IPv4 destination address that is a local network (destination=0.0.0.0/8) |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | IPv4 destination IP is link local (destination in 169.254.0.0/16) | Packet has IPv4 destination address that is a local link |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | IPv4 destination IP is local network (destination = 0.0.0.0/8) | Packet has IPv4 destination address that is a local network (destination=0.0.0.0/8) |
 | Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | IPv4 routing table (LPM) unicast miss | No route available in routing table for packet |
 | Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | IPv4 source IP is limited broadcast | Packet has broadcast source IP address |
 | Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | IPv6 destination in multicast scope FFx0:/16 | Packet received with multicast destination address in FFx0:/16 address range |

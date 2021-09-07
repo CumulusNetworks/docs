@@ -98,7 +98,7 @@ And switch2's configuration looks like this:
 
     {{%notice warning%}}
 
-This will tear down any other layer 3 sessions and affect network traffic!
+This tears down any other layer 3 sessions and affects network traffic.
 
 {{%/notice%}}
 
@@ -138,7 +138,7 @@ This will tear down any other layer 3 sessions and affect network traffic!
 
     {{%notice warning%}}
 
-This will tear down any other layer 3 sessions and affect network traffic!
+This tears down any other layer 3 sessions and affects network traffic.
 
 {{%/notice%}}
 

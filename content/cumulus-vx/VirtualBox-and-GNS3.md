@@ -10,7 +10,9 @@ This section describes how to install and set up Cumulus VX with VirtualBox and 
 
 {{% vx/intro %}}
 
+<!-- vale off -->
 These steps were tested with Cumulus VX 4.2, VirtualBox version 6.1.12, and GNS3 version 2.2.11 on macOS version 10.14.6.
+<!-- vale on -->
 
 ## Create and Configure the VMs
 
@@ -37,7 +39,7 @@ CumulusVX versions 4.3 and later requires 2 vCPUs.
 
 1. Open the GNS3 application and create a new project.
 2. From the **GNS3** menu, select **Preferences**.
-3. From the left pane of the Preferences dialog, select **VirtualBox**. Then, in the **Path to VBoxManage** field, enter the location where VBoxManage is installed. For example: `/usr/bin/VBoxManage`.
+3. From the left pane of the Preferences dialog, select **VirtualBox**. Then, in the **Path to VBoxManage** field, enter the location where you installed VBoxManage. For example: `/usr/bin/VBoxManage`.
 4. From the left pane, select **VirtualBox VMs**, then click **New**. The **VM list** shows the VirtualBox VMs you set up earlier.
 
    {{< img src="/images/cumulus-vx/gns3-new.png" width="300" >}}

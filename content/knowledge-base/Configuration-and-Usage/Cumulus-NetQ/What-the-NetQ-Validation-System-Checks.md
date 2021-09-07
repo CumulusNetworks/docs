@@ -17,7 +17,7 @@ With the NetQ CLI, `netq check` commands provide on-demand validation of the va
 
 The NetQ GUI provides the same capabilities through the Validation Request card.
 
-Both the CLI and GUI enable you to validate relevant operational characteristics for network protocols and services on devices being monitored by NetQ. The validations performed for each protocol and service include:
+Both the CLI and GUI enable you to validate relevant operational characteristics for network protocols and services on devices NetQ is monitoring. The validations performed for each protocol and service include:
 
 - **agents**: check for rotten nodes
 - **bgp**: session sanity (established, router ID, AFI/SAFI consistency)
@@ -47,4 +47,4 @@ In the NetQ GUI, open the Validation Request card, select the validation to run,
 
 {{<img src="/images/knowledge-base/netq_validation_request_card.png" width="600">}}
 
-The corresponding On-demand Validation Result card opens automatically and is populated on completion of the check. For selected protocols and services, you can click **Open \<Protocol or Service Name\> Service Card** to view more detail about the protocol or service health.
+The corresponding On-demand Validation Result card opens automatically and gets populated upon completion of the check. For selected protocols and services, you can click **Open \<Protocol or Service Name\> Service Card** to view more detail about the protocol or service health.

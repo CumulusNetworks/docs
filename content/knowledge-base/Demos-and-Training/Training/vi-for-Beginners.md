@@ -111,6 +111,7 @@ Like an text editor, `vi` allows you multiple ways to exit a file, with
 and without saving. Some of the files require the : character which
 allows you to see the commands you type on screen.
 
+<!-- vale off -->
 | Command             | Action                                                                |
 |---------------------|-----------------------------------------------------------------------|
 | :q                  | **Quit** a file (will prompt if a save is needed)                     |
@@ -120,3 +121,4 @@ allows you to see the commands you type on screen.
 | :w!                 | **Write** forcefully (overrides read-only files that you own)         |
 | :wq                 | **Write** file, then **quit**                                         |
 | zz                  | **Write** file, then **quit** (also called "putting the file to bed") |
+<!-- vale on -->

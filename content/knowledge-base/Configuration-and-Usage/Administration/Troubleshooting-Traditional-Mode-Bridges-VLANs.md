@@ -46,7 +46,7 @@ Example output:
     cumulus@switch:~$ mstpctl showbridge br-untagged
     cumulus@switch:~$
 
-Add `bridge-stp on` under the bridge stanza and `ifup` the bridge. Output now appears when `mstpctl showbridge` command is used:
+Add `bridge-stp on` under the bridge stanza and `ifup` the bridge. Output now appears when you run the `mstpctl showbridge` command:
 
     cumulus@switch:~$ mstpctl showbridge br-untagged
     bridge CIST info
@@ -74,10 +74,10 @@ Check if spanning tree has disabled ports by using the `mstpctl showport` comman
 
 {{<img src="/images/knowledge-base/tshoot-trad-mode-bridge.png">}}
 
-In the above example, swp17-19 are connected to the same switch and spanning-tree has disabled 2 of the connections as indicated with the "Disa" at the end of each line. This is correct behavior in this scenario. To get all 3 ports working in tandem at the same time, you could bond the ports together to form an LACP EtherChannel.
-
+In the above example, swp17-19 connect to the same switch. STP disabled two of the connections, as indicated with the "Disa" at the end of each line. This is correct behavior in this scenario. To get all 3 ports working in tandem at the same time, you could bond the ports together to form an LACP EtherChannel.
+<!-- vale off -->
 ## You Do not Remember which Port a Device Is Hooked Into
-
+<!-- vale on -->
 ### Symptoms
 
 - Bridge is working correctly,
@@ -95,13 +95,13 @@ Check the MAC address table by using the `brctl showmacs` command:
     swp19     44:38:39:00:25:ea yes        0.00
     cumulus@switch:~$
 
-Now you can see all the MAC addresses (machine specific) and which ports (front panel port) they are tied to. With the above output, only swp19 has a device hooked into it, as indicated by the *no* under *is local?*.
-
+Now you can see all the MAC addresses (machine specific) and their associated front panel ports. With the above output, only swp19 has a device hooked into it, as indicated by the *no* under *is local?*.
+<!-- vale off -->
 ## You Do not Remember which Port a Device Is Hooked up to, or which Bridge
-
+<!-- vale on -->
 ### Symptoms
 
-- Multiple bridges are configured,
+- You configured multiple bridges,
 - And you have the MAC address of the device.
 
 ### Solution

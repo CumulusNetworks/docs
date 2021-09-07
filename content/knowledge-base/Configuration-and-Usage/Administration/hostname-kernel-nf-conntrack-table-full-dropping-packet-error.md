@@ -7,7 +7,7 @@ toc: 4
 
 ## Issue
 
-By default, connection tracking is not used in Cumulus Linux. However, it is possible to run commands that would result in the kernel modules being loaded into the running kernel and connection tracking being activated (for example: `iptables -t nat -L`). There is a configurable limit to the number of connections that can be tracked. Once exhausted, this can result in packet drops and the following log messages appearing in `/var/log/syslog`:
+By default, Cumulus Linux does not use connection tracking. However, it is possible to run commands that would result in loading the kernel modules into the running kernel and activating connection tracking (for example: `iptables -t nat -L`). There is a configurable limit to the number of connections you can track. After you reach this limit, this can result in packet drops and the following log messages appearing in `/var/log/syslog`:
 
     2019-02-25T03:45:03.778502+00:00 hostname kernel: [20763743.334180] nf_conntrack: table full, dropping packet
     2019-02-25T03:45:03.785333+00:00 hostname kernel: [20763743.340564] nf_conntrack: table full, dropping packet
@@ -19,7 +19,7 @@ By default, connection tracking is not used in Cumulus Linux. However, it is pos
 
 ## Cause
 
-Connection tracking modules have been activated in the kernel and now all connections visible to the kernel are being tracked. The number of connections that can be tracked is a configurable limit using the `net.netfilter.nf_conntrack_max` sysctl.
+This issue occurs due to the activation of connection tracking modules in the kernel, which initiates tracking of all connections visible to the kernel. The number of connections to track is a configurable limit using the `net.netfilter.nf_conntrack_max` sysctl.
 
 To check if the kernel modules are active in the running kernel:
 
@@ -30,7 +30,7 @@ To check if the kernel modules are active in the running kernel:
 
 ## Resolution
 
-Adjusting the connection tracker limit may help if you are exhausting the limit. However, it is possible to prevent the kernel modules from loading by creating a modules file as follows:
+Adjusting the connection tracker limit can help if you are exhausting the limit. However, it is possible to prevent the kernel modules from loading by creating a modules file as follows:
 
     cumulus@switch:~$ sudo nano /etc/modprobe.d/conntrack.conf
     install nf_conntrack /bin/true
@@ -40,6 +40,6 @@ Adjusting the connection tracker limit may help if you are exhausting the limit.
 
 {{%notice note%}}
 
-This prevents any connection tracking features from working and may result in error messages from utilities that expect the modules to be present.
+This prevents any connection tracking features from working and can result in error messages from utilities that expect the modules to be present.
 
 {{%/notice%}}

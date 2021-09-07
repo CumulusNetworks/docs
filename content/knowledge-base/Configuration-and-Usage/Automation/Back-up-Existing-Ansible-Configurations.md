@@ -5,7 +5,7 @@ weight: 323
 toc: 4
 ---
 
-While some networks are built from the ground up with Ansible using modules or templates, it is possible to grab the networking configuration from a pre-configured network, and even push it back out to the switch.
+While you can build a network from the ground up with Ansible using modules or templates, it is possible to grab the networking configuration from a pre-configured network, and even push it back out to the switch.
 
 This type of model can be beneficial for:
 
@@ -96,19 +96,19 @@ The playbook copies the files to a directory called `save`:
     user@server ~/consulting/fetch $ ls
     fetch.yml  save
 
-The playbook puts the files into a directory based on the hostname. This particular example shows the playbook was run only on one switch named leaf1:
+The playbook puts the files into a directory based on the hostname. This particular example shows the playbook ran only on one switch named leaf1:
 
     user@server ~/consulting/fetch/save $ ls
     leaf1
 
-All the files are stored in the `leaf1` directory:
+The playbook stores all the files in the `leaf1` directory:
 
     user@server ~/consulting/fetch/save/leaf1 $ ls
     daemons  interfaces  ports.conf  frr.conf
 
 ## Example Copy
 
-On the server a file called `copy.yml` was added to the directory; the file has this content:
+On the server, Ansible added a file called `copy.yml` to the directory; the file has this content:
 
     ---
     - hosts: leaf1
@@ -130,7 +130,7 @@ On the server a file called `copy.yml` was added to the directory; the file has 
         - name: restart frr
           service: name=frr state=restart
 
-This file simply pushes back the files that were already saved, then restarts the corresponding services using the service and command module. Instead of issuing a `service=networking` command, the `ifreload -a` command was run directly.
+This file just pushes back the already saved files, then restarts the corresponding services using the service and command module. Instead of issuing a `service=networking` command, the `ifreload -a` command ran directly.
 
     user@server ~/consulting/fetch $ ansible-playbook copy.yml
 
@@ -166,11 +166,9 @@ This file simply pushes back the files that were already saved, then restarts th
 
     leaf1                      : ok=8    changed=4    unreachable=0    failed=0
 
-Now the files have been pushed back to the switch, which is operating on
-the previous snapshot.
+With the files pushed back to the switch, it now operates on the previous snapshot.
 
-The `save` directory could be based on the time of day rather than a
-generic folder called save by using:
+You could base the `save` directory on the time of day rather than a generic folder called `save` by using:
 
     {{ansible_date_time.time}}
 

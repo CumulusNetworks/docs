@@ -14,9 +14,9 @@ Use the `-n` option to set the interval in seconds between each running of the c
 Use the `--differences` option to highlight the changes between command runs.
 
 ## Examples
-
+<!-- vale off -->
 ### cl-rctl ip route
-
+<!-- vale on -->
 This command displays the Cumulus Linux routing table.
 
     watch -n0 --differences sudo cl-rctl ip route

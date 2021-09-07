@@ -155,6 +155,41 @@ The `Tests` section lists all supported tests and allows the user to run a singl
 
 ### Add Tests
 
-The NetCI environment supports uploading individual tests. The tests must follow the syntax outlined in the {{<exlink url="https://gitlab.com/cumulus-consulting/airwolf/-/snippets" text="snippets of the sample repo">}}.
+The NetCI environment supports uploading individual tests. The tests are defined in YAML format. Below are two examples:
+
+Example 1:
+
+```
+Verify Underlay BGP: # test title
+  version: 1.0.0 # optional version string, NetCI will auto-increment this when you make changes
+  group: Baseline - Network Configuration # Test group name
+  target: localhost # Node name where the steps should be run (localhost == oob-mgmt-server for Airwolf)
+  # optional description, supports markdown
+  description: Check all ipv4 unicast BGP peering within the SDN network
+  steps: # all commands are run as 'cumulus' user
+    - ansible -m shell -a \'echo \"cumulus@\$(hostname):mgmt-vrf:\~\$ net show bgp ipv4 unicast summary \"; net show bgp ipv4 unicast summary;echo \" \"\' network \| grep -v SUCCESS
+  summary_regex: '.*' # optional regex; Each test will have "results" and a "summary". "results" is the full stdout/stderr, "summary" is only the part of stdout/stderr matching this regex
+```
+
+Example 2:
+
+```
+Nessus Scan switch:
+  group: Operations and Security
+  target: spine01
+  description: Ensure fully configured switch can trigger and accept nessus scan.
+  steps:
+    - run_script
+  script:python: |
+    def deploy_ansible_config():
+        ...
+    def run_nessus_scan():
+        ...
+    def main():
+        deploy_ansible_config()
+        run_nessus_scan()
+    if __name__ == '__main__':
+        main()
+```
 
 {{<img src="/images/guides/nvidia-air/NetCI-AddTest.png" width="300px">}}

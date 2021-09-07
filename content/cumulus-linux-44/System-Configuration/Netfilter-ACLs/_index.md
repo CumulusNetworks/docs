@@ -798,7 +798,7 @@ You can match on VLAN IDs on layer 2 interfaces for ingress rules. The following
 [iptables]
 -A FORWARD -i swp31 -m mark --mark 0x66 -m dscp --dscp-class CS1 -j SETCLASS --class 2
 ```
-
+<!--
 ## Reflexive ACLs
 
 {{%notice note%}}
@@ -886,7 +886,7 @@ cumulus@switch:~$ net del vlan 20 acl ipv4 rflx_tcp_ingress inbound
 cumulus@switch:~$ net del vlan 20 acl ipv4 rflx_tcp_egress outbound
 cumulus@switch:~$ net commit
 ```
-
+-->
 ## Match on ECN Bits in the TCP IP Header
 
 [ECN](## "Explicit Congestion otification") allows end-to-end notification of network congestion without dropping packets. You can add ACL rules to match on the following ECN fields of the TCP IPv4 header:
@@ -895,6 +895,8 @@ cumulus@switch:~$ net commit
 - ECT (ECN Capable Transport)
 
 By default, ECN rules match a packet with the bit set. You can reverse the match by using an explanation point (!).
+
+### Match on the ECE Bit
 
 After an endpoint receives a packet with the [CE](## "Congestion Experienced") bit set by a router, it sets the ECE bit in the returning ACK packet to notify the other endpoint that it needs to slow down.
 
@@ -911,14 +913,14 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "Manual commands">}}
+{{< tab "iptables rule">}}
 
 Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules
 [iptables]
--A FORWARD -i swp1 -p tcp -m ecn ecn-tcp-ece -j ACCEPT 
+-A FORWARD -i swp1 -p tcp -m ecn --ecn-tcp-ece -j ACCEPT 
 ```
 
 Apply the rule:
@@ -929,6 +931,8 @@ cumulus@switch:~$ sudo cl-acltool -i
 
 {{< /tab >}}
 {{< /tabs >}}
+
+### Match on the CWR Bit
 
 The **CWR** bit notifies the other endpoint of the connection that it received and reacted to an ECE.
 
@@ -945,14 +949,14 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "Manual commands ">}}
+{{< tab "iptables rule ">}}
 
 Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules
 [iptables]
--A FORWARD -i swp1 -p tcp -m ecn ecn-tcp-cwr -j ACCEPT 
+-A FORWARD -i swp1 -p tcp -m ecn --ecn-tcp-cwr -j ACCEPT 
 ```
 
 Apply the rule:
@@ -963,6 +967,8 @@ cumulus@switch:~$ sudo cl-acltool -i
 
 {{< /tab >}}
 {{< /tabs >}}
+
+### Match on the ECT Bit
 
 The **ECT** codepoints negotiate if the connection is ECN capable by setting one of the two bits to 1. Routers also use the ECT bit to indicate that they are experiencing congestion by setting both the ECT codepoints to 1.
 
@@ -979,14 +985,14 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "Manual commands">}}
+{{< tab "iptables rule">}}
 
 Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules
 [iptables]
--A FORWARD -i swp1 -p tcp -m ecn ecn-ip-ect 1 -j ACCEPT
+-A FORWARD -i swp1 -p tcp -m ecn --ecn-ip-ect 1 -j ACCEPT
 ```
 
 Apply the rule:

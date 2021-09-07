@@ -106,10 +106,9 @@ Take the newly generated personal access token and copy it to the appropriate fi
 
 ### Add a Network
 
-The network defines the architecture that will be launched in the NVIDIA Air as a simulation and the configuration that will be deployed into the simulation.
+The network defines the architecture that will be launched in the NVIDIA Air as a simulation and the configuration that will be deployed into the simulation. All following required input is relative to the repository.
 
 {{<img src="/images/guides/nvidia-air/NetCI-AddNetwork.png" width="600px">}}
-
 
 * **Name**: Any user defined name for the network and CI environment to be tested
 * **Topology File Path**: This is the relative path within the repository linked in the previous section that points to a `.dot` format topology file that defines the network

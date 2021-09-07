@@ -889,10 +889,7 @@ cumulus@switch:~$ net commit
 -->
 ## Match on ECN Bits in the TCP IP Header
 
-[ECN](## "Explicit Congestion otification") allows end-to-end notification of network congestion without dropping packets. You can add ACL rules to match on the following ECN fields of the TCP IPv4 header:
-- ECE (ECN-Echo)
-- CWR (Congestion Window Received)
-- ECT (ECN Capable Transport)
+[ECN](## "Explicit Congestion Notification") allows end-to-end notification of network congestion without dropping packets. You can add ECN rules to match on the [ECE](## "ECN-Echo"), [CWR](## "Congestion Window Received"), and [ECT](## "ECN Capable Transport") flags in the TCP IPv4 header.
 
 By default, ECN rules match a packet with the bit set. You can reverse the match by using an explanation point (!).
 

@@ -73,7 +73,9 @@ The repository URL is the parent level URL directly accessible over the internet
 
 Examples of this include:
 
+```
 https://gitlab.com/cumulus-consulting/goldenturtle/cumulus_ansible_modules
+```
 
 Ensure that there is no `trailing slash` as it will cause an error from reading the repository.
 
@@ -109,5 +111,50 @@ The network defines the architecture that will be launched in the NVIDIA Air as 
 {{<img src="/images/guides/nvidia-air/NetCI-AddNetwork.png" width="600px">}}
 
 
+* **Name**: Any user defined name for the network and CI environment to be tested
+* **Topology File Path**: This is the relative path within the repository linked in the previous section that points to a `.dot` format topology file that defines the network
+* **Configuration Deployment Command**: This is the command that when executed from the root directory of the repository can successfully deploy and provision the entire network
 
+An example looks of the filled out form is below:
 
+{{<img src="/images/guides/nvidia-air/NetCI-AddNetworkPopulated.png" width="600px">}}
+
+### Enable Tests
+
+Tests for the NetCI environment are predefined and rely primarly on Netq as the backend validation tool.
+
+{{<img src="/images/guides/nvidia-air/NetCI-EnableTests.png" width="600px">}}
+
+### Summary
+
+The entire configuration is provided in a summarized form at the end.
+
+{{<img src="/images/guides/nvidia-air/NetCI-Summary.png" width="600px">}}
+
+## Networks
+
+Any defined networks are defined and tracked in the `Networks` tab.
+
+### Test Results
+
+All test results are presented in the `Networks` section by clicking and expanding the defined network.
+
+{{<img src="/images/guides/nvidia-air/NetCI-ManualTest.png" width="300px">}}
+
+Each stage can be clicked and expanded to provide greater details on each stage results.
+
+## Repositories
+
+All configured repositories are defined and tracked in the `Repositories` tab.
+
+## Tests
+
+The `Tests` section lists all supported tests and allows the user to run a single test at a time against the network infrastructure.
+
+{{<img src="/images/guides/nvidia-air/NetCI-Tests.png" width="600px">}}
+
+### Add Tests
+
+The NetCI environment supports uploading individual tests. The tests must follow the syntax outlined in the {{<exlink url="https://gitlab.com/cumulus-consulting/airwolf/-/snippets" text="snippets of the sample repo">}}.
+
+{{<img src="/images/guides/nvidia-air/NetCI-AddTest.png" width="300px">}}

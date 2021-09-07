@@ -549,7 +549,7 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "vtysh Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv set interface swp1 router pim address-family ipv4-unicast multicast-boundary-oil my-prefix-list

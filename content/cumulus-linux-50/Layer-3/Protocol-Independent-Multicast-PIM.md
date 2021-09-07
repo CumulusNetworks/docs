@@ -39,8 +39,6 @@ To configure PIM:
 
 These example commands configure leaf01, leaf02 and spine01 as shown in the topology example above.
 
-In Cumulus Linux 4.4, you cannot configure PIM with NVUE commands.
-
 {{< tabs "TabID44 ">}}
 {{< tab "NCLU Commands ">}}
 

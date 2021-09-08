@@ -5,11 +5,12 @@ weight: 50
 version: "1.0"
 ---
 
-NVIDIA Air supports the ability to integrate a Netwoirk Continuous Integration (NetCI) pipeline. It provides workflows to onboard production code and have it tested against a digital simulation of the network.
+NVIDIA Air supports the ability to integrate a Network Continuous Integration (NetCI) pipeline. It provides workflows to onboard production code and have it tested against a digital simulation of the network.
 
 ## Scope
 
-* Currently, only Gitlab is supported as the centralized code repository
+* This feature is currently in early Beta testing. To get involved in the Beta, please reach out to the CITC team at citc-support@nvidia.com.
+* Currently, only Gitlab is supported as the centralized code repository.
 
 ## Requirements
 
@@ -22,11 +23,11 @@ In order to use the NVIDIA Air Continuous Integration as a Service (CIaaS), the 
 
 The configurations and deployment mechanism must be stored in a centralized git repository. Common git repositories include {{<exlink url="https://github.com" text="Github">}} and {{<exlink url="https://gitlab.com" text="Gitlab">}}.
 
-Infrastructure as code can exist in many way. Below are two methods that can be used for implementing a CI solution.
+Infrastructure as code can exist in many ways. Below are two methods that can be used for implementing a CI solution.
 
 #### Simple IAC
 
-The simplest form of IAC involves backing up and restoring configurations using a centralized configuration repository. Use this publicly available {{<exlink url="https://gitlab.com/cumulus-consulting/features/simple-iac/" text="Simple IAC">}} repository that can be used to backup and restore files. Any changes committed to this repository would result in a pipeline run of the CI workflow.
+The simplest form of IAC involves backing up and restoring configurations using a centralized configuration repository. NVIDIA Netowrking provides a free publicly available repository that can be used to backup and restore files. Fork this {{<exlink url="https://gitlab.com/cumulus-consulting/features/simple-iac/" text="Simple IAC">}} repository, run it in your environment to back up your configurations, then use it to restore or apply and configuration changes. Any changes committed to the backed up configurations obtained through this repository would result in a pipeline run of the CI workflow.
 
 #### Advanced IAC
 
@@ -46,11 +47,11 @@ Using the blank canvas, a full topology can be generated using the GUI:
 
 #### Topology From Existing Network
 
-This workflow is outlined in more detail in the section labelled {{<link url="Custom-Topology/" text="Create a Custom Topology from the Production Network">}}.
+This workflow is outlined in more detail in the section labeled {{<link url="Custom-Topology/" text="Create a Custom Topology from the Production Network">}}.
 
 ## Access NetCI
 
-NVIDIA Air's contiuous integration functionality is available via the direct link for {{<exlink url="https://air.nvidia.com/netci/" text="NetCI">}}.
+NVIDIA Air's continuous integration functionality is available via the direct link for {{<exlink url="https://air.nvidia.com/netci/" text="NetCI">}}.
 
 Login by creating a new account.
 
@@ -77,8 +78,6 @@ Examples of this include:
 https://gitlab.com/cumulus-consulting/goldenturtle/cumulus_ansible_modules
 ```
 
-Ensure that there is no `trailing slash` as it will cause an error from reading the repository.
-
 After the contents are filled out, the output will look as follows:
 
 {{<img src="/images/guides/nvidia-air/NetCI-ConnectRepositoryPopulated.png" width="800px">}}
@@ -93,11 +92,11 @@ In Gitlab, after logging in, select `Preferences`:
 
 {{<img src="/images/guides/nvidia-air/NetCI-GitlabPreferences.png" width="200px">}}
 
-Then selected Access Tokens:
+Then select Access Tokens:
 
 {{<img src="/images/guides/nvidia-air/NetCI-GitlabAccessTokens.png" width="200px">}}
 
-Then create an Access Token by giving it a name and make sure to select `read_repository` and `api` as the selected scope.
+Then create an Access Token by giving it a name and make sure to select `api` as the selected scope.
 
 {{<img src="/images/guides/nvidia-air/NetCI-GitlabTokenExample.png" width="600px">}}
 
@@ -106,7 +105,7 @@ Take the newly generated personal access token and copy it to the appropriate fi
 
 ### Add a Network
 
-The network defines the architecture that will be launched in the NVIDIA Air as a simulation and the configuration that will be deployed into the simulation. All following required input is relative to the repository.
+The network defines the architecture that will be launched in NVIDIA Air as a simulation and the configuration that will be deployed into the simulation. All following required input is relative to the repository.
 
 {{<img src="/images/guides/nvidia-air/NetCI-AddNetwork.png" width="600px">}}
 
@@ -120,9 +119,11 @@ An example looks of the filled out form is below:
 
 ### Enable Tests
 
-Tests for the NetCI environment are predefined and rely primarly on Netq as the backend validation tool.
+Tests for the NetCI environment are predefined and primarily rely on NVIDIA Netq as the backend validation tool.
 
 {{<img src="/images/guides/nvidia-air/NetCI-EnableTests.png" width="600px">}}
+
+NetCI comes pre-configured with a standard set of tests. Users can define their own tests which is convered in the section {{<link url="Continuous-Integration/" text="Add Tests">}}.
 
 ### Summary
 

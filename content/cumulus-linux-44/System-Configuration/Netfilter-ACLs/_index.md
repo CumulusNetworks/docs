@@ -495,9 +495,8 @@ Even though the table above specifies the ip-acl-heavy profile supports no IPv6 
 
 ## Supported Rule Types
 
-The `iptables`/`ip6tables`/`ebtables` construct tries to layer the Linux implementation on top of the underlying hardware but they are not always directly compatible. Here are the supported rules for chains in `iptables`, `ip6tables` and `ebtables`.
+The `iptables`/`ip6tables`/`ebtables` construct tries to layer the Linux implementation on top of the underlying hardware but they are not always directly compatible. This section provides the supported rules for chains in `iptables`, `ip6tables` and `ebtables`.
 
-{{%notice note%}}
 To learn more about any of the options shown in the tables below, run `iptables -h [name of option]`. The same help syntax works for options for `ip6tables` and `ebtables`.
 
 ```
@@ -516,7 +515,6 @@ tricolorpolice option:
 Supported chains for the filter table:
 INPUT FORWARD OUTPUT
 ```
-{{%/notice%}}
 
 ### iptables and ip6tables Rule Support
 

@@ -693,6 +693,11 @@ iface br_default
 {{< /tabs >}}
 
 {{< /tab >}}
+
+{{< tab "Try It " >}}
+    {{< simulation name="Try It CL44 - Static VXLAN" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ## Verify the Configuration

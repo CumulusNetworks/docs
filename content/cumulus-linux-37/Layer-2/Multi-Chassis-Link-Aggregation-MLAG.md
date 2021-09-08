@@ -895,6 +895,10 @@ iface br0.100
     bridge-ports peerlink.100 bond1.100
 ```
 
+{{%notice note%}}
+In an MLAG and traditional bridge configuration, NVIDIA recommends that you set bridge learning to off on all VLANs over the peerlink except for the layer 3 peerlink subinterface.
+{{%/notice%}}
+
 For a deeper comparison of traditional versus VLAN-aware bridge modes, read this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode" >}}).
 
 ## Peer Link Interfaces and the protodown State

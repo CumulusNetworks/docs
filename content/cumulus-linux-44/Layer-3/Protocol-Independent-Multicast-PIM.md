@@ -1491,6 +1491,10 @@ ip pim rp 10.10.10.101
 {{< /tabs >}}
 
 {{< /tab >}}
+{{< tab "Try It " >}}
+    {{< simulation name="Try It CL44 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
+
+{{< /tab >}}
 {{< /tabs >}}
 <!-- vale on -->
 

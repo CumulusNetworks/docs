@@ -1,0 +1,11 @@
+{{ if .Parent }}
+  {{ $simName := .Get "name" }}
+  {{ $autoLoad := default "all" (.Get "showNodes") }}
+  <iframe name="loading-container-{{ $simName }}" class="terminal-iframe loading-container"></iframe>
+  <iframe name="console-container-{{ $simName }}" class="terminal-iframe terminal-hidden"></iframe>
+  <script type="text/javascript" id="sim-script-{{ $simName }}">
+    const sim = new Simulation('{{ $simName }}', '{{ $autoLoad }}');
+    sim.initHandler(document.getElementById('sim-script-{{ $simName }}').parentElement.previousElementSibling);
+  </script>
+{{ end }}
+

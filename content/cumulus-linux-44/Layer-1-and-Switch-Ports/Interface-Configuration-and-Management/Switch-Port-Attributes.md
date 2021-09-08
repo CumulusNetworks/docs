@@ -163,7 +163,7 @@ cumulus@switch:~$ ip link show dev swp1
 
 The switch forwards all packets that are within the MTU value set for the egress layer 3 interface. However, when packets are larger in size than the MTU value, the switch fragments the packets that do *not* have the [DF](## "Don’t Fragment") bit set and drops the packets that *do* have the [DF](## "Don’t Fragment") bit set.
 
-In Cumulus Linux 4.4.1 and later, run the following command to drop **all** IP packets instead of fragmenting packets:
+In Cumulus Linux 4.4.1 and later, run the following command to drop **all** IP packets that are larger in size than the MTU value for the egress layer 3 interface instead of fragmenting packets:
 
 {{< tabs "TabID166 ">}}
 {{< tab "NCLU Command ">}}

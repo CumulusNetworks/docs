@@ -3575,8 +3575,12 @@ cumulus@spine02:~$ cat /etc/nvue.d/startup.yaml
 {{</tab>}}
 {{</tabs>}}
 
-{{</tab>}}
-{{</tabs>}}
+{{< /tab >}}
+{{< tab "Try It " >}}
+    {{< simulation name="Try It CL44 - EVPN Multihoming" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02" >}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{%notice note%}}
 When you run the `nv set vrf RED evpn vni 4001` and the `nv set vrf BLUE evpn vni 4002` commands, NVUE creates the following in the `/etc/network/interfaces` file:

@@ -311,9 +311,9 @@ To configure a group to never follow the SPT, create the necessary prefix lists,
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set router policy prefix-list SPTrange rule 1 match 10.10.10.1/32 max-prefix-len 32
+cumulus@switch:~$ nv set router policy prefix-list SPTrange rule 1 match 235.0.0.0/8 max-prefix-len 32
 cumulus@switch:~$ nv set router policy prefix-list SPTrange rule 1 action permit
-cumulus@switch:~$ nv set router policy prefix-list SPTrange rule 2 match 10.0.0.0/16 max-prefix-len 32
+cumulus@switch:~$ nv set router policy prefix-list SPTrange rule 2 match 238.0.0.0/8 max-prefix-len 32
 cumulus@switch:~$ nv set router policy prefix-list SPTrange rule 2 action permit
 cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast spt-switchover prefix-list SPTrange
 cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast spt-switchover action infinity
@@ -971,14 +971,14 @@ NCLU does not provide commands for this feature.
 The following example command configures PIM to ignore the RP check for all upstream neighbors:
 
 ```
-cumulus@switch:~$ nv set interface swp50 router pim address-family ipv4-unicast allow-rp on
+cumulus@switch:~$ nv set interface swp50 router pim address-family ipv4-unicast allow-rp enable on
 cumulus@switch:~$ nv config apply
 ```
 
-The following example command configures PIM to only ignore the RP check for the upstream neighbors in the prefix list called ALLOW-RP:
+The following example command configures PIM to only ignore the RP check for the upstream neighbors in the prefix list called allowRP:
 
 ```
-cumulus@switch:~$ nv set interface swp50 router pim address-family ipv4-unicast allow-rp rp-list ALLOW-RP
+cumulus@switch:~$ nv set interface swp50 router pim address-family ipv4-unicast allow-rp rp-list allowRP
 cumulus@switch:~$ nv config apply
 ```
 
@@ -999,14 +999,14 @@ switch# exit
 cumulus@switch:~$
 ```
 
-The following example command configures PIM to only ignore the RP check for the upstream neighbors in the prefix list called ALLOW-RP:
+The following example command configures PIM to only ignore the RP check for the upstream neighbors in the prefix list called allowRP:
 
 ```
 cumulus@switch:~$ sudo vtysh
 ...
 switch# configure terminal
 switch(config)# interface swp50
-switch(config-if)# ip pim allow-rp rp-list ALLOW-RP
+switch(config-if)# ip pim allow-rp rp-list allowRP
 switch(config-if)# end
 switch# write memory
 switch# exit
@@ -1419,7 +1419,7 @@ cumulus@leaf01:~$ net add loopback lo ip address 10.10.10.1/32
 cumulus@leaf01:~$ net add interface swp1,swp49,swp51
 cumulus@leaf01:~$ net add bridge bridge ports swp1
 cumulus@leaf01:~$ net add vlan 10 ip address 10.1.10.1/24
-cumulus@leaf01:~$ net add bridge bridge pvid 10
+cumulus@leaf01:~$ net add bridge bridge vids 10
 cumulus@leaf01:~$ net add bgp autonomous-system 65101
 cumulus@leaf01:~$ net add bgp router-id 10.10.10.1
 cumulus@leaf01:~$ net add bgp neighbor swp51 remote-as external
@@ -1441,7 +1441,7 @@ cumulus@leaf02:~$ net add loopback lo ip address 10.10.10.2/32
 cumulus@leaf02:~$ net add interface swp2,swp49,swp51
 cumulus@leaf02:~$ net add bridge bridge ports swp2
 cumulus@leaf02:~$ net add vlan 20 ip address 10.2.10.1/24
-cumulus@leaf02:~$ net add bridge bridge pvid 20
+cumulus@leaf02:~$ net add bridge bridge vids 20
 cumulus@leaf02:~$ net add bgp autonomous-system 65102
 cumulus@leaf02:~$ net add bgp router-id 10.10.10.2
 cumulus@leaf02:~$ net add bgp neighbor swp51 remote-as external
@@ -1565,7 +1565,6 @@ iface swp51
 auto bridge
 iface bridge
     bridge-ports swp1
-    bridge-pvid 10
     bridge-vids 10
     bridge-vlan-aware yes
 auto mgmt
@@ -1601,7 +1600,6 @@ iface swp51
 auto bridge
 iface bridge
     bridge-ports swp2
-    bridge-pvid 20
     bridge-vids 20
     bridge-vlan-aware yes
 auto mgmt

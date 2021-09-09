@@ -31,7 +31,10 @@ The following illustration shows a basic PIM [ASM](## "Any-source Mulitcast") co
 ## Basic PIM Configuration
 
 To configure PIM:
-- Enable PIM on all interfaces that connect to a multicast source or receiver, and on the interface with the RP address. 
+- Enable PIM on all interfaces that connect to a multicast source or receiver, and on the interface with the RP address.
+
+  With NVUE, you must also run the `nv set router pim enable on` command to enable and start the PIM service. This is not required for NCLU and vtysh configuration.
+
 - Enable [IGMP](## "Internet Group Management Protocol") on all interfaces that attach to a host and all interfaces that attach to a multicast receiver. IGMP version 3 is the default. Only specify the version if you want to use IGMP version 2. For [SSM](## "Source Specific Multicast"), you must use IGMP version 3.
 - For [ASM](## "Any-source Mulitcast"), on each PIM enabled switch, specify the IP address of the RP for the multicast group. You can also configure PIM to send traffic from specific multicast groups to specific RPs.
 

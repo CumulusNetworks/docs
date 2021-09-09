@@ -578,6 +578,10 @@ iface br0.10
 ...
 ```
 
+{{%notice note%}}
+In an MLAG and traditional bridge configuration, NVIDIA recommends that you set bridge learning to off on all VLANs over the peerlink except for the layer 3 peerlink subinterface.
+{{%/notice%}}
+
 ### Configure a Backup UDP Port
 
 By default, Cumulus Linux uses UDP port 5342 with the backup IP address. To change the backup UDP port, edit the `/etc/network/interfaces` file to add `clagd-args --backupPort <port>` to the `auto peerlink.4094` stanza. For example:

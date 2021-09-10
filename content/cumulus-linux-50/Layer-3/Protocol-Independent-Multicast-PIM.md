@@ -1422,6 +1422,7 @@ cumulus@leaf01:~$ net add loopback lo ip address 10.10.10.1/32
 cumulus@leaf01:~$ net add interface swp1,swp49,swp51
 cumulus@leaf01:~$ net add bridge bridge ports swp1
 cumulus@leaf01:~$ net add vlan 10 ip address 10.1.10.1/24
+cumulus@leaf01:~$ net add interface swp1 bridge access 10 
 cumulus@leaf01:~$ net add bridge bridge vids 10
 cumulus@leaf01:~$ net add bgp autonomous-system 65101
 cumulus@leaf01:~$ net add bgp router-id 10.10.10.1
@@ -1444,6 +1445,7 @@ cumulus@leaf02:~$ net add loopback lo ip address 10.10.10.2/32
 cumulus@leaf02:~$ net add interface swp2,swp49,swp51
 cumulus@leaf02:~$ net add bridge bridge ports swp2
 cumulus@leaf02:~$ net add vlan 20 ip address 10.2.10.1/24
+cumulus@leaf02:~$ net add interface swp2 bridge access 20
 cumulus@leaf02:~$ net add bridge bridge vids 20
 cumulus@leaf02:~$ net add bgp autonomous-system 65102
 cumulus@leaf02:~$ net add bgp router-id 10.10.10.2

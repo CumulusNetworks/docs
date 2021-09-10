@@ -134,7 +134,7 @@ Output the results in JSON format using the `-J` flag for easy parsing by most c
 
     iperf3 -c <dst-ip> -J 
 
-Set the CPU affinity for the sender `(-A 2)` or the sender, receiver `(-A 2,3)`, where the cores are numbered starting at 0. This has the same effect as running `numactl -C 4 iperf3`.
+Set the CPU affinity for the sender `(-A 2)` or the sender, receiver `(-A 2,3)`, where the core numbering starts at 0. This has the same effect as running `numactl -C 4 iperf3`.
 
     iperf3 -c <dst-ip> -A 2,3 
 
@@ -152,7 +152,7 @@ It is not necessary to use `-A x,y` if you are using the `-P` flag. The `-P` fla
 
 #### Considerations
 
-As identified in the notes above, iPerf as a tool, in general, can give a vastly varied set of results depending on the settings. However, iPerf has some issues that make it difficult to use for performance testing on modern networks. Factors that matter in testing:
+As identified in the notes above, iPerf can give a vastly varied set of results depending on the settings. However, iPerf has some issues that make it difficult to use for performance testing on modern networks. Factors that matter in testing:
 
 - TCP window size, controlled using the -w flag
 - TCP vs UDP procotol, controlled using the -u modifier
@@ -167,7 +167,7 @@ By default iPerf uses TCP/UDP port 5201/5001 (depending on version) for ports du
 
 ### iPerf (version 2)
 
-When installing iPerf from the distribution\'s repository, it is most likely version 2. This is a rather old piece of software, and is not really maintained anymore.
+When installing iPerf from the distribution's repository, it is most likely version 2. This is a rather old version, and is no longer maintained.
 
 #### Multicast
 
@@ -176,19 +176,19 @@ One unique feature of iPerf2 to take a look at is the ability to send multicast 
     iperf -c 224.0.0.1 -u -b 512k  #source
     iperf -B 224.0.0.1 -su         #receiver
 
-This causes the server to listen on a group address, meaning it sends an IGMP report to the connected network device. On the client side, be sure to create a static route for the multicast range, with a next-hop toward the network devices under test (let\'s assume this is out from eth1).
+This causes the server to listen on a group address, meaning it sends an IGMP report to the connected network device. On the client side, be sure to create a static route for the multicast range, with a next hop toward the network devices under test (let\'s assume this is out from eth1).
 
     ip route add 224.0.0.0/4 dev eth1
 
 #### Considerations
 
-The results are inconsistent for UDP above 2Gbps. We recommend using `nuttcp` or iPerf3 for high speed UDP testing. However, it is perfectly fine for testing networks if the traffic rate is kept below 2Gbps. Above that, the statistics are completely unreliable. Therefore, we are not going to cover this as a viable performance test tool.
+The results are inconsistent for UDP above 2Gbps. NVIDIA recommends using `nuttcp` or iPerf3 for high speed UDP testing. However, it is acceptable for testing networks if you keep the traffic rate below 2Gbps. Above that, the statistics are completely unreliable. Therefore, this article is not going to cover this as a viable performance test tool.
 
 ### nuttcp
 
 This tool evolved over the past 30 years, and has several useful features. It supports rate limiting, multiple parallel streams and timer based execution. It also includes IPv6, IPv4 multicast and the ability to set parameters, such as TCP MSS or TOS/DSCP bits.
 
-Looking at the application\'s help file, it\'s easy to see that this tool has a lot of unique functionality. One thing to understand is there are client (transmitter/receiver) and server entities. The server settings can be controlled from the client command, for such things as TCP window size. Server processes automatically fork into the background and run until an error condition or are killed. The examples below demonstrate some of the basics.
+Looking at the application's help file, it is easy to see that this tool has a lot of unique functionality. One thing to understand is there are client (transmitter/receiver) and server entities. You can control the server settings from the client command, for such things as TCP window size. Server processes automatically fork into the background and run until an error condition occurs or something kills them. The examples below demonstrate some of the basics.
 
 #### Server Commands
 
@@ -218,7 +218,7 @@ Run a 10 second test, setting the transmitter/receiver window as well as the ser
 
     nuttcp -w32 -ws32 <server>
 
-The default traffic uses TCP, but it can also be run as UDP with 8192 byte datagrams (default):
+The default traffic uses TCP, but you can run it as UDP with 8192 byte datagrams (default):
 
     nuttcp -u <server>
 
@@ -248,7 +248,7 @@ Send 300 Mbps of UDP at an instantaneous rate in bursts of 20 packets for 5 seco
 
 This test might show a small amount of loss. If you increase the burst size at the same instantaneous rate, it also increases the stress to the network buffering. This progressively shows more loss as the transit device overflows its buffers.
 
-On 10GbE network with 9000 byte MTU, we can send 8972 byte UDP datagrams at an instantaneous rate of 300 Mbps, and bursting at 100 packets. This should be lossless:
+On 10GbE network with 9000 byte MTU, you can send 8972 byte UDP datagrams at an instantaneous rate of 300 Mbps, and bursting at 100 packets. This should be lossless:
 
     nuttcp -l8972 -T30 -u -w4m -Ri300m/100 -i1 <server>
 
@@ -256,7 +256,7 @@ Again, increasing the burst value and retesting eventually shows where buffer ex
 
 ##### 10G UDP Testing
 
-It definitely seems like `nuttcp` the best tool for high speed UDP testing. It took very little effort to create a full 10 Gbps traffic flow using UDP, but it requires jumbo MTU size packets (9K):
+`nuttcp` might the best tool for high speed UDP testing. It took very little effort to create a full 10 Gbps traffic flow using UDP, but it requires jumbo MTU size packets (9K):
 
     nuttcp -l8972 -T30 -u -w4m -Ru -i1 <server>
 
@@ -287,14 +287,14 @@ When performing bandwidth testing, it is valuable to cross reference the results
 
 ### Traffic Services on the Switch
 
-Throughput levels might change based on what services are applied to the traffic. Ideally, all traffic should be hardware switched through the switch ASIC. But certain services applied to the traffic require the traffic to be punted from the ASIC to the switch CPU. Since the switch CPU is slower at processing and forwarding packets, the throughput might suffer from these features. Some features that might cause software processing of packets are:
+Throughput levels might change based on what services you apply to the traffic. Ideally, all traffic should be hardware switched through the switch ASIC. But certain services applied to the traffic require punting the traffic from the ASIC to the switch CPU. Because the switch CPU is slower at processing and forwarding packets, the throughput might suffer from these features. Some features that might cause software processing of packets are:
 
 - Encapsulation methodologies
 - GRE
 - NAT
 - PBR
 
-It is also important to look at what general features are applied to the traffic:
+It is also important to look at what general features get applied to the traffic:
 
 - Layer 2 vs. layer 3 switching
 - Netfilter ACLs for traffic
@@ -305,9 +305,9 @@ You should examine these two outputs to verify the throughput:
 
 - cl-netstat
 - ethtool -S swp*X*
-
+<!-- vale off -->
 #### cl-netstat
-
+<!-- vale on -->
 This command is a wrapper for the interface counters provided in Linux. The output of `ip -s link show up` prints counters of all TX and RX packets. But these native Linux commands have no way to clear counters. The `cl-netstat` command adds this functionality, and can track individual connections under controlled environments. The example below shows the results of an iPerf3 test run between a client and server through the Cumulus Linux switch:
 
 ##### Client iPerf3 Results
@@ -323,9 +323,9 @@ This command is a wrapper for the interface counters provided in Linux. The outp
     [ ID] Interval           Transfer     Bandwidth       Retr
     [  4]   0.00-10.00  sec  9.32 GBytes  8.01 Gbits/sec    0             sender
     [  4]   0.00-10.00  sec  9.29 GBytes  7.98 Gbits/sec                  receiver
-
+<!-- vale off -->
 ##### cl-netstat Results
-
+<!-- vale on -->
     cumulus@switch:~$ sudo cl-netstat   
     Kernel Interface table
     Iface      MTU    Met    RX_OK    RX_ERR    RX_DRP    RX_OVR    TX_OK    TX_ERR    TX_DRP    TX_OVR  Flg
@@ -333,11 +333,11 @@ This command is a wrapper for the interface counters provided in Linux. The outp
     swp13     1500      0    62622         0         0         0  6904270         0         0         0  BMRU
     swp14     1500      0  6904271         0         0         0    62623         0         0         0  BMRU
 
-In the above example, we can see that traffic has successfully flowed between swp13 and swp14 without dropping any packets.
-
+In the above example, you can see that traffic has successfully flowed between swp13 and swp14 without dropping any packets.
+<!-- vale off -->
 #### ethtool -S
-
-Similarly, the output of `ethtool -S` can be used to cross reference the output obtained from `cl-netstat`.
+<!-- vale on -->
+Similarly, you can use the output of `ethtool -S` to cross reference the output obtained from `cl-netstat`.
 
     cumulus@switch:~$ sudo ethtool -S swp13
     NIC statistics:
@@ -387,9 +387,9 @@ Similarly, the output of `ethtool -S` can be used to cross reference the output 
          HwIfOutQDrops: 0
          HwIfOutNonQDrops: 0 
 
-The counters in `ethtool` are much larger than the output of `cl-netstat` because the `ethtool` counters cannot be cleared. The key output to examine is to verify whether errors in receive or transmit are increasing.
+The counters in `ethtool` are much larger than the output of `cl-netstat` because you cannot clear the `ethtool` counters. The key output to examine is to verify whether errors in receive or transmit are increasing.
 
-The directionality of the counters will matter as well. Drops on ingress via the HwIfIn prefix indicate that traffic rate on receive is too fast. This generally indicates a bursty traffic or choke points further along the traffic path. Drops on egress via the HwIfOut prefix indicate a many-to-one problem, where multiple RX interfaces are trying to send traffic out a single TX interface. This is not always a bad result, as it indicates full bandwidth utilization by the interface.
+The directionality of the counters matters as well. Drops on ingress via the HwIfIn prefix indicate that traffic rate on receive is too fast. This generally indicates a bursty traffic or choke points further along the traffic path. Drops on egress via the HwIfOut prefix indicate a many-to-one problem, where multiple RX interfaces are trying to send traffic out a single TX interface. This is not always a bad result, as it indicates full bandwidth utilization by the interface.
 
 ## RX Errors
 

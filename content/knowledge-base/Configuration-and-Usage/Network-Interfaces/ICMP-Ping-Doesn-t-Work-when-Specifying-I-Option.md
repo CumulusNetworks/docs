@@ -6,9 +6,9 @@ toc: 4
 ---
 
 ## Issue
-
+<!-- vale off -->
 When I run `ping -I` and specify an interface I don't get an echo-reply. However, when I run `ping` without the `-I` option everything works as expected. What is going on?
-
+<!-- vale on -->
 ## Specific Example for Issue
 
 This example does not work:
@@ -96,25 +96,9 @@ The image above has these IP addresses:
 
 ## Explanation
 
-What is happening here? **This behavior is actually as expected.** There
-is actually no need to have an SVI (switch VLAN interface) on the
-Cumulus Linux switch (in this particular example) for a host on the
-hypervisor to reach the "internet" (which was simulated here by another
-Cumulus Linux switch). The host has one default route (0.0.0.0/0) to
-2.2.2.5, so when you specify the -I (interface) option, Cumulus Linux
-forces traffic to ARP for the destination (50.50.50.1) on the swp2 link
-between the Cumulus Linux switch and the hypervisor. There is no route
-on that interface (for that subnet) which forces the ARP on that link.  
+What is happening here? **This behavior is actually as expected.** You do not need to have an SVI (switch VLAN interface) on the Cumulus Linux switch (in this particular example) for a host on the hypervisor to reach the "internet" (simulated here by another Cumulus Linux switch). The host has one default route (0.0.0.0/0) to 2.2.2.5, so when you specify the `-I` (interface) option, Cumulus Linux forces traffic to ARP for the destination (50.50.50.1) on the swp2 link between the Cumulus Linux switch and the hypervisor. There is no route on that interface (for that subnet) which forces the ARP on that link.  
 
-When you ping from the Internet router down to each SVI, both of them
-are reachable. If there were hosts on the hypervisor, both of them would
-be reachable as well since they would have a gateway configured on the
-Cumulus Linux switch. The -I option forces the ARP and there is no
-route. If the hypervisor utilized namespaces to split the route table
-(allowing for dual default routes), you could ping from the hypervisor
-using the -I option. There are also various ways not tested here to
-solve the dual routing issue, depending on what your hypervisor or host
-is doing in the situation (such as IP rules or containers).
+When you ping from the Internet router down to each SVI, both of them are reachable. If there are hosts on the hypervisor, both of them are reachable as well because they have a gateway configured on the Cumulus Linux switch. The `-I` option forces the ARP and there is no route. If the hypervisor utilized namespaces to split the route table (allowing for dual default routes), you could ping from the hypervisor using the `-I` option. There are also various ways not tested here to solve the dual routing issue, depending on what your hypervisor or host is doing in the situation (such as IP rules or containers).
 
 ## See Also
 

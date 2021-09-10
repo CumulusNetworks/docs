@@ -7,7 +7,7 @@ toc: 4
 
 ## Issue
 
-In the output of `ip link show`, the MLAG downlink bond interface is shown as DORMANT:
+In the output of `ip link show`, the MLAG downlink bond interface shows as DORMANT:
 
     cumulus@switch$ ip link show bond1
     222: bond1: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-v1 state UP mode DORMANT 
@@ -24,7 +24,7 @@ DORMANT is a Linux term used in two contexts:
 - Mode type
 - Link state
 
-For the purpose of the explanation below, consider the following output, noting that `state` is UP and `mode` is DORMANT:
+In the example below, consider the following output, noting that `state` is UP and `mode` is DORMANT:
 
     cumulus@switch$ ip link show bond1
     222: bond1: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-v1 state UP mode DORMANT 
@@ -32,14 +32,14 @@ For the purpose of the explanation below, consider the following output, noting 
 
 ### Mode Type
 
-The default *mode type* is called DEFAULT. When an interface is in DEFAULT mode, the interface state transitions to UP when the following condition is met:
+The default **mode type** has the name *DEFAULT*. When an interface is in DEFAULT mode, the interface state transitions to UP when it meets the following condition:
 
-- Link is detected
+- Link detected
 
-When an interface is in *DORMANT* mode, there are additional criteria for the interface state to transition to UP. In DORMANT mode, the interface state transitions to UP when both of the following conditions are met:
+When an interface is in *DORMANT* mode, there are additional criteria for the interface state to transition to UP. In DORMANT mode, the interface state transitions to UP when it meets both of the following conditions:
 
-- Link is detected
-- MLAG has finished setting up everything for the bond
+- Link detected
+- MLAG finishes setting up everything for the bond
 
 ### Link State
 
@@ -47,7 +47,7 @@ In the context of *link state*, DORMANT indicates the interface is not in a con
 
 ## Resolution
 
-It is expected to see `mode DORMANT` in the output of `ip link show` for MLAG bond downlinks. For traffic to be forwarded on those interfaces, ensure that the bond link state is `state UP`.
+You should expect to see `mode DORMANT` in the output of `ip link show` for MLAG bond downlinks. To forward traffic on those interfaces, ensure that the bond link state is `state UP`.
 
 ### Example with Link State UP and Mode Type DORMANT
 
@@ -79,7 +79,7 @@ Here is sample output of an MLAG peerlink (bond0) where everything is working 
 
 ### Example with Link State DORMANT and Mode Type DORMANT
 
-Here is sample output of a bond (bond2) where swp5 is a member of bond2. Notice that this interface is in DORMANT state and also DORMANT mode, because the bond is not yet functional.  It will not pass traffic because the bond is in DORMANT state.
+Here is sample output of a bond (bond2) where swp5 is a member of bond2. Notice that this interface is in DORMANT state and also DORMANT mode, because the bond is not yet functional.  It does not pass traffic because the bond is in DORMANT state.
 
     cumulus@switch$ ip link show bond2
     281: bond2: <NO-CARRIER,BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue state DORMANT mode DORMANT 

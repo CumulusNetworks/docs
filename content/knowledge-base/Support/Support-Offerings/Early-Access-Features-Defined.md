@@ -5,11 +5,11 @@ weight: 709
 toc: 4
 ---
 
-Cumulus Linux is Linux; as an operating system, it enables a vast number of applications. A set of core networking functions is integrated into the main Cumulus Linux distribution or validated as add-on applications. In addition, NVIDIA provides a set of early access features with the goal to ensure faster feature velocity, solve customer-specific challenges and collect feedback.  
+Cumulus Linux is Linux; as an operating system, it enables a vast number of applications. A set of core networking functions integrates with the main Cumulus Linux distribution or validated as add-on applications. In addition, NVIDIA provides a set of early access features with the goal to ensure faster feature velocity, solve customer-specific challenges and collect feedback.  
   
-Early access features are provided on an "as is" basis. The early access packages are intended for validation only and are not supported in a production environment. Customers are encouraged to work closely with their sales engineer and our product and development teams assessing the feature. In general, early access features are located in the {{<link url="Cumulus-Networks-Repositories-Organization-and-Support-Levels" text="early-access repository">}}, although this might not always be the case. If in doubt, refer to the Cumulus Linux [release notes]({{<ref "/cumulus-linux-43/Whats-New/rn" >}}) for the status of a feature.
+NVIDIA provides early access features on an "as is" basis. The intent for early access packages is for validation only; NVIDIA does not support them in a production environment. NVIDIA encourage customers to work closely with their sales engineer and the NVIDIA product and development teams while assessing the feature. NVIDIA publishes early access features in the {{<link url="Cumulus-Networks-Repositories-Organization-and-Support-Levels" text="early-access repository">}}, although this might not always be the case. If in doubt, refer to the Cumulus Linux [release notes]({{<ref "/cumulus-linux-43/Whats-New/rn" >}}) for the status of a feature.
 
-You should make sure you fully update your switch to the version of Cumulus Linux that contains the early access package you want to install; NVIDIA only tests early access features against the version in which an early access feature is released.  
+You should make sure you fully update your switch to the version of Cumulus Linux that contains the early access package you want to install; NVIDIA only tests early access features against the version in which it releases an early access feature.  
   
 NVIDIA intends to incorporate early access features into the main Cumulus Linux distribution. NVIDIA reserves the right to re-prioritize or withdraw an early access feature wherever appropriate.
 

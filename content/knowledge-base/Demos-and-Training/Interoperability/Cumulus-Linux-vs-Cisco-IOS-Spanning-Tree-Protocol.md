@@ -53,7 +53,7 @@ Global configuration command</td>
 Configured under the bridge</td>
 <td><pre><code>spanning-tree transmit hold-count value</code></pre>
 <p>Global configuration command</p></td>
-<td>Sets the bridge/VLAN <em>transmit hold count</em> to <code>&lt;tx_hold_count&gt;</code>. The default is 6 for both Operating Systems. Cisco describes this as "the number of BPDUs that can be sent before pausing for 1 second."</td>
+<!-- vale off --><td>Sets the bridge/VLAN <em>transmit hold count</em> to <code>&lt;tx_hold_count&gt;</code>. The default is 6 for both Operating Systems. Cisco describes this as "the number of BPDUs that can be sent before pausing for 1 second."</td><!-- vale on -->
 </tr>
 <tr>
 <td><pre><code>net add bridge stp forcevers rstp</code></pre>
@@ -81,7 +81,7 @@ Global configuration command</td>
 Configured under an interface stanza</td>
 <td><pre><code>spanning-tree vlan vlan-id cost cost</code></pre>
 <p>-interface configuration command</p></td>
-<td>Configure the cost for a bridge/VLAN. The range is 1 to 200000000. For Cisco the cost is derived from the media speed of the interface. On Cumulus Linux the default is 0.</td>
+<td>Configure the cost for a bridge/VLAN. The range is 1 to 200000000. Cisco derives the cost from the media speed of the interface. On Cumulus Linux the default is 0.</td>
 </tr>
 <tr>
 <td><pre><code>net add interface swp1 stp portadminedge yes</code></pre>
@@ -103,7 +103,7 @@ Configured under interface</td>
 <p>Configured under the interface</p></td>
 <td><pre><code>spanning-tree link-type { point-to-point | shared }</code></pre>
 <p>-interface configuration command</p></td>
-<td>Enables/disables the point-to-point detection mode of the port &lt;port&gt; in bridge &lt;bridge&gt;. The default is auto on Cumulus Linux. On Cisco the link-type is determined by the duplex settings (full is p2p and half is shared).</td>
+<td>Enables/disables the point-to-point detection mode of the port &lt;port&gt; in bridge &lt;bridge&gt;. The default is <em>auto</em> on Cumulus Linux. Cisco determines the link-type by the duplex settings (p2p for full and shared for half).</td>
 </tr>
 <tr>
 <td><pre><code>net add interface swp4 stp portrestrrole yes</code></pre>

@@ -799,7 +799,7 @@ Cumulus Linux provides the following PIM timers:
 | Timer | Description |
 |------ | ----------- |
 | `join-prune-interval` | The interval in seconds at which a PIM router sends join/prune messages to its upstream neighbors for a state update. You can specify a value between 60 and 600. The default setting is 60 seconds. With NCLU, you can set the `join-prune-interval` globally or for a specific VRF.|
-| `keep-alive-timer` | The timeout value for the S,G stream in seconds. You can specify a value between 31 and 60000. The default setting is 210 seconds.With NCLU and vtysh, you can set the `keep-alive` timer globally or for a specific VRF. |
+| `keep-alive-timer` | The timeout value for the S,G stream in seconds. You can specify a value between 31 and 60000. The default setting is 210 seconds. With NCLU and vtysh, you can set the `keep-alive` timer globally or for a specific VRF. |
 | `register-suppress-time` | The number of seconds during which to stop sending register messages to the RP. You can specify a value between 5 and 60000. The default setting is 60 seconds. With NCLU, you can set the `register-suppress-time` timer globally or for a specific VRF. |
 
 The following example commands set the `join-prune-interval` to 100 seconds, the `keep-alive-timer` to 10000 seconds, and the `register-suppress-time` to 20000 seconds:

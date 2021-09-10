@@ -22,14 +22,14 @@ Before you start the install, verify the version of Ubuntu installed on the inst
 Follow the appropriate instructions below for your installed version of Ubuntu.
 
 ## Installing ifupdown2 on an Ubuntu Host
-
+<!-- vale off -->
 ### Ubuntu 16.04 Xenial
+<!-- vale on -->
+The default package list for Ubuntu 16.04 includes`ifupdown2`. The package is available here: {{<exlink url="http://packages.ubuntu.com/xenial/ifupdown2" text="ifupdown2">}}.
 
-`ifupdown2` is included in the default package list for Ubuntu 16.04. The package is available here: {{<exlink url="http://packages.ubuntu.com/xenial/ifupdown2" text="ifupdown2">}}.
+1. Open `/etc/apt/sources.list` in an editor.
 
-1.  Open `/etc/apt/sources.list` in an editor.
-
-2.  Ensure the following line is uncommented, and save the file:
+2. Uncomment the following line, and save the file:
 
         deb http://us.archive.ubuntu.com/ubuntu/ xenial universe
 
@@ -54,10 +54,10 @@ Follow the appropriate instructions below for your installed version of Ubuntu.
         
         [Install]
         WantedBy=multi-user.target
-
+<!-- vale off -->
 ### Ubuntu 14.04 Trusty
-
-`ifupdown2` is not included in the default package list for Ubuntu 14.04. However, as it is included in Ubuntu 16.04, this restriction can be worked around.
+<!-- vale on -->
+The default package list for Ubuntu 14.04 does **not** include `ifupdown2`. However, as Ubuntu 16.04 includes it, you can work around this restriction by upgrading.
 
 {{%notice tip%}}
 
@@ -65,13 +65,13 @@ An {{<exlink url="https://gist.github.com/ericpulvino/5f7eabb7058e3076a7b5f2e357
 
 {{%/notice%}}
 
-1.  Enter the *root* account. All of the remaining commands in these instructions assume use of the root account.
+1.  Enter the *root* account. The remaining commands in these instructions assume use of the root account.
 
 2.  Add the Ubuntu Xenial sources to your Ubuntu Trusty installation:
 
         root@host# echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial universe" > /etc/apt/sources.list.d/xenial.list
 
-3.  Update the Ubuntu package cache. You may see warnings in the output, which you can ignore:
+3.  Update the Ubuntu package cache. You might see warnings in the output, which you can ignore:
 
         root@host# apt-get update
         <snip>
@@ -86,23 +86,22 @@ An {{<exlink url="https://gist.github.com/ericpulvino/5f7eabb7058e3076a7b5f2e357
         W: Unknown Multi-Arch type 'no' for package 'libkf5akonadisearch-bin'
         W: You may want to run apt-get update to correct these problems
 
-4.  **Important**: After the initial configuration, the repositories have equal preference for installing packages, resulting in the newest (Xenial) packages being installed. As the goal of this article is to install `ifupdown2` only, this step ensures that Trusty packages will be installed first.
+4.  **Important**: After the initial configuration, the repositories have equal preference for installing packages, resulting in the installation of the newest (Xenial) packages. As the goal of this article is to install `ifupdown2` only, this step ensures that you install the Trusty packages first.
 
-    Before continuing, you must either raise the priority for the Trusty repository  or lower the priority of the Xenial repository. The example steps below show how to lower the priority of the Xenial repository, ensuring the Trusty packages will be installed first, and Xenial packages will only be installed if no Trusty package exists:
+    Before continuing, you must either raise the priority for the Trusty repository  or lower the priority of the Xenial repository. The example steps below show how to lower the priority of the Xenial repository, ensuring you install the Trusty packages first, and Xenial packages are only installed if no Trusty package exists:
 
-    1.  Create a file called `/etc/apt/preferences.d/xenial` and add
-        the following text to the file, then save the file:
+    1.  Create a file called `/etc/apt/preferences.d/xenial` and add the following text to the file, then save the file:
 
             Explanation: give xenial a low priority number
             Package: *
             Pin: release a=xenial
             Pin-Priority: 100
 
-        Alternatively run this command to perform the same task:
+        Or, run this command to perform the same task:
 
             root@host# echo -e "Explanation: give xenial a low priority number\nPackage: *\nPin: release a=xenial\nPin-Priority: 100\n" > /etc/apt/preferences.d/xenial
 
-    2.  Verify that Xenial packages won't override all other packages. The example below uses the Ansible package for verification, as different versions are available on Trusty (Ansible 1.5.4), and Xenial (Ansible 1.9.4):
+    2.  Verify that Xenial packages do not override all other packages. The example below uses the Ansible package for verification, as different versions are available on Trusty (Ansible 1.5.4), and Xenial (Ansible 1.9.4):
 
             root@host# apt-cache policy ansible
             ansible:
@@ -116,7 +115,7 @@ An {{<exlink url="https://gist.github.com/ericpulvino/5f7eabb7058e3076a7b5f2e357
                  1.5.4+dfsg-1 0
                     500 http://us.archive.ubuntu.com/ubuntu/ trusty/universe amd64 Packages
 
-        The `Candidate` above is listed as 1.5.4, and the Xenial priority has been lowered from 500 to 100, which means that Xenial packages will not override Trusty repository packages.
+        The `Candidate` above is *1.5.4*, and you lowered the Xenial priority from *500* to *100*, which means that Xenial packages do not override Trusty repository packages.
 
 5.  Install the `ifupdown2` package dependencies:
 
@@ -162,9 +161,9 @@ An {{<exlink url="https://gist.github.com/ericpulvino/5f7eabb7058e3076a7b5f2e357
 
 9.  Examine the "Depends" and "Conflicts" lines from the installed `ifupdown2` package.
 
-    <pre>root@host# grep -A 34 "Package: ifupdown2" /var/lib/dpkg/status<br />Package: ifupdown2<br />Status: install ok installed<br />Priority: optional<br />Section: admin<br />Installed-Size: 595<br />Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com><br />Architecture: all<br />Version: 1.0~git20151029-1<br />Replaces: ifupdown<br />Provides: ifupdown<br /><span style="color:red;">Depends: python:any (>= 2.7.5-5~), init-system-helpers (>= 1.18~), python-argcomplete, python-ipaddr</span><br />Suggests: python-gvgen, python-mako<br /><span style="color:red;">Conflicts: ifupdown</span><br />Conffiles:<br />/etc/default/networking/networking.default 76a6935f125a8db5cbcddee1d422fc81<br />/etc/init.d/networking 703fab9e50c7c539efc6e1ce6b9c7633<br />/etc/network/ifupdown2/addons.conf c39be66aa58f59b4343c9dc6541043fe<br />/etc/network/ifupdown2/ifupdown2.conf 85fd2d75c77c6b68438a16888ae08510<br />Description: Network Interface Management tool similar to ifupdown<br /> ifupdown2 is ifupdown re-written in Python. It replaces ifupdown and provides<br /> the same user interface as ifupdown for network interface configuration.<br /> Like ifupdown, ifupdown2 is a high level tool to configure (or, respectively<br /> deconfigure) network interfaces based on interface definitions in<br /> /etc/network/interfaces. It is capable of detecting network interface<br /> dependencies and comes with several new features which are available as<br /> new command options to ifup/ifdown/ifquery commands. It also comes with a new<br /> command ifreload to reload interface configuration with minimum<br /> disruption. Most commands are also capable of input and output in JSON format.<br /> It is backward compatible with ifupdown /etc/network/interfaces format and<br /> supports newer simplified format. It also supports interface templates with<br /> python-mako for large scale interface deployments. See<br /> /usr/share/doc/ifupdown2/README.rst for details about ifupdown2. Examples<br /> are available under /usr/share/doc/ifupdown2/examples.<br /> Original-Maintainer: Roopa Prabhu <roopa@cumulusnetworks.com><br /> Homepage: https://github.com/CumulusNetworks/ifupdown2</pre>
+    <pre>root@host# grep -A 34 "Package: ifupdown2" /var/lib/dpkg/status<br />Package: ifupdown2<br />Status: install ok installed<br />Priority: optional<br />Section: admin<br />Installed-Size: 595<br />Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com><br />Architecture: all<br />Version: 1.0~git20151029-1<br />Replaces: ifupdown<br />Provides: ifupdown<br /><span style="color:red;">Depends: python:any (>= 2.7.5-5~), init-system-helpers (>= 1.18~), python-argcomplete, python-ipaddr</span><br />Suggests: python-gvgen, python-mako<br /><span style="color:red;">Conflicts: ifupdown</span><br />Conffiles:<br />/etc/default/networking/networking.default 76a6935f125a8db5cbcddee1d422fc81<br />/etc/init.d/networking 703fab9e50c7c539efc6e1ce6b9c7633<br />/etc/network/ifupdown2/addons.conf c39be66aa58f59b4343c9dc6541043fe<br />/etc/network/ifupdown2/ifupdown2.conf 85fd2d75c77c6b68438a16888ae08510<br />Description: Network Interface Management tool similar to ifupdown<br /> ifupdown2 is ifupdown re-written in Python. It replaces ifupdown and provides<br /> the same user interface as ifupdown for network interface configuration.<br /> Like ifupdown, ifupdown2 is a high level tool to configure (or, respectively<br /> deconfigure) network interfaces based on interface definitions in<br /> /etc/network/interfaces. It is capable of detecting network interface<br /> dependencies and comes with several new features which are available as<br /> new command options to ifup/ifdown/ifquery commands. It also comes with a new<br /> command ifreload to reload interface configuration with minimum<br /> disruption. Most commands are also capable of input and output in JSON format.<br /> It is backward compatible with ifupdown /etc/network/interfaces format and<br /> supports newer simplified format. It also supports interface templates with<br /> python-mako for large scale interface deployments. See<br /> /usr/share/doc/ifupdown2/README.rst for details about ifupdown2. Examples<br /> are available under /usr/share/doc/ifupdown2/examples.<br /> Original-Maintainer: Roopa Prabhu <roopa@nvidia.com><br /> Homepage: https://github.com/CumulusNetworks/ifupdown2</pre>
 
-10. **Optional:** At this point you need to amend the package manager's understanding of the dependencies and conflicts for the `ifupdown2` package. This requires two very precise edits to the `/var/lib/dpkg/status` file. To ensure that those edits produce the desired changes, first confirm that that the two find-and-replaces that you will perform in Step 11 will each only have one instance to replace.
+10. **Optional:** At this point you need to amend the package manager's understanding of the dependencies and conflicts for the `ifupdown2` package. This requires two very precise edits to the `/var/lib/dpkg/status` file. To ensure that those edits produce the desired changes, first confirm that the two find-and-replaces that you are performing in Step 11 each only have one instance to replace.
 
         root@host# grep -c "Conflicts: ifupdown" /var/lib/dpkg/status
         1
@@ -177,7 +176,7 @@ An {{<exlink url="https://gist.github.com/ericpulvino/5f7eabb7058e3076a7b5f2e357
     
         root@host# sed -i "/Conflicts: ifupdown/d" /var/lib/dpkg/status
 
-12. Confirm the edits to the file were made successfully. Note that the minimum required `init-system-helpers` version has changed from 1.18 to 1.14 and the "Conflicts" line is gone entirely when compared to Step 9:
+12. Confirm you made your edits to the file successfully. Note that you changed the minimum required `init-system-helpers` version from *1.18* to *1.14* and you removed the `Conflicts` line when compared to Step 9:
 
         root@host# grep -A 34 "Package: ifupdown2" /var/lib/dpkg/status
         Package: ifupdown2
@@ -225,7 +224,7 @@ An {{<exlink url="https://gist.github.com/ericpulvino/5f7eabb7058e3076a7b5f2e357
 
 ## Verifying ifupdown2
 
-Once `ifupdown2` is installed, `ifupdown2`-specific commands can be used to test and verify:
+After the `ifupdown2` installation finishes, you can use `ifupdown2`-specific commands to test and verify:
 
     user@host:~$ sudo ifquery -ra
     auto lo

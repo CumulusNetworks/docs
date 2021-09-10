@@ -9,20 +9,20 @@ NVIDIA understands the importance of community. To that end, NVIDIA offers the {
 
 NVIDIA provides the community spaces with a goal of sustaining a community that is vibrant, interactive and following proper community etiquette. There are a couple of ground rules that go a long way to ensure the community is as valuable as possible for everyone.
 
-## Support vs. Community
+## Support vs Community
 
-First and foremost, do not use the NVIDIA forums in place of formal NVIDIA Global Support Services (GSS) engagement for time-sensitive or production-impacting issues. For issues that are time sensitive or impacting production environments, you should engage the NVIDIA GSS team {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="here">}}.
+First, do not use the NVIDIA forums in place of formal NVIDIA Global Support Services (GSS) engagement for time-sensitive or production-impacting issues. For issues that are time sensitive or impacting production environments, you should engage the NVIDIA GSS team {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="here">}}.
 
-Issues and questions raised on the NVIDIA forums do not come with any formal SLA or response guarantee. Issues are just as likely to be answered by an interested peer as they are to be answered by an NVIDIA employee. One of the most important characteristics of any vibrant community is that the sponsoring company does not directly drive the community but merely provides the infrastructure and administration.
-
+Issues and questions raised on the NVIDIA forums do not come with any formal SLA or response guarantee. An interested peer is just as likely to answer an issue asked by an interested peer as an NVIDIA employee is likely to answer. One of the most important characteristics of any vibrant community is that the sponsoring company does not directly drive the community but merely provides the infrastructure and administration.
+<!-- vale off -->
 ## Customer-sensitive Information
-
-Because the nature of a community site is that it is by definition public, do not share any data or log information that you or your company would consider confidential. If such information is required for the resolution of the issue, either redact the logs or open a formal support request via {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="the Support Overview page">}}. NVIDIA is not responsible for information shared on the community space. Let us know immediately if something was posted that should not have been via email to <community@cumulusnetworks.com>.
+<!-- vale on -->
+Because the nature of a community site is that it is by definition public, do not share any data or log information that you or your company would consider confidential. If you need to supply such information to resolve the issue, either redact the logs or open a formal support request via {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="the Support Overview page">}}. NVIDIA is not responsible for information shared on the community space. Let NVIDIA support know immediately if you posted something that you should not have via email to <community@cumulusnetworks.com>.
 
 ## Help Beyond Cumulus Products
 
-If your question or issue extends beyond NVIDIA products, you can certainly raise that query via the NVIDIA community. The community may be able to provide guidance for configuration and interoperability with products from other vendors. However, the NVIDIA forum site is not an alternative to formal support for either NVIDIA products or third party software or platforms.
+If your question or issue extends beyond NVIDIA products, you can certainly raise that query via the NVIDIA community. The community might be able to provide guidance for configuration and interoperability with products from other vendors. However, the NVIDIA forum site is not an alternative to formal support for either NVIDIA products or third party software or platforms.
 
 ## Respect and Etiquette
 
-The community is intended to be a safe and respectful place to search for answers to questions regarding NVIDIA products and their interoperation with third party software and platforms. NVIDIA reserves the right (but not the obligation) to moderate, edit, or delete posts, or ban users in each case when it determines appropriate, in its sole discretion.
+NVIDIA intends for the community to be a safe and respectful place to search for answers to questions regarding NVIDIA products and their interoperation with third party software and platforms. NVIDIA reserves the right (but not the obligation) to moderate, edit, or delete posts, or ban users in each case when it determines appropriate, in its sole discretion.

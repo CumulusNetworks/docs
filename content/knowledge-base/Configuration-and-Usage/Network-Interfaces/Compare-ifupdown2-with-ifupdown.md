@@ -118,10 +118,9 @@ The following is some debug code:
 
 ## Layer 2 Interfaces - Trunk
 
-With `ifupdown2`, you don't need to define sub-interfaces to add to the
-trunk. Just add it under the bridge interface.
+With `ifupdown2`, you do not need to define subinterfaces to add to the trunk. Just add it under the bridge interface.
 
-Notice that `bridge-ports` is used instead of `mstpctl-ports`.
+Notice that the example uses `bridge-ports` instead of `mstpctl-ports`.
 
 By default, `bridge-stp` turns on Rapid Spanning Tree.
 
@@ -182,8 +181,7 @@ iface vlan200
 
 ## Layer 2 Bond Interface - with Trunking
 
-The following shows you how to configure bonds with trunking under
-`ifupdown2`.
+The following shows you how to configure bonds with trunking under `ifupdown2`.
 
 <table>
 <colgroup>
@@ -272,10 +270,7 @@ iface vlan200
 
 ## Layer 2 Trunk - Port Ranges
 
-The *glob* keyword replaces regular expressions for creating port
-ranges, because it doesn't require the interfaces to be mentioned in
-`/etc/network/interfaces`. Multiple glob statements can be mentioned in
-the stanza so one can do a discontiguous port range.
+The *glob* keyword replaces regular expressions for creating port ranges, because it does not require mentioning the interfaces in `/etc/network/interfaces`. You can mention multiple glob statements in the stanza so you can configure a discontiguous port range.
 
 <table>
 <colgroup>
@@ -371,10 +366,7 @@ iface vlan100
 
 ## IPv6 Address Assignment
 
-ifupdown2 does not require IPv6 addresses to be configured under an
-independent **inet6** section. All interface configuration is done under
-the same section. The same is true for the loopback configuration as
-well.
+ifupdown2 does not require configuring IPv6 addresses under an independent **inet6** section. You do all interface configuration under the same section. The same is true for the loopback configuration as well.
 
 ### Single IPv6 Address
 
@@ -433,8 +425,9 @@ iface swp1
 </tbody>
 </table>
 
+<!-- vale off -->
 ## Setting Speed, Duplex and Auto-negotiation on a Port
-
+<!-- vale on -->
 `ifupdown2` now supports keywords to set the speed, duplex and auto-negotiation.
 
 <table>
@@ -506,9 +499,7 @@ iface swp1
 
 ## Using the "source" Keyword to Place Interface Configuration in Files Other than /etc/network/interfaces
 
-This is useful for automation. This example shows how Ansible writes
-individual port configs into the `/etc/network/ansible/` directory with
-`ifupdown2`.
+This is useful for automation. This example shows how Ansible writes individual port configs into the `/etc/network/ansible/` directory with `ifupdown2`.
 
 To view all the configuration, run `ifquery -a`.
 
@@ -550,14 +541,7 @@ To view all the configuration, run `ifquery -a`.
 
 ## Creating the Default Configuration Using Mako
 
-Mako is a templating engine that can be used to generate the
-`/etc/network/interfaces` configuration. It can be used to generate a
-default configuration. The example below shows how to set defaults for
-bonds. By default, `ifupdown2` will read Mako files in the
-`/etc/network/ifupdown2/templates` directory. You can change this
-location in the `/etc/network/ifupdown2/ifupdown2.conf`. To view the
-expanded configuration, like a running config, run `ifquery bond0` or
-`ifquery -a`.
+Mako is a templating engine that you can use to generate the `/etc/network/interfaces` configuration. Use it to generate a default configuration. The example below shows how to set defaults for bonds. By default, `ifupdown2` reads Mako files in the `/etc/network/ifupdown2/templates` directory. You can change this location in the `/etc/network/ifupdown2/ifupdown2.conf`. To view the expanded configuration, like a running config, run `ifquery bond0` or `ifquery -a`.
 
 <table>
 <colgroup>
@@ -579,7 +563,6 @@ iface eth0 inet dhcp
 
 \#\#\# define name of default files and functions to use
 &lt;%namespace file=&#39;bond_defaults&#39; import=&#39;bond_defaults&#39;/&gt;
-
 
 auto swp1
 iface swp1

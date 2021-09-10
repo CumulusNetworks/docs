@@ -9,9 +9,9 @@ The Cumulus Linux license has a simple format. Managing your license keys is ver
 
 In addition, there is no need to replace the license file when you renew or purchase additional licenses.
 
-From a technical standpoint, the license has changed as follows:
+From a technical standpoint, the license changed as follows:
 
-- Increased messaging volume, which is displayed on screen when you log into the switch, and is written to `syslog`.
+- Increased messaging volume, which displays on screen when you log into the switch; Cumulus Linux writes the messages to `syslog`.
 - New messaging when `switchd` detects a missing or invalid license.  
 
 The license format looks like this:
@@ -20,7 +20,7 @@ The license format looks like this:
 
 You manage your licenses in the MyMellanox {{<exlink url="https://support.mellanox.com/s/login/" text="customer portal">}}.
 
-To verify that your license is installed, run the `cl-license` command.
+To verify that you installed your license, run the `cl-license` command.
 
     cumulus@switch:~$ cl-license
     user@example.com|$ampleL1cen$et3xt

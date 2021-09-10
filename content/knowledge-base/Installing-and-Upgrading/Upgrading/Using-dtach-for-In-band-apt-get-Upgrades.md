@@ -6,9 +6,9 @@ toc: 4
 ---
 
 ## Issue
-
+<!-- vale off -->
 My SSH session was terminated while performing an in-band upgrade.
-
+<!-- vale on -->
 ## Environment
 
 - Cumulus Linux, all versions
@@ -16,11 +16,11 @@ My SSH session was terminated while performing an in-band upgrade.
 
 ## Root Cause
 
-Upgrades involving certain packages, such as switchd or FRR/Quagga, may result in a temporary loss of in-band ssh connections (generally a minute or two) to the switch.
+Upgrades involving certain packages, such as switchd or FRR/Quagga, might result in a temporary loss of in-band SSH connections (generally a minute or two) to the switch.
 
 ## Resolution
 
-When upgrading in-band, it is recommended to run the upgrade with the `dtach` or `screen` command. This makes it possible to re-attach to the upgrade process in the event the connection is interrupted.
+When upgrading in-band, NVIDIA recommends running the upgrade with the `dtach` or `screen` command. This makes it possible to re-attach to the upgrade process in the event of an interrupted connection.
 
 ### Using dtach
 
@@ -29,7 +29,7 @@ When upgrading in-band, it is recommended to run the upgrade with the `dtach` o
 
 Where:
 
-- `/tmp/apt-get` is a socket that will be used to re-attach later
+- `/tmp/apt-get` is a socket to re-attach later
 - `-z` disables the suspend key from suspending `dtach`
 
 To re-attach to the `apt-get` process after reconnecting to the switch:
@@ -41,7 +41,7 @@ If the `dtach` socket file does not exist as in the following error:
     cumulus@switch$ dtach -a /tmp/apt-get
     dtach: /tmp/apt-get: No such file or directory
 
-... then upgrade has finished. Prior to rebooting (if needed) results of the upgrade can be reviewed in `/var/log/apt/term.log`:
+Then the upgrade is complete. Before rebooting (if needed) you can review the results of the upgrade in `/var/log/apt/term.log`:
 
     cumulus@switch$ less /var/log/apt/term.log
 

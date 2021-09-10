@@ -9,7 +9,7 @@ Often it is not possible to transfer files off of a switch that you are analyzin
 
 ## Issue
 
-Networks isolated by an air gap are common. Unfortunately, this necessary security measure can impede rapid troubleshooting of network issues when packet captures need to be collected and exchanged from the affected devices.
+Networks isolated by an air gap are common. However, this necessary security measure can impede rapid troubleshooting of network issues when collecting and exchanging packet captures from the affected devices.
 
 ## Cause
 
@@ -17,11 +17,11 @@ An air gap or air wall is a network security measure employed on one or more 
 
 ## Resolution
 
-By using the process below, you can encode a collected Packet Capture (PCAP) or `cl-support` file into base64 encoding, which can be exchanged across the air gap and then decoded back into the original file.
+By using the process below, you can encode a collected Packet Capture (PCAP) or `cl-support` file into base64 encoding, which you can exchange across the air gap and then decode it back into the original file.
 
 {{%notice note%}}
 
-You can get the best results when performing this process with files that have already been compressed, although it is not required.
+You can get the best results when performing this process with already compressed files, although it is not a requirement.
 
 {{%/notice%}}
 
@@ -41,6 +41,6 @@ You can get the best results when performing this process with files that have a
 
         user@device$ base64 --decode ./textfile.txt > traffic.pcap
 
-5.  Analyze the traffic capture in whatever tool is preferred:
+5.  Analyze the traffic capture in your preferred tool:
 
         user@device$ wireshark traffic.pcap

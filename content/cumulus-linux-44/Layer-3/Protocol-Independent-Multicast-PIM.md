@@ -1492,7 +1492,7 @@ ip pim rp 10.10.10.101
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL44 - PIMv2" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
+    {{< simulation name="Try It CL44 - PIMv3" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
 
 {{< /tab >}}
 {{< /tabs >}}

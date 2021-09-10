@@ -1696,8 +1696,14 @@ iface eth2 inet manual
 ```
 cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
-ip pim rp 10.10.10.101 224.0.0.0/4
-service integrated-vtysh-config
+router bgp 65101
+ bgp router-id 10.10.10.1
+ neighbor swp51 interface
+ neighbor swp51 remote-as external
+ address-family ipv4 unicast
+  network 10.10.10.1/32
+  network 10.1.10.0/24
+ exit-address-family
 interface lo
  ip pim
 interface swp51
@@ -1705,14 +1711,7 @@ interface swp51
 interface vlan10
  ip pim
  ip igmp
-router bgp 65101
- bgp router-id 10.10.10.1
- neighbor swp51 interface remote-as external
- !
- address-family ipv4 unicast
-  network 10.1.10.0/24
-  network 10.10.10.1/32
- exit-address-family
+ip pim rp 10.10.10.101
 ```
 
 {{< /tab >}}
@@ -1721,23 +1720,22 @@ router bgp 65101
 ```
 cumulus@leaf02:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
-ip pim rp 10.10.10.101 224.0.0.0/4
-service integrated-vtysh-config
+router bgp 65102
+ bgp router-id 10.10.10.2
+ neighbor swp51 interface
+ neighbor swp51 remote-as external
+ address-family ipv4 unicast
+  network 10.10.10.2/32
+  network 10.2.10.0/24
+ exit-address-family
 interface lo
  ip pim
 interface swp51
  ip pim
 interface vlan20
- ip igmp
  ip pim
-router bgp 65102
- bgp router-id 10.10.10.2
- neighbor swp51 interface remote-as external
- !
- address-family ipv4 unicast
-  network 10.2.10.0/24
-  network 10.10.10.2/32
- exit-address-family
+ ip igmp
+ip pim rp 10.10.10.101
 ```
 
 {{< /tab >}}

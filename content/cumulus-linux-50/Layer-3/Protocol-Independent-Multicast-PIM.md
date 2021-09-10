@@ -1025,12 +1025,12 @@ Cumulus Linux provides the following PIM timers:
 
 | Timer | Description |
 |------ | ----------- |
-| `hello-interval` | NVUE only. The interval in seconds at which the PIM router sends hello messages to discover PIM neighbors and maintain PIM neighbor relationships. You can specify a value between 1 and 180.|
+| `hello-interval` | NVUE only. The interval in seconds at which the PIM router sends hello messages to discover PIM neighbors and maintain PIM neighbor relationships. You can specify a value between 1 and 180. The default setting is 30 seconds. |
 | `holdtime`  | NVUE only. The number of seconds during which the neighbor must be in a reachable state. `auto` (the default setting) uses three and half times the `hello-interval`.  You can specify a value between 1 and 180. |
-| `join-prune-interval` | The interval in seconds at which a PIM router sends join/prune messages to its upstream neighbors for a state update. You can specify a value between 60 and 600.|
-| `keep-alive` | The timeout value for the S,G stream in seconds. You can specify a value between 31 and 60000. |
-| `register-suppress` | The number of seconds during which to stop sending register messages to the RP. You can specify a value between 5 and 60000. |
-| `rp-keep-alive` | NVUE only. The timeout value for the RP in seconds. You can specify a value between 31 and 60000. |
+| `join-prune-interval` | The interval in seconds at which a PIM router sends join/prune messages to its upstream neighbors for a state update. You can specify a value between 60 and 600. The default setting is 60 seconds.|
+| `keep-alive` | The timeout value for the S,G stream in seconds. You can specify a value between 31 and 60000. The default setting is 210 seconds.|
+| `register-suppress` | The number of seconds during which to stop sending register messages to the RP. You can specify a value between 5 and 60000. The default setting is 60 seconds.|
+| `rp-keep-alive` | NVUE only. The timeout value for the RP in seconds. You can specify a value between 31 and 60000. The default setting is 185 seconds.|
 
 The following example commands set the `join-prune-interval` to 100 seconds, the `keep-alive` timer to 10000 seconds, and the `register-suppress` time to 20000 seconds:
 

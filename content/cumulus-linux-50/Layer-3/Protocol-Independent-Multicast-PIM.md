@@ -1032,7 +1032,7 @@ Cumulus Linux provides the following PIM timers:
 | `register-suppress` | The number of seconds during which to stop sending register messages to the RP. You can specify a value between 5 and 60000. |
 | `rp-keep-alive` | NVUE only. The timeout value for the RP in seconds. You can specify a value between 31 and 60000. |
 
-The following example commands set the `join-prune-interval` to 100 seconds, the `keep-alive` timer to 1000 seconds, and the `register-suppress` time to 2000 seconds:
+The following example commands set the `join-prune-interval` to 100 seconds, the `keep-alive` timer to 10000 seconds, and the `register-suppress` time to 20000 seconds:
 
 {{< tabs "TabID1037 ">}}
 {{< tab "NCLU Commands ">}}
@@ -1052,6 +1052,22 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ nv set router pim timers join-prune-interval 100
 cumulus@switch:~$ nv set router pim timers keep-alive 10000
 cumulus@switch:~$ nv set router pim timers register-suppress 20000
+cumulus@switch:~$ nv config apply
+```
+
+With NVUE, you can set the `hello-interval` and `holdtime` for a specific interface, and the `keepalive` and `rp-keep-alive` timers for a specific VRF.
+
+The following example commands set the `hello-interval` to 100 seconds for swp51.
+
+```
+cumulus@switch:~$ nv set interface swp51 router pim timers hello-interval 100
+cumulus@switch:~$ nv config apply
+```
+
+The following example commands set the `rp-keep-alive` to 10000 for VRF RED:
+
+```
+cumulus@switch:~$ nv set vrf RED router pim timers rp-keep-alive 10000
 cumulus@switch:~$ nv config apply
 ```
 

@@ -1019,6 +1019,61 @@ cumulus@switch:~$
 {{< /tab >}}
 {{< /tabs >}}
 
+### PIM Timers
+
+Cumulus Linux provides the following PIM timers:
+
+| Timer | Description |
+|------ | ----------- |
+| `hello-interval` | NVUE only. The interval in seconds at which the PIM router sends hello messages to discover PIM neighbors and maintain PIM neighbor relationships. You can specify a value between 1 and 180.|
+| `holdtime`  | NVUE only. The number of seconds during which the neighbor must be in a reachable state. `auto` (the default setting) uses three and half times the `hello-interval`.  You can specify a value between 1 and 180. |
+| `join-prune-interval` | The interval in seconds at which a PIM router sends join/prune messages to its upstream neighbors for a state update. You can specify a value between 60 and 600.|
+| `keep-alive` | The timeout value for the S,G stream in seconds. You can specify a value between 31 and 60000. |
+| `register-suppress` | The number of seconds during which to stop sending register messages to the RP. You can specify a value between 5 and 60000. |
+| `rp-keep-alive` | NVUE only. The timeout value for the RP in seconds. You can specify a value between 31 and 60000. |
+
+The following example commands set the `join-prune-interval` to 100 seconds, the `keep-alive` timer to 1000 seconds, and the `register-suppress` time to 2000 seconds:
+
+{{< tabs "TabID1037 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add pim join-prune-interval 100
+cumulus@switch:~$ net add pim keep-alive-timer 10000
+cumulus@switch:~$ net add pim register-suppress-time 20000
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set router pim timers join-prune-interval 100
+cumulus@switch:~$ nv set router pim timers keep-alive 10000
+cumulus@switch:~$ nv set router pim timers register-suppress 20000
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# ip pim join-prune-interval 100
+switch(config)# ip pim keep-alive-timer 10000
+switch(config)# ip pim register-suppress-time 20000
+switch(config)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 <!-- vale off -->
 <!-- vale.ai Issue #253 -->
 ## PIM Active-active with MLAG

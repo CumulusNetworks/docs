@@ -1563,6 +1563,7 @@ iface lo inet loopback
     address 10.10.10.1/32
 auto swp1
 iface swp1
+    bridge-access 10
 auto swp49
 iface swp49
 auto swp51
@@ -1580,7 +1581,6 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
-    post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
 auto vlan10
 iface vlan10
     address 10.1.10.1/24
@@ -1598,6 +1598,7 @@ iface lo inet loopback
     address 10.10.10.2/32
 auto swp2
 iface swp2
+    bridge-access 20
 auto swp49
 iface swp49
 auto swp51
@@ -1615,7 +1616,6 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
-    post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
 auto vlan20
 iface vlan20
     address 10.2.10.1/24
@@ -1643,7 +1643,6 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
-    post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
 ```
 
 {{< /tab >}}

@@ -1214,7 +1214,8 @@ cumulus@leaf01:~$ net add loopback lo ip address 10.10.10.1/32
 cumulus@leaf01:~$ net add interface swp1,swp49,swp51
 cumulus@leaf01:~$ net add bridge bridge ports swp1
 cumulus@leaf01:~$ net add vlan 10 ip address 10.1.10.1/24
-cumulus@leaf01:~$ net add bridge bridge pvid 10
+cumulus@leaf01:~$ net add interface swp1 bridge access 10 
+cumulus@leaf01:~$ net add bridge bridge vids 10
 cumulus@leaf01:~$ net add bgp autonomous-system 65101
 cumulus@leaf01:~$ net add bgp router-id 10.10.10.1
 cumulus@leaf01:~$ net add bgp neighbor swp51 remote-as external
@@ -1236,7 +1237,8 @@ cumulus@leaf02:~$ net add loopback lo ip address 10.10.10.2/32
 cumulus@leaf02:~$ net add interface swp2,swp49,swp51
 cumulus@leaf02:~$ net add bridge bridge ports swp2
 cumulus@leaf02:~$ net add vlan 20 ip address 10.2.10.1/24
-cumulus@leaf02:~$ net add bridge bridge pvid 20
+cumulus@leaf02:~$ net add interface swp2 bridge access 20
+cumulus@leaf02:~$ net add bridge bridge vids 20
 cumulus@leaf02:~$ net add bgp autonomous-system 65102
 cumulus@leaf02:~$ net add bgp router-id 10.10.10.2
 cumulus@leaf02:~$ net add bgp neighbor swp51 remote-as external
@@ -1283,6 +1285,7 @@ iface lo inet loopback
     address 10.10.10.1/32
 auto swp1
 iface swp1
+    bridge-access 10
 auto swp49
 iface swp49
 auto swp51
@@ -1290,7 +1293,6 @@ iface swp51
 auto bridge
 iface bridge
     bridge-ports swp1
-    bridge-pvid 10
     bridge-vids 10
     bridge-vlan-aware yes
 auto mgmt
@@ -1301,7 +1303,6 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
-    post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
 auto vlan10
 iface vlan10
     address 10.1.10.1/24
@@ -1319,6 +1320,7 @@ iface lo inet loopback
     address 10.10.10.2/32
 auto swp2
 iface swp2
+    bridge-access 20
 auto swp49
 iface swp49
 auto swp51
@@ -1326,7 +1328,6 @@ iface swp51
 auto bridge
 iface bridge
     bridge-ports swp2
-    bridge-pvid 20
     bridge-vids 20
     bridge-vlan-aware yes
 auto mgmt
@@ -1337,7 +1338,6 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
-    post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
 auto vlan20
 iface vlan20
     address 10.2.10.1/24
@@ -1365,7 +1365,6 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
-    post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
 ```
 
 {{< /tab >}}
@@ -1419,8 +1418,14 @@ iface eth2 inet manual
 ```
 cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
-ip pim rp 10.10.10.101 224.0.0.0/4
-service integrated-vtysh-config
+router bgp 65101
+ bgp router-id 10.10.10.1
+ neighbor swp51 interface
+ neighbor swp51 remote-as external
+ address-family ipv4 unicast
+  network 10.10.10.1/32
+  network 10.1.10.0/24
+ exit-address-family
 interface lo
  ip pim
 interface swp51
@@ -1428,14 +1433,7 @@ interface swp51
 interface vlan10
  ip pim
  ip igmp
-router bgp 65101
- bgp router-id 10.10.10.1
- neighbor swp51 interface remote-as external
- !
- address-family ipv4 unicast
-  network 10.1.10.0/24
-  network 10.10.10.1/32
- exit-address-family
+ip pim rp 10.10.10.101
 ```
 
 {{< /tab >}}
@@ -1444,23 +1442,22 @@ router bgp 65101
 ```
 cumulus@leaf02:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
-ip pim rp 10.10.10.101 224.0.0.0/4
-service integrated-vtysh-config
+router bgp 65102
+ bgp router-id 10.10.10.2
+ neighbor swp51 interface
+ neighbor swp51 remote-as external
+ address-family ipv4 unicast
+  network 10.10.10.2/32
+  network 10.2.10.0/24
+ exit-address-family
 interface lo
  ip pim
 interface swp51
  ip pim
 interface vlan20
- ip igmp
  ip pim
-router bgp 65102
- bgp router-id 10.10.10.2
- neighbor swp51 interface remote-as external
- !
- address-family ipv4 unicast
-  network 10.2.10.0/24
-  network 10.10.10.2/32
- exit-address-family
+ ip igmp
+ip pim rp 10.10.10.101
 ```
 
 {{< /tab >}}

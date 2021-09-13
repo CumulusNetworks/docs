@@ -34,8 +34,8 @@ cumulus@leaf01:~$ net commit
 ```
 cumulus@leaf01:~$ nv set vrf default router bgp peer-group SPINE
 cumulus@leaf01:~$ nv set vrf default router bgp peer-group SPINE remote-as external
-cumulus@leaf01:~$ nv set vrf default router bgp peer 10.0.1.0 peer-group SPINE
-cumulus@leaf01:~$ nv set vrf default router bgp peer 10.0.1.12 peer-group SPINE
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.0.1.0 peer-group SPINE
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.0.1.12 peer-group SPINE
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -72,7 +72,7 @@ cumulus@leaf01:~$ net add bgp neighbor swp51 interface peer-group SPINE
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 peer-group SPINE
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 peer-group SPINE
 ```
 
 {{< /tab >}}
@@ -190,8 +190,8 @@ cumulus@leaf01:~$ net commit
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp peer 10.10.10.101 remote-as external
-cumulus@leaf01:~$ nv set vrf default router bgp peer 10.10.10.101 multihop-ttl 1
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.10.10.101 remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.10.10.101 multihop-ttl 1
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -247,7 +247,7 @@ router bgp 65101
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 ttl-security hops 200
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 ttl-security hops 200
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -323,7 +323,7 @@ cumulus@spine01:~$ net commit
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 password mypassword
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 password mypassword
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -331,7 +331,7 @@ cumulus@leaf01:~$ nv config apply
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:~$ nv set vrf default router bgp peer swp1 password mypassword
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 password mypassword
 cumulus@spine01:~$ nv config apply
 ```
 
@@ -466,14 +466,14 @@ cumulus@leaf01:~$ net commit
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 address-family ipv4-unicast aspath private-as remove
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath private-as remove
 cumulus@leaf01:~$ nv config apply
 ```
 
 You can replace the private ASNs with your public ASN with the following command:
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 address-family ipv4-unicast aspath replace-peer-as on
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath replace-peer-as on
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -592,10 +592,10 @@ line vty
 ```
 cumulus@border01:~$ nv set vrf RED router bgp autonomous-system 65532        
 cumulus@border01:~$ nv set vrf RED router bgp router-id 10.10.10.63
-cumulus@border01:~$ nv set vrf RED router bgp peer swp3 remote-as external
+cumulus@border01:~$ nv set vrf RED router bgp neighbor swp3 remote-as external
 cumulus@border01:~$ nv set vrf BLUE router bgp autonomous-system 65533 
 cumulus@border01:~$ nv set vrf BLUE router bgp router-id 10.10.10.63
-cumulus@border01:~$ nv set vrf BLUE router bgp peer swp4 remote-as external
+cumulus@border01:~$ nv set vrf BLUE router bgp neighbor swp4 remote-as external
 cumulus@border01:~$ nv config apply
 ```
 
@@ -875,7 +875,7 @@ router bgp 65101
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer 2001:db8:0002::0a00:0002 capabilities extended-nexthop on
+cumulus@switch:~$ nv set vrf default router bgp neighbor 2001:db8:0002::0a00:0002 capabilities extended-nexthop on
 cumulus@switch:~$ nv config apply
 ```
 
@@ -938,8 +938,8 @@ exit-address-family
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer 2001:db8:0002::0a00:0002 capabilities extended-nexthop on
-cumulus@switch:~$ nv set vrf default router bgp peer 2001:db8:0002::0a00:0002 address-family ipv4-unicast enable on
+cumulus@switch:~$ nv set vrf default router bgp neighbor 2001:db8:0002::0a00:0002 capabilities extended-nexthop on
+cumulus@switch:~$ nv set vrf default router bgp neighbor 2001:db8:0002::0a00:0002 address-family ipv4-unicast enable on
 cumulus@switch:~$ nv config apply
 ```
 
@@ -988,7 +988,7 @@ The following example commands set the maximum number of prefixes allowed from t
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 address-family ipv4-unicast prefix-limits inbound maximum 3000
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast prefix-limits inbound maximum 3000
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1195,7 +1195,7 @@ cumulus@leaf01:~$ net commit
 
 ```
 cumulus@leaf01:~$ nv set vrf default router bgp autonomous-system 65101
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp50 address-family ipv4-unicast add-path-tx best-per-as
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp50 address-family ipv4-unicast add-path-tx best-per-as
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1233,7 +1233,7 @@ cumulus@leaf01:~$ net commit
 
 ```
 cumulus@leaf01:~$ nv set vrf default router bgp autonomous-system 65101
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp50 address-family ipv4-unicast add-path-tx all-paths
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp50 address-family ipv4-unicast add-path-tx all-paths
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1312,7 +1312,7 @@ NCLU commands are not supported.
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise enable on 
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise enable on 
 cumulus@leaf01:~$ nv set router policy prefix-list EXIST rule 10 match 10.0.0.0/24
 cumulus@leaf01:~$ nv set router policy prefix-list EXIST rule 10 action permit 
 cumulus@leaf01:~$ nv set router policy route-map EXISTMAP rule 10 action permit
@@ -1321,8 +1321,8 @@ cumulus@leaf01:~$ nv set router policy prefix-list ADVERTISE rule 10 action perm
 cumulus@leaf01:~$ nv set router policy prefix-list ADVERTISE rule 10 match 10.0.0.0/8
 cumulus@leaf01:~$ nv set router policy route-map ADVERTISEMAP rule 10 action permit
 cumulus@leaf01:~$ nv set router policy route-map ADVERTISEMAP rule 10 match ip-prefix-list ADVERTISE
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise advertise-map ADVERTISEMAP
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise exist-map EXIST
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise advertise-map ADVERTISEMAP
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise exist-map EXIST
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1437,8 +1437,8 @@ router bgp 65101
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 timers keepalive 10
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 timers hold 30
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 timers keepalive 10
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 timers hold 30
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1498,7 +1498,7 @@ router bgp 65101
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 timers connection-retry 30
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 timers connection-retry 30
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1558,7 +1558,7 @@ router bgp 65101
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 timers route-advertisement 5
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 timers route-advertisement 5
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1627,7 +1627,7 @@ router bgp 65199
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@spine01:~$ nv set vrf default router bgp peer swp1 address-family ipv4-unicast route-reflector-client on
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 address-family ipv4-unicast route-reflector-client on
 cumulus@spine01:~$ nv config apply
 ```
 
@@ -1921,7 +1921,7 @@ cumulus@leaf01:~$ net commit
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 graceful-restart-mode full
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 graceful-restart-mode full
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1968,7 +1968,7 @@ router bgp 65199
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 graceful-restart-mode helper-only
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 graceful-restart-mode helper-only
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -2127,7 +2127,7 @@ cumulus@leaf01:~$ net commit
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv unset vrf default router bgp peer swp51 graceful-restart-mode
+cumulus@leaf01:~$ nv unset vrf default router bgp neighbor swp51 graceful-restart-mode
 cumulus@leaf01:~$ nv config apply
 ```
 

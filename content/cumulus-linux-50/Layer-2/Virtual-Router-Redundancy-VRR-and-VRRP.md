@@ -476,8 +476,8 @@ The parent interface must use a primary address as the source address on VRRP ad
 ```
 cumulus@spine01:~$ net add interface swp1 ip address 10.0.0.2/24
 cumulus@spine01:~$ net add interface swp1 ipv6 address 2001:0db8::2/64
-cumulus@spine01:~$ net add interface swp1 vrrp 44 10.0.0.1/24
-cumulus@spine01:~$ net add interface swp1 vrrp 44 2001:0db8::1/64
+cumulus@spine01:~$ net add interface swp1 vrrp 44 10.0.0.1
+cumulus@spine01:~$ net add interface swp1 vrrp 44 2001:0db8::1
 cumulus@spine01:~$ net add interface swp1 vrrp 44 priority 254
 cumulus@spine01:~$ net add interface swp1 vrrp 44 advertisement-interval 5000
 cumulus@spine01:~$ net pending
@@ -490,7 +490,7 @@ cumulus@spine01:~$ net commit
 ```
 cumulus@spine02:~$ net add interface swp1 ip address 10.0.0.3/24
 cumulus@spine02:~$ net add interface swp1 ipv6 address 2001:0db8::3/64
-cumulus@spine02:~$ net add interface swp1 vrrp 44 10.0.0.1/24
+cumulus@spine02:~$ net add interface swp1 vrrp 44 10.0.0.1
 cumulus@spine02:~$ net add interface swp1 vrrp 44 2001:0db8::1/64
 cumulus@spine02:~$ net pending
 cumulus@spine02:~$ net commit
@@ -505,12 +505,26 @@ cumulus@spine02:~$ net commit
 {{< tabs "TabID504 ">}}
 {{< tab "spine01 ">}}
 
-NVUE commands are not supported.
+```
+cumulus@spine01:~$ nv set interface swp1 ip address 10.0.0.2/24
+cumulus@spine01:~$ nv set interface swp1 ip address 2001:0db8::2/64
+cumulus@spine01:~$ nv set interface swp1 ip vrrp virtual-router 44 address 10.0.0.1
+cumulus@spine01:~$ nv set interface swp1 ip vrrp virtual-router 44 address 2001:0db8::1
+cumulus@spine01:~$ nv set interface swp1 ip vrrp virtual-router 44 priority 254
+cumulus@spine01:~$ nv set interface swp1 ip vrrp virtual-router 44 advertisement-interval 5000
+cumulus@spine01:~$ nv config apply
+```
 
 {{< /tab >}}
 {{< tab "spine02 ">}}
 
-NVUE commands are not supported.
+```
+cumulus@spine02:~$ nv set interface swp1 ip address 10.0.0.3/24
+cumulus@spine02:~$ nv set interface swp1 ip address 2001:0db8::3/64
+cumulus@spine02:~$ nv set interface swp1 ip vrrp virtual-router 44 address 10.0.0.1/24
+cumulus@spine02:~$ nv set interface swp1 ip vrrp virtual-router 44 address 2001:0db8::1/64
+cumulus@spine02:~$ nv config apply
+```
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -622,7 +636,7 @@ Protocol Version                     3
 Autoconfigured                       No
 Shutdown                             No
 Interface                            swp1
- VRRP interface (v4)                 vrrp4-3-1
+VRRP interface (v4)                 vrrp4-3-1
 VRRP interface (v6)                  vrrp6-3-1
 Primary IP (v4)                      10.0.0.2
 Primary IP (v6)                      2001:0db8::2

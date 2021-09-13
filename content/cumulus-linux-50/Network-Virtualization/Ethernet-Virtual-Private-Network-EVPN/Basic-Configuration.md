@@ -114,7 +114,7 @@ You only need this configuration on leafs that are VTEPs. The switch accepts EVP
 ```
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 remote-as external
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32
 cumulus@leaf01:~$ nv config apply
 ```
@@ -125,7 +125,7 @@ cumulus@leaf01:~$ nv config apply
 ```
 cumulus@spine01:~$ nv set router bgp autonomous-system 65199
 cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
-cumulus@spine01:~$ nv set vrf default router bgp peer swp1 remote-as external
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 remote-as external
 cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.101/32
 cumulus@spine01:~$ nv config apply
 ```
@@ -141,7 +141,7 @@ cumulus@spine01:~$ nv config apply
 ```
 cumulus@leaf01:~$ nv set evpn enable on
 cumulus@leaf01:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn enable on
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -200,7 +200,7 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 cumulus@spine01:~$ nv set evpn enable on
 cumulus@spine01:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@spine01:~$ nv set vrf default router bgp peer swp1 address-family l2vpn-evpn enable on
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 address-family l2vpn-evpn enable on
 cumulus@spine01:~$ nv config apply
 ```
 

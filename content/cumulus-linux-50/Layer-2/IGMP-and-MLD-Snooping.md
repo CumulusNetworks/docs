@@ -178,9 +178,7 @@ OMF increases memory usage, which can impact scaling on Spectrum 1 switches.
 
 For large multicast environments, the default [CoPP](## "Control Plane Policing") policer might be too restrictive. You can adjust the policer to increase multicast convergence times.
 
-For both IGMP and MLD, the default forwarding rate is set to 300 packets per second and the default burst rate is set to 100 packets.
-
-To tune the IGMP and MLD forwarding and burst rates, edit the `/etc/cumulus/acl/policy.d/00control_plane.rules` file and change `--set-rate` and `--set-burst` in the IGMP and MLD policer lines.
+For both IGMP and MLD, the default forwarding rate is set to 300 packets per second and the default burst rate is set to 100 packets. To tune the IGMP and MLD forwarding and burst rates, edit the `/etc/cumulus/acl/policy.d/00control_plane.rules` file and change `--set-rate` and `--set-burst` in the IGMP and MLD policer lines.
 
 The following command example changes the **IGMP** forwarding rate to 400 packets per second and the burst rate to 200 packets.
 

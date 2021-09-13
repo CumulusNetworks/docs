@@ -217,15 +217,15 @@ router bgp 65199
 4. Specify which prefixes to originate:
 
     ```
-    cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
-    cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.1.10.0/24
+    cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32
+    cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.1.10.0/24
     cumulus@leaf01:~$ nv config apply
     ```
 
    IPv6 prefix example:
 
    ```
-   cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::1/128
+   cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast network 2001:db8::1/128
    cumulus@leaf01:~$ nv config apply
    ```
 
@@ -250,7 +250,7 @@ router:
             enable: on
             address-family:
               ipv4-unicast:
-                static-network:
+                network:
                   10.10.10.1/32: {}
                   10.1.10.0/24: {}
                 enable: on
@@ -299,7 +299,7 @@ router:
 4. Specify which prefixes to originate:
 
     ```
-    cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
+    cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.101/32
     cumulus@spine01:~$ nv config diff
     cumulus@spine01:~$ nv config apply
     ```
@@ -307,7 +307,7 @@ router:
    IPv6 prefix example:
 
    ```
-   cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::101/128
+   cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unicast network 2001:db8::101/128
    cumulus@spine01:~$ nv config apply
    ```
 
@@ -332,7 +332,7 @@ vrf:
             enable: on
             address-family:
               ipv4-unicast:
-                static-network:
+                network:
                   10.10.10.101/32: {}
                 enable: on
 ```
@@ -560,8 +560,8 @@ router bgp 65199
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 remote-as external
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.1.10.0/24
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.1.10.0/24
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -572,7 +572,7 @@ cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 remote-as external
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast enable on
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::1/128
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast network 2001:db8::1/128
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -597,7 +597,7 @@ router:
             enable: on
             address-family:
               ipv4-unicast:
-                static-network:
+                network:
                   10.10.10.1/32: {}
                   10.1.10.0/24: {}
                 enable: on
@@ -610,7 +610,7 @@ router:
 cumulus@spine01:~$ nv set router bgp autonomous-system 65199
 cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
 cumulus@spine01:~$ nv set vrf default router bgp peer swp1 remote-as external
-cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.101/32
 cumulus@spine01:~$ nv config apply
 ```
 
@@ -621,7 +621,7 @@ cumulus@spine01:~$ nv set router bgp autonomous-system 65199
 cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
 cumulus@spine01:~$ nv set vrf default router bgp peer swp1 remote-as external
 cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unicast enable on
-cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::101/128
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unicast etwork 2001:db8::101/128
 cumulus@spine01:~$ nv config apply
 ```
 
@@ -646,7 +646,7 @@ vrf:
             enable: on
             address-family:
               ipv4-unicast:
-                static-network:
+                network:
                   10.10.10.101/32: {}
                 enable: on
 ```

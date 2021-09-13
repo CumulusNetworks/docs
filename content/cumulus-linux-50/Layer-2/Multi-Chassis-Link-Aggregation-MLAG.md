@@ -747,7 +747,7 @@ If you use NCLU to create an iBGP peering across the peer link, the `net add bgp
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp peer peerlink remote-as internal
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor peerlink remote-as internal
 cumulus@leaf01:~$ nv config apply
 ```
 

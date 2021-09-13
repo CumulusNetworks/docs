@@ -857,6 +857,33 @@ cumulus@switch:~$
 {{< /tab >}}
 {{< /tabs >}}
 
+### Increase Multicast Convergence Times
+
+For large multicast environments, the default [CoPP](## "Control Plane Policing") policer might be too restrictive. You can adjust the policer to increase multicast convergence times.
+
+- The default PIM forwarding rate is set to 2000 packets per second and the burst rate is set to 2000 packets.
+- The default IGMP forwarding rate is set to 300 packets per second and the burst rate is set to 100 packets.
+
+To tune the PIM and IGMP forwarding and burst rate, edit the `/etc/cumulus/acl/policy.d/00control_plane.rules` file and change `--set-rate` and `--set-burst` in the PIM and IGMP policer lines.
+
+The following example command changes the **PIM** forwarding rate to 3000 packets per second and the burst rate to 3000 packets.
+
+```
+-A $INGRESS_CHAIN -p pim -j POLICE --set-mode pkt --set-rate 3000 --set-burst 3000
+```
+
+The following command example changes the **IGMP** forwarding rate to 400 packets per second and the burst rate to 200 packets.
+
+```
+-A $INGRESS_CHAIN -p igmp -j POLICE --set-mode pkt --set-rate 400 --set-burst 200
+```
+
+To apply the rules, run the `sudo cl-acltool -i` command:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
 <!-- vale off -->
 <!-- vale.ai Issue #253 -->
 ## PIM Active-active with MLAG

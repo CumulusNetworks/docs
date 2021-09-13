@@ -317,11 +317,11 @@ To show the full list of NVUE commands, run `nv list-commands`. For example:
 ```
 cumulus@switch:~$ nv list-commands
 nv show router
+nv show router nexthop-group
+nv show router nexthop-group <nexthop-group-id>
+nv show router nexthop-group <nexthop-group-id> via
+nv show router nexthop-group <nexthop-group-id> via <via-id>
 nv show router pbr
-nv show router pbr nexthop-group
-nv show router pbr nexthop-group <nexthop-group-id>
-nv show router pbr nexthop-group <nexthop-group-id> via
-nv show router pbr nexthop-group <nexthop-group-id> via <nhg-via-id>
 nv show router pbr map
 nv show router pbr map <pbr-map-id>
 nv show router pbr map <pbr-map-id> rule

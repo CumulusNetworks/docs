@@ -462,7 +462,7 @@ The example below shows the NVUE commands required to configure BGP unnumbered o
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 remote-as external
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32
 cumulus@leaf01:~$ nv config apply
 ```
 

@@ -103,6 +103,11 @@ Spectrum 1RU Half-width ToR
 - Switching Capacity: 1.7Tbps (1.26Bpps) 
 - Ports: 18x25GbE SFP28 (NRZ) + 4x100GbE QSFP28 (NRZ)
 
+Maximum Ports Power Support 
+- SFP28 Ports 1-2,17-18 up to 2.5W
+- SFP28 Ports 3-16 up to 1.5W
+- QSFP28 Ports 19-22 up to 4.5W
+
 {{< /tab >}}
 {{< tab "SN2100 ">}}
 
@@ -111,6 +116,10 @@ Spectrum 1RU Half-width ToR
 Spectrum 1RU Half-width ToR
 - Switching Capacity: 3.2Tbps (2.38Bpps)
 - Ports: 16x100GbE QSFP28 (NRZ)
+
+Maximum Ports Power Support 
+- QSFP28 Ports 1-2,15-16 up to 4.5W
+- QSFP28 Ports 3-14 up to 3.5W
 
 {{< /tab >}}
 {{< tab "SN2410 ">}}
@@ -121,6 +130,12 @@ Spectrum 1RU ToR
 - Switching Capacity: 3.2Tbps (2.38Bpps)
 - Ports: 48x25GbE SFP28 (NRZ) + 8x100GbE QSFP28 (NRZ)
 
+Maximum Ports Power Support 
+- SFP28 Ports 1-2,47-48 up to 4.5W
+- SFP28 Ports 3-46 ip to 1.5W
+- QSFP28 Ports 49-50,55-56 up to 5.0W
+- QSFP28 Ports 51-54 up to 3.5W
+
 {{< /tab >}}
 {{< tab "SN2700 ">}}
 
@@ -129,6 +144,10 @@ Spectrum 1RU ToR
 Spectrum 1RU ToR/Spine
 - Switching Capacity: 6.4Tbps (4.76Bpps)
 - Ports: 32x100GbE QSFP28 (NRZ)
+
+Maximum Ports Power Support 
+- QSFP28 Ports 1-2,31-32 up to 5.0W
+- QSFP28 Ports 3-30 up to 3.5W
 
 {{< /tab >}}
 {{< /tab >}}
@@ -145,6 +164,12 @@ Spectrum-2 1RU ToR
 - Switching Capacity: 4.8Tbps (3.58Bpps)
 - Ports: 48x25G SFP28 (NRZ) + 12x100GbE QSFP28 (NRZ)
 
+Maximum Ports Power Support 
+- SFP28 Ports 1-6 up to 2.5W
+- SFP28 Ports 7-48 ip to 1.5W
+- QSFP28 Ports 49-52,54,56,58,60 up to 3.5W
+- QSFP28 Ports 53,55,57,59 up to 5.0W
+
 {{< /tab >}}
 {{< tab "SN3700C ">}}
 
@@ -154,6 +179,10 @@ Spectrum-2 1RU ToR/Spine
 - Switching Capacity: 6.4Tbps (4.76Bpps)
 - Ports: 32x100G QSFP28 (NRZ)
 
+Maximum Ports Power Support 
+- QSFP28 Ports 1-2,31-32 up to 5.0W
+- QSFP28 Ports 3-30 up to 3.5W
+
 {{< /tab >}}
 {{< tab "SN3700 ">}}
 
@@ -162,6 +191,9 @@ Spectrum-2 1RU ToR/Spine
 Spectrum-2 1RU ToR/Spine
 - Switching Capacity: 12.8Tbps (8.33Bpps)
 - Ports: 32x200G QSFP56 (PAM4)
+
+Maximum Ports Power Support 
+- QSFP56 Ports 1-32 up to 5.0W
 
 {{< /tab >}}
 {{< /tab >}}
@@ -189,6 +221,10 @@ Spectrum-3 2RU Spine/Super-Spine
 - Switching Capacity: 12.8Tbps (8.4Bpps)
 - Ports: 64x100GbE QSFP28 (NRZ)
 
+Maximum Ports Power Support 
+- QSFP28 Ports 1-48 up to 3.5W
+- QSFP28 Ports 49-64 up to 5.0W
+
 {{< /tab >}}
 <!-- THIS PLATFORM IS PLANNED TO Sep21 (CL4.4.1)
 
@@ -200,6 +236,9 @@ Spectrum-3 2RU Spine/Super-Spine
 - Switching Capacity: 25.6Tbps (8.4Bpps)
 - Ports: 64x200GbE QSFP56 (PAM4)
 
+Maximum Ports Power Support 
+- QSFP56 Ports 1-64 up to 5.0W
+
 {< /tab >}}
 -->
 
@@ -210,6 +249,9 @@ Spectrum-3 2RU Spine/Super-Spine
 Spectrum-3 1RU Spine/Super-Spine
 - Switching Capacity: 25.6Tbps (8.4Bpps)
 - Ports: 32x400GbE QSFP56-DD (PAM4)
+
+Maximum Ports Power Support 
+- QSFP56-DD Ports 1-32 up to 12.0W (in C2P airflow models)
 
 {{< /tab >}}
 <!-- THIS PLATFORM IS PLANNED TO NOV21 (CL5.1)

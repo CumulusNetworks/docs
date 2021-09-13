@@ -799,7 +799,7 @@ Cumulus Linux provides the following PIM timers:
 | Timer | Description |
 |------ | ----------- |
 | `join-prune-interval` | The interval in seconds at which a PIM router sends join/prune messages to its upstream neighbors for a state update. You can specify a value between 60 and 600. The default setting is 60 seconds. With NCLU, you can set the `join-prune-interval` globally or for a specific VRF.|
-| `keep-alive-timer` | The timeout value for the S,G stream in seconds. You can specify a value between 31 and 60000. The default setting is 210 seconds.With NCLU and vtysh, you can set the `keep-alive` timer globally or for a specific VRF. |
+| `keep-alive-timer` | The timeout value for the S,G stream in seconds. You can specify a value between 31 and 60000. The default setting is 210 seconds. With NCLU and vtysh, you can set the `keep-alive` timer globally or for a specific VRF. |
 | `register-suppress-time` | The number of seconds during which to stop sending register messages to the RP. You can specify a value between 5 and 60000. The default setting is 60 seconds. With NCLU, you can set the `register-suppress-time` timer globally or for a specific VRF. |
 
 The following example commands set the `join-prune-interval` to 100 seconds, the `keep-alive-timer` to 10000 seconds, and the `register-suppress-time` to 20000 seconds:
@@ -856,6 +856,33 @@ cumulus@switch:~$
 
 {{< /tab >}}
 {{< /tabs >}}
+
+### Increase Multicast Convergence Times
+
+For large multicast environments, the default [CoPP](## "Control Plane Policing") policer might be too restrictive. You can adjust the policer to increase multicast convergence times.
+
+- The default PIM forwarding rate is set to 2000 packets per second and the burst rate is set to 2000 packets.
+- The default IGMP forwarding rate is set to 300 packets per second and the burst rate is set to 100 packets.
+
+To tune the PIM and IGMP forwarding and burst rate, edit the `/etc/cumulus/acl/policy.d/00control_plane.rules` file and change `--set-rate` and `--set-burst` in the PIM and IGMP policer lines.
+
+The following example command changes the **PIM** forwarding rate to 3000 packets per second and the burst rate to 3000 packets.
+
+```
+-A $INGRESS_CHAIN -p pim -j POLICE --set-mode pkt --set-rate 3000 --set-burst 3000
+```
+
+The following command example changes the **IGMP** forwarding rate to 400 packets per second and the burst rate to 200 packets.
+
+```
+-A $INGRESS_CHAIN -p igmp -j POLICE --set-mode pkt --set-rate 400 --set-burst 200
+```
+
+To apply the rules, run the `sudo cl-acltool -i` command:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
 
 <!-- vale off -->
 <!-- vale.ai Issue #253 -->

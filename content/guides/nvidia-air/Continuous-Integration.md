@@ -8,154 +8,143 @@ version: "1.0"
 NVIDIA Air supports the ability to integrate a Network Continuous Integration (NetCI) pipeline. It provides workflows to onboard production code and have it tested against a digital simulation of the network.
 
 ## Scope
-
-* This feature is currently in early Beta testing. To get involved in the Beta, please reach out to the CITC team at citc-support@nvidia.com.
-* Currently, only Gitlab is supported as the centralized code repository.
-
+<!-- vale off -->
+This feature is currently in early beta testing. To get involved in the beta, reach out to the NVIDIA Cumulus in the Cloud (CITC) team at citc-support@nvidia.com.
+<!-- vale on -->
 ## Requirements
 
-In order to use the NVIDIA Air Continuous Integration as a Service (CIaaS), the following requirements must be met.
+To use the NVIDIA Air Continuous Integration as a Service (CIaaS), you must do the following:
 
-1. Infrastructure as Code
-2. Topology of Data Center
+- Deploy Infrastructure as Code (IaC)
+- Build the data center topology
 
-### Infrastructure as Code
+### Deploy Infrastructure as Code
 
-The configurations and deployment mechanism must be stored in a centralized git repository. Common git repositories include {{<exlink url="https://github.com" text="Github">}} and {{<exlink url="https://gitlab.com" text="Gitlab">}}.
+You must store the configurations and deployment mechanism in a centralized `git` repository. Common `git` repositories include {{<exlink url="https://github.com" text="GitHub">}} and {{<exlink url="https://gitlab.com" text="GitLab">}}.
 
-Infrastructure as code can exist in many ways. Below are two methods that can be used for implementing a CI solution.
+{{%notice note%}}
 
-#### Simple IAC
+Currently, GitLab is the only supported centralized code repository.
 
-The simplest form of IAC involves backing up and restoring configurations using a centralized configuration repository. NVIDIA Netowrking provides a free publicly available repository that can be used to backup and restore files. Fork this {{<exlink url="https://gitlab.com/cumulus-consulting/features/simple-iac/" text="Simple IAC">}} repository, run it in your environment to back up your configurations, then use it to restore or apply and configuration changes. Any changes committed to the backed up configurations obtained through this repository would result in a pipeline run of the CI workflow.
+{{%/notice%}}
 
-#### Advanced IAC
+Infrastructure as code can exist in many ways. Below are two methods that you can use to implement a CI solution.
 
- An example of an advanced solution can be obtained through the NVIDIA {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle/cumulus_ansible_modules/" text="Production Ready Automation">}}. This code centralizes not only the configuration backup, but it creates a fully comprehensive automation deployment method including data structures, templates and feature-specific tasks.
+#### Simple IaC
 
-### Topology of Data Center
+The simplest form of IaC involves backing up and restoring configurations using a centralized configuration repository. NVIDIA Networking provides a {{<exlink url="https://gitlab.com/cumulus-consulting/features/simple-iac/" text="free publicly available repository simple IaC repository">}} that you can use to back up and restore files. Fork this repository, run it in your environment to back up your configurations, then use it to restore or apply and configuration changes. Any changes committed to the backed up configurations obtained through this repository result in a pipeline run of the CI workflow.
 
-There are two methods to build the topology of the data center. For new environments, the Air topology builder tool can be used to create the the topology. For existing environments, using a script to convert existing configurations into a topology file is easier.
+#### Advanced IaC
+
+ One example of an advanced IaC solution is the NVIDIA {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle/cumulus_ansible_modules/" text="Production Ready Automation">}} module. This code centralizes not only the configuration backup, but it creates a fully comprehensive automation deployment method including data structures, templates and feature-specific tasks.
+
+### Build the Data Center Topology
+
+You can build the data center topology using one of two methods. For new environments, you can use the Air topology builder tool to create the new topology. For existing environments, it is easier to use a script to convert the existing configuration into a topology file.
 
 #### Topology Builder
 
-This workflow is outlined in more detail in the section labelled {{<link url="Custom-Topology/" text="Build a Custom Topology">}}.
+You can find more details about this workflow in {{<link url="Custom-Topology/#build-a-custom-topology" text="Build a Custom Topology">}}.
 
-Using the blank canvas, a full topology can be generated using the GUI:
+Using the blank canvas, you can generate a full topology using the NVIDIA Air UI:
 
 {{<img src="/images/guides/nvidia-air/CustomTopology.png" width="800px">}}
 
 #### Topology From Existing Network
 
-This workflow is outlined in more detail in the section labeled {{<link url="Custom-Topology/" text="Create a Custom Topology from the Production Network">}}.
+You can find more details about this workflow in {{<link url="Custom-Topology/#create-a-custom-topology-from-the-production-network" text="Create a Custom Topology from the Production Network">}}.
 
 ## Access NetCI
 
 NVIDIA Air's continuous integration functionality is available via the direct link for {{<exlink url="https://air.nvidia.com/netci/" text="NetCI">}}.
 
-Login by creating a new account.
+Log in by creating a new account.
 
-## Adding a NetCI Workflow
+## Add a NetCI Workflow
 
-After the first login, the user is presented with the option to launch a wizard to `Get Started`:
+After the first login, click **Get Started** to launch the configuration wizard:
 
 {{<img src="/images/guides/nvidia-air/NetCI-GetStarted.png" width="800px">}}
 
 ### Connect a Repository
 
-Meeting the first requirement of IaC, the user must link to their git repository and provide the NVIDIA Air NetCI platform access to read the repository.
+You must link to your `git` repository and allow the NVIDIA Air NetCI platform access to read the repository.
 
 {{<img src="/images/guides/nvidia-air/NetCI-ConnectRepository.png" width="800px">}}
 
+1. Enter the **Repository URL**. The repository URL is the parent level URL directly accessible over the internet. One example of this is:
 
-#### Repository URL
+       https://gitlab.com/cumulus-consulting/goldenturtle/cumulus_ansible_modules
 
-The repository URL is the parent level URL directly accessible over the internet.
+1. Enter the **Access Token**. The repository generates the access token and you can normally get it through the UI. The following steps show how to generate the token from GitLab.
 
-Examples of this include:
+   1. Log in to GitLab, then select **Preferences**.
 
-```
-https://gitlab.com/cumulus-consulting/goldenturtle/cumulus_ansible_modules
-```
+      {{<img src="/images/guides/nvidia-air/NetCI-GitlabPreferences.png" width="200px">}}
 
-After the contents are filled out, the output will look as follows:
+   1. Select **Access Tokens**.
+
+      {{<img src="/images/guides/nvidia-air/NetCI-GitlabAccessTokens.png" width="200px">}}
+
+   1. Create an access token by giving it a name and make sure to select *api* as the selected scope.
+
+      {{<img src="/images/guides/nvidia-air/NetCI-GitlabTokenExample.png" width="600px">}}
+
+   1. Take the newly generated personal access token and copy and paste it into the **Access Token** field in NVIDIA Air.
+
+After you enter the repository URL and access token, the screen looks like this:
 
 {{<img src="/images/guides/nvidia-air/NetCI-ConnectRepositoryPopulated.png" width="800px">}}
 
-#### Access Token
-
-The access token must be generated by the repository and can normally be done through the GUI. Below there are two examples of how to generate the token from Gitlab and Github.
-
-##### Gitlab
-
-In Gitlab, after logging in, select `Preferences`:
-
-{{<img src="/images/guides/nvidia-air/NetCI-GitlabPreferences.png" width="200px">}}
-
-Then select Access Tokens:
-
-{{<img src="/images/guides/nvidia-air/NetCI-GitlabAccessTokens.png" width="200px">}}
-
-Then create an Access Token by giving it a name and make sure to select `api` as the selected scope.
-
-{{<img src="/images/guides/nvidia-air/NetCI-GitlabTokenExample.png" width="600px">}}
-
-Take the newly generated personal access token and copy it to the appropriate field in the NVIDIA Air NetCI text box.
-
-
 ### Add a Network
 
-The network defines the architecture that will be launched in NVIDIA Air as a simulation and the configuration that will be deployed into the simulation. All following required input is relative to the repository.
-
-{{<img src="/images/guides/nvidia-air/NetCI-AddNetwork.png" width="600px">}}
-
-* **Name**: Any user defined name for the network and CI environment to be tested
-* **Topology File Path**: This is the relative path within the repository linked in the previous section that points to a `.dot` format topology file that defines the network
-* **Configuration Deployment Command**: This is the command that when executed from the root directory of the repository can successfully deploy and provision the entire network
-
-An example looks of the filled out form is below:
+The network defines the architecture that launches in NVIDIA Air as a simulation and the configuration that gets deployed into the simulation. All required input below is relative to the repository.
 
 {{<img src="/images/guides/nvidia-air/NetCI-AddNetworkPopulated.png" width="600px">}}
 
+- **Name**: The name of the network and CI environment to test
+- **Topology File Path**: The relative path within the repository linked in the {{<link url="#connect-a-repository" text="previous section">}} that points to a `.dot` format topology file that defines the network
+- **Configuration Deployment Command**: The command that when executed from the root directory of the repository can successfully deploy and provision the entire network
+
 ### Enable Tests
 
-Tests for the NetCI environment are predefined and primarily rely on NVIDIA Netq as the backend validation tool.
+The NetCI environment has predefined standard set of tests that rely on NVIDIA NetQ as the backend validation tool.
 
 {{<img src="/images/guides/nvidia-air/NetCI-EnableTests.png" width="600px">}}
 
-NetCI comes pre-configured with a standard set of tests. Users can define their own tests which is convered in the section {{<link url="Continuous-Integration/" text="Add Tests">}}.
+You can define your own tests; see {{<link url="#add-tests" text="Add Tests">}} below.
 
 ### Summary
 
-The entire configuration is provided in a summarized form at the end.
+The last page of the wizard summarizes the entire configuration.
 
 {{<img src="/images/guides/nvidia-air/NetCI-Summary.png" width="600px">}}
 
 ## Networks
 
-Any defined networks are defined and tracked in the `Networks` tab.
+You define and track networks on the **Networks** tab.
 
 ### Test Results
 
-All test results are presented in the `Networks` section by clicking and expanding the defined network.
+To see all test results, click and expand the desired network in the **Networks** section.
 
 {{<img src="/images/guides/nvidia-air/NetCI-ManualTest.png" width="300px">}}
 
-Each stage can be clicked and expanded to provide greater details on each stage results.
+You can click and expand each stage to see more details of the results of each stage.
 
 ## Repositories
 
-All configured repositories are defined and tracked in the `Repositories` tab.
+You define and track configured repositories on the **Repositories** tab.
 
 ## Tests
 
-The `Tests` section lists all supported tests and allows the user to run a single test at a time against the network infrastructure.
+The **Tests** tab lists all supported tests and allows the user to run a single test at a time against the network infrastructure.
 
 {{<img src="/images/guides/nvidia-air/NetCI-Tests.png" width="600px">}}
 
 ### Add Tests
 
-The NetCI environment supports uploading individual tests. The tests are defined in YAML format. Below are two examples:
+The NetCI environment supports the uploading of individual tests. You define the tests in YAML format. Below are two examples:
 
 Example 1:
 
@@ -191,5 +180,7 @@ Nessus Scan switch:
     if __name__ == '__main__':
         main()
 ```
+
+Click **Add Tests** to add a new test.
 
 {{<img src="/images/guides/nvidia-air/NetCI-AddTest.png" width="300px">}}

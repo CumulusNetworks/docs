@@ -837,6 +837,8 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
+The following example commands set the `join-prune-interval` to 100 seconds, the `keep-alive-timer` to 10000 seconds, and the `register-suppress-time` to 20000 seconds globally for all PIM enabled interfaces:
+
 ```
 cumulus@switch:~$ sudo vtysh
 ...

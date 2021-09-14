@@ -866,10 +866,10 @@ For large multicast environments, the default [CoPP](## "Control Plane Policing"
 
 To tune the PIM and IGMP forwarding and burst rate, edit the `/etc/cumulus/acl/policy.d/00control_plane.rules` file and change `--set-rate` and `--set-burst` in the PIM and IGMP policer lines.
 
-The following example command changes the **PIM** forwarding rate to 2300 packets per second and the burst rate to 2300 packets.
+The following example command changes the **PIM** forwarding rate to 2050 packets per second and the burst rate to 2050 packets.
 
 ```
--A $INGRESS_CHAIN -p pim -j POLICE --set-mode pkt --set-rate 2300 --set-burst 2300
+-A $INGRESS_CHAIN -p pim -j POLICE --set-mode pkt --set-rate 2050 --set-burst 2050
 ```
 
 The following command example changes the **IGMP** forwarding rate to 400 packets per second and the burst rate to 200 packets.

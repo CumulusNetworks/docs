@@ -7,85 +7,15 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-32516</td>
-<td>When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.&lt;br/&gt;
-To work around this issue, configure the new BGP neighbors with vtysh.</td>
-<td>3.7.14-3.7.15, 4.2.1-4.3.0</td>
+<td>2783520</td>
+<td>When the {{clagd}} process terminates unexpectedly due to signals such as sig11 or sig6, no core file  is generated.</td>
+<td>3.7.15</td>
 <td></td>
 </tr>
 <tr>
-<td>CM-31420</td>
-<td>On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in /var/support undeleted. Subsequent runs of cl-support do not clean up this directory.</td>
-<td>3.7.13-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-31073</td>
-<td>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
-To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
-<td>CM-29890</td>
-<td>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-28462</td>
-<td>On rare occasions, when you upgrade Cumulus Linux with the apt-get upgrade command, the upgrade fails and reports No space left on device. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
-To work around this issue, run the apt-get upgrade command again and reboot the device if prompted to complete the upgrade.</td>
-<td>3.7.10-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-28080</td>
-<td>TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.</td>
-<td>3.7.11-3.7.15, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-23004</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
-</td>
-<td>3.7.1-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-21678</td>
-<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
- 
- 
- cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
- P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
- This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
-</td>
-<td>3.5.3-3.7.15, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20508</td>
-<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
-<td>3.5.3-3.7.15, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20033</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-</td>
-<td>3.5.2-3.7.15, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-15812</td>
-<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
-<td>3.2.1-3.7.15, 4.0.0-4.3.0</td>
+<td>2770226</td>
+<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
+<td>3.7.14.2-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -152,6 +82,18 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728206</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728205</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -243,6 +185,32 @@ ip route 10.10.0.0/16 Null0
    route-map DENY-COMPONENTS permit 20
 
 Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2684452</td>
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+
+You can work around this issue with the following steps:
+
+1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
+2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+
+$ cat /etc/network/ifupdown2/policy.d/vxlan.json
+
+   {
+        "vxlan": {
+            "module_globals": { "vxlan-purge-remotes": "no" },
+            "defaults": {
+                "vxlan-ageing": "1800",
+                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
+                "vxlan-learning": "off" &lt;= This line needs to be added
+             }
+        }
+   }
+
+3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
@@ -494,7 +462,6 @@ This operation is not supported in the kernel without recreating the SVI. To app
 <td>2554785</td>
 <td>After you reboot a Broadcom switch, {{switchd}} might fail to restart and you see logs in {{switchd.log}} similar to the following:
 
-...
 Nov 12 12:20:05.063876 leaf01 switchd[9867]:
 Nov 12 12:20:05.064310 leaf01 switchd[9867]: hal_bcm_console.c:294 0:system_init:
 Nov 12 12:20:05.064428 leaf01 switchd[9867]: hal_bcm_console.c:294 system_init: Misc init failed: Operation timed out
@@ -511,13 +478,12 @@ Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading
 Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
 
+To work around this issue, configure Cumulus Linux to boot with the {{ntel_iommu=off}} kernel command option:
 
-To work around this issue, configure Cumulus Linux to boot with the kernel command option 'intel_iommu=off':
-
-a) Open the file /etc/default/grub with a text editor
-b) Edit the variable GRUB_CMDLINE_LINUX by adding the string 'intel_iommu=off' at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
-c) Run the command 'update-grub'
-d) Reboot the switch</td>
+1. Open the {{/etc/default/grub}} file with a text editor.
+2. Edit the {{GRUB_CMDLINE_LINUX}} variable by adding the string {{intel_iommu=off}} at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
+3. Run the {{update-grub}} command.
+4. Reboot the switch.</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0-4.4.0</td>
 </tr>
@@ -865,8 +831,8 @@ If you flap the link with the {{ip link set vni10100 down; ip link set vni10100 
 <td>2548672</td>
 <td>When a multipath route that contains an EVPN path exists together with an IPv4 BGP path in the VRF, the RMAC to VTEP binding is incorrect. This invalid entry occurs because Cumulus Linux treats IPv4 routes received over the eBGP IPv4 peering incorrectly in the VRF.
 To work around this issue, remove the unnecessary eBGP IPv4 peering.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0-4.4.0</td>
+<td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2548657</td>
@@ -1791,11 +1757,6 @@ To work around this issue, correct the bridge VIDs and restart {{switchd}} or de
 <th> Affects </th>
 </tr>
 <tr>
-<td>CM-30832</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</td>
-<td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
-</tr>
-<tr>
 <td>2635951</td>
 <td>The following vulnerability has been announced for the libgstreamer-plugins-base1.0-0 package.  There is no CVE number yet; the Debian advisory number is ELA-412-1.
 Multiple vulnerabilities were discovered in plugins for the GStreamer media framework, which may result in denial of service or potentially the execution of arbitrary code if a malformed media file is opened.
@@ -2235,85 +2196,9 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-32516</td>
-<td>When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.&lt;br/&gt;
-To work around this issue, configure the new BGP neighbors with vtysh.</td>
-<td>3.7.14-3.7.14.2, 4.2.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-31420</td>
-<td>On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in /var/support undeleted. Subsequent runs of cl-support do not clean up this directory.</td>
-<td>3.7.13-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-31073</td>
-<td>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
-To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
-<td>CM-29890</td>
-<td>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</td>
-<td>3.7.12-3.7.14.2, 4.1.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-28462</td>
-<td>On rare occasions, when you upgrade Cumulus Linux with the apt-get upgrade command, the upgrade fails and reports No space left on device. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
-To work around this issue, run the apt-get upgrade command again and reboot the device if prompted to complete the upgrade.</td>
-<td>3.7.10-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-28080</td>
-<td>TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.</td>
-<td>3.7.11-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-23004</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
-</td>
-<td>3.7.1-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-21678</td>
-<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
- 
- 
- cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
- P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
- This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
-</td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20508</td>
-<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20033</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-</td>
-<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-15812</td>
-<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
-<td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td>2770226</td>
+<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
+<td>3.7.14.2-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -2380,6 +2265,18 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728206</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728205</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -2460,6 +2357,32 @@ ip route 10.10.0.0/16 Null0
    route-map DENY-COMPONENTS permit 20
 
 Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2684452</td>
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+
+You can work around this issue with the following steps:
+
+1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
+2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+
+$ cat /etc/network/ifupdown2/policy.d/vxlan.json
+
+   {
+        "vxlan": {
+            "module_globals": { "vxlan-purge-remotes": "no" },
+            "defaults": {
+                "vxlan-ageing": "1800",
+                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
+                "vxlan-learning": "off" &lt;= This line needs to be added
+             }
+        }
+   }
+
+3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
@@ -3080,7 +3003,6 @@ To work around this issue, either shut down one side of the MLAG bond or prune o
 <td>2554785</td>
 <td>After you reboot a Broadcom switch, {{switchd}} might fail to restart and you see logs in {{switchd.log}} similar to the following:
 
-...
 Nov 12 12:20:05.063876 leaf01 switchd[9867]:
 Nov 12 12:20:05.064310 leaf01 switchd[9867]: hal_bcm_console.c:294 0:system_init:
 Nov 12 12:20:05.064428 leaf01 switchd[9867]: hal_bcm_console.c:294 system_init: Misc init failed: Operation timed out
@@ -3097,13 +3019,12 @@ Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading
 Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
 
+To work around this issue, configure Cumulus Linux to boot with the {{ntel_iommu=off}} kernel command option:
 
-To work around this issue, configure Cumulus Linux to boot with the kernel command option 'intel_iommu=off':
-
-a) Open the file /etc/default/grub with a text editor
-b) Edit the variable GRUB_CMDLINE_LINUX by adding the string 'intel_iommu=off' at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
-c) Run the command 'update-grub'
-d) Reboot the switch</td>
+1. Open the {{/etc/default/grub}} file with a text editor.
+2. Edit the {{GRUB_CMDLINE_LINUX}} variable by adding the string {{intel_iommu=off}} at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
+3. Run the {{update-grub}} command.
+4. Reboot the switch.</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0-4.4.0</td>
 </tr>
@@ -3506,8 +3427,8 @@ These messages are harmless and can be ignored.</td>
 <td>2548672</td>
 <td>When a multipath route that contains an EVPN path exists together with an IPv4 BGP path in the VRF, the RMAC to VTEP binding is incorrect. This invalid entry occurs because Cumulus Linux treats IPv4 routes received over the eBGP IPv4 peering incorrectly in the VRF.
 To work around this issue, remove the unnecessary eBGP IPv4 peering.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0-4.4.0</td>
+<td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2548657</td>
@@ -4432,11 +4353,6 @@ To work around this issue, correct the bridge VIDs and restart {{switchd}} or de
 <th> Affects </th>
 </tr>
 <tr>
-<td>CM-30832</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</td>
-<td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
-</tr>
-<tr>
 <td>2556287</td>
 <td>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1
@@ -4499,94 +4415,6 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-32516</td>
-<td>When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.&lt;br/&gt;
-To work around this issue, configure the new BGP neighbors with vtysh.</td>
-<td>3.7.14-3.7.14.2, 4.2.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-31420</td>
-<td>On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in /var/support undeleted. Subsequent runs of cl-support do not clean up this directory.</td>
-<td>3.7.13-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-31073</td>
-<td>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
-To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
-<td>CM-30832</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</td>
-<td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
-<td>3.7.14.2, 4.3.0</td>
-</tr>
-<tr>
-<td>CM-29890</td>
-<td>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</td>
-<td>3.7.12-3.7.14.2, 4.1.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-28462</td>
-<td>On rare occasions, when you upgrade Cumulus Linux with the apt-get upgrade command, the upgrade fails and reports No space left on device. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
-To work around this issue, run the apt-get upgrade command again and reboot the device if prompted to complete the upgrade.</td>
-<td>3.7.10-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-28080</td>
-<td>TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.</td>
-<td>3.7.11-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-23004</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
-</td>
-<td>3.7.1-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-21678</td>
-<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
- 
- 
- cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
- P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
- This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
-</td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20508</td>
-<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20033</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-</td>
-<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-15812</td>
-<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
-<td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2769687</td>
 <td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
 Vulnerable: &lt;= 7.38.0-4+deb8u20
@@ -4644,6 +4472,18 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728206</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728205</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -4724,6 +4564,32 @@ ip route 10.10.0.0/16 Null0
    route-map DENY-COMPONENTS permit 20
 
 Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2684452</td>
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+
+You can work around this issue with the following steps:
+
+1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
+2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+
+$ cat /etc/network/ifupdown2/policy.d/vxlan.json
+
+   {
+        "vxlan": {
+            "module_globals": { "vxlan-purge-remotes": "no" },
+            "defaults": {
+                "vxlan-ageing": "1800",
+                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
+                "vxlan-learning": "off" &lt;= This line needs to be added
+             }
+        }
+   }
+
+3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
@@ -5377,7 +5243,6 @@ To work around this issue, either shut down one side of the MLAG bond or prune o
 <td>2554785</td>
 <td>After you reboot a Broadcom switch, {{switchd}} might fail to restart and you see logs in {{switchd.log}} similar to the following:
 
-...
 Nov 12 12:20:05.063876 leaf01 switchd[9867]:
 Nov 12 12:20:05.064310 leaf01 switchd[9867]: hal_bcm_console.c:294 0:system_init:
 Nov 12 12:20:05.064428 leaf01 switchd[9867]: hal_bcm_console.c:294 system_init: Misc init failed: Operation timed out
@@ -5394,13 +5259,12 @@ Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading
 Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
 
+To work around this issue, configure Cumulus Linux to boot with the {{ntel_iommu=off}} kernel command option:
 
-To work around this issue, configure Cumulus Linux to boot with the kernel command option 'intel_iommu=off':
-
-a) Open the file /etc/default/grub with a text editor
-b) Edit the variable GRUB_CMDLINE_LINUX by adding the string 'intel_iommu=off' at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
-c) Run the command 'update-grub'
-d) Reboot the switch</td>
+1. Open the {{/etc/default/grub}} file with a text editor.
+2. Edit the {{GRUB_CMDLINE_LINUX}} variable by adding the string {{intel_iommu=off}} at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
+3. Run the {{update-grub}} command.
+4. Reboot the switch.</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0-4.4.0</td>
 </tr>
@@ -5809,8 +5673,8 @@ These messages are harmless and can be ignored.</td>
 <td>2548672</td>
 <td>When a multipath route that contains an EVPN path exists together with an IPv4 BGP path in the VRF, the RMAC to VTEP binding is incorrect. This invalid entry occurs because Cumulus Linux treats IPv4 routes received over the eBGP IPv4 peering incorrectly in the VRF.
 To work around this issue, remove the unnecessary eBGP IPv4 peering.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0-4.4.0</td>
+<td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2548657</td>
@@ -7326,87 +7190,6 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-31420</td>
-<td>On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in /var/support undeleted. Subsequent runs of cl-support do not clean up this directory.</td>
-<td>3.7.13-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-31073</td>
-<td>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
-To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
-<td>CM-30832</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</td>
-<td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
-<td>3.7.14.2, 4.3.0</td>
-</tr>
-<tr>
-<td>CM-29890</td>
-<td>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</td>
-<td>3.7.12-3.7.14.2, 4.1.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-28462</td>
-<td>On rare occasions, when you upgrade Cumulus Linux with the apt-get upgrade command, the upgrade fails and reports No space left on device. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
-To work around this issue, run the apt-get upgrade command again and reboot the device if prompted to complete the upgrade.</td>
-<td>3.7.10-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-28080</td>
-<td>TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.</td>
-<td>3.7.11-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-23004</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
-</td>
-<td>3.7.1-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-21678</td>
-<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
- 
- 
- cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
- P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
- This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
-</td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20508</td>
-<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20033</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-</td>
-<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-15812</td>
-<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
-<td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2769687</td>
 <td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
 Vulnerable: &lt;= 7.38.0-4+deb8u20
@@ -7464,6 +7247,18 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728206</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728205</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -7544,6 +7339,32 @@ ip route 10.10.0.0/16 Null0
    route-map DENY-COMPONENTS permit 20
 
 Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2684452</td>
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+
+You can work around this issue with the following steps:
+
+1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
+2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+
+$ cat /etc/network/ifupdown2/policy.d/vxlan.json
+
+   {
+        "vxlan": {
+            "module_globals": { "vxlan-purge-remotes": "no" },
+            "defaults": {
+                "vxlan-ageing": "1800",
+                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
+                "vxlan-learning": "off" &lt;= This line needs to be added
+             }
+        }
+   }
+
+3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
@@ -7835,7 +7656,6 @@ To work around this issue, either shut down one side of the MLAG bond or prune o
 <td>2554785</td>
 <td>After you reboot a Broadcom switch, {{switchd}} might fail to restart and you see logs in {{switchd.log}} similar to the following:
 
-...
 Nov 12 12:20:05.063876 leaf01 switchd[9867]:
 Nov 12 12:20:05.064310 leaf01 switchd[9867]: hal_bcm_console.c:294 0:system_init:
 Nov 12 12:20:05.064428 leaf01 switchd[9867]: hal_bcm_console.c:294 system_init: Misc init failed: Operation timed out
@@ -7852,13 +7672,12 @@ Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading
 Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
 
+To work around this issue, configure Cumulus Linux to boot with the {{ntel_iommu=off}} kernel command option:
 
-To work around this issue, configure Cumulus Linux to boot with the kernel command option 'intel_iommu=off':
-
-a) Open the file /etc/default/grub with a text editor
-b) Edit the variable GRUB_CMDLINE_LINUX by adding the string 'intel_iommu=off' at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
-c) Run the command 'update-grub'
-d) Reboot the switch</td>
+1. Open the {{/etc/default/grub}} file with a text editor.
+2. Edit the {{GRUB_CMDLINE_LINUX}} variable by adding the string {{intel_iommu=off}} at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
+3. Run the {{update-grub}} command.
+4. Reboot the switch.</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0-4.4.0</td>
 </tr>
@@ -8764,8 +8583,8 @@ These messages are harmless and can be ignored.</td>
 <td>2548672</td>
 <td>When a multipath route that contains an EVPN path exists together with an IPv4 BGP path in the VRF, the RMAC to VTEP binding is incorrect. This invalid entry occurs because Cumulus Linux treats IPv4 routes received over the eBGP IPv4 peering incorrectly in the VRF.
 To work around this issue, remove the unnecessary eBGP IPv4 peering.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0-4.4.0</td>
+<td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2548657</td>
@@ -10351,81 +10170,6 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-31073</td>
-<td>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
-To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
-<td>CM-30832</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</td>
-<td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
-<td>3.7.14.2, 4.3.0</td>
-</tr>
-<tr>
-<td>CM-29890</td>
-<td>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</td>
-<td>3.7.12-3.7.14.2, 4.1.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-28462</td>
-<td>On rare occasions, when you upgrade Cumulus Linux with the apt-get upgrade command, the upgrade fails and reports No space left on device. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
-To work around this issue, run the apt-get upgrade command again and reboot the device if prompted to complete the upgrade.</td>
-<td>3.7.10-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-28080</td>
-<td>TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.</td>
-<td>3.7.11-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-23004</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
-</td>
-<td>3.7.1-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-21678</td>
-<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
- 
- 
- cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
- P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
- This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
-</td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20508</td>
-<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20033</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-</td>
-<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-15812</td>
-<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
-<td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2769687</td>
 <td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
 Vulnerable: &lt;= 7.38.0-4+deb8u20
@@ -10483,6 +10227,18 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728206</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728205</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -10563,6 +10319,32 @@ ip route 10.10.0.0/16 Null0
    route-map DENY-COMPONENTS permit 20
 
 Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2684452</td>
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+
+You can work around this issue with the following steps:
+
+1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
+2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+
+$ cat /etc/network/ifupdown2/policy.d/vxlan.json
+
+   {
+        "vxlan": {
+            "module_globals": { "vxlan-purge-remotes": "no" },
+            "defaults": {
+                "vxlan-ageing": "1800",
+                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
+                "vxlan-learning": "off" &lt;= This line needs to be added
+             }
+        }
+   }
+
+3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
@@ -10816,7 +10598,6 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 <td>2554785</td>
 <td>After you reboot a Broadcom switch, {{switchd}} might fail to restart and you see logs in {{switchd.log}} similar to the following:
 
-...
 Nov 12 12:20:05.063876 leaf01 switchd[9867]:
 Nov 12 12:20:05.064310 leaf01 switchd[9867]: hal_bcm_console.c:294 0:system_init:
 Nov 12 12:20:05.064428 leaf01 switchd[9867]: hal_bcm_console.c:294 system_init: Misc init failed: Operation timed out
@@ -10833,13 +10614,12 @@ Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading
 Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
 
+To work around this issue, configure Cumulus Linux to boot with the {{ntel_iommu=off}} kernel command option:
 
-To work around this issue, configure Cumulus Linux to boot with the kernel command option 'intel_iommu=off':
-
-a) Open the file /etc/default/grub with a text editor
-b) Edit the variable GRUB_CMDLINE_LINUX by adding the string 'intel_iommu=off' at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
-c) Run the command 'update-grub'
-d) Reboot the switch</td>
+1. Open the {{/etc/default/grub}} file with a text editor.
+2. Edit the {{GRUB_CMDLINE_LINUX}} variable by adding the string {{intel_iommu=off}} at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
+3. Run the {{update-grub}} command.
+4. Reboot the switch.</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0-4.4.0</td>
 </tr>
@@ -11727,8 +11507,8 @@ To work around this issue, restart FRR.</td>
 <td>2548672</td>
 <td>When a multipath route that contains an EVPN path exists together with an IPv4 BGP path in the VRF, the RMAC to VTEP binding is incorrect. This invalid entry occurs because Cumulus Linux treats IPv4 routes received over the eBGP IPv4 peering incorrectly in the VRF.
 To work around this issue, remove the unnecessary eBGP IPv4 peering.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0-4.4.0</td>
+<td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2548666</td>
@@ -13231,68 +13011,6 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-30832</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</td>
-<td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
-<td>3.7.14.2, 4.3.0</td>
-</tr>
-<tr>
-<td>CM-28462</td>
-<td>On rare occasions, when you upgrade Cumulus Linux with the apt-get upgrade command, the upgrade fails and reports No space left on device. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
-To work around this issue, run the apt-get upgrade command again and reboot the device if prompted to complete the upgrade.</td>
-<td>3.7.10-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-28080</td>
-<td>TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.</td>
-<td>3.7.11-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-23004</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
-</td>
-<td>3.7.1-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-21678</td>
-<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
- 
- 
- cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
- P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
- This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
-</td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20508</td>
-<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20033</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-</td>
-<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-15812</td>
-<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
-<td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2769687</td>
 <td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
 Vulnerable: &lt;= 7.38.0-4+deb8u20
@@ -13350,6 +13068,18 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728206</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728205</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -13615,7 +13345,6 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 <td>2554785</td>
 <td>After you reboot a Broadcom switch, {{switchd}} might fail to restart and you see logs in {{switchd.log}} similar to the following:
 
-...
 Nov 12 12:20:05.063876 leaf01 switchd[9867]:
 Nov 12 12:20:05.064310 leaf01 switchd[9867]: hal_bcm_console.c:294 0:system_init:
 Nov 12 12:20:05.064428 leaf01 switchd[9867]: hal_bcm_console.c:294 system_init: Misc init failed: Operation timed out
@@ -13632,13 +13361,12 @@ Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading
 Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
 
+To work around this issue, configure Cumulus Linux to boot with the {{ntel_iommu=off}} kernel command option:
 
-To work around this issue, configure Cumulus Linux to boot with the kernel command option 'intel_iommu=off':
-
-a) Open the file /etc/default/grub with a text editor
-b) Edit the variable GRUB_CMDLINE_LINUX by adding the string 'intel_iommu=off' at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
-c) Run the command 'update-grub'
-d) Reboot the switch</td>
+1. Open the {{/etc/default/grub}} file with a text editor.
+2. Edit the {{GRUB_CMDLINE_LINUX}} variable by adding the string {{intel_iommu=off}} at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
+3. Run the {{update-grub}} command.
+4. Reboot the switch.</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0-4.4.0</td>
 </tr>
@@ -15769,56 +15497,6 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-28462</td>
-<td>On rare occasions, when you upgrade Cumulus Linux with the apt-get upgrade command, the upgrade fails and reports No space left on device. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
-To work around this issue, run the apt-get upgrade command again and reboot the device if prompted to complete the upgrade.</td>
-<td>3.7.10-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-23004</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
-</td>
-<td>3.7.1-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-21678</td>
-<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
- 
- 
- cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
- P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
- This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
-</td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20508</td>
-<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20033</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-</td>
-<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-15812</td>
-<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
-<td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2769687</td>
 <td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
 Vulnerable: &lt;= 7.38.0-4+deb8u20
@@ -15876,6 +15554,18 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728206</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728205</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -17737,49 +17427,6 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-23004</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
-</td>
-<td>3.7.1-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-21678</td>
-<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
- 
- 
- cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
- P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
- This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
-</td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20508</td>
-<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20033</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-</td>
-<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-15812</td>
-<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
-<td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2769687</td>
 <td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
 Vulnerable: &lt;= 7.38.0-4+deb8u20
@@ -17837,6 +17484,18 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728206</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728205</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -20006,49 +19665,6 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-23004</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
-</td>
-<td>3.7.1-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-21678</td>
-<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
- 
- 
- cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
- P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
- This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
-</td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20508</td>
-<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20033</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-</td>
-<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-15812</td>
-<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
-<td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2769687</td>
 <td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
 Vulnerable: &lt;= 7.38.0-4+deb8u20
@@ -20106,6 +19722,18 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728206</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728205</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -21709,49 +21337,6 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-23004</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
-</td>
-<td>3.7.1-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-21678</td>
-<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
- 
- 
- cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
- P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
- This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
-</td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20508</td>
-<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20033</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-</td>
-<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-15812</td>
-<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
-<td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2769687</td>
 <td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
 Vulnerable: &lt;= 7.38.0-4+deb8u20
@@ -21809,6 +21394,18 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728206</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728205</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -23742,49 +23339,6 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-23004</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
-</td>
-<td>3.7.1-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-21678</td>
-<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
- 
- 
- cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
- P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
- This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
-</td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20508</td>
-<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20033</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-</td>
-<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-15812</td>
-<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
-<td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2769687</td>
 <td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
 Vulnerable: &lt;= 7.38.0-4+deb8u20
@@ -23842,6 +23396,18 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728206</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728205</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -25519,49 +25085,6 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-23004</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
-</td>
-<td>3.7.1-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-21678</td>
-<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
- 
- 
- cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
- P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
- This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
-</td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20508</td>
-<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20033</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-</td>
-<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-15812</td>
-<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
-<td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2769687</td>
 <td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
 Vulnerable: &lt;= 7.38.0-4+deb8u20
@@ -25619,6 +25142,18 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728206</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728205</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -26948,49 +26483,6 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-23004</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
-</td>
-<td>3.7.1-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-21678</td>
-<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
- 
- 
- cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
- P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
- This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
-</td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20508</td>
-<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20033</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-</td>
-<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-15812</td>
-<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
-<td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2769687</td>
 <td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
 Vulnerable: &lt;= 7.38.0-4+deb8u20
@@ -27048,6 +26540,18 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728206</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728205</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -28404,49 +27908,6 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-23004</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
-</td>
-<td>3.7.1-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-21678</td>
-<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
- 
- 
- cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
- P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
- This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
-</td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20508</td>
-<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20033</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-</td>
-<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-15812</td>
-<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
-<td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2769687</td>
 <td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
 Vulnerable: &lt;= 7.38.0-4+deb8u20
@@ -28504,6 +27965,18 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728206</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728205</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -29961,49 +29434,6 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-23004</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
-</td>
-<td>3.7.1-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-21678</td>
-<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
- 
- 
- cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
- P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
- This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
-</td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20508</td>
-<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20033</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-</td>
-<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-15812</td>
-<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
-<td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2769687</td>
 <td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
 Vulnerable: &lt;= 7.38.0-4+deb8u20
@@ -30061,6 +29491,18 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728206</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728205</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -31561,49 +31003,6 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-23004</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
-</td>
-<td>3.7.1-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-21678</td>
-<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
- 
- 
- cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
- P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
- This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
-</td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20508</td>
-<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20033</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-</td>
-<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-15812</td>
-<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
-<td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2769687</td>
 <td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
 Vulnerable: &lt;= 7.38.0-4+deb8u20
@@ -31661,6 +31060,18 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728206</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728205</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -32479,42 +31890,6 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-21678</td>
-<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
- 
- 
- cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
- P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
- P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
- P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
- This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
-</td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20508</td>
-<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
-<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-20033</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-</td>
-<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-15812</td>
-<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
-<td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2769687</td>
 <td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
 Vulnerable: &lt;= 7.38.0-4+deb8u20
@@ -32572,6 +31947,18 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728206</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728205</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
 <td></td>

@@ -7,6 +7,7 @@ cascade:
     product: Cumulus Linux
     version: "5.0"
     draft: true
+    new: false
 toc: 1
 ---
 NVIDIA® Cumulus Linux is the first full-featured {{<exlink url="https://www.debian.org/releases/buster/" text="Debian Buster" >}}-based,

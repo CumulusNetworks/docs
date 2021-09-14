@@ -1025,17 +1025,17 @@ Cumulus Linux provides the following PIM timers:
 
 | Timer | Description |
 |------ | ----------- |
-| `hello-interval` | The interval in seconds at which the PIM router sends hello messages to discover PIM neighbors and maintain PIM neighbor relationships. You can specify a value between 1 and 180. The default setting is 30 seconds.<br><br>In NVUE, you can set the hello interval globally or for a specific interface. In vtysh, you can only set the hello interval for a specific interface.|
-| `holdtime`  | NVUE only. The number of seconds during which the neighbor must be in a reachable state. `auto` (the default setting) uses three and half times the `hello-interval`. You can specify a value between 1 and 180. |
-| `join-prune-interval` | The interval in seconds at which a PIM router sends join/prune messages to its upstream neighbors for a state update. You can specify a value between 60 and 600. The default setting is 60 seconds.|
-| `keep-alive` | The timeout value for the S,G stream in seconds. You can specify a value between 31 and 60000. The default setting is 210 seconds.<br><br>You can set the `keep-alive` timer globally or for a specific VRF.|
-| `register-suppress` | The number of seconds during which to stop sending register messages to the RP. You can specify a value between 5 and 60000. The default setting is 60 seconds.|
-| `rp-keep-alive` | NVUE only. The timeout value for the RP in seconds. You can specify a value between 31 and 60000. The default setting is 185 seconds.|
-
-The following example commands set the `join-prune-interval` to 100 seconds, the `keep-alive` timer to 10000 seconds, and the `register-suppress` time to 20000 seconds:
+| `hello-interval` | The interval in seconds at which the PIM router sends hello messages to discover PIM neighbors and maintain PIM neighbor relationships. You can specify a value between 1 and 180. The default setting is 30 seconds. With NCLU and vtysh, you set the hello interval for a specific PIM enabled interface. With NVUE, you can set the hello interval globally for all PIM enabled interfaces or for a specific PIM enabled interface.  |
+| `holdtime`  | The number of seconds during which the neighbor must be in a reachable state. `auto` (the default setting) uses three and half times the `hello-interval`. You can specify a value between 1 and 180. With NCLU and vtysh, you set the holdtime for a specific PIM enabled interface. With NVUE, you can set the holdtime globally for all PIM enabled interfaces or for a specific PIM enabled interface.|
+| `join-prune-interval` | The interval in seconds at which a PIM router sends join/prune messages to its upstream neighbors for a state update. You can specify a value between 60 and 600. The default setting is 60 seconds. You set the `join-prune-interval` globally for all PIM enabled interfaces. NVUE and NCLU also provide the option of setting the `join-prune-interval` for a specific VRF.|
+| `keep-alive` | The timeout value for the S,G stream in seconds. You can specify a value between 31 and 60000. The default setting is 210 seconds. You can set the `keep-alive` timer globally or for a specific VRF.|
+| `register-suppress` | The number of seconds during which to stop sending register messages to the RP. You can specify a value between 5 and 60000. The default setting is 60 seconds. You can set the `keep-alive` timer globally for all PIM enabled interfaces or for a specific VRF. |
+| `rp-keep-alive` | NVUE only. The timeout value for the RP in seconds. You can specify a value between 31 and 60000. The default setting is 185 seconds. You set the `register-suppress-time` timer globally. NVUE and NCLU also provide the option of setting the `register-suppress-time` timer for a specific VRF.|
 
 {{< tabs "TabID1037 ">}}
 {{< tab "NCLU Commands ">}}
+
+The following example commands set the `join-prune-interval` to 100 seconds, the `keep-alive` timer to 10000 seconds, and the `register-suppress` time to 20000 seconds globally for all PIM enabled interfaces:
 
 ```
 cumulus@switch:~$ net add pim join-prune-interval 100
@@ -1045,7 +1045,15 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-With NCLU, you can set the `join-prune-interval`, `keep-alive-timer` and `register-suppress-time` timers for a specific VRF. The following example commands set the `join-prune-interval` to 100 and the `keep-alive-timer` to 10000 for VRF RED:
+The following example commands set the `hello-interval` to 60 seconds and the `holdtime` to 132 seconds for swp51:
+
+```
+cumulus@switch:~$ net add interface swp1 pim hello 66 132
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The following example commands set the `join-prune-interval` to 100 and the `keep-alive-timer` to 10000 for VRF RED:
 
 ```
 cumulus@switch:~$ net add pim vrf RED join-prune-interval 100
@@ -1057,6 +1065,8 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
+The following example commands set the `join-prune-interval` to 100 seconds, the `keep-alive` timer to 10000 seconds, and the `register-suppress` time to 20000 seconds globally for all PIM enabled interfaces:
+
 ```
 cumulus@switch:~$ nv set router pim timers join-prune-interval 100
 cumulus@switch:~$ nv set router pim timers keep-alive 10000
@@ -1064,9 +1074,7 @@ cumulus@switch:~$ nv set router pim timers register-suppress 20000
 cumulus@switch:~$ nv config apply
 ```
 
-With NVUE, you can set the `hello-interval` and `holdtime` for a specific interface, and the `keepalive` and `rp-keep-alive` timers for a specific VRF.
-
-The following example commands set the `hello-interval` to 100 seconds for swp51.
+The following example commands set the `hello-interval` to 100 seconds for swp51:
 
 ```
 cumulus@switch:~$ nv set interface swp51 router pim timers hello-interval 100
@@ -1083,6 +1091,8 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
+The following example commands set the `join-prune-interval` to 100 seconds, the `keep-alive` timer to 10000 seconds, and the `register-suppress` time to 20000 seconds globally for all PIM enabled interfaces:
+
 ```
 cumulus@switch:~$ sudo vtysh
 ...
@@ -1096,16 +1106,14 @@ switch# exit
 cumulus@switch:~$
 ```
 
-In vtysh, you can set the `hello-interval` for a specific interface and the `keep-alive-timer` for a specific VRF.
-
-The following example command sets the `hello-interval` to 60 seconds for swp51:
+The following example command sets the `hello-interval` to 60 seconds and the `holdtime` to 132 for swp51:
 
 ```
 cumulus@switch:~$ sudo vtysh
 ...
 switch# configure terminal
 switch(config)# interface swp51
-switch(config-if)# ip pim hello 60
+switch(config-if)# ip pim hello 60 132
 switch(config-if)# end
 switch# write memory
 switch# exit

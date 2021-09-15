@@ -86,7 +86,9 @@ cumulus@leaf01:~$ net commit
 
 ```
 cumulus@leaf01:~$ nv set interface bond1 bond member swp1
+cumulus@leaf01:~$ nv set interface bond1 description bond1-on-swp1
 cumulus@leaf01:~$ nv set interface bond2 bond member swp2
+cumulus@leaf01:~$ nv set interface bond2 description bond2-on-swp1
 cumulus@leaf01:~$ nv config apply
 ```
 

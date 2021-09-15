@@ -1045,10 +1045,10 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-The following example commands set the `hello-interval` to 60 seconds and the `holdtime` to 132 seconds for swp51:
+The following example commands set the `hello-interval` to 60 seconds and the `holdtime` to 120 seconds for swp51:
 
 ```
-cumulus@switch:~$ net add interface swp1 pim hello 66 132
+cumulus@switch:~$ net add interface swp1 pim hello 60 120
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -1074,10 +1074,10 @@ cumulus@switch:~$ nv set router pim timers register-suppress 20000
 cumulus@switch:~$ nv config apply
 ```
 
-The following example commands set the `hello-interval` to 100 seconds for swp51:
+The following example commands set the `hello-interval` to 60 seconds for swp51:
 
 ```
-cumulus@switch:~$ nv set interface swp51 router pim timers hello-interval 100
+cumulus@switch:~$ nv set interface swp51 router pim timers hello-interval 60
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1106,14 +1106,14 @@ switch# exit
 cumulus@switch:~$
 ```
 
-The following example command sets the `hello-interval` to 60 seconds and the `holdtime` to 132 for swp51:
+The following example command sets the `hello-interval` to 60 seconds and the `holdtime` to 120 for swp51:
 
 ```
 cumulus@switch:~$ sudo vtysh
 ...
 switch# configure terminal
 switch(config)# interface swp51
-switch(config-if)# ip pim hello 60 132
+switch(config-if)# ip pim hello 60 120
 switch(config-if)# end
 switch# write memory
 switch# exit

@@ -433,7 +433,7 @@ To work around this issue, disable pruning for IPv6 multicast by setting {{bridg
 <tr>
 <td>2556591</td>
 <td>After upgrading to Cumulus Linux, MLAG ports might remain down with {{clagctl}} and {{net show clag}} reporting {{bridge-priority-mismatch}}.
-To work around this issue, run the {{sudo ifreload -a}} command on both peers, or configure {{bridge-bridgeprio}} to be the same value as {{mstpcl-treeprio}} on the bridge interface in the {{/etc/network/interfaces}} file, then run {{sudo ifreload -a}}.</td>
+To work around this issue, run the {{sudo ifreload -a}} command on both peers, or configure {{bridge-bridgeprio}} to be the same value as {{mstpctl-treeprio}} on the bridge interface in the {{/etc/network/interfaces}} file, then run {{sudo ifreload -a}}.</td>
 <td>4.3.0-4.4.0</td>
 <td></td>
 </tr>

@@ -12,7 +12,7 @@ To access a demo, click the **Try It** tab:
 
 {{< img src = "/images/cumulus-linux/try-it.png" >}}
 
-The NVIDIA Air starts building the simulation and boots the nodes:
+NVIDIA Air starts building the simulation and boots the nodes:
 
 {{< img src = "/images/cumulus-linux/try-it-boot.png" >}}
 

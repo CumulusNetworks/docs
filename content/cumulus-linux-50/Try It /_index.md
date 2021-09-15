@@ -8,12 +8,14 @@ This documentation includes pre-built Try It demos for certain Cumulus Linux fea
 
 To access a demo, click the **Try It** tab:
 
-{{< figure src = "/images/cumulus-linux/try-it.png" >}}
+{{< img src = "/images/cumulus-linux/try-it.png" >}}
 
 The NVIDIA Air starts building the simulation and boots the nodes:
 
-{{< figure src = "/images/cumulus-linux/try-it-boot.png" >}}
+{{< img src = "/images/cumulus-linux/try-it-boot.png" >}}
 
 When the simulation is ready, you can log into the leaf and spine switches. Use the commands listed under the simulation to test the configuration.
 
-{{< figure src = "/images/cumulus-linux/try-it-launch.png" >}}
+{{< img src = "/images/cumulus-linux/try-it-launch.png" >}}
+
+If you want to save the simulation or extend the time, click **LAUNCH IN AIR** to access the network simulation platform. From this platform, you can run additional pre-build demos and even build your own simulations. Refer to [NVIDIA Air User Guide]({{<ref "/guides/nvidia-air" >}}).

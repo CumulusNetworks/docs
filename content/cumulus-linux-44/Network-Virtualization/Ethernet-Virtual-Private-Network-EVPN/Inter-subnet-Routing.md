@@ -822,7 +822,7 @@ cumulus@leaf01:~$ nv set vrf RED router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@leaf01:~$ nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
-cumulus@leaf01:~$ nv set vrf RED router bgp route-import from-evpn route-target 65101:6000
+cumulus@leaf01:~$ nv set vrf RED router bgp route-import from-evpn route-target 65163:6000
 cumulus@leaf01:~$ nv set vrf BLUE router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set vrf BLUE router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on

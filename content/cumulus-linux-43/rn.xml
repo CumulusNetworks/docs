@@ -124,6 +124,12 @@ Fixed: 1.17-3+deb10u2</td>
 <td></td>
 </tr>
 <tr>
+<td>2739402</td>
+<td>The destination MAC address of ERSPAN GRE packets is set to all zeros.</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2736249</td>
 <td>If you configure BGP graceful restart in the {{/etc/frr/frr.conf}} file, then apply the configuration with {{systemctl reload frr}}, the configuration fails to apply and you see the following error:
    Job for frr.service failed.
@@ -149,6 +155,12 @@ Fixed: 241-7~deb10u8</td>
 <tr>
 <td>2734107</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2734103</td>
+<td>{{ACL [No More Resources]}} messages keeps appearing and you can't reinstall the ACL.</td>
 <td>4.3.0-4.4.0</td>
 <td></td>
 </tr>
@@ -206,6 +218,12 @@ This is a cosmetic software issue and not indicative of a hardware failure on th
 <td>2710208</td>
 <td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established, such as when the interface is down.</td>
 <td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2705056</td>
+<td>SVIs do not inherit the pinned MAC address of the bridge.</td>
+<td>4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -300,13 +318,6 @@ Fixed: 4.3.1-6-cl3.7.16u1</td>
 result in denial of service and potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.14.2-2+deb10u3
 Fixed: 1.14.2-2+deb10u4</td>
-<td>4.0.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2671381</td>
-<td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
-When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
 </tr>
@@ -1764,6 +1775,12 @@ Fixed: 1.17-3+deb10u2</td>
 <td></td>
 </tr>
 <tr>
+<td>2739402</td>
+<td>The destination MAC address of ERSPAN GRE packets is set to all zeros.</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2736249</td>
 <td>If you configure BGP graceful restart in the {{/etc/frr/frr.conf}} file, then apply the configuration with {{systemctl reload frr}}, the configuration fails to apply and you see the following error:
    Job for frr.service failed.
@@ -1789,6 +1806,12 @@ Fixed: 241-7~deb10u8</td>
 <tr>
 <td>2734107</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2734103</td>
+<td>{{ACL [No More Resources]}} messages keeps appearing and you can't reinstall the ACL.</td>
 <td>4.3.0-4.4.0</td>
 <td></td>
 </tr>
@@ -1862,6 +1885,12 @@ This is a cosmetic software issue and not indicative of a hardware failure on th
 <td>2710208</td>
 <td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established, such as when the interface is down.</td>
 <td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2705056</td>
+<td>SVIs do not inherit the pinned MAC address of the bridge.</td>
+<td>4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1975,13 +2004,6 @@ Fixed: 4.3.1-6-cl3.7.16u1</td>
 result in denial of service and potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.14.2-2+deb10u3
 Fixed: 1.14.2-2+deb10u4</td>
-<td>4.0.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2671381</td>
-<td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
-When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
 </tr>

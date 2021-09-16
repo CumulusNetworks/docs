@@ -89,7 +89,7 @@ leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 
 *BGP dynamic neighbors* provides BGP peering to a group of remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
 
-You configure dynamic neighbors with the `bgp listen range <ip-address> peer-group <group>` command. After you configure the dynamic neighbors, a BGP speaker can listen for, and form peer relationships with, any neighbor that is in the IP address range and maps to a peer group.
+After you configure the dynamic neighbors, a BGP speaker can listen for, and form peer relationships with, any neighbor that is in the IP address range and maps to a peer group.
 
 The following example commands create the peer group SPINE and configure BGP peering to remote neighbors within the address range 10.0.1.0/31.
 
@@ -174,7 +174,7 @@ router bgp 65101
 
 The eBGP multihop option lets you use BGP to exchange routes with an external peer that is more than one hop away.
 
-The following example command configures Cumulus Linux to establish a connection between two eBGP peers that are not directly connected and sets the maximum number of hops used to reach a eBGP peer to 1.
+The following example command configures Cumulus Linux to establish a connection between two [eBGP](## "external BGP") peers that are not directly connected and sets the maximum number of hops used to reach a eBGP peer to 1.
 
 {{< tabs "154 ">}}
 {{< tab "NCLU Commands ">}}
@@ -288,9 +288,8 @@ router bgp 65101
 You can authenticate your BGP peer connection to prevent interference with your routing tables.
 
 To enable MD5 authentication for BGP peers, set the same password on each peer.
-<!-- vale off --> 
+
 The following example commands set the password *mypassword* on BGP peers leaf01 and spine01:
-<!-- vale on --> 
 
 {{< tabs "40 ">}}
 {{< tab "NCLU Commands ">}}
@@ -375,7 +374,7 @@ cumulus@spine01:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-You can confirm the configuration with the NCLU command `net show bgp neighbor <neighbor>` or with the vtysh command `show ip bgp neighbor <neighbor>`.
+You can confirm the configuration with the NCLU `net show bgp neighbor <neighbor>` command or the vtysh `show ip bgp neighbor <neighbor>` command.
 <!-- vale off -->
 {{< expand "net show bgp neighbor <neighbor> example" >}}
 
@@ -1051,11 +1050,11 @@ cumulus@leaf01:~$ nv config apply
 {{< /tabs >}}
 
 ## Suppress Route Advertisement
-<!-- vale off -->
+
 {{%notice note%}}
 Suppress Route Advertisement is an early access feature.
 {{%/notice%}}
-<!-- vale on -->
+
 You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers.
 
 {{< tabs "TabID788 ">}}
@@ -1367,7 +1366,7 @@ route-map EXISTMAP permit 10
 match ip address prefix-list EXIST
 ```
 
-Cumulus Linux scans the entire RIB table every 60 seconds. You can set the conditional advertisement timer to increase or decrease how often you want Cumulus Linux to scan the RIB table. You can set a value between 5 and 240 seconds.
+Cumulus Linux scans the entire [RIB](## "BGP Routing Information Base") table every 60 seconds. You can set the conditional advertisement timer to increase or decrease how often you want Cumulus Linux to scan the RIB table. You can set a value between 5 and 240 seconds.
 
 {{%notice note%}}
 - A lower value (such as 5) increases the amount of processing needed. Use caution when configuring conditional advertisement on a large number of BGP neighbors.
@@ -1591,7 +1590,7 @@ router bgp 65101
 
 ## Route Reflectors
 
-iBGP rules state that BGP cannot send a route learned from an iBGP peer to another iBGP peer. In a data center spine and leaf network using iBGP, this prevents a spine from sending a route learned from a leaf to any other leaf. As a workaround, you can use a *route reflector*. When an iBGP speaker is a route reflector, it *can* send iBGP learned routes to other iBGP peers.
+[iBGP](## "internal BGP") rules state that BGP cannot send a route learned from an iBGP peer to another iBGP peer. In a data center spine and leaf network using iBGP, this prevents a spine from sending a route learned from a leaf to any other leaf. As a workaround, you can use a *route reflector*. When an iBGP speaker is a route reflector, it *can* send iBGP learned routes to other iBGP peers.
 
 In the following example, spine01 is acting as a route reflector. The leaf switches, leaf01, leaf02 and leaf03 are *route reflector clients*. BGP sends any route that spine01 learns from a route reflector client to other route reflector clients.
 
@@ -1699,19 +1698,6 @@ cumulus@spine01:~$
 
 {{< /tab >}}
 {{< /tabs >}}
-
-<!--You can set the administrative distance for routes from a specific IP address using vtysh. The following example sets the administrative distance to 100 for routes from 10.10.10.101:
-
-```
-cumulus@spine01:~$ sudo vtysh
-spine01# configure terminal
-spine01(config)# router bgp 65101
-spine01(config-router)# distance 100 10.10.10.101/32
-spine01(config-router)# end
-spine01# write memory
-spine01# exit
-cumulus@spine01:~$
-```-->
 
 ## Graceful BGP Shutdown
 

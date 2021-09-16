@@ -7,6 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2798979</td>
+<td> Configuring a route map to filter VNIs will cause type-3 routes not to be advertised even for L2VNIs permitted through the route map</td>
+<td>3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2798139</td>
+<td>CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions.
+Vulnerable: &lt;= 9.4.26-0+deb8u3
+Fixed: 9.4.26-0+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2783520</td>
 <td>When the {{clagd}} process terminates unexpectedly due to signals such as sig11 or sig6, no core file  is generated.</td>
 <td>3.7.15</td>
@@ -104,6 +118,12 @@ Fixed: 2.8.17-1+deb8u8</td>
 Vulnerable: &lt;= 2.4.10-10+deb8u17
 Fixed: 2.4.10-10+deb8u18</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2717312</td>
+<td>When you modify a prefix list with NCLU commands, the {{bgpd}} service crashes.</td>
+<td>3.7.14.2-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -2196,6 +2216,14 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2798139</td>
+<td>CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions.
+Vulnerable: &lt;= 9.4.26-0+deb8u3
+Fixed: 9.4.26-0+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2770226</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-3.7.15</td>
@@ -2287,6 +2315,12 @@ Fixed: 2.8.17-1+deb8u8</td>
 Vulnerable: &lt;= 2.4.10-10+deb8u17
 Fixed: 2.4.10-10+deb8u18</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2717312</td>
+<td>When you modify a prefix list with NCLU commands, the {{bgpd}} service crashes.</td>
+<td>3.7.14.2-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -4413,6 +4447,14 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2798139</td>
+<td>CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions.
+Vulnerable: &lt;= 9.4.26-0+deb8u3
+Fixed: 9.4.26-0+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2769687</td>
@@ -7188,6 +7230,14 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2798139</td>
+<td>CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions.
+Vulnerable: &lt;= 9.4.26-0+deb8u3
+Fixed: 9.4.26-0+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2769687</td>
@@ -10170,6 +10220,14 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2798139</td>
+<td>CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions.
+Vulnerable: &lt;= 9.4.26-0+deb8u3
+Fixed: 9.4.26-0+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2769687</td>
 <td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
 Vulnerable: &lt;= 7.38.0-4+deb8u20
@@ -13011,6 +13069,14 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2798139</td>
+<td>CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions.
+Vulnerable: &lt;= 9.4.26-0+deb8u3
+Fixed: 9.4.26-0+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2769687</td>
 <td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
 Vulnerable: &lt;= 7.38.0-4+deb8u20
@@ -15394,6 +15460,11 @@ route-map peerlink-add-asn permit 20
 <td>3.7.6-3.7.10</td>
 </tr>
 <tr>
+<td>2542099</td>
+<td>On the EdgeCore AS7816 switch, PCIE errors cause {{switchd}} startup to fail.</td>
+<td>3.7.9-3.7.10</td>
+</tr>
+<tr>
 <td>2542065</td>
 <td>The following CVEs were announced in a Debian Security Advisory that affects vim modelines. 
  Package: vim and neovim 
@@ -15495,6 +15566,14 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2798139</td>
+<td>CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions.
+Vulnerable: &lt;= 9.4.26-0+deb8u3
+Fixed: 9.4.26-0+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2769687</td>
@@ -16979,6 +17058,12 @@ route-map peerlink-add-asn permit 20
 <td>3.7.11-3.7.15</td>
 </tr>
 <tr>
+<td>2542099</td>
+<td>On the EdgeCore AS7816 switch, PCIE errors cause {{switchd}} startup to fail.</td>
+<td>3.7.9-3.7.10</td>
+<td>3.7.11-3.7.15</td>
+</tr>
+<tr>
 <td>2541212</td>
 <td>The {{maximum-prefix}} configuration under the IPv4 address family has an optional restart value, which you can configure. This configuration is ignored and, instead of restarting the sessions every x minutes, the peer constantly changes between established and idle due to the prefix count being exceeded. </td>
 <td>3.7.5-3.7.15, 4.0.0-4.4.0</td>
@@ -17425,6 +17510,14 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2798139</td>
+<td>CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions.
+Vulnerable: &lt;= 9.4.26-0+deb8u3
+Fixed: 9.4.26-0+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2769687</td>
@@ -18587,6 +18680,12 @@ route-map peerlink-add-asn permit 20
 <td>3.7.11-3.7.15</td>
 </tr>
 <tr>
+<td>2542099</td>
+<td>On the EdgeCore AS7816 switch, PCIE errors cause {{switchd}} startup to fail.</td>
+<td>3.7.9-3.7.10</td>
+<td>3.7.11-3.7.15</td>
+</tr>
+<tr>
 <td>2541212</td>
 <td>The {{maximum-prefix}} configuration under the IPv4 address family has an optional restart value, which you can configure. This configuration is ignored and, instead of restarting the sessions every x minutes, the peer constantly changes between established and idle due to the prefix count being exceeded. </td>
 <td>3.7.5-3.7.15, 4.0.0-4.4.0</td>
@@ -19663,6 +19762,14 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2798139</td>
+<td>CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions.
+Vulnerable: &lt;= 9.4.26-0+deb8u3
+Fixed: 9.4.26-0+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2769687</td>
@@ -21335,6 +21442,14 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2798139</td>
+<td>CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions.
+Vulnerable: &lt;= 9.4.26-0+deb8u3
+Fixed: 9.4.26-0+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2769687</td>
@@ -23087,6 +23202,11 @@ To work around this issue, remove the {{--nl}} flag from the dhcrelay service. <
 <td>3.7.3-3.7.6</td>
 </tr>
 <tr>
+<td>2540830</td>
+<td>On the Dell S5248F switch, packets forwarded to the CPU are corrupted.</td>
+<td>3.7.3-3.7.6</td>
+</tr>
+<tr>
 <td>2540823</td>
 <td>On the EdgeCore 7326-54X switch, {{switchd}} does not start on initial install because the {{decode-syseeprom}} command fails. However in ONIE, {{onie-syseeprom}} has no issues. </td>
 <td>3.7.5-3.7.6</td>
@@ -23337,6 +23457,14 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2798139</td>
+<td>CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions.
+Vulnerable: &lt;= 9.4.26-0+deb8u3
+Fixed: 9.4.26-0+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2769687</td>
@@ -24394,6 +24522,12 @@ This issue only affects QinQ configurations.
 <td></td>
 </tr>
 <tr>
+<td>2540830</td>
+<td>On the Dell S5248F switch, packets forwarded to the CPU are corrupted.</td>
+<td>3.7.3-3.7.6</td>
+<td>3.7.7-3.7.15</td>
+</tr>
+<tr>
 <td>2540823</td>
 <td>On the EdgeCore 7326-54X switch, {{switchd}} does not start on initial install because the {{decode-syseeprom}} command fails. However in ONIE, {{onie-syseeprom}} has no issues. </td>
 <td>3.7.5-3.7.15</td>
@@ -25085,6 +25219,14 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2798139</td>
+<td>CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions.
+Vulnerable: &lt;= 9.4.26-0+deb8u3
+Fixed: 9.4.26-0+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2769687</td>
 <td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
 Vulnerable: &lt;= 7.38.0-4+deb8u20
@@ -25770,6 +25912,12 @@ This issue only affects QinQ configurations.
 <td>On the Dell S3048 switch, ports with FEC disabled show as BaseR on boot up. </td>
 <td>3.7.3-3.7.15</td>
 <td></td>
+</tr>
+<tr>
+<td>2540830</td>
+<td>On the Dell S5248F switch, packets forwarded to the CPU are corrupted.</td>
+<td>3.7.3-3.7.6</td>
+<td>3.7.7-3.7.15</td>
 </tr>
 <tr>
 <td>2540827</td>
@@ -26483,6 +26631,14 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2798139</td>
+<td>CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions.
+Vulnerable: &lt;= 9.4.26-0+deb8u3
+Fixed: 9.4.26-0+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2769687</td>
 <td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
 Vulnerable: &lt;= 7.38.0-4+deb8u20
@@ -27035,6 +27191,12 @@ To work around this issue, remove the {{--nl}} flag from the dhcrelay service. <
 <td>On the Dell S3048 switch, ports with FEC disabled show as BaseR on boot up. </td>
 <td>3.7.3-3.7.15</td>
 <td></td>
+</tr>
+<tr>
+<td>2540830</td>
+<td>On the Dell S5248F switch, packets forwarded to the CPU are corrupted.</td>
+<td>3.7.3-3.7.6</td>
+<td>3.7.7-3.7.15</td>
 </tr>
 <tr>
 <td>2540827</td>
@@ -27908,6 +28070,14 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2798139</td>
+<td>CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions.
+Vulnerable: &lt;= 9.4.26-0+deb8u3
+Fixed: 9.4.26-0+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2769687</td>
 <td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
 Vulnerable: &lt;= 7.38.0-4+deb8u20
@@ -28430,6 +28600,12 @@ To work around this issue, remove the {{--nl}} flag from the dhcrelay service. <
 <td>On the Dell S3048 switch, ports with FEC disabled show as BaseR on boot up. </td>
 <td>3.7.3-3.7.15</td>
 <td></td>
+</tr>
+<tr>
+<td>2540830</td>
+<td>On the Dell S5248F switch, packets forwarded to the CPU are corrupted.</td>
+<td>3.7.3-3.7.6</td>
+<td>3.7.7-3.7.15</td>
 </tr>
 <tr>
 <td>2540827</td>
@@ -29432,6 +29608,14 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2798139</td>
+<td>CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions.
+Vulnerable: &lt;= 9.4.26-0+deb8u3
+Fixed: 9.4.26-0+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2769687</td>
@@ -30984,6 +31168,12 @@ To work around this issue, remove the VNI interface first, then remove the unuse
 <td></td>
 </tr>
 <tr>
+<td>2532608</td>
+<td>On rare occasions, duplicate packets are seen in an EVPN configuration when routing between a dual-attached local host in one subnet and a remote host in another subnet. This is because the gateway VTEP does not have its VRR MAC address (anycast MAC address) configured on all gateway VTEPs in the bridge forwarding table.
+Run the {{ifreload -a -X eth0}} command to update the interface configuration on all gateway VTEPs.</td>
+<td></td>
+</tr>
+<tr>
 <td>2531159</td>
 <td>MLAG does not sync permanent MAC addresses between peers and {{nolearning}} is turned on; traffic with a next-hop pointing to the peerlink is forwarded to the CPU and throughput is limited. 
 Permanent MAC address sync between MLAG peers is now supported.</td>
@@ -31001,6 +31191,14 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2798139</td>
+<td>CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions.
+Vulnerable: &lt;= 9.4.26-0+deb8u3
+Fixed: 9.4.26-0+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2769687</td>
@@ -31888,6 +32086,14 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2798139</td>
+<td>CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions.
+Vulnerable: &lt;= 9.4.26-0+deb8u3
+Fixed: 9.4.26-0+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2769687</td>

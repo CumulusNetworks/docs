@@ -9,6 +9,13 @@ toc: 1
 {{<product>}} {{<version>}} eases your customers deployment and maintenance activities for their data center networks with new configuration, performance, and security features and improvements.
 
 <!-- vale off -->
+## What's New in NetQ 4.0.1
+<!-- vale on -->
+NetQ 4.0.1 is a maintenance release that contains refer to the {{<link title="NVIDIA Cumulus NetQ 4.0 Release Notes" text="bug fixes">}} and one new feature:
+
+- Support for Cumulus Linux 4.4.
+
+<!-- vale off -->
 ## What's New in NetQ 4.0.0
 <!-- vale on -->
 

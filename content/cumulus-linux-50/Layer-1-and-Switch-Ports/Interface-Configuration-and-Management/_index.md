@@ -536,7 +536,7 @@ Interface descriptions also appear in the {{<link url="Simple-Network-Management
 - Avoid using apostrophes or non-ASCII characters. Cumulus Linux does not parse these characters.
 {{%/notice%}}
 
-The following example commands create a description for swp1:
+The following example commands create the description `hypervisor_port_1` for swp1:
 
 {{< tabs "TabID838 ">}}
 {{< tab "NCLU Commands ">}}
@@ -550,7 +550,10 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-NVUE command is not supported.
+```
+cumulus@switch:~$ nv set interface swp1 description hypervisor_port_1
+cumulus@switch:~$ nv config apply
+```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

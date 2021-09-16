@@ -1342,7 +1342,7 @@ router bgp 65163 vrf EXTERNAL2
 {{< /tab >}}
 
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL44 - DVNI" showNodes="leaf01,spine01,border01,server01,fw1" >}}
+    {{< simulation name="Try It CL44 - DVNIv2" showNodes="leaf01,spine01,border01,server01,fw1" >}}
 {{< /tab >}}
 
 {{< /tabs >}}

@@ -23,5 +23,6 @@ When the simulation is ready, you can log into the leaf and spine switches. The 
 {{< img src = "/images/cumulus-linux/try-it-launch.png" >}}
 
 ## Launch in AIR
-
+<!-- vale off -->
 If you want to save the simulation or extend the run time, click **LAUNCH IN AIR** to access the network simulation platform. From this platform, you can run additional pre-build demos and even build your own simulations. Refer to [NVIDIA Air User Guide]({{<ref "/guides/nvidia-air" >}}).
+<!-- vale on -->

@@ -135,9 +135,9 @@ pbr-policy map1
     The output interface and VRF are optional. However, you must specify the VRF if the next hop is not in the default VRF.
 
     ```
-    cumulus@switch:~$ nv set router pbr nexthop-group group1 via 192.168.0.21 interface swp1
-    cumulus@switch:~$ nv set router pbr nexthop-group group1 via 192.168.0.21 vrf RED
-    cumulus@switch:~$ nv set router pbr nexthop-group group1 via 192.168.0.22
+    cumulus@switch:~$ nv set router nexthop-group group1 via 192.168.0.21 interface swp1
+    cumulus@switch:~$ nv set router nexthop-group group1 via 192.168.0.21 vrf RED
+    cumulus@switch:~$ nv set router nexthop-group group1 via 192.168.0.22
     cumulus@switch:~$ nv set router pbr map map1 rule 1 action nexthop-group group1
     ```
 
@@ -336,7 +336,7 @@ cumulus@switch:~$ net commit
 ```
 cumulus@switch:~$ nv set router pbr map pbr-policy rule 4 match source-ip 10.1.4.1/24
 cumulus@switch:~$ nv set router pbr map pbr-policy rule 4 match destination-ip 10.1.2.0/24
-cumulus@switch:~$ nv set router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv set router nexthop-group group1 via 192.168.0.21
 cumulus@switch:~$ nv set router pbr map pbr-policy rule 4 action nexthop-group group1
 ```
 
@@ -345,7 +345,7 @@ To change the source IP match from 10.1.4.**1**/24 to 10.1.4.**2**/24, you must 
 ```
 cumulus@switch:~$ nv unset router pbr map pbr-policy rule 4 match source-ip
 cumulus@switch:~$ nv unset router pbr map pbr-policy rule 4 match destination-ip
-cumulus@switch:~$ nv unset router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv unset router nexthop-group group1 via 192.168.0.21
 ```
 
 Add the new rule with the following commands:
@@ -353,7 +353,7 @@ Add the new rule with the following commands:
 ```
 cumulus@switch:~$ nv set router pbr map pbr-policy rule 4 match source-ip 10.1.4.2/24
 cumulus@switch:~$ nv set router pbr map pbr-policy rule 4 match destination-ip 10.1.2.0/24
-cumulus@switch:~$ nv set router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv set router nexthop-group group1 via 192.168.0.21
 cumulus@switch:~$ nv config apply
 ```
 
@@ -432,14 +432,14 @@ cumulus@switch:~$ net commit
 
 ```
 cumulus@switch:~$ nv set router pbr map pbr-policy rule 3 match source-ip 10.1.4.1/24
-cumulus@switch:~$ nv set router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv set router nexthop-group group1 via 192.168.0.21
 ```
 
 To add a destination IP match to the rule, you must delete the existing rule sequence:
 
 ```
 cumulus@switch:~$ nv router pbr map pbr-policy rule 3 match source-ip
-cumulus@switch:~$ nv unset router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv unset router nexthop-group group1 via 192.168.0.21
 cumulus@switch:~$ nv config apply
 ```
 
@@ -448,7 +448,7 @@ Add back the source IP match and next hop condition, and add the new destination
 ```
 cumulus@switch:~$ nv set router pbr map pbr-policy rule 3 match source-ip 10.1.4.1/24
 cumulus@switch:~$ nv set router pbr map pbr-policy rule 3 match destination-ip 10.1.2.0/24
-cumulus@switch:~$ nv set router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv set router nexthop-group group1 via 192.168.0.21
 cumulus@switch:~$ nv config apply
 ```
 
@@ -545,14 +545,14 @@ cumulus@switch:~$ nv config apply
 The following examples show how to delete a next hop from a group:
 
 ```
-cumulus@switch:~$ nv unset router pbr nexthop-group group1 via 192.168.0.22
+cumulus@switch:~$ nv unset router nexthop-group group1 via 192.168.0.22
 cumulus@switch:~$ nv config apply
 ```
 
 The following examples show how to delete a next hop group:
 
 ```
-cumulus@switch:~$ nv unset router pbr nexthop-group group1
+cumulus@switch:~$ nv unset router nexthop-group group1
 cumulus@switch:~$ nv config apply
 ```
 
@@ -685,7 +685,7 @@ cumulus@switch:~$ net commit
 ```
 cumulus@switch:~$ nv set router pbr map pbr-policy rule 6 match source-ip 10.1.4.1/24
 cumulus@switch:~$ nv set router pbr map pbr-policy rule 6 match destination-ip 10.1.2.0/24
-cumulus@switch:~$ nv set router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv set router nexthop-group group1 via 192.168.0.21
 ```
 
 To remove the destination IP match, you must first delete all existing conditions defined under this sequence:
@@ -693,7 +693,7 @@ To remove the destination IP match, you must first delete all existing condition
 ```
 cumulus@switch:~$ nv unset router pbr map pbr-policy rule 6 match source-ip 
 cumulus@switch:~$ nv unset router pbr map pbr-policy rule 6 match destination-ip
-cumulus@switch:~$ nv unset router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv unset router nexthop-group group1 via 192.168.0.21
 cumulus@switch:~$ nv config apply
 ```
 
@@ -701,7 +701,7 @@ Then, add back the conditions you want to keep:
 
 ```
 cumulus@switch:~$ nv set router pbr map pbr-policy rule 6 match source-ip 10.1.4.1/24
-cumulus@switch:~$ nv unset router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv unset router nexthop-group group1 via 192.168.0.21
 cumulus@switch:~$ nv config apply
 ```
 
@@ -736,10 +736,11 @@ cumulus@switch:~$ net show pbr map
 
 To see information about a policy, its matches, and associated interface, add the map name at the end of the command; for example, `net show pbr map map1` (or `show pbr map map1` in vtysh).
 
-To see information about all next hop groups, run the NVUE `nv show router pbr nexthop-group` command or the vtysh `show pbr nexthop-group` command.
+To see information about all next hop groups, run the NVUE `nv show router nexthop-group` command or the vtysh `show pbr nexthop-group` command.
 
 ```
-cumulus@switch:~$ show pbr nexthop-group
+cumulus@switch:~$ sudo vtysh
+switch# show pbr nexthop-group
 Nexthop-Group: map1701 Table: 10004 Valid: yes Installed: yes
 Valid: yes nexthop 10.1.1.2
 Nexthop-Group: map1700 Table: 10003 Valid: yes Installed: yes
@@ -754,7 +755,7 @@ Valid: yes nexthop 192.168.8.2
 Valid: yes nexthop 192.168.8.3
 ```
 
-To see information about a specific next hop group, add the group name at the end of the command; for example, `nv show router pbr nexthop-group group1` (or `show pbr nexthop-group group1` in vtysh).
+To see information about a specific next hop group, add the group name at the end of the command; for example, `nv show router nexthop-group group1` (or `show pbr nexthop-group group1` in vtysh).
 
 {{%notice note%}}
 Each next hop and next hop group uses a new Linux routing table ID.
@@ -797,7 +798,7 @@ pbr-policy map1
 
 ```
 cumulus@switch:~$ nv set router pbr map map1 rule 1 match source-ip 0.0.0.0/0
-cumulus@switch:~$ nv set router pbr nexthop-group group1 via 192.168.0.32
+cumulus@switch:~$ nv set router nexthop-group group1 via 192.168.0.32
 cumulus@switch:~$ nv set router pbr map map1 rule 1 action nexthop-group group1
 cumulus@switch:~$ nv set interface swp51 router pbr map map1
 cumulus@switch:~$ nv config

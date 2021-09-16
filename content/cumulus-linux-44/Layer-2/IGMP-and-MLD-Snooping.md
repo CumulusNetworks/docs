@@ -174,6 +174,46 @@ When IGMP reports go to a multicast group, OMF has no effect; normal IGMP snoopi
 OMF increases memory usage, which can impact scaling on Spectrum 1 switches.
 {{%/notice%}}
 
+## Improve Multicast Convergence
+
+For large multicast environments, the default [CoPP](## "Control Plane Policing") policer might be too restrictive. You can adjust the policer to improve multicast convergence.
+
+For both IGMP and MLD, the default forwarding rate is set to 300 packets per second and the default burst rate is set to 100 packets. To tune the IGMP and MLD forwarding and burst rates, edit the `/etc/cumulus/acl/policy.d/00control_plane.rules` file and change `--set-rate` and `--set-burst` in the IGMP and MLD policer lines.
+
+The following command example changes the **IGMP** forwarding rate to 400 packets per second and the burst rate to 200 packets.
+
+```
+-A $INGRESS_CHAIN -p igmp -j POLICE --set-mode pkt --set-rate 400 --set-burst 200
+```
+
+For **MLD**, you need to change several lines in the `/etc/cumulus/acl/policy.d/00control_plane.rules` file.
+
+{{%notice note%}}
+All the MLD packet types use same policer internally; you must set all the lines with the same rates.
+{{%/notice%}}
+
+The following command examples change the MLD forwarding rate to 400 packets per second and the burst rate to 200 packets.
+
+```
+# link-local multicast receiver: Listener Query
+-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p ipv6-icmp -m icmp6 --icmpv6-type 130 -j POLICE --set-mode pkt --set-rate 400 --set-burst 200 --set-class 6
+
+# link-local multicast receiver: Listener Report
+-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p ipv6-icmp -m icmp6 --icmpv6-type 131 -j POLICE --set-mode pkt --set-rate 400 --set-burst 200 --set-class 6
+
+# link-local multicast receiver: Listener Done
+-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p ipv6-icmp -m icmp6 --icmpv6-type 132 -j POLICE --set-mode pkt --set-rate 400 --set-burst 200 --set-class 6
+
+# link-local multicast receiver: Listener Report v2
+-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p ipv6-icmp -m icmp6 --icmpv6-type 143 -j POLICE --set-mode pkt --set-rate 400 --set-burst 200 --set-class 6
+```
+
+Apply the rules with the `sudo cl-acltool -i` command:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
 ## Disable IGMP and MLD Snooping
 
 If you do not use mirroring functions or other types of multicast traffic, you can disable IGMP and MLD snooping.

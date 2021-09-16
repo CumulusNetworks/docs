@@ -20,29 +20,27 @@ Earlier releases of Cumulus Linux and Cumulus RMP are no longer supported.
 
 The Cumulus Linux installation file name includes the version number, in the form of CumulusLinux\_x.y.z; for Cumulus RMP, it is CumulusRMP\_x.y.z.
 
-- **x** represents the major release version number. An increased major release version means that the release may include:
+- **x** represents the major release version number. An increased major release version means that the release might include:
     - Significant architectural or engineering changes.
     - New hardware platforms, including new ASICs or chipsets.
     - New functionality and features.
     - Bug fixes.
     - Security updates.
-- **y** represents the minor release version number. An increased
-    minor release version means that the release may include:
+- **y** represents the minor release version number. An increased minor release version means that the release might include:
     - New hardware platforms, including new ASICs or chipsets.
     - New functionality and features.
     - Bug fixes.
     - Security updates.
-- **z** represents the maintenance release version number. An
-    increased maintenance release version may include:
+- **z** represents the maintenance release version number. An increased maintenance release version might include:
     - New hardware platforms for existing ASICs or chipsets.
     - Bug fixes and updates.
     - Security updates.
 
 ## Release, Support Lifecycle and Support Policy
 
-NVIDIA supports both mainline and Extended Support Releases (ESRs). This support mechanism allows us to maintain our desire to innovate, while providing customers with stable releases once the architectural needs are met.
+NVIDIA supports both mainline and Extended Support Releases (ESRs). This support mechanism allows NVIDIA to maintain its desire to innovate, while providing customers with stable releases as soon as it meets the architectural needs.
 
-Consistent with this two-pronged approach, the mainline and ESR code branches are separate code bases. As such, issues and fixes in one branch are independent of the other. The ESR branch is prioritized for stability first and foremost, so any fixes there are focused on critical-impact security fixes and urgent bug fixes. This ensures customers deploying an ESR release can experience minimal disruption in their day to day network operations.
+Consistent with this two-pronged approach, the mainline and ESR code branches are separate code bases. As such, issues and fixes in one branch are independent of the other. NVIDIA prioritizes the ESR branch for stability foremost, so any fixes on that branch focus on critical-impact security fixes and urgent bug fixes. This ensures customers deploying an ESR release can experience minimal disruption in their day to day network operations.
 
 The following diagram illustrates the ESR and mainline branches, and the table below it describes the characteristics of each.
 
@@ -72,13 +70,13 @@ The following diagram illustrates the ESR and mainline branches, and the table b
 </tr>
 <tr class="even">
 <td>Frequency</td>
-<td>Minor releases quarterly; maintenance releases as needed</td>
+<td>Minor releases every quarter; maintenance releases as needed</td>
 <td>Maintenance releases as needed</td>
 </tr>
 <tr class="odd">
 <td>Support Duration (Software updates and support)</td>
-<td><p>ESR branch, before ESR is released: Software updates and Global Support Services (GSS) support</p>
-<p>ESR branch, after ESR is released: 12 months GSS support only from date of ESR release</p></td>
+<td><p>ESR branch, before releasing ESR: Software updates and Global Support Services (GSS) support</p>
+<p>ESR branch, after releasing ESR: 12 months GSS support only from date of ESR release</p></td>
 <td>3 years from release date of version</td>
 </tr>
 <tr class="even">
@@ -96,7 +94,7 @@ The following diagram illustrates the ESR and mainline branches, and the table b
 
 ## Product End of Life
 
-Cumulus Linux and Cumulus RMP 3.7.12 have transitioned into the extended support phase (ESR). Customers can choose to continue using Cumulus Linux 3.7 ESR, a mature and stable operating system, or they can upgrade to Cumulus Linux 4.y.z, with the latest and greatest features. NVIDIA will continue support and maintain Cumulus Linux and Cumulus RMP 3.7 ESR for 3 years, until 21 February, 2023.
+Cumulus Linux and Cumulus RMP 3.7.12 have transitioned into the extended support phase (ESR). Customers can choose to continue using Cumulus Linux 3.7 ESR, a mature and stable operating system, or they can upgrade to Cumulus Linux 4.y.z, with the latest and greatest features. NVIDIA is going to support and maintain Cumulus Linux and Cumulus RMP 3.7 ESR for 3 years, until 21 February, 2023.
 
 | Cumulus Linux Version | ESR Start Date    | End of Life Date  |
 | --------------------- | ----------------- | ----------------- |

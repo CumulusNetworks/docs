@@ -202,14 +202,14 @@ router bgp 65199
 3. Specify the BGP neighbor to which you want to distribute routing information.
 
     ```
-    cumulus@leaf01:~$ nv set vrf default router bgp peer 10.0.1.0 remote-as external
+    cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.0.1.0 remote-as external
     ```
 
     For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. Cumulus Linux enables the IPv4 address family by default; you do not need to run the `activate` command for IPv4 route exchange.
 
     ```
-    cumulus@leaf01:~$ nv set vrf default router bgp peer 2001:db8:0002::0a00:0002 remote-as external
-    cumulus@leaf01:~$ nv set vrf default router bgp peer 2001:db8:0002::0a00:0002 address-family ipv6-unicast enable on
+    cumulus@leaf01:~$ nv set vrf default router bgp neighbor 2001:db8:0002::0a00:0002 remote-as external
+    cumulus@leaf01:~$ nv set vrf default router bgp neighbor 2001:db8:0002::0a00:0002 address-family ipv6-unicast enable on
     ```
 
     For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#advertise-ipv4-prefixes-with-ipv6-next-hops" text="Advertise IPv4 Prefixes with IPv6 Next Hops">}}.
@@ -217,15 +217,15 @@ router bgp 65199
 4. Specify which prefixes to originate:
 
     ```
-    cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
-    cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.1.10.0/24
+    cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32
+    cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.1.10.0/24
     cumulus@leaf01:~$ nv config apply
     ```
 
    IPv6 prefix example:
 
    ```
-   cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::1/128
+   cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast network 2001:db8::1/128
    cumulus@leaf01:~$ nv config apply
    ```
 
@@ -250,7 +250,7 @@ router:
             enable: on
             address-family:
               ipv4-unicast:
-                static-network:
+                network:
                   10.10.10.1/32: {}
                   10.1.10.0/24: {}
                 enable: on
@@ -284,14 +284,14 @@ router:
 3. Specify the BGP neighbor to which you want to distribute routing information.
 
     ```
-    cumulus@spine01:~$ nv set vrf default router bgp peer 10.0.1.0 remote-as external
+    cumulus@spine01:~$ nv set vrf default router bgp neighbor 10.0.1.0 remote-as external
     ```
 
     For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. Cumulus Linux enables the IPv4 address family by default; you do not need to run the `activate` command for IPv4 route exchange.
 
     ```
-    cumulus@spine01:~$ nv set vrf default router bgp peer 2001:db8:0002::0a00:1 remote-as external
-    cumulus@spine01:~$ nv set vrf default router bgp peer address-family ipv6-unicast 2001:db8:0002::0a00:1 enable on
+    cumulus@spine01:~$ nv set vrf default router bgp neighbor 2001:db8:0002::0a00:1 remote-as external
+    cumulus@spine01:~$ nv set vrf default router bgp neighbor address-family ipv6-unicast 2001:db8:0002::0a00:1 enable on
     ```
 
     For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#advertise-ipv4-prefixes-with-ipv6-next-hops" text="Advertise IPv4 Prefixes with IPv6 Next Hops">}}.
@@ -299,7 +299,7 @@ router:
 4. Specify which prefixes to originate:
 
     ```
-    cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
+    cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.101/32
     cumulus@spine01:~$ nv config diff
     cumulus@spine01:~$ nv config apply
     ```
@@ -307,7 +307,7 @@ router:
    IPv6 prefix example:
 
    ```
-   cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::101/128
+   cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unicast network 2001:db8::101/128
    cumulus@spine01:~$ nv config apply
    ```
 
@@ -332,7 +332,7 @@ vrf:
             enable: on
             address-family:
               ipv4-unicast:
-                static-network:
+                network:
                   10.10.10.101/32: {}
                 enable: on
 ```
@@ -559,9 +559,9 @@ router bgp 65199
 ```
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 remote-as external
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.1.10.0/24
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.1.10.0/24
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -570,9 +570,9 @@ For BGP to advertise IPv6 prefixes, you need to run an additional command to act
 ```
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 remote-as external
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast enable on
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::1/128
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast network 2001:db8::1/128
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -597,7 +597,7 @@ router:
             enable: on
             address-family:
               ipv4-unicast:
-                static-network:
+                network:
                   10.10.10.1/32: {}
                   10.1.10.0/24: {}
                 enable: on
@@ -609,8 +609,8 @@ router:
 ```
 cumulus@spine01:~$ nv set router bgp autonomous-system 65199
 cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
-cumulus@spine01:~$ nv set vrf default router bgp peer swp1 remote-as external
-cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 remote-as external
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.101/32
 cumulus@spine01:~$ nv config apply
 ```
 
@@ -619,9 +619,9 @@ For BGP to advertise IPv6 prefixes, you need to run an additional command to act
 ```
 cumulus@spine01:~$ nv set router bgp autonomous-system 65199
 cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
-cumulus@spine01:~$ nv set vrf default router bgp peer swp1 remote-as external
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 remote-as external
 cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unicast enable on
-cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::101/128
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unicast etwork 2001:db8::101/128
 cumulus@spine01:~$ nv config apply
 ```
 
@@ -646,7 +646,7 @@ vrf:
             enable: on
             address-family:
               ipv4-unicast:
-                static-network:
+                network:
                   10.10.10.101/32: {}
                 enable: on
 ```

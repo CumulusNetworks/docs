@@ -4,15 +4,15 @@ author: Cumulus Networks
 weight: 107
 toc: 3
 ---
-
-Cumulus Linux 4.0.0 is the biggest update to the operating system in years\! We've changed many things both cosmetic and under the hood, including a new kernel and several new platforms — but we've also removed some platforms and features — so it's a good idea for you to understand all that's changed **before** you upgrade.
-
+<!-- vale off -->
+Cumulus Linux 4.0.0 is the biggest update to the operating system in years! This version has many changes, both cosmetic and under the hood, including a new kernel and several new platforms &mdash; but we've also removed some platforms and features &mdash; so it is a good idea for you to understand everything that changed **before** you upgrade.
+<!-- vale on -->
 As always, read the [release notes]({{<ref "/cumulus-linux-40/Whats-New/rn" >}}) to learn about all the open and fixed issues in this release.
 
 **For more recent releases, you can always get the latest Cumulus Linux information [here]({{<ref "/cumulus-linux-40/Whats-New" >}}).**
-
+<!-- vale off -->
 ## What's New and Different in Cumulus Linux 4.0.0?
-
+<!-- vale on -->
 Cumulus Linux 4.0.0 supports the following new platforms, new features, and enhancements.
 
 New platforms include:
@@ -24,16 +24,14 @@ New platforms include:
 - HPE SN2745M (100G Spectrum)
 
 New features and enhancements include:
-
+<!-- vale off -->
 - Cumulus Linux is now based on Debian Buster (version 10) with a 4.19 kernel
   - In this kernel, {{<link url="Spectre-and-Meltdown-Vulnerability-Fixes" text="Meltdown/Spectre fixes">}} are all fully up to date
 - Capability to `apt-get upgrade` to a specific 4.y.z release, not just the latest version (for use in future Cumulus 4.0.z releases)
 - [EVPN BUM traffic handling]({{<ref "/cumulus-linux-40/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/EVPN-PIM" >}}) using PIM-SM on  Broadcom switches
 - [PIM active-active with MLAG]({{<ref "/cumulus-linux-40/Layer-3/Protocol-Independent-Multicast-PIM#pim-active-active-with-mlag" >}})
 - [Port security]({{<ref "/cumulus-linux-40/Layer-1-and-Switch-Ports/Port-Security" >}}) on Broadcom switches
-<!-- vale off -->
 - [What Just Happened]({{<ref "/cumulus-linux-40/Monitoring-and-Troubleshooting/Network-Troubleshooting/Mellanox-WJH" >}}) (WJH) for NVIDIA Spectrum switches to stream detailed and contextual telemetry for off-box analysis with tools such as Cumulus NetQ
-<!-- vale on -->
 - A new [backup and restore utility]({{<ref "/cumulus-linux-40/Installation-Management/Back-up-and-Restore" >}})
 - [Advertise primary IP address type-5 routes]({{<ref "/cumulus-linux-40/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing#advertise-primary-ip-address" >}}) in an EVPN symmetric configuration in VXLAN active-active mode
 - [BGP best path reason]({{<ref "/cumulus-linux-40/Layer-3/Border-Gateway-Protocol-BGP" >}}) shown in command outputs
@@ -59,10 +57,10 @@ New features and enhancements include:
   - `rasdaemon` has replaced `mcelog`
   - The `date` command has changed from 24 hour time to 12 hour AM/PM and European-style day, month, year
   - Old ciphers, such as SHA-1, are no longer supported for SSH and SSL
-
+<!-- vale on -->
 ## Currently Supported Platforms
 
-The following list identifies all the platforms supported in Cumulus Linux 4.0.0. Note that some platforms that are supported in 3.7.z may not appear here, but will be back in a future release if they are still supported (see the list of platforms that are no longer supported below).
+The following list identifies all the platforms supported in Cumulus Linux 4.0.0. Note that some platforms supported in 3.7.z might not appear here, but should return in a future release if they are still supported (see the list of platforms no longer supported below).
 
 - 100G
     - Dell S5232F-ON
@@ -101,18 +99,18 @@ The following list identifies all the platforms supported in Cumulus Linux 4.0.0
 
 ## Platforms No Longer Supported
 
-NVIDIA does not support these platforms in Cumulus Linux 4.0.0 (they are still supported in Cumulus Linux 3.7.z until that version reaches its end of life). Do **not** install Cumulus Linux 4.0.0 on any of these platforms as it will not run correctly:
+NVIDIA does not support these platforms in Cumulus Linux 4.0.0 (they are still supported in Cumulus Linux 3.7.z until that version reaches its end of life). Do **not** install Cumulus Linux 4.0.0 on any of these platforms as it does not run correctly:
 
 - Cumulus Express CX-10256-S/Edgecore OMP-800 (100G Tomahawk)
 - Dell S6000-ON (40G Trident2)
 - Edgecore Wedge-100 (100G Tomahawk)
 - Facebook Backpack (100G Tomahawk)
 - Facebook Voyager (100G Tomahawk)
-
+<!-- vale off -->
 ## Platforms Supported under Cumulus Linux 3.7.z but not Currently Supported
 
-The following platforms are supported on Cumulus Linux 3.7.z but are not supported yet in Cumulus Linux 4.0. Support for these platforms will return at some point during the version 4.y.z release cycle.
-
+The following platforms are supported on Cumulus Linux 3.7.z but are not supported yet in Cumulus Linux 4.0. Support for these platforms should return at some point during the version 4.y.z release cycle.
+<!-- vale on -->
 - Dell N3048EP-ON
 - Dell S4128F-ON
 - Dell S4128T-ON

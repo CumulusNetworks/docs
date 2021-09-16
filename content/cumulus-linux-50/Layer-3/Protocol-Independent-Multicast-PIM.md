@@ -31,7 +31,10 @@ The following illustration shows a basic PIM [ASM](## "Any-source Mulitcast") co
 ## Basic PIM Configuration
 
 To configure PIM:
-- Enable PIM on all interfaces that connect to a multicast source or receiver, and on the interface with the RP address. 
+- Enable PIM on all interfaces that connect to a multicast source or receiver, and on the interface with the RP address.
+
+  With NVUE, you must also run the `nv set router pim enable on` command to enable and start the PIM service. This is not required for NCLU and vtysh configuration.
+
 - Enable [IGMP](## "Internet Group Management Protocol") on all interfaces that attach to a host and all interfaces that attach to a multicast receiver. IGMP version 3 is the default. Only specify the version if you want to use IGMP version 2. For [SSM](## "Source Specific Multicast"), you must use IGMP version 3.
 - For [ASM](## "Any-source Mulitcast"), on each PIM enabled switch, specify the IP address of the RP for the multicast group. You can also configure PIM to send traffic from specific multicast groups to specific RPs.
 
@@ -87,10 +90,11 @@ cumulus@spine01:~$ net commit
 {{< tab "leaf01 ">}}
 
 ```
+cumulus@leaf01:~$ nv set router pim enable on
 cumulus@leaf01:~$ nv set interface vlan10 router pim
-cumulus@leaf01:~$ nv set interface vlan10 router igmp
+cumulus@leaf01:~$ nv set interface vlan10 ip igmp
 cumulus@leaf01:~$ nv set interface swp51 router pim
-cumulus@leaf01:~$ nv set vrf default router pim rp 10.10.10.101
+cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.101
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -98,10 +102,11 @@ cumulus@leaf01:~$ nv config apply
 {{< tab "leaf02 ">}}
 
 ```
+cumulus@leaf02:~$ nv set router pim enable on
 cumulus@leaf02:~$ nv set interface vlan20 router pim
-cumulus@leaf02:~$ nv set interface vlan20 router igmp
+cumulus@leaf02:~$ nv set interface vlan20 ip igmp
 cumulus@leaf02:~$ nv set interface swp51 router pim
-cumulus@leaf02:~$ nv set vrf default router pim rp 10.10.10.101
+cumulus@leaf02:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.101
 cumulus@leaf02:~$ nv config apply
 ```
 
@@ -109,9 +114,10 @@ cumulus@leaf02:~$ nv config apply
 {{< tab "spine01 ">}}
 
 ```
+cumulus@spine01:~$ nv set router pim enable on
 cumulus@spine01:~$ nv set interface swp1 router pim
 cumulus@spine01:~$ nv set interface swp2 router pim
-cumulus@spine01:~$ nv set vrf default router pim rp 10.10.10.101 
+cumulus@spine01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.101 
 cumulus@spine01:~$ nv config apply
 ```
 
@@ -270,8 +276,8 @@ cumulus@leaf01:~$ net add pim rp 10.10.10.102 224.10.2.0/24
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router pim rp 10.10.10.101 224.10.0.0/16
-cumulus@leaf01:~$ nv set vrf default router pim rp 10.10.10.102 224.10.2.0/24
+cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.101 224.10.0.0/16
+cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.102 224.10.2.0/24
 ```
 
 {{< /tab >}}
@@ -308,9 +314,11 @@ To configure a group to never follow the SPT, create the necessary prefix lists,
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set router policy prefix-list spt-range rule 1 action permit 235.0.0.0/8 ge 32
-cumulus@switch:~$ nv set router policy prefix-list spt-range rule 1 action permit 238.0.0.0/8 ge 32
-cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast spt-switchover prefix-list spt-range
+cumulus@switch:~$ nv set router policy prefix-list SPTrange rule 1 match 235.0.0.0/8 max-prefix-len 32
+cumulus@switch:~$ nv set router policy prefix-list SPTrange rule 1 action permit
+cumulus@switch:~$ nv set router policy prefix-list SPTrange rule 2 match 238.0.0.0/8 max-prefix-len 32
+cumulus@switch:~$ nv set router policy prefix-list SPTrange rule 2 action permit
+cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast spt-switchover prefix-list SPTrange
 cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast spt-switchover action infinity
 cumulus@switch:~$ nv config apply
 ```
@@ -383,25 +391,17 @@ PIM: ip prefix-list my-custom-ssm-range: 1 entries
 Create a prefix list with the `permit` keyword to match address ranges that you want to treat as multicast groups and the `deny` keyword for the address ranges you do not want to treat as multicast groups:
 
 ```
-cumulus@switch:~$ nv set router policy prefix-list my-custom-ssm-range rule 5 action permit 232.0.0.0/8 ge 32
-cumulus@switch:~$ nv set router policy prefix-list my-custom-ssm-range rule 10 action permit 238.0.0.0/8 ge 32
+cumulus@switch:~$ nv set router policy prefix-list MyCustomSSMrange rule 5 match 232.0.0.0/8 max-prefix-len 32
+cumulus@switch:~$ nv set router policy prefix-list MyCustomSSMrange rule 5 action permit
+cumulus@switch:~$ nv set router policy prefix-list MyCustomSSMrange rule 10 match 238.0.0.0/8 max-prefix-len 32
+cumulus@switch:~$ nv set router policy prefix-list MyCustomSSMrange rule 10 action permit
 ```
 
 Apply the custom prefix list:
 
 ```
-cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast ssm-prefix-list my-custom-ssm-range
+cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast ssm-prefix-list MyCustomSSMrange
 cumulus@switch:~$ nv config apply
-```
-
-To view the configured prefix lists, run the `nv show ip prefix-list` command:
-
-```
-cumulus@switch:~$ nv show ip prefix-list my-custom-ssm-range
-ZEBRA: ip prefix-list my-custom-ssm-range: 1 entries
-   seq 5 permit 232.0.0.0/8 ge 32
-PIM: ip prefix-list my-custom-ssm-range: 1 entries
-   seq 10 permit 232.0.0.0/8 ge 32
 ```
 
 {{< /tab >}}
@@ -426,7 +426,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-To view the configured prefix lists, run the `show ip prefix-list my-custom-ssm-range` command:
+To view the configured prefix lists, run the vtysh `show ip prefix-list my-custom-ssm-range` command:
 
 ```
 switch#  show ip prefix-list my-custom-ssm-range
@@ -476,7 +476,7 @@ cumulus@switch:~$ net commit
 To configure PIM to use all the available next hops when installing mroutes:
 
 ```
-cumulus@switch:~$ nv set vrf default router pim ecmp on
+cumulus@switch:~$ nv set vrf default router pim ecmp enable on
 cumulus@switch:~$ nv config apply
 ```
 
@@ -552,7 +552,7 @@ cumulus@switch:~$ net commit
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp1 router pim address-family ipv4-unicast multicast-boundary-oil my-prefix-list
+cumulus@switch:~$ nv set interface swp1 router pim address-family ipv4-unicast multicast-boundary-oil MyPrefixList
 cumulus@switch:~$ nv config apply
 ```
 
@@ -643,14 +643,14 @@ The following steps configure a Cumulus switch to use MSDP:
 1. Add an anycast IP address to the loopback interface for each RP in the domain:
 
    ```
-   cumulus@rp01:~$ nv set lo ip address 10.10.10.101/32
-   cumulus@rp01:~$ nv set lo ip address 10.100.100.100/32
+   cumulus@rp01:~$ nv set interface lo ip address 10.10.10.101/32
+   cumulus@rp01:~$ nv set interface lo ip address 10.100.100.100/32
    ```
 
 2. On every multicast switch, configure the group to RP mapping using the anycast address:
 
    ```
-   cumulus@switch:$ nv set vrf default router pim rp 10.100.100.100 224.0.0.0/4
+   cumulus@switch:$ nv set vrf default router pim address-family ipv4-unicast rp 10.100.100.100 224.0.0.0/4
    cumulus@switch:$ nv config apply
    ```
 
@@ -903,7 +903,7 @@ cumulus@spine01:~$ net commit
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ nv set interface swp51 router pim bfd
+cumulus@leaf01:~$ nv set interface swp51 router pim bfd enable on
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -911,7 +911,7 @@ cumulus@leaf01:~$ nv config apply
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:~$ nv set interface swp1 router pim bfd
+cumulus@spine01:~$ nv set interface swp1 router pim bfd enable on
 cumulus@spine01:~$ nv config apply
 ```
 
@@ -974,14 +974,14 @@ NCLU does not provide commands for this feature.
 The following example command configures PIM to ignore the RP check for all upstream neighbors:
 
 ```
-cumulus@switch:~$ nv set interface swp50 router pim address-family ipv4-unicast allow-rp on
+cumulus@switch:~$ nv set interface swp50 router pim address-family ipv4-unicast allow-rp enable on
 cumulus@switch:~$ nv config apply
 ```
 
-The following example command configures PIM to only ignore the RP check for the upstream neighbors in the prefix list called ALLOW-RP:
+The following example command configures PIM to only ignore the RP check for the upstream neighbors in the prefix list called allowRP:
 
 ```
-cumulus@switch:~$ nv set interface swp50 router pim address-family ipv4-unicast allow-rp rp-list ALLOW-RP
+cumulus@switch:~$ nv set interface swp50 router pim address-family ipv4-unicast allow-rp rp-list allowRP
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1002,14 +1002,14 @@ switch# exit
 cumulus@switch:~$
 ```
 
-The following example command configures PIM to only ignore the RP check for the upstream neighbors in the prefix list called ALLOW-RP:
+The following example command configures PIM to only ignore the RP check for the upstream neighbors in the prefix list called allowRP:
 
 ```
 cumulus@switch:~$ sudo vtysh
 ...
 switch# configure terminal
 switch(config)# interface swp50
-switch(config-if)# ip pim allow-rp rp-list ALLOW-RP
+switch(config-if)# ip pim allow-rp rp-list allowRP
 switch(config-if)# end
 switch# write memory
 switch# exit
@@ -1018,6 +1018,151 @@ cumulus@switch:~$
 
 {{< /tab >}}
 {{< /tabs >}}
+
+### PIM Timers
+
+Cumulus Linux provides the following PIM timers:
+
+| Timer | Description |
+|------ | ----------- |
+| `hello-interval` | The interval in seconds at which the PIM router sends hello messages to discover PIM neighbors and maintain PIM neighbor relationships. You can specify a value between 1 and 180. The default setting is 30 seconds. With NCLU and vtysh, you set the hello interval for a specific PIM enabled interface. With NVUE, you can set the hello interval globally for all PIM enabled interfaces or for a specific PIM enabled interface.  |
+| `holdtime`  | The number of seconds during which the neighbor must be in a reachable state. `auto` (the default setting) uses three and half times the `hello-interval`. You can specify a value between 1 and 180. With NCLU and vtysh, you set the holdtime for a specific PIM enabled interface. With NVUE, you can set the holdtime globally for all PIM enabled interfaces or for a specific PIM enabled interface.|
+| `join-prune-interval` | The interval in seconds at which a PIM router sends join/prune messages to its upstream neighbors for a state update. You can specify a value between 60 and 600. The default setting is 60 seconds. You set the `join-prune-interval` globally for all PIM enabled interfaces. NVUE and NCLU also provide the option of setting the `join-prune-interval` for a specific VRF.|
+| `keep-alive` | The timeout value for the S,G stream in seconds. You can specify a value between 31 and 60000. The default setting is 210 seconds. You can set the `keep-alive` timer globally or all PIM enabled interfaces or for a specific VRF.|
+| `register-suppress` | The number of seconds during which to stop sending register messages to the RP. You can specify a value between 5 and 60000. The default setting is 60 seconds. You can set the `keep-alive` timer globally for all PIM enabled interfaces or for a specific VRF. |
+| `rp-keep-alive` | NVUE only. The timeout value for the RP in seconds. You can specify a value between 31 and 60000. The default setting is 185 seconds. You set the `register-suppress-time` timer globally for all PIM enabled interfacesor for a specific VRF.|
+
+{{< tabs "TabID1037 ">}}
+{{< tab "NCLU Commands ">}}
+
+The following example commands set the `join-prune-interval` to 100 seconds, the `keep-alive` timer to 10000 seconds, and the `register-suppress` time to 20000 seconds globally for all PIM enabled interfaces:
+
+```
+cumulus@switch:~$ net add pim join-prune-interval 100
+cumulus@switch:~$ net add pim keep-alive-timer 10000
+cumulus@switch:~$ net add pim register-suppress-time 20000
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The following example commands set the `hello-interval` to 60 seconds and the `holdtime` to 120 seconds for swp51:
+
+```
+cumulus@switch:~$ net add interface swp1 pim hello 60 120
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The following example commands set the `join-prune-interval` to 100 and the `keep-alive-timer` to 10000 for VRF RED:
+
+```
+cumulus@switch:~$ net add pim vrf RED join-prune-interval 100
+cumulus@switch:~$ net add pim vrf RED keep-alive-timer 10000
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+The following example commands set the `join-prune-interval` to 100 seconds, the `keep-alive` timer to 10000 seconds, and the `register-suppress` time to 20000 seconds globally for all PIM enabled interfaces:
+
+```
+cumulus@switch:~$ nv set router pim timers join-prune-interval 100
+cumulus@switch:~$ nv set router pim timers keep-alive 10000
+cumulus@switch:~$ nv set router pim timers register-suppress 20000
+cumulus@switch:~$ nv config apply
+```
+
+The following example commands set the `hello-interval` to 60 seconds for swp51:
+
+```
+cumulus@switch:~$ nv set interface swp51 router pim timers hello-interval 60
+cumulus@switch:~$ nv config apply
+```
+
+The following example commands set the `rp-keep-alive` to 10000 for VRF RED:
+
+```
+cumulus@switch:~$ nv set vrf RED router pim timers rp-keep-alive 10000
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+The following example commands set the `join-prune-interval` to 100 seconds, the `keep-alive` timer to 10000 seconds, and the `register-suppress` time to 20000 seconds globally for all PIM enabled interfaces:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# ip pim join-prune-interval 100
+switch(config)# ip pim keep-alive-timer 10000
+switch(config)# ip pim register-suppress-time 20000
+switch(config)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+The following example command sets the `hello-interval` to 60 seconds and the `holdtime` to 120 for swp51:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# interface swp51
+switch(config-if)# ip pim hello 60 120
+switch(config-if)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+The following example command sets the `keep-alive-timer` to 10000 seconds for VRF RED:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# vrf RED
+switch(config-vrf)# ip pim keep-alive-timer 10000
+switch(config-if)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Improve Multicast Convergence
+
+For large multicast environments, the default [CoPP](## "Control Plane Policing") policer might be too restrictive. You can adjust the policer to improve multicast convergence.
+
+- The default PIM forwarding rate is set to 2000 packets per second and the burst rate is set to 2000 packets.
+- The default IGMP forwarding rate is set to 300 packets per second and the burst rate is set to 100 packets.
+
+To tune the PIM and IGMP forwarding and burst rate, edit the `/etc/cumulus/acl/policy.d/00control_plane.rules` file and change `--set-rate` and `--set-burst` in the PIM and IGMP policer lines.
+
+The following example command changes the **PIM** forwarding rate to 2050 packets per second and the burst rate to 2050 packets.
+
+```
+-A $INGRESS_CHAIN -p pim -j POLICE --set-mode pkt --set-rate 2050 --set-burst 2050
+```
+
+The following command example changes the **IGMP** forwarding rate to 400 packets per second and the burst rate to 200 packets.
+
+```
+-A $INGRESS_CHAIN -p igmp -j POLICE --set-mode pkt --set-rate 400 --set-burst 200
+```
+
+To apply the rules, run the `sudo cl-acltool -i` command:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
 
 <!-- vale off -->
 <!-- vale.ai Issue #253 -->
@@ -1074,7 +1219,7 @@ cumulus@leaf01:~$ net commit
 
 ```
 cumulus@leaf01:~$ nv set interface vlan10 router pim active-active on
-cumulus@leaf01:~$ nv set interface vlan10 router igmp
+cumulus@leaf01:~$ nv set interface vlan10 ip igmp
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1422,7 +1567,8 @@ cumulus@leaf01:~$ net add loopback lo ip address 10.10.10.1/32
 cumulus@leaf01:~$ net add interface swp1,swp49,swp51
 cumulus@leaf01:~$ net add bridge bridge ports swp1
 cumulus@leaf01:~$ net add vlan 10 ip address 10.1.10.1/24
-cumulus@leaf01:~$ net add bridge bridge pvid 10
+cumulus@leaf01:~$ net add interface swp1 bridge access 10 
+cumulus@leaf01:~$ net add bridge bridge vids 10
 cumulus@leaf01:~$ net add bgp autonomous-system 65101
 cumulus@leaf01:~$ net add bgp router-id 10.10.10.1
 cumulus@leaf01:~$ net add bgp neighbor swp51 remote-as external
@@ -1444,7 +1590,8 @@ cumulus@leaf02:~$ net add loopback lo ip address 10.10.10.2/32
 cumulus@leaf02:~$ net add interface swp2,swp49,swp51
 cumulus@leaf02:~$ net add bridge bridge ports swp2
 cumulus@leaf02:~$ net add vlan 20 ip address 10.2.10.1/24
-cumulus@leaf02:~$ net add bridge bridge pvid 20
+cumulus@leaf02:~$ net add interface swp2 bridge access 20
+cumulus@leaf02:~$ net add bridge bridge vids 20
 cumulus@leaf02:~$ net add bgp autonomous-system 65102
 cumulus@leaf02:~$ net add bgp router-id 10.10.10.2
 cumulus@leaf02:~$ net add bgp neighbor swp51 remote-as external
@@ -1485,6 +1632,7 @@ cumulus@spine01:~$ net commit
 {{< tab "leaf01 ">}}
 
 ```
+cumulus@leaf01:~$ nv set router pim enable on
 cumulus@leaf01:~$ nv set interface lo ip address 10.10.10.1/32
 cumulus@leaf01:~$ nv set interface swp1,swp49,swp51
 cumulus@leaf01:~$ nv set interface swp1 bridge domain br_default
@@ -1493,13 +1641,13 @@ cumulus@leaf01:~$ nv set interface vlan10 ip address 10.1.10.1/24
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 remote-as external
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.1.10.0/24
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.1.10.0/24
 cumulus@leaf01:~$ nv set interface lo router pim
 cumulus@leaf01:~$ nv set interface swp51 router pim
 cumulus@leaf01:~$ nv set interface vlan10 router pim
-cumulus@leaf01:~$ nv set interface vlan10 router igmp
-cumulus@leaf01:~$ nv set vrf default router pim rp 10.10.10.101
+cumulus@leaf01:~$ nv set interface vlan10 ip igmp
+cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.101
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1507,6 +1655,7 @@ cumulus@leaf01:~$ nv config apply
 {{< tab "leaf02 ">}}
 
 ```
+cumulus@leaf02:~$ nv set router pim enable on
 cumulus@leaf02:~$ nv set interface lo ip address 10.10.10.2/32
 cumulus@leaf02:~$ nv set interface swp2,swp49,swp51
 cumulus@leaf02:~$ nv set interface swp2 bridge domain br_default
@@ -1515,13 +1664,13 @@ cumulus@leaf02:~$ nv set interface vlan20 ip address 10.2.10.1/24
 cumulus@leaf02:~$ nv set router bgp autonomous-system 65102
 cumulus@leaf02:~$ nv set router bgp router-id 10.10.10.2
 cumulus@leaf02:~$ nv set vrf default router bgp peer swp51 remote-as external
-cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.2/32
-cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.2.10.0/24
+cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.2/32
+cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.2.10.0/24
 cumulus@leaf02:~$ nv set interface lo router pim
 cumulus@leaf02:~$ nv set interface swp51 router pim
 cumulus@leaf02:~$ nv set interface vlan20 router pim
-cumulus@leaf02:~$ nv set interface vlan20 router igmp
-cumulus@leaf02:~$ nv set vrf default router pim rp 10.10.10.101
+cumulus@leaf02:~$ nv set interface vlan20 ip igmp
+cumulus@leaf02:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.101
 cumulus@leaf02:~$ nv config apply
 ```
 
@@ -1529,16 +1678,17 @@ cumulus@leaf02:~$ nv config apply
 {{< tab "spine01 ">}}
 
 ```
+cumulus@spine01:~$ nv set router pim enable on
 cumulus@spine01:~$ nv set interface lo ip address 10.10.10.101/32
 cumulus@spine01:~$ nv set router bgp autonomous-system 65199
 cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
 cumulus@spine01:~$ nv set vrf default router bgp peer swp1 remote-as external
 cumulus@spine01:~$ nv set vrf default router bgp peer swp2 remote-as external
-cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.101/32
 cumulus@spine01:~$ nv set interface lo router pim
 cumulus@spine01:~$ nv set interface swp1 router pim
 cumulus@spine01:~$ nv set interface swp2 router pim
-cumulus@spine01:~$ nv set vrf default router pim rp 10.10.10.101 
+cumulus@spine01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.101 
 cumulus@spine01:~$ nv config apply
 ```
 
@@ -1558,6 +1708,7 @@ iface lo inet loopback
     address 10.10.10.1/32
 auto swp1
 iface swp1
+    bridge-access 10
 auto swp49
 iface swp49
 auto swp51
@@ -1565,7 +1716,6 @@ iface swp51
 auto bridge
 iface bridge
     bridge-ports swp1
-    bridge-pvid 10
     bridge-vids 10
     bridge-vlan-aware yes
 auto mgmt
@@ -1576,7 +1726,6 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
-    post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
 auto vlan10
 iface vlan10
     address 10.1.10.1/24
@@ -1594,6 +1743,7 @@ iface lo inet loopback
     address 10.10.10.2/32
 auto swp2
 iface swp2
+    bridge-access 20
 auto swp49
 iface swp49
 auto swp51
@@ -1601,7 +1751,6 @@ iface swp51
 auto bridge
 iface bridge
     bridge-ports swp2
-    bridge-pvid 20
     bridge-vids 20
     bridge-vlan-aware yes
 auto mgmt
@@ -1612,7 +1761,6 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
-    post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
 auto vlan20
 iface vlan20
     address 10.2.10.1/24
@@ -1640,7 +1788,6 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
-    post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
 ```
 
 {{< /tab >}}
@@ -1694,8 +1841,14 @@ iface eth2 inet manual
 ```
 cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
-ip pim rp 10.10.10.101 224.0.0.0/4
-service integrated-vtysh-config
+router bgp 65101
+ bgp router-id 10.10.10.1
+ neighbor swp51 interface
+ neighbor swp51 remote-as external
+ address-family ipv4 unicast
+  network 10.10.10.1/32
+  network 10.1.10.0/24
+ exit-address-family
 interface lo
  ip pim
 interface swp51
@@ -1703,14 +1856,7 @@ interface swp51
 interface vlan10
  ip pim
  ip igmp
-router bgp 65101
- bgp router-id 10.10.10.1
- neighbor swp51 interface remote-as external
- !
- address-family ipv4 unicast
-  network 10.1.10.0/24
-  network 10.10.10.1/32
- exit-address-family
+ip pim rp 10.10.10.101
 ```
 
 {{< /tab >}}
@@ -1719,23 +1865,22 @@ router bgp 65101
 ```
 cumulus@leaf02:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
-ip pim rp 10.10.10.101 224.0.0.0/4
-service integrated-vtysh-config
+router bgp 65102
+ bgp router-id 10.10.10.2
+ neighbor swp51 interface
+ neighbor swp51 remote-as external
+ address-family ipv4 unicast
+  network 10.10.10.2/32
+  network 10.2.10.0/24
+ exit-address-family
 interface lo
  ip pim
 interface swp51
  ip pim
 interface vlan20
- ip igmp
  ip pim
-router bgp 65102
- bgp router-id 10.10.10.2
- neighbor swp51 interface remote-as external
- !
- address-family ipv4 unicast
-  network 10.2.10.0/24
-  network 10.10.10.2/32
- exit-address-family
+ ip igmp
+ip pim rp 10.10.10.101
 ```
 
 {{< /tab >}}

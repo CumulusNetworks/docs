@@ -6,7 +6,7 @@ toc: 3
 ---
 Internet Group Management Protocol (IGMP) snooping and Multicast Listener Discovery (MLD) snooping prevent hosts on a local network from receiving traffic for a multicast group they have not explicitly joined. IGMP snooping is for IPv4 environments and MLD snooping is for IPv6 environments.
 
-The bridge driver in Cumulus Linux kernel includes IGMP and MLD snooping. If you disable IGMP or MLD snooping, multicast traffic floods to all the bridge ports in the bridge. Similarly, in the absence of receivers in a VLAN, multicast traffic floods to all ports in the VLAN.
+The bridge driver in the Cumulus Linux kernel includes IGMP and MLD snooping. If you disable IGMP or MLD snooping, multicast traffic floods to all the bridge ports in the bridge. In the absence of receivers in a VLAN, multicast traffic floods to all ports in the VLAN.
 
 {{< img src = "/images/cumulus-linux/igmp_snoop_diagram.png" >}}
 
@@ -63,7 +63,7 @@ Without a multicast router, a single switch in an IP subnet can coordinate multi
 
 To configure the querier on the switch for a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, enable the multicast querier on the bridge and add the source IP address of the queries to the VLAN.
 
-The following configuration example enables the multicast querier and sets source IP address of the queries to 10.10.10.1 (the loopback address of the switch).
+The following configuration example enables the multicast querier and sets the source IP address of the queries to 10.10.10.1 (the loopback address of the switch).
 
 {{< tabs "TabID68 ">}}
 {{< tab "NCLU Commands ">}}
@@ -173,6 +173,46 @@ When IGMP reports go to a multicast group, OMF has no effect; normal IGMP snoopi
 {{%notice note%}}
 OMF increases memory usage, which can impact scaling on Spectrum 1 switches.
 {{%/notice%}}
+
+## Improve Multicast Convergence
+
+For large multicast environments, the default [CoPP](## "Control Plane Policing") policer might be too restrictive. You can adjust the policer to improve multicast convergence.
+
+For both IGMP and MLD, the default forwarding rate is set to 300 packets per second and the default burst rate is set to 100 packets. To tune the IGMP and MLD forwarding and burst rates, edit the `/etc/cumulus/acl/policy.d/00control_plane.rules` file and change `--set-rate` and `--set-burst` in the IGMP and MLD policer lines.
+
+The following command example changes the **IGMP** forwarding rate to 400 packets per second and the burst rate to 200 packets.
+
+```
+-A $INGRESS_CHAIN -p igmp -j POLICE --set-mode pkt --set-rate 400 --set-burst 200
+```
+
+For **MLD**, you need to change several lines in the `/etc/cumulus/acl/policy.d/00control_plane.rules` file.
+
+{{%notice note%}}
+All the MLD packet types use same policer internally; you must set all the lines with the same rates.
+{{%/notice%}}
+
+The following command examples change the MLD forwarding rate to 400 packets per second and the burst rate to 200 packets.
+
+```
+# link-local multicast receiver: Listener Query
+-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p ipv6-icmp -m icmp6 --icmpv6-type 130 -j POLICE --set-mode pkt --set-rate 400 --set-burst 200 --set-class 6
+
+# link-local multicast receiver: Listener Report
+-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p ipv6-icmp -m icmp6 --icmpv6-type 131 -j POLICE --set-mode pkt --set-rate 400 --set-burst 200 --set-class 6
+
+# link-local multicast receiver: Listener Done
+-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p ipv6-icmp -m icmp6 --icmpv6-type 132 -j POLICE --set-mode pkt --set-rate 400 --set-burst 200 --set-class 6
+
+# link-local multicast receiver: Listener Report v2
+-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p ipv6-icmp -m icmp6 --icmpv6-type 143 -j POLICE --set-mode pkt --set-rate 400 --set-burst 200 --set-class 6
+```
+
+Apply the rules with the `sudo cl-acltool -i` command:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
 
 ## Disable IGMP and MLD Snooping
 

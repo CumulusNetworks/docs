@@ -941,8 +941,8 @@ cumulus@leaf01:~$ nv set evpn enable on
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp52 peer-group underlay
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 peer-group underlay
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 peer-group underlay
 cumulus@leaf01:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@leaf01:~$ nv set vrf RED router bgp autonomous-system 65101
@@ -1014,8 +1014,8 @@ cumulus@leaf02:~$ nv set evpn enable on
 cumulus@leaf02:~$ nv set router bgp autonomous-system 65102
 cumulus@leaf02:~$ nv set router bgp router-id 10.10.10.2
 cumulus@leaf02:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf02:~$ nv set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf02:~$ nv set vrf default router bgp peer swp52 peer-group underlay
+cumulus@leaf02:~$ nv set vrf default router bgp neighbor swp51 peer-group underlay
+cumulus@leaf02:~$ nv set vrf default router bgp neighbor swp52 peer-group underlay
 cumulus@leaf02:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@leaf02:~$ nv set vrf RED router bgp autonomous-system 65102
@@ -1087,8 +1087,8 @@ cumulus@leaf03:~$ nv set evpn enable on
 cumulus@leaf03:~$ nv set router bgp autonomous-system 65103
 cumulus@leaf03:~$ nv set router bgp router-id 10.10.10.3
 cumulus@leaf03:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf03:~$ nv set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf03:~$ nv set vrf default router bgp peer swp52 peer-group underlay
+cumulus@leaf03:~$ nv set vrf default router bgp neighbor swp51 peer-group underlay
+cumulus@leaf03:~$ nv set vrf default router bgp neighbor swp52 peer-group underlay
 cumulus@leaf03:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf03:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@leaf03:~$ nv set vrf RED router bgp autonomous-system 65103
@@ -1160,8 +1160,8 @@ cumulus@leaf04:~$ nv set evpn enable on
 cumulus@leaf04:~$ nv set router bgp autonomous-system 65104
 cumulus@leaf04:~$ nv set router bgp router-id 10.10.10.4
 cumulus@leaf04:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf04:~$ nv set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf04:~$ nv set vrf default router bgp peer swp52 peer-group underlay
+cumulus@leaf04:~$ nv set vrf default router bgp neighbor swp51 peer-group underlay
+cumulus@leaf04:~$ nv set vrf default router bgp neighbor swp52 peer-group underlay
 cumulus@leaf04:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf04:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@leaf04:~$ nv set vrf RED router bgp autonomous-system 65104
@@ -1193,10 +1193,10 @@ cumulus@spine01:~$ nv set interface swp1-4
 cumulus@spine01:~$ nv set router bgp autonomous-system 65199
 cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
 cumulus@spine01:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@spine01:~$ nv set vrf default router bgp peer swp1 peer-group underlay
-cumulus@spine01:~$ nv set vrf default router bgp peer swp2 peer-group underlay
-cumulus@spine01:~$ nv set vrf default router bgp peer swp3 peer-group underlay
-cumulus@spine01:~$ nv set vrf default router bgp peer swp4 peer-group underlay
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp3 peer-group underlay
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp4 peer-group underlay
 cumulus@spine01:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on
 cumulus@spine01:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on
@@ -1212,10 +1212,10 @@ cumulus@spine02:~$ nv set interface swp1-4
 cumulus@spine02:~$ nv set router bgp autonomous-system 65199
 cumulus@spine02:~$ nv set router bgp router-id 10.10.10.102
 cumulus@spine02:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@spine02:~$ nv set vrf default router bgp peer swp1 peer-group underlay
-cumulus@spine02:~$ nv set vrf default router bgp peer swp2 peer-group underlay
-cumulus@spine02:~$ nv set vrf default router bgp peer swp3 peer-group underlay
-cumulus@spine02:~$ nv set vrf default router bgp peer swp4 peer-group underlay
+cumulus@spine02:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay
+cumulus@spine02:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay
+cumulus@spine02:~$ nv set vrf default router bgp neighbor swp3 peer-group underlay
+cumulus@spine02:~$ nv set vrf default router bgp neighbor swp4 peer-group underlay
 cumulus@spine02:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on
 cumulus@spine02:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@spine02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on
@@ -5311,8 +5311,8 @@ cumulus@leaf01:~$ nv set evpn enable on
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp52 peer-group underlay
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 peer-group underlay
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 peer-group underlay
 cumulus@leaf01:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
 cumulus@leaf01:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
@@ -5375,8 +5375,8 @@ cumulus@leaf02:~$ nv set evpn enable on
 cumulus@leaf02:~$ nv set router bgp autonomous-system 65102
 cumulus@leaf02:~$ nv set router bgp router-id 10.10.10.2
 cumulus@leaf02:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf02:~$ nv set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf02:~$ nv set vrf default router bgp peer swp52 peer-group underlay
+cumulus@leaf02:~$ nv set vrf default router bgp neighbor swp51 peer-group underlay
+cumulus@leaf02:~$ nv set vrf default router bgp neighbor swp52 peer-group underlay
 cumulus@leaf02:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
 cumulus@leaf02:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
@@ -5439,8 +5439,8 @@ cumulus@leaf03:~$ nv set evpn enable on
 cumulus@leaf03:~$ nv set router bgp autonomous-system 65103
 cumulus@leaf03:~$ nv set router bgp router-id 10.10.10.3
 cumulus@leaf03:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf03:~$ nv set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf03:~$ nv set vrf default router bgp peer swp52 peer-group underlay
+cumulus@leaf03:~$ nv set vrf default router bgp neighbor swp51 peer-group underlay
+cumulus@leaf03:~$ nv set vrf default router bgp neighbor swp52 peer-group underlay
 cumulus@leaf03:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
 cumulus@leaf03:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf03:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
@@ -5503,8 +5503,8 @@ cumulus@leaf04:~$ nv set evpn enable on
 cumulus@leaf04:~$ nv set router bgp autonomous-system 65104
 cumulus@leaf04:~$ nv set router bgp router-id 10.10.10.4
 cumulus@leaf04:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf04:~$ nv set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf04:~$ nv set vrf default router bgp peer swp52 peer-group underlay
+cumulus@leaf04:~$ nv set vrf default router bgp neighbor swp51 peer-group underlay
+cumulus@leaf04:~$ nv set vrf default router bgp neighbor swp52 peer-group underlay
 cumulus@leaf04:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
 cumulus@leaf04:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf04:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
@@ -5527,10 +5527,10 @@ cumulus@spine01:~$ nv set interface swp1-4
 cumulus@spine01:~$ nv set router bgp autonomous-system 65199
 cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
 cumulus@spine01:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@spine01:~$ nv set vrf default router bgp peer swp1 peer-group underlay
-cumulus@spine01:~$ nv set vrf default router bgp peer swp2 peer-group underlay
-cumulus@spine01:~$ nv set vrf default router bgp peer swp3 peer-group underlay
-cumulus@spine01:~$ nv set vrf default router bgp peer swp4 peer-group underlay
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp3 peer-group underlay
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp4 peer-group underlay
 cumulus@spine01:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
 cumulus@spine01:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on
 cumulus@spine01:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
@@ -5547,10 +5547,10 @@ cumulus@spine02:~$ nv set interface swp1-4
 cumulus@spine02:~$ nv set router bgp autonomous-system 65199
 cumulus@spine02:~$ nv set router bgp router-id 10.10.10.102
 cumulus@spine02:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@spine02:~$ nv set vrf default router bgp peer swp1 peer-group underlay
-cumulus@spine02:~$ nv set vrf default router bgp peer swp2 peer-group underlay
-cumulus@spine02:~$ nv set vrf default router bgp peer swp3 peer-group underlay
-cumulus@spine02:~$ nv set vrf default router bgp peer swp4 peer-group underlay
+cumulus@spine02:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay
+cumulus@spine02:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay
+cumulus@spine02:~$ nv set vrf default router bgp neighbor swp3 peer-group underlay
+cumulus@spine02:~$ nv set vrf default router bgp neighbor swp4 peer-group underlay
 cumulus@spine02:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
 cumulus@spine02:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on
 cumulus@spine02:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on

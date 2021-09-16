@@ -317,11 +317,11 @@ To show the full list of NVUE commands, run `nv list-commands`. For example:
 ```
 cumulus@switch:~$ nv list-commands
 nv show router
+nv show router nexthop-group
+nv show router nexthop-group <nexthop-group-id>
+nv show router nexthop-group <nexthop-group-id> via
+nv show router nexthop-group <nexthop-group-id> via <via-id>
 nv show router pbr
-nv show router pbr nexthop-group
-nv show router pbr nexthop-group <nexthop-group-id>
-nv show router pbr nexthop-group <nexthop-group-id> via
-nv show router pbr nexthop-group <nexthop-group-id> via <nhg-via-id>
 nv show router pbr map
 nv show router pbr map <pbr-map-id>
 nv show router pbr map <pbr-map-id> rule
@@ -461,8 +461,8 @@ The example below shows the NVUE commands required to configure BGP unnumbered o
 ```
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 remote-as external
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -630,5 +630,5 @@ cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 However, BGP peer and peer group, route information, timer, and address family configuration requires a VRF. For example:
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 remote-as external
 ```

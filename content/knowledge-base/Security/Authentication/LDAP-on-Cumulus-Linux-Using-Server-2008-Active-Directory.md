@@ -18,7 +18,7 @@ The method described in the article applies ONLY to Windows Server 2008. This me
 
 - **Base DN:** CN=Cumulus Admin, DC=RTP, DC=Example, DC=test
 - **Base OU:** OU=Support, DC=RTP, DC=Example, DC=Test
-- **Users and Groups:** This example has three users that are allowed to access a Cumulus Linux switch. Two are in the senior network engineer group, one in the junior engineering group. The last user, *Mark Smith*, does not have access to the switches because he is not a member of the *cumuluslnxadm* group.
+- **Users and Groups:** This example has three users that can access a Cumulus Linux switch. Two are in the senior network engineer group, one in the junior engineering group. The last user, *Mark Smith*, does not have access to the switches because he is not a member of the *cumuluslnxadm* group.
 
 {{<img src="/images/knowledge-base/LDAP-Server-2008-layout_of_users_on_ad.png" width="600" alt="group layout of users">}}
 
@@ -58,13 +58,13 @@ The method described in the article applies ONLY to Windows Server 2008. This me
 
 2. Add Debian backports to apt sources list (optional).
 
-   `libnss-ldapd` version 0.9 and higher is needed for nested group support. For Wheezy, *and thus Cumulus Linux 2.x*, include {{<exlink url="http://backports.debian.org/Instructions/" text="Debian Wheezy backports to the apt sources list">}}.
+   You need `libnss-ldapd` version 0.9 and higher for nested group support. For Wheezy, *and thus Cumulus Linux 2.x*, include {{<exlink url="http://backports.debian.org/Instructions/" text="Debian Wheezy backports to the apt sources list">}}.
 
 3. Seed `debconf` with appropriate values (*recommended*).
 
    Seeding `debconf` is helpful because it adds most of the important configuration values in the various applications and prevents the apps from asking questions during the installation.
 
-   While it is possible to execute `apt-get` in non-interactive mode, you will need to change most of the necessary config later.
+   While it is possible to execute `apt-get` in non-interactive mode, you need to change most of the necessary configuration later.
 
    {{%notice note%}}
 
@@ -184,7 +184,7 @@ Do not install `libnss-ldap`. This is the **wrong** app, {{<exlink url="http://b
 
    - Specify the Bind DN path.
    - Specify the Bind DN password.
-   - Configure LDAP search filter. The filter states that only users in the *cumuluslnxadm* group are allowed log in. The search filter performs the nested group lookup.
+   - Configure LDAP search filter. The filter states that only users in the *cumuluslnxadm* group can log in. The search filter performs the nested group lookup.
    - Configure Unix to AD mappings.
    - Configure nested group support.
 
@@ -267,11 +267,11 @@ Do not install `libnss-ldap`. This is the **wrong** app, {{<exlink url="http://b
 
    - Copy the LDAP CA certificate (in PEM format) to the directory, specified in the nslcd.conf `tls_cacertfile` option, on the client device. Ensure the file specified matches the filename copied.
    - Set the `tls_reqcert` option to `demand`.
-   - Change the URI to use ldaps://...
+   - Change the URI to use `ldaps://`.
 
 8. Confirm that LDAP authentication works.
 
-   - Restart the `nscd` service using `service nscd restart` to clear the cache. This can cache a mistake and then you can spend hours troubleshooting a problem that doesn't exist. Alternatively, clear the `nscd` cache for passwd and group using the commands:
+   - Restart the `nscd` service using `service nscd restart` to clear the cache. This can cache a mistake and then you can spend hours troubleshooting a problem that does not exist. Or, clear the `nscd` cache for `passwd` and `group` using the commands:
 
          root# nscd --invalidate=group
          root# nscd --invalidate=passwd
@@ -293,7 +293,7 @@ Do not install `libnss-ldap`. This is the **wrong** app, {{<exlink url="http://b
           marydiho:*:1124:1124:Mary Diho:/home/marydiho:/bin/bash
           obidia:*:1128:1128:Obi Dia:/home/obidia:/bin/bash
 
-      *group list*: GIDs of each user should be present. Because nested group support is enabled, all nested groups are mapped to the right users.
+      *group list*: GIDs of each user should be present. Because you enabled nested group support, all nested groups get mapped to the right users.
 
           root# getent group
           ..
@@ -311,14 +311,14 @@ Do not install `libnss-ldap`. This is the **wrong** app, {{<exlink url="http://b
 
 9. Set up command authorization (*optional*).
 
-   To do authorization with nslcd, creating entries on the client device will match against the LDAP information cached. To accomplish this, it is required to install the `sudo-ldap` package from the Wheezy repo.
+   To do authorization with `nslcd`, creating entries on the client device matches against the LDAP information cached. To accomplish this, you must install the `sudo-ldap` package from the Wheezy repo.
 
-   In this example, we will create the following authorizations:
+   In this example, you create the following authorizations:
 
    - Senior engineers can run any privileged and non-privileged command.
    - Junior engineers can run `lldpctl` without a password. By default, `lldpctl` requires root access.
 
-   Add two files to the `/etc/sudoers.d` directory, one for senior engineers and the other for junior engineers. This can be configured in the /etc/sudoers file, but this keeps things modular.
+   Add two files to the `/etc/sudoers.d` directory, one for senior engineers and the other for junior engineers. You can configure this in the `/etc/sudoers` file, but this keeps things modular.
 
    `/etc/sudoers.d/snrnetworkadm`:
 

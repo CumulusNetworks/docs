@@ -5,7 +5,7 @@ weight: 392
 toc: 4
 ---
 
-Cumulus Linux sets the MAC address for a bridge, and therefore layer 3 switch virtual interfaces (SVIs), differently depending on the version of Cumulus Linux you have deployed. Version 3.6.0 and later releases use the MAC address of the first port in the bridge-ports list. Earlier releases use alternate methods for determining the MAC address.  
+Cumulus Linux sets the MAC address for a bridge, and therefore layer 3 switch virtual interfaces (SVIs), differently depending on the version of Cumulus Linux you have deployed. Version 3.6.0 and later releases use the MAC address of the first port in the `bridge-ports` list. Earlier releases use alternate methods for determining the MAC address.  
 
 This article summarizes the various derivation methods and illustrates the results using an example bridge configuration. Additionally, it provides guidelines for choosing a derivation method for your network and instructions for modifying its default behavior if so desired.
 
@@ -22,7 +22,7 @@ The following table lists the method used by each version of Cumulus Linux by de
 
 ## Example Bridge Configuration
 
-The following example switch configuration is used to show the differences between the methods for determining the MAC address for a bridge interface. In this example, a VLAN-aware bridge (for large scale, layer 2 environments using a single instance of Spanning Tree Protocol (STP)) is configured with a management port of eth0, four switch ports (swp1-4), and an LACP bond interface (bond1), containing two switch ports (swp5-6). It also contains a single VLAN, 100, which has a layer 3 switch virtual interface (SVI).
+The following example switch configuration shows the differences between the methods for determining the MAC address for a bridge interface. This example shows a VLAN-aware bridge (for large scale, layer 2 environments using a single instance of spanning tree protocol &mdash; STP) configured with a management port of eth0, four switch ports (swp1-4), and an LACP bond interface (bond1), containing two switch ports (swp5-6). It also contains a single VLAN, 100, which has a layer 3 switch virtual interface (SVI).
 
 {{<img src="/images/knowledge-base/MAC-address-derivation.png" width="600">}}
 
@@ -65,7 +65,7 @@ The following example switch configuration is used to show the differences betwe
 
 ## First Interface Address Method
 
-This method assigns the MAC address of the **first** interface in its bridge-ports list to the bridge MAC address. In our example configuration, the first interface is bond1:
+This method assigns the MAC address of the **first** interface in its `bridge-ports` list to the bridge MAC address. In this example configuration, the first interface is bond1:
 
     auto bridge
     iface bridge
@@ -77,7 +77,7 @@ The interface bond1 (the bond master) obtains its MAC address from its bond slav
     iface bond1
         bond-slaves swp5 swp6
 
-Using the configuration example, we can see the addresses of each of these interfaces by piping the `ip link show` command through `grep`. Note that the MAC address of the bond1 interface is the same as the address for switch ports swp5 and swp6 (the bond interface selects the MAC address of the first slave to use for all member links). The bridge then has the same address as bond1 (highlighted in purple).
+Using the configuration example, you can see the addresses of each of these interfaces by piping the `ip link show` command through `grep`. Note that the MAC address of the bond1 interface is the same as the address for switch ports swp5 and swp6 (the bond interface selects the MAC address of the first slave to use for all member links). The bridge then has the same address as bond1 (highlighted in purple).
 
     cumulus@cumulus:~$ ip link show | grep -A1 -E "eth0|swp[1-6]:|bridge"
     2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
@@ -104,19 +104,19 @@ Using the configuration example, we can see the addresses of each of these inter
 
 ### First Interface Address Usage Considerations
 
-Using this method to allocate the bridge's MAC address can cause issues when the bridge-ports list is updated. When the first MAC address of the first interface in bridge-ports changes, either through enslaving a new port or releasing the current first port, the bridge's MAC address will change, thus changing its STP bridge address. This can result in STP reconverging and an outage for the bridge domain.
+Using this method to assign the bridge's MAC address can cause issues when you update the `bridge-ports` list. When the first MAC address of the first interface in bridge-ports changes, either through enslaving a new port or releasing the current first port, the bridge's MAC address changes, thus changing its STP bridge address. This can result in STP reconverging and an outage for the bridge domain.
 
-Cumulus Linux 3.6.0 and later use the First Interface Address method by default. When upgrading from an earlier version to 3.6.0 or later, it is likely that the bridge and SVI MAC addresses will change between versions. This can cause issues if an SVI is expecting a static lease from DHCP perhaps used for in-band management as is common in an out-of-band network.
+Cumulus Linux 3.6.0 and later use the First Interface Address method by default. When upgrading from an earlier version to 3.6.0 or later, it is likely that the bridge and SVI MAC addresses is going to change between versions. This can cause issues if an SVI is expecting a static lease from DHCP that it can use for in-band management as is common in an out-of-band network.
 
 ## Lowest Interface Address Method
 
-This method inspects all of the interfaces in the bridge-ports list and assigns the lowest MAC address for the bridge address.  In our example configuration, the bridge-ports list contains five interfaces:
+This method inspects every interface in the `bridge-ports` list and assigns the lowest MAC address for the bridge address. In the example configuration, the `bridge-ports` list contains five interfaces:
 
     auto bridge
     iface bridge
         bridge-ports bond1 swp1 swp2 swp3 swp4
 
-Using the configuration example, we can see the addresses of each of these interfaces by piping the `ip link show` command through `grep`. Comparing these addresses, we can see that swp2 interface has the lowest address. Note that this address is then the address used for the bridge (highlighted in purple).
+Using the configuration example, you can see the addresses of each of these interfaces by piping the `ip link show` command through `grep`. Comparing these addresses, you can see that swp2 interface has the lowest address. Note that this address is then the address used for the bridge (highlighted in purple).
 
     cumulus@cumulus:~$ ip link show | grep -A1 -E "swp[1-6]:|bridge"
     3: swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bridge state UP mode DEFAULT group default qlen 1000
@@ -139,19 +139,19 @@ Using the configuration example, we can see the addresses of each of these inter
 
 {{%notice note%}}
 
-The output shown above is from a Cumulus VX deployment, where the interface MAC is randomly allocated from a range provided by thehypervisor. By contrast, on a switch running Cumulus Linux, MAC addresses are assigned linearly to interfaces based on the system MAC provided by the hardware vendor in the EEPROM. As such, this typically results in the lowest numbered interface on a switch having the lowest MAC address.
+The output shown above is from a Cumulus VX deployment, where the interface MAC is randomly allocated from a range provided by the hypervisor. By contrast, a Cumulus Linux switch assigns MAC addresses linearly to interfaces based on the system MAC provided by the hardware vendor in the EEPROM. As such, this typically results in the lowest numbered interface on a switch having the lowest MAC address.
 
 {{%/notice%}}
 
 ### Lowest Interface Address Usage Considerations
 
-Using this method to allocate the bridge's MAC address can cause issues when the bridge-ports list is updated. If the lowest MAC address changes, either through enslaving a new port or releasing the current lowest interface, the bridge's MAC address will change, thus changing its STP bridge address. This can result in STP reconverging and an outage for the bridge domain.
+Using this method to assign the bridge's MAC address can cause issues when you update the `bridge-ports` list. If the lowest MAC address changes, either through enslaving a new port or releasing the current lowest interface, the bridge's MAC address is going to change, thus changing its STP bridge address. This can result in STP reconverging and an outage for the bridge domain.
 
 Cumulus Linux 3.5.3 and 3.4.3 and earlier use the Lowest Interface Address method by default.
 
 ## eth0 Interface Address Method
 
-This method assigns the address of the eth0 interface to the bridge MAC address. Using the configuration example, we can see the addresses of each of these interfaces by piping the ip link show command through grep. Note the matching address for the bridge and eth0 (highlighted here).
+This method assigns the address of the eth0 interface to the bridge MAC address. Using the configuration example, you can see the addresses of each of these interfaces by piping the ip link show command through grep. Note the matching address for the bridge and eth0 (highlighted here).
 
     cumulus@cumulus:~$ ip link show | grep -A1 -E "eth0|bridge"
     2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
@@ -163,7 +163,7 @@ This method assigns the address of the eth0 interface to the bridge MAC address.
 
 ### eth0 Usage Considerations
 
-Using this method to allocate the bridge's MAC address can cause issues when the eth0 interface of the switch becomes part of a VLAN being bridged by the switch. In the event the switch sees a packet with the source MAC of its own bridge address, which is the same as its eth0 address, it drops the packet rather than bridges it.
+Using this method to assign the bridge's MAC address can cause issues when the eth0 interface of the switch becomes part of a VLAN the switch is bridging. In the event the switch sees a packet with the source MAC of its own bridge address, which is the same as its eth0 address, it drops the packet rather than bridges it.
 
 Cumulus Linux 3.5.0 through 3.5.2 use the eth0 Interface Address method by default.
 
@@ -179,7 +179,7 @@ None of the Cumulus Linux versions use this method by default.
 
 ## Change Default MAC Address Derivation Method
 
-Cumulus Linux versions 3.6.0 and later can be reconfigured to use any of the MAC address derivation methods. Cumulus Linux versions 3.5.3 and earlier can only be reconfigured to use the static MAC address method.
+You can reconfigure Cumulus Linux versions 3.6.0 and later to use any MAC address derivation method. To reconfigure Cumulus Linux versions 3.5.3 and earlier, you must use the static MAC address method.
 
 ### Choose a Derivation Method
 
@@ -216,8 +216,8 @@ Choosing the right derivation method for your network depends on the configurati
 <tr>
 <td><p>eth0 Address</p></td>
 <td><ul>
-<li>When the MAC address used by the bridge and SVIs needs to be known in advance perhaps to support pre-provisioning of DHCP infrastructure</li>
-<li>When it is too burdensome to allocate unique static MAC addresses</li>
+<li>When you need to know the MAC address used by the bridge and SVIs in advance, maybe to support pre-provisioning of DHCP infrastructure</li>
+<li>When it is too burdensome to assign unique static MAC addresses</li>
 </ul></td>
 <td><ul>
 <li>When eth0 is in use and part of a VLAN on the switch</li>
@@ -267,7 +267,7 @@ To change to this method:
 
     {{%notice note%}}
 
-This may cause an STP reconvergence event.
+This might cause an STP reconvergence event.
 
 {{%/notice%}}
 
@@ -301,7 +301,7 @@ To change to this method:
 
    {{%notice note%}}
 
-In this case, the MAC address is changed immediately.
+In this case, the MAC address changes immediately.
 
 {{%/notice%}}
 
@@ -315,7 +315,7 @@ In this case, the MAC address is changed immediately.
        }
        cumulus@cumulus:~$ sudo ifreload -a
 
-You can verify the configuration change using the `ip link show` command command piped through `grep` to see the addresses:
+You can verify the configuration change using the `ip link show` command piped through `grep` to see the addresses:
 
     cumulus@cumulus:~$ ip link show | grep -A1 -E "eth0|bridge"
     2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000

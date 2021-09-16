@@ -5,7 +5,7 @@ weight: 513
 toc: 4
 ---
 
-Cumulus Linux includes a number of interface show commands to troubleshoot your switch. While Cumulus Linux *is* Linux, and the same tried and true Linux commands work in the same way, the Cumulus Linux [network command line utility]({{<ref "/cumulus-linux-43/System-Configuration/Network-Command-Line-Utility-NCLU" >}}) shows even more relevant information in a single command.
+Cumulus Linux includes many interface show commands to troubleshoot your switch. While Cumulus Linux *is* Linux, and the same Linux commands work in the same way, the Cumulus Linux [network command line utility]({{<ref "/cumulus-linux-43/System-Configuration/Network-Command-Line-Utility-NCLU" >}}) shows even more relevant information in a single command.
 
 ## Show Layer 1 and 2 Interface Status
 
@@ -29,7 +29,7 @@ IP addresses information for interfaces can be seen a variety of ways in Cumulus
 
 ## Show LLDP Neighbor Information
 
-LLDP is used as a way to gather and show information on neighbors and the ports they are connected through. This is very similar CDP in a Cisco Nexus 3000.
+LLDP is a way to gather and show information on neighbors and the ports they connect through. This is very similar to CDP in a Cisco Nexus 3000.
 
 | Network OS                    | Output                        |
 | ----------------------------- | ----------------------------- |

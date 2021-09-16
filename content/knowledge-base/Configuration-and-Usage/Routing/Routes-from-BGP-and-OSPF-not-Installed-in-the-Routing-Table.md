@@ -36,7 +36,7 @@ The route table entries for BGP and OSPF routes are missing from the routing tab
 
 ## Cause
 
-The Zebra daemon is not running. The Zebra daemon is responsible for installing routes, learned from routing protocols, into the routing table.
+The Zebra daemon is not running. The Zebra daemon does not install routes, learned from routing protocols, into the routing table.
 
 ## Resolution
 

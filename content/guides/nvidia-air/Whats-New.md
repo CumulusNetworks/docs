@@ -8,9 +8,9 @@ product: NVIDIA Air
 
 Check out some of the latest features added to the {{<exlink url="https://air.nvidia.com" text="NVIDIA Air Infrastructure Simulation Platform">}}.
 
-<!-- Air:WhatsNew -->
 ## September 2021
 <!-- vale off -->
+<!-- Air:WhatsNew -->
 - Enable UEFI SecureBoot for virtual machines using the `secureboot` option in your DOT file. For example:
 
 ```

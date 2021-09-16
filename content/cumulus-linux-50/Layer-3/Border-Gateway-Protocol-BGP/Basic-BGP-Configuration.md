@@ -13,7 +13,7 @@ BGP *unnumbered* simplifies configuration. NVIDIA recommends you use BGP unnumbe
 ## BGP Numbered
 
 To configure BGP numbered on a BGP node, you need to:
-- Assign an ASN to identify this BGP node. In a two-tier leaf and spine configuration, you can use {{<link title="Border Gateway Protocol - BGP#auto-bgp" text="auto BGP">}}, where Cumulus Linux assigns an ASN automatically.
+- Assign an [ASN](## "Autonomous System Number") to identify this BGP node. In a two-tier leaf and spine configuration, you can use {{<link title="Border Gateway Protocol - BGP#auto-bgp" text="auto BGP">}}, where Cumulus Linux assigns an ASN automatically.
 - Assign a router ID, which is a 32-bit value and is typically the address of the loopback interface on the switch.
 - Specify where to distribute routing information by providing the IP address and ASN of the neighbor.
   - For BGP numbered, this is the IP address of the interface between the two peers; the interface must be a layer 3 access port.

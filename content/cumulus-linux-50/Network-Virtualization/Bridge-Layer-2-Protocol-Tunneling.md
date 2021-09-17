@@ -5,7 +5,7 @@ weight: 620
 toc: 3
 ---
 
-A VXLAN connects layer 2 domains across a layer 3 fabric; however, layer 2 protocol packets, such as LLDP, LACP, STP, and CDP stop at the ingress VTEP. If you want the VXLAN to behave more like a wire or hub, where the switch tunnels protocol packets instead of terminating them locally, you can enable *bridge layer 2 protocol tunneling*.
+A [VXLAN](## "Virtual Extensible LAN") connects layer 2 domains across a layer 3 fabric; however, layer 2 protocol packets, such as  [LLDP](## "Link Layer Discovery Protocol"), [LACP](## "Link Aggregation Control Protocol"), [STP](## "Spanning Tree Protocol"), and [CDP](## "Cisco Discovery Protocol") stop at the ingress VTEP. If you want the VXLAN to behave more like a wire or hub, where the switch tunnels protocol packets instead of terminating them locally, you can enable *bridge layer 2 protocol tunneling*.
 
 ## Configure Bridge Layer 2 Protocol Tunneling
 

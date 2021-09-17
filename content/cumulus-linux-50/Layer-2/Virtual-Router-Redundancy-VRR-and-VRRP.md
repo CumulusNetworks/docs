@@ -4,9 +4,9 @@ author: NVIDIA
 weight: 510
 toc: 3
 ---
-Cumulus Linux provides the option of using Virtual Router Redundancy (VRR) or Virtual Router Redundancy Protocol (VRRP).
+Cumulus Linux provides the option of using [VRR](## "Virtual Router Redundancy") or [VRRP](## "Virtual Router Redundancy Protocol").
 
-- **VRR** enables hosts to communicate with any redundant router without reconfiguration, by running dynamic router protocols or router redundancy protocols. Redundant routers respond to Address Resolution Protocol (ARP) requests from hosts. Routers respond in an identical manner, but if one fails, the other redundant routers continue to respond. You use VRR with MLAG
+- **VRR** enables hosts to communicate with any redundant router without reconfiguration, by running dynamic router protocols or router redundancy protocols. Redundant routers respond to [ARP](## "Address Resolution Protocol") requests from hosts. Routers respond in an identical manner, but if one fails, the other redundant routers continue to respond. You use VRR with [MLAG](## "Multi-chassis Link Aggregation").
 
    Use VRR when you connect multiple devices to a single logical connection, such as an MLAG bond. A device that connects to an MLAG bond believes there is a single device on the other end of the bond and only forwards one copy of the transit frames. If the destination of this frame is the virtual MAC address and you are running VRRP, the frame can go to the link connected to the VRRP standby device, which does not forward the frame to the right destination. With the virtual MAC active on both MLAG devices, either MLAG device handles the frame it receives.
 
@@ -29,7 +29,7 @@ The network includes three hosts and two routers running Cumulus Linux that use 
 - Each ARP request by a host receives replies from each switch; these replies are identical, and the host receiving the replies either ignores replies after the first, or accepts them and overwrites the previous identical reply.
 - VRR reserves a range of MAC addresses to prevent MAC address conflicts with other interfaces in the same bridged network. The reserved range is `00:00:5E:00:01:00` to `00:00:5E:00:01:ff`.
 
-   Use MAC addresses from the reserved range when configuring VRR. The reserved MAC address range for VRR is the same as for the Virtual Router Redundancy Protocol (VRRP).
+   Use MAC addresses from the reserved range when configuring VRR. The reserved MAC address range is the same for VRR and VRRP.
 
 ### Configure the Routers
 
@@ -39,7 +39,7 @@ The routers implement the layer 2 network interconnecting the hosts and the redu
 - One or more interfaces to each peer router. To accommodate higher bandwidth between the routers and to offer link redundancy, multiple inter-peer links are typically bonded interfaces. The VLAN interface must have a unique IP address for both the physical and virtual interface; the switch uses the unique address when it initiates an ARP request.
 
 {{%notice note%}}
-Cumulus Linux only supports VRR on switched virtual interfaces (SVIs). You cannot configure VRR on physical interfaces or virtual subinterfaces.
+Cumulus Linux only supports VRR on an [SVI](## "Switched Virtual Interface"). You cannot configure VRR on a physical interface or virtual subinterface.
 {{%/notice%}}
 
 The example commands below create a VLAN-aware bridge interface for a VRR-enabled network. The example assumes you have already configured a VLAN-aware bridge with VLAN 10 and that VLAN 10 has an IP address:
@@ -98,9 +98,9 @@ cumulus@switch:~$ sudo ifreload -a
 
 ### Configure the Hosts
 
-Each host must have two network interfaces. The routers configure the interfaces as bonds running LACP; the hosts must also configure the two interfaces using teaming, port aggregation, port group, or EtherChannel running LACP. Configure the hosts either statically or with DHCP, with a gateway address that is the IP address of the virtual router; this default gateway address never changes.
+Each host must have two network interfaces. The routers configure the interfaces as bonds running [LACP](## "Link Aggregation Control Protocol"); the hosts must also configure the two interfaces using teaming, port aggregation, port group, or EtherChannel running LACP. Configure the hosts either statically or with DHCP, with a gateway address that is the IP address of the virtual router; this default gateway address never changes.
 
-Configure the links between the hosts and the routers in *active-active* mode for First Hop Redundancy Protocol.
+Configure the links between the hosts and the routers in *active-active* mode for [FHRP](## "First Hop Redundancy Protocol").
 
 ### Example VRR Configuration with MLAG
 
@@ -428,16 +428,16 @@ iface uplink:400 inet static
 
 ## VRRP
 
-VRRP allows two or more network devices in an active standby configuration to share a single virtual default gateway. The VRRP router that forwards packets at any given time is the master. If this VRRP router fails, another VRRP standby router automatically takes over as master. The master sends VRRP advertisements to other VRRP routers in the same virtual router group, which include the priority and state of the master. VRRP router priority determines the role that each virtual router plays and who becomes the new master if the master fails.
+[VRRP](## "Virtual Router Redundancy Protocol") allows two or more network devices in an active standby configuration to share a single virtual default gateway. The VRRP router that forwards packets at any given time is the master. If this VRRP router fails, another VRRP standby router automatically takes over as master. The master sends VRRP advertisements to other VRRP routers in the same virtual router group, which include the priority and state of the master. VRRP router priority determines the role that each virtual router plays and who becomes the new master if the master fails.
 
 All virtual routers use 00:00:5E:00:01:XX for IPv4 gateways or 00:00:5E:00:02:XX for IPv6 gateways as their MAC address. The last byte of the address is the Virtual Router IDentifier (VRID), which is different for each virtual router in the network. Only one physical router uses this MAC address at a time. The router replies with this address when it receives ARP requests or neighbor solicitation packets for the IP addresses of the virtual router.
 
 {{%notice note%}}
 - Cumulus Linux supports both VRRPv2 and VRRPv3. The default protocol version is VRRPv3.
 - You can configure a maximum of 255 virtual routers on a switch.
-- You cannot use VRRP with MLAG.
-- To configure VRRP on an SVI or {{<link url="Traditional-Bridge-Mode" text="traditional mode bridge">}}, you need to edit the `etc/network/interfaces` and `/etc/frr/frr.conf` files. NCLU commands do not support SVIs or traditional mode bridges.
-- You can use VRRP with EVPN, and on layer 3 interfaces and subinterfaces that are part of a VRF.
+- You cannot use VRRP with [MLAG](## "Multi-chassis Link Aggregation").
+- To configure VRRP on an [SVI](## "Switched Virtual Interface") or {{<link url="Traditional-Bridge-Mode" text="traditional mode bridge">}}, you need to edit the `etc/network/interfaces` and `/etc/frr/frr.conf` files. NCLU commands do not support SVIs or traditional mode bridges.
+- You can use VRRP with [EVPN](## "Ethernet Virtual Private Network"), and on layer 3 interfaces and subinterfaces that are part of a [VRF](## "Virtual Routing and Forwarding").
 {{%/notice%}}
 
 {{<exlink url="https://tools.ietf.org/html/rfc5798#section-4.1" text="RFC 5798">}} describes VRRP in detail.
@@ -546,7 +546,7 @@ cumulus@spine02:~$ nv config apply
        address 2001:0db8::2/64
    ```
 
-2. Enable the `vrrpd` daemon, then start the FRRouting service. See {{<link title="FRRouting">}}.
+2. Enable the `vrrpd` daemon, then start the FRR service. See {{<link title="FRRouting">}}.
 
 3. From the vtysh shell, configure VRRP.
 
@@ -578,7 +578,7 @@ cumulus@spine02:~$ nv config apply
        address 2001:0db8::3/64
    ```
 
-2. Enable the `vrrpd` daemon, then start the FRRouting service. See {{<link title="FRRouting">}}.
+2. Enable the `vrrpd` daemon, then start the FRR service. See {{<link title="FRRouting">}}.
 
 3. From the vtysh shell, configure VRRP.
 

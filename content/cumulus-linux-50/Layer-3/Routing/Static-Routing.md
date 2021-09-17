@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 730
 toc: 3
 ---
-You can use static routing if you do not require the complexity of a dynamic routing protocol (such as BGP or OSPF), if you have routes that do not change frequently and for which the destination is only one or two paths away.
+You can use static routing if you do not require the complexity of a dynamic routing protocol (such as [BGP](## "Border Gateway Protocol") or [OSPF](## "Open Shortest Path First")), if you have routes that do not change frequently and for which the destination is only one or two paths away.
 
 With static routing, you configure the switch manually to send traffic with a specific destination prefix to a specific next hop. When the switch receives a packet, it looks up the destination IP address in the routing table and forwards the packet accordingly.
 

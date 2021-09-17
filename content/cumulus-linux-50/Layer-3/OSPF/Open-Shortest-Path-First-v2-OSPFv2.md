@@ -769,9 +769,9 @@ To see the configured OSPF interface parameter values, run the vtysh `show ip os
 
 ### SPF Timer Defaults
 
-OSPF uses the following default timers to prevent consecutive SPFs from overburdening the CPU:
+OSPF uses the following default timers to prevent consecutive [SPF](## "Shortest Path First") from overburdening the CPU:
 
-- 0 milliseconds from the initial event until [SPF](## "Shortest Path First") runs
+- 0 milliseconds from the initial event until SPF runs
 - 50 milliseconds between consecutive SPF runs (the number doubles with each SPF, until it reaches the maximum time between SPF runs)
 - 5000 milliseconds maximum between SPFs
 

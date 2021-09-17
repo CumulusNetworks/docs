@@ -12,7 +12,7 @@ IETF has defined extensions to OSPFv3 to support multiple address families (both
 
 ## Basic OSPFv3 Configuration
 
-You can configure OSPFv3 using either numbered interfaces or unnumbered interfaces.
+You can configure [OSPF](## "Open Shortest Path First") using either numbered interfaces or unnumbered interfaces.
 
 {{%notice note%}}
 NVUE commands are not supported for OSPFv3.
@@ -569,7 +569,7 @@ To show the configured OSPF interface parameter values, run the NCLU `net show o
 
 ### SPF Timer Defaults
 
-OSPF3 uses the following default timers to prevent consecutive SPFs from overburdening the CPU:
+OSPF3 uses the following default timers to prevent consecutive [SPF](## "Shortest Path First") from overburdening the CPU:
 
 - 0 milliseconds from the initial event until SPF runs
 - 50 milliseconds between consecutive SPF runs (the number doubles with each SPF, until it reaches the maximum time between SPF runs)
@@ -717,7 +717,7 @@ router ospf6
 
 ### Stub Areas
 
-External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. Typically, external link states make up a large percentage of the link-state database (LSDB). Stub *areas* reduce the LSDB size by not flooding AS-external LSAs.
+External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. Typically, external link states make up a large percentage of the [LSDB](## "Link-State Database"). Stub *areas* reduce the LSDB size by not flooding AS-external LSAs.
 
 All routers must agree that an area is a stub, otherwise they do not become OSPF neighbors.
 
@@ -860,7 +860,7 @@ router ospf6
 
 ### Administrative Distance
 
-Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPFv3 with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.
+Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPFv3 with an administrative distance of 110 and the same route from [BGP](## "Border Gateway Protocol") with an administrative distance of 100, the switch chooses BGP.
 
 Cumulus Linux provides several commands to change the administrative distance for OSPF routes. The default value is 110.
 

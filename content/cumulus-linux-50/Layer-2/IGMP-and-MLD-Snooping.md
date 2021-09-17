@@ -4,17 +4,17 @@ author: NVIDIA
 weight: 520
 toc: 3
 ---
-Internet Group Management Protocol (IGMP) snooping and Multicast Listener Discovery (MLD) snooping prevent hosts on a local network from receiving traffic for a multicast group they have not explicitly joined. IGMP snooping is for IPv4 environments and MLD snooping is for IPv6 environments.
+[IGMP](## "Internet Group Management Protocol") snooping and [MLD](## "Multicast Listener Discovery") snooping prevent hosts on a local network from receiving traffic for a multicast group they have not explicitly joined. IGMP snooping is for IPv4 environments and MLD snooping is for IPv6 environments.
 
 The bridge driver in the Cumulus Linux kernel includes IGMP and MLD snooping. If you disable IGMP or MLD snooping, multicast traffic floods to all the bridge ports in the bridge. In the absence of receivers in a VLAN, multicast traffic floods to all ports in the VLAN.
 
 {{< img src = "/images/cumulus-linux/igmp_snoop_diagram.png" >}}
 
-<!--BROADCOM ONLY## Configure IGMP/MLD Snooping over VXLAN
+<!--BROADCOM ONLY## Configure IGMP and MLD Snooping over VXLAN
 
-Cumulus Linux supports IGMP/MLD snooping over VXLAN bridges, where VXLAN ports are set as router ports, on Broadcom switches.
+Cumulus Linux supports IGMP and MLD snooping over VXLAN bridges, where VXLAN ports are set as router ports, on Broadcom switches.
 
-To enable IGMP/MLD snooping over VXLAN:
+To enable IGMP and MLD snooping over VXLAN:
 
 {{< tabs "TabID31 ">}}
 
@@ -53,9 +53,9 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tabs >}}
 
-Consider also configuring IGMP/MLD querier. See {{<link url="#configure-igmpmld-querier" text="Configure IGMP/MLD Querier">}}, below.
+Consider also configuring the IGMP and MLD querier. See {{<link url="#configure-the-igmp-and-mld-querier" text="Configure the IGMP and MLD Querier">}}, below.
 
-To disable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoop no` command.-->
+To disable IGMP and MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoop no` command.-->
 
 ## Configure the IGMP and MLD Querier
 
@@ -137,7 +137,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 ## Optimized Multicast Flooding (OMF)
 
-IGMP snooping restricts multicast forwarding only to the ports that receive IGMP report messages. If the ports do not receive IGMP reports, multicast traffic floods to all ports in the bridge domain (also know as unregistered multicast (URMC) traffic). To restrict this flooding to only mrouter ports, you can enable OMF.
+IGMP snooping restricts multicast forwarding only to the ports that receive IGMP report messages. If the ports do not receive IGMP reports, multicast traffic floods to all ports in the bridge domain (also know as [URMC](## "Unregistered Multicast") traffic). To restrict this flooding to only mrouter ports, you can enable OMF.
 
 To enable OMF:
 
@@ -265,7 +265,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 ## Troubleshooting
 
-To show the IGMP/MLD snooping bridge state, run the `brctl showstp <bridge>` command:
+To show the IGMP and MLD snooping bridge state, run the `brctl showstp <bridge>` command:
 
 ```
 cumulus@switch:~$ sudo brctl showstp bridge

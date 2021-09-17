@@ -104,10 +104,10 @@ NVUE is created from the ground up and does not inherit any previous functionali
 
 To upgrade to Cumulus Linux 4.4, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with the `apt-get upgrade` command.
 
-ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.
+[ONIE](## "Open Network Install Environment") is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.
 
 {{%notice note%}}
-Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in {{<link title="#Upgrade Switches in an MLAG Pair">}} below to ensure a smooth upgrade.
+Upgrading an [MLAG](## "Multi-chassis Link Aggregation Group") pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in {{<link title="#Upgrade Switches in an MLAG Pair">}} below to ensure a smooth upgrade.
 {{%/notice%}}
 
 <!--You can upgrade Cumulus Linux in one of two ways:

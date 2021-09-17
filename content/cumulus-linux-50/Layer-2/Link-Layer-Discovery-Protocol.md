@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 400
 toc: 3
 ---
-The `lldpd` daemon implements the IEEE802.1AB Link Layer Discovery Protocol  (LLDP) standard. LLDP shows which ports are neighbors of a given port.
+The `lldpd` daemon implements the IEEE802.1AB Link Layer Discovery Protocol (LLDP) standard. LLDP shows which ports are neighbors of a given port.
 
 By default, `lldpd` runs as a daemon and starts at system boot. `lldpd` command line arguments are in the `/etc/default/lldpd` file. Cumulus Linux saves all `lldpd` configuration options in the `/etc/lldpd.conf` file or under `/etc/lldpd.d/`.
 
@@ -90,7 +90,7 @@ cumulus@switch:~$ sudo lldpcli configure system interface pattern ""
 
 ## Enable the SNMP Subagent
 
-LLDP does not enable the SNMP subagent by default. To enable the SNMP subagent, edit the `/etc/default/lldpd` file and add the `-x` option:
+LLDP does not enable the [SNMP](## "Simple Network Management Protocol") subagent by default. To enable the SNMP subagent, edit the `/etc/default/lldpd` file and add the `-x` option:
 
 ```
 cumulus@switch:~$ sudo nano /etc/default/lldpd
@@ -263,7 +263,7 @@ You can also run the NVUE `nv show system lldp` command to show the running LLDP
 
 ## Considerations
 
-Annex E (and hence Annex D) of IEEE802.1AB (lldp) is not supported.
+Cumulus Linux does not support LLDP Annex E (and Annex D).
 
 ## Related Information
 

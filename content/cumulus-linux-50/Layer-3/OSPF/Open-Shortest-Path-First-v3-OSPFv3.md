@@ -403,7 +403,7 @@ You can define the following OSPF parameters per interface:
 - Hello interval. The number of seconds between hello packets sent on the interface. The default is 10 seconds.
 - Dead interval. Then number of seconds before neighbors declare the router down after they stop hearing
 hello packets. The default is 40 seconds.
-- Priority in becoming the OSPF Designated Router (DR) on a broadcast interface. The default is priority 1.
+- Priority in becoming the OSPF [DR](## "Designated Router") on a broadcast interface. The default is priority 1.
 - Advertise prefix list. The prefix list defines the outbound route filter.
 - Cost. The cost determines the shortest paths to the destination.
 

@@ -392,7 +392,7 @@ Export RT: 10.1.1.1:2
 ```
 
 - To view the BGP routing table, run the NCLU `net show bgp vrf <vrf-name> ipv4|ipv6 unicast` command or the vtysh `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast` command.
-- To view the FRRouting IP routing table, run the NCLU `net show route vrf <vrf-name>` command or the vtysh `show ip route vrf <vrf-name>` command. These commands show all routes, including routes leaked from other VRFs.
+- To view the FRR IP routing table, run the NCLU `net show route vrf <vrf-name>` command or the vtysh `show ip route vrf <vrf-name>` command. These commands show all routes, including routes leaked from other VRFs.
 
 The following example commands show all routes in VRF `RED`, including routes leaked from VRF `BLUE`:
 
@@ -462,11 +462,11 @@ cumulus@switch:~$
 Cumulus Linux no longer supports kernel commands. To avoid issues with VRF route leaking in FRR, do not use the kernel commands.
 {{%/notice%}}
 
-## FRRouting Operation in a VRF
+## FRR Operation in a VRF
 
-Cumulus Linux supports {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}, {{<link url="Open-Shortest-Path-First-v2-OSPFv2" text="OSPFv2">}} and {{<link url="Static-Routing" text="static routing">}} (IPv4 and IPv6) within a VRF context. Various FRRouting routing constructs, such as routing tables, nexthops, router-id, and related processing are also VRF-aware.
+Cumulus Linux supports {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}, {{<link url="Open-Shortest-Path-First-v2-OSPFv2" text="OSPFv2">}} and {{<link url="Static-Routing" text="static routing">}} (IPv4 and IPv6) within a VRF context. Various [FRR](## "FRRouting") routing constructs, such as routing tables, nexthops, router-id, and related processing are also VRF-aware.
 
-{{<link url="FRRouting" text="FRRouting">}} learns of VRFs on the system as well as interface attachment to a VRF through notifications from the kernel.
+{{<link url="FRRouting" text="FRR">}} learns of VRFs on the system as well as interface attachment to a VRF through notifications from the kernel.
 
 You can assign switch ports to each VRF table with an interface-level configuration and you can assign BGP instances to the table with a BGP router-level command.
 
@@ -478,12 +478,12 @@ A VRF-aware OSPFv2 configuration also supports numbered and unnumbered interface
 Cumulus Linux does not support multiple VRFs in multi-instance OSPF.
 {{%/notice%}}
 
-You provision VRFs with NCLU. You can pre-provision VRFs in FRRouting, however, they become active only when you configure them with NCLU.
+You provision VRFs with NCLU. You can pre-provision VRFs in FRR, however, they become active only when you configure them with NCLU.
 
-- To pre-provision a VRF in FRRouting, run the `vrf vrf-name` command.
+- To pre-provision a VRF in FRR, run the `vrf vrf-name` command.
 - To pre-provision a BGP instance corresponding to a VRF, run the NCLU `net add bgp vrf <vrf-name> autonomous-system <value>` command. You can also configure all existing BGP parameters with NCLU: neighbors, peer-groups, address-family configuration, redistribution, and so on.
 - To configure an OSPFv2 instance, run the NCLU `net add ospf vrf <vrf-name>` command; as with BGP, you can configure all OSPFv2 parameters.
-- To provision static routes (IPv4 and IPv6) in a VRF, specify the VRF together with the static route configuration. For example, `ip route prefix dev vrf <vrf-name>`. The VRF must exist either in the `/etc/network/interfaces` file or you must first pre-provision the  in FRRouting.
+- To provision static routes (IPv4 and IPv6) in a VRF, specify the VRF together with the static route configuration. For example, `ip route prefix dev vrf <vrf-name>`. The VRF must exist either in the `/etc/network/interfaces` file or you must first pre-provision the  in FRR.
 
 ### Example VRF Configuration in BGP
 
@@ -735,7 +735,7 @@ cumulus@switch:~$ net add vlan 101 ipv6 address 2001:20:1:6::1/80
 cumulus@switch:~$ net add bridge bridge ports vlan101
 ```
 
-Here is the FRRouting BGP configuration:
+Here is the FRR BGP configuration:
 
 ```
 cumulus@switch:~$ net add bgp vrf vrf1 autonomous-system 65001
@@ -796,7 +796,7 @@ cumulus@switch:~$ nv set bridge domain br_default
 cumulus@switch:~$ nv set bridge domain br_default vlan 101
 ```
 
-Here is the FRRouting BGP configuration:
+Here is the FRR BGP configuration:
 
 ```
 cumulus@switch:~$ nv set vrf vrf1 router bgp router-id 10.10.10.1
@@ -850,7 +850,7 @@ iface vrf1
 ...
 ```
 
-Here is the FRRouting BGP configuration:
+Here is the FRR BGP configuration:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1328,7 +1328,7 @@ cumulus@switch:~$ net show vrf vni json
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
-To show all VRFs learned by FRRouting from the kernel, run the `show vrf` command. The table ID shows the corresponding routing table in the kernel.
+To show all VRFs learned by FRR from the kernel, run the `show vrf` command. The table ID shows the corresponding routing table in the kernel.
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1354,7 +1354,7 @@ DFLT  0      6.0.0.7                  0           0  Default
 Total number of VRFs (including default): 4
 ```
 
-To show interfaces known to FRRouting and attached to a specific VRF, run the `show interface vrf <vrf-name>` command. For example:
+To show interfaces known to FRR and attached to a specific VRF, run the `show interface vrf <vrf-name>` command. For example:
 
 ```
 cumulus@switch:~$ sudo vtysh

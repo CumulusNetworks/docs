@@ -146,7 +146,7 @@ iface lo inet loopback
 <!-- vale on -->
 The VXLAN interfaces have individual IP addresses, which `clagd` changes to anycast upon MLAG peering.
 
-### FRRouting Configuration
+### FRR Configuration
 
 You can configure the layer 3 fabric using {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}
 or {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}}. The following example uses BGP unnumbered. For simplicity, the example does not show the exit leafs.

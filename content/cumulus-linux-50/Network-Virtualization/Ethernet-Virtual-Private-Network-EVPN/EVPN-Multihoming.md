@@ -351,10 +351,7 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
-Hello, this is FRRouting (version 7.4+cl4u1).
-Copyright 1996-2005 Kunihiro Ishiguro, et al.
-
+...
 leaf01# configure terminal
 leaf01(config)# interface swp51
 leaf01(config-if)# evpn mh uplink
@@ -622,10 +619,7 @@ NVUE commands are not supported.
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
-Hello, this is FRRouting (version 7.4+cl4u1).
-Copyright 1996-2005 Kunihiro Ishiguro, et al.
-
+...
 leaf01# configure terminal
 leaf01(config)# debug bgp evpn mh es
 leaf01(config)# debug bgp evpn mh route

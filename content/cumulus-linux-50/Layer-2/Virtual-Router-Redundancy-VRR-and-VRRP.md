@@ -546,7 +546,7 @@ cumulus@spine02:~$ nv config apply
        address 2001:0db8::2/64
    ```
 
-2. Enable the `vrrpd` daemon, then start the FRRouting service. See {{<link title="FRRouting">}}.
+2. Enable the `vrrpd` daemon, then start the FRR service. See {{<link title="FRRouting">}}.
 
 3. From the vtysh shell, configure VRRP.
 
@@ -578,7 +578,7 @@ cumulus@spine02:~$ nv config apply
        address 2001:0db8::3/64
    ```
 
-2. Enable the `vrrpd` daemon, then start the FRRouting service. See {{<link title="FRRouting">}}.
+2. Enable the `vrrpd` daemon, then start the FRR service. See {{<link title="FRRouting">}}.
 
 3. From the vtysh shell, configure VRRP.
 

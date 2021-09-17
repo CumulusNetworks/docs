@@ -43,7 +43,7 @@ Redistribute neighbor works as follows:
 1. The leaf or [ToR](## "Top of Rack") switch learns about connected hosts when the host sends an ARP request or ARP reply.
 2. The kernel neighbor table adds an entry for the host of each leaf.
 3. The redistribute neighbor daemon (`rdnbrd`) monitors the kernel neighbor table and creates a  /32 route for each neighbor entry. This /32 route is in kernel table 10.
-4. FRRouting imports routes from kernel table 10.
+4. [FRR](## "FRRouting") imports routes from kernel table 10.
 5. A route map controls which routes to import from table 10.
 6. FRR imports these routes as *table* routes.
 7. You configure [BGP](## "Border Gateway Protocol") or [OSPF](## "Open Shortest Path First") to redistribute the table 10 routes.
@@ -391,7 +391,7 @@ Use the following workflow to verify that the kernel routing table populates cor
 
     If these routes do not generate, verify that the `rdnbrd` daemon is running and check that the `/etc/rdnbrd.conf` file includes the correct table number.
 
-2. Verify that routes import into FRRouting from the kernel routing table 10.
+2. Verify that routes import into FRR from the kernel routing table 10.
 
     ```
     cumulus@leaf01:~$ sudo vtysh

@@ -229,11 +229,11 @@ iface eth1 inet static
 
 |<div style="width:300px">Example| Summary |
 |----|----|
-|{{< img src = "/images/cumulus-linux/network-solutions-redis-neighbor.png" >}} | The {{<link url="Redistribute-Neighbor" text="Redistribute neighbor">}} daemon grabs ARP entries dynamically and uses the redistribute table for FRRouting to take these dynamic entries and redistribute them into the fabric. |
+|{{< img src = "/images/cumulus-linux/network-solutions-redis-neighbor.png" >}} | The {{<link url="Redistribute-Neighbor" text="Redistribute neighbor">}} daemon grabs ARP entries dynamically and uses the redistribute table for FRR to take these dynamic entries and redistribute them into the fabric. |
 
 | <div style="width:300px">Benefits | Considerations |
 |-----------------------------------| --------|
-| Configuration in FRRouting is simple (route map plus redistribute table)| <ul><li>Silent hosts do not receive traffic (depending on ARP).</li><li>IPv4 only.</li><li>If two VMs are on the same layer 2 domain, they can learn about each other directly instead of using the gateway, which causes problems (such as VM migration or getting the network routed). Put hosts on /32 (no other layer 2 adjacency).</li><li>VM moves do not trigger a route withdrawal from the original leaf (four hour timeout).</li><li>Clearing ARP impacts routing.</li><li>No layer 2 adjacency between servers without VXLAN.</li></ul> |
+| Configuration in FRR is simple (route map plus redistribute table)| <ul><li>Silent hosts do not receive traffic (depending on ARP).</li><li>IPv4 only.</li><li>If two VMs are on the same layer 2 domain, they can learn about each other directly instead of using the gateway, which causes problems (such as VM migration or getting the network routed). Put hosts on /32 (no other layer 2 adjacency).</li><li>VM moves do not trigger a route withdrawal from the original leaf (four hour timeout).</li><li>Clearing ARP impacts routing.</li><li>No layer 2 adjacency between servers without VXLAN.</li></ul> |
 
 | FHR (First Hop Redundancy) | More Information |
 | ---------------------------|------------------|
@@ -243,15 +243,15 @@ iface eth1 inet static
 
 |<div style="width:300px">Example| Summary |
 |--------------------------------|-----------|
-| {{< img src = "/images/cumulus-linux/network-solutions-routing-on-host.png" >}} | Routing on the host means there is a routing application (such as {{<link url="FRRouting" text="FRRouting">}}, either on the bare metal host (no VMs or containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Professional Services team. |
+| {{< img src = "/images/cumulus-linux/network-solutions-routing-on-host.png" >}} | Routing on the host means there is a routing application (such as {{<link url="FRRouting" text="FRR">}}, either on the bare metal host (no VMs or containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Professional Services team. |
 
 | <div style="width:300px">Benefits | Considerations |
 |-----------------------------------| --------|
-| <ul><li>No requirement for MLAG</li><li>No spanning tree or layer 2 domain</li><li>No loops</li><li>You can use three or more ToRs instead of the usual two</li><li>Host and VM mobility</li><li>You can use traffic engineering to migrate traffic from one ToR to another when upgrading both hardware and software</li></ul>| <ul><li>It is possible that the hypervisor or host OS does not support a routing application like FRRouting and requires a virtual router on the hypervisor.</li><li>No layer 2 adjacency between servers without VXLAN.</li></ul>|
+| <ul><li>No requirement for MLAG</li><li>No spanning tree or layer 2 domain</li><li>No loops</li><li>You can use three or more ToRs instead of the usual two</li><li>Host and VM mobility</li><li>You can use traffic engineering to migrate traffic from one ToR to another when upgrading both hardware and software</li></ul>| <ul><li>It is possible that the hypervisor or host OS does not support a routing application like FRR and requires a virtual router on the hypervisor.</li><li>No layer 2 adjacency between servers without VXLAN.</li></ul>|
 
 | <div style="width:300px">FHR (First Hop Redundancy) | More Information |
 | ---------------------------|------------------|
-|<ul><li>The first hop is still the ToR, just like redistribute neighbor</li><li>All leaf/ToRs can advertise a default route for dynamic ECMP paths</li></ul>|<ul><li>{{<exlink url="http://docs.frrouting.org/en/latest/installation.html" text="Installing the FRRouting Package on an Ubuntu Server">}}</li><li>{{<link url="FRRouting">}}</li></ul>|
+|<ul><li>The first hop is still the ToR, just like redistribute neighbor</li><li>All leaf/ToRs can advertise a default route for dynamic ECMP paths</li></ul>|<ul><li>{{<exlink url="http://docs.frrouting.org/en/latest/installation.html" text="Installing the FRR Package on an Ubuntu Server">}}</li><li>{{<link url="FRRouting">}}</li></ul>|
 
 ## Layer 3 - Routing on the VM
 
@@ -265,7 +265,7 @@ iface eth1 inet static
 
 | <div style="width:300px">FHR (First Hop Redundancy) | More Information |
 | ---------------------------|------------------|
-| <ul><li>The first hop is still the ToR, just like redistribute neighbor</li><li>You can use multiple ToRs (two or more)</li><ul>|<ul><li>{{<exlink url="http://docs.frrouting.org/en/latest/installation.html" text="Installing the FRRouting Package on an Ubuntu Server">}}</li><li>{{<link url="FRRouting">}}</li><ul>|
+| <ul><li>The first hop is still the ToR, just like redistribute neighbor</li><li>You can use multiple ToRs (two or more)</li><ul>|<ul><li>{{<exlink url="http://docs.frrouting.org/en/latest/installation.html" text="Installing the FRR Package on an Ubuntu Server">}}</li><li>{{<link url="FRRouting">}}</li><ul>|
 
 ## Layer 3 - Virtual Router
 
@@ -279,7 +279,7 @@ iface eth1 inet static
 
 | <div style="width:300px">FHR (First Hop Redundancy) | More Information |
 | ---------------------------|------------------|
-|<ul><li>The gateway is the vRouter, which has two routes out (two ToRs)</li><li>You can use multiple vRouters</li></ul>|<ul><li>{{<exlink url="http://docs.frrouting.org/en/latest/installation.html" text="Installing the FRRouting Package on an Ubuntu Server">}}</li><li>{{<link url="FRRouting">}}</li></ul>|
+|<ul><li>The gateway is the vRouter, which has two routes out (two ToRs)</li><li>You can use multiple vRouters</li></ul>|<ul><li>{{<exlink url="http://docs.frrouting.org/en/latest/installation.html" text="Installing the FRR Package on an Ubuntu Server">}}</li><li>{{<link url="FRRouting">}}</li></ul>|
 
 ## Layer 3 - Anycast with Manual Redistribution
 

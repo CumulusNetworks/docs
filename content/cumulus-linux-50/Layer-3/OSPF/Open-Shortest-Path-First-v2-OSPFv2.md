@@ -138,7 +138,7 @@ cumulus@spine01:~$ nv config apply
 {{< tabs "TabID156 ">}}
 {{< tab "leaf01 ">}}
 
-1. Edit the `/etc/frr/daemons` file to enable the `ospf` daemon, then start the FRRouting service (see {{<link url="FRRouting">}}).
+1. Edit the `/etc/frr/daemons` file to enable the `ospf` daemon, then start the FRR service (see {{<link url="FRRouting">}}).
 
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp51:
 
@@ -203,7 +203,7 @@ router ospf
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
-1. Edit the `/etc/frr/daemons` file to enable the `ospf` daemon, then start the FRRouting service (see {{<link url="FRRouting">}}).
+1. Edit the `/etc/frr/daemons` file to enable the `ospf` daemon, then start the FRR service (see {{<link url="FRRouting">}}).
 
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp1:
 
@@ -438,7 +438,7 @@ cumulus@spine01:~$ nv config apply
 {{< tabs "TabID337 ">}}
 {{< tab "leaf01 ">}}
 
-1. Edit the `/etc/frr/daemons` file to enable the `ospf` daemon, then start the FRRouting service (see {{<link url="FRRouting">}}).
+1. Edit the `/etc/frr/daemons` file to enable the `ospf` daemon, then start the FRR service (see {{<link url="FRRouting">}}).
 
 2. Edit the `/etc/network/interfaces` file to configure the loopback and unnumbered interface address:
 
@@ -509,7 +509,7 @@ router ospf
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
-1. Edit the `/etc/frr/daemons` file to enable the `ospf` daemon, then start the FRRouting service (see {{<link url="FRRouting">}}).
+1. Edit the `/etc/frr/daemons` file to enable the `ospf` daemon, then start the FRR service (see {{<link url="FRRouting">}}).
 
 2. Edit the `/etc/network/interfaces` file to configure the loopback and unnumbered interface address:
 

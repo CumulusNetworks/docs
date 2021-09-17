@@ -541,7 +541,7 @@ cumulus@leaf01:~$
 <!-- vale on -->
 Cumulus Linux supports originating EVPN default type-5 routes. The default type-5 route originates from a border (exit) leaf and advertises to all the other leafs within the pod. Any leaf within the pod follows the default route towards the border leaf for all external traffic (towards the Internet or a different pod).
 
-To originate a default <!-- vale off -->type-5<!-- vale on --> route in EVPN, you need to run FRRouting commands. The following shows an example:
+To originate a default <!-- vale off -->type-5<!-- vale on --> route in EVPN, you need to run FRR commands. The following shows an example:
 
 ```
 cumulus@leaf01:~$ sudo vtysh

@@ -15,7 +15,7 @@ PTM runs as a daemon, named `ptmd`.
 - Topology verification using [LLDP](## "Link Layer Discovery Protocol"). `ptmd` creates a client connection to the LLDP daemon, `lldpd`, and retrieves the neighbor relationship between the nodes/ports in the network and compares them against the prescribed topology specified in the `topology.dot` file.
 - PTM only supports physical interfaces, such as swp1 or eth0. You cannot specify virtual interfaces, such as bonds or subinterfaces in the topology file.
 - Cumulus Linux does not support forwarding path failure detection using {{<exlink url="http://tools.ietf.org/html/rfc5880" text="Bidirectional Forwarding Detection">}} (BFD); however, you can use demand mode. For more information on how BFD operates in Cumulus Linux, refer to {{<link title="Bidirectional Forwarding Detection - BFD">}} and `man ptmd(8)`.
-- Integration with FRRouting (PTM to FRRouting notification).
+- Integration with [FRR](## "FRRouting") (PTM to FRR notification).
 - Client management: `ptmd` creates an abstract named socket `/var/run/ptmd.socket` on startup. Other applications can connect to this socket to receive notifications and send commands.
 - Event notifications: see Scripts below.
 - User configuration through a `topology.dot` file; {{<link url="#configure-ptm" text="see below">}}.
@@ -174,9 +174,9 @@ graph G {
 
 [BFD](## "Bidirectional Forwarding Detection") provides low overhead and rapid detection of failures in the paths between two network devices. It provides a unified mechanism for link detection over all media and protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection. For information about configuring BFD using PTM, see {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}}.
 
-## Check Link State With FRRouting
+## Check Link State With FRR
 
-The FRRouting routing suite enables additional checks to ensure that routing adjacencies form only on links that have connectivity that conform to the specification that `ptmd` defines.
+The FRR routing suite enables additional checks to ensure that routing adjacencies form only on links that have connectivity that conform to the specification that `ptmd` defines.
 
 {{%notice note%}}
 You only need to do this to check link state; you do not need to enable PTM to determine BFD status.
@@ -184,7 +184,7 @@ You only need to do this to check link state; you do not need to enable PTM to d
 
 When you enable the global `ptm-enable` option, every interface has an implied `ptm-enable` line in the configuration stanza in the `/etc/network/interfaces` file.
 
-To enable the global `ptm-enable` option, run the following FRRouting command:
+To enable the global `ptm-enable` option, run the following FRR command:
 
 ```
 cumulus@switch:~$ sudo vtysh

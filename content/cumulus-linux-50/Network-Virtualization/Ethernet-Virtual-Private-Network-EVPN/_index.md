@@ -8,7 +8,7 @@ VXLAN enables layer 2 segments to extend over an IP core (the underlay). The ini
 
 Ethernet Virtual Private Network (EVPN) is a standards-based control plane for VXLAN defined in {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} and {{<exlink url="https://datatracker.ietf.org/doc/draft-ietf-bess-evpn-overlay/" text="draft-ietf-bess-evpn-overlay">}} that allows for building and deploying VXLANs at scale. It relies on multi-protocol BGP (MP-BGP) to exchange information and uses BGP-MPLS IP VPNs ({{<exlink url="https://tools.ietf.org/html/rfc4364" text="RFC 4364">}}). It enables not only bridging between end systems in the same layer 2 segment but also routing between different segments (subnets). There is also inherent support for multi-tenancy.
 
-Cumulus Linux installs the routing control plane (including EVPN) as part of the {{<exlink url="https://frrouting.org/" text="FRRouting">}} (FRR) package. For more information about FRR, refer to {{<link url="FRRouting">}}.
+Cumulus Linux installs the routing control plane (including EVPN) as part of the {{<exlink url="https://frrouting.org/" text="FRR">}} (FRR) package. For more information about FRR, refer to {{<link url="FRRouting">}}.
 
 ## Key Features
 

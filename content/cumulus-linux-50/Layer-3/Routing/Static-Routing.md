@@ -10,7 +10,7 @@ With static routing, you configure the switch manually to send traffic with a sp
 
 ## Configure a Static Route
 
-Cumulus Linux adds static routes to the {{<exlink url="https://frrouting.org" text="FRRouting">}} routing table and then to the kernel routing table.
+Cumulus Linux adds static routes to the {{<exlink url="https://frrouting.org" text="FRR">}} routing table and then to the kernel routing table.
 
 The following example commands configure Cumulus Linux to send traffic with the destination prefix 10.10.10.101/32 out swp51 (10.0.1.1/31) to the next hop 10.0.1.0.
 
@@ -247,7 +247,7 @@ iface swp51
     post-down ip route del 10.10.10.101/32 via 10.0.1.0
 ```
 
-The `ip route` command allows you to manipulate the kernel routing table directly from the Linux shell. See `man ip(8)` for details. FRRouting monitors the kernel routing table changes and updates its own routing table accordingly.
+The `ip route` command allows you to manipulate the kernel routing table directly from the Linux shell. See `man ip(8)` for details. [FRR](## "FRRouting") monitors the kernel routing table changes and updates its own routing table accordingly.
 
 {{< /tab >}}
 {{< /tabs >}}

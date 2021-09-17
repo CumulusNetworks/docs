@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 565
 toc: 4
 ---
-EVPN includes multiple models for routing between different subnets (VLANs), also known as inter-VLAN routing. The model you choose depends if every VTEP acts as a layer 3 gateway and performs routing or if only specific VTEPs perform routing, and if routing occurs only at the ingress of the VXLAN tunnel or both the ingress and the egress of the VXLAN tunnel.
+EVPN includes multiple models for routing between different subnets (VLANs), also known as inter-VLAN routing. The model you choose depends if every [VTEP](## "Virtual Tunnel End Point") acts as a layer 3 gateway and performs routing or if only specific VTEPs perform routing, and if routing occurs only at the ingress of the VXLAN tunnel or both the ingress and the egress of the VXLAN tunnel.
 
 Cumulus Linux supports these models:
 
@@ -557,7 +557,7 @@ leaf01# write memory
 <!-- vale off -->
 ### Advertise Primary IP address (VXLAN Active-Active Mode)
 <!-- vale on -->
-In EVPN symmetric routing configurations with VXLAN active-active (MLAG), all EVPN routes advertise with the anycast IP address ({{<link url="VXLAN-Active-active-Mode#terminology" text="clagd-vxlan-anycast-ip">}}) as the next hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, the switch can forward traffic to a leaf switch that does not have the destination routes. Traffic has to traverse the peer link (with additional BGP sessions per VRF).
+In EVPN symmetric routing configurations with VXLAN active-active ([MLAG](## "Multi-chassis Link Aggregation")), all EVPN routes advertise with the anycast IP address ({{<link url="VXLAN-Active-active-Mode#terminology" text="clagd-vxlan-anycast-ip">}}) as the next hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, the switch can forward traffic to a leaf switch that does not have the destination routes. Traffic has to traverse the peer link (with additional BGP sessions per VRF).
 
 To prevent sub-optimal routing, the switch handles the next hop IP address of the VTEP conditionally depending on the route type: host type-2 (MAC/IP advertisement) or type-5 (IP prefix route).
 

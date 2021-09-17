@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 565
 toc: 4
 ---
-EVPN includes multiple models for routing between different subnets (VLANs), also known as inter-VLAN routing. The model you choose depends if every VTEP acts as a layer 3 gateway and performs routing or if only specific VTEPs perform routing, and if routing occurs only at the ingress of the VXLAN tunnel or both the ingress and the egress of the VXLAN tunnel.
+EVPN includes multiple models for routing between different subnets (VLANs), also known as inter-VLAN routing. The model you choose depends if every [VTEP](## "Virtual Tunnel End Point") acts as a layer 3 gateway and performs routing or if only specific VTEPs perform routing, and if routing occurs only at the ingress of the VXLAN tunnel or both the ingress and the egress of the VXLAN tunnel.
 
 Cumulus Linux supports these models:
 
@@ -541,7 +541,7 @@ cumulus@leaf01:~$
 <!-- vale on -->
 Cumulus Linux supports originating EVPN default type-5 routes. The default type-5 route originates from a border (exit) leaf and advertises to all the other leafs within the pod. Any leaf within the pod follows the default route towards the border leaf for all external traffic (towards the Internet or a different pod).
 
-To originate a default <!-- vale off -->type-5<!-- vale on --> route in EVPN, you need to run FRRouting commands. The following shows an example:
+To originate a default <!-- vale off -->type-5<!-- vale on --> route in EVPN, you need to run FRR commands. The following shows an example:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -557,7 +557,7 @@ leaf01# write memory
 <!-- vale off -->
 ### Advertise Primary IP address (VXLAN Active-Active Mode)
 <!-- vale on -->
-In EVPN symmetric routing configurations with VXLAN active-active (MLAG), all EVPN routes advertise with the anycast IP address ({{<link url="VXLAN-Active-active-Mode#terminology" text="clagd-vxlan-anycast-ip">}}) as the next hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, the switch can forward traffic to a leaf switch that does not have the destination routes. Traffic has to traverse the peer link (with additional BGP sessions per VRF).
+In EVPN symmetric routing configurations with VXLAN active-active ([MLAG](## "Multi-chassis Link Aggregation")), all EVPN routes advertise with the anycast IP address ({{<link url="VXLAN-Active-active-Mode#terminology" text="clagd-vxlan-anycast-ip">}}) as the next hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, the switch can forward traffic to a leaf switch that does not have the destination routes. Traffic has to traverse the peer link (with additional BGP sessions per VRF).
 
 To prevent sub-optimal routing, the switch handles the next hop IP address of the VTEP conditionally depending on the route type: host type-2 (MAC/IP advertisement) or type-5 (IP prefix route).
 

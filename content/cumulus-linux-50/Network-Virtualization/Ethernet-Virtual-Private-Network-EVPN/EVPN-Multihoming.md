@@ -5,10 +5,10 @@ weight: 570
 toc: 4
 ---
 
-*EVPN multihoming* (EVPN-MH) provides support for all-active server redundancy. It is a standards-based replacement for MLAG in data centers deploying Clos topologies. Replacing MLAG provides these benefits:
+*EVPN multihoming* (EVPN-MH) provides support for all-active server redundancy. It is a standards-based replacement for [MLAG](## "Multi-chassis Link Aggregation") in data centers deploying Clos topologies. Replacing MLAG provides these benefits:
 
 - Eliminates the need for peerlinks or inter-switch links between the top of rack switches
-- Allows more than two TOR switches a redundancy group
+- Allows more than two [ToR](## "Top of Rack") switches a redundancy group
 - Provides a single BGP-EVPN control plane
 - Allows multi-vendor interoperability
 
@@ -16,7 +16,7 @@ EVPN-MH uses {{<link url="#supported-evpn-route-types" text="BGP-EVPN type-1, ty
 
 To configure EVPN-MH, you set an Ethernet segment system MAC address and a local Ethernet segment ID on a static or LACP bond. These two parameters generate the unique MAC-based ESI value ({{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="type-3">}}) automatically:
 
-- The Ethernet segment system MAC address is the LACP system identifier.
+- The Ethernet segment system MAC address is the [LACP](## "Link Aggregation Control Protocol") system identifier.
 - The local Ethernet segment ID configuration defines a local discriminator to uniquely enumerate each bond that shares the same Ethernet segment system MAC address.
 - The resulting 10-byte ESI value has the following format, where the MMs denote the 6-byte Ethernet segment system MAC address and the XXs denote the 3-byte local Ethernet segment ID value:
 
@@ -351,10 +351,7 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
-Hello, this is FRRouting (version 7.4+cl4u1).
-Copyright 1996-2005 Kunihiro Ishiguro, et al.
-
+...
 leaf01# configure terminal
 leaf01(config)# interface swp51
 leaf01(config-if)# evpn mh uplink
@@ -622,10 +619,7 @@ NVUE commands are not supported.
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
-Hello, this is FRRouting (version 7.4+cl4u1).
-Copyright 1996-2005 Kunihiro Ishiguro, et al.
-
+...
 leaf01# configure terminal
 leaf01(config)# debug bgp evpn mh es
 leaf01(config)# debug bgp evpn mh route

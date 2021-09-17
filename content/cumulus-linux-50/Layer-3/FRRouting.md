@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 810
 toc: 3
 ---
-Cumulus Linux uses FRRouting (FRR) to provide the routing protocols for dynamic routing and supports the following routing protocols:
+Cumulus Linux uses [FRR](## "FRRouting") to provide the routing protocols for dynamic routing and supports the following routing protocols:
 
 - Open Shortest Path First ({{<link url="Open-Shortest-Path-First-v2-OSPFv2" text="v2">}} and {{<link url="Open-Shortest-Path-First-v3-OSPFv3" text="v3">}})
 - {{<link url="Border-Gateway-Protocol-BGP">}}
@@ -13,23 +13,23 @@ Cumulus Linux uses FRRouting (FRR) to provide the routing protocols for dynamic 
 
 {{< img src = "/images/cumulus-linux/frrouting-overview-daemons.png" >}}
 
-The FRRouting suite consists of various protocol-specific daemons and a protocol-independent daemon called `zebra`. Each of the protocol-specific daemons are responsible for running the relevant protocol and building the routing table based on the information exchanged.
+The FRR suite consists of various protocol-specific daemons and a protocol-independent daemon called `zebra`. Each of the protocol-specific daemons are responsible for running the relevant protocol and building the routing table based on the information exchanged.
 
 It is not uncommon to have more than one protocol daemon running at the same time. For example, at the edge of an enterprise, protocols internal to an enterprise (called IGP for Interior Gateway Protocol) such as {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF text">}} or RIP run alongside the protocols that connect an enterprise to the rest of the world (called EGP or Exterior Gateway Protocol) such as {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}.
 
-`zebra` is the daemon that resolves the routes provided by multiple protocols (including the static routes you specify) and programs these routes in the Linux kernel via `netlink` (in Linux). The {{<exlink url="http://docs.frrouting.org/en/latest/zebra.html" text="FRRouting documentation">}} defines `zebra` as the IP routing manager for FRRouting that "provides kernel routing table updates, interface lookups, and redistribution of routes between different routing protocols."
+`zebra` is the daemon that resolves the routes provided by multiple protocols (including the static routes you specify) and programs these routes in the Linux kernel using `netlink` (in Linux). The {{<exlink url="http://docs.frrouting.org/en/latest/zebra.html" text="FRRouting documentation">}} defines `zebra` as the IP routing manager for FRR that "provides kernel routing table updates, interface lookups, and redistribution of routes between different routing protocols."
 
-## Configure FRRouting
+## Configure FRR
 
-FRRouting does not start by default in Cumulus Linux. Before you run FRRouting, make sure you have enabled the relevant daemons that you intend to use (`bgpd`, `ospfd`, `ospf6d` or `pimd`) in the `/etc/frr/daemons` file.
+FRR does not start by default in Cumulus Linux. Before you run FRR, make sure you have enabled the relevant daemons that you intend to use (`bgpd`, `ospfd`, `ospf6d` or `pimd`) in the `/etc/frr/daemons` file.
 
 {{%notice note%}}
-NVIDIA has not tested RIP, RIPv6, IS-IS and Babel.
+NVIDIA has not tested [RIP](## "Routing Information Protocol RIP"), RIPv6, [IS-IS](## "Intermediate System - Intermediate System"), or [Babel](## "a loop-avoiding distance-vector routing protocol").
 {{%/notice%}}
 
 Cumulus Linux enables the `zebra` daemon by default. You can enable the other daemons according to how you plan to route your network.
 
-Before you start FRRouting, edit the `/etc/frr/daemons` file to enable each daemon you want to use. For example, to enable BGP, set `bgpd` to *yes*:
+Before you start FRR, edit the `/etc/frr/daemons` file to enable each daemon you want to use. For example, to enable BGP, set `bgpd` to *yes*:
 
 ```
 ...
@@ -51,9 +51,9 @@ vrrpd=no
 ...
 ```
 
-## Enable and Start FRRouting
+## Enable and Start FRR
 
-After you enable the appropriate daemons, enable and start the FRRouting service:
+After you enable the appropriate daemons, enable and start the FRR service:
 
 ```
 cumulus@switch:~$ sudo systemctl enable frr.service
@@ -61,16 +61,16 @@ cumulus@switch:~$ sudo systemctl start frr.service
 ```
 
 {{%notice note%}}
-- All the routing protocol daemons (`bgpd`, `ospfd`, `ospf6d`, `ripd`, `ripngd`, `isisd` and `pimd`) are dependent on `zebra`. When you start FFRouting, `systemd` determines whether zebra is running; if zebra is not running, `systemd` starts `zebra`, then starts the dependent service, such as `bgpd`.
+- All the routing protocol daemons (`bgpd`, `ospfd`, `ospf6d`, `ripd`, `ripngd`, `isisd` and `pimd`) are dependent on `zebra`. When you start FRR, `systemd` determines whether zebra is running; if zebra is not running, `systemd` starts `zebra`, then starts the dependent service, such as `bgpd`.
 - If you restart a service, its dependent services also restart. For example, running `systemctl restart frr.service` restarts any of the enabled routing protocol daemons that are running.
 - For more information on the `systemctl` command and changing the state of daemons, see {{<link url="Services-and-Daemons-in-Cumulus-Linux" text="Services and Daemons in Cumulus Linux">}}.
 {{%/notice%}}
 
 ## Integrated Configurations
 
-By default in Cumulus Linux, FRRouting saves all daemon configurations in a single integrated configuration file, `frr.conf`.
+By default in Cumulus Linux, FRR saves all daemon configurations in a single integrated configuration file, `frr.conf`.
 
-You can disable this mode by running the following command in the {{%link url="#frrouting-vtysh-modal-cli" text="`vtysh` FRRouting CLI"%}}:
+You can disable this mode by running the following command in the {{%link url="#vtysh-modal-cli" text="`vtysh` CLI"%}}:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -84,7 +84,7 @@ To reenable integrated configuration file mode, run:
 switch(config)# service integrated-vtysh-config
 ```
 
-If you disable integrated configuration mode, FRRouting saves each daemon-specific configuration file in a separate file. For a daemon to start, you must enable that daemon and its daemon-specific configuration file must be present, even if the file is empty.
+If you disable integrated configuration mode, FRR saves each daemon-specific configuration file in a separate file. For a daemon to start, you must enable that daemon and its daemon-specific configuration file must be present, even if the file is empty.
 
 To save the current configuration:
 
@@ -113,7 +113,7 @@ Configuration saved to /etc/frr/bgpd.conf
 
 ## Restore the Default Configuration
 
-If you need to restore the FRRouting configuration to the default running configuration, delete the `frr.conf` file and restart the `frr` service.
+If you need to restore the FRR configuration to the default running configuration, delete the `frr.conf` file and restart the `frr` service.
 
 Back up `frr.conf` (or any configuration files you want to remove) before proceeding.
 
@@ -136,11 +136,11 @@ Back up `frr.conf` (or any configuration files you want to remove) before procee
 <!-- vale on -->
 ## Interface IP Addresses and VRFs
 
-FRRouting inherits the IP addresses and any associated routing tables for the network interfaces from the `/etc/network/interfaces` file. This is the recommended way to define the addresses; do **not** create interfaces using FRRouting. For more information, see {{<link url="Interface-Configuration-and-Management/#configure-ip-addresses" text="Configure IP Addresses">}} and {{<link url="Virtual-Routing-and-Forwarding-VRF">}}.
+FRR inherits the IP addresses and any associated routing tables for the network interfaces from the `/etc/network/interfaces` file. This is the recommended way to define the addresses; do **not** create interfaces using FRR. For more information, see {{<link url="Interface-Configuration-and-Management/#configure-ip-addresses" text="Configure IP Addresses">}} and {{<link url="Virtual-Routing-and-Forwarding-VRF">}}.
 
-## FRRouting vtysh Modal CLI
+## vtysh Modal CLI
 
-FRRouting provides a command-line interface (CLI) called vtysh for configuring and displaying protocol state. To start the CLI, run the `sudo vtysh` command:
+FRR provides a command-line interface (CLI) called vtysh for configuring and displaying protocol state. To start the CLI, run the `sudo vtysh` command:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -312,7 +312,7 @@ cumulus@switch:~$ sudo vtysh -c 'sh ip r'
 % Ambiguous command.
 ```
 
-To disable a command or feature in FRRouting, prepend the command with `no`. For example:
+To disable a command or feature in FRR, prepend the command with `no`. For example:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -430,15 +430,15 @@ end
 If you try to configure a routing protocol that is not running, vtysh ignores those commands.
 {{%/notice%}}
 
-## Reload the FRRouting Configuration
+## Reload the FRR Configuration
 
-If you make a change to your routing configuration, you need to reload FRRouting so your changes take place. *FRRouting reload* enables you to apply only the modifications you make to your FRRouting configuration, synchronizing its running state with the configuration in `/etc/frr/frr.conf`. This is useful for optimizing FRRouting automation in your environment or to apply changes made at runtime.
+If you make a change to your routing configuration, you need to reload FRR so your changes take place. *FRR reload* enables you to apply only the modifications you make to your FRR configuration, synchronizing its running state with the configuration in `/etc/frr/frr.conf`. This is useful for optimizing FRR automation in your environment or to apply changes made at runtime.
 
 {{%notice note%}}
-FRRouting reload only applies to an integrated service configuration, where your FRRouting configuration is in a single `frr.conf` file instead of one configuration file per FRRouting daemon (like `zebra` or `bgpd`).
+FRR reload only applies to an integrated service configuration, where your FRR configuration is in a single `frr.conf` file instead of one configuration file per FRR daemon (like `zebra` or `bgpd`).
 {{%/notice%}}
 
-To reload your FRRouting configuration after you modify `/etc/frr/frr.conf`, run:
+To reload your FRR configuration after you modify `/etc/frr/frr.conf`, run:
 
 ```
 cumulus@switch:~$ sudo systemctl reload frr.service

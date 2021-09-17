@@ -4,11 +4,11 @@ author: NVIDIA
 weight: 780
 toc: 3
 ---
-You use Unequal Cost Multipath (UCMP) in data center networks that rely on anycast routing to provide network-based load balancing. Cumulus Linux supports UCMP by using the BGP link bandwidth extended community to load balance traffic towards anycast services for IPv4 and IPv6 routes in a layer 3 deployment and for prefix (type-5) routes in an EVPN deployment.
+You use [UCMP](## "Unequal Cost Multipath") in data center networks that rely on anycast routing to provide network-based load balancing. Cumulus Linux supports UCMP by using the [BGP](## "Border Gateway Protocol") link bandwidth extended community to load balance traffic towards anycast services for IPv4 and IPv6 routes in a layer 3 deployment and for prefix (type-5) routes in an EVPN deployment.
 
 ## UCMP Routing
 
-In ECMP, the route to a destination has multiple next hops and traffic distributes across them equally. Flow-based hashing ensures that all traffic associated with a particular flow uses the same next hop and the same path across the network.
+In [ECMP](## "Equal Cost Multi Path"), the route to a destination has multiple next hops and traffic distributes across them equally. Flow-based hashing ensures that all traffic associated with a particular flow uses the same next hop and the same path across the network.
 
 In UCMP, along with the ECMP flow-based hash, Cumulus Linux associates a weight with each next hop and distributes traffic across the next hops in proportion to their weight. The BGP link bandwidth extended community carries information about the anycast server distribution through the network, which maps to the weight of the corresponding next hop. The mapping factors the bandwidth value of a particular path against the total bandwidth values of all possible paths, mapped to the range 1 to 100. The BGP best path selection algorithm and the multipath computation algorithm that determines which paths you can use for load balancing does not change.
 
@@ -180,7 +180,7 @@ route-map ucmp-route-map permit 10
 
 ### EVPN Configuration
 
-For EVPN configuration, make sure that you activate the commands under the EVPN address family. The following shows an example EVPN configuration that sets the BGP link bandwidth extended community against **all** prefixes.
+For [EVPN](## "Ethernet Virtual Private Network") configuration, make sure that you activate the commands under the EVPN address family. The following shows an example EVPN configuration that sets the BGP link bandwidth extended community against **all** prefixes.
 
 {{< tabs "TabID166 ">}}
 {{< tab "NCLU Commands ">}}
@@ -329,7 +329,7 @@ router bgp 65011
 
 ### BGP Link Bandwidth Outside a Domain
 
-The BGP link bandwidth extended community is automatically passed on with the prefix to eBGP peers. If you do not want to pass on the BGP link bandwidth extended community outside of a particular domain, you can disable the advertisement of all BGP extended communities on specific peerings.
+The BGP link bandwidth extended community is automatically passed on with the prefix to [eBGP](## "external BGP") peers. If you do not want to pass on the BGP link bandwidth extended community outside of a particular domain, you can disable the advertisement of all BGP extended communities on specific peerings.
 
 {{%notice note%}}
 You cannot disable just the BGP link bandwidth extended community from advertising to a neighbor; you either send all BGP extended communities, or none.
@@ -367,7 +367,7 @@ cumulus@switch:~$
 
 To show the extended community in a received or local route, run the NCLU `net show bgp` command or the vtysh `show bgp` command.
 
-The following example shows that the switch receives an IPv4 unicast route with the BGP link bandwidth attribute from two peers. The link bandwidth extended community is in bytes-per-second and shows in Mbps per second: `Extended Community: LB:65002:131072000 (1000.000 Mbps) and Extended Community: LB:65001:65536000 (500.000 Mbps)`.
+The following example shows that the switch receives an IPv4 unicast route with the BGP link bandwidth attribute from two peers. The link bandwidth extended community is in bytes per second and shows in megabits per second: `Extended Community: LB:65002:131072000 (1000.000 Mbps) and Extended Community: LB:65001:65536000 (500.000 Mbps)`.
 
 ```
 cumulus@switch:~$ net show bgp ipv4 unicast 192.168.10.1/32
@@ -396,7 +396,7 @@ The bandwidth value used by UCMP is only to determine the percentage of load to 
 
 To show EVPN type-5 routes, run the NCLU `net show bgp l2vpn evpn route type prefix` command or the vtysh `show bgp l2vpn evpn route type prefix` command.
 
-The bandwidth shows both as bytes-per-second (unsigned 32 bits) as well as in Gbps, Mbps, or Kbps. For example:
+The bandwidth shows both as bytes per second (unsigned 32 bits) as well as in Gbps, Mbps, or Kbps. For example:
 
 ```
 cumulus@switch:~$ net show bgp l2vpn evpn route type prefix

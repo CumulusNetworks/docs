@@ -130,7 +130,7 @@ cumulus@spine01:~$ nv config apply
 {{< tabs "TabID91 ">}}
 {{< tab "leaf01 ">}}
 
-The FRRouting package includes PIM. For proper PIM operation, PIM depends on Zebra. You must configure unicast routing and a routing protocol or static routes.
+The [FRR](## "FRRouting") package includes PIM. For proper PIM operation, PIM depends on Zebra. You must configure unicast routing and a routing protocol or static routes.
 
 1. Edit the `/etc/frr/daemons` file and add `pimd=yes` to the end of the file:
 

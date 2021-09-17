@@ -8,9 +8,9 @@ This section describes EVPN enhancements.
 
 ## Define RDs and RTs
 
-When FRR learns about a local VNI and there is no explicit configuration for that VNI in FRR, the switch derives the route distinguisher (RD), and import and export route targets (RTs) for this VNI automatically. The RD uses *RouterId:VNI-Index* and the import and export RTs use *AS:VNI*. For routes that come from a layer 2 VNI (type-2 and type-3), the RD uses the `vxlan-local-tunnelip` from the layer 2 VNI interface instead of the RouterId (`vxlan-local-tunnelip:VNI`). EVPN route exchange uses the RD and RTs.
+When [FRR](## "FRRouting") learns about a local VNI and there is no explicit configuration for that VNI in FRR, the switch derives the [RD](## "route distinguisher") and import and export [RTs](## "route targets") for this VNI automatically. The RD uses *RouterId:VNI-Index* and the import and export RTs use *AS:VNI*. For routes that come from a layer 2 VNI (type-2 and type-3), the RD uses the VXLAN local tunnel IP address (`vxlan-local-tunnelip`) from the layer 2 VNI interface instead of the RouterId (`vxlan-local-tunnelip:VNI`). EVPN route exchange uses the RD and RTs.
 
-The RD disambiguates EVPN routes in different VNIs (they can have the same MAC and/or IP address) while the RTs describe the VPN membership for the route. The *VNI-Index* for the RD is a unique number that the switch generates. It only has local significance; on remote switches, its only role is for route disambiguation. The switch uses this number instead of the VNI value itself because this number has to be less than or equal to 65535. In the RT, the AS is always a 2-byte value to allow room for a large VNI. If the router has a 4-byte AS, it only uses the lower 2 bytes. This ensures a unique RT for different VNIs while having the same RT for the same VNI across routers in the same AS.
+The RD disambiguates EVPN routes in different VNIs (they can have the same MAC and IP address) while the RTs describe the VPN membership for the route. The *VNI-Index* for the RD is a unique number that the switch generates. It only has local significance; on remote switches, its only role is for route disambiguation. The switch uses this number instead of the VNI value itself because this number has to be less than or equal to 65535. In the RT, the [AS](## "Autonomous System") is always a 2-byte value to allow room for a large VNI. If the router has a 4-byte AS, it only uses the lower 2 bytes. This ensures a unique RT for different VNIs while having the same RT for the same VNI across routers in the same AS.
 
 For eBGP EVPN peering, the peers are in a different AS so using an automatic RT of *AS:VNI* does not work for route import. Therefore, Cumulus Linux treats the import RT as *\*:VNI* to determine which received routes apply to a particular VNI. This only applies when the switch auto-derives the import RT.
 
@@ -343,7 +343,7 @@ address-family l2vpn evpn
 
 ## Enable EVPN in an iBGP Environment with an OSPF Underlay
 
-You can use EVPN with an {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or static route underlay. This is a more complex configuration than using eBGP. In this case, iBGP advertises EVPN routes directly between VTEPs and the spines are unaware of EVPN or BGP.
+You can use EVPN with an {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or static route underlay. This is a more complex configuration than using [eBGP](## "external BGP"). In this case, [iBGP](## "internal BGP") advertises EVPN routes directly between [VTEPs](## "Virtual Tunnel End Points") and the spines are unaware of EVPN or BGP.
 
 The leafs peer with each other in a full mesh within the EVPN address family without using route reflectors. The leafs generally peer to their loopback addresses, which advertise in OSPF. The receiving VTEP imports routes into a specific VNI with a matching route target community.
 
@@ -881,14 +881,14 @@ You must apply the route map for the configuration to take effect. See {{<link u
 
 ## Advertise SVI IP Addresses
 
-In a typical EVPN deployment, you *reuse* SVI IP addresses on VTEPs across multiple racks. However, if you use *unique* SVI IP addresses across multiple racks and you want the local SVI IP address to be reachable via remote VTEPs, you can enable the advertise SVI IP/MAC address option. This option advertises the SVI IP/MAC address as a type-2 route and eliminates the need for any flooding over VXLAN to reach the IP address from a remote VTEP or rack.
+In a typical EVPN deployment, you *reuse* SVI IP addresses on VTEPs across multiple racks. However, if you use *unique* SVI IP addresses across multiple racks and you want the local SVI IP address to be reachable via remote VTEPs, you can enable the advertise SVI IP and MAC address option. This option advertises the SVI IP and MAC address as a type-2 route and eliminates the need for any flooding over VXLAN to reach the IP address from a remote VTEP or rack.
 
 {{%notice note%}}
-- When you enable the advertise SVI IP/MAC address option, the anycast IP and MAC address pair is not advertised. Be sure **not** to enable both the `advertise-svi-ip` option and the `advertise-default-gw` option at the same time. (The `advertise-default-gw` option configures the gateway VTEPs to advertise their IP and MAC address. See {{<link url="Inter-subnet-Routing#centralized-routing" text="Advertising the Default Gateway">}}.
-- If you use MLAG on your switch, refer to {{<link url="Inter-subnet-Routing#advertise-primary-ip-address" text="Advertise Primary IP Address">}}.
+- When you enable the advertise SVI IP and MAC address option, the anycast IP and MAC address pair is not advertised. Be sure **not** to enable both the `advertise-svi-ip` option and the `advertise-default-gw` option at the same time. (The `advertise-default-gw` option configures the gateway VTEPs to advertise their IP and MAC address. See {{<link url="Inter-subnet-Routing#centralized-routing" text="Advertising the Default Gateway">}}.
+- If you use [MLAG](## "Multi-chassis Link Aggregation") on your switch, refer to {{<link url="Inter-subnet-Routing#advertise-primary-ip-address" text="Advertise Primary IP Address">}}.
 {{%/notice%}}
 
-To advertise *all* SVI IP/MAC addresses on the switch, run these commands:
+To advertise *all* SVI IP and MAC addresses on the switch, run these commands:
 
 {{< tabs "TabID751 ">}}
 {{< tab "NCLU Commands ">}}
@@ -1005,7 +1005,7 @@ Disabling BUM flooding is useful in a deployment with a controller or orchestrat
 
 {{%notice note%}}
 
-For information on EVPN BUM flooding with PIM, refer to {{<link url="EVPN-BUM-Traffic-with-PIM-SM" text="EVPN BUM Traffic with PIM-SM">}}.
+For information on EVPN BUM flooding with [PIM](## "Protocol Independent Multicast"), refer to {{<link url="EVPN-BUM-Traffic-with-PIM-SM" text="EVPN BUM Traffic with PIM-SM">}}.
 
 {{%/notice%}}
 
@@ -1231,7 +1231,7 @@ Cumulus Linux provides a *freeze* option that takes action on a detected duplica
 
 When you enable the freeze option and the switch detects a duplicate address:
 
-- If the switch learns the MAC or IP address from a remote VTEP at the time it freezes, the forwarding information in the kernel and hardware does not update, leaving it in the prior state. Any future remote updates process but they do not reflect in the kernel entry. If the remote VTEP sends a MAC-IP route withdrawal, the local VTEP removes the frozen remote entry. Then, if the local VTEP has a locally learned entry already present in its kernel, FRRouting originates a corresponding MAC-IP route and advertises it to all remote VTEPs.
+- If the switch learns the MAC or IP address from a remote VTEP at the time it freezes, the forwarding information in the kernel and hardware does not update, leaving it in the prior state. Any future remote updates process but they do not reflect in the kernel entry. If the remote VTEP sends a MAC-IP route withdrawal, the local VTEP removes the frozen remote entry. Then, if the local VTEP has a locally learned entry already present in its kernel, FRR originates a corresponding MAC-IP route and advertises it to all remote VTEPs.
 - If the MAC or IP address is locally learned on this VTEP at the time it freezes, the address does not advertise to remote VTEPs. Future local updates process but do not advertise to remote VTEPs. If FRR receives a local entry delete event, it removes the frozen entry from the FRR database. Any remote updates (from other VTEPs) change the state of the entry to remote but the entry does not install in the kernel (until cleared).
 
 **To recover from a freeze**, shut down the faulty host or VM or fix any other misconfiguration in the network. If the address freezes *permanently,* run the {{<link url="#clear-duplicate-addresses" text="clear command">}} on the VTEP where the address is duplicate. If the address freezes for a defined period of time, it clears automatically after the timer expires (you can clear the duplicate address before the timer expires with the {{<link url="#clear-duplicate-addresses" text="clear command">}}).

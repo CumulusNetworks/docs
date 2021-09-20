@@ -28,11 +28,10 @@ In the following procedures:
 - You can name your Cumulus Linux image using any of the
 {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes">}} mentioned here.
 - Run the `sudo onie-install -h` command to show the ONIE installer options.
-<!--- After you install the Cumulus Linux image, you need to install the license file. Refer to {{<link url="Quick-Start-Guide#install-the-license" text="Install the License">}}.-->
 
 ## Install Using a DHCP/Web Server With DHCP Options
 
-To install Cumulus Linux using a DHCP/web server *with* DHCP options, set up a DHCP/web server on your laptop and connect the eth0 management port of the switch to your laptop. After you connect the cable, the installation proceeds as follows:
+To install Cumulus Linux using a DHCP or web server *with* [DHCP](## "Dynamic Host Configuration Protocol") options, set up a DHCP/web server on your laptop and connect the eth0 management port of the switch to your laptop. After you connect the cable, the installation proceeds as follows:
 
 1. The switch boots up and requests an IP address (DHCP request).
 2. The DHCP server acknowledges and responds with DHCP option 114 and the location of the installation image.

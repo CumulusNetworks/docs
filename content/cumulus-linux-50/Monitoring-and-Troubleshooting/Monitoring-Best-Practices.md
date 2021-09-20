@@ -167,9 +167,9 @@ Spanning tree is a protocol that prevents loops in a layer 2 infrastructure. In 
 
 ## Layer 3 Protocols
 
-When FRRouting boots up for the first time, there is a different log file for each activated daemon. If you edit the log file (for example, through vtysh or `frr.conf`), the integrated configuration sends all logs to the same file.
+When FRR boots up for the first time, there is a different log file for each activated daemon. If you edit the log file (for example, through vtysh or `frr.conf`), the integrated configuration sends all logs to the same file.
 
-To send FRRouting logs to syslog, apply the configuration `log syslog` in vtysh.
+To send FRR logs to syslog, apply the configuration `log syslog` in vtysh.
 
 ### BGP
 
@@ -222,8 +222,8 @@ The table below describes the various log files.
 |---------------- |-------------------- |------------- |
 | syslog | Catch all log file. Identifies memory leaks and CPU spikes. | <pre>/var/log/syslog</pre> |
 | switchd functionality | Hardware Abstraction Layer (HAL). | <pre>/var/log/switchd.log</pre> |
-| Routing daemons | FRRouting zebra daemon details. | <pre>/var/log/daemon.log</pre> |
-| Routing protocol | The log file is configurable in FRRouting. When FRRouting first boots, it uses the non-integrated configuration so each routing protocol has its own log file. After booting up, FRRouting switches over to using the integrated configuration, so that all logs go to a single place.<br><br>To edit the location of the log files, use the log file <location> command. By default, Cumulus Linux does not send FRRouting logs to syslog. Use the log syslog <level> command to send logs through `rsyslog` and into `/var/log/syslog`.<br><br>**Note**: To write syslog debug messages to the log file, you must run the log syslog debug command to configure FRR with syslog severity 7 (debug); otherwise, when you issue a debug command such as `debug bgp neighbor-events`, no output logs to `/var/log/frr/frr.log`.<br><br>However, when you manually define a log target with the log file `/var/log/frr/debug.log` command, FRR automatically defaults to severity 7 (debug) logging and the output logs to `/var/log/frr/frr.log`.|<pre>/var/log/frr/zebra.log<br>/var/log/frr/{protocol}.log<br>/var/log/frr/frr.log</pre> |
+| Routing daemons | FRR zebra daemon details. | <pre>/var/log/daemon.log</pre> |
+| Routing protocol | The log file is configurable in FRR. When FRR first boots, it uses the non-integrated configuration so each routing protocol has its own log file. After booting up, FRR switches over to using the integrated configuration, so that all logs go to a single place.<br><br>To edit the location of the log files, use the log file <location> command. By default, Cumulus Linux does not send FRR logs to syslog. Use the log syslog <level> command to send logs through `rsyslog` and into `/var/log/syslog`.<br><br>**Note**: To write syslog debug messages to the log file, you must run the log syslog debug command to configure FRR with syslog severity 7 (debug); otherwise, when you issue a debug command such as `debug bgp neighbor-events`, no output logs to `/var/log/frr/frr.log`.<br><br>However, when you manually define a log target with the log file `/var/log/frr/debug.log` command, FRR automatically defaults to severity 7 (debug) logging and the output logs to `/var/log/frr/frr.log`.|<pre>/var/log/frr/zebra.log<br>/var/log/frr/{protocol}.log<br>/var/log/frr/frr.log</pre> |
 
 ## Protocols and Services
 

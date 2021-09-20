@@ -128,7 +128,7 @@ The above command modifies both the `/etc/hostname` and `/etc/hosts` files.
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set platform hostname value leaf01
+cumulus@switch:~$ nv set system hostname leaf01
 cumulus@switch:~$ nv config apply
 ```
 

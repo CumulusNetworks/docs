@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2799742"></a> [2799742](#2799742) <a name="2799742"></a> <br /> | On the Edgecore AS4610 switch, the historic CPU usage displayed in <code>/run/sysmonitor/history</code> sometimes shows as a negative value.  | 3.7.12-3.7.15, 4.2.1-4.4.0 | |
 | <a name="2798979"></a> [2798979](#2798979) <a name="2798979"></a> <br /> |  Configuring a route map to filter VNIs will cause type-3 routes not to be advertised even for L2VNIs permitted through the route map | 3.7.15 | |
 | <a name="2798139"></a> [2798139](#2798139) <a name="2798139"></a> <br /> | CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions<br />Vulnerable: <= 9.4.26-0+deb8u3Fixed: 9.4.26-0+deb8u4 | 3.7.0-3.7.15 | |
 | <a name="2783520"></a> [2783520](#2783520) <a name="2783520"></a> <br /> | When the <code>clagd</code> process terminates unexpectedly due to signals such as sig11 or sig6, no core file  is generated. | 3.7.15 | |
@@ -298,6 +299,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2799742"></a> [2799742](#2799742) <a name="2799742"></a> <br /> | On the Edgecore AS4610 switch, the historic CPU usage displayed in <code>/run/sysmonitor/history</code> sometimes shows as a negative value.  | 3.7.12-3.7.15, 4.2.1-4.4.0 | |
 | <a name="2798139"></a> [2798139](#2798139) <a name="2798139"></a> <br /> | CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions<br />Vulnerable: <= 9.4.26-0+deb8u3Fixed: 9.4.26-0+deb8u4 | 3.7.0-3.7.15 | |
 | <a name="2770226"></a> [2770226](#2770226) <a name="2770226"></a> <br /> | In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during <code>ifreload</code> when adding new VLANS or bridges.  | 3.7.14.2-3.7.15 | |
 | <a name="2769687"></a> [2769687](#2769687) <a name="2769687"></a> <br /> | CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library<br />Vulnerable: <= 7.38.0-4+deb8u20Fixed: 7.38.0-4+deb8u21 | 3.7.0-3.7.15 | |
@@ -578,6 +580,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2799742"></a> [2799742](#2799742) <a name="2799742"></a> <br /> | On the Edgecore AS4610 switch, the historic CPU usage displayed in <code>/run/sysmonitor/history</code> sometimes shows as a negative value.  | 3.7.12-3.7.15, 4.2.1-4.4.0 | |
 | <a name="2798139"></a> [2798139](#2798139) <a name="2798139"></a> <br /> | CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions<br />Vulnerable: <= 9.4.26-0+deb8u3Fixed: 9.4.26-0+deb8u4 | 3.7.0-3.7.15 | |
 | <a name="2769687"></a> [2769687](#2769687) <a name="2769687"></a> <br /> | CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library<br />Vulnerable: <= 7.38.0-4+deb8u20Fixed: 7.38.0-4+deb8u21 | 3.7.0-3.7.15 | |
 | <a name="2769633"></a> [2769633](#2769633) <a name="2769633"></a> <br /> | CVE-2021-3672: in c-ares, an asynchronous name resolver, missing input validation of host names returned by Domain Name Servers can lead to output of wrong hostnames<br />Vulnerable: <= 1.10.0-2+deb8u2Fixed: 1.10.0-2+deb8u3 | 3.7.0-3.7.15 | |
@@ -930,6 +933,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2799742"></a> [2799742](#2799742) <a name="2799742"></a> <br /> | On the Edgecore AS4610 switch, the historic CPU usage displayed in <code>/run/sysmonitor/history</code> sometimes shows as a negative value.  | 3.7.12-3.7.15, 4.2.1-4.4.0 | |
 | <a name="2798139"></a> [2798139](#2798139) <a name="2798139"></a> <br /> | CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions<br />Vulnerable: <= 9.4.26-0+deb8u3Fixed: 9.4.26-0+deb8u4 | 3.7.0-3.7.15 | |
 | <a name="2769687"></a> [2769687](#2769687) <a name="2769687"></a> <br /> | CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library<br />Vulnerable: <= 7.38.0-4+deb8u20Fixed: 7.38.0-4+deb8u21 | 3.7.0-3.7.15 | |
 | <a name="2769633"></a> [2769633](#2769633) <a name="2769633"></a> <br /> | CVE-2021-3672: in c-ares, an asynchronous name resolver, missing input validation of host names returned by Domain Name Servers can lead to output of wrong hostnames<br />Vulnerable: <= 1.10.0-2+deb8u2Fixed: 1.10.0-2+deb8u3 | 3.7.0-3.7.15 | |
@@ -1299,6 +1303,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2799742"></a> [2799742](#2799742) <a name="2799742"></a> <br /> | On the Edgecore AS4610 switch, the historic CPU usage displayed in <code>/run/sysmonitor/history</code> sometimes shows as a negative value.  | 3.7.12-3.7.15, 4.2.1-4.4.0 | |
 | <a name="2798139"></a> [2798139](#2798139) <a name="2798139"></a> <br /> | CVE-2020-25694, CVE-2020-25695, CVE-2020-25696, CVE-2021-32027: Several vulnerabilities were discovered in PostgreSQL, an object-relational SQL database. An attacker could have an opportunity to complete a MITM attack, execute arbitrary SQL functions under the identity of a superuser, execute arbitrary code as the operating system account running psql when connecting to a rogue server, and corrupt server memory, in some conditions<br />Vulnerable: <= 9.4.26-0+deb8u3Fixed: 9.4.26-0+deb8u4 | 3.7.0-3.7.15 | |
 | <a name="2769687"></a> [2769687](#2769687) <a name="2769687"></a> <br /> | CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library<br />Vulnerable: <= 7.38.0-4+deb8u20Fixed: 7.38.0-4+deb8u21 | 3.7.0-3.7.15 | |
 | <a name="2769633"></a> [2769633](#2769633) <a name="2769633"></a> <br /> | CVE-2021-3672: in c-ares, an asynchronous name resolver, missing input validation of host names returned by Domain Name Servers can lead to output of wrong hostnames<br />Vulnerable: <= 1.10.0-2+deb8u2Fixed: 1.10.0-2+deb8u3 | 3.7.0-3.7.15 | |

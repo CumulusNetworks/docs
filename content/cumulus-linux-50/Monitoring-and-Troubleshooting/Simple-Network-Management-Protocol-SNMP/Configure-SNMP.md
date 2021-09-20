@@ -518,9 +518,9 @@ sysname CumulusBox number 1,543,567
 {{< /tab >}}
 {{< /tabs >}}
 
-## Enable SNMP Support for FRRouting
+## Enable SNMP Support for FRR
 
-SNMP supports routing MIBs in {{<link url="FRRouting" text="FRRouting">}}. To enable SNMP support for FRRouting, you need to configure {{<exlink url="http://www.net-snmp.org/docs/README.agentx.html" text="AgentX">}} (ASX) access in FRR.
+SNMP supports routing MIBs in {{<link url="FRRouting" text="FRR">}}. To enable SNMP support for FRR, you need to configure {{<exlink url="http://www.net-snmp.org/docs/README.agentx.html" text="AgentX">}} (ASX) access in FRR.
 
 The default `/etc/snmp/snmpd.conf` configuration already enables AgentX and sets the correct permissions.
 
@@ -644,7 +644,7 @@ The pass persist scripts in Cumulus Linux use the {{<exlink url="http://net-snmp
 - `snmpifAlias_pp.py`
 - `sysDescr_pass.py`
 
-Cumulus Linux enables all the scripts by default except for `bgp4_pp.py`, which {{<link url="FRRouting" text="FRRouting">}} uses.
+Cumulus Linux enables all the scripts by default except for `bgp4_pp.py`, which {{<link url="FRRouting" text="FRR">}} uses.
 
 ## Example Configuration
 

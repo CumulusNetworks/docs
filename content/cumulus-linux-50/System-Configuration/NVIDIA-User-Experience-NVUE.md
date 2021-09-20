@@ -140,11 +140,11 @@ The `nv set` and `nv unset` commands are in the following categories. Each comma
 | `nv set interface <interface-id>`<br>`nv unset interface <interface-id>` | Configures the switch interfaces. Use this command to configure bond interfaces, bridge interfaces, interface IP addresses, VLAN IDs, and links (MTU, FEC, speed, duplex, and so on).|
 | `nv set mlag`<br>`nv unset mlag` | Configures MLAG. This is where you configure the backup IP address or interface, MLAG system MAC address, peer IP address, MLAG priority, and the delay before bonds come up. |
 | `nv set nve`<br>`nv unset nve` | Configures network virtualization (VXLAN) settings. This is where you configure the UDP port for VXLAN frames, control dynamic MAC learning over VXLAN tunnels, enable and disable ARP/ND suppression, and configure how Cumulus Linux handles BUM traffic in the overlay.|
-| `nv set platform`<br>`nv unset platform` | Configures the hostname of the switch and sets how configuration apply operations work (which files to ignore and which files to overwrite). |
+| `nv set platform`<br>`nv unset platform` | Sets how configuration apply operations work (which files to ignore and which files to overwrite). |
 | `nv set qos`<br>`nv unset qos` | Configures QoS RoCE. |
 | `nv set router`<br>`nv unset router` | Configures router policies (prefix list rules and route maps), global BGP options (enable and disable BGP, set the ASN and the router ID, and configure BGP graceful restart and shutdown), global OSPF options (enable and disable OSPF, set the router ID, and configure OSPF timers), and PBR. |
 | `nv set service`<br>`nv unset service` | Configures DHCP relays and servers, NTP, PTP, LLDP, and syslog. |
-| `nv set system`<br>`nv unset system` | Configures global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure SPAN and ERSPAN sessions. |
+| `nv set system`<br>`nv unset system` | Configures global system settings, such as the hostname of the switch, the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure SPAN and ERSPAN sessions. |
 | `nv set vrf  <vrf-id>`<br>`nv unset vrf <vrf-id>` | Configures VRFs. This is where you configure VRF-level router configuration including PTP, BGP, OSPF, and EVPN. |
 
 ### Monitoring Commands
@@ -384,7 +384,7 @@ This section provides examples of how to configure a Cumulus Linux switch using 
 The example below shows the NVUE commands required to change the hostname for the switch to leaf01:
 
 ```
-cumulus@switch:~$ nv set platform hostname value leaf01
+cumulus@switch:~$ nv set system hostname leaf01
 cumulus@switch:~$ nv config apply
 ```
 

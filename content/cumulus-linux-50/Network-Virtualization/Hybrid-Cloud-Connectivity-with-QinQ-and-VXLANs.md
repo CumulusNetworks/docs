@@ -14,7 +14,7 @@ In Cumulus Linux, you map QinQ packets to VXLANs through:
 - *Double tag translation*, where you map a customer and service to a VNI.
 
 {{%notice note%}}
-You must disable ARP/ND suppression on VXLAN bridges when using QinQ.
+You must disable ARP adn ND suppression on VXLAN bridges when using QinQ.
 {{%/notice%}}
 
 ## Single Tag Translation
@@ -31,7 +31,7 @@ You configure two switches: one at the service provider edge that faces the cust
 - All edges must support QinQ with VXLANs.
 - You *cannot* mix 802.1Q and 802.1ad subinterfaces on the same switch port.
 - When configuring bridges in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, all VLANs that are members of the same switch port must use the same `vlan_protocol`.
-- When using switches in an MLAG pair:
+- When using switches in an [MLAG](## "Multi-chassis Link Aggregation") pair:
   - Configure the peerlink (peerlink.4094) between the MLAG pair for VLAN protocol 802.1ad.
   - You cannot use the peerlink as a backup datapath in case one of the MLAG peers loses all uplinks.
 - When the bridge VLAN protocol is 802.1ad and is VXLAN-enabled, all bridge ports must be either access ports (except for the MLAG peerlink) or VLAN trunks.

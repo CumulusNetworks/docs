@@ -1344,7 +1344,7 @@ router bgp 65163 vrf EXTERNAL2
 {{< tab "Try It " >}}
     {{< simulation name="Try It CL44 - DVNIv2" showNodes="leaf01,spine01,border01,server01,fw1" >}}
 
-This simulation will launch with the example Downstream VNI configuration. Only one spine is in the topology for a simplified example.
+This simulation launches with the example Downstream VNI configuration. To simplify the example, only one spine is in the topology.
 
 **fw1** has IP address 10.1.210.254 configured beyond border01 in VRF10.
 **server01** has IP address 10.1.10.101 as in the example.

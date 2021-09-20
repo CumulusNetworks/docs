@@ -3575,6 +3575,10 @@ cumulus@spine02:~$ cat /etc/nvue.d/startup.yaml
 {{</tab>}}
 {{</tabs>}}
 
+{{< /tab >}}
+{{< tab "Try It " >}}
+    {{< simulation name="Try It CL44 - EVPN Multihoming" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
+
 {{</tab>}}
 {{</tabs>}}
 

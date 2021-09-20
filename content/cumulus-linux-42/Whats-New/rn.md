@@ -14,6 +14,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2799742"></a> [2799742](#2799742) <a name="2799742"></a> <br /> | On the Edgecore AS4610 switch, the historic CPU usage displayed in <code>/run/sysmonitor/history</code> sometimes shows as a negative value.  | 3.7.12-3.7.15, 4.2.1-4.4.0 | |
+| <a name="2797952"></a> [2797952](#2797952) <a name="2797952"></a> <br /> | The switch does not generate EVPN type-3 routes so the flood list entries are missing. | 4.2.1-4.4.0 | |
 | <a name="2782035"></a> [2782035](#2782035) <a name="2782035"></a> <br /> | The following vulnerabilities have been announced in the openssl packages:CVE-2021-3711: buffer overflow vulnerability in SM2 decryption<br />CVE-2021-3712: buffer overrun when processing ASN.1 strings in the X509_aux_print() function<br />More details at https://www.openssl.org/news/secadv/20210824.txt <br />Vulnerable: <= 1.1.1d-0+deb10u6Fixed: 1.1.1d-0+deb10u7 | 4.0.0-4.4.0 | |
 | <a name="2755615"></a> [2755615](#2755615) <a name="2755615"></a> <br /> | Host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry when <code>route_preferred_over_neigh</code> is set to <code>FALSE</code> in <code>/etc/cumulus/switchd.conf</code>  | 4.0.0-4.4.0 | |
 | <a name="2754692"></a> [2754692](#2754692) <a name="2754692"></a> <br /> | CVE-2021-3672: in c-ares, a library that performs DNS requests and name resolution asynchronously, missing input validation of hostnames returned by DNS servers can lead to output of wrong hostnames (leading to Domain Hijacking)<br />Vulnerable: 1.14.0-1Fixed: 1.14.0-1+deb10u1 | 4.0.0-4.4.0 | |
@@ -254,6 +256,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2799742"></a> [2799742](#2799742) <a name="2799742"></a> <br /> | On the Edgecore AS4610 switch, the historic CPU usage displayed in <code>/run/sysmonitor/history</code> sometimes shows as a negative value.  | 3.7.12-3.7.15, 4.2.1-4.4.0 | |
+| <a name="2797952"></a> [2797952](#2797952) <a name="2797952"></a> <br /> | The switch does not generate EVPN type-3 routes so the flood list entries are missing. | 4.2.1-4.4.0 | |
 | <a name="2782035"></a> [2782035](#2782035) <a name="2782035"></a> <br /> | The following vulnerabilities have been announced in the openssl packages:CVE-2021-3711: buffer overflow vulnerability in SM2 decryption<br />CVE-2021-3712: buffer overrun when processing ASN.1 strings in the X509_aux_print() function<br />More details at https://www.openssl.org/news/secadv/20210824.txt <br />Vulnerable: <= 1.1.1d-0+deb10u6Fixed: 1.1.1d-0+deb10u7 | 4.0.0-4.4.0 | |
 | <a name="2755615"></a> [2755615](#2755615) <a name="2755615"></a> <br /> | Host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry when <code>route_preferred_over_neigh</code> is set to <code>FALSE</code> in <code>/etc/cumulus/switchd.conf</code>  | 4.0.0-4.4.0 | |
 | <a name="2754692"></a> [2754692](#2754692) <a name="2754692"></a> <br /> | CVE-2021-3672: in c-ares, a library that performs DNS requests and name resolution asynchronously, missing input validation of hostnames returned by DNS servers can lead to output of wrong hostnames (leading to Domain Hijacking)<br />Vulnerable: 1.14.0-1Fixed: 1.14.0-1+deb10u1 | 4.0.0-4.4.0 | |

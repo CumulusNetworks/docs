@@ -64,7 +64,7 @@ Cumulus Linux 4.4. no longer supports GRE and OVSDB High Availability.
 ## What's New in the Documentation
 <!-- vale on -->
 
-The Cumulus Linux 4.4 user guide (this guide) provides pre-built Try It demos for certain Cumulus Linux features. The Try It demos run a simulation in NVIDIA Air; a cloud hosted platform that behaves exactly like a real world production deployment. Use the Try It demos to examine switch configuration for a feature. For information about running the Try It demos, see {{<link title="Try It Pre-built Demos" text="Try It">}}.
+The Cumulus Linux 4.4 user guide (this guide) provides pre-built Try It demos for certain Cumulus Linux features. The Try It demos run a simulation in NVIDIA Air; a cloud hosted platform that behaves exactly like a real world production deployment. Use the Try It demos to examine switch configuration for a feature. For information about running the Try It demos, see {{<link url="Try-It" text="Try It">}}.
 
 The following Try It demos are currently available:
 - {{<link url="Protocol-Independent-Multicast-PIM/#example-pim-configuration" text="PIM">}}

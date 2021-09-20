@@ -1609,6 +1609,14 @@ ip pim rp 10.10.10.101
 {{< tab "Try It " >}}
     {{< simulation name="Try It CL44 - PIMv3" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
 
+This simulation starts with the {{<link url="#example-pim-configuration" text="example PIM configuration">}}. To simplify the example, only one spine and two leafs are in the topology.
+
+- To show the multicast routing table, run the NCLU `net show mroute` command on the switches.
+- To see the active source on the RP, run the `net show pim upstream` command on (spine01).
+- To show information about known S,Gs, the [IIF](## "Incoming Interface") and the [OIL](## "Outgoing Interface"), run the `net show pim state` command.
+
+{{<link url="#pim-show-commands" text="PIM Show Commands">}} provides additional commands that you can use to validate the configuration.
+
 {{< /tab >}}
 {{< /tabs >}}
 <!-- vale on -->

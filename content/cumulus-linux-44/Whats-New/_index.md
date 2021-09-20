@@ -59,3 +59,14 @@ Cumulus Linux 4.4 supports NVIDIA Spectrum-based switches only. Cumulus Linux 3.
 
 ### Deprecated Features
 Cumulus Linux 4.4. no longer supports GRE and OVSDB High Availability.
+
+<!-- vale off -->
+## What's New in the Documentation
+<!-- vale on -->
+
+The Cumulus Linux 4.4 user guide (this guide) provides pre-built Try It demos for certain Cumulus Linux features. The Try It demos run a simulation in NVIDIA Air; a cloud hosted platform that behaves exactly like a real world production deployment. Use the Try It demos to examine switch configuration for a feature. For information about running the Try It demos, see ADD XREF.
+
+The following Try It demos are currently available:
+- PIM
+- EVPN multihoming
+- EVPN downstream VNI

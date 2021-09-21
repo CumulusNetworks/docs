@@ -1349,7 +1349,7 @@ This simulation starts with the example downstream VNI configuration. To simplif
 - **fw1** has IP address 10.1.210.254 configured beyond border01 in VRF10.
 - **server01** has IP address 10.1.10.101 as in the example.
 
-Run the {{<link url="#verify-the-configuration" text="verification commands">}} to validate the configuration.
+Run the verification commands shown below to validate the configuration.
 
 {{< /tab >}}
 

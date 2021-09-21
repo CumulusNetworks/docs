@@ -3579,7 +3579,7 @@ cumulus@spine02:~$ cat /etc/nvue.d/startup.yaml
 {{< tab "Try It " >}}
     {{< simulation name="Try It CL44 - EVPN Multihoming" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
 
-This simulation starts with the {{<link url="#evpn-mh-with-head-end-replication" text="EVPN-MH with Head End Replication configuration">}}. The demo is configured with {{<link url="NVIDIA-User-Experience-NVUE" text="NVUE">}} commands.
+This simulation starts with the {{<link url="#evpn-mh-with-head-end-replication" text="EVPN-MH with Head End Replication configuration">}}. The demo is pre-configured using {{<link url="NVIDIA-User-Experience-NVUE" text="NVUE">}} commands.
 
 - Run the vtysh `show evpn es` command to show the Ethernet segments across all VNIs.
 - Run the vtysh `show bgp l2vpn evpn route type ead` command to show the type-1 EAD routes.

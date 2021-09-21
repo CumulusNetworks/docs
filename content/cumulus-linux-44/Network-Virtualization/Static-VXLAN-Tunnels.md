@@ -693,11 +693,14 @@ iface br_default
 {{< /tabs >}}
 
 {{< /tab >}}
-
 {{< tab "Try It " >}}
     {{< simulation name="Try It CL44 - Static VXLAN" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
-{{< /tab >}}
 
+This simulation starts with the example static VXLAN configuration. The demo is configured with NVUE commands.
+
+Use the {{<link url="#verify-the-configuration" text="verification commands">}} to validate the configuration.
+
+{{< /tab >}}
 {{< /tabs >}}
 
 ## Verify the Configuration

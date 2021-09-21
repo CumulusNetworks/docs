@@ -3584,7 +3584,7 @@ This simulation starts with the EVPN-MH with Head End Replication configuration.
 - Run the vtysh `show evpn es` command to show the Ethernet segments across all VNIs.
 - Run the vtysh `show bgp l2vpn evpn route type ead` command to show the type-1 EAD routes.
 
-To validate the configuration further, run the commands shown in the troublshooting section below.
+To further validate the configuration, run the commands shown in the troublshooting section below.
 
 {{</tab>}}
 {{</tabs>}}

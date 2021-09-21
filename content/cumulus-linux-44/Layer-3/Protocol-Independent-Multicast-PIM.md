@@ -1615,7 +1615,7 @@ This simulation starts with the example PIM configuration. To simplify the examp
 - To see the active source on the RP, run the `net show pim upstream` command on spine01.
 - To show information about known S,Gs, the [IIF](## "Incoming Interface") and the [OIL](## "Outgoing Interface"), run the `net show pim state` command on the FHR (leaf01), RP (spine01), or LHR (leaf02).
 
-Run the PIM show commands listed in the troubleshooting section above to further validate the configuration.
+To further validate the configuration, run the PIM show commands listed in the troubleshooting section above.
 
 {{< /tab >}}
 {{< /tabs >}}

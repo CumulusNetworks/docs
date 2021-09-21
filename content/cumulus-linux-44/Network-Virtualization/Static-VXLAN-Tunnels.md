@@ -698,7 +698,7 @@ iface br_default
 
 This simulation starts with the example static VXLAN configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-44/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 
-Run the {{<link url="#verify-the-configuration" text="verification commands">}} to validate the configuration.
+To validate the configuration, run the verification commands shown below.
 
 {{< /tab >}}
 {{< /tabs >}}

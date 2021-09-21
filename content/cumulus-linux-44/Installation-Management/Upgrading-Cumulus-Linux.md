@@ -87,16 +87,16 @@ Understanding the location of configuration data is important for successful upg
 If you use certain forms of network virtualization, such as {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V" text="VMware NSX-V">}}, you update the `/usr/share/openvswitch/scripts/ovs-ctl-vtep` file. This file is not marked as a configuration file; therefore, if the file contents change in a newer release of Cumulus Linux, they overwrite any changes you make to the file. Be sure to back up this file and the database file `conf.db` before upgrading.
 
 {{%notice note%}}
-The following commands verify which files have changed compared to the previous Cumulus Linux install. Be sure to back up any changed files.
+The following commands show you which files changed after the previous Cumulus Linux installation. Be sure to back up any changed files.
 - Run the `sudo dpkg --verify` command to show a list of changed files.
-- Run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command to see if any of the generated `/etc/default/isc-*` files have changed.
+- Run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command to see if any of the generated `/etc/default/isc-*` files have changes.
 {{%/notice%}}
 
 ## Upgrade Cumulus Linux
 
 You can upgrade Cumulus Linux in one of two ways:
 
-- Install a Cumulus Linux image of the new release, using ONIE.
+- Install a Cumulus Linux image of the new release using ONIE.
 - Upgrade only the changed packages using the `sudo -E apt-get update` and `sudo -E apt-get upgrade` command.
 
 Cumulus Linux also provides the Smart System Manager that enables you to upgrade an active switch with minimal disruption to the network. See {{<link url="Smart-System-Manager" text="Smart System Manager">}}.
@@ -118,25 +118,25 @@ To upgrade to Cumulus Linux 4.4.0 from a previous release, you must install a Cu
 Be aware of the following when installing the Cumulus Linux image:
 
 - Installing a Cumulus Linux image is destructive; any configuration files on the switch are not saved; copy them to a different server before you start the Cumulus Linux image install.
-- You must move configuration data to the new OS using ZTP or automation while the OS is first booted, or soon afterwards using out-of-band management.
+- You must move configuration data to the new OS using ZTP or automation while the OS first boots, or soon afterwards using out-of-band management.
 - Moving a configuration file can cause issues.
 - Identifying all the locations of configuration data is not always an easy task. See [Before You Upgrade Cumulus Linux](#before-you-upgrade-cumulus-linux) above.
 - Merge conflicts with configuration file changes in the new release sometimes go undetected.
-- If configuration files do not restore correctly, you are be unable to ssh to the switch from in-band management. Use out-of-band connectivity (eth0 or console).
+- If configuration files do not restore correctly and you cannot ssh to the switch from in-band management, you must use out-of-band connectivity (eth0 or console).
 - You *must* reinstall and reconfigure third-party applications after upgrade.
 
-**Package upgrade** is best if you are upgrading from Cumulus Linux 4.4.0 to a later 4.4.x release, or if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install).
+**Package upgrade** is best if you are upgrading from Cumulus Linux 4.4.0 to a later 4.4.x release, or if you use third-party applications. Package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install.
 
 Be aware of the following when upgrading packages:
 
-- You cannot upgrade the switch to a new release train. For example, you **cannot** upgrade the switch from **3**.7.x to **4**.1.0.
+- You cannot package upgrade the switch to a new release train. For example, you **cannot** package upgrade the switch from **3**.7.x to **4**.4.1.
 - The `sudo -E  apt-get upgrade` command might restart or stop services as part of the upgrade process.
 - The `sudo -E apt-get upgrade` command might disrupt core services by changing core service dependency packages.
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.
 
 ### Cumulus Linux Image Install (ONIE)
 
-ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.
+ONIE is an open source project, equivalent to [PXE](## "Preboot eXecution Environment") on servers, that you use to install a [NOS](## "Network Operating System") on a bare metal switch.
 
 To upgrade the switch:
 
@@ -148,7 +148,7 @@ To upgrade the switch:
     cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-4.1.0-mlx-amd64.bin && sudo reboot
     ```
 
-4. Restore the configuration files to the new release (restoring files with automation is not recommended).
+4. Restore the configuration files to the new release (NVIDIA recommends that you do not restore files with automation).
 5. Verify correct operation with the old configurations on the new release.
 6. Reinstall third party applications and associated configurations.
 
@@ -156,7 +156,7 @@ To upgrade the switch:
 
 Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any upgrades within that release train with `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands. Any packages that have changed after the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged (using the Debian merge function) during the package upgrade.
 
-When you use package upgrade to upgrade your switch, configuration data stays in place while the packages upgrade. If the new release updates a configuration file that you changed previously, Cumulus Linux prompts you for the version you want to use or to evaluate the differences.
+When you use package upgrade to upgrade your switch, configuration data stays in place while the packages upgrade. If the new release updates a configuration file that you changed previously, the upgrade prompts you for the version you want to use or to evaluate the differences.
 
 To upgrade the switch using package upgrade:
 
@@ -208,7 +208,7 @@ To upgrade the switch using package upgrade:
 
     - To see the differences between the currently installed version and the new version, type `D`.
     - To keep the currently installed version, type `N`. The new package version installs with the suffix `.dpkg-dist` (for example, `/etc/frr/daemons.dpkg-dist`). When upgrade is complete and **before** you reboot, merge your changes with the changes from the newly installed file.
-    - To install the new version, type `I`. Cumulus Linux saves your currently installed version with the suffix `.dpkg-old`. When the upgrade is complete, you can search for the files with the `sudo find / -mount -type f -name '*.dpkg-*'` command.
+    - To install the new version, type `I`. The upgrade saves your currently installed version with the suffix `.dpkg-old`. When the upgrade is complete, you can search for the files with the `sudo find / -mount -type f -name '*.dpkg-*'` command.
 
 5. Reboot the switch if the upgrade messages indicate that you need a system restart.
 

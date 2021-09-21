@@ -12,7 +12,7 @@ This document supports the Cumulus Linux 4.4 release, and lists new platforms an
 <!-- vale off -->
 ## What's New in Cumulus Linux 4.4.1
 <!-- vale on -->
-Cumulus Linux 4.4.1 supports provides bug fixes and contains several enhancements.
+Cumulus Linux 4.4.1 provides bug fixes and contains several enhancements.
 
 ### Enhancements
 

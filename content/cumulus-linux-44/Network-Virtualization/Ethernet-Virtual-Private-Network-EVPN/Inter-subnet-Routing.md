@@ -1346,8 +1346,8 @@ router bgp 65163 vrf EXTERNAL2
 
 This simulation starts with the example downstream VNI configuration. To simplify the example, only one spine is in the topology. The demo is pre-configured using {{<link url="NVIDIA-User-Experience-NVUE" text="NVUE">}} commands.
 
-**fw1** has IP address 10.1.210.254 configured beyond border01 in VRF10.
-**server01** has IP address 10.1.10.101 as in the example.
+- **fw1** has IP address 10.1.210.254 configured beyond border01 in VRF10.
+- **server01** has IP address 10.1.10.101 as in the example.
 
 Run the {{<link url="#verify-the-configuration" text="verification commands">}} to validate the configuration.
 

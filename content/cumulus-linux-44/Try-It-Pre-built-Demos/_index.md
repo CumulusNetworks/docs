@@ -3,7 +3,6 @@ title: Try It Pre-built Demos
 author: NVIDIA
 weight: 1500
 toc: 2
-draft: true
 ---
 This documentation includes pre-built **Try It** demos for certain Cumulus Linux features. The Try It demos run a simulation in NVIDIA Air; a cloud hosted platform that behaves exactly like a real world production deployment. All the Try It demos use the NVIDIA Cumulus Linux reference topology.
 

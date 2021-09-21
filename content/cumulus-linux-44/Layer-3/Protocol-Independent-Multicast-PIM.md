@@ -1606,6 +1606,18 @@ ip pim rp 10.10.10.101
 {{< /tabs >}}
 
 {{< /tab >}}
+{{< tab "Try It " >}}
+    {{< simulation name="Try It CL44 - PIMv3" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
+
+This simulation starts with the {{<link url="#example-pim-configuration" text="example PIM configuration">}}. To simplify the example, only one spine and two leafs are in the topology. The demo is pre-configured using NCLU commands (Cumulus Linux 4.4 does not support NVUE commands for PIM).
+
+- To show the multicast routing table, run the NCLU `net show mroute` command on the FHR (leaf01), RP (spine01), or LHR (leaf02).
+- To see the active source on the RP, run the `net show pim upstream` command on spine01.
+- To show information about known S,Gs, the [IIF](## "Incoming Interface") and the [OIL](## "Outgoing Interface"), run the `net show pim state` command on the FHR (leaf01), RP (spine01), or LHR (leaf02).
+
+{{<link url="#pim-show-commands" text="PIM Show Commands">}} provides additional commands that you can use to validate the configuration.
+
+{{< /tab >}}
 {{< /tabs >}}
 <!-- vale on -->
 

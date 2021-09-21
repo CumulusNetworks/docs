@@ -536,6 +536,26 @@ cumulus@leaf04:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+You can create the static VXLAN tunnels without specifying the VLAN to VNI mapping in the NVUE command. With this configuration, all VNIs use all the loopback addresses you specify. For example, instead of running the following commands:
+
+```
+cumulus@leaf04:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.2
+cumulus@leaf04:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.3
+cumulus@leaf04:~$ nv set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.4
+```
+
+You can run these commands:
+
+```
+cumulus@leaf04:~$ nv set bridge domain br_default flooding head-end-replication 10.10.10.2
+cumulus@leaf04:~$ nv set bridge domain br_default flooding head-end-replication 10.10.10.3
+cumulus@leaf04:~$ nv set bridge domain br_default flooding head-end-replication 10.10.10.4
+```
+
+Without specifying the VLAN to VNI mapping, both VNI 10 and vni 20 use 10.10.10.1, 10.10.10.2, and 10.10.10.3.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -671,6 +691,14 @@ iface br_default
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "Try It " >}}
+    {{< simulation name="Try It CL44 - Static VXLAN" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
+
+This simulation starts with the example static VXLAN configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-44/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
+
+Run the {{<link url="#verify-the-configuration" text="verification commands">}} to validate the configuration.
 
 {{< /tab >}}
 {{< /tabs >}}

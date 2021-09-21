@@ -67,11 +67,13 @@ To complete the preparation:
     Setting up netq-agent (4.0.0-ub18.04u33~1614767175.886b337) ...
     Processing triggers for rsyslog (8.32.0-1ubuntu4) ...
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
-    ``````
+    ```
 
-6. If you are upgrading NetQ as a VM in the cloud from version 3.1.0 or earlier, you must increase the root volume disk image size for proper operation of the lifecycle management feature.
+<details>
+<summary> If upgrading from version 3.1.0 or earlier</summary>
+If you are upgrading NetQ as a VM in the cloud from version 3.1.0 or earlier, you must increase the root volume disk image size for proper operation of the lifecycle management feature.
 
-    {{<tabs "TabID89" >}}
+{{<tabs "TabID89" >}}
 
 {{<tab "VMware" >}}
 
@@ -201,6 +203,7 @@ Filesystem     1M-blocks  Used Available Use% Mounted on
 {{</tabs>}}
 
 You can now upgrade your appliance using the NetQ Admin UI, in the next section. Alternately, you can upgrade using the CLI here: {{<link title="#Upgrade Your Platform Using the NetQ CLI" text="Upgrade Your Platform Using the NetQ CLI">}}.
+</details>
 
 ## Run the Upgrade
 

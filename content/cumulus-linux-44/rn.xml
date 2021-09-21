@@ -276,14 +276,6 @@ This is a cosmetic software issue and not indicative of a hardware failure on th
 <td></td>
 </tr>
 <tr>
-<td>2722457</td>
-<td>When you apply a bridge interface configuration change with a higher scale of VLANs in quick succession in any of the following scenarios, you might see the error message {{ERR bridge creation for vlan &lt;vlan&gt; failed: No more resources}} in the {{switchd}} log file and forwarding might not work as expected (some of the VLANs might not be programmed in hardware).
-- You apply an empty {{bridge-vlan}} configuration in the {{/etc/network/interfaces}} file, then apply the scale {{bridge-vlan}} configuration.
-- You use NCLU commands, such as {{net del bridge bridge vids 3-3700}} to remove, then add back most of the {{bridge-vlan}} configuration.</td>
-<td>4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2722322</td>
 <td>When you change the scaled VLAN configuration,  restart networking instead of running the {{ifreload -a}} command to make sure that resources are allocated correctly.</td>
 <td>4.4.0</td>

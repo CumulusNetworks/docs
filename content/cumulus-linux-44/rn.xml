@@ -7,9 +7,27 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2799742</td>
+<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2797952</td>
+<td>The switch does not generate EVPN type-3 routes so the flood list entries are missing.</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2794747</td>
 <td>If you change the {{clagd-vxlan-anycast-ip}} setting on both MLAG peers at the same time, both peers use their unique VTEP address indefinitely.</td>
 <td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2792816</td>
+<td> When you  enable PTP on n unnumbered interface,  the {{/etc/ptp4l.conf}} file does not update and {{ptp4l.service}} fails.</td>
+<td>4.4.0</td>
 <td></td>
 </tr>
 <tr>

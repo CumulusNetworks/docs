@@ -10,9 +10,22 @@ This document supports the Cumulus Linux 4.4 release, and lists new platforms an
 - For a list of open and fixed issues in Cumulus Linux 4.4, see the {{<link title="Cumulus Linux 4.4 Release Notes" text="Cumulus Linux 4.4 Release Notes">}}.
 - To upgrade to Cumulus Linux 4.4, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 <!-- vale off -->
-## What's New in Cumulus Linux 4.4
+## What's New in Cumulus Linux 4.4.1
 <!-- vale on -->
-Cumulus Linux 4.4 supports new platforms, provides bug fixes, and contains several new features and improvements.
+Cumulus Linux 4.4.1 provides bug fixes and contains several enhancements.
+
+### Enhancements
+
+- {{<link url="Supported-MIBs" text="Entity-Sensor-MIB extensions">}}
+- {{<link url="Switch-Port-Attributes/#drop-packets-that-exceed-the-egress-layer-3-mtu" text="Drop packets that exceed the egress layer 3 MTU">}}
+- Netfilter-ACL rules:
+  - {{<link url="Netfilter-ACLs" text="NCLU commands">}} support both a MAC address and IP address in the same rule, and support the MAC address mask
+  - {{<link url="Netfilter-ACLs/#match-on-ecn-bits-in-the-tcp-ip-header" text="Match on ECN bits in the TCP IP Header">}}
+
+<!-- vale off -->
+## What's New in Cumulus Linux 4.4.0
+<!-- vale on -->
+Cumulus Linux 4.4.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
 
 ### New Platforms
 
@@ -42,7 +55,7 @@ The NVUE commands and outputs are subject to change.
 
 ### Unsupported Platforms
 
-Cumulus Linux 4.4 supports NVIDIA Spectrum-based ASIC platforms only. Cumulus Linux 3.7 and 4.3 continue to support Broadcom-based networking ASICs.
+Cumulus Linux 4.4 supports NVIDIA Spectrum-based switches only. Cumulus Linux 3.7 and 4.3 continue to support Broadcom-based networking ASICs.
 
 ### Deprecated Features
 Cumulus Linux 4.4. no longer supports GRE and OVSDB High Availability.

@@ -164,7 +164,7 @@ To always start `switchd` with nonatomic updates:
 During regular *non-incremental nonatomic updates*, traffic stops, then continues after all the new configuration is in the hardware.
 {{%/notice%}}
 
-### Use iptables, ip6tables, and ebtables Directly
+### iptables, ip6tables, and ebtables
 
 Do not use `iptables`, `ip6tables`, `ebtables` directly; installed rules only apply to the Linux kernel and Cumulus Linux does not hardware accelerate. When you run `cl-acltool -i`, Cumulus Linux resets all rules and deletes anything that is not in `/etc/cumulus/acl/policy.conf`.
 
@@ -223,18 +223,6 @@ By default, each entry occupies one double wide entry, except if the entry is on
    {{%notice note%}}
 You can only use port ranges for ingress rules.
 {{%/notice%}}
-
-### Match on VLAN IDs on Layer 2 Interfaces
-
-You can match on VLAN IDs on layer 2 interfaces for ingress rules. The following example matches on a VLAN and DSCP class, and sets the internal class of the packet. For extended matching on IP fields, combine this rule with ingress iptable rules.
-
-```
-[ebtables]
--A FORWARD -p 802_1Q --vlan-id 100 -j mark --mark-set 0x66
-
-[iptables]
--A FORWARD -i swp31 -m mark --mark 0x66 -m dscp --dscp-class CS1 -j SETCLASS --class 2
-```
 
 ## Install and Manage ACL Rules with NCLU
 
@@ -507,9 +495,8 @@ Even though the table above specifies the ip-acl-heavy profile supports no IPv6 
 
 ## Supported Rule Types
 
-The `iptables`/`ip6tables`/`ebtables` construct tries to layer the Linux implementation on top of the underlying hardware but they are not always directly compatible. Here are the supported rules for chains in `iptables`, `ip6tables` and `ebtables`.
+The `iptables`/`ip6tables`/`ebtables` construct tries to layer the Linux implementation on top of the underlying hardware but they are not always directly compatible. This section provides the supported rules for chains in `iptables`, `ip6tables` and `ebtables`.
 
-{{%notice note%}}
 To learn more about any of the options shown in the tables below, run `iptables -h [name of option]`. The same help syntax works for options for `ip6tables` and `ebtables`.
 
 ```
@@ -528,7 +515,6 @@ tricolorpolice option:
 Supported chains for the filter table:
 INPUT FORWARD OUTPUT
 ```
-{{%/notice%}}
 
 ### iptables and ip6tables Rule Support
 
@@ -546,12 +532,12 @@ INPUT FORWARD OUTPUT
 |**Standard Targets**|ACCEPT, DROP|RETURN, CONTINUE, Jump, Fall Thru|
 |**Extended Targets**|ULOG<br>LOG<br>Unique to Cumulus Linux:<br>SPAN<br>ERSPAN<br>POLICE<br>TRICOLORPOLICE<br>SETCLASS|
 
-### Other Unsupported Rules
+### Unsupported Rules
 
 - Rules that have no matches and accept all packets in a chain are currently ignored.
 - Chain default rules (that are ACCEPT) are also ignored.
 
-#### Considerations
+### Splitting Rules Across the Ingress TCAM and the Egress TCAM
 
 Splitting rules across the ingress TCAM and the egress TCAM causes the ingress IPv6 part of the rule to match packets going to all destinations, which can interfere with the regular expected linear rule match in a sequence. For example:
 
@@ -583,9 +569,7 @@ Rule 2: `-A FORWARD --out-interface vlan101 -p icmp6 -j DROP`
 
 Rule 2 never matches on ingress. Both rules share the same mark.
 
-## Common Examples
-
-### Control Plane and Data Plane Traffic
+## Control Plane and Data Plane Traffic
 
 You can configure quality of service for traffic on both the control plane and the data plane. By using QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds.
 
@@ -647,7 +631,7 @@ SNMP_SERVERS_4 = "192.168.0.1/32"
 
 {{< /expand >}}
 
-### Set DSCP on Transit Traffic
+## Set DSCP on Transit Traffic
 
 The examples here use the *mangle* table to modify the packet as it transits the switch. DSCP is in {{<exlink url="https://en.wikipedia.org/wiki/Differentiated_services#Configuration_guidelines" text="decimal notation">}} in the examples below.
 
@@ -667,7 +651,7 @@ The examples here use the *mangle* table to modify the packet as it transits the
 -t mangle -A FORWARD -p tcp -s 10.0.0.17/32 --sport 10000:20000 -d 10.0.100.27/32 --dport 10000:20000 -j DSCP --set-dscp 34
 ```
 
-### Verify DSCP Values on Transit Traffic
+## Verify DSCP Values on Transit Traffic
 
 The examples here use the DSCP match criteria in combination with other IP, TCP, and interface matches to identify traffic and count the number of packets.
 
@@ -686,7 +670,7 @@ The examples here use the DSCP match criteria in combination with other IP, TCP,
 -A FORWARD -p tcp -s 10.0.0.17/32 --sport 10000:20000 -d 10.0.100.27/32 --dport 10000:20000 -m dscp --dscp 34 -j ACCEPT
 ```
 
-### Check the Packet and Byte Counters for ACL Rules
+## Check the Packet and Byte Counters for ACL Rules
 
 To verify the counters using the above example rules, first send test traffic matching the patterns through the network. The following example generates traffic with `{{<exlink url="http://www.netsniff-ng.org" text="mz">}}` (or `mausezahn`), which you can install on host servers or on Cumulus Linux switches. After you send traffic to validate the counters, they match on switch1 using `cl-acltool`.
 
@@ -765,7 +749,7 @@ Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
     0     0 ACCEPT     tcp  --  any    any     10.0.0.17            10.0.100.27          tcp spts:webmin:20000 dpts:webmin:2002Still working
 ```
 
-### Filter Specific TCP Flags
+## Filter Specific TCP Flags
 
 The example solution below creates rules on the INPUT and FORWARD chains to drop ingress IPv4 and IPv6 TCP packets when you set the SYN bit and reset the RST, ACK, and FIN bits. The default for the INPUT and FORWARD chains allows all other packets. The ACL apply to ports swp20 and swp21. After configuring this ACL, you cannot establish new TCP sessions that originate from ingress ports swp20 and swp21. You can establish TCP sessions that originate from any other port.
 
@@ -784,7 +768,7 @@ The `--syn` flag in the above rule matches packets with the SYN bit set and the 
 -A INPUT,FORWARD --in-interface $INGRESS_INTF -p tcp --tcp-flags SYN,RST,ACK,FIN SYN -j DROP
 ```
 
-### Control Who Can SSH into the Switch
+## Control Who Can SSH into the Switch
 
 Run the following NCLU commands to control who can SSH into the switch.
 In the following example, 10.0.0.11/32 is the interface IP address (or loopback IP address) of the switch and 10.255.4.0/24 can SSH into the switch.
@@ -800,6 +784,220 @@ cumulus@switch:~$ net commit
 {{%notice note%}}
 Cumulus Linux does not support the keyword `iprouter` (typically used for traffic that goes to the CPU, where the destination MAC address is that of the router but the destination IP address is not the router).
 {{%/notice%}}
+
+## Match on VLAN IDs on Layer 2 Interfaces
+
+You can match on VLAN IDs on layer 2 interfaces for ingress rules. The following example matches on a VLAN and DSCP class, and sets the internal class of the packet. For extended matching on IP fields, combine this rule with ingress iptable rules.
+
+```
+[ebtables]
+-A FORWARD -p 802_1Q --vlan-id 100 -j mark --mark-set 0x66
+
+[iptables]
+-A FORWARD -i swp31 -m mark --mark 0x66 -m dscp --dscp-class CS1 -j SETCLASS --class 2
+```
+<!--
+## Reflexive ACLs
+
+{{%notice note%}}
+Cumulus Linux 4.4.1 and later supports reflexive ACLs.
+{{%/notice%}}
+
+Reflexive ACLs enable you to control and restrict unwanted connections and flows throught the switch. For example, you can configure reflexive ACLs to allow and police established flows that want to access a service on a layer 4 port in a subnet. Instead of installing a new static rule for each incoming connection, the switch evaluates packets as they come in and installs dynamic ACCEPT ACLs for each connection.
+
+Cumulus Linux supports reflexive ACLs for TCP, UDP, and ICMP IPv4 traffic for connections that originate outside a network (from a host in the ISP network) and connections that originate inside the network. Reflexive ACLs restrict unestablished flows by policing them.
+
+To configure reflexive ACL rules:
+
+1. Enable reflexive ACLs:
+
+   {{< tabs "TabID818 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add reflexive-acl-enable
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "Edit /etc/cumulus/switchd.conf ">}}
+
+In the `/etc/cumulus/switchd.conf` file, uncomment and change the `rflx.reflexive_acl_enable` setting to TRUE, then restart `switchd`.
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+...
+rflx.reflexive_acl_enable = TRUE
+```
+
+{{<cl/restart-switchd>}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+2. Configure these rule types:
+   - An ingress rule with conntrack parameters (invalid, new, established, related, untracked).
+   - An egress rule with conntrack parameters (invalid, new, established, related, untracked).
+   - An ingress rule with the same IP address, port, and protocol matches as the conntrack rule with a POLICE action.
+   - An egress rule with the same IP address, port, and protocol matches as the conntrack rule with a POLICE action.
+
+   The following example rules configure TCP reflexive ACLs with a POLICE action:
+
+   ```
+   cumulus@switch:~$ net add policer-template rflx_policer mode packet rate 2000 burst 2000
+   cumulus@switch:~$ net add acl ipv4 rflx_tcp_ingress accept conntrack established,related tcp source-ip any source-port 1000 dest-ip 192.168.2.1/24 dest-port 80
+   cumulus@switch:~$ net add acl ipv4 rflx_tcp_ingress police rflx_policer tcp source-ip any source-port 1000 dest-ip 192.168.2.1/24 dest-port 80
+   cumulus@switch:~$ net add acl ipv4 rflx_tcp_egress accept conntrack established,related tcp source-ip 192.168.2.1/24 source-port 80 dest-ip any dest-port 1000
+   cumulus@switch:~$ net add acl ipv4 rflx_tcp_egress police rflx_policer tcp source-ip 192.168.2.1/24 source-port 80 dest-ip any dest-port 1000
+   ```
+
+3. Configure the interface on which you want to use the reflexive ACLs:
+
+   ```
+   cumulus@switch:~$ net add vlan 20 acl ipv4 rflx_tcp_ingress inbound
+   cumulus@switch:~$ net add vlan 20 acl ipv4 rflx_tcp_egress outbound
+   cumulus@switch:~$ net commit
+   ```
+
+For UDP and ICMP flows, you can police a new connection until the connection establishes by setting the timeout interval for inactvity:
+
+```
+cumulus@switch:~$ net add reflexive-acl age-poll-interval 8
+cumulus@switch:~$ net commit
+```
+
+You can also set the rate (in packets per second) for trapped packets and for the unreplied ingress flow:
+
+```
+cumulus@switch:~$ net add reflexive-acl trap-group-policer-rate 500
+cumulus@switch:~$ net add reflexive-acl unreplied-ingress-policer-rate 2000
+cumulus@switch:~$ net commit
+```
+
+To show all interfaces with reflexive ACL rules, run the NCL `net show reflexive-acl status` command.
+
+You can remove a reflexive ACL from an interface with the `net del <interface> acl ipv4 rflx_tcp_ingress`
+and `net del <interface> acl ipv4 rflx_tcp_egress` commands:
+
+```
+cumulus@switch:~$ net del vlan 20 acl ipv4 rflx_tcp_ingress inbound
+cumulus@switch:~$ net del vlan 20 acl ipv4 rflx_tcp_egress outbound
+cumulus@switch:~$ net commit
+```
+-->
+## Match on ECN Bits in the TCP IP Header
+
+[ECN](## "Explicit Congestion Notification") allows end-to-end notification of network congestion without dropping packets. In Cumulus Linux 4.4.1 and later, you can add ECN rules to match on the [ECE](## "ECN-Echo"), [CWR](## "Congestion Window Received"), and [ECT](## "ECN Capable Transport") flags in the TCP IPv4 header.
+
+By default, ECN rules match a packet with the bit set. You can reverse the match by using an explanation point (!).
+
+### Match on the ECE Bit
+
+After an endpoint receives a packet with the [CE](## "Congestion Experienced") bit set by a router, it sets the ECE bit in the returning ACK packet to notify the other endpoint that it needs to slow down.
+
+To match on the ECE bit:
+
+{{< tabs "TabID947 ">}}
+{{< tab "NCLU Commands ">}}
+
+Run the `net add acl ipv4 <rule-name> <action> tcp ece` command:
+
+```
+cumulus@switch:~$ net add acl ipv4 ece-rule accept tcp ece
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "iptables rule">}}
+
+Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules
+[iptables]
+-A FORWARD -i swp1 -p tcp -m ecn --ecn-tcp-ece -j ACCEPT 
+```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Match on the CWR Bit
+
+The **CWR** bit notifies the other endpoint of the connection that it received and reacted to an ECE.
+
+To match on the CWR bit:
+
+{{< tabs "TabID915 ">}}
+{{< tab "NCLU Commands ">}}
+
+Run the `net add acl ipv4 <rule-name> <action> tcp cwr` command:
+
+```
+cumulus@switch:~$ net add acl ipv4 cwr-rule accept tcp cwr
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "iptables rule ">}}
+
+Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules
+[iptables]
+-A FORWARD -i swp1 -p tcp -m ecn --ecn-tcp-cwr -j ACCEPT 
+```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Match on the ECT Bit
+
+The **ECT** codepoints negotiate if the connection is ECN capable by setting one of the two bits to 1. Routers also use the ECT bit to indicate that they are experiencing congestion by setting both the ECT codepoints to 1.
+
+To match on the ECT bit:
+
+{{< tabs "TabID979 ">}}
+{{< tab "NCLU Commands ">}}
+
+Run the `net add acl ipv4 <acl-name> <action> tcp ecn <value>` command. You can specify a value between 0 and 3.
+
+```
+cumulus@switch:~$ net add acl ipv4 ect-rule accept tcp ecn 1
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "iptables rule">}}
+
+Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules
+[iptables]
+-A FORWARD -i swp1 -p tcp -m ecn --ecn-ip-ect 1 -j ACCEPT
+```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Example Configuration
 
@@ -943,7 +1141,7 @@ Cumulus Linux does not support all `iptables`, `ip6tables`, or `ebtables` rules.
 
 ### ACL Log Policer Limits Traffic
 
-To protect the CPU from overloading, Cumulus Linux limits traffic copied to the CPU to 1 pkt/s by an ACL Log Policer.
+To protect the CPU from overloading, Cumulus Linux limits traffic copied to the CPU to 1 packet per second by an ACL Log Policer.
 
 ### Bridge Traffic Limitations
 
@@ -955,7 +1153,7 @@ You cannot forward logged packets. The hardware cannot both forward a packet and
 
 ### SPAN Sessions that Reference an Outgoing Interface
 
-SPAN sessions that reference an outgoing interface create mirrored packets based on the ingress interface before the routing/switching decision. See {{<link url="SPAN-and-ERSPAN#span-sessions-that-reference-an-outgoing-interface" text="SPAN Sessions that Reference an Outgoing Interface">}} and {{<link url="SPAN-and-ERSPAN/#use-the-cpu-port-as-the-span-destination" text="Use the CPU Port as the SPAN Destination">}} in the Network Troubleshooting section.
+SPAN sessions that reference an outgoing interface create mirrored packets based on the ingress interface before the routing decision. See {{<link url="SPAN-and-ERSPAN#span-sessions-that-reference-an-outgoing-interface" text="SPAN Sessions that Reference an Outgoing Interface">}} and {{<link url="SPAN-and-ERSPAN/#use-the-cpu-port-as-the-span-destination" text="Use the CPU Port as the SPAN Destination">}} in the Network Troubleshooting section.
 <!-- vale off -->
 ### iptables Interactions with cl-acltool
 <!-- vale on -->

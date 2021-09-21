@@ -3,6 +3,7 @@ title: Pre-built Demos
 author: NVIDIA
 weight: 30
 version: "1.0"
+product: NVIDIA Air
 ---
 
 Three demos are available in the Air simulation:

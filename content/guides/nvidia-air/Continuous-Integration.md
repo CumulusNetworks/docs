@@ -3,6 +3,7 @@ title: Continuous Integration
 author: NVIDIA
 weight: 50
 version: "1.0"
+product: NVIDIA Air
 ---
 
 NVIDIA Air supports the ability to integrate a Network Continuous Integration (NetCI) pipeline. It provides workflows to onboard production code and have it tested against a digital simulation of the network.

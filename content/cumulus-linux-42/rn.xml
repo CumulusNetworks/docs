@@ -902,13 +902,6 @@ To work around this issue, use NCLU to configure RoCE with PFC or list individua
 <td></td>
 </tr>
 <tr>
-<td>2552398</td>
-<td>In case we create a SPAN to CPU ACL for a sub interface in out direction, we do not see the vlan tag in the mirrored packet on mirror interface.
-</td>
-<td>4.2.0-4.4.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2552309</td>
 <td>The following messages are seen on an Edgecord Minipack-AS8000 running Cumulus Linux 4.2.0:
 
@@ -3077,13 +3070,6 @@ To work around this issue, boot the switch, manually change the password, then r
 <td>2552453</td>
 <td>On the Mellanox switch, RoCE with PFC configuration is not applied to all ports in hardware when a range is used in the {{traffic.conf}} file.
 To work around this issue, use NCLU to configure RoCE with PFC or list individual ports in the {{traffic.conf}} file.</td>
-<td>4.2.0-4.4.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2552398</td>
-<td>In case we create a SPAN to CPU ACL for a sub interface in out direction, we do not see the vlan tag in the mirrored packet on mirror interface.
-</td>
 <td>4.2.0-4.4.1</td>
 <td></td>
 </tr>
@@ -5624,13 +5610,6 @@ Vulnerable: 0.12.1+ds-2
 Fixed: 0.12.1+ds-2+deb10u1</td>
 <td>4.0.0-4.2.0</td>
 <td>4.2.1-4.4.1</td>
-</tr>
-<tr>
-<td>2552398</td>
-<td>In case we create a SPAN to CPU ACL for a sub interface in out direction, we do not see the vlan tag in the mirrored packet on mirror interface.
-</td>
-<td>4.2.0-4.4.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2552309</td>

@@ -9,7 +9,7 @@ In NVIDIA Cumulus Linux 4.4 and later, you no longer need a specific software li
 
 This knowledge base article answers some frequently asked questions.
 <!-- vale off -->
-## What Different Behavior should I EExpect?
+## What Different Behavior should I Expect?
 <!-- vale on -->
 When you install Cumulus Linux 4.4 or later on an NVIDIA Spectrum switch, the ASIC runs and you can configure the front-panel ports without additional requirements. Cumulus Linux no longer includes the `cl-license` command on the system and returns a `command not found` error message if you run the command.
 

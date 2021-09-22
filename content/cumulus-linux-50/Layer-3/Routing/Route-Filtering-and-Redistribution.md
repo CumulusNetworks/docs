@@ -48,6 +48,15 @@ cumulus@switch:~$ nv set router policy prefix-list prefixlist1 rule 1 action per
 cumulus@switch:~$ nv config apply
 ```
 
+For IPv6, you need to run an additional command to set the prefix list type to IPv6. For example:
+
+```
+cumulus@switch:~$ nv set router policy prefix-list prefixlistipv6 type ipv6
+cumulus@switch:~$ nv set router policy prefix-list prefixlistipv6 rule 1 match 2001:100::1/64
+cumulus@switch:~$ nv set router policy prefix-list prefixlistipv6 rule 1 action permit 
+cumulus@switch:~$ nv config apply
+```
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 

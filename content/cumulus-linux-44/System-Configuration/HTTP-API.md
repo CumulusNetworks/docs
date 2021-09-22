@@ -4,32 +4,30 @@ author: NVIDIA
 weight: 270
 toc: 3
 ---
-Cumulus Linux implements an HTTP application programming interface to {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}. Instead of accessing Cumulus Linux using SSH, you can interact with the switch using an HTTP client, such as cURL, HTTPie or a web browser.
+Cumulus Linux implements an HTTP application programming interface to {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}. Instead of accessing Cumulus Linux using SSH, you can interact with the switch using an HTTP client, such as cURL, HTTPie or web browser.
 
 ## HTTP API Basics
 
-Cumulus Linux includes the supporting software for the API. 
-
-To use the REST API, you must enable `nginx` on the switch:
+Cumulus Linux includes the supporting software for the API. To use the REST API, you must enable `nginx` on the switch:
 
 ```
 cumulus@switch:~$ sudo systemctl enable nginx; systemctl restart nginx
 ```
 
-To enable the HTTP API service, run the following `systemd` command:
+To enable the HTTP API service, run the following command:
 
 ```
 cumulus@switch:~$ sudo systemctl enable restserver
 ```
 
-To start or stop the service, run the `systemctl start` and `systemctl stop` commands:
+To start or stop the service, run the following commands:
 
 ```
 cumulus@switch:~$ sudo systemctl start restserver
 cumulus@switch:~$ sudo systemctl stop restserver
 ```
 
-To disable the service from running at startup, run the `systemctl disable` command:
+To disable the service from running at startup, run the following command:
 
 ```
 cumulus@switch:~$ sudo systemctl disable restserver
@@ -39,7 +37,7 @@ Each service runs as a background daemon.
 
 ## Configure API Services
 
-To configure the HTTP API services, edit the `/etc/nginx/sites-available/nginx-restapi.conf` configuration file to enter the IP address on which the REST API listens, then run the `sudo systemctl restart nginx` command.
+To configure the HTTP API services, edit the `/etc/nginx/sites-available/nginx-restapi.conf` configuration file, enter the IP address on which the REST API listens, then run the `sudo systemctl restart nginx` command.
 
 ### IP and Port Settings
 

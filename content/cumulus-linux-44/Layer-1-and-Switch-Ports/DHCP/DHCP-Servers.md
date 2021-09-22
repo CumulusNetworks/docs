@@ -254,7 +254,7 @@ cumulus@switch:~$ nv config apply
 2. Restart the `dhcpd` service:
 
    ```
-   cumulus@switch:~$ sudo systemctl restart dhcpd6.service
+   cumulus@switch:~$ sudo systemctl restart dhcpd.service
    ```
 
 {{< /tab >}}
@@ -344,7 +344,7 @@ cumulus@switch:~$ nv config apply
 2. Restart the `dhcpd` service:
 
    ```
-   cumulus@switch:~$ sudo systemctl restart dhcpd6.service
+   cumulus@switch:~$ sudo systemctl restart dhcpd.service
    ```
 
 {{< /tab >}}

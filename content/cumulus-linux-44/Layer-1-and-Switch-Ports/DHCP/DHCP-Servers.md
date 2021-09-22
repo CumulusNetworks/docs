@@ -4,13 +4,11 @@ author: NVIDIA
 weight: 350
 toc: 3
 ---
-A DHCP Server automatically provides and assigns IP addresses and other network parameters to client devices. It relies on the Dynamic Host Configuration Protocol to respond to broadcast requests from clients.
+A DHCP server automatically provides and assigns IP addresses and other network parameters to client devices. It relies on [DHCP](## "Dynamic Host Configuration Protocol") to respond to broadcast requests from clients.
 
 {{%notice note%}}
 If you intend to run the `dhcpd` service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF/#run-services-within-the-management-vrf" text="these steps">}}.
 {{%/notice%}}
-
-For information about DHCP relays, refer to {{<link title="DHCP Relays">}}.
 
 ## Basic Configuration
 
@@ -111,7 +109,6 @@ To set the DNS server IP address and domain name globally, use the `nv set servi
    }
    ```
 
-   {{%notice note%}}
 To set the DNS server IP address and domain name globally, add the DNS server IP address and domain name before the pool information in the `/etc/dhcp/dhcpd.conf` file. For example:
 
 ```
@@ -125,7 +122,6 @@ subnet 10.1.10.0 netmask 255.255.255.0 {
    max-lease-time 3600;
 ...
 ```
-{{%/notice%}}
 
 2. Edit the `/etc/default/isc-dhcp-server` configuration file so that the DHCP server starts when the system boots. Here is an example configuration:
 
@@ -456,7 +452,7 @@ cumulus@switch:~$ nv config apply
    ...
    host myhost {
        ifname "swp1" ;
-       fixed-address 10.0.0.10 ;
+       fixed-address 2001:db8:1::100 ;
    }
    ...
    ```

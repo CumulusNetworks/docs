@@ -52,9 +52,7 @@ cumulus@switch:~$ nv set service dhcp-server default static server1 mac-address 
 cumulus@switch:~$ nv config apply
 ```
 
-{{%notice note%}}
 To set the DNS server IP address and domain name globally, use the `nv set service dhcp-server <vrf> domain-name-server <address>` and `nv set service dhcp-server <vrf> domain-name <domain>` commands.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "IPv6 ">}}
@@ -71,9 +69,7 @@ cumulus@switch:~$ nv set service dhcp-server6 default static server1 mac-address
 cumulus@switch:~$ nv config apply
 ```
 
-{{%notice note%}}
 To set the DNS server IP address and domain name globally, use the `nv set service dhcp-server6 <vrf> domain-name-server <address>` and `nv set service dhcp-server6 <vrf> domain-name <domain>` commands.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -167,7 +163,6 @@ subnet 10.1.10.0 netmask 255.255.255.0 {
    }
    ```
 
-    {{%notice note%}}
 To set the DNS server IP address and domain name globally, add the DNS server IP address and domain name before the pool information in the `/etc/dhcp/dhcpd6.conf` file. For example:
 
 ```
@@ -181,7 +176,6 @@ subnet6 2001:db8::1/128 {
    max-lease-time 3600;
 ...
 ```
-{{%/notice%}}
 
 2. Edit the `/etc/default/isc-dhcp-server6` file so that the DHCP server launches when the system boots. Here is an example configuration:
 

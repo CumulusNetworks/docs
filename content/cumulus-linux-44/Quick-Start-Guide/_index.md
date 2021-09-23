@@ -103,9 +103,9 @@ iface eth0
 {{< /tab >}}
 {{< /tabs >}}
 
-### Configure the Hostname and Time zone
+### Configure the Hostname
 
-Configure the hostname and time zone for your switch. The hostname identifies the switch; make sure you configure the hostname to be unique and descriptive.
+The hostname identifies the switch; make sure you configure the hostname to be unique and descriptive.
 
 {{%notice note%}}
 Do not use an underscore (_), apostrophe ('), or non-ASCII characters in the hostname.
@@ -153,6 +153,8 @@ cumulus@switch:~$ nv config apply
 {{%notice note%}}
 The command prompt in the terminal does not reflect the new hostname until you either log out of the switch or start a new shell.
 {{%/notice%}}
+
+### Configure the Time Zone
 
 The default time zone on the switch is UTC (Coordinated Universal Time). Change the time zone on your switch to be the time zone for your location.
 

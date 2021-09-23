@@ -1340,7 +1340,6 @@ router bgp 65163 vrf EXTERNAL2
 {{< /tabs >}}
 
 {{< /tab >}}
-
 {{< tab "Try It " >}}
     {{< simulation name="Try It CL44 - DVNIv2" showNodes="leaf01,spine01,border01,server01,fw1" >}}
 
@@ -1352,7 +1351,6 @@ This simulation starts with the example downstream VNI configuration. To simplif
 To validate the configuration, run the verification commands shown below.
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### Verify the Configuration

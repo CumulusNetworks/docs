@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1500
 toc: 2
 ---
-This documentation includes pre-built **Try It** demos for certain Cumulus Linux features. The Try It demos run a simulation in NVIDIA Air; a cloud hosted platform that behaves exactly like a real world production deployment. All the Try It demos use the NVIDIA Cumulus Linux reference topology.
+This documentation includes pre-built **Try It** demos for certain Cumulus Linux features. The Try It demos run a simulation in NVIDIA Air; a cloud hosted platform that works exactly like a real world production deployment. All the Try It demos use the NVIDIA Cumulus Linux reference topology.
 
 ## Access a Try It Demo
 
@@ -24,5 +24,5 @@ When the simulation is ready, you can log into the leaf and spine switches. The 
 
 ## Launch in AIR
 <!-- vale off -->
-If you want to save the simulation or extend the run time, click **LAUNCH IN AIR** to access the network simulation platform. From this platform, you can run additional pre-build demos and even build your own simulations. Refer to the [NVIDIA Air User Guide]({{<ref "/guides/nvidia-air" >}}).
+If you want to save the simulation or extend the run time, click **LAUNCH IN AIR** to access the network simulation platform. From this platform, you can run additional pre-built demos and even build your own simulations. Refer to the [NVIDIA Air User Guide]({{<ref "/guides/nvidia-air" >}}).
 <!-- vale on -->

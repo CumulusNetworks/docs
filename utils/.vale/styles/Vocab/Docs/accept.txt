@@ -200,7 +200,7 @@ mkhomedir
 mstpctl
 mstpd
 multihomed?
-multihoming
+(Multihoming|multihoming)
 multiport
 mysecret
 myuser

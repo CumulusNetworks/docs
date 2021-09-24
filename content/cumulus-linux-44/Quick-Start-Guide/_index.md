@@ -103,9 +103,9 @@ iface eth0
 {{< /tab >}}
 {{< /tabs >}}
 
-### Configure the Hostname and Time zone
+### Configure the Hostname
 
-Configure the hostname and time zone for your switch. The hostname identifies the switch; make sure you configure the hostname to be unique and descriptive.
+The hostname identifies the switch; make sure you configure the hostname to be unique and descriptive.
 
 {{%notice note%}}
 Do not use an underscore (_), apostrophe ('), or non-ASCII characters in the hostname.
@@ -153,6 +153,8 @@ cumulus@switch:~$ nv config apply
 {{%notice note%}}
 The command prompt in the terminal does not reflect the new hostname until you either log out of the switch or start a new shell.
 {{%/notice%}}
+
+### Configure the Time Zone
 
 The default time zone on the switch is UTC (Coordinated Universal Time). Change the time zone on your switch to be the time zone for your location.
 
@@ -213,14 +215,14 @@ To view link status, run the `net show interface all` command.
 To administratively enable a port:
 
 ```
-cumulus@switch:~$ nv set interface swp1 link state up
+cumulus@switch:~$ nv set interface swp1
 cumulus@switch:~$ nv config apply
 ```
 
 To administratively enable all physical ports on a switch that has ports numbered from swp1 to swp52:
 
 ```
-cumulus@switch:~$ nv set interface swp1-52 link state up
+cumulus@switch:~$ nv set interface swp1-52
 cumulus@switch:~$ nv config apply
 ```
 

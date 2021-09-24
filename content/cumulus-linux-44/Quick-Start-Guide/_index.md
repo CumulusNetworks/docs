@@ -215,14 +215,14 @@ To view link status, run the `net show interface all` command.
 To administratively enable a port:
 
 ```
-cumulus@switch:~$ nv set interface swp1 link state up
+cumulus@switch:~$ nv set interface swp1
 cumulus@switch:~$ nv config apply
 ```
 
 To administratively enable all physical ports on a switch that has ports numbered from swp1 to swp52:
 
 ```
-cumulus@switch:~$ nv set interface swp1-52 link state up
+cumulus@switch:~$ nv set interface swp1-52
 cumulus@switch:~$ nv config apply
 ```
 

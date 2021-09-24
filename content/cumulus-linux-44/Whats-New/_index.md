@@ -71,5 +71,6 @@ The following Try It demos are currently available:
 - {{<link url="EVPN-Multihoming/#evpn-mh-with-head-end-replication" text="EVPN multihoming">}}
 - {{<link url="Inter-subnet-Routing/#configure-route-targets" text="EVPN downstream VNI">}}
 - {{<link url="Protocol-Independent-Multicast-PIM/#example-pim-configuration" text="PIM">}}
+- {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#nvue-commands" text="MLAG">}}
 
 For more information, see {{<link url="Try-It-Pre-built-Demos" text="Try It Pre-built Demos">}}.

@@ -830,6 +830,7 @@ For an example configuration with MLAG and BGP, see the {{<link title="Configura
 
 ```
 cumulus@leaf01:~$ net add loopback lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ net add interface swp1-3,swp49-51
 cumulus@leaf01:~$ net add bond bond1 bond slaves swp1
 cumulus@leaf01:~$ net add bond bond2 bond slaves swp2
 cumulus@leaf01:~$ net add bond bond3 bond slaves swp3
@@ -855,6 +856,7 @@ cumulus@leaf01:~$ net commit
 
 ```
 cumulus@leaf02:~$ net add loopback lo ip address 10.10.10.2/32
+cumulus@leaf02:~$ net add interface swp1-3,swp49-51
 cumulus@leaf02:~$ net add bond bond1 bond slaves swp1
 cumulus@leaf02:~$ net add bond bond2 bond slaves swp2
 cumulus@leaf02:~$ net add bond bond3 bond slaves swp3
@@ -880,7 +882,7 @@ cumulus@leaf02:~$ net commit
 
 ```
 cumulus@spine01:~$ net add loopback lo ip address 10.10.10.101/32
-cumulus@spine01:~$ net add interface swp1
+cumulus@spine01:~$ net add interface swp1-2
 cumulus@spine01:~$ net pending
 cumulus@spine01:~$ net commit
 ```
@@ -915,6 +917,9 @@ iface swp49
 
 auto swp50
 iface swp50
+
+auto swp51
+iface swp51
 
 auto bond1
 iface bond1
@@ -1003,6 +1008,9 @@ iface swp49
 auto swp50
 iface swp50
 
+auto swp51
+iface swp51
+
 auto bond1
 iface bond1
     bond-slaves swp1
@@ -1078,6 +1086,9 @@ iface lo inet loopback
 auto swp1
 iface swp1
 
+auto swp2
+iface swp2
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -1105,6 +1116,7 @@ iface eth0 inet dhcp
 
 ```
 cumulus@leaf01:~$ nv set interface lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ nv set interface swp1-3,swp49-51
 cumulus@leaf01:~$ nv set interface bond1 bond member swp1
 cumulus@leaf01:~$ nv set interface bond2 bond member swp2
 cumulus@leaf01:~$ nv set interface bond3 bond member swp3
@@ -1129,6 +1141,7 @@ cumulus@leaf01:~$ nv config apply
 
 ```
 cumulus@leaf02:~$ nv set interface lo ip address 10.10.10.2/32
+cumulus@leaf02:~$ nv set interface swp1-3,swp49-51
 cumulus@leaf02:~$ nv set interface bond1 bond member swp1
 cumulus@leaf02:~$ nv set interface bond2 bond member swp2
 cumulus@leaf02:~$ nv set interface bond3 bond member swp3
@@ -1153,7 +1166,7 @@ cumulus@leaf02:~$ nv config apply
 
 ```
 cumulus@spine01:~$ nv set interface lo ip address 10.10.10.101/32
-cumulus@spine01:~$ nv set interface swp1 link state up
+cumulus@spine01:~$ nv set interface swp1-2
 cumulus@spine01:~$ nv config apply
 ```
 
@@ -1343,9 +1356,8 @@ cumulus@spine01:~$ nv config apply
             10.10.10.101/32: {}
         type: loopback
       swp1:
-        link:
-          state:
-            up: {}
+        type: swp
+      swp2:
         type: swp
 ```
 
@@ -1374,6 +1386,24 @@ iface eth0 inet dhcp
     ip-forward off
     ip6-forward off
     vrf mgmt
+
+auto swp1
+iface swp1
+
+auto swp2
+iface swp2
+
+auto swp3
+iface swp3
+
+auto swp49
+iface swp49
+
+auto swp50
+iface swp50
+
+auto swp51
+iface swp51
 
 auto bond1
 iface bond1
@@ -1458,6 +1488,24 @@ iface eth0 inet dhcp
     ip-forward off
     ip6-forward off
     vrf mgmt
+
+auto swp1
+iface swp1
+
+auto swp2
+iface swp2
+
+auto swp3
+iface swp3
+
+auto swp49
+iface swp49
+
+auto swp50
+iface swp50
+
+auto swp51
+iface swp51
 
 auto bond1
 iface bond1
@@ -1545,10 +1593,21 @@ iface eth0 inet dhcp
 
 auto swp1
 iface swp1
+
+auto swp2
+iface swp2
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "Try It " >}}
+    {{< simulation name="Try It CL44 - MLAG" showNodes="leaf01,leaf02,spine01,server01,server02,server03" >}}
+
+This simulation starts with the example MLAG configuration. The demo is pre-configured using NVUE commands.
+
+To validate the configuration, run the commands listed in the troubleshooting section below.
 
 {{< /tab >}}
 {{< /tabs >}}

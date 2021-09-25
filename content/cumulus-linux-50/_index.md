@@ -18,6 +18,20 @@ Cumulus Linux 5.0 includes the NVIDIA Cumulus NetQ agent and CLI. You can use Cu
 
 For a list of the new features in this release, see {{<link url="Whats-New" text="What's New">}}. For bug fixes and known issues present in this release, refer to the {{<link url="Cumulus-Linux-5.0-Release-Notes" text="Cumulus Linux 5.0 Release Notes">}}.
 
+## Try It Pre-built Demos
+
+The Cumulus Linux documentation includes pre-built Try It demos for certain Cumulus Linux features. The Try It demos run a simulation in NVIDIA Air; a cloud hosted platform that works exactly like a real world production deployment. Use the Try It demos to examine switch configuration for a feature.
+
+The following Try It demos are currently available:
+- {{<link url="Configuration-Example/#nvue-commands" text="BGP">}}
+- {{<link url="Inter-subnet-Routing/#configure-route-targets" text="EVPN downstream VNI">}}
+- {{<link url="EVPN-Multihoming/#evpn-mh-with-head-end-replication" text="EVPN multihoming">}}
+- {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#nvue-commands" text="MLAG">}}
+- {{<link url="Protocol-Independent-Multicast-PIM/#example-pim-configuration" text="PIM">}}
+- {{<link url="Static-VXLAN-Tunnels/#single-vxlan-device" text="Single VXLAN device">}}
+
+For more information, see {{<link url="Try-It-Pre-built-Demos" text="Try It Pre-built Demos">}}.
+
 ## Open Source Contributions
 
 To implement various Cumulus Linux features, NVIDIA has forked various software projects, like CFEngine `Netdev` and some Puppet Labs packages. Some of the forked code resides in the NVIDIA Networking {{<exlink url="https://github.com/CumulusNetworks" text="GitHub repository" >}} and some is available as part of the Cumulus Linux repository as Debian source packages.

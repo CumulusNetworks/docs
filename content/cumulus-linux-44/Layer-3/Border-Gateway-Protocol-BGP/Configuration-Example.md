@@ -708,6 +708,7 @@ router bgp 65199
 
 ```
 cumulus@leaf01:~$ nv set interface lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ nv set interface swp1-3,swp49-52
 cumulus@leaf01:~$ nv set interface bond1 bond member swp1
 cumulus@leaf01:~$ nv set interface bond2 bond member swp2
 cumulus@leaf01:~$ nv set interface bond3 bond member swp3
@@ -738,6 +739,7 @@ cumulus@leaf01:~$ nv config apply
 
 ```
 cumulus@leaf02:~$ nv set interface lo ip address 10.10.10.2/32
+cumulus@leaf02:~$ nv set interface swp1-3,swp49-52
 cumulus@leaf02:~$ nv set interface bond1 bond member swp1
 cumulus@leaf02:~$ nv set interface bond2 bond member swp2
 cumulus@leaf02:~$ nv set interface bond3 bond member swp3
@@ -767,6 +769,7 @@ cumulus@leaf02:~$ nv config apply
 
 ```
 cumulus@leaf03:~$ nv set interface lo ip address 10.10.10.3/32
+cumulus@leaf03:~$ nv set interface swp1-3,swp49-52
 cumulus@leaf03:~$ nv set interface bond1 bond member swp1
 cumulus@leaf03:~$ nv set interface bond2 bond member swp2
 cumulus@leaf03:~$ nv set interface bond3 bond member swp3
@@ -796,6 +799,7 @@ cumulus@leaf03:~$ nv config apply
 
 ```
 cumulus@leaf04:~$ nv set interface lo ip address 10.10.10.4/32
+cumulus@leaf04:~$ nv set interface swp1-3,swp49-52
 cumulus@leaf04:~$ nv set interface bond1 bond member swp1
 cumulus@leaf04:~$ nv set interface bond2 bond member swp2
 cumulus@leaf04:~$ nv set interface bond3 bond member swp3
@@ -825,6 +829,7 @@ cumulus@leaf04:~$ nv config apply
 
 ```
 cumulus@spine01:~$ nv set interface lo ip address 10.10.10.101/32
+cumulus@spine01:~$ nv set interface swp1-4
 cumulus@spine01:~$ nv set router bgp autonomous-system 65199
 cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
 cumulus@spine01:~$ nv set vrf default router bgp peer swp1 remote-as external
@@ -840,6 +845,7 @@ cumulus@spine01:~$ nv config apply
 
 ```
 cumulus@spine02:~$ nv set interface lo ip address 10.10.10.102/32
+cumulus@spine02:~$ nv set interface swp1-4
 cumulus@spine02:~$ nv set router bgp autonomous-system 65199
 cumulus@spine02:~$ nv set router bgp router-id 10.10.10.102
 cumulus@spine02:~$ nv set vrf default router bgp peer swp1 remote-as external
@@ -1373,6 +1379,14 @@ cumulus@spine02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "Try It " >}}
+    {{< simulation name="Try It CL44 - BGP" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
+
+This simulation starts with the example BGP configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-44/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
+
+To validate the configuration, run the commands listed in the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-44/Layer-3/Border-Gateway-Protocol-BGP/Troubleshooting/" text="Troubleshooting">}} section.
 
 {{< /tab >}}
 {{< /tabs >}}

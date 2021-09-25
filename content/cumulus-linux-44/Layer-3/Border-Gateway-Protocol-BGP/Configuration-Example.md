@@ -1381,4 +1381,12 @@ cumulus@spine02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 {{< /tabs >}}
 
 {{< /tab >}}
+{{< tab "Try It " >}}
+    {{< simulation name="Try It CL44 - BGP" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
+
+This simulation starts with the example BGP configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-44/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
+
+To validate the configuration, run the commands listed in the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-44/Layer-3/Border-Gateway-Protocol-BGP/Troubleshooting/" text="Troubleshooting">}} section.
+
+{{< /tab >}}
 {{< /tabs >}}

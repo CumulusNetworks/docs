@@ -36,7 +36,8 @@ cumulus@leaf01:~$ net add bgp router-id 10.10.10.1
 cumulus@leaf01:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf01:~$ net add bgp neighbor swp52 remote-as external
 cumulus@leaf01:~$ net add bgp ipv4 unicast network 10.10.10.1/32
-cumulus@leaf01:~$ net add bgp ipv4 unicast network 10.1.10.0/24 
+cumulus@leaf01:~$ net add bgp ipv4 unicast network 10.1.10.0/24
+cumulus@leaf01:~$ net add bgp ipv4 unicast redistribute connected 
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -64,6 +65,7 @@ cumulus@leaf02:~$ net add bgp router-id 10.10.10.2
 cumulus@leaf02:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf02:~$ net add bgp neighbor swp52 remote-as external
 cumulus@leaf02:~$ net add bgp ipv4 unicast network 10.10.10.1/32
+cumulus@leaf02:~$ net add bgp ipv4 unicast redistribute connected
 cumulus@leaf02:~$ net pending
 cumulus@leaf02:~$ net commit
 ```
@@ -91,6 +93,7 @@ cumulus@leaf03:~$ net add bgp router-id 10.10.10.3
 cumulus@leaf03:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf03:~$ net add bgp neighbor swp52 remote-as external
 cumulus@leaf03:~$ net add bgp ipv4 unicast network 10.10.10.3/32
+cumulus@leaf03:~$ net add bgp ipv4 unicast redistribute connected
 cumulus@leaf03:~$ net pending
 cumulus@leaf03:~$ net commit
 ```
@@ -118,6 +121,7 @@ cumulus@leaf04:~$ net add bgp router-id 10.10.10.3
 cumulus@leaf04:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf04:~$ net add bgp neighbor swp52 remote-as external
 cumulus@leaf04:~$ net add bgp ipv4 unicast network 10.10.10.101/32
+cumulus@leaf04:~$ net add bgp ipv4 unicast redistribute connected
 cumulus@leaf04:~$ net pending
 cumulus@leaf04:~$ net commit
 ```
@@ -163,63 +167,9 @@ cumulus@spine02:~$ net commit
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/network/interfaces
-
 auto lo
 iface lo inet loopback
     address 10.10.10.1/32
-
-auto mgmt
-iface mgmt
-    address 127.0.0.1/8
-    vrf-table auto
-
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-
-auto bond1
-iface bond1
-    bond-slaves swp1
-    clag-id 1
-
-auto bond2
-iface bond2
-    bond-slaves swp2
-    clag-id 2
-
-auto bond3
-iface bond3
-    bond-slaves swp3
-    clag-id 3
-
-auto peerlink
-iface peerlink
-    bond-slaves swp49 swp50
-
-auto peerlink.4094
-iface peerlink.4094
-    clagd-peer-ip linklocal
-    clagd-backup-ip 10.10.10.2
-    clagd-sys-mac 44:38:39:BE:EF:AA
-    clagd-args --initDelay 180
-
-auto vlan10
-iface vlan10
-    address 10.1.10.2/24
-    vlan-raw-device bridge
-    vlan-id 10
-
-auto vlan20
-iface vlan20
-    address 10.1.20.2/24
-    vlan-raw-device bridge
-    vlan-id 20
-
-auto vlan30
-iface vlan30
-    address 10.1.30.2/24
-    vlan-raw-device bridge
-    vlan-id 30
 
 auto swp1
 iface swp1
@@ -242,12 +192,66 @@ iface swp51
 auto swp52
 iface swp52
 
+auto bond1
+iface bond1
+    bond-slaves swp1
+    clag-id 1
+
+auto bond2
+iface bond2
+    bond-slaves swp2
+    clag-id 2
+
+auto bond3
+iface bond3
+    bond-slaves swp3
+    clag-id 3
+
 auto bridge
 iface bridge
-  bridge-ports peerlink bond1 bond2 bond3
-  bridge-vlan-aware yes
-  bridge-vids 10 20 30
-  bridge-pvid 1
+    bridge-ports bond1 bond2 bond3 peerlink
+    bridge-pvid 1
+    bridge-vids 10 20 30
+    bridge-vlan-aware yes
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.2
+    clagd-peer-ip linklocal
+    clagd-priority 1000
+    clagd-sys-mac 44:38:39:BE:EF:AA
+
+auto vlan10
+iface vlan10
+    address 10.1.10.2/24
+    vlan-id 10
+    vlan-raw-device bridge
+
+auto vlan20
+iface vlan20
+    address 10.1.20.2/24
+    vlan-id 20
+    vlan-raw-device bridge
+
+auto vlan30
+iface vlan30
+    address 10.1.30.2/24
+    vlan-id 30
+    vlan-raw-device bridge
 ```
 
 {{< /tab >}}
@@ -259,14 +263,26 @@ auto lo
 iface lo inet loopback
     address 10.10.10.2/32
 
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
+auto swp1
+iface swp1
 
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
+auto swp2
+iface swp2
+
+auto swp3
+iface swp3
+
+auto swp49
+iface swp49
+
+auto swp50
+iface swp50
+
+auto swp51
+iface swp52
+
+auto swp52
+iface swp52
 
 auto bond1
 iface bond1
@@ -282,6 +298,22 @@ auto bond3
 iface bond3
     clag-id 3
     bond-slaves swp3
+
+auto bridge
+iface bridge
+    bridge-ports peerlink bond1 bond2 bond3
+    bridge-vlan-aware yes
+    bridge-vids 10 20 30
+    bridge-pvid 1
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
 
 auto peerlink
 iface peerlink
@@ -310,6 +342,16 @@ iface vlan30
     address 10.1.30.3/24
     vlan-raw-device bridge
     vlan-id 30
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ sudo cat /etc/network/interfaces
+auto lo
+iface lo inet loopback
+    address 10.10.10.3/32
 
 auto swp1
 iface swp1
@@ -327,36 +369,10 @@ auto swp50
 iface swp50
 
 auto swp51
-iface swp52
+iface swp51
 
 auto swp52
 iface swp52
-
-auto bridge
-iface bridge
-    bridge-ports peerlink bond1 bond2 bond3
-    bridge-vlan-aware yes
-    bridge-vids 10 20 30
-    bridge-pvid 1
-```
-
-{{< /tab >}}
-{{< tab "leaf03 ">}}
-
-```
-cumulus@leaf03:~$ sudo cat /etc/network/interfaces
-auto lo
-iface lo inet loopback
-    address 10.10.10.3/32
-
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
 
 auto bond1
 iface bond1
@@ -372,6 +388,21 @@ auto bond3
 iface bond3
     bond-slaves swp3
     clag-id 3
+
+auto bridge
+iface bridge
+    bridge-ports peerlink bond1 bond2 bond3
+    bridge-vids 40 50 60
+    bridge-vlan-aware yes
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
 
 auto peerlink
 iface peerlink
@@ -401,6 +432,16 @@ iface vlan60
     address 10.1.60.2/24
     vlan-raw-device bridge
     vlan-id 60
+```
+
+{{< /tab >}}
+{{< tab "leaf04 ">}}
+
+```
+cumulus@leaf04:~$ sudo cat /etc/network/interfaces
+auto lo
+iface lo inet loopback
+    address 10.10.10.4/32
 
 auto swp1
 iface swp1
@@ -423,31 +464,6 @@ iface swp51
 auto swp52
 iface swp52
 
-auto bridge
-iface bridge
-    bridge-ports peerlink bond1 bond2 bond3
-    bridge-vids 40 50 60
-    bridge-vlan-aware yes
-```
-
-{{< /tab >}}
-{{< tab "leaf04 ">}}
-
-```
-cumulus@leaf04:~$ sudo cat /etc/network/interfaces
-auto lo
-iface lo inet loopback
-    address 10.10.10.4/32
-
-auto mgmt
-iface mgmt
-    address 127.0.0.1/8
-    vrf-table auto
-
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-
 auto bond1
 iface bond1
     bond-slaves swp
@@ -462,6 +478,21 @@ auto bond3
 iface bond3
     bond-slaves swp3
     clag-id 3
+
+auto bridge
+iface bridge
+    bridge-ports peerlink bond1 bond2 bond3
+    bridge-vids 40 50 60
+    bridge-vlan-aware yes
+
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    vrf-table auto
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
 
 auto peerlink
 iface peerlink
@@ -490,33 +521,6 @@ iface vlan60
     address 10.1.60.3/24
     vlan-raw-device bridge
     vlan-id 60
-
-auto swp1
-iface swp1
-
-auto swp2
-iface swp2
-
-auto swp3
-iface swp3
-
-auto swp49
-iface swp49
-
-auto swp50
-iface swp50
-
-auto swp51
-iface swp51
-
-auto swp52
-iface swp52
-
-auto bridge
-iface bridge
-    bridge-ports peerlink bond1 bond2 bond3
-    bridge-vids 40 50 60
-    bridge-vlan-aware yes
 ```
 
 {{< /tab >}}
@@ -602,6 +606,7 @@ router bgp 65101
  address-family ipv4 unicast
   network 10.10.10.1/32
   network 10.1.10.0/24
+  redistribute connected
  exit-address-family
 ```
 
@@ -619,6 +624,7 @@ router bgp 65102
  neighbor swp52 remote-as external
  address-family ipv4 unicast
   network 10.10.10.2/32
+  redistribute connected
  exit-address-family
 ```
 
@@ -636,6 +642,7 @@ router bgp 65103
  neighbor swp52 remote-as external
  address-family ipv4 unicast
   network 10.10.10.3/32
+  redistribute connected
  exit-address-family
 ```
 
@@ -653,6 +660,7 @@ router bgp 65104
  neighbor swp52 remote-as external
  address-family ipv4 unicast
   network 10.10.10.4/32
+  redistribute connected
  exit-address-family
 ```
 

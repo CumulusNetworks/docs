@@ -731,6 +731,7 @@ cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 remote-as external
 cumulus@leaf01:~$ nv set vrf default router bgp peer swp52 remote-as external
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.1.10.0/24
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -761,6 +762,7 @@ cumulus@leaf02:~$ nv set router bgp router-id 10.10.10.2
 cumulus@leaf02:~$ nv set vrf default router bgp peer swp51 remote-as external
 cumulus@leaf02:~$ nv set vrf default router bgp peer swp52 remote-as external
 cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.2/32
+cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf02:~$ nv config apply
 ```
 
@@ -791,6 +793,7 @@ cumulus@leaf03:~$ nv set router bgp router-id 10.10.10.3
 cumulus@leaf03:~$ nv set vrf default router bgp peer swp51 remote-as external
 cumulus@leaf03:~$ nv set vrf default router bgp peer swp52 remote-as external
 cumulus@leaf03:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.3/32
+cumulus@leaf03:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf03:~$ nv config apply
 ```
 
@@ -821,6 +824,7 @@ cumulus@leaf04:~$ nv set router bgp router-id 10.10.10.4
 cumulus@leaf04:~$ nv set vrf default router bgp peer swp51 remote-as external
 cumulus@leaf04:~$ nv set vrf default router bgp peer swp52 remote-as external
 cumulus@leaf04:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.4/32
+cumulus@leaf04:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf04:~$ nv config apply
 ```
 
@@ -870,12 +874,26 @@ The NVUE `nv config save` command saves the configuration in the `/etc/nvue.d/st
 ```
 cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
 - set:
-    interface:
+     interface:
       lo:
         ip:
           address:
             10.10.10.1/32: {}
         type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp49:
+        type: swp
+      swp50:
+        type: swp
+      swp51:
+        type: swp
+      swp52:
+        type: swp
       bond1:
         bond:
           member:
@@ -906,16 +924,6 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
         bridge:
           domain:
             br_default: {}
-      peerlink:
-        bond:
-          member:
-            swp49: {}
-            swp50: {}
-        type: peerlink
-      peerlink.4094:
-        type: sub
-        base-interface: peerlink
-        vlan: 4094
       vlan10:
         ip:
           address:
@@ -934,11 +942,16 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             10.1.30.2/24: {}
         type: svi
         vlan: 30
-    mlag:
-      mac-address: 44:38:39:BE:EF:AA
-      backup:
-        10.10.10.2: {}
-      peer-ip: linklocal
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        type: sub
+        base-interface: peerlink
+        vlan: 4094
     bridge:
       domain:
         br_default:
@@ -946,7 +959,12 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             '10': {}
             '20': {}
             '30': {}
-          untagged: 1
+    mlag:
+      mac-address: 44:38:39:BE:EF:AA
+      backup:
+        10.10.10.2: {}
+      peer-ip: linklocal
+      init-delay: 100
     router:
       bgp:
         autonomous-system: 65101
@@ -970,6 +988,9 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                   10.10.10.1/32: {}
                   10.1.10.0/24: {}
                 enable: on
+                redistribute:
+                  connected:
+                    enable: on
 ```
 
 {{< /tab >}}
@@ -978,12 +999,26 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 - set:
-    interface:
+      interface:
       lo:
         ip:
           address:
             10.10.10.2/32: {}
         type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp49:
+        type: swp
+      swp50:
+        type: swp
+      swp51:
+        type: swp
+      swp52:
+        type: swp
       bond1:
         bond:
           member:
@@ -1014,16 +1049,6 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
         bridge:
           domain:
             br_default: {}
-      peerlink:
-        bond:
-          member:
-            swp49: {}
-            swp50: {}
-        type: peerlink
-      peerlink.4094:
-        type: sub
-        base-interface: peerlink
-        vlan: 4094
       vlan10:
         ip:
           address:
@@ -1042,11 +1067,16 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             10.1.30.3/24: {}
         type: svi
         vlan: 30
-    mlag:
-      mac-address: 44:38:39:BE:EF:AA
-      backup:
-        10.10.10.1: {}
-      peer-ip: linklocal
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        type: sub
+        base-interface: peerlink
+        vlan: 4094
     bridge:
       domain:
         br_default:
@@ -1054,7 +1084,12 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             '10': {}
             '20': {}
             '30': {}
-          untagged: 1
+    mlag:
+      mac-address: 44:38:39:BE:EF:AA
+      backup:
+        10.10.10.1: {}
+      peer-ip: linklocal
+      init-delay: 100
     router:
       bgp:
         autonomous-system: 65102
@@ -1077,6 +1112,9 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 static-network:
                   10.10.10.2/32: {}
                 enable: on
+                redistribute:
+                  connected:
+                    enable: on
 ```
 
 {{< /tab >}}
@@ -1085,12 +1123,26 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 cumulus@leaf03:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
 - set:
-    interface:
+     interface:
       lo:
         ip:
           address:
             10.10.10.3/32: {}
         type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp49:
+        type: swp
+      swp50:
+        type: swp
+      swp51:
+        type: swp
+      swp52:
+        type: swp
       bond1:
         bond:
           member:
@@ -1121,16 +1173,6 @@ cumulus@leaf03:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
         bridge:
           domain:
             br_default: {}
-      peerlink:
-        bond:
-          member:
-            swp49: {}
-            swp50: {}
-        type: peerlink
-      peerlink.4094:
-        type: sub
-        base-interface: peerlink
-        vlan: 4094
       vlan40:
         ip:
           address:
@@ -1149,11 +1191,16 @@ cumulus@leaf03:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             10.1.60.4/24: {}
         type: svi
         vlan: 60
-    mlag:
-      mac-address: 44:38:39:BE:EF:AA
-      backup:
-        10.10.10.4: {}
-      peer-ip: linklocal
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        type: sub
+        base-interface: peerlink
+        vlan: 4094
     bridge:
       domain:
         br_default:
@@ -1161,7 +1208,11 @@ cumulus@leaf03:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             '40': {}
             '50': {}
             '60': {}
-          untagged: 1
+    mlag:
+      mac-address: 44:38:39:BE:EF:AA
+      backup:
+        10.10.10.4: {}
+      peer-ip: linklocal
     router:
       bgp:
         autonomous-system: 65103
@@ -1184,6 +1235,9 @@ cumulus@leaf03:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 static-network:
                   10.10.10.3/32: {}
                 enable: on
+                redistribute:
+                  connected:
+                    enable: on
 ```
 
 {{< /tab >}}
@@ -1198,6 +1252,20 @@ cumulus@leaf04:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           address:
             10.10.10.4/32: {}
         type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp49:
+        type: swp
+      swp50:
+        type: swp
+      swp51:
+        type: swp
+      swp52:
+        type: swp
       bond1:
         bond:
           member:
@@ -1228,16 +1296,6 @@ cumulus@leaf04:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
         bridge:
           domain:
             br_default: {}
-      peerlink:
-        bond:
-          member:
-            swp49: {}
-            swp50: {}
-        type: peerlink
-      peerlink.4094:
-        type: sub
-        base-interface: peerlink
-        vlan: 4094
       vlan40:
         ip:
           address:
@@ -1256,11 +1314,16 @@ cumulus@leaf04:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             10.1.60.5/24: {}
         type: svi
         vlan: 60
-    mlag:
-      mac-address: 44:38:39:BE:EF:AA
-      backup:
-        10.10.10.3: {}
-      peer-ip: linklocal
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        type: sub
+        base-interface: peerlink
+        vlan: 4094
     bridge:
       domain:
         br_default:
@@ -1268,7 +1331,11 @@ cumulus@leaf04:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             '40': {}
             '50': {}
             '60': {}
-          untagged: 1
+    mlag:
+      mac-address: 44:38:39:BE:EF:AA
+      backup:
+        10.10.10.3: {}
+      peer-ip: linklocal
     router:
       bgp:
         autonomous-system: 65104
@@ -1291,6 +1358,9 @@ cumulus@leaf04:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 static-network:
                   10.10.10.4/32: {}
                 enable: on
+                redistribute:
+                  connected:
+                    enable: on
 ```
 
 {{< /tab >}}
@@ -1305,6 +1375,14 @@ cumulus@spine01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           address:
             10.10.10.101/32: {}
         type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp4:
+        type: swp
     router:
       bgp:
         autonomous-system: 65199
@@ -1347,6 +1425,14 @@ cumulus@spine02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           address:
             10.10.10.102/32: {}
         type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp4:
+        type: swp
     router:
       bgp:
         autonomous-system: 65199

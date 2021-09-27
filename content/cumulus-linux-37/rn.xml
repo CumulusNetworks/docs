@@ -205,7 +205,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 </tr>
 <tr>
 <td>2700767</td>
-<td>Following an event which causes the peerlink bond mac address to change, like slave port state change, clag interfaces may be suspended due to reason "peer-ip-mismatch."  This behavior is seen when using "clagd-peer-ip linklocal" configuration.</td>
+<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.1</td>
 <td></td>
 </tr>
@@ -2445,7 +2445,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 </tr>
 <tr>
 <td>2700767</td>
-<td>Following an event which causes the peerlink bond mac address to change, like slave port state change, clag interfaces may be suspended due to reason "peer-ip-mismatch."  This behavior is seen when using "clagd-peer-ip linklocal" configuration.</td>
+<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.1</td>
 <td></td>
 </tr>
@@ -4696,7 +4696,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 </tr>
 <tr>
 <td>2700767</td>
-<td>Following an event which causes the peerlink bond mac address to change, like slave port state change, clag interfaces may be suspended due to reason "peer-ip-mismatch."  This behavior is seen when using "clagd-peer-ip linklocal" configuration.</td>
+<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.1</td>
 <td></td>
 </tr>
@@ -7515,7 +7515,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 </tr>
 <tr>
 <td>2700767</td>
-<td>Following an event which causes the peerlink bond mac address to change, like slave port state change, clag interfaces may be suspended due to reason "peer-ip-mismatch."  This behavior is seen when using "clagd-peer-ip linklocal" configuration.</td>
+<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.1</td>
 <td></td>
 </tr>
@@ -10539,7 +10539,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 </tr>
 <tr>
 <td>2700767</td>
-<td>Following an event which causes the peerlink bond mac address to change, like slave port state change, clag interfaces may be suspended due to reason "peer-ip-mismatch."  This behavior is seen when using "clagd-peer-ip linklocal" configuration.</td>
+<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.1</td>
 <td></td>
 </tr>

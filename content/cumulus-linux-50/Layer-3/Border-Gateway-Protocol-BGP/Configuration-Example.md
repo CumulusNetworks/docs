@@ -1392,7 +1392,7 @@ cumulus@spine02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL44 - BGP" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
+    {{< simulation name="Try It CL44 - BGPv2" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
 
 This simulation starts with the example BGP configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

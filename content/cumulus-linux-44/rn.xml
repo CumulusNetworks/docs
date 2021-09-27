@@ -7,15 +7,19 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2799742</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>2804044</td>
+<td>The SDK process sx_core prints the messages shown below and the switch stops forwarding traffic.
+
+kernel: sx_core: Did not receive completion for SDQ dqn (1) idx (849) after 10 seconds
+kernel: sx_core: __sx_core_post_send: Cannot send packet on dqn [1] sdq stuck
+</td>
+<td>4.4.0-4.4.1</td>
 <td></td>
 </tr>
 <tr>
-<td>2797952</td>
-<td>The switch does not generate EVPN type-3 routes so the flood list entries are missing.</td>
-<td>4.2.1-4.4.1</td>
+<td>2799742</td>
+<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
 <td></td>
 </tr>
 <tr>
@@ -26,7 +30,7 @@
 </tr>
 <tr>
 <td>2792816</td>
-<td> When you  enable PTP on n unnumbered interface,  the {{/etc/ptp4l.conf}} file does not update and {{ptp4l.service}} fails.</td>
+<td> When you  enable PTP on an unnumbered interface,  the {{/etc/ptp4l.conf}} file does not update and {{ptp4l.service}} fails.</td>
 <td>4.4.0-4.4.1</td>
 <td></td>
 </tr>
@@ -135,7 +139,7 @@ See "systemctl status frr.service" and "journalctl -xe" for details.</td>
 </tr>
 <tr>
 <td>2734103</td>
-<td>{{ACL [No More Resources]}} messages keeps appearing and you can't reinstall the ACL.</td>
+<td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
 <td>4.3.0-4.4.1</td>
 <td></td>
 </tr>
@@ -160,7 +164,7 @@ To work around this issue, restart FRR with the {{sudo systemctl restart frr}} c
 </tr>
 <tr>
 <td>2724191</td>
-<td>On the Celestica Seastone switch, when you run {{ smonctl -v}}, the DIMM 1 Temp Sensor shows as absent .
+<td>On the Celestica Seastone switch, when you run {{ smonctl -v}}, the DIMM 1 Temp Sensor shows as absent.
 This is a cosmetic software issue and not indicative of a hardware failure on the system.</td>
 <td>4.3.0-4.4.1</td>
 <td></td>
@@ -199,7 +203,7 @@ To work around this issue, delete the DHCP lease file for eth0 with the {{sudo r
 </tr>
 <tr>
 <td>2700767</td>
-<td>Following an event which causes the peerlink bond mac address to change, like slave port state change, clag interfaces may be suspended due to reason "peer-ip-mismatch."  This behavior is seen when using "clagd-peer-ip linklocal" configuration.</td>
+<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.1</td>
 <td></td>
 </tr>
@@ -216,7 +220,7 @@ To workaround this issue, run the command against each VRF independently.</td>
 </tr>
 <tr>
 <td>2699378</td>
-<td>Following an event which causes the peerlink bond mac address to change, like slave port state change, clag interfaces may be suspended due to reason "peer-ip-mismatch."  This behavior is seen when using "clagd-peer-ip linklocal" configuration.</td>
+<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
 <td>4.3.0-4.4.1</td>
 <td></td>
 </tr>
@@ -1489,15 +1493,19 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2799742</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>2804044</td>
+<td>The SDK process sx_core prints the messages shown below and the switch stops forwarding traffic.
+
+kernel: sx_core: Did not receive completion for SDQ dqn (1) idx (849) after 10 seconds
+kernel: sx_core: __sx_core_post_send: Cannot send packet on dqn [1] sdq stuck
+</td>
+<td>4.4.0-4.4.1</td>
 <td></td>
 </tr>
 <tr>
-<td>2797952</td>
-<td>The switch does not generate EVPN type-3 routes so the flood list entries are missing.</td>
-<td>4.2.1-4.4.1</td>
+<td>2799742</td>
+<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1508,7 +1516,7 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 </tr>
 <tr>
 <td>2792816</td>
-<td> When you  enable PTP on n unnumbered interface,  the {{/etc/ptp4l.conf}} file does not update and {{ptp4l.service}} fails.</td>
+<td> When you  enable PTP on an unnumbered interface,  the {{/etc/ptp4l.conf}} file does not update and {{ptp4l.service}} fails.</td>
 <td>4.4.0-4.4.1</td>
 <td></td>
 </tr>
@@ -1715,7 +1723,7 @@ Fixed: 241-7~deb10u8</td>
 </tr>
 <tr>
 <td>2734103</td>
-<td>{{ACL [No More Resources]}} messages keeps appearing and you can't reinstall the ACL.</td>
+<td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
 <td>4.3.0-4.4.1</td>
 <td></td>
 </tr>
@@ -1758,7 +1766,7 @@ To work around this issue, restart FRR with the {{sudo systemctl restart frr}} c
 </tr>
 <tr>
 <td>2724191</td>
-<td>On the Celestica Seastone switch, when you run {{ smonctl -v}}, the DIMM 1 Temp Sensor shows as absent .
+<td>On the Celestica Seastone switch, when you run {{ smonctl -v}}, the DIMM 1 Temp Sensor shows as absent.
 This is a cosmetic software issue and not indicative of a hardware failure on the system.</td>
 <td>4.3.0-4.4.1</td>
 <td></td>
@@ -1816,7 +1824,7 @@ To work around this issue, delete the DHCP lease file for eth0 with the {{sudo r
 </tr>
 <tr>
 <td>2700767</td>
-<td>Following an event which causes the peerlink bond mac address to change, like slave port state change, clag interfaces may be suspended due to reason "peer-ip-mismatch."  This behavior is seen when using "clagd-peer-ip linklocal" configuration.</td>
+<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.1</td>
 <td></td>
 </tr>
@@ -1833,7 +1841,7 @@ To workaround this issue, run the command against each VRF independently.</td>
 </tr>
 <tr>
 <td>2699378</td>
-<td>Following an event which causes the peerlink bond mac address to change, like slave port state change, clag interfaces may be suspended due to reason "peer-ip-mismatch."  This behavior is seen when using "clagd-peer-ip linklocal" configuration.</td>
+<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
 <td>4.3.0-4.4.1</td>
 <td></td>
 </tr>

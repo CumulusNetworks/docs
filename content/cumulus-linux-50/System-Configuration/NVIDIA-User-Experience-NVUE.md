@@ -140,7 +140,7 @@ The `nv set` and `nv unset` commands are in the following categories. Each comma
 | `nv set interface <interface-id>`<br>`nv unset interface <interface-id>` | Configures the switch interfaces. Use this command to configure bond interfaces, bridge interfaces, interface IP addresses, VLAN IDs, and links (MTU, FEC, speed, duplex, and so on).|
 | `nv set mlag`<br>`nv unset mlag` | Configures MLAG. This is where you configure the backup IP address or interface, MLAG system MAC address, peer IP address, MLAG priority, and the delay before bonds come up. |
 | `nv set nve`<br>`nv unset nve` | Configures network virtualization (VXLAN) settings. This is where you configure the UDP port for VXLAN frames, control dynamic MAC learning over VXLAN tunnels, enable and disable ARP/ND suppression, and configure how Cumulus Linux handles BUM traffic in the overlay.|
-| `nv set platform`<br>`nv unset platform` | Sets how configuration apply operations work (which files to ignore and which files to overwrite). |
+| `nv set platform`<br>`nv unset platform` | Sets how configuration apply operations work (which files to ignore and which files to overwrite). See {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}. |
 | `nv set qos`<br>`nv unset qos` | Configures QoS RoCE. |
 | `nv set router`<br>`nv unset router` | Configures router policies (prefix list rules and route maps), global BGP options (enable and disable BGP, set the ASN and the router ID, and configure BGP graceful restart and shutdown), global OSPF options (enable and disable OSPF, set the router ID, and configure OSPF timers), and PBR. |
 | `nv set service`<br>`nv unset service` | Configures DHCP relays and servers, NTP, PTP, LLDP, and syslog. |
@@ -364,8 +364,6 @@ acl     bond    bridge  evpn    ip      link    ptp     qos     router
 
 When you save network configuration using NVUE, Cumulus Linux writes the configuration to the `/etc/nvue.d/startup.yaml` file.
 
-NVUE also writes to underlying Linux files, such as `/etc/network/interfaces` and `/etc/frr/frr.conf`, when you apply a configuration. You can view these configuration files; however NVIDIA recommends that you do not manually edit them while using NVUE.
-
 You can edit or replace the contents of the `/etc/nvue.d/startup.yaml` file. NVUE applies the configuration in the `/etc/nvue.d/startup.yaml` file during system boot only if the `nvue-startup.service` is running. If this service is not running, the running configuration that you apply last loads when the switch boots.
 
 To start `nvue-startup.service`:
@@ -373,6 +371,19 @@ To start `nvue-startup.service`:
 ```
 cumulus@switch:~$ sudo systemctl enable nvue-startup.service
 cumulus@switch:~$ sudo systemctl start nvue-startup.service
+```
+
+When you apply a configuration with `nv config apply`, NVUE also writes to underlying Linux files such as `/etc/network/interfaces` and `/etc/frr/frr.conf`. You can view these configuration files; however NVIDIA recommends that you do not manually edit them while using NVUE. If you need to configure certain network settings manually or use automation such as Ansible to configure the switch, see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}} below.
+
+## Configure NVUE to Ignore Linux Files
+
+You can configure NVUE to ignore certain underlying Linux files when applying configuration changes. For example, if you push certain configuration to the switch using Ansible and Jinja2 file templates or you want to use custom configuration for a particular service such as PTP, you can ensure that NVUE never writes to those configuration files.
+
+The following example configures NVUE to ignore the Linux `/etc/ptp4l.conf` file when applying configuration changes and saves the configuration so it persists after a reboot.
+
+```
+cumulus@switch:~$ nv set platform config apply ignore /etc/ptp4l.conf
+cumulus@switch:~$ nv config save
 ```
 
 ## Example Configuration Commands

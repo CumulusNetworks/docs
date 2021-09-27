@@ -15,7 +15,6 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="2799742"></a> [2799742](#2799742) <a name="2799742"></a> <br /> | On the Edgecore AS4610 switch, the historic CPU usage displayed in <code>/run/sysmonitor/history</code> sometimes shows as a negative value.  | 3.7.12-3.7.15, 4.2.1-4.4.1 | |
-| <a name="2797952"></a> [2797952](#2797952) <a name="2797952"></a> <br /> | The switch does not generate EVPN type-3 routes so the flood list entries are missing. | 4.2.1-4.4.1 | |
 | <a name="2794747"></a> [2794747](#2794747) <a name="2794747"></a> <br /> | If you change the <code>clagd-vxlan-anycast-ip</code> setting on both MLAG peers at the same time, both peers use their unique VTEP address indefinitely. | 4.3.0-4.4.1 | |
 | <a name="2792616"></a> [2792616](#2792616) <a name="2792616"></a> <br /> | If a neighbor entry (ARP or NDP) is used as a next hop of a route that is synchronized into hardware, the neighbor entry is not removed from hardware after the neighbor is no longer reachable.  As a result, routed traffic matching this prefix is incorrectly hardware-forwarded via the stale neighbor information. | 4.3.0-4.4.1 | |
 | <a name="2783611"></a> [2783611](#2783611) <a name="2783611"></a> <br /> | If you remove ports from a bridge and add IP addresses in one <code>ifreload</code>, connected routes are bound to the wrong routing information field. | 4.3.0-4.4.0 | 4.4.1|
@@ -241,7 +240,6 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="2799742"></a> [2799742](#2799742) <a name="2799742"></a> <br /> | On the Edgecore AS4610 switch, the historic CPU usage displayed in <code>/run/sysmonitor/history</code> sometimes shows as a negative value.  | 3.7.12-3.7.15, 4.2.1-4.4.1 | |
-| <a name="2797952"></a> [2797952](#2797952) <a name="2797952"></a> <br /> | The switch does not generate EVPN type-3 routes so the flood list entries are missing. | 4.2.1-4.4.1 | |
 | <a name="2794747"></a> [2794747](#2794747) <a name="2794747"></a> <br /> | If you change the <code>clagd-vxlan-anycast-ip</code> setting on both MLAG peers at the same time, both peers use their unique VTEP address indefinitely. | 4.3.0-4.4.1 | |
 | <a name="2792616"></a> [2792616](#2792616) <a name="2792616"></a> <br /> | If a neighbor entry (ARP or NDP) is used as a next hop of a route that is synchronized into hardware, the neighbor entry is not removed from hardware after the neighbor is no longer reachable.  As a result, routed traffic matching this prefix is incorrectly hardware-forwarded via the stale neighbor information. | 4.3.0-4.4.1 | |
 | <a name="2783611"></a> [2783611](#2783611) <a name="2783611"></a> <br /> | If you remove ports from a bridge and add IP addresses in one <code>ifreload</code>, connected routes are bound to the wrong routing information field. | 4.3.0-4.4.0 | 4.4.1|

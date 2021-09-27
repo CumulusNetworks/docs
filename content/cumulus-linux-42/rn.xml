@@ -13,12 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>2797952</td>
-<td>The switch does not generate EVPN type-3 routes so the flood list entries are missing.</td>
-<td>4.2.1-4.4.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2782033</td>
 <td>The following vulnerabilities have been announced in the openssl packages:
 CVE-2021-3711: buffer overflow vulnerability in SM2 decryption.
@@ -1814,12 +1808,6 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td>2799742</td>
 <td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
 <td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2797952</td>
-<td>The switch does not generate EVPN type-3 routes so the flood list entries are missing.</td>
-<td>4.2.1-4.4.1</td>
 <td></td>
 </tr>
 <tr>

@@ -7,15 +7,19 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2799742</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>2804044</td>
+<td>The SDK process sx_core prints the messages shown below and the switch stops forwarding traffic.
+
+kernel: sx_core: Did not receive completion for SDQ dqn (1) idx (849) after 10 seconds
+kernel: sx_core: __sx_core_post_send: Cannot send packet on dqn [1] sdq stuck
+</td>
+<td>4.4.0-4.4.1</td>
 <td></td>
 </tr>
 <tr>
-<td>2797952</td>
-<td>The switch does not generate EVPN type-3 routes so the flood list entries are missing.</td>
-<td>4.2.1-4.4.1</td>
+<td>2799742</td>
+<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1489,15 +1493,19 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2799742</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>2804044</td>
+<td>The SDK process sx_core prints the messages shown below and the switch stops forwarding traffic.
+
+kernel: sx_core: Did not receive completion for SDQ dqn (1) idx (849) after 10 seconds
+kernel: sx_core: __sx_core_post_send: Cannot send packet on dqn [1] sdq stuck
+</td>
+<td>4.4.0-4.4.1</td>
 <td></td>
 </tr>
 <tr>
-<td>2797952</td>
-<td>The switch does not generate EVPN type-3 routes so the flood list entries are missing.</td>
-<td>4.2.1-4.4.1</td>
+<td>2799742</td>
+<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
 <td></td>
 </tr>
 <tr>

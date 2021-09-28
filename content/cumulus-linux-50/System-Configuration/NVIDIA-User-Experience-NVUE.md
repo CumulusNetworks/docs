@@ -383,6 +383,7 @@ The following example configures NVUE to ignore the Linux `/etc/ptp4l.conf` file
 
 ```
 cumulus@switch:~$ nv set platform config apply ignore /etc/ptp4l.conf
+cumulus@switch:~$ nv config apply
 cumulus@switch:~$ nv config save
 ```
 

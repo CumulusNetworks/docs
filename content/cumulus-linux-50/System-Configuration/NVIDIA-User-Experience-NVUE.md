@@ -68,10 +68,6 @@ For information about using the NVUE API, refer to the {{<mib_link url="cumulus-
 
 The NVUE CLI has a flat structure as opposed to a modal structure. This means that you can run all commands from the primary prompt instead of only in a specific mode.
 
-{{%notice note%}}
-The NVUE commands and outputs in this documentation are subject to change.
-{{%/notice%}}
-
 ### Command Syntax
 
 NVUE commands all begin with `nv` and fall into one of three syntax categories:
@@ -81,7 +77,7 @@ NVUE commands all begin with `nv` and fall into one of three syntax categories:
 
 ### Command Completion
 <!-- vale off -->
-As you enter commands, you can get help with the valid keywords or options using the Tab key. For example, using Tab completion with `nv set` displays the possible options for the command, and returns you to the command prompt to complete the command.
+As you enter commands, you can get help with the valid keywords or options using the Tab key. For example, using Tab completion with `nv set` displays the possible options for the command and returns you to the command prompt to complete the command.
 <!-- vale on -->
 ```
 cumulus@switch:~$ nv set <<press Tab>>
@@ -93,7 +89,7 @@ cumulus@switch:~$ nv set
 
 ### Command Help
 <!-- vale off -->
-As you enter commands, you can get help with command syntax by entering `-h` or `--help` at various points within a command entry. For example, to find out what options are available for `nv set interface`, enter `nv set interface -h` or `nv set interface --help`.
+As you enter commands, you can get help with command syntax by entering `-h` or `--help` at various points within a command entry. For example, to examine the options available for `nv set interface`, enter `nv set interface -h` or `nv set interface --help`.
 <!-- vale on -->
 ```
 cumulus@switch:~$ nv set interface -h
@@ -139,7 +135,7 @@ The `nv set` and `nv unset` commands are in the following categories. Each comma
 | `nv set evpn`<br>`nv unset evpn` | Configures EVPN. This is where you enable and disable the EVPN control plane, and set EVPN route advertise options, default gateway configuration for centralized routing, multihoming, and duplicate address detection options. |
 | `nv set interface <interface-id>`<br>`nv unset interface <interface-id>` | Configures the switch interfaces. Use this command to configure bond interfaces, bridge interfaces, interface IP addresses, interface descriptions, VLAN IDs, and links (MTU, FEC, speed, duplex, and so on).|
 | `nv set mlag`<br>`nv unset mlag` | Configures MLAG. This is where you configure the backup IP address or interface, MLAG system MAC address, peer IP address, MLAG priority, and the delay before bonds come up. |
-| `nv set nve`<br>`nv unset nve` | Configures network virtualization (VXLAN) settings. This is where you configure the UDP port for VXLAN frames, control dynamic MAC learning over VXLAN tunnels, enable and disable ARP/ND suppression, and configure how Cumulus Linux handles BUM traffic in the overlay.|
+| `nv set nve`<br>`nv unset nve` | Configures network virtualization (VXLAN) settings. This is where you configure the UDP port for VXLAN frames, control dynamic MAC learning over VXLAN tunnels, enable and disable ARP and ND suppression, and configure how Cumulus Linux handles BUM traffic in the overlay.|
 | `nv set platform`<br>`nv unset platform` | Configures hardware component options. |
 | `nv set qos`<br>`nv unset qos` | Configures QoS RoCE. |
 | `nv set router`<br>`nv unset router` | Configures router policies (prefix list rules and route maps), sets global BGP options (enable and disable, ASN and router ID, BGP graceful restart and shutdown), global OSPF options (enable and disable, router ID, and OSPF timers) PIM, IGMP, PBR, VRR, and VRRP. |

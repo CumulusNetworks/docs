@@ -382,7 +382,7 @@ You can configure NVUE to ignore certain underlying Linux files when applying co
 The following example configures NVUE to ignore the Linux `/etc/ptp4l.conf` file when applying configuration changes and saves the configuration so it persists after a reboot.
 
 ```
-cumulus@switch:~$ nv set platform config apply ignore /etc/ptp4l.conf
+cumulus@switch:~$ nv set system config apply ignore /etc/ptp4l.conf
 cumulus@switch:~$ nv config apply
 cumulus@switch:~$ nv config save
 ```

@@ -7,31 +7,21 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2804044</td>
-<td>The SDK process sx_core prints the messages shown below and the switch stops forwarding traffic.
-
-kernel: sx_core: Did not receive completion for SDQ dqn (1) idx (849) after 10 seconds
-kernel: sx_core: __sx_core_post_send: Cannot send packet on dqn [1] sdq stuck
-</td>
-<td>4.4.0-4.4.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2799742</td>
 <td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
 <td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
 <td></td>
 </tr>
 <tr>
-<td>2794747</td>
-<td>If you change the {{clagd-vxlan-anycast-ip}} setting on both MLAG peers at the same time, both peers use their unique VTEP address indefinitely.</td>
-<td>4.3.0-4.4.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2792816</td>
 <td> When you  enable PTP on an unnumbered interface,  the {{/etc/ptp4l.conf}} file does not update and {{ptp4l.service}} fails.</td>
 <td>4.4.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2792750</td>
+<td>If you change the {{clagd-vxlan-anycast-ip}} setting on both MLAG peers at the same time, both peers use their unique VTEP address indefinitely.</td>
+<td>4.3.0-4.4.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1493,7 +1483,7 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2804044</td>
+<td>2802207</td>
 <td>The SDK process sx_core prints the messages shown below and the switch stops forwarding traffic.
 
 kernel: sx_core: Did not receive completion for SDQ dqn (1) idx (849) after 10 seconds
@@ -1509,15 +1499,15 @@ kernel: sx_core: __sx_core_post_send: Cannot send packet on dqn [1] sdq stuck
 <td></td>
 </tr>
 <tr>
-<td>2794747</td>
-<td>If you change the {{clagd-vxlan-anycast-ip}} setting on both MLAG peers at the same time, both peers use their unique VTEP address indefinitely.</td>
-<td>4.3.0-4.4.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2792816</td>
 <td> When you  enable PTP on an unnumbered interface,  the {{/etc/ptp4l.conf}} file does not update and {{ptp4l.service}} fails.</td>
 <td>4.4.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2792750</td>
+<td>If you change the {{clagd-vxlan-anycast-ip}} setting on both MLAG peers at the same time, both peers use their unique VTEP address indefinitely.</td>
+<td>4.3.0-4.4.1</td>
 <td></td>
 </tr>
 <tr>

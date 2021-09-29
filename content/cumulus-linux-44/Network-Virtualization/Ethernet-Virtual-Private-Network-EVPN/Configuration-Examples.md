@@ -11306,7 +11306,6 @@ cumulus@border01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-
 cumulus@border01:~$ nv set vrf BLUE router bgp autonomous-system 65253
 cumulus@border01:~$ nv set vrf BLUE router bgp router-id 10.10.10.63
 cumulus@border01:~$ nv set vrf BLUE router static 10.1.10.0/24 via 10.1.102.4
-cumulus@border01:~$ nv set vrf BLUE router static 10.1.10.0/24 via 10.1.102.4
 cumulus@border01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute static
 cumulus@border01:~$ nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@border01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
@@ -11369,7 +11368,6 @@ cumulus@border02:~$ nv set vrf RED router bgp peer-group underlay address-family
 cumulus@border02:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
 cumulus@border02:~$ nv set vrf BLUE router bgp autonomous-system 65254
 cumulus@border02:~$ nv set vrf BLUE router bgp router-id 10.10.10.64
-cumulus@border02:~$ nv set vrf BLUE router static 10.1.10.0/24 via 10.1.102.4
 cumulus@border02:~$ nv set vrf BLUE router static 10.1.10.0/24 via 10.1.102.4
 cumulus@border02:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute static
 cumulus@border02:~$ nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on
@@ -14764,9 +14762,11 @@ exit-address-family
 cumulus@border01:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
 vrf BLUE
+ip route 10.1.10.0/24 10.1.102.4
 vni 4002
 exit-vrf
 vrf RED
+ip route 10.1.30.0/24 10.1.101.4
 vni 4001
 exit-vrf
 vrf default
@@ -14829,6 +14829,7 @@ neighbor underlay activate
 exit-address-family
 address-family l2vpn evpn
 advertise-all-vni
+neighbor peerlink.4094 activate
 neighbor swp51 activate
 neighbor swp52 activate
 neighbor swp53 activate
@@ -14849,7 +14850,7 @@ neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
 ! Address families
 address-family ipv4 unicast
-redistribute connected
+redistribute static
 maximum-paths ibgp 64
 maximum-paths 64
 distance bgp 20 200 200
@@ -14873,7 +14874,7 @@ neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
 ! Address families
 address-family ipv4 unicast
-redistribute connected
+redistribute static
 maximum-paths ibgp 64
 maximum-paths 64
 distance bgp 20 200 200
@@ -14893,9 +14894,11 @@ exit-address-family
 cumulus@border02:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
 vrf BLUE
+ip route 10.1.10.0/24 10.1.102.4
 vni 4002
 exit-vrf
 vrf RED
+ip route 10.1.30.0/24 10.1.101.4
 vni 4001
 exit-vrf
 vrf default
@@ -14958,29 +14961,12 @@ neighbor underlay activate
 exit-address-family
 address-family l2vpn evpn
 advertise-all-vni
+neighbor peerlink.4094 activate
 neighbor swp51 activate
 neighbor swp52 activate
 neighbor swp53 activate
 neighbor swp54 activate
 neighbor underlay activate
-exit-address-family
-! end of router bgp 65254 vrf default
-router bgp 65132 vrf RED
-bgp router-id 10.10.10.64
-timers bgp 3 9
-bgp deterministic-med
-! Neighbors
-! Address families
-address-family l2vpn evpn
-exit-address-family
-! end of router bgp 65254 vrf RED
-router bgp 65254 vrf BLUE
-bgp router-id 10.10.10.64
-timers bgp 3 9
-bgp deterministic-med
-! Neighbors
-! Address families
-address-family l2vpn evpn
 exit-address-family
 ! end of router bgp 65254 vrf default
 router bgp 65254 vrf RED
@@ -14996,7 +14982,7 @@ neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
 ! Address families
 address-family ipv4 unicast
-redistribute connected
+redistribute static
 maximum-paths ibgp 64
 maximum-paths 64
 distance bgp 20 200 200
@@ -15020,7 +15006,7 @@ neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
 ! Address families
 address-family ipv4 unicast
-redistribute connected
+redistribute static
 maximum-paths ibgp 64
 maximum-paths 64
 distance bgp 20 200 200

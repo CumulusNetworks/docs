@@ -11316,6 +11316,7 @@ cumulus@border01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-
 cumulus@border01:~$ nv set vrf BLUE router bgp autonomous-system 65253
 cumulus@border01:~$ nv set vrf BLUE router bgp router-id 10.10.10.63
 cumulus@border01:~$ nv set vrf BLUE router static 10.1.10.0/24 via 10.1.102.4
+cumulus@border01:~$ nv set vrf BLUE router static 10.1.20.0/24 via 10.1.102.4
 cumulus@border01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute static
 cumulus@border01:~$ nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@border01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
@@ -11379,6 +11380,7 @@ cumulus@border02:~$ nv set vrf RED router bgp address-family ipv4-unicast route-
 cumulus@border02:~$ nv set vrf BLUE router bgp autonomous-system 65254
 cumulus@border02:~$ nv set vrf BLUE router bgp router-id 10.10.10.64
 cumulus@border02:~$ nv set vrf BLUE router static 10.1.10.0/24 via 10.1.102.4
+cumulus@border02:~$ nv set vrf BLUE router static 10.1.20.0/24 via 10.1.102.4
 cumulus@border02:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute static
 cumulus@border02:~$ nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@border02:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn

@@ -12785,6 +12785,11 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 10.1.102.4:
                   type: ipv4-address
               address-family: ipv4-unicast
+            10.1.20.0/24:
+              via:
+                10.1.102.4:
+                  type: ipv4-address
+              address-family: ipv4-unicast
       default:
         router:
           bgp:
@@ -12985,6 +12990,11 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                     enable: on
           static:
             10.1.10.0/24:
+              via:
+                10.1.102.4:
+                  type: ipv4-address
+              address-family: ipv4-unicast
+            10.1.20.0/24:
               via:
                 10.1.102.4:
                   type: ipv4-address

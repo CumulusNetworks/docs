@@ -9337,6 +9337,7 @@ cumulus@border01:~$ net add bgp vrf RED l2vpn evpn  advertise ipv4 unicast
 cumulus@border01:~$ net add bgp vrf BLUE autonomous-system 65253
 cumulus@border01:~$ net add bgp vrf BLUE router-id 10.10.10.63
 cumulus@border01:~$ net add routing route 10.1.10.0/24 10.1.102.4 vrf BLUE
+cumulus@border01:~$ net add routing route 10.1.20.0/24 10.1.102.4 vrf BLUE
 cumulus@border01:~$ net add bgp vrf BLUE ipv4 unicast redistribute static
 cumulus@border01:~$ net add bgp vrf BLUE l2vpn evpn  advertise ipv4 unicast
 cumulus@border01:~$ net commit
@@ -9415,6 +9416,7 @@ cumulus@border02:~$ net add bgp vrf RED l2vpn evpn  advertise ipv4 unicast
 cumulus@border02:~$ net add bgp vrf BLUE autonomous-system 65254
 cumulus@border02:~$ net add bgp vrf BLUE router-id 10.10.10.64
 cumulus@border02:~$ net add routing route 10.1.10.0/24 10.1.102.4 vrf BLUE
+cumulus@border02:~$ net add routing route 10.1.20.0/24 10.1.102.4 vrf BLUE
 cumulus@border02:~$ net add bgp vrf BLUE ipv4 unicast redistribute static
 cumulus@border02:~$ net add bgp vrf BLUE l2vpn evpn  advertise ipv4 unicast
 cumulus@border02:~$ net commit
@@ -10761,6 +10763,7 @@ exit-vrf
 vrf BLUE
  vni 4002
  ip route 10.1.10.0/24 10.1.102.4
+ ip route 10.1.20.0/24 10.1.102.4
 exit-vrf
 exit-vrf
 router bgp 65253
@@ -10810,6 +10813,7 @@ exit-vrf
 vrf BLUE
  vni 4002
  ip route 10.1.10.0/24 10.1.102.4
+ ip route 10.1.20.0/24 10.1.102.4
 exit-vrf
 exit-vrf
 router bgp 65254
@@ -12783,6 +12787,11 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 10.1.102.4:
                   type: ipv4-address
               address-family: ipv4-unicast
+            10.1.20.0/24:
+              via:
+                10.1.102.4:
+                  type: ipv4-address
+              address-family: ipv4-unicast
       default:
         router:
           bgp:
@@ -12983,6 +12992,11 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                     enable: on
           static:
             10.1.10.0/24:
+              via:
+                10.1.102.4:
+                  type: ipv4-address
+              address-family: ipv4-unicast
+            10.1.20.0/24:
               via:
                 10.1.102.4:
                   type: ipv4-address
@@ -14775,6 +14789,7 @@ cumulus@border01:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
 vrf BLUE
 ip route 10.1.10.0/24 10.1.102.4
+ip route 10.1.20.0/24 10.1.102.4
 vni 4002
 exit-vrf
 vrf RED
@@ -14907,6 +14922,7 @@ cumulus@border02:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
 vrf BLUE
 ip route 10.1.10.0/24 10.1.102.4
+ip route 10.1.20.0/24 10.1.102.4
 vni 4002
 exit-vrf
 vrf RED

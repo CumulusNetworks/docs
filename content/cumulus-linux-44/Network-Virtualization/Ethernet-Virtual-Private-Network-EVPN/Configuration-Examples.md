@@ -11299,12 +11299,15 @@ cumulus@border01:~$ nv set vrf default router bgp peer peerlink.4094 peer-group 
 cumulus@border01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@border01:~$ nv set vrf RED router bgp autonomous-system 65253
 cumulus@border01:~$ nv set vrf RED router bgp router-id 10.10.10.63
-cumulus@border01:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@border01:~$ nv set vrf RED router static 10.1.30.0/24 via 10.1.101.4
+cumulus@border01:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute static
 cumulus@border01:~$ nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@border01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
 cumulus@border01:~$ nv set vrf BLUE router bgp autonomous-system 65253
 cumulus@border01:~$ nv set vrf BLUE router bgp router-id 10.10.10.63
-cumulus@border01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@border01:~$ nv set vrf BLUE router static 10.1.10.0/24 via 10.1.102.4
+cumulus@border01:~$ nv set vrf BLUE router static 10.1.10.0/24 via 10.1.102.4
+cumulus@border01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute static
 cumulus@border01:~$ nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@border01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
 cumulus@border01:~$ nv config apply
@@ -11360,12 +11363,15 @@ cumulus@border02:~$ nv set vrf default router bgp peer peerlink.4094 peer-group 
 cumulus@border02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@border02:~$ nv set vrf RED router bgp autonomous-system 65254
 cumulus@border02:~$ nv set vrf RED router bgp router-id 10.10.10.64
-cumulus@border02:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@border02:~$ nv set vrf RED router static 10.1.30.0/24 via 10.1.101.4
+cumulus@border02:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute static
 cumulus@border02:~$ nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@border02:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
 cumulus@border02:~$ nv set vrf BLUE router bgp autonomous-system 65254
 cumulus@border02:~$ nv set vrf BLUE router bgp router-id 10.10.10.64
-cumulus@border02:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@border02:~$ nv set vrf BLUE router static 10.1.10.0/24 via 10.1.102.4
+cumulus@border02:~$ nv set vrf BLUE router static 10.1.10.0/24 via 10.1.102.4
+cumulus@border02:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute static
 cumulus@border02:~$ nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@border02:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
 cumulus@border02:~$ nv config apply
@@ -12720,7 +12726,7 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             address-family:
               ipv4-unicast:
                 redistribute:
-                  connected:
+                  static:
                     enable: on
                 enable: on
                 route-export:
@@ -12731,6 +12737,12 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 address-family:
                   l2vpn-evpn:
                     enable: on
+          static:
+            10.1.30.0/24:
+              via:
+                10.1.101.4:
+                  type: ipv4-address
+              address-family: ipv4-unicast
       BLUE:
         evpn:
           vni:
@@ -12744,7 +12756,7 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             address-family:
               ipv4-unicast:
                 redistribute:
-                  connected:
+                  static:
                     enable: on
                 enable: on
                 route-export:
@@ -12755,6 +12767,12 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 address-family:
                   l2vpn-evpn:
                     enable: on
+          static:
+            10.1.10.0/24:
+              via:
+                10.1.102.4:
+                  type: ipv4-address
+              address-family: ipv4-unicast
       default:
         router:
           bgp:
@@ -12810,7 +12828,7 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
       bgp:
         enable: on
         autonomous-system: 65253
-        router-id: 10.10.10.63
+        router-id: 10.10.10.63 
 ```
 
 {{< /tab >}}
@@ -12912,7 +12930,7 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             address-family:
               ipv4-unicast:
                 redistribute:
-                  connected:
+                  static:
                     enable: on
                 enable: on
                 route-export:
@@ -12923,6 +12941,12 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 address-family:
                   l2vpn-evpn:
                     enable: on
+          static:
+            10.1.30.0/24:
+              via:
+                10.1.101.4:
+                  type: ipv4-address
+              address-family: ipv4-unicast
       BLUE:
         evpn:
           vni:
@@ -12936,7 +12960,7 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             address-family:
               ipv4-unicast:
                 redistribute:
-                  connected:
+                  static:
                     enable: on
                 enable: on
                 route-export:
@@ -12947,6 +12971,12 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 address-family:
                   l2vpn-evpn:
                     enable: on
+          static:
+            10.1.10.0/24:
+              via:
+                10.1.102.4:
+                  type: ipv4-address
+              address-family: ipv4-unicast
       default:
         router:
           bgp:
@@ -13951,6 +13981,7 @@ neighbor underlay activate
 exit-address-family
 address-family l2vpn evpn
 advertise-all-vni
+neighbor peerlink.4094 activate
 neighbor swp51 activate
 neighbor swp52 activate
 neighbor swp53 activate
@@ -14080,6 +14111,7 @@ neighbor underlay activate
 exit-address-family
 address-family l2vpn evpn
 advertise-all-vni
+neighbor peerlink.4094 activate
 neighbor swp51 activate
 neighbor swp52 activate
 neighbor swp53 activate
@@ -14209,6 +14241,7 @@ neighbor underlay activate
 exit-address-family
 address-family l2vpn evpn
 advertise-all-vni
+neighbor peerlink.4094 activate
 neighbor swp51 activate
 neighbor swp52 activate
 neighbor swp53 activate
@@ -14338,6 +14371,7 @@ neighbor underlay activate
 exit-address-family
 address-family l2vpn evpn
 advertise-all-vni
+neighbor peerlink.4094 activate
 neighbor swp51 activate
 neighbor swp52 activate
 neighbor swp53 activate
@@ -15001,6 +15035,14 @@ exit-address-family
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "Try It " >}}
+    {{< simulation name="Try It CL44 - EVPN Symmetric" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,spine03,spine04,border01,border02,fw1,server01,server02,server03,server04,server05,server06" >}}
+
+This simulation starts with the example EVPN symmetric routing configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-44/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
+
+To validate the configuration, run the commands listed in the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-44/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Troubleshooting/" text="Troubleshooting">}} section.
 
 {{< /tab >}}
 {{< /tabs >}}

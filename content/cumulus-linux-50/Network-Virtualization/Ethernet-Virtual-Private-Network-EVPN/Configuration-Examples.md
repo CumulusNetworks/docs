@@ -9331,10 +9331,12 @@ cumulus@border01:~$ net add bgp l2vpn evpn  neighbor underlay activate
 cumulus@border01:~$ net add bgp l2vpn evpn  advertise-all-vni
 cumulus@border01:~$ net add bgp vrf RED autonomous-system 65253
 cumulus@border01:~$ net add bgp vrf RED router-id 10.10.10.63
+cumulus@border01:~$ net add routing route 10.1.30.0/24 10.1.101.4 vrf RED
 cumulus@border01:~$ net add bgp vrf RED ipv4 unicast redistribute static
 cumulus@border01:~$ net add bgp vrf RED l2vpn evpn  advertise ipv4 unicast
 cumulus@border01:~$ net add bgp vrf BLUE autonomous-system 65253
 cumulus@border01:~$ net add bgp vrf BLUE router-id 10.10.10.63
+cumulus@border01:~$ net add routing route 10.1.10.0/24 10.1.102.4 vrf BLUE
 cumulus@border01:~$ net add bgp vrf BLUE ipv4 unicast redistribute static
 cumulus@border01:~$ net add bgp vrf BLUE l2vpn evpn  advertise ipv4 unicast
 cumulus@border01:~$ net commit
@@ -9407,10 +9409,12 @@ cumulus@border02:~$ net add bgp l2vpn evpn  neighbor underlay activate
 cumulus@border02:~$ net add bgp l2vpn evpn  advertise-all-vni
 cumulus@border02:~$ net add bgp vrf RED autonomous-system 65254
 cumulus@border02:~$ net add bgp vrf RED router-id 10.10.10.64
+cumulus@border02:~$ net add routing route 10.1.30.0/24 10.1.101.4 vrf RED
 cumulus@border02:~$ net add bgp vrf RED ipv4 unicast redistribute static
 cumulus@border02:~$ net add bgp vrf RED l2vpn evpn  advertise ipv4 unicast
 cumulus@border02:~$ net add bgp vrf BLUE autonomous-system 65254
 cumulus@border02:~$ net add bgp vrf BLUE router-id 10.10.10.64
+cumulus@border02:~$ net add routing route 10.1.10.0/24 10.1.102.4 vrf BLUE
 cumulus@border02:~$ net add bgp vrf BLUE ipv4 unicast redistribute static
 cumulus@border02:~$ net add bgp vrf BLUE l2vpn evpn  advertise ipv4 unicast
 cumulus@border02:~$ net commit
@@ -10752,9 +10756,12 @@ cumulus@border01:~$ sudo cat /etc/frr/frr.conf
 ...
 vrf RED
  vni 4001
+ ip route 10.1.30.0/24 10.1.101.4
 exit-vrf
 vrf BLUE
  vni 4002
+ ip route 10.1.10.0/24 10.1.102.4
+exit-vrf
 exit-vrf
 router bgp 65253
  bgp router-id 10.10.10.63
@@ -10798,9 +10805,12 @@ cumulus@border02:~$ sudo cat /etc/frr/frr.conf
 ...
 vrf RED
  vni 4001
+ ip route 10.1.30.0/24 10.1.101.4
 exit-vrf
 vrf BLUE
  vni 4002
+ ip route 10.1.10.0/24 10.1.102.4
+exit-vrf
 exit-vrf
 router bgp 65254
  bgp router-id 10.10.10.64

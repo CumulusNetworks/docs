@@ -12726,7 +12726,7 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             address-family:
               ipv4-unicast:
                 redistribute:
-                  connected:
+                  static:
                     enable: on
                 enable: on
                 route-export:
@@ -12737,6 +12737,12 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 address-family:
                   l2vpn-evpn:
                     enable: on
+          static:
+            10.1.30.0/24:
+              via:
+                10.1.101.4:
+                  type: ipv4-address
+              address-family: ipv4-unicast
       BLUE:
         evpn:
           vni:
@@ -12750,7 +12756,7 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             address-family:
               ipv4-unicast:
                 redistribute:
-                  connected:
+                  static:
                     enable: on
                 enable: on
                 route-export:
@@ -12761,6 +12767,12 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 address-family:
                   l2vpn-evpn:
                     enable: on
+          static:
+            10.1.10.0/24:
+              via:
+                10.1.102.4:
+                  type: ipv4-address
+              address-family: ipv4-unicast
       default:
         router:
           bgp:
@@ -12816,7 +12828,7 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
       bgp:
         enable: on
         autonomous-system: 65253
-        router-id: 10.10.10.63
+        router-id: 10.10.10.63 
 ```
 
 {{< /tab >}}
@@ -12918,7 +12930,7 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             address-family:
               ipv4-unicast:
                 redistribute:
-                  connected:
+                  static:
                     enable: on
                 enable: on
                 route-export:
@@ -12929,6 +12941,12 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 address-family:
                   l2vpn-evpn:
                     enable: on
+          static:
+            10.1.30.0/24:
+              via:
+                10.1.101.4:
+                  type: ipv4-address
+              address-family: ipv4-unicast
       BLUE:
         evpn:
           vni:
@@ -12942,7 +12960,7 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             address-family:
               ipv4-unicast:
                 redistribute:
-                  connected:
+                  static:
                     enable: on
                 enable: on
                 route-export:
@@ -12953,6 +12971,12 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 address-family:
                   l2vpn-evpn:
                     enable: on
+          static:
+            10.1.10.0/24:
+              via:
+                10.1.102.4:
+                  type: ipv4-address
+              address-family: ipv4-unicast
       default:
         router:
           bgp:
@@ -13957,6 +13981,7 @@ neighbor underlay activate
 exit-address-family
 address-family l2vpn evpn
 advertise-all-vni
+neighbor peerlink.4094 activate
 neighbor swp51 activate
 neighbor swp52 activate
 neighbor swp53 activate
@@ -14086,6 +14111,7 @@ neighbor underlay activate
 exit-address-family
 address-family l2vpn evpn
 advertise-all-vni
+neighbor peerlink.4094 activate
 neighbor swp51 activate
 neighbor swp52 activate
 neighbor swp53 activate
@@ -14215,6 +14241,7 @@ neighbor underlay activate
 exit-address-family
 address-family l2vpn evpn
 advertise-all-vni
+neighbor peerlink.4094 activate
 neighbor swp51 activate
 neighbor swp52 activate
 neighbor swp53 activate
@@ -14344,6 +14371,7 @@ neighbor underlay activate
 exit-address-family
 address-family l2vpn evpn
 advertise-all-vni
+neighbor peerlink.4094 activate
 neighbor swp51 activate
 neighbor swp52 activate
 neighbor swp53 activate

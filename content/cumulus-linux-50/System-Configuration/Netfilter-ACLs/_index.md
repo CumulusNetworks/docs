@@ -6,24 +6,24 @@ toc: 3
 ---
 {{<exlink url="http://www.netfilter.org/" text="Netfilter">}} is the packet filtering framework in Cumulus Linux and most other Linux distributions. There several tools available for configuring ACLs in Cumulus Linux:
 
-- `iptables`, `ip6tables`, and `ebtables` are Linux userspace tools used to administer filtering rules for IPv4 packets, IPv6 packets, and Ethernet frames (layer 2 using MAC addresses).
-- `cl-acltool` is a Cumulus Linux-specific userspace tool used to administer filtering rules and configure default ACLs. `cl-acltool` operates on various configuration files and uses `iptables`, `ip6tables`, and `ebtables` to install rules into the kernel. In addition, `cl-acltool` programs rules in hardware for interfaces involving switch port interfaces, which `iptables`, `ip6tables` and `ebtables` cannot do on their own.
+- `iptables`, `ip6tables`, and `ebtables` are Linux userspace tools you use to administer filtering rules for IPv4 packets, IPv6 packets, and Ethernet frames (layer 2 using MAC addresses).
+- `cl-acltool` is a Cumulus Linux-specific userspace tool you use to administer filtering rules and configure default ACLs. `cl-acltool` operates on various configuration files and uses `iptables`, `ip6tables`, and `ebtables` to install rules into the kernel. In addition, `cl-acltool` programs rules in hardware for switch port interfaces, which `iptables`, `ip6tables` and `ebtables` cannot do on their own.
 
 ## Traffic Rules
 
 ### Chains
 
-Netfilter describes the way that the Linux kernel classifies and controls packets to, from, and across the switch. Netfilter does not require a separate software daemon to run; it is part of the Linux kernel itself. Netfilter asserts policies at layer 2, 3 and 4 of the {{<exlink url="https://en.wikipedia.org/wiki/OSI_model" text="OSI model">}} by inspecting packet and frame headers according to a list of rules. The `iptables`, `ip6tables`, and `ebtables` userspace applications provide syntax you use to define rules.
+Netfilter describes the way that the Linux kernel classifies and controls packets to, from, and across the switch. Netfilter does not require a separate software daemon to run; it is part of the Linux kernel. Netfilter asserts policies at layer 2, 3 and 4 of the {{<exlink url="https://en.wikipedia.org/wiki/OSI_model" text="OSI model">}} by inspecting packet and frame headers according to a list of rules. The `iptables`, `ip6tables`, and `ebtables` userspace applications provide syntax you use to define rules.
 
 The rules inspect or operate on packets at several points (*chains*) in the life of the packet through the system:
 
 {{< img src = "/images/cumulus-linux/acl-chains.png" >}}
 
-- **PREROUTING** touches packets before the switch routes them
-- **INPUT** touches packets after the switch determines that the packets are for the local system but before the control plane software receives them
-- **FORWARD** touches transit traffic as it moves through the switch
-- **OUTPUT** touches packets from the control plane software before they leave the switch
-- **POSTROUTING** touches packets immediately before they leave the switch but after a routing decision
+- **PREROUTING** touches packets before the switch routes them.
+- **INPUT** touches packets after the switch determines that the packets are for the local system but before the control plane software receives them.
+- **FORWARD** touches transit traffic as it moves through the switch.
+- **OUTPUT** touches packets from the control plane software before they leave the switch.
+- **POSTROUTING** touches packets immediately before they leave the switch but after a routing decision.
 
 ### Tables
 
@@ -236,9 +236,69 @@ You can match on VLAN IDs on layer 2 interfaces for ingress rules. The following
 -A FORWARD -i swp31 -m mark --mark 0x66 -m dscp --dscp-class CS1 -j SETCLASS --class 2
 ```
 
+## Install and Manage ACL Rules with NVUE
+
+Instead of crafting a rule by hand then installing it with `cl-acltool`, you can use NVUE commands.
+
+Cumulus Linux converts the commands to a rules file, `/etc/cumulus/acl/policy.d/50_cue.rules`. The rules you create with NVUE are independent of the default files in `/etc/cumulus/acl/policy.d/00control_plane.rules` and `99control_plane_catch_all.rules`. If you update the content in these files after a Cumulus Linux upgrade, you do not lose the rules.
+
+Consider the following `iptables` rule:
+
+```
+-A FORWARD -i swp1 -o swp2 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT
+```
+
+To create this rule with NVUE and call it *EXAMPLE1*:
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 2 match ip source-ip 10.0.14.2/32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 3 match ip source-port ANY
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 4 match ip dest-ip 10.0.15.8/32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 5 match ip dest-port ANY
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 6 action permit
+cumulus@switch:~$ nv config apply
+
+```
+
+NVUE adds all options, such as the `-j` and `-p`, even `FORWARD` in the above rule automatically when you apply the rule to the control plane; NVUE figures it all out for you.
+
+After you add the rule, you need to apply it to an inbound or outbound interface with the `nv set interface <interface> acl` command. The inbound interface in the following example is swp1:
+
+```
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
+cumulus@switch:~$ nv set apply
+```
+
+To see all installed rules, examine the `50_cue.rules` file:
+
+```
+cumulus@switch:~$ sudo cat /etc/cumulus/acl/policy.d/50_cue.rules
+[iptables]
+
+## ACL example1 in dir inbound on interface swp1 ##
+-A FORWARD -i swp1 -s 10.0.14.2/32 -d 10.0.15.8/32 -p tcp -j ACCEPT
+...
+```
+
+For INPUT and FORWARD rules, apply the rule to a control plane interface:
+
+```
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound control-plane
+cumulus@switch:~$ nv config apply
+```
+
+To remove a rule, run the `nv unset acl <acl-name>` command. This command deletes all rules from the `/etc/cumulus/acl/policy.d/50_cue.rules` file with the ACL name you specify. The command also deletes the interfaces referenced in the `nclu_acl.conf` file.
+
+```
+cumulus@switch:~$ nv unset acl EXAMPLE1
+cumulus@switch:~$ nv config
+```
+
 ## Install and Manage ACL Rules with NCLU
 
-NCLU provides an easy way to create custom ACLs. The rules you create live in the `/var/lib/cumulus/nclu/nclu_acl.conf` file, which Cumulus Linux converts to a rules file, `/etc/cumulus/acl/policy.d/50_nclu_acl.rules`. The rules you create with NCLU are independent of the default files in `/etc/cumulus/acl/policy.d/` `00control_plane.rules` and `99control_plane_catch_all.rules`. If you update the content in these files after a Cumulus Linux upgrade, you do not lose the rules.
+NCLU provides an easy way to create custom ACLs. The rules you create live in the `/var/lib/cumulus/nclu/nclu_acl.conf` file, which Cumulus Linux converts to a rules file, `/etc/cumulus/acl/policy.d/50_nclu_acl.rules`. The rules you create with NCLU are independent of the default files in `/etc/cumulus/acl/policy.d/00control_plane.rules` and `99control_plane_catch_all.rules`. If you update the content in these files after a Cumulus Linux upgrade, you do not lose the rules.
 
 Instead of crafting a rule by hand then installing it with `cl-acltool`, NCLU handles most options automatically. For example, consider the following `iptables` rule:
 
@@ -787,19 +847,36 @@ The `--syn` flag in the above rule matches packets with the SYN bit set and the 
 ### Control Who Can SSH into the Switch
 
 Run the following NCLU commands to control who can SSH into the switch.
-In the following example, 10.0.0.11/32 is the interface IP address (or loopback IP address) of the switch and 10.255.4.0/24 can SSH into the switch.
+In the following example, 10.10.10.1/32 is the interface IP address (or loopback IP address) of the switch and 10.255.4.0/24 can SSH into the switch.
+
+{{< tabs "852 ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add acl ipv4 test priority 10 accept source-ip 10.255.4.0/24 dest-ip 10.0.0.11/32
-cumulus@switch:~$ net add acl ipv4 test priority 20 drop source-ip any dest-ip 10.0.0.11/32
-cumulus@switch:~$ net add control-plane acl ipv4 test inbound
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add acl ipv4 test priority 10 accept source-ip 10.255.4.0/24 dest-ip 10.10.10.1/32
+cumulus@leaf01:~$ net add acl ipv4 test priority 20 drop source-ip any dest-ip 10.10.10.1/32
+cumulus@leaf01:~$ net add control-plane acl ipv4 test inbound
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
-{{%notice note%}}
-Cumulus Linux does not support the keyword `iprouter` (typically used for traffic that goes to the CPU, where the destination MAC address is that of the router but the destination IP address is not the router).
-{{%/notice%}}
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set acl example2 type ipv4
+cumulus@leaf01:~$ nv set acl example2 rule 10 match ip source-ip 10.255.4.0/24 
+cumulus@leaf01:~$ nv set acl example2 rule 10 match ip dest-ip 10.10.10.1/32
+cumulus@leaf01:~$ nv set acl example2 rule 10 action permit
+cumulus@leaf01:~$ nv set acl example2 rule 20 match ip source-ip ANY 
+cumulus@leaf01:~$ nv set acl example2 rule 20 match ip dest-ip 10.10.10.1/32
+cumulus@leaf01:~$ nv set acl example2 rule 20 action deny
+cumulus@leaf01:~$ nv set interface swp2 acl example2 inbound control-plane
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Example Configuration
 

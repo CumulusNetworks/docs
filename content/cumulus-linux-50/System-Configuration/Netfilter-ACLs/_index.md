@@ -314,7 +314,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-NCLU adds alll options, such as the `-j` and `-p`, even `FORWARD` in the above rule automatically when you apply the rule to the control plane; NCLU figures it all out for you.
+NCLU adds all options, such as the `-j` and `-p`, even `FORWARD` in the above rule automatically when you apply the rule to the control plane; NCLU figures it all out for you.
 
 You can also set a priority value, which specifies the order in which the rules execute and the order in which they appear in the rules file. Lower numbers execute first. To add a new rule in the middle, first run `net show config acl`, which displays the priority numbers. Otherwise, new rules append to the end of the list of rules in the `nclu_acl.conf` and `50_nclu_acl.rules` files.
 
@@ -660,15 +660,31 @@ Use the `POLICE` target with `iptables`. `POLICE` takes these arguments:
 - `--set-burst value` specifies the number of packets or kilobytes (KB) allowed to arrive sequentially.
 - `--set-mode string` sets the mode in *KB* (kilobytes) or *pkt* (packets) for rate and burst size.
 
-For example, to rate limit the incoming traffic on swp1 to 400 packets per second with a burst of 100 packets per second and set the class of the queue for the policed traffic as 0, set this rule in your appropriate `.rules` file:
+For example, to rate limit the incoming traffic on swp1 to 400 packets per second with a burst of 100 packets per second and set the class of the queue for the policed traffic as 0: set this rule in your appropriate `.rules` file:
+
+{{< tabs "665 ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
--A INPUT --in-interface swp1 -j POLICE --set-mode pkt --set-rate 400 --set-burst 100 --set-class 0
+cumulus@leaf01:~$ nv set acl example4 type ipv4
+cumulus@leaf01:~$ nv set acl example4 rule 1 action police mode packet
+cumulus@leaf01:~$ nv set acl example4 rule 1 action police rate 400
+cumulus@leaf01:~$ nv set acl example4 rule 1 action police burst 100
+cumulus@leaf01:~$ nv set acl example4 rule 1 action set class 0
+cumulus@leaf01:~$ nv set interface swp1 acl example4 inbound control-plane
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Edit the .rules File ">}}
+
+Set this rule in your appropriate `.rules` file:
+
+```
+-A INPUT -i swp1 -j POLICE --set-mode pkt --set-rate 400 --set-burst 100 --set-class 0
 ```
 
 Here is another example of control plane ACL rules to lock down the switch. You specify the rules in `/etc/cumulus/acl/policy.d/00control_plane.rules`:
-
-{{< expand "View the contents of the file"  >}}
 
 ```
 INGRESS_INTF = swp+
@@ -705,7 +721,8 @@ SNMP_SERVERS_4 = "192.168.0.1/32"
 -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -j DROP
 ```
 
-{{< /expand >}}
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Set DSCP on Transit Traffic
 

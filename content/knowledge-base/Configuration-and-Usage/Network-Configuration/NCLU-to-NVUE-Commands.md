@@ -460,7 +460,7 @@ Most NVUE BGP commands require the VRF to be included in the command. The exampl
         <code>nv set [vrf &lt;default|name&gt;] router bgp autonomous-system &lt;leaf|spine|none|ASN&gt;</code>
         </td>
         <td style="vertical-align : middle">
-        In NVUE, when a single AS is in use for all VRFs, the <code>[vrf &lt;name&gt;]</code> not required to create the instance. Its settings will be automatically applied to all VRFs including the <code>default</code> VRF.</br> If <code>&lt;none&gt;</code> ASN option used globally, then ASN must be set for every VRF.</br>For more information about the <code>&lt;leaf|spine&gt;</code> options, check out {{<kb_link latest="cl" url="layer-3/Border-Gateway-Protocol-BGP/#auto-bgp" text="Auto BGP" >}} section in the Cumulus Linux User Guide.
+        In NVUE, when a single AS is in use for all VRFs, the <code>[vrf &lt;name&gt;]</code> not required to create the instance. Its settings will be automatically applied to all VRFs including the <code>default</code> VRF.</br> If <code>&lt;none&gt;</code> ASN option used globally, then ASN must be set for every VRF.</br>For more information about the <code>&lt;leaf|spine&gt;</code> options, check out {{<kb_link latest="cl" url="layer-3/Border-Gateway-Protocol-BGP/#auto-bgp.md" text="Auto BGP" >}} section in the Cumulus Linux User Guide.
         </td>
     </tr>
     <tr>
@@ -482,7 +482,7 @@ Most NVUE BGP commands require the VRF to be included in the command. The exampl
         <code> set vrf &lt;default|name&gt; router bgp peer &lt;ip|interface&gt; remote-as &lt;internal|external|ASN&gt;</code>
         </td>
         <td style="vertical-align : middle">
-        NVUE requires to specify a VRF when adding BGP peer. Cumulus Linux supports {{<kb_link latest="cl" url="layer-3/Border-Gateway-Protocol-BGP/#bgp-unnumbered" text="BGP Unnambered" >}} peer configuration.</br>The ASN can be a number, or <code>internal</code> for a neighbor in the same AS or <code>external</code> for a neighbor in a different AS.
+        NVUE requires to specify a VRF when adding BGP peer. Cumulus Linux supports {{<kb_link latest="cl" url="layer-3/Border-Gateway-Protocol-BGP/#bgp-unnumbered.md" text="BGP Unnambered" >}} peer configuration.</br>The ASN can be a number, or <code>internal</code> for a neighbor in the same AS or <code>external</code> for a neighbor in a different AS.
         </td>
     </tr>
     <tr>
@@ -591,7 +591,7 @@ Individual VNIs include a VLAN to VNI mapping and you can specify which VLANs ma
 
 Using NCLU you can configure only the traditional (multiple) VXLAN device. With NVUE, you can configure only the single VXLAN device. Some of the VXLAN commands looks similar on both CLIs, but as the implementations is different, some of them aren't.</br>
 
-Below are a few similar VXLAN and EVPN commands, for full configuration and more detailed information, check out the {{<kb_link latest="cl" url="Network-Virtualization/" text="Network Virtualization" >}} section in the Cumulus Linux User Guide.
+Below are a few similar VXLAN and EVPN commands, for full configuration and more detailed information, check out the {{<kb_link latest="cl" url="Network-Virtualization/#.md" text="Network Virtualization" >}} section in the Cumulus Linux User Guide.
 
 <table>
     <tr>

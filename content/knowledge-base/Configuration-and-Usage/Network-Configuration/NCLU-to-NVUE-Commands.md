@@ -5,7 +5,7 @@ weight: 300
 
 Cumulus Linux version 4.4 introduces a new CLI called {{<kb_link latest="cl" url="System-Configuration/NVIDIA-User-Experience-NVUE.md" text="NVUE">}}. NVUE is a complete object model for Cumulus Linux, which makes translating configurations from one vendor to another much more reliable the first time you use Cumulus Linux and across Cumulus Linux versions.
 
-This KB article describes how to translate common NCLU configurations to NVUE commands.
+This KB article describes how to translate common NCLU configurations to NVUE commands and bring you up to speed in using NVUE.
 
 ## Hostname and System
 
@@ -69,7 +69,7 @@ This KB article describes how to translate common NCLU configurations to NVUE co
         <code>nv config apply</code>
         </td>   
         <td rowspan="2" style="vertical-align : middle">
-        In NCLU, the running-config equals the startup-config. </br> NVUE separates running and startup configs: </br> <code>nv config apply</code> - apply configuration as running (without saving as startup) </br> <code>nv config save</code> - save configuration as startup (without applying as running)
+        In NCLU, the running-config equals the startup-config. </br>NVUE separates running and startup configs: </br> <code>nv config apply</code> - apply configuration as running (without saving as startup) </br> <code>nv config save</code> - save configuration as startup (without applying as running)
         </td>
     </tr>
     <tr>
@@ -123,7 +123,7 @@ This KB article describes how to translate common NCLU configurations to NVUE co
         <code>nv set interface &lt;interface&gt; type &lt;interface-type&gt;</code>
         </td>
         <td style="vertical-align : middle">
-        NVUE allows to create any interface-type under the interface object. </br> NCLU is not an object model, so this command only allows to create &lt;swp&gt; interface-type. For other interface-types, you need to use different commands.
+        NVUE allows to create any interface-type under the interface object. </br>NCLU is not an object model, so this command only allows to create &lt;swp&gt; interface-type. For other interface-types, you need to use different commands.
         </td>
     <tr>
         <td style="vertical-align : middle">
@@ -133,7 +133,7 @@ This KB article describes how to translate common NCLU configurations to NVUE co
         <code>nv set interface &lt;interface&gt; ip address &lt;ip/mask&gt;</code>
         </td>
         <td style="vertical-align : middle">
-        In NVUE, you set IPv4 and IPv6 addresses with the same command. </br> To configure secondary IP address, use the same command.</br> To replace existing IP address, delete it first using: </br> NCLU - <code>net del interface &lt;interface&gt; [ipv4|ipv6] address &lt;ip/mask&gt;</code></br>NVUE - <code>nv unset interface &lt;interface&gt; ip address &lt;ip/mask&gt;</code>
+        In NVUE, you set IPv4 and IPv6 addresses with the same command. </br> To configure secondary IP address, use the same command.</br>To replace existing IP address, delete it first using: </br> NCLU - <code>net del interface &lt;interface&gt; [ipv4|ipv6] address &lt;ip/mask&gt;</code></br>NVUE - <code>nv unset interface &lt;interface&gt; ip address &lt;ip/mask&gt;</code>
         </td>      
     </tr>
     <tr>
@@ -236,7 +236,7 @@ Linux uses the term `bond` to represent `port-channels`.
         <code>nv set interface &lt;bond-name&gt; bond memeber &lt;interfaces&gt;</code>
         </td>
         <td rowspan="2" style="vertical-align : middle">
-        In NCLU, bond is created by enslaving ports to it (or seetting <code>bond mode</code>). You create bond and add memebers in a sinble command.</br> In NVUE, you can create bond in the same way or without adding memebers by creating it using the <code>type bond</code> interface command. In addition, by naming bond interface as "bond...", its type will be defined automatically. e.g. <code>nv set interface bond1</code></br>NOTE: You define bonds with a name that must start with a letter. 
+        In NCLU, bond is created by enslaving ports to it (or seetting <code>bond mode</code>). You create bond and add memebers in a sinble command.</br>In NVUE, you can create bond in the same way or without adding memebers by creating it using the <code>type bond</code> interface command. In addition, by naming bond interface as "bond...", its type will be defined automatically. e.g. <code>nv set interface bond1</code></br>NOTE: You define bonds with a name that must start with a letter. 
         </td>
     </tr>
     <tr>
@@ -381,7 +381,7 @@ cumulus@switch:~$ nv set interface <interface> bridge domain br_default
     </tr>
 </table>
 
-## MLAG and vPC
+## MLAG
 
 In MLAG configuration, Cumulus Linux uses *peer link* (bond between peers) to sync the MLAG pair. To keep MLAG pairs in sync when a direct connection fails, Cumulus Linux uses *mlag backup IP*.
 
@@ -444,6 +444,16 @@ Most NVUE BGP commands require the VRF to be included in the command. The exampl
     </tr>
     <tr>
         <td style="vertical-align : middle">
+        <code>net add &lt;interface&gt; vrf &lt;name&gt;</code>
+        </td>
+        <td style="vertical-align : middle">
+        <code>nv set interface &lt;interface&gt; ip vrf &lt;name&gt;</code>
+        </td>
+        <td style="vertical-align : middle">
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align : middle">
         <code>net add bgp [vrf &lt;name&gt;] autonomous-system &lt;leaf|spine|ASN&gt;</code>
         </td>
         <td style="vertical-align : middle">
@@ -483,7 +493,7 @@ Most NVUE BGP commands require the VRF to be included in the command. The exampl
         <code>nv set vrf &lt;default|name&gt; router bgp peer-group &lt;name&gt; &lt;attributes&gt;</code>
         </td>
         <td style="vertical-align : middle">
-        NCLU requires to create peer-group with </br><code>net add bgp &lt;vrf &lt;name&gt;&gt; neighbor &lt;name&gt; peer-group</code> prior configuring its attributes.</br> NVUE allows you to create peer-group and set its attributes in a single command.
+        NCLU requires to create peer-group with </br><code>net add bgp &lt;vrf &lt;name&gt;&gt; neighbor &lt;name&gt; peer-group</code> prior configuring its attributes.</br>NVUE allows you to create peer-group and set its attributes in a single command.
         </td>
     </tr>
     <tr>
@@ -494,7 +504,7 @@ Most NVUE BGP commands require the VRF to be included in the command. The exampl
         <code>nv set vrf &lt;default|name&gt; router bgp address-family &lt;ipv4-unicast|ipv6-unicast&gt; static-network &lt;ipv4|ipv6/mask&gt;</code>
         </td>
         <td style="vertical-align : middle">
-        In NCLU, address-family is optional and can be determined by the type of the ip-address advertised. In NVUE, you must specify the address-family to advertise network into it.
+        In NCLU, address-family is optional and can be determined by the type of the ip-address advertised.</br>In NVUE, you must specify the address-family to advertise network into it.
         </td>
     </tr>
     <tr>
@@ -515,7 +525,7 @@ Most NVUE BGP commands require the VRF to be included in the command. The exampl
         <code>nv set router policy prefix-list &lt;name&gt; rule &lt;seq&gt; action &lt;permit|deny&gt;</code>
         </td>
         <td rowspan="2" style="vertical-align : middle">
-        NCLU allows to configure prefix-list action and match in a single command. </br> NVUE does it in two commands. The default prefix-list type in NVUE is IPv4. But, you can set IPv6 prefix-list using the <code>nv set router policy prefix-list &lt;name&gt; type ipv6</code> command. 
+        NCLU allows to configure prefix-list action and match in a single command. </br>NVUE does it in two commands. The default prefix-list type in NVUE is IPv4. But, you can set IPv6 prefix-list using the <code>nv set router policy prefix-list &lt;name&gt; type ipv6</code> command. 
         </td>
     </tr>
     <tr>
@@ -542,7 +552,7 @@ Most NVUE BGP commands require the VRF to be included in the command. The exampl
         <code>nv set router policy route-map &lt;name&gt; rule &lt;seq&gt; action &lt;permit|deny&gt;</code>
         </td>
         <td rowspan="2" style="vertical-align : middle">
-        NCLU allows to configure route-map action and match in a single command. </br> NVUE does it with two commands for that. 
+        NCLU allows to configure route-map action and match in a single command. NVUE does it with two commands. 
         </td>
     </tr>
     <tr>
@@ -575,6 +585,14 @@ Most NVUE BGP commands require the VRF to be included in the command. The exampl
 
 ## VXLAN and EVPN 
 
+Cumulus Linux supports both single and traditional VXLAN devices. With a traditional VXLAN device, each VNI is a separate device (for example, vni10, vni20, vni30). 
+With a single VXLAN device, a set of VNIs represent a single device model. The single VXLAN device has a set of attributes that belong to the VXLAN construct.</br> 
+Individual VNIs include a VLAN to VNI mapping and you can specify which VLANs map to the associated VNIs. Single VXLAN device simplifies the configuration and reduces the overhead by replacing multiple traditional VXLAN devices with a single VXLAN device.
+
+Using NCLU you can configure only the traditional (multiple) VXLAN device. With NVUE, you can configure only the single VXLAN device. Some of the VXLAN commands looks similar on both CLIs, but as the implementations is different, some of them aren't.</br>
+
+Below are a few similar VXLAN and EVPN commands, for full configuration and more detailed information, check out the {{<kb_link latest="cl" url="Network-Virtualization/" text="Network Virtualization" >}} section in the Cumulus Linux User Guide.
+
 <table>
     <tr>
         <th>
@@ -601,156 +619,308 @@ Most NVUE BGP commands require the VRF to be included in the command. The exampl
         <td style="vertical-align : middle">
         <code>net add vxlan &lt;name&gt; vxlan id &lt;number&gt;</code>
         </td>
-        <td style="vertical-align : middle">
+        <td rowspan="2" style="vertical-align : middle">
         <code>nv set bridge domain br_default vlan &lt;number&gt; vni &lt;number&gt;</code>
+        </td>
+        <td rowspan="2" style="vertical-align : middle">
+        Using NCLU, you have to create the VXLAN device(/s) and assigln it to VLAN in the bridge.</br>In NVUE, the single VXLAN device is created by mapping the VLAN to VNI on the bridge. 
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <code>net add vxlan &lt;name&gt; bridge access &lt;vlan-id&gt;</code>
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align : middle">
+        <code>net add loopback lo vxlan local-tunnelip &lt;ip&gt;</code>
+        </td>
+        <td style="vertical-align : middle">
+        <code>nv set nve vxlan source address &lt;ip&gt;</code>
+        </td>
+        <td style="vertical-align : middle">
+        In NCLU, it is possible to set local-tunnel IP seperatly per device using</br> <code>net add vxlan &lt;name&gt; vxlan local-tunnelip &lt;ip&gt;</code> command.
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align : middle">
+        <code>net add vlxan &lt;name&gt; bridge arp-nd-suppress on</code>
+        </td>
+        <td style="vertical-align : middle">
+        <code>nv set nve vxlan arp-nd-suppress on</code>
+        </td>
+        <td rowspan="2" style="vertical-align : middle">
+        In NCLU, all VXLAN related configuration must be configured on every device.</br> As NVUE has a single VXLAN device, the configuration is global for all VNIs.
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align : middle">
+        <code>net add vlxan &lt;name&gt; bridge bridge learning off</code>
+        </td>
+        <td style="vertical-align : middle">
+        <code>nv set nve vxlan mac-learning off</code>
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align : middle">
+        <code>net add vlxan &lt;name&gt; stp bpduguard</code>
+        </td>
+        <td style="vertical-align : middle">
+        <code>nv set interface &lt;interface&gt; bridge domain br_default stp bpdu-guard on</code>
+        </td>
+        <td rowspan="2" style="vertical-align : middle">
+        In NCLU, spanning-tree configuration is done on each interface including the VXLAN devices.</br>in NVUE, this configuration is done on the bridge ports level only. 
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align : middle">
+        <code>net add vlxan &lt;name&gt; stp portbpdufilter</code>
+        </td>
+        <td style="vertical-align : middle">
+        <code>nv set interface &lt;interface&gt; bridge domain br_default stp admin-edge on</code>
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="vertical-align : middle">
+        <code>net add bgp l2vpn evpn neighbor &lt;ip-addr|interface|peer-group&gt; activate</code>
+        </td>
+        <td>
+        <code>nv set evpn enable on</code>
+        </td>
+        <td rowspan="3" style="vertical-align : middle">
+        In NVUE, EVPN-AF must be enabled globally and BGP proccess as well as the peer activation in it.</br>Unlike with NCLU, in NVUE you do not need enable the BGP control plane for all VNIs with the <code>advertise-all-vni</code> option.
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align : middle">
+        <code>nv set vrf &lt;default|name&gt; router bgp address-family l2vpn-evpn enable on</code>
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align : middle">
+        <code>net add bgp l2vpn evpn advertise-all-vni</code>
+        </td>
+        <td style="vertical-align : middle">
+        <code>nv set vrf &lt;default|name&gt; router bgp peer &lt;ip-addr|interface|peer-group&gt; address-family l2vpn-evpn enable on</code>
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align : middle">
+        <code>net add bgp vrf &lt;name&gt; l2vpn evpn advertise ipv4 unicast</code>
+        </td>
+        <td style="vertical-align : middle">
+        <code>nv set vrf &lt;name&gt; router bgp address-family ipv4-unicast route-export to-evpn</code>
         </td>
         <td style="vertical-align : middle">
         </td>
     </tr>
     <tr>
         <td style="vertical-align : middle">
-        <code>net add vxlan &lt;name&gt; vxlan id &lt;number&gt;</code>
+        <code>net add vrf &lt;name&gt; vni &lt;number&gt;</code>
         </td>
         <td style="vertical-align : middle">
-        <code>nv set bridge domain br_default vlan &lt;number&gt; vni &lt;number&gt;</code>
+        <code>nv set vrf vrf &lt;name&gt; evpn vni &lt;number&gt;</code>
         </td>
         <td style="vertical-align : middle">
         </td>
     </tr>
-
-| NX-OS Command | NVUE Command | Comments |
-| -----         | -----        | -----    |
-
-|`fabric forwarding anycast-gateway-mac 0001.0001.0001`| `nv set system global anycast-mac 44:38:39:BE:EF:AA` | |
-|`ip pim rp-address 192.168.9.9 group-list 224.0.0.0/4`| _none_ | NVIDIA recommends you use Head End Replication for EVPN, removing the need for PIM. For scale-out deployments {{<kb_link latest="cl" url="Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/EVPN-PIM.md" text="PIM Replication" >}} is supported.|
-|`ip pim ssm range 232.0.0.0/8`| _none_ |
-|`vlan 1,10,20,30,40`| `nv set bridge domain br_default vlan 30,40` | {{<kb_link latest="cl" url="Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode.md" text="Ethernet Bridging" >}}
-|`vlan 10`| _none_ | The layer 3 VNI does not require a unique VLAN interface. |
-|` name L3-VNI-VLAN-10`|  _none_ | |
-|` vn-segment 10000010`|  _none_ | |
-|`vlan 30`| `nv set bridge domain br_default vlan 30 vni 10000030` | |
-|` vn-segment 10000030`| _none_ | The `vn-segment` and `vlan` are defined in a single command with NVUE. |
-|`vlan 40`| `nv set bridge domain br_default vlan 40 vni 10000040` | |
-|` vn-segment 10000040`| _none_ | |
-|`vpc domain 2`| `nv set mlag backup 10.197.204.103` | Cumulus Linux {{<kb_link latest="cl" url="Layer-2/Multi-Chassis-Link-Aggregation-MLAG.md" text="Multi-Chassis Link Aggregation - MLAG" >}} uses remote and local peering to ensure uptime.|
-|` peer-keepalive destination 10.197.204.103`| `nv set mlag peer-ip linklocal` | You can determine the local peer IP automatically with link-local addresses. |
-|`interface Vlan10`| _none_ | The layer 3 VNI does not require a unique VLAN interface. |
-|` no shutdown`| _none_ | |
-|` vrf member EVPN-L3-VNI-VLAN-10`| _none_ | |
-|` ip forward`| _none_ | |
-|`interface Vlan30`| | |
-|` no shutdown`| _none_ | Interfaces are `no shut` by default. |
-|` vrf member EVPN-L3-VNI-VLAN-10`| `nv set interface vlan30 ip vrf EVPN-L3-VNI-VLAN-10` | |
-|` ip address 172.16.30.1/24`| `nv set interface vlan30 ip address 172.16.30.1/24` | |
-|` fabric forwarding mode anycast-gateway`| _none_ | No explicit command is required for this setting in NVUE. |
-|`interface Vlan40 `| | |
-|` no shutdown`| _none_ | |
-|` vrf member EVPN-L3-VNI-VLAN-10`| `nv set interface vlan40 ip vrf EVPN-L3-VNI-VLAN-10` | |
-|` ip address 172.16.40.1/24`| `nv set interface vlan40 ip address 172.16.40.1/24` | |
-|`interface port-channel2 `| `nv set interface bond2 bond member swp1` | This example uses `swp1` instead of NX-OS port `e1/13`. | 
-|` switchport mode trunk`| `nv set interface bond2 bridge domain br_default vlan all` | `br_default` is the name of the default bridge. |
-|` vpc 2`| `nv set interface bond2 bond mlag id 2`| |
-|`interface port-channel34`|`nv set interface peerlink bond member swp49` | This example uses `swp49` instead of NX-OS port `e1/1`. |
-|`interface nve1`| _none_ | There is no explicit NVUE interface. |
-|` source-interface loopback2`| `nv set nve vxlan source address 192.168.33.33` | You configure NVUE interface settings globally with `nv set nve vxlan` commands.|
-|` member vni 10000010 associate-vrf`| `nv set vrf EVPN-L3-VNI-VLAN-10 evpn vni 10000010` | | 
-|` member vni 10000030`| _none_ | You only need to associate the VRF VNI. | 
-|` suppress-arp`| `nv set nve vxlan arp-nd-suppress on` | | 
-|` mcast-group 239.1.1.10`| _none_ | NVIDIA recommends you use Head end Replication. |
-|` switchport mode trunk`| _none_ | The interface was defined when the bond was created earlier. |
-|` no switchport`| _none_ | Interfaces are layer 3 by default. |
-|` ip address 192.168.39.3/24`| _none_ | NVIDIA recommends {{<kb_link latest="cl" url="Layer-3/Border-Gateway-Protocol-BGP/Basic-BGP-Configuration.md#bgp-unnumbered" text="BGP Unnumbered" >}} for the underlay, removing the need for an IP address. |
-|` ip router ospf UNDERLAY area 0.0.0.0`| _none_ | NVIDIA recommends BGP Unnumbered. | 
-|` ip pim sparse-mode`| _none_ | NVIDIA recommends Head End Replication. |
-|` switchport mode trunk`| _none_ | Port configuration is part of the bond definition. | 
-|`interface loopback2`| `nv set interface lo ip address 192.168.33.33/32` | Cumulus Linux uses a single loopback `lo`. |
-|` ip address 192.168.33.33/32`| _none_ | Defined with the creation of the loopback interface. | 
-|` ip address 192.168.33.34/32 secondary`| `nv set nve vxlan mlag shared-address 192.168.33.34` | | 
-|` ip router ospf UNDERLAY area 0.0.0.0`| _none_ | NVIDIA recommends using BGP for both the underlay and overlay. |
-|`router bgp 65000`| `nv set router bgp autonomous-system  65000` | | 
-|` neighbor 192.168.9.9 remote-as 100`| `nv set vrf default router bgp peer swp51 remote-as external` | This command uses eBGP unnumbered instead of IP based peering. |
-|` remote-as 65000`| _none_ | This command is combined with the peer command above. |
-|` update-source loopback2`| _none_ | BGP unnumbered uses the interface instead of a loopback source. | 
-|` address-family l2vpn evpn`| `nv set vrf default router bgp peer swp51 address-family l2vpn-evpn enable on` | | 
-|` send-community extended`| _none_ | This is enabled by default. | 
-|` vrf EVPN-L3-VNI-VLAN-10`| _none_ | This is managed through an earlier `nv set vrf` command. |
+    <tr>
+        <td style="vertical-align : middle">
+        <code>net add vlan &lt;number&gt; vrf &lt;name&gt;</code>
+        </td>
+        <td rowspan="3" style="vertical-align : middle">
+        </td>
+        <td rowspan="3" style="vertical-align : middle">
+        In NVUE, L3 VNI doesn't need a separate VLAN allocation.
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align : middle">
+        <code>net add vxlan &lt;name&gt; bridge access &lt;vlan-id&gt;</code>
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align : middle">
+        <code>net add vrf &lt;name&gt; vni &lt;number&gt;</code>
+        </td>
+    </tr>
+</table>
 
 <details>
-<summary>Complete NVUE Configuration</summary>
+<summary>Active-Active VXLAN Symmetric Routing - NVUE Configuration Example</summary>
 
 ``` 
-nv set system global anycast-mac 44:38:39:BE:EF:AA
-nv set bridge domain br_default vlan 30,40
-nv set bridge domain br_default vlan 30 vni 10000030
-nv set bridge domain br_default vlan 40 vni 10000040
-nv set mlag backup 10.197.204.103
-nv set mlag peer-ip linklocal
-nv set interface vlan30 ip vrf EVPN-L3-VNI-VLAN-10
-nv set interface vlan30 ip address 172.16.30.1/24
-nv set interface vlan40 ip vrf EVPN-L3-VNI-VLAN-10
-nv set interface vlan40 ip address 172.16.40.1/24
-nv set interface bond2 bond member swp1
-nv set interface bond2 bridge domain br_default vlan all
+nv set vrf default router bgp autonomous-system 65103
+nv set vrf RED evpn vni 4001
+nv set vrf BLUE evpn vni 4002
+nv set vrf default router bgp router-id 10.10.10.3
+nv set vrf default router bgp peer-group underlay
+nv set vrf default router bgp peer-group underlay remote-as external
+nv set vrf default router bgp peer peerlink.4094 type unnumbered
+nv set vrf default router bgp peer peerlink.4094 peer-group underlay
+nv set vrf default router bgp peer swp51 type unnumbered
+nv set vrf default router bgp peer swp51 peer-group underlay
+nv set vrf default router bgp peer swp52 type unnumbered
+nv set vrf default router bgp peer swp52 peer-group underlay
+nv set vrf default router bgp peer swp53 type unnumbered
+nv set vrf default router bgp peer swp53 peer-group underlay
+nv set vrf default router bgp peer swp54 type unnumbered
+nv set vrf default router bgp peer swp54 peer-group underlay
+nv set vrf default router bgp address-family ipv4-unicast redistribute connected
+nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+nv set vrf default router bgp address-family l2vpn-evpn enable on
+nv set evpn enable on
+nv set vrf RED router bgp autonomous-system 65103
+nv set vrf RED router bgp router-id 10.10.10.3
+nv set vrf RED router bgp address-family ipv4-unicast redistribute connected
+nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
+nv set vrf BLUE router bgp autonomous-system 65103
+nv set vrf BLUE router bgp router-id 10.10.10.3
+nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected
+nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
+nv set interface bond1 bond member swp1
+nv set interface bond2 bond member swp2
+nv set interface bond3 bond member swp3
+nv set interface peerlink bond member swp49,swp50
+nv set interface peerlink type bond
+nv set interface bond1 bridge domain br_default access 10
+nv set interface bond1 bond mlag id 1
+nv set interface bond1-3 bond lacp-bypass on
+nv set interface bond1-3 link mtu 9000
+nv set interface bond1-3 bridge domain br_default stp bpdu-guard on
+nv set interface bond1-3 bridge domain br_default stp admin-edge on
+nv set interface bond2 bridge domain br_default access 20
 nv set interface bond2 bond mlag id 2
-nv set interface peerlink bond member swp49
-nv set nve vxlan source address 192.168.33.33
-nv set vrf EVPN-L3-VNI-VLAN-10 evpn vni 10000010
+nv set interface bond3 bridge domain br_default access 30
+nv set interface bond3 bond mlag id 3
+nv set interface peerlink bridge domain br_default
+nv set interface bond1 bridge domain br_default
+nv set interface bond2 bridge domain br_default
+nv set interface bond3 bridge domain br_default
+nv set bridge domain br_default vlan 10,20,30
+nv set bridge domain br_default type vlan-aware
+nv set mlag init-delay 10
+nv set mlag backup 10.10.10.4
+nv set mlag peer-ip linklocal
+nv set mlag priority 1000
+nv set mlag mac-address 44:38:39:BE:EF:BB
+nv set interface swp1 link state up 
+nv set interface swp2 link state up 
+nv set interface swp3 link state up 
+nv set interface swp49-50 link state up 
+nv set interface swp51-54 link state up 
+nv set nve vxlan mlag shared-address 10.0.1.34
+nv set interface lo ip address 10.10.10.3/32
+nv set nve vxlan source address 10.10.10.3
+nv set interface vlan10 ip address 10.1.10.4/24
+nv set interface vlan10 ip vrr address 10.1.10.1/24
+nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
+nv set interface vlan10 ip vrr state up 
+nv set interface vlan10 vlan 10
+nv set interface vlan10 ip vrf RED
+nv set interface vlan20 ip address 10.1.20.4/24
+nv set interface vlan20 ip vrr address 10.1.20.1/24
+nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
+nv set interface vlan20 ip vrr state up 
+nv set interface vlan20 vlan 20
+nv set interface vlan20 ip vrf RED
+nv set interface vlan30 ip address 10.1.30.4/24
+nv set interface vlan30 ip vrr address 10.1.30.1/24
+nv set interface vlan30 ip vrr mac-address 00:00:00:00:00:30
+nv set interface vlan30 ip vrr state up 
+nv set interface vlan30 vlan 30
+nv set interface vlan30 ip vrf BLUE
+nv set vrf BLUE
+nv set vrf RED
 nv set nve vxlan arp-nd-suppress on
-nv set interface lo ip address 192.168.33.33/32
-nv set nve vxlan mlag shared-address 192.168.33.34
-nv set router bgp autonomous-system 65000
-nv set vrf default router bgp peer swp51 remote-as external
-nv set vrf default router bgp peer swp51 address-family l2vpn-evpn enable on
+nv set bridge domain br_default vlan 10 vni 10
+nv set bridge domain br_default vlan 20 vni 20
+nv set bridge domain br_default vlan 30 vni 30
 ```
 
 </details>
 
+<details>
+<summary>Active-Active VXLAN Symmetric Routing - NCLU Configuration Example</summary>
 
+``` 
+net add bgp autonomous-system 65103
+net add vrf RED vni 4001
+net add vrf BLUE vni 4002
+net add bgp router-id 10.10.10.3
+net add bgp neighbor underlay peer-group
+net add bgp neighbor underlay remote-as external
+net add bgp neighbor peerlink.4094 interface peer-group underlay
+net add bgp neighbor swp51 interface peer-group underlay
+net add bgp neighbor swp52 interface peer-group underlay
+net add bgp neighbor swp53 interface peer-group underlay
+net add bgp neighbor swp54 interface peer-group underlay
+net add bgp ipv4 unicast redistribute connected
+net add bgp l2vpn evpn  neighbor underlay activate
+net add bgp l2vpn evpn  advertise-all-vni
+net add bgp vrf RED autonomous-system 65103
+net add bgp vrf RED router-id 10.10.10.3
+net add bgp vrf RED ipv4 unicast redistribute connected
+net add bgp vrf RED l2vpn evpn  advertise ipv4 unicast
+net add bgp vrf BLUE autonomous-system 65103
+net add bgp vrf BLUE router-id 10.10.10.3
+net add bgp vrf BLUE ipv4 unicast redistribute connected
+net add bgp vrf BLUE l2vpn evpn  advertise ipv4 unicast
+net add bond bond1 bond slaves swp1
+net add bond bond2 bond slaves swp2
+net add bond bond3 bond slaves swp3
+net add bond peerlink bond slaves swp49,swp50
+net add vxlan vni10 vxlan id 10
+net add vxlan vni20 vxlan id 20
+net add vxlan vni30 vxlan id 30
+net add vxlan vniBLUE vxlan id 4002
+net add vxlan vniRED vxlan id 4001
+net add bond bond1 bridge access 10
+net add bond bond1 clag id 1
+net add bond bond1-3 bond lacp-bypass-allow
+net add bond bond1-3 mtu 9000
+net add bond bond1-3 stp bpduguard
+net add bond bond1-3 stp portadminedge
+net add bond bond2 bridge access 20
+net add bond bond2 clag id 2
+net add bond bond3 bridge access 30
+net add bond bond3 clag id 3
+net add bridge bridge ports vni10,vni20,vni30,vniRED,vniBLUE,peerlink,bond1,bond2,bond3
+net add bridge bridge vids 10,20,30
+net add bridge bridge vlan-aware
+net add interface peerlink.4094 clag args --initDelay 10
+net add interface peerlink.4094 clag backup-ip 10.10.10.4
+net add interface peerlink.4094 clag peer-ip linklocal
+net add interface peerlink.4094 clag priority 1000
+net add interface peerlink.4094 clag sys-mac 44:38:39:BE:EF:BB
+net add loopback lo clag vxlan-anycast-ip 10.0.1.34
+net add loopback lo ip address 10.10.10.3/32
+net add loopback lo vxlan local-tunnelip 10.10.10.3
+net add vlan 10 ip address 10.1.10.4/24
+net add vlan 10 ip address-virtual 00:00:00:00:00:10 10.1.10.1/24
+net add vlan 10 vrf RED
+net add vlan 20 ip address 10.1.20.4/24
+net add vlan 20 ip address-virtual 00:00:00:00:00:20 10.1.20.1/24
+net add vlan 20 vrf RED
+net add vlan 30 ip address 10.1.30.4/24
+net add vlan 30 ip address-virtual 00:00:00:00:00:30 10.1.30.1/24
+net add vlan 30 vrf BLUE
+net add vlan 4001 hwaddress 44:38:39:BE:EF:BB
+net add vlan 4001 vrf RED
+net add vlan 4002 hwaddress 44:38:39:BE:EF:BB
+net add vlan 4002 vrf BLUE
+net add vxlan vni10 bridge access 10
+net add vxlan vni10,20,30,vniBLUE,vniRED bridge arp-nd-suppress on
+net add vxlan vni10,20,30,vniBLUE,vniRED bridge learning off
+net add vxlan vni10,20,30,vniBLUE,vniRED stp bpduguard
+net add vxlan vni10,20,30,vniBLUE,vniRED stp portbpdufilter
+net add vxlan vni20 bridge access 20
+net add vxlan vni30 bridge access 30
+net add vxlan vniBLUE bridge access 4002
+net add vxlan vniRED bridge access 4001
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</details>
 
 
 ## Access Control Lists (ACLs)
@@ -776,24 +946,34 @@ For more information, refer to the {{<kb_link latest="cl" url="System-Configurat
     </tr>
     <tr>
         <td rowspan="3" style="vertical-align : middle">
-        <code>net add acl &lt;ipv4|ipv6|mac&gt; &lt;name&gt; &lt;action&gt; &lt;protocol&gt; &lt;src_ip&gt; &lt;src_port&gt; &lt;dst_ip&gt; &lt;dst_port&gt;</code>
+        <code>net add acl &lt;ipv4|ipv6|mac&gt; &lt;name&gt; &lt;action&gt; &lt;attributes&gt; [&lt;value&gt;]</code>
         </td>
         <td style="vertical-align : middle">
-        <code>nv set acl &lt;name&gt; rule &lt;seq&gt; &lt;action&gt; </code>
+        <code>nv set acl &lt;name&gt; type &lt;ipv4|ipv6|mac&gt;</code>
         </td>
         <td rowspan="3" style="vertical-align : middle">
-        NCLU allows ACL configuration in one line, but doesn't have sequance numbers. To change sequance numbers, you have to edit <code>nclu_acl.conf</code> file.</br>NVUE ACL configuration must be using separate commands and it links the source, destination, and actions with the &lt;seq&gt; value.
+        NCLU allows ACL configuration in one line, but doesn't have sequance numbers. To change sequance numbers, you have to edit <code>nclu_acl.conf</code> file.</br>NVUE ACL configuration must be using separate commands and it links the source, destination, and actions with the &lt;name&gt; &lt;seq&gt; values.
         </td>
     </tr>
     <tr>
         <td style="vertical-align : middle">
-        <code>nv set acl &lt;name&gt; rule &lt;seq&gt; &lt;action&gt; </code>
+        <code>nv set acl &lt;name&gt; rule &lt;seq&gt; match &lt;ip|mac&gt; &lt;attributes&gt; &lt;value&gt;</code>
         </td>
     </tr>
+    <tr>
+        <td style="vertical-align : middle">
+        <code>nv set acl &lt;name&gt; rule &lt;seq&gt; action &lt;action&gt; [&lt;attributes&gt;] </code>
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align : middle">
+        <code>net add interface &lt;interface&gt; acl &lt;ipv4|ipv6|mac&gt; &lt;name&gt; &lt;inbound|outboung&gt;</code>
+        </td>
+        <td style="vertical-align : middle">
+        <code>nv set interface &lt;interface&gt; acl &lt;name&gt; &lt;inbound|outboung&gt;</code>
+        </td>
+        <td style="vertical-align : middle">
+        </td>
+</table>
 
-| NX-OS Command | NVUE Command | Comments |
-| -----         | -----        | -----    |
-|`ip access-list <name>`<br />&nbsp;&nbsp;&nbsp;`<seq> permit ip <source> <destination>` | `nv set acl <name> rule <seq> match source-ip <source>`<br />`nv set acl <name> rule <seq> match dest-ip <destination>`<br />`nv set acl <name> rule <seq> action permit` |  |
-|`interface <slot/port>`<br />&nbsp;&nbsp;&nbsp;`ip access-group <name> in` | `nv set interface <interface> acl <name> inbound` |
-|`mac access-list <name>`<br />&nbsp;&nbsp;&nbsp;`<seq> permit <source mac> <destination mac> <protocol>` | `nv set acl <name> rule <seq> match source-mac <source mac>`<br />`nv set acl <name> rule <seq> match dest-mac <destination mac>`<br />`nv set acl <name> rule <seq> match protocol <protocol number>`<br />`nv set acl <name> rule <seq> action permit` | NVUE links the source, destination, and actions with the `<seq>` value. |
-|`interface <slot/port>`<br />&nbsp;&nbsp;&nbsp;`mac port access-group <name>` | `nv set interface <interface> acl <name> inbound` |
+To make the transition from NCLU to NVUE configuration easier, you can use this {{<exlink url="https://air.nvidia.com/migrate/" text="NVUE Migration Tool">}} to convert your NCLU to NVUE configuration by uploading the cl-support file.

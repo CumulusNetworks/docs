@@ -3,9 +3,9 @@ title: NCLU to NVUE Common Commands
 weight: 300
 ---
 
-Cumulus Linux version 4.4 introduces a new CLI called {{<kb_link latest="cl" url="System-Configuration/NVIDIA-User-Experience-NVUE.md" text="NVUE">}}. NVUE is a complete object model for Cumulus Linux, which makes translating configurations from one vendor to another much more reliable the first time you use Cumulus Linux and across Cumulus Linux versions.
+Cumulus Linux version 4.4 introduces a new CLI called {{<kb_link latest="cl" url="System-Configuration/NVIDIA-User-Experience-NVUE.md" text="NVUE">}}. NVUE is a complete object model for Cumulus Linux. It makes translating configurations from one vendor to another much more reliable the first time you use Cumulus Linux and across Cumulus Linux versions.
 
-This KB article describes how to translate common NCLU configurations to NVUE commands and bring you up to speed in using NVUE.
+This KB article describes how to translate common NCLU configurations to NVUE commands and bring you up to speed using NVUE.
 
 ## Hostname and System
 
@@ -99,7 +99,6 @@ This KB article describes how to translate common NCLU configurations to NVUE co
         </td>   
     </tr>
 </table>
-
 
 ## Interfaces
 
@@ -383,7 +382,7 @@ cumulus@switch:~$ nv set interface <interface> bridge domain br_default
 
 ## MLAG
 
-In MLAG configuration, Cumulus Linux uses *peer link* (bond between peers) to sync the MLAG pair. To keep MLAG pairs in sync when a direct connection fails, Cumulus Linux uses *mlag backup IP*.
+In MLAG configuration, Cumulus Linux uses *peer link* (bond between peers) to sync the MLAG pair. In addition, to keep MLAG pairs in sync when a direct connection fails, Cumulus Linux uses *mlag backup IP*.
 
 For more information about MLAG, refer to the {{<kb_link latest="cl" url="Layer-2/Multi-Chassis-Link-Aggregation-MLAG.md" text="Multi-Chassis Link Aggregation - MLAG" >}} page on the Cumulus Linux User Guide.
 
@@ -428,7 +427,7 @@ For more information about MLAG, refer to the {{<kb_link latest="cl" url="Layer-
 
 ## Layer 3 Routing Protocols
 
-Most NVUE BGP commands require the VRF to be included in the command. The examples below include the `default` VRF name since it is pre-defined in the system, but any VRF name can be used. You can still configure some of the global BGP parameters (enable/disable BGP, set the ASN and the router ID, configure BGP graceful restart, and shutdown the router) without specifying a VRF. Then all VRFs enherit these settings automatically unless you set specific settings on the VRF.</br> In NCLU, by default, all configuration is done globally on the system's default VRF, unless other VRF specified (NCLU doesn't have pre-defined VRF named `default`). Custom VRFs don't enherit the global BGP settings and must be configured separately.
+Most NVUE BGP commands require including a VRF in the command. The examples below contain the `default` VRF name since it is pre-defined in the system, but you can use any VRF name. You can still configure some of the global BGP parameters (enable/disable BGP, set the ASN and the router ID, configure BGP graceful restart, and shutdown the router) without specifying a VRF. Then all VRFs inherit these settings automatically unless you set specific settings on the VRF.</br> In NCLU, by default, all configuration is done globally on the system's default VRF (NCLU doesn't have a pre-defined VRF named `default`). Custom VRFs don't inherit the global BGP settings and must be configured separately.
 
 <table>
     <tr>
@@ -460,7 +459,7 @@ Most NVUE BGP commands require the VRF to be included in the command. The exampl
         <code>nv set [vrf &lt;default|name&gt;] router bgp autonomous-system &lt;leaf|spine|none|ASN&gt;</code>
         </td>
         <td style="vertical-align : middle">
-        In NVUE, when a single AS is in use for all VRFs, the <code>[vrf &lt;name&gt;]</code> not required to create the instance. Its settings will be automatically applied to all VRFs including the <code>default</code> VRF.</br> If <code>&lt;none&gt;</code> ASN option used globally, then ASN must be set for every VRF.</br>For more information about the <code>&lt;leaf|spine&gt;</code> options, check out {{<kb_link latest="cl" url="layer-3/Border-Gateway-Protocol-BGP/#auto-bgp.md" text="Auto BGP" >}} section in the Cumulus Linux User Guide.
+        In NVUE, when a single AS is in use for all VRFs, the <code>[vrf &lt;name&gt;]</code> not required to create the instance. Its settings will be automatically applied to all VRFs including the <code>default</code> VRF.</br> If <code>&lt;none&gt;</code> ASN option used globally, then ASN must be set for every VRF.</br>For more information about the <code>&lt;leaf|spine&gt;</code> options, check out {{<kb_link latest="cl" url="layer-3/Border-Gateway-Protocol-BGP/_index.md#auto-bgp" text="Auto BGP" >}} section in the Cumulus Linux User Guide.
         </td>
     </tr>
     <tr>
@@ -482,7 +481,7 @@ Most NVUE BGP commands require the VRF to be included in the command. The exampl
         <code> set vrf &lt;default|name&gt; router bgp peer &lt;ip|interface&gt; remote-as &lt;internal|external|ASN&gt;</code>
         </td>
         <td style="vertical-align : middle">
-        NVUE requires to specify a VRF when adding BGP peer. Cumulus Linux supports {{<kb_link latest="cl" url="layer-3/Border-Gateway-Protocol-BGP/#bgp-unnumbered.md" text="BGP Unnambered" >}} peer configuration.</br>The ASN can be a number, or <code>internal</code> for a neighbor in the same AS or <code>external</code> for a neighbor in a different AS.
+        NVUE requires to specify a VRF when adding BGP peer. Cumulus Linux supports {{<kb_link latest="cl" url="layer-3/Border-Gateway-Protocol-BGP/_index.md#bgp-unnumbered" text="BGP Unnambered" >}} peer configuration.</br>The ASN can be a number, or <code>internal</code> for a neighbor in the same AS or <code>external</code> for a neighbor in a different AS.
         </td>
     </tr>
     <tr>
@@ -586,10 +585,10 @@ Most NVUE BGP commands require the VRF to be included in the command. The exampl
 ## VXLAN and EVPN 
 
 Cumulus Linux supports both single and traditional VXLAN devices. With a traditional VXLAN device, each VNI is a separate device (for example, vni10, vni20, vni30). 
-With a single VXLAN device, a set of VNIs represent a single device model. The single VXLAN device has a set of attributes that belong to the VXLAN construct.</br> 
-Individual VNIs include a VLAN to VNI mapping and you can specify which VLANs map to the associated VNIs. Single VXLAN device simplifies the configuration and reduces the overhead by replacing multiple traditional VXLAN devices with a single VXLAN device.
+With a single VXLAN device, a set of VNIs represents a single device model. The single VXLAN device has a set of attributes that belong to the VXLAN construct.</br> 
+Individual VNIs include a VLAN to VNI mapping, and you can specify which VLANs map to the associated VNIs. A single VXLAN device simplifies the configuration and reduces the overhead by replacing multiple traditional VXLAN devices with a single VXLAN device.
 
-Using NCLU you can configure only the traditional (multiple) VXLAN device. With NVUE, you can configure only the single VXLAN device. Some of the VXLAN commands looks similar on both CLIs, but as the implementations is different, some of them aren't.</br>
+Using NCLU, you can configure only the traditional (multiple) VXLAN device. With NVUE, you can configure only a single VXLAN device. Some of the VXLAN commands look similar on both CLIs, but as the implementations are different, some of them aren't.</br>
 
 Below are a few similar VXLAN and EVPN commands, for full configuration and more detailed information, check out the {{<kb_link latest="cl" url="Network-Virtualization/#.md" text="Network Virtualization" >}} section in the Cumulus Linux User Guide.
 
@@ -922,13 +921,12 @@ net add vxlan vniRED bridge access 4001
 
 </details>
 
-
 ## Access Control Lists (ACLs)
 
-ACLs in Cumulus Linux are based on Linux iptables so keep this in mind:
+ACLs in Cumulus Linux are based on Linux iptables, so keep this in mind:
 - There is no implicit deny. ACLs must end in a `match any` and `action deny` rule to drop all unmatched traffic.
 - There is no support for wildcard masks. You must list subnets individually.
-In addition to NCLU commands, you can configure ACLs stright by setting ebtables and iptables rules. To ease ACL management on the system, you can use a tool called `cl-acltool`.
+In addition to NCLU commands, you can configure ACLs straight by setting ebtables and iptables rules. To ease ACL management on the system, you can use a tool called `cl-acltool`.
 
 For more information, refer to the {{<kb_link latest="cl" url="System-Configuration/Netfilter-ACLs/_index.md" text="Netfilter - ACLs" >}} section of the Cumulus Linux User Guide.
 

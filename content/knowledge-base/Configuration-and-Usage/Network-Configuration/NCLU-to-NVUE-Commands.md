@@ -976,4 +976,6 @@ For more information, refer to the {{<kb_link latest="cl" url="System-Configurat
         </td>
 </table>
 
+## Where to Start?
+
 To make the transition from NCLU to NVUE configuration easier, you can use this {{<exlink url="https://air.nvidia.com/migrate/" text="NVUE Migration Tool">}} to convert your NCLU to NVUE configuration by uploading the cl-support file.

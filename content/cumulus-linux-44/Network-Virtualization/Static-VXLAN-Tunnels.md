@@ -395,7 +395,7 @@ iface bridge
 auto lo
 iface lo inet loopback
     address 10.10.10.4/32
-    vxlan-local-tunnelip 10.10.10.3
+    vxlan-local-tunnelip 10.10.10.4
 
 auto mgmt
 iface mgmt

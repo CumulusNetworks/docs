@@ -444,7 +444,25 @@ The loopback is up with the IP address 127.0.0.1.
 
 ```
 cumulus@switch:~$ nv show interface lo
+                         operational        applied   pending   description
+-----------------------  -----------------  --------  --------  ----------------------------------------------------------------------
+type                     loopback           loopback  loopback  The type of interface
+ip
+  vrf                                       default   default   Virtual routing and forwarding
+  [address]              127.0.0.1/8                            ipv4 and ipv6 address
+  [address]              ::1/128
+  ipv4
+    forward                                 on        on        Enable or disable forwarding.
+  ipv6
+    enable                                  on        on        Turn the feature 'on' or 'off'.  The default is 'on'.
+    forward                                 on        on        Enable or disable forwarding.
+link
+  mtu                    65536                                  interface mtu
+  state                  up                                     The state of the interface
+...
 ```
+
+The loopback is up with the IP address 127.0.0.1.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -496,7 +514,7 @@ If you configure an IP address without a subnet mask, it becomes a /32 IP addres
 You can add multiple loopback addresses. For more information, see {{<link url="Interface-Configuration-and-Management/#loopback-interface" text="Interface Configuration and Management">}}.
 
 {{%notice info%}}
-If you run NVUE Commands to configure the switch, run the `nv config save` command before you reboot to save the applied configuration to the startup configuration so that the changes persist after the reboot.
+If you run NVUE Commands to configure the switch, run the `nv config save` command before you reboot. The command saves the applied configuration to the startup configuration so that the changes persist after the reboot.
 
 ```
 cumulus@switch:~$ nv config save

@@ -231,7 +231,7 @@ NCLU provides an easy way to create custom ACLs. The rules you create live in th
 Instead of crafting a rule by hand then installing it with `cl-acltool`, NCLU handles most options automatically. For example, consider the following `iptables` rule:
 
 ```
--A FORWARD -i swp1 -o swp2 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT
+-A FORWARD -i swp1 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT
 ```
 
 To create this rule  with NCLU and call it *EXAMPLE1*:
@@ -279,7 +279,7 @@ cumulus@switch:~$ cat /etc/cumulus/acl/policy.d/50_nclu_acl.rules
 -A FORWARD --in-interface swp1 --out-interface swp2 -j ACCEPT -p tcp -s 10.0.14.2/32 -d 10.0.15.8/32 --dport 110
 ```
 
-For INPUT and FORWARD rules, apply the rule to a control plane interface with `net add control-plane`:
+For rules affecting the INPUT chain, apply the rule to a control plane interface with `net add control-plane`:
 
 ```
 cumulus@switch:~$ net add control-plane acl ipv4 EXAMPLE1 inbound

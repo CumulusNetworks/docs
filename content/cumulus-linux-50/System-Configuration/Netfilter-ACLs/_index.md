@@ -245,24 +245,24 @@ Cumulus Linux converts the commands to a rules file, `/etc/cumulus/acl/policy.d/
 Consider the following `iptables` rule:
 
 ```
--A FORWARD -i swp1 -o swp2 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT
+-A FORWARD -i swp1 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT
 ```
 
 To create this rule with NVUE and call it *EXAMPLE1*:
 
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip protocol tcp
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 2 match ip source-ip 10.0.14.2/32
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 3 match ip source-port ANY
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 4 match ip dest-ip 10.0.15.8/32
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 5 match ip dest-port ANY
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 6 action permit
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-ip 10.0.14.2/32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port ANY
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.15.8/32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port ANY
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 rule 10 inbound
 cumulus@switch:~$ nv config apply
-
 ```
 
-NVUE adds all options, such as the `-j` and `-p`, even `FORWARD` in the above rule automatically when you apply the rule to the control plane; NVUE figures it all out for you.
+NVUE adds all options, such as the `-j` and `-p`, and `FORWARD` in the above rule automatically; NVUE figures it all out for you.
 
 After you add the rule, you need to apply it to an inbound or outbound interface with the `nv set interface <interface> acl` command. The inbound interface in the following example is swp1:
 
@@ -277,23 +277,24 @@ To see all installed rules, examine the `50_cue.rules` file:
 cumulus@switch:~$ sudo cat /etc/cumulus/acl/policy.d/50_cue.rules
 [iptables]
 
-## ACL example1 in dir inbound on interface swp1 ##
+## ACL EXAMPLE1 in dir inbound on interface swp1 ##
 -A FORWARD -i swp1 -s 10.0.14.2/32 -d 10.0.15.8/32 -p tcp -j ACCEPT
 ...
 ```
 
-For INPUT and FORWARD rules, apply the rule to a control plane interface:
+For rules affecting the INPUT chain, apply the rule to a control plane interface:
 
 ```
 cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound control-plane
 cumulus@switch:~$ nv config apply
 ```
 
-To remove a rule, run the `nv unset acl <acl-name>` command. This command deletes all rules from the `/etc/cumulus/acl/policy.d/50_cue.rules` file with the ACL name you specify. The command also deletes the interfaces referenced in the `nclu_acl.conf` file.
+To remove a rule, run the `nv unset acl <acl-name>` and `nv unset interface <interface> acl <acl-name>` commands. This command deletes all rules from the `/etc/cumulus/acl/policy.d/50_cue.rules` file with the ACL name you specify.
 
 ```
 cumulus@switch:~$ nv unset acl EXAMPLE1
-cumulus@switch:~$ nv config
+cumulus@switch:~$ nv unset interface swp1 acl EXAMPLE1
+cumulus@switch:~$ nv config apply
 ```
 
 ## Install and Manage ACL Rules with NCLU
@@ -303,7 +304,7 @@ NCLU provides an easy way to create custom ACLs. The rules you create live in th
 Instead of crafting a rule by hand then installing it with `cl-acltool`, NCLU handles most options automatically. For example, consider the following `iptables` rule:
 
 ```
--A FORWARD -i swp1 -o swp2 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT
+-A FORWARD -i swp1 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT
 ```
 
 To create this rule  with NCLU and call it *EXAMPLE1*:
@@ -351,7 +352,7 @@ cumulus@switch:~$ cat /etc/cumulus/acl/policy.d/50_nclu_acl.rules
 -A FORWARD --in-interface swp1 --out-interface swp2 -j ACCEPT -p tcp -s 10.0.14.2/32 -d 10.0.15.8/32 --dport 110
 ```
 
-For INPUT and FORWARD rules, apply the rule to a control plane interface with `net add control-plane`:
+For rules affecting the INPUT chain, apply the rule to a control plane interface with `net add control-plane`:
 
 ```
 cumulus@switch:~$ net add control-plane acl ipv4 EXAMPLE1 inbound
@@ -569,7 +570,6 @@ Even though the table above specifies the ip-acl-heavy profile supports no IPv6 
 
 The `iptables`/`ip6tables`/`ebtables` construct tries to layer the Linux implementation on top of the underlying hardware but they are not always directly compatible. Here are the supported rules for chains in `iptables`, `ip6tables` and `ebtables`.
 
-{{%notice note%}}
 To learn more about any of the options shown in the tables below, run `iptables -h [name of option]`. The same help syntax works for options for `ip6tables` and `ebtables`.
 
 ```
@@ -588,7 +588,6 @@ tricolorpolice option:
 Supported chains for the filter table:
 INPUT FORWARD OUTPUT
 ```
-{{%/notice%}}
 
 ### iptables and ip6tables Rule Support
 
@@ -977,33 +976,106 @@ iface bond2
 
 The following rule blocks any TCP traffic with destination port 200 going from host1 or host2 through the switch (corresponding to rule 1 in the diagram above).
 
+{{< tabs "981 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@leaf01:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@leaf01:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 200
+cumulus@leaf01:~$ nv set acl EXAMPLE1 rule 10 action deny
+cumulus@leaf01:~$ nv set interface bond2 acl EXAMPLE1 outbound
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Edit the .rules File ">}}
+
 ```
 [iptables] -A FORWARD -o bond2 -p tcp --dport 200 -j DROP
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Ingress Rule
 
 The following rule blocks any UDP traffic with source port 200 going from host1 through the switch (corresponding to rule 2 in the diagram above).
 
+{{< tabs "1007 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set acl EXAMPLE2 type ipv4
+cumulus@leaf01:~$ nv set acl EXAMPLE2 rule 10 match ip protocol udp
+cumulus@leaf01:~$ nv set acl EXAMPLE2 rule 10 match ip source-port 200
+cumulus@leaf01:~$ nv set acl EXAMPLE2 rule 10 action deny
+cumulus@leaf01:~$ nv set interface swp2 acl EXAMPLE2 inbound
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Edit the .rules File ">}}
+
 ```
 [iptables] -A FORWARD -i swp2 -p udp --sport 200 -j DROP
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Input Rule
 
 The following rule blocks any UDP traffic with source port 200 and destination port 50 going from host1 to the switch (corresponding to rule 3 in the diagram above).
 
+{{< tabs "1033 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set acl EXAMPLE3 type ipv4
+cumulus@leaf01:~$ nv set acl EXAMPLE3 rule 10 match ip protocol udp
+cumulus@leaf01:~$ nv set acl EXAMPLE3 rule 10 match ip source-port 200
+cumulus@leaf01:~$ nv set acl EXAMPLE3 rule 10 match ip dest-port 50
+cumulus@leaf01:~$ nv set acl EXAMPLE3 rule 10 action deny
+cumulus@leaf01:~$ nv set interface swp1 acl EXAMPLE3 inbound control-plane
+```
+
+{{< /tab >}}
+{{< tab "Edit the .rules File ">}}
+
 ```
 [iptables] -A INPUT -i swp1 -p udp --sport 200 --dport 50 -j DROP
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Output Rule
 
 The following rule blocks any TCP traffic with source port 123 and destination port 123 going from Switch 1 to host2 (corresponding to rule 4 in the diagram above).
 
+{{< tabs "1059 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set acl EXAMPLE4 type ipv4
+cumulus@leaf01:~$ nv set acl EXAMPLE4 rule 10 match ip protocol tcp
+cumulus@leaf01:~$ nv set acl EXAMPLE4 rule 10 match ip source-port 123
+cumulus@leaf01:~$ nv set acl EXAMPLE4 rule 10 match ip dest-port 123
+cumulus@leaf01:~$ nv set acl EXAMPLE4 rule 10 action deny
+cumulus@leaf01:~$ nv set interface br-tag100 acl EXAMPLE4 outbound control-plane
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Edit the .rules File ">}}
+
 ```
 [iptables] -A OUTPUT -o br-tag100 -p tcp --sport 123 --dport 123 -j DROP
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Combined Rules
 
@@ -1025,9 +1097,27 @@ This also becomes two ACLs and is the same as:
 
 The following rule blocks any traffic with source MAC address 00:00:00:00:00:12 and destination MAC address 08:9e:01:ce:e2:04 going from any switch port egress/ingress.
 
+{{< tabs "1102 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set acl EXAMPLE1 type mac
+cumulus@leaf01:~$ nv set acl EXAMPLE1 rule 1 match mac source-mac 00:00:00:00:00:12
+cumulus@leaf01:~$ nv set acl EXAMPLE1 rule 1 match mac dest-mac 08:9e:01:ce:e2:04
+cumulus@leaf01:~$ nv set acl EXAMPLE1 rule 1 action deny
+cumulus@leaf01:~$ nv set interface ANY acl EXAMPLE1 inbound
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Edit the .rules File ">}}
+
 ```
 [ebtables] -A FORWARD -s 00:00:00:00:00:12 -d 08:9e:01:ce:e2:04 -j DROP
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Considerations
 

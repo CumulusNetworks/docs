@@ -254,7 +254,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-NCLU adds alll options, such as the `-j` and `-p`, even `FORWARD` in the above rule automatically when you apply the rule to the control plane; NCLU figures it all out for you.
+NCLU adds all options, such as the `-j` and `-p`, even `FORWARD` in the above rule automatically when you apply the rule to the control plane; NCLU figures it all out for you.
 
 You can also set a priority value, which specifies the order in which the rules execute and the order in which they appear in the rules file. Lower numbers execute first. To add a new rule in the middle, first run `net show config acl`, which displays the priority numbers. Otherwise, new rules append to the end of the list of rules in the `nclu_acl.conf` and `50_nclu_acl.rules` files.
 

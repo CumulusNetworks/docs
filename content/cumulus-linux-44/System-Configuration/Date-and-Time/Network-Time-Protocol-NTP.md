@@ -256,7 +256,7 @@ For added security, you can configure NTP to use authorization keys.
     1  M  CumulusLinux!
     ```
 
-2. In the `/etc/ntp/ntp.conf` file, add a pointer to the `/etc/ntp.keys` file you created above and specify the key identifier. For example:
+2. In the `/etc/ntp.conf` file, add a pointer to the `/etc/ntp.keys` file you created above and specify the key identifier. For example:
 
     ```
     keys /etc/ntp/ntp.keys

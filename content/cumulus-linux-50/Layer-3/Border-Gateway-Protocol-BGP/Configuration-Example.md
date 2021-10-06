@@ -653,8 +653,8 @@ cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 remote-as external
 cumulus@leaf01:~$ nv set vrf default router bgp peer swp52 remote-as external
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.1.10.0/24
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.1.10.0/24
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf01:~$ nv config apply
 ```
@@ -685,7 +685,7 @@ cumulus@leaf02:~$ nv set router bgp autonomous-system 65102
 cumulus@leaf02:~$ nv set router bgp router-id 10.10.10.2
 cumulus@leaf02:~$ nv set vrf default router bgp peer swp51 remote-as external
 cumulus@leaf02:~$ nv set vrf default router bgp peer swp52 remote-as external
-cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.2/32
+cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.2/32
 cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf02:~$ nv config apply
 ```
@@ -716,7 +716,7 @@ cumulus@leaf03:~$ nv set router bgp autonomous-system 65103
 cumulus@leaf03:~$ nv set router bgp router-id 10.10.10.3
 cumulus@leaf03:~$ nv set vrf default router bgp peer swp51 remote-as external
 cumulus@leaf03:~$ nv set vrf default router bgp peer swp52 remote-as external
-cumulus@leaf03:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.3/32
+cumulus@leaf03:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.3/32
 cumulus@leaf03:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf03:~$ nv config apply
 ```
@@ -747,7 +747,7 @@ cumulus@leaf04:~$ nv set router bgp autonomous-system 65104
 cumulus@leaf04:~$ nv set router bgp router-id 10.10.10.4
 cumulus@leaf04:~$ nv set vrf default router bgp peer swp51 remote-as external
 cumulus@leaf04:~$ nv set vrf default router bgp peer swp52 remote-as external
-cumulus@leaf04:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.4/32
+cumulus@leaf04:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.4/32
 cumulus@leaf04:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf04:~$ nv config apply
 ```
@@ -764,7 +764,7 @@ cumulus@spine01:~$ nv set vrf default router bgp peer swp1 remote-as external
 cumulus@spine01:~$ nv set vrf default router bgp peer swp2 remote-as external
 cumulus@spine01:~$ nv set vrf default router bgp peer swp3 remote-as external
 cumulus@spine01:~$ nv set vrf default router bgp peer swp4 remote-as external
-cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.101/32
 cumulus@spine01:~$ nv config apply
 ```
 
@@ -780,7 +780,7 @@ cumulus@spine02:~$ nv set vrf default router bgp peer swp1 remote-as external
 cumulus@spine02:~$ nv set vrf default router bgp peer swp2 remote-as external
 cumulus@spine02:~$ nv set vrf default router bgp peer swp3 remote-as external
 cumulus@spine02:~$ nv set vrf default router bgp peer swp4 remote-as external
-cumulus@spine02:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.102/32
+cumulus@spine02:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.102/32
 cumulus@spine02:~$ nv config apply
 ```
 
@@ -908,7 +908,7 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             enable: on
             address-family:
               ipv4-unicast:
-                static-network:
+                network:
                   10.10.10.1/32: {}
                   10.1.10.0/24: {}
                 enable: on
@@ -1033,7 +1033,7 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             enable: on
             address-family:
               ipv4-unicast:
-                static-network:
+                network:
                   10.10.10.2/32: {}
                 enable: on
                 redistribute:
@@ -1156,7 +1156,7 @@ cumulus@leaf03:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             enable: on
             address-family:
               ipv4-unicast:
-                static-network:
+                network:
                   10.10.10.3/32: {}
                 enable: on
                 redistribute:
@@ -1279,7 +1279,7 @@ cumulus@leaf04:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             enable: on
             address-family:
               ipv4-unicast:
-                static-network:
+                network:
                   10.10.10.4/32: {}
                 enable: on
                 redistribute:
@@ -1332,7 +1332,7 @@ cumulus@spine01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             enable: on
             address-family:
               ipv4-unicast:
-                static-network:
+                network:
                   10.10.10.101/32: {}
                 enable: on
 ```
@@ -1382,7 +1382,7 @@ cumulus@spine02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             enable: on
             address-family:
               ipv4-unicast:
-                static-network:
+                network:
                   10.10.10.102/32: {}
                 enable: on
 ```

@@ -258,7 +258,7 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port ANY
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.15.8/32
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port ANY
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
-cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 rule 10 inbound
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 ßinbound
 cumulus@switch:~$ nv config apply
 ```
 
@@ -662,19 +662,6 @@ Use the `POLICE` target with `iptables`. `POLICE` takes these arguments:
 For example, to rate limit the incoming traffic on swp1 to 400 packets per second with a burst of 100 packets per second and set the class of the queue for the policed traffic as 0: set this rule in your appropriate `.rules` file:
 
 {{< tabs "665 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@leaf01:~$ nv set acl example4 type ipv4
-cumulus@leaf01:~$ nv set acl example4 rule 1 action police mode packet
-cumulus@leaf01:~$ nv set acl example4 rule 1 action police rate 400
-cumulus@leaf01:~$ nv set acl example4 rule 1 action police burst 100
-cumulus@leaf01:~$ nv set acl example4 rule 1 action set class 0
-cumulus@leaf01:~$ nv set interface swp1 acl example4 inbound control-plane
-cumulus@leaf01:~$ nv config apply
-```
-
-{{< /tab >}}
 {{< tab "Edit the .rules File ">}}
 
 Set this rule in your appropriate `.rules` file:
@@ -682,6 +669,22 @@ Set this rule in your appropriate `.rules` file:
 ```
 -A INPUT -i swp1 -j POLICE --set-mode pkt --set-rate 400 --set-burst 100 --set-class 0
 ```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl example4 type ipv4
+cumulus@switch:~$ nv set acl example4 rule 1 action police mode packet
+cumulus@switch:~$ nv set acl example4 rule 1 action police rate 400
+cumulus@switch:~$ nv set acl example4 rule 1 action police burst 100
+cumulus@switch:~$ nv set acl example4 rule 1 action set class 0
+cumulus@switch:~$ nv set interface swp1 acl example4 inbound control-plane
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 Here is another example of control plane ACL rules to lock down the switch. You specify the rules in `/etc/cumulus/acl/policy.d/00control_plane.rules`:
 
@@ -720,12 +723,12 @@ SNMP_SERVERS_4 = "192.168.0.1/32"
 -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -j DROP
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
 ### Set DSCP on Transit Traffic
 
 The examples here use the *mangle* table to modify the packet as it transits the switch. DSCP is in {{<exlink url="https://en.wikipedia.org/wiki/Differentiated_services#Configuration_guidelines" text="decimal notation">}} in the examples below.
+
+{{< tabs "730 ">}}
+{{< tab "Edit the .rules File ">}}
 
 ```
 [iptables]
@@ -733,7 +736,7 @@ The examples here use the *mangle* table to modify the packet as it transits the
 #Set SSH as high priority traffic.
 -t mangle -A FORWARD -p tcp --dport 22  -j DSCP --set-dscp 46
 
-#Set everything coming in SWP1 as AF13
+#Set everything coming in swp1 as AF13
 -t mangle -A FORWARD --in-interface swp1 -j DSCP --set-dscp 14
 
 #Set Packets destined for 10.0.100.27 as best effort
@@ -743,9 +746,66 @@ The examples here use the *mangle* table to modify the packet as it transits the
 -t mangle -A FORWARD -p tcp -s 10.0.0.17/32 --sport 10000:20000 -d 10.0.100.27/32 --dport 10000:20000 -j DSCP --set-dscp 34
 ```
 
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+To set SSH as high priority traffic:
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 22
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set dscp 46
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
+cumulus@switch:~$ nv set interface ANY type swp
+cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+To set everything coming in swp1 as AF13:
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set dscp 14
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+To set Packets destined for 10.0.100.27 as best effort:
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.100.27/32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set dscp 0
+cumulus@switch:~$ nv set interface ANY type swp
+cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+To use a range of ports for TCP traffic:
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-ip 10.0.0.17/32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port 10000:20000
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.100.27/32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 10000:20000
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set dscp 34
+cumulus@switch:~$ nv set interface ANY type swp
+cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Verify DSCP Values on Transit Traffic
 
 The examples here use the DSCP match criteria in combination with other IP, TCP, and interface matches to identify traffic and count the number of packets.
+
+{{< tabs "807 ">}}
+{{< tab "Edit the .rules File ">}}
 
 ```
 [iptables]
@@ -753,14 +813,72 @@ The examples here use the DSCP match criteria in combination with other IP, TCP,
 #Match and count the packets that match SSH traffic with DSCP EF
 -A FORWARD -p tcp --dport 22 -m dscp --dscp 46 -j ACCEPT
 
-#Match and count the packets coming in SWP1 as AF13
+#Match and count the packets coming in swp1 as AF13
 -A FORWARD --in-interface swp1 -m dscp --dscp 14 -j ACCEPT
+
 #Match and count the packets with a destination 10.0.0.17 marked best effort
 -A FORWARD -d 10.0.100.27/32 -m dscp --dscp 0 -j ACCEPT
 
 #Match and count the packets in a port range with DSCP AF41
 -A FORWARD -p tcp -s 10.0.0.17/32 --sport 10000:20000 -d 10.0.100.27/32 --dport 10000:20000 -m dscp --dscp 34 -j ACCEPT
 ```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+To match and count the packets that match SSH traffic with DSCP EF:
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 22
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dscp 46
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
+cumulus@switch:~$ nv set interface ANY type swp
+cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+To match and count the packets coming in swp1 as AF13:
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dscp 14
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+To match and count the packets with a destination 10.0.0.17 marked best effort:
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.100.27/32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dscp 0
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
+cumulus@switch:~$ nv set interface ANY type swp
+cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+To match and count the packets in a port range with DSCP AF41:
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-ip 10.0.0.17/32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port 10000:20000
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.100.27/32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 10000:20000
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dscp 34
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
+cumulus@switch:~$ nv set interface ANY type swp
+cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Check the Packet and Byte Counters for ACL Rules
 
@@ -869,26 +987,26 @@ In the following example, 10.10.10.1/32 is the interface IP address (or loopback
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ net add acl ipv4 test priority 10 accept source-ip 10.255.4.0/24 dest-ip 10.10.10.1/32
-cumulus@leaf01:~$ net add acl ipv4 test priority 20 drop source-ip any dest-ip 10.10.10.1/32
-cumulus@leaf01:~$ net add control-plane acl ipv4 test inbound
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
+cumulus@switch:~$ net add acl ipv4 test priority 10 accept source-ip 10.255.4.0/24 dest-ip 10.10.10.1/32
+cumulus@switch:~$ net add acl ipv4 test priority 20 drop source-ip any dest-ip 10.10.10.1/32
+cumulus@switch:~$ net add control-plane acl ipv4 test inbound
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set acl example2 type ipv4
-cumulus@leaf01:~$ nv set acl example2 rule 10 match ip source-ip 10.255.4.0/24 
-cumulus@leaf01:~$ nv set acl example2 rule 10 match ip dest-ip 10.10.10.1/32
-cumulus@leaf01:~$ nv set acl example2 rule 10 action permit
-cumulus@leaf01:~$ nv set acl example2 rule 20 match ip source-ip ANY 
-cumulus@leaf01:~$ nv set acl example2 rule 20 match ip dest-ip 10.10.10.1/32
-cumulus@leaf01:~$ nv set acl example2 rule 20 action deny
-cumulus@leaf01:~$ nv set interface swp2 acl example2 inbound control-plane
-cumulus@leaf01:~$ nv config apply
+cumulus@switch:~$ nv set acl example2 type ipv4
+cumulus@switch:~$ nv set acl example2 rule 10 match ip source-ip 10.255.4.0/24 
+cumulus@switch:~$ nv set acl example2 rule 10 match ip dest-ip 10.10.10.1/32
+cumulus@switch:~$ nv set acl example2 rule 10 action permit
+cumulus@switch:~$ nv set acl example2 rule 20 match ip source-ip ANY 
+cumulus@switch:~$ nv set acl example2 rule 20 match ip dest-ip 10.10.10.1/32
+cumulus@switch:~$ nv set acl example2 rule 20 action deny
+cumulus@switch:~$ nv set interface swp2 acl example2 inbound control-plane
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -976,23 +1094,23 @@ iface bond2
 
 The following rule blocks any TCP traffic with destination port 200 going from host1 or host2 through the switch (corresponding to rule 1 in the diagram above).
 
-{{< tabs "981 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@leaf01:~$ nv set acl EXAMPLE1 type ipv4
-cumulus@leaf01:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
-cumulus@leaf01:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 200
-cumulus@leaf01:~$ nv set acl EXAMPLE1 rule 10 action deny
-cumulus@leaf01:~$ nv set interface bond2 acl EXAMPLE1 outbound
-cumulus@leaf01:~$ nv config apply
-```
-
-{{< /tab >}}
+{{< tabs "1096 ">}}
 {{< tab "Edit the .rules File ">}}
 
 ```
 [iptables] -A FORWARD -o bond2 -p tcp --dport 200 -j DROP
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 200
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
+cumulus@switch:~$ nv set interface bond2 acl EXAMPLE1 outbound
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1003,22 +1121,22 @@ cumulus@leaf01:~$ nv config apply
 The following rule blocks any UDP traffic with source port 200 going from host1 through the switch (corresponding to rule 2 in the diagram above).
 
 {{< tabs "1007 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@leaf01:~$ nv set acl EXAMPLE2 type ipv4
-cumulus@leaf01:~$ nv set acl EXAMPLE2 rule 10 match ip protocol udp
-cumulus@leaf01:~$ nv set acl EXAMPLE2 rule 10 match ip source-port 200
-cumulus@leaf01:~$ nv set acl EXAMPLE2 rule 10 action deny
-cumulus@leaf01:~$ nv set interface swp2 acl EXAMPLE2 inbound
-cumulus@leaf01:~$ nv config apply
-```
-
-{{< /tab >}}
 {{< tab "Edit the .rules File ">}}
 
 ```
 [iptables] -A FORWARD -i swp2 -p udp --sport 200 -j DROP
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE2 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 match ip protocol udp
+cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 match ip source-port 200
+cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 action deny
+cumulus@switch:~$ nv set interface swp2 acl EXAMPLE2 inbound
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1029,22 +1147,22 @@ cumulus@leaf01:~$ nv config apply
 The following rule blocks any UDP traffic with source port 200 and destination port 50 going from host1 to the switch (corresponding to rule 3 in the diagram above).
 
 {{< tabs "1033 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@leaf01:~$ nv set acl EXAMPLE3 type ipv4
-cumulus@leaf01:~$ nv set acl EXAMPLE3 rule 10 match ip protocol udp
-cumulus@leaf01:~$ nv set acl EXAMPLE3 rule 10 match ip source-port 200
-cumulus@leaf01:~$ nv set acl EXAMPLE3 rule 10 match ip dest-port 50
-cumulus@leaf01:~$ nv set acl EXAMPLE3 rule 10 action deny
-cumulus@leaf01:~$ nv set interface swp1 acl EXAMPLE3 inbound control-plane
-```
-
-{{< /tab >}}
 {{< tab "Edit the .rules File ">}}
 
 ```
 [iptables] -A INPUT -i swp1 -p udp --sport 200 --dport 50 -j DROP
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE3 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE3 rule 10 match ip protocol udp
+cumulus@switch:~$ nv set acl EXAMPLE3 rule 10 match ip source-port 200
+cumulus@switch:~$ nv set acl EXAMPLE3 rule 10 match ip dest-port 50
+cumulus@switch:~$ nv set acl EXAMPLE3 rule 10 action deny
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE3 inbound control-plane
 ```
 
 {{< /tab >}}
@@ -1054,24 +1172,24 @@ cumulus@leaf01:~$ nv set interface swp1 acl EXAMPLE3 inbound control-plane
 
 The following rule blocks any TCP traffic with source port 123 and destination port 123 going from Switch 1 to host2 (corresponding to rule 4 in the diagram above).
 
-{{< tabs "1059 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@leaf01:~$ nv set acl EXAMPLE4 type ipv4
-cumulus@leaf01:~$ nv set acl EXAMPLE4 rule 10 match ip protocol tcp
-cumulus@leaf01:~$ nv set acl EXAMPLE4 rule 10 match ip source-port 123
-cumulus@leaf01:~$ nv set acl EXAMPLE4 rule 10 match ip dest-port 123
-cumulus@leaf01:~$ nv set acl EXAMPLE4 rule 10 action deny
-cumulus@leaf01:~$ nv set interface br-tag100 acl EXAMPLE4 outbound control-plane
-cumulus@leaf01:~$ nv config apply
-```
-
-{{< /tab >}}
+{{< tabs "1174 ">}}
 {{< tab "Edit the .rules File ">}}
 
 ```
 [iptables] -A OUTPUT -o br-tag100 -p tcp --sport 123 --dport 123 -j DROP
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE4 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE4 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE4 rule 10 match ip source-port 123
+cumulus@switch:~$ nv set acl EXAMPLE4 rule 10 match ip dest-port 123
+cumulus@switch:~$ nv set acl EXAMPLE4 rule 10 action deny
+cumulus@switch:~$ nv set interface br-tag100 acl EXAMPLE4 outbound control-plane
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1098,22 +1216,22 @@ This also becomes two ACLs and is the same as:
 The following rule blocks any traffic with source MAC address 00:00:00:00:00:12 and destination MAC address 08:9e:01:ce:e2:04 going from any switch port egress/ingress.
 
 {{< tabs "1102 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@leaf01:~$ nv set acl EXAMPLE1 type mac
-cumulus@leaf01:~$ nv set acl EXAMPLE1 rule 1 match mac source-mac 00:00:00:00:00:12
-cumulus@leaf01:~$ nv set acl EXAMPLE1 rule 1 match mac dest-mac 08:9e:01:ce:e2:04
-cumulus@leaf01:~$ nv set acl EXAMPLE1 rule 1 action deny
-cumulus@leaf01:~$ nv set interface ANY acl EXAMPLE1 inbound
-cumulus@leaf01:~$ nv config apply
-```
-
-{{< /tab >}}
 {{< tab "Edit the .rules File ">}}
 
 ```
 [ebtables] -A FORWARD -s 00:00:00:00:00:12 -d 08:9e:01:ce:e2:04 -j DROP
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type mac
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match mac source-mac 00:00:00:00:00:12
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match mac dest-mac 08:9e:01:ce:e2:04
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action deny
+cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}

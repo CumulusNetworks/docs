@@ -258,7 +258,6 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port ANY
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.15.8/32
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port ANY
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
-cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
 cumulus@switch:~$ nv config apply
 ```
 

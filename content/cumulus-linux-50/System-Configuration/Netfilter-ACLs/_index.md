@@ -271,6 +271,20 @@ cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
 cumulus@switch:~$ nv set apply
 ```
 
+For rules affecting the INPUT or OUPUT chain, apply the rule to a control plane interface. For example:
+
+```
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound control-plane
+cumulus@switch:~$ nv config apply
+```
+
+For rules affecting the FORWARD chain, apply the rule to an inbound or outbound interface: For example:
+
+```
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
+```
+
 To see all installed rules, examine the `50_cue.rules` file:
 
 ```
@@ -280,13 +294,6 @@ cumulus@switch:~$ sudo cat /etc/cumulus/acl/policy.d/50_cue.rules
 ## ACL EXAMPLE1 in dir inbound on interface swp1 ##
 -A FORWARD -i swp1 -s 10.0.14.2/32 -d 10.0.15.8/32 -p tcp -j ACCEPT
 ...
-```
-
-For rules affecting the INPUT chain, apply the rule to a control plane interface:
-
-```
-cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound control-plane
-cumulus@switch:~$ nv config apply
 ```
 
 To remove a rule, run the `nv unset acl <acl-name>` and `nv unset interface <interface> acl <acl-name>` commands. This command deletes all rules from the `/etc/cumulus/acl/policy.d/50_cue.rules` file with the ACL name you specify.

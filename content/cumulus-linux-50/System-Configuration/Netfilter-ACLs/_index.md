@@ -238,9 +238,7 @@ You can match on VLAN IDs on layer 2 interfaces for ingress rules. The following
 
 ## Install and Manage ACL Rules with NVUE
 
-Instead of crafting a rule by hand then installing it with `cl-acltool`, you can use NVUE commands.
-
-Cumulus Linux converts the commands to a rules file, `/etc/cumulus/acl/policy.d/50_cue.rules`. The rules you create with NVUE are independent of the default files in `/etc/cumulus/acl/policy.d/00control_plane.rules` and `99control_plane_catch_all.rules`. If you update the content in these files after a Cumulus Linux upgrade, you do not lose the rules.
+Instead of crafting a rule by hand, then installing it with `cl-acltool`, you can use NVUE commands. Cumulus Linux converts the commands to the `/etc/cumulus/acl/policy.d/50_cue.rules` file. The rules you create with NVUE are independent of the default files `/etc/cumulus/acl/policy.d/00control_plane.rules` and `99control_plane_catch_all.rules`.
 
 Consider the following `iptables` rule:
 
@@ -248,41 +246,42 @@ Consider the following `iptables` rule:
 -A FORWARD -i swp1 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT
 ```
 
-To create this rule with NVUE and call it *EXAMPLE1*:
+To create this rule with NVUE, follow the steps below. NVUE adds all options, such as the `FORWARD`, `-j` and `-p` in the rule automatically.
 
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-ip 10.0.14.2/32
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port ANY
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.15.8/32
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port ANY
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
-cumulus@switch:~$ nv config apply
-```
+1. Set the rule type, the matching protocol, source IP address and port, destination IP address and port, and the action. You must provide a name for the rule (EXAMPLE1 in the commands below):
 
-NVUE adds all options, such as the `-j` and `-p`, and `FORWARD` in the above rule automatically; NVUE figures it all out for you.
+   ```
+   cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+   cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+   cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-ip 10.0.14.2/32
+   cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port ANY
+   cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.15.8/32
+   cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port ANY
+   cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
+   ```
 
-After you add the rule, you need to apply it to an inbound or outbound interface with the `nv set interface <interface> acl` command. The inbound interface in the following example is swp1:
+2. Apply the rule to an inbound or outbound interface with the `nv set interface <interface> acl` command.
+   
+   - For rules affecting the FORWARD chain (-A FORWARD), apply the rule to an inbound or outbound interface: For example:
 
-```
-cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
-cumulus@switch:~$ nv set apply
-```
+   ```
+   cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
+   cumulus@switch:~$ nv config apply
+   ```
 
-For rules affecting the INPUT or OUPUT chain, apply the rule to a control plane interface. For example:
+   - For rules affecting the INPUT or OUPUT chain (-A INPUT or -A OUTPUT), apply the rule to a control plane interface. For example:
 
-```
-cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound control-plane
-cumulus@switch:~$ nv config apply
-```
+   ```
+   cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound control-plane
+   cumulus@switch:~$ nv config apply
+   ```
 
-For rules affecting the FORWARD chain, apply the rule to an inbound or outbound interface: For example:
+   In the following example, swp1 is the inbound interface and the rule affects the FORWARD chain:
 
-```
-cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
-cumulus@switch:~$ nv config apply
-```
+   ```
+   cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
+   cumulus@switch:~$ nv set apply
+   ```
 
 To see all installed rules, examine the `50_cue.rules` file:
 
@@ -295,13 +294,15 @@ cumulus@switch:~$ sudo cat /etc/cumulus/acl/policy.d/50_cue.rules
 ...
 ```
 
-To remove a rule, run the `nv unset acl <acl-name>` and `nv unset interface <interface> acl <acl-name>` commands. This command deletes all rules from the `/etc/cumulus/acl/policy.d/50_cue.rules` file with the ACL name you specify.
+To remove this rule, run the `nv unset acl <acl-name>` and `nv unset interface <interface> acl <acl-name>` commands. These commands delete the rule from the `/etc/cumulus/acl/policy.d/50_cue.rules` file.
 
 ```
 cumulus@switch:~$ nv unset acl EXAMPLE1
 cumulus@switch:~$ nv unset interface swp1 acl EXAMPLE1
 cumulus@switch:~$ nv config apply
 ```
+
+To see the list of NVUE ACL commands, run the `nv list-commands acl` command.
 
 ## Install and Manage ACL Rules with NCLU
 

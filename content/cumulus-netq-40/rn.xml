@@ -7,6 +7,75 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2815596</td>
+<td>The NetQ Cloud VM for KVM hypervisors installer and opta-check fail because the minimum disk requirements do not meet the default image settings. To work around this issue, increase the disk space from 32GB to 64GB before you run the {{netq bootstrap}} command.
+
+
+1. Check the size of the existing hard disk in the VM to confirm it is 32 GB. In this example, the number of 1 MB blocks is 31583, or 32 GB.
+
+	cumulus@netq-401-cloud:~$ df -hm /
+	Filesystem     1M-blocks  Used Available Use% Mounted on
+	/dev/vda1          31583  1192     30375   4% /
+
+2. Shutdown the VM.
+
+3. Check the size of the existing disk on the server hosting the VM to confirm it is 32 GB. In this example, the size appears in the virtual size field:
+
+
+	root@server:/var/lib/libvirt/images# qemu-img info netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2
+	image: netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2
+	file format: qcow2
+	virtual size: 32G (34359738368 bytes)
+	disk size: 1.3G
+	cluster_size: 65536
+	Format specific information:
+	    compat: 1.1
+	    lazy refcounts: false
+	    refcount bits: 16
+	    corrupt: false
+
+4. Add 32 GB to the image:
+
+	root@server:/var/lib/libvirt/images# qemu-img resize netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2 +32G
+	Image resized.
+
+5. Verify the change.
+
+	root@server:/var/lib/libvirt/images# qemu-img info netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2
+	image: netq-3.1.0-ubuntu-18.04-tscloud-qemu.qcow2
+	file format: qcow2
+	virtual size: 64G (68719476736 bytes)
+	disk size: 1.3G
+	cluster_size: 65536
+	Format specific information:
+	    compat: 1.1
+	    lazy refcounts: false
+	    refcount bits: 16
+	    corrupt: false
+
+6. Start the VM and log back in.
+
+7. Run the following commands on the partition, referencing the filesystem /dev/vda1 obtained in step 1:
+
+
+	cumulus@netq-401-cloud:~$ sudo growpart /dev/vda 1
+	CHANGED: partition=1 start=227328 old: size=66881503 end=67108831 new: size=133990367,end=134217695
+
+	cumulus@netq-401-cloud:~$ sudo resize2fs /dev/vda1
+	resize2fs 1.44.1 (24-Mar-2018)
+	Filesystem at /dev/vda1 is mounted on /; on-line resizing required
+	old_desc_blocks = 4, new_desc_blocks = 8
+	The filesystem on /dev/vda1 is now 16748795 (4k) blocks long.
+
+8. Verify the disk is now configured with 64 GB. In this example, the number of 1 MB blocks is now 63341, or 64 GB:
+
+	cumulus@netq-401-cloud:~$ df -hm /
+	Filesystem     1M-blocks  Used Available Use% Mounted on
+	/dev/vda1          63341  1193     62132   2% /</td>
+<td>4.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2794608</td>
 <td>Sometimes the NetQ upgrade from 4.0.0 to 4.0.1 fails because the upgrade process cannot connect to the Docker registry running on the master node (the registry runs on the localhost:5000 port). The Docker registry container comes up without error but is not reachable on the host network. 
 The issue occurs on cluster setups when you reboot the NetQ 4.0.0 telemetry server before upgrading.

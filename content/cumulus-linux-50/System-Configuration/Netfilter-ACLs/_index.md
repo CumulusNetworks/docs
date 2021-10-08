@@ -991,6 +991,14 @@ Run the following NCLU commands to control who can SSH into the switch.
 In the following example, 10.10.10.1/32 is the interface IP address (or loopback IP address) of the switch and 10.255.4.0/24 can SSH into the switch.
 
 {{< tabs "852 ">}}
+{{< tab "Edit the .rules File ">}}
+
+```
+-A FORWARD --in-interface swp+ -s 10.255.4.0/24 -d 10.10.10.1/32 -j ACCEPT
+-A FORWARD --in-interface swp+ -d 10.10.10.1/32 -j DROP
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1012,7 +1020,7 @@ cumulus@switch:~$ nv set acl example2 rule 10 action permit
 cumulus@switch:~$ nv set acl example2 rule 20 match ip source-ip ANY 
 cumulus@switch:~$ nv set acl example2 rule 20 match ip dest-ip 10.10.10.1/32
 cumulus@switch:~$ nv set acl example2 rule 20 action deny
-cumulus@switch:~$ nv set interface swp2 acl example2 inbound control-plane
+cumulus@switch:~$ nv set interface swp2 acl example2 inbound
 cumulus@switch:~$ nv config apply
 ```
 

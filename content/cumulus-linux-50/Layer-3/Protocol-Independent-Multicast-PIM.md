@@ -650,7 +650,7 @@ The following steps configure a Cumulus switch to use MSDP:
 2. On every multicast switch, configure the group to RP mapping using the anycast address:
 
    ```
-   cumulus@switch:$ nv set vrf default router pim address-family ipv4-unicast rp 10.100.100.100 224.0.0.0/4
+   cumulus@switch:$ nv set vrf default router pim address-family ipv4-unicast rp 10.100.100.100 group-range 224.0.0.0/4
    cumulus@switch:$ nv config apply
    ```
 

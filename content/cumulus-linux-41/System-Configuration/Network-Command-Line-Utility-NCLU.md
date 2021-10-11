@@ -9,12 +9,16 @@ The Network Command Line Utility (NCLU) is a command line interface that simplif
 NCLU resides in the Linux user space and provides consistent access to networking commands directly through bash, making configuration and troubleshooting simple and easy; no need to edit files or enter modes and sub-modes. NCLU provides these benefits:
 
 - Embeds help, examples, and automatic command checking with suggestions in case you enter a typo.
-- Runs directly from and integrates with bash, while being interoperable with the regular way of accessing underlying configuration files and automation.
+- Runs directly from and integrates with bash, while being interoperable with the regular way of accessing underlying configuration files.
 - Configures dependent features automatically so that you don't have to.
 
 {{< img src = "/images/cumulus-linux/nclu-architecture.png" >}}
 
 The NCLU wrapper utility called `net` is capable of configuring layer 2 and layer 3 features of the networking stack, installing ACLs and VXLANs, restoring configuration files, as well as providing monitoring and troubleshooting functionality for these features. You can configure both the `/etc/network/interfaces` and `/etc/frr/frr.conf` files with `net`, in addition to running show and clear commands related to `ifupdown2` and FRRouting.
+
+{{%notice warning%}}
+If you use automation to configure your switches, NVIDIA recommends that you do **not** use NCLU. Edit configuration files directly.
+{{%/notice%}}
 
 ## NCLU Basics
 

@@ -78,9 +78,7 @@ interfaces. Keep in mind the following for a VRF table:
 - Associated rules are added automatically.
 - You can also add a default route to avoid skipping across tables
   when the kernel forwards the packet.
-- Names for VRF tables can be up to 15 characters. However, you
-  **cannot** use the name *mgmt*, as this name can **only** be used
-  for {{<link url="Management-VRF" text="management VRF">}}.
+- Names for VRF tables can be a maximum of 15 characters. You **cannot** use the name `mgmt`; Cumulus Linux uses this name for the {{<link url="Management-VRF" text="management VRF">}}. Also, you cannot use these reserved names: `default`, `unspec`, `main`, or `local`.
 
 To configure a VRF, run:
 

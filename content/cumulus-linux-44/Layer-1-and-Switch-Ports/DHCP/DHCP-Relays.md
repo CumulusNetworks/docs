@@ -11,12 +11,15 @@ This topic describes how to configure DHCP relays for IPv4 and IPv6 using the fo
 {{< img src = "/images/cumulus-linux/dhcp-relay-topology-basic.png" >}}
 
 {{%notice note%}}
-If you intend to run the `dhcrelay` service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF/#run-services-within-the-management-vrf" text="these steps">}}.
+- If you intend to run the `dhcrelay` service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF/#run-services-within-the-management-vrf" text="these steps">}}.
+- - For every instance of a DHCP relay in a non-default VRF, you need to create a separate default file in the `/etc/default` directory. See {{<link url="Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf" text="DHCP with VRF">}}.
 {{%/notice%}}
 
 ## Basic Configuration
 
-To set up DHCP relay, you need to provide the IP address of the DHCP server and the interfaces participating in DHCP relay (facing the server and facing the client). The number of IP addresses must fit in 255 octets.
+To set up DHCP relay, you need to provide the IP address of the DHCP server and the interfaces participating in DHCP relay (facing the server and facing the client). In an MLAG configuration, you must also specify the peerlink interface in case the local uplink interfaces fail.
+
+In the example commands below, the DHCP server IPv4 address is 172.16.1.102 and the DHCP server IPv6 address is 2001:db8:100::2. vlan10 is the SVI for VLAN 10 and the uplinks are swp51 and swp52. `peerlink.4094` is the MLAG interface.
 
 {{< tabs "TabID21 ">}}
 {{< tab "NCLU Commands ">}}
@@ -24,12 +27,11 @@ To set up DHCP relay, you need to provide the IP address of the DHCP server and 
 {{< tabs "TabID24 ">}}
 {{< tab "IPv4 ">}}
 
-In the example commands below, the DHCP server IP address is 172.16.1.102, vlan10 is the SVI for VLAN 10 and the uplinks are swp51 and swp52.
-
 ```
 cumulus@leaf01:~$ net add dhcp relay interface swp51
 cumulus@leaf01:~$ net add dhcp relay interface swp52
 cumulus@leaf01:~$ net add dhcp relay interface vlan10
+cumulus@leaf01:~$ net add dhcp relay interface peerlink.4094
 cumulus@leaf01:~$ net add dhcp relay server 172.16.1.102
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
@@ -49,16 +51,11 @@ You cannot configure IPv6 relays with NCLU commands. Use the Linux Commands.
 {{< tabs "TabID49 ">}}
 {{< tab "IPv4 ">}}
 
-Specify the IP address of each DHCP server and both interfaces participating in DHCP relay (facing the server and facing the client).
-<!-- vale off -->
-<!-- acceptable use of once -->
-In the example commands below, the DHCP server IP address is 172.16.1.102, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52. As per {{<exlink url="https://tools.ietf.org/html/rfc3046" text="RFC 3046">}}, you can specify as many server IP addresses that can fit in 255 octets. You can specify each address only once.
-<!-- vale on -->
-
 ```
 cumulus@leaf01:~$ nv set service dhcp-relay default interface swp51
 cumulus@leaf01:~$ nv set service dhcp-relay default interface swp52
 cumulus@leaf01:~$ nv set service dhcp-relay default interface vlan10
+cumulus@leaf01:~$ nv set service dhcp-relay default interface peerlink.4094
 cumulus@leaf01:~$ nv set service dhcp-relay default server 172.16.1.102
 cumulus@leaf01:~$ nv config apply
 ```
@@ -66,16 +63,11 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< tab "IPv6 ">}}
 
-Specify the IP address of each DHCP server and both interfaces participating in DHCP relay (facing the server and facing the client).
-<!-- vale off -->
-<!-- acceptable use of once -->
-In the example commands below, the DHCP server IP address is 2001:db8:100::2, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52. As per {{<exlink url="https://tools.ietf.org/html/rfc3046" text="RFC 3046">}}, you can specify as many server IP addresses that can fit in 255 octets. You can specify each address only once.
-<!-- vale on -->
-
 ```
 cumulus@leaf01:~$ nv set service dhcp-relay6 default interface swp51
 cumulus@leaf01:~$ nv set service dhcp-relay6 default interface swp52
 cumulus@leaf01:~$ nv set service dhcp-relay6 default interface vlan10
+cumulus@leaf01:~$ nv set service dhcp-relay6 default interface peerlink.4094
 cumulus@leaf01:~$ nv set service dhcp-relay6 default server 2001:db8:100::2
 cumulus@leaf01:~$ nv config apply
 ```
@@ -89,12 +81,12 @@ cumulus@leaf01:~$ nv config apply
 {{< tabs "TabID89 ">}}
 {{< tab "IPv4 ">}}
 
-1. Edit the `/etc/default/isc-dhcp-relay` file to add the IP address of the DHCP server and the interfaces participating in DHCP relay. In the example below, the DHCP server IP address is 172.16.1.102, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52.
+1. Edit the `/etc/default/isc-dhcp-relay` file to add the IP address of the DHCP server and the interfaces participating in DHCP relay.
 
    ```
    cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay
    SERVERS="172.16.1.102"
-   INTF_CMD="-i vlan10 -i swp51 -i swp52"
+   INTF_CMD="-i vlan10 -i swp51 -i swp52 -i peerlink.4094"
    OPTIONS=""
    ```
 
@@ -108,12 +100,12 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< tab "IPv6 ">}}
 
-1. Edit the `/etc/default/isc-dhcp-relay6` file to add the IP address of the DHCP server and the interfaces participating in DHCP relay. In the example below, the DHCP server IP address is 2001:db8:100::2, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52.
+1. Edit the `/etc/default/isc-dhcp-relay6` file to add the IP address of the DHCP server and the interfaces participating in DHCP relay.
 
    ```
    cumulus@leaf01:$ sudo nano /etc/default/isc-dhcp-relay6
    SERVERS=" -u 2001:db8:100::2%swp51 -u 2001:db8:100::2%swp52"
-   INTF_CMD="-l vlan10"
+   INTF_CMD="-l vlan10 -l peerlink.4094"
    ```
 
 2. Enable, then restart the `dhcrelay6` service so that the configuration persists between reboots:

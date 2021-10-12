@@ -54,7 +54,7 @@ Fixed: 3.3.30-0+deb8u2</td>
 <tr>
 <td>2799742</td>
 <td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -506,12 +506,6 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <td>2556811</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2556061</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2321,7 +2315,7 @@ Fixed: 3.3.30-0+deb8u2</td>
 <tr>
 <td>2799742</td>
 <td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -3011,12 +3005,6 @@ CVE-2020-27827: A packet that contains multiple instances of certain TLVs will c
 Fixed: 1.0.4-0-cl4.3.0u2</td>
 <td>3.7.14-3.7.14.2, 4.0.0-4.4.1</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2556061</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2556037</td>
@@ -4612,7 +4600,7 @@ Fixed: 3.3.30-0+deb8u2</td>
 <tr>
 <td>2799742</td>
 <td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -5263,12 +5251,6 @@ CVE-2020-27827: A packet that contains multiple instances of certain TLVs will c
 Fixed: 1.0.4-0-cl4.3.0u2</td>
 <td>3.7.14-3.7.14.2, 4.0.0-4.4.1</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2556061</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2556037</td>
@@ -7446,7 +7428,7 @@ Fixed: 3.3.30-0+deb8u2</td>
 <tr>
 <td>2799742</td>
 <td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -7885,12 +7867,6 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 {{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
 <td>3.7.9-3.7.14.2</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2556061</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2556037</td>
@@ -10485,7 +10461,7 @@ Fixed: 3.3.30-0+deb8u2</td>
 <tr>
 <td>2799742</td>
 <td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -10912,12 +10888,6 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 {{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
 <td>3.7.9-3.7.14.2</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2556061</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2556037</td>

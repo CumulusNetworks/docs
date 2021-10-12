@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2799742</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2792750</td>
 <td>If you change the {{clagd-vxlan-anycast-ip}} setting on both MLAG peers at the same time, both peers use their unique VTEP address indefinitely.</td>
 <td>4.3.0-4.4.1</td>
@@ -638,7 +632,7 @@ To work around this issue, disable OSPF debugs from global configuration mode.</
 <tr>
 <td>2556061</td>
 <td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>4.2.1-4.4.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1662,12 +1656,6 @@ Fixed: 2.9.4+dfsg1-7+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2799742</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2792750</td>
 <td>If you change the {{clagd-vxlan-anycast-ip}} setting on both MLAG peers at the same time, both peers use their unique VTEP address indefinitely.</td>
 <td>4.3.0-4.4.1</td>
@@ -2434,7 +2422,7 @@ ERROR: Command not found
 <tr>
 <td>2556061</td>
 <td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>4.2.1-4.4.1</td>
 <td></td>
 </tr>
 <tr>

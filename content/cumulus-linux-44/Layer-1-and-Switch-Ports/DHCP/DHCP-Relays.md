@@ -10,16 +10,15 @@ This topic describes how to configure DHCP relays for IPv4 and IPv6 using the fo
 
 {{< img src = "/images/cumulus-linux/dhcp-relay-topology-basic.png" >}}
 
-{{%notice note%}}
-- If you intend to run the `dhcrelay` service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF/#run-services-within-the-management-vrf" text="these steps">}}.
-- - For every instance of a DHCP relay in a non-default VRF, you need to create a separate default file in the `/etc/default` directory. See {{<link url="Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf" text="DHCP with VRF">}}.
-{{%/notice%}}
-
 ## Basic Configuration
 
 To set up DHCP relay, you need to provide the IP address of the DHCP server and the interfaces participating in DHCP relay (facing the server and facing the client). In an MLAG configuration, you must also specify the peerlink interface in case the local uplink interfaces fail.
 
-In the example commands below, the DHCP server IPv4 address is 172.16.1.102 and the DHCP server IPv6 address is 2001:db8:100::2. vlan10 is the SVI for VLAN 10 and the uplinks are swp51 and swp52. `peerlink.4094` is the MLAG interface.
+In the example commands below:
+- The DHCP server IPv4 address is 172.16.1.102
+- The DHCP server IPv6 address is 2001:db8:100::2
+- vlan10 is the SVI for VLAN 10 and the uplinks are swp51 and swp52
+- `peerlink.4094` is the MLAG interface
 
 {{< tabs "TabID21 ">}}
 {{< tab "NCLU Commands ">}}
@@ -124,6 +123,8 @@ cumulus@leaf01:~$ nv config apply
 {{%notice note%}}
 - You configure a DHCP relay on a per-VLAN basis, specifying the SVI, not the parent bridge. In the example above, you specify *vlan10* as the SVI for VLAN 10 but you do not specify the bridge named *bridge*.
 - When you configure DHCP relay with VRR, the DHCP relay client must run on the SVI; not on the -v0 interface.
+- If you intend to run the `dhcrelay` service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF/#run-services-within-the-management-vrf" text="these steps">}}.
+- For every instance of a DHCP relay in a non-default VRF, you need to create a separate default file in the `/etc/default` directory. See {{<link url="Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf" text="DHCP with VRF">}}.
 {{%/notice%}}
 
 ## Optional Configuration

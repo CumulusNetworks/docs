@@ -103,7 +103,8 @@ cumulus@switch:~$ ifreload -a
 {{< /tabs >}}
 
 {{%notice note%}}
-Cumulus Linux supports MSTI 0 only. It does not support MSTI 1 through 15.
+- Cumulus Linux supports MSTI 0 only. It does not support MSTI 1 through 15.
+- You cannot use NCLU to set the tree priority for a **traditional bridge**. Edit the `/etc/network/interfaces` file to add `mstpctl-treeprio <priority>` to the bridge stanza.
 {{%/notice%}}
 
 ### PortAdminEdge (PortFast Mode)

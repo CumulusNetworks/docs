@@ -7,24 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>NETQ-8317</td>
-<td>NetQ Infra: When adding a data source with the Grafana plugin, an error message appears "Cannot read property 'status' of undefined" implying the data source is not added when, in fact, it has been. Ignore the error and continue with configuring the plugin.</td>
-<td>3.3.0-3.3.1</td>
-<td></td>
-</tr>
-<tr>
-<td>NETQ-6640</td>
-<td>Infra: Rarely, after a node is restarted, Kubernetes pods do not synchronize properly and the output of netq show opta-health shows failures. Node operation is not functionally impacted. You can safely remove the failures by running kubectl get pods | grep MatchNodeSelector | cut &amp;#45;f1 &amp;#45;d' ' | xargs kubectl delete pod. To work around the issue, do not label nodes using the API. Instead label nodes through local configuration using kubelet flag "--node-labels".</td>
-<td>3.1.0-3.3.1</td>
-<td></td>
-</tr>
-<tr>
-<td>NETQ-3451</td>
-<td>UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.</td>
-<td>2.3.0-2.4.1, 3.0.0-3.3.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2690469</td>
 <td>While upgrading an on-premises deployment from version 2.4.x to 3.x.y then to 4.x, the upgrade fails during the NetQ application stage.
 To work around this issue, run the following command on the NetQ telemetry server, then start the upgrade again:
@@ -262,24 +244,6 @@ Save the file.</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
-</tr>
-<tr>
-<td>NETQ-8317</td>
-<td>NetQ Infra: When adding a data source with the Grafana plugin, an error message appears "Cannot read property 'status' of undefined" implying the data source is not added when, in fact, it has been. Ignore the error and continue with configuring the plugin.</td>
-<td>3.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>NETQ-6640</td>
-<td>Infra: Rarely, after a node is restarted, Kubernetes pods do not synchronize properly and the output of netq show opta-health shows failures. Node operation is not functionally impacted. You can safely remove the failures by running kubectl get pods | grep MatchNodeSelector | cut &amp;#45;f1 &amp;#45;d' ' | xargs kubectl delete pod. To work around the issue, do not label nodes using the API. Instead label nodes through local configuration using kubelet flag "--node-labels".</td>
-<td>3.1.0-3.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>NETQ-3451</td>
-<td>UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.</td>
-<td>2.3.0-2.4.1, 3.0.0-3.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2690469</td>

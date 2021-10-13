@@ -477,6 +477,51 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
+In many situations, it is also desirable to only exchange EVPN routes carrying a particular VXLAN ID.
+For example, if only certain tenants are shared across data centers, or across pods within a data center, a route-map may be used to control which EVPN routes are exchanged based on the VNI.
+
+To filter EVPN routes based on the VXLAN ID and allow only EVPN routes with a particular VNI to be advertised in the fabric:
+
+{{< tabs "TabID44" >}}
+
+{{< tab "NCLU Commands" >}}
+
+Use the `net add routing route-map <route_map_name> (deny|permit) <1-65535> match evpn vni <1-16777215>` command.
+
+The following example configures a route-map that only advertises EVPN routes from VNI 1000:
+
+```
+cumulus@switch:~$ net add routing route-map map1 permit 1 match evpn vni 1000
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands" >}}
+
+The following example configures a route-map that only advertises EVPN routes from VNI 1000:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# route-map map1 permit 1
+switch(config)# match evpn vni 1000
+switch(config)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{%notice note%}}
+Only type-2 and type-5 can be matched based on VNI. All other EVPN route-types will not be matched by the route-map.
+{{%/notice%}}
+
 ## Advertise SVI IP Addresses
 
 In a typical EVPN deployment, you *reuse* SVI IP addresses on VTEPs across multiple racks. However, if you use *unique* SVI IP addresses across multiple racks and you want the local SVI IP address to be reachable via remote VTEPs, you can enable the `advertise-svi-ip` option. This option advertises the SVI IP/MAC address as a type-2 route and eliminates the need for any flooding over VXLAN to reach the IP from a remote VTEP/rack.

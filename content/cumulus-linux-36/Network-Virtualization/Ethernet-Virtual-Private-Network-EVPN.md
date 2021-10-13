@@ -1075,6 +1075,22 @@ only:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
+### Filtering EVPN Routes Based on VNI
+
+In many situations, it is desirable to only exchange EVPN routes carrying
+a particular VXLAN ID. For example, if only certain tenants are shared
+across data centers, or across pods within a data center, a route-map
+may be used to control which EVPN routes are exchanged based on the VNI.
+
+To filter EVPN routes based on the VXLAN ID and allow only EVPN routes
+with a particular VNI to be advertised in the fabric, use these commands:
+
+    net add routing route-map <route_map_name> (deny|permit) <1-65535> match evpn vni <1-16777215>
+
+{{%notice note%}}
+Only type-2 and type-5 can be matched based on VNI. All other EVPN route-types will not be matched by the route-map.
+{{%/notice%}}
+
 ## EVPN Operational Commands
 
 ### General Linux Commands Related to EVPN

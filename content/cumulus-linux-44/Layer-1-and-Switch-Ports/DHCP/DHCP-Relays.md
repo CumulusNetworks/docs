@@ -63,11 +63,10 @@ cumulus@leaf01:~$ nv config apply
 {{< tab "IPv6 ">}}
 
 ```
-cumulus@leaf01:~$ nv set service dhcp-relay6 default interface swp51
-cumulus@leaf01:~$ nv set service dhcp-relay6 default interface swp52
-cumulus@leaf01:~$ nv set service dhcp-relay6 default interface vlan10
-cumulus@leaf01:~$ nv set service dhcp-relay6 default interface peerlink.4094
-cumulus@leaf01:~$ nv set service dhcp-relay6 default server 2001:db8:100::2
+cumulus@leaf01:~$ nv set service dhcp-relay6 default interface upstream swp51 address 2001:db8:100::2
+cumulus@leaf01:~$ nv set service dhcp-relay6 default interface upstream swp52 address 2001:db8:100::2
+cumulus@leaf01:~$ nv set service dhcp-relay6 default interface downstream vlan10
+cumulus@leaf01:~$ nv set service dhcp-relay6 default interface downstream peerlink.4094
 cumulus@leaf01:~$ nv config apply
 ```
 

@@ -103,9 +103,9 @@ iface eth0
 {{< /tab >}}
 {{< /tabs >}}
 
-### Configure the Hostname and Time zone
+### Configure the Hostname
 
-Configure the hostname and time zone for your switch. The hostname identifies the switch; make sure you configure the hostname to be unique and descriptive.
+The hostname identifies the switch; make sure you configure the hostname to be unique and descriptive.
 
 {{%notice note%}}
 Do not use an underscore (_), apostrophe ('), or non-ASCII characters in the hostname.
@@ -128,7 +128,7 @@ The above command modifies both the `/etc/hostname` and `/etc/hosts` files.
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set platform hostname value leaf01
+cumulus@switch:~$ nv set system hostname leaf01
 cumulus@switch:~$ nv config apply
 ```
 
@@ -153,6 +153,8 @@ cumulus@switch:~$ nv config apply
 {{%notice note%}}
 The command prompt in the terminal does not reflect the new hostname until you either log out of the switch or start a new shell.
 {{%/notice%}}
+
+### Configure the Time Zone
 
 The default time zone on the switch is UTC (Coordinated Universal Time). Change the time zone on your switch to be the time zone for your location.
 
@@ -213,14 +215,14 @@ To view link status, run the `net show interface all` command.
 To administratively enable a port:
 
 ```
-cumulus@switch:~$ nv set interface swp1 link state up
+cumulus@switch:~$ nv set interface swp1
 cumulus@switch:~$ nv config apply
 ```
 
 To administratively enable all physical ports on a switch that has ports numbered from swp1 to swp52:
 
 ```
-cumulus@switch:~$ nv set interface swp1-52 link state up
+cumulus@switch:~$ nv set interface swp1-52
 cumulus@switch:~$ nv config apply
 ```
 
@@ -442,7 +444,25 @@ The loopback is up with the IP address 127.0.0.1.
 
 ```
 cumulus@switch:~$ nv show interface lo
+                         operational        applied   pending   description
+-----------------------  -----------------  --------  --------  ----------------------------------------------------------------------
+type                     loopback           loopback  loopback  The type of interface
+ip
+  vrf                                       default   default   Virtual routing and forwarding
+  [address]              127.0.0.1/8                            ipv4 and ipv6 address
+  [address]              ::1/128
+  ipv4
+    forward                                 on        on        Enable or disable forwarding.
+  ipv6
+    enable                                  on        on        Turn the feature 'on' or 'off'.  The default is 'on'.
+    forward                                 on        on        Enable or disable forwarding.
+link
+  mtu                    65536                                  interface mtu
+  state                  up                                     The state of the interface
+...
 ```
+
+The loopback is up with the IP address 127.0.0.1.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -494,7 +514,7 @@ If you configure an IP address without a subnet mask, it becomes a /32 IP addres
 You can add multiple loopback addresses. For more information, see {{<link url="Interface-Configuration-and-Management/#loopback-interface" text="Interface Configuration and Management">}}.
 
 {{%notice info%}}
-If you run NVUE Commands to configure the switch, run the `nv config save` command before you reboot to save the applied configuration to the startup configuration so that the changes persist after the reboot.
+If you run NVUE Commands to configure the switch, run the `nv config save` command before you reboot. The command saves the applied configuration to the startup configuration so that the changes persist after the reboot.
 
 ```
 cumulus@switch:~$ nv config save

@@ -20,7 +20,7 @@ Read {{<exlink url="http://www.cyberciti.biz/faq/linux-log-files-location-and-ho
 | `/var/log/btmp` | Information about failed login attempts. Use the last command to view the `btmp` file. For example:<pre>cumulus@switch:~$ last -f /var/log/btmp \| more</pre> |
 | `/var/log/clagd.log` | Status of the `clagd` service. |
 | `/var/log/dpkg.log` | Information that the system logs when you install or remove a package with the `dpkg` command. |
-| `/var/log/frr/*` | FRRouting - Used to troubleshoots routing, such as an MD5 or MTU mismatch with OSPF. |
+| `/var/log/frr/*` | FRR - Used to troubleshoots routing, such as an MD5 or MTU mismatch with OSPF. |
 | `/var/log/gunicorn` | Error and access events in Gunicorn. |
 | `/var/log/installer/*` | Directory containing files related to the installation of Cumulus Linux. |
 | `/var/log/lastlog` | Formats and prints the contents of the last login log file. |

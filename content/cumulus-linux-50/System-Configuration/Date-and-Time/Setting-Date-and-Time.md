@@ -12,37 +12,48 @@ Setting the time zone, and the date and time on the software clock requires root
 ## Set the Time Zone
 
 You can use one of two methods to set the time zone on the switch:
-
+- Run the NVUE command.
 - Edit the `/etc/timezone` file.
 - Use the guided wizard.
 
-<!-- vale off -->
-### Edit the /etc/timezone File
-<!-- vale on -->
-To see the current time zone, list the contents of `/etc/timezone`:
+{{< tabs "TabID19 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set timezone <timezone>` command. To see all the available time zones, run `nv set system timezone` and press the Tab key.
+
+The following example sets the time zone to US/Eastern:
 
 ```
-cumulus@switch:~$ cat /etc/timezone
-US/Eastern
+cumulus@switch:~$ nv set system timezone US/Eastern
+cumulus@switch:~$ nv config apply
 ```
 
-Edit the file to add your desired time zone. You can see a list of valid time zones {{<exlink url="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" text="here">}}.
+{{< /tab >}}
+{{< tab "Edit the /etc/timezone File ">}}
 
-Use the following command to apply the new time zone:
+1. Edit the `/etc/timezone` file to add your desired time zone. You can see a list of valid time zones {{<exlink url="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" text="here">}}.
 
-```
-cumulus@switch:~$ sudo dpkg-reconfigure --frontend noninteractive tzdata
-```
+   ```
+   cumulus@switch:~$ sudo vi /etc/timezone
+   US/Eastern
+   ```
 
-Use the following command to change `/etc/localtime` to reflect your current time zone. Use the same value as the previous step.
+2. Apply the new time zone:
 
-```
-sudo ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
-```
+   ```
+   cumulus@switch:~$ sudo dpkg-reconfigure --frontend noninteractive tzdata
+   ```
 
-### Follow the Guided Wizard
+3. Change `/etc/localtime` to reflect your current time zone:
 
-To set the time zone using the guided wizard, run the following command:
+   ```
+   sudo ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
+   ```
+
+{{< /tab >}}
+{{< tab "Follow the Guided Wizard ">}}
+
+To set the time zone using the guided wizard:
 
 ```
 cumulus@switch:~$ sudo dpkg-reconfigure tzdata
@@ -51,6 +62,9 @@ cumulus@switch:~$ sudo dpkg-reconfigure tzdata
 {{< img src = "/images/cumulus-linux/date-time-wizard.png" >}}
 
 For more information, see the Debian {{<exlink url="http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html" text="System Administrator's Manual - Time">}}.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Set the Date and Time
 

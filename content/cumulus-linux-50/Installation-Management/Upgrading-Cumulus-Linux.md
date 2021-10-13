@@ -10,7 +10,7 @@ The default password for the *cumulus* user account is `cumulus`. The first time
 
 This topic describes how to upgrade Cumulus Linux on your switch.
 
-Consider deploying, provisioning, configuring, and upgrading switches using automation, even with small networks or test labs. During the upgrade process, you can upgrade dozens of devices in a repeatable manner. Using tools like Ansible, Chef, or Puppet for configuration management greatly increases the speed and accuracy of the next major upgrade; these tools also enable the quick swap of failed switch hardware.
+Consider deploying, provisioning, configuring, and upgrading switches using automation, even with small networks or test labs. During the upgrade process, you can upgrade dozens of devices in a repeatable manner. Using tools like Ansible, Chef, or Puppet for configuration management greatly increases the speed and accuracy of the next major upgrade; these tools also enable you to quickly swap failed switch hardware.
 
 ## Before You Upgrade
 
@@ -21,7 +21,7 @@ Be sure to read the knowledge base article
 
 ### Back up Configuration Files
 
-Understanding the location of configuration data is important for successful upgrades, migrations, and backup. As with other Linux distributions, the `/etc` directory is the primary location for all configuration data in Cumulus Linux. The following list is the set of files that you need to back up and migrate to a new release. Make sure you examine any changed files. Make the following files and directories part of a backup strategy.
+Understanding the location of configuration data is important for successful upgrades, migrations, and backup. As with other Linux distributions, the `/etc` directory is the primary location for all configuration data in Cumulus Linux. The following list contains the files you need to back up and migrate to a new release. Make sure you examine any changed files. Make the following files and directories part of a backup strategy.
 
 {{< tabs "TabID25 ">}}
 {{< tab "Network Configuration Files ">}}
@@ -46,7 +46,7 @@ Understanding the location of configuration data is important for successful upg
 | `/etc/passwd` | User account information | Not unique to Cumulus Linux | {{<exlink url="https://www.debian.org/doc/manuals/debian-reference/ch04.en.html">}} |
 | `/etc/shadow` | Secure user account information| Not unique to Cumulus Linux | {{<exlink url="https://www.debian.org/doc/manuals/debian-reference/ch04.en.html">}} |
 | `/etc/group` | Defines user groups on the switch| Not unique to Cumulus Linux | {{<exlink url="https://www.debian.org/doc/manuals/debian-reference/ch04.en.html">}} |
-| `/etc/lldpd.conf` | Link Layer Discover Protocol (LLDP) daemon configuration | {{<link title="Link Layer Discovery Protocol">}} | {{<exlink url="https://packages.debian.org/buster/lldpd">}} |
+| `/etc/init/lldpd.conf` | Link Layer Discover Protocol (LLDP) daemon configuration | {{<link title="Link Layer Discovery Protocol">}} | {{<exlink url="https://packages.debian.org/buster/lldpd">}} |
 | `/etc/lldpd.d/` | Configuration directory for lldpd | {{<link title="Link Layer Discovery Protocol">}} | {{<exlink url="https://packages.debian.org/buster/lldpd">}} |
 | `/etc/nsswitch.conf` | Name Service Switch (NSS) configuration file | {{<link title="TACACS">}} | N/A |
 |`/etc/ssh/` | SSH configuration files | {{<link title="SSH for Remote Access">}} | {{<exlink url="https://wiki.debian.org/SSH">}} |
@@ -102,12 +102,12 @@ NVUE is created from the ground up and does not inherit any previous functionali
 
 ## Upgrade Cumulus Linux
 
-To upgrade to Cumulus Linux 4.4, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with the `apt-get upgrade` command.
+To upgrade to Cumulus Linux 5.0, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with the `apt-get upgrade` command.
 
-ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.
+[ONIE](## "Open Network Install Environment") is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.
 
 {{%notice note%}}
-Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in {{<link title="#Upgrade Switches in an MLAG Pair">}} below to ensure a smooth upgrade.
+Upgrading an [MLAG](## "Multi-chassis Link Aggregation Group") pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in {{<link title="#Upgrade Switches in an MLAG Pair">}} below to ensure a smooth upgrade.
 {{%/notice%}}
 
 <!--You can upgrade Cumulus Linux in one of two ways:
@@ -255,11 +255,11 @@ If you are using {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}
 You must upgrade both switches in the MLAG pair to the same release of Cumulus Linux.
 
 {{%notice warning%}}
-For networks with MLAG deployments, you can only upgrade to Cumulus Linux 4.4 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 4.4. Version 3.7.10 is available on the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox downloads page">}}.
+For networks with MLAG deployments, you can only upgrade to Cumulus Linux 5.0 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 5.0. Version 3.7.10 is available on the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox downloads page">}}.
 {{%/notice%}}
 
 {{%notice info%}}
-During upgrade, MLAG bonds stay single-connected while the switches are running different major releases; for example, while leaf01 is running 3.7.12 and leaf02 is running 4.4.0.
+During upgrade, MLAG bonds stay single-connected while the switches are running different major releases; for example, while leaf01 is running 4.3.0 and leaf02 is running 5.0.0.
 
 The bonding driver changes how it derives the *actor port key*, which causes the port key to have a different value for links with the same speed or duplex settings across different major releases. The port key from the LACP partner must remain consistent between all bond members for all bonds to synchronize. When each MLAG switch sends LACPDUs with different port keys, only links to one MLAG switch synchronize.
 {{%/notice%}}

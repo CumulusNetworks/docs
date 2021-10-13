@@ -4,13 +4,11 @@ author: NVIDIA
 weight: 350
 toc: 3
 ---
-A DHCP Server automatically provides and assigns IP addresses and other network parameters to client devices. It relies on the Dynamic Host Configuration Protocol to respond to broadcast requests from clients.
+A DHCP server automatically provides and assigns IP addresses and other network parameters to client devices. It relies on [DHCP](## "Dynamic Host Configuration Protocol") to respond to broadcast requests from clients.
 
 {{%notice note%}}
 If you intend to run the `dhcpd` service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF/#run-services-within-the-management-vrf" text="these steps">}}.
 {{%/notice%}}
-
-For information about DHCP relays, refer to {{<link title="DHCP Relays">}}.
 
 ## Basic Configuration
 
@@ -43,41 +41,35 @@ In addition, you can configure a static IP address for a resource, such as a ser
 {{< tab "IPv4 ">}}
 
 ```
-cumulus@switch:~$ nv set system dhcp-server pool 10.1.10.0/24
-cumulus@switch:~$ nv set system dhcp-server pool 10.1.10.0/24 pool-name storage-servers
-cumulus@switch:~$ nv set system dhcp-server pool 10.1.10.0/24 domain-name-server 192.168.200.53
-cumulus@switch:~$ nv set system dhcp-server pool 10.1.10.0/24 domain-name example.com
-cumulus@switch:~$ nv set system dhcp-server pool 10.1.10.0/24 range 10.1.10.100 to 10.1.10.199
-cumulus@switch:~$ nv set system dhcp-server pool 10.1.10.0/24 gateway 10.1.10.1
-cumulus@switch:~$ nv set system dhcp-server static server1
-cumulus@switch:~$ nv set system dhcp-server static server1 ip-address 10.0.0.2
-cumulus@switch:~$ nv set system dhcp-server static server1 mac-address 44:38:39:00:01:7e
+cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 pool-name storage-servers
+cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 domain-name example.com
+cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 domain-name-server 192.168.200.53
+cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 range 10.1.10.100 to 10.1.10.199
+cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 gateway 10.1.10.1
+cumulus@switch:~$ nv set service dhcp-server default static server1
+cumulus@switch:~$ nv set service dhcp-server default static server1 ip-address 10.0.0.2
+cumulus@switch:~$ nv set service dhcp-server default static server1 mac-address 44:38:39:00:01:7e
 cumulus@switch:~$ nv config apply
 ```
 
-{{%notice note%}}
-To set the DNS server IP address and domain name globally, use the `nv set system dhcp-server domain-name-server` and `nv set system dhcp-server domain-name` commands.
-{{%/notice%}}
+To set the DNS server IP address and domain name globally, use the `nv set service dhcp-server <vrf> domain-name-server <address>` and `nv set service dhcp-server <vrf> domain-name <domain>` commands.
 
 {{< /tab >}}
 {{< tab "IPv6 ">}}
 
 ```
-cumulus@switch:~$ nv set system dhcp-server6 pool 2001:db8::1/128 
-cumulus@switch:~$ nv set system dhcp-server6 pool 2001:db8::1/128 pool-name storage-servers
-cumulus@switch:~$ nv set system dhcp-server6 pool 2001:db8::1/128 domain-name-server 2001:db8:100::64
-cumulus@switch:~$ nv set system dhcp-server6 pool 2001:db8::1/128 domain-name example.com
-cumulus@switch:~$ nv set system dhcp-server6 pool 2001:db8::1/128 range 2001:db8:1::100 to 2001:db8:1::199 
-cumulus@switch:~$ nv set system dhcp-server6 pool 2001:db8::1/128 gateway 2001:db8::a0a:0a01
-cumulus@switch:~$ nv set system dhcp-server6 static server1
-cumulus@switch:~$ nv set system dhcp-server6 static server1 ip-address 2001:db8:1::100
-cumulus@switch:~$ nv set system dhcp-server6 static server1 mac-address 44:38:39:00:01:7e
+cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 
+cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 pool-name storage-servers
+cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 domain-name-server 2001:db8:100::64
+cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 domain-name example.com
+cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 range 2001:db8:1::100 to 2001:db8:1::199 
+cumulus@switch:~$ nv set service dhcp-server6 default static server1
+cumulus@switch:~$ nv set service dhcp-server6 default static server1 ip-address 2001:db8:1::100
+cumulus@switch:~$ nv set service dhcp-server6 default static server1 mac-address 44:38:39:00:01:7e
 cumulus@switch:~$ nv config apply
 ```
 
-{{%notice note%}}
-To set the DNS server IP address and domain name globally, use the `nv set system dhcp-server6 domain-name-server` and `nv set system dhcp-server6 domain-name` commands.
-{{%/notice%}}
+To set the DNS server IP address and domain name globally, use the `nv set service dhcp-server6 <vrf> domain-name-server <address>` and `nv set service dhcp-server6 <vrf> domain-name <domain>` commands.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -113,7 +105,6 @@ To set the DNS server IP address and domain name globally, use the `nv set syste
    }
    ```
 
-   {{%notice note%}}
 To set the DNS server IP address and domain name globally, add the DNS server IP address and domain name before the pool information in the `/etc/dhcp/dhcpd.conf` file. For example:
 
 ```
@@ -127,7 +118,6 @@ subnet 10.1.10.0 netmask 255.255.255.0 {
    max-lease-time 3600;
 ...
 ```
-{{%/notice%}}
 
 2. Edit the `/etc/default/isc-dhcp-server` configuration file so that the DHCP server starts when the system boots. Here is an example configuration:
 
@@ -173,7 +163,6 @@ subnet 10.1.10.0 netmask 255.255.255.0 {
    }
    ```
 
-    {{%notice note%}}
 To set the DNS server IP address and domain name globally, add the DNS server IP address and domain name before the pool information in the `/etc/dhcp/dhcpd6.conf` file. For example:
 
 ```
@@ -187,7 +176,6 @@ subnet6 2001:db8::1/128 {
    max-lease-time 3600;
 ...
 ```
-{{%/notice%}}
 
 2. Edit the `/etc/default/isc-dhcp-server6` file so that the DHCP server launches when the system boots. Here is an example configuration:
 
@@ -224,7 +212,7 @@ You can set the network address lease time assigned to DHCP clients. You can spe
 {{< tab "IPv4 ">}}
 
 ```
-cumulus@switch:~$ nv set system dhcp-server pool 10.1.10.0/24 lease-time 200000
+cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 lease-time 200000
 cumulus@switch:~$ nv config apply
 ```
 
@@ -232,7 +220,7 @@ cumulus@switch:~$ nv config apply
 {{< tab "IPv6 ">}}
 
 ```
-cumulus@switch:~$ nv set system dhcp-server6 pool 10.1.10.0/24 lease-time 200000
+cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 lease-time 200000
 cumulus@switch:~$ nv config apply
 ```
 
@@ -266,7 +254,7 @@ cumulus@switch:~$ nv config apply
 2. Restart the `dhcpd` service:
 
    ```
-   cumulus@switch:~$ sudo systemctl restart dhcpd6.service
+   cumulus@switch:~$ sudo systemctl restart dhcpd.service
    ```
 
 {{< /tab >}}
@@ -313,14 +301,16 @@ Configure the DHCP server to ping the address you want to assign to a client bef
 {{< tab "IPv4 ">}}
 
 ```
-cumulus@switch:~$ nv set system dhcp-server pool 10.1.10.0/24 ping-check on
+cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 ping-check on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "IPv6 ">}}
 
 ```
-cumulus@switch:~$ nv set system dhcp-server6 pool 10.1.10.0/24 ping-check on
+cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 ping-check on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -354,7 +344,7 @@ cumulus@switch:~$ nv set system dhcp-server6 pool 10.1.10.0/24 ping-check on
 2. Restart the `dhcpd` service:
 
    ```
-   cumulus@switch:~$ sudo systemctl restart dhcpd6.service
+   cumulus@switch:~$ sudo systemctl restart dhcpd.service
    ```
 
 {{< /tab >}}
@@ -405,16 +395,18 @@ You can assign an IP address and other DHCP options based on physical location o
 {{< tab "IPv4 ">}}
 
 ```
-cumulus@switch:~$ nv set system dhcp-server static server1 ip-address 10.0.0.2
-cumulus@switch:~$ nv set system dhcp-server static server1 interface swp1
+cumulus@switch:~$ nv set service dhcp-server default static server1 ip-address 10.0.0.2
+cumulus@switch:~$ nv set service dhcp-server default interface swp1
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "IPv6 ">}}
 
 ```
-cumulus@switch:~$ nv set system dhcp-server6 static server1 ip-address 2001:db8:1::100
-cumulus@switch:~$ nv set system dhcp-server6 static server1 interface swp1
+cumulus@switch:~$ nv set service dhcp-server6 default static server1 ip-address 2001:db8:1::100
+cumulus@switch:~$ nv set service dhcp-server6 default interface swp1
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -454,7 +446,7 @@ cumulus@switch:~$ nv set system dhcp-server6 static server1 interface swp1
    ...
    host myhost {
        ifname "swp1" ;
-       fixed-address 10.0.0.10 ;
+       fixed-address 2001:db8:1::100 ;
    }
    ...
    ```
@@ -473,17 +465,15 @@ cumulus@switch:~$ nv set system dhcp-server6 static server1 interface swp1
 
 ## Troubleshooting
 
-To show the current DHCP server settings, run the `nv show system dhcp-server` command:
+To show the current DHCP server settings, run the `nv show service dhcp-server` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show system dhcp-server
-                      running       applied       description
---------------------  ------------  ------------  ----------------------------------------------
-[domain-name]                                     DHCP domain names
-[domain-name-server]                              DHCP domain name servers
-[pool]                10.1.10.0/24  10.1.10.0/24  DHCP Pools
-[static]              server1       server1       DHCP clients with fixed IP address assignments
-[static]              server2       server2
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server
+           Summary
+---------  ------------------
++ default  interface:   "swp1
+  default  pool: 10.1.10.0/24
+  default  static:    server1
 ```
 
 The DHCP server determines if a DHCP request is a relay or a non-relay DHCP request. Run the following command to see the DHCP request:

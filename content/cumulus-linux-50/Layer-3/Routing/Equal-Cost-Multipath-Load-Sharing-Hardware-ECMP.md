@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 770
 toc: 3
 ---
-Cumulus Linux supports hardware-based {{<exlink url="http://en.wikipedia.org/wiki/Equal-cost_multi-path_routing" text="equal cost multipath">}} (ECMP) load sharing. Cumulus Linux enables ECMP by default. Load sharing occurs automatically for all routes with multiple next hops installed. ECMP load sharing supports both IPv4 and IPv6 routes.
+Cumulus Linux enables hardware [ECMP](## "Equal Cost Multi Path") by default. Load sharing occurs automatically for all routes with multiple next hops installed. ECMP load sharing supports both IPv4 and IPv6 routes.
 
 ## Equal Cost Routing
 
@@ -25,7 +25,7 @@ For Cumulus Linux to consider routes equal, they must:
 - Have equal cost. If two routes from the same protocol are unequal, only the best route installs in the routing table.
 
 {{%notice info%}}
-Cumulus Linux enables the BGP `maximum-paths` setting by default and installs multiple routes. See the {{<link url="Optional-BGP-Configuration#ecmp" text="ECMP section">}} of the BGP chapter for more information.
+Cumulus Linux enables the BGP `maximum-paths` setting by default and installs multiple routes. Refer to {{<link url="Optional-BGP-Configuration#ecmp" text="BGP and ECMP">}}.
 {{%/notice%}}
 
 ## ECMP Hashing
@@ -311,7 +311,7 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 
 ### IPv6 Route Replacement
 
-When the router adds or removes ECMP paths, or when the next hop IP address, interface, or tunnel changes, the next hop information for an IPv6 prefix can change. FRR deletes the existing route to that prefix from the kernel, then adds a new route with all the relevant new information. In certain situations, Cumulus Linux does not maintain resilient hashing for IPv6 flows.
+When the router adds or removes ECMP paths, or when the next hop IP address, interface, or tunnel changes, the next hop information for an IPv6 prefix can change. [FRR](## "FRRouting") deletes the existing route to that prefix from the kernel, then adds a new route with all the relevant new information. In certain situations, Cumulus Linux does not maintain resilient hashing for IPv6 flows.
 
 To work around this issue, you can enable IPv6 route replacement.
 

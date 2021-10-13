@@ -6,15 +6,15 @@ toc: 3
 ---
 Typical routing systems and protocols forward traffic based on the destination address in the packet, which they look up in a routing table. However, sometimes the traffic on your network requires a more hands-on approach. Sometimes, you need to forward a packet based on the source address, the packet size, or other information in the packet header.
 
-Policy-based routing (PBR) lets you make routing decisions based on filters that change the routing behavior of specific traffic so that you can override the routing table and influence where the traffic goes. For example, you can use PBR to reach the best bandwidth utilization for business-critical applications, isolate traffic for inspection or analysis, or manually load balance outbound traffic.
+[PBR](## "Policy-based Routing") lets you make routing decisions based on filters that change the routing behavior of specific traffic so that you can override the routing table and influence where the traffic goes. For example, you can use PBR to reach the best bandwidth utilization for business-critical applications, isolate traffic for inspection or analysis, or manually load balance outbound traffic.
 
-Cumulus Linux applies policy-based routing to incoming packets. All packets received on a PBR-enabled interface pass through enhanced packet filters that determine rules and specify where to forward the packets.
+Cumulus Linux applies PBR to incoming packets. All packets received on a PBR-enabled interface pass through enhanced packet filters that determine rules and specify where to forward the packets.
 
 {{%notice note%}}
-- You can create a *maximum* of 255 PBR match rules and 256 next hop groups (this is the ECMP limit).
+- You can create a *maximum* of 255 PBR match rules and 256 next hop groups (this is the [ECMP](## "Equal Cost Multi Path") limit).
 - You can apply only one PBR policy per input interface.
-- You can match on *source* and *destination* IP address, or match on Differentiated Services Code Point (DSCP) or Explicit Congestion Notification (ECN) values within a packet.
-- PBR is not supported for GRE or VXLAN tunneling.
+- You can match on *source* and *destination* IP address, or match on [DSCP](## "Differentiated Services Code Point") or [ECN](## "Explicit Congestion Notification") values within a packet.
+- PBR is not supported for VXLAN tunneling.
 - PBR is not supported on management interfaces, such as eth0.
 - A PBR rule cannot contain both IPv4 and IPv6 addresses.
 {{%/notice%}}

@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 610
 toc: 3
 ---
-In VXLAN-based networks, there are a range of complexities and challenges in determining the destination *virtual tunnel endpoints* (VTEPs) for any given VXLAN. At scale, various solutions, including controller-based options, such as VMware NSX and new standards like {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}} try to address these complexities, however, they also have their own complexities.
+In [VXLAN](## "Virtual Extensible LAN")-based networks, there are a range of complexities and challenges in determining the destination [VTEPs](## "Virtual Tunnel End Points") for any given VXLAN. At scale, various solutions, including controller-based options, such as VMware NSX and new standards like {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}} try to address these complexities, however, they also have their own complexities.
 
 *Static VXLAN tunnels* serve to connect two VTEPs in a given environment. Static VXLAN tunnels are the simplest deployment mechanism for small scale environments and are interoperable with other vendors that adhere to VXLAN standards. Because you map which VTEPs are in a particular VNI, you can avoid the tedious process of defining connections to every VLAN on every other VTEP on every other rack.
 
@@ -671,6 +671,14 @@ iface br_default
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "Try It " >}}
+    {{< simulation name="Try It CL44 - Static VXLAN" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
+
+This simulation starts with the example static VXLAN configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
+
+To validate the configuration, run the verification commands shown below.
 
 {{< /tab >}}
 {{< /tabs >}}

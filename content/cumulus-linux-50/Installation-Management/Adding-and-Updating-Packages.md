@@ -23,26 +23,28 @@ cumulus@switch:~$ sudo -E apt-get update
 Ign:1 copy:/var/lib/cumulus/cumulus-local-apt-archive cumulus-local-apt-archive InRelease
 Get:2 copy:/var/lib/cumulus/cumulus-local-apt-archive cumulus-local-apt-archive Release [1,115 B]
 Ign:3 copy:/var/lib/cumulus/cumulus-local-apt-archive cumulus-local-apt-archive Release.gpg
-Hit:4 http://deb.debian.org/debian buster InRelease
-Get:5 http://deb.debian.org/debian buster-updates InRelease [51.9 kB]
-Get:6 http://deb.debian.org/debian buster-backports InRelease [46.7 kB]
-Get:7 http://security.debian.org buster/updates InRelease [65.4 kB]
-Get:8 http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 InRelease [35.7 kB]
-Hit:9 http://apt.cumulusnetworks.com/repo CumulusLinux-4-latest InRelease
-Get:10 http://deb.debian.org/debian buster-backports/main Sources.diff/Index [27.8 kB]
-Get:11 http://deb.debian.org/debian buster-backports/main amd64 Packages.diff/Index [27.8 kB]
-Get:12 http://deb.debian.org/debian buster-backports/main Translation-en.diff/Index [27.8 kB]
-Get:13 http://deb.debian.org/debian buster-backports/main Sources 2021-06-04-1401.15.pdiff [1,731 B]
-Get:13 http://deb.debian.org/debian buster-backports/main Sources 2021-06-04-1401.15.pdiff [1,731 B]
-Get:14 http://deb.debian.org/debian buster-backports/main amd64 Packages 2021-06-04-1401.15.pdiff [653 B]
-Get:15 http://deb.debian.org/debian buster-backports/main Translation-en 2021-06-04-1401.15.pdiff [358 B]
-Get:14 http://deb.debian.org/debian buster-backports/main amd64 Packages 2021-06-04-1401.15.pdiff [653 B]
-Get:15 http://deb.debian.org/debian buster-backports/main Translation-en 2021-06-04-1401.15.pdiff [358 B]
-Get:16 http://security.debian.org buster/updates/main Sources [187 kB]
-Get:17 http://security.debian.org buster/updates/main amd64 Packages [291 kB]
-Get:18 http://security.debian.org buster/updates/main Translation-en [151 kB]
-Get:19 http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4/netq-latest amd64 Packages [1,418 B]
-Fetched 917 kB in 3s (265 kB/s)
+Get:4 http://security.debian.org buster/updates InRelease [65.4 kB]                 
+Hit:5 http://deb.debian.org/debian buster InRelease                                 
+Get:6 http://deb.debian.org/debian buster-updates InRelease [51.9 kB]
+Get:7 http://deb.debian.org/debian buster-backports InRelease [46.7 kB]
+Get:8 http://deb.debian.org/debian buster-updates/main Sources.diff/Index [8,608 B] 
+Get:9 http://deb.debian.org/debian buster-updates/main amd64 Packages.diff/Index [8,608 B]
+Get:10 http://deb.debian.org/debian buster-updates/main Sources 2021-09-28-1420.03.pdiff [185 B]
+Get:10 http://deb.debian.org/debian buster-updates/main Sources 2021-09-28-1420.03.pdiff [185 B]
+Get:11 http://deb.debian.org/debian buster-updates/main amd64 Packages 2021-09-28-1420.03.pdiff [184 B]               
+Get:11 http://deb.debian.org/debian buster-updates/main amd64 Packages 2021-09-28-1420.03.pdiff [184 B]               
+Get:12 http://deb.debian.org/debian buster-backports/main Sources.diff/Index [27.8 kB]                     
+Get:13 http://deb.debian.org/debian buster-backports/main amd64 Packages.diff/Index [27.8 kB]                         
+Hit:14 http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 InRelease                                            
+Get:15 http://security.debian.org buster/updates/main Sources [200 kB]                             
+Get:16 http://security.debian.org buster/updates/main amd64 Packages [305 kB]              
+Hit:17 http://apt.cumulusnetworks.com/repo CumulusLinux-4-latest InRelease                       
+Get:18 http://deb.debian.org/debian buster-backports/main Sources 2021-10-02-0801.17.pdiff [681 B]
+Get:19 http://deb.debian.org/debian buster-backports/main Sources 2021-10-02-1405.24.pdiff [31 B]
+Get:19 http://deb.debian.org/debian buster-backports/main Sources 2021-10-02-1405.24.pdiff [31 B]
+Get:20 http://deb.debian.org/debian buster-backports/main amd64 Packages 2021-10-02-1405.24.pdiff [178 B]
+Get:20 http://deb.debian.org/debian buster-backports/main amd64 Packages 2021-10-02-1405.24.pdiff [178 B]
+Fetched 744 kB in 1s (982 kB/s)
 Reading package lists... Done
 ```
 

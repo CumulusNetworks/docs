@@ -12,7 +12,7 @@ IETF has defined extensions to OSPFv3 to support multiple address families (both
 
 ## Basic OSPFv3 Configuration
 
-You can configure OSPFv3 using either numbered interfaces or unnumbered interfaces.
+You can configure [OSPF](## "Open Shortest Path First") using either numbered interfaces or unnumbered interfaces.
 
 {{%notice note%}}
 NVUE commands are not supported for OSPFv3.
@@ -72,7 +72,7 @@ cumulus@spine01:~$ net commit
 {{< tabs "TabID85 ">}}
 {{< tab "leaf01 ">}}
 
-1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRRouting service (see {{<link title="FRRouting">}}).
+1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRR service (see {{<link title="FRRouting">}}).
 
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp51:
 
@@ -119,7 +119,7 @@ cumulus@spine01:~$ net commit
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
-1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRRouting service (see {{<link title="FRRouting">}}).
+1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRR service (see {{<link title="FRRouting">}}).
 
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp1:
 
@@ -256,7 +256,7 @@ cumulus@spine01:~$ net commit
 {{< tabs "TabID299 ">}}
 {{< tab "leaf01 ">}}
 
-1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRRouting service (see {{<link title="FRRouting">}}).
+1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRR service (see {{<link title="FRRouting">}}).
 
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp51:
 
@@ -305,7 +305,7 @@ cumulus@leaf01:~$
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
-1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRRouting service (see {{<link title="FRRouting">}}).
+1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRR service (see {{<link title="FRRouting">}}).
 
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp1:
 
@@ -403,7 +403,7 @@ You can define the following OSPF parameters per interface:
 - Hello interval. The number of seconds between hello packets sent on the interface. The default is 10 seconds.
 - Dead interval. Then number of seconds before neighbors declare the router down after they stop hearing
 hello packets. The default is 40 seconds.
-- Priority in becoming the OSPF Designated Router (DR) on a broadcast interface. The default is priority 1.
+- Priority in becoming the OSPF [DR](## "Designated Router") on a broadcast interface. The default is priority 1.
 - Advertise prefix list. The prefix list defines the outbound route filter.
 - Cost. The cost determines the shortest paths to the destination.
 
@@ -569,7 +569,7 @@ To show the configured OSPF interface parameter values, run the NCLU `net show o
 
 ### SPF Timer Defaults
 
-OSPF3 uses the following default timers to prevent consecutive SPFs from overburdening the CPU:
+OSPF3 uses the following default timers to prevent consecutive [SPF](## "Shortest Path First") from overburdening the CPU:
 
 - 0 milliseconds from the initial event until SPF runs
 - 50 milliseconds between consecutive SPF runs (the number doubles with each SPF, until it reaches the maximum time between SPF runs)
@@ -717,7 +717,7 @@ router ospf6
 
 ### Stub Areas
 
-External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. Typically, external link states make up a large percentage of the link-state database (LSDB). Stub *areas* reduce the LSDB size by not flooding AS-external LSAs.
+External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. Typically, external link states make up a large percentage of the [LSDB](## "Link-State Database"). Stub *areas* reduce the LSDB size by not flooding AS-external LSAs.
 
 All routers must agree that an area is a stub, otherwise they do not become OSPF neighbors.
 
@@ -860,7 +860,7 @@ router ospf6
 
 ### Administrative Distance
 
-Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPFv3 with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.
+Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPFv3 with an administrative distance of 110 and the same route from [BGP](## "Border Gateway Protocol") with an administrative distance of 100, the switch chooses BGP.
 
 Cumulus Linux provides several commands to change the administrative distance for OSPF routes. The default value is 110.
 

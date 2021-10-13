@@ -6,24 +6,24 @@ toc: 3
 ---
 {{<exlink url="http://www.netfilter.org/" text="Netfilter">}} is the packet filtering framework in Cumulus Linux and most other Linux distributions. There several tools available for configuring ACLs in Cumulus Linux:
 
-- `iptables`, `ip6tables`, and `ebtables` are Linux userspace tools used to administer filtering rules for IPv4 packets, IPv6 packets, and Ethernet frames (layer 2 using MAC addresses).
-- `cl-acltool` is a Cumulus Linux-specific userspace tool used to administer filtering rules and configure default ACLs. `cl-acltool` operates on various configuration files and uses `iptables`, `ip6tables`, and `ebtables` to install rules into the kernel. In addition, `cl-acltool` programs rules in hardware for interfaces involving switch port interfaces, which `iptables`, `ip6tables` and `ebtables` cannot do on their own.
+- `iptables`, `ip6tables`, and `ebtables` are Linux userspace tools you use to administer filtering rules for IPv4 packets, IPv6 packets, and Ethernet frames (layer 2 using MAC addresses).
+- `cl-acltool` is a Cumulus Linux-specific userspace tool you use to administer filtering rules and configure default ACLs. `cl-acltool` operates on various configuration files and uses `iptables`, `ip6tables`, and `ebtables` to install rules into the kernel. In addition, `cl-acltool` programs rules in hardware for switch port interfaces, which `iptables`, `ip6tables` and `ebtables` cannot do on their own.
 
 ## Traffic Rules
 
 ### Chains
 
-Netfilter describes the way that the Linux kernel classifies and controls packets to, from, and across the switch. Netfilter does not require a separate software daemon to run; it is part of the Linux kernel itself. Netfilter asserts policies at layer 2, 3 and 4 of the {{<exlink url="https://en.wikipedia.org/wiki/OSI_model" text="OSI model">}} by inspecting packet and frame headers according to a list of rules. The `iptables`, `ip6tables`, and `ebtables` userspace applications provide syntax you use to define rules.
+Netfilter describes the way that the Linux kernel classifies and controls packets to, from, and across the switch. Netfilter does not require a separate software daemon to run; it is part of the Linux kernel. Netfilter asserts policies at layer 2, 3 and 4 of the {{<exlink url="https://en.wikipedia.org/wiki/OSI_model" text="OSI model">}} by inspecting packet and frame headers according to a list of rules. The `iptables`, `ip6tables`, and `ebtables` userspace applications provide syntax you use to define rules.
 
 The rules inspect or operate on packets at several points (*chains*) in the life of the packet through the system:
 
 {{< img src = "/images/cumulus-linux/acl-chains.png" >}}
 
-- **PREROUTING** touches packets before the switch routes them
-- **INPUT** touches packets after the switch determines that the packets are for the local system but before the control plane software receives them
-- **FORWARD** touches transit traffic as it moves through the switch
-- **OUTPUT** touches packets from the control plane software before they leave the switch
-- **POSTROUTING** touches packets immediately before they leave the switch but after a routing decision
+- **PREROUTING** touches packets before the switch routes them.
+- **INPUT** touches packets after the switch determines that the packets are for the local system but before the control plane software receives them.
+- **FORWARD** touches transit traffic as it moves through the switch.
+- **OUTPUT** touches packets from the control plane software before they leave the switch.
+- **POSTROUTING** touches packets immediately before they leave the switch but after a routing decision.
 
 ### Tables
 
@@ -236,14 +236,82 @@ You can match on VLAN IDs on layer 2 interfaces for ingress rules. The following
 -A FORWARD -i swp31 -m mark --mark 0x66 -m dscp --dscp-class CS1 -j SETCLASS --class 2
 ```
 
+## Install and Manage ACL Rules with NVUE
+
+Instead of crafting a rule by hand, then installing it with `cl-acltool`, you can use NVUE commands. Cumulus Linux converts the commands to the `/etc/cumulus/acl/policy.d/50_cue.rules` file. The rules you create with NVUE are independent of the default files `/etc/cumulus/acl/policy.d/00control_plane.rules` and `99control_plane_catch_all.rules`.
+
+Consider the following `iptables` rule:
+
+```
+-A FORWARD -i swp1 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT
+```
+
+To create this rule with NVUE, follow the steps below. NVUE adds all options, such as the `FORWARD`, `-j` and `-p` in the rule automatically.
+
+1. Set the rule type, the matching protocol, source IP address and port, destination IP address and port, and the action. You must provide a name for the rule (EXAMPLE1 in the commands below):
+
+   ```
+   cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+   cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+   cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-ip 10.0.14.2/32
+   cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port ANY
+   cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.15.8/32
+   cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port ANY
+   cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
+   ```
+
+2. Apply the rule to an inbound or outbound interface with the `nv set interface <interface> acl` command.
+   
+   - For rules affecting the FORWARD chain (-A FORWARD), apply the rule to an inbound or outbound interface: For example:
+
+   ```
+   cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
+   cumulus@switch:~$ nv config apply
+   ```
+
+   - For rules affecting the INPUT or OUPUT chain (-A INPUT or -A OUTPUT), apply the rule to a control plane interface. For example:
+
+   ```
+   cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound control-plane
+   cumulus@switch:~$ nv config apply
+   ```
+
+   In the following example, swp1 is the inbound interface and the rule affects the FORWARD chain:
+
+   ```
+   cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
+   cumulus@switch:~$ nv set apply
+   ```
+
+To see all installed rules, examine the `50_cue.rules` file:
+
+```
+cumulus@switch:~$ sudo cat /etc/cumulus/acl/policy.d/50_cue.rules
+[iptables]
+
+## ACL EXAMPLE1 in dir inbound on interface swp1 ##
+-A FORWARD -i swp1 -s 10.0.14.2/32 -d 10.0.15.8/32 -p tcp -j ACCEPT
+...
+```
+
+To remove this rule, run the `nv unset acl <acl-name>` and `nv unset interface <interface> acl <acl-name>` commands. These commands delete the rule from the `/etc/cumulus/acl/policy.d/50_cue.rules` file.
+
+```
+cumulus@switch:~$ nv unset acl EXAMPLE1
+cumulus@switch:~$ nv unset interface swp1 acl EXAMPLE1
+cumulus@switch:~$ nv config apply
+```
+
+To see the list of NVUE ACL commands, run the `nv list-commands acl` command.
+
 ## Install and Manage ACL Rules with NCLU
 
-NCLU provides an easy way to create custom ACLs. The rules you create live in the `/var/lib/cumulus/nclu/nclu_acl.conf` file, which Cumulus Linux converts to a rules file, `/etc/cumulus/acl/policy.d/50_nclu_acl.rules`. The rules you create with NCLU are independent of the default files in `/etc/cumulus/acl/policy.d/` `00control_plane.rules` and `99control_plane_catch_all.rules`. If you update the content in these files after a Cumulus Linux upgrade, you do not lose the rules.
+NCLU provides an easy way to create custom ACLs. The rules you create live in the `/var/lib/cumulus/nclu/nclu_acl.conf` file, which Cumulus Linux converts to a rules file, `/etc/cumulus/acl/policy.d/50_nclu_acl.rules`. The rules you create with NCLU are independent of the default files in `/etc/cumulus/acl/policy.d/00control_plane.rules` and `99control_plane_catch_all.rules`. If you update the content in these files after a Cumulus Linux upgrade, you do not lose the rules.
 
 Instead of crafting a rule by hand then installing it with `cl-acltool`, NCLU handles most options automatically. For example, consider the following `iptables` rule:
 
 ```
--A FORWARD -i swp1 -o swp2 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT
+-A FORWARD -i swp1 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT
 ```
 
 To create this rule  with NCLU and call it *EXAMPLE1*:
@@ -254,7 +322,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-NCLU adds alll options, such as the `-j` and `-p`, even `FORWARD` in the above rule automatically when you apply the rule to the control plane; NCLU figures it all out for you.
+NCLU adds all options, such as the `-j` and `-p`, even `FORWARD` in the above rule automatically when you apply the rule to the control plane; NCLU figures it all out for you.
 
 You can also set a priority value, which specifies the order in which the rules execute and the order in which they appear in the rules file. Lower numbers execute first. To add a new rule in the middle, first run `net show config acl`, which displays the priority numbers. Otherwise, new rules append to the end of the list of rules in the `nclu_acl.conf` and `50_nclu_acl.rules` files.
 
@@ -291,7 +359,7 @@ cumulus@switch:~$ cat /etc/cumulus/acl/policy.d/50_nclu_acl.rules
 -A FORWARD --in-interface swp1 --out-interface swp2 -j ACCEPT -p tcp -s 10.0.14.2/32 -d 10.0.15.8/32 --dport 110
 ```
 
-For INPUT and FORWARD rules, apply the rule to a control plane interface with `net add control-plane`:
+For rules affecting the INPUT chain, apply the rule to a control plane interface with `net add control-plane`:
 
 ```
 cumulus@switch:~$ net add control-plane acl ipv4 EXAMPLE1 inbound
@@ -509,7 +577,6 @@ Even though the table above specifies the ip-acl-heavy profile supports no IPv6 
 
 The `iptables`/`ip6tables`/`ebtables` construct tries to layer the Linux implementation on top of the underlying hardware but they are not always directly compatible. Here are the supported rules for chains in `iptables`, `ip6tables` and `ebtables`.
 
-{{%notice note%}}
 To learn more about any of the options shown in the tables below, run `iptables -h [name of option]`. The same help syntax works for options for `ip6tables` and `ebtables`.
 
 ```
@@ -528,7 +595,6 @@ tricolorpolice option:
 Supported chains for the filter table:
 INPUT FORWARD OUTPUT
 ```
-{{%/notice%}}
 
 ### iptables and ip6tables Rule Support
 
@@ -600,15 +666,40 @@ Use the `POLICE` target with `iptables`. `POLICE` takes these arguments:
 - `--set-burst value` specifies the number of packets or kilobytes (KB) allowed to arrive sequentially.
 - `--set-mode string` sets the mode in *KB* (kilobytes) or *pkt* (packets) for rate and burst size.
 
-For example, to rate limit the incoming traffic on swp1 to 400 packets per second with a burst of 100 packets per second and set the class of the queue for the policed traffic as 0, set this rule in your appropriate `.rules` file:
+For example, to rate limit the incoming traffic on swp1 to 400 packets per second with a burst of 100 packets per second and set the class of the queue for the policed traffic as 0: set this rule in your appropriate `.rules` file:
+
+{{< tabs "665 ">}}
+{{< tab "iptables rule ">}}
+
+Set this rule in your appropriate `.rules` file:
 
 ```
--A INPUT --in-interface swp1 -j POLICE --set-mode pkt --set-rate 400 --set-burst 100 --set-class 0
+-A INPUT -i swp1 -j POLICE --set-mode pkt --set-rate 400 --set-burst 100 --set-class 0
 ```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl example4 type ipv4
+cumulus@switch:~$ nv set acl example4 rule 1 action police mode packet
+cumulus@switch:~$ nv set acl example4 rule 1 action police rate 400
+cumulus@switch:~$ nv set acl example4 rule 1 action police burst 100
+cumulus@switch:~$ nv set acl example4 rule 1 action set class 0
+cumulus@switch:~$ nv set interface swp1 acl example4 inbound control-plane
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 Here is another example of control plane ACL rules to lock down the switch. You specify the rules in `/etc/cumulus/acl/policy.d/00control_plane.rules`:
-
-{{< expand "View the contents of the file"  >}}
 
 ```
 INGRESS_INTF = swp+
@@ -645,11 +736,12 @@ SNMP_SERVERS_4 = "192.168.0.1/32"
 -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -j DROP
 ```
 
-{{< /expand >}}
-
 ### Set DSCP on Transit Traffic
 
 The examples here use the *mangle* table to modify the packet as it transits the switch. DSCP is in {{<exlink url="https://en.wikipedia.org/wiki/Differentiated_services#Configuration_guidelines" text="decimal notation">}} in the examples below.
+
+{{< tabs "730 ">}}
+{{< tab "iptables rule ">}}
 
 ```
 [iptables]
@@ -657,7 +749,7 @@ The examples here use the *mangle* table to modify the packet as it transits the
 #Set SSH as high priority traffic.
 -t mangle -A FORWARD -p tcp --dport 22  -j DSCP --set-dscp 46
 
-#Set everything coming in SWP1 as AF13
+#Set everything coming in swp1 as AF13
 -t mangle -A FORWARD --in-interface swp1 -j DSCP --set-dscp 14
 
 #Set Packets destined for 10.0.100.27 as best effort
@@ -667,9 +759,72 @@ The examples here use the *mangle* table to modify the packet as it transits the
 -t mangle -A FORWARD -p tcp -s 10.0.0.17/32 --sport 10000:20000 -d 10.0.100.27/32 --dport 10000:20000 -j DSCP --set-dscp 34
 ```
 
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+To set SSH as high priority traffic:
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 22
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set dscp 46
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
+cumulus@switch:~$ nv set interface ANY type swp
+cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+To set everything coming in swp1 as AF13:
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set dscp 14
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+To set Packets destined for 10.0.100.27 as best effort:
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.100.27/32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set dscp 0
+cumulus@switch:~$ nv set interface ANY type swp
+cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+To use a range of ports for TCP traffic:
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-ip 10.0.0.17/32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port 10000:20000
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.100.27/32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 10000:20000
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set dscp 34
+cumulus@switch:~$ nv set interface ANY type swp
+cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Verify DSCP Values on Transit Traffic
 
 The examples here use the DSCP match criteria in combination with other IP, TCP, and interface matches to identify traffic and count the number of packets.
+
+{{< tabs "807 ">}}
+{{< tab "iptables rule ">}}
 
 ```
 [iptables]
@@ -677,14 +832,78 @@ The examples here use the DSCP match criteria in combination with other IP, TCP,
 #Match and count the packets that match SSH traffic with DSCP EF
 -A FORWARD -p tcp --dport 22 -m dscp --dscp 46 -j ACCEPT
 
-#Match and count the packets coming in SWP1 as AF13
+#Match and count the packets coming in swp1 as AF13
 -A FORWARD --in-interface swp1 -m dscp --dscp 14 -j ACCEPT
+
 #Match and count the packets with a destination 10.0.0.17 marked best effort
 -A FORWARD -d 10.0.100.27/32 -m dscp --dscp 0 -j ACCEPT
 
 #Match and count the packets in a port range with DSCP AF41
 -A FORWARD -p tcp -s 10.0.0.17/32 --sport 10000:20000 -d 10.0.100.27/32 --dport 10000:20000 -m dscp --dscp 34 -j ACCEPT
 ```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+To match and count the packets that match SSH traffic with DSCP EF:
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 22
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dscp 46
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
+cumulus@switch:~$ nv set interface ANY type swp
+cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+To match and count the packets coming in swp1 as AF13:
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dscp 14
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+To match and count the packets with a destination 10.0.0.17 marked best effort:
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.100.27/32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dscp 0
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
+cumulus@switch:~$ nv set interface ANY type swp
+cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+To match and count the packets in a port range with DSCP AF41:
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-ip 10.0.0.17/32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port 10000:20000
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.100.27/32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 10000:20000
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dscp 34
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
+cumulus@switch:~$ nv set interface ANY type swp
+cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Check the Packet and Byte Counters for ACL Rules
 
@@ -787,19 +1006,200 @@ The `--syn` flag in the above rule matches packets with the SYN bit set and the 
 ### Control Who Can SSH into the Switch
 
 Run the following NCLU commands to control who can SSH into the switch.
-In the following example, 10.0.0.11/32 is the interface IP address (or loopback IP address) of the switch and 10.255.4.0/24 can SSH into the switch.
+In the following example, 10.10.10.1/32 is the interface IP address (or loopback IP address) of the switch and 10.255.4.0/24 can SSH into the switch.
+
+{{< tabs "852 ">}}
+{{< tab "iptables rule ">}}
 
 ```
-cumulus@switch:~$ net add acl ipv4 test priority 10 accept source-ip 10.255.4.0/24 dest-ip 10.0.0.11/32
-cumulus@switch:~$ net add acl ipv4 test priority 20 drop source-ip any dest-ip 10.0.0.11/32
+-A FORWARD --in-interface swp+ -s 10.255.4.0/24 -d 10.10.10.1/32 -j ACCEPT
+-A FORWARD --in-interface swp+ -d 10.10.10.1/32 -j DROP
+```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add acl ipv4 test priority 10 accept source-ip 10.255.4.0/24 dest-ip 10.10.10.1/32
+cumulus@switch:~$ net add acl ipv4 test priority 20 drop source-ip any dest-ip 10.10.10.1/32
 cumulus@switch:~$ net add control-plane acl ipv4 test inbound
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-{{%notice note%}}
-Cumulus Linux does not support the keyword `iprouter` (typically used for traffic that goes to the CPU, where the destination MAC address is that of the router but the destination IP address is not the router).
-{{%/notice%}}
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl example2 type ipv4
+cumulus@switch:~$ nv set acl example2 rule 10 match ip source-ip 10.255.4.0/24 
+cumulus@switch:~$ nv set acl example2 rule 10 match ip dest-ip 10.10.10.1/32
+cumulus@switch:~$ nv set acl example2 rule 10 action permit
+cumulus@switch:~$ nv set acl example2 rule 20 match ip source-ip ANY 
+cumulus@switch:~$ nv set acl example2 rule 20 match ip dest-ip 10.10.10.1/32
+cumulus@switch:~$ nv set acl example2 rule 20 action deny
+cumulus@switch:~$ nv set interface swp2 acl example2 inbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## Match on ECN Bits in the TCP IP Header
+
+[ECN](## "Explicit Congestion Notification") allows end-to-end notification of network congestion without dropping packets. You can add ECN rules to match on the [ECE](## "ECN-Echo"), [CWR](## "Congestion Window Received"), and [ECT](## "ECN Capable Transport") flags in the TCP IPv4 header.
+
+By default, ECN rules match a packet with the bit set. You can reverse the match by using an explanation point (!).
+
+### Match on the ECE Bit
+
+After an endpoint receives a packet with the [CE](## "Congestion Experienced") bit set by a router, it sets the ECE bit in the returning ACK packet to notify the other endpoint that it needs to slow down.
+
+To match on the ECE bit:
+
+{{< tabs "TabID947 ">}}
+{{< tab "iptables rule">}}
+
+Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules
+[iptables]
+-A FORWARD -i swp1 -p tcp -m ecn --ecn-tcp-ece -j ACCEPT 
+```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl example2 type ipv4
+cumulus@switch:~$ nv set acl example2 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl example2 rule 10 match ip ecn flags tcp-ece
+cumulus@switch:~$ nv set acl example2 rule 10 action permit
+cumulus@switch:~$ nv set interface swp1 acl example2 inbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "NCLU Commands ">}}
+
+Run the `net add acl ipv4 <rule-name> <action> tcp ece` command:
+
+```
+cumulus@switch:~$ net add acl ipv4 ece-rule accept tcp ece
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Match on the CWR Bit
+
+The **CWR** bit notifies the other endpoint of the connection that it received and reacted to an ECE.
+
+To match on the CWR bit:
+
+{{< tabs "TabID915 ">}}
+{{< tab "iptables rule ">}}
+
+Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules
+[iptables]
+-A FORWARD -i swp1 -p tcp -m ecn --ecn-tcp-cwr -j ACCEPT 
+```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl example2 type ipv4
+cumulus@switch:~$ nv set acl example2 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl example2 rule 10 match ip ecn flags tcp-cwr
+cumulus@switch:~$ nv set acl example2 rule 10 action permit
+cumulus@switch:~$ nv set interface swp1 acl example2 inbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "NCLU Commands ">}}
+
+Run the `net add acl ipv4 <rule-name> <action> tcp cwr` command:
+
+```
+cumulus@switch:~$ net add acl ipv4 cwr-rule accept tcp cwr
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Match on the ECT Bit
+
+The **ECT** codepoints negotiate if the connection is ECN capable by setting one of the two bits to 1. Routers also use the ECT bit to indicate that they are experiencing congestion by setting both the ECT codepoints to 1.
+
+To match on the ECT bit:
+
+{{< tabs "TabID979 ">}}
+{{< tab "iptables rule">}}
+
+Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules
+[iptables]
+-A FORWARD -i swp1 -p tcp -m ecn --ecn-ip-ect 1 -j ACCEPT
+```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl example2 type ipv4
+cumulus@switch:~$ nv set acl example2 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl example2 rule 10 match ip ecn ip-ect 1
+cumulus@switch:~$ nv set acl example2 rule 10 action permit
+cumulus@switch:~$ nv set interface swp1 acl example2 inbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "NCLU Commands ">}}
+
+Run the `net add acl ipv4 <acl-name> <action> tcp ecn <value>` command. You can specify a value between 0 and 3.
+
+```
+cumulus@switch:~$ net add acl ipv4 ect-rule accept tcp ecn 1
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Example Configuration
 
@@ -883,33 +1283,130 @@ iface bond2
 
 The following rule blocks any TCP traffic with destination port 200 going from host1 or host2 through the switch (corresponding to rule 1 in the diagram above).
 
+{{< tabs "1096 ">}}
+{{< tab "iptables rule ">}}
+
 ```
 [iptables] -A FORWARD -o bond2 -p tcp --dport 200 -j DROP
 ```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 200
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
+cumulus@switch:~$ nv set interface bond2 acl EXAMPLE1 outbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Ingress Rule
 
 The following rule blocks any UDP traffic with source port 200 going from host1 through the switch (corresponding to rule 2 in the diagram above).
 
+{{< tabs "1007 ">}}
+{{< tab "iptables rule ">}}
+
 ```
 [iptables] -A FORWARD -i swp2 -p udp --sport 200 -j DROP
 ```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE2 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 match ip protocol udp
+cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 match ip source-port 200
+cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 action deny
+cumulus@switch:~$ nv set interface swp2 acl EXAMPLE2 inbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Input Rule
 
 The following rule blocks any UDP traffic with source port 200 and destination port 50 going from host1 to the switch (corresponding to rule 3 in the diagram above).
 
+{{< tabs "1033 ">}}
+{{< tab "iptables rule ">}}
+
 ```
 [iptables] -A INPUT -i swp1 -p udp --sport 200 --dport 50 -j DROP
 ```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE3 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE3 rule 10 match ip protocol udp
+cumulus@switch:~$ nv set acl EXAMPLE3 rule 10 match ip source-port 200
+cumulus@switch:~$ nv set acl EXAMPLE3 rule 10 match ip dest-port 50
+cumulus@switch:~$ nv set acl EXAMPLE3 rule 10 action deny
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE3 inbound control-plane
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Output Rule
 
 The following rule blocks any TCP traffic with source port 123 and destination port 123 going from Switch 1 to host2 (corresponding to rule 4 in the diagram above).
 
+{{< tabs "1174 ">}}
+{{< tab "iptables rule ">}}
+
 ```
 [iptables] -A OUTPUT -o br-tag100 -p tcp --sport 123 --dport 123 -j DROP
 ```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE4 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE4 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE4 rule 10 match ip source-port 123
+cumulus@switch:~$ nv set acl EXAMPLE4 rule 10 match ip dest-port 123
+cumulus@switch:~$ nv set acl EXAMPLE4 rule 10 action deny
+cumulus@switch:~$ nv set interface br-tag100 acl EXAMPLE4 outbound control-plane
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Combined Rules
 
@@ -917,6 +1414,12 @@ The following rule blocks any TCP traffic with source port 123 and destination p
 
 ```
 [iptables] -A OUTPUT,FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP
+```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
 ```
 
 This also becomes two ACLs and is the same as:
@@ -931,9 +1434,33 @@ This also becomes two ACLs and is the same as:
 
 The following rule blocks any traffic with source MAC address 00:00:00:00:00:12 and destination MAC address 08:9e:01:ce:e2:04 going from any switch port egress/ingress.
 
+{{< tabs "1102 ">}}
+{{< tab "ebtables rule ">}}
+
 ```
 [ebtables] -A FORWARD -s 00:00:00:00:00:12 -d 08:9e:01:ce:e2:04 -j DROP
 ```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type mac
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match mac source-mac 00:00:00:00:00:12
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match mac dest-mac 08:9e:01:ce:e2:04
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action deny
+cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Considerations
 

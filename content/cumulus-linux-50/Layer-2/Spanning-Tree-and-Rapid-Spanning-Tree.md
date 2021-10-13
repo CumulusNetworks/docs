@@ -4,16 +4,16 @@ author: NVIDIA
 weight: 460
 toc: 3
 ---
-Spanning tree protocol (STP) identifies links in the network and shuts down redundant links, preventing possible network loops and broadcast radiation on a bridged network. STP also provides redundant links for automatic failover when an active link fails. Cumulus Linux enables STP by default for both VLAN-aware and traditional bridges.
+[STP](## "Spanning Tree Protocol") identifies links in the network and shuts down redundant links, preventing possible network loops and broadcast radiation on a bridged network. STP also provides redundant links for automatic failover when an active link fails. Cumulus Linux enables STP by default for both VLAN-aware and traditional bridges.
 
-Cumulus Linux supports RSTP, PVST, and PVRST modes:
+Cumulus Linux supports [RSTP](## "Rapid Spanning Tree Protocol"), [PVST](## "Per-VLAN Spanning Tree"), and [PVRST](## "Per-VLAN Rapid Spanning Tree") modes:
 
 - *{{<link url="Traditional-Bridge-Mode" text="Traditional bridges">}}* operate in both PVST and PVRST mode. The default is PVRST. Each traditional bridge has its own separate STP instance.
 - *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}}* operate **only** in RSTP mode.
 
 ## STP for a Traditional Mode Bridge
 
-Per VLAN Spanning Tree (PVST) creates a spanning tree instance for a bridge. Rapid PVST (PVRST) supports RSTP enhancements for each spanning tree instance. To use PVRST with a traditional bridge, you must create a bridge corresponding to the untagged native VLAN and all the physical switch ports must be part of the same VLAN.
+[PVST](## "Per-VLAN Spanning Tree") creates a spanning tree instance for a bridge. [PVRST](## "Per-VLAN Rapid Spanning Tree") supports [RSTP](## "Rapid Spanning Tree Protocol") enhancements for each spanning tree instance. To use PVRST with a traditional bridge, you must create a bridge corresponding to the untagged native VLAN and all the physical switch ports must be part of the same VLAN.
 
 {{%notice note%}}
 For maximum interoperability, when connected to a switch that has a native VLAN configuration, you **must** configure the native VLAN to VLAN 1.
@@ -29,7 +29,7 @@ If a bridge running RSTP (802.1w) receives a common STP (802.1D) BPDU, it falls 
 
 ### RSTP and PVST
 
-The RSTP domain sends BPDUs on the native VLAN, whereas PVST sends BPDUs on a per VLAN basis. For both protocols to work together, you need to enable the native VLAN on the link between the RSTP to PVST domain; the spanning tree builds according to the native VLAN parameters.
+The RSTP domain sends [BPDUs](## "Bridge Protocol Data Units") on the native VLAN, whereas PVST sends BPDUs on a per VLAN basis. For both protocols to work together, you need to enable the native VLAN on the link between the RSTP to PVST domain; the spanning tree builds according to the native VLAN parameters.
 
 The RSTP protocol does not send or parse BPDUs on other VLANs, but floods BPDUs across the network, enabling the PVST domain to maintain its spanning-tree topology and provide a loop-free network.
 - To enable proper BPDU exchange across the network, be sure to allow all VLANs participating in the PVST domain on the link between the RSTP and PVST domains.
@@ -38,15 +38,15 @@ The RSTP protocol does not send or parse BPDUs on other VLANs, but floods BPDUs 
 
 ### RSTP and MST
 
-RSTP works with MST seamlessly, creating a single instance of spanning tree that transmits BPDUs on the native VLAN.
+RSTP works with [MST](## "Multiple Spanning Tree") seamlessly, creating a single instance of spanning tree that transmits BPDUs on the native VLAN.
 
-RSTP treats the MST domain as one giant switch, whereas MST treats the RSTP domain as a different region. To ensure proper communication between the regions, MST creates a Common Spanning Tree (CST) that connects all the boundary switches and forms the overall view of the MST domain. Because changes in the CST must reflect in all regions, the RSTP tree exists is in the CST to ensure that changes on the RSTP domain are in the CST domain. Topology changes on the RSTP domain impact the rest of the network but inform the MST domain of every change occurring in the RSTP domain, ensuring a loop-free network.
+RSTP treats the MST domain as one giant switch, whereas MST treats the RSTP domain as a different region. To ensure proper communication between the regions, MST creates a [CST](## "Common Spanning Tree") that connects all the boundary switches and forms the overall view of the MST domain. Because changes in the CST must reflect in all regions, the RSTP tree exists is in the CST to ensure that changes on the RSTP domain are in the CST domain. Topology changes on the RSTP domain impact the rest of the network but inform the MST domain of every change occurring in the RSTP domain, ensuring a loop-free network.
 
 Configure the root bridge within the MST domain by changing the priority on the relevant MST switch. When MST detects an RSTP link, it falls back into RSTP mode. The MST domain chooses the switch with the lowest cost to the CST root bridge as the CIST root bridge.
 
 ### RSTP with MLAG
 
-More than one spanning tree instance enables switches to load balance and use different links for different VLANs. With RSTP, there is only one instance of spanning tree. To better utilize the links, you can configure MLAG on the switches connected to the MST or PVST domain and set up these interfaces as an MLAG port. The PVST or MST domain thinks it connects to a single switch and utilizes all the links connected to it. Load balancing depends on the port channel hashing mechanism instead of different spanning tree instances and uses all the links between the RSTP to the PVST or MST domains. For information about configuring MLAG, see {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="Multi-Chassis Link Aggregation - MLAG">}}.
+More than one spanning tree instance enables switches to load balance and use different links for different VLANs. With RSTP, there is only one instance of spanning tree. To better utilize the links, you can configure [MLAG](## "Multi-chassis Link Aggregation") on the switches connected to the [MST](## "Multiple Spanning Tree") or [PVST](## "Per-VLAN Spanning Tree") domain and set up these interfaces as an MLAG port. The PVST or MST domain thinks it connects to a single switch and utilizes all the links connected to it. Load balancing depends on the port channel hashing mechanism instead of different spanning tree instances and uses all the links between the RSTP to the PVST or MST domains. For information about configuring MLAG, see {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="Multi-Chassis Link Aggregation - MLAG">}}.
 
 ## Configure STP
 
@@ -103,7 +103,8 @@ cumulus@switch:~$ ifreload -a
 {{< /tabs >}}
 
 {{%notice note%}}
-Cumulus Linux supports MSTI 0 only. It does not support MSTI 1 through 15.
+- Cumulus Linux supports MSTI 0 only. It does not support MSTI 1 through 15.
+- You cannot use NCLU to set the tree priority for a **traditional bridge**. Edit the `/etc/network/interfaces` file to add `mstpctl-treeprio <priority>` to the bridge stanza.
 {{%/notice%}}
 
 ### PortAdminEdge (PortFast Mode)

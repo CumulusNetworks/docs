@@ -10,9 +10,22 @@ This document supports the Cumulus Linux 4.4 release, and lists new platforms an
 - For a list of open and fixed issues in Cumulus Linux 4.4, see the {{<link title="Cumulus Linux 4.4 Release Notes" text="Cumulus Linux 4.4 Release Notes">}}.
 - To upgrade to Cumulus Linux 4.4, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 <!-- vale off -->
-## What's New in Cumulus Linux 4.4
+## What's New in Cumulus Linux 4.4.1
 <!-- vale on -->
-Cumulus Linux 4.4 supports new platforms, provides bug fixes, and contains several new features and improvements.
+Cumulus Linux 4.4.1 provides bug fixes and contains several enhancements.
+
+### Enhancements
+
+- {{<link url="Supported-MIBs" text="Entity-Sensor-MIB extensions">}}
+- {{<link url="Switch-Port-Attributes/#drop-packets-that-exceed-the-egress-layer-3-mtu" text="Drop packets that exceed the egress layer 3 MTU">}}
+- Netfilter-ACL rules:
+  - {{<link url="Netfilter-ACLs" text="NCLU commands">}} support both a MAC address and IP address in the same rule, and support the MAC address mask
+  - {{<link url="Netfilter-ACLs/#match-on-ecn-bits-in-the-tcp-ip-header" text="Match on ECN bits in the TCP IP Header">}}
+
+<!-- vale off -->
+## What's New in Cumulus Linux 4.4.0
+<!-- vale on -->
+Cumulus Linux 4.4.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
 
 ### New Platforms
 
@@ -42,7 +55,24 @@ The NVUE commands and outputs are subject to change.
 
 ### Unsupported Platforms
 
-Cumulus Linux 4.4 supports NVIDIA Spectrum-based ASIC platforms only. Cumulus Linux 3.7 and 4.3 continue to support Broadcom-based networking ASICs.
+Cumulus Linux 4.4 supports NVIDIA Spectrum-based switches only. Cumulus Linux 3.7 and 4.3 continue to support Broadcom-based networking ASICs.
 
 ### Deprecated Features
 Cumulus Linux 4.4. no longer supports GRE and OVSDB High Availability.
+
+<!-- vale off -->
+## What's New in the Documentation
+<!-- vale on -->
+
+The Cumulus Linux 4.4 user guide (this guide) provides pre-built Try It demos for certain Cumulus Linux features. The Try It demos run a simulation in NVIDIA Air; a cloud hosted platform that works exactly like a real world production deployment. Use the Try It demos to examine switch configuration for a feature.
+
+The following Try It demos are currently available:
+- {{<link url="Configuration-Example/#nvue-commands" text="BGP">}}
+- {{<link url="Inter-subnet-Routing/#configure-route-targets" text="EVPN downstream VNI">}}
+- {{<link url="EVPN-Multihoming/#evpn-mh-with-head-end-replication" text="EVPN multihoming">}}
+- {{<link url="Configuration-Examples/#nvue-commands-2" text="EVPN symmetric routing">}}
+- {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#nvue-commands" text="MLAG">}}
+- {{<link url="Protocol-Independent-Multicast-PIM/#example-pim-configuration" text="PIM">}}
+- {{<link url="Static-VXLAN-Tunnels/#single-vxlan-device" text="Single VXLAN device">}}
+
+For more information, see {{<link url="Try-It-Pre-built-Demos" text="Try It Pre-built Demos">}}.

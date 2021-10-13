@@ -127,11 +127,11 @@ cumulus@switch:~$ net commit
 SPAN and ERSPAN configuration requires a session ID, which is a number between 0 and 7.
 
 You can set the following SPAN and ERSPAN options:
-- Source port (`src-port`)
+- Source port (`source-port`)
 - Destination port (`destination`)
 - Direction (`ingress` or `egress`)
-- Source IP address for ERSPAN encapsulation (`destination src-ip`)
-- Destination IP address for ERSPAN encapsulation (`destination dst-ip`)
+- Source IP address for ERSPAN encapsulation (`destination source-ip`)
+- Destination IP address for ERSPAN encapsulation (`destination dest-ip`)
 
 You can also truncate the mirrored frames at specified number of bytes. The size must be between 4 and 4088 bytes and a multiple of 4.
 
@@ -143,7 +143,7 @@ The following example commands mirror all packets received on swp1, and copy and
 
 ```
 cumulus@switch:~$ nv set system port-mirror session 1 span direction ingress 
-cumulus@switch:~$ nv set system port-mirror session 1 span src-port swp1 
+cumulus@switch:~$ nv set system port-mirror session 1 span source-port swp1 
 cumulus@switch:~$ nv set system port-mirror session 1 span destination swp2
 cumulus@switch:~$ nv config apply
 ```
@@ -152,7 +152,7 @@ The following example commands mirror all packets that go out of swp1, and copy 
 
 ```
 cumulus@switch:~$ nv set system port-mirror session 1 span direction egress
-cumulus@switch:~$ nv set system port-mirror session 1 span src-port swp1
+cumulus@switch:~$ nv set system port-mirror session 1 span source-port swp1
 cumulus@switch:~$ nv set system port-mirror session 1 span destination swp2
 cumulus@switch:~$ nv config apply
 ```
@@ -160,9 +160,9 @@ cumulus@switch:~$ nv config apply
 The following example commands mirror all packets that swp1 receives, and copy and transmit the packets from source IP address 10.10.10.1 to destination IP address 10.10.10.234 through a GRE tunnel:
 
 ```
-cumulus@switch:~$ nv set system port-mirror session 1 erspan src-port swp1
-cumulus@switch:~$ nv set system port-mirror session 1 erspan destination src-ip 10.10.10.1 
-cumulus@switch:~$ nv set system port-mirror session 1 erspan destination dst-ip 10.10.10.234
+cumulus@switch:~$ nv set system port-mirror session 1 erspan source-port swp1
+cumulus@switch:~$ nv set system port-mirror session 1 erspan destination source-ip 10.10.10.1 
+cumulus@switch:~$ nv set system port-mirror session 1 erspan destination dest-ip 10.10.10.234
 cumulus@switch:~$ nv config apply
 ```
 
@@ -170,9 +170,9 @@ The following example commands mirror all packets that go out of swp1, and copy 
 
 ```
 cumulus@switch:~$ nv set system port-mirror session 1 erspan direction egress
-cumulus@switch:~$ nv set system port-mirror session 1 erspan src-port swp1
-cumulus@switch:~$ nv set system port-mirror session 1 erspan destination src-ip 10.10.10.1
-cumulus@switch:~$ nv set system port-mirror session 1 erspan destination dst-ip 10.10.10.234
+cumulus@switch:~$ nv set system port-mirror session 1 erspan source-port swp1
+cumulus@switch:~$ nv set system port-mirror session 1 erspan destination source-ip 10.10.10.1
+cumulus@switch:~$ nv set system port-mirror session 1 erspan destination dest-ip 10.10.10.234
 cumulus@switch:~$ nv config apply
 ```
 

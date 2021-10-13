@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 790
 toc: 3
 ---
-*Redistribute neighbor* provides a way for IP subnets to span racks without forcing the end hosts to run a routing protocol by announcing individual host /32 routes in the routed fabric. Other hosts on the fabric can use this new path to access the hosts in the fabric. If multiple equal-cost paths (ECMP) are available, traffic can load balance across the available paths natively.
+*Redistribute neighbor* provides a way for IP subnets to span racks without forcing the end hosts to run a routing protocol by announcing individual host /32 routes in the routed fabric. Other hosts on the fabric can use this new path to access the hosts in the fabric. If [ECMP](## "Equal Cost Multi Path") is available, traffic can load balance across the available paths natively.
 
 Hosts use {{<link title="Address Resolution Protocol - ARP" text="ARP">}} to resolve MAC addresses when sending to an IPv4 address. A host then builds an ARP cache table of known MAC addresses: IPv4 tuples as they receive or respond to ARP requests.
 
@@ -16,7 +16,7 @@ The current implementation of redistribute neighbor:
 - Supports IPv4 only.
 - Does not support {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRFs">}}.
 - Supports a maximum of 1024 interfaces.
-- Is not supported with EVPN. Enabling both redistribute neighbor and EVPN leads to unreachable IPv4 ARP and IPv6 neighbor entries.
+- Is not supported with [EVPN](## "Ethernet Virtual Private Network"). Enabling both redistribute neighbor and EVPN leads to unreachable IPv4 ARP and IPv6 neighbor entries.
 {{%/notice%}}
 
 ## Target Use Cases and Best Practices
@@ -40,13 +40,13 @@ Follow these guidelines:
 
 Redistribute neighbor works as follows:
 
-1. The leaf or ToR switches learn about connected hosts when the host sends an ARP request or ARP reply.
+1. The leaf or [ToR](## "Top of Rack") switch learns about connected hosts when the host sends an ARP request or ARP reply.
 2. The kernel neighbor table adds an entry for the host of each leaf.
 3. The redistribute neighbor daemon (`rdnbrd`) monitors the kernel neighbor table and creates a  /32 route for each neighbor entry. This /32 route is in kernel table 10.
-4. FRRouting imports routes from kernel table 10.
+4. [FRR](## "FRRouting") imports routes from kernel table 10.
 5. A route map controls which routes to import from table 10.
 6. FRR imports these routes as *table* routes.
-7. You configure BGP or OSPF to redistribute the table 10 routes.
+7. You configure [BGP](## "Border Gateway Protocol") or [OSPF](## "Open Shortest Path First") to redistribute the table 10 routes.
 
 ## Example Configuration
 
@@ -391,7 +391,7 @@ Use the following workflow to verify that the kernel routing table populates cor
 
     If these routes do not generate, verify that the `rdnbrd` daemon is running and check that the `/etc/rdnbrd.conf` file includes the correct table number.
 
-2. Verify that routes import into FRRouting from the kernel routing table 10.
+2. Verify that routes import into FRR from the kernel routing table 10.
 
     ```
     cumulus@leaf01:~$ sudo vtysh

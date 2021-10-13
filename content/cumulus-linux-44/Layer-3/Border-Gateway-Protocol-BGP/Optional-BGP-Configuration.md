@@ -1404,6 +1404,35 @@ router bgp 65101
 ...
 ```
 
+## Next Hop Tracking
+
+By default, next hop tracking does not resolve next hops through the default route. If you want BGP to peer across the default route, run the vtysh `ip nht resolve-via-default` command.
+
+The following example command configures BGP to peer across the default route from the default VRF.
+
+```
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# ip nht resolve-via-default
+leaf01(config)# exit
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+The following example command configures BGP to peer across the default route from VRF BLUE:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# vrf BLUE
+leaf01(config-vrf)# ip nht resolve-via-default
+leaf01(config-vrf)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
 ## BGP Timers
 
 BGP includes several timers that you can configure.

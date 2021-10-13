@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 322
 toc: 3
 ---
-RDMA over Converged Ethernet ({{<exlink url="https://en.wikipedia.org/wiki/RDMA_over_Converged_Ethernet" text="RoCE">}}) enables you to write to compute or storage elements using remote direct memory access (RDMA) over an Ethernet network instead of using host CPUs. RoCE relies on explicit congestion notification (ECN) and priority flow control (PFC) to operate. Cumulus Linux supports features that can enable lossless Ethernet for RoCE environments.
+[RoCE](## "RDMA over Converged Ethernet") enables you to write to compute or storage elements using [RDMA](## "Remote Direct Memory Access") over an Ethernet network instead of using host CPUs. RoCE relies on [ECN](## "Explicit Congestion Notification") and [PFC](## "Priority Flow Control") to operate. Cumulus Linux supports features that can enable lossless Ethernet for RoCE environments.
 
 {{%notice note%}}
 While Cumulus Linux can support RoCE environments, the end hosts must support the RoCE protocol.

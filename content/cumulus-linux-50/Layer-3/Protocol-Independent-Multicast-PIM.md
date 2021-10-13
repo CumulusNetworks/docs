@@ -130,7 +130,7 @@ cumulus@spine01:~$ nv config apply
 {{< tabs "TabID91 ">}}
 {{< tab "leaf01 ">}}
 
-The FRRouting package includes PIM. For proper PIM operation, PIM depends on Zebra. You must configure unicast routing and a routing protocol or static routes.
+The [FRR](## "FRRouting") package includes PIM. For proper PIM operation, PIM depends on Zebra. You must configure unicast routing and a routing protocol or static routes.
 
 1. Edit the `/etc/frr/daemons` file and add `pimd=yes` to the end of the file:
 
@@ -650,7 +650,7 @@ The following steps configure a Cumulus switch to use MSDP:
 2. On every multicast switch, configure the group to RP mapping using the anycast address:
 
    ```
-   cumulus@switch:$ nv set vrf default router pim address-family ipv4-unicast rp 10.100.100.100 224.0.0.0/4
+   cumulus@switch:$ nv set vrf default router pim address-family ipv4-unicast rp 10.100.100.100 group-range 224.0.0.0/4
    cumulus@switch:$ nv config apply
    ```
 
@@ -1909,6 +1909,18 @@ ip pim rp 10.10.10.101
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "Try It " >}}
+    {{< simulation name="Try It CL44 - PIMv3" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
+
+This simulation starts with the example PIM configuration. To simplify the example, only one spine and two leafs are in the topology. The demo is pre-configured using NCLU commands (Cumulus Linux 4.4 does not support NVUE commands for PIM).
+
+- To show the multicast routing table, run the NCLU `net show mroute` command on the FHR (leaf01), RP (spine01), or LHR (leaf02).
+- To see the active source on the RP, run the `net show pim upstream` command on spine01.
+- To show information about known S,Gs, the [IIF](## "Incoming Interface") and the [OIL](## "Outgoing Interface"), run the `net show pim state` command on the FHR (leaf01), RP (spine01), or LHR (leaf02).
+
+To further validate the configuration, run the PIM show commands listed in the troubleshooting section above.
 
 {{< /tab >}}
 {{< /tabs >}}

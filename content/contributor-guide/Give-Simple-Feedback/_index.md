@@ -6,7 +6,7 @@ weight: 10
 You can provide feedback about errors that are easy to fix, such as typographical errors, broken links, or simple grammar mistakes, using one of the following methods:
 
 - Use the **Edit this page** link in any web document
-- Post a message on [Cumulus Community Slack channel](http://slack.cumulusnetworks.com)
+- Post a message on [Cumulus Community Slack channel](https://cumulusnetworks.slack.com)
 - Open a [Github Issue](https://github.com/CumulusNetworks/docs/issues)
 - Email [ethernet-docs@nvidia.com](mailto:ethernet-docs@nvidia.com)
 

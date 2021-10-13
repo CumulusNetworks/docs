@@ -89,7 +89,7 @@ forwarding_table.profile = ipmc-max
 
 After you specify a different profile, {{%link url="Configuring-switchd#restart-switchd" text="restart `switchd`"%}} for the change to take effect.
 
-### Spectrum-1 TCAM Profiles
+### Spectrum TCAM Profiles
 
 Specify the profile you want to use with the `tcam_resource.profile` variable in the `/etc/mlx/datapath/tcam_profile.conf` file. The following example specifies ipmc-max:
 

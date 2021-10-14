@@ -1221,7 +1221,8 @@ The following rule blocks any TCP traffic with destination port 200 going throug
 The following rule blocks any UDP traffic with source port 200 going from server01 through leaf01 (rule 2 in the diagram above).
 
 ```
-[iptables] -A FORWARD -i swp1 -p udp --sport 200 -j DROP
+[iptables] 
+-A FORWARD -i swp1 -p udp --sport 200 -j DROP
 ```
 
 ### Input Rule
@@ -1229,7 +1230,8 @@ The following rule blocks any UDP traffic with source port 200 going from server
 The following rule blocks any UDP traffic with source port 200 and destination port 50 going from server02 to the leaf02 control plane (rule 3 in the diagram above).
 
 ```
-[iptables] -A INPUT -i swp2 -p udp --sport 200 --dport 50 -j DROP
+[iptables] 
+-A INPUT -i swp2 -p udp --sport 200 --dport 50 -j DROP
 ```
 
 ### Output Rule
@@ -1237,7 +1239,8 @@ The following rule blocks any UDP traffic with source port 200 and destination p
 The following rule blocks any TCP traffic with source port 123 and destination port 123 going from leaf02 to server02 (rule 4 in the diagram above).
 
 ```
-[iptables] -A OUTPUT -o swp2 -p tcp --sport 123 --dport 123 -j DROP
+[iptables] 
+-A OUTPUT -o swp2 -p tcp --sport 123 --dport 123 -j DROP
 ```
 
 ### Combined Rules
@@ -1245,7 +1248,8 @@ The following rule blocks any TCP traffic with source port 123 and destination p
 The following rule blocks any TCP traffic with source port 123 and destination port 123 going from any switch port egress or generated from the switch.
 
 ```
-[iptables] -A OUTPUT,FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP
+[iptables]
+-A OUTPUT,FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP
 ```
 
 This also becomes two ACLs and is the same as:
@@ -1256,37 +1260,14 @@ This also becomes two ACLs and is the same as:
 -A OUTPUT -o swp+ -p tcp --sport 123 --dport 123 -j DROP
 ```
 
-### Layer 2 Rules/ebtables
+### Layer 2 Rules (ebtables)
 
-The following rule blocks any traffic with source MAC address 00:00:00:00:00:12 and destination MAC address 08:9e:01:ce:e2:04 going from any switch port egress/ingress.
-
-{{< tabs "1102 ">}}
-{{< tab "ebtables rule ">}}
+The following rule blocks any traffic with source MAC address 00:00:00:00:00:12 and destination MAC address 08:9e:01:ce:e2:04 going from any switch port egress or ingress.
 
 ```
-[ebtables] -A FORWARD -s 00:00:00:00:00:12 -d 08:9e:01:ce:e2:04 -j DROP
+[ebtables]
+-A FORWARD -s 00:00:00:00:00:12 -d 08:9e:01:ce:e2:04 -j DROP
 ```
-
-Apply the rule:
-
-```
-cumulus@switch:~$ sudo cl-acltool -i
-```
-
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 type mac
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match mac source-mac 00:00:00:00:00:12
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match mac dest-mac 08:9e:01:ce:e2:04
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action deny
-cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ## Considerations
 
@@ -1312,10 +1293,9 @@ SPAN sessions that reference an outgoing interface create mirrored packets based
 <!-- vale off -->
 ### iptables Interactions with cl-acltool
 <!-- vale on -->
-Because Cumulus Linux is a Linux operating system, you can use the `iptables` commands. However, consider using `cl-acltool` instead because:
-
+Because Cumulus Linux is a Linux operating system, you can use the `iptables` commands. However, consider using `cl-acltool` instead for the following reasons:
 - Without using `cl-acltool`, rules do not install into hardware.
-- Running `cl-acltool -i` (the installation command) resets all rules and deletes anything that is not stored in `/etc/cumulus/acl/policy.conf`.
+- Running `cl-acltool -i` (the installation command) resets all rules and deletes anything that is not in the `/etc/cumulus/acl/policy.conf` file.
 
 For example, running the following command works:
 
@@ -1323,7 +1303,7 @@ For example, running the following command works:
 cumulus@switch:~$ sudo iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
 ```
 
-And the rules appear when you run `cl-acltool -L`:
+The rules appear when you run `cl-acltool -L`:
 
 ```
 cumulus@switch:~$ sudo cl-acltool -L ip
@@ -1393,7 +1373,9 @@ The ACL does not match on packets when you configure a subinterface as the outpu
 
 For example:
 
-    -A FORWARD --out-interface swp49s1.100 -j ACCEPT
+```
+-A FORWARD --out-interface swp49s1.100 -j ACCEPT
+```
 
 ### Egress ACL Matching on Bonds
 

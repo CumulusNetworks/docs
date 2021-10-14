@@ -1209,7 +1209,7 @@ The following example demonstrates how Cumulus Linux applies several different r
 
 ### Egress Rule
 
-The following rules block any TCP traffic with destination port 200 going through leaf01 to server01 (rule 1 in the diagram above).
+The following rule blocks any TCP traffic with destination port 200 going through leaf01 to server01 (rule 1 in the diagram above).
 
 ```
 [iptables]

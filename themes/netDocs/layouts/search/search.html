@@ -81,12 +81,12 @@
         <div class="row">
           <div class="col-12">
             <div id="nvidia-search-page-widget"></div>
-            <script src="https://app.nvidia.com/search/nvidia-search-page-widget.js"></script>
+            <script src="https://api-prod.nvidia.com/search/nvidia-search-page-widget.js"></script>
             <script>
               NvidiaSearchPageWidget.mount({
                   site: "https://docs.nvidia.com",
                   language:  "en-us",
-                  apiUrl: 'https://appqa.nvidia.com/search/graphql',
+                  apiUrl: 'https://api-prod.nvidia.com/search/graphql',
                   facets: "site,docs_version",
                   path:"/networking-ethernet-software/"
                 });

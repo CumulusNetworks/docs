@@ -7,6 +7,65 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2823255</td>
+<td>CVE-2020-21913: Potential use-after-free vulnerability in icu (International Components for Unicode).
+Vulnerable: &lt;= 52.1-8+deb8u8
+Fixed: 52.1-8+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2821981</td>
+<td>The following vulnerabilities have been announced in the ruby2.1 package:
+CVE-2021-31799: In RDoc 3.11 through 6.x before 6.3.1, as distributed with Ruby through 2.1.5, it is possible to execute arbitrary code via | and tags in a filename.
+CVE-2021-31810: A malicious FTP server can use the PASV response to trick Net::FTP into connecting back to a given IP address and port. This potentially makes curl extract information about services that are otherwise private and not disclosed (e.g., the attacker can conduct port scans and service banner extractions).
+CVE-2021-32066: Net::IMAP does not raise an exception when StartTLS fails with an an unknown response, which might allow man-in-the-middle attackers to bypass the TLS protections by leveraging a network position between the client and the registry to block the StartTLS command, aka a "StartTLS stripping attack."
+Vulnerable: &lt;= 2.1.5-2+deb8u11
+Fixed: 2.1.5-2+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2821970</td>
+<td>When there is a netlink event showing an update to a forwarding database entry from the VXLAN driver, {{ip monitor}} reports the remote VTEP address (dst) as {{???}} . 
+The {{bridge monitor}} command correctly shows the value.</td>
+<td>3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2821869</td>
+<td>The {{cl-route-check --layer3}} command fails with a memory error. For example:
+
+cumulus@switch:~$ sudo cl-route-check --layer3
+Traceback (most recent call last):
+ File "/usr/cumulus/bin/cl-route-check", line 1270, in &lt;module&gt;
+  routing.collect_data()
+ File "/usr/cumulus/bin/cl-route-check", line 528, in collect_data
+  self.collect_data_bgp_ipv4()
+ File "/usr/cumulus/bin/cl-route-check", line 711, in collect_data_bgp_ipv4
+  bgp_ipv4 = json.loads(output)
+ File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+  return _default_decoder.decode(s)
+ File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+  obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+ File "/usr/lib/python2.7/json/decoder.py", line 382, in raw_decode
+  obj, end = self.scan_once(s, idx)
+MemoryError
+</td>
+<td>3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2820758</td>
+<td>The following vulnerabilities have been announced in curl:
+CVE-2021-22946 Crafted answers from a server might force clients to not use TLS on connections though TLS was required and expected.
+CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server might send multiple answers before the TLS upgrade and such the client would handle them as being trusted. This could be used by a MITM-attacker to inject fake response data.
+Vulnerable: &lt;= 7.38.0-4+deb8u21
+Fixed: 7.38.0-4+deb8u22</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2813826</td>
 <td>Two security issues were found in TIFF, a widely used format for storing image data, as follows:
 CVE-2020-19131: Buffer Overflow in LibTiff allows attackers to cause a denial of service via the "invertImage()" function in the component "tiffcrop".
@@ -54,7 +113,7 @@ Fixed: 3.3.30-0+deb8u2</td>
 <tr>
 <td>2799742</td>
 <td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -506,12 +565,6 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <td>2556811</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2556061</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2274,6 +2327,35 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2823255</td>
+<td>CVE-2020-21913: Potential use-after-free vulnerability in icu (International Components for Unicode).
+Vulnerable: &lt;= 52.1-8+deb8u8
+Fixed: 52.1-8+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2821981</td>
+<td>The following vulnerabilities have been announced in the ruby2.1 package:
+CVE-2021-31799: In RDoc 3.11 through 6.x before 6.3.1, as distributed with Ruby through 2.1.5, it is possible to execute arbitrary code via | and tags in a filename.
+CVE-2021-31810: A malicious FTP server can use the PASV response to trick Net::FTP into connecting back to a given IP address and port. This potentially makes curl extract information about services that are otherwise private and not disclosed (e.g., the attacker can conduct port scans and service banner extractions).
+CVE-2021-32066: Net::IMAP does not raise an exception when StartTLS fails with an an unknown response, which might allow man-in-the-middle attackers to bypass the TLS protections by leveraging a network position between the client and the registry to block the StartTLS command, aka a "StartTLS stripping attack."
+Vulnerable: &lt;= 2.1.5-2+deb8u11
+Fixed: 2.1.5-2+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2820758</td>
+<td>The following vulnerabilities have been announced in curl:
+CVE-2021-22946 Crafted answers from a server might force clients to not use TLS on connections though TLS was required and expected.
+CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server might send multiple answers before the TLS upgrade and such the client would handle them as being trusted. This could be used by a MITM-attacker to inject fake response data.
+Vulnerable: &lt;= 7.38.0-4+deb8u21
+Fixed: 7.38.0-4+deb8u22</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2813826</td>
 <td>Two security issues were found in TIFF, a widely used format for storing image data, as follows:
 CVE-2020-19131: Buffer Overflow in LibTiff allows attackers to cause a denial of service via the "invertImage()" function in the component "tiffcrop".
@@ -2321,7 +2403,7 @@ Fixed: 3.3.30-0+deb8u2</td>
 <tr>
 <td>2799742</td>
 <td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -3011,12 +3093,6 @@ CVE-2020-27827: A packet that contains multiple instances of certain TLVs will c
 Fixed: 1.0.4-0-cl4.3.0u2</td>
 <td>3.7.14-3.7.14.2, 4.0.0-4.4.1</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2556061</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2556037</td>
@@ -4565,6 +4641,35 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2823255</td>
+<td>CVE-2020-21913: Potential use-after-free vulnerability in icu (International Components for Unicode).
+Vulnerable: &lt;= 52.1-8+deb8u8
+Fixed: 52.1-8+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2821981</td>
+<td>The following vulnerabilities have been announced in the ruby2.1 package:
+CVE-2021-31799: In RDoc 3.11 through 6.x before 6.3.1, as distributed with Ruby through 2.1.5, it is possible to execute arbitrary code via | and tags in a filename.
+CVE-2021-31810: A malicious FTP server can use the PASV response to trick Net::FTP into connecting back to a given IP address and port. This potentially makes curl extract information about services that are otherwise private and not disclosed (e.g., the attacker can conduct port scans and service banner extractions).
+CVE-2021-32066: Net::IMAP does not raise an exception when StartTLS fails with an an unknown response, which might allow man-in-the-middle attackers to bypass the TLS protections by leveraging a network position between the client and the registry to block the StartTLS command, aka a "StartTLS stripping attack."
+Vulnerable: &lt;= 2.1.5-2+deb8u11
+Fixed: 2.1.5-2+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2820758</td>
+<td>The following vulnerabilities have been announced in curl:
+CVE-2021-22946 Crafted answers from a server might force clients to not use TLS on connections though TLS was required and expected.
+CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server might send multiple answers before the TLS upgrade and such the client would handle them as being trusted. This could be used by a MITM-attacker to inject fake response data.
+Vulnerable: &lt;= 7.38.0-4+deb8u21
+Fixed: 7.38.0-4+deb8u22</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2813826</td>
 <td>Two security issues were found in TIFF, a widely used format for storing image data, as follows:
 CVE-2020-19131: Buffer Overflow in LibTiff allows attackers to cause a denial of service via the "invertImage()" function in the component "tiffcrop".
@@ -4612,7 +4717,7 @@ Fixed: 3.3.30-0+deb8u2</td>
 <tr>
 <td>2799742</td>
 <td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -5263,12 +5368,6 @@ CVE-2020-27827: A packet that contains multiple instances of certain TLVs will c
 Fixed: 1.0.4-0-cl4.3.0u2</td>
 <td>3.7.14-3.7.14.2, 4.0.0-4.4.1</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2556061</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2556037</td>
@@ -7399,6 +7498,35 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2823255</td>
+<td>CVE-2020-21913: Potential use-after-free vulnerability in icu (International Components for Unicode).
+Vulnerable: &lt;= 52.1-8+deb8u8
+Fixed: 52.1-8+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2821981</td>
+<td>The following vulnerabilities have been announced in the ruby2.1 package:
+CVE-2021-31799: In RDoc 3.11 through 6.x before 6.3.1, as distributed with Ruby through 2.1.5, it is possible to execute arbitrary code via | and tags in a filename.
+CVE-2021-31810: A malicious FTP server can use the PASV response to trick Net::FTP into connecting back to a given IP address and port. This potentially makes curl extract information about services that are otherwise private and not disclosed (e.g., the attacker can conduct port scans and service banner extractions).
+CVE-2021-32066: Net::IMAP does not raise an exception when StartTLS fails with an an unknown response, which might allow man-in-the-middle attackers to bypass the TLS protections by leveraging a network position between the client and the registry to block the StartTLS command, aka a "StartTLS stripping attack."
+Vulnerable: &lt;= 2.1.5-2+deb8u11
+Fixed: 2.1.5-2+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2820758</td>
+<td>The following vulnerabilities have been announced in curl:
+CVE-2021-22946 Crafted answers from a server might force clients to not use TLS on connections though TLS was required and expected.
+CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server might send multiple answers before the TLS upgrade and such the client would handle them as being trusted. This could be used by a MITM-attacker to inject fake response data.
+Vulnerable: &lt;= 7.38.0-4+deb8u21
+Fixed: 7.38.0-4+deb8u22</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2813826</td>
 <td>Two security issues were found in TIFF, a widely used format for storing image data, as follows:
 CVE-2020-19131: Buffer Overflow in LibTiff allows attackers to cause a denial of service via the "invertImage()" function in the component "tiffcrop".
@@ -7446,7 +7574,7 @@ Fixed: 3.3.30-0+deb8u2</td>
 <tr>
 <td>2799742</td>
 <td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -7885,12 +8013,6 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 {{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
 <td>3.7.9-3.7.14.2</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2556061</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2556037</td>
@@ -10438,6 +10560,35 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2823255</td>
+<td>CVE-2020-21913: Potential use-after-free vulnerability in icu (International Components for Unicode).
+Vulnerable: &lt;= 52.1-8+deb8u8
+Fixed: 52.1-8+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2821981</td>
+<td>The following vulnerabilities have been announced in the ruby2.1 package:
+CVE-2021-31799: In RDoc 3.11 through 6.x before 6.3.1, as distributed with Ruby through 2.1.5, it is possible to execute arbitrary code via | and tags in a filename.
+CVE-2021-31810: A malicious FTP server can use the PASV response to trick Net::FTP into connecting back to a given IP address and port. This potentially makes curl extract information about services that are otherwise private and not disclosed (e.g., the attacker can conduct port scans and service banner extractions).
+CVE-2021-32066: Net::IMAP does not raise an exception when StartTLS fails with an an unknown response, which might allow man-in-the-middle attackers to bypass the TLS protections by leveraging a network position between the client and the registry to block the StartTLS command, aka a "StartTLS stripping attack."
+Vulnerable: &lt;= 2.1.5-2+deb8u11
+Fixed: 2.1.5-2+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2820758</td>
+<td>The following vulnerabilities have been announced in curl:
+CVE-2021-22946 Crafted answers from a server might force clients to not use TLS on connections though TLS was required and expected.
+CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server might send multiple answers before the TLS upgrade and such the client would handle them as being trusted. This could be used by a MITM-attacker to inject fake response data.
+Vulnerable: &lt;= 7.38.0-4+deb8u21
+Fixed: 7.38.0-4+deb8u22</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2813826</td>
 <td>Two security issues were found in TIFF, a widely used format for storing image data, as follows:
 CVE-2020-19131: Buffer Overflow in LibTiff allows attackers to cause a denial of service via the "invertImage()" function in the component "tiffcrop".
@@ -10485,7 +10636,7 @@ Fixed: 3.3.30-0+deb8u2</td>
 <tr>
 <td>2799742</td>
 <td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -10912,12 +11063,6 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 {{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
 <td>3.7.9-3.7.14.2</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2556061</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2556037</td>
@@ -13342,6 +13487,35 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2823255</td>
+<td>CVE-2020-21913: Potential use-after-free vulnerability in icu (International Components for Unicode).
+Vulnerable: &lt;= 52.1-8+deb8u8
+Fixed: 52.1-8+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2821981</td>
+<td>The following vulnerabilities have been announced in the ruby2.1 package:
+CVE-2021-31799: In RDoc 3.11 through 6.x before 6.3.1, as distributed with Ruby through 2.1.5, it is possible to execute arbitrary code via | and tags in a filename.
+CVE-2021-31810: A malicious FTP server can use the PASV response to trick Net::FTP into connecting back to a given IP address and port. This potentially makes curl extract information about services that are otherwise private and not disclosed (e.g., the attacker can conduct port scans and service banner extractions).
+CVE-2021-32066: Net::IMAP does not raise an exception when StartTLS fails with an an unknown response, which might allow man-in-the-middle attackers to bypass the TLS protections by leveraging a network position between the client and the registry to block the StartTLS command, aka a "StartTLS stripping attack."
+Vulnerable: &lt;= 2.1.5-2+deb8u11
+Fixed: 2.1.5-2+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2820758</td>
+<td>The following vulnerabilities have been announced in curl:
+CVE-2021-22946 Crafted answers from a server might force clients to not use TLS on connections though TLS was required and expected.
+CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server might send multiple answers before the TLS upgrade and such the client would handle them as being trusted. This could be used by a MITM-attacker to inject fake response data.
+Vulnerable: &lt;= 7.38.0-4+deb8u21
+Fixed: 7.38.0-4+deb8u22</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2813826</td>
@@ -15888,6 +16062,35 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2823255</td>
+<td>CVE-2020-21913: Potential use-after-free vulnerability in icu (International Components for Unicode).
+Vulnerable: &lt;= 52.1-8+deb8u8
+Fixed: 52.1-8+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2821981</td>
+<td>The following vulnerabilities have been announced in the ruby2.1 package:
+CVE-2021-31799: In RDoc 3.11 through 6.x before 6.3.1, as distributed with Ruby through 2.1.5, it is possible to execute arbitrary code via | and tags in a filename.
+CVE-2021-31810: A malicious FTP server can use the PASV response to trick Net::FTP into connecting back to a given IP address and port. This potentially makes curl extract information about services that are otherwise private and not disclosed (e.g., the attacker can conduct port scans and service banner extractions).
+CVE-2021-32066: Net::IMAP does not raise an exception when StartTLS fails with an an unknown response, which might allow man-in-the-middle attackers to bypass the TLS protections by leveraging a network position between the client and the registry to block the StartTLS command, aka a "StartTLS stripping attack."
+Vulnerable: &lt;= 2.1.5-2+deb8u11
+Fixed: 2.1.5-2+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2820758</td>
+<td>The following vulnerabilities have been announced in curl:
+CVE-2021-22946 Crafted answers from a server might force clients to not use TLS on connections though TLS was required and expected.
+CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server might send multiple answers before the TLS upgrade and such the client would handle them as being trusted. This could be used by a MITM-attacker to inject fake response data.
+Vulnerable: &lt;= 7.38.0-4+deb8u21
+Fixed: 7.38.0-4+deb8u22</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2813826</td>
 <td>Two security issues were found in TIFF, a widely used format for storing image data, as follows:
 CVE-2020-19131: Buffer Overflow in LibTiff allows attackers to cause a denial of service via the "invertImage()" function in the component "tiffcrop".
@@ -17875,6 +18078,35 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2823255</td>
+<td>CVE-2020-21913: Potential use-after-free vulnerability in icu (International Components for Unicode).
+Vulnerable: &lt;= 52.1-8+deb8u8
+Fixed: 52.1-8+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2821981</td>
+<td>The following vulnerabilities have been announced in the ruby2.1 package:
+CVE-2021-31799: In RDoc 3.11 through 6.x before 6.3.1, as distributed with Ruby through 2.1.5, it is possible to execute arbitrary code via | and tags in a filename.
+CVE-2021-31810: A malicious FTP server can use the PASV response to trick Net::FTP into connecting back to a given IP address and port. This potentially makes curl extract information about services that are otherwise private and not disclosed (e.g., the attacker can conduct port scans and service banner extractions).
+CVE-2021-32066: Net::IMAP does not raise an exception when StartTLS fails with an an unknown response, which might allow man-in-the-middle attackers to bypass the TLS protections by leveraging a network position between the client and the registry to block the StartTLS command, aka a "StartTLS stripping attack."
+Vulnerable: &lt;= 2.1.5-2+deb8u11
+Fixed: 2.1.5-2+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2820758</td>
+<td>The following vulnerabilities have been announced in curl:
+CVE-2021-22946 Crafted answers from a server might force clients to not use TLS on connections though TLS was required and expected.
+CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server might send multiple answers before the TLS upgrade and such the client would handle them as being trusted. This could be used by a MITM-attacker to inject fake response data.
+Vulnerable: &lt;= 7.38.0-4+deb8u21
+Fixed: 7.38.0-4+deb8u22</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2813826</td>
@@ -20174,6 +20406,35 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2823255</td>
+<td>CVE-2020-21913: Potential use-after-free vulnerability in icu (International Components for Unicode).
+Vulnerable: &lt;= 52.1-8+deb8u8
+Fixed: 52.1-8+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2821981</td>
+<td>The following vulnerabilities have been announced in the ruby2.1 package:
+CVE-2021-31799: In RDoc 3.11 through 6.x before 6.3.1, as distributed with Ruby through 2.1.5, it is possible to execute arbitrary code via | and tags in a filename.
+CVE-2021-31810: A malicious FTP server can use the PASV response to trick Net::FTP into connecting back to a given IP address and port. This potentially makes curl extract information about services that are otherwise private and not disclosed (e.g., the attacker can conduct port scans and service banner extractions).
+CVE-2021-32066: Net::IMAP does not raise an exception when StartTLS fails with an an unknown response, which might allow man-in-the-middle attackers to bypass the TLS protections by leveraging a network position between the client and the registry to block the StartTLS command, aka a "StartTLS stripping attack."
+Vulnerable: &lt;= 2.1.5-2+deb8u11
+Fixed: 2.1.5-2+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2820758</td>
+<td>The following vulnerabilities have been announced in curl:
+CVE-2021-22946 Crafted answers from a server might force clients to not use TLS on connections though TLS was required and expected.
+CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server might send multiple answers before the TLS upgrade and such the client would handle them as being trusted. This could be used by a MITM-attacker to inject fake response data.
+Vulnerable: &lt;= 7.38.0-4+deb8u21
+Fixed: 7.38.0-4+deb8u22</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2813826</td>
 <td>Two security issues were found in TIFF, a widely used format for storing image data, as follows:
 CVE-2020-19131: Buffer Overflow in LibTiff allows attackers to cause a denial of service via the "invertImage()" function in the component "tiffcrop".
@@ -21897,6 +22158,35 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2823255</td>
+<td>CVE-2020-21913: Potential use-after-free vulnerability in icu (International Components for Unicode).
+Vulnerable: &lt;= 52.1-8+deb8u8
+Fixed: 52.1-8+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2821981</td>
+<td>The following vulnerabilities have been announced in the ruby2.1 package:
+CVE-2021-31799: In RDoc 3.11 through 6.x before 6.3.1, as distributed with Ruby through 2.1.5, it is possible to execute arbitrary code via | and tags in a filename.
+CVE-2021-31810: A malicious FTP server can use the PASV response to trick Net::FTP into connecting back to a given IP address and port. This potentially makes curl extract information about services that are otherwise private and not disclosed (e.g., the attacker can conduct port scans and service banner extractions).
+CVE-2021-32066: Net::IMAP does not raise an exception when StartTLS fails with an an unknown response, which might allow man-in-the-middle attackers to bypass the TLS protections by leveraging a network position between the client and the registry to block the StartTLS command, aka a "StartTLS stripping attack."
+Vulnerable: &lt;= 2.1.5-2+deb8u11
+Fixed: 2.1.5-2+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2820758</td>
+<td>The following vulnerabilities have been announced in curl:
+CVE-2021-22946 Crafted answers from a server might force clients to not use TLS on connections though TLS was required and expected.
+CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server might send multiple answers before the TLS upgrade and such the client would handle them as being trusted. This could be used by a MITM-attacker to inject fake response data.
+Vulnerable: &lt;= 7.38.0-4+deb8u21
+Fixed: 7.38.0-4+deb8u22</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2813826</td>
@@ -23959,6 +24249,35 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2823255</td>
+<td>CVE-2020-21913: Potential use-after-free vulnerability in icu (International Components for Unicode).
+Vulnerable: &lt;= 52.1-8+deb8u8
+Fixed: 52.1-8+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2821981</td>
+<td>The following vulnerabilities have been announced in the ruby2.1 package:
+CVE-2021-31799: In RDoc 3.11 through 6.x before 6.3.1, as distributed with Ruby through 2.1.5, it is possible to execute arbitrary code via | and tags in a filename.
+CVE-2021-31810: A malicious FTP server can use the PASV response to trick Net::FTP into connecting back to a given IP address and port. This potentially makes curl extract information about services that are otherwise private and not disclosed (e.g., the attacker can conduct port scans and service banner extractions).
+CVE-2021-32066: Net::IMAP does not raise an exception when StartTLS fails with an an unknown response, which might allow man-in-the-middle attackers to bypass the TLS protections by leveraging a network position between the client and the registry to block the StartTLS command, aka a "StartTLS stripping attack."
+Vulnerable: &lt;= 2.1.5-2+deb8u11
+Fixed: 2.1.5-2+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2820758</td>
+<td>The following vulnerabilities have been announced in curl:
+CVE-2021-22946 Crafted answers from a server might force clients to not use TLS on connections though TLS was required and expected.
+CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server might send multiple answers before the TLS upgrade and such the client would handle them as being trusted. This could be used by a MITM-attacker to inject fake response data.
+Vulnerable: &lt;= 7.38.0-4+deb8u21
+Fixed: 7.38.0-4+deb8u22</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2813826</td>
 <td>Two security issues were found in TIFF, a widely used format for storing image data, as follows:
 CVE-2020-19131: Buffer Overflow in LibTiff allows attackers to cause a denial of service via the "invertImage()" function in the component "tiffcrop".
@@ -25764,6 +26083,35 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2823255</td>
+<td>CVE-2020-21913: Potential use-after-free vulnerability in icu (International Components for Unicode).
+Vulnerable: &lt;= 52.1-8+deb8u8
+Fixed: 52.1-8+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2821981</td>
+<td>The following vulnerabilities have been announced in the ruby2.1 package:
+CVE-2021-31799: In RDoc 3.11 through 6.x before 6.3.1, as distributed with Ruby through 2.1.5, it is possible to execute arbitrary code via | and tags in a filename.
+CVE-2021-31810: A malicious FTP server can use the PASV response to trick Net::FTP into connecting back to a given IP address and port. This potentially makes curl extract information about services that are otherwise private and not disclosed (e.g., the attacker can conduct port scans and service banner extractions).
+CVE-2021-32066: Net::IMAP does not raise an exception when StartTLS fails with an an unknown response, which might allow man-in-the-middle attackers to bypass the TLS protections by leveraging a network position between the client and the registry to block the StartTLS command, aka a "StartTLS stripping attack."
+Vulnerable: &lt;= 2.1.5-2+deb8u11
+Fixed: 2.1.5-2+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2820758</td>
+<td>The following vulnerabilities have been announced in curl:
+CVE-2021-22946 Crafted answers from a server might force clients to not use TLS on connections though TLS was required and expected.
+CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server might send multiple answers before the TLS upgrade and such the client would handle them as being trusted. This could be used by a MITM-attacker to inject fake response data.
+Vulnerable: &lt;= 7.38.0-4+deb8u21
+Fixed: 7.38.0-4+deb8u22</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2813826</td>
 <td>Two security issues were found in TIFF, a widely used format for storing image data, as follows:
 CVE-2020-19131: Buffer Overflow in LibTiff allows attackers to cause a denial of service via the "invertImage()" function in the component "tiffcrop".
@@ -27219,6 +27567,35 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2823255</td>
+<td>CVE-2020-21913: Potential use-after-free vulnerability in icu (International Components for Unicode).
+Vulnerable: &lt;= 52.1-8+deb8u8
+Fixed: 52.1-8+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2821981</td>
+<td>The following vulnerabilities have been announced in the ruby2.1 package:
+CVE-2021-31799: In RDoc 3.11 through 6.x before 6.3.1, as distributed with Ruby through 2.1.5, it is possible to execute arbitrary code via | and tags in a filename.
+CVE-2021-31810: A malicious FTP server can use the PASV response to trick Net::FTP into connecting back to a given IP address and port. This potentially makes curl extract information about services that are otherwise private and not disclosed (e.g., the attacker can conduct port scans and service banner extractions).
+CVE-2021-32066: Net::IMAP does not raise an exception when StartTLS fails with an an unknown response, which might allow man-in-the-middle attackers to bypass the TLS protections by leveraging a network position between the client and the registry to block the StartTLS command, aka a "StartTLS stripping attack."
+Vulnerable: &lt;= 2.1.5-2+deb8u11
+Fixed: 2.1.5-2+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2820758</td>
+<td>The following vulnerabilities have been announced in curl:
+CVE-2021-22946 Crafted answers from a server might force clients to not use TLS on connections though TLS was required and expected.
+CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server might send multiple answers before the TLS upgrade and such the client would handle them as being trusted. This could be used by a MITM-attacker to inject fake response data.
+Vulnerable: &lt;= 7.38.0-4+deb8u21
+Fixed: 7.38.0-4+deb8u22</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2813826</td>
@@ -28703,6 +29080,35 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2823255</td>
+<td>CVE-2020-21913: Potential use-after-free vulnerability in icu (International Components for Unicode).
+Vulnerable: &lt;= 52.1-8+deb8u8
+Fixed: 52.1-8+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2821981</td>
+<td>The following vulnerabilities have been announced in the ruby2.1 package:
+CVE-2021-31799: In RDoc 3.11 through 6.x before 6.3.1, as distributed with Ruby through 2.1.5, it is possible to execute arbitrary code via | and tags in a filename.
+CVE-2021-31810: A malicious FTP server can use the PASV response to trick Net::FTP into connecting back to a given IP address and port. This potentially makes curl extract information about services that are otherwise private and not disclosed (e.g., the attacker can conduct port scans and service banner extractions).
+CVE-2021-32066: Net::IMAP does not raise an exception when StartTLS fails with an an unknown response, which might allow man-in-the-middle attackers to bypass the TLS protections by leveraging a network position between the client and the registry to block the StartTLS command, aka a "StartTLS stripping attack."
+Vulnerable: &lt;= 2.1.5-2+deb8u11
+Fixed: 2.1.5-2+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2820758</td>
+<td>The following vulnerabilities have been announced in curl:
+CVE-2021-22946 Crafted answers from a server might force clients to not use TLS on connections though TLS was required and expected.
+CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server might send multiple answers before the TLS upgrade and such the client would handle them as being trusted. This could be used by a MITM-attacker to inject fake response data.
+Vulnerable: &lt;= 7.38.0-4+deb8u21
+Fixed: 7.38.0-4+deb8u22</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2813826</td>
@@ -30288,6 +30694,35 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2823255</td>
+<td>CVE-2020-21913: Potential use-after-free vulnerability in icu (International Components for Unicode).
+Vulnerable: &lt;= 52.1-8+deb8u8
+Fixed: 52.1-8+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2821981</td>
+<td>The following vulnerabilities have been announced in the ruby2.1 package:
+CVE-2021-31799: In RDoc 3.11 through 6.x before 6.3.1, as distributed with Ruby through 2.1.5, it is possible to execute arbitrary code via | and tags in a filename.
+CVE-2021-31810: A malicious FTP server can use the PASV response to trick Net::FTP into connecting back to a given IP address and port. This potentially makes curl extract information about services that are otherwise private and not disclosed (e.g., the attacker can conduct port scans and service banner extractions).
+CVE-2021-32066: Net::IMAP does not raise an exception when StartTLS fails with an an unknown response, which might allow man-in-the-middle attackers to bypass the TLS protections by leveraging a network position between the client and the registry to block the StartTLS command, aka a "StartTLS stripping attack."
+Vulnerable: &lt;= 2.1.5-2+deb8u11
+Fixed: 2.1.5-2+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2820758</td>
+<td>The following vulnerabilities have been announced in curl:
+CVE-2021-22946 Crafted answers from a server might force clients to not use TLS on connections though TLS was required and expected.
+CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server might send multiple answers before the TLS upgrade and such the client would handle them as being trusted. This could be used by a MITM-attacker to inject fake response data.
+Vulnerable: &lt;= 7.38.0-4+deb8u21
+Fixed: 7.38.0-4+deb8u22</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2813826</td>
@@ -31918,6 +32353,35 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2823255</td>
+<td>CVE-2020-21913: Potential use-after-free vulnerability in icu (International Components for Unicode).
+Vulnerable: &lt;= 52.1-8+deb8u8
+Fixed: 52.1-8+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2821981</td>
+<td>The following vulnerabilities have been announced in the ruby2.1 package:
+CVE-2021-31799: In RDoc 3.11 through 6.x before 6.3.1, as distributed with Ruby through 2.1.5, it is possible to execute arbitrary code via | and tags in a filename.
+CVE-2021-31810: A malicious FTP server can use the PASV response to trick Net::FTP into connecting back to a given IP address and port. This potentially makes curl extract information about services that are otherwise private and not disclosed (e.g., the attacker can conduct port scans and service banner extractions).
+CVE-2021-32066: Net::IMAP does not raise an exception when StartTLS fails with an an unknown response, which might allow man-in-the-middle attackers to bypass the TLS protections by leveraging a network position between the client and the registry to block the StartTLS command, aka a "StartTLS stripping attack."
+Vulnerable: &lt;= 2.1.5-2+deb8u11
+Fixed: 2.1.5-2+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2820758</td>
+<td>The following vulnerabilities have been announced in curl:
+CVE-2021-22946 Crafted answers from a server might force clients to not use TLS on connections though TLS was required and expected.
+CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server might send multiple answers before the TLS upgrade and such the client would handle them as being trusted. This could be used by a MITM-attacker to inject fake response data.
+Vulnerable: &lt;= 7.38.0-4+deb8u21
+Fixed: 7.38.0-4+deb8u22</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2813826</td>
 <td>Two security issues were found in TIFF, a widely used format for storing image data, as follows:
 CVE-2020-19131: Buffer Overflow in LibTiff allows attackers to cause a denial of service via the "invertImage()" function in the component "tiffcrop".
@@ -32856,6 +33320,35 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2823255</td>
+<td>CVE-2020-21913: Potential use-after-free vulnerability in icu (International Components for Unicode).
+Vulnerable: &lt;= 52.1-8+deb8u8
+Fixed: 52.1-8+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2821981</td>
+<td>The following vulnerabilities have been announced in the ruby2.1 package:
+CVE-2021-31799: In RDoc 3.11 through 6.x before 6.3.1, as distributed with Ruby through 2.1.5, it is possible to execute arbitrary code via | and tags in a filename.
+CVE-2021-31810: A malicious FTP server can use the PASV response to trick Net::FTP into connecting back to a given IP address and port. This potentially makes curl extract information about services that are otherwise private and not disclosed (e.g., the attacker can conduct port scans and service banner extractions).
+CVE-2021-32066: Net::IMAP does not raise an exception when StartTLS fails with an an unknown response, which might allow man-in-the-middle attackers to bypass the TLS protections by leveraging a network position between the client and the registry to block the StartTLS command, aka a "StartTLS stripping attack."
+Vulnerable: &lt;= 2.1.5-2+deb8u11
+Fixed: 2.1.5-2+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2820758</td>
+<td>The following vulnerabilities have been announced in curl:
+CVE-2021-22946 Crafted answers from a server might force clients to not use TLS on connections though TLS was required and expected.
+CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server might send multiple answers before the TLS upgrade and such the client would handle them as being trusted. This could be used by a MITM-attacker to inject fake response data.
+Vulnerable: &lt;= 7.38.0-4+deb8u21
+Fixed: 7.38.0-4+deb8u22</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2813826</td>

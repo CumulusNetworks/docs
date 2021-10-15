@@ -7,9 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2799742</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>2820565</td>
+<td>SNMP does not start and you see errors similar to the following:
+
+cumulus@switch:~$ sudo systemctl status snmpd.service 
+snmpd.service - Simple Network Management Protocol (SNMP) Daemon.
+   Loaded: loaded (/lib/systemd/system/snmpd.service; enabled; vendor preset: enabled)
+   Active: failed (Result: exit-code) since Mon 2021-10-11 14:38:13 UTC; 1min 8s ago
+  Process: 1987 ExecStart=/usr/sbin/snmpd $SNMPDOPTS -f (code=exited, status=1/FAILURE)
+ Main PID: 1987 (code=exited, status=1/FAILURE)
+
+To work around this issue, run the {{sudo systemctl restart snmpd.service}} command.</td>
+<td>4.3.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2816069</td>
+<td>On the EdgeCore AS7326 switch, unicast ARP requests are not forwarded to the control plane.</td>
+<td>4.2.1-4.4.1</td>
 <td></td>
 </tr>
 <tr>
@@ -638,7 +653,7 @@ To work around this issue, disable OSPF debugs from global configuration mode.</
 <tr>
 <td>2556061</td>
 <td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>4.2.1-4.4.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1662,9 +1677,24 @@ Fixed: 2.9.4+dfsg1-7+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2799742</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>2820565</td>
+<td>SNMP does not start and you see errors similar to the following:
+
+cumulus@switch:~$ sudo systemctl status snmpd.service 
+snmpd.service - Simple Network Management Protocol (SNMP) Daemon.
+   Loaded: loaded (/lib/systemd/system/snmpd.service; enabled; vendor preset: enabled)
+   Active: failed (Result: exit-code) since Mon 2021-10-11 14:38:13 UTC; 1min 8s ago
+  Process: 1987 ExecStart=/usr/sbin/snmpd $SNMPDOPTS -f (code=exited, status=1/FAILURE)
+ Main PID: 1987 (code=exited, status=1/FAILURE)
+
+To work around this issue, run the {{sudo systemctl restart snmpd.service}} command.</td>
+<td>4.3.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2816069</td>
+<td>On the EdgeCore AS7326 switch, unicast ARP requests are not forwarded to the control plane.</td>
+<td>4.2.1-4.4.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2434,7 +2464,7 @@ ERROR: Command not found
 <tr>
 <td>2556061</td>
 <td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>4.2.1-4.4.1</td>
 <td></td>
 </tr>
 <tr>

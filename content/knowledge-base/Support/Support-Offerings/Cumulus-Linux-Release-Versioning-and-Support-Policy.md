@@ -5,15 +5,12 @@ weight: 702
 toc: 4
 ---
 
-This article outlines the release version numbering structure, and support policies, for:
-
+This article outlines the release version numbering structure and support policies for:
 - Cumulus Linux 4.0 and later
 - Cumulus Linux and Cumulus RMP 3.0 and later (including 3.7 ESR and later)
 
 {{%notice note%}}
-
 Earlier releases of Cumulus Linux and Cumulus RMP are no longer supported.
-
 {{%/notice%}}
 
 ## Version Definitions
@@ -38,9 +35,9 @@ The Cumulus Linux installation file name includes the version number, in the for
 
 ## Release, Support Lifecycle and Support Policy
 
-NVIDIA supports both mainline and Extended Support Releases (ESRs). This support mechanism allows NVIDIA to maintain its desire to innovate, while providing customers with stable releases as soon as it meets the architectural needs.
+NVIDIA supports both mainline and Extended Support Releases (ESRs). This support mechanism allows NVIDIA to maintain its desire to innovate, while providing stable releases as soon as it meets the architectural needs.
 
-Consistent with this two-pronged approach, the mainline and ESR code branches are separate code bases. As such, issues and fixes in one branch are independent of the other. NVIDIA prioritizes the ESR branch for stability foremost, so any fixes on that branch focus on critical-impact security fixes and urgent bug fixes. This ensures customers deploying an ESR release can experience minimal disruption in their day to day network operations.
+Consistent with this two-pronged approach, the mainline and ESR code branches are separate code bases. As such, issues and fixes in one branch are independent of the other. NVIDIA prioritizes the ESR branch for stability; any fixes on that branch focus on critical-impact security fixes and urgent bug fixes. This ensures that if you deploy an ESR release, you experience minimal disruption in day to day network operations.
 
 The following diagram illustrates the ESR and mainline branches, and the table below it describes the characteristics of each.
 
@@ -94,16 +91,26 @@ The following diagram illustrates the ESR and mainline branches, and the table b
 
 ## Product End of Life
 
-Cumulus Linux and Cumulus RMP 3.7.12 have transitioned into the extended support phase (ESR). Customers can choose to continue using Cumulus Linux 3.7 ESR, a mature and stable operating system, or they can upgrade to Cumulus Linux 4.y.z, with the latest and greatest features. NVIDIA is going to support and maintain Cumulus Linux and Cumulus RMP 3.7 ESR for 3 years, until 21 February, 2023.
+Cumulus Linux and Cumulus RMP 3.7.12 have transitioned into the extended support phase (ESR). You can continue using Cumulus Linux 3.7 ESR, a mature and stable operating system, or upgrade to Cumulus Linux 4.y.z, which has the latest and greatest features. NVIDIA is going to support and maintain Cumulus Linux and Cumulus RMP 3.7 ESR for three years, until 21 February, 2023.
 
 | Cumulus Linux Version | ESR Start Date    | End of Life Date  |
 | --------------------- | ----------------- | ----------------- |
-| 4.y.z                 | TBD               | TBD               |
+| 4.3.x - Broadcom switches | May 2022 | December, 2025|
+| 4.0.0 - 4.4.1         | N/A               | 31 December, 2022 |
 | 3.7.12 - 3.7.z ESR    | 21 February, 2020 | 21 February, 2023 |
 | 3.0.0 - 3.7.11        | N/A               | 31 December, 2020 |
 | 2.5.6 - 2.5.12        | 2 February, 2016  | 2 February, 2019  |
 | 2.5.5 and earlier     | N/A               | 31 December, 2016 |
 
+- 4.x.y on all platforms
+  - Maintenance mode - no new features or platforms
+- 4.3.y on Broadcom switches
+  - Maintenance mode (maintenance releases as needed) - no new features or platforms
+  - Support provided until the end of the support contract (December 2025)
+- 4.0.0 - 4.4.1 on Spectrum switches
+  - No support after December 31, 2022
+  - No plans for ESR support on 4.x.y
+
 ## Upgrade Process
 
-For information regarding upgrading from previous Cumulus Linux releases, refer to the [Cumulus Linux upgrade documentation]({{<ref "/cumulus-linux-43/Installation-Management/Upgrading-Cumulus-Linux" >}}).
+For information about upgrading from an earlier Cumulus Linux release, refer to the [Cumulus Linux upgrade documentation]({{<ref "/cumulus-linux-44/Installation-Management/Upgrading-Cumulus-Linux" >}}).

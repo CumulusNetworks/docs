@@ -125,6 +125,12 @@ Fixed: 2.4.47+dfsg-3+deb10u6</td>
 <td>4.4.0-4.4.1</td>
 </tr>
 <tr>
+<td>2711533</td>
+<td>On the AS7326-56X switch, the link lights for 25G ports configured to work at 1G do not illuminate.</td>
+<td>4.2.1-4.4.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2710208</td>
 <td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established, such as when the interface is down.</td>
 <td>4.2.1-4.4.1</td>
@@ -1921,6 +1927,12 @@ Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u5
 Fixed: 2.4.47+dfsg-3+deb10u6</td>
 <td>4.0.0-4.3.0</td>
 <td>4.4.0-4.4.1</td>
+</tr>
+<tr>
+<td>2711533</td>
+<td>On the AS7326-56X switch, the link lights for 25G ports configured to work at 1G do not illuminate.</td>
+<td>4.2.1-4.4.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2710208</td>

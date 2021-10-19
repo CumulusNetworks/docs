@@ -7,21 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2820565</td>
-<td>SNMP does not start and you see errors similar to the following:
-
-cumulus@switch:~$ sudo systemctl status snmpd.service 
-snmpd.service - Simple Network Management Protocol (SNMP) Daemon.
-   Loaded: loaded (/lib/systemd/system/snmpd.service; enabled; vendor preset: enabled)
-   Active: failed (Result: exit-code) since Mon 2021-10-11 14:38:13 UTC; 1min 8s ago
-  Process: 1987 ExecStart=/usr/sbin/snmpd $SNMPDOPTS -f (code=exited, status=1/FAILURE)
- Main PID: 1987 (code=exited, status=1/FAILURE)
-
-To work around this issue, run the {{sudo systemctl restart snmpd.service}} command.</td>
-<td>4.3.0-4.4.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2816069</td>
 <td>On the EdgeCore AS7326 switch, unicast ARP requests are not forwarded to the control plane.</td>
 <td>4.2.1-4.4.1</td>
@@ -213,6 +198,12 @@ To work around this issue, restart FRR with the {{sudo systemctl restart frr}} c
 <td>On the Celestica Seastone switch, when you run {{ smonctl -v}}, the DIMM 1 Temp Sensor shows as absent.
 This is a cosmetic software issue and not indicative of a hardware failure on the system.</td>
 <td>4.3.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2711533</td>
+<td>On the AS7326-56X switch, the link lights for 25G ports configured to work at 1G do not illuminate.</td>
+<td>4.2.1-4.4.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1677,21 +1668,6 @@ Fixed: 2.9.4+dfsg1-7+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2820565</td>
-<td>SNMP does not start and you see errors similar to the following:
-
-cumulus@switch:~$ sudo systemctl status snmpd.service 
-snmpd.service - Simple Network Management Protocol (SNMP) Daemon.
-   Loaded: loaded (/lib/systemd/system/snmpd.service; enabled; vendor preset: enabled)
-   Active: failed (Result: exit-code) since Mon 2021-10-11 14:38:13 UTC; 1min 8s ago
-  Process: 1987 ExecStart=/usr/sbin/snmpd $SNMPDOPTS -f (code=exited, status=1/FAILURE)
- Main PID: 1987 (code=exited, status=1/FAILURE)
-
-To work around this issue, run the {{sudo systemctl restart snmpd.service}} command.</td>
-<td>4.3.0-4.4.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2816069</td>
 <td>On the EdgeCore AS7326 switch, unicast ARP requests are not forwarded to the control plane.</td>
 <td>4.2.1-4.4.1</td>
@@ -1899,6 +1875,12 @@ To work around this issue, restart FRR with the {{sudo systemctl restart frr}} c
 <td>On the Celestica Seastone switch, when you run {{ smonctl -v}}, the DIMM 1 Temp Sensor shows as absent.
 This is a cosmetic software issue and not indicative of a hardware failure on the system.</td>
 <td>4.3.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2711533</td>
+<td>On the AS7326-56X switch, the link lights for 25G ports configured to work at 1G do not illuminate.</td>
+<td>4.2.1-4.4.1</td>
 <td></td>
 </tr>
 <tr>

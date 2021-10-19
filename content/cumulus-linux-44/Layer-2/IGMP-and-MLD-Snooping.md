@@ -262,29 +262,6 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-
-## Scale Considerations
-
-The number of unique multicast groups supported in the mdb is 4096 by default. To increase the number of maximum number of multicast groups in the mdb, edit the `/etc/network/interfaces` file to add a `bridge-hashmax` value to the bridge stanza:
-
-```
-auto br_default
-iface br_default
-  bridge-hashmax 16384
-  bridge-ports swp1 swp2 swp3
-  bridge-vlan-aware yes
-  bridge-vids 10 20
-  bridge-pvid 1
-  bridge-mcquerier 1
-  bridge-mcsnoop 1
-```
-
-The supported values for `bridge-hashmax` are 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536.
-
-{{%notice note%}}
-* On Spectrum 1 switches, to accommodate a `bridge-hashmax` value greater than 4096, the {{<link url="Supported-Route-Table-Entries/#forwarding-resource-profiles" text="forwarding resource profile">}} must be changed to `rash-custom-profile1` followed by a switchd restart.
-* Spectrum 1 switches are limited to 16300 multicast groups in the mdb with OMF disabled, and 14800 multicast groups in the mdb when OMF is enabled.
-{{%/notice%}}
 ## Troubleshooting
 
 To show the IGMP/MLD snooping bridge state, run the `brctl showstp <bridge>` command:
@@ -348,6 +325,28 @@ cumulus@switch:~$ sudo bridge -d -s mdb show
   dev bridge port swp2 grp ff1a::9 permanent 0.00
   router ports on bridge: swp3
 ```
+## Scale Considerations
+
+The number of unique multicast groups supported in the mdb is 4096 by default. To increase the number of maximum number of multicast groups in the mdb, edit the `/etc/network/interfaces` file to add a `bridge-hashmax` value to the bridge stanza:
+
+```
+auto br_default
+iface br_default
+  bridge-hashmax 16384
+  bridge-ports swp1 swp2 swp3
+  bridge-vlan-aware yes
+  bridge-vids 10 20
+  bridge-pvid 1
+  bridge-mcquerier 1
+  bridge-mcsnoop 1
+```
+
+The supported values for `bridge-hashmax` are 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536.
+
+{{%notice note%}}
+* On Spectrum 1 switches, to accommodate a `bridge-hashmax` value greater than 4096, the {{<link url="Supported-Route-Table-Entries/#forwarding-resource-profiles" text="forwarding resource profile">}} must be changed to `rash-custom-profile1` followed by a switchd restart.
+* Spectrum 1 switches are limited to 16300 multicast groups in the mdb with OMF disabled, and 14800 multicast groups in the mdb when OMF is enabled.
+{{%/notice%}}
 
 ## Related Information
 

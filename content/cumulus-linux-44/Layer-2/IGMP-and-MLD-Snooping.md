@@ -170,6 +170,44 @@ To enable OMF:
 <!-- vale on -->
 When IGMP reports go to a multicast group, OMF has no effect; normal IGMP snooping occurs.
 
+When OMF is enabled, you can configure a bridge port as an mrouter port to forward unregistered multicast traffic to that port.
+
+{{< tabs "TabID132 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:mgmt:~$ net add interface swp1 bridge portmcrouter enabled
+cumulus@switch:mgmt:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+NVUE commands are not supported.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file to add `bridge-portmcrouter enabled` to the swp1 stanza..
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto swp1
+iface swp1
+   bridge-portmcrouter enabled
+...
+```
+
+Run the `ifreload -a` command to reload the configuration:
+
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 {{%notice note%}}
 OMF increases memory usage, which can impact scaling on Spectrum 1 switches.
 {{%/notice%}}

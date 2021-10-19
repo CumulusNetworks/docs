@@ -610,7 +610,7 @@ cumulus@switch:~$ nv config patch /deps/nv-02/13/2021.yaml
 If you configure Cumulus Linux with NVUE commands, then want to configure a feature that does not yet support the NVUE Object Model, you can create a snippet in `yaml` format and add the configuration to either the `/etc/frr/frr.conf` or `/etc/network/interfaces` file.
 
 {{< tabs "612 ">}}
-{{< tab "/etc/frr/frr.conf Snippet ">}}
+{{< tab "/etc/frr/frr.conf Snippets ">}}
 
 In Cumulus Linux 4.4, NVUE does not support configuring the loopback interface in an OSPF area. The following example configures the loopback interface to be in OSPF area 0:
 
@@ -651,7 +651,7 @@ In Cumulus Linux 4.4, NVUE does not support configuring the loopback interface i
    ```
 
 {{< /tab >}}
-{{< tab "/etc/network/interfaces Snippet ">}}
+{{< tab "/etc/network/interfaces Snippets ">}}
 
 {{< tabs "667 ">}}
 {{< tab "Configure an Interface Description ">}}

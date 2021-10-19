@@ -649,7 +649,7 @@ NVUE does not support configuring BGP to peer across the default route. The foll
 {{< tab "/etc/network/interfaces Snippets ">}}
 
 {{< tabs "667 ">}}
-{{< tab "Configure an Interface Description ">}}
+{{< tab "Configure MLAG Timers ">}}
 
 NVUE supports configuring only one of the {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#set-clagctl-timers" text="MLAG service timeouts">}} (initDelay). The following example configures the MLAG peer timeout to 400 seconds:
 

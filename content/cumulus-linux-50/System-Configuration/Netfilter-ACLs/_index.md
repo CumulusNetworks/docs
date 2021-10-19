@@ -1205,221 +1205,51 @@ cumulus@switch:~$ net commit
 
 The following example demonstrates how Cumulus Linux applies several different rules.
 
-{{< img src = "/images/cumulus-linux/acl-diagram.png" >}}
-
-These are the configurations for the two switches in these examples. The configuration for each switch is in the `/etc/network/interfaces` file on that switch.
-
-### Switch 1 Configuration
-
-```
-cumulus@switch1:~$ sudo cat /etc/network/interfaces
-...
-/etc/network/interfaces
-=======================
-
-auto swp1
-iface swp1
-
-auto swp2
-iface swp2
-
-auto swp3
-iface swp3
-
-auto swp4
-iface swp4
-
-auto bond2
-iface bond2
-  bond-slaves swp3 swp4
-
-auto br-untagged
-iface br-untagged
-  address 10.0.0.1/24
-  bridge_ports swp1 bond2
-  bridge_stp on
-
-auto br-tag100
-iface br-tag100
-  address 10.0.100.1/24
-  bridge_ports swp2.100 bond2.100
-  bridge_stp on
-...
-```
-
-### Switch 2 Configuration
-
-```
-cumulus@switch2:~$ sudo cat /etc/network/interfaces
-...
-/etc/network/interfaces
-=======================
-
-auto swp3
-iface swp3
-
-auto swp4
-iface swp4
-
-auto br-untagged
-iface br-untagged
-  address 10.0.0.2/24
-  bridge_ports bond2
-  bridge_stp on
-
-auto br-tag100
-iface br-tag100
-  address 10.0.100.2/24
-  bridge_ports bond2.100
-  bridge_stp on
-
-auto bond2
-iface bond2
-  bond-slaves swp3 swp4
-...
-```
+{{< img src = "/images/cumulus-linux/acl-config-example.png" >}}
 
 ### Egress Rule
 
-The following rule blocks any TCP traffic with destination port 200 going from host1 or host2 through the switch (corresponding to rule 1 in the diagram above).
-
-{{< tabs "1096 ">}}
-{{< tab "iptables rule ">}}
+The following rule blocks any TCP traffic with destination port 200 going through leaf01 to server01 (rule 1 in the diagram above).
 
 ```
-[iptables] -A FORWARD -o bond2 -p tcp --dport 200 -j DROP
+[iptables]
+-A FORWARD -o swp1 -p tcp --dport 200 -j DROP
 ```
-
-Apply the rule:
-
-```
-cumulus@switch:~$ sudo cl-acltool -i
-```
-
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 200
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
-cumulus@switch:~$ nv set interface bond2 acl EXAMPLE1 outbound
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ### Ingress Rule
 
-The following rule blocks any UDP traffic with source port 200 going from host1 through the switch (corresponding to rule 2 in the diagram above).
-
-{{< tabs "1007 ">}}
-{{< tab "iptables rule ">}}
+The following rule blocks any UDP traffic with source port 200 going from server01 through leaf01 (rule 2 in the diagram above).
 
 ```
-[iptables] -A FORWARD -i swp2 -p udp --sport 200 -j DROP
+[iptables] 
+-A FORWARD -i swp1 -p udp --sport 200 -j DROP
 ```
-
-Apply the rule:
-
-```
-cumulus@switch:~$ sudo cl-acltool -i
-```
-
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE2 type ipv4
-cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 match ip protocol udp
-cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 match ip source-port 200
-cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 action deny
-cumulus@switch:~$ nv set interface swp2 acl EXAMPLE2 inbound
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ### Input Rule
 
-The following rule blocks any UDP traffic with source port 200 and destination port 50 going from host1 to the switch (corresponding to rule 3 in the diagram above).
-
-{{< tabs "1033 ">}}
-{{< tab "iptables rule ">}}
+The following rule blocks any UDP traffic with source port 200 and destination port 50 going from server02 to the leaf02 control plane (rule 3 in the diagram above).
 
 ```
-[iptables] -A INPUT -i swp1 -p udp --sport 200 --dport 50 -j DROP
+[iptables] 
+-A INPUT -i swp2 -p udp --sport 200 --dport 50 -j DROP
 ```
-
-Apply the rule:
-
-```
-cumulus@switch:~$ sudo cl-acltool -i
-```
-
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE3 type ipv4
-cumulus@switch:~$ nv set acl EXAMPLE3 rule 10 match ip protocol udp
-cumulus@switch:~$ nv set acl EXAMPLE3 rule 10 match ip source-port 200
-cumulus@switch:~$ nv set acl EXAMPLE3 rule 10 match ip dest-port 50
-cumulus@switch:~$ nv set acl EXAMPLE3 rule 10 action deny
-cumulus@switch:~$ nv set interface swp1 acl EXAMPLE3 inbound control-plane
-```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ### Output Rule
 
-The following rule blocks any TCP traffic with source port 123 and destination port 123 going from Switch 1 to host2 (corresponding to rule 4 in the diagram above).
-
-{{< tabs "1174 ">}}
-{{< tab "iptables rule ">}}
+The following rule blocks any TCP traffic with source port 123 and destination port 123 going from leaf02 to server02 (rule 4 in the diagram above).
 
 ```
-[iptables] -A OUTPUT -o br-tag100 -p tcp --sport 123 --dport 123 -j DROP
+[iptables] 
+-A OUTPUT -o swp2 -p tcp --sport 123 --dport 123 -j DROP
 ```
-
-Apply the rule:
-
-```
-cumulus@switch:~$ sudo cl-acltool -i
-```
-
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE4 type ipv4
-cumulus@switch:~$ nv set acl EXAMPLE4 rule 10 match ip protocol tcp
-cumulus@switch:~$ nv set acl EXAMPLE4 rule 10 match ip source-port 123
-cumulus@switch:~$ nv set acl EXAMPLE4 rule 10 match ip dest-port 123
-cumulus@switch:~$ nv set acl EXAMPLE4 rule 10 action deny
-cumulus@switch:~$ nv set interface br-tag100 acl EXAMPLE4 outbound control-plane
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ### Combined Rules
 
-The following rule blocks any TCP traffic with source port 123 and destination port 123 going from any switch port egress or generated from Switch 1 to host1 or host2 (corresponding to rules 1 and 4 in the diagram above).
+The following rule blocks any TCP traffic with source port 123 and destination port 123 going from any switch port egress or generated from the switch.
 
 ```
-[iptables] -A OUTPUT,FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP
-```
-
-Apply the rule:
-
-```
-cumulus@switch:~$ sudo cl-acltool -i
+[iptables]
+-A OUTPUT,FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP
 ```
 
 This also becomes two ACLs and is the same as:
@@ -1430,37 +1260,14 @@ This also becomes two ACLs and is the same as:
 -A OUTPUT -o swp+ -p tcp --sport 123 --dport 123 -j DROP
 ```
 
-### Layer 2 Rules/ebtables
+### Layer 2 Rules (ebtables)
 
-The following rule blocks any traffic with source MAC address 00:00:00:00:00:12 and destination MAC address 08:9e:01:ce:e2:04 going from any switch port egress/ingress.
-
-{{< tabs "1102 ">}}
-{{< tab "ebtables rule ">}}
+The following rule blocks any traffic with source MAC address 00:00:00:00:00:12 and destination MAC address 08:9e:01:ce:e2:04 going from any switch port egress or ingress.
 
 ```
-[ebtables] -A FORWARD -s 00:00:00:00:00:12 -d 08:9e:01:ce:e2:04 -j DROP
+[ebtables]
+-A FORWARD -s 00:00:00:00:00:12 -d 08:9e:01:ce:e2:04 -j DROP
 ```
-
-Apply the rule:
-
-```
-cumulus@switch:~$ sudo cl-acltool -i
-```
-
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 type mac
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match mac source-mac 00:00:00:00:00:12
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match mac dest-mac 08:9e:01:ce:e2:04
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action deny
-cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ## Considerations
 
@@ -1486,10 +1293,9 @@ SPAN sessions that reference an outgoing interface create mirrored packets based
 <!-- vale off -->
 ### iptables Interactions with cl-acltool
 <!-- vale on -->
-Because Cumulus Linux is a Linux operating system, you can use the `iptables` commands. However, consider using `cl-acltool` instead because:
-
+Because Cumulus Linux is a Linux operating system, you can use the `iptables` commands. However, consider using `cl-acltool` instead for the following reasons:
 - Without using `cl-acltool`, rules do not install into hardware.
-- Running `cl-acltool -i` (the installation command) resets all rules and deletes anything that is not stored in `/etc/cumulus/acl/policy.conf`.
+- Running `cl-acltool -i` (the installation command) resets all rules and deletes anything that is not in the `/etc/cumulus/acl/policy.conf` file.
 
 For example, running the following command works:
 
@@ -1497,7 +1303,7 @@ For example, running the following command works:
 cumulus@switch:~$ sudo iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
 ```
 
-And the rules appear when you run `cl-acltool -L`:
+The rules appear when you run `cl-acltool -L`:
 
 ```
 cumulus@switch:~$ sudo cl-acltool -L ip
@@ -1567,7 +1373,9 @@ The ACL does not match on packets when you configure a subinterface as the outpu
 
 For example:
 
-    -A FORWARD --out-interface swp49s1.100 -j ACCEPT
+```
+-A FORWARD --out-interface swp49s1.100 -j ACCEPT
+```
 
 ### Egress ACL Matching on Bonds
 

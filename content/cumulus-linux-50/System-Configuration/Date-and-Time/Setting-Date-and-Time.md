@@ -20,7 +20,7 @@ You can use one of two methods to set the time zone on the switch:
 {{< tab "NVUE Commands ">}}
 
 Run the `nv set timezone <timezone>` command. To see all the available time zones, run `nv set system timezone` and press the Tab key.
-
+<!-- vale off -->
 The following example sets the time zone to US/Eastern:
 
 ```
@@ -30,7 +30,7 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< tab "Edit the /etc/timezone File ">}}
-
+<!-- vale on -->
 1. Edit the `/etc/timezone` file to add your desired time zone. You can see a list of valid time zones {{<exlink url="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" text="here">}}.
 
    ```

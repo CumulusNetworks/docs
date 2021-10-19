@@ -663,7 +663,7 @@ In Cumulus Linux 4.4, NVUE does not support configuring interface descriptions (
 ```
 cumulus@switch:~$ sudo nano ./alias_snippet.yaml
 - set:
-    system:
+    platform:
       config:
         snippet:
           ifupdown2_eni:
@@ -710,7 +710,7 @@ In Cumulus Linux 4.4, NVUE does not support configuring traditional bridges. The
 ```
 cumulus@switch:~$ sudo nano ./bridge_snippet.yaml
 - set:
-    system:
+    platform:
      config:
        snippet:
          ifupdown2_eni:

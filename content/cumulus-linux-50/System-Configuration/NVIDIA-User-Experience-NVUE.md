@@ -651,7 +651,7 @@ NVUE does not support configuring BGP to peer across the default route. The foll
 {{< tabs "667 ">}}
 {{< tab "Configure an Interface Description ">}}
 
-In Cumulus Linux 4.4, NVUE does not support configuring interface descriptions (aliases). The following example configures the loopback interface with the description `loopback` and swp1 with the description `bond_member_of_bond1`:
+NVUE does not support configuring . The following example configures :
 
 1. Create a `.yaml` file and add the following snippet:
 

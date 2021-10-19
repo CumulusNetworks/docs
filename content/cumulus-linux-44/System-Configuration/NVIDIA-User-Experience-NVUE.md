@@ -642,7 +642,7 @@ In Cumulus Linux 4.4, NVUE does not support configuring the loopback interface i
 4. Verify that the configuration exists at the end of the `/etc/frr/frr.conf` file:
 
    ```
-   cumulus@switch:~$ sudo cat ./ospf_snippet.yaml
+   cumulus@switch:~$ sudo cat /etc/frr/frr.conf
    ...
    ! end of router ospf block
    !---- CUE snippets ----

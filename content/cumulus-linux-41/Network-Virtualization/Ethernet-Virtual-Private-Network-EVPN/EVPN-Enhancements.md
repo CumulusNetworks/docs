@@ -437,58 +437,44 @@ iface bridge
 
 ## Filter EVPN Routes
 
-A common deployment scenario for large data centers is to sub divide the data center into multiple pods with full host mobility within a pod but only do prefix-based routing across pods. You can achieve this by only exchanging EVPN type-5 routes across pods.
+It is common to subdivide the data center into multiple pods with full host mobility within a pod but only do prefix-based routing across pods. You can achieve this by only exchanging EVPN type-5 routes across pods.
 
-To filter EVPN routes based on the route-type and allow only certain types of EVPN routes to be advertised in the fabric:
+The following example commands configure EVPN to advertise type-5 routes:
 
-{{< tabs "TabID63 ">}}
-
+{{< tabs "TabID444 ">}}
 {{< tab "NCLU Commands ">}}
 
-Use the `net add routing route-map <route_map_name> (deny|permit) <1-65535> match evpn default-route` command or the `net add routing route-map <route_map_name> (deny|permit) <1-65535> match evpn route-type (macip|prefix|multicast)` command.
-
-The following example commands configure EVPN to advertise type-5 routes only:
-
 ```
-cumulus@switch:~$ net add routing route-map map1 permit 1 match evpn route-type prefix
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add routing route-map map1 permit 1 match evpn route-type prefix
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
-The following example configures EVPN to advertise type-5 routes only:
-
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# route-map map1 permit 1
-switch(config)# match evpn route-type prefix
-switch(config)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+leaf01# configure terminal
+leaf01(config)# route-map map1 permit 1
+leaf01(config)# match evpn route-type prefix
+leaf01(config)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 In many situations, it is also desirable to only exchange EVPN routes carrying a particular VXLAN ID.
-For example, if only certain tenants are shared across data centers, or across pods within a data center, a route-map may be used to control which EVPN routes are exchanged based on the VNI.
+For example, if data centers or pods within a data center only share certain tenants, you can use a route map to control the EVPN routes exchanged based on the VNI.
 
-To filter EVPN routes based on the VXLAN ID and allow only EVPN routes with a particular VNI to be advertised in the fabric:
+The following example configures a route map that only advertises EVPN routes from VNI 1000:
 
-{{< tabs "TabID44" >}}
-
+{{< tabs "TabID480" >}}
 {{< tab "NCLU Commands" >}}
-
-Use the `net add routing route-map <route_map_name> (deny|permit) <1-65535> match evpn vni <1-16777215>` command.
-
-The following example configures a route-map that only advertises EVPN routes from VNI 1000:
 
 ```
 cumulus@switch:~$ net add routing route-map map1 permit 1 match evpn vni 1000
@@ -497,10 +483,7 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands" >}}
-
-The following example configures a route-map that only advertises EVPN routes from VNI 1000:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -515,11 +498,10 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{%notice note%}}
-Only type-2 and type-5 can be matched based on VNI. All other EVPN route-types will not be matched by the route-map.
+You can only match type-2 and type-5 routes based on VNI.
 {{%/notice%}}
 
 ## Advertise SVI IP Addresses

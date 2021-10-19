@@ -7,21 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2820565</td>
-<td>SNMP does not start and you see errors similar to the following:
-
-cumulus@switch:~$ sudo systemctl status snmpd.service 
-snmpd.service - Simple Network Management Protocol (SNMP) Daemon.
-   Loaded: loaded (/lib/systemd/system/snmpd.service; enabled; vendor preset: enabled)
-   Active: failed (Result: exit-code) since Mon 2021-10-11 14:38:13 UTC; 1min 8s ago
-  Process: 1987 ExecStart=/usr/sbin/snmpd $SNMPDOPTS -f (code=exited, status=1/FAILURE)
- Main PID: 1987 (code=exited, status=1/FAILURE)
-
-To work around this issue, run the {{sudo systemctl restart snmpd.service}} command.</td>
-<td>4.3.0-4.4.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2816069</td>
 <td>On the EdgeCore AS7326 switch, unicast ARP requests are not forwarded to the control plane.</td>
 <td>4.2.1-4.4.1</td>
@@ -170,6 +155,12 @@ This is a cosmetic software issue and not indicative of a hardware failure on th
 <td>2722322</td>
 <td>When you change the scaled VLAN configuration,  restart networking instead of running the {{ifreload -a}} command to make sure that resources are allocated correctly.</td>
 <td>4.4.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2711533</td>
+<td>On the AS7326-56X switch, the link lights for 25G ports configured to work at 1G do not illuminate.</td>
+<td>4.2.1-4.4.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1499,21 +1490,6 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2820565</td>
-<td>SNMP does not start and you see errors similar to the following:
-
-cumulus@switch:~$ sudo systemctl status snmpd.service 
-snmpd.service - Simple Network Management Protocol (SNMP) Daemon.
-   Loaded: loaded (/lib/systemd/system/snmpd.service; enabled; vendor preset: enabled)
-   Active: failed (Result: exit-code) since Mon 2021-10-11 14:38:13 UTC; 1min 8s ago
-  Process: 1987 ExecStart=/usr/sbin/snmpd $SNMPDOPTS -f (code=exited, status=1/FAILURE)
- Main PID: 1987 (code=exited, status=1/FAILURE)
-
-To work around this issue, run the {{sudo systemctl restart snmpd.service}} command.</td>
-<td>4.3.0-4.4.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2816069</td>
 <td>On the EdgeCore AS7326 switch, unicast ARP requests are not forwarded to the control plane.</td>
 <td>4.2.1-4.4.1</td>
@@ -1812,6 +1788,12 @@ This is a cosmetic software issue and not indicative of a hardware failure on th
 The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/switchd.conf}} file is 32 VLANs for single VLAN-aware bridge configurations.</td>
 <td>4.4.0</td>
 <td>4.4.1</td>
+</tr>
+<tr>
+<td>2711533</td>
+<td>On the AS7326-56X switch, the link lights for 25G ports configured to work at 1G do not illuminate.</td>
+<td>4.2.1-4.4.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2710927</td>

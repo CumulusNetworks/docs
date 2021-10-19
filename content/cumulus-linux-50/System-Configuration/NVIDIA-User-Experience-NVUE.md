@@ -651,27 +651,25 @@ NVUE does not support configuring BGP to peer across the default route. The foll
 {{< tabs "667 ">}}
 {{< tab "Configure an Interface Description ">}}
 
-NVUE does not support configuring . The following example configures :
+NVUE supports configuring only one of the {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#set-clagctl-timers" text="MLAG service timeouts">}} (initDelay). The following example configures the MLAG peer timeout to 400 seconds:
 
 1. Create a `.yaml` file and add the following snippet:
 
 ```
-cumulus@switch:~$ sudo nano ./alias_snippet.yaml
+cumulus@switch:~$ sudo nano ./mlag_snippet.yaml
 - set:
     system:
       config:
         snippet:
           ifupdown2_eni:
-            lo: |
-              alias loopback
-            swp1: |
-              alias bond_member_of_bond1
+            peerlink.4094: |
+              clagd-args --peerTimeout 400
 ```
 
 2. Run the following command to patch the configuration:
 
    ```
-   cumulus@switch:~$ nv config patch ./alias_snippet.yaml
+   cumulus@switch:~$ nv config patch ./mlag_snippet.yaml
    ```
 
 3. Run the `nv config apply` command to apply the configuration:
@@ -680,18 +678,18 @@ cumulus@switch:~$ sudo nano ./alias_snippet.yaml
    cumulus@switch:~$ nv config apply
    ```
 
-4. Verify that the configuration exists in the lo and swp1 stanzas in the `/etc/network/interfaces` file:
+4. Verify that the configuration exists in the peerlink.4094 stanza of the `/etc/network/interfaces` file:
 
    ```
    cumulus@switch:~$ sudo cat /etc/network/interfaces
    ...
-   auto lo
-   iface lo inet loopback
-     alias loopback
-     address 10.10.10.1/32
-   auto swp1
-   iface swp1
-     alias bond_member_of_bond1
+   auto peerlink.4094
+   iface peerlink.4094
+    clagd-args --peerTimeout 400
+    clagd-peer-ip linklocal
+    clagd-backup-ip 10.10.10.2
+    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-args --initDelay 180
    ...
    ```
 

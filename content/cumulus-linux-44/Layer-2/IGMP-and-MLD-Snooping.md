@@ -172,7 +172,7 @@ When IGMP reports go to a multicast group, OMF has no effect; normal IGMP snoopi
 
 When OMF is enabled, you can configure a bridge port as an mrouter port to forward unregistered multicast traffic to that port.
 
-{{< tabs "TabID132 ">}}
+{{< tabs "TabID175 ">}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -188,7 +188,7 @@ NVUE commands are not supported.
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file to add `bridge-portmcrouter enabled` to the swp1 stanza..
+Edit the `/etc/network/interfaces` file to add `bridge-portmcrouter enabled` to the swp1 stanza.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -353,7 +353,7 @@ swp3 (3)
   flags
 ```
 
-To show the groups and bridge port state, run the NCLU `net show bridge mdb` command or the Linux `sudo bridge mdb show` command. To show detailed router ports and group information, run the `sudo bridge -d -s mdb show` command:
+Cumulus Linux tracks multicast group and port state in the multicast database (MDB). To show the groups and bridge port state, run the NCLU `net show bridge mdb` command or the Linux `sudo bridge mdb show` command. To show detailed router ports and group information, run the `sudo bridge -d -s mdb show` command:
 
 ```
 cumulus@switch:~$ sudo bridge -d -s mdb show
@@ -382,8 +382,8 @@ iface br_default
 The supported values for `bridge-hashmax` are 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536.
 
 {{%notice note%}}
-* On Spectrum 1 switches, to accommodate a `bridge-hashmax` value greater than 4096, the {{<link url="Supported-Route-Table-Entries/#forwarding-resource-profiles" text="forwarding resource profile">}} must be changed to `rash-custom-profile1` followed by a switchd restart.
-* Spectrum 1 switches are limited to 16300 multicast groups in the mdb with OMF disabled, and 14800 multicast groups in the mdb when OMF is enabled.
+* On Spectrum 1 switches, you must change the {{<link url="Supported-Route-Table-Entries/#forwarding-resource-profiles" text="forwarding resource profile">}} to `rash-custom-profile1`, then restart `switchd`.
+* Spectrum 1 switches limit multicast groups to 16300 in the MDB with OMF disabled and 14800 multicast groups when OMF is enabled.
 {{%/notice%}}
 
 ## Related Information

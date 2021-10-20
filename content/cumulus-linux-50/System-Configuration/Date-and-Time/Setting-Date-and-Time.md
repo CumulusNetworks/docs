@@ -11,22 +11,35 @@ Setting the time zone, and the date and time on the software clock requires root
 
 ## Set the Time Zone
 
-You can use one of two methods to set the time zone on the switch:
-- Run the NVUE command.
-- Edit the `/etc/timezone` file.
+You can use one of these methods to set the time zone on the switch:
+- Run NVUE commands.
 - Use the guided wizard.
+- Edit the `/etc/timezone` file.
 
 {{< tabs "TabID19 ">}}
-{{< tab "NVUE Commands ">}}
-
-Run the `nv set timezone <timezone>` command. To see all the available time zones, run `nv set system timezone` and press the Tab key.
+{{< tab "NVUE Command ">}}
 <!-- vale off -->
-The following example sets the time zone to US/Eastern:
+Run the `nv set system timezone <timezone>` command. To see all the available time zones, run `nv set system timezone` and press the Tab key. The following example sets the time zone to US/Eastern:
 
 ```
 cumulus@switch:~$ nv set system timezone US/Eastern
 cumulus@switch:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "Follow the Guided Wizard ">}}
+
+1. In a terminal, run the following command:
+
+    ```
+    cumulus@switch:~$ sudo dpkg-reconfigure tzdata
+    ```
+
+2. Follow the on screen menu options to select the geographic area and region.
+
+   {{< img src = "/images/cumulus-linux/date-time-wizard.png" >}}
+
+For more information, see the Debian {{<exlink url="http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html" text="System Administrator's Manual - Time">}}.
 
 {{< /tab >}}
 {{< tab "Edit the /etc/timezone File ">}}
@@ -49,19 +62,6 @@ cumulus@switch:~$ nv config apply
    ```
    sudo ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
    ```
-
-{{< /tab >}}
-{{< tab "Follow the Guided Wizard ">}}
-
-To set the time zone using the guided wizard:
-
-```
-cumulus@switch:~$ sudo dpkg-reconfigure tzdata
-```
-
-{{< img src = "/images/cumulus-linux/date-time-wizard.png" >}}
-
-For more information, see the Debian {{<exlink url="http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html" text="System Administrator's Manual - Time">}}.
 
 {{< /tab >}}
 {{< /tabs >}}

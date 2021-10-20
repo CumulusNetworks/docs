@@ -158,7 +158,20 @@ The command prompt in the terminal does not reflect the new hostname until you e
 
 The default time zone on the switch is UTC (Coordinated Universal Time). Change the time zone on your switch to be the time zone for your location.
 
-To update the time zone, use NTP interactive mode:
+To update the time zone:
+
+{{< tabs "TabID19 ">}}
+{{< tab "NVUE Commands ">}}
+<!-- vale off -->
+Run the `nv set system timezone <timezone>` command. To see all the available time zones, run `nv set system timezone` and press the Tab key. The following example sets the time zone to US/Eastern:
+
+```
+cumulus@switch:~$ nv set system timezone US/Eastern
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Follow the Guided Wizard ">}}
 
 1. In a terminal, run the following command:
 
@@ -167,6 +180,9 @@ To update the time zone, use NTP interactive mode:
     ```
 
 2. Follow the on screen menu options to select the geographic area and region.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{%notice note%}}
 Programs that are already running (including log files) and logged in users, do not see time zone changes made with interactive mode. To set the time zone for all services and daemons, reboot the switch.

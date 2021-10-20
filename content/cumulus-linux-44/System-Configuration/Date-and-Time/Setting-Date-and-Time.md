@@ -18,7 +18,7 @@ You can use one of two methods to set the time zone on the switch:
 
 <!-- vale off -->
 ### Edit the /etc/timezone File
-<!-- vale on -->
+
 To see the current time zone, list the contents of `/etc/timezone`:
 
 ```
@@ -27,7 +27,7 @@ US/Eastern
 ```
 
 Edit the file to add your desired time zone. You can see a list of valid time zones {{<exlink url="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" text="here">}}.
-
+<!-- vale on -->
 Use the following command to apply the new time zone:
 
 ```

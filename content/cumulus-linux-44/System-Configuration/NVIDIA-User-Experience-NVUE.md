@@ -605,9 +605,156 @@ The following example patches the pending configuration (runs the set or unset c
 cumulus@switch:~$ nv config patch /deps/nv-02/13/2021.yaml
 ```
 
+## Flexible Snippet Architecture
+
+If you configure Cumulus Linux with NVUE commands, then want to configure a feature that does not yet support the NVUE Object Model, you can create a snippet in `yaml` format and add the configuration to either the `/etc/frr/frr.conf` or `/etc/network/interfaces` file.
+
+{{< tabs "612 ">}}
+{{< tab "/etc/frr/frr.conf Snippets ">}}
+
+In Cumulus Linux 4.4, NVUE does not support configuring the loopback interface in an OSPF area. The following example configures the loopback interface to be in OSPF area 0:
+
+1. Create a `.yaml` file with the following snippet:
+
+   ```
+   cumulus@switch:~$ sudo nano ./ospf_snippet.yaml
+   - set:
+       platform:
+         config:
+           snippet:
+             frr.conf: |
+               interface lo
+               ip ospf area 0
+   ```
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch ./ospf_snippet.yaml
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Verify that the configuration exists at the end of the `/etc/frr/frr.conf` file:
+
+   ```
+   cumulus@switch:~$ sudo cat /etc/frr/frr.conf
+   ...
+   ! end of router ospf block
+   !---- CUE snippets ----
+   interface lo
+   ip ospf area 0
+   ```
+
+{{< /tab >}}
+{{< tab "/etc/network/interfaces Snippets ">}}
+
+{{< tabs "667 ">}}
+{{< tab "Configure an Interface Description ">}}
+
+In Cumulus Linux 4.4, NVUE does not support configuring interface descriptions (aliases). The following example configures the loopback interface with the description `loopback` and swp1 with the description `bond_member_of_bond1`:
+
+1. Create a `.yaml` file and add the following snippet:
+
+```
+cumulus@switch:~$ sudo nano ./alias_snippet.yaml
+- set:
+    platform:
+      config:
+        snippet:
+          ifupdown2_eni:
+            lo: |
+              alias loopback
+            swp1: |
+              alias bond_member_of_bond1
+```
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch ./alias_snippet.yaml
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Verify that the configuration exists in the lo and swp1 stanzas in the `/etc/network/interfaces` file:
+
+   ```
+   cumulus@switch:~$ sudo cat /etc/network/interfaces
+   ...
+   auto lo
+   iface lo inet loopback
+     alias loopback
+     address 10.10.10.1/32
+   auto swp1
+   iface swp1
+     alias bond_member_of_bond1
+   ...
+   ```
+
+{{< /tab >}}
+{{< tab "Configure a Traditional Bridge ">}}
+
+In Cumulus Linux 4.4, NVUE does not support configuring traditional bridges. The following example configures a traditional bridge called `br0` with the IP address 11.0.0.10/24. swp1, swp2 are members of the bridge.
+
+1. Create a `.yaml` file and add the following snippet:
+
+```
+cumulus@switch:~$ sudo nano ./bridge_snippet.yaml
+- set:
+    platform:
+     config:
+       snippet:
+         ifupdown2_eni:
+           eni_stanzas: |
+             auto br0
+             iface br0
+               address 11.0.0.10/24
+               bridge-ports swp1 swp2
+               bridge-vlan-aware no
+```
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch ./bridge_snippet.yaml
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Verify that the configuration exists at the end of the `/etc/network/interfaces` file:
+
+   ```
+   cumulus@switch:~$ sudo cat /etc/network/interfaces
+   ...
+   auto br0
+   iface br0
+     address 11.0.0.10/24
+     bridge-ports swp1 swp2
+     bridge-vlan-aware no
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## How Is NVUE Different from NCLU?
 
-This section lists some of the differences between NVUE CLI and the NCLU CLI.
+This section lists some of the differences between the NVUE CLI and the NCLU CLI.
 
 ### Configuration File
 

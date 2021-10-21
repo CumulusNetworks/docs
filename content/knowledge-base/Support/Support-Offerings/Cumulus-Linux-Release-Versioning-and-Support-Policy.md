@@ -95,8 +95,7 @@ Cumulus Linux and Cumulus RMP 3.7.12 have transitioned into the extended support
 
 | Cumulus Linux Version | ESR Start Date    | End of Life Date  |
 | --------------------- | ----------------- | ----------------- |
-| 5.x.y – 5.x.v         | February 2024     | February 2027     |
-| 5.0.0 - 5.x.w         | N/A               | TBD               |
+| 5.0.0 – 5.y.z         | N/A               | TBD               |
 | 4.3.x - Broadcom switches | May 2022 | December, 2025|
 | 4.0.0 - 4.4.1         | N/A               | 31 December, 2022 |
 | 3.7.12 - 3.7.z ESR    | 21 February, 2020 | 21 February, 2023 |
@@ -104,14 +103,12 @@ Cumulus Linux and Cumulus RMP 3.7.12 have transitioned into the extended support
 | 2.5.6 - 2.5.12        | 2 February, 2016  | 2 February, 2019  |
 | 2.5.5 and earlier     | N/A               | 31 December, 2016 |
 
-- 4.x.y on all platforms
-  - Maintenance mode - no new features or platforms
-- 4.3.y on Broadcom switches
+- 4.3.z on Broadcom switches
   - Maintenance mode (maintenance releases as needed) - no new features or platforms
   - Support provided until the end of the support contract (December 2025)
 - 4.0.0 - 4.4.1 on Spectrum switches
   - No support after December 31, 2022
-  - No plans for ESR support on 4.x.y
+  - No plans for ESR support on 4.y.z
 
 ## Upgrade Process
 

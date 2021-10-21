@@ -68,16 +68,6 @@ A Cumulus Linux switch always provides at least one dedicated Ethernet managemen
 To set a static IP address:
 
 {{< tabs "TabID86 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add interface eth0 ip address 192.0.2.42/24
-cumulus@switch:~$ net add interface eth0 ip gateway 192.0.2.1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -102,7 +92,14 @@ iface eth0
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!--
+```
+cumulus@switch:~$ net add interface eth0 ip address 192.0.2.42/24
+cumulus@switch:~$ net add interface eth0 ip gateway 192.0.2.1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 ### Configure the Hostname
 
 The hostname identifies the switch; make sure you configure the hostname to be unique and descriptive.
@@ -114,17 +111,6 @@ Do not use an underscore (_), apostrophe ('), or non-ASCII characters in the hos
 To change the hostname:
 
 {{< tabs "TabID131 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add hostname leaf01
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The above command modifies both the `/etc/hostname` and `/etc/hosts` files.
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -149,6 +135,15 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add hostname leaf01
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The above command modifies both the `/etc/hostname` and `/etc/hosts` files.
+-->
 
 {{%notice note%}}
 The command prompt in the terminal does not reflect the new hostname until you either log out of the switch or start a new shell.
@@ -185,7 +180,7 @@ cumulus@switch:~$ nv config apply
 {{< /tabs >}}
 
 {{%notice note%}}
-Programs that are already running (including log files) and logged in users, do not see time zone changes made with interactive mode. To set the time zone for all services and daemons, reboot the switch.
+Programs that are already running (including log files) and logged in users, do not see time zone changes. To set the time zone for all services and daemons, reboot the switch.
 {{%/notice%}}
 
 ### Verify the System Time
@@ -205,27 +200,6 @@ If you are using 4x10G DAC or AOC cables, or you want to break out 100G or 40G s
 By default, Cumulus Linux disables all data plane ports (every Ethernet port except the management interface, eth0). To test cable connectivity, administratively enable physical ports.
 
 {{< tabs "TabID260 ">}}
-{{< tab "NCLU Commands ">}}
-
-To administratively enable a port:
-
-```
-cumulus@switch:~$ net add interface swp1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-To administratively enable all physical ports on a switch that has ports numbered from swp1 to swp52:
-
-```
-cumulus@switch:~$ net add interface swp1-52
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-To view link status, run the `net show interface all` command.
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 To administratively enable a port:
@@ -265,30 +239,32 @@ To view link status, run the `ip link show` command.
 {{< /tab >}}
 {{< /tabs >}}
 
+<!--
+
+To administratively enable a port:
+
+```
+cumulus@switch:~$ net add interface swp1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+To administratively enable all physical ports on a switch that has ports numbered from swp1 to swp52:
+
+```
+cumulus@switch:~$ net add interface swp1-52
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+To view link status, run the `net show interface all` command.
+
+-->
 ## Configure Layer 2 Ports
 
 Cumulus Linux does not put all ports into a bridge by default. To create a bridge and configure one or more front panel ports as members of the bridge:
 
 {{< tabs "TabID367 ">}}
-{{< tab "NCLU Commands ">}}
-
-In the following configuration example, the front panel port swp1 is in a bridge called *bridge*.
-
-```
-cumulus@switch:~$ net add bridge bridge ports swp1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-You can add a range of ports in one command. For example, to add swp1 through swp10, swp12, and swp14 through swp20 to bridge:
-
-```
-cumulus@switch:~$ net add bridge bridge ports swp1-10,12,14-20
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 The following configuration example places the front panel port swp1 into the default bridge called `br_default`.
@@ -342,6 +318,23 @@ cumulus@switch:~$ sudo ifup -a
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+In the following configuration example, the front panel port swp1 is in a bridge called *bridge*.
+
+```
+cumulus@switch:~$ net add bridge bridge ports swp1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+You can add a range of ports in one command. For example, to add swp1 through swp10, swp12, and swp14 through swp20 to bridge:
+
+```
+cumulus@switch:~$ net add bridge bridge ports swp1-10,12,14-20
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 For more information about Ethernet bridges, see {{<link url="Ethernet-Bridging-VLANs" text="Ethernet Bridging - VLANs">}}.
 
@@ -350,26 +343,6 @@ For more information about Ethernet bridges, see {{<link url="Ethernet-Bridging-
 You can configure a front panel port or bridge interface as a layer 3 port.
 
 {{< tabs "TabID437 ">}}
-{{< tab "NCLU Commands ">}}
-
-In the following configuration example, the front panel port swp1 is a layer 3 access port:
-
-```
-cumulus@switch:~$ net add interface swp1 ip address 10.1.1.1/30
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-To add an IP address to a bridge interface, you must put it into a VLAN interface. If you want to use a VLAN other than the native one, set the bridge PVID:
-
-```
-cumulus@switch:~$ net add vlan 100 ip address 10.2.2.1/24
-cumulus@switch:~$ net add bridge bridge pvid 100
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 The following configuration example configures the front panel port swp1 as a layer 3 access port:
@@ -425,6 +398,25 @@ cumulus@switch:~$ sudo ifup -a
 {{< /tab >}}
 {{< /tabs >}}
 
+<!--
+In the following configuration example, the front panel port swp1 is a layer 3 access port:
+
+```
+cumulus@switch:~$ net add interface swp1 ip address 10.1.1.1/30
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+To add an IP address to a bridge interface, you must put it into a VLAN interface. If you want to use a VLAN other than the native one, set the bridge PVID:
+
+```
+cumulus@switch:~$ net add vlan 100 ip address 10.2.2.1/24
+cumulus@switch:~$ net add bridge bridge pvid 100
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
+
 ## Configure a Loopback Interface
 
 Cumulus Linux has a preconfigured loopback interface. When the switch boots up, the loopback interface, called *lo*, is up and assigned an IP address of 127.0.0.1.
@@ -436,26 +428,6 @@ The loopback interface *lo* must always exist on the switch and must always be u
 To check the status of the loopback interface:
 
 {{< tabs "TabID473 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net show interface lo
-    Name    MAC                Speed    MTU    Mode
---  ------  -----------------  -------  -----  --------
-UP  lo      00:00:00:00:00:00  N/A      65536  Loopback
-
-Alias
------
-loopback interface
-IP Details
--------------------------  --------------------
-IP:                        127.0.0.1/8, ::1/128
-IP Neighbor(ARP) Entries:  0
-```
-
-The loopback is up with the IP address 127.0.0.1.
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -490,18 +462,28 @@ cumulus@switch:~$ ip addr show lo
 {{< /tab >}}
 {{< /tabs >}}
 
+<!--
+```
+cumulus@switch:~$ net show interface lo
+    Name    MAC                Speed    MTU    Mode
+--  ------  -----------------  -------  -----  --------
+UP  lo      00:00:00:00:00:00  N/A      65536  Loopback
+
+Alias
+-----
+loopback interface
+IP Details
+-------------------------  --------------------
+IP:                        127.0.0.1/8, ::1/128
+IP Neighbor(ARP) Entries:  0
+```
+
+The loopback is up with the IP address 127.0.0.1.
+
 To add an IP address to a loopback interface, configure the *lo* interface:
+-->
 
 {{< tabs "TabID510 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add loopback lo ip address 10.1.1.1/32
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -522,6 +504,15 @@ iface lo inet loopback
 
 {{< /tab >}}
 {{< /tabs >}}
+
+<!--
+
+```
+cumulus@switch:~$ net add loopback lo ip address 10.1.1.1/32
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 {{%notice note%}}
 If you configure an IP address without a subnet mask, it becomes a /32 IP address. For example, 10.10.10.1 is 10.10.10.1/32.

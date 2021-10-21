@@ -127,24 +127,7 @@ The search commands look for the search terms not only in the package name but i
 
 The `apt-cache` command shows information about all the packages available in the repository. To see which packages are actually installed on your system with the version, run the following command.
 
-{{< tabs "TabID143 ">}}
-{{< tab "NCLU Command ">}}
-
-```
-cumulus@switch:~$ net show package version
-Package                            Installed Version(s)
----------------------------------  -----------------------------------------------------------------------
-acpi                               1.7-1.1
-acpi-support-base                  0.142-8
-acpid                              1:2.0.31-1
-adduser                            3.118
-apt                                1.8.2
-arping                             2.19-6
-arptables                          0.0.4+snapshot20181021-4
-...
-```
-
-{{< /tab >}}
+{{< tabs "TabID130 ">}}
 {{< tab "NVUE Command ">}}
 
 ```
@@ -180,21 +163,27 @@ ii  arptables           0.0.4+snapshot20181021-4  amd64        ARP table adminis
 {{< /tab >}}
 {{< /tabs >}}
 
+<!--
+```
+cumulus@switch:~$ net show package version
+Package                            Installed Version(s)
+---------------------------------  -----------------------------------------------------------------------
+acpi                               1.7-1.1
+acpi-support-base                  0.142-8
+acpid                              1:2.0.31-1
+adduser                            3.118
+apt                                1.8.2
+arping                             2.19-6
+arptables                          0.0.4+snapshot20181021-4
+...
+```
+-->
+
 ## Show the Version of a Package
 
 To show the version of a specific package installed on the system:
 
 {{< tabs "TabID202 ">}}
-{{< tab "NCLU Command" >}}
-
-The following example command shows which version of the `vrf` package is on the system:
-
-```
-cumulus@switch:~$ net show package version vrf
-1.0-cl4.4.0u0 
-```
-
-{{< /tab >}}
 {{< tab "NVUE Command ">}}
 
 The following example command shows which version of the `vrf` package is on the system:
@@ -226,6 +215,13 @@ ii  vrf        1.0-cl4.4.0u0    amd64        Linux tools for VRF
 {{< /tab >}}
 {{< /tabs >}}
 
+<!-- The following example command shows which version of the `vrf` package is on the system:
+
+```
+cumulus@switch:~$ net show package version vrf
+1.0-cl4.4.0u0 
+```
+-->
 ## Upgrade Packages
 
 To upgrade all the packages installed on the system to their latest versions, run the following commands:

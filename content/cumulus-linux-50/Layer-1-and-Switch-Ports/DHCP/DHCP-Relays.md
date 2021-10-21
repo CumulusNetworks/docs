@@ -21,30 +21,6 @@ In the example commands below:
 - `peerlink.4094` is the MLAG interface
 
 {{< tabs "TabID21 ">}}
-{{< tab "NCLU Commands ">}}
-
-{{< tabs "TabID24 ">}}
-{{< tab "IPv4 ">}}
-
-```
-cumulus@leaf01:~$ net add dhcp relay interface swp51
-cumulus@leaf01:~$ net add dhcp relay interface swp52
-cumulus@leaf01:~$ net add dhcp relay interface vlan10
-cumulus@leaf01:~$ net add dhcp relay interface peerlink.4094
-cumulus@leaf01:~$ net add dhcp relay server 172.16.1.102
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "IPv6 ">}}
-
-You cannot configure IPv6 relays with NCLU commands. Use the Linux Commands.
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 {{< tabs "TabID49 ">}}
@@ -116,8 +92,25 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
+<!--
+IPv4
+
+```
+cumulus@leaf01:~$ net add dhcp relay interface swp51
+cumulus@leaf01:~$ net add dhcp relay interface swp52
+cumulus@leaf01:~$ net add dhcp relay interface vlan10
+cumulus@leaf01:~$ net add dhcp relay interface peerlink.4094
+cumulus@leaf01:~$ net add dhcp relay server 172.16.1.102
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+IPv6
+
+You cannot configure IPv6 relays with NCLU commands. Use the Linux Commands.
+
 {{< /tab >}}
 {{< /tabs >}}
+-->
 
 {{%notice note%}}
 - You configure a DHCP relay on a per-VLAN basis, specifying the SVI, not the parent bridge. In the example above, you specify *vlan10* as the SVI for VLAN 10 but you do not specify the bridge named *bridge*.
@@ -193,35 +186,6 @@ RFC 3527 supports IPv4 DHCP relays only.
 To enable RFC 3527 support and control the giaddr:
 
 {{< tabs "TabID203 ">}}
-{{< tab "NCLU Commands ">}}
-
-Run the `net add dhcp relay giaddr-interface` command with the interface or the interface and IP address you want to use.
-
-This example uses the first IP address on the loopback interface as the giaddr:
-
-```
-cumulus@leaf01:~$ net add dhcp relay giaddr-interface lo
-```
-
-The first IP address on the loopback interface is typically the 127.0.0.1 address. This example uses IP address 10.10.10.1 on the loopback interface as the giaddr:
-
-```
-cumulus@leaf01:~$ net add dhcp relay giaddr-interface lo 10.10.10.1
-```
-
-This example uses the first IP address on swp2 as the giaddr:
-
-```
-cumulus@leaf01:~$ net add dhcp relay giaddr-interface swp2
-```
-
-This example uses IP address 10.0.0.4 on swp2 as the giaddr:
-
-```
-cumulus@leaf01:~$ net add dhcp relay giaddr-interface swp2 10.0.0.4
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 Run the `nv set service dhcp-relay default giaddress-interface` command with the interface/IP address you want to use. The following example uses the first IP address on the loopback interface as the gateway IP address:
@@ -298,6 +262,34 @@ cumulus@leaf01:~$ nv set service dhcp-relay default giaddr-interface swp2 10.0.0
 {{< /tab >}}
 {{< /tabs >}}
 
+<!--
+Run the `net add dhcp relay giaddr-interface` command with the interface or the interface and IP address you want to use.
+
+This example uses the first IP address on the loopback interface as the giaddr:
+
+```
+cumulus@leaf01:~$ net add dhcp relay giaddr-interface lo
+```
+
+The first IP address on the loopback interface is typically the 127.0.0.1 address. This example uses IP address 10.10.10.1 on the loopback interface as the giaddr:
+
+```
+cumulus@leaf01:~$ net add dhcp relay giaddr-interface lo 10.10.10.1
+```
+
+This example uses the first IP address on swp2 as the giaddr:
+
+```
+cumulus@leaf01:~$ net add dhcp relay giaddr-interface swp2
+```
+
+This example uses IP address 10.0.0.4 on swp2 as the giaddr:
+
+```
+cumulus@leaf01:~$ net add dhcp relay giaddr-interface swp2 10.0.0.4
+```
+-->
+
 ### Gateway IP Address as Source IP for Relayed DHCP Packets (Advanced)
 
 You can configure the `dhcrelay` service to forward IPv4 (only) DHCP packets to a DHCP server and ensure that the source IP address of the relayed packet is the same as the gateway IP address.
@@ -309,15 +301,6 @@ This option impacts all relayed IPv4 packets globally.
 To use the gateway IP address as the source IP address:
 
 {{< tabs "TabID319 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf:~$ net add dhcp relay use-giaddr-as-src
-cumulus@leaf:~$ net pending
-cumulus@leaf:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -345,6 +328,14 @@ cumulus@leaf01:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
+
+<!--
+```
+cumulus@leaf:~$ net add dhcp relay use-giaddr-as-src
+cumulus@leaf:~$ net pending
+cumulus@leaf:~$ net commit
+```
+-->
 
 ### Configure Multiple DHCP Relays
 

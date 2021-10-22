@@ -23,28 +23,6 @@ The example commands below create a VLAN-aware bridge for STP that contains two 
 {{< img src = "/images/cumulus-linux/ethernet-bridging-basic-trunking1.png" >}}
 
 {{< tabs "TabID25 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bridge bridge ports swp1-2
-cumulus@switch:~$ net add bridge bridge vids 10,20
-cumulus@switch:~$ net add bridge bridge pvid 1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The above commands create the following code snippet in the `/etc/network/interfaces` file:
-
-```
-auto bridge
-iface bridge
-    bridge-ports swp1 swp2
-    bridge-pvid 1
-    bridge-vids 10 20
-    bridge-vlan-aware yes
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 With NVUE, there is a default bridge called `br_default`, which has no ports assigned. The example below configures this default bridge.
@@ -78,6 +56,29 @@ Run the `ifreload -a` command to load the new configuration:
 ```
 cumulus@switch:~$ ifreload -a
 ```
+
+{ /* }}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bridge bridge ports swp1-2
+cumulus@switch:~$ net add bridge bridge vids 10,20
+cumulus@switch:~$ net add bridge bridge pvid 1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The above commands create the following code snippet in the `/etc/network/interfaces` file:
+
+```
+auto bridge
+iface bridge
+    bridge-ports swp1 swp2
+    bridge-pvid 1
+    bridge-vids 10 20
+    bridge-vlan-aware yes
+```
+{{ */ }}
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -1203,7 +1203,7 @@ To allow SSH traffic to the management VRF, use `-i mgmt`, not `-i eth0`. For ex
 -A INPUT -i mgmt -s 10.0.14.2/32 -p tcp --dport ssh -j ACCEPT
 ```
 <!-- vale off -->
-### INPUT Chain Rules and --in-interface swp+
+### INPUT Chain Rules and swp+
 <!-- vale on -->
 In INPUT chain rules, the `--in-interface swp+` match works only if the packet is destined towards a layer 3 swp interface; the match does not work if the packet terminates at an SVI interface (for example, vlan10). To allow traffic towards specific SVIs, use rules without any interface match or rules with individual `--in-interface <SVI>` matches.
 

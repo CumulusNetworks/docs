@@ -259,8 +259,6 @@ Configuration:
 --------------------------------------------------------------------
 ```
 
-You can also run the NVUE `nv show system lldp` command to show the running LLDP configuration.
-
 ## Considerations
 
 Cumulus Linux does not support LLDP Annex E (and Annex D).

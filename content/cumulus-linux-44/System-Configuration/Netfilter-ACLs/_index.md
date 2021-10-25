@@ -1162,6 +1162,10 @@ Cumulus Linux implements INPUT chain rules using a trap mechanism and assigns tr
 
 To work around this issue, create rules on the INPUT and FORWARD chains (INPUT,FORWARD).
 
+{{%notice note%}}
+FORWARD chain rules can drop packets being forwarded through the switch. Exercise caution when defining these rules and be as specific as possible.
+{{%/notice%}}
+
 ### Hardware Policing of Packets in the Input Chain
 
 Certain platforms have limitations on hardware policing packets in the INPUT chain. To work around these limitations, Cumulus Linux supports kernel based policing of these packets in software using limit or hashlimit matches. Cumulus Linux does not hardware offload rules with these matches, but ignores them during hardware install.
@@ -1190,6 +1194,18 @@ To work around this issue, duplicate the ACL rule on each physical port of the b
 -A FORWARD --out-interface <bond-member-port-1> -j DROP
 -A FORWARD --out-interface <bond-member-port-2> -j DROP
 ```
+
+### SSH Taffic to the Management VRF
+
+To allow SSH traffic to the management VRF, use `-i mgmt`, not `-i eth0`. For example:
+
+```
+-A INPUT -i mgmt -s 10.0.14.2/32 -p tcp --dport ssh -j ACCEPT
+```
+<!-- vale off -->
+### INPUT Chain Rules and --in-interface swp+
+<!-- vale on -->
+In INPUT chain rules, the `--in-interface swp+` match works only if the packet is destined towards a layer 3 swp interface; the match does not work if the packet terminates at an SVI interface (for example, vlan10). To allow traffic towards specific SVIs, use rules without any interface match or rules with individual `--in-interface <SVI>` matches.
 
 ## Related Information
 

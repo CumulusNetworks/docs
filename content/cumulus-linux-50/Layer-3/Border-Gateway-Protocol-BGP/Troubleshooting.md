@@ -10,12 +10,14 @@ Use the following commands to troubleshoot BGP.
 
 The following example commands run on a BGP unnumbered configuration and show IPv6 next hops or the interface name for any IPv4 prefix.
 
-To show a summary of the BGP configuration on the switch, run the NCLU `net show bgp summary` command or the vtysh `show ip bgp summary` command. For example:
+To show a summary of the BGP configuration on the switch, run the <!--NCLU `net show bgp summary` command or the -->vtysh `show ip bgp summary` command. For example:
 
 ```
-cumulus@switch:~$ net show bgp summary
-how bgp ipv4 unicast summary
-=============================
+cumulus@switch:~$ sudo vtysh
+...
+switch# show ip bgp summary
+
+ipv4 Unicast Summary
 BGP router identifier 10.10.10.1, local AS number 65101 vrf-id 0
 BGP table version 88
 RIB entries 25, using 4800 bytes of memory
@@ -30,21 +32,18 @@ spine04(swp54)        4      65199     31042     31098        0    0    0 01:46:
 leaf02(peerlink.4094) 4      65101     30919     30913        0    0    0 01:47:43           12
 
 Total number of neighbors 5
-
-
-show bgp ipv6 unicast summary
-=============================
-% No BGP neighbors found
 ```
 
 {{%notice tip%}}
 To determine if the sessions above are iBGP or eBGP sessions, look at the ASNs.
 {{%/notice%}}
 
-To view the routing table as defined by BGP, run the NCLU `net show bgp ipv4 unicast` command or the vtysh `show ip bgp` command. For example:
+To view the routing table as defined by BGP, run the <!--NCLU `net show bgp ipv4 unicast` command or the -->vtysh `show ip bgp ipv4 unicast` command. For example:
 
 ```
-cumulus@leaf01:~$ net show bgp ipv4 unicast
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# show ip bgp ipv4 unicast
 GP table version is 88, local router ID is 10.10.10.1, vrf id 0
 Default local pref 100, local AS 65101
 Status codes:  s suppressed, d damped, h history, * valid, > best, = multipath,
@@ -74,13 +73,15 @@ Origin codes:  i - IGP, e - EGP, ? - incomplete
 *>                  swp51                                  0 65199 65102 ?
 ...
 
-Displayed  13 routes and 42 total paths
+Displayed 13 routes and 42 total paths
 ```
 
-To show a more detailed breakdown of a specific neighbor, run the NCLU `net show bgp neighbor <neighbor>` command or the vtysh `show ip bgp neighbor <neighbor>` command:
+To show a more detailed breakdown of a specific neighbor, run the <!--NCLU `net show bgp neighbor <neighbor>` command or the -->vtysh `show ip bgp neighbor <neighbor>` command:
 
 ```
-cumulus@switch:~$ net show bgp neighbor swp51
+cumulus@switch:~$ sudo vtysh
+...
+switch# show ip bgp neighbor swp51
 GP neighbor on swp51: fe80::7c41:fff:fe93:b711, remote AS 65199, local AS 65101, external link
 Hostname: spine01
  Member of peer-group underlay for session parameters
@@ -138,10 +139,12 @@ BGP Connect Retry Timer in Seconds: 10
 Read thread: on  Write thread: on  FD used: 30
 ```
 
-To see details of a specific route, such as its source and destination, run the NCLU `net show bgp <route>` command or the vtysh `show ip bgp <route>` command.
+To see details of a specific route, such as its source and destination, run the <!--NCLU `net show bgp <route>` command or the -->vtysh `show ip bgp <route>` command.
 
 ```
-cumulus@switch:~$ net show bgp 10.10.10.3/32
+cumulus@switch:~$ sudo vtysh
+...
+switch# show ip bgp 10.10.10.3/32
 GP routing table entry for 10.10.10.3/32
 Paths: (5 available, best #5, table default)
   Advertised to non peer-group peers:
@@ -174,40 +177,18 @@ Paths: (5 available, best #5, table default)
 
 ## Troubleshoot BGP Unnumbered
 
-To verify that FRR learns the neighboring link-local IPv6 address through the IPv6 neighbor discovery router advertisements on a given interface, run the NCLU `net show interface <interface>` command or the vtysh `show interface <interface>` command.
+To verify that FRR learns the neighboring link-local IPv6 address through the IPv6 neighbor discovery router advertisements on a given interface, run the <!--NCLU `net show interface <interface>` command or the -->vtysh `show interface <interface>` command.
 
 If you do not enable `ipv6 nd suppress-ra` on both ends of the interface, `Neighbor address(s):` shows the link-local address of the other end (the address that BGP uses when that interface uses BGP).
 
 {{%notice note%}}
-
-IPv6 route advertisements (RAs) are automatically enabled on an interface with IPv6 addresses. The `no ipv6 nd suppress-ra` command is not needed for BGP unnumbered.
-
+Cumulus Linux automatically enables IPv6 route advertisements (RAs) on an interface with IPv6 addresses. You do not need to run the `no ipv6 nd suppress-ra` command for BGP unnumbered.
 {{%/notice%}}
 
 ```
-cumulus@switch:~$ net show interface swp51
-    Name   MAC                Speed  MTU   Mode
---  -----  -----------------  -----  ----  -------
-UP  swp51  10:d8:68:d4:a6:81  1G     9216  Default
-
-Alias
------
-leaf to spine
-
-cl-netstat counters
--------------------
-RX_OK  RX_ERR  RX_DRP  RX_OVR  TX_OK  TX_ERR  TX_DRP  TX_OVR
------  ------  ------  ------  -----  ------  ------  ------
- 1874       0       0       0   1252       0       0       0
-
-LLDP Details
-------------
-LocalPort  RemotePort(RemoteHost)
----------  ----------------------
-swp51      swp1(spine01)
-
-Routing
--------
+cumulus@switch:~$ sudo vtysh
+...
+switch# show interface swp51
   Interface swp51 is up, line protocol is up
   Link ups:       0    last: (never)
   Link downs:     0    last: (never)
@@ -240,7 +221,9 @@ To show IPv4 prefixes learned with IPv6 next hops, run the following commands.
 The following examples show an IPv4 prefix learned from a BGP peer over an IPv6 session using IPv6 global addresses, but where the next hop installed by BGP is a link-local IPv6 address. This occurs when the session is directly between peers, and the BGP update for the prefix includes both link-local and global IPv6 addresses as next hops. If both global and link-local next hops exist, BGP prefers the link-local address for route installation.
 
 ```
-cumulus@spine01:mgmt:~$ net show bgp ipv4 unicast summary
+cumulus@spine01:mgmt:~$ sudo vtysh
+...
+spine01# show ip bgp ipv4 unicast summary
 BGP router identifier 10.10.10.101, local AS number 65199 vrf-id 0
 BGP table version 3
 RIB entries 3, using 576 bytes of memory
@@ -253,7 +236,9 @@ Total number of neighbors 1
 ```
 
 ```
-cumulus@spine01:mgmt:~$ net show bgp ipv4 unicast
+cumulus@spine01:mgmt:~$ sudo vtysh
+...
+spine01# show ip bgp ipv4 unicast
 BGP table version is 3, local router ID is 10.10.10.101, vrf id 0
 Default local pref 100, local AS 65199
 Status codes:  s suppressed, d damped, h history, * valid, > best, = multipath,
@@ -268,7 +253,9 @@ Displayed  1 routes and 1 total paths
 ```
 
 ```
-cumulus@spine01:~$ net show bgp ipv4 unicast 10.10.10.101/32
+cumulus@spine01:~$ sudo vtysh
+...
+spine01# show ip bgp ipv4 unicast 10.10.10.101/32
 BGP routing table entry for 10.10.10.101/32
 Paths: (1 available, best #1, table default)
   Advertised to non peer-group peers:
@@ -284,7 +271,9 @@ Paths: (1 available, best #1, table default)
 The example output below shows the results of installing the route in the FRR RIB as well as the kernel FIB. The next hop installed in the FRR RIB is the link-local IPv6 address, which Cumulus Linux converts into an IPv4 link-local address, as required for installation into the kernel FIB.
 
 ```
-cumulus@spine01:~$ net show route 10.10.10.101/32
+cumulus@spine01:~$ sudo vtysh
+...
+spine01# show ip route 10.10.10.101/32
 RIB entry for 10.10.10.101/32
 ===========================
 Routing entry for 10.10.10.101/32
@@ -300,7 +289,9 @@ FIB entry for 10.10.10.101/32
 If BGP learns an IPv4 prefix with only an IPv6 global next hop address (when it learns the route through a route reflector), the command output shows the IPv6 global address as the next hop value. The command also shows that it learns recursively through the link-local address of the route reflector. When you use a global IPv6 address as a next hop for route installation in the FRR RIB, the switch still converts it into an IPv4 link-local address for installation into the kernel.
 
 ```
-cumulus@leaf01:~$ net show bgp ipv4 unicast summary
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# show ip bgp ipv4 unicast summary
 BGP router identifier 10.10.10.1, local AS number 65101 vrf-id 0
 BGP table version 1
 RIB entries 1, using 152 bytes of memory
@@ -313,7 +304,9 @@ Total number of neighbors 1
 ```
 
 ```
-cumulus@leaf01:~$ net show bgp ipv4 unicast
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# show ip bgp ipv4 unicast summary
   BGP table version is 1, local router ID is 10.10.10.1
   Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
                 i internal, r RIB-failure, S Stale, R Removed
@@ -326,7 +319,9 @@ Displayed 1 routes and 1 total paths
 ```
 
 ```
-cumulus@leaf01:~$ net show bgp ipv4 unicast 10.10.10.101/32
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# show ip bgp ipv4 unicast 10.10.10.101/32
 BGP routing table entry for 10.10.10.101/32
 Paths: (1 available, best #1, table default)
   Not advertised to any peer
@@ -339,7 +334,9 @@ Paths: (1 available, best #1, table default)
 ```
 
 ```
-cumulus@leaf01:~$ net show route 10.10.10.1/32
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# show ip route 10.10.10.1/32
 RIB entry for 10.10.10.1/32
 ===========================
 Routing entry for 10.10.10.1/32
@@ -375,7 +372,9 @@ route-map GLOBAL permit 20
 The resulting FRR RIB output is as follows:
 
 ```
-cumulus@leaf01:~$ net show route
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# show ip route
 Codes: K - kernel route, C - connected, S - static, R - RIP,
     O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
     T - Table, v - VNC, V - VNC-Direct, A - Babel, D - SHARP,
@@ -408,7 +407,9 @@ route-map GLOBAL permit 10
 ```
 
 ```
-cumulus@leaf01:~$ net show route
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# show ip route
 Codes: K - kernel route, C - connected, S - static, R - RIP,
        O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
        T - Table, v - VNC, V - VNC-Direct, A - Babel, D - SHARP,
@@ -427,11 +428,13 @@ C>* 172.16.10.0/24 is directly connected, swp3, 3d00h26m
 
 ## Check BGP Timer Settings
 
-To check BGP timers, such as the BGP keepalive interval, hold time, and advertisement interval, run the NCLU `net show bgp neighbor <peer>` command or the vtysh `show ip bgp neighbor <peer>` command. For example:
+To check BGP timers, such as the BGP keepalive interval, hold time, and advertisement interval, run the <!--NCLU `net show bgp neighbor <peer>` command or the -->vtysh `show ip bgp neighbor <peer>` command. For example:
 
 ```
-cumulus@leaf01:~$ net show bgp neighbor swp51
-GP neighbor on swp51: fe80::f208:5fff:fe12:cc8c, remote AS 65199, local AS 65101, external link
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# show ip bgp neighbor swp51
+BGP neighbor on swp51: fe80::f208:5fff:fe12:cc8c, remote AS 65199, local AS 65101, external link
 Hostname: spine01
  Member of peer-group underlay for session parameters
   BGP version 4, remote router ID 10.10.10.101, local router ID 10.10.10.1

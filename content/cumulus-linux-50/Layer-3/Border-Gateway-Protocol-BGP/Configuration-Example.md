@@ -8,7 +8,7 @@ This section shows a BGP configuration example based on the reference topology. 
 
 {{< img src = "/images/cumulus-linux/mlag-config-peering.png" >}}
 
-## NCLU Commands
+<!--## NCLU Commands
 
 {{< tabs "TabID13 ">}}
 {{< tab "NCLU Commands">}}
@@ -160,470 +160,10 @@ cumulus@spine02:~$ net commit
 {{< /tabs >}}
 
 {{< /tab >}}
-{{< tab "/etc/network/interfaces ">}}
-
-{{< tabs "TabID901 ">}}
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:~$ sudo cat /etc/network/interfaces
-auto lo
-iface lo inet loopback
-    address 10.10.10.1/32
-auto swp1
-iface swp1
-auto swp2
-iface swp2
-auto swp3
-iface swp3
-auto swp49
-iface swp49
-auto swp50
-iface swp50
-auto swp51
-iface swp51
-auto swp52
-iface swp52
-auto bond1
-iface bond1
-    bond-slaves swp1
-    clag-id 1
-auto bond2
-iface bond2
-    bond-slaves swp2
-    clag-id 2
-auto bond3
-iface bond3
-    bond-slaves swp3
-    clag-id 3
-auto bridge
-iface bridge
-    bridge-ports bond1 bond2 bond3 peerlink
-    bridge-pvid 1
-    bridge-vids 10 20 30
-    bridge-vlan-aware yes
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-    address ::1/128
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-auto peerlink
-iface peerlink
-    bond-slaves swp49 swp50
-auto peerlink.4094
-iface peerlink.4094
-    clagd-backup-ip 10.10.10.2
-    clagd-peer-ip linklocal
-    clagd-priority 1000
-    clagd-sys-mac 44:38:39:BE:EF:AA
-auto vlan10
-iface vlan10
-    address 10.1.10.2/24
-    vlan-id 10
-    vlan-raw-device bridge
-auto vlan20
-iface vlan20
-    address 10.1.20.2/24
-    vlan-id 20
-    vlan-raw-device bridge
-auto vlan30
-iface vlan30
-    address 10.1.30.2/24
-    vlan-id 30
-    vlan-raw-device bridge
-```
-
-{{< /tab >}}
-{{< tab "leaf02 ">}}
-
-```
-cumulus@leaf02:~$ sudo cat /etc/network/interfaces
-auto lo
-iface lo inet loopback
-    address 10.10.10.2/32
-auto swp1
-iface swp1
-auto swp2
-iface swp2
-auto swp3
-iface swp3
-auto swp49
-iface swp49
-auto swp50
-iface swp50
-auto swp51
-iface swp52
-auto swp52
-iface swp52
-auto bond1
-iface bond1
-    clag-id 1
-    bond-slaves swp1
-auto bond2
-iface bond2
-    clag-id 2
-    bond-slaves swp2
-auto bond3
-iface bond3
-    clag-id 3
-    bond-slaves swp3
-auto bridge
-iface bridge
-    bridge-ports peerlink bond1 bond2 bond3
-    bridge-vlan-aware yes
-    bridge-vids 10 20 30
-    bridge-pvid 1
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-auto peerlink
-iface peerlink
-    bond-slaves swp49 swp50
-auto peerlink.4094
-iface peerlink.4094
-    clagd-peer-ip linklocal
-    clagd-backup-ip 10.10.10.1
-    clagd-sys-mac 44:38:39:BE:EF:AA
-auto vlan10
-iface vlan10
-    address 10.1.10.3/24
-    vlan-raw-device bridge
-    vlan-id 10
-auto vlan20
-iface vlan20
-    address 10.1.20.3/24
-    vlan-raw-device bridge
-    vlan-id 20
-auto vlan30
-iface vlan30
-    address 10.1.30.3/24
-    vlan-raw-device bridge
-    vlan-id 30
-```
-
-{{< /tab >}}
-{{< tab "leaf03 ">}}
-
-```
-cumulus@leaf03:~$ sudo cat /etc/network/interfaces
-auto lo
-iface lo inet loopback
-    address 10.10.10.3/32
-auto swp1
-iface swp1
-auto swp2
-iface swp2
-auto swp3
-iface swp3
-auto swp49
-iface swp49
-auto swp50
-iface swp50
-auto swp51
-iface swp51
-auto swp52
-iface swp52
-auto bond1
-iface bond1
-    bond-slaves swp1
-    clag-id 1
-auto bond2
-iface bond2
-    bond-slaves swp2
-    clag-id 2
-auto bond3
-iface bond3
-    bond-slaves swp3
-    clag-id 3
-auto bridge
-iface bridge
-    bridge-ports peerlink bond1 bond2 bond3
-    bridge-vids 40 50 60
-    bridge-vlan-aware yes
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-auto peerlink
-iface peerlink
-    bond-slaves swp49 swp50
-auto peerlink.4094
-iface peerlink.4094
-    clagd-backup-ip 10.10.10.4
-    clagd-peer-ip linklocal
-    clagd-priority 1000
-    clagd-sys-mac 44:38:39:BE:EF:BB
-auto vlan40
-iface vlan40
-    address 10.1.40.2/24
-    vlan-raw-device bridge
-    vlan-id 40
-auto vlan50
-iface vlan50
-    address 10.1.50.2/24
-    vlan-raw-device bridge
-    vlan-id 50
-auto vlan60
-iface vlan60
-    address 10.1.60.2/24
-    vlan-raw-device bridge
-    vlan-id 60
-```
-
-{{< /tab >}}
-{{< tab "leaf04 ">}}
-
-```
-cumulus@leaf04:~$ sudo cat /etc/network/interfaces
-auto lo
-iface lo inet loopback
-    address 10.10.10.4/32
-auto swp1
-iface swp1
-auto swp2
-iface swp2
-auto swp3
-iface swp3
-auto swp49
-iface swp49
-auto swp50
-iface swp50
-auto swp51
-iface swp51
-auto swp52
-iface swp52
-auto bond1
-iface bond1
-    bond-slaves swp
-    clag-id 1
-auto bond2
-iface bond2
-    bond-slaves swp2
-    clag-id 2
-auto bond3
-iface bond3
-    bond-slaves swp3
-    clag-id 3
-auto bridge
-iface bridge
-    bridge-ports peerlink bond1 bond2 bond3
-    bridge-vids 40 50 60
-    bridge-vlan-aware yes
-auto mgmt
-iface mgmt
-    address 127.0.0.1/8
-    vrf-table auto
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-auto peerlink
-iface peerlink
-    bond-slaves swp49 swp50
-auto peerlink.4094
-iface peerlink.4094
-    clagd-peer-ip linklocal
-    clagd-backup-ip 10.10.10.3
-    clagd-sys-mac 44:38:39:BE:EF:BB
-auto vlan40
-iface vlan40
-    address 10.1.40.3/24
-    vlan-raw-device bridge
-    vlan-id 40
-auto vlan50
-iface vlan50
-    address 10.1.50.3/24
-    vlan-raw-device bridge
-    vlan-id 50
-auto vlan60
-iface vlan60
-    address 10.1.60.3/24
-    vlan-raw-device bridge
-    vlan-id 60
-```
-
-{{< /tab >}}
-{{< tab "spine01 ">}}
-
-```
-cumulus@spine01:~$ sudo cat /etc/network/interfaces
-auto lo
-iface lo inet loopback
-    address 10.10.10.101/32
-auto mgmt
-iface mgmt
-    address 127.0.0.1/8
-    vrf-table auto
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-auto swp1
-iface swp1
-auto swp2
-iface swp2
-auto swp3
-iface swp3
-auto swp4
-iface swp4
-```
-
-{{< /tab >}}
-{{< tab "spine02 ">}}
-
-```
-cumulus@spine02:~$ sudo cat /etc/network/interfaces
-auto lo
-iface lo inet loopback
-    address 10.10.10.102/32
-auto mgmt
-iface mgmt
-    address 127.0.0.1/8
-    vrf-table auto
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-auto swp1
-iface swp1
-auto swp2
-iface swp2
-auto swp3
-iface swp3
-auto swp4
-iface swp4
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
-{{< tab "/etc/frr/frr.conf ">}}
-
-{{< tabs "TabID944 ">}}
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
-...
-router bgp 65101
- bgp router-id 10.10.10.1
- neighbor swp51 interface
- neighbor swp51 remote-as external
- neighbor swp52 interface
- neighbor swp52 remote-as external
- address-family ipv4 unicast
-  network 10.10.10.1/32
-  network 10.1.10.0/24
-  redistribute connected
- exit-address-family
-```
-
-{{< /tab >}}
-{{< tab "leaf02 ">}}
-
-```
-cumulus@leaf02:~$ sudo cat /etc/frr/frr.conf
-...
-router bgp 65102
- bgp router-id 10.10.10.2
- neighbor swp51 interface
- neighbor swp51 remote-as external
- neighbor swp52 interface
- neighbor swp52 remote-as external
- address-family ipv4 unicast
-  network 10.10.10.2/32
-  redistribute connected
- exit-address-family
-```
-
-{{< /tab >}}
-{{< tab "leaf03 ">}}
-
-```
-cumulus@leaf03:~$ sudo cat /etc/frr/frr.conf
-...
-router bgp 65103
- bgp router-id 10.10.10.3
- neighbor swp51 interface
- neighbor swp51 remote-as external
- neighbor swp52 interface
- neighbor swp52 remote-as external
- address-family ipv4 unicast
-  network 10.10.10.3/32
-  redistribute connected
- exit-address-family
-```
-
-{{< /tab >}}
-{{< tab "leaf04 ">}}
-
-```
-cumulus@leaf04:~$ sudo cat /etc/frr/frr.conf
-...
-router bgp 65104
- bgp router-id 10.10.10.4
- neighbor swp51 interface
- neighbor swp51 remote-as external
- neighbor swp52 interface
- neighbor swp52 remote-as external
- address-family ipv4 unicast
-  network 10.10.10.4/32
-  redistribute connected
- exit-address-family
-```
-
-{{< /tab >}}
-{{< tab "spine01 ">}}
-
-```
-cumulus@spine01:~$ sudo cat /etc/frr/frr.conf
-...
-router bgp 65199
- bgp router-id 10.10.10.101
- neighbor swp1 interface
- neighbor swp1 remote-as external
- neighbor swp2 interface
- neighbor swp2 remote-as external
- neighbor swp3 interface
- neighbor swp3 remote-as external
- neighbor swp4 interface
- neighbor swp4 remote-as external
-```
-
-{{< /tab >}}
-{{< tab "spine02 ">}}
-
-```
-cumulus@spine02:~$ sudo cat /etc/frr/frr.conf
-...
-router bgp 65199
- bgp router-id 10.10.10.102
- neighbor swp1 interface
- neighbor swp1 remote-as external
- neighbor swp2 interface
- neighbor swp2 remote-as external
- neighbor swp3 interface
- neighbor swp3 remote-as external
- neighbor swp4 interface
- neighbor swp4 remote-as external
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
 {{< /tabs >}}
 
 ## NVUE Commands
-
+-->
 {{< tabs "TabID695 ">}}
 {{< tab "NVUE Commands">}}
 
@@ -1385,6 +925,466 @@ cumulus@spine02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 network:
                   10.10.10.102/32: {}
                 enable: on
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "/etc/network/interfaces ">}}
+
+{{< tabs "TabID901 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ sudo cat /etc/network/interfaces
+auto lo
+iface lo inet loopback
+    address 10.10.10.1/32
+auto swp1
+iface swp1
+auto swp2
+iface swp2
+auto swp3
+iface swp3
+auto swp49
+iface swp49
+auto swp50
+iface swp50
+auto swp51
+iface swp51
+auto swp52
+iface swp52
+auto bond1
+iface bond1
+    bond-slaves swp1
+    clag-id 1
+auto bond2
+iface bond2
+    bond-slaves swp2
+    clag-id 2
+auto bond3
+iface bond3
+    bond-slaves swp3
+    clag-id 3
+auto bridge
+iface bridge
+    bridge-ports bond1 bond2 bond3 peerlink
+    bridge-pvid 1
+    bridge-vids 10 20 30
+    bridge-vlan-aware yes
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.2
+    clagd-peer-ip linklocal
+    clagd-priority 1000
+    clagd-sys-mac 44:38:39:BE:EF:AA
+auto vlan10
+iface vlan10
+    address 10.1.10.2/24
+    vlan-id 10
+    vlan-raw-device bridge
+auto vlan20
+iface vlan20
+    address 10.1.20.2/24
+    vlan-id 20
+    vlan-raw-device bridge
+auto vlan30
+iface vlan30
+    address 10.1.30.2/24
+    vlan-id 30
+    vlan-raw-device bridge
+```
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:~$ sudo cat /etc/network/interfaces
+auto lo
+iface lo inet loopback
+    address 10.10.10.2/32
+auto swp1
+iface swp1
+auto swp2
+iface swp2
+auto swp3
+iface swp3
+auto swp49
+iface swp49
+auto swp50
+iface swp50
+auto swp51
+iface swp52
+auto swp52
+iface swp52
+auto bond1
+iface bond1
+    clag-id 1
+    bond-slaves swp1
+auto bond2
+iface bond2
+    clag-id 2
+    bond-slaves swp2
+auto bond3
+iface bond3
+    clag-id 3
+    bond-slaves swp3
+auto bridge
+iface bridge
+    bridge-ports peerlink bond1 bond2 bond3
+    bridge-vlan-aware yes
+    bridge-vids 10 20 30
+    bridge-pvid 1
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+auto peerlink.4094
+iface peerlink.4094
+    clagd-peer-ip linklocal
+    clagd-backup-ip 10.10.10.1
+    clagd-sys-mac 44:38:39:BE:EF:AA
+auto vlan10
+iface vlan10
+    address 10.1.10.3/24
+    vlan-raw-device bridge
+    vlan-id 10
+auto vlan20
+iface vlan20
+    address 10.1.20.3/24
+    vlan-raw-device bridge
+    vlan-id 20
+auto vlan30
+iface vlan30
+    address 10.1.30.3/24
+    vlan-raw-device bridge
+    vlan-id 30
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ sudo cat /etc/network/interfaces
+auto lo
+iface lo inet loopback
+    address 10.10.10.3/32
+auto swp1
+iface swp1
+auto swp2
+iface swp2
+auto swp3
+iface swp3
+auto swp49
+iface swp49
+auto swp50
+iface swp50
+auto swp51
+iface swp51
+auto swp52
+iface swp52
+auto bond1
+iface bond1
+    bond-slaves swp1
+    clag-id 1
+auto bond2
+iface bond2
+    bond-slaves swp2
+    clag-id 2
+auto bond3
+iface bond3
+    bond-slaves swp3
+    clag-id 3
+auto bridge
+iface bridge
+    bridge-ports peerlink bond1 bond2 bond3
+    bridge-vids 40 50 60
+    bridge-vlan-aware yes
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.4
+    clagd-peer-ip linklocal
+    clagd-priority 1000
+    clagd-sys-mac 44:38:39:BE:EF:BB
+auto vlan40
+iface vlan40
+    address 10.1.40.2/24
+    vlan-raw-device bridge
+    vlan-id 40
+auto vlan50
+iface vlan50
+    address 10.1.50.2/24
+    vlan-raw-device bridge
+    vlan-id 50
+auto vlan60
+iface vlan60
+    address 10.1.60.2/24
+    vlan-raw-device bridge
+    vlan-id 60
+```
+
+{{< /tab >}}
+{{< tab "leaf04 ">}}
+
+```
+cumulus@leaf04:~$ sudo cat /etc/network/interfaces
+auto lo
+iface lo inet loopback
+    address 10.10.10.4/32
+auto swp1
+iface swp1
+auto swp2
+iface swp2
+auto swp3
+iface swp3
+auto swp49
+iface swp49
+auto swp50
+iface swp50
+auto swp51
+iface swp51
+auto swp52
+iface swp52
+auto bond1
+iface bond1
+    bond-slaves swp
+    clag-id 1
+auto bond2
+iface bond2
+    bond-slaves swp2
+    clag-id 2
+auto bond3
+iface bond3
+    bond-slaves swp3
+    clag-id 3
+auto bridge
+iface bridge
+    bridge-ports peerlink bond1 bond2 bond3
+    bridge-vids 40 50 60
+    bridge-vlan-aware yes
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    vrf-table auto
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+auto peerlink.4094
+iface peerlink.4094
+    clagd-peer-ip linklocal
+    clagd-backup-ip 10.10.10.3
+    clagd-sys-mac 44:38:39:BE:EF:BB
+auto vlan40
+iface vlan40
+    address 10.1.40.3/24
+    vlan-raw-device bridge
+    vlan-id 40
+auto vlan50
+iface vlan50
+    address 10.1.50.3/24
+    vlan-raw-device bridge
+    vlan-id 50
+auto vlan60
+iface vlan60
+    address 10.1.60.3/24
+    vlan-raw-device bridge
+    vlan-id 60
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ sudo cat /etc/network/interfaces
+auto lo
+iface lo inet loopback
+    address 10.10.10.101/32
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    vrf-table auto
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+auto swp1
+iface swp1
+auto swp2
+iface swp2
+auto swp3
+iface swp3
+auto swp4
+iface swp4
+```
+
+{{< /tab >}}
+{{< tab "spine02 ">}}
+
+```
+cumulus@spine02:~$ sudo cat /etc/network/interfaces
+auto lo
+iface lo inet loopback
+    address 10.10.10.102/32
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    vrf-table auto
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+auto swp1
+iface swp1
+auto swp2
+iface swp2
+auto swp3
+iface swp3
+auto swp4
+iface swp4
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "/etc/frr/frr.conf ">}}
+
+{{< tabs "TabID944 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+...
+router bgp 65101
+ bgp router-id 10.10.10.1
+ neighbor swp51 interface
+ neighbor swp51 remote-as external
+ neighbor swp52 interface
+ neighbor swp52 remote-as external
+ address-family ipv4 unicast
+  network 10.10.10.1/32
+  network 10.1.10.0/24
+  redistribute connected
+ exit-address-family
+```
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:~$ sudo cat /etc/frr/frr.conf
+...
+router bgp 65102
+ bgp router-id 10.10.10.2
+ neighbor swp51 interface
+ neighbor swp51 remote-as external
+ neighbor swp52 interface
+ neighbor swp52 remote-as external
+ address-family ipv4 unicast
+  network 10.10.10.2/32
+  redistribute connected
+ exit-address-family
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ sudo cat /etc/frr/frr.conf
+...
+router bgp 65103
+ bgp router-id 10.10.10.3
+ neighbor swp51 interface
+ neighbor swp51 remote-as external
+ neighbor swp52 interface
+ neighbor swp52 remote-as external
+ address-family ipv4 unicast
+  network 10.10.10.3/32
+  redistribute connected
+ exit-address-family
+```
+
+{{< /tab >}}
+{{< tab "leaf04 ">}}
+
+```
+cumulus@leaf04:~$ sudo cat /etc/frr/frr.conf
+...
+router bgp 65104
+ bgp router-id 10.10.10.4
+ neighbor swp51 interface
+ neighbor swp51 remote-as external
+ neighbor swp52 interface
+ neighbor swp52 remote-as external
+ address-family ipv4 unicast
+  network 10.10.10.4/32
+  redistribute connected
+ exit-address-family
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ sudo cat /etc/frr/frr.conf
+...
+router bgp 65199
+ bgp router-id 10.10.10.101
+ neighbor swp1 interface
+ neighbor swp1 remote-as external
+ neighbor swp2 interface
+ neighbor swp2 remote-as external
+ neighbor swp3 interface
+ neighbor swp3 remote-as external
+ neighbor swp4 interface
+ neighbor swp4 remote-as external
+```
+
+{{< /tab >}}
+{{< tab "spine02 ">}}
+
+```
+cumulus@spine02:~$ sudo cat /etc/frr/frr.conf
+...
+router bgp 65199
+ bgp router-id 10.10.10.102
+ neighbor swp1 interface
+ neighbor swp1 remote-as external
+ neighbor swp2 interface
+ neighbor swp2 remote-as external
+ neighbor swp3 interface
+ neighbor swp3 remote-as external
+ neighbor swp4 interface
+ neighbor swp4 remote-as external
 ```
 
 {{< /tab >}}

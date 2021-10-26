@@ -259,8 +259,6 @@ Configuration:
 --------------------------------------------------------------------
 ```
 
-You can also run the NVUE `nv show system lldp` command to show the running LLDP configuration.
-
 ## Considerations
 
 Annex E (and hence Annex D) of IEEE802.1AB (lldp) is not supported.

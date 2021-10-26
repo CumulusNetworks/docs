@@ -1051,13 +1051,13 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
-## Match on ECN Bits in the TCP IP Header
+### Match on ECN Bits in the TCP IP Header
 
 [ECN](## "Explicit Congestion Notification") allows end-to-end notification of network congestion without dropping packets. You can add ECN rules to match on the [ECE](## "ECN-Echo"), [CWR](## "Congestion Window Received"), and [ECT](## "ECN Capable Transport") flags in the TCP IPv4 header.
 
 By default, ECN rules match a packet with the bit set. You can reverse the match by using an explanation point (!).
 
-### Match on the ECE Bit
+#### Match on the ECE Bit
 
 After an endpoint receives a packet with the [CE](## "Congestion Experienced") bit set by a router, it sets the ECE bit in the returning ACK packet to notify the other endpoint that it needs to slow down.
 
@@ -1105,7 +1105,7 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< /tabs >}}
 
-### Match on the CWR Bit
+#### Match on the CWR Bit
 
 The **CWR** bit notifies the other endpoint of the connection that it received and reacted to an ECE.
 
@@ -1153,7 +1153,7 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< /tabs >}}
 
-### Match on the ECT Bit
+#### Match on the ECT Bit
 
 The **ECT** codepoints negotiate if the connection is ECN capable by setting one of the two bits to 1. Routers also use the ECT bit to indicate that they are experiencing congestion by setting both the ECT codepoints to 1.
 
@@ -1406,7 +1406,7 @@ To allow SSH traffic to the management VRF, use `-i mgmt`, not `-i eth0`. For ex
 -A INPUT -i mgmt -s 10.0.14.2/32 -p tcp --dport ssh -j ACCEPT
 ```
 <!-- vale off -->
-### INPUT Chain Rules and --in-interface swp+
+### INPUT Chain Rules and swp+
 <!-- vale on -->
 In INPUT chain rules, the `--in-interface swp+` match works only if the packet is destined towards a layer 3 swp interface; the match does not work if the packet terminates at an SVI interface (for example, vlan10). To allow traffic towards specific SVIs, use rules without any interface match or rules with individual `--in-interface <SVI>` matches.
 

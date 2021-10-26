@@ -10,52 +10,6 @@ The bridge driver in Cumulus Linux kernel includes IGMP and MLD snooping. If you
 
 {{< img src = "/images/cumulus-linux/igmp_snoop_diagram.png" >}}
 
-<!--BROADCOM ONLY## Configure IGMP/MLD Snooping over VXLAN
-
-Cumulus Linux supports IGMP/MLD snooping over VXLAN bridges, where VXLAN ports are set as router ports, on Broadcom switches.
-
-To enable IGMP/MLD snooping over VXLAN:
-
-{{< tabs "TabID31 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bridge mybridge mcsnoop yes
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "Linux Commands ">}}
-
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
-...
-auto bridge
-iface bridge
-  bridge-ports swp1 swp2 swp3
-  bridge-vlan-aware yes
-  bridge-vids 100 200
-  bridge-pvid 1
-  bridge-mcsnoop yes
-...
-```
-
-Run the `ifreload -a` command to reload the configuration:
-
-```
-cumulus@switch:~$ sudo ifreload -a
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-Consider also configuring IGMP/MLD querier. See {{<link url="#configure-igmpmld-querier" text="Configure IGMP/MLD Querier">}}, below.
-
-To disable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoop no` command.-->
 
 ## Configure the IGMP and MLD Querier
 
@@ -65,12 +19,7 @@ To configure the querier on the switch for a {{<link url="VLAN-aware-Bridge-Mode
 
 The following configuration example enables the multicast querier and sets source IP address of the queries to 10.10.10.1 (the loopback address of the switch).
 
-{{< tabs "TabID68 ">}}
-{{< tab "NCLU Commands ">}}
-
-NCLU commands are not supported.
-
-{{< /tab >}}
+{{< tabs "TabID22 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -134,6 +83,9 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+NCLU commands are not supported.
+-->
 
 ## Optimized Multicast Flooding (OMF)
 
@@ -172,15 +124,7 @@ When IGMP reports go to a multicast group, OMF has no effect; normal IGMP snoopi
 
 When you enable OMF, you can configure a bridge port as an mrouter port to forward unregistered multicast traffic to that port.
 
-{{< tabs "TabID175 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:mgmt:~$ net add interface swp1 bridge portmcrouter enabled
-cumulus@switch:mgmt:~$ net commit
-```
-
-{{< /tab >}}
+{{< tabs "TabID127 ">}}
 {{< tab "NVUE Commands ">}}
 
 NVUE commands are not supported.
@@ -207,6 +151,12 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:mgmt:~$ net add interface swp1 bridge portmcrouter enabled
+cumulus@switch:mgmt:~$ net commit
+```
+-->
 
 {{%notice note%}}
 OMF increases memory usage, which can impact scaling on Spectrum 1 switches.
@@ -256,16 +206,7 @@ cumulus@switch:~$ sudo cl-acltool -i
 
 If you do not use mirroring functions or other types of multicast traffic, you can disable IGMP and MLD snooping.
 
-{{< tabs "TabID114 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bridge bridge mcsnoop no
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
+{{< tabs "TabID209 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -300,6 +241,14 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add bridge bridge mcsnoop no
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
+
 ## Troubleshooting
 
 To show the IGMP/MLD snooping bridge state, run the `brctl showstp <bridge>` command:
@@ -353,7 +302,7 @@ swp3 (3)
   flags
 ```
 
-Cumulus Linux tracks multicast group and port state in the multicast database (MDB). To show the groups and bridge port state, run the NCLU `net show bridge mdb` command or the Linux `sudo bridge mdb show` command. To show detailed router ports and group information, run the `sudo bridge -d -s mdb show` command:
+Cumulus Linux tracks multicast group and port state in the [MDB](## "multicast database"). To show the groups and bridge port state, run the NCLU `net show bridge mdb` command or the Linux `sudo bridge mdb show` command. To show detailed router ports and group information, run the `sudo bridge -d -s mdb show` command:
 
 ```
 cumulus@switch:~$ sudo bridge -d -s mdb show
@@ -363,9 +312,10 @@ cumulus@switch:~$ sudo bridge -d -s mdb show
   dev bridge port swp2 grp ff1a::9 permanent 0.00
   router ports on bridge: swp3
 ```
+
 ## Scale Considerations
 
-The number of unique multicast groups supported in the mdb is 4096 by default. To increase the number of maximum number of multicast groups in the mdb, edit the `/etc/network/interfaces` file to add a `bridge-hashmax` value to the bridge stanza:
+The number of unique multicast groups supported in the MDB is 4096 by default. To increase the maximum number of multicast groups in the MDB, edit the `/etc/network/interfaces` file to add a `bridge-hashmax` value to the bridge stanza:
 
 ```
 auto br_default

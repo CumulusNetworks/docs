@@ -27,80 +27,6 @@ The following example commands configure OSPF numbered on leaf01 and spine01.
 | <ul><li>The loopback address is 10.10.10.1/32</li><li>The IP address on swp51 is 10.0.1.0/31</li><li>The router ID is 10.10.10.1</li><li>All the interfaces on the switch with an IP address that matches subnet 10.10.10.1/32 and swp51 with IP address 10.0.1.0/31 are in area 0</li><li>swp1 and swp2 are passive interfaces</li></ul> | <ul><li>The loopback address is 10.10.10.101/32</li><li>The IP address on swp1 is 10.0.1.1/31</li><li>The router ID is 10.10.10.101</li><li>All interfaces on the switch with an IP address that matches subnet 10.10.10.101/32 and swp1 with IP address 10.0.1.1/31 are in area 0.</li></ul> |
 
 {{< tabs "TabID35 ">}}
-{{< tab "NCLU Commands ">}}
-
-The configuration below uses the `network` command to configure the IP subnet prefix with an area address per network. You can also configure OSPF per interface. However, you *cannot* use both methods in the same configuration.
-
-{{< tabs "TabID38 ">}}
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:~$ net add loopback lo ip address 10.10.10.1/32
-cumulus@leaf01:~$ net add interface swp51 ip address 10.0.1.0/31
-cumulus@leaf01:~$ net add ospf router-id 10.10.10.1
-cumulus@leaf01:~$ net add ospf network 10.10.10.1/32 area 0
-cumulus@leaf01:~$ net add ospf network 10.0.1.0/31 area 0
-cumulus@leaf01:~$ net add ospf passive-interface swp1
-cumulus@leaf01:~$ net add ospf passive-interface swp2
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf passive-interface <interface>` command to selectively bring up protocol adjacency on certain interfaces:
-
-```
-cumulus@leaf01:~$ net add ospf passive-interface default
-cumulus@leaf01:~$ net del ospf passive-interface swp51
-```
-
-The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router ospf
- ospf router-id 10.10.10.1
- network 10.10.10.1/32 area 0
- network 10.0.1.0/31 area 0
- passive-interface swp1
- passive-interface swp2
-...
-```
-
-{{< /tab >}}
-{{< tab "spine01 ">}}
-
-```
-cumulus@spine01:~$ net add loopback lo ip address 10.10.10.101/32
-cumulus@spine01:~$ net add interface swp1 ip address 10.0.1.1/31
-cumulus@spine01:~$ net add ospf router-id 10.10.10.101
-cumulus@spine01:~$ net add ospf network 10.10.10.101/32 area 0
-cumulus@spine01:~$ net add ospf network 10.0.1.1/31 area 0
-cumulus@spine01:~$ net pending
-cumulus@spine01:~$ net commit
-```
-
-You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf passive-interface <interface>` command to selectively bring up protocol adjacency on certain interfaces:
-
-```
-cumulus@spine01:~$ net add ospf passive-interface default
-cumulus@spine01:~$ net del ospf passive-interface swp1
-```
-
-The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router ospf
- ospf router-id 10.10.10.101
- network 10.10.10.101/32 area 0
- network 10.0.1.1/31 area 0
-...
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 {{< tabs "TabID110 ">}}
@@ -164,7 +90,7 @@ cumulus@spine01:~$ nv config apply
 
     ```
     cumulus@leaf01:~$ sudo vtysh
-
+    ...
     leaf01# configure terminal
     leaf01(config)# router ospf
     leaf01(config-router)# ospf router-id 10.10.10.1
@@ -176,7 +102,6 @@ cumulus@spine01:~$ nv config apply
     leaf01(config)# exit
     leaf01# write memory
     leaf01# exit
-    cumulus@leaf01:~$
     ```
 
 You can use the `passive-interface default` command to set all interfaces as *passive* and selectively bring up protocol adjacency on certain interfaces:
@@ -229,7 +154,7 @@ router ospf
 
     ```
     cumulus@spine01:~$ sudo vtysh
-
+    ...
     spine01# configure terminal
     spine01(config)# router ospf
     spine01(config-router)# ospf router-id 10.10.101.1
@@ -239,7 +164,6 @@ router ospf
     spine01(config)# exit
     spine01# write memory
     spine01# exit
-    cumulus@spine01:~$
     ```
 
 You can use the `passive-interface default` command to set all interfaces as *passive* and selectively bring up protocol adjacency on certain interfaces:
@@ -266,6 +190,73 @@ router ospf
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+The configuration below uses the `network` command to configure the IP subnet prefix with an area address per network. You can also configure OSPF per interface. However, you *cannot* use both methods in the same configuration.
+
+leaf01
+
+```
+cumulus@leaf01:~$ net add loopback lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ net add interface swp51 ip address 10.0.1.0/31
+cumulus@leaf01:~$ net add ospf router-id 10.10.10.1
+cumulus@leaf01:~$ net add ospf network 10.10.10.1/32 area 0
+cumulus@leaf01:~$ net add ospf network 10.0.1.0/31 area 0
+cumulus@leaf01:~$ net add ospf passive-interface swp1
+cumulus@leaf01:~$ net add ospf passive-interface swp2
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf passive-interface <interface>` command to selectively bring up protocol adjacency on certain interfaces:
+
+```
+cumulus@leaf01:~$ net add ospf passive-interface default
+cumulus@leaf01:~$ net del ospf passive-interface swp51
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router ospf
+ ospf router-id 10.10.10.1
+ network 10.10.10.1/32 area 0
+ network 10.0.1.0/31 area 0
+ passive-interface swp1
+ passive-interface swp2
+...
+```
+
+spine01
+
+```
+cumulus@spine01:~$ net add loopback lo ip address 10.10.10.101/32
+cumulus@spine01:~$ net add interface swp1 ip address 10.0.1.1/31
+cumulus@spine01:~$ net add ospf router-id 10.10.10.101
+cumulus@spine01:~$ net add ospf network 10.10.10.101/32 area 0
+cumulus@spine01:~$ net add ospf network 10.0.1.1/31 area 0
+cumulus@spine01:~$ net pending
+cumulus@spine01:~$ net commit
+```
+
+You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf passive-interface <interface>` command to selectively bring up protocol adjacency on certain interfaces:
+
+```
+cumulus@spine01:~$ net add ospf passive-interface default
+cumulus@spine01:~$ net del ospf passive-interface swp1
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router ospf
+ ospf router-id 10.10.10.101
+ network 10.10.10.101/32 area 0
+ network 10.0.1.1/31 area 0
+...
+```
+-->
 
 ### OSPFv2 Unnumbered
 
@@ -286,103 +277,6 @@ The following example commands configure OSPF unnumbered on leaf01 and spine01.
 | <ul><li>The loopback address is 10.10.10.1/32</li><li>The IP address of the unnumbered interface (swp51) is 10.10.10.1/32</li><li>The router ID is 10.10.10.1</li><li>OSPF is on the loopback interface and on swp51 in area 0</li><li>swp1 and swp2 are passive interfaces</li><li>swp51 is a point-to-point interface (Cumulus Linux requires point-to-point for unnumbered interfaces)</li><ul>|<ul><li>The loopback address is 10.10.10.101/32</li><li>The IP address of the unnumbered interface (swp1) is 10.10.10.101/32</li><li>The router ID is 10.10.10.101</li><li>OSPF is on the loopback interface and on swp1 in area 0</li><li>swp1 is a point-to-point interface (Cumulus Linux requires point-to-point for unnumbered interfaces)</li><ul> |
 
 {{< tabs "TabID306 ">}}
-{{< tab "NCLU Commands ">}}
-
-{{< tabs "TabID309 ">}}
-{{< tab "leaf01 ">}}
-
-Configure the unnumbered interface:
-
-```
-cumulus@leaf01:~$ net add loopback lo ip address 10.10.10.1/32
-cumulus@leaf01:~$ net add interface swp51 ip address 10.10.10.1/32
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-Configure OSPF:
-
-```
-cumulus@leaf01:~$ net add ospf router-id 10.10.10.1
-cumulus@leaf01:~$ net add loopback lo ospf area 0
-cumulus@leaf01:~$ net add interface swp51 ospf area 0
-cumulus@leaf01:~$ net add ospf passive-interface swp1
-cumulus@leaf01:~$ net add ospf passive-interface swp2
-cumulus@leaf01:~$ net add interface swp51 ospf network point-to-point
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf` `passive-interface <interface>` command to selectively bring up protocol adjacency on certain interfaces:
-
-```
-cumulus@leaf01:~$ net add ospf passive-interface default
-cumulus@leaf01:~$ net del ospf passive-interface swp51
-```
-
-The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-interface lo
- ip ospf area 0
-interface swp51
- ip ospf area 0
- ip ospf network point-to-point
-router ospf
- ospf router-id 10.10.10.1
- passive-interface swp1,swp2
-...
-```
-
-{{< /tab >}}
-{{< tab "spine01 ">}}
-
-Configure the unnumbered interface:
-
-```
-cumulus@spine01:~$ net add loopback lo ip address 10.10.10.101/32
-cumulus@spine01:~$ net add interface swp1 ip address 10.10.10.101/32
-cumulus@spine01:~$ net pending
-cumulus@spine01:~$ net commit
-```
-
-Configure OSPF:
-
-```
-cumulus@spine01:~$ net add ospf router-id 10.10.10.101
-cumulus@spine01:~$ net add loopback lo ospf area 0
-cumulus@spine01:~$ net add interface swp1 ospf area 0
-cumulus@spine01:~$ net add interface swp1 ospf network point-to-point
-cumulus@spine01:~$ net pending
-cumulus@spine01:~$ net commit
-```
-
-You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf` `passive-interface <interface>` command to selectively bring up protocol adjacency on certain interfaces:
-
-```
-cumulus@spine01:~$ net add ospf passive-interface default
-cumulus@spine01:~$ net del ospf passive-interface swp1
-```
-
-The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-interface lo
- ip ospf area 0
-interface swp1
- ip ospf area 0
- ip ospf network point-to-point
-router ospf
- ospf router-id 10.10.10.101
-...
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 {{< tabs "TabID292 ">}}
@@ -464,7 +358,7 @@ cumulus@spine01:~$ nv config apply
 
     ```
     cumulus@leaf01:~$ sudo vtysh
-
+    ...
     leaf01# configure terminal
     leaf01(config)# router ospf
     leaf01(config-router)# ospf router-id 10.10.10.1
@@ -480,7 +374,6 @@ cumulus@spine01:~$ nv config apply
     leaf01(config-router)# end
     leaf01# write memory
     leaf01# exit
-    cumulus@leaf01:~$
     ```
 
    You can use the `passive-interface default` command to set all interfaces as *passive* and selectively bring up protocol adjacency on certain interfaces:
@@ -535,7 +428,7 @@ router ospf
 
     ```
     cumulus@spine01:~$ sudo vtysh
-
+    ...
     spine01# configure terminal
     spine01(config)# router ospf
     spine01(config)# ospf router-id 10.10.10.101
@@ -549,7 +442,6 @@ router ospf
     spine01(config-if)# end
     spine01# write memory
     spine01# exit
-    cumulus@spine01:~$
     ```
 
    You can use the `passive-interface default` command to set all interfaces as *passive* and selectively bring up protocol adjacency on certain interfaces:
@@ -579,6 +471,96 @@ router ospf
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+leaf01
+
+Configure the unnumbered interface:
+
+```
+cumulus@leaf01:~$ net add loopback lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ net add interface swp51 ip address 10.10.10.1/32
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+Configure OSPF:
+
+```
+cumulus@leaf01:~$ net add ospf router-id 10.10.10.1
+cumulus@leaf01:~$ net add loopback lo ospf area 0
+cumulus@leaf01:~$ net add interface swp51 ospf area 0
+cumulus@leaf01:~$ net add ospf passive-interface swp1
+cumulus@leaf01:~$ net add ospf passive-interface swp2
+cumulus@leaf01:~$ net add interface swp51 ospf network point-to-point
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf` `passive-interface <interface>` command to selectively bring up protocol adjacency on certain interfaces:
+
+```
+cumulus@leaf01:~$ net add ospf passive-interface default
+cumulus@leaf01:~$ net del ospf passive-interface swp51
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+interface lo
+ ip ospf area 0
+interface swp51
+ ip ospf area 0
+ ip ospf network point-to-point
+router ospf
+ ospf router-id 10.10.10.1
+ passive-interface swp1,swp2
+...
+```
+
+spine01
+
+Configure the unnumbered interface:
+
+```
+cumulus@spine01:~$ net add loopback lo ip address 10.10.10.101/32
+cumulus@spine01:~$ net add interface swp1 ip address 10.10.10.101/32
+cumulus@spine01:~$ net pending
+cumulus@spine01:~$ net commit
+```
+
+Configure OSPF:
+
+```
+cumulus@spine01:~$ net add ospf router-id 10.10.10.101
+cumulus@spine01:~$ net add loopback lo ospf area 0
+cumulus@spine01:~$ net add interface swp1 ospf area 0
+cumulus@spine01:~$ net add interface swp1 ospf network point-to-point
+cumulus@spine01:~$ net pending
+cumulus@spine01:~$ net commit
+```
+
+You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf` `passive-interface <interface>` command to selectively bring up protocol adjacency on certain interfaces:
+
+```
+cumulus@spine01:~$ net add ospf passive-interface default
+cumulus@spine01:~$ net del ospf passive-interface swp1
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+interface lo
+ ip ospf area 0
+interface swp1
+ ip ospf area 0
+ ip ospf network point-to-point
+router ospf
+ ospf router-id 10.10.10.101
+...
+```
+-->
 
 ## Optional OSPFv2 Configuration
 
@@ -599,8 +581,39 @@ hello packets. The default is 40 seconds.
 The following command example sets the network type to point-to-point.
 
 {{< tabs "TabID644 ">}}
-{{< tab "NCLU Commands ">}}
+{{< tab "NVUE Commands ">}}
 
+```
+cumulus@switch:~$ nv set interface swp51 router ospf network-type point-to-point
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# interface swp51
+switch(config-if)# ip ospf network point-to-point
+switch(config-if)# end
+switch# write memory
+switch# exit
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example
+
+```
+...
+interface swp51
+ ip ospf network point-to-point
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+<!--
 ```
 cumulus@switch:~$ net add interface swp51 ospf network point-to-point
 cumulus@switch:~$ net pending
@@ -615,12 +628,15 @@ interface swp51
  ip ospf network point-to-point
 ...
 ```
+-->
 
-{{< /tab >}}
+The following command example sets the hello interval to 5 seconds and the dead interval to 60 seconds. The hello interval and dead interval can be any value between 1 and 65535 seconds.
+
+{{< tabs "TabID568 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp51 router ospf network-type point-to-point
+cumulus@switch:~$ nv set interface swp51 router ospf timers hello-interval 5
 cumulus@switch:~$ nv config apply
 ```
 
@@ -629,14 +645,14 @@ cumulus@switch:~$ nv config apply
 
 ```
 cumulus@switch:~$ sudo vtysh
-
+...
 switch# configure terminal
 switch(config)# interface swp51
-switch(config-if)# ip ospf network point-to-point
+switch(config-if)# ip ospf network hello-interval 5
+switch(config-if)# ip ospf network dead-interval 60
 switch(config-if)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$
 ```
 
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example
@@ -644,18 +660,14 @@ The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For e
 ```
 ...
 interface swp51
- ip ospf network point-to-point
+ ip ospf hello-interval 5
+ ip ospf dead-interval 60
 ...
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
-
-The following command example sets the hello interval to 5 seconds and the dead interval to 60 seconds. The hello interval and dead interval can be any value between 1 and 65535 seconds.
-
-{{< tabs "TabID568 ">}}
-{{< tab "NCLU Commands ">}}
-
+<!--
 ```
 cumulus@switch:~$ net add interface swp51 ospf hello-interval 5
 cumulus@switch:~$ net add interface swp51 ospf dead-interval 60
@@ -672,12 +684,15 @@ interface swp51
  ip ospf dead-interval 60
 ...
 ```
+-->
 
-{{< /tab >}}
+The following command example sets the priority to 5 for swp51. The priority can be any value between 0 to 255. 0 configures the interface to never become the OSPF Designated Router (DR) on a broadcast interface.
+
+{{< tabs "TabID612 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp51 router ospf timers hello-interval 5
+cumulus@switch:~$ nv set interface swp51 router ospf priority 5
 cumulus@switch:~$ nv config apply
 ```
 
@@ -686,15 +701,13 @@ cumulus@switch:~$ nv config apply
 
 ```
 cumulus@switch:~$ sudo vtysh
-
+...
 switch# configure terminal
 switch(config)# interface swp51
-switch(config-if)# ip ospf network hello-interval 5
-switch(config-if)# ip ospf network dead-interval 60
+switch(config-if)# ip ospf network priority 5
 switch(config-if)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$
 ```
 
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example
@@ -702,19 +715,13 @@ The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For e
 ```
 ...
 interface swp51
- ip ospf hello-interval 5
- ip ospf dead-interval 60
+ ip ospf priority 5
 ...
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
-
-The following command example sets the priority to 5 for swp51. The priority can be any value between 0 to 255. 0 configures the interface to never become the OSPF Designated Router (DR) on a broadcast interface.
-
-{{< tabs "TabID612 ">}}
-{{< tab "NCLU Commands ">}}
-
+<!--
 ```
 cumulus@switch:~$ net add interface swp51 ospf priority 5
 cumulus@switch:~$ net pending
@@ -729,41 +736,7 @@ interface swp51
  ip ospf priority 5
 ...
 ```
-
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set interface swp51 router ospf priority 5
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# interface swp51
-switch(config-if)# ip ospf network priority 5
-switch(config-if)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example
-
-```
-...
-interface swp51
- ip ospf priority 5
-...
-```
-
-{{< /tab >}}
-{{< /tabs >}}
+-->
 
 To see the configured OSPF interface parameter values, run the vtysh `show ip ospf interface` command.
 
@@ -778,8 +751,45 @@ OSPF uses the following default timers to prevent consecutive [SPF](## "Shortest
 The following example commands change the number of milliseconds from the initial event until SPF runs to 80, the number of milliseconds between consecutive SPF runs to 100, and the maximum number of milliseconds between SPFs to 6000.
 
 {{< tabs "TabID607 ">}}
-{{< tab "NCLU Commands ">}}
+{{< tab "NVUE Commands ">}}
 
+```
+cumulus@switch:~$ nv set router ospf timers spf delay 80
+cumulus@switch:~$ nv set router ospf timers spf holdtime 100
+cumulus@switch:~$ nv set router ospf timers spf max-holdtime 6000
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# router ospf
+switch(config-router)# timers throttle spf 80 100 6000
+switch(config-router)# end
+switch# write memory
+switch# exit
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router ospf
+ ospf router-id 10.10.10.1
+ passive-interface swp1
+ passive-interface swp2
+ network 10.10.10.1/32 area 0
+ timers throttle spf 80 100 6000
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+<!--
 ```
 cumulus@switch:~$ net add ospf timers throttle spf 80 100 6000
 cumulus@switch:~$ net pending
@@ -798,49 +808,9 @@ router ospf
  timers throttle spf 80 100 6000
 ...
 ```
+-->
 
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set router ospf timers spf delay 80
-cumulus@switch:~$ nv set router ospf timers spf holdtime 100
-cumulus@switch:~$ nv set router ospf timers spf max-holdtime 6000
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router ospf
-switch(config-router)# timers throttle spf 80 100 6000
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router ospf
- ospf router-id 10.10.10.1
- passive-interface swp1
- passive-interface swp2
- network 10.10.10.1/32 area 0
- timers throttle spf 80 100 6000
-...
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-To see the configured SPF timer values, run the NCLU `net show ospf` command, the NVUE `nv show --legacy show ospf` command, or the vtysh `show ip ospf` command.
+To see the configured SPF timer values, run <!--the NCLU `net show ospf` command or -->the vtysh `show ip ospf` command.
 
 ### MD5 Authentication
 
@@ -849,52 +819,6 @@ To configure [MD5](## "Message Digest Algorithm") authentication on the switch, 
 The following example commands create key ID 1 with the key `thisisthekey` and enable MD5 authentication on swp51 on leaf01 and on swp1 on spine01.
 
 {{< tabs "TabID880 ">}}
-{{< tab "NCLU Commands ">}}
-
-{{< tabs "TabID883 ">}}
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:~$ net add interface swp51 ospf message-digest-key 1 md5 thisisthekey
-cumulus@leaf01:~$ net add interface swp51 ospf authentication message-digest
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-interface swp51
- ip ospf authentication message-digest
- ip ospf message-digest-key 1 md5 thisisthekey
- ...
-```
-
-{{< /tab >}}
-{{< tab " spine01">}}
-
-```
-cumulus@spine01:~$ net add interface swp1 ospf message-digest-key 1 md5 thisisthekey
-cumulus@spine01:~$ net add interface swp1 ospf authentication message-digest
-cumulus@spine01:~$ net pending
-cumulus@spine01:~$ net commit
-```
-
-The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-interface swp1
- ip ospf authentication message-digest
- ip ospf message-digest-key 1 md5 thisisthekey
- ...
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 {{< tabs "TabID909 ">}}
@@ -928,7 +852,7 @@ cumulus@spine01:~$ nv config apply
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
+...
 leaf01# configure terminal
 leaf01(config)# interface swp51
 leaf01(config-if)# ip ospf authentication message-digest
@@ -936,7 +860,6 @@ leaf01(config-if)# ip ospf message-digest-key 1 md5 thisisthekey
 leaf01(config-if)# end
 leaf01# write memory
 leaf01# exit
-cumulus@leaf01:~$
 ```
 
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -954,7 +877,7 @@ interface swp51
 
 ```
 cumulus@spine01:~$ sudo vtysh
-
+...
 spine01# configure terminal
 spine01(config)# interface swp1
 spine01(config-if)# ip ospf authentication message-digest
@@ -962,7 +885,6 @@ spine01(config-if)# ip ospf message-digest-key 1 md5 thisisthekey
 spine01(config-if)# end
 spine01# write memory
 spine01# exit
-cumulus@spine01:~$
 ```
 
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -980,9 +902,48 @@ interface swp1
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+leaf01
+
+```
+cumulus@leaf01:~$ net add interface swp51 ospf message-digest-key 1 md5 thisisthekey
+cumulus@leaf01:~$ net add interface swp51 ospf authentication message-digest
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+interface swp51
+ ip ospf authentication message-digest
+ ip ospf message-digest-key 1 md5 thisisthekey
+ ...
+```
+
+spine01"
+
+```
+cumulus@spine01:~$ net add interface swp1 ospf message-digest-key 1 md5 thisisthekey
+cumulus@spine01:~$ net add interface swp1 ospf authentication message-digest
+cumulus@spine01:~$ net pending
+cumulus@spine01:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+interface swp1
+ ip ospf authentication message-digest
+ ip ospf message-digest-key 1 md5 thisisthekey
+ ...
+```
+-->
 
 {{%notice note%}}
-To remove existing MD5 authentication hashes, run the NCLU `net del` command, or the vtysh `no ip ospf` command (`no ip ospf message-digest-key 1 md5 thisisthekey`).
+To remove existing MD5 authentication hashes, run the <!--NCLU `net del` command, or the -->vtysh `no ip ospf` command (`no ip ospf message-digest-key 1 md5 thisisthekey`).
 {{%/notice%}}
 
 ### Summarization and Prefix Range
@@ -1001,14 +962,13 @@ These commands create a summary route for all the routes in the range 172.16.1.0
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
+...
 leaf01# configure terminal
 leaf01(config)# router ospf
 leaf01(config-router)# area 0 range 172.16.1.0/24
 leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
-cumulus@leaf01:~$
 ```
 
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -1040,8 +1000,40 @@ All routers must agree that an area is a stub, otherwise they do not become OSPF
 To configure a stub area:
 
 {{< tabs "TabID1065 ">}}
-{{< tab "NCLU Commands ">}}
+{{< tab "NVUE Commands ">}}
 
+```
+cumulus@switch:~$ nv set vrf default router ospf area 1 type stub
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# router ospf
+switch(config-router)# area 1 stub
+switch(config-router)# end
+switch# write memory
+switch# exit
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router ospf
+ router-id 10.10.10.63
+ area 1 stub
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+<!--
 ```
 cumulus@switch:~$ net add ospf area 1 stub
 cumulus@switch:~$ net pending
@@ -1057,12 +1049,17 @@ router ospf
  area 1 stub
 ...
 ```
+-->
 
-{{< /tab >}}
+Stub areas still receive information about networks that belong to other areas of the same OSPF domain. If summarization is not configured (or is not comprehensive), the information can be overwhelming for the nodes. *Totally stubby areas* address this issue. Routers in totally stubby areas keep information about routing within their area in their LSDB.
+
+To configure a totally stubby area:
+
+{{< tabs "TabID860 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf default router ospf area 1 type stub
+cumulus@switch:~$ nv set vrf default router ospf area 1 type totally-stub 
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1071,14 +1068,13 @@ cumulus@switch:~$ nv config apply
 
 ```
 cumulus@switch:~$ sudo vtysh
-
+...
 switch# configure terminal
 switch(config)# router ospf
-switch(config-router)# area 1 stub
+switch(config-router)# area 1 stub no-summary
 switch(config-router)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$
 ```
 
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -1087,20 +1083,13 @@ The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For e
 ...
 router ospf
  router-id 10.10.10.63
- area 1 stub
+ area 1 stub no-summary
 ...
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
-
-Stub areas still receive information about networks that belong to other areas of the same OSPF domain. If summarization is not configured (or is not comprehensive), the information can be overwhelming for the nodes. *Totally stubby areas* address this issue. Routers in totally stubby areas keep information about routing within their area in their LSDB.
-
-To configure a totally stubby area:
-
-{{< tabs "TabID860 ">}}
-{{< tab "NCLU Commands ">}}
-
+<!--
 ```
 cumulus@switch:~$ net add ospf area 1 stub no-summary
 cumulus@switch:~$ net pending
@@ -1116,41 +1105,7 @@ router ospf
  area 1 stub no-summary
 ...
 ```
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set vrf default router ospf area 1 type totally-stub 
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router ospf
-switch(config-router)# area 1 stub no-summary
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router ospf
- router-id 10.10.10.63
- area 1 stub no-summary
-...
-```
-
-{{< /tab >}}
-{{< /tabs >}}
+-->
 
 Here is a brief summary of the area type differences:
 
@@ -1171,8 +1126,40 @@ To avoid routing loops, set the bandwidth to a consistent value across all OSPF 
 The following example commands configure the auto-cost reference bandwidth for 90Gbps link speed:
 
 {{< tabs "TabID920 ">}}
-{{< tab "NCLU Commands ">}}
+{{< tab "NVUE Commands ">}}
 
+```
+cumulus@switch:~$ nv set vrf default router ospf reference-bandwidth 9000
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# router ospf
+switch(config-router)# auto-cost reference-bandwidth 90000
+switch(config-router)# end
+switch# write memory
+switch# exit
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router ospf
+ router-id 10.10.10.1
+ auto-cost reference-bandwidth 90000
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+<!--
 ```
 cumulus@switch:~$ net add ospf auto-cost reference-bandwidth 90000
 cumulus@switch:~$ net pending
@@ -1188,42 +1175,7 @@ router ospf
  auto-cost reference-bandwidth 90000
 ...
 ```
-
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set vrf default router ospf reference-bandwidth 9000
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router ospf
-switch(config-router)# auto-cost reference-bandwidth 90000
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router ospf
- router-id 10.10.10.1
- auto-cost reference-bandwidth 90000
-...
-```
-
-{{< /tab >}}
-{{< /tabs >}}
+-->
 
 ### Administrative Distance
 
@@ -1234,15 +1186,6 @@ Cumulus Linux provides several commands to change the distance for OSPF routes. 
 The following example commands set the distance for an entire group of routes:
 
 {{< tabs "TabID1256 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add ospf distance 254
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 The NVUE command is not supported.
@@ -1252,31 +1195,28 @@ The NVUE command is not supported.
 
 ```
 cumulus@switch:~$ sudo vtysh
-
+...
 switch# configure terminal
 switch(config)# router ospf
 switch(config-router)# distance 254
 switch(config-router)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add ospf distance 254
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 The following example commands change the OSPF administrative distance to 150 for internal routes and 220 for external routes:
 
 {{< tabs "TabID1045 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add ospf distance ospf intra-area 150 inter-area 150 external 220
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1291,31 +1231,28 @@ cumulus@switch:~$ nv config apply
 
 ```
 cumulus@switch:~$ sudo vtysh
-
+...
 switch# configure terminal
 switch(config)# router ospf
 switch(config-router)# distance ospf intra-area 150 inter-area 150 external 220
 switch(config-router)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add ospf distance ospf intra-area 150 inter-area 150 external 220
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 The following example commands change the OSPF administrative distance to 150 for internal routes to a subnet or network inside the same area as the router:
 
 {{< tabs "TabID1076 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add ospf distance ospf intra-area 150
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1328,24 +1265,62 @@ cumulus@switch:~$ nv config apply
 
 ```
 cumulus@switch:~$ sudo vtysh
-
+...
 switch# configure terminal
 switch(config)# router ospf
 switch(config-router)# distance ospf intra-area 150
 switch(config-router)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add ospf distance ospf intra-area 150
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 The following example commands change the OSPF administrative distance to 150 for internal routes to a subnet in an area of which the router is *not* a part:
 
 {{< tabs "TabID1364 ">}}
-{{< tab "NCLU Commands ">}}
+{{< tab "NVUE Commands ">}}
 
+```
+cumulus@switch:~$ nv set vrf default router ospf distance inter-area 150
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# router ospf
+switch(config-router)# distance ospf inter-area 150
+switch(config-router)# end
+switch# write memory
+switch# exit
+```
+
+The vtysh commands save the configuration to the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router ospf
+  ospf router-id 10.10.10.1
+  distance ospf intra-area 150 inter-area 150 external 220
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+<!--
 ```
 cumulus@switch:~$ net add ospf distance ospf inter-area 150
 cumulus@switch:~$ net pending
@@ -1361,42 +1336,7 @@ router ospf
   distance ospf intra-area 150 inter-area 150 external 220
 ...
 ```
-
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set vrf default router ospf distance inter-area 150
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router ospf
-switch(config-router)# distance ospf inter-area 150
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-The vtysh commands save the configuration to the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router ospf
-  ospf router-id 10.10.10.1
-  distance ospf intra-area 150 inter-area 150 external 220
-...
-```
-
-{{< /tab >}}
-{{< /tabs >}}
+-->
 
 ### Topology Changes and OSPF Reconvergence
 
@@ -1410,27 +1350,18 @@ To configure the max-metric (for all interfaces):
 
 ```
 cumulus@switch:~$ sudo vtysh
+...
 switch# configure terminal
 switch(config)# router ospf
 switch(config-router)# max-metric router-lsa administrative
 switch(config-router)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$
 ```
 
 To configure the cost (for a specific interface):
 
 {{< tabs "TabID1441 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add interface swp51 ospf cost 65535
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1443,22 +1374,29 @@ cumulus@switch:~$ nv config apply
 
 ```
 cumulus@switch:~$ sudo vtysh
+...
 switch# configure terminal
 switch(config)# interface swp51
 switch(config-if)# ospf cost 65535
 switch(config-if)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add interface swp51 ospf cost 65535
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 ## Troubleshooting
 
 Cumulus Linux provides several OSPF troubleshooting commands:
-
+<!--
 | Description | <div style="width:330px">NCLU Command | <div style="width:330px">vtysh Command |
 | ----------- | ------------------------------------- | -------------------------------------- |
 | Show neighbor states | `net show ospf neighbor` | `show ip ospf neighbor` |
@@ -1466,21 +1404,31 @@ Cumulus Linux provides several OSPF troubleshooting commands:
 | Determine why Cumulus Linux does not forward an OSPF route properly |`net show route ospf` | `show ip route ospf` |
 | Show OSPF interfaces | `net show ospf interface` | `show ip ospf interface` |
 | Show information about the OSPF process | `net show ospf` | `show ip ospf` |
+-->
+| Description | <div style="width:330px">vtysh Command |
+| ----------- | ------------------------------------- |
+| Show neighbor states | `show ip ospf neighbor` |
+| Verify that the LSDB synchronizes across all routers in the network | `show ip ospf database` |
+| Determine why Cumulus Linux does not forward an OSPF route properly | `show ip route ospf` |
+| Show OSPF interfaces | `show ip ospf interface` |
+| Show information about the OSPF process | `show ip ospf` |
 
-The following example shows the `net show ospf neighbor` command output:
+The following example shows the `show ip ospf neighbor` command output:
 
 ```
-cumulus@leaf01:mgmt:~$ net show ospf neighbor
+cumulus@leaf01:mgmt:~$sudo vtysh
+...
+leaf01# show ip ospf neighbor
 Neighbor ID     Pri State           Dead Time Address         Interface                        RXmtL RqstL DBsmL
 10.10.10.101      1 Full/Backup       30.307s 10.0.1.1        swp51:10.0.1.0                       0     0     0
 ```
 
-The following example shows the `net show route ospf` command output:
+The following example shows the `show ip route ospf` command output:
 
 ```
-cumulus@leaf01:mgmt:~$ net show route ospf
-RIB entry for ospf
-==================
+cumulus@leaf01:mgmt:~$ sudo vtysh
+...
+leaf01# show ip route ospf
 Codes: K - kernel route, C - connected, S - static, R - RIP,
        O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
        T - Table, v - VNC, V - VNC-Direct, A - Babel, D - SHARP,
@@ -1501,4 +1449,4 @@ To capture OSPF packets, run the `sudo tcpdump -v -i swp1 ip proto ospf` command
 - Moy, John T.; *OSPF: Anatomy of an Internet Routing Protocol*; Addison-Wesley
 - {{<exlink url="https://tools.ietf.org/html/rfc2328" text="RFC 2328 OSPFv2">}}
 - {{<exlink url="https://tools.ietf.org/html/rfc3101" text="RFC 3101 OSPFv2 Not-So-Stubby Area (NSSA)">}}
-<!-- vale on --> 
+<!-- vale on -->

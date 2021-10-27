@@ -978,12 +978,12 @@ Cumulus Linux provides several OSPFv3 troubleshooting commands:
 
 | To   | <div style="width:330px">NCLU Command | <div style="width:330px">vtysh Command |
 | --- | ---- | ----- |
-| Show neighbor states | `net show ospf6 neighbor` | `show ip ospf6 neighbor` |
-| Verify that the LSDB is the same across all routers in the network | `net show ospf6 database` | `show ip ospf6 database` |
-| Determine why Cumulus Linux does forward an OSPF route correctly |`net show route ospf6` | `show ip route ospf6` |
-| Show OSPF interfaces | `net show ospf6 interface` | `show ip ospf6 interface` |
-| Help visualize the network view | `net show ospf6 spf tree` | `show ip ospf6 spf tree` |
-| Show information about the OSPFv3 process | `net show ospf6` | `show ip ospf6` |
+| Show neighbor states | `net show ospf6 neighbor` | `show ipv6 ospf6 neighbor` |
+| Verify that the LSDB is the same across all routers in the network | `net show ospf6 database` | `show ipv6 ospf6 database` |
+| Determine why Cumulus Linux does forward an OSPF route correctly |`net show route ospf6` | `show ipv6 ospf6 route` |
+| Show OSPF interfaces | `net show ospf6 interface` | `show ipv6 ospf6 interface` |
+| Help visualize the network view | `net show ospf6 spf tree` | `show ipv6 ospf6 spf tree` |
+| Show information about the OSPFv3 process | `net show ospf6` | `show ipv6 ospf6` |
 
 The following example shows the `net show ospf6 neighbor` command output:
 

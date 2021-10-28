@@ -188,8 +188,61 @@ This also creates a route on the neighbor device to the management network throu
 NVIDIA recommends route maps to control advertised networks that you redistribute with the `redistribute connected` command.
 
 {{< tabs "TabID222 ">}}
-{{< tab "NCLU Commands ">}}
+{{< tab "NVUE Commands ">}}
 
+```
+cumulus@switch:~$ nv set router policy route-map REDISTRIBUTE rule 10 match interface eth0
+cumulus@switch:~$ nv set router policy route-map REDISTRIBUTE rule 100 action deny
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected route-map REDISTRIBUTE
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# route-map REDISTRIBUTE-CONNECTED deny 10 
+switch(config-route-map)# match interface eth0
+switch(config)# route-map REDISTRIBUTE-CONNECTED permit 100
+switch(config-route-map)# exit
+switch(config)# router bgp
+switch(config-router)# address-family ipv4 unicast
+switch((config-router-af)# redistribute connected route-map REDISTRIBUTE-CONNECTED
+switch(config)# end
+switch# write memory
+switch# exit
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65101
+ bgp router-id 10.10.10.1
+ neighbor swp51 interface remote-as external
+ neighbor swp52 interface remote-as external
+ !
+ address-family ipv4 unicast
+  network 10.1.10.0/24
+  network 10.10.10.1/32
+  redistribute connected route-map REDISTRIBUTE-CONNECTED
+  maximum-paths 64
+  maximum-paths ibgp 64
+ exit-address-family
+!
+route-map REDISTRIBUTE-CONNECTED deny 100
+match interface eth0
+!
+route-map REDISTRIBUTE-CONNECTED permit 1000
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+<!--
 ```
 cumulus@switch:~$ net add routing route-map REDISTRIBUTE-CONNECTED deny 100 match interface eth0
 cumulus@switch:~$ net add routing route-map REDISTRIBUTE-CONNECTED permit 1000
@@ -221,63 +274,7 @@ match interface eth0
 route-map REDISTRIBUTE-CONNECTED permit 1000
 ...
 ```
-
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set router policy route-map REDISTRIBUTE rule 10 match interface eth0
-cumulus@switch:~$ nv set router policy route-map REDISTRIBUTE rule 100 action deny
-cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected route-map REDISTRIBUTE
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:$ sudo vtysh
-
-switch# configure terminal
-switch(config)# route-map REDISTRIBUTE-CONNECTED deny 10 
-switch(config-route-map)# match interface eth0
-switch(config)# route-map REDISTRIBUTE-CONNECTED permit 100
-switch(config-route-map)# exit
-switch(config)# router bgp
-switch(config-router)# address-family ipv4 unicast
-switch((config-router-af)# redistribute connected route-map REDISTRIBUTE-CONNECTED
-switch(config)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router bgp 65101
- bgp router-id 10.10.10.1
- neighbor swp51 interface remote-as external
- neighbor swp52 interface remote-as external
- !
- address-family ipv4 unicast
-  network 10.1.10.0/24
-  network 10.10.10.1/32
-  redistribute connected route-map REDISTRIBUTE-CONNECTED
-  maximum-paths 64
-  maximum-paths ibgp 64
- exit-address-family
-!
-route-map REDISTRIBUTE-CONNECTED deny 100
-match interface eth0
-!
-route-map REDISTRIBUTE-CONNECTED permit 1000
-...
-```
-
-{{< /tab >}}
-{{< /tabs >}}
+-->
 
 ## SSH within a Management VRF Context
 
@@ -289,9 +286,24 @@ cumulus@switch:~$ sudo ip vrf exec default ssh 10.23.23.2 10.3.3.3
 
 ## View the Routing Tables
 
-{{< tabs "TabID276 ">}}
-{{< tab "NCLU Commands ">}}
+When you use `ip route get` to return information about a single route, the command resolves over the *mgmt* table by default. To show information about the route in the switching silicon, run this command:
 
+```
+cumulus@switch:~$ ip route get <ip-address>
+```
+
+You can also run this command:
+
+```
+cumulus@switch:~$ sudo cl-rctl ip route show <ip-address>
+```
+
+To get the route for any VRF, run the `ip route get <ip-address> oif <vrf-name>` command. For example, to show the route for the management VRF, run:
+
+```
+cumulus@switch:~$ ip route get <ip-address> oif mgmt
+```
+<!--
 The `ip route show` command shows the switch port (*main*) table. You can see the data plane routing table with the `net show route vrf main` command.
 
 To show information for eth0 (the management routing table), run the `net show route vrf mgmt` command:
@@ -320,30 +332,7 @@ To show the route for any VRF, run the `net show route vrf <vrf-name> <ip-addres
 ```
 cumulus@switch:~$ net show route vrf mgmt <ip-address>
 ```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-When you use `ip route get` to return information about a single route, the command resolves over the *mgmt* table by default. To show information about the route in the switching silicon, run this command:
-
-```
-cumulus@switch:~$ ip route get <ip-address>
-```
-
-You can also run this command:
-
-```
-cumulus@switch:~$ sudo cl-rctl ip route show <ip-address>
-```
-
-To get the route for any VRF, run the `ip route get <ip-address> oif <vrf-name>` command. For example, to show the route for the management VRF, run:
-
-```
-cumulus@switch:~$ ip route get <ip-address> oif mgmt
-```
-
-{{< /tab >}}
-{{< /tabs >}}
+-->
 <!-- vale off -->
 ## mgmt Interface Class
 <!-- vale on -->
@@ -393,17 +382,6 @@ For DNS to use the management VRF, the static DNS entries must reference the man
 For example, to specify DNS servers and associate some of them with the management VRF, run the following commands:
 
 {{< tabs "TabID388 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add dns nameserver ipv4 192.0.2.1
-cumulus@switch:~$ net add dns nameserver ipv4 198.51.100.31 vrf mgmt
-cumulus@switch:~$ net add dns nameserver ipv4 203.0.113.13 vrf mgmt
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -433,6 +411,15 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add dns nameserver ipv4 192.0.2.1
+cumulus@switch:~$ net add dns nameserver ipv4 198.51.100.31 vrf mgmt
+cumulus@switch:~$ net add dns nameserver ipv4 203.0.113.13 vrf mgmt
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 {{%notice note%}}
 - Because FIB rules force DNS lookups out of the management interface, this can affect data plane ports if you use overlapping addresses. For example, when the switch learns the DNS server IP address over the management VRF, it creates a FIB rule for that IP address. When DHCP relay has the same IP address, the switch forwards any DHCP discover packet arriving on the front panel port out of the management interface (eth0) even though a route is present out the front-panel port.

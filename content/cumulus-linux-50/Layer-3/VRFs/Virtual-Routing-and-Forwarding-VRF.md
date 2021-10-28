@@ -149,7 +149,6 @@ To show a list of VRF tables, run the `vrf list` command:
 
 ```
 cumulus@switch:~$ vrf list
-
 VRF              Table
 ---------------- -----
 BLUE            1016
@@ -159,7 +158,6 @@ To show a list of processes and PIDs for a specific VRF table, run the `ip vrf p
 
 ```
 cumulus@switch:~$ ip vrf pids BLUE
-
 VRF: BLUE
 -----------------------
 dhclient           2508
@@ -268,7 +266,7 @@ cumulus@switch:~$ nv config apply
 
 ```
 cumulus@switch:~$ sudo vtysh
-
+...
 switch# configure terminal
 switch(config)# router bgp 65001 vrf RED
 switch(config-router)# address-family ipv4 unicast
@@ -276,7 +274,6 @@ switch(config-router-af)# import vrf BLUE
 switch(config-router-af)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$
 ```
 
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -334,7 +331,7 @@ cumulus@switch:~$ nv config
 
 ```
 cumulus@switch:~$ sudo vtysh
-
+...
 switch# configure terminal
 switch(config)# router bgp 65001 vrf RED
 switch(config-router)# address-family ipv4 unicast
@@ -349,7 +346,6 @@ switch(config-router-af)# import vrf route-map BLUEtoRED
 switch(config-router-af)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$
 ```
 
 {{< /tab >}}
@@ -427,7 +423,7 @@ cumulus@switch:~$ nv config apply
 
 ```
 cumulus@switch:~$ sudo vtysh
-
+...
 switch# configure terminal
 switch(config)# router bgp 65001 vrf RED
 switch(config-router)# address-family ipv4 unicast
@@ -435,7 +431,6 @@ switch(config-router-af)# no import vrf BLUE
 switch(config-router-af)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$
 ```
 
 {{< /tab >}}
@@ -487,7 +482,7 @@ NVUE commands are not supported.
 
 ```
 cumulus@switch:~$ sudo vtysh
-
+...
 switch# configure terminal
 switch(config)# router bgp 65001 vrf vrf1012
 switch(config-router)# bgp router-id 6.0.2.7
@@ -512,7 +507,6 @@ switch(config-router-af)# neighbor ISLv6 route-map ALLOW_BR2_v6 out
 switch(config-router-af)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$
 ```
 
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -610,7 +604,7 @@ NVUE commands are not supported.
 
 ```
 cumulus@switch:~$ sudo vtysh
-
+...
 switch# configure terminal
 switch(config)# router ospf vrf vrf1
 switch(config-router)# ospf router-id 4.4.4.4
@@ -631,7 +625,6 @@ switch(config-if)# exit
 switch(config)# exit
 switch# write memory
 switch# exit
-cumulus@switch:~$
 ```
 
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -780,7 +773,7 @@ Here is the FRR BGP configuration:
 
 ```
 cumulus@switch:~$ sudo vtysh
-
+...
 switch# configure terminal
 switch(config)# router bgp 65001 vrf vrf1
 switch(config-router)# no bgp default ipv4-unicast
@@ -801,7 +794,6 @@ switch(config-router-af)# neighbor LEAF activate
 switch(config-router-af)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$
 ```
 
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -1162,7 +1154,7 @@ To show all VRFs learned by FRR from the kernel, run the `show vrf` command. The
 
 ```
 cumulus@switch:~$ sudo vtysh
-
+...
 switch# show vrf
 vrf vrf1012 id 14 table 1012
 vrf vrf1013 id 21 table 1013
@@ -1173,7 +1165,7 @@ To show the VRFs configured in BGP (including the default VRF), run the `show bg
 
 ```
 cumulus@switch:~$ sudo vtysh
-
+...
 switch# show bgp vrfs
 Type  Id     RouterId          #PeersCfg  #PeersEstb  Name
 DFLT  0      6.0.0.7                  0           0  Default
@@ -1210,7 +1202,7 @@ To show VRFs configured in OSPF, run the `show ip ospf vrfs` command. For exampl
 
 ```
 cumulus@switch:~$ sudo vtysh
-
+...
 switch# show ip ospf vrfs
 Name                            Id     RouterId
 Default-IP-Routing-Table        0      0.0.0.0

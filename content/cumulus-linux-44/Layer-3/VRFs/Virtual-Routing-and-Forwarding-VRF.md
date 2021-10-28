@@ -1542,7 +1542,7 @@ ff00::/8 dev swp3.2  metric 256  pref medium
 unreachable default dev lo  metric 240  error -101 pref medium
 ```
 
-To see a list of links associated with a particular VRF table, run the `run ip link list <vrf-name>` command. For example:
+To see a list of links associated with a particular VRF table, run the `ip link list <vrf-name>` command. For example:
 
 ```
 cumulus@switch:~$ ip link list rocket

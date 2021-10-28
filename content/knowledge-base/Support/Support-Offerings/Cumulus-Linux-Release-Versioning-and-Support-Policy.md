@@ -110,7 +110,7 @@ Cumulus Linux and Cumulus RMP 3.7.12 have transitioned into the extended support
 | 4.y.z (Spectrum based switches) | N/A     | December 2022     |
 | 4.3.z (Broadcom based switches) | N/A     | December 2025     |
 
-- The 4.y.z release will not have an ESR version. NVIDIA recommends that you run the latest 4.3.z release on Broadcom switches and the 4.4.z or a 5.y.z release on Spectrum switches.
+- The 4.y.z release will not have an ESR version. NVIDIA recommends that you run the latest 4.3.z release on Broadcom switches and the 4.4.z release on Spectrum switches.
 - Cumulus Linux 4.y.z through 4.3.z is in maintenance mode; no new features are planned.
 
 ### Cumulus Linux 3.y.z
@@ -123,9 +123,9 @@ Cumulus Linux and Cumulus RMP 3.7.12 have transitioned into the extended support
 - Cumulus Linux 3.7.z is an ESR release for versions 3.7.12 and later. Support for 3.7 ESR will continue until February 2023. All earlier versions of 3.7.z are considered end of life and are no longer supported.
 - Cumulus Linux 3.y.z supports both Spectrum and Broadcom based switches.
 
-### Cumulus Linux 2.x
+### Cumulus Linux 2.y.z
 
-All Cumulus Linux 2.x releases reached end of life on February 2019 and are no longer supported.
+All Cumulus Linux 2.y.z releases reached end of life on February 2019 and are no longer supported.
 
 ## Upgrade Process
 

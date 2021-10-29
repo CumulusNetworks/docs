@@ -501,10 +501,10 @@ cumulus@switch:~$ sudo vtysh
 ...
 switch# configure terminal
 switch(config)# router bgp 65001 vrf RED
-switch(config-router)# neighbor swp51 remote-as external
+switch(config-router)# bgp router-id 10.10.10.1
+switch(config-router)# neighbor swp51 interface remote-as external
 switch(config-router)# address-family ipv4 unicast
 switch(config-router-af)# redistribute connected
-switch(config-router-af)# neighbor swp51 activate
 switch(config-router-af)# end
 switch# write memory
 switch# exit
@@ -515,11 +515,11 @@ The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For e
 ```
 ...
 router bgp 65001 vrf RED
- neighbor swp51 remote-as external
+ bgp router-id 10.10.10.1
+ neighbor swp51 interface remote-as external
  !
  address-family ipv4 unicast
   redistribute connected
-  neighbor swp51 activate
   exit-address-family
 ...
 ```
@@ -532,9 +532,9 @@ cumulus@switch:~$ net add vrf RED vrf-table auto
 cumulus@switch:~$ net add vrf RED ip address 10.10.10.1/32
 cumulus@switch:~$ net add interface swp51 vrf RED
 cumulus@switch:~$ net add bgp vrf RED autonomous-system 65001
+cumulus@switch:~$ net add bgp vrf RED router-id 10.10.10.1
 cumulus@switch:~$ net add bgp vrf RED neighbor swp51 remote-as external
 cumulus@switch:~$ net add bgp vrf RED ipv4 unicast redistribute connected
-cumulus@switch:~$ net add bgp vrf RED ipv4 unicast neighbor swp51 activate
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -544,13 +544,12 @@ The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For ex
 ```
 ...
 router bgp 65001 vrf RED
- no bgp default ipv4-unicast
+ router-id 10.10.10.1
+ neighbor swp51 interface
  neighbor swp51 remote-as external
- !
  address-family ipv4 unicast
   redistribute connected
-  neighbor swp51 activate
-  exit-address-family
+ exit-address-family
 ...
 ```
 -->

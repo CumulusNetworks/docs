@@ -33,78 +33,6 @@ To use PBR in Cumulus linux, you define a PBR policy and apply it to the ingress
 To configure a PBR policy:
 
 {{< tabs "TabID35 ">}}
-{{< tab "NCLU Commands ">}}
-
-1. Configure the policy map.
-
-    The example commands below configure a policy map called `map1` with sequence number 1, that matches on destination address 10.1.2.0/24 and source address 10.1.4.1/24.
-
-    If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match. You cannot mix IPv4 and IPv6 addresses in a rule.
-
-    ```
-    cumulus@switch:~$ net add pbr-map map1 seq 1 match dst-ip 10.1.2.0/24
-    cumulus@switch:~$ net add pbr-map map1 seq 1 match src-ip 10.1.4.1/24
-    ```
-
-    Instead of matching on IP address, you can match packets according to the DSCP or ECN field in the IP header. The DSCP value can be an integer between 0 and 63 or the DSCP codepoint name. The ECN value can be an integer between 0 and 3. The following example command configures a policy map called `map1` with sequence number 1 that matches on packets with the DSCP value 10:
-
-    ```
-    cumulus@switch:~$ net add pbr-map map1 seq 1 match dscp 10
-    ```
-
-    The following example command configures a policy map called `map1` with sequence number 1 that matches on packets with the ECN value 2:
-
-    ```
-    cumulus@switch:~$ net add pbr-map map1 seq 1 match ecn 2
-    ```
-
-2. Either apply a *next hop* or a *next hop* group to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `rocket` to the `map1` policy map. The next hop must be an IP address. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
-
-    ```
-    cumulus@switch:~$ net add pbr-map map1 seq 1 set nexthop 192.168.0.31 swp2 nexthop-vrf rocket
-    ```
-
-    To apply a next hop group (for ECMP) to the policy map, first create the next hop group, then apply the group to the policy map. The example commands below create a next hop group called `group1` that contains the next hop 192.168.0.21 on output interface swp1 and VRF `rocket`, and the next hop 192.168.0.22, then applies the next hop group `group1` to the `map1` policy map.
-
-    The output interface and VRF are optional. However, you must specify the VRF if the next hop is not in the default VRF.
-
-    ```
-    cumulus@switch:~$ net add nexthop-group group1 nexthop 192.168.0.21 swp1 nexthop-vrf rocket
-    cumulus@switch:~$ net add nexthop-group group1 nexthop 192.168.0.22
-    cumulus@switch:~$ net add pbr-map map1 seq 1 set nexthop-group group1
-    ```
-
-   If you want the rule to use a specific VRF table as its lookup, set the VRF. If you do not set a VRF, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table:
-
-    ```
-    cumulus@switch:~$ net add pbr-map map1 seq 1 set vrf dmz
-    ```
-
-3. Assign the PBR policy to an ingress interface. The example command below assigns the PBR policy `map1` to interface swp51:
-
-    ```
-    cumulus@switch:~$ net add interface swp51 pbr-policy map1
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
-    ```
-
-The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-nexthop-group group1
-nexthop 192.168.0.21 nexthop-vrf RED swp1
-nexthop 192.168.0.22
-pbr-map map1 seq 1
-match dst-ip 10.1.2.0/24
-match src-ip 10.1.4.1/24
-set nexthop-group group1
-interface swp51
-pbr-policy map1
-...
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 1. Configure the policy map.
@@ -279,6 +207,76 @@ pbr-policy map1
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+1. Configure the policy map.
+
+    The example commands below configure a policy map called `map1` with sequence number 1, that matches on destination address 10.1.2.0/24 and source address 10.1.4.1/24.
+
+    If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match. You cannot mix IPv4 and IPv6 addresses in a rule.
+
+    ```
+    cumulus@switch:~$ net add pbr-map map1 seq 1 match dst-ip 10.1.2.0/24
+    cumulus@switch:~$ net add pbr-map map1 seq 1 match src-ip 10.1.4.1/24
+    ```
+
+    Instead of matching on IP address, you can match packets according to the DSCP or ECN field in the IP header. The DSCP value can be an integer between 0 and 63 or the DSCP codepoint name. The ECN value can be an integer between 0 and 3. The following example command configures a policy map called `map1` with sequence number 1 that matches on packets with the DSCP value 10:
+
+    ```
+    cumulus@switch:~$ net add pbr-map map1 seq 1 match dscp 10
+    ```
+
+    The following example command configures a policy map called `map1` with sequence number 1 that matches on packets with the ECN value 2:
+
+    ```
+    cumulus@switch:~$ net add pbr-map map1 seq 1 match ecn 2
+    ```
+
+2. Either apply a *next hop* or a *next hop* group to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `rocket` to the `map1` policy map. The next hop must be an IP address. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
+
+    ```
+    cumulus@switch:~$ net add pbr-map map1 seq 1 set nexthop 192.168.0.31 swp2 nexthop-vrf rocket
+    ```
+
+    To apply a next hop group (for ECMP) to the policy map, first create the next hop group, then apply the group to the policy map. The example commands below create a next hop group called `group1` that contains the next hop 192.168.0.21 on output interface swp1 and VRF `rocket`, and the next hop 192.168.0.22, then applies the next hop group `group1` to the `map1` policy map.
+
+    The output interface and VRF are optional. However, you must specify the VRF if the next hop is not in the default VRF.
+
+    ```
+    cumulus@switch:~$ net add nexthop-group group1 nexthop 192.168.0.21 swp1 nexthop-vrf rocket
+    cumulus@switch:~$ net add nexthop-group group1 nexthop 192.168.0.22
+    cumulus@switch:~$ net add pbr-map map1 seq 1 set nexthop-group group1
+    ```
+
+   If you want the rule to use a specific VRF table as its lookup, set the VRF. If you do not set a VRF, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table:
+
+    ```
+    cumulus@switch:~$ net add pbr-map map1 seq 1 set vrf dmz
+    ```
+
+3. Assign the PBR policy to an ingress interface. The example command below assigns the PBR policy `map1` to interface swp51:
+
+    ```
+    cumulus@switch:~$ net add interface swp51 pbr-policy map1
+    cumulus@switch:~$ net pending
+    cumulus@switch:~$ net commit
+    ```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+nexthop-group group1
+nexthop 192.168.0.21 nexthop-vrf RED swp1
+nexthop 192.168.0.22
+pbr-map map1 seq 1
+match dst-ip 10.1.2.0/24
+match src-ip 10.1.4.1/24
+set nexthop-group group1
+interface swp51
+pbr-policy map1
+...
+```
+-->
 
 {{%notice note%}}
 You can only set one policy per interface.

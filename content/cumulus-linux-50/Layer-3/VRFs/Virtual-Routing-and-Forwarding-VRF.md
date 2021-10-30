@@ -582,7 +582,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux and vtysh Commands ">}}
 
-The /etc/network/interfaces file configuration:
+The `/etc/network/interfaces` file configuration:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces

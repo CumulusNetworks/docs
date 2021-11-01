@@ -17,26 +17,6 @@ The following example commands configure Cumulus Linux to send traffic with the 
 {{< img src="/images/cumulus-linux/static-routing.png" width="300" >}}
 
 {{< tabs "TabID17 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add interface swp51 ip address 10.0.1.1/31
-cumulus@leaf01:~$ net add routing route 10.10.10.101/32 10.0.1.0
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-The NCLU commands save the static route configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-!
-ip route 10.10.10.101/32 10.0.1.0
-!
-...
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -84,32 +64,30 @@ ip route 10.10.10.101/32 10.0.1.0
 
 {{< /tab >}}
 {{< /tabs >}}
-
-The following example commands configure Cumulus Linux to send traffic with the destination prefix 10.10.10.61/32 out swp3 (10.0.0.32/31) to the next hop 10.0.0.33 in vrf BLUE.
-
-{{< img src="/images/cumulus-linux/static-vrf-example.png" width="400" >}}
-
-{{< tabs "TabID76 ">}}
-{{< tab "NCLU Commands ">}}
-
+<!--
 ```
-cumulus@border01:~$ net add interface swp3 ip address 10.0.0.32/31
-cumulus@border01:~$ net add interface swp3 vrf BLUE
-cumulus@border01:~$ net add routing route 10.10.10.61/32 10.0.0.33 vrf BLUE
-cumulus@border01:~$ net pending
-cumulus@border01:~$ net commit
+cumulus@leaf01:~$ net add interface swp51 ip address 10.0.1.1/31
+cumulus@leaf01:~$ net add routing route 10.10.10.101/32 10.0.1.0
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 The NCLU commands save the static route configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
-vrf BLUE
- ip route 10.10.10.61/32 10.0.0.33
+!
+ip route 10.10.10.101/32 10.0.1.0
+!
 ...
 ```
+-->
 
-{{< /tab >}}
+The following example commands configure Cumulus Linux to send traffic with the destination prefix 10.10.10.61/32 out swp3 (10.0.0.32/31) to the next hop 10.0.0.33 in vrf BLUE.
+
+{{< img src="/images/cumulus-linux/static-vrf-example.png" width="400" >}}
+
+{{< tabs "TabID76 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -158,23 +136,28 @@ vrf BLUE
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@border01:~$ net add interface swp3 ip address 10.0.0.32/31
+cumulus@border01:~$ net add interface swp3 vrf BLUE
+cumulus@border01:~$ net add routing route 10.10.10.61/32 10.0.0.33 vrf BLUE
+cumulus@border01:~$ net pending
+cumulus@border01:~$ net commit
+```
+
+The NCLU commands save the static route configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+vrf BLUE
+ ip route 10.10.10.61/32 10.0.0.33
+...
+```
+-->
 
 To delete a static route:
 
 {{< tabs "TabID58 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net del routing route 10.10.10.101/32 10.0.1.0
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{%notice tip%}}
-When you use NCLU commands to delete routing configuration such as static routes, commit ten or fewer delete commands at a time to avoid commit failures.
-{{%/notice%}}
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -198,13 +181,23 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@leaf01:~$ net del routing route 10.10.10.101/32 10.0.1.0
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
 
-To view static routes, run the NCLU `net show route static` command or the vtysh `show ip route` command. For example:
+{{%notice tip%}}
+When you use NCLU commands to delete routing configuration such as static routes, commit ten or fewer delete commands at a time to avoid commit failures.
+{{%/notice%}}
+-->
+
+To view static routes, run the <!--NCLU `net show route static` command or the -->vtysh `show ip route` command. For example:
 
 ```
-cumulus@leaf01:mgmt:~$ net show route static
-RIB entry for static
-====================
+cumulus@leaf01:mgmt:~$ sudo vtysh
+leaf01# show ip route
 Codes: K - kernel route, C - connected, S - static, R - RIP,
        O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
        T - Table, v - VNC, V - VNC-Direct, A - Babel, D - SHARP,
@@ -217,17 +210,6 @@ S>* 10.10.10.101/32 [1/0] via 10.0.1.0, swp51, weight 1, 00:02:07
 You can also create a static route by adding the route to a switch port configuration. For example:
 
 {{< tabs "TabID187 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add interface swp51 ip address 10.0.1.1/31
-cumulus@leaf01:~$ net add interface swp51 post-up ip route add 10.10.10.101/32 via 10.0.1.0
-cumulus@leaf01:~$ net add interface swp51 post-down ip route del 10.10.10.101/32 via 10.0.1.0
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 NVUE commands are not supported.
@@ -251,6 +233,15 @@ The `ip route` command allows you to manipulate the kernel routing table directl
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@leaf01:~$ net add interface swp51 ip address 10.0.1.1/31
+cumulus@leaf01:~$ net add interface swp51 post-up ip route add 10.10.10.101/32 via 10.0.1.0
+cumulus@leaf01:~$ net add interface swp51 post-down ip route del 10.10.10.101/32 via 10.0.1.0
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+-->
 
 ## Configure a Gateway or Default Route
 
@@ -259,25 +250,6 @@ On each switch, consider creating a *gateway* or *default route* for traffic des
 The following example configures the default route 0.0.0.0/0, which indicates that you can send any IP address to the gateway. The gateway is another switch with the IP address 10.0.1.0.
 
 {{< tabs "TabID310 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add routing route 0.0.0.0/0 10.0.1.0
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-!
-ip route 0.0.0.0/0 10.0.1.0
-!
-...
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -319,6 +291,23 @@ The default route created by the `gateway` parameter in ifupdown2 does not insta
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@leaf01:~$ net add routing route 0.0.0.0/0 10.0.1.0
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+!
+ip route 0.0.0.0/0 10.0.1.0
+!
+...
+```
+-->
 
 ## Considerations
 

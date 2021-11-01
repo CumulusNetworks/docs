@@ -62,13 +62,59 @@ For static **NAT**, create a rule that matches a source or destination IP addres
 
 For static **PAT**, create a rule that matches a source or destination IP address together with the layer 4 port and translates the IP address and port to a public IP address and port.
 
-For NVIDIA Spectrum-2 switches, you can include the outgoing or incoming interface.
+For NVIDIA switches with Spectrum-2 and later, you can include the outgoing or incoming interface.
 
-To create rules, you can use either NCLU or `cl-acltool`.
+To create rules, use <!-- either NCLU or -->`cl-acltool`.
 
-{{< tabs "TabID68 ">}}
-{{< tab "NCLU Commands ">}}
+To add NAT rules using `cl-acltool`, either edit an existing file in the `/etc/cumulus/acl/policy.d` directory and add rules under `[iptables]` or create a new file in the `/etc/cumulus/acl/policy.d` directory and add rules under an `[iptables]` section. For example:
 
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/60_nat.rules
+[iptables]
+
+ #Add rule
+ ```
+
+**Example Rules**
+
+The following rule matches TCP packets with source IP address 10.0.01 and translates the IP address to 172.30.58.80:
+
+```
+-t nat -A POSTROUTING -s 10.0.0.1 -p tcp -j SNAT --to-source 172.30.58.80
+```
+
+The following rule matches ICMP packets with destination IP address 172.30.58.80 on interface swp51 and translates the IP address to 10.0.0.1
+
+```
+-t nat -A PREROUTING -d 172.30.58.80 -p icmp --in-interface swp51 -j DNAT --to-destination 10.0.0.1
+```
+
+The following rule matches UDP packets with source IP address 10.0.0.1 and source port 5000, and translates the IP address to 172.30.58.80 and the port to 6000.
+
+```
+-t nat -A POSTROUTING -s 10.0.0.1 -p udp --sport 5000 -j SNAT --to-source 172.30.58.80:6000
+```
+
+The following rule matches UDP packets with destination IP address 172.30.58.80 and destination port 6000 on interface swp51, and translates the IP address to 10.0.0.1 and the port to 5000.
+
+```
+-t nat -A PREROUTING -d 172.30.58.80 -p udp --dport 6000 --in-interface swp51  -j DNAT --to-destination 10.0.0.1:5000
+```
+
+The following *double NAT* rule translates both the source and destination IP addresses of incoming and outgoing ICMP packets:  
+- For outgoing messages, NAT changes the inside local IP address 172.16.10.2 to the inside global IP address 130.1.100.10 and the outside local IP address 26.26.26.26 to the outside global IP address 140.1.1.2.
+- For incoming messages, NAT changes the inside global IP address 130.1.100.10 to the inside local IP address 172.16.10.2 and the outside global IP address 140.1.1.2 to the outside local IP address 26.26.26.26.
+
+```
+-t nat -A POSTROUTING -s 172.16.10.2 -p icmp -j SNAT --to-source 130.1.100.100 
+-t nat -A PREROUTING -d 26.26.26.26 -p icmp -j DNAT --to-destination 140.1.1.2 
+-t nat -A POSTROUTING -s 140.1.1.2 -p icmp -j SNAT --to-source 26.26.26.26 
+-t nat -A PREROUTING -d 130.1.100.100 -p icmp -j DNAT --to-destination 172.16.10.2 
+```
+
+To delete a static NAT rule, remove the rule from the policy file in the  `/etc/cumulus/acl/policy.d` directory, then run the `sudo cl-acltool -i command`.
+
+<!--
 Use the following NCLU commands:
 
 **NAT**
@@ -145,60 +191,7 @@ cumulus@switch:~$ net del nat static snat tcp 10.0.0.1 translate 172.30.58.80
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
-<!-- vale off -->
-{{< /tab >}}
-{{< tab "cl-acltool Commands ">}}
-<!-- vale on -->
-To add NAT rules using `cl-acltool`, either edit an existing file in the `/etc/cumulus/acl/policy.d` directory and add rules under `[iptables]` or create a new file in the `/etc/cumulus/acl/policy.d` directory and add rules under an `[iptables]` section. For example:
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/60_nat.rules
-[iptables]
-
- #Add rule
- ```
-
-**Example Rules**
-
-The following rule matches TCP packets with source IP address 10.0.01 and translates the IP address to 172.30.58.80:
-
-```
--t nat -A POSTROUTING -s 10.0.0.1 -p tcp -j SNAT --to-source 172.30.58.80
-```
-
-The following rule matches ICMP packets with destination IP address 172.30.58.80 on interface swp51 and translates the IP address to 10.0.0.1
-
-```
--t nat -A PREROUTING -d 172.30.58.80 -p icmp --in-interface swp51 -j DNAT --to-destination 10.0.0.1
-```
-
-The following rule matches UDP packets with source IP address 10.0.0.1 and source port 5000, and translates the IP address to 172.30.58.80 and the port to 6000.
-
-```
--t nat -A POSTROUTING -s 10.0.0.1 -p udp --sport 5000 -j SNAT --to-source 172.30.58.80:6000
-```
-
-The following rule matches UDP packets with destination IP address 172.30.58.80 and destination port 6000 on interface swp51, and translates the IP address to 10.0.0.1 and the port to 5000.
-
-```
--t nat -A PREROUTING -d 172.30.58.80 -p udp --dport 6000 --in-interface swp51  -j DNAT --to-destination 10.0.0.1:5000
-```
-
-The following *double NAT* rule translates both the source and destination IP addresses of incoming and outgoing ICMP packets:  
-- For outgoing messages, NAT changes the inside local IP address 172.16.10.2 to the inside global IP address 130.1.100.10 and the outside local IP address 26.26.26.26 to the outside global IP address 140.1.1.2.
-- For incoming messages, NAT changes the inside global IP address 130.1.100.10 to the inside local IP address 172.16.10.2 and the outside global IP address 140.1.1.2 to the outside local IP address 26.26.26.26.
-
-```
--t nat -A POSTROUTING -s 172.16.10.2 -p icmp -j SNAT --to-source 130.1.100.100 
--t nat -A PREROUTING -d 26.26.26.26 -p icmp -j DNAT --to-destination 140.1.1.2 
--t nat -A POSTROUTING -s 140.1.1.2 -p icmp -j SNAT --to-source 26.26.26.26 
--t nat -A PREROUTING -d 130.1.100.100 -p icmp -j DNAT --to-destination 172.16.10.2 
-```
-
-To delete a static NAT rule, remove the rule from the policy file in the  `/etc/cumulus/acl/policy.d` directory, then run the `sudo cl-acltool -i command`.
-
-{{< /tab >}}
-{{< /tabs >}}
+-->
 
 ## Dynamic NAT
 
@@ -229,7 +222,7 @@ The `/etc/cumulus/switchd.conf` file includes the following configuration option
 | ------ | ----------- |
 | nat.age_poll_interval | The period of inactivity before `switchd` releases a NAT entry from the translation table.<br>The default value is 5 minutes. The minimum value is 1 minute. The maximum value is 24 hours.|
 | nat.table_size | The maximum number of dynamic `snat` and `dnat` entries in the translation table. The default value is 1024.<br>NVIDIA Spectrum-2 switches support a maximum of 8192 entries. |
-| nat.config_table_size | The maximum number of rules allowed (NCLU or cl-acltool).<br>The default value is 64. The minimum value is 64. The maximum value is 1024. |
+| nat.config_table_size | The maximum number of rules allowed <!--(NCLU or cl-acltool)-->.<br>The default value is 64. The minimum value is 64. The maximum value is 1024. |
 <!-- vale on -->
 After you change any of the dynamic NAT configuration options, restart `switchd`.
 <!-- vale off -->
@@ -243,9 +236,50 @@ For dynamic **PAT**, create a rule that matches an IP address in CIDR notation a
 
 For NVIDIA Spectrum-2 switches, you can include the outgoing or incoming interface in the rule. See the examples below.
 
-{{< tabs "TabID226 ">}}
-{{< tab "NCLU Commands ">}}
+To add NAT rules using `cl-acltool`, either edit an existing file in the `/etc/cumulus/acl/policy.d` directory and add rules under `[iptables]` or create a new file in the `/etc/cumulus/acl/policy.d` directory and add rules under an `[iptables]` section. For example:
 
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/60_nat.rules
+[iptables]
+
+ #Add rule
+```
+
+**Example Rules**
+
+The following rule matches TCP packets with source IP address in the range 10.0.0.0/24 on outbound interface swp5 and translates the address dynamically to an IP address in the range 172.30.58.0-172.30.58.80.
+
+```
+-t nat -A POSTROUTING -s 10.0.0.0/24 --out-interface swp5 -p tcp -j SNAT --to-source 172.30.58.0-172.30.58.80
+```
+
+The following rule matches UDP packets with source IP address in the range 10.0.0.0/24 and translates the addresses dynamically to IP address 172.30.58.80 with layer 4 ports in the range 1024-1200:
+
+```
+-t nat -A POSTROUTING -s 10.0.0.0/24 -p udp -j SNAT --to-source 172.30.58.80:1024-1200
+```
+
+The following rule matches UDP packets with source IP address in the range 10.0.0.0/24 on source port 5000 and translates the addresses dynamically to IP address 172.30.58.80 with layer 4 ports in the range 1024-1200:
+
+```
+-t nat -A POSTROUTING -s 10.0.0.0/24 -p udp --sport 5000 -j SNAT --to-source 172.30.58.80:1024-1200
+```
+
+The following rule matches TCP packets with destination IP address in the range 10.1.0.0/24 and translates the address dynamically to IP address range 172.30.58.0-172.30.58.80 with layer 4 ports in the range 1024-1200:
+
+```
+-t nat -A PREROUTING -d 10.1.0.0/24 -p tcp -j DNAT --to-destination 172.30.58.0-172.30.58.80:1024-1200
+```
+
+The following rule matches ICMP packets with source IP address in the range 10.0.0.0/24 and destination IP address in the range 10.1.0.0/24. The rule translates the address dynamically to IP address range 172.30.58.0-172.30.58.80 with layer 4 ports in the range 1024-1200:
+
+```
+-t nat -A POSTROUTING -s 10.0.0.0/24 -d 10.1.0.0/24 -p icmp -j SNAT --to-source 172.30.58.0-172.30.58.80:1024-1200
+```
+
+To delete a dynamic NAT rule, remove the rule from the policy file in the  `/etc/cumulus/acl/policy.d` directory, then run the `sudo cl-acltool -i` command.
+
+<!--
 Use the following NCLU commands:
 
 **NAT**
@@ -317,55 +351,7 @@ cumulus@switch:~$ net del nat dynamic snat tcp source-ip 10.0.0.0/24 translate 1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
-<!-- vale off -->
-{{< /tab >}}
-{{< tab "cl-acltool Commands ">}}
-<!-- vale on -->
-To add NAT rules using `cl-acltool`, either edit an existing file in the `/etc/cumulus/acl/policy.d` directory and add rules under `[iptables]` or create a new file in the `/etc/cumulus/acl/policy.d` directory and add rules under an `[iptables]` section. For example:
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/60_nat.rules
-[iptables]
-
- #Add rule
-```
-
-**Example Rules**
-
-The following rule matches TCP packets with source IP address in the range 10.0.0.0/24 on outbound interface swp5 and translates the address dynamically to an IP address in the range 172.30.58.0-172.30.58.80.
-
-```
--t nat -A POSTROUTING -s 10.0.0.0/24 --out-interface swp5 -p tcp -j SNAT --to-source 172.30.58.0-172.30.58.80
-```
-
-The following rule matches UDP packets with source IP address in the range 10.0.0.0/24 and translates the addresses dynamically to IP address 172.30.58.80 with layer 4 ports in the range 1024-1200:
-
-```
--t nat -A POSTROUTING -s 10.0.0.0/24 -p udp -j SNAT --to-source 172.30.58.80:1024-1200
-```
-
-The following rule matches UDP packets with source IP address in the range 10.0.0.0/24 on source port 5000 and translates the addresses dynamically to IP address 172.30.58.80 with layer 4 ports in the range 1024-1200:
-
-```
--t nat -A POSTROUTING -s 10.0.0.0/24 -p udp --sport 5000 -j SNAT --to-source 172.30.58.80:1024-1200
-```
-
-The following rule matches TCP packets with destination IP address in the range 10.1.0.0/24 and translates the address dynamically to IP address range 172.30.58.0-172.30.58.80 with layer 4 ports in the range 1024-1200:
-
-```
--t nat -A PREROUTING -d 10.1.0.0/24 -p tcp -j DNAT --to-destination 172.30.58.0-172.30.58.80:1024-1200
-```
-
-The following rule matches ICMP packets with source IP address in the range 10.0.0.0/24 and destination IP address in the range 10.1.0.0/24. The rule translates the address dynamically to IP address range 172.30.58.0-172.30.58.80 with layer 4 ports in the range 1024-1200:
-
-```
--t nat -A POSTROUTING -s 10.0.0.0/24 -d 10.1.0.0/24 -p icmp -j SNAT --to-source 172.30.58.0-172.30.58.80:1024-1200
-```
-
-To delete a dynamic NAT rule, remove the rule from the policy file in the  `/etc/cumulus/acl/policy.d` directory, then run the `sudo cl-acltool -i` command.
-
-{{< /tab >}}
-{{< /tabs >}}
+-->
 
 ## Show Configured NAT Rules
 

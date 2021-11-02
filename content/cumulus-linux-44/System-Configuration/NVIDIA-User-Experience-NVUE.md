@@ -63,77 +63,79 @@ cumulus@switch:~$ curl  -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/c
 ...
 ```
 
-For information about using the NVUE API, refer to the {{<mib_link url="cumulus-linux-44/api/index.html" text="NVUE API documentation.">}}
+### Make a Configuration Change
 
-### Using the NVUE API to Make a Change
+To make a configuration change with the NVUE API:
 
-First create a new revision ID using a POST:
+1. Create a new revision ID using a POST:
 
-```
-$ curl -u 'cumulus:cumulus' --insecure -X POST https://127.0.0.1:8765/nvue_v1/revision
-{
-  "changeset/cumulus/2021-11-02_16.09.18_5Z1K": {
-    "state": "pending",
-    "transition": {
-      "issue": {},
-      "progress": ""
-    }
-  }
-}
+   ```
+   $ curl -u 'cumulus:cumulus' --insecure -X POST https://127.0.0.1:8765/nvue_v1/revision
+   {
+     "changeset/cumulus/2021-11-02_16.09.18_5Z1K": {
+       "state": "pending",
+       "transition": {
+         "issue": {},
+         "progress": ""
+       }
+     }
+   }
 
-```
+   ```
 
- Record the revision ID key. In this example it is "changeset/cumulus/2021-11-02_16.09.18_5Z1K"
+2. Record the revision ID. In the above example, the revision ID is `"changeset/cumulus/2021-11-02_16.09.18_5Z1K"`
 
-Now, make the change using a PATCH and link it to the rev id:
-```
-$ curl -u 'cumulus:cumulus' -d '{"99.99.99.99/32": {}}' -H 'Content-Type: application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address?rev=changeset/cumulus/2021-11-02_16.09.18_5Z1K
-{
-  "99.99.99.99/32": {}
-}
-```
+3. Make the change using a PATCH and link it to the revision ID:
 
-Apply the changes using the a PATCH to the revision changeset. Be aware that the revision's full key value must be used, and as such `/`​ must be replaced with `%2F`​ in the list.
+   ```
+   $ curl -u 'cumulus:cumulus' -d '{"99.99.99.99/32": {}}' -H 'Content-Type: application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address?rev=changeset/cumulus/2021-11-02_16.09.18_5Z1K
+   {
+     "99.99.99.99/32": {}
+   }
+   ```
 
-```
-$ curl -u 'cumulus:cumulus' -d '{"state":"apply"}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2021-11-02_16.09.18_5Z1K
-{
-  "state": "apply",
-  "transition": {
-    "issue": {},
-    "progress": ""
-  }
-}
-```
+4. Apply the changes using a PATCH to the revision changeset. You must use the full key value for the revision and replace `/`​ with `%2F`​ in the list:
 
-Now verify the configuration has been applied by looking at the status of the apply and the configuration itself:
-```
-cumulus@leaf01:mgmt:~$ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2021-11-02_16.09.18_5Z1K
-{
-  "state": "applied",
-  "transition": {
-    "issue": {},
-    "progress": ""
-  }
-}
-```
+   ```
+   $ curl -u 'cumulus:cumulus' -d '{"state":"apply"}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2021-11-02_16.09.18_5Z1K
+   {
+     "state": "apply",
+     "transition": {
+       "issue": {},
+       "progress": ""
+     }
+   }
+   ```
 
-```
-$ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address
-{
-  "127.0.0.1/8": {},
-  "99.99.99.99/32": {},
-  "::1/128": {}
-}
-```
+5. To verify that the configuration is applied, review the status of the apply and the configuration:
 
-### Troubleshooting the NVUE API Configuration Changes
+   ```
+   cumulus@leaf01:mgmt:~$ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2021-11-02_16.09.18_5Z1K
+   {
+     "state": "applied",
+     "transition": {
+       "issue": {},
+       "progress": ""
+     }
+   }
+   ```
 
-When a configuration push fails due to dependencies, the error will be displayed in the change request.
+   ```
+   $ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address
+   {
+     "127.0.0.1/8": {},
+     "99.99.99.99/32": {},
+     "::1/128": {}
+   }
+   ```
 
-#### Configuration Dependencies Not Met
+### Troubleshoot Configuration Changes
 
-In some cases, if a configuration is staged but cannot be applied because a dependency is not met, the configuration apply via the API will fail explaining the reason. In this example, the change could not be applied because the BGP router-id was not set:
+When a configuration change fails, you see an error in the change request.
+
+#### Configuration Fails Because of a Dependency
+
+If you stage a configuration but it fails because of a dependency, the failure shows the reason. In the following example, the configuration change fails because the BGP router ID is not set:
 
 ```
 $ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2021-11-02_13.57.25_5Z1H
@@ -156,7 +158,8 @@ $ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/revision/c
 }
 ```
 
-The staged configuration was missing the router-id:
+The staged configuration is missing `router-id`:
+
 ```
 $ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/vrf/default/router/bgp?rev=changeset%2Fcumulus%2F2021-11-02_13.57.25_5Z1H
 {
@@ -165,9 +168,9 @@ $ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/vrf/defaul
 }
 ```
 
-#### Configuration Failed Due To Prompt
+#### Configuration Apply Fails with Warnings
 
-In some cases, such as the first push with NVUE or if a file has been manipulated outside of NVUE, a warning prompt will be presented to the user. By default this prompt will cause an API failure:
+In some cases, such as the first push with NVUE or if you change a file manually instead of using NVUE, you see a warning prompt and the apply fails:
 
 ```
 $ curl -u 'cumulus:cumulus' --insecure -X GET https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2021-11-02_16.09.18_5Z1K
@@ -188,11 +191,13 @@ $ curl -u 'cumulus:cumulus' --insecure -X GET https://127.0.0.1:8765/nvue_v1/rev
   }
 ```
 
-To fix this issue, add additional content to the config apply to include `"auto-prompt":{"ays": "ays_yes"}`:
+To resolve this issue, include `"auto-prompt":{"ays": "ays_yes"}` to the configuration apply:
+
 ```
 $ curl -u 'cumulus:cumulus' -d '{"state":"apply","auto-prompt":{"ays": "ays_yes"}}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2021-11-02_16.09.18_5Z1K
 ```
 
+For information about using the NVUE API, refer to the {{<mib_link url="cumulus-linux-44/api/index.html" text="NVUE API documentation.">}}
 
 ## NVUE CLI
 

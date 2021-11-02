@@ -18,7 +18,7 @@ Cumulus Linux supports multihop BFD sessions for both IPv4 and IPv6 peers.
 
 ## Configure BFD
 
-You can configure BFD by either using {{<link url="FRRouting" text="FRR">}} (with NCLU, NVUE, or vtysh commands) or by specifying the configuration in the {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM `topology.dot` file">}}. However, the topology file has some limitations:
+You can configure BFD by either using {{<link url="FRRouting" text="FRR">}} (with <!--NCLU, -->NVUE or vtysh commands) or by specifying the configuration in the {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM `topology.dot` file">}}. However, the topology file has some limitations:
 
 - The topology file supports BFD IPv4 and IPv6 *single* hop sessions only; you *cannot* specify IPv4 or IPv6 *multihop* sessions in the topology file.
 - The topology file supports BFD sessions for only link-local IPv6 peers; BFD sessions for global IPv6 peers discovered on the link are not created.
@@ -50,25 +50,6 @@ You can configure BFD for a peer group or for an individual neighbor.
 {{%/notice%}}
 
 {{< tabs "TabID66 ">}}
-{{< tab "NCLU Commands ">}}
-
-The following example configures BFD for swp1 and uses the default intervals.
-
-```
-cumulus@switch:~$ net add bgp neighbor swp1 bfd
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The following example configures BFD for the peer group `fabric` and sets the interval multiplier to 4, the minimum interval between received BFD control packets to 400, and the minimum interval for sending BFD control packets to 400.
-
-```
-cumulus@switch:~$ net add bgp neighbor fabric bfd 4 400 400
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 The following example configures BFD for swp51 and uses the default intervals.
@@ -95,7 +76,7 @@ The following example configures BFD for swp1 and uses the default intervals:
 
 ```
 cumulus@switch:~$ sudo vtysh
-
+...
 switch# configure terminal
 switch(config)# router bgp 65000
 switch(config-router)# neighbor swp1 bfd
@@ -103,14 +84,13 @@ switch(config-router)# exit
 switch(config)# exit
 switch# write mem
 switch# exit
-cumulus@switch:~$
 ```
 
 The following example configures BFD for the peer group `fabric` and sets the interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
 
 ```
 cumulus@switch:~$ sudo vtysh
-
+...
 switch# configure terminal
 switch(config)# router bgp 65000
 switch(config-router)# neighbor fabric bfd 4 400 400
@@ -118,7 +98,6 @@ switch(config-router)# exit
 switch(config)# exit
 switch# write mem
 switch# exit
-cumulus@switch:~$
 ```
 
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -136,11 +115,29 @@ neighbor fabric bfd 4 400 400
 
 {{< /tab >}}
 {{< /tabs >}}
-
-To see neighbor information in BGP, including BFD status, run the NCLU `net show bgp neighbor <interface>` command or the vtysh `show ip bgp neighbor <interface>` command. For example:
+<!--
+The following example configures BFD for swp1 and uses the default intervals.
 
 ```
-cumulus@switch:~$ net show bgp neighbor swp51
+cumulus@switch:~$ net add bgp neighbor swp1 bfd
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The following example configures BFD for the peer group `fabric` and sets the interval multiplier to 4, the minimum interval between received BFD control packets to 400, and the minimum interval for sending BFD control packets to 400.
+
+```
+cumulus@switch:~$ net add bgp neighbor fabric bfd 4 400 400
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
+
+To see neighbor information in BGP, including BFD status, run the <!--NCLU `net show bgp neighbor <interface>` command or the -->vtysh `show ip bgp neighbor <interface>` command. For example:
+
+```
+cumulus@switch:~$ sudo vtysh 
+switch# show ip bgp neighbor swp51
 ...
 BFD: Type: single hop
   Detect Mul: 4, Min Rx interval: 400, Min Tx interval: 400
@@ -155,15 +152,6 @@ When you enable or disable BFD in OSPF, {{<link url="Prescriptive-Topology-Manag
 The following example configures BFD in OSPF for interface swp1 and sets interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
 
 {{< tabs "TabID150 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add interface swp1 ospf6 bfd 4 400 400
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -178,7 +166,7 @@ cumulus@switch:~$ nv config apply
 
 ```
 cumulus@switch:~$ sudo vtysh
-
+...
 switch# configure terminal
 switch(config)# interface swp1
 switch(config-if)# ipv6 ospf6 bfd 4 400 400
@@ -186,7 +174,6 @@ switch(config-if)# exit
 switch(config)# exit
 switch# write mem
 switch# exit
-cumulus@switch:~$
 ```
 
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -200,16 +187,24 @@ interface swp1
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add interface swp1 ospf6 bfd 4 400 400
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 You can run different commands to show neighbor information in OSPF, including BFD status.
 
-- To show IPv6 OSPF interface information, run the NCLU `net show ospf6 interface <interface>` command or the vtysh `show ip ospf6 interface <interface>` command.
-- To show IPv4 OSPF interface information, run the NCLU `net show ospf interface <interface>` command or the vtysh `show ip ospf interface <interface>` command.
+- To show IPv6 OSPF interface information, run the <!--NCLU `net show ospf6 interface <interface>` command or the -->vtysh `show ip ospf6 interface <interface>` command.
+- To show IPv4 OSPF interface information, run the <!--NCLU `net show ospf interface <interface>` command or the -->vtysh `show ip ospf interface <interface>` command.
 
    The following example shows IPv6 OSPF interface information.
 
     ```
-    cumulus@switch:~$ net show ospf6 interface swp2s0
+    cumulus@switch:~$ sudo vtysh
+    switch# show ip ospf6 interface swp2s0
       swp2s0 is up, type BROADCAST
     Interface ID: 4
     Internet Address:
@@ -228,13 +223,14 @@ You can run different commands to show neighbor information in OSPF, including B
     BFD: Detect Mul: 3, Min Rx interval: 300, Min Tx interval: 300
     ```
 
-- To show IPv6 OSPF neighbor details, run the NCLU `net show ospf6 neighbor detail` command or the vtysh `show ip ospf6 neighbor detail` command.
-- To show IPv4 OSPF interface information, run the NCLU `net show ospf neighbor detail` command or the vtysh `show ip ospf neighbor detail` command.
+- To show IPv6 OSPF neighbor details, run the <!--NCLU `net show ospf6 neighbor detail` command or the -->vtysh `show ip ospf6 neighbor detail` command.
+- To show IPv4 OSPF interface information, run the <!--NCLU `net show ospf neighbor detail` command or the -->vtysh `show ip ospf neighbor detail` command.
 
   The following example shows IPv6 OSPF neighbor details.
 
   ```
-  cumulus@switch:~$ net show ospf6 neighbor detail
+  cumulus@switch:~$ sudo vtysh
+  switch# show ip ospf6 neighbor detail
     Neighbor 0.0.0.4%swp2s0
       Area 0.0.0.0 via interface swp2s0 (ifindex 4)
       His IfIndex: 3 Link-local address: fe80::202:ff:fe00:a
@@ -298,7 +294,7 @@ You configure the echo function by setting the following parameters in the topol
 
 ## Troubleshooting
 
-To troubleshoot BFD, run the NCLU `net show bfd sessions` or `net show bfd sessions detail` command.
+<!--To troubleshoot BFD, run the NCLU `net show bfd sessions` or `net show bfd sessions detail` command.
 
 ```
 cumulus@switch:~$ net show bfd sessions detail
@@ -318,8 +314,8 @@ tx_timeout  rx_timeout  hop_cnt
 0           0           N/A      187172   185986   0        0
 0           0           N/A      501      533      0        0
 ```
-
-You can also run the Linux `ptmctl -b` command.
+-->
+To troubleshoot BFD, run the Linux `ptmctl -b` command.
 
 ## Related Information
 

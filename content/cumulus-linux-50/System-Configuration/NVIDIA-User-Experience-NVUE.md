@@ -33,7 +33,7 @@ cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/listen \[::\]:8765 i
 cumulus@switch:~$ sudo systemctl restart nginx
 ```
 
-You can run the cURL commands from the command line. For example:
+You can run the cURL commands from the command line. Use the username and password for the switch. For example:
 
 ```
 cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/cue_v1/interface

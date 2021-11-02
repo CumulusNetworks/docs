@@ -33,10 +33,10 @@ cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/listen \[::\]:8765 i
 cumulus@switch:~$ sudo systemctl restart nginx
 ```
 
-You can run the cURL commands from the command line. For example:
+You can run the cURL commands from the command line. Use the username and password for the switch. For example:
 
 ```
-cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/cue_v1/interface
+cumulus@switch:~$ curl  -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/cue_v1/interface
 {
   "eth0": {
     "ip": {
@@ -62,6 +62,7 @@ cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:
       }
 ...
 ```
+
 For information about using the NVUE API, refer to the {{<mib_link url="cumulus-linux-44/api/index.html" text="NVUE API documentation.">}}
 
 ## NVUE CLI
@@ -85,8 +86,8 @@ As you enter commands, you can get help with the valid keywords or options using
 <!-- vale on -->
 ```
 cumulus@switch:~$ nv set <<press Tab>>
-acl        evpn       mlag       platform   router     system     
-bridge     interface  nve        qos        service    vrf 
+acl        evpn       mlag       platform   router     system
+bridge     interface  nve        qos        service    vrf
 
 cumulus@switch:~$ nv set
 ```
@@ -188,7 +189,7 @@ graceful-restart
   path-selection-deferral-time                        360          Used by the restarter as an upper-bounds for waiting for peering es...
   restart-time                                        120          Amount of time taken to restart by router. It is advertised to the...
   stale-routes-time                                   360          Specifies an upper-bounds on how long we retain routes from a resta...
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$
 ```
 
 {{%notice note%}}
@@ -357,7 +358,7 @@ Use the Tab key to get help for the command lists you want to see. For example, 
 <!-- vale on -->
 ```
 cumulus@switch:~$ nv list-commands interface swp1 <<press Tab>>
-acl     bond    bridge  evpn    ip      link    ptp     qos     router 
+acl     bond    bridge  evpn    ip      link    ptp     qos     router
 ```
 
 ## NVUE Configuration File
@@ -415,7 +416,7 @@ The example below shows the NVUE commands required to bring up swp1.
 
 ```
 cumulus@switch:~$ nv set interface swp1 link state up
-cumulus@switch:~$ nv config apply 
+cumulus@switch:~$ nv config apply
 ```
 
 ### Configure a Bond
@@ -454,7 +455,7 @@ cumulus@leaf01:~$ nv set interface bond1 bond member swp1
 cumulus@leaf01:~$ nv set interface bond2 bond member swp2
 cumulus@leaf01:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf01:~$ nv set interface bond2 bond mlag id 2
-cumulus@switch:~$ nv set interface bond1-2 bridge domain br_default 
+cumulus@switch:~$ nv set interface bond1-2 bridge domain br_default
 cumulus@leaf01:~$ nv set interface peerlink bond member swp49-50
 cumulus@leaf01:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
 cumulus@leaf01:~$ nv set mlag backup 10.10.10.2
@@ -492,18 +493,18 @@ Installed Software
 =====================
                       description                                                     package                version
 --------------------- ----------------------------                                    --------------------   ------------
-acpi                  displays information on ACPI devices                            acpi                   1.7-1.1                   
+acpi                  displays information on ACPI devices                            acpi                   1.7-1.1
 acpi-support-base     scripts for handling base ACPI events such as the power button  acpi-support-base      0.142-8
 acpid                 Advanced Configuration and Power Interface event daemon         acpid                  1:2.0.31-1
 adduser               add and remove users and groups                                 adduser                3.118
 apt                   commandline package manager                                     apt                    1.8.2.3
 arping                sends IP and/or ARP pings (to the MAC address)                  arping                 2.19-6
 arptables             ARP table administration                                        arptables              0.0.4+snapshot20181021-4
-atftp                 advanced TFTP client                                            atftp                  0.7.git20120829-3.2~deb10u1                 
-atftpd                advanced TFTP server                                            atftpd                 0.7.git20120829-3.2~deb10u1 
-auditd                User space tools for security auditing                          auditd                 1:2.8.4-3              
-base-files            Debian base system miscellaneous files                          base-files             10.3+deb10u9                 
-base-passwd           Debian base system master password and group files              base-passwd            3.5.46 
+atftp                 advanced TFTP client                                            atftp                  0.7.git20120829-3.2~deb10u1
+atftpd                advanced TFTP server                                            atftpd                 0.7.git20120829-3.2~deb10u1
+auditd                User space tools for security auditing                          auditd                 1:2.8.4-3
+base-files            Debian base system miscellaneous files                          base-files             10.3+deb10u9
+base-passwd           Debian base system master password and group files              base-passwd            3.5.46
 bash                  GNU Bourne Again SHell                                          bash                   5.0-4
 ...
 ```

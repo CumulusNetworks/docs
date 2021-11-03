@@ -757,92 +757,79 @@ Below are a few similar VXLAN and EVPN commands, for full configuration and more
 <summary>Active-Active VXLAN Symmetric Routing - NVUE Configuration Example</summary>
 
 ``` 
-nv set vrf default router bgp autonomous-system 65103
-nv set vrf RED evpn vni 4001
-nv set vrf BLUE evpn vni 4002
-nv set vrf default router bgp router-id 10.10.10.3
-nv set vrf default router bgp peer-group underlay
-nv set vrf default router bgp peer-group underlay remote-as external
-nv set vrf default router bgp peer peerlink.4094 type unnumbered
-nv set vrf default router bgp peer peerlink.4094 peer-group underlay
-nv set vrf default router bgp peer swp51 type unnumbered
-nv set vrf default router bgp peer swp51 peer-group underlay
-nv set vrf default router bgp peer swp52 type unnumbered
-nv set vrf default router bgp peer swp52 peer-group underlay
-nv set vrf default router bgp peer swp53 type unnumbered
-nv set vrf default router bgp peer swp53 peer-group underlay
-nv set vrf default router bgp peer swp54 type unnumbered
-nv set vrf default router bgp peer swp54 peer-group underlay
-nv set vrf default router bgp address-family ipv4-unicast redistribute connected
-nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-nv set vrf default router bgp address-family l2vpn-evpn enable on
-nv set evpn enable on
-nv set vrf RED router bgp autonomous-system 65103
-nv set vrf RED router bgp router-id 10.10.10.3
-nv set vrf RED router bgp address-family ipv4-unicast redistribute connected
-nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
-nv set vrf BLUE router bgp autonomous-system 65103
-nv set vrf BLUE router bgp router-id 10.10.10.3
-nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected
-nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
+nv set interface lo ip address 10.10.10.1/32
+nv set interface swp1-3,swp49-54
 nv set interface bond1 bond member swp1
 nv set interface bond2 bond member swp2
 nv set interface bond3 bond member swp3
-nv set interface peerlink bond member swp49,swp50
-nv set interface peerlink type bond
-nv set interface bond1 bridge domain br_default access 10
 nv set interface bond1 bond mlag id 1
-nv set interface bond1-3 bond lacp-bypass on
-nv set interface bond1-3 link mtu 9000
-nv set interface bond1-3 bridge domain br_default stp bpdu-guard on
-nv set interface bond1-3 bridge domain br_default stp admin-edge on
-nv set interface bond2 bridge domain br_default access 20
 nv set interface bond2 bond mlag id 2
-nv set interface bond3 bridge domain br_default access 30
 nv set interface bond3 bond mlag id 3
-nv set interface peerlink bridge domain br_default
-nv set interface bond1 bridge domain br_default
-nv set interface bond2 bridge domain br_default
-nv set interface bond3 bridge domain br_default
+nv set interface bond1 bond lacp-bypass on
+nv set interface bond2 bond lacp-bypass on
+nv set interface bond3 bond lacp-bypass on
+nv set interface bond1 link mtu 9000
+nv set interface bond2 link mtu 9000
+nv set interface bond3 link mtu 9000
+nv set interface bond1-3 bridge domain br_default
+nv set interface bond1 bridge domain br_default access 10
+nv set interface bond2 bridge domain br_default access 20
+nv set interface bond3 bridge domain br_default access 30
 nv set bridge domain br_default vlan 10,20,30
-nv set bridge domain br_default type vlan-aware
-nv set mlag init-delay 10
-nv set mlag backup 10.10.10.4
+nv set interface peerlink bond member swp49-50
+nv set mlag mac-address 44:38:39:BE:EF:AA
+nv set mlag backup 10.10.10.2
 nv set mlag peer-ip linklocal
 nv set mlag priority 1000
-nv set mlag mac-address 44:38:39:BE:EF:BB
-nv set interface swp1 link state up 
-nv set interface swp2 link state up 
-nv set interface swp3 link state up 
-nv set interface swp49-50 link state up 
-nv set interface swp51-54 link state up 
-nv set nve vxlan mlag shared-address 10.0.1.34
-nv set interface lo ip address 10.10.10.3/32
-nv set nve vxlan source address 10.10.10.3
-nv set interface vlan10 ip address 10.1.10.4/24
+nv set mlag init-delay 10
+nv set interface vlan10 ip address 10.1.10.2/24
 nv set interface vlan10 ip vrr address 10.1.10.1/24
 nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
-nv set interface vlan10 ip vrr state up 
-nv set interface vlan10 vlan 10
-nv set interface vlan10 ip vrf RED
-nv set interface vlan20 ip address 10.1.20.4/24
+nv set interface vlan10 ip vrr state up
+nv set interface vlan20 ip address 10.1.20.2/24
 nv set interface vlan20 ip vrr address 10.1.20.1/24
 nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
-nv set interface vlan20 ip vrr state up 
-nv set interface vlan20 vlan 20
-nv set interface vlan20 ip vrf RED
-nv set interface vlan30 ip address 10.1.30.4/24
+nv set interface vlan20 ip vrr state up
+nv set interface vlan30 ip address 10.1.30.2/24
 nv set interface vlan30 ip vrr address 10.1.30.1/24
 nv set interface vlan30 ip vrr mac-address 00:00:00:00:00:30
-nv set interface vlan30 ip vrr state up 
-nv set interface vlan30 vlan 30
-nv set interface vlan30 ip vrf BLUE
-nv set vrf BLUE
+nv set interface vlan30 ip vrr state up
 nv set vrf RED
-nv set nve vxlan arp-nd-suppress on
+nv set vrf BLUE
 nv set bridge domain br_default vlan 10 vni 10
 nv set bridge domain br_default vlan 20 vni 20
 nv set bridge domain br_default vlan 30 vni 30
+nv set interface vlan10 ip vrf RED
+nv set interface vlan20 ip vrf RED
+nv set interface vlan30 ip vrf BLUE
+nv set nve vxlan mlag shared-address 10.0.1.12
+nv set nve vxlan source address 10.10.10.1
+nv set nve vxlan arp-nd-suppress on
+nv set vrf RED evpn vni 4001
+nv set vrf BLUE evpn vni 4002
+nv set system global anycast-mac 44:38:39:BE:EF:AA
+nv set evpn enable on
+nv set router bgp autonomous-system 65101
+nv set router bgp router-id 10.10.10.1
+nv set vrf default router bgp peer-group underlay remote-as external
+nv set vrf default router bgp peer swp51 peer-group underlay
+nv set vrf default router bgp peer swp52 peer-group underlay
+nv set vrf default router bgp peer swp53 peer-group underlay
+nv set vrf default router bgp peer swp54 peer-group underlay
+nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+nv set vrf default router bgp peer peerlink.4094 peer-group underlay
+nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on
+nv set vrf RED router bgp autonomous-system 65101
+nv set vrf RED router bgp router-id 10.10.10.1
+nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
+nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on
+nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
+nv set vrf BLUE router bgp autonomous-system 65101
+nv set vrf BLUE router bgp router-id 10.10.10.1
+nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on
+nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on
+nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
+nv config apply
 ```
 
 </details>
@@ -851,37 +838,15 @@ nv set bridge domain br_default vlan 30 vni 30
 <summary>Active-Active VXLAN Symmetric Routing - NCLU Configuration Example</summary>
 
 ``` 
-net add bgp autonomous-system 65103
-net add vrf RED vni 4001
-net add vrf BLUE vni 4002
-net add bgp router-id 10.10.10.3
-net add bgp neighbor underlay peer-group
-net add bgp neighbor underlay remote-as external
-net add bgp neighbor peerlink.4094 interface peer-group underlay
-net add bgp neighbor swp51 interface peer-group underlay
-net add bgp neighbor swp52 interface peer-group underlay
-net add bgp neighbor swp53 interface peer-group underlay
-net add bgp neighbor swp54 interface peer-group underlay
-net add bgp ipv4 unicast redistribute connected
-net add bgp l2vpn evpn  neighbor underlay activate
-net add bgp l2vpn evpn  advertise-all-vni
-net add bgp vrf RED autonomous-system 65103
-net add bgp vrf RED router-id 10.10.10.3
-net add bgp vrf RED ipv4 unicast redistribute connected
-net add bgp vrf RED l2vpn evpn  advertise ipv4 unicast
-net add bgp vrf BLUE autonomous-system 65103
-net add bgp vrf BLUE router-id 10.10.10.3
-net add bgp vrf BLUE ipv4 unicast redistribute connected
-net add bgp vrf BLUE l2vpn evpn  advertise ipv4 unicast
+net add loopback lo ip address 10.10.10.1/32
 net add bond bond1 bond slaves swp1
 net add bond bond2 bond slaves swp2
 net add bond bond3 bond slaves swp3
-net add bond peerlink bond slaves swp49,swp50
-net add vxlan vni10 vxlan id 10
-net add vxlan vni20 vxlan id 20
-net add vxlan vni30 vxlan id 30
-net add vxlan vniBLUE vxlan id 4002
-net add vxlan vniRED vxlan id 4001
+net add interface swp1 alias bond member of bond1
+net add interface swp2 alias bond member of bond2
+net add interface swp3 alias bond member of bond3
+net add interface swp51-54 alias to spine
+net add bridge bridge vlan-aware
 net add bond bond1 bridge access 10
 net add bond bond1 clag id 1
 net add bond bond1-3 bond lacp-bypass-allow
@@ -892,30 +857,46 @@ net add bond bond2 bridge access 20
 net add bond bond2 clag id 2
 net add bond bond3 bridge access 30
 net add bond bond3 clag id 3
-net add bridge bridge ports vni10,vni20,vni30,vniRED,vniBLUE,peerlink,bond1,bond2,bond3
-net add bridge bridge vids 10,20,30
-net add bridge bridge vlan-aware
+net add bridge bridge ports bond1,bond2,bond3
+net add bond peerlink bond slaves swp49,swp50
+net add interface swp49-50 alias peerlink
+net add bridge bridge ports peerlink
 net add interface peerlink.4094 clag args --initDelay 10
-net add interface peerlink.4094 clag backup-ip 10.10.10.4
+net add interface peerlink.4094 clag backup-ip 10.10.10.2
 net add interface peerlink.4094 clag peer-ip linklocal
 net add interface peerlink.4094 clag priority 1000
-net add interface peerlink.4094 clag sys-mac 44:38:39:BE:EF:BB
-net add loopback lo clag vxlan-anycast-ip 10.0.1.34
-net add loopback lo ip address 10.10.10.3/32
-net add loopback lo vxlan local-tunnelip 10.10.10.3
-net add vlan 10 ip address 10.1.10.4/24
+net add interface peerlink.4094 clag sys-mac 44:38:39:BE:EF:AA
+net add loopback lo clag vxlan-anycast-ip 10.0.1.12
+net add vrf RED vni 4001
+net add vrf BLUE vni 4002
+net add vlan 10 ip address 10.1.10.2/24
 net add vlan 10 ip address-virtual 00:00:00:00:00:10 10.1.10.1/24
+net add vlan 10 vlan-id 10
+net add vlan 10 vlan-raw-device bridge
 net add vlan 10 vrf RED
-net add vlan 20 ip address 10.1.20.4/24
+net add vlan 20 ip address 10.1.20.2/24
 net add vlan 20 ip address-virtual 00:00:00:00:00:20 10.1.20.1/24
+net add vlan 20 vlan-id 20
+net add vlan 20 vlan-raw-device bridge
 net add vlan 20 vrf RED
-net add vlan 30 ip address 10.1.30.4/24
+net add vlan 30 ip address 10.1.30.2/24
 net add vlan 30 ip address-virtual 00:00:00:00:00:30 10.1.30.1/24
+net add vlan 30 vlan-id 30
+net add vlan 30 vlan-raw-device bridge
 net add vlan 30 vrf BLUE
-net add vlan 4001 hwaddress 44:38:39:BE:EF:BB
+net add vlan 4001 hwaddress 44:38:39:BE:EF:AA
+net add vlan 4001 vlan-id 4001
+net add vlan 4001 vlan-raw-device bridge
 net add vlan 4001 vrf RED
-net add vlan 4002 hwaddress 44:38:39:BE:EF:BB
+net add vlan 4002 hwaddress 44:38:39:BE:EF:AA
+net add vlan 4002 vlan-id 4002
+net add vlan 4002 vlan-raw-device bridge
 net add vlan 4002 vrf BLUE
+net add vxlan vni10 vxlan id 10
+net add vxlan vni20 vxlan id 20
+net add vxlan vni30 vxlan id 30
+net add vxlan vniBLUE vxlan id 4002
+net add vxlan vniRED vxlan id 4001
 net add vxlan vni10 bridge access 10
 net add vxlan vni10,20,30,vniBLUE,vniRED bridge arp-nd-suppress on
 net add vxlan vni10,20,30,vniBLUE,vniRED bridge learning off
@@ -925,6 +906,30 @@ net add vxlan vni20 bridge access 20
 net add vxlan vni30 bridge access 30
 net add vxlan vniBLUE bridge access 4002
 net add vxlan vniRED bridge access 4001
+net add bridge bridge ports vni10,vni20,vni30,vniRED,vniBLUE
+net add bridge bridge vids 10,20,30,4001-4002
+net add loopback lo vxlan local-tunnelip 10.10.10.1
+net add bgp autonomous-system 65101
+net add bgp router-id 10.10.10.1
+net add bgp neighbor underlay peer-group
+net add bgp neighbor underlay remote-as external
+net add bgp neighbor peerlink.4094 interface peer-group underlay
+net add bgp neighbor swp51 interface peer-group underlay
+net add bgp neighbor swp52 interface peer-group underlay
+net add bgp neighbor swp53 interface peer-group underlay
+net add bgp neighbor swp54 interface peer-group underlay
+net add bgp ipv4 unicast redistribute connected
+net add bgp l2vpn evpn neighbor underlay activate
+net add bgp l2vpn evpn advertise-all-vni
+net add bgp vrf RED autonomous-system 65101
+net add bgp vrf RED router-id 10.10.10.1
+net add bgp vrf RED ipv4 unicast redistribute connected
+net add bgp vrf RED l2vpn evpn advertise ipv4 unicast
+net add bgp vrf BLUE autonomous-system 65101
+net add bgp vrf BLUE router-id 10.10.10.1
+net add bgp vrf BLUE ipv4 unicast redistribute connected
+net add bgp vrf BLUE l2vpn evpn advertise ipv4 unicast
+net commit
 ```
 
 </details>

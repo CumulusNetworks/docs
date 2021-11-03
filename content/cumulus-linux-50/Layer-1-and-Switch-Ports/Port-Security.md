@@ -14,10 +14,10 @@ You can specify what action to take when there is a port security violation (dro
 
 {{%notice note%}}
 - Layer 2 interfaces in trunk or access mode are currently supported. However, interfaces in a bond are *not* supported.
-- NVUE commands are not available for port security configuration; either run NCLU commands or edit the `/etc/cumulus/switchd.d/port_security.conf` file manually.
+- NVUE commands are not available for port security configuration.<!--; either run NCLU commands or edit the `/etc/cumulus/switchd.d/port_security.conf` file manually.-->
 {{%/notice%}}
 
-## Configure Port Security with NCLU
+<!--## Configure Port Security with NCLU
 
 You can use NCLU commands to configure port security.
 
@@ -120,12 +120,10 @@ Mac addresses
 00:02:00:00:00:05
 00:02:00:00:00:06
 ```
-
+-->
 ## Configure Port Security Manually
 
-You can edit the `/etc/cumulus/switchd.d/port_security.conf` file manually to configure port security instead of running the NCLU commands shown above. This procedure is useful if you use configuration scripts.
-
-Add the configuration settings you want to use to the `/etc/cumulus/switchd.d/port_security.conf` file, then restart `switchd` to apply the changes.
+To configure port security, add the configuration settings you want to use to the `/etc/cumulus/switchd.d/port_security.conf` file, then restart `switchd` to apply the changes.
 
 | <div style="width:460px">Setting | Description|
 | --------| -----------|

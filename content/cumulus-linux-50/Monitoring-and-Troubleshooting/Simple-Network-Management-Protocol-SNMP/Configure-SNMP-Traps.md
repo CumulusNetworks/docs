@@ -42,24 +42,9 @@ If not already on the system, install the `snmptrapd` Debian package before you 
 The following configuration defines the trap receiver IP address for SNMPv1 and SNMPv2c traps. For SNMP versions 1 and 2c, you must set at least one SNMP trap destination IP address; multiple destinations can exist. Removing all settings disables SNMP traps. The default version is 2c. You must include a VRF name with the IP address to force traps to send in a non-default VRF table.
 
 {{< tabs "trap-destination" >}}
-{{< tab "NCLU Commands" >}}
+{{< tab "NVUE Commands" >}}
 
-```
-cumulus@switch:~$ net add snmp-server trap-destination localhost vrf rocket community-password mymanagementvrfpassword version 1
-cumulus@switch:~$ net add snmp-server trap-destination localhost-v6 community-password mynotsosecretpassword version 2c
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-These commands create the following configuration in the `/etc/snmp/snmpd.conf` file:
-
-```
-cumulus@switch:~$ cat /etc/snmp/snmpd.conf
-...
-trap2sink [::1] mynotsosecretpassword
-trapsink 127.0.0.1@rocket mymanagementvrfpassword
-...
-```
+NVUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
@@ -87,22 +72,33 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add snmp-server trap-destination localhost vrf rocket community-password mymanagementvrfpassword version 1
+cumulus@switch:~$ net add snmp-server trap-destination localhost-v6 community-password mynotsosecretpassword version 2c
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+These commands create the following configuration in the `/etc/snmp/snmpd.conf` file:
+
+```
+cumulus@switch:~$ cat /etc/snmp/snmpd.conf
+...
+trap2sink [::1] mynotsosecretpassword
+trapsink 127.0.0.1@rocket mymanagementvrfpassword
+...
+```
+-->
 
 ### SNMPv3 Trap and Inform Messages
 
 The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages. You specify the level of authentication and encryption for SNMPv3 trap and inform messages with `-l` (`NoauthNoPriv, authNoPriv,` or `authPriv`).
 
 {{< tabs "traps-informs" >}}
-{{< tab "NCLU Commands" >}}
+{{< tab "NVUE Commands" >}}
 
-For inform messages, the engine ID/username creates the username on the receiving trap daemon server. The trap receiver sends the response for the trap message using its own engine ID/username. In practice, the trap daemon generates the usernames with its own engine ID. The SNMP server (or agent) needs to use these engine ID and usernames when configuring the inform messages so that they authenticate and the correct response goes to the sending `snmpd` agent.
-
-```
-cumulus@switch:~$ net add snmp-server trap-destination localhost username myv3user auth-md5 md5password1 encrypt-aes myaessecret engine-id  0x80001f888070939b14a514da5a00000000 inform
-cumulus@switch:~$ net add snmp-server trap-destination localhost vrf mgmt username mymgmtvrfusername auth-md5 md5password2 encrypt-aes myaessecret2 engine-id  0x80001f888070939b14a514da5a00000000 inform
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+NVUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
@@ -129,6 +125,16 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+For inform messages, the engine ID/username creates the username on the receiving trap daemon server. The trap receiver sends the response for the trap message using its own engine ID/username. In practice, the trap daemon generates the usernames with its own engine ID. The SNMP server (or agent) needs to use these engine ID and usernames when configuring the inform messages so that they authenticate and the correct response goes to the sending `snmpd` agent.
+
+```
+cumulus@switch:~$ net add snmp-server trap-destination localhost username myv3user auth-md5 md5password1 encrypt-aes myaessecret engine-id  0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ net add snmp-server trap-destination localhost vrf mgmt username mymgmtvrfusername auth-md5 md5password2 encrypt-aes myaessecret2 engine-id  0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 ### Source Traps from a Different Source IP Address
 
@@ -232,23 +238,9 @@ The default frequency for checking link up and link down is 60 seconds. To chang
 {{%/notice%}}
 
 {{< tabs "traps-linkupdown" >}}
-{{< tab "NCLU Commands" >}}
+{{< tab "NVUE Commands" >}}
 
-To enable notifications to send interface link up events to SNMP trap destinations every 15 seconds, run:
-
-```
-cumulus@switch:~$ net add snmp-server trap-link-up check-frequency 15
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-To enable notifications to send interface link down events to SNMP trap destinations every 10 seconds, run:
-
-```
-cumulus@switch:~$ net add snmp-server trap-link-down check-frequency 10
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+NVUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
@@ -277,6 +269,23 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+To enable notifications to send interface link up events to SNMP trap destinations every 15 seconds, run:
+
+```
+cumulus@switch:~$ net add snmp-server trap-link-up check-frequency 15
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+To enable notifications to send interface link down events to SNMP trap destinations every 10 seconds, run:
+
+```
+cumulus@switch:~$ net add snmp-server trap-link-down check-frequency 10
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 ### Configure Free Memory Notifications
 
@@ -300,13 +309,9 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 To enable a trap when the CPU load average exceeds a configured threshold, run the following commands. You can only use integers or floating point numbers.
 
 {{< tabs "traps-cpuload" >}}
-{{< tab "NCLU Commands" >}}
+{{< tab "NVUE Commands" >}}
 
-```
-cumulus@switch:~$ net add snmp-server trap-cpu-load-average one-minute 4.34 five-minute 2.32 fifteen-minute 6.5
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+NVUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
@@ -330,6 +335,13 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add snmp-server trap-cpu-load-average one-minute 4.34 five-minute 2.32 fifteen-minute 6.5
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 ### Configure Disk Utilization Notifications
 
@@ -354,13 +366,9 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 To send SNMP trap notifications for every SNMP authentication failure, run the following commands.
 
 {{< tabs "traps-authfailurre" >}}
-{{< tab "NCLU Commands" >}}
+{{< tab "NVUE Commands" >}}
 
-```
-cumulus@switch:~$ net add snmp-server trap-snmp-auth-failures
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+NVUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
@@ -382,6 +390,13 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add snmp-server trap-snmp-auth-failures
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 <!-- vale off -->
 ### Monitor UCD-SNMP-MIB Tables
 <!-- vale on -->

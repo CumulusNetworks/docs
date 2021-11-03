@@ -304,7 +304,7 @@ cumulus@switch:~$ nv config apply
 
 To see the list of NVUE ACL commands, run the `nv list-commands acl` command.
 
-## Install and Manage ACL Rules with NCLU
+<!--## Install and Manage ACL Rules with NCLU
 
 NCLU provides an easy way to create custom ACLs. The rules you create live in the `/var/lib/cumulus/nclu/nclu_acl.conf` file, which Cumulus Linux converts to a rules file, `/etc/cumulus/acl/policy.d/50_nclu_acl.rules`. The rules you create with NCLU are independent of the default files in `/etc/cumulus/acl/policy.d/00control_plane.rules` and `99control_plane_catch_all.rules`. If you update the content in these files after a Cumulus Linux upgrade, you do not lose the rules.
 
@@ -374,7 +374,7 @@ cumulus@switch:~$ net del acl ipv4 EXAMPLE1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
-
+-->
 <!-- vale off -->
 ## Install and Manage ACL Rules with cl-acltool
 <!-- vale on -->
@@ -1005,7 +1005,7 @@ The `--syn` flag in the above rule matches packets with the SYN bit set and the 
 
 ### Control Who Can SSH into the Switch
 
-Run the following NCLU commands to control who can SSH into the switch.
+Run the following commands to control who can SSH into the switch.
 In the following example, 10.10.10.1/32 is the interface IP address (or loopback IP address) of the switch and 10.255.4.0/24 can SSH into the switch.
 
 {{< tabs "852 ">}}
@@ -1020,17 +1020,6 @@ Apply the rule:
 
 ```
 cumulus@switch:~$ sudo cl-acltool -i
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add acl ipv4 test priority 10 accept source-ip 10.255.4.0/24 dest-ip 10.10.10.1/32
-cumulus@switch:~$ net add acl ipv4 test priority 20 drop source-ip any dest-ip 10.10.10.1/32
-cumulus@switch:~$ net add control-plane acl ipv4 test inbound
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
@@ -1050,6 +1039,15 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add acl ipv4 test priority 10 accept source-ip 10.255.4.0/24 dest-ip 10.10.10.1/32
+cumulus@switch:~$ net add acl ipv4 test priority 20 drop source-ip any dest-ip 10.10.10.1/32
+cumulus@switch:~$ net add control-plane acl ipv4 test inbound
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 ### Match on ECN Bits in the TCP IP Header
 
@@ -1093,17 +1091,15 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
+{{< /tabs >}}
+<!--
 Run the `net add acl ipv4 <rule-name> <action> tcp ece` command:
 
 ```
 cumulus@switch:~$ net add acl ipv4 ece-rule accept tcp ece
 cumulus@switch:~$ net commit
 ```
-
-{{< /tab >}}
-{{< /tabs >}}
+-->
 
 #### Match on the CWR Bit
 
@@ -1141,17 +1137,15 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
+{{< /tabs >}}
+<!--
 Run the `net add acl ipv4 <rule-name> <action> tcp cwr` command:
 
 ```
 cumulus@switch:~$ net add acl ipv4 cwr-rule accept tcp cwr
 cumulus@switch:~$ net commit
 ```
-
-{{< /tab >}}
-{{< /tabs >}}
+-->
 
 #### Match on the ECT Bit
 
@@ -1189,17 +1183,15 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
+{{< /tabs >}}
+<!--
 Run the `net add acl ipv4 <acl-name> <action> tcp ecn <value>` command. You can specify a value between 0 and 3.
 
 ```
 cumulus@switch:~$ net add acl ipv4 ect-rule accept tcp ecn 1
 cumulus@switch:~$ net commit
 ```
-
-{{< /tab >}}
-{{< /tabs >}}
+-->
 
 ## Example Configuration
 

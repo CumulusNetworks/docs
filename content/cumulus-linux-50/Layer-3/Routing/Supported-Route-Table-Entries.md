@@ -14,7 +14,7 @@ Cumulus Linux advertises the maximum number of route table entries supported on 
 - ECMP next hops, which are IP address entries in the routing table that specify the next closest or most optimal router in its routing path
 - MAC addresses
 
-To determine the current table sizes on a switch, use either the NCLU `net show system asic` command or `{{<link url="Resource-Diagnostics-Using-cl-resource-query" text="cl-resource-query">}}`.
+To determine the current table sizes on a switch, use <!--the NCLU `net show system asic` command or -->`{{<link url="Resource-Diagnostics-Using-cl-resource-query" text="cl-resource-query">}}`.
 
 ## Supported Route Entries
 

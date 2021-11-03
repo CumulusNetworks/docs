@@ -1775,7 +1775,7 @@ In addition to the standard UP and DOWN administrative states, an interface that
 
 When an interface goes into a `protodown` state, it results in a local OPER DOWN (carrier down) on the interface.
 
-To show an interface in `protodown` state, run the NCLU `net show bridge link` command or the Linux `ip link show` command. For example:
+To show an interface in `protodown` state, run the <!--NCLU `net show bridge link` command or the -->Linux `ip link show` command. For example:
 
 ```
 cumulus@leaf01:~$ net show bridge link

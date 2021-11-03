@@ -122,24 +122,14 @@ When configuring MTU for a bond, configure the MTU value directly under the bond
 VLAN interfaces inherit their MTU settings from their physical devices or their lower interface; for example, swp1.100 inherits its MTU setting from swp1. Therefore, specifying an MTU on swp1 ensures that swp1.100 inherits the MTU setting for swp1.
 
 If you are working with {{<link url="Network-Virtualization" text="VXLANs">}}, the MTU for a virtual network interface (VNI must be 50 bytes smaller than the MTU of the physical interfaces on the switch, as various headers and other data require those 50 bytes. Also, consider setting the MTU much higher than 1500.
-
+<!--
 {{%notice note%}}
 The MTU for an SVI interface, such as vlan10, comes from the bridge. When you use NCLU to change the MTU for an SVI and the MTU setting is higher than it is for the other bridge member interfaces, the MTU for all bridge member interfaces changes to the new setting. If you need to use a mixed MTU configuration for SVIs, (if some SVIs have a higher MTU and some lower), set the MTU for all member interfaces to the maximum value, then set the MTU on the specific SVIs that need to run at a lower MTU.
 {{%/notice%}}
-
+-->
 To show the MTU setting for an interface:
 
 {{< tabs "TabID354 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net show interface swp1
-    Name    MAC                Speed      MTU  Mode
---  ------  -----------------  -------  -----  ---------
-UP  swp1    44:38:39:00:00:04  1G        9216  Access/L2
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -157,6 +147,14 @@ cumulus@switch:~$ ip link show dev swp1
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net show interface swp1
+    Name    MAC                Speed      MTU  Mode
+--  ------  -----------------  -------  -----  ---------
+UP  swp1    44:38:39:00:00:04  1G        9216  Access/L2
+```
+-->
 
 ### Drop Packets that Exceed the Egress Layer 3 MTU
 

@@ -7,6 +7,29 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2845538</td>
+<td>CVE-2020-19143: A flaw was discovered in tiff, a Tag Image File Format library, which may result in denial of service or the execution of arbitrary code if malformed image files are processed.
+Vulnerable: &lt;= 4.1.0+git191117-2~deb10u2
+Fixed: 4.1.0+git191117-2~deb10u3</td>
+<td>4.0.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2845290</td>
+<td>The following vulnerabilities in gdb, as embedded in the crash handling program, have been announced:
+CVE-2019-1010180: Buffer overflow which can be triggered by debugging an ELF file.
+CVE-2017-9778: Vulnerability to a negative length field in DWARF section, resulting in excessive memory allocation.
+Vulnerable: crash 7.2.8-1+cl4u1 and 7.2.8-1+cl3u1 with embedded gdb 7.6</td>
+<td>3.7.15, 4.3.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2840819</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
+<td>4.0.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2820565</td>
 <td>SNMP does not start and you see errors similar to the following:
 
@@ -1675,6 +1698,29 @@ Fixed: 2.9.4+dfsg1-7+deb10u1</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2845538</td>
+<td>CVE-2020-19143: A flaw was discovered in tiff, a Tag Image File Format library, which may result in denial of service or the execution of arbitrary code if malformed image files are processed.
+Vulnerable: &lt;= 4.1.0+git191117-2~deb10u2
+Fixed: 4.1.0+git191117-2~deb10u3</td>
+<td>4.0.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2845290</td>
+<td>The following vulnerabilities in gdb, as embedded in the crash handling program, have been announced:
+CVE-2019-1010180: Buffer overflow which can be triggered by debugging an ELF file.
+CVE-2017-9778: Vulnerability to a negative length field in DWARF section, resulting in excessive memory allocation.
+Vulnerable: crash 7.2.8-1+cl4u1 and 7.2.8-1+cl3u1 with embedded gdb 7.6</td>
+<td>3.7.15, 4.3.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2840819</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
+<td>4.0.0-4.4.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2820565</td>

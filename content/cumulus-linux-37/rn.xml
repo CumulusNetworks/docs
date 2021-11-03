@@ -7,6 +7,31 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2845540</td>
+<td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
+Vulnerable: &lt;= 1.7.5-11+deb8u8
+Fixed: 1.7.5-11+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2845290</td>
+<td>The following vulnerabilities in gdb, as embedded in the crash handling program, have been announced:
+CVE-2019-1010180: Buffer overflow which can be triggered by debugging an ELF file.
+CVE-2017-9778: Vulnerability to a negative length field in DWARF section, resulting in excessive memory allocation.
+Vulnerable: crash 7.2.8-1+cl4u1 and 7.2.8-1+cl3u1 with embedded gdb 7.6</td>
+<td>3.7.15, 4.3.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2841003</td>
+<td>CVE-2017-9216, CVE-2020-12268: Two issues have been found in jbig2dec, a JBIG2 decoder library. One is related to an overflow with a crafted image file. The other is related to a NULL pointer dereference.
+Vulnerable: &lt;= 0.13-4~deb8u2
+Fixed: 0.13-4~deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2835994</td>
 <td>CVE-2021-3712: buffer overrun when processing ASN.1 strings in the X509_aux_print() function.
 Vulnerable: &lt;= 1.0.1t-1+deb8u15
@@ -2335,6 +2360,22 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2845540</td>
+<td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
+Vulnerable: &lt;= 1.7.5-11+deb8u8
+Fixed: 1.7.5-11+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2841003</td>
+<td>CVE-2017-9216, CVE-2020-12268: Two issues have been found in jbig2dec, a JBIG2 decoder library. One is related to an overflow with a crafted image file. The other is related to a NULL pointer dereference.
+Vulnerable: &lt;= 0.13-4~deb8u2
+Fixed: 0.13-4~deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2835994</td>
 <td>CVE-2021-3712: buffer overrun when processing ASN.1 strings in the X509_aux_print() function.
 Vulnerable: &lt;= 1.0.1t-1+deb8u15
@@ -4655,6 +4696,22 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2845540</td>
+<td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
+Vulnerable: &lt;= 1.7.5-11+deb8u8
+Fixed: 1.7.5-11+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2841003</td>
+<td>CVE-2017-9216, CVE-2020-12268: Two issues have been found in jbig2dec, a JBIG2 decoder library. One is related to an overflow with a crafted image file. The other is related to a NULL pointer dereference.
+Vulnerable: &lt;= 0.13-4~deb8u2
+Fixed: 0.13-4~deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2835994</td>
@@ -7520,6 +7577,22 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2845540</td>
+<td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
+Vulnerable: &lt;= 1.7.5-11+deb8u8
+Fixed: 1.7.5-11+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2841003</td>
+<td>CVE-2017-9216, CVE-2020-12268: Two issues have been found in jbig2dec, a JBIG2 decoder library. One is related to an overflow with a crafted image file. The other is related to a NULL pointer dereference.
+Vulnerable: &lt;= 0.13-4~deb8u2
+Fixed: 0.13-4~deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2835994</td>
@@ -10592,6 +10665,22 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2845540</td>
+<td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
+Vulnerable: &lt;= 1.7.5-11+deb8u8
+Fixed: 1.7.5-11+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2841003</td>
+<td>CVE-2017-9216, CVE-2020-12268: Two issues have been found in jbig2dec, a JBIG2 decoder library. One is related to an overflow with a crafted image file. The other is related to a NULL pointer dereference.
+Vulnerable: &lt;= 0.13-4~deb8u2
+Fixed: 0.13-4~deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2835994</td>
 <td>CVE-2021-3712: buffer overrun when processing ASN.1 strings in the X509_aux_print() function.
 Vulnerable: &lt;= 1.0.1t-1+deb8u15
@@ -13529,6 +13618,22 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2845540</td>
+<td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
+Vulnerable: &lt;= 1.7.5-11+deb8u8
+Fixed: 1.7.5-11+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2841003</td>
+<td>CVE-2017-9216, CVE-2020-12268: Two issues have been found in jbig2dec, a JBIG2 decoder library. One is related to an overflow with a crafted image file. The other is related to a NULL pointer dereference.
+Vulnerable: &lt;= 0.13-4~deb8u2
+Fixed: 0.13-4~deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2835994</td>
 <td>CVE-2021-3712: buffer overrun when processing ASN.1 strings in the X509_aux_print() function.
 Vulnerable: &lt;= 1.0.1t-1+deb8u15
@@ -16110,6 +16215,22 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2845540</td>
+<td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
+Vulnerable: &lt;= 1.7.5-11+deb8u8
+Fixed: 1.7.5-11+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2841003</td>
+<td>CVE-2017-9216, CVE-2020-12268: Two issues have been found in jbig2dec, a JBIG2 decoder library. One is related to an overflow with a crafted image file. The other is related to a NULL pointer dereference.
+Vulnerable: &lt;= 0.13-4~deb8u2
+Fixed: 0.13-4~deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2835994</td>
 <td>CVE-2021-3712: buffer overrun when processing ASN.1 strings in the X509_aux_print() function.
 Vulnerable: &lt;= 1.0.1t-1+deb8u15
@@ -18134,6 +18255,22 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2845540</td>
+<td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
+Vulnerable: &lt;= 1.7.5-11+deb8u8
+Fixed: 1.7.5-11+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2841003</td>
+<td>CVE-2017-9216, CVE-2020-12268: Two issues have been found in jbig2dec, a JBIG2 decoder library. One is related to an overflow with a crafted image file. The other is related to a NULL pointer dereference.
+Vulnerable: &lt;= 0.13-4~deb8u2
+Fixed: 0.13-4~deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2835994</td>
@@ -20470,6 +20607,22 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2845540</td>
+<td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
+Vulnerable: &lt;= 1.7.5-11+deb8u8
+Fixed: 1.7.5-11+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2841003</td>
+<td>CVE-2017-9216, CVE-2020-12268: Two issues have been found in jbig2dec, a JBIG2 decoder library. One is related to an overflow with a crafted image file. The other is related to a NULL pointer dereference.
+Vulnerable: &lt;= 0.13-4~deb8u2
+Fixed: 0.13-4~deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2835994</td>
 <td>CVE-2021-3712: buffer overrun when processing ASN.1 strings in the X509_aux_print() function.
 Vulnerable: &lt;= 1.0.1t-1+deb8u15
@@ -22230,6 +22383,22 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2845540</td>
+<td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
+Vulnerable: &lt;= 1.7.5-11+deb8u8
+Fixed: 1.7.5-11+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2841003</td>
+<td>CVE-2017-9216, CVE-2020-12268: Two issues have been found in jbig2dec, a JBIG2 decoder library. One is related to an overflow with a crafted image file. The other is related to a NULL pointer dereference.
+Vulnerable: &lt;= 0.13-4~deb8u2
+Fixed: 0.13-4~deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2835994</td>
@@ -24329,6 +24498,22 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2845540</td>
+<td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
+Vulnerable: &lt;= 1.7.5-11+deb8u8
+Fixed: 1.7.5-11+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2841003</td>
+<td>CVE-2017-9216, CVE-2020-12268: Two issues have been found in jbig2dec, a JBIG2 decoder library. One is related to an overflow with a crafted image file. The other is related to a NULL pointer dereference.
+Vulnerable: &lt;= 0.13-4~deb8u2
+Fixed: 0.13-4~deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2835994</td>
 <td>CVE-2021-3712: buffer overrun when processing ASN.1 strings in the X509_aux_print() function.
 Vulnerable: &lt;= 1.0.1t-1+deb8u15
@@ -26171,6 +26356,22 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2845540</td>
+<td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
+Vulnerable: &lt;= 1.7.5-11+deb8u8
+Fixed: 1.7.5-11+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2841003</td>
+<td>CVE-2017-9216, CVE-2020-12268: Two issues have been found in jbig2dec, a JBIG2 decoder library. One is related to an overflow with a crafted image file. The other is related to a NULL pointer dereference.
+Vulnerable: &lt;= 0.13-4~deb8u2
+Fixed: 0.13-4~deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2835994</td>
 <td>CVE-2021-3712: buffer overrun when processing ASN.1 strings in the X509_aux_print() function.
 Vulnerable: &lt;= 1.0.1t-1+deb8u15
@@ -27663,6 +27864,22 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2845540</td>
+<td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
+Vulnerable: &lt;= 1.7.5-11+deb8u8
+Fixed: 1.7.5-11+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2841003</td>
+<td>CVE-2017-9216, CVE-2020-12268: Two issues have been found in jbig2dec, a JBIG2 decoder library. One is related to an overflow with a crafted image file. The other is related to a NULL pointer dereference.
+Vulnerable: &lt;= 0.13-4~deb8u2
+Fixed: 0.13-4~deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2835994</td>
@@ -29184,6 +29401,22 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2845540</td>
+<td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
+Vulnerable: &lt;= 1.7.5-11+deb8u8
+Fixed: 1.7.5-11+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2841003</td>
+<td>CVE-2017-9216, CVE-2020-12268: Two issues have been found in jbig2dec, a JBIG2 decoder library. One is related to an overflow with a crafted image file. The other is related to a NULL pointer dereference.
+Vulnerable: &lt;= 0.13-4~deb8u2
+Fixed: 0.13-4~deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2835994</td>
@@ -30806,6 +31039,22 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2845540</td>
+<td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
+Vulnerable: &lt;= 1.7.5-11+deb8u8
+Fixed: 1.7.5-11+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2841003</td>
+<td>CVE-2017-9216, CVE-2020-12268: Two issues have been found in jbig2dec, a JBIG2 decoder library. One is related to an overflow with a crafted image file. The other is related to a NULL pointer dereference.
+Vulnerable: &lt;= 0.13-4~deb8u2
+Fixed: 0.13-4~deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2835994</td>
@@ -32473,6 +32722,22 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2845540</td>
+<td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
+Vulnerable: &lt;= 1.7.5-11+deb8u8
+Fixed: 1.7.5-11+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2841003</td>
+<td>CVE-2017-9216, CVE-2020-12268: Two issues have been found in jbig2dec, a JBIG2 decoder library. One is related to an overflow with a crafted image file. The other is related to a NULL pointer dereference.
+Vulnerable: &lt;= 0.13-4~deb8u2
+Fixed: 0.13-4~deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2835994</td>
 <td>CVE-2021-3712: buffer overrun when processing ASN.1 strings in the X509_aux_print() function.
 Vulnerable: &lt;= 1.0.1t-1+deb8u15
@@ -33448,6 +33713,22 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2845540</td>
+<td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
+Vulnerable: &lt;= 1.7.5-11+deb8u8
+Fixed: 1.7.5-11+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2841003</td>
+<td>CVE-2017-9216, CVE-2020-12268: Two issues have been found in jbig2dec, a JBIG2 decoder library. One is related to an overflow with a crafted image file. The other is related to a NULL pointer dereference.
+Vulnerable: &lt;= 0.13-4~deb8u2
+Fixed: 0.13-4~deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2835994</td>

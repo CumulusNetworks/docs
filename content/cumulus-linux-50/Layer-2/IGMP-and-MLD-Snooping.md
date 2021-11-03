@@ -302,7 +302,7 @@ swp3 (3)
   flags
 ```
 
-Cumulus Linux tracks multicast group and port state in the [MDB](## "multicast database"). To show the groups and bridge port state, run the NCLU `net show bridge mdb` command or the Linux `sudo bridge mdb show` command. To show detailed router ports and group information, run the `sudo bridge -d -s mdb show` command:
+Cumulus Linux tracks multicast group and port state in the [MDB](## "multicast database"). To show the groups and bridge port state, run the <!--NCLU `net show bridge mdb` command or the -->Linux `sudo bridge mdb show` command. To show detailed router ports and group information, run the `sudo bridge -d -s mdb show` command:
 
 ```
 cumulus@switch:~$ sudo bridge -d -s mdb show

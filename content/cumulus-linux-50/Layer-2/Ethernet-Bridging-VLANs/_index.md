@@ -27,14 +27,21 @@ You can configure both VLAN-aware and traditional mode bridges on the same netwo
 
 The switch learns the MAC address for a frame when the frame enters the bridge through an interface and records the MAC address in the bridge table. The bridge forwards the frame to its intended destination by looking up the destination MAC address. Cumulus Linux maintains the MAC entry for 1800 seconds (30 minutes). If the switch sees the frame with the same source MAC address before the MAC entry age expires, it refreshes the MAC entry age; if the MAC entry age expires, the switch deletes the MAC address from the bridge table.
 
-The following example NCLU command output shows a MAC address table for the bridge.
+The following example NVUE command output shows a MAC address table for the bridge.
 
 ```
-cumulus@switch:~$ net show bridge macs
-VLAN      Master    Interface    MAC                  TunnelDest  State      Flags    LastSeen
---------  --------  -----------  -----------------  ------------  ---------  -------  -----------------
-untagged  bridge    swp1         44:38:39:00:00:03                                    00:00:15
-untagged  bridge    swp1         44:38:39:00:00:04                permanent           20 days, 01:14:03
+cumulus@switch:~$ nv show bridge domain br_default mac-table
+     age    bridge-domain  entry-type  interface   last-update  mac                src-vni  vlan  vni  Summary
+---  -----  -------------  ----------  ----------  -----------  -----------------  -------  ----  ---  ----------------------
++ 0  87699  br_default     permanent   bond3       87699        44:38:39:00:00:35
++ 1  87699  br_default     permanent   bond1       87699        44:38:39:00:00:31
++ 2  87699  br_default     permanent   bond2       87699        44:38:39:00:00:33
++ 3                        permanent   br_default               00:00:00:00:00:10
++ 4                        permanent   br_default               00:00:00:00:00:20
++ 5                        permanent   br_default               00:00:00:00:00:30
++ 6  84130  br_default     permanent   br_default  84130        44:38:39:22:01:b1           30
++ 7  87570  br_default     permanent   vxlan48     87570        42:ff:4d:82:c9:99
++ 8  84130                 permanent   vxlan48     84130        00:00:00:00:00:00  10                  remote-dst: 224.0.0.10
 ```
 
 ## bridge fdb Command Output

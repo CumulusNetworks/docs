@@ -72,7 +72,7 @@ cumulus@switch:~$ nv config apply
 cumulus@switch:~$ net del roce
 cumulus@switch:~$ net commit
 ```
--->>
+-->
 
 ## Verify RoCE Configuration
 

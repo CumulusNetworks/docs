@@ -212,13 +212,6 @@ cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment df-preferenc
 cumulus@leaf01:~$ nv config apply
 ```
 
-The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
-
-```
-cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
-
-```
-
 {{</tab>}}
 {{<tab "vtysh Commands">}}
 
@@ -340,12 +333,6 @@ cumulus@leaf01:~$ nv config apply
 
 If you are configuring EVPN multihoming with EVPN-PIM, be sure to configure PIM on the interfaces.
 
-The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
-
-```
-cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
-```
-
 {{</tab>}}
 {{<tab "vtysh Commands">}}
 
@@ -435,12 +422,6 @@ cumulus@leaf01:~$ nv set evpn multihoming mac-holdtime 1000
 cumulus@leaf01:~$ nv config apply
 ```
 
-The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
-
-```
-cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
-```
-
 {{</tab>}}
 {{<tab "vtysh Commands">}}
 
@@ -490,12 +471,6 @@ cumulus@leaf01:~$ nv set evpn multihoming neighbor-holdtime 600
 cumulus@leaf01:~$ nv config apply
 ```
 
-The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
-
-```
-cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
-```
-
 {{</tab>}}
 {{<tab "vtysh Commands">}}
 
@@ -543,12 +518,6 @@ evpn mh startup-delay 1800
 ```
 cumulus@leaf01:~$ nv set evpn multihoming startup-delay 1800
 cumulus@leaf01:~$ nv config apply
-```
-
-The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
-
-```
-cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 
 {{</tab>}}
@@ -836,7 +805,7 @@ VNI      ESI                            Flags VTEPs
 To view type-1 EAD routes, run the NCLU `net show bgp l2vpn evpn route` command or the vtysh `show bgp l2vpn evpn route` command with the `ead` route type option. For example:
 
 ```
-cumulus@switch:~$ net show bgp evpn l2vpn route type ead
+cumulus@switch:~$ net show bgp l2vpn evpn route type ead
 BGP table version is 3, local router ID is 10.10.10.1
 Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
 Origin codes: i - IGP, e - EGP, ? - incomplete
@@ -3574,6 +3543,17 @@ cumulus@spine02:~$ cat /etc/nvue.d/startup.yaml
 
 {{</tab>}}
 {{</tabs>}}
+
+{{< /tab >}}
+{{< tab "Try It " >}}
+    {{< simulation name="Try It CL44 - EVPN Multihoming" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
+
+This simulation starts with the EVPN-MH with Head End Replication configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-44/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
+
+- Run the vtysh `show evpn es` command to show the Ethernet segments across all VNIs.
+- Run the vtysh `show bgp l2vpn evpn route type ead` command to show the type-1 EAD routes.
+
+To further validate the configuration, run the commands shown in the troublshooting section below.
 
 {{</tab>}}
 {{</tabs>}}

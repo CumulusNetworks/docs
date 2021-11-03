@@ -5,7 +5,7 @@ weight: 101
 toc: 3
 ---
 
-Any switch on the Cumulus Networks {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="HCL">}} can be accessed via the console. The standard command to use for console access depends on your host operating system.
+You can access any switch on the NVIDIA {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="HCL">}} via the console. The standard command to use for console access depends on your host operating system.
 
 For MacOS:
 
@@ -17,4 +17,4 @@ For Linux:
 
 USB0 can be USB1 or USB2, and so forth.
 
-Most switches on the Cumulus Networks HCL are set at either 9600 or 115200. This depends on the factory setting.
+Most switches on the NVIDIA HCL are set at either 9600 or 115200. This depends on the factory setting.

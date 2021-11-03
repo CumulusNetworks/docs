@@ -4,33 +4,33 @@ author: Cumulus Networks
 weight: 613
 toc: 4
 ---
-
+<!-- vale off -->
 ## One of my colleagues received our order confirmation and I need to access the license file. How can I get it?
-
-You can log in to the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox Customer Portal">}} and retrieve the license file. If you do not have a login to the portal please contact the license owner at your company and they can create a login for you. If you do not know who owns your company's Cumulus Networks account, please contact your Cumulus Networks account manager.
-  
+<!-- vale on -->
+You can log in to the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox Customer Portal">}} and retrieve the license file. If you do not have login access to the portal, contact the license owner at your company and they can create a login for you. If you do not know who owns your company's NVIDIA account, contact your NVIDIA account manager.
+<!-- vale off -->
 ## How do I know how many users are on our account?
-
+<!-- vale on -->
 You can view a list of all account users and their profiles from the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox Customer Portal">}}.
-  
+<!-- vale off -->  
 ## How can I add users to my account?
-
+<!-- vale on -->
 To add users, log in to the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox Customer Portal">}}.
 
 ## What user roles are available?
 
-There are two roles: *standard* and *admin*.
+*standard* and *admin* are the two roles available:
 
 - **Standard:** Can view account information, user information, license keys, download files, and submit support tickets.
 - **Admin:** Can edit account information, add and remove users, assign user roles, activate licenses, download files, and submit support tickets.
-
+<!-- vale off -->
 ## I am trying to access the support portal but it says that my account is not enabled for Zendesk. What should I do?
-
-You need at least one active Software Update and Support contract (paid or trial) to access our support portal. Please contact <webmaster@cumulusnetworks.com>:
+<!-- vale on -->
+You need at least one active Software Update and Support contract (paid or trial) to access the support portal. Contact <webmaster@cumulusnetworks.com>:
 
 - If you do not have an active contract, or,
-- If your company has an active contract, but you have not been granted support portal access permissions yet.
-
+- If your company has an active contract, but no one granted you support portal access permissions yet.
+<!-- vale off -->
 ## How can I reset my account password?
-
+<!-- vale on -->
 You can reset your password {{<exlink url="https://support.mellanox.com/s/login/" text="here">}}.

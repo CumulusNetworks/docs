@@ -159,6 +159,30 @@ cumulus@switch:~$ ip link show dev swp1
 {{< /tab >}}
 {{< /tabs >}}
 
+### Drop Packets that Exceed the Egress Layer 3 MTU
+
+The switch forwards all packets that are within the MTU value set for the egress layer 3 interface. However, when packets are larger in size than the MTU value, the switch fragments the packets that do *not* have the [DF](## "Don’t Fragment") bit set and drops the packets that *do* have the [DF](## "Don’t Fragment") bit set.
+
+In Cumulus Linux 4.4.1 and later, run the following command to drop **all** IP packets that are larger in size than the MTU value for the egress layer 3 interface instead of fragmenting packets:
+
+{{< tabs "TabID166 ">}}
+{{< tab "NCLU Command ">}}
+
+```
+cumulus@switch:~$ net add trap l3-mtu-err action off
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "Linux Command ">}}
+
+```
+cumulus@switch:~$ echo "0 >" /cumulus/switchd/config/trap/l3-mtu-err/enable
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## FEC
 
 {{<exlink url="https://en.wikipedia.org/wiki/Forward_error_correction" text="Forward Error Correction (FEC)">}} is an encoding and decoding layer that enables the switch to detect and correct bit errors introduced over the cable between two interfaces. The target IEEE bit error rate (BER) on high speed Ethernet links is 10<sup>-12</sup>. Because 25G transmission speeds can introduce a higher than acceptable BER on a link, FEC is often required to correct errors to achieve the target BER at 25G, 4x25G, 100G, and higher link speeds. The type and grade of a cable or module and the medium of transmission determine which FEC setting is necessary.
@@ -1098,7 +1122,7 @@ Maximum 50G ports: 128
 
 64x 100G - 64x QSFP28 (native speed)
 
-Maximum 100G ports: 80
+Maximum 100G ports: 64
 
 {{< /tab >}}
 {{< /tab >}}
@@ -1381,7 +1405,7 @@ To break out a port into four 10G ports, you must **also** disable the next port
 
 ```
 cumulus@switch:~$ nv set interface swp1 link breakout 4x10G
-cumulus@switch:~$ nv set interface swp2 breakout disabled
+cumulus@switch:~$ nv set interface swp2 link breakout disabled
 cumulus@switch:~$ nv config apply
 ```
 

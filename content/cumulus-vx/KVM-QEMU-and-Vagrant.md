@@ -8,13 +8,15 @@ version: '4.x'
 Running Cumulus VX with KVM-QEMU and Vagrant requires four components:
 
 {{% vx/kvm-components %}}
-- **Vagrant** is an orchestration tool that makes it easier to manage groups of VMs by interconnecting them programmatically. Vagrant helps to tie all the components together and provides a user-friendly language to launch suites of VMs. Vagrant allows multiple Cumulus VX VMs to be interconnected to simulate a network. Vagrant also allows Cumulus VX VMs to be interconnected with other VMs (such as Ubuntu or CentOS) to emulate real world networks.
+- **Vagrant** is an orchestration tool that makes it easier to manage groups of VMs by interconnecting them programmatically. Vagrant helps to tie all the components together and provides a user-friendly language to launch suites of VMs. Vagrant allows multiple Cumulus VX VMs to interconnect to simulate a network. Vagrant also allows Cumulus VX VMs to interconnect with other VMs (such as Ubuntu or CentOS) to emulate real world networks.
 
 This section describes how to install and set up Cumulus VX with KVM-QEMU, Libvirt, and Vagrant on a Linux server to create the two leaf and one spine topology shown below.
 
 {{% vx/intro %}}
 
+<!-- vale off -->
 These steps were tested with Cumulus VX 4.2, KVM/QEMU version 1:4.2-3ubuntu6.3, Libvirt version 6.0.0, and Vagrant version 2.2.9 on Ubuntu Linux version 20.04.
+<!-- vale on -->
 
 ## Create and Configure the VMs
 

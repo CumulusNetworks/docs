@@ -6,9 +6,9 @@ toc: 4
 ---
 
 ## Issue
-
+<!-- vale off -->
 How do I expose CPU and memory statistics via SNMP? What is the MIB/OID?
-
+<!-- vale on -->
 ## Environment
 
 - Cumulus Linux, all versions
@@ -17,17 +17,17 @@ How do I expose CPU and memory statistics via SNMP? What is the MIB/OID?
 
 The relevant OIDs are:
 
+<!-- vale off -->
 - CPU: .1.3.6.1.4.1.2021.11
     ({{<exlink url="http://www.net-snmp.org/docs/mibs/UCD-SNMP-MIB.txt" text="UCD-SNMP-MIB::systemStats">}})
 - Memory: .1.3.6.1.4.1.2021.4
     ({{<exlink url="http://www.net-snmp.org/docs/mibs/UCD-SNMP-MIB.txt" text="UCD-SNMP-MIB::memory">}})
+<!-- vale on -->
 
 To configure SNMP to expose CPU and memory information:
 
-1.  If `snmpd` has not already been enabled, follow instructions in the
-    [technical documentation]({{<ref "/cumulus-linux-43/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP" >}}) to enable and start `snmpd`.
-2.  Allow access to the OIDs by editing `/etc/snmp/snmpd.conf`. The
-    following example adds the relevant MIBs to the `systemonly` view.
+1.  If you did not enable `snmpd` already, follow instructions in the [technical documentation]({{<ref "/cumulus-linux-43/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP" >}}) to enable and start `snmpd`.
+2.  Allow access to the OIDs by editing `/etc/snmp/snmpd.conf`. The following example adds the relevant MIBs to the `systemonly` view.
 
         ###############################################################################
         #

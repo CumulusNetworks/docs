@@ -7,11 +7,11 @@ toc: 4
 
 ## Overview
 
-NetQ Agent is an application running on switches. It monitors and collects telemetry data on the switch, and streams it to the NetQ Platform either in the cloud or on premises. NetQ Agents, like other applications running on the switch, may cause high CPU utilization when the CPU is available. This does not interfere with normal switch traffic, but can be manually limited.
+NetQ Agent is an application running on switches. It monitors and collects telemetry data on the switch, and streams it to the NetQ Platform either in the cloud or on premises. NetQ Agents, like other applications running on the switch, might cause high CPU utilization when the CPU is available. This does not interfere with normal switch traffic, but can be manually limited.
 
 ## Issue Presentation
 
-High CPU utilization by the NetQ Agent may be seen on switches running Cumulus Linux. You might see this high utilization when monitoring the CPU through SNMP or Grafana or other monitoring tools in the form of an alarm or event based on your threshold settings for CPU usage.
+You might experience high CPU utilization by the NetQ Agent on switches running Cumulus Linux. You might see this high utilization when monitoring the CPU through SNMP or Grafana or other monitoring tools in the form of an alarm or event based on your threshold settings for CPU usage.
 
 ## Manage the NetQ Agent Behavior
 
@@ -38,7 +38,7 @@ You have an additional option to set a limit on how much CPU bandwidth the NetQ 
 
 The recommended limit is 60% to start. If you find this is too high or too low, you can adjust it.
 
-For example, we can check the value of the current setting, modify it, and then verify it has been changed.
+For example, you can check the value of the current setting, modify it, and then verify it changed.
 
 1.  Check what the limit is set to now.
 
@@ -73,7 +73,7 @@ For example, we can check the value of the current setting, modify it, and then 
 
 ## Conclusion
 
-While the NetQ Agent may cause high CPU usage on switches, it does not interfere with normal operations. The NetQ Agent is designated as a low priority service and thus only uses CPU when it is available. If you  prefer, you can control the amount of available CPU bandwidth that the NetQ Agent uses by setting a limit with the NetQ CLI `netq config add agent cpu-limit` command.
+While the NetQ Agent might cause high CPU usage on switches, it does not interfere with normal operations. NetQ designates the NetQ Agent as a low priority service and thus only uses CPU when it is available. If you prefer, you can control the amount of available CPU bandwidth that the NetQ Agent uses by setting a limit with the NetQ CLI `netq config add agent cpu-limit` command.
 
 ## References
 

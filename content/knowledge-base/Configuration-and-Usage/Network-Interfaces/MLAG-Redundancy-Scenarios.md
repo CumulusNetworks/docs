@@ -7,7 +7,7 @@ toc: 4
 
 ## Issue
 
-Cumulus Linux Multi-Chassis Link Aggregation (MLAG) enables two switches to operate at layer 2 as if they are a single logical L2 switch in order to provide greater throughput and redundancy. This article discusses expected LACP and STP behavior during common failure redundancy scenarios. It is assumed the reader has a working knowledge of Cumulus Linux MLAG, LACP bonding, and STP. MLAG capabilities and configuration instructions are provided in the [Cumulus Linux user guide]({{<ref "/cumulus-linux-43/Layer-2/Multi-Chassis-Link-Aggregation-MLAG" >}}).
+Cumulus Linux Multi-Chassis Link Aggregation (MLAG) enables two switches to operate at layer 2 as if they are a single logical layer 2 switch to provide greater throughput and redundancy. This article discusses expected LACP and STP behavior during common failure redundancy scenarios. It assumes you have a working knowledge of Cumulus Linux MLAG, LACP bonding, and STP. You can find MLAG capabilities and configuration instructions in the [Cumulus Linux user guide]({{<ref "/cumulus-linux-43/Layer-2/Multi-Chassis-Link-Aggregation-MLAG" >}}).
 
 ## Environment
 
@@ -15,9 +15,9 @@ Cumulus Linux Multi-Chassis Link Aggregation (MLAG) enables two switches to oper
 
 ## MLAG Steady State Overview
 
-Each MLAG peer switch considers bond interfaces as either single- or dual-attached. A single-attached bond is an LACP bond interface that is configured with a `clag-id` but is currently active on just one peer.
+Each MLAG peer switch considers bond interfaces as either single- or dual-attached. A single-attached bond is an LACP bond interface configured with a `clag-id` but is currently active on just one peer.
 
-A dual-attached bond is an LACP bond that is configured with a `clag-id` and is currently active on both MLAG peers. A dual-attached bond can be identified by the *D* flag in the **LACP Information** field of `clagctl -v` output.
+A dual-attached bond is an LACP bond configured with a `clag-id` and is currently active on both MLAG peers. You can identify a dual-attached bond by the *D* flag in the **LACP Information** field of `clagctl -v` output.
 
 In the following example, Bond1 is dual-attached. Bond2 is currently down on sw28. Therefore, Bond2 is single-attached to sw27.
 
@@ -50,7 +50,7 @@ In the following example, Bond1 is dual-attached. Bond2 is currently down on sw2
 
 In the steady state, the local LACP system ID used for MLAG bonds is the `clagd-sys-mac` address.
 
-A peer switch may also have additional *orphan ports* &mdash; layer 2 interfaces or bonds not configured with a `clag-id`. The LACP system ID for these bonds is the bond MAC address. Orphan ports can participate in STP along with the MLAG bond members.
+A peer switch might also have additional *orphan ports* &mdash; layer 2 interfaces or bonds not configured with a `clag-id`. The LACP system ID for these bonds is the bond MAC address. Orphan ports can use STP along with the MLAG bond members.
 
 In the following example, the bridge *vlans* contains the two MLAG bonds, Bond1 and Bond2, and also two orphan ports, swp28 and bond3, which is not in the MLAG pair.
 
@@ -64,9 +64,9 @@ In the following example, the bridge *vlans* contains the two MLAG bonds, Bond1 
 
 In steady state, the MLAG pair must appear to the connected layer 2 network as a single switch. Therefore both primary and secondary MLAG switches use the `clagd-sys-mac` address as the common STP bridge ID on all ports. Both primary and secondary switches transmit BPDUs on orphan and single-connected ports. Only the primary switch **sends** BPDUs on dual-connected bonds. Both the primary and secondary **receive** BPDUs on dual-connected bonds.
 
-There is no requirement for MLAG peers to be the spanning tree root. However, as with all layer 2 topologies, the forwarding topology can be affected by the location of the root bridge. Therefore, it is useful to set the spanning tree priority using `mstpctl-treeprio` to aid in the selection of an optimal root. When configuring `mstpctl-treeprio`, both peers should be configured with the same priority.
+MLAG peers do not have to be the spanning tree root. However, as with all layer 2 topologies, the location of the root bridge can affect the forwarding topology. Therefore, it is useful to set the spanning tree priority using `mstpctl-treeprio` to aid in the selection of an optimal root. When configuring `mstpctl-treeprio`, you should configure both peers with the same priority.
 
-`mstpctl showall` is used to show spanning tree status, including specific MLAG spanning tree state information. For dual-connected bonds, the MLAG dual-connected MAC address is the MAC address of the dual-connected LACP bond partner.
+You use `mstpctl showall` to show spanning tree status, including specific MLAG spanning tree state information. For dual-connected bonds, the MLAG dual-connected MAC address is the MAC address of the dual-connected LACP bond partner.
 
     clag ISL no clag ISL Oper UP no
      clag role primary clag dual conn mac 00:E0:EC:27:36:37
@@ -79,14 +79,14 @@ When a bond is single-connected, the MLAG dual-connected MAC address is null.
      clag remote portID F.FFF clag system mac 44:39:39:FF:00:01
 
 ## Redundancy Failure Scenarios
-
+<!-- vale off -->
 ### Scenario 1: Peer Link Failure, clagd-backup-ip Is Active
+<!-- vale on -->
+NVIDIA recommends specifying a backup link to check the health of the peer switch if the peer link goes down. The backup link serves to distinguish between a peer link failure and a peer switch failure.
 
-Cumulus Networks recommends specifying a backup link to check the health of the peer switch in the event that the peer link goes down. The backup link serves to distinguish between a peer-link failure and a peer switch failure.
+You configure the backup link using `clagd-backup-ip`. If `clagd-backup-ip` is active (that is, the backup IP address is reachable) when a peer link failure occurs, the secondary switch uses it to determine whether the primary peer is still active (or alive — the switch is up; however, the peer link could be down). Because the primary is still active, the primary peer continues to use pre-existing LACP system IDs for all bonds. The primary also continues to use `clagd-sys-mac` as the STP bridge ID for all ports.
 
-You configure the backup link using `clagd-backup-ip`. If `clagd-backup-ip` is active (that is, the backup IP address is reachable) when a peer link failure occurs, the secondary switch uses it to determine whether the primary peer is still active (or alive — the switch is up; however, the peer link could be down). Since the primary is still active, the primary peer will continue to use pre-existing LACP system IDs for all bonds. The primary will also continue to use `clagd-sys-mac` as the STP bridge ID for all ports.
-
-In this scenario, the secondary switch cannot continue to operate as single switch with its peer. Accordingly, the secondary peer shuts down the member links for the dual-connected bonds. Since the primary peer is indeed up in this scenario, the primary switch continues to maintain its LACP sessions with the remote systems. As a result, traffic flow to and from the dual-attached bonds transitions to the primary peer.
+In this scenario, the secondary switch cannot continue to operate as single switch with its peer. Accordingly, the secondary peer shuts down the member links for the dual-connected bonds. Because the primary peer is up in this scenario, the primary switch continues to maintain its LACP sessions with the remote systems. As a result, traffic flow to and from the dual-attached bonds transitions to the primary peer.
 
 Orphan ports attached to the secondary switch remain up. However, the secondary switch starts to use its local interface MAC address instead of the `clagd-sys-mac` for the STP bridge ID on all ports.
 
@@ -111,10 +111,10 @@ The following `tcpdump` output shows the bridge ID changing from the `clagd-sys-
 The change in the STP bridge ID on the secondary switch results in a layer 2 bridge topology change.
 
 {{%/notice%}}
-
+<!-- vale off -->
 ### Scenario 2: Peer Link Failure, clagd-backup-ip Is not Active
-
-If `clagd-backup-ip` is not active when the peer link failure occurs, the secondary must assume that the primary may still be active. Since the primary peer is still active in this scenario, the primary peer continues to use pre-existing LACP system IDs for all bonds. The primary also continues to use the `clagd-sys-mac` as the STP bridge ID for all ports.
+<!-- vale on -->
+If `clagd-backup-ip` is not active when the peer link failure occurs, the secondary must assume that the primary might still be active. Because the primary peer is still active in this scenario, the primary peer continues to use pre-existing LACP system IDs for all bonds. The primary also continues to use the `clagd-sys-mac` as the STP bridge ID for all ports.
 
 However, the secondary peer cannot continue to use the common `clagd-sys-mac` address as its LACP system ID. The secondary peer begins to use the bond interface MAC address as the LACP system ID.
 
@@ -133,7 +133,7 @@ The following `tcpdump` output shows the LACP system ID change when the peer lin
      System 70:72:cf:9d:4e:4d (oui Unknown), System Priority 65535, Key 33, Port 1, Port Priority 255
      State Flags [Activity, Timeout, Aggregation, Synchronization]
 
-Since the primary peer is indeed up in this scenario, the primary switch maintains its LACP sessions with the remote systems. Accordingly, the remote systems cannot establish the LACP session with the secondary. Therefore, the dual-attached bonds on the secondary revert to the NO-CARRIER state.
+Because the primary peer is up in this scenario, the primary switch maintains its LACP sessions with the remote systems. Accordingly, the remote systems cannot establish the LACP session with the secondary. Therefore, the dual-attached bonds on the secondary revert to the NO-CARRIER state.
 
 The following shows that the underlying bond member link is up, but the bond is down:
 
@@ -147,37 +147,37 @@ The following shows that the underlying bond member link is up, but the bond is 
 
 Traffic flow to/from the dual-attached bonds transition to the active peer. Orphan ports remain up on the secondary switch. However, the secondary switch begins to use a local interface MAC address instead of the `clagd-sys-mac` for the STP bridge ID on all ports.
 
-Note that the change in STP bridge ID on the secondary switch may result in STP convergence.
-
+Note that the change in STP bridge ID on the secondary switch might result in STP convergence.
+<!-- vale off -->
 ### Scenario 3: Primary Power Off, clagd-backup-ip Is Active
 
-When the primary is powered off, secondary uses the `clagd-backup-ip` to determine that primary peer is no longer active. Since the primary is powered off, it is expected that links (bonds) must also be down between the remote system and primary.
-
-Orphan ports attached to the primary peer are out of service until the primary is restored.
+When the primary is powered off, secondary uses the `clagd-backup-ip` to determine that primary peer is no longer active. Since the primary is powered off, you should expect that links (bonds) must also be down between the remote system and primary.
+<!-- vale on -->
+Orphan ports attached to the primary peer are out of service until you restore the primary.
 
 The secondary peer transitions to the primary role. Accordingly, it continues to use preexisting LACP system IDs for all bonds. It also begins transmitting BPDUs on the MLAG bonds.
 
-When the original primary switch is powered back on, it is expected to re-assume primary role.
-
+When you power on the original primary switch again, it re-assumes the primary role.
+<!-- vale off -->
 ### Scenario 4: Primary Power Off, clagd-backup-ip Is not Active
+<!-- vale on -->
+If `clagd-backup-ip` is not active when you power off a primary switch, the secondary must assume that the primary is still active. Because the primary is not active, the bonds between the primary switch and the remote systems get down.
 
-If `clagd-backup-ip` is not active when a primary switch is powered off, the secondary must assume that the primary is still active. Since the primary is indeed not active, the bonds between the primary switch and the remote systems get down.
-
-Orphan ports attached to the primary peer are out of service until the primary is restored.
+Orphan ports attached to the primary peer are out of service until you restore the primary.
 
 Just as in the peer link failure scenario, when `clagd-backup-ip` is not active, the secondary peer cannot continue to use the common `clagd-sys-mac` address as its LACP system ID. Therefore the secondary switch now starts using the bond interface MAC address for the LACP system ID.
 
-In this case, since primary is indeed down, the bonds from the secondary will come up. The secondary will also begin to use its local interface MAC instead of `clagd-sys-mac` form the STP bridge ID on all ports.
+In this case, because primary is down, the bonds from the secondary come up. The secondary also begins to use its local interface MAC instead of `clagd-sys-mac` form the STP bridge ID on all ports.
 
 ### Scenario 5: Primary Reboot via reboot Command
 
-When the primary switch is rebooted via the `reboot` command, the primary switch sends a goodbye message to the secondary switch informing the secondary to assume the primary role. The primary also brings down bonds with `clag-id`s. As a result, traffic flow transitions to the other peer.
+When you reboot the primary switch via the `reboot` command, the primary switch sends a goodbye message to the secondary switch informing the secondary to assume the primary role. The primary also brings down bonds with `clag-id`s. As a result, traffic flow transitions to the other peer.
 
-Orphan ports attached to the primary peer go out of service until the primary is restored.
+Orphan ports attached to the primary peer go out of service until you restore the primary.
 
 The secondary peer transitions to the primary role. Accordingly, it continues to use preexisting LACP system IDs for all bonds. It also begins to transmit BPDUs on the MLAG bonds.
 
-When the original primary switch is powered back on, it should resume the primary role.
+When you power on the original primary switch again, it re-assumes the primary role.
 
 ### Scenario 6: Secondary Power Off or Reboot
 
@@ -185,4 +185,4 @@ The primary peer maintains the primary role and continues to use preexisting LAC
 
 Orphan ports connected to the secondary peer are out of service until the secondary switch recovers.
 
-When the secondary switch is powered back on. It is expected to re-assume secondary role.
+When you power on the secondary switch again, it re-assumes the secondary role.

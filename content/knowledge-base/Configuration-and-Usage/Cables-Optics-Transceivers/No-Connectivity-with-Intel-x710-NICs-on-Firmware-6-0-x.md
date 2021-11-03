@@ -9,9 +9,9 @@ toc: 4
 
 10G-SR interfaces flap when connected to Intel x710 NICs using firmware 6.0.x.
 
-Multiple customers have encountered link connectivity issues when connecting to a server containing an Intel x710 NIC with firmware 6.0.0 or 6.0.1. Intel x710 NICs are common on Dell servers. This issue can be seen on breakout ports as well.
+Multiple customers have encountered link connectivity issues when connecting to a server containing an Intel x710 NIC with firmware 6.0.0 or 6.0.1. Intel x710 NICs are common on Dell servers. You can see this issue on breakout ports as well.
 
-In some cases, the affected interfaces are represented as "ge" interfaces in the hardware. For example, the Broadcom ASIC shows the link as as 10G/GMII:
+In some cases, the affected interfaces display as "ge" interfaces in the hardware. For example, the Broadcom ASIC shows the link as 10G/GMII:
 
 ```
            ena/ speed/   link auto STP                 lrn inter max loop
@@ -21,7 +21,7 @@ port      link duplex    scan neg? state  pause discard ops face  fram
  ge1(  2) down   10G FD SW   No Disable      None FA GMII 1518
 ```
 
-In other cases, the link simply remains as no carrier and can be seen flapping. This is seen upon visual inspection of the Intel x710 NIC; the corresponding link status light will flash green.
+In other cases, the link remains as no carrier and you can see it flapping. You can see this during a visual inspection of the Intel x710 NIC; the corresponding link status light flashes green.
 
 ## Environment
 
@@ -34,7 +34,7 @@ Hardware (ASIC):
 - Broadcom Trident II
 - Broadcom Trident II+
 - Broadcom Tomahawk
-- Mellanox Spectrum
+- NVIDIA Spectrum
 
 Hardware (server side transceiver):
 
@@ -42,7 +42,7 @@ Hardware (server side transceiver):
 
 ## Workaround
 
-There are two workarounds to this issue:
+You can choose from two workarounds to avoid this issue:
 
 - Downgrade the firmware on the Intel x710 NIC to 5.x.x.
 - Using the Intel x710 6.0.x firmware, force the link speed and auto-negotiation settings on the server and on the switch.  
@@ -59,7 +59,7 @@ You can do this by executing the following NCLU commands:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-The following command should be applied to the 10G ports on the server to force it to advertise 10000Mb/s:
+You should apply the following command to the 10G ports on the server to force it to advertise 10000Mb/s:
 
     ethtool -s ethX advertise 0x80000000000
 

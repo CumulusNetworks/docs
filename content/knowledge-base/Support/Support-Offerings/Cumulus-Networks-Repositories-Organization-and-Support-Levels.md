@@ -5,11 +5,11 @@ weight: 711
 toc: 4
 ---
 
-All packages that are included in the official Cumulus Linux distribution are available from Cumulus Networks repository servers. Depending upon the version of Cumulus Linux you are running, the repository is organized differently.
-
+All packages included in the official Cumulus Linux distribution are available from NVIDIA repository servers. The organization of the repository differs depending upon the version of Cumulus Linux you are running.
+<!-- vale off -->
 ## Cumulus Linux Repos for Versions 4.0.0 and Later
-
-Cumulus Linux 4.0.0 and later distributions are organized into a single package source for each minor (4.y) release, the most recent of which is called *latest*.
+<!-- vale on -->
+Cumulus Linux 4.0.0 and later distributions come in a single package source for each minor (4.y) release, with the most recent repo called *latest*.
 
 <table>
 <thead>
@@ -51,8 +51,9 @@ All previous security and maintenance updates for that specific version.</td>
 </tbody>
 </table>
 
+<!-- vale off -->
 The *latest* source is enabled by default. In addition to packages in the Cumulus Linux image, the default configuration provides access to additional packages such as `iperf` or `git`, as well as Cumulus-provided updates for all these packages.
-
+<!-- vale on -->
 Security fixes and early access features also go into the latest source.
 
 If you want to change to a more specific distribution (from latest to latest minor release or a specific version), you need to manually edit the `/etc/apt/sources.list`file for both the distribution and the source distribution (deb and deb-src).
@@ -81,10 +82,11 @@ You can install Debian packages and Debian source packages from upstream by unco
     #deb-src http://deb.debian.org/debian buster-updates main
     #deb-src http://security.debian.org buster/updates main
     #deb-src http://deb.debian.org/debian buster-backports main
-
+<!-- vale off -->
 ## Cumulus Linux Versions 3.y.z Repos
 
 Cumulus Linux 3 (including versions 3.0.0 through the latest 3.7.z release) distributions are organized into the following package sources:
+<!-- vale on -->
 
 <table>
 <thead>
@@ -119,7 +121,7 @@ All previous security and maintenance updates.</td>
 </tr>
 <tr>
 <td><strong>early access</strong></td>
-<td>Packages that are still undergoing development and should not be used in a production environment.</td>
+<td>Packages that are still undergoing development; do not use them in a production environment.</td>
 <td>CumulusLinux-3-early-access</td>
 <td>Packages updated asynchronously from updates.</td>
 </tr>
@@ -127,22 +129,22 @@ All previous security and maintenance updates.</td>
 <td><strong>marketplace</strong>**</td>
 <td><p>Optional third party packages, (for example, Puppet from Puppet Labs).<br />
 Community-contributed packages.</p>
-<p><strong>Not affiliated with or related to the Cumulus Networks Solutions Marketplace.</strong> </p></td>
+<p><strong>Not affiliated with or related to the NVIDIA Solutions Marketplace.</strong> </p></td>
 <td>CumulusLinux-3-marketplace</td>
 <td>N/A</td>
 </tr>
 </tbody>
 </table>
 
-\* For more information on Cumulus Linux versioning, please refer to {{<link url="Cumulus-Linux-Release-Versioning-and-Support-Policy">}}.
+\* For more information on Cumulus Linux versioning, refer to {{<link url="Cumulus-Linux-Release-Versioning-and-Support-Policy">}}.
 
 \*\* In development. Does not contain packages as of the Cumulus Linux 3.0 initial release.
-
+<!-- vale off -->
 The *mainline*, *security* and *updates* sources are enabled by default. In addition to packages in the Cumulus Linux image, the default configuration provides access to additional packages such as `iperf` or `git`, as well as Cumulus-provided updates for all these packages.
-
+<!-- vale on -->
 To maintain access to the latest Cumulus Linux updates, keep the *updates* source enabled.
 
-If you're an early adopter or are testing out new features that are not yet in Cumulus Linux mainline, you can enable the *early-access* source.
+If you're an early adopter or are testing out new features that are not yet in Cumulus Linux mainline, you can enable the `early-access` source.
 
 You can enable non-default sources by uncommenting the corresponding lines in `/etc/apt/sources.list`:
 
@@ -163,17 +165,17 @@ You can enable non-default sources by uncommenting the corresponding lines in `/
     # Currently under construction
     #deb     http://community.cumulusnetworks.com/repo CumulusLinux-3-marketplace commercial community
 
-The contents of each repository component in `sources.list` can be described as follows:
+The contents of each repository component in `sources.list` are as follows:
 
-- **cumulus:** Contains packages maintained by Cumulus Networks.
+- **cumulus:** Contains packages maintained by NVIDIA.
 - **upstream**: Contains unmodified packages from an upstream community.
 - **commercial**: Contains packages from third party vendors.
 - **community**: Contains community-contributed packages.
-
+<!-- vale off -->
 ## Cumulus Linux Versions 1.5.z and 2.y.z Repos
 
 Cumulus Linux distributions for versions 1.5.z and 2.y.z are organized into the following components:
-
+<!-- vale on -->
 - **main**: This contains all the packages that are in the Cumulus Linux image, including packages from Debian and other sources.
 - **addons**: This contains additional packages that are not in the image (for example, Puppet from Puppet Labs).
 - **updates**: This contains updates to any of the packages in main that are not security related.
@@ -200,7 +202,7 @@ You can select which repositories you want to draw from using apt by uncommentin
 
 ## Accessing the Repository
 
-To access packages from the repository server, you simply follow Debian convention and use `apt-get`. You can find details in the [Cumulus Linux user guide]({{<ref "/cumulus-linux-43" >}}).
+To access packages from the repository server, just follow Debian convention and use `apt-get`. You can find details in the [Cumulus Linux user guide]({{<ref "/cumulus-linux-43" >}}).
 
 ## Additional Reading
 

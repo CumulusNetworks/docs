@@ -59,7 +59,7 @@ And switch2's configuration looks like this:
         frr(config)# router bgp 65001
         frr(config-router)# neighbor 192.0.2.102 password mypassword
 
-5.  When both sides are configured properly, BGP should reestablish automatically; confirm using `show ip bgp summary` on each switch. Here is the output from switch2:  
+5.  When you configure both sides properly, BGP should reestablish automatically; confirm using `show ip bgp summary` on each switch. Here is the output from switch2:  
 
         frr# show ip bgp summary  
         BGP router identifier 192.0.2.5, local AS number 65000
@@ -98,7 +98,7 @@ And switch2's configuration looks like this:
 
     {{%notice warning%}}
 
-This will tear down any other layer 3 sessions and affect network traffic!
+This tears down any other layer 3 sessions and affects network traffic.
 
 {{%/notice%}}
 
@@ -138,7 +138,7 @@ This will tear down any other layer 3 sessions and affect network traffic!
 
     {{%notice warning%}}
 
-This will tear down any other layer 3 sessions and affect network traffic!
+This tears down any other layer 3 sessions and affects network traffic.
 
 {{%/notice%}}
 

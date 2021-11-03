@@ -59,7 +59,6 @@ tokens:
   - consequently
   - consolidate
   - constitutes
-  - demonstrate
   - depart
   - designate
   - discontinue
@@ -73,8 +72,6 @@ tokens:
   - exclusively
   - expedite
   - expend
-  - expiration
-  - facilitate
   - factual evidence
   - feasible
   - finalize
@@ -119,7 +116,6 @@ tokens:
   - it is essential
   - it seems that
   - magnitude
-  - methodology
   - necessitate
   - nevertheless
   - not certain
@@ -137,14 +133,12 @@ tokens:
   - one particular
   - optimum
   - owing to the fact that
-  - participate
   - particulars
   - pass away
   - pertaining to
   - possess
   - preclude
   - prior to
-  - prioritize
   - procure
   - proficiency
   - provided that

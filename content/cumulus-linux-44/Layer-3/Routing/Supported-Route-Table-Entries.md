@@ -51,15 +51,14 @@ The IPv6 number corresponds to the /64 IPv6 prefix. The /128 IPv6 prefix number 
 | l2-heavy-1     | 180K          | 8k (IPv4) and 8k (IPv6)   | 8k (IPv4) and 8k (IPv6-long)   |
 | v4-lpm-heavy   | 8k            | 8k (IPv4) and 16k (IPv6)  | 80k (IPv4) and 16k (IPv6-long) |
 | v4-lpm-heavy-1 | 8k            | 8k (IPv4) and 2k (IPv6)   | 176k (IPv4) and 2k (IPv6-long) |
+| rash-custom-profile1  | 20k    | 8k (IPv4) and 1k (IPv6)   | 8k (IPv4) and 1k (IPv6-long)   |
 | v6-lpm-heavy   | 40k           | 8k (IPv4) and 40k (IPv6)  | 8k (IPv4), 32k (IPv6-long) and 32K (IPv6/64) |
 | lpm-balanced   | 8k            | 8k (IPv4) and 8k (IPv6)   | 60k (IPv4), 60k (IPv6-long) and 120k (IPv6/64) |
 <!-- vale on -->
 ## Forwarding Resource Profiles
 
-You can configure forwarding resource allocation. Choose the profile that best suits your network architecture.
-<!-- vale off -->
-### Spectrum-2 and Spectrum-3
-<!-- vale on -->
+You can configure forwarding resource allocations. Choose the profile that best suits your network architecture. 
+
 Specify the profile you want to use with the `forwarding_table.profile` variable in the `/etc/cumulus/datapath/traffic.conf` file. The following example specifies ipmc-max:
 
 ```
@@ -90,7 +89,7 @@ forwarding_table.profile = ipmc-max
 
 After you specify a different profile, {{%link url="Configuring-switchd#restart-switchd" text="restart `switchd`"%}} for the change to take effect.
 
-### Spectrum
+### Spectrum TCAM Profiles
 
 Specify the profile you want to use with the `tcam_resource.profile` variable in the `/etc/mlx/datapath/tcam_profile.conf` file. The following example specifies ipmc-max:
 

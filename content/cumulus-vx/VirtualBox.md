@@ -9,7 +9,9 @@ This section describes how to install and set up Cumulus VX in VirtualBox to cre
 
 {{% vx/intro %}}
 
+<!-- vale off -->
 These steps were tested with Cumulus VX 4.2 and VirtualBox version 6.1.12 on macOS version 10.14.6.
+<!-- vale on -->
 
 ## Create and Configure the VMs
 
@@ -33,7 +35,7 @@ CumulusVX versions 4.3 and later requires 2 vCPUs.
 
 ### Create Network Connections
 
-VirtualBox network adapters start with eth0, then swp1, swp2 and swp3. Settings for Adapter 1 are applied to eth0, settings for Adapter 2 are applied to swp1, and so on.
+VirtualBox network adapters start with eth0, then swp1, swp2 and swp3. Settings for Adapter 1 apply to eth0, settings for Adapter 2 apply to swp1, and so on.
 
 Configure the network adapter settings for leaf01, leaf02, and spine01 to create point-to-point connections, as shown below.
 
@@ -44,9 +46,9 @@ Follow these steps for each VM (leaf01, leaf02, and spine01):
 1. In the VirtualBox Manager window, select the VM.
 2. Click **Settings**, then click **Network**.
 3. Configure the **Adapters** on each VM as shown below, then click **OK** to save the network connections.
-   - Make sure to select the **Paravirtualized Network (virtio-net)** network Adapter Type for all adpaters
+   - Make sure to select the **Paravirtualized Network (virtio-net)** network Adapter Type for all adapters
    - Enable **Promiscuous Mode** for all adapters (except Adapter 1) to allow for LACP bonding to operate properly.
-   - Do not change the **MAC Addresses**, which are configured automatically.
+   - Do not change the **MAC Addresses**, which get configured automatically.
 
    **leaf01 configuration**
 

@@ -119,7 +119,7 @@ Displays the reason why the server is unable to route a packet.
 | Source IP equals destination IP | Packet has a source IP address equal to the destination IP address |
 | IPv4 source IP is limited broadcast | Packet has broadcast source IP address |
 | IPv4 destination IP is local network (destination = 0.0.0.0/8) | Packet has IPv4 destination address that is a local network (destination=0.0.0.0/8) |
-| IPv4 destination IP is link local | Packet has IPv4 destination address that is a local link |
+| IPv4 destination IP is link local (destination in 169.254.0.0/16 | Packet has IPv4 destination address that is a local link |
 | Ingress router interface is disabled | Packet destined to a different subnet cannot be routed because ingress router interface is disabled |
 | Egress router interface is disabled | Packet destined to a different subnet cannot be routed because egress router interface is disabled |
 | IPv4 routing table (LPM) unicast miss | No route available in routing table for packet |

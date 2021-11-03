@@ -10,7 +10,7 @@ This KB article describes how to translate common NX-OS configurations to NVUE c
 ## Feature Enablement
 
 {{<notice note >}}
-Unlike NX-OS, Cumulus Linux does not require specific features to be enabled.
+Unlike NX-OS, Cumulus Linux does not require the enabling of specific features.
 {{</notice >}}
 
 ## Hostname and System Commands
@@ -44,7 +44,7 @@ interface e1/1
 | `speed <speed>` | `nv set interface <interface> link speed <speed>` | |
 | `fec <mode>` | `nv set interface link fec <mode>` | |
 | `no shutdown` | `nv set interface <interface> link state up` | The default state for interfaces is `up`. To shut down an interface, use `link state down`. |
-| `interface loopback0` | `nv set interface lo` | The loopback interface on Cumulus Linux is called `lo`. |
+| `interface loopback0` | `nv set interface lo` | `lo` is the name of the loopback interface on Cumulus Linux. |
 <!-- | `description <text>` | `nv set interface <interface> alias <text>` | | -->
 
 ## Layer 2 and VLANs
@@ -91,11 +91,11 @@ For more information about MLAG, refer to the s section of the Cumulus Linux Use
 | `peer-keepalive destination <IP>` | `nv set mlag backup <IP>` | |
 | `system-mac <mac>` | `nv set mlag mac-address <mac>` | NVUE also supports `auto` MAC address generation. |
 | `interface port-channel <number>`<br />&nbsp;&nbsp;&nbsp;`vpc peer-link` | `nv set interface peerlink bond member <interface>`<br />`nv set mlag peer-ip linklocal` | Cumulus Linux requires a unique bond for the peerlink and an associated `peer-ip` definition. |
-| `interface port-channel <number>`<br />&nbsp;&nbsp;&nbsp;`vpc <number>` | `nv set interface <bond-name> bond mlag id auto` | The `mlag id` must match the bond interface on both MLAG peers connected to the same host. Using `auto` determines the ID based on the the MAC address of the end host. |
+| `interface port-channel <number>`<br />&nbsp;&nbsp;&nbsp;`vpc <number>` | `nv set interface <bond-name> bond mlag id auto` | The `mlag id` must match the bond interface on both MLAG peers connected to the same host. Using `auto` determines the ID based on the MAC address of the end host. |
 
 ## Layer 3 Routing Protocols
 
-Most BGP commands require the VRF to be included in the command. This includes the `default` VRF.
+Most BGP commands require the inclusion of the VRF in the command. This includes the `default` VRF.
 
 | NX-OS Command | NVUE Command | Comments |
 | -----         | -----        | -----    |
@@ -112,9 +112,10 @@ Most BGP commands require the VRF to be included in the command. This includes t
 
 ## Access Control Lists (ACLs)
 
-ACLs in Cumulus Linux are based on Linux iptables and behave differently from NX-OS in the following ways:
-- There is no implicit deny. ACLs must end in a `match any` and `action deny` rule to drop all unmatched traffic.
-- There is no support for wildcard masks. You must list subnets individually.
+ACLs in Cumulus Linux derive from Linux `iptables` and behave differently from NX-OS in the following ways:
+
+- No implicit deny. ACLs must end in a `match any` and `action deny` rule to drop all unmatched traffic.
+- No support for wildcard masks. You must list subnets individually.
 
 For more information, refer to the {{<kb_link latest="cl" url="System-Configuration/Netfilter-ACLs/_index.md" text="Netfilter - ACLs" >}} section of the Cumulus Linux User Guide.
 

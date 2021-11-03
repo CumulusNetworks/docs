@@ -3,13 +3,14 @@ title: Quick Start
 author: NVIDIA
 weight: 20
 version: "1.0"
+product: NVIDIA Air
 ---
 
 This quick start provides an easy way to get started with the NVIDIA Air simulation platform.
 
 ## Log into NVIDIA Air
 
-NVIDIA Air uses the same credentials as the NVIDIA developer forums for account access. When the login page appears, enter your email address (the one you already use for the forums or the one you intend to use to sign up) in the box and click **Get Started**:
+NVIDIA Air uses the same credentials as the NVIDIA developer forums for account access. When the login page appears, enter your email address (the one you already use for the forums or the one you intend to use to sign up) in the entry field and click **Get Started**:
 
 {{<img src="/images/guides/nvidia-air/Login.png" width="800px">}}
 
@@ -29,11 +30,11 @@ The landing page offers the following options:
 
   {{<img src="/images/guides/nvidia-air/OrganizationDropdown.png" width="250px">}}
 
-- **Search Simulations**: If you have more than one simulation, the search box can help filter your simulations based on a text match.
+- **Search Simulations**: If you have more than one simulation, the search field can help filter your simulations based on a text match.
 
   {{<img src="/images/guides/nvidia-air/SearchSimulation.png">}}
 
-- **Build a Simulation**: If you have no simulations, click the **Build a Simulation** button in the middle of the screen. The details of the demos are described in {{<link title="Pre-built Demos">}}.
+- **Build a Simulation**: If you have no simulations, click the **Build a Simulation** button in the middle of the screen. You can read details of the demos in {{<link title="Pre-built Demos">}}.
 
   {{<img src="/images/guides/nvidia-air/BuildSim.png" width="300px">}}
 
@@ -90,16 +91,20 @@ The Create Service dialog appears:
 {{<img src="/images/guides/nvidia-air/ServicesCreate.png" width="400px">}}
 
 1. In the **Service Name** field, enter the name of the service. This is a free form text field.
-1. In the **Interface** dropdown, select the name of the interface in the simulation where the connection is to terminate. This is most commonly the eth0 interface on the oob-mgmt-server.
-1. In the **Service Type** dropdown, select the type of service you are creating. If you select *SSH*, *HTTP* or *HTTPS*, a hyperlink to the URL is automatically created in the Services panel. If you select *Other*, you can select any port, but no hyperlink is created. The hyperlink has no functional difference other than providing users a quick way to copy and paste the service.
-1. In the **Service Port** field, specify the internal port where the service is to terminate.
+1. In the **Interface** dropdown, select the name of the interface in the simulation where the connection terminates. This is most commonly the eth0 interface on the oob-mgmt-server.
+1. In the **Service Type** dropdown, select the type of service you are creating. If you select *SSH*, *HTTP* or *HTTPS*, a hyperlink to the URL is automatically created in the Services panel. If you select *Other*, you can select any port, but no hyperlink gets created. The hyperlink has no functional difference other than providing users a quick way to copy and paste the service.
+1. In the **Service Port** field, specify the internal port where the service terminates.
 1. Click **Submit** to create the service.
 
-In the example below, a service was created for TCP port 1022. The external port is 24886, so connecting to this service requires connecting to worker06.air.nvidia.com on TCP port 24886, which would forward and redirect to the oob-mgmt-server on TCP port 1022.
+<!-- vale off -->
+The example below shows the creation of a service for TCP port 1022. The external port is 24886, so connecting to this service requires connecting to worker06.air.nvidia.com on TCP port 24886, which would forward and redirect to the oob-mgmt-server on TCP port 1022.
+<!-- vale on -->
 
 {{<img src="/images/guides/nvidia-air/ServicesCreated.png" width="400px">}}
 
-The **Enable SSH** button automatically populates the Services panel with an SSH session. It is a short cut to enable inbound SSH to the oob-mgmt-server so that you can leverage your preferred local SSH client. Note that SSH password authentication is disabled on the oob-mgmt-server by default, so you must upload SSH keys to your user profile so you can use this feature. More information about uploading SSH keys to the user profile is in {{<link url="#user-settings" text="User Settings">}} below.
+<!-- vale off -->
+The **Enable SSH** button automatically populates the Services panel with an SSH session. It is a shortcut to enable inbound SSH to the oob-mgmt-server so that you can leverage your preferred local SSH client. Note that SSH password authentication is disabled on the oob-mgmt-server by default, so you must upload SSH keys to your user profile so you can use this feature. More information about uploading SSH keys to the user profile is in {{<link url="#user-settings" text="User Settings">}} below.
+<!-- vale on -->
 
 ## Manage a Simulation
 

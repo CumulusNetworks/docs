@@ -15,7 +15,7 @@ and sub-modes. NCLU provides these benefits:
   suggestions in case you enter a typo.
 - Runs directly from and integrates with bash, while being
   interoperable with the regular way of accessing underlying
-  configuration files and automation.
+  configuration files.
 - Configures dependent features automatically so that you don't have to.
 
 {{< img src = "/images/cumulus-linux/nclu-architecture.png" >}}
@@ -27,6 +27,11 @@ monitoring and troubleshooting functionality for these features. You can
 configure both the `/etc/network/interfaces` and `/etc/frr/frr.conf`
 files with `net`, in addition to running show and clear commands related
 to `ifupdown2` and FRRouting.
+
+{{%notice warning%}}
+If you use automation to configure your switches, NVIDIA recommends that 
+you do **not** use NCLU. Edit configuration files directly.
+{{%/notice%}}
 
 ## Install NCLU
 

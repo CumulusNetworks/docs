@@ -7,15 +7,17 @@ toc: 3
 The Network Command Line Utility (NCLU) is a command line interface that simplifies the networking configuration process for all users.
 
 NCLU resides in the Linux user space and provides consistent access to networking commands directly through bash, making configuration and troubleshooting simple and easy; no need to edit files or enter modes and sub-modes. NCLU provides these benefits:
-<!-- vale off -->
 - Embeds help, examples, and automatic command checking with suggestions in case you enter a typo.
-<!-- vale on -->
-- Runs directly from and integrates with bash, while being interoperable with the regular way of accessing underlying configuration files and automation.
+- Runs directly from and integrates with bash, while being interoperable with the regular way of accessing underlying configuration files.
 - Configures dependent features automatically so that you do not have to.
 
 {{<img src = "/images/cumulus-linux/nclu-architecture.png">}}
 
 The NCLU wrapper utility called `net` is capable of configuring layer 2 and layer 3 features of the networking stack, installing ACLs and VXLANs, restoring configuration files, as well as providing monitoring and troubleshooting functionality for these features. You can configure both the `/etc/network/interfaces` and `/etc/frr/frr.conf` files with `net`, in addition to running show and clear commands related to `ifupdown2` and FRRouting.
+
+{{%notice warning%}}
+If you use automation to configure your switches, NVIDIA recommends that you do **not** use NCLU. Edit configuration files directly or use NVUE.
+{{%/notice%}}
 
 ## NCLU Basics
 
@@ -42,7 +44,7 @@ When you have a running configuration, you can review and update the configurati
 - `net commit confirm` requires you to press *Enter* to commit changes using NCLU. If you run `net commit confirm` but do not press *Enter* within 10 seconds, the commit automatically reverts and makes no changes.
 <!-- vale on -->
 - `net commit description <description>` enables you to provide a descriptive summary of the changes you are about to commit.
-- `net commit permanent` keeps the {{<link url="Back-up-and-Restore" text="backup file">}} you create when you commit the change. Otherwise, NCLU periodically cleans up the backup files that the commands create.
+- `net commit permanent` keeps the backup file you create when you commit the change. Otherwise, NCLU periodically cleans up the backup files that the commands create.
 - `net del all` deletes all configurations.
 
     {{%notice note%}}

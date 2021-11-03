@@ -7,7 +7,7 @@ toc: 4
 
 ## Issue
 
-The link on a physical switch port &mdash; an interface starting with "swp" &mdash; doesn't come up.
+The link on a physical switch port &mdash; an interface starting with "swp" &mdash; does not come up.
 
 ## Environment
 
@@ -19,16 +19,16 @@ Here is a list of things to check:
 
 ### Use Suggested Optics, Cables, Transceivers
 
-Please read the pluggables section of the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="HCL">}} for recommendations on which optics, cables and transceivers to use with your platform.
+Read the pluggables section of the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="HCL">}} for recommendations on which optics, cables and transceivers to use with your platform.
 
 ### Ensure Your Cumulus Linux License Is Valid
 
-Until you install a valid Cumulus Linux license, none of the physical switch ports will come up, so they won't appear in the output of `ip link show`.
+Until you install a valid Cumulus Linux license, none of the physical switch ports come up, so they do not appear in the output of `ip link show`.
 
     $ sudo cl-license
     No license installed!
 
-Please {{<link url="Physical-Ports-Missing-from-ip-link-show-Output-switchd-Failure" text="read this article">}} for additional details on how to address this.
+Read {{<link url="Physical-Ports-Missing-from-ip-link-show-Output-switchd-Failure" text="this article">}} for additional details on how to address this.
 
 ### Bring the Link Up with ip link set
 
@@ -42,7 +42,7 @@ Check the output of `ip link show`, you should see the following:
     3: swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9000 qdisc pfifo_fast state UP mode DEFAULT qlen 500
        link/ether c4:54:44:4f:ab:00 brd ff:ff:ff:ff:ff:ff
 
-If the physical switch port is shown as DOWN instead of UP, configure the interface to be UP with the `ip link set` command:
+If the physical switch port shows as DOWN instead of UP, configure the interface to be UP with the `ip link set` command:
 
     cumulus@switch$ ip link show swp3
     5: swp3: <BROADCAST,MULTICAST> mtu 9000 qdisc pfifo_fast master vlan5 state DOWN mode DEFAULT qlen 500 
@@ -69,13 +69,13 @@ Check your connections, reseat the pluggable and verify cables.
 
 ### Explicitly Configure the Port Speed, Duplex Mode, Auto Negotiation Settings
 
-You may need to explicitly configure the physical switch port attributes, particularly in scenarios where ports may allow different types of pluggables or where the attribute has been reconfigured. The following attributes may need to be explicitly configured:
+You might need to explicitly configure the physical switch port attributes, especially in scenarios where ports might allow different types of pluggables or where someone reconfigured the attribute. The following attributes might need to be explicitly configured:
 
 - link-speed
 - link-duplex
 - link-autoneg
 
-For example, the following may be configured in `/etc/network/interfaces`:
+For example, you can configure the following in `/etc/network/interfaces`:
 
     auto swp1
     iface swp1   
@@ -85,7 +85,7 @@ For example, the following may be configured in `/etc/network/interfaces`:
         link-duplex full
         link-autoneg off
 
-Note that if the interface name starts with swp and ends with \_sX, where X is a number between 0-3, then this is a 10G connection in a breakout Twinax or AOC cable.
+Note that if the interface name starts with swp and ends with \_sX, where X is a number between 0 and 3, then this is a 10G connection in a breakout Twinax or AOC cable.
 
     cumulus@switch$ ip link show swp32s0
     37: swp32s0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT qlen 500 
@@ -97,8 +97,7 @@ Note that if the interface name starts with swp and ends with \_sX, where X is a
     port_init_autoneg_xe34=0
     serdes_if_type_xe34=9
 
-Please [Switch Port Attributes]({{<ref "/cumulus-linux-43/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes" >}})
- for more details on how to configure the physical switch port attributes.
+Read [Switch Port Attributes]({{<ref "/cumulus-linux-43/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes" >}}) for more details on how to configure the physical switch port attributes.
 
 ### Validate Hardware Settings with ethtool
 
@@ -108,10 +107,10 @@ The `ethtool` command enables you to query or control the network driver and har
 
     cumulus@switch$ sudo ethtool -m swp1
 
-Please read [Monitoring Interfaces and Transceivers Using ethtool]({{<ref "/cumulus-linux-43/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool" >}}) for more details on `ethtool`.
-
+Read [Monitoring Interfaces and Transceivers Using ethtool]({{<ref "/cumulus-linux-43/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool" >}}) for more details on `ethtool`.
+<!-- vale off -->
 ### Force the Interface Configurations to Be Pushed to Hardware
-
+<!-- vale on -->
 Ensure the configuration in `/etc/network/interfaces` gets pushed to hardware. Run the following command:
 
     cumulus@switch$ sudo ifreload -a

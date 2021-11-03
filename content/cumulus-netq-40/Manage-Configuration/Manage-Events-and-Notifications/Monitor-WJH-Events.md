@@ -666,7 +666,7 @@ The data NetQ sends to the gNMI agent is in the form of WJH drop reasons. The re
 | 315 | Multicast MAC mismatch | Error | Bad packet was received from the peer |
 | 316 | Source IP equals destination IP | Error | Bad packet was received from the peer |
 | 317 | IPv4 source IP is limited broadcast | Error | Bad packet was received from the peer |
-| 318 | IPv4 destination IP is local network (destination=0.0.0.0/8) | Error | Bad packet was received from the peer || 319 | IPv4 destination IP is link local | Error | Bad packet was received from the peer |
+| 318 | IPv4 destination IP is local network (destination=0.0.0.0/8) | Error | Bad packet was received from the peer || 319 | IPv4 destination IP is link local (destination in 169.254.0.0/16) | Error | Bad packet was received from the peer |
 | 320 | Ingress router interface is disabled | Warning | Validate your configuration |
 | 321 | Egress router interface is disabled | Warning | Validate your configuration |
 | 323 | IPv4 routing table (LPM) unicast miss | Warning | Validate routing table for this destination IP |

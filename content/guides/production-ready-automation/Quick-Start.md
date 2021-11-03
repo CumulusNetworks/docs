@@ -2,25 +2,26 @@
 title: Quick Start
 weight: 41
 ---
+
 This quick start provides a quick and easy way to run your own Vagrant, libvirt, and KVM server, with procedures on how to:
 
 - Start a golden standard demo topology using a bash script
-- Start the blank Cumulus Networks reference topology if you are looking to build configuration from scratch
+- Start the blank NVIDIA reference topology if you are looking to build configuration from scratch
 - Destroy and end a simulation
 
-To run a full reference topology *without* NetQ, you need 15104MB of memory. If you intend to run NetQ, you need 23296MB of memory. For complete sytem reqirements, refer to {{<link text="Run the Production Ready Automation" title="Run Production Ready Automation" >}}.
+To run a full reference topology *without* NetQ, you need 15104MB of memory. If you intend to run NetQ, you need 23296MB of memory. For complete system requirements, refer to {{<link text="Run the Production Ready Automation" title="Run Production Ready Automation" >}}.
 
 {{%notice tip%}}
 
-To take a *quick* look at a Cumulus Networks golden standard demo, use our simulation platform, Cumulus in the Cloud. The simulation platform has no system requirements or dependencies. Visit {{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/" text="Cumulus in the Cloud">}} to get a full blank slate Cumulus Networks reference topology. You can deploy any of the golden standard demos right from the UI with one click.
+To take a *quick* look at an NVIDIA golden standard demo, use the NVIDIA simulation platform, Cumulus in the Cloud. The simulation platform has no system requirements or dependencies. Visit {{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/" text="Cumulus in the Cloud">}} to get a full blank slate reference topology. You can deploy any of the golden standard demos right from the UI with one click.
 
 {{%/notice%}}
 
 ## Start a Golden Standard Demo Topology
 
-The following procedue describes the easiest way to start a Production Ready automation demo using a bash script provided in the package. The bash script performs the following steps automatically:
+The following procedure describes the easiest way to start a Production Ready automation demo using a bash script provided in the package. The bash script performs the following steps automatically:
 
-- Checks if the Cumulus Networks reference topology submodule is present and attempts to download the reference topology if it is not present.
+- Checks if the NVIDIA reference topology submodule is present and attempts to download the reference topology if it is not present.
 - Runs the `vagrant up` command for the out-of-band management network devices.
 - Runs a series of `vagrant up` commands to bring up the rest of the network simulation.
 - Runs the `vagrant scp` command to copy the network automation into the simulation.
@@ -64,7 +65,7 @@ To start a golden standard demo topology using a bash script:
 
     {{%notice note%}}
 
-An Ubuntu 18.04LTS box with additional CPU and memory resources for installing NetQ is included in the out-of-band management network of the base Cumulus Networks reference topology. NetQ is *not* a required element for any of the golden standard demos to function but is used in the topology to power CI/CD testing, and to preview and test the NetQ functionality. If you do not intent to use NetQ, Cumulus Networks recommends that you do not start it in simulation to save an additional 8GB of memory.
+The out-of-band management network of the base NVIDIA reference topology includes an Ubuntu 18.04LTS system with additional CPU and memory resources for installing NetQ. NetQ is *not* a required element for any of the golden standard demos to function but is in the topology to provide power CI/CD testing, and to preview and test the NetQ functionality. If you do not intent to use NetQ, NVIDIA recommends that you do not start it in simulation to save an additional 8GB of memory.
 
 {{%/notice%}}
 
@@ -90,7 +91,7 @@ An Ubuntu 18.04LTS box with additional CPU and memory resources for installing N
     user@host:~/dc_configs_vxlan_evpnsym/cldemo2/simulation#
     ```
 
-6. Run the `vagrant ssh oob-mgmt-server` command to enter the simulation onto the oob-mgmt-server. This is your jump box to reach the other devices in the network.
+6. Run the `vagrant ssh oob-mgmt-server` command to enter the simulation onto the oob-mgmt-server. This is your jump system to reach the other devices in the network.
 
     ```
     user@host:~/dc_configs_vxlan_evpnsym/cldemo2/simulation# vagrant ssh oob-mgmt-server
@@ -117,11 +118,11 @@ An Ubuntu 18.04LTS box with additional CPU and memory resources for installing N
     vagrant@oob-mgmt-server:~/automation$
     ```
 
-8. Run the ansible playbook to configure your selected demo:
+8. Run the Ansible playbook to configure your selected demo:
 
     {{%notice note%}}
 
-The `-i` flag is used to specify the location of the Ansible inventory. This is required, unless the inventory is moved into a {{<exlink url="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html" text="standard Ansible location">}}.
+You use the `-i` flag to specify the location of the Ansible inventory. This is a requirement, unless you move the inventory into a {{<exlink url="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html" text="standard Ansible location">}}.
 
 {{%/notice%}}
 
@@ -149,11 +150,11 @@ Check the `README.md` file on the selected demo repository for more information 
 
 ## Start a Blank Reference Topology
 
-The Cumulus Networks reference topology is included as a submodule in all of the Cumulus Networks golden standard demos, which eliminates the need to clone the base reference topology project. <!-- For more information about submodules see the contributor’s guide. TODO: add link to contributor's guide -->
+Every NVIDIA golden standard demo includes the NVIDIA reference topology as a submodule, which eliminates the need to clone the base reference topology project. <!-- For more information about submodules see the contributor’s guide. TODO: add link to contributor's guide -->
 
 You can start the reference topology by itself if you want to build configuration from scratch or intend to start from a completely blank slate network topology.
 
-1. Clone the Cumulus Networks reference topology (`cldemo2`):
+1. Clone the NVIDIA reference topology (`cldemo2`):
 
     ```
     user@host:~# git clone https://gitlab.com/cumulus-consulting/goldenturtle/cldemo2.git
@@ -192,9 +193,9 @@ You can start the reference topology by itself if you want to build configuratio
     user@host:~/cldemo2/simulation#
     ```
 
-5. Use the `vagrant ssh` command to ssh into the oob-mgmt-server. This is the jump box to access the rest of the simulation.
+5. Use the `vagrant ssh` command to SSH into the oob-mgmt-server. This is the jump system to access the rest of the simulation.
 
-For more information about how to start developing and building onto this blank slate topology, refer to the `README.md` file for the Cumulus Networks reference topology GitLab project and the developer's guide.
+For more information about how to start developing and building onto this blank slate topology, refer to the `README.md` file for the NVIDIA reference topology GitLab project and the developer's guide.
 
 ## Destroy and End a Simulation
 

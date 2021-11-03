@@ -19,14 +19,14 @@ switch# configure terminal
 switch(config)# ip nht resolve-via-default
 switch(config)# exit
 switch# write memory</li><li><p>NVIDIA Cumulus Networks recommends you <b>not</b> use a spine switch as an RP when using eBGP in a Clos network. In an eBGP Clos network, the most common way to avoid BGP Path Hunting is to allocate the same ASN for all the spine nodes. This is done so each spine doesn't see duplicate routes from other spines.</p><p>In a multicast fabric, an RP should be able to route to a multicast source at all times. So, when a spine node is configured as an RP, it is important that the RP always has a path to reach any multicast source leaf node. But if the direct link between a spine RP and a leaf fails, there is no alternate way for the RP to route to that leaf &mdash; because one spine doesn't route to a leaf via another spine.</p></li><p>{{%/notice%}}</p> |
-| PIM Shared Tree (RP Tree) or (*,G) Tree | The multicast tree rooted at the RP. When receivers want to join a multicast group, join messages are sent along the shared tree towards the RP.|
+| PIM Shared Tree (RP Tree) or (*,G) Tree | The multicast tree rooted at the RP. When receivers want to join a multicast group, they send join messages along the shared tree towards the RP.|
 |PIM Shortest Path Tree (SPT) or (S,G) Tree|The multicast tree rooted at the multicast source for a given group. Each multicast source has a unique SPT. The SPT can match the RP Tree, but this is not a requirement. The SPT represents the most efficient way to send multicast traffic from a source to the interested receivers. |
-| Outgoing Interface (OIF) | Indicates the interface on which a PIM or multicast packet is to be sent out. OIFs are the interfaces towards the multicast receivers. |
-| Incoming Interface (IIF) | Indicates the interface on which a multicast packet is received. An IIF can be the interface towards the source or towards the RP. |
+| Outgoing Interface (OIF) | Indicates the interface on which to send out a PIM or multicast packet. OIFs are the interfaces towards the multicast receivers. |
+| Incoming Interface (IIF) | Indicates the interface on which to receive a multicast packet. An IIF can be the interface towards the source or towards the RP. |
 | Reverse Path Forwarding Interface (RPF Interface) | The path used to reach the RP or source. There must be a valid PIM neighbor to determine the RPF unless directly connected to source. |
 | Multicast Route (mroute) | Indicates the multicast source and multicast group as well as associated OIFs, IIFs, and RPF information. |
-| Star-G mroute (\*,G) | Represents the RP Tree. The \* is a wildcard indicating any multicast source. The G is the multicast group. For example (\*,G) is (\*, 239.1.2.9). |
-| S-G mroute (S,G) | This is the mroute representing the source entry. The S is the multicast source IP. The G is the multicast group. For example (S,G) is (10.1.1.1, 239.1.2.9). |
+| Star-G mroute (\*,G) | Represents the RP Tree. \* is a wildcard indicating any multicast source. G is the multicast group. For example, (\*,G) is (\*, 239.1.2.9). |
+| S-G mroute (S,G) | This is the mroute representing the source entry. S is the multicast source IP. G is the multicast group. For example, (S,G) is (10.1.1.1, 239.1.2.9). |
 
 ## PIM Messages
 

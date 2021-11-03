@@ -29,38 +29,38 @@
 <td>While upgrading an on-premises deployment from version 2.4.x to 3.x.y then to 4.x, the upgrade fails during the NetQ application stage.
 To work around this issue, run the following command on the NetQ telemetry server, then start the upgrade again:
 &apos;netq install opta activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiw3T2sweW9kR3Y4Wk9sTHU3MkwrQTRjNkhhQkU3bVpBNVlZVjEvWWgyZGJBPQ==&apos;</td>
-<td>3.2.1-3.3.1, 4.0.0</td>
+<td>3.2.1-3.3.1, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2555854</td>
 <td>NetQ Agent: If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten.</td>
-<td>3.0.0-3.3.1, 4.0.0</td>
+<td>3.0.0-3.3.1, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2555197</td>
 <td>NetQ CLI: Occasionally, when a command response contains a large number of objects to be displayed the NetQ CLI does not display all results in the console. When this occurs, view all results using the {{json}} format option.</td>
-<td>3.3.0-3.3.1, 4.0.0</td>
+<td>3.3.0-3.3.1, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2553453</td>
 <td>The {{netqd}} daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and {{netq show}} commands are run.</td>
 <td>3.1.0-3.3.1</td>
-<td>4.0.0</td>
+<td>4.0.0-4.0.1</td>
 </tr>
 <tr>
 <td>2549649</td>
 <td>NetQ UI: Warnings might appear during the post-upgrade phase for a Cumulus Linux switch upgrade job. They are caused by services that have not yet been restored by the time the job is complete. Cumulus Networks recommend waiting five minutes, creating a network snapshot, then comparing that to the pre-upgrade snapshot. If the comparison shows no differences for the services, the warnings can be ignored. If there are differences, then troubleshooting the relevant service(s) is recommended.</td>
-<td>3.0.0-3.3.1, 4.0.0</td>
+<td>3.0.0-3.3.1, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2549319</td>
 <td>NetQ UI: The legend and segment colors on Switches and Upgrade History card graphs sometimes do not match. These cards appear on the lifecycle management dashboard (Manage Switch Assets view). Hover over graph to view the correct values.</td>
 <td>3.0.0-3.3.1</td>
-<td>4.0.0</td>
+<td>4.0.0-4.0.1</td>
 </tr>
 </table>
 <table name="Fixed Issues in 3.3.1">
@@ -286,7 +286,7 @@ Save the file.</td>
 <td>While upgrading an on-premises deployment from version 2.4.x to 3.x.y then to 4.x, the upgrade fails during the NetQ application stage.
 To work around this issue, run the following command on the NetQ telemetry server, then start the upgrade again:
 &apos;netq install opta activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiw3T2sweW9kR3Y4Wk9sTHU3MkwrQTRjNkhhQkU3bVpBNVlZVjEvWWgyZGJBPQ==&apos;</td>
-<td>3.2.1-3.3.1, 4.0.0</td>
+<td>3.2.1-3.3.1, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -472,7 +472,7 @@ Save the file.</td>
 <tr>
 <td>2555854</td>
 <td>NetQ Agent: If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten.</td>
-<td>3.0.0-3.3.1, 4.0.0</td>
+<td>3.0.0-3.3.1, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -496,26 +496,26 @@ Save the file.</td>
 <tr>
 <td>2555197</td>
 <td>NetQ CLI: Occasionally, when a command response contains a large number of objects to be displayed the NetQ CLI does not display all results in the console. When this occurs, view all results using the {{json}} format option.</td>
-<td>3.3.0-3.3.1, 4.0.0</td>
+<td>3.3.0-3.3.1, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2553453</td>
 <td>The {{netqd}} daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and {{netq show}} commands are run.</td>
 <td>3.1.0-3.3.1</td>
-<td>4.0.0</td>
+<td>4.0.0-4.0.1</td>
 </tr>
 <tr>
 <td>2549649</td>
 <td>NetQ UI: Warnings might appear during the post-upgrade phase for a Cumulus Linux switch upgrade job. They are caused by services that have not yet been restored by the time the job is complete. Cumulus Networks recommend waiting five minutes, creating a network snapshot, then comparing that to the pre-upgrade snapshot. If the comparison shows no differences for the services, the warnings can be ignored. If there are differences, then troubleshooting the relevant service(s) is recommended.</td>
-<td>3.0.0-3.3.1, 4.0.0</td>
+<td>3.0.0-3.3.1, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2549319</td>
 <td>NetQ UI: The legend and segment colors on Switches and Upgrade History card graphs sometimes do not match. These cards appear on the lifecycle management dashboard (Manage Switch Assets view). Hover over graph to view the correct values.</td>
 <td>3.0.0-3.3.1</td>
-<td>4.0.0</td>
+<td>4.0.0-4.0.1</td>
 </tr>
 </table>
 <table name="Fixed Issues in 3.3.0">

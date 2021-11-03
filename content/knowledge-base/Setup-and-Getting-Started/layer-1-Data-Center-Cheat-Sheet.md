@@ -4,54 +4,58 @@ author: NVIDIA
 weight: 20
 toc: 4
 ---
-Your reference sheet for going web-scale with NVIDIA Spectrum switches and LinkX transceivers. 
 
-With NVIDIA Spectrum switches with the LinkX cables and optics, you can build a web-scale scalable and efficient data center. With Cumulus Linux Network OS on top, you can leverage the data center automation available to the largest data center operators in the world. 
+Your reference sheet for going web-scale with NVIDIA Spectrum switches and LinkX transceivers.
+
+With NVIDIA Spectrum switches with the LinkX cables and optics, you can build a web-scale scalable and efficient data center. With Cumulus Linux Network OS on top, you can leverage the data center automation available to the largest data center operators in the world.
 
 You have the ability to:
+
 - Customize your network applications
 - Automate your configurations 
 - Choose whatever form-factor hardware you want -- based on your budget and your needs
-- Build a web-scale data center like the world’s largest operators at a fraction of the cost 
+- Build a web-scale data center like the world’s largest operators at a fraction of the cost
 
-Web-scale networking is the new, modern way to build your network. It gives you access to intelligent software, it’s open and modular, and it enables you to automate and scale with ease. 
+Web-scale networking is the new, modern way to build your network. It gives you access to intelligent software, it’s open and modular, and it enables you to automate and scale with ease.
 
-This short guide provides a reference to NVIDIA data center components. It includes NVIDIA Ethernet Spectrum switches, LinkX Layer 1 products and most-common data center topologies. 
-In addition, here you can find the most common layer 1 terminology and standards explained. 
+This short guide provides a reference to NVIDIA data center components. It includes NVIDIA Ethernet Spectrum switches, LinkX Layer 1 products and most-common data center topologies.
 
-## Data Centers Terminology
+In addition, here you can find the most common layer 1 terminology and standards explained.
+
+## Data Center Terminology
 
 **Clos** - A multi-stage network architecture that optimizes resource allocation for bandwidth. Named after Charles Clos.</br>
 **ToR** - *Top of Rack* switch, where servers connect to the network.</br>
 **Leaf** - Also referred to as a *ToR* or *Access Switch*. Used typically when referring to Spine-Leaf or Clos topology.</br>
-**Exit-Leaf** - A leaf connected to services outside the datacenter, including firewalls, load balancers and internet routers.</br>
+**Exit-Leaf** - A leaf connected to services outside the data center, including firewalls, load balancers and internet routers.</br>
 **Spine** - Also referred to as an *aggregation* switch, *end-of-row* switch or *distribution* switch. Typically referred to as a Spine switch in a Spine-Leaf or Clos topology.</br>
-**Super-Spine** - Sometimes referred to as a *spine aggregation* switch, *end-of-row* switch or *datacenter core* switch. Typically referred to as a Super-Spine switch in a Three-tier Clos topology.</br>
-**MLAG** - *Multi-Chassis Link Aggregation*. Ability for a pair of switches to act redundantly in an active-active architecture and appear as a single, logical switch.</br>
-**Peerlink** - Link or bonded links used to connect two switches in an MLAG pair.</br>
+**Super-Spine** - Sometimes referred to as a *spine aggregation* switch, *end-of-row* switch or *data center core* switch. Typically referred to as a Super-Spine switch in a Three-tier Clos topology.</br>
+**MLAG** - *Multi-Chassis Link Aggregation*. Ability for a pair of switches to act redundantly in an active-active architecture and appear as a single, logical switch.</br><!-- vale off -->
+**Peerlink** - Link or bonded links used to connect two switches in an MLAG pair.</br><!-- vale on -->
 **ECMP** - *Equal-Cost Multi-Path* routing. Allows load sharing across multiple routed paths.</br>
-**Layer 3 Fabric** - Sometimes called a “routed fabric”. A network with layer 3 routing between leaf and spine layers. Layer 3 fabric allows ECMP to enhance the leaf-spine bandwidth.</br>
+**Layer 3 Fabric** - Sometimes called a *routed fabric*. A network with layer 3 routing between leaf and spine layers. Layer 3 fabric allows ECMP to enhance the leaf-spine bandwidth.</br>
 **OOB** - *Out of Band Management*. A lower speed (generally 1Gbps or less) network dedicated to infrastructure management, outside of the high-speed leaf and spine network. Out of Band Management is also the name of the 1g switch management interface.</br>
 **POD** - A unit of network, storage and compute that work together to deliver networking services. POD is a repeatable design pattern which provides scalable and easier to manage data centers.</br>
 
+## Common Data Center Architectures
 
-## Common Data Center Architectures 
-
+<!-- vale off -->
 ### Two-Tier Clos Architecture (Leaf-Spine)
+<!-- vale on -->
 
 {{<figure src="images/knowledge-base/L1-Cheat-Sheet/two_tier_clos.png">}}
 
 A two-tier Clos or leaf and spine network connects each leaf to every spine. There are no connections between spines. All traffic traverses only one spine switch.
-In this data center architecture, the two switch levels are connected using routing fabric. The spine layer is built with three or more switches. By using a routed environment between the two tiers, this eliminates the need of MLAG on the spines and allows for equal cost multipath (ECMP) load sharing between all spines. 
+In this data center architecture, the two switch levels are connected using routing fabric. The spine layer is built with three or more switches. By using a routed environment between the two tiers, this eliminates the need of MLAG on the spines and allows for equal cost multipath (ECMP) load sharing between all spines.
 With BGP-EVPN, MLAG can be eliminated by using EVPN-Multihoming (EVPN-MH). This provides dual-attached server redundancy while removing the complexities of MLAG.
 
 ### Three-Tier Clos Architecture (Leaf-Spine-Super Spine)
 
 {{<figure src="images/knowledge-base/L1-Cheat-Sheet/three_tier_clos.png">}}
 
-For larger networks,  leaf switches can be incrementally added and aggregated with the spines layer within a single POD.To scale-up the data center and create “pods". Another layer of switches, labeled “super-spines”, can be used to aggregate each pod Spine layer. This architecture is the Three-Tier Clos network. 
+For larger networks,  leaf switches can be incrementally added and aggregated with the spines layer within a single POD.To scale-up the data center and create *pods*. Another layer of switches, labeled *super-spines*, can be used to aggregate each pod Spine layer. This architecture is the Three-Tier Clos network.
 
-## Common Host to ToR (Leaf) Network Connectivity Types 
+## Common Host to ToR (Leaf) Network Connectivity Types
 
 ### MLAG
 
@@ -99,6 +103,11 @@ Spectrum 1RU Half-width ToR
 - Switching Capacity: 1.7Tbps (1.26Bpps) 
 - Ports: 18x25GbE SFP28 (NRZ) + 4x100GbE QSFP28 (NRZ)
 
+Maximum Ports Power Support 
+- SFP28 Ports 1-2,17-18 up to 2.5W
+- SFP28 Ports 3-16 up to 1.5W
+- QSFP28 Ports 19-22 up to 4.5W
+
 {{< /tab >}}
 {{< tab "SN2100 ">}}
 
@@ -107,6 +116,10 @@ Spectrum 1RU Half-width ToR
 Spectrum 1RU Half-width ToR
 - Switching Capacity: 3.2Tbps (2.38Bpps)
 - Ports: 16x100GbE QSFP28 (NRZ)
+
+Maximum Ports Power Support 
+- QSFP28 Ports 1-2,15-16 up to 4.5W
+- QSFP28 Ports 3-14 up to 3.5W
 
 {{< /tab >}}
 {{< tab "SN2410 ">}}
@@ -117,6 +130,12 @@ Spectrum 1RU ToR
 - Switching Capacity: 3.2Tbps (2.38Bpps)
 - Ports: 48x25GbE SFP28 (NRZ) + 8x100GbE QSFP28 (NRZ)
 
+Maximum Ports Power Support 
+- SFP28 Ports 1-2,47-48 up to 4.5W
+- SFP28 Ports 3-46 ip to 1.5W
+- QSFP28 Ports 49-50,55-56 up to 5.0W
+- QSFP28 Ports 51-54 up to 3.5W
+
 {{< /tab >}}
 {{< tab "SN2700 ">}}
 
@@ -125,6 +144,10 @@ Spectrum 1RU ToR
 Spectrum 1RU ToR/Spine
 - Switching Capacity: 6.4Tbps (4.76Bpps)
 - Ports: 32x100GbE QSFP28 (NRZ)
+
+Maximum Ports Power Support 
+- QSFP28 Ports 1-2,31-32 up to 5.0W
+- QSFP28 Ports 3-30 up to 3.5W
 
 {{< /tab >}}
 {{< /tab >}}
@@ -141,6 +164,12 @@ Spectrum-2 1RU ToR
 - Switching Capacity: 4.8Tbps (3.58Bpps)
 - Ports: 48x25G SFP28 (NRZ) + 12x100GbE QSFP28 (NRZ)
 
+Maximum Ports Power Support 
+- SFP28 Ports 1-6 up to 2.5W
+- SFP28 Ports 7-48 ip to 1.5W
+- QSFP28 Ports 49-52,54,56,58,60 up to 3.5W
+- QSFP28 Ports 53,55,57,59 up to 5.0W
+
 {{< /tab >}}
 {{< tab "SN3700C ">}}
 
@@ -150,6 +179,10 @@ Spectrum-2 1RU ToR/Spine
 - Switching Capacity: 6.4Tbps (4.76Bpps)
 - Ports: 32x100G QSFP28 (NRZ)
 
+Maximum Ports Power Support 
+- QSFP28 Ports 1-2,31-32 up to 5.0W
+- QSFP28 Ports 3-30 up to 3.5W
+
 {{< /tab >}}
 {{< tab "SN3700 ">}}
 
@@ -158,6 +191,9 @@ Spectrum-2 1RU ToR/Spine
 Spectrum-2 1RU ToR/Spine
 - Switching Capacity: 12.8Tbps (8.33Bpps)
 - Ports: 32x200G QSFP56 (PAM4)
+
+Maximum Ports Power Support 
+- QSFP56 Ports 1-32 up to 5.0W
 
 {{< /tab >}}
 {{< /tab >}}
@@ -185,6 +221,10 @@ Spectrum-3 2RU Spine/Super-Spine
 - Switching Capacity: 12.8Tbps (8.4Bpps)
 - Ports: 64x100GbE QSFP28 (NRZ)
 
+Maximum Ports Power Support 
+- QSFP28 Ports 1-48 up to 3.5W
+- QSFP28 Ports 49-64 up to 5.0W
+
 {{< /tab >}}
 <!-- THIS PLATFORM IS PLANNED TO Sep21 (CL4.4.1)
 
@@ -196,6 +236,9 @@ Spectrum-3 2RU Spine/Super-Spine
 - Switching Capacity: 25.6Tbps (8.4Bpps)
 - Ports: 64x200GbE QSFP56 (PAM4)
 
+Maximum Ports Power Support 
+- QSFP56 Ports 1-64 up to 5.0W
+
 {< /tab >}}
 -->
 
@@ -206,6 +249,9 @@ Spectrum-3 2RU Spine/Super-Spine
 Spectrum-3 1RU Spine/Super-Spine
 - Switching Capacity: 25.6Tbps (8.4Bpps)
 - Ports: 32x400GbE QSFP56-DD (PAM4)
+
+Maximum Ports Power Support 
+- QSFP56-DD Ports 1-32 up to 12.0W (in C2P airflow models)
 
 {{< /tab >}}
 <!-- THIS PLATFORM IS PLANNED TO NOV21 (CL5.1)

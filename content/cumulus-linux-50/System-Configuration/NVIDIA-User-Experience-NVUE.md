@@ -18,10 +18,11 @@ Cumulus Linux installs NVUE by default but disables the NVUE service. To run NVU
 cumulus@switch:~$ sudo systemctl enable nvued
 cumulus@switch:~$ sudo systemctl start nvued
 ```
-
+<!--
 {{%notice info%}}
 Do not mix NVUE and NCLU commands to configure the switch; use either the NCLU CLI or the NVUE CLI.
 {{%/notice%}}
+-->
 
 ## NVUE REST API
 
@@ -352,6 +353,7 @@ restart-time                  120                           Amount of time taken
 stale-routes-time             360                           Specifies an upper-bounds on how long we retain routes from a resta...
 ```
 
+<!--
 ### Show Legacy Commands
 
 Cumulus Linux includes show legacy commands that provide the same output as the NCLU show commands. To use the show legacy commands, the NCLU service (`netd`) must be running.
@@ -416,7 +418,6 @@ Origin codes:  i - IGP, e - EGP, ? - incomplete
 
 Displayed  1 routes and 1 total paths
 
-
 show bgp ipv6 unicast
 =====================
 No BGP prefixes displayed, 0 exist
@@ -426,7 +427,7 @@ No BGP prefixes displayed, 0 exist
 {{%notice note%}}
 Not all `net show` commands are available as `nv show --legacy` commands.
 {{%/notice%}}
-
+-->
 ### Configuration Management Commands
 
 The NVUE configuration management commands manage and apply configurations.

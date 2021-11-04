@@ -29,14 +29,14 @@ cumulus@leaf01:~$ ip -d link show type vxlan
     bridge_slave state forwarding priority 8 cost 100 hairpin off guard off root_block off fastleave off learning off flood on port_id 0x8005 port_no 0x5 designated_port 32773 designated_cost 0 designated_bridge 8000.76:ed:2a:8a:67:24 designated_root 8000.76:ed:2a:8a:67:24 hold_timer    0.00 message_age_timer    0.00 forward_delay_timer    0.00 topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 mcast_fast_leave off mcast_flood on neigh_suppress on group_fwd_mask 0x0 group_fwd_mask_str 0x0 group_fwd_maskhi 0x0 group_fwd_maskhi_str 0x0 vlan_tunnel off isolated off addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535
 ...
 ```
-
+<!--
 The following example output for the `nv show bridge domain br_default mac-table` command shows:
 
 - bond1 is an access port with VLAN ID 10, which maps to VXLAN interface vni10.
 - 26:76:e6:93:32:78 is the server01 host MAC learned on bond1.
 - A remote VTEP that participates in VLAN ID 10 is 10.0.1.2 (the FDB entries have a MAC address of 00:00:00:00:00:00). BUM traffic replication uses these entries.
 - 68:0f:31:ae:3d:7a is a remote host MAC of server04 reachable over the VXLAN tunnel via VTEP 10.0.1.2.
-<!--
+
 ```
 cumulus@leaf01:mgmt:~$ net show bridge macs
 

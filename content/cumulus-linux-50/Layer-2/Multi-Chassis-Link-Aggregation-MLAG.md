@@ -1631,19 +1631,7 @@ peerPort = 5342
 peerTimeout = 20
 initDelay = 100
 sendTimeout = 30
-sendBufSize = 65536
-forceDynamic = False
-dormantDisable = False
-redirectEnable = False
-redirect2Enable = True
-backupIp = 10.10.10.2
-backupVrf = None
-backupPort = 5342
-vxlanAnycast = None
-neighSync = True
-permanentMacSync = True
-cmdLine = /usr/sbin/clagd --daemon linklocal peerlink.4094 44:38:39:BE:EF:AA --priority 32768 --backupIp 10.10.10.2 --initDelay 100
-peerlinkLearnEnable = False
+...
 ```
 
 ### View the MLAG Log File
@@ -1786,7 +1774,8 @@ When an interface goes into a `protodown` state, it results in a local OPER DOWN
 To show an interface in `protodown` state, run the <!--NCLU `net show bridge link` command or the -->Linux `ip link show` command. For example:
 
 ```
-cumulus@leaf01:~$ net show bridge link
+cumulus@leaf01:~$ sudo vtysh
+leaf01# ip link show
 3: swp1 state DOWN: <NO-CARRIER,BROADCAST,MULTICAST,MASTER,UP> mtu 9216 master pfifo_fast master host-bond1 state DOWN mode DEFAULT qlen 500 protodown on
     link/ether 44:38:39:00:69:84 brd ff:ff:ff:ff:ff:ff
 ```

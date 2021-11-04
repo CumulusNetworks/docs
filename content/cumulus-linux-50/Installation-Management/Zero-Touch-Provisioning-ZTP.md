@@ -186,9 +186,6 @@ cp ${ZTP_USB_MOUNTPOINT}/ports.conf /etc/cumulus/ports.conf
 #Reload interfaces to apply loaded config
 ifreload -a
 
-#Output state of interfaces
-net show interface
-
 # CUMULUS-AUTOPROVISIONING
 exit 0
 ```

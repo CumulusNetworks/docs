@@ -14,14 +14,15 @@ toc: 1
 
 NetQ 4.1.0 includes the following new features and improvements:
 
-- Flow trace and analysis support
+- {{<link title="Flow Analysis" text="Flow trace and analysis support">}}
+- Improved What Just Happened dashboard for Cumulus Linux and SONiC
+- gNMI support for What Just Happened on SONiC and enhanced capabilities on Cumulus Linux
 - You can decommision a switch from the NetQ UI
 - The validity of the k8s cluster security certificate has been increased to 10 years from the date of installation
-- General user interface improvements
 - Enhanced monitoring for the SONiC operating system. Support includes collection of FDB, interface counters, and DOM information.
-- Improved What Just Happened dashboard for Cumulus Linux and SONiC
 - Support for monitoring traditional mode bridges on Cumulus Linux
 - Validation for duplicate IP address detection in your network
+- General user interface improvements
 
 ## Upgrade Paths
 

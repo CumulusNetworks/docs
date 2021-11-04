@@ -83,7 +83,8 @@ After you run `nv config save`, the NVUE Commands create the following configura
 ```
 cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 ...
-router:
+- set:
+    router:
       bgp:
         autonomous-system: 65101
         enable: on
@@ -92,17 +93,17 @@ router:
       default:
         router:
           bgp:
-            peer:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                network:
+                  10.1.10.0/24: {}
+                  10.10.10.1/32: {}
+            enable: on
+            neighbor:
               10.0.1.0:
                 remote-as: external
                 type: numbered
-            enable: on
-            address-family:
-              ipv4-unicast:
-                network:
-                  10.10.10.1/32: {}
-                  10.1.10.0/24: {}
-                enable: on
 ```
 
 {{< /tab >}}
@@ -149,7 +150,6 @@ router:
 
     ```
     cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.101/32
-    cumulus@spine01:~$ nv config diff
     cumulus@spine01:~$ nv config apply
     ```
 
@@ -165,25 +165,26 @@ After you run `nv config save`, the NVUE Commands create the following configura
 ```
 cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
 ...
-router:
+- set:
+    router:
       bgp:
         autonomous-system: 65199
         enable: on
         router-id: 10.10.10.101
-vrf:
+    vrf:
       default:
         router:
           bgp:
-            peer:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                network:
+                  10.10.10.101/32: {}
+            enable: on
+            neighbor:
               10.0.1.0:
                 remote-as: external
                 type: numbered
-            enable: on
-            address-family:
-              ipv4-unicast:
-                network:
-                  10.10.10.101/32: {}
-                enable: on
 ```
 
 {{< /tab >}}
@@ -503,7 +504,8 @@ After you run `nv config save`, the NVUE Commands create the following configura
 ```
 cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 ...
-router:
+- set:
+    router:
       bgp:
         autonomous-system: 65101
         enable: on
@@ -512,17 +514,17 @@ router:
       default:
         router:
           bgp:
-            peer:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                network:
+                  10.1.10.0/24: {}
+                  10.10.10.1/32: {}
+            enable: on
+            neighbor:
               swp51:
                 remote-as: external
                 type: unnumbered
-            enable: on
-            address-family:
-              ipv4-unicast:
-                network:
-                  10.10.10.1/32: {}
-                  10.1.10.0/24: {}
-                enable: on
 ```
 
 {{< /tab >}}
@@ -552,25 +554,26 @@ After you run `nv config save`, the NVUE Commands create the following configura
 ```
 cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
 ...
-router:
+- set:
+    router:
       bgp:
         autonomous-system: 65199
         enable: on
         router-id: 10.10.10.101
-vrf:
+    vrf:
       default:
         router:
           bgp:
-            peer:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                network:
+                  10.10.10.101/32: {}
+            enable: on
+            neighbor:
               swp1:
                 remote-as: external
                 type: unnumbered
-            enable: on
-            address-family:
-              ipv4-unicast:
-                network:
-                  10.10.10.101/32: {}
-                enable: on
 ```
 
 {{< /tab >}}

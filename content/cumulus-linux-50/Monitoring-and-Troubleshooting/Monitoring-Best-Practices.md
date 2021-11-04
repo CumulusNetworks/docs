@@ -44,13 +44,13 @@ The `smond` process provides monitoring for various switch hardware elements. Mi
 
 | Hardware Element | Monitoring Commands | Interval Poll |
 |----------------- |-------------------- |-------------- |
-| Temperature | <pre>cumulus@switch:~$ smonctl -j<br>cumulus@switch:~$ smonctl -j -s TEMP[X]</pre> | 10 seconds |
-| Fan | <pre>cumulus@switch:~$ smonctl -j<br>cumulus@switch:~$ smonctl -j -s FAN[X]</pre> | 10 seconds |
-| PSU | <pre>cumulus@switch:~$ smonctl -j<br>cumulus@switch:~$ smonctl -j -s PSU[X]</pre> | 10 seconds |
-| PSU Fan | <pre>cumulus@switch:~$ smonctl -j<br>cumulus@switch:~$ smonctl -j -s PSU[X]Fan[X]</pre> |10 seconds |
-| PSU Temperature | <pre>cumulus@switch:~$ smonctl -j<br>cumulus@switch:~$ smonctl -j -s PSU[X]Temp[X]</pre> |10 seconds |
-| Voltage|<pre>cumulus@switch:~$ smonctl -j<br>cumulus@switch:~$ smonctl -j -s Volt[X]</pre> | 10 seconds |
-| Front Panel LED | <pre>cumulus@switch:~$ ledmgrd -d<br>cumulus@switch:~$ ledmgrd -j |5 seconds |
+| Temperature | `smonctl -j`<br>`smonctl -j -s TEMP[X]` | 10 seconds |
+| Fan | `smonctl -j`<br>`smonctl -j -s FAN[X]` | 10 seconds |
+| PSU | `smonctl -j`<br>`smonctl -j -s PSU[X]` | 10 seconds |
+| PSU Fan | `smonctl -j`<br>`smonctl -j -s PSU[X]Fan[X]` |10 seconds |
+| PSU Temperature | `smonctl -j`<br>`smonctl -j -s PSU[X]Temp[X]` |10 seconds |
+| Voltage|`smonctl -j`<br>`smonctl -j -s Volt[X]` | 10 seconds |
+| Front Panel LED | `ledmgrd -d`<br>`ledmgrd -j` |5 seconds |
 
 {{%notice note%}}
 Not all switch models include a sensor for monitoring power consumption and voltage. See {{<link url="Monitoring-System-Hardware#smond-daemon" text="this note">}} for details.
@@ -76,7 +76,7 @@ Short bursts of high CPU can occur during `switchd` churn or routing protocol st
 
 | System Element | Monitoring Commands | Interval Poll |
 |--------------- |-------------------- |-------------- |
-|CPU utilization | <pre>cumulus@switch:~$ cat /proc/stat<br>cumulus@switch:~$ top -b -n 1</pre> | 30 seconds |
+|CPU utilization | `sudo cat /proc/stat`<br>`top -b -n 1` | 30 seconds |
 
 | CPU Logs | Log Location | Log Entries |
 |--------- |------------- |------------ |
@@ -95,7 +95,7 @@ When monitoring disk utilization, you can exclude `tmpfs` from monitoring.
 
 | System Element | Monitoring Commands | Interval Poll |
 |--------------- |-------------------- |-------------- |
-| Disk utilization | <pre>cumulus@switch:~$ /bin/df -x tmpfs</pre> | 300 seconds |
+| Disk utilization | `/bin/df -x tmpfs` | 300 seconds |
 
 ## Process Restart
 
@@ -103,7 +103,7 @@ In Cumulus Linux, `systemd` monitors and restarts processes.
 
 | Process Element | Monitoring Commands |
 |---------------- |-------------------- |
-| View processes that `systemd` monitors | <pre>cumulus@switch:~$ systemctl status</pre> |
+| View processes that `systemd` monitors | `systemctl status` |
 
 ## Layer 1 Protocols and Interfaces
 
@@ -111,16 +111,16 @@ Link and port state interface transitions log to `/var/log/syslog` and `/var/log
 
 | Interface Element | Monitoring Commands |
 |------------------ |-------------------- |
-| Link state | <pre>cumulus@switch:~$ cat /sys/class/net/[iface]/operstate<br>cumulus@switch:~$ net show interface all json</pre> |
-| Link speed | <pre>cumulus@switch:~$ cat /sys/class/net/[iface]/speed<br>cumulus@switch:~$ net show interface all json</pre> |
-| Port state | <pre>cumulus@switch:~$ ip link show<br>cumulus@switch:~$ net show interface all json</pre> |
-| Bond state | <pre>cumulus@switch:~$ cat /proc/net/bonding/[bond]<br>cumulus@switch:~$ net show interface all json</pre> |
+| Link state | `sudo cat /sys/class/net/[iface]/operstate`<br>`nv show interface --view=brief` |
+| Link speed | `sudo cat /sys/class/net/[iface]/speed`<br>`nv show interface --view=brief` |
+| Port state | `ip link show`<br>`nv show interface --view=brief` |
+| Bond state | `sudo cat /proc/net/bonding/[bond]`<br>`nv show interface --view=brief` |
 
 You obtain interface counters from either querying the hardware or the Linux kernel. The Linux kernel aggregates the output from the hardware.
 
 | Interface Counter Element | Monitoring Commands | Interval Poll|
 |-------------------------- |-------------------- |------------- |
-| Interface counters | <pre>cumulus@switch:~$ cat /sys/class/net/[iface]/statistics/[stat_name]<br>cumulus@switch:~$ net show counters json<br>cumulus@switch:~$ cl-netstat -j<br>cumulus@switch:~$ ethtool -S [ iface]</pre> | 10 seconds |
+| Interface counters | `cat /sys/class/net/[iface]/statistics/[stat_name]`<br>`cl-netstat -j`<br>`ethtool -S [ iface]` | 10 seconds |
 
 | Layer 1 Logs |Log Location | Log Entries |
 |------------- |------------- |------------ |
@@ -147,8 +147,8 @@ Consider tracking peering information through PTM. For more information, refer t
 
 | Neighbor Element | Monitoring Commands | Interval Poll |
 |----------------- |-------------------- |-------------- |
-| LLDP Neighbor | <pre>cumulus@switch:~$ lldpctl -f json</pre> | 300 seconds |
-| Prescriptive Topology Manager | <pre>cumulus@switch:~$ ptmctl -j [-d]</pre> | Triggered |
+| LLDP Neighbor | `lldpctl -f json` | 300 seconds |
+| Prescriptive Topology Manager | `ptmctl -j [-d]` | Triggered |
 
 ## Layer 2 Protocols
 
@@ -156,9 +156,9 @@ Spanning tree is a protocol that prevents loops in a layer 2 infrastructure. In 
 
 | Interface Counter Element | Monitoring Commands | Interval Poll |
 |-------------------------- |-------------------- |-------------- |
-| STP TCN Transitions | <pre>cumulus@switch:~$ mstpctl showbridge json<br>cumulus@switch:~$ mstpctl showport json</pre> | 60 seconds |
-| MLAG peer state | <pre>cumulus@switch:~$ clagctl status<br>cumulus@switch:~$ clagd -j<br>cumulus@switch:~$ cat /var/log/clagd.log | 60 seconds</pre> |
-| MLAG peer MACs | <pre>cumulus@switch:~$ clagctl dumppeermacs<br>cumulus@switch:~$ clagctl dumpourmacs</pre> |300 seconds |
+| STP TCN Transitions | `mstpctl showbridge json`<br>`mstpctl showport json` | 60 seconds |
+| MLAG peer state | `clagctl status`<br>`clagd -j`<br>`sudo cat /var/log/clagd.log` | 60 seconds |
+| MLAG peer MACs | `clagctl dumppeermacs`<br>`clagctl dumpourmacs` |300 seconds |
 
 | Layer 2 Logs | Log Location | Log Entries |
 |------------- |------------- |------------ |
@@ -179,8 +179,8 @@ Monitoring the routing table provides trending on the size of the infrastructure
 
 | BGP Element | Monitoring Commands | Interval Poll |
 |------------ |-------------------- |-------------- |
-| BGP peer failure | <pre>cumulus@switch:~$ sudo vtysh -c "show ip bgp summary json"<br>cumulus@switch:~$ net show bgp summary json</pre> | 60 seconds |
-| BGP route table | <pre>cumulus@switch:~$ sudo vtysh -c "show ip bgp json"<br>cumulus@switch:~$ net show route bgp json</pre> | 600 seconds |
+| BGP peer failure | `sudo vtysh -c "show ip bgp summary json"` | 60 seconds |
+| BGP route table | `sudo vtysh -c "show ip bgp json"` | 600 seconds |
 
 | BGP Logs | Log Location | Log Entries |
 |--------- |------------- |------------ |
@@ -194,15 +194,15 @@ Monitoring the routing table provides trending on the size of the infrastructure
 
 | OSPF Element |Monitoring Commands |Interval Poll |
 |------------- |------------------- |------------- |
-|OSPF protocol peer failure | <pre>cumulus@switch:~$ sudo vtysh -c "show ip ospf neighbor all json"<br>cumulus@switch:~$ cl-ospf summary show json</pre>|60 seconds |
-| OSPF link state database | <pre>cumulus@switch:~$ sudo vtysh - c "show ip ospf database"</pre> | 600 seconds |
+|OSPF protocol peer failure | `sudo vtysh -c "show ip ospf neighbor all json"`<br>`cl-ospf summary show json`|60 seconds |
+| OSPF link state database | `sudo vtysh - c "show ip ospf database"` | 600 seconds |
 
 ### Route and Host Entries
 
 | Route Element | Monitoring Commands | Interval Poll |
 |-------------- |-------------------- |-------------- |
-| Host Entries | <pre>cumulus@switch:~$ cl-resource-query<br>cumulus@switch:~$ cl-resource-query -k</pre> | 600 seconds |
-| Route Entries | <pre>cumulus@switch:~$ cl-resource-query<br>cumulus@switch:~$ cl-resource-query -k</pre> | 600 seconds |
+| Host Entries | `cl-resource-query`<br>`cl-resource-query -k` | 600 seconds |
+| Route Entries | `cl-resource-query`<br>`cl-resource-query -k` | 600 seconds |
 
 <!--
 You can also run the `net show system asic` command, which is the NCLU command equivalent of `cl-resource-query`.

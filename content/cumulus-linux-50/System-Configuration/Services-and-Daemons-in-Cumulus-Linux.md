@@ -252,7 +252,4 @@ The following table lists the most important services in Cumulus Linux.
 |smond|Reads {{<link url="Monitoring-System-Hardware" text="platform sensors and fan information">}} from pwmd.|NO|
 |pwmd|Reads and sets fan speeds.|NO|
 
-<!--
-|netd | {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}} back end. |
--->
 <!-- vale on -->

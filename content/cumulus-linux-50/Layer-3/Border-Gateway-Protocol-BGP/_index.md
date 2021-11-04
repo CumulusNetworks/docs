@@ -32,7 +32,7 @@ Auto BGP assigns private ASNs in the range 4200000000 through 4294967294. This i
 - It is not necessary to use auto BGP across all switches in your configuration. For example, you can use auto BGP to configure one switch but set ASNs manually to other switches.
 - USe auto BGP in two-tier spine and leaf networks. Using auto BGP in three-tier networks with super spines can result in incorrect ASN assignments.
 - The `leaf` keyword generates the ASN based on a hash of the switch MAC address. The ASN assigned can change after a switch replacement.
-- You can configure auto BGP with NCLU or NVUE.
+- You can configure auto BGP with <!--NCLU or -->NVUE.
 {{%/notice%}}
 
 ### eBGP and iBGP
@@ -77,7 +77,7 @@ The order of the BGP algorithm process is as follows:
 
 - **Highest Peer IP Address**: The switch uses the route from the peer with the highest IP address.
 
-Cumulus Linux provides the reason it selects one path over another in NCLU `net show bgp` and vtysh `show ip bgp` command output for a specific prefix.
+Cumulus Linux provides the reason it selects one path over another in <!--NCLU `net show bgp` and -->vtysh `show ip bgp` command output for a specific prefix.
 
 When you use BGP multipath, if multiple paths are equal, BGP still selects a single best path to advertise to peers. This path shows as best with the reason, although BGP can install multiple paths into the routing table.
 

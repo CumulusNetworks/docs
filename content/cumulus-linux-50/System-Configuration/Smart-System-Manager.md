@@ -10,10 +10,11 @@ Smart System Manager includes the following modes:
 - Restart
 - Upgrade
 - Maintenance
-
+<!--
 {{%notice note%}}
 - The Smart System Manager NCLU commands do not require a `net commit`.
 {{%/notice%}}
+-->
 
 ## Restart Mode
 
@@ -32,13 +33,6 @@ You can restart the switch in one of the following modes.
 The following command restarts the system in cold mode:
 
 {{< tabs "28 ">}}
-{{< tab "NCLU Command ">}}
-
-```
-cumulus@switch:~$ net system maintenance restart cold
-```
-
-{{< /tab >}}
 {{< tab "NVUE Command ">}}
 
 NVUE command is not supported.
@@ -52,17 +46,15 @@ cumulus@switch:~$ sudo csmgrctl -c
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net system maintenance restart cold
+```
+-->
 
 The following command restarts the system in fast mode:
 
 {{< tabs "52 ">}}
-{{< tab "NCLU Command ">}}
-
-```
-cumulus@switch:~$ net system maintenance restart fast
-```
-
-{{< /tab >}}
 {{< tab "NVUE Command ">}}
 
 NVUE command is not supported.
@@ -76,20 +68,19 @@ cumulus@switch:~$ sudo csmgrctl -f
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net system maintenance restart fast
+```
+-->
 
-The following command restarts the system in warm mode:
+The following command restarts the system in warm mode.
+
 {{< notice warning >}}
 Warm boot resets any manually configured FEC settings.
 {{< /notice >}}
 
 {{< tabs "76 ">}}
-{{< tab "NCLU Command ">}}
-
-```
-cumulus@switch:~$ net system maintenance restart warm
-```
-
-{{< /tab >}}
 {{< tab "NVUE Command ">}}
 
 NVUE command is not supported.
@@ -103,6 +94,11 @@ cumulus@switch:~$ sudo csmgrctl -w
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net system maintenance restart warm
+```
+-->
 
 ## Upgrade Mode
 
@@ -115,13 +111,6 @@ Upgrade mode includes the following options:
 The following command upgrades all the system components:
 
 {{< tabs "88 ">}}
-{{< tab "NCLU Command ">}}
-
-```
-cumulus@switch:~$ net system maintenance upgrade all
-```
-
-{{< /tab >}}
 {{< tab "NVUE Command ">}}
 
 NVUE command is not supported.
@@ -135,17 +124,15 @@ cumulus@switch:~$ sudo csmgrctl -u
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net system maintenance upgrade all
+```
+-->
 
 The following command provides information on the components you want to upgrade:
 
 {{< tabs "114 ">}}
-{{< tab "NCLU Command ">}}
-
-```
-cumulus@switch:~$ net system maintenance upgrade dry-run
-```
-
-{{< /tab >}}
 {{< tab "NVUE Command ">}}
 
 NVUE command is not supported.
@@ -159,6 +146,11 @@ cumulus@switch:~$ sudo csmgrctl -d
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net system maintenance upgrade dry-run
+```
+-->
 
 ## Maintenance Mode
 
@@ -173,13 +165,6 @@ Depending on your configuration and network topology, complete isolation is not 
 Run the following command to enable maintenance mode. When maintenance mode is on, Smart System Manager performs a {{<link url="Optional-BGP-Configuration/#graceful-bgp-shutdown" text="graceful BGP shutdown">}}, redirects traffic over the peerlink and brings down the MLAG port link. `switchd` maintains full capability.
 
 {{< tabs "150 ">}}
-{{< tab "NCLU Command ">}}
-
-```
-cumulus@switch:~$ net system maintenance mode enable
-```
-
-{{< /tab >}}
 {{< tab "NVUE Command ">}}
 
 NVUE command is not supported.
@@ -193,18 +178,15 @@ cumulus@switch:~$ sudo csmgrctl -m1
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net system maintenance mode enable
+```
+-->
 
 You can run additional commands to bring all the ports down, then up to restore the port admin state.
 
 {{< tabs "176 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net system maintenance ports down
-cumulus@switch:~$ net system maintenance ports up
-```
-
-{{< /tab >}}
 {{< tab "NVUE Command ">}}
 
 NVUE command is not supported.
@@ -219,6 +201,12 @@ cumulus@switch:~$ sudo csmgrctl -p1
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net system maintenance ports down
+cumulus@switch:~$ net system maintenance ports up
+```
+-->
 
 {{%notice note%}}
 Before you disable maintenance mode, be sure to bring the ports back up.
@@ -229,13 +217,6 @@ Before you disable maintenance mode, be sure to bring the ports back up.
 Run the following command to disable maintenance mode and restore normal operation. When maintenance mode is off, Smart System Manager performs a soft restart, runs a BGP graceful restart, and brings the MLAG port link back up. `switchd` maintains full capability.
 
 {{< tabs "210 ">}}
-{{< tab "NCLU Command ">}}
-
-```
-cumulus@switch:~$ net system maintenance mode disable
-```
-
-{{< /tab >}}
 {{< tab "NVUE Command ">}}
 
 NVUE command is not supported.
@@ -249,13 +230,18 @@ cumulus@switch:~$ sudo csmgrctl -m0
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net system maintenance mode disable
+```
+-->
 
 ### Show Maintenance Mode Status
 
-To see the status of maintenance mode, run the NCLU `net system maintenance show status` command or the Linux `sudo csmgrctl -s` command. For example:
+To see the status of maintenance mode, run the <!--NCLU `net system maintenance show status` command or the -->Linux `sudo csmgrctl -s` command. For example:
 
 ```
-cumulus@switch:~$ net system maintenance show status
+cumulus@switch:~$ sudo csmgrctl -s
 Current System Mode: Maintenance since Tue Jan  5 00:13:37 2021 (Duration: 00:00:31)
  Boot Mode: reboot_cold  
  2 registered modules

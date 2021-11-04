@@ -4,9 +4,9 @@ author: NVIDIA
 weight: 1145
 toc: 4
 ---
-SPAN (Switched Port Analyzer) enables you to mirror all packets that come in from or go out of an interface (the *SPAN source*), and copy and transmit the packets out of a local port or CPU (the *SPAN destination*) for monitoring. The SPAN destination port is also referred to as a mirror-to-port (MTP). The original packet is still switched, while a mirrored copy of the packet goes out of the MTP.
+[SPAN](## "Switched Port Analyzer") enables you to mirror all packets that come in from or go out of an interface (the *SPAN source*), and copy and transmit the packets out of a local port or CPU (the *SPAN destination*) for monitoring. The SPAN destination port is also referred to as a mirror-to-port (MTP). The original packet is still switched, while a mirrored copy of the packet goes out of the MTP.
 
-ERSPAN (Encapsulated Remote SPAN) enables the mirrored packets go to a monitoring node located anywhere across the routed network. The switch finds the outgoing port of the mirrored packets by looking up the destination IP address in its routing table. The switch encapsulates the original layer 2 packet with GRE for IP delivery. The encapsulated packets have the following format:
+[ERSPAN](## "Encapsulated Remote SPAN") enables the mirrored packets go to a monitoring node located anywhere across the routed network. The switch finds the outgoing port of the mirrored packets by looking up the destination IP address in its routing table. The switch encapsulates the original layer 2 packet with GRE for IP delivery. The encapsulated packets have the following format:
 
 ```
  ----------------------------------------------------------
@@ -16,9 +16,9 @@ ERSPAN (Encapsulated Remote SPAN) enables the mirrored packets go to a monitorin
 
 You can configure SPAN and ERSPAN in one of the following ways:
 - With NVUE Commands
-- With NCLU commands
 - With ACL rules
 - Manually by editing the `/etc/cumulus/switchd.d/port-mirror.conf` file (for advanced users)
+<!--- With NCLU commands-->
 
 {{%notice note%}}
 - Mirrored traffic is not guaranteed. A congested MTP results in discarded mirrored packets.
@@ -29,7 +29,7 @@ You can configure SPAN and ERSPAN in one of the following ways:
 - Mirroring to the same interface that you are monitoring causes a recursive flood of traffic and might impact traffic on other interfaces.
 {{%/notice%}}
 
-## NCLU Configuration
+<!--## NCLU Configuration
 
 - To configure SPAN with NCLU, run the `net add port-mirror session <session-id> (ingress|egress) span src-port <interface> dst-port <interface>` command.
 - To configure ERSPAN with NCLU, run the `net add port-mirror session <session-id> (ingress|egress) erspan src-port <interface> src-ip <interface> dst-ip <ip-address>` command.
@@ -118,7 +118,7 @@ cumulus@switch:~$ net del port-mirror session all
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
-
+-->
 ## NVUE Configuration
 
 - To configure SPAN with NVUE, run the `nv set system port-mirror session <session-id> span <option>` command.
@@ -526,7 +526,7 @@ cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN
 
 ## Manual Configuration (Advanced)
 
-You can configure SPAN and ERSPAN by editing the `/etc/cumulus/switchd.d/port-mirror.conf` file. The NCLU commands save SPAN and ERSPAN configuration to this file.
+You can configure SPAN and ERSPAN by editing the `/etc/cumulus/switchd.d/port-mirror.conf` file.
 
 The following example SPAN configuration mirrors all packets received on swp1, and copies and transmits the packets to swp2 for monitoring:
 

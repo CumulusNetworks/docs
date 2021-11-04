@@ -22,28 +22,6 @@ The default NTP configuration includes the following servers, which are in the `
 To add the NTP servers you want to use, run the following commands. Include the `iburst` option to increase the sync speed.
 
 {{< tabs "TabID106 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add time ntp server 4.cumulusnetworks.pool.ntp.org iburst
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-These commands add the NTP server to the list of servers in the `/etc/ntp.conf` file:
-
-```
-# pool.ntp.org maps to about 1000 low-stratum NTP servers.  Your server will
-# pick a different set every time it starts up.  Please consider joining the
-# pool: <http://www.pool.ntp.org/join.html>
-server 0.cumulusnetworks.pool.ntp.org iburst
-server 1.cumulusnetworks.pool.ntp.org iburst
-server 2.cumulusnetworks.pool.ntp.org iburst
-server 3.cumulusnetworks.pool.ntp.org iburst
-server 4.cumulusnetworks.pool.ntp.org iburst
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 The NVUE command requires a VRF. The following command adds the NTP servers in the default VRF.
@@ -72,6 +50,26 @@ server 4.cumulusnetworks.pool.ntp.org iburst
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add time ntp server 4.cumulusnetworks.pool.ntp.org iburst
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+These commands add the NTP server to the list of servers in the `/etc/ntp.conf` file:
+
+```
+# pool.ntp.org maps to about 1000 low-stratum NTP servers.  Your server will
+# pick a different set every time it starts up.  Please consider joining the
+# pool: <http://www.pool.ntp.org/join.html>
+server 0.cumulusnetworks.pool.ntp.org iburst
+server 1.cumulusnetworks.pool.ntp.org iburst
+server 2.cumulusnetworks.pool.ntp.org iburst
+server 3.cumulusnetworks.pool.ntp.org iburst
+server 4.cumulusnetworks.pool.ntp.org iburst
+```
+-->
 
 {{%notice note%}}
 To set the initial date and time with NTP before starting the `ntpd` daemon, run the `ntpd -q` command. Be aware that `ntpd -q` can hang if the time servers are not reachable.
@@ -87,20 +85,6 @@ ntp       4074     1  0 Jun20 ?        00:00:33 /usr/sbin/ntpd -p /var/run/ntpd.
 To check the NTP peer status:
 
 {{< tabs "TabID166 ">}}
-{{< tab "NCLU Commands ">}}
-
-<!-- vale off -->
-```
-cumulus@switch:~$ net show time ntp servers
-      remote           refid      st t when poll reach   delay   offset  jitter
-==============================================================================
-+minime.fdf.net  58.180.158.150   3 u  140 1024  377   55.659    0.339   1.464
-+69.195.159.158  128.138.140.44   2 u  259 1024  377   41.587    1.011   1.677
-*chl.la          216.218.192.202  2 u  210 1024  377    4.008    1.277   1.628
-+vps3.drown.org  17.253.2.125     2 u  743 1024  377   39.319   -0.316   1.384
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -122,22 +106,21 @@ cumulus@switch:~$ ntpq -p
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net show time ntp servers
+      remote           refid      st t when poll reach   delay   offset  jitter
+==============================================================================
++minime.fdf.net  58.180.158.150   3 u  140 1024  377   55.659    0.339   1.464
++69.195.159.158  128.138.140.44   2 u  259 1024  377   41.587    1.011   1.677
+*chl.la          216.218.192.202  2 u  210 1024  377    4.008    1.277   1.628
++vps3.drown.org  17.253.2.125     2 u  743 1024  377   39.319   -0.316   1.384
+```
+-->
 
 The following example commands remove some of the default NTP servers:
 
 {{< tabs "TabID204 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net del time ntp server 0.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ net del time ntp server 1.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ net del time ntp server 2.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ net del time ntp server 3.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -165,30 +148,22 @@ server 4.cumulusnetworks.pool.ntp.org iburst
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net del time ntp server 0.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ net del time ntp server 1.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ net del time ntp server 2.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ net del time ntp server 3.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 ## Specify the NTP Source Interface
 
 By default, the source interface that NTP uses is eth0. The following example command configures the NTP source interface to be swp10.
 
 {{< tabs "TabID243 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add time ntp source swp10
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-These commands create the following configuration snippet in the `ntp.conf` file:
-
-```
-...
-# Specify interfaces
-interface listen swp10
-...
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -211,6 +186,22 @@ interface listen swp10
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add time ntp source swp10
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+These commands create the following configuration snippet in the `ntp.conf` file:
+
+```
+...
+# Specify interfaces
+interface listen swp10
+...
+```
+-->
 
 ## Use NTP in a DHCP Environment
 

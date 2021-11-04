@@ -24,8 +24,7 @@ Read {{<exlink url="http://www.cyberciti.biz/faq/linux-log-files-location-and-ho
 | `/var/log/gunicorn` | Error and access events in Gunicorn. |
 | `/var/log/installer/*` | Directory containing files related to the installation of Cumulus Linux. |
 | `/var/log/lastlog` | Formats and prints the contents of the last login log file. |
-| `/var/log/netd.log`| Log file for NCLU. |
-| `/var/log/netd-history.log`| Log file for NCLU configuration commits. |
+| `/var/log/nvued.log`| Log file for NVUE. |
 | `/var/log/nginx`| Errors and processed requests in NGINX. |
 | `/var/log/ntpstats` | Logs for network configuration protocol.|
 | `/var/log/openvswitch/*` | ovsdb-server logs. |

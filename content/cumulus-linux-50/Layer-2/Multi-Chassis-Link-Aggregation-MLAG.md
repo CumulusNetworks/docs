@@ -1150,12 +1150,62 @@ cumulus@spine01:~$ nv config apply
 
 ```
 - set:
-     interface:
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10': {}
+            '20': {}
+            '30': {}
+    interface:
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            enable: on
+            id: 1
+        bridge:
+          domain:
+            br_default: {}
+        type: bond
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          mlag:
+            enable: on
+            id: 2
+        bridge:
+          domain:
+            br_default: {}
+        type: bond
+      bond3:
+        bond:
+          member:
+            swp3: {}
+          mlag:
+            enable: on
+            id: 3
+        bridge:
+          domain:
+            br_default: {}
+        type: bond
       lo:
         ip:
           address:
             10.10.10.1/32: {}
         type: loopback
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        base-interface: peerlink
+        type: sub
+        vlan: 4094
       swp1:
         type: swp
       swp2:
@@ -1168,36 +1218,6 @@ cumulus@spine01:~$ nv config apply
         type: swp
       swp51:
         type: swp
-      bond1:
-        bond:
-          member:
-            swp1: {}
-          mlag:
-            id: 1
-        type: bond
-        bridge:
-          domain:
-            br_default: {}
-      bond2:
-        bond:
-          member:
-            swp2: {}
-          mlag:
-            id: 2
-        type: bond
-        bridge:
-          domain:
-            br_default: {}
-      bond3:
-        bond:
-          member:
-            swp3: {}
-          mlag:
-            id: 3
-        type: bond
-        bridge:
-          domain:
-            br_default: {}
       vlan10:
         ip:
           address:
@@ -1216,29 +1236,13 @@ cumulus@spine01:~$ nv config apply
             10.1.30.2/24: {}
         type: svi
         vlan: 30
-      peerlink:
-        bond:
-          member:
-            swp49: {}
-            swp50: {}
-        type: peerlink
-      peerlink.4094:
-        type: sub
-        base-interface: peerlink
-        vlan: 4094
-    bridge:
-      domain:
-        br_default:
-          vlan:
-            '10': {}
-            '20': {}
-            '30': {}
     mlag:
-      mac-address: 44:38:39:BE:EF:AA
       backup:
         10.10.10.2: {}
-      peer-ip: linklocal
+      enable: on
       init-delay: 100
+      mac-address: 44:38:39:BE:EF:AA
+      peer-ip: linklocal
 ```
 
 {{< /tab >}}
@@ -1246,12 +1250,62 @@ cumulus@spine01:~$ nv config apply
 
 ```
 - set:
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10': {}
+            '20': {}
+            '30': {}
     interface:
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            enable: on
+            id: 1
+        bridge:
+          domain:
+            br_default: {}
+        type: bond
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          mlag:
+            enable: on
+            id: 2
+        bridge:
+          domain:
+            br_default: {}
+        type: bond
+      bond3:
+        bond:
+          member:
+            swp3: {}
+          mlag:
+            enable: on
+            id: 3
+        bridge:
+          domain:
+            br_default: {}
+        type: bond
       lo:
         ip:
           address:
             10.10.10.2/32: {}
         type: loopback
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        base-interface: peerlink
+        type: sub
+        vlan: 4094
       swp1:
         type: swp
       swp2:
@@ -1264,36 +1318,6 @@ cumulus@spine01:~$ nv config apply
         type: swp
       swp51:
         type: swp
-      bond1:
-        bond:
-          member:
-            swp1: {}
-          mlag:
-            id: 1
-        type: bond
-        bridge:
-          domain:
-            br_default: {}
-      bond2:
-        bond:
-          member:
-            swp2: {}
-          mlag:
-            id: 2
-        type: bond
-        bridge:
-          domain:
-            br_default: {}
-      bond3:
-        bond:
-          member:
-            swp3: {}
-          mlag:
-            id: 3
-        type: bond
-        bridge:
-          domain:
-            br_default: {}
       vlan10:
         ip:
           address:
@@ -1312,29 +1336,13 @@ cumulus@spine01:~$ nv config apply
             10.1.30.3/24: {}
         type: svi
         vlan: 30
-      peerlink:
-        bond:
-          member:
-            swp49: {}
-            swp50: {}
-        type: peerlink
-      peerlink.4094:
-        type: sub
-        base-interface: peerlink
-        vlan: 4094
-    bridge:
-      domain:
-        br_default:
-          vlan:
-            '10': {}
-            '20': {}
-            '30': {}
     mlag:
-      mac-address: 44:38:39:BE:EF:AA
       backup:
         10.10.10.1: {}
-      peer-ip: linklocal
+      enable: on
       init-delay: 100
+      mac-address: 44:38:39:BE:EF:AA
+      peer-ip: linklocal
 ```
 
 {{< /tab >}}
@@ -1342,7 +1350,7 @@ cumulus@spine01:~$ nv config apply
 
 ```
 - set:
-    nterface:
+    interface:
       lo:
         ip:
           address:
@@ -1775,7 +1783,7 @@ In addition to the standard UP and DOWN administrative states, an interface that
 
 When an interface goes into a `protodown` state, it results in a local OPER DOWN (carrier down) on the interface.
 
-To show an interface in `protodown` state, run the NCLU `net show bridge link` command or the Linux `ip link show` command. For example:
+To show an interface in `protodown` state, run the <!--NCLU `net show bridge link` command or the -->Linux `ip link show` command. For example:
 
 ```
 cumulus@leaf01:~$ net show bridge link

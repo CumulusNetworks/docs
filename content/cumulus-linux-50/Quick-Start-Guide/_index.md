@@ -422,66 +422,10 @@ cumulus@switch:~$ net commit
 Cumulus Linux has a preconfigured loopback interface. When the switch boots up, the loopback interface, called *lo*, is up and assigned an IP address of 127.0.0.1.
 
 {{%notice note%}}
-The loopback interface *lo* must always exist on the switch and must always be up.
+The loopback interface *lo* must always exist on the switch and must always be up. To check the status of the loopback interface, run the NVUE `nv show interface lo` command or the Linux `ip addr show lo` command.
 {{%/notice%}}
 
-To check the status of the loopback interface:
-
-{{< tabs "TabID473 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv show interface lo
-                         operational        applied   pending   description
------------------------  -----------------  --------  --------  ----------------------------------------------------------------------
-type                     loopback           loopback  loopback  The type of interface
-ip
-  vrf                                       default   default   Virtual routing and forwarding
-  [address]              127.0.0.1/8                            ipv4 and ipv6 address
-  [address]              ::1/128
-  ipv4
-    forward                                 on        on        Enable or disable forwarding.
-  ipv6
-    enable                                  on        on        Turn the feature 'on' or 'off'.  The default is 'on'.
-    forward                                 on        on        Enable or disable forwarding.
-link
-  mtu                    65536                                  interface mtu
-  state                  up                                     The state of the interface
-...
-```
-
-The loopback is up with the IP address 127.0.0.1.
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-```
-cumulus@switch:~$ ip addr show lo
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-<!--
-```
-cumulus@switch:~$ net show interface lo
-    Name    MAC                Speed    MTU    Mode
---  ------  -----------------  -------  -----  --------
-UP  lo      00:00:00:00:00:00  N/A      65536  Loopback
-
-Alias
------
-loopback interface
-IP Details
--------------------------  --------------------
-IP:                        127.0.0.1/8, ::1/128
-IP Neighbor(ARP) Entries:  0
-```
-
-The loopback is up with the IP address 127.0.0.1.
-
 To add an IP address to a loopback interface, configure the *lo* interface:
--->
 
 {{< tabs "TabID510 ">}}
 {{< tab "NVUE Commands ">}}

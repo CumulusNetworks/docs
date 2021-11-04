@@ -23,39 +23,11 @@ In centralized routing, you configure a specific VTEP to act as the default gate
 To enable centralized routing, you must configure the gateway VTEPs to advertise their IP and MAC address.
 
 {{< tabs "TabID26 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add bgp autonomous-system 65101
-cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-default-gw
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-The NCLU commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
-
-```
-...
-router bgp 65101
-...
-  address-family l2vpn evpn
-    advertise-default-gw
-  exit-address-family
-...
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
 cumulus@leaf01:~$ nv set evpn route-advertise default-gateway on
 cumulus@leaf01:~$ nv config apply
-```
-
-The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
-
-```
-cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 
 {{< /tab >}}
@@ -88,6 +60,26 @@ router bgp 65101
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@leaf01:~$ net add bgp autonomous-system 65101
+cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-default-gw
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
+
+```
+...
+router bgp 65101
+...
+  address-family l2vpn evpn
+    advertise-default-gw
+  exit-address-family
+...
+```
+-->
 
 {{%notice note%}}
 You can deploy centralized routing at the VNI level, where you can configure the `advertise-default-gw` command per VNI; you use centralized routing for certain VNIs and distributed symmetric routing (described below) other VNIs. NVIDIA does not recommend this type of configuration.
@@ -127,18 +119,6 @@ Optional configuration includes {{<link url="#configure-rd-and-rts-for-the-tenan
 ### Configure a Per Tenant VXLAN Interface
 
 {{< tabs "TabID113 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add vxlan vni10 vxlan id 10
-cumulus@leaf01:~$ net add vxlan vni10 bridge access 10
-cumulus@leaf01:~$ net add vxlan vni10 vxlan local-tunnelip 10.10.10.1
-cumulus@leaf01:~$ net add bridge bridge ports vni10
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -170,19 +150,20 @@ auto bridge
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@leaf01:~$ net add vxlan vni10 vxlan id 10
+cumulus@leaf01:~$ net add vxlan vni10 bridge access 10
+cumulus@leaf01:~$ net add vxlan vni10 vxlan local-tunnelip 10.10.10.1
+cumulus@leaf01:~$ net add bridge bridge ports vni10
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+-->
 
 ### Configure an SVI for the Layer 3 VNI
 
 {{< tabs "TabID154 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add vlan10 vrf RED
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -209,6 +190,13 @@ iface vlan10
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@leaf01:~$ net add vlan10 vrf RED
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+-->
 
 {{%notice note%}}
 When two VTEPs are operating in **VXLAN active-active** mode and performing **symmetric** routing, you need to configure the router MAC corresponding to each layer 3 VNI to ensure both VTEPs use the same MAC address. Specify the `address-virtual` (MAC address) for the SVI corresponding to the layer 3 VNI. Use the same address on both switches in the MLAG pair. Use the MLAG system MAC address. See {{<link url="#advertise-primary-ip-address-vxlan-active-active-mode" text="Advertise Primary IP Address">}}.
@@ -217,15 +205,6 @@ When two VTEPs are operating in **VXLAN active-active** mode and performing **sy
 ### Configure the VRF to Layer 3 VNI Mapping
 
 {{< tabs "TabID206 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add vrf RED vni 4001
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -276,45 +255,24 @@ vrf RED
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@leaf01:~$ net add vrf RED vni 4001
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+-->
 
 ### Configure RD and RTs for the Tenant VRF
 
 If you do not want Cumulus Linux to derive the RD and RTs (layer 3 RTs) for the tenant VRF automatically, you can configure them manually by specifying them under the `l2vpn evpn` address family for that specific VRF.
 
 {{< tabs "TabID226 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn rd 10.1.20.2:5
-cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn route-target import 65102:4001
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-The NCLU commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
-
-```
-...
-router bgp 65101 vrf RED
-  address-family l2vpn evpn
-  rd 10.1.20.2:5
-  route-target import 65102:4001
-...
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
 cumulus@leaf01:~$ nv set vrf RED router bgp rd 10.1.20.2:5
 cumulus@leaf01:~$ nv set vrf RED router bgp route-import from-evpn route-target 65102:4001
-```
-
-The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
-
-```
-cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
-
 ```
 
 {{< /tab >}}
@@ -347,6 +305,25 @@ router bgp 65101 vrf RED
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn rd 10.1.20.2:5
+cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn route-target import 65102:4001
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
+
+```
+...
+router bgp 65101 vrf RED
+  address-family l2vpn evpn
+  rd 10.1.20.2:5
+  route-target import 65102:4001
+...
+```
+-->
 
 {{%notice note%}}
 The tenant VRF RD and RTs are different from the RD and RTs for the layer 2 VNI. See {{<link url="EVPN-Enhancements#define-rds-and-rts" text="Define RDs and RTs">}}.
@@ -388,39 +365,11 @@ For a switch to install EVPN type-5 routes into the routing table, you must conf
 The tenant VRF requires the following configuration to announce IP prefixes in the BGP RIB as EVPN type-5 routes.
 
 {{< tabs "TabID317 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn advertise ipv4 unicast
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-The NCLU commands create the following snippet in the `/etc/frr/frr.conf` file:
-
-```
-...
-router bgp 65101 vrf RED
-  address-family l2vpn evpn
-    advertise ipv4 unicast
-  exit-address-family
-end
-...
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
 cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on
 cumulus@leaf01:~$ nv config apply
-```
-
-The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
-
-```
-cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
-
 ```
 
 {{< /tab >}}
@@ -453,48 +402,25 @@ end
 
 {{< /tab >}}
 {{< /tabs >}}
-
-<!--### EVPN Type-5 Routing in Asymmetric Mode
-
-Asymmetric routing is an ideal choice when all VLANs (subnets) are configured on all leaf switches. It simplifies the routing configuration and eliminates the potential need for advertising subnet routes to handle silent hosts. However, most deployments need access to external networks to reach the Internet or global destinations, or to do subnet-based routing between pods or data centers; this requires EVPN type-5 routes.
-
-Cumulus Linux supports EVPN type-5 routes for prefix-based routing in asymmetric configurations within the pod or data center by providing an option to use the layer 3 VNI only for type-5 routes; type-2 routes (host routes) only use the layer 2 VNI.
-
-The following example commands show how to use the layer 3 VNI for type-5 routes only:
-
-{{< tabs "TabID368 ">}}
-
-{{< tab "NCLU Commands ">}}
-
+<!--
 ```
-cumulus@leaf01:~$ net add vrf RED vni 4001 prefix-routes-only
+cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn advertise ipv4 unicast
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
-{{%notice note%}}
-
-There is no command to delete the `prefix-routes-only` option. The `net del vrf <vrf> vni <vni> prefix-routes-only` command deletes the VNI.
-
-{{%/notice%}}
-
-{{< /tab >}}
-
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/frr/frr.conf` file. For example:
+The NCLU commands create the following snippet in the `/etc/frr/frr.conf` file:
 
 ```
-cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf
 ...
-vrf RED
-  vni 4001 prefix-routes-only
+router bgp 65101 vrf RED
+  address-family l2vpn evpn
+    advertise ipv4 unicast
+  exit-address-family
+end
 ...
 ```
-
-{{< /tab >}}
-
-{{< /tabs >}}-->
+-->
 
 ### Control RIB Routes
 
@@ -503,15 +429,6 @@ By default, when announcing IP prefixes in the BGP RIB as EVPN type-5 routes, th
 The following commands add a route map filter to IPv4 EVPN type-5 route advertisement:
 
 {{< tabs "TabID408 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn advertise ipv4 unicast route-map map1
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -536,12 +453,19 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn advertise ipv4 unicast route-map map1
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+-->
 <!-- vale off -->
 ### Originate Default EVPN Type-5 Routes
 <!-- vale on -->
 Cumulus Linux supports originating EVPN default type-5 routes. The default type-5 route originates from a border (exit) leaf and advertises to all the other leafs within the pod. Any leaf within the pod follows the default route towards the border leaf for all external traffic (towards the Internet or a different pod).
 
-To originate a default <!-- vale off -->type-5<!-- vale on --> route in EVPN, you need to run FRR commands. The following shows an example:
+To originate a default type-5 route in EVPN, you need to run FRR commands. The following shows an example:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -571,15 +495,6 @@ See {{<link url="Basic-Configuration#evpn-and-vxlan-active-active-mode" text="EV
 Set the MLAG system MAC address on both switches in the MLAG pair.
 
 {{< tabs "TabID472 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add vlan 4001 ip address-virtual 44:38:39:BE:EF:AA
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -605,12 +520,19 @@ iface vlan4001
 ```
 
 {{%notice note%}}
-- Cumulus Linux 3.7 and earlier uses the `hwaddress` command instead of the `address-virtual` command. If you upgrade from Cumulus Linux 3.7 to 4.0 or later and have a previous symmetric routing with VXLAN active-active configuration, you must change `hwaddress` to `address-virtual`. Either run the NCLU `address-virtual <anycast-mac>` command or edit the `/etc/network/interfaces` file.
+- Cumulus Linux 3.7 and earlier uses the `hwaddress` command instead of the `address-virtual` command. If you upgrade from Cumulus Linux 3.7 to 4.0 or later and have a previous symmetric routing with VXLAN active-active configuration, you must change `hwaddress` to `address-virtual`.
 - When configuring third party networking devices using MLAG and EVPN for interoperability, you must configure and announce a single shared router MAC value for each advertised next hop IP address.
 {{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@leaf01:~$ net add vlan 4001 ip address-virtual 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+-->
 
 #### Optional Configuration
 
@@ -650,15 +572,6 @@ Each switch in the MLAG pair advertises type-5 routes with its own system IP, wh
 To disable Advertise Primary IP Address:
 
 {{< tabs "TabID560 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net del bgp vrf RED l2vpn evpn advertise-pip
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -683,13 +596,22 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@leaf01:~$ net del bgp vrf RED l2vpn evpn advertise-pip
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+-->
 
 #### Show Advertise Primary IP Address Information
 
-To show Advertise Primary IP Address parameters, run the NCLU `net show bgp l2vpn evpn vni <vni>` command or the vtysh `show bgp l2vpn evpn vni <vni>` command. For example:
+To show Advertise Primary IP Address parameters, run the <!--NCLU `net show bgp l2vpn evpn vni <vni>` command or the -->vtysh `show bgp l2vpn evpn vni <vni>` command. For example:
 
 ```
-cumulus@leaf01:~$ net show bgp l2vpn evpn vni 4001
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# show bgp l2vpn evpn vni 4001
 VNI: 4001 (known to the kernel)
   Type: L3
   Tenant VRF: RED
@@ -705,13 +627,13 @@ VNI: 4001 (known to the kernel)
     65101:4001
   Export Route Target:
     65101:4001
-leaf01#
 ```
 
-To show EVPN routes with Primary IP Advertisement, run the NCLU `net show bgp l2vpn evpn route` command or the vtysh `show bgp l2vpn evpn route` command. For example:
+To show EVPN routes with Primary IP Advertisement, run the <!--NCLU `net show bgp l2vpn evpn route` command or the -->vtysh `show bgp l2vpn evpn route` command. For example:
 
 ```
-cumulus@leaf01:~$ net show bgp l2vpn evpn route
+cumulus@leaf01:~$ sudo vtysh
+leaf01# show bgp l2vpn evpn route
 ...
 Route Distinguisher: 10.10.10.1:3
 *> [2]:[0]:[48]:[00:60:08:69:97:ef]
@@ -726,7 +648,7 @@ Route Distinguisher: 10.10.10.1:3
 ...
 ```
 
-To show the learned route from an external router injected as a type-5 route, run the NCLU `net show bgp vrf <vrf> ipv4 unicast` command or the vtysh `show bgp vrf <vrf> ipv4 unicast` command.
+To show the learned route from an external router injected as a type-5 route, run the <!--NCLU `net show bgp vrf <vrf> ipv4 unicast` command or the -->vtysh `show bgp vrf <vrf> ipv4 unicast` command.
 
 ## Downstream VNI
 
@@ -1343,7 +1265,7 @@ router bgp 65163 vrf EXTERNAL2
 {{< tab "Try It " >}}
     {{< simulation name="Try It CL44 - DVNIv2" showNodes="leaf01,spine01,border01,server01,fw1" >}}
 
-This simulation starts with the example downstream VNI configuration. To simplify the example, only one spine is in the topology. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-44/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
+This simulation starts with the example downstream VNI configuration. To simplify the example, only one spine is in the topology. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 
 - **fw1** has IP address 10.1.210.254 configured beyond border01 in VRF10.
 - **server01** has IP address 10.1.10.101 as in the example.

@@ -287,7 +287,7 @@ The bonding driver changes how it derives the *actor port key*, which causes the
 7. Verify core uplinks and peer links are UP:
 
     ```
-    cumulus@switch:~$ nv show interface
+    cumulus@switch:~$ net show interface
     ```
 
 8. Verify MLAG convergence:

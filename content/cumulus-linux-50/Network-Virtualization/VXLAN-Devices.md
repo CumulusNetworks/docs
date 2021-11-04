@@ -15,7 +15,7 @@ Cumulus Linux supports both single and traditional [VXLAN](## "Virtual Extensibl
 ## Traditional VXLAN Device
 
 With a traditional VXLAN device, each VNI is a separate device (for example, vni10, vni20, vni30).
-You can configure traditional VXLAN devices with NCLU or by manually editing the `/etc/network/interfaces` file.
+You can configure traditional VXLAN devices by manually editing the `/etc/network/interfaces` file.
 
 The following example configuration:
 - Creates two unique VXLAN devices (vni10 and vni20)
@@ -23,23 +23,6 @@ The following example configuration:
 - Configures the local tunnel IP address to be the loopback address of the switch
 
 {{< tabs "TabID25 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add interface swp1 bridge access 10
-cumulus@leaf01:~$ net add interface swp2 bridge access 20
-cumulus@leaf01:~$ net add vxlan vni10 vxlan id 10
-cumulus@leaf01:~$ net add vxlan vni20 vxlan id 20
-cumulus@leaf01:~$ net add bridge bridge ports vni10,vni20
-cumulus@leaf01:~$ net add bridge bridge vids 10,20
-cumulus@leaf01:~$ net add vxlan vni10 bridge access 10
-cumulus@leaf01:~$ net add vxlan vni20 bridge access 20
-cumulus@leaf01:~$ net add loopback lo vxlan local-tunnelip 10.10.10.1
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 You cannot use NVUE commands to configure traditional VXLAN devices.
@@ -98,6 +81,21 @@ cumulus@leaf01:~$ ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@leaf01:~$ net add interface swp1 bridge access 10
+cumulus@leaf01:~$ net add interface swp2 bridge access 20
+cumulus@leaf01:~$ net add vxlan vni10 vxlan id 10
+cumulus@leaf01:~$ net add vxlan vni20 vxlan id 20
+cumulus@leaf01:~$ net add bridge bridge ports vni10,vni20
+cumulus@leaf01:~$ net add bridge bridge vids 10,20
+cumulus@leaf01:~$ net add vxlan vni10 bridge access 10
+cumulus@leaf01:~$ net add vxlan vni20 bridge access 20
+cumulus@leaf01:~$ net add loopback lo vxlan local-tunnelip 10.10.10.1
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+-->
 
 ## Single VXLAN Device
 
@@ -119,11 +117,6 @@ The following example configuration:
 - Sets the flooding multicast group for VNI 10 to 239.1.1.110 and the multicast group for VNI 20 to 239.1.1.120
 
 {{< tabs "TabID106 ">}}
-{{< tab "NCLU Commands ">}}
-
-NCLU commands are not supported.
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```

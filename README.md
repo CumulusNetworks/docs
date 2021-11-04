@@ -1,6 +1,6 @@
 # NVIDIA Networking Documentation
 
-NVIDIA This the source repository for the NVIDIA Ethernet Software Documentation, hosted at docs.nvidia.com/networking-ethernet-software.
+This is the source repository for the NVIDIA Ethernet Software Documentation, hosted at docs.nvidia.com/networking-ethernet-software.
 This site uses the static site generator [Hugo](https://gohugo.io/documentation/).
 
 ## Installing the Documentation and Running the Local Server

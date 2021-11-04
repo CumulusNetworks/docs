@@ -1122,7 +1122,7 @@ Maximum 50G ports: 128
 
 64x 100G - 64x QSFP28 (native speed)
 
-Maximum 100G ports: 80
+Maximum 100G ports: 64
 
 {{< /tab >}}
 {{< /tab >}}

@@ -4,58 +4,12 @@ author: NVIDIA
 weight: 520
 toc: 3
 ---
-[IGMP](## "Internet Group Management Protocol") snooping and [MLD](## "Multicast Listener Discovery") snooping prevent hosts on a local network from receiving traffic for a multicast group they have not explicitly joined. IGMP snooping is for IPv4 environments and MLD snooping is for IPv6 environments.
+Internet Group Management Protocol (IGMP) snooping and Multicast Listener Discovery (MLD) snooping prevent hosts on a local network from receiving traffic for a multicast group they have not explicitly joined. IGMP snooping is for IPv4 environments and MLD snooping is for IPv6 environments.
 
-The bridge driver in the Cumulus Linux kernel includes IGMP and MLD snooping. If you disable IGMP or MLD snooping, multicast traffic floods to all the bridge ports in the bridge. In the absence of receivers in a VLAN, multicast traffic floods to all ports in the VLAN.
+The bridge driver in Cumulus Linux kernel includes IGMP and MLD snooping. If you disable IGMP or MLD snooping, multicast traffic floods to all the bridge ports in the bridge. Similarly, in the absence of receivers in a VLAN, multicast traffic floods to all ports in the VLAN.
 
 {{< img src = "/images/cumulus-linux/igmp_snoop_diagram.png" >}}
 
-<!--BROADCOM ONLY## Configure IGMP and MLD Snooping over VXLAN
-
-Cumulus Linux supports IGMP and MLD snooping over VXLAN bridges, where VXLAN ports are set as router ports, on Broadcom switches.
-
-To enable IGMP and MLD snooping over VXLAN:
-
-{{< tabs "TabID31 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bridge mybridge mcsnoop yes
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "Linux Commands ">}}
-
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
-...
-auto bridge
-iface bridge
-  bridge-ports swp1 swp2 swp3
-  bridge-vlan-aware yes
-  bridge-vids 100 200
-  bridge-pvid 1
-  bridge-mcsnoop yes
-...
-```
-
-Run the `ifreload -a` command to reload the configuration:
-
-```
-cumulus@switch:~$ sudo ifreload -a
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-Consider also configuring the IGMP and MLD querier. See {{<link url="#configure-the-igmp-and-mld-querier" text="Configure the IGMP and MLD Querier">}}, below.
-
-To disable IGMP and MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoop no` command.-->
 
 ## Configure the IGMP and MLD Querier
 
@@ -63,14 +17,9 @@ Without a multicast router, a single switch in an IP subnet can coordinate multi
 
 To configure the querier on the switch for a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, enable the multicast querier on the bridge and add the source IP address of the queries to the VLAN.
 
-The following configuration example enables the multicast querier and sets the source IP address of the queries to 10.10.10.1 (the loopback address of the switch).
+The following configuration example enables the multicast querier and sets source IP address of the queries to 10.10.10.1 (the loopback address of the switch).
 
-{{< tabs "TabID68 ">}}
-{{< tab "NCLU Commands ">}}
-
-NCLU commands are not supported.
-
-{{< /tab >}}
+{{< tabs "TabID22 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -134,10 +83,13 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+NCLU commands are not supported.
+-->
 
 ## Optimized Multicast Flooding (OMF)
 
-IGMP snooping restricts multicast forwarding only to the ports that receive IGMP report messages. If the ports do not receive IGMP reports, multicast traffic floods to all ports in the bridge domain (also know as [URMC](## "Unregistered Multicast") traffic). To restrict this flooding to only mrouter ports, you can enable OMF.
+IGMP snooping restricts multicast forwarding only to the ports that receive IGMP report messages. If the ports do not receive IGMP reports, multicast traffic floods to all ports in the bridge domain (also know as unregistered multicast (URMC) traffic). To restrict this flooding to only mrouter ports, you can enable OMF.
 
 To enable OMF:
 
@@ -169,6 +121,42 @@ To enable OMF:
    {{<cl/restart-switchd>}}
 <!-- vale on -->
 When IGMP reports go to a multicast group, OMF has no effect; normal IGMP snooping occurs.
+
+When you enable OMF, you can configure a bridge port as an mrouter port to forward unregistered multicast traffic to that port.
+
+{{< tabs "TabID127 ">}}
+{{< tab "NVUE Commands ">}}
+
+NVUE commands are not supported.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file to add `bridge-portmcrouter enabled` to the swp1 stanza.
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto swp1
+iface swp1
+   bridge-portmcrouter enabled
+...
+```
+
+Run the `ifreload -a` command to reload the configuration:
+
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+<!--
+```
+cumulus@switch:mgmt:~$ net add interface swp1 bridge portmcrouter enabled
+cumulus@switch:mgmt:~$ net commit
+```
+-->
 
 {{%notice note%}}
 OMF increases memory usage, which can impact scaling on Spectrum 1 switches.
@@ -218,16 +206,7 @@ cumulus@switch:~$ sudo cl-acltool -i
 
 If you do not use mirroring functions or other types of multicast traffic, you can disable IGMP and MLD snooping.
 
-{{< tabs "TabID114 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bridge bridge mcsnoop no
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
+{{< tabs "TabID209 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -262,10 +241,17 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add bridge bridge mcsnoop no
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 ## Troubleshooting
 
-To show the IGMP and MLD snooping bridge state, run the `brctl showstp <bridge>` command:
+To show the IGMP/MLD snooping bridge state, run the `brctl showstp <bridge>` command:
 
 ```
 cumulus@switch:~$ sudo brctl showstp bridge
@@ -316,7 +302,7 @@ swp3 (3)
   flags
 ```
 
-To show the groups and bridge port state, run the NCLU `net show bridge mdb` command or the Linux `sudo bridge mdb show` command. To show detailed router ports and group information, run the `sudo bridge -d -s mdb show` command:
+Cumulus Linux tracks multicast group and port state in the [MDB](## "multicast database"). To show the groups and bridge port state, run the <!--NCLU `net show bridge mdb` command or the -->Linux `sudo bridge mdb show` command. To show detailed router ports and group information, run the `sudo bridge -d -s mdb show` command:
 
 ```
 cumulus@switch:~$ sudo bridge -d -s mdb show
@@ -326,6 +312,29 @@ cumulus@switch:~$ sudo bridge -d -s mdb show
   dev bridge port swp2 grp ff1a::9 permanent 0.00
   router ports on bridge: swp3
 ```
+
+## Scale Considerations
+
+The number of unique multicast groups supported in the MDB is 4096 by default. To increase the maximum number of multicast groups in the MDB, edit the `/etc/network/interfaces` file to add a `bridge-hashmax` value to the bridge stanza:
+
+```
+auto br_default
+iface br_default
+  bridge-hashmax 16384
+  bridge-ports swp1 swp2 swp3
+  bridge-vlan-aware yes
+  bridge-vids 10 20
+  bridge-pvid 1
+  bridge-mcquerier 1
+  bridge-mcsnoop 1
+```
+
+The supported values for `bridge-hashmax` are 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536.
+
+{{%notice note%}}
+* On Spectrum 1 switches, you must change the {{<link url="Supported-Route-Table-Entries/#forwarding-resource-profiles" text="forwarding resource profile">}} to `rash-custom-profile1`, then restart `switchd`.
+* Spectrum 1 switches limit multicast groups to 16300 in the MDB with OMF disabled and 14800 multicast groups with OMF enabled.
+{{%/notice%}}
 
 ## Related Information
 

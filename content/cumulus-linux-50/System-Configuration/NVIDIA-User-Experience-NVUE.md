@@ -33,7 +33,7 @@ cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/listen \[::\]:8765 i
 cumulus@switch:~$ sudo systemctl restart nginx
 ```
 
-You can run the cURL commands from the command line. For example:
+You can run the cURL commands from the command line. Use the username and password for the switch. For example:
 
 ```
 cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/cue_v1/interface
@@ -62,15 +62,146 @@ cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:
       }
 ...
 ```
+
+### Make a Configuration Change
+
+To make a configuration change with the NVUE API:
+
+1. Create a new revision ID using a POST:
+
+   ```
+   $ curl -u 'cumulus:cumulus' --insecure -X POST https://127.0.0.1:8765/nvue_v1/revision
+   {
+     "changeset/cumulus/2021-11-02_16.09.18_5Z1K": {
+       "state": "pending",
+       "transition": {
+         "issue": {},
+         "progress": ""
+       }
+     }
+   }
+
+   ```
+
+2. Record the revision ID. In the above example, the revision ID is `"changeset/cumulus/2021-11-02_16.09.18_5Z1K"`
+
+3. Make the change using a PATCH and link it to the revision ID:
+
+   ```
+   $ curl -u 'cumulus:cumulus' -d '{"99.99.99.99/32": {}}' -H 'Content-Type: application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address?rev=changeset/cumulus/2021-11-02_16.09.18_5Z1K
+   {
+     "99.99.99.99/32": {}
+   }
+   ```
+
+4. Apply the changes using a PATCH to the revision changeset. You must use the full key value for the revision and replace `/`​ with `%2F`​ in the list:
+
+   ```
+   $ curl -u 'cumulus:cumulus' -d '{"state":"apply"}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2021-11-02_16.09.18_5Z1K
+   {
+     "state": "apply",
+     "transition": {
+       "issue": {},
+       "progress": ""
+     }
+   }
+   ```
+
+5. To verify that the configuration is applied, review the status of the apply and the configuration:
+
+   ```
+   cumulus@leaf01:mgmt:~$ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2021-11-02_16.09.18_5Z1K
+   {
+     "state": "applied",
+     "transition": {
+       "issue": {},
+       "progress": ""
+     }
+   }
+   ```
+
+   ```
+   $ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address
+   {
+     "127.0.0.1/8": {},
+     "99.99.99.99/32": {},
+     "::1/128": {}
+   }
+   ```
+
+### Troubleshoot Configuration Changes
+
+When a configuration change fails, you see an error in the change request.
+
+#### Configuration Fails Because of a Dependency
+
+If you stage a configuration but it fails because of a dependency, the failure shows the reason. In the following example, the change fails because the BGP router ID is not set:
+
+```
+$ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2021-11-02_13.57.25_5Z1H
+{
+  "state": "invalid",
+  "transition": {
+    "issue": {
+      "0": {
+        "code": "config_invalid",
+        "data": {
+          "location": "router.bgp.enable",
+          "reason": "BGP requires router-id to be set globally or in the VRF.\n"
+        },
+        "message": "Config invalid at router.bgp.enable: BGP requires router-id to be set globally or in the VRF.\n",
+        "severity": "error"
+      }
+    },
+    "progress": "Invalid config"
+  }
+}
+```
+
+The staged configuration is missing `router-id`:
+
+```
+$ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/vrf/default/router/bgp?rev=changeset%2Fcumulus%2F2021-11-02_13.57.25_5Z1H
+{
+  "autonomous-system": 65999,
+  "enable": "on"
+}
+```
+
+#### Configuration Apply Fails with Warnings
+
+In some cases, such as the first push with NVUE or if you change a file manually instead of using NVUE, you see a warning prompt and the apply fails:
+
+```
+$ curl -u 'cumulus:cumulus' --insecure -X GET https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2021-11-02_16.09.18_5Z1K
+{
+  "changeset/cumulus/2021-11-02_16.09.18_5Z1K": {
+    "state": "ays_fail",
+    "transition": {
+      "issue": {
+        "0": {
+          "code": "client_timeout",
+          "data": {},
+          "message": "Timeout while waiting for client response",
+          "severity": "error"
+        }
+      },
+      "progress": "Aborted apply after warnings"
+    }
+  }
+```
+
+To resolve this issue, include `"auto-prompt":{"ays": "ays_yes"}` to the configuration apply:
+
+```
+$ curl -u 'cumulus:cumulus' -d '{"state":"apply","auto-prompt":{"ays": "ays_yes"}}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2021-11-02_16.09.18_5Z1K
+```
+
 For information about using the NVUE API, refer to the {{<mib_link url="cumulus-linux-44/api/index.html" text="NVUE API documentation.">}}
 
 ## NVUE CLI
 
 The NVUE CLI has a flat structure as opposed to a modal structure. This means that you can run all commands from the primary prompt instead of only in a specific mode.
-
-{{%notice note%}}
-The NVUE commands and outputs in this documentation are subject to change.
-{{%/notice%}}
 
 ### Command Syntax
 
@@ -81,7 +212,7 @@ NVUE commands all begin with `nv` and fall into one of three syntax categories:
 
 ### Command Completion
 <!-- vale off -->
-As you enter commands, you can get help with the valid keywords or options using the Tab key. For example, using Tab completion with `nv set` displays the possible options for the command, and returns you to the command prompt to complete the command.
+As you enter commands, you can get help with the valid keywords or options using the Tab key. For example, using Tab completion with `nv set` displays the possible options for the command and returns you to the command prompt to complete the command.
 <!-- vale on -->
 ```
 cumulus@switch:~$ nv set <<press Tab>>
@@ -93,7 +224,7 @@ cumulus@switch:~$ nv set
 
 ### Command Help
 <!-- vale off -->
-As you enter commands, you can get help with command syntax by entering `-h` or `--help` at various points within a command entry. For example, to find out what options are available for `nv set interface`, enter `nv set interface -h` or `nv set interface --help`.
+As you enter commands, you can get help with command syntax by entering `-h` or `--help` at various points within a command entry. For example, to examine the options available for `nv set interface`, enter `nv set interface -h` or `nv set interface --help`.
 <!-- vale on -->
 ```
 cumulus@switch:~$ nv set interface -h
@@ -137,14 +268,14 @@ The `nv set` and `nv unset` commands are in the following categories. Each comma
 | `nv set acl`<br>`nv unset acl` | Configures ACLs in Cumulus Linux.|
 | `nv set bridge`<br>`nv unset bridge` | Configures a bridge domain. This is where you configure the bridge type (such as VLAN-aware), 802.1Q encapsulation, the STP state and priority, and the VLANs in the bridge domain. |
 | `nv set evpn`<br>`nv unset evpn` | Configures EVPN. This is where you enable and disable the EVPN control plane, and set EVPN route advertise options, default gateway configuration for centralized routing, multihoming, and duplicate address detection options. |
-| `nv set interface <interface-id>`<br>`nv unset interface <interface-id>` | Configures the switch interfaces. Use this command to configure bond interfaces, bridge interfaces, interface IP addresses, VLAN IDs, and links (MTU, FEC, speed, duplex, and so on).|
+| `nv set interface <interface-id>`<br>`nv unset interface <interface-id>` | Configures the switch interfaces. Use this command to configure bond interfaces, bridge interfaces, interface IP addresses, interface descriptions, VLAN IDs, and links (MTU, FEC, speed, duplex, and so on).|
 | `nv set mlag`<br>`nv unset mlag` | Configures MLAG. This is where you configure the backup IP address or interface, MLAG system MAC address, peer IP address, MLAG priority, and the delay before bonds come up. |
-| `nv set nve`<br>`nv unset nve` | Configures network virtualization (VXLAN) settings. This is where you configure the UDP port for VXLAN frames, control dynamic MAC learning over VXLAN tunnels, enable and disable ARP/ND suppression, and configure how Cumulus Linux handles BUM traffic in the overlay.|
-| `nv set platform`<br>`nv unset platform` | Sets how configuration apply operations work (which files to ignore and which files to overwrite). |
+| `nv set nve`<br>`nv unset nve` | Configures network virtualization (VXLAN) settings. This is where you configure the UDP port for VXLAN frames, control dynamic MAC learning over VXLAN tunnels, enable and disable ARP and ND suppression, and configure how Cumulus Linux handles BUM traffic in the overlay.|
+| `nv set platform`<br>`nv unset platform` | Configures hardware component options. |
 | `nv set qos`<br>`nv unset qos` | Configures QoS RoCE. |
-| `nv set router`<br>`nv unset router` | Configures router policies (prefix list rules and route maps), global BGP options (enable and disable BGP, set the ASN and the router ID, and configure BGP graceful restart and shutdown), global OSPF options (enable and disable OSPF, set the router ID, and configure OSPF timers), and PBR. |
+| `nv set router`<br>`nv unset router` | Configures router policies (prefix list rules and route maps), sets global BGP options (enable and disable, ASN and router ID, BGP graceful restart and shutdown), global OSPF options (enable and disable, router ID, and OSPF timers) PIM, IGMP, PBR, VRR, and VRRP. |
 | `nv set service`<br>`nv unset service` | Configures DHCP relays and servers, NTP, PTP, LLDP, and syslog. |
-| `nv set system`<br>`nv unset system` | Configures global system settings, such as the hostname of the switch, the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure SPAN and ERSPAN sessions. |
+| `nv set system`<br>`nv unset system` | Configures global system settings, such as the hostname of the switch, the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure SPAN and ERSPAN sessions and set how configuration apply operations work (which files to ignore and which files to overwrite; see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}).|
 | `nv set vrf  <vrf-id>`<br>`nv unset vrf <vrf-id>` | Configures VRFs. This is where you configure VRF-level router configuration including PTP, BGP, OSPF, and EVPN. |
 
 ### Monitoring Commands
@@ -159,11 +290,11 @@ The NVUE monitoring commands show various parts of the network configuration. Fo
 | `nv show interface` |Shows interface configuration. |
 | `nv show mlag` | Shows MLAG configuration. |
 | `nv show nve` | Shows network virtualization configuration, such as VXLAN-specfic MLAG configuration and VXLAN flooding.|
-| `nv show platform` | Shows platform configuration, such as hardware and software components, and the hostname of the switch. |
+| `nv show platform` | Shows platform configuration, such as hardware and software components. |
 | `nv show qos` | Shows QoS RoCE configuration.|
-| `nv show router` | Shows router configuration, such as router policies, and global BGP and OSPF configuration. |
+| `nv show router` | Shows router configuration, such as router policies, global BGP and OSPF configuration, PBR, PIM, IGMP, VRR, and VRRP configuration. |
 | `nv show service` | Shows DHCP relays and server, NTP, PTP, LLDP, and syslog configuration. |
-| `nv show system` | Shows global system settings, such as the reserved routing table range for PBR and the reserved VLAN range for layer 3 VNIs. You can also see switch reboot history with the reason why the switch rebooted. |
+| `nv show system` | Shows global system settings, such as the reserved routing table range for PBR and the reserved VLAN range for layer 3 VNIs. You can also see system login messages and switch reboot history. |
 | `nv show vrf` | Shows VRF configuration.|
 
 The following example shows the `nv show router` commands after pressing the TAB key, then shows the output of the `nv show router bgp` command.
@@ -192,7 +323,7 @@ cumulus@leaf01:mgmt:~$
 ```
 
 {{%notice note%}}
-If there are no pending or applied configuration changes, the `nv show` command only shows the running configuration.
+If there are no pending or applied configuration changes, the `nv show` command only shows the running configuration (under operational).
 {{%/notice%}}
 
 Additional options are available for the `nv show` commands. For example, you can choose the configuration you want to show (pending, applied, startup, or operational). You can also turn on colored output, and paginate specific output.
@@ -203,7 +334,7 @@ Additional options are available for the `nv show` commands. For example, you ca
 | `--color`         | Turns colored output on or off. For example, `nv show --color on interface bond1`|
 | `--help`          | Shows `help` for the NVUE commands. |
 | `--operational`   | Shows the running configuration (the actual system state). For example, `nv show --operational interface bond1` shows the running configuration for bond1. The running and applied configuration should be the same. If different, inspect the logs. |
-| `--output`        | Shows command output in table format (auto), `json` format or `yaml` format. For example:<br>`nv show --ouptut auto interface bond1`<br>`nv show --ouptut json interface bond1`<br>`nv show --ouptut yaml interface bond1` |
+| `--output`        | Shows command output in table format (auto), `json` format or `yaml` format. For example:<br>`nv show --ouptut auto interface bond1`<br>`nv show --output json interface bond1`<br>`nv show --ouptut yaml interface bond1` |
 | `--paginate`      | Paginates the output. For example, `nv show --paginate on interface bond1`. |
 | `--pending`       | Shows configuration that is `set` and `unset` but not yet applied or saved. For example, `nv show --pending interface bond1`.|
 | `--rev <revision>`| Shows a detached pending configuration. See the `nv config detach` configuration management command below. For example, `nv show --rev changeset/cumulus/2021-06-11_16.16.41_FPKK interface bond1`. |
@@ -309,6 +440,7 @@ The NVUE configuration management commands manage and apply configurations.
 | `nv config patch <nvue-file>` | Updates the pending configuration with the specified YAML configuration file. |
 | `nv config replace <nvue-file>` | Replaces the pending configuration with the specified YAML configuration file. |
 | `nv config save` | Overwrites the startup configuration with the applied configuration by writing to the `/etc/nvue.d/startup.yaml` file. The configuration persists after a reboot. |
+| `nv config show` | Shows the currently applied configuration. |
 
 ### List All NVUE Commands
 
@@ -364,8 +496,6 @@ acl     bond    bridge  evpn    ip      link    ptp     qos     router
 
 When you save network configuration using NVUE, Cumulus Linux writes the configuration to the `/etc/nvue.d/startup.yaml` file.
 
-NVUE also writes to underlying Linux files, such as `/etc/network/interfaces` and `/etc/frr/frr.conf`, when you apply a configuration. You can view these configuration files; however NVIDIA recommends that you do not manually edit them while using NVUE.
-
 You can edit or replace the contents of the `/etc/nvue.d/startup.yaml` file. NVUE applies the configuration in the `/etc/nvue.d/startup.yaml` file during system boot only if the `nvue-startup.service` is running. If this service is not running, the running configuration that you apply last loads when the switch boots.
 
 To start `nvue-startup.service`:
@@ -373,6 +503,20 @@ To start `nvue-startup.service`:
 ```
 cumulus@switch:~$ sudo systemctl enable nvue-startup.service
 cumulus@switch:~$ sudo systemctl start nvue-startup.service
+```
+
+When you apply a configuration with `nv config apply`, NVUE also writes to underlying Linux files such as `/etc/network/interfaces` and `/etc/frr/frr.conf`. You can view these configuration files; however NVIDIA recommends that you do not manually edit them while using NVUE. If you need to configure certain network settings manually or use automation such as Ansible to configure the switch, see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}} below.
+
+## Configure NVUE to Ignore Linux Files
+
+You can configure NVUE to ignore certain underlying Linux files when applying configuration changes. For example, if you push certain configuration to the switch using Ansible and Jinja2 file templates or you want to use custom configuration for a particular service such as PTP, you can ensure that NVUE never writes to those configuration files.
+
+The following example configures NVUE to ignore the Linux `/etc/ptp4l.conf` file when applying configuration changes and saves the configuration so it persists after a reboot.
+
+```
+cumulus@switch:~$ nv set system config apply ignore /etc/ptp4l.conf
+cumulus@switch:~$ nv config apply
+cumulus@switch:~$ nv config save
 ```
 
 ## Example Configuration Commands
@@ -402,7 +546,7 @@ cumulus@switch:~$ nv config apply
 The example below shows the NVUE commands required to bring up swp1.
 
 ```
-cumulus@switch:~$ nv set interface swp1 link state up
+cumulus@switch:~$ nv set interface swp1
 cumulus@switch:~$ nv config apply 
 ```
 
@@ -592,6 +736,149 @@ The following example patches the pending configuration (runs the set or unset c
 ```
 cumulus@switch:~$ nv config patch /deps/nv-02/13/2021.yaml
 ```
+
+## Flexible Snippet Architecture
+
+If you configure Cumulus Linux with NVUE commands, then want to configure a feature that does not yet support the NVUE Object Model, you can create a snippet in `yaml` format and add the configuration to either the `/etc/frr/frr.conf` or `/etc/network/interfaces` file.
+
+{{< tabs "612 ">}}
+{{< tab "/etc/frr/frr.conf Snippets ">}}
+
+NVUE does not support configuring BGP to peer across the default route. The following example configures BGP to peer across the default route from the default VRF:
+
+1. Create a `.yaml` file with the following snippet:
+
+   ```
+   cumulus@switch:~$ sudo nano ./bgp_snippet.yaml
+   - set:
+       system:
+         config:
+           snippet:
+             frr.conf: |
+               ip nht resolve-via-default
+   ```
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch ./bgp_snippet.yaml
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Verify that the configuration exists at the end of the `/etc/frr/frr.conf` file:
+
+   ```
+   cumulus@switch:~$ sudo cat /etc/frr/frr.conf
+   ...
+   ! end of router ospf block
+   !---- CUE snippets ----
+   ip nht resolve-via-default
+   ```
+
+{{< /tab >}}
+{{< tab "/etc/network/interfaces Snippets ">}}
+
+{{< tabs "667 ">}}
+{{< tab "Configure MLAG Timers ">}}
+
+NVUE supports configuring only one of the {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#set-clagctl-timers" text="MLAG service timeouts">}} (initDelay). The following example configures the MLAG peer timeout to 400 seconds:
+
+1. Create a `.yaml` file and add the following snippet:
+
+```
+cumulus@switch:~$ sudo nano ./mlag_snippet.yaml
+- set:
+    system:
+      config:
+        snippet:
+          ifupdown2_eni:
+            peerlink.4094: |
+              clagd-args --peerTimeout 400
+```
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch ./mlag_snippet.yaml
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Verify that the configuration exists in the peerlink.4094 stanza of the `/etc/network/interfaces` file:
+
+   ```
+   cumulus@switch:~$ sudo cat /etc/network/interfaces
+   ...
+   auto peerlink.4094
+   iface peerlink.4094
+    clagd-args --peerTimeout 400
+    clagd-peer-ip linklocal
+    clagd-backup-ip 10.10.10.2
+    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-args --initDelay 180
+   ...
+   ```
+
+{{< /tab >}}
+{{< tab "Configure a Traditional Bridge ">}}
+
+NVUE does not support configuring traditional bridges. The following example configures a traditional bridge called `br0` with the IP address 11.0.0.10/24. swp1, swp2 are members of the bridge.
+
+1. Create a `.yaml` file and add the following snippet:
+
+```
+cumulus@switch:~$ sudo nano ./bridge_snippet.yaml
+- set:
+    system:
+     config:
+       snippet:
+         ifupdown2_eni:
+           eni_stanzas: |
+             auto br0
+             iface br0
+               address 11.0.0.10/24
+               bridge-ports swp1 swp2
+               bridge-vlan-aware no
+```
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch ./bridge_snippet.yaml
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Verify that the configuration exists at the end of the `/etc/network/interfaces` file:
+
+   ```
+   cumulus@switch:~$ sudo cat /etc/network/interfaces
+   ...
+   auto br0
+   iface br0
+     address 11.0.0.10/24
+     bridge-ports swp1 swp2
+     bridge-vlan-aware no
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## How Is NVUE Different from NCLU?
 

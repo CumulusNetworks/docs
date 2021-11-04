@@ -18,28 +18,21 @@ RoCE uses the Infiniband (IB) Protocol over converged Ethernet. The IB global ro
 
 To configure RoCE with PFC and ECN:
 
-{{< tabs "roce lossless commands">}}
-{{< tab "NCLU Commands">}}
+```
+cumulus@switch:~$ nv set qos roce
+cumulus@switch:~$ nv config apply
+```
+<!--
 ```
 cumulus@switch:~$ net add roce lossless
 cumulus@switch:~$ net commit
 ```
-
-{{< /tab >}}
-{{< tab "NVUE Commands">}}
-
+-->
 {{% notice note %}}
 NVUE defaults to `roce mode lossless`. The command `nv set qos roce` and `nv set qos roce mode lossless` are equivalent.
 
 If you enable `mode lossy`, configuring `nv set qos roce` without a `mode` does not change the RoCE mode. To change to lossless, you must configure `mode lossless`.
 {{% /notice %}}
-
-```
-cumulus@switch:~$ nv set qos roce
-cumulus@switch:~$ nv config apply
-```
-{{< /tab >}}
-{{< /tabs >}}
 
 {{%notice note%}}
 {{<link url="Quality-of-Service#link-pause" text="Link pause">}} is another way to provide lossless ethernet; however, PFC is the preferred method. PFC allows more granular control by pausing the traffic flow for a given CoS group instead of the entire link.
@@ -53,38 +46,33 @@ RoCEv2 congestion management uses RFC 3168 to signal congestion experienced to t
 
 To configure RoCE with ECN:
 
-{{< tabs "roce commands">}}
-{{< tab "NCLU Commands">}}
-```
-cumulus@switch:~$ net add roce lossy
-cumulus@switch:~$ net commit
-```
-{{< /tab >}}
-{{< tab "NVUE Commands">}}
 ```
 cumulus@switch:~$ nv set qos roce mode lossy
 cumulus@switch:~$ nv config apply
 ```
-{{< /tab >}}
-{{< /tabs >}}
 
-## Remove RoCE Configuration
-To remove RoCE configurations:
-
-{{< tabs "remove roce commands">}}
-{{< tab "NCLU Commands">}}
+<!--
 ```
-cumulus@switch:~$ net del roce
+cumulus@switch:~$ net add roce lossy
 cumulus@switch:~$ net commit
 ```
-{{< /tab >}}
-{{< tab "NVUE Commands">}}
+-->
+
+## Remove RoCE Configuration
+
+To remove RoCE configurations:
+
 ```
 cumulus@switch:~$ nv unset qos roce
 cumulus@switch:~$ nv config apply
 ```
-{{< /tab >}}
-{{< /tabs >}}
+
+<!--
+```
+cumulus@switch:~$ net del roce
+cumulus@switch:~$ net commit
+```
+-->
 
 ## Verify RoCE Configuration
 

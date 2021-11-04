@@ -386,7 +386,7 @@ result: 0 Success
 
 {{< /expand >}}
 
-### NCLU
+<!--### NCLU
 
 To use NCLU, a user must be in either the `netshow` or `netedit` NCLU group in the LDAP database. You can either:
 
@@ -421,7 +421,7 @@ DISTRIB_ID="Cumulus Linux"
 DISTRIB_RELEASE=4.1.0
 DISTRIB_DESCRIPTION="Cumulus Linux 4.1.0"
 ```
-
+-->
 ### LDAP Browsers
 
 The GUI LDAP clients are free tools that show the structure of the LDAP database graphically.

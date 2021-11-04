@@ -7,14 +7,22 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2799742</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>2845538</td>
+<td>CVE-2020-19143: A flaw was discovered in tiff, a Tag Image File Format library, which may result in denial of service or the execution of arbitrary code if malformed image files are processed.
+Vulnerable: &lt;= 4.1.0+git191117-2~deb10u2
+Fixed: 4.1.0+git191117-2~deb10u3</td>
+<td>4.0.0-4.4.1</td>
 <td></td>
 </tr>
 <tr>
-<td>2797952</td>
-<td>The switch does not generate EVPN type-3 routes so the flood list entries are missing.</td>
+<td>2840819</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
+<td>4.0.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2816069</td>
+<td>On the EdgeCore AS7326 switch, unicast ARP requests are not forwarded to the control plane.</td>
 <td>4.2.1-4.4.1</td>
 <td></td>
 </tr>
@@ -129,6 +137,12 @@ Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u5
 Fixed: 2.4.47+dfsg-3+deb10u6</td>
 <td>4.0.0-4.3.0</td>
 <td>4.4.0-4.4.1</td>
+</tr>
+<tr>
+<td>2711533</td>
+<td>On the AS7326-56X switch, the link lights for 25G ports configured to work at 1G do not illuminate.</td>
+<td>4.2.1-4.4.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2710208</td>
@@ -579,7 +593,7 @@ ERROR: Command not found
 <tr>
 <td>2556061</td>
 <td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>4.2.1-4.4.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1811,14 +1825,22 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2799742</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>2845538</td>
+<td>CVE-2020-19143: A flaw was discovered in tiff, a Tag Image File Format library, which may result in denial of service or the execution of arbitrary code if malformed image files are processed.
+Vulnerable: &lt;= 4.1.0+git191117-2~deb10u2
+Fixed: 4.1.0+git191117-2~deb10u3</td>
+<td>4.0.0-4.4.1</td>
 <td></td>
 </tr>
 <tr>
-<td>2797952</td>
-<td>The switch does not generate EVPN type-3 routes so the flood list entries are missing.</td>
+<td>2840819</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
+<td>4.0.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2816069</td>
+<td>On the EdgeCore AS7326 switch, unicast ARP requests are not forwarded to the control plane.</td>
 <td>4.2.1-4.4.1</td>
 <td></td>
 </tr>
@@ -1933,6 +1955,12 @@ Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u5
 Fixed: 2.4.47+dfsg-3+deb10u6</td>
 <td>4.0.0-4.3.0</td>
 <td>4.4.0-4.4.1</td>
+</tr>
+<tr>
+<td>2711533</td>
+<td>On the AS7326-56X switch, the link lights for 25G ports configured to work at 1G do not illuminate.</td>
+<td>4.2.1-4.4.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2710208</td>
@@ -2397,7 +2425,7 @@ ERROR: Command not found
 <tr>
 <td>2556061</td>
 <td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.1</td>
+<td>4.2.1-4.4.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4518,6 +4546,20 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2845538</td>
+<td>CVE-2020-19143: A flaw was discovered in tiff, a Tag Image File Format library, which may result in denial of service or the execution of arbitrary code if malformed image files are processed.
+Vulnerable: &lt;= 4.1.0+git191117-2~deb10u2
+Fixed: 4.1.0+git191117-2~deb10u3</td>
+<td>4.0.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2840819</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
+<td>4.0.0-4.4.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2782033</td>

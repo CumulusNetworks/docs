@@ -89,15 +89,6 @@ In the example below, the front panel port interfaces swp1 thru swp4 are slaves 
 To create and configure a bond:
 
 {{< tabs "TabID91 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bond bond0 bond slaves swp1-4
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -125,6 +116,13 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add bond bond0 bond slaves swp1-4
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 {{%notice note%}}
 - By default, the bond uses IEEE 802.3ad link aggregation mode. To configure the bond in balance-xor mode, see {{<link url="#configure-bond-options" text="Configuration Parameters">}} below.
@@ -166,15 +164,6 @@ The table below describes the configuration options for a bond. To configure a b
 The following example sets the bond mode for bond01 to balance-xor (static):
 
 {{< tabs "TabID166 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bond bond1 bond mode balance-xor
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -203,27 +192,55 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add bond bond1 bond mode balance-xor
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 {{%notice note%}}
-Each bond configuration option, except for `bond slaves,` has the recommended value by default in Cumulus Linux. Only configure an option if you need a different setting. For more information on configuration values, refer to the {{<link url="#related-information" text="Related Information">}}  section below.
+Each bond configuration option, except for `bond slaves,` has the recommended value by default in Cumulus Linux. Only configure an option if you need a different setting. For more information on configuration values, refer to the {{<link url="#related-information" text="Related Information">}} section below.
 {{%/notice%}}
 
 | Parameter |  Description|
 |---------- | ---------- |
-| `bond-mode 802.3ad`<br><br>`bond-mode balance-xor` | Cumulus Linux supports IEEE 802.3ad link aggregation mode (802.3ad) and balance-xor mode.<br>The default mode is 802.3ad.<br><br>**Note:** When you enable balance-xor mode, the bonding of slave interfaces are static and all slave interfaces are active for load balancing and fault tolerance. The switch bases packet transmission on the bond on the hash policy in xmit-hash-policy.<br><br>When you use balance-xor mode to dual-connect host-facing bonds in an MLAG environment, you must configure the `clag-id` parameter with the same value on both MLAG switches. Otherwise, the MLAG switch pair treats the bonds as single-connected.<br><br>Use balance-xor mode only if you cannot use LACP; LACP can detect mismatched link attributes between bond members and can even detect misconnections. <br><br>NCLU command: `net add bond <bond-name> bond mode balance-xor` <br>NVUE command: `nv set interface <bond-name> bond mode static` |
-| `bond miimon <value>` | Defines how often to inspect the link state of each slave for failures. You can specify a value between 0 and 255. The default value is 100. |
-| `bond-use-carrier no` | Determines the link state. |
-| `bond-lacp-bypass-allow`| Enables LACP bypass.<br><br>NCLU command: `net add bond <bond-name> bond lacp-bypass-allow` <br>NVUE command: `nv set interface <bond-name> bond lacp-bypass on` |
-| `bond-lacp-rate slow` | Sets the rate to ask the link partner to transmit LACP control packets. `slow` is the only option. |
-| `bond-min-links` | Defines the minimum number of links (between 0 and 255) that must be active before the bond goes into service. The default value is 1.<br><br>Use a value greater than 1 if you need higher level services to ensure a minimum aggregate bandwidth level before activating a bond. Keeping the `bond-min-links` value at 1 indicates the bond must have at least one active member. If the number of active members drops below the `bond-min-links` setting, the bond appears to upper-level protocols as link-down. When the number of active links returns to greater than or equal to `bond-min-links`, the bond becomes link-up. |
+| `bond-mode 802.3ad`<br><br>`bond-mode balance-xor` | Cumulus Linux supports IEEE 802.3ad link aggregation mode (802.3ad) and balance-xor mode.<br>The default mode is 802.3ad.<!--<br><br>NCLU commands:`net add bond <bond-name> bond mode balance-xor`--> <br><br>NVUE commands:<br>802.3ad mode: `nv set interface <bond-name> bond mode lacp`<br> balance-xor mode: `nv set interface <bond-name> bond mode static`{{%notice note%}}- When you enable balance-xor mode, the bonding of slave interfaces are static and all slave interfaces are active for load balancing and fault tolerance. The switch bases packet transmission on the bond on the hash policy in xmit-hash-policy.
+- When you use balance-xor mode to dual-connect host-facing bonds in an MLAG environment, you must configure the `clag-id` parameter with the same value on both MLAG switches. Otherwise, the MLAG switch pair treats the bonds as single-connected.
+- Use balance-xor mode only if you cannot use LACP; LACP can detect mismatched link attributes between bond members and can even detect misconnections.{{%/notice%}} |
+| `bond miimon <value>` | This is the [miimon frequency](## "MII link monitoring frequency") that defines how often (in milliseconds) to inspect the link state of each slave for failures. You can specify a value between 0 and 255. The default value is 100.<br><br>NVUE command is not supported.|
+| `bond-use-carrier no` | Sets miimon to use either MII or ETHTOOL ioctls, or netif_carrier_ok() to determine the link status. The default setting is `yes`, where miimon uses netif_carrier_ok(). Set this option to `no` if you want miimon to use the MII or ETHTOOL ioctl method to determine the link state.<br><br>NVUE command is not supported.|
+| `bond-lacp-bypass-allow`| Enables LACP bypass.<!--<br><br>NCLU command: `net add bond <bond-name> bond lacp-bypass-allow`--> <br><br>NVUE command: `nv set interface <bond-name> bond lacp-bypass on` |
+| `bond-lacp-rate <rate>` | Sets the rate at which the link partner transmits LACP control packets: `fast` or `slow`. The defaut setting is `fast`.<br><br>NVUE commands:<br>`nv set interface <bond-name> bond lacp-rate fast`<br>`nv set interface <bond-name> bond lacp-rate slow`|
+| `bond-min-links <value>` | Defines the minimum number of links (between 0 and 255) that must be active before the bond goes into service. The default value is 1.<br><br>Use a value greater than 1 if you need higher level services to ensure a minimum aggregate bandwidth level before activating a bond. Keeping the `bond-min-links` value at 1 indicates the bond must have at least one active member. If the number of active members drops below the `bond-min-links` setting, the bond appears to upper-level protocols as link-down. When the number of active links returns to greater than or equal to `bond-min-links <value>`, the bond becomes link-up.<br><br>NVUE command is not supported.|
 
 ## Show Bond Information
 
-To show information for a bond:
+To show information for a bond, run the `sudo cat /proc/net/bonding/<bond>` command:
 
-{{< tabs "TabID222 ">}}
-{{< tab "NCLU Commands ">}}
+```
+cumulus@switch:~$ sudo cat /proc/net/bonding/bond01
 
+Ethernet Channel Bonding Driver: v3.7.1 (April 27, 2011)
+Bonding Mode: load balancing (xor)
+Transmit Hash Policy: layer3+4 (1)
+MII Status: up
+MII Polling Interval (ms): 100
+Up Delay (ms): 0
+Down Delay (ms): 0
+
+
+Slave Interface: swp1
+MII Status: up
+Speed: 1000 Mbps
+Duplex: full
+Link Failure Count: 0
+Permanent HW addr: 44:38:39:00:00:03
+Slave queue ID: 0
+```
+
+<!--
 Run the `net show interface <bond>` command:
 
 ```
@@ -264,35 +281,7 @@ swp4(P)  ====  swp2(p1c1h1)Routing
   inet6 fe80::202:ff:fe00:12/64
   Interface Type Other
 ```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Run the `sudo cat /proc/net/bonding/<bond>` command:
-
-```
-cumulus@switch:~$ sudo cat /proc/net/bonding/bond01
-
-Ethernet Channel Bonding Driver: v3.7.1 (April 27, 2011)
-Bonding Mode: load balancing (xor)
-Transmit Hash Policy: layer3+4 (1)
-MII Status: up
-MII Polling Interval (ms): 100
-Up Delay (ms): 0
-Down Delay (ms): 0
-
-
-Slave Interface: swp1
-MII Status: up
-Speed: 1000 Mbps
-Duplex: full
-Link Failure Count: 0
-Permanent HW addr: 44:38:39:00:00:03
-Slave queue ID: 0
-```
-
-{{< /tab >}}
-{{< /tabs >}}
+-->
 
 {{%notice info%}}
 The detailed output in `/proc/net/bonding/<filename>` includes the actor/partner LACP information. This information is not necessary and requires you to use `sudo` to view the file.

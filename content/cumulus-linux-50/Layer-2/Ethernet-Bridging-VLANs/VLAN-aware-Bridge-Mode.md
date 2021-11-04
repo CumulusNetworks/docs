@@ -23,28 +23,6 @@ The example commands below create a VLAN-aware bridge for STP that contains two 
 {{< img src = "/images/cumulus-linux/ethernet-bridging-basic-trunking1.png" >}}
 
 {{< tabs "TabID25 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bridge bridge ports swp1-2
-cumulus@switch:~$ net add bridge bridge vids 10,20
-cumulus@switch:~$ net add bridge bridge pvid 1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The above commands create the following code snippet in the `/etc/network/interfaces` file:
-
-```
-auto bridge
-iface bridge
-    bridge-ports swp1 swp2
-    bridge-pvid 1
-    bridge-vids 10 20
-    bridge-vlan-aware yes
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 With NVUE, there is a default bridge called `br_default`, which has no ports assigned. The example below configures this default bridge.
@@ -82,6 +60,26 @@ cumulus@switch:~$ ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
+<!--
+```
+cumulus@switch:~$ net add bridge bridge ports swp1-2
+cumulus@switch:~$ net add bridge bridge vids 10,20
+cumulus@switch:~$ net add bridge bridge pvid 1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The above commands create the following code snippet in the `/etc/network/interfaces` file:
+
+```
+auto bridge
+iface bridge
+    bridge-ports swp1 swp2
+    bridge-pvid 1
+    bridge-vids 10 20
+    bridge-vlan-aware yes
+```
+-->
 The Primary VLAN Identifier (PVID) of the bridge defaults to 1. You do *not* have to specify `bridge-pvid` for a bridge or a port. However, even though this does not affect the configuration, it helps other users for readability. The following configurations are identical to each other and the configuration above:
 
 ```
@@ -126,20 +124,6 @@ This example shows the commands required to create two VLAN-aware bridges on the
 Bridges are independent so you can reuse VLANs between bridges. Each VLAN-aware bridge maintains its own MAC address and VLAN tag table; MAC and VLAN tags in one bridge are not visible to the other table.
 
 {{< tabs "TabID128 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bridge bridge1 ports swp1-2
-cumulus@switch:~$ net add bridge bridge1 vids 10,20
-cumulus@switch:~$ net add bridge bridge1 pvid 1
-cumulus@switch:~$ net add bridge bridge2 ports swp3
-cumulus@switch:~$ net add bridge bridge2 vids 10
-cumulus@switch:~$ net add bridge bridge2 pvid 1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -184,6 +168,18 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add bridge bridge1 ports swp1-2
+cumulus@switch:~$ net add bridge bridge1 vids 10,20
+cumulus@switch:~$ net add bridge bridge1 pvid 1
+cumulus@switch:~$ net add bridge bridge2 ports swp3
+cumulus@switch:~$ net add bridge bridge2 vids 10
+cumulus@switch:~$ net add bridge bridge2 pvid 1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 {{%notice note%}}
 NVIDIA Spectrum switches support a maximum of 6000 VLAN elements and calculate the total number of VLAN elements as the number of VLANs times the number of configured bridges. For example, 6 bridges, each containing 1000 VLANS totals 6000 VLAN elements.
@@ -208,18 +204,6 @@ By default, the bridge port inherits the bridge VIDs, however, you can configure
 This example commands configure swp3 to override the bridge VIDs:
 
 {{< tabs "TabID157 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bridge bridge ports swp1-3
-cumulus@switch:~$ net add bridge bridge vids 10,20
-cumulus@switch:~$ net add bridge bridge pvid 1
-cumulus@switch:~$ net add interface swp3 bridge vids 20
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -257,6 +241,16 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add bridge bridge ports swp1-3
+cumulus@switch:~$ net add bridge bridge vids 10,20
+cumulus@switch:~$ net add bridge bridge pvid 1
+cumulus@switch:~$ net add interface swp3 bridge vids 20
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 ## Access Ports and Tagged Packets
 
@@ -265,19 +259,6 @@ Access ports ignore all tagged packets. In the configuration below, swp1 and swp
 {{< img src = "/images/cumulus-linux/ethernet-bridging-vlan_untagged_access_ports1.png" >}}
 <!-- vale on -->
 {{< tabs "TabID223 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bridge bridge ports swp1-2
-cumulus@switch:~$ net add bridge bridge vids 10,20
-cumulus@switch:~$ net add bridge bridge pvid 1
-cumulus@switch:~$ net add interface swp1 bridge access 10
-cumulus@switch:~$ net add interface swp2 bridge access 10
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -320,6 +301,17 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add bridge bridge ports swp1-2
+cumulus@switch:~$ net add bridge bridge vids 10,20
+cumulus@switch:~$ net add bridge bridge pvid 1
+cumulus@switch:~$ net add interface swp1 bridge access 10
+cumulus@switch:~$ net add interface swp2 bridge access 10
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 ## Drop Untagged Frames
 
@@ -328,15 +320,6 @@ With VLAN-aware bridge mode, you can configure a switch port to drop any untagge
 The following example command configures swp2 to drop untagged frames:
 
 {{< tabs "TabID294 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add interface swp2 bridge allow-untagged no
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit 
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -374,6 +357,13 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add interface swp2 bridge allow-untagged no
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit 
+```
+-->
 
 When you check VLAN membership for that port, it shows that there is **no** untagged VLAN.
 
@@ -397,16 +387,6 @@ The following example commands declare native VLAN 10 with IPv4 address 10.1.10.
 The NVUE and Linux commands also show an example with multiple VLAN-aware bridges.
 
 {{< tabs "TabID370 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add vlan 10 ip address 10.1.10.2/24
-cumulus@switch:~$ net add vlan 10 ipv6 address 2001:db8::1/32
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 {{< tabs "TabID419 ">}}
@@ -492,6 +472,14 @@ iface bridge1_vlan10
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add vlan 10 ip address 10.1.10.2/24
+cumulus@switch:~$ net add vlan 10 ipv6 address 2001:db8::1/32
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 The first time you configure a switch, all southbound bridge ports are down; therefore, by default, the SVI is also down. You can force the SVI to always be up by disabling interface state tracking so that the SVI is always in the UP state, even if all member ports are down. Other implementations describe this feature as *no autostate*. This is beneficial if you want to perform connectivity testing.
 
@@ -580,15 +568,6 @@ By default, Cumulus Linux automatically generates IPv6 *link-local* addresses on
 To disable automatic address generation for a regular IPv6 address on a VLAN, run the following command. The following example command disables automatic address generation for a regular IPv6 address on VLAN 10.
 
 {{< tabs "TabID248 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add vlan 10 ipv6-addrgen off
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 NVUE commands are not supported.
@@ -615,19 +594,17 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net add vlan 10 ipv6-addrgen off
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 To reenable automatic link-local address generation for a VLAN:
 
 {{< tabs "TabID287 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net del vlan 10 ipv6-addrgen off
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 NVUE commands are not supported.
@@ -639,6 +616,13 @@ Edit the `/etc/network/interfaces` file to **remove** the line `ipv6-addrgen off
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+```
+cumulus@switch:~$ net del vlan 10 ipv6-addrgen off
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+-->
 
 ## Static MAC Address Entries
 

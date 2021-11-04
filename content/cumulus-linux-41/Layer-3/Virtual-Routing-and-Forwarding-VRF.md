@@ -33,7 +33,7 @@ To configure VRF, you associate each subset of interfaces to a VRF routing table
 - A VRF table can have an IP address, which is a loopback interface for the VRF.
 - Associated rules are added automatically.
 - You can also add a default route to avoid skipping across tables when the kernel forwards the packet.
-- Names for VRF tables can be a maximum of 15 characters. However, you **cannot** use the name *mgmt*, as this name can **only** be used for the {{<link url="Management-VRF" text="management VRF">}}.
+- Names for VRF tables can be a maximum of 15 characters. You **cannot** use the name `mgmt`; Cumulus Linux uses this name for the {{<link url="Management-VRF" text="management VRF">}}. Also, you cannot use these reserved names: `default`, `unspec`, `main`, or `local`.
 
 To configure a VRF, run the following commands:
 
@@ -1012,7 +1012,7 @@ ff00::/8 dev swp3.2  metric 256  pref medium
 unreachable default dev lo  metric 240  error -101 pref medium
 ```
 
-To see a list of links associated with a particular VRF table, run the `run ip link list <vrf-name>` command. For example:
+To see a list of links associated with a particular VRF table, run the `ip link list <vrf-name>` command. For example:
 
 ```
 cumulus@switch:~$ ip link list rocket

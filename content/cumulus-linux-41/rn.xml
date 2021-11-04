@@ -7,6 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2845538</td>
+<td>CVE-2020-19143: A flaw was discovered in tiff, a Tag Image File Format library, which may result in denial of service or the execution of arbitrary code if malformed image files are processed.
+Vulnerable: &lt;= 4.1.0+git191117-2~deb10u2
+Fixed: 4.1.0+git191117-2~deb10u3</td>
+<td>4.0.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2840819</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
+<td>4.0.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2782033</td>
 <td>The following vulnerabilities have been announced in the openssl packages:
 CVE-2021-3711: buffer overflow vulnerability in SM2 decryption.
@@ -2912,6 +2926,20 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2845538</td>
+<td>CVE-2020-19143: A flaw was discovered in tiff, a Tag Image File Format library, which may result in denial of service or the execution of arbitrary code if malformed image files are processed.
+Vulnerable: &lt;= 4.1.0+git191117-2~deb10u2
+Fixed: 4.1.0+git191117-2~deb10u3</td>
+<td>4.0.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2840819</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
+<td>4.0.0-4.4.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2782033</td>

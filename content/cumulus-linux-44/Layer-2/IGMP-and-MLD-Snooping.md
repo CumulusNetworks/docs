@@ -170,6 +170,44 @@ To enable OMF:
 <!-- vale on -->
 When IGMP reports go to a multicast group, OMF has no effect; normal IGMP snooping occurs.
 
+When OMF is enabled, you can configure a bridge port as an mrouter port to forward unregistered multicast traffic to that port.
+
+{{< tabs "TabID175 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:mgmt:~$ net add interface swp1 bridge portmcrouter enabled
+cumulus@switch:mgmt:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+NVUE commands are not supported.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file to add `bridge-portmcrouter enabled` to the swp1 stanza.
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto swp1
+iface swp1
+   bridge-portmcrouter enabled
+...
+```
+
+Run the `ifreload -a` command to reload the configuration:
+
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 {{%notice note%}}
 OMF increases memory usage, which can impact scaling on Spectrum 1 switches.
 {{%/notice%}}
@@ -262,7 +300,6 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-
 ## Troubleshooting
 
 To show the IGMP/MLD snooping bridge state, run the `brctl showstp <bridge>` command:
@@ -316,7 +353,7 @@ swp3 (3)
   flags
 ```
 
-To show the groups and bridge port state, run the NCLU `net show bridge mdb` command or the Linux `sudo bridge mdb show` command. To show detailed router ports and group information, run the `sudo bridge -d -s mdb show` command:
+Cumulus Linux tracks multicast group and port state in the multicast database (MDB). To show the groups and bridge port state, run the NCLU `net show bridge mdb` command or the Linux `sudo bridge mdb show` command. To show detailed router ports and group information, run the `sudo bridge -d -s mdb show` command:
 
 ```
 cumulus@switch:~$ sudo bridge -d -s mdb show
@@ -326,6 +363,28 @@ cumulus@switch:~$ sudo bridge -d -s mdb show
   dev bridge port swp2 grp ff1a::9 permanent 0.00
   router ports on bridge: swp3
 ```
+## Scale Considerations
+
+The number of unique multicast groups supported in the mdb is 4096 by default. To increase the number of maximum number of multicast groups in the mdb, edit the `/etc/network/interfaces` file to add a `bridge-hashmax` value to the bridge stanza:
+
+```
+auto br_default
+iface br_default
+  bridge-hashmax 16384
+  bridge-ports swp1 swp2 swp3
+  bridge-vlan-aware yes
+  bridge-vids 10 20
+  bridge-pvid 1
+  bridge-mcquerier 1
+  bridge-mcsnoop 1
+```
+
+The supported values for `bridge-hashmax` are 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536.
+
+{{%notice note%}}
+* On Spectrum 1 switches, you must change the {{<link url="Supported-Route-Table-Entries/#forwarding-resource-profiles" text="forwarding resource profile">}} to `rash-custom-profile1`, then restart `switchd`.
+* Spectrum 1 switches limit multicast groups to 16300 in the MDB with OMF disabled and 14800 multicast groups when OMF is enabled.
+{{%/notice%}}
 
 ## Related Information
 

@@ -5,15 +5,12 @@ weight: 702
 toc: 4
 ---
 
-This article outlines the release version numbering structure, and support policies, for:
-
+This article outlines the release version numbering structure and support policies for:
 - Cumulus Linux 4.0 and later
 - Cumulus Linux and Cumulus RMP 3.0 and later (including 3.7 ESR and later)
 
 {{%notice note%}}
-
 Earlier releases of Cumulus Linux and Cumulus RMP are no longer supported.
-
 {{%/notice%}}
 
 ## Version Definitions
@@ -38,9 +35,9 @@ The Cumulus Linux installation file name includes the version number, in the for
 
 ## Release, Support Lifecycle and Support Policy
 
-NVIDIA supports both mainline and Extended Support Releases (ESRs). This support mechanism allows NVIDIA to maintain its desire to innovate, while providing customers with stable releases as soon as it meets the architectural needs.
+NVIDIA supports both mainline and Extended Support Releases (ESRs). This support mechanism allows NVIDIA to maintain its desire to innovate, while providing stable releases as soon as it meets the architectural needs.
 
-Consistent with this two-pronged approach, the mainline and ESR code branches are separate code bases. As such, issues and fixes in one branch are independent of the other. NVIDIA prioritizes the ESR branch for stability foremost, so any fixes on that branch focus on critical-impact security fixes and urgent bug fixes. This ensures customers deploying an ESR release can experience minimal disruption in their day to day network operations.
+Consistent with this two-pronged approach, the mainline and ESR code branches are separate code bases. As such, issues and fixes in one branch are independent of the other. NVIDIA prioritizes the ESR branch for stability; any fixes on that branch focus on critical-impact security fixes and urgent bug fixes. This ensures that if you deploy an ESR release, you experience minimal disruption in day to day network operations.
 
 The following diagram illustrates the ESR and mainline branches, and the table below it describes the characteristics of each.
 
@@ -94,15 +91,41 @@ The following diagram illustrates the ESR and mainline branches, and the table b
 
 ## Product End of Life
 
-Cumulus Linux and Cumulus RMP 3.7.12 have transitioned into the extended support phase (ESR). Customers can choose to continue using Cumulus Linux 3.7 ESR, a mature and stable operating system, or they can upgrade to Cumulus Linux 4.y.z, with the latest and greatest features. NVIDIA is going to support and maintain Cumulus Linux and Cumulus RMP 3.7 ESR for 3 years, until 21 February, 2023.
+Cumulus Linux and Cumulus RMP 3.7.12 have transitioned into the extended support phase (ESR). You can choose to continue using Cumulus Linux 3.7 ESR, a mature and stable operating system, or you can upgrade to Cumulus Linux 4.y.z, with the latest and greatest features. NVIDIA supports and maintains Cumulus Linux and Cumulus RMP 3.7 ESR for 3 years, until 21 February, 2023.
+
+### Cumulus Linux 5.y.z
 
 | Cumulus Linux Version | ESR Start Date    | End of Life Date  |
 | --------------------- | ----------------- | ----------------- |
-| 4.y.z                 | TBD               | TBD               |
-| 3.7.12 - 3.7.z ESR    | 21 February, 2020 | 21 February, 2023 |
-| 3.0.0 - 3.7.11        | N/A               | 31 December, 2020 |
-| 2.5.6 - 2.5.12        | 2 February, 2016  | 2 February, 2019  |
-| 2.5.5 and earlier     | N/A               | 31 December, 2016 |
+| 5.0.z                 | N/A               | November 2024     |
+| 5.y.z                 | February 2024     | February 2027     |
+
+- All Cumulus Linux 5.y releases are supported until November 2024. The February 2024 release will be an ESR release.
+- Cumulus Linux 5.y.z supports Spectrum based switches only.
+
+### Cumulus Linux 4.y.z
+
+| Cumulus Linux Version | ESR Start Date    | End of Life Date  |
+| --------------------- | ----------------- | ----------------- |
+| 4.y.z (Spectrum based switches) | N/A     | December 2022     |
+| 4.3.z (Broadcom based switches) | N/A     | December 2025     |
+
+- The Cumulus Linux 4.y.z release will not have an ESR version. NVIDIA recommends that you run the latest Cumulus Linux 4.3.z release on Broadcom switches and the Cumulus Linux 4.4.z release on Spectrum switches.
+- Cumulus Linux 4.y.z through 4.3.z is in maintenance mode; no new features are planned.
+
+### Cumulus Linux 3.y.z
+
+| Cumulus Linux Version | ESR Start Date    | End of Life Date  |
+| --------------------- | ----------------- | ----------------- |
+| 3.7.12 and later      |February 2020      | February 2023     |
+| 3.7.11 and earlier    | N/A               | December 2020     |
+
+- Cumulus Linux 3.7.z is an ESR release for versions 3.7.12 and later. Support for Cumulus Linux 3.7 ESR will continue until February 2023. All earlier versions of Cumulus Linux 3.7.z are considered end of life and are no longer supported.
+- Cumulus Linux 3.y.z supports both Spectrum and Broadcom based switches.
+
+### Cumulus Linux 2.y.z
+
+All Cumulus Linux 2.y.z releases reached end of life on February 2019 and are no longer supported.
 
 ## Upgrade Process
 

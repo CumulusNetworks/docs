@@ -11,46 +11,60 @@ Setting the time zone, and the date and time on the software clock requires root
 
 ## Set the Time Zone
 
-You can use one of two methods to set the time zone on the switch:
-
-- Edit the `/etc/timezone` file.
+You can use one of these methods to set the time zone on the switch:
+- Run NVUE commands.
 - Use the guided wizard.
+- Edit the `/etc/timezone` file.
 
+{{< tabs "TabID19 ">}}
+{{< tab "NVUE Command ">}}
 <!-- vale off -->
-### Edit the /etc/timezone File
-<!-- vale on -->
-To see the current time zone, list the contents of `/etc/timezone`:
+Run the `nv set system timezone <timezone>` command. To see all the available time zones, run `nv set system timezone` and press the Tab key. The following example sets the time zone to US/Eastern:
 
 ```
-cumulus@switch:~$ cat /etc/timezone
-US/Eastern
+cumulus@switch:~$ nv set system timezone US/Eastern
+cumulus@switch:~$ nv config apply
 ```
 
-Edit the file to add your desired time zone. You can see a list of valid time zones {{<exlink url="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" text="here">}}.
+{{< /tab >}}
+{{< tab "Follow the Guided Wizard ">}}
 
-Use the following command to apply the new time zone:
+1. In a terminal, run the following command:
 
-```
-cumulus@switch:~$ sudo dpkg-reconfigure --frontend noninteractive tzdata
-```
+    ```
+    cumulus@switch:~$ sudo dpkg-reconfigure tzdata
+    ```
 
-Use the following command to change `/etc/localtime` to reflect your current time zone. Use the same value as the previous step.
+2. Follow the on screen menu options to select the geographic area and region.
 
-```
-sudo ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
-```
-
-### Follow the Guided Wizard
-
-To set the time zone using the guided wizard, run the following command:
-
-```
-cumulus@switch:~$ sudo dpkg-reconfigure tzdata
-```
-
-{{< img src = "/images/cumulus-linux/date-time-wizard.png" >}}
+   {{< img src = "/images/cumulus-linux/date-time-wizard.png" >}}
 
 For more information, see the Debian {{<exlink url="http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html" text="System Administrator's Manual - Time">}}.
+
+{{< /tab >}}
+{{< tab "Edit the /etc/timezone File ">}}
+<!-- vale on -->
+1. Edit the `/etc/timezone` file to add your desired time zone. You can see a list of valid time zones {{<exlink url="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" text="here">}}.
+
+   ```
+   cumulus@switch:~$ sudo vi /etc/timezone
+   US/Eastern
+   ```
+
+2. Apply the new time zone:
+
+   ```
+   cumulus@switch:~$ sudo dpkg-reconfigure --frontend noninteractive tzdata
+   ```
+
+3. Change `/etc/localtime` to reflect your current time zone:
+
+   ```
+   sudo ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Set the Date and Time
 

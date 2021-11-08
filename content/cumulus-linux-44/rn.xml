@@ -19,7 +19,8 @@ Fixed: 4.1.0+git191117-2~deb10u3</td>
 <td>The following vulnerabilities in gdb, as embedded in the crash handling program, have been announced:
 CVE-2019-1010180: Buffer overflow which can be triggered by debugging an ELF file.
 CVE-2017-9778: Vulnerability to a negative length field in DWARF section, resulting in excessive memory allocation.
-Vulnerable: crash 7.2.8-1+cl4u1 and 7.2.8-1+cl3u1 with embedded gdb 7.6</td>
+Vulnerable: crash 7.2.8-1+cl4u1 and 7.2.8-1+cl3u1 with embedded gdb 7.6
+Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>3.7.15, 4.3.0-4.4.1</td>
 <td></td>
 </tr>
@@ -1541,7 +1542,8 @@ Fixed: 4.1.0+git191117-2~deb10u3</td>
 <td>The following vulnerabilities in gdb, as embedded in the crash handling program, have been announced:
 CVE-2019-1010180: Buffer overflow which can be triggered by debugging an ELF file.
 CVE-2017-9778: Vulnerability to a negative length field in DWARF section, resulting in excessive memory allocation.
-Vulnerable: crash 7.2.8-1+cl4u1 and 7.2.8-1+cl3u1 with embedded gdb 7.6</td>
+Vulnerable: crash 7.2.8-1+cl4u1 and 7.2.8-1+cl3u1 with embedded gdb 7.6
+Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>3.7.15, 4.3.0-4.4.1</td>
 <td></td>
 </tr>
@@ -2039,13 +2041,6 @@ To work around this issue, disable pruning for IPv6 multicast by setting {{bridg
 <td>2556811</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2556659</td>
-<td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
-Vulnerable: &lt;= 2.8.90-1-cl4u5</td>
-<td>4.0.0-4.4.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3401,7 +3396,7 @@ Fixed: 1.1.1d-0+deb10u5</td>
 <td>2556658</td>
 <td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
 Vulnerable: &lt;= 2.8.90-1-cl4u5</td>
-<td>4.0.0-4.3.0</td>
+<td>4.0.0-4.3.0, 4.4.1</td>
 </tr>
 <tr>
 <td>2556568</td>

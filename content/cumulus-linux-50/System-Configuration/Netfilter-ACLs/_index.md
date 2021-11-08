@@ -986,22 +986,33 @@ Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
 
 ### Filter Specific TCP Flags
 
-The example solution below creates rules on the INPUT and FORWARD chains to drop ingress IPv4 and IPv6 TCP packets when you set the SYN bit and reset the RST, ACK, and FIN bits. The default for the INPUT and FORWARD chains allows all other packets. The ACL apply to ports swp20 and swp21. After configuring this ACL, you cannot establish new TCP sessions that originate from ingress ports swp20 and swp21. You can establish TCP sessions that originate from any other port.
+The example rule below drops ingress IPv4 TCP packets when you set the SYN bit and reset the RST, ACK, and FIN bits. The rule applies inbound on interface swp1. After configuring this rule, you cannot establish new TCP sessions that originate from ingress port swp1. You can establish TCP sessions that originate from any other port.
+
+{{< tabs "991 ">}}
+{{< tab "iptables rule ">}}
 
 ```
-INGRESS_INTF = swp20,swp21
-
-[iptables]
--A INPUT,FORWARD --in-interface $INGRESS_INTF -p tcp --syn -j DROP
-[ip6tables]
--A INPUT,FORWARD --in-interface $INGRESS_INTF -p tcp --syn -j DROP
+-t mangle -A PREROUTING -i swp1 -p tcp --tcp-flags  ACK,SYN,FIN,RST SYN -j DROP
 ```
 
-The `--syn` flag in the above rule matches packets with the SYN bit set and the ACK, RST, and FIN bits cleared. It is equivalent to using `-tcp-flags SYN,RST,ACK,FIN SYN`. For example, you can write the above rule as:
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
 
 ```
--A INPUT,FORWARD --in-interface $INGRESS_INTF -p tcp --tcp-flags SYN,RST,ACK,FIN SYN -j DROP
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 20 match ip tcp flags syn
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 20 match ip tcp mask rst
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 20 match ip tcp mask syn
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 20 match ip tcp mask fin
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 20 match ip tcp mask ack
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Control Who Can SSH into the Switch
 

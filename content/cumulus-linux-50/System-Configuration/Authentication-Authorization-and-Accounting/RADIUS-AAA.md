@@ -17,7 +17,7 @@ cumulus@switch:~$ sudo apt-get update
 cumulus@switch:~$ sudo apt-get install libnss-mapuser libpam-radius-auth
 ```
 
-After installation is complete, either reboot the switch or run the `sudo systemctl restart netd` command.
+After installation is complete, either reboot the switch or run the `sudo systemctl restart nvued` command.
 
 The `libpam-radius-auth` package supplied with the Cumulus Linux RADIUS client is a newer version than the one in {{<exlink url="https://packages.debian.org/buster/libpam-radius-auth" text="Debian Buster">}}. This package contains support for IPv6, the `src_ip` option described below, as well as bug fixes and minor features. The package also includes VRF support, provides man pages describing the PAM and RADIUS configuration, and sets the `SUDO_PROMPT` environment variable to the login name for RADIUS mapping support.
 
@@ -27,7 +27,7 @@ During package installation:
 
 - The PAM configuration updates automatically using `pam-auth-update (8)`, and the NSS configuration file `/etc/nsswitch.conf` adds the `mapuser` and `mapuid` plugins. If you remove or purge the packages, these files remove the configuration for these plugins.
 - The `radius_shell` package installs the `/sbin/radius_shell` and `setcap cap_setuid` program for the login shell for RADIUS accounts. The package adjusts the `UID` when needed, then runs the bash shell with the same arguments. When installed, the package changes the shell of the RADIUS accounts to `/sbin//radius_shell`, and to `/bin/shell` if you remove the package. You need this package to enable privileged RADIUS users. You do not need this package for regular RADIUS clients.
-- The `netshow` group includes the `radius_user` account, and the `netedit` and `sudo` groups include the `radius_priv_user` account. This change enables all RADUS logins to run NCLU `net show` commands and all privileged RADIUS users to also run `net add`, `net del`, and `net commit` commands, and to use `sudo`.
+- The `nvshow` group includes the `radius_user` account, the `nvset` and `nvapply` groups and `sudo` groups include the `radius_priv_user` account. This change enables all RADUS logins to run NVUE `nv show` commands and all privileged RADIUS users to also run `nv set`, `nv unset`, and `nv apply` commands, and to use `sudo`.
 
 ## Configure the RADIUS Client
 
@@ -123,12 +123,13 @@ To configure local fallback authentication:
     cumulus@switch:~$ sudo useradd -u 1002 -g 1001 -o -s /sbin/radius_shell johnadmin
     ```
 
-2. To enable the local privileged user to run `sudo` and NCLU commands, run the following commands:
+2. To enable the local privileged user to run `sudo` and NVUE commands, run the following commands:
 
     ```
-    cumulus@switch:~$ sudo adduser johnadmin netedit
+    cumulus@switch:~$ sudo adduser johnadmin nvset
+    cumulus@switch:~$ sudo adduser johnadmin nvapply
     cumulus@switch:~$ sudo adduser johnadmin sudo
-    cumulus@switch:~$ sudo systemctl restart netd
+    cumulus@switch:~$ sudo systemctl restart nvued
     ```
 
 3. Edit the `/etc/passwd` file to move the local user line before to the `radius_priv_user` line:
@@ -148,37 +149,20 @@ To configure local fallback authentication:
 
 ## Verify RADIUS Client Configuration
 
-To verify that you configured the RADIUS client correctly, log in as a non-privileged user and run a `net add interface` command.
+To verify that you configured the RADIUS client correctly, log in as a non-privileged user and run a `nv set interface` command.
 
 In this example, the `ops` user is not a privileged RADIUS user so the `ops` user cannot add an interface.
 
 ```
-ops@leaf01:~$ net add interface swp1
+ops@leaf01:~$ nv set interface swp1
 ERROR: User ops does not have permission to make networking changes.
 ```
 
 In this example, the `admin` user is a privileged RADIUS user (with privilege level 15) so is able to add interface swp1.
 
 ```
-admin@leaf01:~$ net add interface swp1
-admin@leaf01:~$ net pending
---- /etc/network/interfaces    2018-04-06 14:49:33.099331830 +0000
-+++ /var/run/nclu/iface/interfaces.tmp    2018-04-06 16:01:16.057639999 +0000
-@@ -3,10 +3,13 @@
-
-  source /etc/network/interfaces.d/*.intf
-
-  # The loopback network interface
-  auto lo
-  iface lo inet loopback
-
-  # The primary network interface
-  auto eth0
-  iface eth0 inet dhcp
-+
-+auto swp1
-iface swp1
-...
+admin@leaf01:~$ nv set interface swp1
+admin@leaf01:~$ nv apply
 ```
 
 ## Remove RADIUS Client Packages

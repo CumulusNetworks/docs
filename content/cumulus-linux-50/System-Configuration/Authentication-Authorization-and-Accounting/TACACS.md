@@ -110,7 +110,7 @@ To configure local fallback authentication:
     ...
     ```
 
-2. To enable the local privileged user to run `sudo` and NCLU commands, run the `adduser` commands shown below. In the example commands, the TACACS account name is tacadmin.
+2. To enable the local privileged user to run `sudo` and NVUE commands, run the `adduser` commands shown below. In the example commands, the TACACS account name is tacadmin.
 
     {{%notice note%}}
 
@@ -120,16 +120,17 @@ The first `adduser` command prompts for information and a password. You can skip
 
     ```
     cumulus@switch:~$ sudo adduser --ingroup tacacs tacadmin
-    cumulus@switch:~$ sudo adduser tacadmin netedit
+    cumulus@switch:~$ sudo adduser tacadmin nvset
+    cumulus@switch:~$ sudo adduser tacadmin nvapply
     cumulus@switch:~$ sudo adduser tacadmin sudo
     ```
 
 3. Edit the `/etc/nsswitch.conf` file to add the keyword `tacplus` back to the line starting with `passwd` (the keyword you removed in the first step).
 
-4. Restart the `netd` service with the following command:
+4. Restart the `nvued` service with the following command:
 
     ```
-    cumulus@switch:~$ sudo systemctl restart netd
+    cumulus@switch:~$ sudo systemctl restart nvued
     ```
 
 ## TACACS+ Accounting
@@ -164,38 +165,60 @@ For more information, refer to the `audisp.8` and `auditd.8` man pages.
 
 ## Configure NCLU for TACACS+ Users
 
-When you install or upgrade TACACS+ packages, the installation and update process maps user accounts automatically and adds all *tacacs0* through *tacacs15* users to the *netshow* group.
+When you install or upgrade TACACS+ packages, the installation and update process maps user accounts automatically and adds all *tacacs0* through *tacacs15* users to the *nvshow* group.
 
-If you want any TACACS+ users to execute `net add`, `net del`, and `net commit` commands and restart services with NCLU, you need to add those users to the `users_with_edit` variable in the `/etc/netd.conf` file. Add the *tacacs15* user and, depending upon your policies, other users (*tacacs1* through *tacacs14*) to this variable.
+If you want any TACACS+ users to execute NVUE commands and restart services with NVUE, you need to add those users to the `/etc/nvue-auth.yaml` file. Add the *tacacs15* user and, depending upon your policies, other users (*tacacs1* through *tacacs14*).
 
-To allow a TACACS+ user access to the show commands, add the *tacacs* group to the `groups_with_show` variable.
+To allow a TACACS+ user access to the nv show commands, add the *tacacs* group to the `read-only access` section of the `/etc/nvue-auth.yaml` file.
 
 {{%notice warning%}}
 
-Do not add the *tacacs* group to the `groups_with_edit` variable; any user can log into the switch as the root user.
+Do not add the *tacacs* group to the `full read/write access` section of the `/etc/nvue-auth.yaml` file; any user can log into the switch as the root user.
 
 {{%/notice%}}
 
-To add the users, edit the `/etc/netd.conf` file:
+To add the users, edit the `/etc/nvue-auth.yaml` file:
 
 ```
-cumulus@switch:~$ sudo nano /etc/netd.conf
+cumulus@switch:~$ sudo nano /etc/nvue-auth.yaml
 ...
-# Control which users/groups are allowed to run "add", "del",
-# "clear", "abort", and "commit" commands.
-users_with_edit = root, cumulus, tacacs15
-groups_with_edit = netedit
+# Auth controls for NVUE.
+#
+# The rules are run in order against each request until both the request and
+# requesting user are matched. If the matched rule's action is "allow", the
+# request will go through like normal. If it's "deny", the request will be
+# denied. If no rules are matched, the request will be denied.
+#
+# This file will be loaded once when the nvued process starts. You will need to
+# restart nvued whenever you want to load changes in this file.
+#
+# If this file is invalid/unusable for any reason, NVUE will default to an empty
+# config: All requests will be denied, unless they are coming from root user.
+rules:
+  - reason: full read/write access
+    action: allow
+    match-request:
+      path: '*'
+      method: '*'
+    match-user:
+      name: cumulus
+      group:
+        - nvapply
+        - nvset
+  - reason: read-only access
+    action: allow
+    match-request:
+      path: '*'
+      method: GET
+    match-user:
+      group: nvshow
 
-# Control which users/groups are allowed to run "show" commands
-users_with_show = root, cumulus
-groups_with_show = netshow, netedit, tacacs
-...
 ```
 
-After you save and exit the `netd.conf` file, restart the `netd` service. Run:
+After you save and exit the `/etc/nvue-auth.yaml` file, restart the `nvued` service. Run:
 
 ```
-cumulus@switch:~$ sudo systemctl restart netd
+cumulus@switch:~$ sudo systemctl restart nvued
 ```
 <!-- vale off -->
 ## TACACS+ Per-command Authorization
@@ -203,14 +226,7 @@ cumulus@switch:~$ sudo systemctl restart netd
 The `tacplus-auth` command handles authorization for each command. To make this an enforced authorization, change the TACACS+ login to use a restricted shell, with a very limited executable search path. Otherwise, the user can bypass the authorization. The `tacplus-restrict` utility simplifies setting up the restricted environment. The example below initializes the environment for the *tacacs0* user account. This is the account for TACACS+ users at privilege level `0`.
 <!-- vale on -->
 ```
-tacuser0@switch:~$ sudo tacplus-restrict -i -u tacacs0 -a command1 command2 ... commandN
-```
-
-If the TACACS+ server does not allow the user or command combination, you see a message similar to the following:
-
-```
-tacuser0@switch:~$ net show version
-net not authorized by TACACS+ with given arguments, not executing
+tacuser0@switch:~$ sudo tacplus-restrict -i -u tacacs0 -a command1 command2 command3
 ```
 
 The following table provides the command options:
@@ -221,10 +237,10 @@ The following table provides the command options:
 | `-a` | You can invoke the utility with the `-a` option as often as you like. For each command in the `-a` list, the utility creates a symbolic link from `tacplus-auth` to the relative portion of the command name in the local bin subdirectory. You also need to enable these commands on the TACACS+ server (refer to the TACACS+ server documentation). It is common for the server to allow some options to a command, but not others. |
 | `-f` | Re-initializes the environment. If you need to restart, issue the `-f` option with `-i` to force re-initialization; otherwise, the utility ignores repeated use of `-i`.<br>As part of the initialization:<br>- The user shell changes to `/bin/rbash`.<br>- The utility saves any existing dot files. |
 
-For example, if you want to allow the user to be able to run the `net` and `ip` commands (if authorized by the TACACS+ server):
+For example, if you want to allow the user to be able to run the `nv` and `ip` commands (if authorized by the TACACS+ server):
 
 ```
-cumulus@switch:~$ sudo tacplus-restrict -i -u tacacs0 -a ip net
+cumulus@switch:~$ sudo tacplus-restrict -i -u tacacs0 -a ip nv
 ```
 
 After running this command, examine the `tacacs0` directory::
@@ -233,15 +249,15 @@ After running this command, examine the `tacacs0` directory::
 cumulus@switch:~$ sudo ls -lR ~tacacs0
 total 12
 lrwxrwxrwx 1 root root 22 Nov 21 22:07 ip -> /usr/sbin/tacplus-auth
-lrwxrwxrwx 1 root root 22 Nov 21 22:07 net -> /usr/sbin/tacplus-auth
+lrwxrwxrwx 1 root root 22 Nov 21 22:07 nv -> /usr/sbin/tacplus-auth
 ```
 
-Other than shell built-ins, privilege level 0 TACACS users can only run the `ip` and `net` commands.
+Other than shell built-ins, privilege level 0 TACACS users can only run the `ip` and `nv` commands.
 
-If add commands with the `-a` option by mistake, you can remove them. The example below removes the `net` command:
+If add commands with the `-a` option by mistake, you can remove them. The example below removes the `nv` command:
 
 ```
-cumulus@switch:~$ sudo rm ~tacacs0/bin/net
+cumulus@switch:~$ sudo rm ~tacacs0/bin/nv
 ```
 
 You can remove all commands:
@@ -281,7 +297,7 @@ The table below describes the configuration options available:
 | timeout=seconds | TACACS+ servers communication timeout.<br>This parameter defaults to 10 seconds in the /etc/tacplus_servers file, but defaults to 5 seconds in the /etc/tacplus_nss.conf file. |
 | include=/file/name | A supplemental configuration file to avoid duplicating configuration information. You can include up to 8 more configuration files. |
 | min_uid=value | The minimum user ID that the NSS plugin looks up. 0 specifies that the plugin never looks up uid 0 (root). Do not specify a value greater than the local TACACS+ user IDs (0 through 15). |
-| exclude_users=user1,user2,| A comma-separated list of usernames in the `tacplus_nss.conf` file that the NSS plugin never looks up. You cannot use * (asterisk) as a wild card in the list. While it is not a legal username, bash can look up this asterisk as a username during pathname completion, so it is in this list as a username string.<br>**Note**: Do not remove the cumulus user from the `exclude_users` list; doing so can make it impossible to log in as the cumulus user, which is the primary administrative account in Cumulus Linux. If you do remove the cumulus user, add some other local fallback user that does not rely on TACACS but is a member of sudo and netedit groups, so that these accounts can run sudo and NCLU commands. |
+| exclude_users=user1,user2,| A comma-separated list of usernames in the `tacplus_nss.conf` file that the NSS plugin never looks up. You cannot use * (asterisk) as a wild card in the list. While it is not a legal username, bash can look up this asterisk as a username during pathname completion, so it is in this list as a username string.<br>**Note**: Do not remove the cumulus user from the `exclude_users` list; doing so can make it impossible to log in as the cumulus user, which is the primary administrative account in Cumulus Linux. If you do remove the cumulus user, add some other local fallback user that does not rely on TACACS but is a member of sudo and NVUE read/write groups, so that these accounts can run sudo and NVUE commands. |
 | login=string | TACACS+ authentication service (pap, chap, or login).<br>The default value is pap.|
 |user_homedir=1|This option is off by default. When you enable this option, Cumulus Linux creates a separate home directory for each TACACS+ user when the TACACS+ user first logs in. By default, the switch uses the home directory in the mapping accounts in `/etc/passwd` (`/home/tacacs0` through `/home/tacacs15`). If the home directory does not exist, the `mkhomedir_helper` program creates it, in the same way as `pam_mkhomedir`.<br>This option does not apply for accounts with restricted shells when you enable per-command authorization. |
 | acct_all=1 | Configuration option for audisp_tacplus and pam_tacplus sending accounting records to all supplied servers (1), or the first server to respond (0).<br>The default value is 1. |
@@ -355,34 +371,13 @@ The TACACS client on the switch and the TACACS server must have the same shared 
 <!-- vale off -->
 ### Issues with Per-command Authorization
 <!-- vale on -->
-To debug TACACS user command authorization, have the TACACS+ user enter
-the following command at a shell prompt, then try the command again:
+To debug TACACS user command authorization, have the TACACS+ user enter the following command at a shell prompt, then try the command again:
 
 ```
 tacuser0@switch:~$ export TACACSAUTHDEBUG=1
 ```
 
-When you enable debugging, the command authorization conversation with the TACACS+ server shows additional information:
-
-```
-tacuser0@switch:~$ net pending
-tacplus-auth: found matching command (/usr/bin/net) request authorization
-tacplus-auth: error connecting to 10.0.3.195:49 to request authorization for net: Transport endpoint is not connected
-tacplus-auth: cmd not authorized (16)
-tacplus-auth: net not authorized from 192.168.3.189:49
-net not authorized by TACACS+ with given arguments, not executing
-```
-
-```
-tacuser0@switch:~$ net show version
-tacplus-auth: found matching command (/usr/bin/net) request authorization
-tacplus-auth: error connecting to 10.0.3.195:49 to request authorization for net: Transport endpoint is not connected
-tacplus-auth: 192.168.3.189:49 authorized command net
-tacplus-auth: net authorized, executing
-DISTRIB_ID="Cumulus Linux"
-DISTRIB_RELEASE=4.1.0
-DISTRIB_DESCRIPTION="Cumulus Linux 4.1.0"
-```
+When you enable debugging, the command authorization conversation with the TACACS+ server shows additional information.
 
 To disable debugging:
 

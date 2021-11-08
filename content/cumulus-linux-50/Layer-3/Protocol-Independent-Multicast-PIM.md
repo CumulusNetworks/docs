@@ -1118,29 +1118,65 @@ cumulus@switch:~$ net commit
 
 For large multicast environments, the default [CoPP](## "Control Plane Policing") policer might be too restrictive. You can adjust the policer to improve multicast convergence.
 
-- The default PIM forwarding rate is set to 2000 packets per second and the burst rate is set to 2000 packets.
-- The default IGMP forwarding rate is set to 300 packets per second and the burst rate is set to 100 packets.
+- The default PIM forwarding rate and burst rate is set to 2000 packets per second.
+- The default IGMP forwarding rate and burst rate is set to 1000 packets per second.
 
-To tune the PIM and IGMP forwarding and burst rate, edit the `/etc/cumulus/acl/policy.d/00control_plane.rules` file and change `--set-rate` and `--set-burst` in the PIM and IGMP policer lines.
+{{< tabs "991 ">}}
+{{< tab "NVUE Commands ">}}
 
-The following example command changes the **PIM** forwarding rate to 2050 packets per second and the burst rate to 2050 packets.
-
-```
--A $INGRESS_CHAIN -p pim -j POLICE --set-mode pkt --set-rate 2050 --set-burst 2050
-```
-
-The following command example changes the **IGMP** forwarding rate to 400 packets per second and the burst rate to 200 packets.
+The following example commands set the PIM forwarding and burst rate to 400 packets per second:
 
 ```
--A $INGRESS_CHAIN -p igmp -j POLICE --set-mode pkt --set-rate 400 --set-burst 200
+cumulus@switch:~$ nv set acl example1 type ipv4
+cumulus@switch:~$ nv set acl example1 rule 1 match ip protocol pim
+cumulus@switch:~$ nv set acl example1 rule 1 action police rate 400
+cumulus@switch:~$ nv set acl example1 rule 1 action police burst 400
+cumulus@switch:~$ nv set interface swp1 acl example1 inbound control-plane
+cumulus@switch:~$ nv config apply
 ```
 
-To apply the rules, run the `sudo cl-acltool -i` command:
+The following example commands set the IGMP forwarding rate to 400 and the IGMP burst rate to 200 packets per second:
 
 ```
-cumulus@switch:~$ sudo cl-acltool -i
+cumulus@switch:~$ nv set acl example1 type ipv4
+cumulus@switch:~$ nv set acl example1 rule 1 match ip protocol igmp
+cumulus@switch:~$ nv set acl example1 rule 1 action police rate 400
+cumulus@switch:~$ nv set acl example1 rule 1 action police burst 200
+cumulus@switch:~$ nv set interface swp1 acl example1 inbound control-plane
+cumulus@switch:~$ nv config apply
 ```
 
+{{< /tab >}}
+{{< tab "Edit /etc/cumulus/control-plane/policers.conf ">}}
+
+1. Edit the `/etc/cumulus/control-plane/policers.conf` file:
+
+   - To tune the PIM forwarding and burst rate, change the `copp.pim_ospf_rip.rate` and `copp.pim_ospf_rip.burst` parameters.
+   - To tune the IGMP forwarding and burst rate, change the `copp.igmp.rate` and `copp.igmp.burst` parameters.
+
+      The following example changes the PIM forwarding rate and the PIM burst rate to 400 packets per second, the IGMP forwarding rate to 400 packets per second and the IGMP burst rate to 200 packets per second:
+
+      ```
+      cumulus@switch:~$ sudo nano /etc/cumulus/control-plane/policers.conf
+      ...
+      copp.pim_ospf_rip.enable = TRUE
+      copp.pim_ospf_rip.rate = 400
+      copp.pim_ospf_rip.burst = 400
+      ...
+      copp.igmp.enable = TRUE
+      copp.igmp.rate = 400
+      copp.igmp.burst = 200
+      ...
+      ```
+
+2. Edit the `/etc/cumulus/control-plane/policers.conf` file, run the the following command:
+
+   ```
+   cumulus@switch:~$ switchdctl --load /etc/cumulus/control-plane/policers.conf
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
 <!-- vale off -->
 <!-- vale.ai Issue #253 -->
 ## PIM Active-active with MLAG

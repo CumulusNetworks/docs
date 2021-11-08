@@ -830,16 +830,16 @@ The examples here use the DSCP match criteria in combination with other IP, TCP,
 [iptables]
 
 #Match and count the packets that match SSH traffic with DSCP EF
--A FORWARD -p tcp --dport 22 -m dscp --dscp 46 -j ACCEPT
+-t mangle -A PREROUTING -i ANY -p tcp -m multiport --dports 22 -j SETQOS --set-dscp 46
 
 #Match and count the packets coming in swp1 as AF13
--A FORWARD --in-interface swp1 -m dscp --dscp 14 -j ACCEPT
+-t mangle -A PREROUTING -i swp1  -j SETQOS --set-dscp 14
 
 #Match and count the packets with a destination 10.0.0.17 marked best effort
--A FORWARD -d 10.0.100.27/32 -m dscp --dscp 0 -j ACCEPT
+-t mangle -A PREROUTING -i ANY -d 10.0.100.27/32 -j SETQOS --set-dscp 0
 
 #Match and count the packets in a port range with DSCP AF41
--A FORWARD -p tcp -s 10.0.0.17/32 --sport 10000:20000 -d 10.0.100.27/32 --dport 10000:20000 -m dscp --dscp 34 -j ACCEPT
+-t mangle -A PREROUTING -i ANY -s 10.0.0.17/32 -d 10.0.100.27/32 -p tcp -m multiport --sports 10000:20000 -m multiport --dports 10000:20000 -j SETQOS --set-dscp 34
 ```
 
 Apply the rule:

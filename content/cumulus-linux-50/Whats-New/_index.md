@@ -36,7 +36,7 @@ Cumulus Linux 5.0 supports new platforms, provides bug fixes, and contains sever
 - cl-support now includes CPLD register information
 - DHCPv6 supports SVI interfaces
 - MPLS LSR support with BGP labeled-unicast signaling
-- New forwarding resource profiles: v6-lpm-heavy-1 and l2-heavy-3
+- New forwarding resource profiles: `v6-lpm-heavy-1` and `l2-heavy-3`
 - SNMP enhancements:
   - Support for buffer queue utilisation
   - link up and link down count

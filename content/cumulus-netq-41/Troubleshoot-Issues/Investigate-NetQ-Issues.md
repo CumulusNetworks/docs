@@ -188,8 +188,13 @@ Refer to {{<link title="Verify Network Connectivity/#create-a-layer-3-on-demand-
 
 ## Generate a Support File
 
-The `opta-support` command generates an archive of useful information for troubleshooting issues with NetQ. It is an extension of the `cl-support` command in Cumulus Linux. It provides information about the NetQ Platform configuration and runtime statistics as well as output from the `docker ps` command. The NVIDIA support team might request the output of this command when assisting with any issues that you could not solve with your own troubleshooting. Run the following command:
+The `opta-support` command generates an archive of useful information for troubleshooting issues with NetQ. It is an extension of the `cl-support` command in Cumulus Linux. It provides information about the NetQ Platform configuration and runtime statistics as well as output from the `docker ps` command. The NVIDIA support team might request the output of this command when assisting with any issues that you could not solve with your own troubleshooting. You will be prompted to enter NetQ UI credentials to access network health data in the support bundle. Run the following command:
 
 ```
-cumulus@switch:~$ opta-support
+cumulus@server:~$ sudo opta-support
+Enter NetQ UI credentials to collect network data (y/n)? y
+Username: admin
+Password: 
+Please send /var/support/opta_support_server_2021119_165552.txz to Nvidia support.
+
 ```

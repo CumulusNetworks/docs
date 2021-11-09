@@ -138,12 +138,6 @@ To work around this issue, run the following command on the NetQ telemetry serve
 <td></td>
 </tr>
 <tr>
-<td>2661988</td>
-<td>Rerunning a validation in the UI or the CLI can return the same error if the query includes special characters, such as **+** or **:**.</td>
-<td>4.0.0-4.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2555854</td>
 <td>NetQ Agent: If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten.</td>
 <td>3.0.0-3.3.1, 4.0.0-4.0.1</td>
@@ -235,12 +229,6 @@ To work around this issue, run the following command on the NetQ telemetry serve
 <tr>
 <td>2663274</td>
 <td>You cannot set a validation filter for sensor validations.</td>
-<td>4.0.0-4.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2661988</td>
-<td>Rerunning a validation in the UI or the CLI can return the same error if the query includes special characters, such as **+** or **:**.</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>

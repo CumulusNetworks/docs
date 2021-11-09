@@ -747,16 +747,16 @@ The examples here use the *mangle* table to modify the packet as it transits the
 [iptables]
 
 #Set SSH as high priority traffic.
--t mangle -A FORWARD -p tcp --dport 22  -j DSCP --set-dscp 46
+-t mangle -A PREROUTING -i ANY -p tcp -m multiport --dports 22 -j SETQOS --set-dscp 46
 
 #Set everything coming in swp1 as AF13
--t mangle -A FORWARD --in-interface swp1 -j DSCP --set-dscp 14
+-t mangle -A PREROUTING -i swp1  -j SETQOS --set-dscp 14
 
 #Set Packets destined for 10.0.100.27 as best effort
--t mangle -A FORWARD -d 10.0.100.27/32 -j DSCP --set-dscp 0
+-t mangle -A PREROUTING -i ANY -d 10.0.100.27/32 -j SETQOS --set-dscp 0
 
 #Example using a range of ports for TCP traffic
--t mangle -A FORWARD -p tcp -s 10.0.0.17/32 --sport 10000:20000 -d 10.0.100.27/32 --dport 10000:20000 -j DSCP --set-dscp 34
+-t mangle -A PREROUTING -i ANY -s 10.0.0.17/32 -d 10.0.100.27/32 -p tcp -m multiport --sports 10000:20000 -m multiport --dports 10000:20000 -j SETQOS --set-dscp 34
 ```
 
 Apply the rule:
@@ -830,16 +830,16 @@ The examples here use the DSCP match criteria in combination with other IP, TCP,
 [iptables]
 
 #Match and count the packets that match SSH traffic with DSCP EF
--A FORWARD -p tcp --dport 22 -m dscp --dscp 46 -j ACCEPT
+-t mangle -A PREROUTING -i ANY -p tcp -m multiport --dports 22 -m dscp --dscp 46 -j ACCEPT
 
 #Match and count the packets coming in swp1 as AF13
--A FORWARD --in-interface swp1 -m dscp --dscp 14 -j ACCEPT
+-t mangle -A PREROUTING -i swp1 -m dscp --dscp 14 -j ACCEPT
 
 #Match and count the packets with a destination 10.0.0.17 marked best effort
--A FORWARD -d 10.0.100.27/32 -m dscp --dscp 0 -j ACCEPT
+-t mangle -A PREROUTING -i ANY -d 10.0.100.27/32 -m dscp --dscp 0 -j ACCEPT
 
 #Match and count the packets in a port range with DSCP AF41
--A FORWARD -p tcp -s 10.0.0.17/32 --sport 10000:20000 -d 10.0.100.27/32 --dport 10000:20000 -m dscp --dscp 34 -j ACCEPT
+-t mangle -A PREROUTING -i ANY -s 10.0.0.17/32 -d 10.0.100.27/32 -p tcp -m multiport --sports 10000:20000 -m multiport --dports 10000:20000 -m dscp --dscp 34 -j ACCEPT
 ```
 
 Apply the rule:

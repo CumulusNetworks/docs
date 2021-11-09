@@ -4,7 +4,13 @@ author: NVIDIA
 weight: 1006
 toc: 4
 ---
-NetQ provides the ability to analyze active traffic flows in your network. Use the Flow Analysis tool to sample data from UDP and TCP flows in your environment and review performance statistics related to flow health.
+NetQ provides the ability to analyze active traffic flows in your network. Use the Flow Analysis tool to sample data from TCP and UDP flows in your environment and review latency and buffer utilization statistics across network paths.
+
+{{<notice info>}}
+
+Flow Analysis is supported on NVIDIA Spectrum 2 and 3 platforms, and requires a switch fabric running Cumulus Linux version 5.0 or above.
+
+{{</notice>}}
 
 ## Create New Flow Analysis
 
@@ -34,7 +40,7 @@ Collected flow analysis data can also be viewed by selecting **Flow Analysis** a
 
 {{<figure src="/images/netq/flow-analysis-view-previous.png" width="350">}}
 
-From here you can select **View details** next to the name of the flow analysis to bring up the analysis dashboard. You can use this dashboard to view latency and buffer statistics for the monitored flow. If bidirectional monitoring for the flow was enabled, you can view the reverse direction of the flow by using the {{<img src="/images/netq/reverse-toggle.svg" height="18" width="18">}} icon.
+You can select **View details** next to the name of the flow analysis to bring up the analysis dashboard. You can use this dashboard to view latency and buffer statistics for the monitored flow. If bidirectional monitoring for the flow was enabled, you can view the reverse direction of the flow by using the {{<img src="/images/netq/reverse-toggle.svg" height="18" width="18">}} icon.
 
 {{<figure src="/images/netq/flow-analysis-dashboard.png" width="800">}}
 

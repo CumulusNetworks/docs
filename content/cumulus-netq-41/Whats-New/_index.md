@@ -21,7 +21,7 @@ NetQ 4.1.0 includes the following new features and improvements:
 - You can decommision a switch from the NetQ UI
 - The validity of the k8s cluster security certificate has been increased to 10 years from the date of installation
 - Enhanced monitoring for the SONiC operating system. Support includes collection of FDB, interface counters, and DOM information.
-- Validation performance improvements and the ability to disable individual validation checks
+- Validation performance improvements and the ability to {{<link title="Validation Checks#disabling-validation-checks" text="disable validation checks">}}
 - Support for monitoring traditional mode bridges on Cumulus Linux
 - Validation for duplicate IP address detection in your network
 

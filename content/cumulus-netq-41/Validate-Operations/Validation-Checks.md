@@ -142,3 +142,16 @@ The VXLAN validation tests look for configuration consistency across all VTEPs. 
 | :---------: | --------- | ----------- |
 | 0 | VLAN Consistency | Checks for consistent VLAN to VXLAN mapping across all VTEPs |
 | 1 | BUM replication | Checks for consistent replication group membership across all VTEPs |
+
+## Disabling Validation Checks
+
+You can disable individual validation checks to suppress known events from affecting the reported network health. More than one validation check can be disabled from the validation dashboard.
+
+1. Open the validation dashboard by selecting **Validations** and **Show all scheduled validations:**
+
+{{<figure src="/images/netq/validation-show-all.png" width="300">}}
+
+2. Select the {{<img src="/images/netq/navigation-menu-horizontal.svg" height="18" width="18">}} icon on the card for the desired validation and select disable. Validation checks can be enabled from the same menu:
+
+{{<figure src="/images/netq/validation-disable-check.png" width="250">}}
+

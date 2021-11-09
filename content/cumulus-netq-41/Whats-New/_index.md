@@ -18,7 +18,7 @@ NetQ 4.1.0 includes the following new features and improvements:
 - Improved What Just Happened (WJH) dashboard for Cumulus Linux and early access WJH support on SONiC.
 - {{<link title="gNMI Streaming" text="gNMI telemetry streaming">}} for system resource, interface, and counter data on Cumulus Linux.
 - Early access support for {{<link title="gNMI Streaming#collect-wjh-data-using-gnmi" text="gNMI collection of What Just Happened data on SONiC.">}}
-- You can decommision a switch from the NetQ UI.
+- {{<link title="Decommission Switches#decommission-from-the-netq-ui" text="You can decommision a switch from the NetQ UI.">}}
 - The validity of the k8s cluster security certificate has been increased to 10 years from the date of installation.
 - Enhanced monitoring for the SONiC operating system. Support includes collection of FDB, interface counters, and DOM information.
 - Validation performance improvements and the ability to {{<link title="Validation Checks#disabling-validation-checks" text="disable validation checks.">}}

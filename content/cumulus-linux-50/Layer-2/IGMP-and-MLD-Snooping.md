@@ -198,7 +198,7 @@ cumulus@switch:~$ nv config apply
    ...
    ```
 
-2. Edit the `/etc/cumulus/control-plane/policers.conf` file, run the the following command:
+2. Edit the `/etc/cumulus/control-plane/policers.conf` file, run the following command:
 
    ```
    cumulus@switch:~$ switchdctl --load /etc/cumulus/control-plane/policers.conf

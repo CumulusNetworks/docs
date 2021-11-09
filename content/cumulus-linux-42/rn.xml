@@ -7,6 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2845538</td>
+<td>CVE-2020-19143: A flaw was discovered in tiff, a Tag Image File Format library, which may result in denial of service or the execution of arbitrary code if malformed image files are processed.
+Vulnerable: &lt;= 4.1.0+git191117-2~deb10u2
+Fixed: 4.1.0+git191117-2~deb10u3</td>
+<td>4.0.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2840819</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
+<td>4.0.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2816069</td>
 <td>On the EdgeCore AS7326 switch, unicast ARP requests are not forwarded to the control plane.</td>
 <td>4.2.1-4.4.1</td>
@@ -505,18 +519,11 @@ Fixed: 1.1.1d-0+deb10u5</td>
 <td></td>
 </tr>
 <tr>
-<td>2556659</td>
+<td>2556658</td>
 <td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
 Vulnerable: &lt;= 2.8.90-1-cl4u5</td>
 <td>4.0.0-4.4.1</td>
 <td></td>
-</tr>
-<tr>
-<td>2556658</td>
-<td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
-Vulnerable: &lt;= 2.8.90-1-cl4u5</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0-4.4.1</td>
 </tr>
 <tr>
 <td>2556568</td>
@@ -1811,6 +1818,20 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2845538</td>
+<td>CVE-2020-19143: A flaw was discovered in tiff, a Tag Image File Format library, which may result in denial of service or the execution of arbitrary code if malformed image files are processed.
+Vulnerable: &lt;= 4.1.0+git191117-2~deb10u2
+Fixed: 4.1.0+git191117-2~deb10u3</td>
+<td>4.0.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2840819</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
+<td>4.0.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2816069</td>
 <td>On the EdgeCore AS7326 switch, unicast ARP requests are not forwarded to the control plane.</td>
 <td>4.2.1-4.4.1</td>
@@ -2309,18 +2330,11 @@ Fixed: 1.1.1d-0+deb10u5</td>
 <td></td>
 </tr>
 <tr>
-<td>2556659</td>
+<td>2556658</td>
 <td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
 Vulnerable: &lt;= 2.8.90-1-cl4u5</td>
 <td>4.0.0-4.4.1</td>
 <td></td>
-</tr>
-<tr>
-<td>2556658</td>
-<td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
-Vulnerable: &lt;= 2.8.90-1-cl4u5</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0-4.4.1</td>
 </tr>
 <tr>
 <td>2556568</td>
@@ -4520,6 +4534,20 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2845538</td>
+<td>CVE-2020-19143: A flaw was discovered in tiff, a Tag Image File Format library, which may result in denial of service or the execution of arbitrary code if malformed image files are processed.
+Vulnerable: &lt;= 4.1.0+git191117-2~deb10u2
+Fixed: 4.1.0+git191117-2~deb10u3</td>
+<td>4.0.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2840819</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
+<td>4.0.0-4.4.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2782033</td>
 <td>The following vulnerabilities have been announced in the openssl packages:
 CVE-2021-3711: buffer overflow vulnerability in SM2 decryption.
@@ -4970,18 +4998,11 @@ Fixed: 1.1.1d-0+deb10u5</td>
 <td></td>
 </tr>
 <tr>
-<td>2556659</td>
+<td>2556658</td>
 <td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
 Vulnerable: &lt;= 2.8.90-1-cl4u5</td>
 <td>4.0.0-4.4.1</td>
 <td></td>
-</tr>
-<tr>
-<td>2556658</td>
-<td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
-Vulnerable: &lt;= 2.8.90-1-cl4u5</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0-4.4.1</td>
 </tr>
 <tr>
 <td>2556568</td>

@@ -145,7 +145,7 @@ The VXLAN validation tests look for configuration consistency across all VTEPs. 
 
 ## Disabling Validation Checks
 
-You can disable individual validation checks to suppress known events from affecting the reported network health. More than one validation check can be disabled from the validation dashboard.
+You can disable validation checks to suppress known events from affecting the reported network health. More than one validation check can be disabled from the validation dashboard.
 
 1. Open the validation dashboard by selecting **Validations** and **Show all scheduled validations:**
 

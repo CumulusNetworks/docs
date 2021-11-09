@@ -6,15 +6,16 @@ toc: 4
 ---
 NetQ provides the ability to analyze active traffic flows in your network. Use the Flow Analysis tool to sample data from TCP and UDP flows in your environment and review latency and buffer utilization statistics across network paths.
 
+<!-- vale off -->
 {{<notice info>}}
 
 Flow Analysis is supported on NVIDIA Spectrum 2 and 3 platforms, and requires a switch fabric running Cumulus Linux version 5.0 or above.
 
 {{</notice>}}
-
+<!-- vale on -->
 ## Create New Flow Analysis
 
-To start a new flow analysis, click on the **Flow Analysis** menu and select **Create New Flow Analysis**:
+To start a new flow analysis, click the **Flow Analysis** menu and select **Create New Flow Analysis**:
 
 {{<figure src="/images/netq/new-flow-analysis.png" width="350">}}
 

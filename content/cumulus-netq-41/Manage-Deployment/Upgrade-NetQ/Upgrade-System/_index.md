@@ -225,7 +225,7 @@ To upgrade your NetQ software:
 {{<tab "On-premises Deployments">}}
 
 ```
-netq upgrade bundle /mnt/installables/NetQ-4.0.0.tgz
+netq upgrade bundle /mnt/installables/NetQ-4.1.0.tgz
 ```
 
 {{</tab>}}
@@ -233,7 +233,7 @@ netq upgrade bundle /mnt/installables/NetQ-4.0.0.tgz
 {{<tab "Cloud Deployments">}}
 
 ```
-netq upgrade bundle /mnt/installables/NetQ-4.0.0-opta.tgz
+netq upgrade bundle /mnt/installables/NetQ-4.1.0-opta.tgz
 ```
 
 {{</tab>}}
@@ -275,7 +275,7 @@ Successfully bootstrap-upgraded the master node
 {{<tab "Remote Deployments">}}
 
 ```
-netq bootstrap master upgrade /mnt/installables/NetQ-4.0.0-opta.tgz
+netq bootstrap master upgrade /mnt/installables/NetQ-4.1.0-opta.tgz
 ```
 
 {{</tab>}}
@@ -294,7 +294,7 @@ netq bootstrap master upgrade /mnt/installables/NetQ-4.0.0-opta.tgz
 
 4. Click **Upgrade** in the upper right corner.
 
-5. Enter *NetQ-4.0.0.tgz* or *NetQ-4.0.0-opta.tgz* and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
+5. Enter *NetQ-4.1.0.tgz* or *NetQ-4.1.0-opta.tgz* and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
     {{<figure src="/images/netq/adminui-upgrade-enter-tar-330.png" width="700">}}
 

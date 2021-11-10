@@ -185,9 +185,9 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
     9. Verify this is the correct image, then click **Download**.
 
-    10. Copy these two files, *netq-bootstrap-4.0.0.tgz* and either *NetQ-4.0.0.tgz* (on-premises) or *NetQ-4.0.0-opta.tgz* (cloud), to the */mnt/installables/* directory on the appliance.
+    10. Copy these two files, *netq-bootstrap-4.1.0.tgz* and either *NetQ-4.1.0.tgz* (on-premises) or *NetQ-4.1.0-opta.tgz* (cloud), to the */mnt/installables/* directory on the appliance.
 
-    11. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-4.0.0-opta.tgz* instead of *NetQ-4.0.0.tgz*.
+    11. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-4.1.0-opta.tgz* instead of *NetQ-4.1.0.tgz*.
 
         ```
         cumulus@<hostname>:~$ dpkg -l | grep netq

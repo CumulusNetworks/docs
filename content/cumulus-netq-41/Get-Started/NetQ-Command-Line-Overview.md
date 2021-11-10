@@ -492,7 +492,7 @@ You use the following commands to manage the NetQ system itself:
 This example shows how to bootstrap a single server or master server in a server cluster:
 
 ```
-cumulus@switch:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-4.0.0.tgz
+cumulus@switch:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-4.1.0.tgz
 ```
 
 This example shows how to decommission a switch named leaf01:

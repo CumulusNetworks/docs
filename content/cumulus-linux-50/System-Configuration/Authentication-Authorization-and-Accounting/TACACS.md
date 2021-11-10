@@ -163,7 +163,7 @@ All `sudo` commands run by TACACS+ users generate accounting records against the
 
 For more information, refer to the `audisp.8` and `auditd.8` man pages.
 
-## Configure NCLU for TACACS+ Users
+## Configure NVUE for TACACS+ Users
 
 When you install or upgrade TACACS+ packages, the installation and update process maps user accounts automatically and adds all *tacacs0* through *tacacs15* users to the *nvshow* group.
 
@@ -182,19 +182,6 @@ To add the users, edit the `/etc/nvue-auth.yaml` file:
 ```
 cumulus@switch:~$ sudo nano /etc/nvue-auth.yaml
 ...
-# Auth controls for NVUE.
-#
-# The rules are run in order against each request until both the request and
-# requesting user are matched. If the matched rule's action is "allow", the
-# request will go through like normal. If it's "deny", the request will be
-# denied. If no rules are matched, the request will be denied.
-#
-# This file will be loaded once when the nvued process starts. You will need to
-# restart nvued whenever you want to load changes in this file.
-#
-# If this file is invalid/unusable for any reason, NVUE will default to an empty
-# config: All requests will be denied, unless they are coming from root user.
-rules:
   - reason: full read/write access
     action: allow
     match-request:
@@ -212,7 +199,6 @@ rules:
       method: GET
     match-user:
       group: nvshow
-
 ```
 
 After you save and exit the `/etc/nvue-auth.yaml` file, restart the `nvued` service. Run:

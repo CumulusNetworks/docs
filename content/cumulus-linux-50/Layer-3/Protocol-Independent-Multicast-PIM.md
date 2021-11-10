@@ -776,8 +776,8 @@ cumulus@switch:~$ nv set vrf RED router bgp autonomous-system 65001
 cumulus@switch:~$ nv set vrf BLUE router bgp autonomous-system 65000
 cumulus@switch:~$ nv set vrf RED router bgp router-id 10.1.1.1
 cumulus@switch:~$ nv set vrf BLUE router bgp router-id 10.1.1.2
-cumulus@switch:~$ nv set vrf RED router bgp peer swp1 remote-as external
-cumulus@switch:~$ nv set vrf BLUE router bgp peer swp2 remote-as external
+cumulus@switch:~$ nv set vrf RED router bgp neighbor swp1 remote-as external
+cumulus@switch:~$ nv set vrf BLUE router bgp neighbor swp2 remote-as external
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1118,29 +1118,65 @@ cumulus@switch:~$ net commit
 
 For large multicast environments, the default [CoPP](## "Control Plane Policing") policer might be too restrictive. You can adjust the policer to improve multicast convergence.
 
-- The default PIM forwarding rate is set to 2000 packets per second and the burst rate is set to 2000 packets.
-- The default IGMP forwarding rate is set to 300 packets per second and the burst rate is set to 100 packets.
+- The default PIM forwarding rate and burst rate is set to 2000 packets per second.
+- The default IGMP forwarding rate and burst rate is set to 1000 packets per second.
 
-To tune the PIM and IGMP forwarding and burst rate, edit the `/etc/cumulus/acl/policy.d/00control_plane.rules` file and change `--set-rate` and `--set-burst` in the PIM and IGMP policer lines.
+{{< tabs "991 ">}}
+{{< tab "NVUE Commands ">}}
 
-The following example command changes the **PIM** forwarding rate to 2050 packets per second and the burst rate to 2050 packets.
-
-```
--A $INGRESS_CHAIN -p pim -j POLICE --set-mode pkt --set-rate 2050 --set-burst 2050
-```
-
-The following command example changes the **IGMP** forwarding rate to 400 packets per second and the burst rate to 200 packets.
+The following example commands set the PIM forwarding and burst rate to 400 packets per second:
 
 ```
--A $INGRESS_CHAIN -p igmp -j POLICE --set-mode pkt --set-rate 400 --set-burst 200
+cumulus@switch:~$ nv set acl example1 type ipv4
+cumulus@switch:~$ nv set acl example1 rule 1 match ip protocol pim
+cumulus@switch:~$ nv set acl example1 rule 1 action police rate 400
+cumulus@switch:~$ nv set acl example1 rule 1 action police burst 400
+cumulus@switch:~$ nv set interface swp1 acl example1 inbound control-plane
+cumulus@switch:~$ nv config apply
 ```
 
-To apply the rules, run the `sudo cl-acltool -i` command:
+The following example commands set the IGMP forwarding rate to 400 and the IGMP burst rate to 200 packets per second:
 
 ```
-cumulus@switch:~$ sudo cl-acltool -i
+cumulus@switch:~$ nv set acl example1 type ipv4
+cumulus@switch:~$ nv set acl example1 rule 1 match ip protocol igmp
+cumulus@switch:~$ nv set acl example1 rule 1 action police rate 400
+cumulus@switch:~$ nv set acl example1 rule 1 action police burst 200
+cumulus@switch:~$ nv set interface swp1 acl example1 inbound control-plane
+cumulus@switch:~$ nv config apply
 ```
 
+{{< /tab >}}
+{{< tab "Edit /etc/cumulus/control-plane/policers.conf ">}}
+
+1. Edit the `/etc/cumulus/control-plane/policers.conf` file:
+
+   - To tune the PIM forwarding and burst rate, change the `copp.pim_ospf_rip.rate` and `copp.pim_ospf_rip.burst` parameters.
+   - To tune the IGMP forwarding and burst rate, change the `copp.igmp.rate` and `copp.igmp.burst` parameters.
+
+      The following example changes the PIM forwarding rate and the PIM burst rate to 400 packets per second, the IGMP forwarding rate to 400 packets per second and the IGMP burst rate to 200 packets per second:
+
+      ```
+      cumulus@switch:~$ sudo nano /etc/cumulus/control-plane/policers.conf
+      ...
+      copp.pim_ospf_rip.enable = TRUE
+      copp.pim_ospf_rip.rate = 400
+      copp.pim_ospf_rip.burst = 400
+      ...
+      copp.igmp.enable = TRUE
+      copp.igmp.rate = 400
+      copp.igmp.burst = 200
+      ...
+      ```
+
+2. Edit the `/etc/cumulus/control-plane/policers.conf` file, run the following command:
+
+   ```
+   cumulus@switch:~$ switchdctl --load /etc/cumulus/control-plane/policers.conf
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
 <!-- vale off -->
 <!-- vale.ai Issue #253 -->
 ## PIM Active-active with MLAG
@@ -1585,7 +1621,7 @@ cumulus@leaf01:~$ nv set bridge domain br_default vlan 10
 cumulus@leaf01:~$ nv set interface vlan10 ip address 10.1.10.1/24
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 remote-as external
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.1.10.0/24
 cumulus@leaf01:~$ nv set interface lo router pim
@@ -1608,7 +1644,7 @@ cumulus@leaf02:~$ nv set bridge domain br_default vlan 20
 cumulus@leaf02:~$ nv set interface vlan20 ip address 10.2.10.1/24
 cumulus@leaf02:~$ nv set router bgp autonomous-system 65102
 cumulus@leaf02:~$ nv set router bgp router-id 10.10.10.2
-cumulus@leaf02:~$ nv set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf02:~$ nv set vrf default router bgp neighbor swp51 remote-as external
 cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.2/32
 cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.2.10.0/24
 cumulus@leaf02:~$ nv set interface lo router pim
@@ -1627,8 +1663,8 @@ cumulus@spine01:~$ nv set router pim enable on
 cumulus@spine01:~$ nv set interface lo ip address 10.10.10.101/32
 cumulus@spine01:~$ nv set router bgp autonomous-system 65199
 cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
-cumulus@spine01:~$ nv set vrf default router bgp peer swp1 remote-as external
-cumulus@spine01:~$ nv set vrf default router bgp peer swp2 remote-as external
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 remote-as external
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp2 remote-as external
 cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.101/32
 cumulus@spine01:~$ nv set interface lo router pim
 cumulus@spine01:~$ nv set interface swp1 router pim

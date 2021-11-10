@@ -9,10 +9,10 @@ This document supports the Cumulus Linux 4.4 release, and lists new platforms an
 - For a list of all the platforms supported in Cumulus Linux 4.4, see the {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 - For a list of open and fixed issues in Cumulus Linux 4.4, see the {{<link title="Cumulus Linux 4.4 Release Notes" text="Cumulus Linux 4.4 Release Notes">}}.
 - To upgrade to Cumulus Linux 4.4, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
-<!-- vale off -->
-## What's New in Cumulus Linux 4.4.1
-<!-- vale on -->
-Cumulus Linux 4.4.1 provides bug fixes and contains several enhancements.
+<!--
+## What's New in Cumulus Linux 4.4.2
+
+Cumulus Linux 4.4.2 provides bug fixes and contains several enhancements.
 
 ### Enhancements
 
@@ -21,7 +21,7 @@ Cumulus Linux 4.4.1 provides bug fixes and contains several enhancements.
 - Netfilter-ACL rules:
   - {{<link url="Netfilter-ACLs" text="NCLU commands">}} support both a MAC address and IP address in the same rule, and support the MAC address mask
   - {{<link url="Netfilter-ACLs/#match-on-ecn-bits-in-the-tcp-ip-header" text="Match on ECN bits in the TCP IP Header">}}
-
+-->
 <!-- vale off -->
 ## What's New in Cumulus Linux 4.4.0
 <!-- vale on -->

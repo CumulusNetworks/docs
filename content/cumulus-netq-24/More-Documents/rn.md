@@ -14,7 +14,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="NETQ-3451"></a> [NETQ-3451](#NETQ-3451) <a name="NETQ-3451"></a> <br /> | UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session. | 2.3.0-2.4.1, 3.0.0-3.3.0 | |
 | <a name="2551641"></a> [2551641](#2551641) <a name="2551641"></a> <br />NETQ-6673 | Infra: NetQ VM installation fails if the designated disk size is greater than 2TB. To work around this issue, specify the disk for cloud deployments to be between 256GB and 2TB SSD, and for on-premises deployments to be between 32 GB and 2TB. | 2.4.0-3.1.1 | 3.2.0-3.3.1|
 | <a name="2549246"></a> [2549246](#2549246) <a name="2549246"></a> <br />NETQ-5529 | NetQ UI: Snapshot comparison cards may not render correctly after navigating away from a workbench and then returning to it. If you are viewing the Snapshot comparison card(s) on a custom workbench, refresh the page to reload the data. If you are viewing it on the Cumulus Default workbench, after refreshing the page you must recreate the comparison(s). | 2.4.0-3.2.1 | 3.3.0-3.3.1|
 | <a name="2548560"></a> [2548560](#2548560) <a name="2548560"></a> <br />NETQ-5182 | When a switch or host reports its memory size in GB rather than MB, the NetQ Agent cannot parse the information and thus fails to register with the NetQ server. Contact customer support if you run into this issue. | 2.4.0-2.4.1 | 3.0.0-3.3.1|
@@ -32,7 +31,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="NETQ-3451"></a> [NETQ-3451](#NETQ-3451) <a name="NETQ-3451"></a> <br /> | UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session. | 2.3.0-2.4.1, 3.0.0-3.3.0 | |
 | <a name="2551641"></a> [2551641](#2551641) <a name="2551641"></a> <br />NETQ-6673 | Infra: NetQ VM installation fails if the designated disk size is greater than 2TB. To work around this issue, specify the disk for cloud deployments to be between 256GB and 2TB SSD, and for on-premises deployments to be between 32 GB and 2TB. | 2.4.0-3.1.1 | 3.2.0-3.3.1|
 | <a name="2549246"></a> [2549246](#2549246) <a name="2549246"></a> <br />NETQ-5529 | NetQ UI: Snapshot comparison cards may not render correctly after navigating away from a workbench and then returning to it. If you are viewing the Snapshot comparison card(s) on a custom workbench, refresh the page to reload the data. If you are viewing it on the Cumulus Default workbench, after refreshing the page you must recreate the comparison(s). | 2.4.0-3.2.1 | 3.3.0-3.3.1|
 | <a name="2548560"></a> [2548560](#2548560) <a name="2548560"></a> <br />NETQ-5182 | When a switch or host reports its memory size in GB rather than MB, the NetQ Agent cannot parse the information and thus fails to register with the NetQ server. Contact customer support if you run into this issue. | 2.4.0-2.4.1 | 3.0.0-3.3.1|

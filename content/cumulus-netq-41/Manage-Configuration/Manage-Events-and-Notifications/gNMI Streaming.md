@@ -50,7 +50,7 @@ You cannot disable both the NetQ Agent and the gNMI agent.
 
 ### Supported Models
 
-The following OpenConfig models are supported on Cumulus Linux:
+Cumulus Linux supports the following OpenConfig models:
 
 | Model| Supported Data |
 | --------- | ------ |
@@ -63,7 +63,7 @@ The following OpenConfig models are supported on Cumulus Linux:
 
 ## Collect WJH Data Using gNMI
 
-What Just Happened data from the NetQ Agent can be exported to your own gNMI client.
+You can export What Just Happened data from the NetQ Agent to your own gNMI client.
 
 The client should use the following YANG model as a reference:
 

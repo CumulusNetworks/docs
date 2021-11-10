@@ -66,9 +66,9 @@ To install NetQ:
 
 - Enter or upload the NetQ 4.1.0 tarball.
 
-- Enter your configuration key.
+- Enter your configuration key obtained during the {{<link title="Access the NetQ UI#log-in-to-netq" text="first login to the NetQ Cloud">}}.
 
-    {{<figure src="/images/netq/adminui-install-cloud-basic-400.png" width="600">}}
+    {{<figure src="/images/netq/adminui-install-cloud-basic-400.png" width="400">}}
 
 - Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
@@ -185,13 +185,13 @@ Refer to {{<link title="Post Installation Configuration Options/#add-more-nodes-
 
 6. Install the NetQ software.
 
-   You install the NetQ software using the installation files (`NetQ-4.0.0-tgz` for on-premises deployments or `NetQ-4.0.0-opta.tgz` for cloud deployments) that you downloaded and stored previously.
+   You install the NetQ software using the installation files (`NetQ-4.1.0-tgz` for on-premises deployments or `NetQ-4.1.0-opta.tgz` for cloud deployments) that you downloaded and stored previously.
 
    *For on-premises*: Accept the path and filename suggested, or modify these to reflect where you stored your installation file, then click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18">}}. Alternately, upload the file.
 
    {{<figure src="/images/netq/adminui-install-onprem-advanced-400.png" width="600">}}
 
-   <em>For cloud</em>: Accept the path and filename suggested, or modify these to reflect where you stored your installation file. Enter your configuration key. Then click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18">}}.
+   <em>For cloud</em>: Accept the path and filename suggested, or modify these to reflect where you stored your installation file. Enter your configuration key. The configuration key is obtained during {{<link title="Access the NetQ UI#log-in-to-netq" text="first login to the NetQ Cloud">}} and premise activation, and it can also be accessed from the {{<link title="Manage the NetQ UI#manage-premises" text="Premise menu">}}. Then click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18">}}.
 
    {{<figure src="/images/netq/adminui-install-cloud-advanced-400.png" width="600">}}
 
@@ -203,7 +203,7 @@ Refer to {{<link title="Post Installation Configuration Options/#add-more-nodes-
 
 7. Activate NetQ.
 
-    This final step activates the software and enables you to view the health of your NetQ system. For remote deployments, you must enter your configuration key.
+    This final step activates the software and enables you to view the health of your NetQ system. For remote deployments, you must enter your configuration key. The configuration key is obtained during {{<link title="Access the NetQ UI#log-in-to-netq" text="first login to the NetQ Cloud">}} and premise activation, and it can also be accessed from the {{<link title="Manage the NetQ UI#manage-premises" text="Premise menu">}}.
 
     {{<figure src="/images/netq/adminui-activate-netq-400.png" width="700">}}
 

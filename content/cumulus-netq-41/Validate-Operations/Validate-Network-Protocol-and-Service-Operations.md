@@ -1237,7 +1237,7 @@ To analyze the results:
 
 ### Manage Scheduled Validations
 
-You can modify any scheduled validation that you created or remove it altogether at any time. Default validations cannot be removed, modified, or disabled.
+You can modify any scheduled validation that you created or remove it altogether at any time. Default validations cannot be removed or modified, but {{<link title="Validation Checks#disabling-validation-checks" text="can be disabled.">}}
 
 #### Modify a Scheduled Validation
 

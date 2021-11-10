@@ -23,7 +23,7 @@ Then, to install the software, choose the tab for the type of deployment:
 Run the following command on your NetQ platform server or NetQ Appliance:
 
 ```
-cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.0.0.tgz
+cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.1.0.tgz
 ```
 
 {{</tab>}}
@@ -33,7 +33,7 @@ cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/inst
 Run the following commands on your *master* node, using the IP addresses of your worker nodes:
 
 ```
-cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.0.0.tgz workers <worker-1-ip> <worker-2-ip>
+cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.1.0.tgz workers <worker-1-ip> <worker-2-ip>
 ```
 
 {{</tab>}}

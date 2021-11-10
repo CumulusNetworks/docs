@@ -22,12 +22,12 @@ To log in to the UI:
 
     Default usernames and passwords for UI access:  
     - NetQ On-premises: *admin, admin*
-    - NetQ Cloud: Use credentials provided by NVIDIA via email titled *Welcome to NVIDIA Cumulus NetQ\!*
+    - NetQ Cloud: Use credentials created during setup. You should receive an email from NVIDIA titled *NetQ Access Link.*
 <!-- vale on -->
 
 {{<tabs "login">}}
 
-{{<tab "First Time Log In">}}
+{{<tab "First Time Log In - On Premises">}}
 
 1. Enter your username.
 
@@ -42,6 +42,34 @@ To log in to the UI:
     The default NetQ Workbench opens, with your username shown in the upper right corner of the application.
 
     {{<figure src="/images/netq/access-ui-cumulus-wb-400.png" width="700">}}
+
+{{</tab>}}
+
+{{<tab "First Time Log In - NetQ Cloud">}}
+
+1. Select **Create Password** from the email received from NVIDIA titled *NetQ Access Link."
+
+2. Enter a new password.
+
+3. Enter the new password again to confirm it.
+
+4. Log in using your email address and created password.
+
+5. Click to agree and accept the Terms of Use after reading them.
+
+    The default NetQ Workbench opens, with your username and premise shown in the upper right corner of the application.
+
+    {{<figure src="/images/netq/new-premise-username.png" width="300">}}
+
+6. Click on the premise and select **Activate Wizard**
+
+    {{<figure src="/images/netq/activate-premise.png" width="400">}}
+
+7. Click through the activation wizard and follow the instructions to obtain the activation key used during installation through the {{<link title="Install NetQ Using the Admin UI#install-netq" text="Admin UI.">}}
+
+{{<figure src="/images/netq/activation-wizard-admin-login.png" width="1000">}}
+
+{{<figure src="/images/netq/activation-wizard-key.png" width="1000">}}
 
 {{</tab>}}
 

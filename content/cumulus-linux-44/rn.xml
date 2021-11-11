@@ -1550,7 +1550,7 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 </tr>
 <tr>
 <td>2734173</td>
-<td>The Mellanox 100G transceiver MMA1L30-CM is not recognized on the SN4600 switch even though the link is up. The {{ethtool}} output shows the error {{Cannot get Module EEPROM data: Invalid argument}}.</td>
+<td>The Mellanox 100G transceiver MMA1L30-CM Rev A3 is not recognized on the SN4600 switch even though the link is up. The {{ethtool}} output shows the error {{Cannot get Module EEPROM data: Invalid argument}}.</td>
 <td></td>
 </tr>
 <tr>

@@ -144,61 +144,52 @@ cumulus@leaf01:~$ nv config apply
 ```
 auto lo
 iface lo inet loopback
-
 auto mgmt
 iface mgmt
     address 127.0.0.1/8
     address ::1/128
     vrf-table auto
-
 auto eth0
 iface eth0 inet dhcp
     address 192.168.200.11/24
     ip-forward off
     ip6-forward off
     vrf mgmt
-
 auto bond1
 iface bond1
     bond-slaves swp1
     bond-mode 802.3ad
     bond-lacp-bypass-allow no
     clag-id 1
-
 auto bond2
 iface bond2
     bond-slaves swp2
     bond-mode 802.3ad
     bond-lacp-bypass-allow no
     clag-id 2
-
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
     bond-mode 802.3ad
     bond-lacp-bypass-allow no
-
 auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-backup-ip 10.10.10.2
     clagd-sys-mac 44:38:39:BE:EF:AA
     clagd-args --initDelay 180
-
 auto vlan10
 iface vlan10
     address 10.1.10.2/24
     address-virtual 00:00:5e:00:01:00 10.1.10.1/24
     vlan-raw-device br_default
     vlan-id 10
-
 auto vlan20
 iface vlan20
     address 10.1.20.2/24
     address-virtual 00:00:5e:00:01:00 10.1.20.1/24
     vlan-raw-device br_default
     vlan-id 20
-
 auto br_default
 iface br_default
     bridge-ports peerlink bond1 bond2
@@ -246,61 +237,52 @@ cumulus@leaf02:~$ nv config apply
 ```
 auto lo
 iface lo inet loopback
-
 auto mgmt
 iface mgmt
     address 127.0.0.1/8
     address ::1/128
     vrf-table auto
-
 auto eth0
 iface eth0
     address 192.168.200.12/24
     ip-forward off
     ip6-forward off
     vrf mgmt
-
 auto bond1
 iface bond1
     bond-slaves swp1
     bond-mode 802.3ad
     bond-lacp-bypass-allow no
     clag-id 1
-
 auto bond2
 iface bond2
     bond-slaves swp2
     bond-mode 802.3ad
     bond-lacp-bypass-allow no
     clag-id 2
-
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
     bond-mode 802.3ad
     bond-lacp-bypass-allow no
-
 auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-backup-ip 10.10.10.1
     clagd-sys-mac 44:38:39:BE:EF:AA
     clagd-args --initDelay 180
-
 auto vlan10
 iface vlan10
     address 10.1.10.3/24
     address-virtual 00:00:5e:00:01:00 10.1.10.1/24
     vlan-raw-device br_default
     vlan-id 10
-
 auto vlan20
 iface vlan20
     address 10.1.20.3/24
     address-virtual 00:00:5e:00:01:00 10.1.20.1/24
     vlan-raw-device br_default
     vlan-id 20
-
 auto br_default
 iface br_default
     bridge-ports peerlink bond1 bond2
@@ -320,15 +302,12 @@ Create a configuration similar to the following on an Ubuntu host:
 ```
 auto eth0
 iface eth0 inet dhcp
-
 auto eth1
 iface eth1 inet manual
     bond-master uplink
-
 auto eth2
 iface eth2 inet manual
     bond-master uplink
-
 auto uplink
 iface uplink inet static
     bond-slaves eth1 eth2
@@ -341,19 +320,15 @@ iface uplink inet static
     netmask 255.255.255.0
     post-up ip route add 172.16.0.0/16 via 172.16.1.1
     post-up ip route add 10.0.0.0/8 via 172.16.1.1
-
 auto uplink:200
 iface uplink:200 inet static
     address 10.0.2.101
-
 auto uplink:300
 iface uplink:300 inet static
     address 10.0.3.101
-
 auto uplink:400
 iface uplink:400 inet static
     address 10.0.4.101
-
 # modprobe bonding
 ```
 
@@ -365,15 +340,12 @@ Create a configuration similar to the following on an Ubuntu host:
 ```
 auto eth0
 iface eth0 inet dhcp
-
 auto eth1
 iface eth1 inet manual
     bond-master uplink
-
 auto eth2
 iface eth2 inet manual
     bond-master uplink
-
 auto uplink
 iface uplink inet static
     bond-slaves eth1 eth2
@@ -386,19 +358,15 @@ iface uplink inet static
     netmask 255.255.255.0
     post-up ip route add 172.16.0.0/16 via 172.16.1.1
     post-up ip route add 10.0.0.0/8 via 172.16.1.1
-
 auto uplink:200
 iface uplink:200 inet static
     address 10.0.2.101
-
 auto uplink:300
 iface uplink:300 inet static
     address 10.0.3.101
-
 auto uplink:400
 iface uplink:400 inet static
     address 10.0.4.101
-
 # modprobe bonding
 ```
 
@@ -499,7 +467,7 @@ cumulus@spine02:~$ nv config apply
 
     ```
     cumulus@spine01:~$ sudo vtysh
-
+    ...
     spine01# configure terminal
     spine01(config)# interface swp1
     spine01(config-if)# vrrp 44 ip 10.0.0.1
@@ -531,7 +499,7 @@ cumulus@spine02:~$ nv config apply
 
    ```
    cumulus@spine02:~$ sudo vtysh
-
+   ...
    spine02# configure terminal
    spine02(config)# interface swp1
    spine02(config-if)# vrrp 44 ip 10.0.0.1

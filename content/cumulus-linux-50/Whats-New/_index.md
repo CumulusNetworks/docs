@@ -17,7 +17,6 @@ Cumulus Linux 5.0 supports new platforms, provides bug fixes, and contains sever
 ### New Platforms
 
 - NVIDIA SN2201 (100G Spectrum-1)
-- NVIDIA SN4800 (100G Spectrum-3)
 - NVIDIA SN4600C (100G Spectrum-3)
 - NVIDIA SN3700C-S (100G Spectrum-2) with Secure Boot
 

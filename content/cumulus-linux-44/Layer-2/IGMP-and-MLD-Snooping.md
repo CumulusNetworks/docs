@@ -170,7 +170,7 @@ To enable OMF:
 <!-- vale on -->
 When IGMP reports go to a multicast group, OMF has no effect; normal IGMP snooping occurs.
 
-When OMF is enabled, you can configure a bridge port as an mrouter port to forward unregistered multicast traffic to that port.
+When you enable OMF, you can configure a bridge port as an mrouter port to forward unregistered multicast traffic to that port.
 
 {{< tabs "TabID175 ">}}
 {{< tab "NCLU Commands ">}}
@@ -382,8 +382,8 @@ iface br_default
 The supported values for `bridge-hashmax` are 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536.
 
 {{%notice note%}}
-* On Spectrum 1 switches, you must change the {{<link url="Supported-Route-Table-Entries/#forwarding-resource-profiles" text="forwarding resource profile">}} to `rash-custom-profile1`, then restart `switchd`.
-* Spectrum 1 switches limit multicast groups to 16300 in the MDB with OMF disabled and 14800 multicast groups when OMF is enabled.
+- On Spectrum 1 switches, you must change the {{<link url="Supported-Route-Table-Entries/#forwarding-resource-profiles" text="forwarding resource profile">}} to `rash-custom-profile1`, then restart `switchd`.
+- Spectrum 1 switches limit multicast groups to 16300 in the MDB with OMF disabled and 14800 multicast groups with OMF enabled.
 {{%/notice%}}
 
 ## Related Information

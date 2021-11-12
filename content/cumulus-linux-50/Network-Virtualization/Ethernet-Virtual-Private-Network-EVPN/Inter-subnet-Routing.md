@@ -492,7 +492,7 @@ See {{<link url="Basic-Configuration#evpn-and-vxlan-active-active-mode" text="EV
 
 #### Configure Advertise Primary IP Address
 
-Set the MLAG system MAC address on both switches in the MLAG pair.
+Set the `address-virtual <anycast-mac>` under the SVI, where `<anycast-mac>` is the MLAG system MAC address ({{<link url="Multi-Chassis-Link-Aggregation-MLAG#reserved-mac-address-range" text="clagd-sys-mac">}}). Run these commands on both switches in the MLAG pair.
 
 {{< tabs "TabID472 ">}}
 {{< tab "NVUE Commands ">}}

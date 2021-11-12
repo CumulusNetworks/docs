@@ -27,35 +27,55 @@ To set up Docker on Cumulus Linux, run the following commands **as root**.
    root@switch:~# apt install -y docker-ce
    ```
 
-4. Configure Docker to minimize impact on the system's firewall and forwarding configuration:
+4. Run the following commands:
 
    ```
-   root@switch:~# cat >/etc/docker/daemon.json <<EOD
-   {
-		"iptables": false,
-		"ip-forward": false,
-		"ip-masq": false
-   }
-   EOD
+   cumulus@switch:mgmt:~$ sudo bash -c 'echo docker >> /etc/vrf/systemd.conf'
+   cumulus@switch:mgmt:~$ sudo systemctl daemon-reload
    ```
 
-5. Configure Docker to run in the management VRF:
+5. In the managment VRF, enable the Docker service. Docker pulls container images from the internet, which requires internet access through the management VRF.
 
    ```
-   root@switch:~# cp /lib/systemd/system/docker.service /lib/systemd/system/docker@.service
-   root@switch:~# sed -i -re '
-        /^Requires=docker.socket$/ d;
-        /^ExecStart\>/ s/-H fd:\/\/ //
-   ' /lib/systemd/system/docker@.service
-
-   root@switch:~# echo "docker" >>/etc/vrf/systemd.conf
-   root@switch:~# systemctl daemon-reload
-   root@switch:~# systemctl mask docker.socket
-   root@switch:~# systemctl disable --now docker.service
-   root@switch:~# systemctl enable --now docker@mgmt
+   cumulus@switch:mgmt:~$ sudo systemctl enable --now docker@mgmt.service
+   Created symlink /etc/systemd/system/multi-user.target.wants/docker@mgmt.service → /etc/systemd/system/docker@.service.
+   Warning: The unit file, source configuration file or drop-ins of docker@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload units.
    ```
 
-6. Test your installation by running the `hello-world` container:
+   {{%notice note%}}
+The warning is a known issue, which has no functional impact.
+{{%/notice%}}
+
+6. Check the status of the Docker service with the `systemctl status docker@mgmt.service` command:
+
+   ```
+   cumulus@switch:mgmt:~$ sudo systemctl status docker@mgmt.service
+   Warning: The unit file, source configuration file or drop-ins of docker@mgmt.service changed on di
+   ● docker@mgmt.service - Docker Application Container Engine
+      Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+      Drop-In: /run/systemd/generator/docker@.service.d
+          └─vrf.conf
+      Active: active (running) since Tue 2020-12-15 01:02:36 UTC; 7s ago
+       Docs: https://docs.docker.com
+   Main PID: 9558 (dockerd)
+    Memory: 40.5M
+    CGroup: /system.slice/system-docker.slice/docker@mgmt.service
+        └─vrf
+         └─mgmt
+          └─9558 /usr/bin/dockerd --containerd=/run/containerd/containerd.sock
+
+   Dec 15 01:02:36 act-5812-10 ip[9558]: time="2020-12-15T01:02:36.235571032Z" level=info msg="ccReso
+   Dec 15 01:02:36 act-5812-10 ip[9558]: time="2020-12-15T01:02:36.235612700Z" level=info msg="Client
+   Dec 15 01:02:36 act-5812-10 ip[9558]: time="2020-12-15T01:02:36.351654900Z" level=warning msg="Una
+   Dec 15 01:02:36 act-5812-10 ip[9558]: time="2020-12-15T01:02:36.352171765Z" level=info msg="Loadin
+   Dec 15 01:02:36 act-5812-10 ip[9558]: time="2020-12-15T01:02:36.432399835Z" level=info msg="Defaul
+   Dec 15 01:02:36 act-5812-10 ip[9558]: time="2020-12-15T01:02:36.473407023Z" level=info msg="Loadin
+   Dec 15 01:02:36 act-5812-10 ip[9558]: time="2020-12-15T01:02:36.527590296Z" level=info msg="Docker
+   Dec 15 01:02:36 act-5812-10 ip[9558]: time="2020-12-15T01:02:36.527846668Z" level=info msg="Daemon
+   Dec 15 01:02:36 act-5812-10 systemd[1]: Started Docker Application Container Engine.
+   Dec 15 01:02:36 act-5812-10 ip[9558]: time="2020-12-15T01:02:36.635997529Z" level=info msg="API li
+
+7. Test your installation by running the `hello-world` container:
 
    ```
    root@switch:~# docker run hello-world

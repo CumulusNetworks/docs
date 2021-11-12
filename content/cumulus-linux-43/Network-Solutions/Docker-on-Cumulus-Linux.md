@@ -62,7 +62,14 @@ Do you want to continue? [Y/n]
 {{< /tab >}}
 {{< /tabs >}}
 
-2. In the managment VRF, enable the Docker service. Docker pulls container images from the internet, which requires internet access through the management VRF.
+2. Run the following commands:
+
+   ```
+   cumulus@switch:mgmt:~$ sudo bash -c 'echo docker >> /etc/vrf/systemd.conf'
+   cumulus@switch:mgmt:~$ sudo systemctl daemon-reload
+   ```
+
+3. In the managment VRF, enable the Docker service. Docker pulls container images from the internet, which requires internet access through the management VRF.
 
    ```
    cumulus@switch:mgmt:~$ sudo systemctl enable --now docker@mgmt.service
@@ -74,7 +81,7 @@ Do you want to continue? [Y/n]
 The warning is a known issue, which has no functional impact.
 {{%/notice%}}
 
-3. Check the status of the Docker service with the `systemctl status docker@mgmt.service` command:
+4. Check the status of the Docker service with the `systemctl status docker@mgmt.service` command:
 
    ```
    cumulus@switch:mgmt:~$ sudo systemctl status docker@mgmt.service
@@ -103,7 +110,7 @@ The warning is a known issue, which has no functional impact.
    Dec 15 01:02:36 act-5812-10 systemd[1]: Started Docker Application Container Engine.
    Dec 15 01:02:36 act-5812-10 ip[9558]: time="2020-12-15T01:02:36.635997529Z" level=info msg="API li
 
-3. Test your installation by running the `hello-world` container:
+5. Test your installation by running the `hello-world` container:
 
    ```
    cumulus@switch:mgmt:~$ docker run hello-world

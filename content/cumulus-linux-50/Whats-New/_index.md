@@ -16,8 +16,7 @@ Cumulus Linux 5.0 supports new platforms, provides bug fixes, and contains sever
 
 ### New Platforms
 
-- NVIDIA SN2201 (100G Spectrum-1)
-- NVIDIA SN4600C (100G Spectrum-3)
+- NVIDIA SN4600C (100G Spectrum-A1)
 - NVIDIA SN3700C-S (100G Spectrum-2) with Secure Boot
 
 ### New Features and Enhancements
@@ -26,7 +25,6 @@ Cumulus Linux 5.0 supports new platforms, provides bug fixes, and contains sever
   - Configure PIM, IGMP and VRRP
   - Set the time zone
   - Include interface descriptions (alias)
-  - Reboot the switch
   - Clear counters, such as RoCE counters
 - Modified NVUE commands:
   - BGP `static-network` is now `network`
@@ -34,9 +32,5 @@ Cumulus Linux 5.0 supports new platforms, provides bug fixes, and contains sever
   - `nv set platform hostname value <hostname>` command is now `nv set system hostname <hostname>`
 - cl-support now includes CPLD register information
 - DHCPv6 supports SVI interfaces
-- MPLS LSR support with BGP labeled-unicast signaling
 - New forwarding resource profiles: `v6-lpm-heavy-1` and `l2-heavy-3`
-- SNMP enhancements:
-  - Support for buffer queue utilisation
-  - link up and link down count
-  - VRF aware routing MIB
+- SNMP enhancements

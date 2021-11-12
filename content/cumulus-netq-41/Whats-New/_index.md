@@ -15,7 +15,7 @@ toc: 1
 NetQ 4.1.0 includes the following new features and improvements:
 
 - {{<link title="Flow Analysis" text="Flow trace and analysis support for Cumulus Linux fabrics.">}}
-- Improved What Just Happened (WJH) dashboard.
+- {{<link title="Configure and Monitor What Just Happened#view-what-just-happened-metrics" text="Improved What Just Happened (WJH) dashboard.">}}
 - {{<link title="gNMI Streaming" text="gNMI telemetry streaming">}} for system resource, interface, and counter data on Cumulus Linux.
 - Early access support for {{<link title="gNMI Streaming#collect-wjh-data-using-gnmi" text="gNMI collection of What Just Happened data on SONiC.">}}
 - {{<link title="Decommission Switches#decommission-from-the-netq-ui" text="You can decommision a switch from the NetQ UI.">}}

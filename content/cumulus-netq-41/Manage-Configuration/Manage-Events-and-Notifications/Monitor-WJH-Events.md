@@ -13,7 +13,7 @@ To use a gNMI client to export WJH data to a collector, refer to {{<link title="
 
 {{<notice tip>}}
 
-If you sourced your switches from a vendor other than NVIDIA, this view is blank as WJH collects no data.
+WJH is only supported on NVIDIA Spectrum switches.
 
 {{</notice>}}
 
@@ -174,15 +174,27 @@ You can view the WJH metrics from the NetQ UI or the NetQ CLI.
 
 {{<tab "NetQ UI">}}
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+View the **What Just Happened** card on your workbench:
 
-2. Click **What Just Happened** under the **Network** column.
+   {{<figure src="/images/netq/WJH-default-card.png" width="200">}}
 
-    This view displays events based on conditions detected in the data plane. Each drop category contains the most recent 1000 events from the last 24 hours.
+The WJH card can be expanded to see a larger summary of WJH data:
 
-    {{<figure src="/images/netq/main-menu-ntwk-wjh-l1-240.png" width="700">}}
+   {{<figure src="/images/netq/WJH-expand.png" width="200">}}
 
-3. By default the layer 1 drops are shown. Click one of the other drop categories to view those drops for all devices.
+   {{<figure src="/images/netq/WJH-expanded-card.png" width="600">}}
+
+Expanding the card to it's fullest setting will open the advanced WJH dashboard. You can also access this dashboard by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu) and selecting **What Just Happened** under the **Network** column:
+
+   {{<figure src="/images/netq/WJH-advanced-view.png" width="800">}}
+
+Hovering over the color-coded chart allows one to view and expand individual WJH event categories:
+
+   {{<figure src="/images/netq/WJH-adv-highlight-reason.png" width="200">}}
+
+Clicking on a category in the chart will expand the details for that category in the dashboard:
+
+   {{<figure src="/images/netq/WJH-adv-reason-filtered.png" width="800">}}
 
 {{</tab>}}
 

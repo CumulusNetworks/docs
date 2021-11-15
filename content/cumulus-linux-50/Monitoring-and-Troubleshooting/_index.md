@@ -92,7 +92,7 @@ For information about the version of Cumulus Linux running on the switch, run th
 cumulus@switch:~$ nv show system
           operational          applied  pending  description
 --------  -------------------  -------  -------  ------------------------------
-hostname  mlx-3700-30          cumulus  cumulus  Static hostname for the switch
+hostname  leaf01                                 Static hostname for the switch
 build     Cumulus Linux 5.0.0                    system build version
 uptime    6 days, 22:03:49                       system uptime
 timezone  Etc/UTC                                system time zone
@@ -119,7 +119,6 @@ port-layout    32 x 200G-QSFP56                                      System port
 product-name   MSN3700                                               Product Name
 serial-number  MT2046X13056                                          System serial number
 system-mac     1c:34:da:26:db:fd                                     The MAC provided by eeprom for system-mac
-cumulus@mlx-3700-30:mgmt:/etc$
 ```
 <!-- vale off -->
 ## Diagnostics Using cl-support
@@ -184,7 +183,7 @@ All Cumulus Linux rules are in separate files in `/etc/rsyslog.d/`, which `rsysl
 
 ### Local Logging
 
-Cumulus Linux sends logs through `rsyslog`, which writes them to files in the `/var log` directory. There are default rules in the `/etc/rsyslog.d/` directory that define where the logs write:
+Cumulus Linux sends logs through `rsyslog`, which writes them to files in the `/var/log` directory. There are default rules in the `/etc/rsyslog.d/` directory that define where the logs write:
 
 | Rule | Purpose  |
 | ------- | ------ |
@@ -192,11 +191,15 @@ Cumulus Linux sends logs through `rsyslog`, which writes them to files in the `/
 | 15-crit.conf | Logs `crit`, `alert` or `emerg` log messages to `/var/log/crit.log` to ensure they do not rotate away.|
  20-clagd.conf | Logs `clagd` messages to `/var/log/clagd.log` for {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}.|
 | 22-linkstate.conf | Logs link state changes for all physical and logical network links to `/var/log/linkstate`. |
-| 25-switchd.conf | Logs `switchd` messages to `/var/log/switchd.log`. |
+| 25-switchd.conf | Logs `switchd` messages to `/var/log/switchd.log`. | 
 | 30-ptmd.conf  | Logs `ptmd` messages to `/var/log/ptmd.log` for {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescription Topology Manager">}}. |
 | 35-rdnbrd.conf | Logs `rdnbrd` messages to `/var/log/rdnbrd.log` for {{<link url="Redistribute-Neighbor">}}. |
 | 42-nvued.conf | Logs `nvued` messages to `/var/log/nvued.log` for NVUE. |
 | 45-frr.conf  | Logs routing protocol messages to `/var/log/frr/frr.log`. This includes BGP and OSPF log messages.  |
+| 50-netq-agent.conf|  Logs NetQ agent messages to `/var/log/netq-agent.log`.|
+| 50-netqd.conf| Logs `netqd` messages to `/var/log/netqd.log`.|
+| 55-dhcpsnoop.conf| Logs DHCP snooping messages to `/var/log/dhcpsnoop.log`.|
+| 66-ptp4l.conf | Logs PTP messages to `/var/log/ptp4l.log`.|
 | 99-syslog.conf | Sends all remaining processes that use `rsyslog` to `/var/log/syslog`. |
 
 <!--| 40-netd.conf | Logs `netd` messages to `/var/log/netd.log` for NCLU. |-->

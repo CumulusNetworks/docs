@@ -107,7 +107,7 @@ To make a configuration change with the NVUE API:
    }
    ```
 
-5. To verify that the configuration is applied, review the status of the apply and the configuration:
+5. Review the status of the apply and the configuration:
 
    ```
    cumulus@leaf01:mgmt:~$ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2021-11-02_16.09.18_5Z1K

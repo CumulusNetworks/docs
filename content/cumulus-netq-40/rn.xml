@@ -76,28 +76,6 @@
 <td></td>
 </tr>
 <tr>
-<td>2794608</td>
-<td>Sometimes the NetQ upgrade from 4.0.0 to 4.0.1 fails because the upgrade process cannot connect to the Docker registry running on the master node (the registry runs on the localhost:5000 port). The Docker registry container comes up without error but is not reachable on the host network. 
-The issue occurs on cluster setups when you reboot the NetQ 4.0.0 telemetry server before upgrading.
-The netq-admin-app logs return an error message similar to the following:
- 
-kubectl logs -l app=netq-app-admin --tail 1000
-
-Get http://localhost:5000/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)
-
-Since the Docker registry is not reachable, any Docker push command to it  times out. You can test this with the following command :
-
-sudo docker push localhost:5000/master-operator:4.0.0
-
-To work around this issue, restart the Docker registry container:
-
-kubectl get pods -n kube-system  | grep docker-registry  | cut -f1 -d' ' | xargs kubectl delete pod -n kube-system
-
-Then restart the NetQ upgrade.</td>
-<td>4.0.0-4.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2711101</td>
 <td>When RoCE (RDMA over Converged Ethernet) data collection is enabled in Cumulus Linux 4.3.z and 4.4.z, you can experience high dual uplink convergence times.
 To work around this issue, disable RoCE monitoring:
@@ -169,28 +147,6 @@ To work around this issue, run the following command on the NetQ telemetry serve
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
-</tr>
-<tr>
-<td>2794608</td>
-<td>Sometimes the NetQ upgrade from 4.0.0 to 4.0.1 fails because the upgrade process cannot connect to the Docker registry running on the master node (the registry runs on the localhost:5000 port). The Docker registry container comes up without error but is not reachable on the host network. 
-The issue occurs on cluster setups when you reboot the NetQ 4.0.0 telemetry server before upgrading.
-The netq-admin-app logs return an error message similar to the following:
- 
-kubectl logs -l app=netq-app-admin --tail 1000
-
-Get http://localhost:5000/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)
-
-Since the Docker registry is not reachable, any Docker push command to it  times out. You can test this with the following command :
-
-sudo docker push localhost:5000/master-operator:4.0.0
-
-To work around this issue, restart the Docker registry container:
-
-kubectl get pods -n kube-system  | grep docker-registry  | cut -f1 -d' ' | xargs kubectl delete pod -n kube-system
-
-Then restart the NetQ upgrade.</td>
-<td>4.0.0-4.0.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2711101</td>

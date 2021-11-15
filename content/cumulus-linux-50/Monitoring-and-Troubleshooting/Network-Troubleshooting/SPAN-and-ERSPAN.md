@@ -18,7 +18,7 @@ You can configure SPAN and ERSPAN in one of the following ways:
 - With NVUE Commands
 - With ACL rules
 - Manually by editing the `/etc/cumulus/switchd.d/port-mirror.conf` file (for advanced users)
-<!--- With NCLU commands-->
+<!-- - With NCLU commands-->
 
 {{%notice note%}}
 - Mirrored traffic is not guaranteed. A congested MTP results in discarded mirrored packets.

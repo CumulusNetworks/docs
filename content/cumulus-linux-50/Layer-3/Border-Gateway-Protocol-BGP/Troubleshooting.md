@@ -10,7 +10,7 @@ Use the following commands to troubleshoot BGP.
 
 The following example commands run on a BGP unnumbered configuration and show IPv6 next hops or the interface name for any IPv4 prefix.
 
-To show a summary of the BGP configuration on the switch, run the <!--NCLU `net show bgp summary` command or the -->vtysh `show ip bgp summary` command. For example:
+To show a summary of the BGP configuration on the switch, run the vtysh `show ip bgp summary` command or the `net show bgp summary` command. For example:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -38,7 +38,7 @@ Total number of neighbors 5
 To determine if the sessions above are iBGP or eBGP sessions, look at the ASNs.
 {{%/notice%}}
 
-To view the routing table as defined by BGP, run the <!--NCLU `net show bgp ipv4 unicast` command or the -->vtysh `show ip bgp ipv4 unicast` command. For example:
+To view the routing table as defined by BGP, run the vtysh `show ip bgp ipv4 unicast` command or the `net show bgp ipv4 unicast` command. For example:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -76,7 +76,7 @@ Origin codes:  i - IGP, e - EGP, ? - incomplete
 Displayed 13 routes and 42 total paths
 ```
 
-To show a more detailed breakdown of a specific neighbor, run the <!--NCLU `net show bgp neighbor <neighbor>` command or the -->vtysh `show ip bgp neighbor <neighbor>` command:
+To show a more detailed breakdown of a specific neighbor, run the vtysh `show ip bgp neighbor <neighbor>` command or the `net show bgp neighbor <neighbor>` command:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -139,7 +139,7 @@ BGP Connect Retry Timer in Seconds: 10
 Read thread: on  Write thread: on  FD used: 30
 ```
 
-To see details of a specific route, such as its source and destination, run the <!--NCLU `net show bgp <route>` command or the -->vtysh `show ip bgp <route>` command.
+To see details of a specific route, such as its source and destination, run the vtysh `show ip bgp <route>` command or the `net show bgp <route>` command.
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -177,7 +177,7 @@ Paths: (5 available, best #5, table default)
 
 ## Troubleshoot BGP Unnumbered
 
-To verify that FRR learns the neighboring link-local IPv6 address through the IPv6 neighbor discovery router advertisements on a given interface, run the <!--NCLU `net show interface <interface>` command or the -->vtysh `show interface <interface>` command.
+To verify that FRR learns the neighboring link-local IPv6 address through the IPv6 neighbor discovery router advertisements on a given interface, run the vtysh `show interface <interface>` command or the `net show interface <interface>` command.
 
 If you do not enable `ipv6 nd suppress-ra` on both ends of the interface, `Neighbor address(s):` shows the link-local address of the other end (the address that BGP uses when that interface uses BGP).
 

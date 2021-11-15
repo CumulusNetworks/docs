@@ -326,7 +326,7 @@ cumulus@switch:~$ net commit
 
 ## Troubleshooting
 
-To show the extended community in a received or local route, run the <!--NCLU `net show bgp` command or the -->vtysh `show bgp` command.
+To show the extended community in a received or local route, run the vtysh `show bgp` command or the `net show bgp` command.
 
 The following example shows that the switch receives an IPv4 unicast route with the BGP link bandwidth attribute from two peers. The link bandwidth extended community is in bytes per second and shows in megabits per second: `Extended Community: LB:65002:131072000 (1000.000 Mbps) and Extended Community: LB:65001:65536000 (500.000 Mbps)`.
 

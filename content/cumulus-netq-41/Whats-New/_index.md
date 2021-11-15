@@ -23,7 +23,7 @@ NetQ 4.1.0 includes the following new features and improvements:
 - Enhanced monitoring for the SONiC operating system. Support includes collection of the MAC FDB, interface counters, and DOM information. This is an early access feature.
 - Validation performance improvements and the ability to {{<link title="Validation Checks#disabling-validation-checks" text="disable validation checks.">}}
 - Support for monitoring traditional mode bridges on Cumulus Linux.
-- Generic webhook notification channel.
+- {{<link title="Configure System Event Notifications#create-a-channel" text="Generic webhook notification channel.">}}
 - Device group labels to create validations for specific sets of devices.
 - Validation for duplicate IP address detection in your network.
 

@@ -1634,6 +1634,8 @@ sendTimeout = 30
 ...
 ```
 
+The NVUE `nv show mlag` command shows the current MLAG configuration settings.
+
 ### View the MLAG Log File
 
 By default, when running, the `clagd` service logs status messages to the `/var/log/clagd.log` file and to `syslog`:
@@ -1707,11 +1709,7 @@ NIC statistics:
      tx_queue_0_kicks: 195
 ```
 
-<!--
-{{< tabs "TabID1547 ">}}
-{{< tab "NCLU Commands ">}}
-
-Run the `net show counters` command. The number of dropped packets shows in the `RX_DRP` column.
+You can also run the `net show counters` command. The number of dropped packets shows in the `RX_DRP` column.
 
 ```
 cumulus@leaf01:~$ net show counters
@@ -1734,33 +1732,6 @@ swp50           9216    11804         0         0         0    11841         0  
 swp51           9216        0         0         0         0      292         0         0         0  BMRU
 ```
 
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Run the `ethtool -S <interface>` command:
-
-```
-cumulus@leaf01:mgmt:~$ ethtool -S swp49
-NIC statistics:
-     rx_queue_0_packets: 136
-     rx_queue_0_bytes: 36318
-     rx_queue_0_drops: 0
-     rx_queue_0_xdp_packets: 0
-     rx_queue_0_xdp_tx: 0
-     rx_queue_0_xdp_redirects: 0
-     rx_queue_0_xdp_drops: 0
-     rx_queue_0_kicks: 1
-     tx_queue_0_packets: 200
-     tx_queue_0_bytes: 44244
-     tx_queue_0_xdp_tx: 0
-     tx_queue_0_xdp_tx_drops: 0
-     tx_queue_0_kicks: 195
-```
-
-{{< /tab >}}
-{{< /tabs >}}
--->
-
 ### Peer Link Interfaces and the protodown State
 
 In addition to the standard UP and DOWN administrative states, an interface that is a member of an MLAG bond can also be in a `protodown` state. When MLAG detects a problem that can result in connectivity issues, it puts that interface into `protodown` state. Such connectivity issues include:
@@ -1771,7 +1742,7 @@ In addition to the standard UP and DOWN administrative states, an interface that
 
 When an interface goes into a `protodown` state, it results in a local OPER DOWN (carrier down) on the interface.
 
-To show an interface in `protodown` state, run the <!--NCLU `net show bridge link` command or the -->Linux `ip link show` command. For example:
+To show an interface in `protodown` state, run the Linux `ip link show` command or the `net show bridge link` command. For example:
 
 ```
 cumulus@leaf01:~$ sudo vtysh

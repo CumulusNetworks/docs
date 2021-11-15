@@ -606,7 +606,7 @@ cumulus@leaf01:~$ net commit
 
 #### Show Advertise Primary IP Address Information
 
-To show Advertise Primary IP Address parameters, run the <!--NCLU `net show bgp l2vpn evpn vni <vni>` command or the -->vtysh `show bgp l2vpn evpn vni <vni>` command. For example:
+To show Advertise Primary IP Address parameters, run the vtysh `show bgp l2vpn evpn vni <vni>` command or the `net show bgp l2vpn evpn vni <vni>` command. For example:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -629,7 +629,7 @@ VNI: 4001 (known to the kernel)
     65101:4001
 ```
 
-To show EVPN routes with Primary IP Advertisement, run the <!--NCLU `net show bgp l2vpn evpn route` command or the -->vtysh `show bgp l2vpn evpn route` command. For example:
+To show EVPN routes with Primary IP Advertisement, run the vtysh `show bgp l2vpn evpn route` command or the `net show bgp l2vpn evpn route` command. For example:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -648,7 +648,7 @@ Route Distinguisher: 10.10.10.1:3
 ...
 ```
 
-To show the learned route from an external router injected as a type-5 route, run the <!--NCLU `net show bgp vrf <vrf> ipv4 unicast` command or the -->vtysh `show bgp vrf <vrf> ipv4 unicast` command.
+To show the learned route from an external router injected as a type-5 route, run the vtysh `show bgp vrf <vrf> ipv4 unicast` command or the `net show bgp vrf <vrf> ipv4 unicast` command.
 
 ## Downstream VNI
 

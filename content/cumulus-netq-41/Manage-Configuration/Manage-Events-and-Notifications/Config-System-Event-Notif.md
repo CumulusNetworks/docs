@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 780
 toc: 3
 ---
-To take advantage of the various event messages generated and processed by NetQ, you must integrate with third-party event notification applications. You can integrate NetQ with <!-- vale off -->Syslog<!-- vale on -->, PagerDuty, Slack, and Email. You can integrate with one or more of these applications simultaneously.
+To take advantage of the various event messages generated and processed by NetQ, you must integrate with third-party event notification applications. You can integrate NetQ with <!-- vale off -->Syslog<!-- vale on -->, PagerDuty, Slack, and Email. A generic webhook channel also exists to send notifications to other third party applications. You can integrate with one or more of these applications simultaneously.
 
 In an on-premises deployment, the NetQ On-premises Appliance or VM receives the raw data stream from the NetQ Agents, processes the data, stores, and delivers events to the Notification function. Notification then filters and sends messages to any configured notification applications. In a cloud deployment, the NetQ Cloud Appliance or VM passes the raw data stream on to the NetQ Cloud service for processing and delivery.
 
@@ -88,9 +88,9 @@ You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Notification Channels** in the **Notifications** section.
 
-    {{<figure src="/images/netq/main-menu-channels-selected-320.png" width="600">}}
+    {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
 
 2. The **Slack** tab is displayed by default.
 
@@ -167,9 +167,9 @@ You can use the NetQ UI or the NetQ CLI to create a PagerDuty channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Notification Channels** in the **Notifications** section.
 
-    {{<figure src="/images/netq/main-menu-channels-selected-320.png" width="600">}}
+    {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
 
 2. Click **PagerDuty**.
 
@@ -244,9 +244,9 @@ You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Notification Channels** in the **Notifications** section.
 
-    {{<figure src="/images/netq/main-menu-channels-selected-320.png" width="600">}}
+    {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
 
 2. Click **Syslog**.
 
@@ -322,7 +322,9 @@ You can use the NetQ UI or the NetQ CLI to create an Email channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Notification Channels** in the **Notifications** section.
+
+    {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
 
     {{<figure src="/images/netq/main-menu-channels-selected-320.png" width="600">}}
 
@@ -454,6 +456,64 @@ Successfully added/updated channel cloud-email
                                                      omain.com
 
     ```
+
+{{</tab>}}
+
+{{</tabs>}}
+
+{{</tab>}}
+
+{{<tab "Generic" >}}
+
+You can use the NetQ UI or the NetQ CLI to create a Generic channel.
+
+{{<tabs "TabID470" >}}
+
+{{<tab "NetQ UI" >}}
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Notification Channels** in the **Notifications** section.
+
+    {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
+
+2. Click **Generic**.
+
+    {{<figure src="/images/netq/generic-add-channel.png" width="700">}}
+
+3. Add a channel.
+
+    - When no channels have been specified, click **Add generic channel**.
+    - When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
+
+4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
+
+    {{<figure src="/images/netq/add-generic-channel-dialog.png" width="400">}}
+
+5. Enter a Webhook URL that you want to receive the notifications from this channel.
+
+6. Set the desired notification severity, SSL, and authentication parameters for this channel.
+
+7. Click **Add**.
+
+8. To verify the channel configuration, click **Test**.
+
+    {{<figure src="/images/netq/generic-example-added.png" width="300">}}
+
+<div style="padding-left: 18px;">Otherwise, click <strong>Close</strong>.</div>
+
+    {{<figure src="/images/netq/generic-created.png" width="700">}}
+
+9. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
+
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
+
+To create and verify the specification of a Generic channel, run:
+
+```
+netq add notification channel generic <text-channel-name> webhook <text-webhook-url> [severity info | severity warning | severity error | severity debug] [use-ssl True | use-ssl False] [auth-type basic-auth generic-username <text-generic-username> generic-password <text-generic-password> | auth-type api-key key-name <text-api-key-name> key-value <text-api-key-value>]
+netq show notification channel [json]
+```
 
 {{</tab>}}
 
@@ -602,7 +662,7 @@ proxy4:80          yes                        yes
 
 ### Create Channels
 
-Create one or more PagerDuty, Slack, syslog, or Email channels to receive the notifications.
+Create one or more PagerDuty, Slack, syslog, Email, or generic channels to receive the notifications.
 
 {{<tabs "TabID566" >}}
 
@@ -905,6 +965,52 @@ This example creates an email channel named *cloud-email* that uses the NetQ SMT
 {{</tab>}}
 
 {{</tabs>}}
+
+{{</tab>}}
+
+{{<tab "Generic" >}}
+<!-- vale on -->
+To create and verify the specification of a generic channel, run:
+
+```
+netq add notification channel generic <text-channel-name> webhook <text-webhook-url> [severity info | severity warning | severity error | severity debug] [use-ssl True | use-ssl False] [auth-type basic-auth generic-username <text-generic-username> generic-password <text-generic-password> | auth-type api-key key-name <text-api-key-name> key-value <text-api-key-value>]
+netq show notification channel [json]
+```
+where:
+
+<table>
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&lt;text-channel-name&gt;</td>
+<td>User-specified generic channel name</p></td>
+</tr>
+<tr class="even">
+<td>webhook &lt;text-webhook-url&gt;</td>
+<td>URL of the remote application to receive notifications</td>
+</tr>
+<tr class="even">
+<td>severity &lt;level&gt;</td>
+<td>The log level to set, which can be one of <em>error, warning, info,</em> or <em>debug</em>. The severity defaults to <em>info</em>.</td>
+</tr>
+<tr class="odd">
+<td>use-ssl [True | False]</td>
+<td>Enable or disable SSL</td>
+<tr class="odd">
+<td>auth-type [basic-auth | api-key]</td>
+<td>Set authentication parameters. Either <b>basic-auth</b> with <i>generic-username</i> and <i>generic-password</i> or <b>api-key</b> with a <i>key-name</i> and <i>key-value</i></td>
+</tr>
+</tbody>
+</table>
 
 {{</tab>}}
 

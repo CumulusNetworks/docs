@@ -77,7 +77,7 @@ The order of the BGP algorithm process is as follows:
 
 - **Highest Peer IP Address**: The switch uses the route from the peer with the highest IP address.
 
-Cumulus Linux provides the reason it selects one path over another in <!--NCLU `net show bgp` and -->vtysh `show ip bgp` command output for a specific prefix.
+To see the reason Cumulus Linux selects one path over another, run the vtysh `show ip bgp` command or the `net show bgp` command.
 
 When you use BGP multipath, if multiple paths are equal, BGP still selects a single best path to advertise to peers. This path shows as best with the reason, although BGP can install multiple paths into the routing table.
 

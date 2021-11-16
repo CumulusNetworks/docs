@@ -494,6 +494,54 @@ cumulus@switch:~$ nv list-commands interface swp1 <<press Tab>>
 acl     bond    bridge  evpn    ip      link    ptp     qos     router 
 ```
 
+## Additional Show commands
+
+In addition to the `nv show` commands, Cumulus Linux continues to provide a subset of the NCLU `net show` commands. Use these commands to get additional views of various parts of your network configuration.
+
+```
+cumulus@leaf01:mgmt:~$ net show 
+    bfd            :  Bidirectional forwarding detection
+    bgp            :  Border Gateway Protocol
+    bridge         :  a layer2 bridge
+    clag           :  Multi-Chassis Link Aggregation
+    commit         :  apply the commit buffer to the system
+    configuration  :  settings, configuration state, etc
+    counters       :  net show counters
+    debugs         :  Debugs
+    dhcp-snoop     :  DHCP snooping for IPv4
+    dhcp-snoop6    :  DHCP snooping for IPv6
+    dot1x          :  Configure, Enable, Delete or Show IEEE 802.1X EAPOL
+    evpn           :  Ethernet VPN
+    hostname       :  local hostname
+    igmp           :  Internet Group Management Protocol
+    interface      :  An interface, such as swp1, swp2, etc.
+    ip             :  Internet Protocol version 4/6
+    ipv6           :  Internet Protocol version 6
+    lldp           :  Link Layer Discovery Protocol
+    mpls           :  Multiprotocol Label Switching
+    mroute         :  Static unicast routes in MRIB for multicast RPF lookup
+    msdp           :  Multicast Source Discovery Protocol
+    neighbor       :  A BGP, OSPF, PIM, etc neighbor
+    ospf           :  Open Shortest Path First (OSPFv2)
+    ospf6          :  Open Shortest Path First (OSPFv3)
+    package        :  A Cumulus Linux package name
+    pbr            :  Policy Based Routing
+    pim            :  Protocol Independent Multicast
+    port-mirror    :  port-mirror
+    port-security  :  Port security
+    ptp            :  Precision Time Protocol
+    roce           :  Enable RoCE on all interfaces, default mode is lossless
+    rollback       :  revert to a previous configuration state
+    route          :  EVPN route information
+    route-map      :  Route-map
+    snmp-server    :  Configure the SNMP server
+    system         :  System
+    time           :  Time
+    version        :  Version number
+    vrf            :  Virtual routing and forwarding
+    vrrp           :  Virtual Router Redundancy Protocol
+```
+
 ## NVUE Configuration File
 
 When you save network configuration using NVUE, Cumulus Linux writes the configuration to the `/etc/nvue.d/startup.yaml` file.

@@ -12,12 +12,7 @@ This document supports the Cumulus Linux 5.0 release, and lists new platforms an
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.0
 <!-- vale on -->
-Cumulus Linux 5.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
-
-### New Platforms
-
-- NVIDIA SN4600C (100G Spectrum-A1)
-- NVIDIA SN3700C-S (100G Spectrum-2) with Secure Boot
+Cumulus Linux 5.0 provides bug fixes, and contains several new features and improvements.
 
 ### New Features and Enhancements
 
@@ -30,7 +25,6 @@ Cumulus Linux 5.0 supports new platforms, provides bug fixes, and contains sever
   - BGP `static-network` is now `network`
   - `nv set platform config` command is now `nv set system config`
   - `nv set platform hostname value <hostname>` command is now `nv set system hostname <hostname>`
-- cl-support now includes CPLD register information
 - DHCPv6 supports SVI interfaces
 - New forwarding resource profiles: `v6-lpm-heavy-1` and `l2-heavy-3`
 - SNMP enhancements

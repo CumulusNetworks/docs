@@ -170,7 +170,7 @@ The `&&` operator in Linux only executes the next command if the previous comman
    PLAY [spine leaf border] ****************************************************************
 
    TASK [Gathering Facts] ****************************************************************
-   Sunday 12 April 2020  23:35:25 +0000 (0:00:00.073)       0:00:00.073 ********** 
+   Sunday 12 April 2020  23:35:25 +0000 (0:00:00.073)       0:00:00.073 **********
    ok: [spine03]
    ok: [spine04]
    ok: [spine02]
@@ -190,15 +190,17 @@ You now have a deployed and operational golden standard Cumulus Linux architectu
 
 This method is the easiest way to experience the final product of the Cumulus golden standard EVPN VXLAN demo configurations. This method is best suited to fast track all the simulation setup and provisioning, and start testing any of the official golden standard EVPN-VXLAN demo configurations.
 
-If you want to take a closer look at the automation and deployment processes and see the actual examples of the infrastructure as code, you need to clone the demo project and manually run the automation playbook to render the configuration as code into the network devices. This automated process clones your selected demo repository and runs the Ansible deployment playbook for you with a few easy and convenient clicks from Cumulus in the Cloud UI.
+If you want to take a closer look at the automation and deployment processes and see the actual examples of the infrastructure as code, you need to clone the demo project and manually run the automation playbook to render the configuration as code into the network devices. This automated process clones your selected demo repository and runs the Ansible deployment playbook for you with a few easy and convenient clicks from NVIDIA Air UI.
 
 <!-- vale off -->
-1. Go to [Cumulus in the Cloud](https://www.nvidia.com/en-us/networking/network-simulation/) to request a demo or to reach your existing simulation.
-2. After you reach your simulation console, choose a demo from the dropdown menu on the left panel.
+1. Go to [NVIDIA Air demo marketplace](https://www.nvidia.com/en-us/networking/network-simulation/) .
+2. Request one of the supported NVIDIA production ready automation demos by clicking on the card:
 
-    {{<img src="/images/guides/citc-interface-demo.png" >}}
+After you reach your simulation console, choose a demo from the dropdown menu on the left panel.
 
-3. Click **Run Now**.
+    {{<img src="/images/guides/air-demomarketplace-PRA.png" >}}
+
+3. Click **Launch**.
 4. Follow the instructions on the `Guided Tour` panel to test and experience the unique aspects of your selected demo.
 <!-- vale on -->
 

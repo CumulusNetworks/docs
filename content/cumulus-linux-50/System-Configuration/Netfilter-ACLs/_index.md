@@ -34,9 +34,7 @@ When you build rules to affect the flow of traffic, *tables* can access the indi
 - **NAT** applies Network Address Translation rules
 - **Mangle** alters packets as they move through the switch
 
-Each table has a set of default chains that modify or inspect packets at different points of the path through the switch. Chains contain the individual rules to influence traffic. The figure below shows each table and the default chains they support. Cumulus Linux supports the tables and chains in green. Cumulus Linux does not support the tables and chains in red.
-
-{{< img src = "/images/cumulus-linux/acls-supported.png" >}}
+Each table has a set of default chains that modify or inspect packets at different points of the path through the switch. Chains contain the individual rules to influence traffic.
 
 ### Rules
 
@@ -46,7 +44,7 @@ Rules classify the traffic you want to control. You apply rules to chains, which
 
 Rules have several different components:
 
-{{< img src = "/images/cumulus-linux/acl-anatomy-rule.png" >}}
+{{< img src = "/images/cumulus-linux/acl-anatomy-rule-50.png" >}}
 
 - **Table:** The first argument is the *table*. The second example does not specify a table; the filter table is the default.
 - **Chain:** The second argument is the *chain*. Each table supports several different chains. See {{<link url="#tables" text="Tables">}} above.
@@ -67,10 +65,10 @@ When you combine and put rules into one table, the order determines the relative
 The Linux packet forwarding construct is an overlay for how the silicon underneath processes packets. Be aware of the following:
 
 - The switch silicon reorders rules when `switchd` writes to the ASIC, whereas traditional `iptables` execute the list of rules in order.
-- All rules, except for POLICE and SETCLASS rules, are terminating; after a rule matches, the action occurs and no more rules process. In the example below, the SETCLASS action with the `--in-interface` option creates the internal ASIC classification, and continues to process the next rule, which provides rate-limiting for the matched protocol:
+- All rules, except for POLICE and SETCLASS rules, are terminating; after a rule matches, the action occurs and no more rules process. In the example below, the SETCLASS action with the `-i` option creates the internal ASIC classification, and continues to process the next rule, which provides rate-limiting for the matched protocol:
 
     ```
-    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport $BFD_ECHO_PORT -j SETCLASS --class 7
+    -A $INGRESS_CHAIN -i $INGRESS_INTF -p udp --dport $BFD_ECHO_PORT -j SETCLASS --class 7
     -A $INGRESS_CHAIN -p udp --dport $BFD_ECHO_PORT -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000
     ```
 
@@ -200,25 +198,25 @@ By default, each entry occupies one double wide entry, except if the entry is on
 - An entry with multiple comma-separated input interfaces splits into one rule for each input interface. For example, this entry splits into two rules:
 
   ```
-  -A FORWARD --in-interface swp1s0,swp1s1 -p icmp -j ACCEPT
+  -A FORWARD -i swp1s0,swp1s1 -p icmp -j ACCEPT
   ```
 
 - An entry with multiple comma-separated output interfaces splits into one rule for each output interface. This entry splits into two rules:
 
     ```
-    -A FORWARD --in-interface swp+ --out-interface swp1s0,swp1s1 -p icmp -j ACCEPT
+    -A FORWARD -i swp+ -o swp1s0,swp1s1 -p icmp -j ACCEPT
     ```
 
 - An entry with both input and output comma-separated interfaces splits into one rule for each combination of input and output interface This entry splits into four rules:
 
     ```
-    -A FORWARD --in-interface swp1s0,swp1s1 --out-interface swp1s2,swp1s3 -p icmp -j ACCEPT
+    -A FORWARD -i swp1s0,swp1s1 -o swp1s2,swp1s3 -p icmp -j ACCEPT
     ```
 
 - An entry with multiple layer 4 port ranges splits into one rule for each range. For example, this entry splits into two rules:
 
     ```
-    -A FORWARD --in-interface swp+ -p tcp -m multiport --dports 1050:1051,1055:1056 -j ACCEPT
+    -A FORWARD -i swp+ -p tcp -m multiport --dports 1050:1051,1055:1056 -j ACCEPT
     ```
 
    {{%notice note%}}
@@ -241,13 +239,18 @@ You can match on VLAN IDs on layer 2 interfaces for ingress rules. The following
 
 Instead of crafting a rule by hand, then installing it with `cl-acltool`, you can use NVUE commands. Cumulus Linux converts the commands to the `/etc/cumulus/acl/policy.d/50_cue.rules` file. The rules you create with NVUE are independent of the default files `/etc/cumulus/acl/policy.d/00control_plane.rules` and `99control_plane_catch_all.rules`.
 
+{{%notice note%}}
+Cumulus Linux 5.0 and later uses the `-t mangle -A PREROUTING` chain for ingress rules and the `-t mangle -A POSTROUTING` chain for egress rules instead of the `- A FORWARD` chain used in previous releases.
+{{%/notice%}}
+
 Consider the following `iptables` rule:
 
 ```
+-t mangle -A PREROUTING -i swp1 -s 10.0.14.2/32 -d 10.0.15.8/32 -p tcp -j ACCEPT
 -A FORWARD -i swp1 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT
 ```
 
-To create this rule with NVUE, follow the steps below. NVUE adds all options, such as the `FORWARD`, `-j` and `-p` in the rule automatically.
+To create this rule with NVUE, follow the steps below. NVUE adds all options in the rule automatically.
 
 1. Set the rule type, the matching protocol, source IP address and port, destination IP address and port, and the action. You must provide a name for the rule (EXAMPLE1 in the commands below):
 
@@ -263,7 +266,7 @@ To create this rule with NVUE, follow the steps below. NVUE adds all options, su
 
 2. Apply the rule to an inbound or outbound interface with the `nv set interface <interface> acl` command.
    
-   - For rules affecting the FORWARD chain (-A FORWARD), apply the rule to an inbound or outbound interface: For example:
+   - For rules affecting the -t mangle -A PREROUTING chain (-A FORWARD in previous releases), apply the rule to an inbound or outbound interface: For example:
 
    ```
    cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
@@ -277,21 +280,14 @@ To create this rule with NVUE, follow the steps below. NVUE adds all options, su
    cumulus@switch:~$ nv config apply
    ```
 
-   In the following example, swp1 is the inbound interface and the rule affects the FORWARD chain:
-
-   ```
-   cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
-   cumulus@switch:~$ nv set apply
-   ```
-
-To see all installed rules, examine the `50_cue.rules` file:
+To see all installed rules, examine the `/etc/cumulus/acl/policy.d/50_cue.rules` file:
 
 ```
 cumulus@switch:~$ sudo cat /etc/cumulus/acl/policy.d/50_cue.rules
 [iptables]
 
 ## ACL EXAMPLE1 in dir inbound on interface swp1 ##
--A FORWARD -i swp1 -s 10.0.14.2/32 -d 10.0.15.8/32 -p tcp -j ACCEPT
+-t mangle -A PREROUTING -i swp1 -s 10.0.14.2/32 -d 10.0.15.8/32 -p tcp -j ACCEPT
 ...
 ```
 
@@ -357,7 +353,7 @@ To see all installed rules, run `cat` on the `50_nclu_acl.rules` file:
 cumulus@switch:~$ cat /etc/cumulus/acl/policy.d/50_nclu_acl.rules
 [iptables]
 # swp1: acl ipv4 EXAMPLE1 inbound
--A FORWARD --in-interface swp1 --out-interface swp2 -j ACCEPT -p tcp -s 10.0.14.2/32 -d 10.0.15.8/32 --dport 110
+-A FORWARD -i swp1 -o swp2 -j ACCEPT -p tcp -s 10.0.14.2/32 -d 10.0.15.8/32 --dport 110
 ```
 
 For rules affecting the INPUT chain, apply the rule to a control plane interface with `net add control-plane`:
@@ -441,12 +437,12 @@ Here is an example ACL policy file:
 
 ```
 [iptables]
--A INPUT --in-interface swp1 -p tcp --dport 80 -j ACCEPT
--A FORWARD --in-interface swp1 -p tcp --dport 80 -j ACCEPT
+-A INPUT -i swp1 -p tcp --dport 80 -j ACCEPT
+-A FORWARD -i swp1 -p tcp --dport 80 -j ACCEPT
 
 [ip6tables]
--A INPUT --in-interface swp1 -p tcp --dport 80 -j ACCEPT
--A FORWARD --in-interface swp1 -p tcp --dport 80 -j ACCEPT
+-A INPUT -i swp1 -p tcp --dport 80 -j ACCEPT
+-A FORWARD -i swp1 -p tcp --dport 80 -j ACCEPT
 
 [ebtables]
 -A INPUT -p IPv4 -j ACCEPT
@@ -466,10 +462,10 @@ INGRESS = swp+
 INPUT_PORT_CHAIN = INPUT,FORWARD
 
 [iptables]
--A $INPUT_PORT_CHAIN --in-interface $INGRESS -p tcp --dport 80 -j ACCEPT
+-A $INPUT_PORT_CHAIN -i $INGRESS -p tcp --dport 80 -j ACCEPT
 
 [ip6tables]
--A $INPUT_PORT_CHAIN --in-interface $INGRESS -p tcp --dport 80 -j ACCEPT
+-A $INPUT_PORT_CHAIN -i $INGRESS -p tcp --dport 80 -j ACCEPT
 
 [ebtables]
 -A INPUT -p IPv4 -j ACCEPT
@@ -489,18 +485,18 @@ INGRESS_CHAIN = INPUT
 
 [iptables]
 # protect the switch management
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 10.0.11.2 -d 10.0.12.8 -p tcp -j ACCEPT
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -d 10.0.16.8 -p udp -j DROP
+-A $INGRESS_CHAIN -i $INGRESS_INTF -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT
+-A $INGRESS_CHAIN -i $INGRESS_INTF -s 10.0.11.2 -d 10.0.12.8 -p tcp -j ACCEPT
+-A $INGRESS_CHAIN -i $INGRESS_INTF -d 10.0.16.8 -p udp -j DROP
 
 cumulus@switch:~$ cat /etc/cumulus/acl/policy.d/01sample_datapath.rules
 INGRESS_INTF = swp+
 INGRESS_CHAIN = INPUT, FORWARD
 
 [iptables]
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 192.0.2.5 -p icmp -j ACCEPT
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 192.0.2.6 -d 192.0.2.4 -j DROP
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 192.0.2.2 -d 192.0.2.8 -j DROP
+-A $INGRESS_CHAIN -i $INGRESS_INTF -s 192.0.2.5 -p icmp -j ACCEPT
+-A $INGRESS_CHAIN -i $INGRESS_INTF -s 192.0.2.6 -d 192.0.2.4 -j DROP
+-A $INGRESS_CHAIN -i $INGRESS_INTF -s 192.0.2.2 -d 192.0.2.8 -j DROP
 ```
 
 Install all ACL policies under a directory:
@@ -624,9 +620,9 @@ Splitting rules across the ingress TCAM and the egress TCAM causes the ingress I
 
 A higher rule can prevent a lower rule from matching:
 
-Rule 1: `-A FORWARD --out-interface vlan100 -p icmp6 -j ACCEPT`
+Rule 1: `-A FORWARD -o vlan100 -p icmp6 -j ACCEPT`
 
-Rule 2: `-A FORWARD --out-interface vlan101 -p icmp6 -s 01::02 -j ACCEPT`
+Rule 2: `-A FORWARD -o vlan101 -p icmp6 -s 01::02 -j ACCEPT`
 
 Rule 1 matches all icmp6 packets from to all out interfaces in the ingress TCAM.`
 
@@ -634,19 +630,19 @@ This prevents rule 2 from matching, which is more specific but with a different 
 
 When you have two rules with the same output interface, the lower rule might match depending on the presence of the previous rules.
 
-Rule 1: `-A FORWARD --out-interface vlan100 -p icmp6 -j ACCEPT`
+Rule 1: `-A FORWARD -o vlan100 -p icmp6 -j ACCEPT`
 
-Rule 2: `-A FORWARD --out-interface vlan101 -s 00::01 -j DROP`
+Rule 2: `-A FORWARD -o vlan101 -s 00::01 -j DROP`
 
-Rule 3: `-A FORWARD --out -interface vlan101 -p icmp6 -j ACCEPT`
+Rule 3: `-A FORWARD -o vlan101 -p icmp6 -j ACCEPT`
 
 Rule 3 still matches for an icmp6 packet with sip 00:01 going out of vlan101. Rule 1 interferes with the normal function of rule 2 and/or rule 3.
 
 When you have two adjacent rules with the same match and different output interfaces, such as:
 
-Rule 1: `-A FORWARD --out-interface vlan100 -p icmp6 -j ACCEPT`
+Rule 1: `-A FORWARD -o vlan100 -p icmp6 -j ACCEPT`
 
-Rule 2: `-A FORWARD --out-interface vlan101 -p icmp6 -j DROP`
+Rule 2: `-A FORWARD -o vlan101 -p icmp6 -j DROP`
 
 Rule 2 never matches on ingress. Both rules share the same mark.
 
@@ -699,43 +695,6 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
-
-Here is another example of control plane ACL rules to lock down the switch. You specify the rules in `/etc/cumulus/acl/policy.d/00control_plane.rules`:
-
-```
-INGRESS_INTF = swp+
-INGRESS_CHAIN = INPUT
-INNFWD_CHAIN = INPUT,FORWARD
-MARTIAN_SOURCES_4 = "240.0.0.0/5,127.0.0.0/8,224.0.0.0/8,255.255.255.255/32"
-MARTIAN_SOURCES_6 = "ff00::/8,::/128,::ffff:0.0.0.0/96,::1/128"
-
-# Custom Policy Section
-SSH_SOURCES_4 = "192.168.0.0/24"
-NTP_SERVERS_4 = "192.168.0.1/32,192.168.0.4/32"
-DNS_SERVERS_4 = "192.168.0.1/32,192.168.0.4/32"
-SNMP_SERVERS_4 = "192.168.0.1/32"
-
-[iptables]
--A $INNFWD_CHAIN --in-interface $INGRESS_INTF -s $MARTIAN_SOURCES_4 -j DROP
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p ospf -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000 --set-class 7
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bgp -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000 --set-class 7
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --sport bgp -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000 --set-class 7
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p icmp -j POLICE --set-mode pkt --set-rate 100 --set-burst 40 --set-class 2
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport bootps:bootpc -j POLICE --set-mode pkt --set-rate 100 --set-burst 100 --set-class 2
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bootps:bootpc -j POLICE --set-mode pkt --set-rate 100 --set-burst 100 --set-class 2
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p igmp -j POLICE --set-mode pkt --set-rate 300 --set-burst 100 --set-class 6
-
-# Custom policy
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport 22 -s $SSH_SOURCES_4 -j ACCEPT
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --sport 123 -s $NTP_SERVERS_4 -j ACCEPT
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --sport 53 -s $DNS_SERVERS_4 -j ACCEPT
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport 161 -s $SNMP_SERVERS_4 -j ACCEPT
-
-
-# Allow UDP traceroute when we are the current TTL expired hop 
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport 1024:65535 -m ttl --ttl-eq 1 -j ACCEPT
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -j DROP
-```
 
 ### Set DSCP on Transit Traffic
 
@@ -1024,8 +983,8 @@ In the following example, 10.10.10.1/32 is the interface IP address (or loopback
 {{< tab "iptables rule ">}}
 
 ```
--A FORWARD --in-interface swp+ -s 10.255.4.0/24 -d 10.10.10.1/32 -j ACCEPT
--A FORWARD --in-interface swp+ -d 10.10.10.1/32 -j DROP
+-A FORWARD -i swp+ -s 10.255.4.0/24 -d 10.10.10.1/32 -j ACCEPT
+-A FORWARD -i swp+ -d 10.10.10.1/32 -j DROP
 ```
 
 Apply the rule:
@@ -1045,7 +1004,7 @@ cumulus@switch:~$ nv set acl example2 rule 10 action permit
 cumulus@switch:~$ nv set acl example2 rule 20 match ip source-ip ANY 
 cumulus@switch:~$ nv set acl example2 rule 20 match ip dest-ip 10.10.10.1/32
 cumulus@switch:~$ nv set acl example2 rule 20 action deny
-cumulus@switch:~$ nv set interface swp2 acl example2 inbound
+cumulus@switch:~$ nv set interface swp2 acl example2 inbound control-plane
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1215,53 +1174,119 @@ The following example demonstrates how Cumulus Linux applies several different r
 
 The following rule blocks any TCP traffic with destination port 200 going through leaf01 to server01 (rule 1 in the diagram above).
 
+{{< tabs "1179 ">}}
+{{< tab "iptables Rule ">}}
+
 ```
 [iptables]
--A FORWARD -o swp1 -p tcp --dport 200 -j DROP
+-t mangle -A POSTROUTING -o swp1 -p tcp -m multiport --dports 200 -j DROP
 ```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 200
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 outbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Ingress Rule
 
 The following rule blocks any UDP traffic with source port 200 going from server01 through leaf01 (rule 2 in the diagram above).
 
+{{< tabs "1206 ">}}
+{{< tab "iptables Rule ">}}
+
 ```
 [iptables] 
--A FORWARD -i swp1 -p udp --sport 200 -j DROP
+-t mangle -A PREROUTING -i swp1 -p udp -m multiport --sports 200 -j DROP
 ```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol udp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port 200
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Input Rule
 
 The following rule blocks any UDP traffic with source port 200 and destination port 50 going from server02 to the leaf02 control plane (rule 3 in the diagram above).
 
+{{< tabs "1233 ">}}
+{{< tab "iptables Rule ">}}
+
 ```
 [iptables] 
--A INPUT -i swp2 -p udp --sport 200 --dport 50 -j DROP
+-A INPUT -i swp2 -p udp -m multiport --dports 50 -j DROP
 ```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol udp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 50
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
+cumulus@switch:~$ nv set interface swp2 acl EXAMPLE1 inbound control-plane
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Output Rule
 
 The following rule blocks any TCP traffic with source port 123 and destination port 123 going from leaf02 to server02 (rule 4 in the diagram above).
 
+{{< tabs "1260 ">}}
+{{< tab "iptables Rule ">}}
+
 ```
 [iptables] 
--A OUTPUT -o swp2 -p tcp --sport 123 --dport 123 -j DROP
+-A OUTPUT -o swp2 -p tcp -m multiport --sports 123 -m multiport --dports 123 -j DROP
 ```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port 123
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 123
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
+cumulus@switch:~$ nv set interface swp2 acl EXAMPLE1 outbound control-plane
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Combined Rules
 
-The following rule blocks any TCP traffic with source port 123 and destination port 123 going from any switch port egress or generated from the switch.
+The following rules block any TCP traffic with source port 123 and destination port 123 going from any switch port egress or generated from the switch.
 
 ```
 [iptables]
--A OUTPUT,FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP
-```
-
-This also becomes two ACLs and is the same as:
-
-```
-[iptables]
--A FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP 
--A OUTPUT -o swp+ -p tcp --sport 123 --dport 123 -j DROP
+-t mangle -A PREROUTING -i swp+ -p tcp -m multiport --sports 123 -m multiport --dports 123 -j DROP
+-A OUTPUT -o swp+ -p tcp -m multiport --sports 123 -m multiport --dports 123 -j DROP
 ```
 
 ### Layer 2 Rules (ebtables)
@@ -1281,7 +1306,7 @@ Cumulus Linux does not support all `iptables`, `ip6tables`, or `ebtables` rules.
 
 ### ACL Log Policer Limits Traffic
 
-To protect the CPU from overloading, Cumulus Linux limits traffic copied to the CPU to 1 pkt/s by an ACL Log Policer.
+To protect the CPU from overloading, Cumulus Linux limits traffic copied to the CPU to 1 packet per second by an ACL Log Policer.
 
 ### Bridge Traffic Limitations
 
@@ -1334,9 +1359,9 @@ Due to hardware limitations in the Spectrum ASIC, {{<link url="Bidirectional-For
 -A $INGRESS_CHAIN -p udp --dport $BFD_MH_PORT -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000
 
 [ip6tables]
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport $BFD_ECHO_PORT -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000 --set-class 7
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport $BFD_PORT -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000 --set-class 7
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport $BFD_MH_PORT -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000 --set-class 7
+-A $INGRESS_CHAIN -i $INGRESS_INTF -p udp --dport $BFD_ECHO_PORT -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000 --set-class 7
+-A $INGRESS_CHAIN -i $INGRESS_INTF -p udp --dport $BFD_PORT -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000 --set-class 7
+-A $INGRESS_CHAIN -i $INGRESS_INTF -p udp --dport $BFD_MH_PORT -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000 --set-class 7
 ```
 
 To work around this limitation, set the rate and burst for all these rules to the same values with the `--set-rate` and `--set-burst` options.
@@ -1382,7 +1407,7 @@ The ACL does not match on packets when you configure a subinterface as the outpu
 For example:
 
 ```
--A FORWARD --out-interface swp49s1.100 -j ACCEPT
+-A FORWARD -o swp49s1.100 -j ACCEPT
 ```
 
 ### Egress ACL Matching on Bonds
@@ -1391,18 +1416,18 @@ Cumulus Linux does not support ACL rules that match on an outbound *bond* interf
 
 ```
 [iptables]
--A FORWARD --out-interface <bond_intf> -j DROP
+-A FORWARD -o <bond_intf> -j DROP
 ```
 
 To work around this issue, duplicate the ACL rule on each physical port of the bond. For example:
 
 ```
 [iptables]
--A FORWARD --out-interface <bond-member-port-1> -j DROP
--A FORWARD --out-interface <bond-member-port-2> -j DROP
+-A FORWARD -o <bond-member-port-1> -j DROP
+-A FORWARD -o <bond-member-port-2> -j DROP
 ```
 
-### SSH Taffic to the Management VRF
+### SSH Traffic to the Management VRF
 
 To allow SSH traffic to the management VRF, use `-i mgmt`, not `-i eth0`. For example:
 
@@ -1412,7 +1437,7 @@ To allow SSH traffic to the management VRF, use `-i mgmt`, not `-i eth0`. For ex
 <!-- vale off -->
 ### INPUT Chain Rules and swp+
 <!-- vale on -->
-In INPUT chain rules, the `--in-interface swp+` match works only if the destination of the packet is towards a layer 3 swp interface; the match does not work if the packet terminates at an SVI interface (for example, vlan10). To allow traffic towards specific SVIs, use rules without any interface match or rules with individual `--in-interface <SVI>` matches.
+In INPUT chain rules, the `-i swp+` match works only if the destination of the packet is towards a layer 3 swp interface; the match does not work if the packet terminates at an SVI interface (for example, vlan10). To allow traffic towards specific SVIs, use rules without any interface match or rules with individual `-i <SVI>` matches.
 
 ## Related Information
 

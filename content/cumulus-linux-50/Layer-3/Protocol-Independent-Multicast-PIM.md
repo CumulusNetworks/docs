@@ -1127,23 +1127,23 @@ For large multicast environments, the default [CoPP](## "Control Plane Policing"
 The following example commands set the PIM forwarding and burst rate to 400 packets per second:
 
 ```
-cumulus@switch:~$ nv set acl example1 type ipv4
-cumulus@switch:~$ nv set acl example1 rule 1 match ip protocol pim
-cumulus@switch:~$ nv set acl example1 rule 1 action police rate 400
-cumulus@switch:~$ nv set acl example1 rule 1 action police burst 400
-cumulus@switch:~$ nv set interface swp1 acl example1 inbound control-plane
-cumulus@switch:~$ nv config apply
+cumulus@switch:~$ 
+cumulus@switch:~$ 
+cumulus@switch:~$ 
+cumulus@switch:~$ 
+cumulus@switch:~$ 
+cumulus@switch:~$ 
 ```
 
 The following example commands set the IGMP forwarding rate to 400 and the IGMP burst rate to 200 packets per second:
 
 ```
-cumulus@switch:~$ nv set acl example1 type ipv4
-cumulus@switch:~$ nv set acl example1 rule 1 match ip protocol igmp
-cumulus@switch:~$ nv set acl example1 rule 1 action police rate 400
-cumulus@switch:~$ nv set acl example1 rule 1 action police burst 200
-cumulus@switch:~$ nv set interface swp1 acl example1 inbound control-plane
-cumulus@switch:~$ nv config apply
+cumulus@switch:~$ 
+cumulus@switch:~$ 
+cumulus@switch:~$ 
+cumulus@switch:~$ 
+cumulus@switch:~$ 
+cumulus@switch:~$ 
 ```
 
 {{< /tab >}}
@@ -1169,7 +1169,7 @@ cumulus@switch:~$ nv config apply
       ...
       ```
 
-2. Edit the `/etc/cumulus/control-plane/policers.conf` file, run the following command:
+2. Run the following command:
 
    ```
    cumulus@switch:~$ switchdctl --load /etc/cumulus/control-plane/policers.conf

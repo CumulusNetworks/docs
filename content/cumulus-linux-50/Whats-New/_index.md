@@ -17,10 +17,10 @@ Cumulus Linux 5.0 provides bug fixes, and contains several new features and impr
 ### New Features and Enhancements
 
 - New NVUE commands to:
-  - Configure PIM, IGMP and VRRP
-  - Set the time zone
+  - Configure {{<link url="Protocol-Independent-Multicast-PIM" text="PIM">}}, {{<link url="IGMP-and-MLD-Snooping" text="IGMP">}} and {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP/#vrrp" text="VRRP">}}
+  - Set the {{<link title="Setting the Date and Time" text="time zone">}}
   - Include interface descriptions (alias)
-  - Clear counters, such as RoCE counters
+  - Clear counters, such as {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE counters">}}
 - Modified NVUE commands:
   - BGP `static-network` is now `network`
   - `nv set platform config` command is now `nv set system config`

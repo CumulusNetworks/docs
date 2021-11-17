@@ -239,13 +239,18 @@ You can match on VLAN IDs on layer 2 interfaces for ingress rules. The following
 
 Instead of crafting a rule by hand, then installing it with `cl-acltool`, you can use NVUE commands. Cumulus Linux converts the commands to the `/etc/cumulus/acl/policy.d/50_cue.rules` file. The rules you create with NVUE are independent of the default files `/etc/cumulus/acl/policy.d/00control_plane.rules` and `99control_plane_catch_all.rules`.
 
+{{%notice note%}}
+Cumulus Linux 5.0 and later uses the `-t mangle -A PREROUTING` chain for ingress rules and the `-t mangle -A POSTROUTING` chain for egress rules instead of the `- A FORWARD` chain used in previous releases.
+{{%/notice%}}
+
 Consider the following `iptables` rule:
 
 ```
+-t mangle -A PREROUTING -i swp1 -s 10.0.14.2/32 -d 10.0.15.8/32 -p tcp -j ACCEPT
 -A FORWARD -i swp1 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT
 ```
 
-To create this rule with NVUE, follow the steps below. NVUE adds all options, such as the `FORWARD`, `-j` and `-p` in the rule automatically.
+To create this rule with NVUE, follow the steps below. NVUE adds all options in the rule automatically.
 
 1. Set the rule type, the matching protocol, source IP address and port, destination IP address and port, and the action. You must provide a name for the rule (EXAMPLE1 in the commands below):
 
@@ -261,7 +266,7 @@ To create this rule with NVUE, follow the steps below. NVUE adds all options, su
 
 2. Apply the rule to an inbound or outbound interface with the `nv set interface <interface> acl` command.
    
-   - For rules affecting the FORWARD chain (-A FORWARD), apply the rule to an inbound or outbound interface: For example:
+   - For rules affecting the -t mangle -A PREROUTING chain (-A FORWARD in previous releases), apply the rule to an inbound or outbound interface: For example:
 
    ```
    cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
@@ -275,21 +280,14 @@ To create this rule with NVUE, follow the steps below. NVUE adds all options, su
    cumulus@switch:~$ nv config apply
    ```
 
-   In the following example, swp1 is the inbound interface and the rule affects the FORWARD chain:
-
-   ```
-   cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
-   cumulus@switch:~$ nv set apply
-   ```
-
-To see all installed rules, examine the `50_cue.rules` file:
+To see all installed rules, examine the `/etc/cumulus/acl/policy.d/50_cue.rules` file:
 
 ```
 cumulus@switch:~$ sudo cat /etc/cumulus/acl/policy.d/50_cue.rules
 [iptables]
 
 ## ACL EXAMPLE1 in dir inbound on interface swp1 ##
--A FORWARD -i swp1 -s 10.0.14.2/32 -d 10.0.15.8/32 -p tcp -j ACCEPT
+-t mangle -A PREROUTING -i swp1 -s 10.0.14.2/32 -d 10.0.15.8/32 -p tcp -j ACCEPT
 ...
 ```
 

@@ -25,7 +25,7 @@ NetQ 4.1.0 includes the following new features and improvements:
 - Support for monitoring traditional mode bridges on Cumulus Linux.
 - {{<link title="Configure System Event Notifications#create-a-channel" text="Generic webhook notification channel.">}}
 - {{<link title="Manage Device Groups" text="Device group labels">}} to create validations for specific sets of devices.
-- Validation for duplicate IP address detection in your network.
+- {{<link title="Validation Checks#addresses-validation-tests" text="Validation for duplicate IP address detection in your network.">}}
 
 ## Upgrade Paths
 

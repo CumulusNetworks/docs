@@ -84,6 +84,7 @@ netq check ospf [label <text-label-name> | hostnames <text-list-hostnames>] [che
 netq check sensors [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <sensors-number-range-list> | exclude <sensors-number-range-list>] [around <text-time>] [streaming] [json | summary]
 netq check vlan [label <text-label-name> | hostnames <text-list-hostnames>] [unverified] [check_filter_id <text-check-filter-id>] [include <vlan-number-range-list> | exclude <vlan-number-range-list>] [around <text-time>] [json | summary]
 netq check vxlan [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <vxlan-number-range-list> | exclude <vxlan-number-range-list>] [around <text-time>] [json | summary]
+netq check addresses [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <addr-number-range-list> | exclude <addr-number-range-list>] [around <text-time>] [json | summary]
 ```
 
 All `netq check` commands have a summary and test results section. Some have additional summary information.
@@ -316,6 +317,31 @@ The results of the `netq add validation` command are displayed in the terminal w
 This section provides on-demand validation examples for a variety of protocols and elements.
 
 {{<tabs "CLI Examples">}}
+
+{{<tab "Addresses">}}
+
+The duplicate address detection validation tests look for duplicate IPv4 and IPv6 addresses assigned to interfaces across devices in the inventory.
+
+```
+cumulus@switch:mgmt:~$ netq check addresses
+addr check result summary:
+
+Total nodes         : 25
+Checked nodes       : 25
+Failed nodes        : 0
+Rotten nodes        : 0
+Warning nodes       : 0
+Skipped Nodes       : 0
+
+
+IPV4 Duplicate Address Test   : passed
+IPV6 Duplicate Address Test   : passed
+
+```
+
+Refer to {{<link url="Validation-Checks/#netq-agent-validation-tests" text="NetQ Agent Validation Tests">}} for descriptions of these tests.
+
+{{</tab>}}
 
 {{<tab "Agent">}}
 

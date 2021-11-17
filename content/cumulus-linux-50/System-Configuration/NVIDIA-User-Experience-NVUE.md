@@ -10,15 +10,17 @@ NVUE follows a declarative model, removing context-specific commands and setting
 <!-- vale on -->
 {{<img src = "/images/cumulus-linux/nvue-architecture.png">}}
 
-## Start the NVUE Service
+## NVUE Service
 
-Cumulus Linux installs NVUE by default but disables the NVUE service. To run NVUE commands, you must enable and start the NVUE service (`nvued`):
+Cumulus Linux installs NVUE by default and enables the NVUE service `nvued`.
+<!--
+To run NVUE commands, you must enable and start the NVUE service (`nvued`):
 
 ```
 cumulus@switch:~$ sudo systemctl enable nvued
 cumulus@switch:~$ sudo systemctl start nvued
 ```
-<!--
+
 {{%notice info%}}
 Do not mix NVUE and NCLU commands to configure the switch; use either the NCLU CLI or the NVUE CLI.
 {{%/notice%}}
@@ -354,6 +356,54 @@ restart-time                  120                           Amount of time taken
 stale-routes-time             360                           Specifies an upper-bounds on how long we retain routes from a resta...
 ```
 
+### Net Show commands
+
+In addition to the `nv show` commands, Cumulus Linux continues to provide a subset of the NCLU `net show` commands. Use these commands to get additional views of various parts of your network configuration.
+
+```
+cumulus@leaf01:mgmt:~$ net show 
+    bfd            :  Bidirectional forwarding detection
+    bgp            :  Border Gateway Protocol
+    bridge         :  a layer2 bridge
+    clag           :  Multi-Chassis Link Aggregation
+    commit         :  apply the commit buffer to the system
+    configuration  :  settings, configuration state, etc
+    counters       :  net show counters
+    debugs         :  Debugs
+    dhcp-snoop     :  DHCP snooping for IPv4
+    dhcp-snoop6    :  DHCP snooping for IPv6
+    dot1x          :  Configure, Enable, Delete or Show IEEE 802.1X EAPOL
+    evpn           :  Ethernet VPN
+    hostname       :  local hostname
+    igmp           :  Internet Group Management Protocol
+    interface      :  An interface, such as swp1, swp2, etc.
+    ip             :  Internet Protocol version 4/6
+    ipv6           :  Internet Protocol version 6
+    lldp           :  Link Layer Discovery Protocol
+    mpls           :  Multiprotocol Label Switching
+    mroute         :  Static unicast routes in MRIB for multicast RPF lookup
+    msdp           :  Multicast Source Discovery Protocol
+    neighbor       :  A BGP, OSPF, PIM, etc neighbor
+    ospf           :  Open Shortest Path First (OSPFv2)
+    ospf6          :  Open Shortest Path First (OSPFv3)
+    package        :  A Cumulus Linux package name
+    pbr            :  Policy Based Routing
+    pim            :  Protocol Independent Multicast
+    port-mirror    :  port-mirror
+    port-security  :  Port security
+    ptp            :  Precision Time Protocol
+    roce           :  Enable RoCE on all interfaces, default mode is lossless
+    rollback       :  revert to a previous configuration state
+    route          :  EVPN route information
+    route-map      :  Route-map
+    snmp-server    :  Configure the SNMP server
+    system         :  System
+    time           :  Time
+    version        :  Version number
+    vrf            :  Virtual routing and forwarding
+    vrrp           :  Virtual Router Redundancy Protocol
+```
+
 <!--
 ### Show Legacy Commands
 
@@ -492,54 +542,6 @@ Use the Tab key to get help for the command lists you want to see. For example, 
 ```
 cumulus@switch:~$ nv list-commands interface swp1 <<press Tab>>
 acl     bond    bridge  evpn    ip      link    ptp     qos     router 
-```
-
-## Additional Show commands
-
-In addition to the `nv show` commands, Cumulus Linux continues to provide a subset of the NCLU `net show` commands. Use these commands to get additional views of various parts of your network configuration.
-
-```
-cumulus@leaf01:mgmt:~$ net show 
-    bfd            :  Bidirectional forwarding detection
-    bgp            :  Border Gateway Protocol
-    bridge         :  a layer2 bridge
-    clag           :  Multi-Chassis Link Aggregation
-    commit         :  apply the commit buffer to the system
-    configuration  :  settings, configuration state, etc
-    counters       :  net show counters
-    debugs         :  Debugs
-    dhcp-snoop     :  DHCP snooping for IPv4
-    dhcp-snoop6    :  DHCP snooping for IPv6
-    dot1x          :  Configure, Enable, Delete or Show IEEE 802.1X EAPOL
-    evpn           :  Ethernet VPN
-    hostname       :  local hostname
-    igmp           :  Internet Group Management Protocol
-    interface      :  An interface, such as swp1, swp2, etc.
-    ip             :  Internet Protocol version 4/6
-    ipv6           :  Internet Protocol version 6
-    lldp           :  Link Layer Discovery Protocol
-    mpls           :  Multiprotocol Label Switching
-    mroute         :  Static unicast routes in MRIB for multicast RPF lookup
-    msdp           :  Multicast Source Discovery Protocol
-    neighbor       :  A BGP, OSPF, PIM, etc neighbor
-    ospf           :  Open Shortest Path First (OSPFv2)
-    ospf6          :  Open Shortest Path First (OSPFv3)
-    package        :  A Cumulus Linux package name
-    pbr            :  Policy Based Routing
-    pim            :  Protocol Independent Multicast
-    port-mirror    :  port-mirror
-    port-security  :  Port security
-    ptp            :  Precision Time Protocol
-    roce           :  Enable RoCE on all interfaces, default mode is lossless
-    rollback       :  revert to a previous configuration state
-    route          :  EVPN route information
-    route-map      :  Route-map
-    snmp-server    :  Configure the SNMP server
-    system         :  System
-    time           :  Time
-    version        :  Version number
-    vrf            :  Virtual routing and forwarding
-    vrrp           :  Virtual Router Redundancy Protocol
 ```
 
 ## NVUE Configuration File

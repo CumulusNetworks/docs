@@ -1038,27 +1038,46 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
-```
-cumulus@leaf01:~$ sudo vtysh
-...
-leaf01# configure terminal
-leaf01(config)# router bgp 65101
-leaf01(config-router)# bgp suppress-fib-pending
-leaf01(config-router)# end
-leaf01# write memory
-leaf01# exit
-```
+1. Run the following vtysh commands:
 
-The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+   ```
+   cumulus@leaf01:~$ sudo vtysh
+   ...
+   leaf01# configure terminal
+   leaf01(config)# router bgp 65101
+   leaf01(config-router)# bgp suppress-fib-pending
+   leaf01(config-router)# end
+   leaf01# write memory
+   leaf01# exit
+   ```
 
-```
-...
-router bgp 65199
- bgp router-id 10.10.10.101
- neighbor swp51 remote-as external
- bgp suppress-fib-pending
-...
-```
+   The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+   ```
+   ...
+   router bgp 65199
+   bgp router-id 10.10.10.101
+   neighbor swp51 remote-as external
+   bgp suppress-fib-pending
+   ...
+   ```
+
+2. Edit the `/etc/cumulus/switchd.d/kernel_route_offload_flags.conf` file to set the `kernel_route_offload_flags` parameter to 2:
+
+   ```
+   cumulus@leaf01:~$ sudo nano /etc/cumulus/switchd.d/kernel_route_offload_flags.conf  
+   # Set routing-forwarding-sync mode for routes.
+   #  0: No notification on HW install success or failure (default mode)
+   #  1: Notify HW install failure
+   #  2: Notify HW install success/failure
+   kernel_route_offload_flags = 2
+   ```
+
+3. Restart switchd:
+
+   ```
+   cumulus@leaf01:~$ sudo systemctl restart switchd.service
+   ```
 
 {{< /tab >}}
 {{< /tabs >}}

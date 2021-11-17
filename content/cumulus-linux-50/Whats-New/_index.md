@@ -23,7 +23,7 @@ Cumulus Linux 5.0 provides bug fixes, and contains several new features and impr
   - Clear counters, such as {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE counters">}}
 - Modified NVUE commands:
   - BGP `static-network` is now `network`
-  - `nv set platform config` command is now `nv set system config`
+  - `nv set platform config` command options are now `nv set system config` options - `nv set platform config` commands configure hardware components.
   - `nv set platform hostname value <hostname>` command is now `nv set system hostname <hostname>`
 - DHCPv6 supports SVI interfaces
 - New forwarding resource profiles: `v6-lpm-heavy-1` and `l2-heavy-3`

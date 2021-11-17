@@ -9,10 +9,12 @@ NVUE is an object-oriented, schema driven model of a complete Cumulus Linux syst
 NVUE follows a declarative model, removing context-specific commands and settings. It is structured as a *big tree* that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as *router* and *interface*. Under each of these branches are further branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key-value pairs. The path through the tree is similar to a filesystem path.
 <!-- vale on -->
 {{<img src = "/images/cumulus-linux/nvue-architecture.png">}}
-<!--
-## Start the NVUE Service
 
-Cumulus Linux installs NVUE by default but disables the NVUE service. To run NVUE commands, you must enable and start the NVUE service (`nvued`):
+## NVUE Service
+
+Cumulus Linux installs NVUE by default and enables the NVUE service `nvued`.
+<!--
+To run NVUE commands, you must enable and start the NVUE service (`nvued`):
 
 ```
 cumulus@switch:~$ sudo systemctl enable nvued

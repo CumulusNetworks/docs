@@ -1176,37 +1176,110 @@ The following example demonstrates how Cumulus Linux applies several different r
 
 The following rule blocks any TCP traffic with destination port 200 going through leaf01 to server01 (rule 1 in the diagram above).
 
+{{< tabs "1179 ">}}
+{{< tab "iptables Rule ">}}
+
 ```
 [iptables]
--A FORWARD -o swp1 -p tcp --dport 200 -j DROP
+-t mangle -A POSTROUTING -o swp1 -p tcp -m multiport --dports 200 -j DROP
 ```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 200
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 outbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Ingress Rule
 
 The following rule blocks any UDP traffic with source port 200 going from server01 through leaf01 (rule 2 in the diagram above).
 
+{{< tabs "1206 ">}}
+{{< tab "iptables Rule ">}}
+
 ```
 [iptables] 
--A FORWARD -i swp1 -p udp --sport 200 -j DROP
+-t mangle -A PREROUTING -i swp1 -p udp -m multiport --sports 200 -j DROP
 ```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol udp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port 200
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Input Rule
 
 The following rule blocks any UDP traffic with source port 200 and destination port 50 going from server02 to the leaf02 control plane (rule 3 in the diagram above).
 
+{{< tabs "1233 ">}}
+{{< tab "iptables Rule ">}}
+
 ```
 [iptables] 
--A INPUT -i swp2 -p udp --sport 200 --dport 50 -j DROP
+-A INPUT -i swp2 -p udp -m multiport --dports 50 -j DROP
 ```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol udp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 50
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
+cumulus@switch:~$ nv set interface swp2 acl EXAMPLE1 inbound control-plane
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Output Rule
 
 The following rule blocks any TCP traffic with source port 123 and destination port 123 going from leaf02 to server02 (rule 4 in the diagram above).
 
+{{< tabs "1260 ">}}
+{{< tab "iptables Rule ">}}
+
 ```
 [iptables] 
--A OUTPUT -o swp2 -p tcp --sport 123 --dport 123 -j DROP
+-A OUTPUT -o swp2 -p tcp -m multiport --sports 123 -m multiport --dports 123 -j DROP
 ```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port 123
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 123
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
+cumulus@switch:~$ nv set interface swp2 acl EXAMPLE1 outbound control-plane
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Combined Rules
 
@@ -1214,8 +1287,8 @@ The following rules block any TCP traffic with source port 123 and destination p
 
 ```
 [iptables]
--A FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP 
--A OUTPUT -o swp+ -p tcp --sport 123 --dport 123 -j DROP
+-t mangle -A PREROUTING -i swp+ -p tcp -m multiport --sports 123 -m multiport --dports 123 -j DROP
+-A OUTPUT -o swp+ -p tcp -m multiport --sports 123 -m multiport --dports 123 -j DROP
 ```
 
 ### Layer 2 Rules (ebtables)
@@ -1235,7 +1308,7 @@ Cumulus Linux does not support all `iptables`, `ip6tables`, or `ebtables` rules.
 
 ### ACL Log Policer Limits Traffic
 
-To protect the CPU from overloading, Cumulus Linux limits traffic copied to the CPU to 1 pkt/s by an ACL Log Policer.
+To protect the CPU from overloading, Cumulus Linux limits traffic copied to the CPU to 1 packet per second by an ACL Log Policer.
 
 ### Bridge Traffic Limitations
 

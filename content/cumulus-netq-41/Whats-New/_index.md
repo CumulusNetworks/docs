@@ -24,7 +24,7 @@ NetQ 4.1.0 includes the following new features and improvements:
 - Validation performance improvements and the ability to {{<link title="Validation Checks#disabling-validation-checks" text="disable validation checks.">}}
 - Support for monitoring traditional mode bridges on Cumulus Linux.
 - {{<link title="Configure System Event Notifications#create-a-channel" text="Generic webhook notification channel.">}}
-- Device group labels to create validations for specific sets of devices.
+- {{<link title="Manage Device Groups" text="Device group labels">}} to create validations for specific sets of devices.
 - Validation for duplicate IP address detection in your network.
 
 ## Upgrade Paths

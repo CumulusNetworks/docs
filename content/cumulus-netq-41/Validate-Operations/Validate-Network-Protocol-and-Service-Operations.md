@@ -46,7 +46,7 @@ To create and run a request containing checks on one or more protocols or servic
 
 1. Open the Validate Network card.
 
-   Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} (**Validation**), then click **Create a validation**.
+   Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} (**Validation**), then click **Create a validation**. Choose whether the on-demand validation should run on all devices or on specific {{<link title="Validate Network Protocol and Service Operations#validate-device-groups" text="device groups.">}}
 
 2. On the left side of the card, select the protocols or services you want to validate by clicking on their names, then click **Next**.
 
@@ -1100,7 +1100,7 @@ Sometimes it is useful to run validations on more than one protocol simultaneous
 
 1. Open the Validate Network card.
 
-   Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} (**Validation**), then click **Create a validation**.
+   Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} (**Validation**), then click **Create a validation**. Choose whether the scheduled validation should be run on all devices or on specific {{<link title="Validate Network Protocol and Service Operations#validate-device-groups" text="device groups.">}}
 
 2. On the left side of the card, select the protocols or services you want to validate by clicking on their names, then click **Next**.
 
@@ -1341,3 +1341,27 @@ You can remove a user-defined scheduled validation at any time using the NetQ UI
 {{</tab>}}
 
 {{</tabs>}}
+
+## Validate Device Groups
+
+Both on-demand and scheduled validations can be run on specific {{<link title="Manage Device Groups" text="device groups.">}} To create a validation for a device group rather than all devices:
+
+1. Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} (**Validation**), then click **Create a validation**. Choose **Run on group of switches:**
+
+{{<figure src="/images/netq/new-validation-group.png" width="500">}}
+
+2. Select which group to run the validation on:
+
+{{<figure src="/images/netq/validation-select-group.png" width="500">}}
+
+3. Select the protocols or services you want to validate by clicking on their names, then click Next.
+
+{{<figure src="/images/netq/select-validations-to-run.png" width="500">}}
+
+4. Select which individual validations to run for each service. Individual checks can be disabled by clicking {{<img src="/images/netq/check-circle-out.svg" width="14">}}:
+
+{{<figure src="/images/netq/validations-group-select-checks.png" width="500">}}
+
+5. Choose whether to run an on-demand validation now, or to schedule it for another time and click **Run:**
+
+{{<figure src="/images/netq/validation-schedule-run.png" width="500">}}

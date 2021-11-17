@@ -82,11 +82,11 @@ This KB article describes how to take a basic NX-OS configuration for EVPN and t
 |`router bgp 65000`| `nv set router bgp autonomous-system  65000` | | 
 |` address-family ipv4 unicast`| _none_ | | 
 |` address-family l2vpn evpn`| _none_ | | 
-|` neighbor 192.168.9.9 remote-as 100`| `nv set vrf default router bgp peer swp51 remote-as external` | This command uses eBGP unnumbered instead of IP based peering. |
+|` neighbor 192.168.9.9 remote-as 100`| `nv set vrf default router bgp neighbor swp51 remote-as external` | This command uses eBGP unnumbered instead of IP based peering. |
 |` remote-as 65000`| _none_ | This command combines with the peer command above. |
 |` update-source loopback2`| _none_ | BGP unnumbered uses the interface instead of a loopback source. | 
 |` address-family ipv4 unicast`| _none_ | | 
-|` address-family l2vpn evpn`| `nv set vrf default router bgp peer swp51 address-family l2vpn-evpn enable on` | | 
+|` address-family l2vpn evpn`| `nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn enable on` | | 
 |` send-community extended`| _none_ | Enabled by default. | 
 |` vrf EVPN-L3-VNI-VLAN-10`| _none_ | You manage this through an earlier `nv set vrf` command. |
 |` address-family ipv4 unicast`| _none_ | | 
@@ -125,8 +125,8 @@ nv set nve vxlan arp-nd-suppress on
 nv set interface lo ip address 192.168.33.33/32
 nv set nve vxlan mlag shared-address 192.168.33.34
 nv set router bgp autonomous-system 65000
-nv set vrf default router bgp peer swp51 remote-as external
-nv set vrf default router bgp peer swp51 address-family l2vpn-evpn enable on
+nv set vrf default router bgp neighbor swp51 remote-as external
+nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn enable on
 ```
 
 </details>

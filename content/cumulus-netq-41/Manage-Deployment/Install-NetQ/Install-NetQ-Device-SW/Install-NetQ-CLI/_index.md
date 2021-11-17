@@ -13,7 +13,6 @@ After installing your NetQ software and the NetQ {{<version>}} Agent on each swi
 - SONiC 202012 and later
 - CentOS 7
 - RHEL 7.1
-- Ubuntu 16.04
 - Ubuntu 18.04
 
 {{<notice note>}}
@@ -286,19 +285,6 @@ To get the NetQ CLI package:
 
     {{<tabs "TabID2" >}}
 
-{{<tab "Ubuntu 16.04" >}}
-
-Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:
-
-```
-root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
-...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
-...
-```
-
-{{</tab>}}
-
 {{<tab "Ubuntu 18.04" >}}
 
 Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add the following line:
@@ -526,31 +512,83 @@ The steps to configure the CLI are different depending on whether you installed 
 
 {{<tab "On-premises Deployments">}}
 
-Use the following command to configure the CLI:
+<!-- vale off -->
+To access and configure the CLI for your on-premise NetQ deployment, you must have your username and password to access the NetQ UI to generate AuthKeys. These keys provide authorized access (access key) and user authentication (secret key). 
+<!-- vale on -->
+
+To generate AuthKeys:
+
+1. In your Internet browser, enter your on-premise NetQ appliance hostnme or IP address into the address field to open the NetQ UI login page.
+
+2. Enter your username and password.
+
+3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (Main Menu), select *Management* under **Admin**.
+
+    {{<figure src="/images/netq/main-menu-admin-mgmt-selected-320.png" width="400">}}
+
+4. Click **Manage** on the User Accounts card.
+
+5. Select your user and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18"/> above the table.
+
+6. Copy these keys to a safe place.
+
+    {{<notice info>}}
+The secret key is only shown once. If you do not copy these, you will need to regenerate them and reconfigure CLI access.
+    {{</notice>}}
+
+{{<notice tip>}}
+You can also save these keys to a YAML file for easy reference, and to avoid having to type or copy the key values. You can:
+
+- store the file wherever you like, for example in <em>/home/cumulus/</em> or <em>/etc/netq</em>
+- name the file whatever you like, for example <em>credentials.yml</em>, <em>creds.yml</em>, or <em>keys.yml</em>
+
+BUT, the file must have the following format:
 
 ```
-netq config add cli server <text-gateway-dest> [vrf <text-vrf-name>] [port <text-gateway-port>]
+access-key: <user-access-key-value-here>
+secret-key: <user-secret-key-value-here>
 ```
 
-Restart the CLI afterward to activate the configuration.
-
-This example uses an IP address of 192.168.1.0 and the default port and VRF.
-
-```
-sudo netq config add cli server 192.168.1.0
-sudo netq config restart cli
-```
-
-{{<notice note>}}
-If you have a server cluster deployed, use the IP address of the master server.
 {{</notice>}}
+
+7. Now that you have your AuthKeys, use the following command to configure the CLI:
+
+    ```
+    netq config add cli server <text-gateway-dest> [access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name> | cli-keys-file <text-key-file> premises <text-premises-name>] [vrf <text-vrf-name>] [port <text-gateway-port>]
+    ```
+
+8. Restart the CLI afterward to activate the configuration.
+
+    This example uses the individual access key, a premises of *datacenterwest*,  and the default Cloud address, port and VRF.  **Be sure to replace the key values with your generated keys if you are using this example on your server.**
+
+    ```
+    sudo netq config add cli server netqhostname.labtest.net access-key 123452d9bc2850a1726f55534279dd3c8b3ec55e8b25144d4739dfddabe8149e secret-key /vAGywae2E4xVZg8F+HtS6h6yHliZbBP6HXU3J98765= premises datacenterwest
+    Updated cli server netqhostname.labtest.net vrf default port 443. Please restart netqd (netq config restart cli)
+
+    sudo netq config restart cli
+    Restarting NetQ CLI... Success!
+    ```
+
+    This example uses an optional keys file. **Be sure to replace the keys filename and path with the *full path* and name of your keys file, and the *datacenterwest* premises name with your premises name if you are using this example on your server.**
+
+    ```
+    sudo netq config add cli server netqhostname.labtest.net cli-keys-file /home/netq/nq-cld-creds.yml premises datacenterwest
+    Updated cli server netqhostname.labtest.net vrf default port 443. Please restart netqd (netq config restart cli)
+
+    sudo netq config restart cli
+    Restarting NetQ CLI... Success!
+    ```
+
+    {{%notice tip%}}
+If you have multiple premises and want to query data from a different premises than you originally configured, rerun the `netq config add cli server` command with the desired premises name. You can only view the data for one premises at a time with the CLI.
+{{%/notice%}}
 
 {{</tab>}}
 
 {{<tab "Cloud Deployments">}}
 
 <!-- vale off -->
-To access and configure the CLI on your NetQ Cloud Appliance or VM, you must have your username and password to access the NetQ UI to generate AuthKeys. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were provided by NVIDIA via an email titled *Welcome to NVIDIA Cumulus NetQ!*.
+To access and configure the CLI on your NetQ Cloud Appliance or VM, you must have your username and password to access the NetQ UI to generate AuthKeys. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were obtained during {{<link title="Access the NetQ UI#log-in-to-netq" text="first login to the NetQ Cloud">}} and premise activation.
 <!-- vale on -->
 
 To generate AuthKeys:

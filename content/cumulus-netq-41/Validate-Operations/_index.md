@@ -29,6 +29,7 @@ Validation support is available in the NetQ UI and the NetQ CLI as shown here.
 | Sensors | Yes | Yes |
 | VLAN | Yes | Yes |
 | VXLAN | Yes | Yes |
+| Addresses | No | Yes |
 
 ## Validation with the NetQ UI
 

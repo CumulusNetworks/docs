@@ -143,7 +143,22 @@ The VXLAN validation tests look for configuration consistency across all VTEPs. 
 | 0 | VLAN Consistency | Checks for consistent VLAN to VXLAN mapping across all VTEPs |
 | 1 | BUM replication | Checks for consistent replication group membership across all VTEPs |
 
-## Disabling Validation Checks
+## Addresses Validation Tests
+
+The duplicate address detection validation tests look for duplicate IPv4 and IPv6 addresses assigned to interfaces across devices in the inventory. You can accomplish this with the following tests:
+
+| Test Number | Test Name | Description |
+| :---------: | --------- | ----------- |
+| 0 | IPv4 Duplicate Addresses | Checks for duplicate IPv4 addresses across devices in the inventory |
+| 1 | IPv6 Duplicate Addresses | Checks for duplicate IPv6 addresses across devices in the inventory |
+
+{{<notice note>}}
+
+The duplicate address detection validation is only supported using `netq check addresses` on the CLI.
+
+{{</notice>}}
+
+## Disabling Validation Checks in the NetQ UI
 
 You can disable validation checks to suppress known events from affecting the reported network health. You can disable one or more validation checks from the validation dashboard:
 

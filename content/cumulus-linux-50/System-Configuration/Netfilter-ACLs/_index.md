@@ -4,11 +4,11 @@ author: NVIDIA
 weight: 200
 toc: 3
 ---
-{{<exlink url="http://www.netfilter.org/" text="Netfilter">}} is the packet filtering framework in Cumulus Linux and most other Linux distributions. There several tools available for configuring ACLs in Cumulus Linux:
+{{<exlink url="http://www.netfilter.org/" text="Netfilter">}} is the packet filtering framework in Cumulus Linux and other Linux distributions. You can use several different tools to configure ACLs in Cumulus Linux:
 
 - `iptables`, `ip6tables`, and `ebtables` are Linux userspace tools you use to administer filtering rules for IPv4 packets, IPv6 packets, and Ethernet frames (layer 2 using MAC addresses).
 - `cl-acltool` is a Cumulus Linux-specific userspace tool you use to administer filtering rules and configure default ACLs. `cl-acltool` operates on various configuration files and uses `iptables`, `ip6tables`, and `ebtables` to install rules into the kernel. In addition, `cl-acltool` programs rules in hardware for switch port interfaces, which `iptables`, `ip6tables` and `ebtables` cannot do on their own.
-- NVUE is a Cumulus Linux-specific userspace tool used to configure custom ACLs.
+- NVUE is a Cumulus Linux-specific userspace tool you can use to configure custom ACLs.
 
 ## Traffic Rules
 

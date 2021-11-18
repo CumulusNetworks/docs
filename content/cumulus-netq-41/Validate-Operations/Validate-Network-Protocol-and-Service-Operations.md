@@ -1126,7 +1126,7 @@ Sometimes it is useful to run validations on more than one protocol simultaneous
 
 1. Open the Validate Network card.
 
-   Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} (**Validation**), then click **Create a validation**. Choose whether the scheduled validation should be run on all devices or on specific {{<link title="Validate Network Protocol and Service Operations#validate-device-groups" text="device groups.">}}
+   Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} (**Validation**), then click **Create a validation**. Choose whether the scheduled validation should run on all devices or on specific {{<link title="Validate Network Protocol and Service Operations#validate-device-groups" text="device groups.">}}
 
 2. On the left side of the card, select the protocols or services you want to validate by clicking on their names, then click **Next**.
 
@@ -1370,7 +1370,7 @@ You can remove a user-defined scheduled validation at any time using the NetQ UI
 
 ## Validate Device Groups
 
-Both on-demand and scheduled validations can be run on specific {{<link title="Manage Device Groups" text="device groups.">}} To create a validation for a device group rather than all devices:
+Both on-demand and scheduled validations can run on specific {{<link title="Manage Device Groups" text="device groups.">}} To create a validation for a device group rather than all devices:
 
 1. Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} (**Validation**), then click **Create a validation**. Choose **Run on group of switches:**
 

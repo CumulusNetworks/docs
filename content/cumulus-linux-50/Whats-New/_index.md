@@ -16,15 +16,7 @@ Cumulus Linux 5.0 provides bug fixes, and contains several new features and impr
 
 ### New Features and Enhancements
 
-- New NVUE commands to:
-  - Configure {{<link url="Protocol-Independent-Multicast-PIM" text="PIM">}}, {{<link url="IGMP-and-MLD-Snooping" text="IGMP">}} and {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP/#vrrp" text="VRRP">}}
-  - Set the {{<link title="Setting the Date and Time" text="time zone">}}
-  - Include interface descriptions (alias)
-  - Clear counters, such as {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE counters">}}
-- Modified NVUE commands:
-  - BGP `static-network` is now `network`
-  - `nv set platform config` command options are now `nv set system config` options - `nv set platform config` commands configure hardware components.
-  - `nv set platform hostname value <hostname>` command is now `nv set system hostname <hostname>`
+- The {{<link url="NVIDIA-User-Experience-NVUE" text="NVUE object model">}} includes bug fixes, and has updated and additional commands. For example, you can now use NVUE to configure {{<link url="Protocol-Independent-Multicast-PIM" text="PIM">}}, {{<link url="IGMP-and-MLD-Snooping" text="IGMP">}} and {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP/#vrrp" text="VRRP">}}, set the {{<link title="Setting the Date and Time" text="time zone">}} and add a description (alias) for an interface. 
 - DHCPv6 supports SVI interfaces
 - New forwarding resource profiles: `v6-lpm-heavy-1` and `l2-heavy-3`
 - SNMP enhancements

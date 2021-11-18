@@ -247,7 +247,6 @@ Consider the following `iptables` rule:
 
 ```
 -t mangle -A PREROUTING -i swp1 -s 10.0.14.2/32 -d 10.0.15.8/32 -p tcp -j ACCEPT
--A FORWARD -i swp1 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT
 ```
 
 To create this rule with NVUE, follow the steps below. NVUE adds all options in the rule automatically.
@@ -955,6 +954,12 @@ The example rule below drops ingress IPv4 TCP packets when you set the SYN bit a
 -t mangle -A PREROUTING -i swp1 -p tcp --tcp-flags  ACK,SYN,FIN,RST SYN -j DROP
 ```
 
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
@@ -1004,7 +1009,7 @@ cumulus@switch:~$ nv set acl example2 rule 10 action permit
 cumulus@switch:~$ nv set acl example2 rule 20 match ip source-ip ANY 
 cumulus@switch:~$ nv set acl example2 rule 20 match ip dest-ip 10.10.10.1/32
 cumulus@switch:~$ nv set acl example2 rule 20 action deny
-cumulus@switch:~$ nv set interface swp2 acl example2 inbound control-plane
+cumulus@switch:~$ nv set interface swp2 acl example2 inbound
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1040,7 +1045,7 @@ Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the fol
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules
 [iptables]
--A FORWARD -i swp1 -p tcp -m ecn --ecn-tcp-ece -j ACCEPT 
+-t mangle -A PREROUTING -i swp1 -p tcp -m ecn  --ecn-tcp-ece  -j ACCEPT
 ```
 
 Apply the rule:
@@ -1086,7 +1091,7 @@ Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the fol
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules
 [iptables]
--A FORWARD -i swp1 -p tcp -m ecn --ecn-tcp-cwr -j ACCEPT 
+-t mangle -A PREROUTING -i swp1 -p tcp -m ecn  --ecn-tcp-cwr  -j ACCEPT
 ```
 
 Apply the rule:
@@ -1132,7 +1137,7 @@ Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the fol
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/30-tcp-flags.rules
 [iptables]
--A FORWARD -i swp1 -p tcp -m ecn --ecn-ip-ect 1 -j ACCEPT
+-t mangle -A PREROUTING -i swp1 -p tcp -m ecn  --ecn-ip-ect 1 -j ACCEPT
 ```
 
 Apply the rule:

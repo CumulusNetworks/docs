@@ -1020,11 +1020,11 @@ cumulus@leaf01:~$ net commit
 -->
 
 ## Suppress Route Advertisement
-
+<!--
 {{%notice note%}}
 Suppress Route Advertisement is an early access feature.
 {{%/notice%}}
-
+-->
 You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers.
 
 {{< tabs "TabID788 ">}}

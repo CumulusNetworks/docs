@@ -59,7 +59,193 @@ Cumulus Linux supports the following OpenConfig models:
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-if-ethernet-ext.yang" text="openconfig-if-ethernet-ext">}} | Frame size counters |
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/system/openconfig-system.yang" text="openconfig-system">}} | Memory, CPU |
 
+The following model can also be referenced for extended ethernet counters:
 
+{{<expand "nvidia-if-ethernet-ext">}}
+```
+module nvidia-if-ethernet-counters-ext {
+    // xPath --> /interfaces/interface[name=*]/ethernet/counters/state/
+
+   namespace "http://nvidia.com/yang/nvidia-ethernet-counters";
+   prefix "nvidia-if-ethernet-counters-ext";
+
+
+  // import some basic types
+  import openconfig-interfaces { prefix oc-if; }
+  import openconfig-if-ethernet { prefix oc-eth; }
+  import openconfig-yang-types { prefix oc-yang; }
+
+
+  revision "2021-10-12" {
+    description
+      "Initial revision";
+    reference "1.0.0.";
+  }
+
+  grouping ethernet-counters-ext {
+
+    leaf alignment-error {
+      type oc-yang:counter64;
+    }
+
+    leaf in-acl-drops {
+      type oc-yang:counter64;
+    }
+
+    leaf in-buffer-drops {
+      type oc-yang:counter64;
+    }
+
+    leaf in-dot3-frame-errors {
+      type oc-yang:counter64;
+    }
+
+    leaf in-dot3-length-errors {
+      type oc-yang:counter64;
+    }
+
+    leaf in-l3-drops {
+      type oc-yang:counter64;
+    }
+
+    leaf in-pfc0-packets {
+      type oc-yang:counter64;
+    }
+
+    leaf in-pfc1-packets {
+      type oc-yang:counter64;
+    }
+
+    leaf in-pfc2-packets {
+      type oc-yang:counter64;
+    }
+
+    leaf in-pfc3-packets {
+      type oc-yang:counter64;
+    }
+
+    leaf in-pfc4-packets {
+      type oc-yang:counter64;
+    }
+
+    leaf in-pfc5-packets {
+      type oc-yang:counter64;
+    }
+
+    leaf in-pfc6-packets {
+      type oc-yang:counter64;
+    }
+
+    leaf in-pfc7-packets {
+      type oc-yang:counter64;
+    }
+
+    leaf out-non-q-drops {
+      type oc-yang:counter64;
+    }
+
+    leaf out-pfc0-packets {
+      type oc-yang:counter64;
+    }
+
+    leaf out-pfc1-packets {
+      type oc-yang:counter64;
+    }
+
+    leaf out-pfc2-packets {
+      type oc-yang:counter64;
+    }
+
+    leaf out-pfc3-packets {
+      type oc-yang:counter64;
+    }
+
+    leaf out-pfc4-packets {
+      type oc-yang:counter64;
+    }
+
+    leaf out-pfc5-packets {
+      type oc-yang:counter64;
+    }
+
+    leaf out-pfc6-packets {
+      type oc-yang:counter64;
+    }
+
+    leaf out-pfc7-packets {
+      type oc-yang:counter64;
+    }
+
+    leaf out-q0-wred-drops {
+      type oc-yang:counter64;
+    }
+
+    leaf out-q1-wred-drops {
+      type oc-yang:counter64;
+    }
+
+    leaf out-q2-wred-drops {
+      type oc-yang:counter64;
+    }
+
+    leaf out-q3-wred-drops {
+      type oc-yang:counter64;
+    }
+
+    leaf out-q4-wred-drops {
+      type oc-yang:counter64;
+    }
+
+    leaf out-q5-wred-drops {
+      type oc-yang:counter64;
+    }
+
+    leaf out-q6-wred-drops {
+      type oc-yang:counter64;
+    }
+
+    leaf out-q7-wred-drops {
+      type oc-yang:counter64;
+    }
+
+    leaf out-q8-wred-drops {
+      type oc-yang:counter64;
+    }
+
+    leaf out-q9-wred-drops {
+      type oc-yang:counter64;
+    }
+
+    leaf out-q-drops {
+      type oc-yang:counter64;
+    }
+
+    leaf out-q-length {
+      type oc-yang:counter64;
+    }
+
+    leaf out-wred-drops {
+      type oc-yang:counter64;
+    }
+
+    leaf symbol-errors {
+      type oc-yang:counter64;
+    }
+
+    leaf out-tx-fifo-full {
+      type oc-yang:counter64;
+    }
+
+  }
+
+  augment "/oc-if:interfaces/oc-if:interface/oc-eth:ethernet/" +
+    "oc-eth:state/oc-eth:counters" {
+      uses ethernet-counters-ext;
+  }
+
+}
+```
+{{</expand>}}
 
 ## Collect WJH Data Using gNMI
 
@@ -67,74 +253,126 @@ You can export What Just Happened data from the NetQ Agent to your own gNMI clie
 
 The client should use the following YANG model as a reference:
 
-{{<expand "YANG Model">}}
+{{<expand "nvidia-if-wjh-drop-aggregate">}}
 
 ```
-module WjhDropAggregate {
-    // Entrypoint container interfaces.
-    // Path --> interfaces/interface[name]/wjh/aggregate/[acl, l2, router, tunnel, buffer]/reasons/reason[id, severity]/drop[]
-    // Path for L1 --> interfaces/interface[name]/wjh/aggregate/l1/drop[]
+module nvidia-wjh {
+    // Entrypoint /oc-if:interfaces/oc-if:interface
+    //
+    // xPath L1     --> interfaces/interface[name=*]/wjh/aggregate/l1
+    // xPath L2     --> /interfaces/interface[name=*]/wjh/aggregate/l2/reasons/reason[id=*][severity=*]
+    // xPath Router --> /interfaces/interface[name=*]/wjh/aggregate/router/reasons/reason[id=*][severity=*]
+    // xPath Tunnel --> /interfaces/interface[name=*]/wjh/aggregate/tunnel/reasons/reason[id=*][severity=*]
+    // xPath Buffer --> /interfaces/interface[name=*]/wjh/aggregate/buffer/reasons/reason[id=*][severity=*]
+    // xPath ACL    --> /interfaces/interface[name=*]/wjh/aggregate/acl/reasons/reason[id=*][severity=*]
+
+    import openconfig-interfaces { prefix oc-if; }
 
     namespace "http://nvidia.com/yang/what-just-happened-config";
-    prefix "wjh_drop_aggregate";
+    prefix "nvidia-wjh";
 
-    container interfaces {
-        config false;
-        list interface {
-            key "name";
-            leaf name {
-                type string;
-                mandatory "true";
-                description "Interface name";
-            }
-            uses wjh_aggregate;
-        }
+    revision "2021-10-12" {
+        description
+            "Initial revision";
+        reference "1.0.0.";
     }
 
-    grouping wjh_aggregate {
-    description "Top-level grouping for What-just happened data.";
+    augment "/oc-if:interfaces/oc-if:interface" {
+        uses interfaces-wjh;
+    }
+
+    grouping interfaces-wjh {
+        description "Top-level grouping for What-just happened data.";
         container wjh {
             container aggregate {
                 container l1 {
-                    uses l1-drops;
+                    container state {
+                        leaf drop {
+                            type string;
+                            description "Drop list based on wjh-drop-types module encoded in JSON";
+                        }
+                    }
                 }
                 container l2 {
-                    list reason {
-                        key "id severity";
-                        uses reason-key;
-                        uses l2-drops;
-                    }
+                    uses reason-drops;
                 }
                 container router {
-                    list reason {
-                        key "id severity";
-                        uses reason-key;
-                        uses router-drops;
-                    }
+                    uses reason-drops;
                 }
                 container tunnel {
-                    list reason {
-                        key "id severity";
-                        uses reason-key;
-                        uses tunnel-drops;
-                    }
+                    uses reason-drops;
                 }
                 container acl {
-                    list reason {
-                        key "id severity";
-                        uses reason-key;
-                        uses acl-drops;
-                    }
+                    uses reason-drops;
                 }
                 container buffer {
-                    list reason {
-                        key "id severity";
-                        uses reason-key;
-                        uses buffer-drops;
+                    uses reason-drops;
+                }
+            }
+        }
+    }
+
+    grouping reason-drops {
+        container reasons {
+            list reason {
+                key "id severity";
+                leaf id {
+                    type leafref {
+                        path "../state/id";
+                    }
+                    description "reason ID";
+                }
+                leaf severity {
+                    type leafref {
+                        path "../state/severity";
+                    }
+                    description "Reason severity";
+                }
+                container state {
+                    leaf id {
+                        type uint32;
+                        description "Reason ID";
+                    }
+                    leaf name {
+                        type string;
+                        description "Reason name";
+                    }
+                    leaf severity {
+                        type string;
+                        mandatory "true";
+                        description "Reason severity";
+                    }
+                    leaf drop {
+                        type string;
+                        description "Drop list based on wjh-drop-types module encoded in JSON";
                     }
                 }
             }
         }
+    }
+}
+
+module wjh-drop-types {
+    namespace "http://nvidia.com/yang/what-just-happened-config-types";
+    prefix "wjh-drop-types";
+
+    container l1-aggregated {
+        uses l1-drops;
+    }
+    container l2-aggregated {
+        uses l2-drops;
+    }
+    container router-aggregated {
+        uses router-drops;
+    }
+    container tunnel-aggregated {
+        uses tunnel-drops;
+    }
+    container acl-aggregated {
+        uses acl-drops;
+    }
+    container buffer-aggregated {
+        uses buffer-drops;
     }
 
     grouping reason-key {
@@ -225,114 +463,102 @@ module WjhDropAggregate {
 
     grouping l1-drops {
         description "What-just happened drops.";
-        list drop {
-            leaf ingress_port {
-                type string;
-                description "Ingress port";
-            }
-            leaf is_port_up {
-                type boolean;
-                description "Is port up";
-            }
-            leaf port_down_reason {
-                type string;
-                description "Port down reason";
-            }
-            leaf description {
-                type string;
-                description "Description";
-            }
-            leaf state_change_count {
-                type uint64;
-                description "State change count";
-            }
-            leaf symbol_error_count {
-                type uint64;
-                description "Symbol error count";
-            }
-            leaf crc_error_count {
-                type uint64;
-                description "CRC error count";
-            }
-            leaf first_timestamp {
-                type uint64;
-                description "First timestamp";
-            }
-            leaf end_timestamp {
-                type uint64;
-                description "End timestamp";
-            }
-            leaf timestamp {
-                type uint64;
-                description "Timestamp";
-            }
+        leaf ingress_port {
+            type string;
+            description "Ingress port";
+        }
+        leaf is_port_up {
+            type boolean;
+            description "Is port up";
+        }
+        leaf port_down_reason {
+            type string;
+            description "Port down reason";
+        }
+        leaf description {
+            type string;
+            description "Description";
+        }
+        leaf state_change_count {
+            type uint64;
+            description "State change count";
+        }
+        leaf symbol_error_count {
+            type uint64;
+            description "Symbol error count";
+        }
+        leaf crc_error_count {
+            type uint64;
+            description "CRC error count";
+        }
+        leaf first_timestamp {
+            type uint64;
+            description "First timestamp";
+        }
+        leaf end_timestamp {
+            type uint64;
+            description "End timestamp";
+        }
+        leaf timestamp {
+            type uint64;
+            description "Timestamp";
         }
     }
     grouping l2-drops {
         description "What-just happened drops.";
-        list drop {
-            uses reason_info;
-            uses packet_info;
-        }
+        uses reason_info;
+        uses packet_info;
     }
 
     grouping router-drops {
         description "What-just happened drops.";
-        list drop {
-            uses reason_info;
-            uses packet_info;
-        }
+        uses reason_info;
+        uses packet_info;
     }
 
     grouping tunnel-drops {
         description "What-just happened drops.";
-        list drop {
-            uses reason_info;
-            uses packet_info;
-        }
+        uses reason_info;
+        uses packet_info;
     }
 
     grouping acl-drops {
         description "What-just happened drops.";
-        list drop {
-            uses reason_info;
-            uses packet_info;
-            leaf acl_rule_id {
-                type uint64;
-                description "ACL rule ID";
-            }
-            leaf acl_bind_point {
-                type uint32;
-                description "ACL bind point";
-            }
-            leaf acl_name {
-                type string;
-                description "ACL name";
-            }
-            leaf acl_rule {
-                type string;
-                description "ACL rule";
-            }
+        uses reason_info;
+        uses packet_info;
+        leaf acl_rule_id {
+            type uint64;
+            description "ACL rule ID";
+        }
+        leaf acl_bind_point {
+            type uint32;
+            description "ACL bind point";
+        }
+        leaf acl_name {
+            type string;
+            description "ACL name";
+        }
+        leaf acl_rule {
+            type string;
+            description "ACL rule";
         }
     }
 
     grouping buffer-drops {
         description "What-just happened drops.";
-        list drop {
-            uses reason_info;
-            uses packet_info;
-            leaf traffic_class {
-                type uint32;
-                description "Traffic Class";
-            }
-            leaf original_occupancy {
-                type uint32;
-                description "Original occupancy";
-            }
-            leaf original_latency {
-                type uint64;
-                description "Original latency";
-            }
+        uses reason_info;
+        uses packet_info;
+        leaf traffic_class {
+            type uint32;
+            description "Traffic Class";
+        }
+        leaf original_occupancy {
+            type uint32;
+            description "Original occupancy";
+        }
+        leaf original_latency {
+            type uint64;
+            description "Original latency";
         }
     }
 }
@@ -449,23 +675,134 @@ The data NetQ sends to the gNMI agent is in the form of WJH drop reasons. The re
 You use your gNMI client on a host server to request capabilities and data the agent is subscribed to.
 <!-- vale on -->
 
-To make a subscribe request, run:
+The following example shows a gNMI client request for interface speed:
 
 ```
-[root@host ~]# /path/to/your/gnmi_client/gnmi_client -gnmi_address 10.209.37.84 -request subscribe
-2021/05/06 18:33:10.142160 host gnmi_client[24847]: INFO: 10.209.37.84:9339: ready for streaming
-2021/05/06 18:33:10.220814 host gnmi_client[24847]: INFO: sync response received: sync_response:true
-2021/05/06 18:33:16.813000 host gnmi_client[24847]: INFO: update received [interfaces interface swp8 wjh aggregate l2 reason 209 error]: {"Drop":[{"AggCount":1,"Dip":"1.2.0.0","Dmac":"00:bb:cc:11:22:32","Dport":0,"DropType":"L2","EgressPort":"","EndTimestamp":1620326044,"FirstTimestamp":1620326044,"IngressLag":"","IngressPort":"swp8","Proto":0,"Reason":"Source MAC is multicast","Severity":"Error","Sip":"10.213.1.242","Smac":"ff:ff:ff:ff:ff:ff","Sport":0}],"Id":209,"Severity":"Error"}
-2021/05/06 18:33:16.815068 host gnmi_client[24847]: INFO: update received [interfaces interface swp8 wjh aggregate l2 reason 209 error]: {"Drop":[{"AggCount":1,"Dip":"1.2.0.0","Dmac":"00:bb:cc:11:22:32","Dport":0,"DropType":"L2","EgressPort":"","EndTimestamp":1620326044,"FirstTimestamp":1620326044,"IngressLag":"","IngressPort":"swp8","Proto":0,"Reason":"Source MAC is multicast","Severity":"Error","Sip":"10.213.2.242","Smac":"ff:ff:ff:ff:ff:ff","Sport":0}],"Id":209,"Severity":"Error"}
-2021/05/06 18:33:16.818896 host gnmi_client[24847]: INFO: update received [interfaces interface swp8 wjh aggregate l2 reason 209 error]: {"Drop":[{"AggCount":1,"Dip":"1.2.0.0","Dmac":"00:bb:cc:11:22:32","Dport":0,"DropType":"L2","EgressPort":"","EndTimestamp":1620326044,"FirstTimestamp":1620326044,"IngressLag":"","IngressPort":"swp8","Proto":0,"Reason":"Source MAC is multicast","Severity":"Error","Sip":"10.213.3.242","Smac":"ff:ff:ff:ff:ff:ff","Sport":0}],"Id":209,"Severity":"Error"}
-2021/05/06 18:33:16.823091 host gnmi_client[24847]: INFO: update received [interfaces interface swp8 wjh aggregate l2 reason 209 error]: {"Drop":[{"AggCount":1,"Dip":"1.2.0.0","Dmac":"00:bb:cc:11:22:32","Dport":0,"DropType":"L2","EgressPort":"","EndTimestamp":1620326044,"FirstTimestamp":1620326044,"IngressLag":"","IngressPort":"swp8","Proto":0,"Reason":"Source MAC is multicast","Severity":"Error","Sip":"10.213.4.242","Smac":"ff:ff:ff:ff:ff:ff","Sport":0}],"Id":209,"Severity":"Error"}
-...
+gnmi_client -target_addr 10.209.37.121:9339 -xpath "/interfaces/interface[name=swp1]/ethernet/state/port-speed" -once
+{
+   "Response": {
+      "Update": {
+         "update": [
+            {
+               "val": {
+                  "Value": {
+                     "StringVal": "SPEED_40GB"
+                  }
+               },
+               "path": {
+                  "elem": [
+                     {
+                        "name": "state"
+                     },
+                     {
+                        "name": "port-speed"
+                     }
+                  ]
+               }
+            }
+         ],
+         "timestamp": 1636910588085654861,
+         "prefix": {
+            "target": "netq",
+            "elem": [
+               {
+                  "name": "interfaces"
+               },
+               {
+                  "name": "interface",
+                  "key": {
+                     "name": "swp1"
+                  }
+               },
+               {
+                  "name": "ethernet"
+               }
+            ]
+         }
+      }
+   }
+}
+
+
 ```
 
-To request the capabilities, run:
+The following example shows a gNMI client request for WJH drop data:
 
 ```
-[root@host ~]# /path/to/your/gnmi_client/gnmi_client/gnmi_client -gnmi_address 10.209.37.84 -request capabilities
-2021/05/06 18:36:31.285648 host gnmi_client[25023]: INFO: 10.209.37.84:9339: ready for streaming
-2021/05/06 18:36:31.355944 host gnmi_client[25023]: INFO: capability response: supported_models:{name:"WjhDropAggregate"  organization:"NVIDIA"  version:"0.1"}  supported_encodings:JSON  supported_encodings:JSON_IETF
+gnmi_client -target_addr 10.209.37.121:9339 -xpath "/interfaces/interface[name=swp8]/wjh/aggregate/l2/reasons/reason[id=210]"
+{
+   "Response": {
+      "Update": {
+         "update": [
+            {
+               "val": {
+                  "Value": {
+                     "StringVal": "[{
+									  "IngressPort": "swp8",
+									  "DropType": "L2",
+									  "Reason": "Source MAC equals destination MAC",
+									  "Severity": "Error",
+									  "Smac": "00:02:10:00:00:01",
+									  "Dmac": "00:02:10:00:00:01",
+									  "Proto": 6,
+									  "Sport": 15,
+									  "Dport": 16,
+									  "Sip": "1.1.1.1"
+									  "Dip": "2.2.2.2",
+									  "AggCount": 192,
+									  "FirstTimestamp": 1636907412,
+									  "EndTimestamp": 1636907432,
+								   }]"
+
+                  }
+               },
+               "path": {
+                  "elem": [
+                     {
+                        "name": "state"
+                     },
+                     {
+                        "name": "drop"
+                     }
+                  ]
+               }
+            }
+         ],
+         "prefix": {
+            "elem": [
+               {
+                  "name": "interfaces"
+               },
+               {
+                  "key": {
+                     "name": "swp8"
+                  },
+                  "name": "interface"
+               },
+               {
+                  "name": "wjh"
+               },
+               {
+                  "name": "aggregate"
+               },
+               {
+                  "name": "l2"
+               },
+               {
+                  "name": "reasons"
+               },
+               {
+                  "key" : {
+                     "severity": "error",
+                     "id": "210"
+                  },
+                  "name" : "reason"
+               }
+            ],
+            "target": "netq"
+         },
+         "timestamp": 1636907442362981645
+      }
+   }
+}
 ```

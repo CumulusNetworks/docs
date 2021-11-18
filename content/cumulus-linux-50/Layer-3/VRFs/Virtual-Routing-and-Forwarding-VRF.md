@@ -474,7 +474,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Linux Commands ">}}
+{{< tab "Linux and vtysh Commands ">}}
 
 `/etc/network/interfaces` file configuration:
 

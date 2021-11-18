@@ -59,8 +59,8 @@ Cumulus Linux supports the following OpenConfig models:
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-if-ethernet-ext.yang" text="openconfig-if-ethernet-ext">}} | Frame size counters |
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/system/openconfig-system.yang" text="openconfig-system">}} | Memory, CPU |
 
-The following model can also be referenced for extended ethernet counters:
-
+gNMI clients can also use the following model for extended ethernet counters:
+<!-- vale off -->
 {{<expand "nvidia-if-ethernet-ext">}}
 ```
 module nvidia-if-ethernet-counters-ext {
@@ -246,13 +246,13 @@ module nvidia-if-ethernet-counters-ext {
 }
 ```
 {{</expand>}}
-
+<!-- vale on -->
 ## Collect WJH Data Using gNMI
 
 You can export What Just Happened data from the NetQ Agent to your own gNMI client.
 
 The client should use the following YANG model as a reference:
-
+<!-- vale off -->
 {{<expand "nvidia-if-wjh-drop-aggregate">}}
 
 ```
@@ -565,7 +565,7 @@ module wjh-drop-types {
 ```
 
 {{</expand>}}
-
+<!-- vale on -->
 ### Supported Features
 
 In this release, the gNMI agent supports *capability* and *stream subscribe* requests for WJH events.
@@ -672,7 +672,7 @@ The data NetQ sends to the gNMI agent is in the form of WJH drop reasons. The re
 ### gNMI Client Requests
 
 <!-- vale off -->
-You use your gNMI client on a host server to request capabilities and data the agent is subscribed to.
+You can use your gNMI client on a host server to request capabilities and data the agent is subscribed to.
 <!-- vale on -->
 
 The following example shows a gNMI client request for interface speed:

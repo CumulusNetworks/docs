@@ -1121,6 +1121,8 @@ For large multicast environments, the default [CoPP](## "Control Plane Policing"
 - The default PIM forwarding rate and burst rate is set to 2000 packets per second.
 - The default IGMP forwarding rate and burst rate is set to 1000 packets per second.
 
+To adjust the the policer:
+<!--
 {{< tabs "991 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -1149,6 +1151,9 @@ cumulus@switch:~$
 {{< /tab >}}
 {{< tab "Edit /etc/cumulus/control-plane/policers.conf ">}}
 
+{{< /tab >}}
+{{< /tabs >}}
+-->
 1. Edit the `/etc/cumulus/control-plane/policers.conf` file:
 
    - To tune the PIM forwarding and burst rate, change the `copp.pim_ospf_rip.rate` and `copp.pim_ospf_rip.burst` parameters.
@@ -1175,8 +1180,6 @@ cumulus@switch:~$
    cumulus@switch:~$ switchdctl --load /etc/cumulus/control-plane/policers.conf
    ```
 
-{{< /tab >}}
-{{< /tabs >}}
 <!-- vale off -->
 <!-- vale.ai Issue #253 -->
 ## PIM Active-active with MLAG

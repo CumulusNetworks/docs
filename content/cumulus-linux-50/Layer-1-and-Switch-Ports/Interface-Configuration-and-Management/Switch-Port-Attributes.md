@@ -163,9 +163,9 @@ The switch forwards all packets that are within the MTU value set for the egress
 Run the following command to drop **all** IP packets that are larger in size than the MTU value for the egress layer 3 interface instead of fragmenting packets:
 
 {{< tabs "TabID166 ">}}
-{{< tab "NVUE Command ">}}
+{{< tab "NVUE Commands ">}}
 
-NVUE command is not supported.
+The NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}

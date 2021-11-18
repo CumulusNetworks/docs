@@ -367,7 +367,7 @@ cumulus@leaf01:~$ nv set interface swp52 router ospf network-type point-to-point
 cumulus@leaf01:~$ nv config apply
 ```
 
-The NVUE commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+After you run `nv config save`, the NVUE commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
@@ -954,12 +954,6 @@ To advertise a *specific* SVI IP/MAC address, run these commands:
 ```
 cumulus@leaf01:~$ nv set evpn evi 10 route-advertise svi-ip on
 cumulus@leaf01:~$ nv config apply
-```
-
-The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
-
-```
-cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 
 {{< /tab >}}

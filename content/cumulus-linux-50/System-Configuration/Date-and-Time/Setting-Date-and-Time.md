@@ -17,7 +17,7 @@ You can use one of these methods to set the time zone on the switch:
 - Edit the `/etc/timezone` file.
 
 {{< tabs "TabID19 ">}}
-{{< tab "NVUE Command ">}}
+{{< tab "NVUE Commands ">}}
 <!-- vale off -->
 Run the `nv set system timezone <timezone>` command. To see all the available time zones, run `nv set system timezone` and press the Tab key. The following example sets the time zone to US/Eastern:
 

@@ -1290,7 +1290,7 @@ The following example commands configure the switch to send a 10.0.0.0/8 summary
 - Create a route map called ADVERTISEMAP that uses the prefix list ADVERTISE.
 - Configure BGP neighbor swp51 to use the route maps.
 
-{{< tabs "962 ">}}
+{{< tabs "1293 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1330,12 +1330,6 @@ leaf01# write memory
 leaf01# exit
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-<!--
-NCLU commands are not supported.
--->
-
 The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
@@ -1352,12 +1346,25 @@ route-map EXISTMAP permit 10
 match ip address prefix-list EXIST
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 Cumulus Linux scans the entire [RIB](## "BGP Routing Information Base") table every 60 seconds. You can set the conditional advertisement timer to increase or decrease how often you want Cumulus Linux to scan the RIB table. You can set a value between 5 and 240 seconds.
 
 {{%notice note%}}
-- A lower value (such as 5) increases the amount of processing needed. Use caution when configuring conditional advertisement on a large number of BGP neighbors.
-- NVUE commands are not supported for the conditional advertisement timer. Only change the timer if you configured conditional advertisement with vtysh.
+A lower value (such as 5) increases the amount of processing needed. Use caution when configuring conditional advertisement on a large number of BGP neighbors.
 {{%/notice%}}
+
+{{< tabs "1358 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set vrf default router bgp timers conditional-advertise 100
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -1388,6 +1395,9 @@ router bgp 65101
  neighbor swp52 timers connect 10
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Next Hop Tracking
 

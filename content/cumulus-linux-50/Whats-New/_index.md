@@ -16,7 +16,6 @@ Cumulus Linux 5.0 provides bug fixes, and contains several new features and impr
 
 ### New Features and Enhancements
 
-- The {{<link url="NVIDIA-User-Experience-NVUE" text="NVUE object model">}} includes bug fixes, and has updated and additional commands. For example, you can now use NVUE to configure {{<link url="Protocol-Independent-Multicast-PIM" text="PIM">}}, {{<link url="IGMP-and-MLD-Snooping" text="IGMP">}} and {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP/#vrrp" text="VRRP">}}, set the {{<link title="Setting the Date and Time" text="time zone">}} and add a description (alias) for an interface. 
+- The {{<link url="NVIDIA-User-Experience-NVUE" text="NVUE object model">}} includes many improvemnets, and has updated and additional commands. For example, you can now use NVUE to configure {{<link url="Protocol-Independent-Multicast-PIM" text="PIM">}}, {{<link url="IGMP-and-MLD-Snooping" text="IGMP">}} and {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP/#vrrp" text="VRRP">}}, set the {{<link title="Setting the Date and Time" text="time zone">}} and add a description (alias) for an interface.
 - DHCPv6 supports SVI interfaces
-- New forwarding resource profiles: `v6-lpm-heavy-1` and `l2-heavy-3`
 - SNMP enhancements

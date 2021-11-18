@@ -100,7 +100,7 @@ The only additional configuration required to implement asymmetric routing beyon
 In distributed symmetric routing, each VTEP acts as a layer 3 gateway, performing routing for its attached hosts; however, both the ingress VTEP and egress VTEP route the packets (similar to the traditional routing behavior of routing to a next hop router). In the VXLAN encapsulated packet, the inner destination MAC address is the router MAC address of the egress VTEP to indicate that the egress VTEP is the next hop and also needs to perform routing. All routing happens in the context of a tenant (VRF). For a packet that the ingress VTEP receives from a locally attached host, the SVI interface corresponding to the VLAN determines the VRF. For a packet that the egress VTEP receives over the VXLAN tunnel, the VNI in the packet has to specify the VRF. For symmetric routing, this is a VNI corresponding to the tenant and is different from either the source VNI or the destination VNI. This VNI is a layer 3 VNI or interconnecting VNI. The regular VNI, which maps a VLAN, is the layer 2 VNI.
 
 {{%notice note%}}
-- Symmetric routing is supported on the NVIDIA Spectrum-A1 ASIC and later.
+- Cumulus Linux supports symmetric routing on NVIDIA Spectrum-A1 and later.
 - Cumulus Linux uses a one-to-one mapping between a layer 3 VNI and a tenant (VRF).
 - The VRF to layer 3 VNI mapping has to be consistent across all VTEPs.
 - A layer 3 VNI and a layer 2 VNI cannot have the same ID. If the VNI IDs are the same, Cumulus Linux does not create the layer 2 VNI.

@@ -350,7 +350,8 @@ EVPN in Cumulus Linux supports prefix-based routing using EVPN type-5 (prefix) r
 EVPN prefix routes carry the layer 3 VNI and router MAC address and follow the symmetric routing model to route to the destination prefix.
 
 {{%notice note%}}
-When connecting to a WAN edge router to reach destinations outside the data center, deploy specific border or exit leaf switches to originate the type-5 routes.
+- When connecting to a WAN edge router to reach destinations outside the data center, deploy specific border or exit leaf switches to originate the type-5 routes.
+- On switches with Spectrum ASICs, centralized routing, symmetric routing, and prefix-based routing only work with Spectrum-A1 and later.
 {{%/notice%}}
 <!-- vale off -->
 ### Install EVPN Type-5 Routes

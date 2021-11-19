@@ -65,27 +65,22 @@ When you combine and put rules into one table, the order determines the relative
 The Linux packet forwarding construct is an overlay for how the silicon underneath processes packets. Be aware of the following:
 
 - The switch silicon reorders rules when `switchd` writes to the ASIC, whereas traditional `iptables` execute the list of rules in order.
-- All rules, except for POLICE and SETCLASS rules, are terminating; after a rule matches, the action occurs and no more rules process. In the example below, the SETCLASS action with the `-i` option creates the internal ASIC classification, and continues to process the next rule, which provides rate-limiting for the matched protocol:
-
-    ```
-    -A $INGRESS_CHAIN -i $INGRESS_INTF -p udp --dport $BFD_ECHO_PORT -j SETCLASS --class 7
-    -A $INGRESS_CHAIN -p udp --dport $BFD_ECHO_PORT -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000
-    ```
+- All rules, except for POLICE and SETCLASS rules, are terminating; after a rule matches, the action occurs and no more rules process.
 
 - When processing traffic, rules affecting the FORWARD chain that specify an ingress interface process before rules that match on an egress interface. As a workaround, rules that only affect the egress interface can have an ingress interface wildcard (only *swp+* and *bond+*) that matches any interface you apply so that you can maintain order of operations with other input interface rules. For example, with the following rules:
 
     ```
-    -A FORWARD -i $PORTA -j ACCEPT
-    -A FORWARD -o $PORTA -j ACCEPT   <-- This rule processes LAST (because of egress interface matching)
-    -A FORWARD -i $PORTB -j DROP
+    -A FORWARD -i swp1 -j ACCEPT
+    -A FORWARD -o swp1 -j ACCEPT   <-- This rule processes LAST (because of egress interface matching)
+    -A FORWARD -i swp2 -j DROP
     ```
 
     If you modify the rules like this, they process in order:
 
     ```
-    -A FORWARD -i $PORTA -j ACCEPT
+    -A FORWARD -i swp1 -j ACCEPT
     -A FORWARD -i swp+ -o $PORTA -j ACCEPT   <-- These rules are performed in order (because of wildcard match on the ingress interface)
-    -A FORWARD -i $PORTB -j DROP
+    -A FORWARD -i swp2 -j DROP
     ```
 
 - When using rules that do a mangle and a filter lookup for a packet, Cumulus Linux processes them in parallel and combines the action.
@@ -706,16 +701,16 @@ The examples here use the *mangle* table to modify the packet as it transits the
 [iptables]
 
 #Set SSH as high priority traffic.
--t mangle -A PREROUTING -i ANY -p tcp -m multiport --dports 22 -j SETQOS --set-dscp 46
+-t mangle -A PREROUTING -i swp+ -p tcp -m multiport --dports 22 -j SETQOS --set-dscp 46
 
 #Set everything coming in swp1 as AF13
 -t mangle -A PREROUTING -i swp1  -j SETQOS --set-dscp 14
 
 #Set Packets destined for 10.0.100.27 as best effort
--t mangle -A PREROUTING -i ANY -d 10.0.100.27/32 -j SETQOS --set-dscp 0
+-t mangle -A PREROUTING -i swp+ -d 10.0.100.27/32 -j SETQOS --set-dscp 0
 
 #Example using a range of ports for TCP traffic
--t mangle -A PREROUTING -i ANY -s 10.0.0.17/32 -d 10.0.100.27/32 -p tcp -m multiport --sports 10000:20000 -m multiport --dports 10000:20000 -j SETQOS --set-dscp 34
+-t mangle -A PREROUTING -i swp+ -s 10.0.0.17/32 -d 10.0.100.27/32 -p tcp -m multiport --sports 10000:20000 -m multiport --dports 10000:20000 -j SETQOS --set-dscp 34
 ```
 
 Apply the rule:
@@ -735,8 +730,7 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 22
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set dscp 46
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
-cumulus@switch:~$ nv set interface ANY type swp
-cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
+cumulus@switch:~$ nv set interface swp1-48 acl EXAMPLE1 inbound
 cumulus@switch:~$ nv config apply
 ```
 
@@ -755,8 +749,7 @@ To set Packets destined for 10.0.100.27 as best effort:
 cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.100.27/32
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set dscp 0
-cumulus@switch:~$ nv set interface ANY type swp
-cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
+cumulus@switch:~$ nv set interface swp1-48 acl EXAMPLE1 inbound
 cumulus@switch:~$ nv config apply
 ```
 
@@ -770,178 +763,14 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port 10000:20000
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.100.27/32
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 10000:20000
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set dscp 34
-cumulus@switch:~$ nv set interface ANY type swp
-cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
+cumulus@switch:~$ nv set interface swp1-48 acl EXAMPLE1 inbound
 cumulus@switch:~$ nv config apply
 ```
+
+NOTE: ADD info about file containing 48 lines
 
 {{< /tab >}}
 {{< /tabs >}}
-
-### Verify DSCP Values on Transit Traffic
-
-The examples here use the DSCP match criteria in combination with other IP, TCP, and interface matches to identify traffic and count the number of packets.
-
-{{< tabs "807 ">}}
-{{< tab "iptables rule ">}}
-
-```
-[iptables]
-
-#Match and count the packets that match SSH traffic with DSCP EF
--t mangle -A PREROUTING -i ANY -p tcp -m multiport --dports 22 -m dscp --dscp 46 -j ACCEPT
-
-#Match and count the packets coming in swp1 as AF13
--t mangle -A PREROUTING -i swp1 -m dscp --dscp 14 -j ACCEPT
-
-#Match and count the packets with a destination 10.0.0.17 marked best effort
--t mangle -A PREROUTING -i ANY -d 10.0.100.27/32 -m dscp --dscp 0 -j ACCEPT
-
-#Match and count the packets in a port range with DSCP AF41
--t mangle -A PREROUTING -i ANY -s 10.0.0.17/32 -d 10.0.100.27/32 -p tcp -m multiport --sports 10000:20000 -m multiport --dports 10000:20000 -m dscp --dscp 34 -j ACCEPT
-```
-
-Apply the rule:
-
-```
-cumulus@switch:~$ sudo cl-acltool -i
-```
-
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-To match and count the packets that match SSH traffic with DSCP EF:
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 22
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dscp 46
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
-cumulus@switch:~$ nv set interface ANY type swp
-cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
-cumulus@switch:~$ nv config apply
-```
-
-To match and count the packets coming in swp1 as AF13:
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dscp 14
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
-cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
-cumulus@switch:~$ nv config apply
-```
-
-To match and count the packets with a destination 10.0.0.17 marked best effort:
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.100.27/32
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dscp 0
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
-cumulus@switch:~$ nv set interface ANY type swp
-cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
-cumulus@switch:~$ nv config apply
-```
-
-To match and count the packets in a port range with DSCP AF41:
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-ip 10.0.0.17/32
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port 10000:20000
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.100.27/32
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 10000:20000
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dscp 34
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
-cumulus@switch:~$ nv set interface ANY type swp
-cumulus@switch:~$ nv set interface ANY acl EXAMPLE1 inbound
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### Check the Packet and Byte Counters for ACL Rules
-
-To verify the counters using the above example rules, first send test traffic matching the patterns through the network. The following example generates traffic with `{{<exlink url="http://www.netsniff-ng.org" text="mz">}}` (or `mausezahn`), which you can install on host servers or on Cumulus Linux switches. After you send traffic to validate the counters, they match on switch1 using `cl-acltool`.
-
-{{%notice note%}}
-Policing counters do not increment on switches with the Spectrum ASIC.
-{{%/notice%}}
-
-```
-# Send 100 TCP packets on host1 with a DSCP value of EF with a destination of host2 TCP port 22:
-
-cumulus@host1$ mz eth1 -A 10.0.0.17 -B 10.0.100.27 -c 100 -v -t tcp "dp=22,dscp=46"
-  IP:  ver=4, len=40, tos=184, id=0, frag=0, ttl=255, proto=6, sum=0, SA=10.0.0.17, DA=10.0.100.27,
-      payload=[see next layer]
-  TCP: sp=0, dp=22, S=42, A=42, flags=0, win=10000, len=20, sum=0,
-      payload=
-
-# Verify the 100 packets are matched on switch1
-
-cumulus@switch1$ sudo cl-acltool -L ip
--------------------------------
-Listing rules of type iptables:
--------------------------------
-TABLE filter :
-Chain INPUT (policy ACCEPT 9314 packets, 753K bytes)
-  pkts bytes target     prot opt in     out     source               destination
-Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
-  pkts bytes target     prot opt in     out     source               destination
-  100  6400 ACCEPT     tcp  --  any    any     anywhere             anywhere             tcp dpt:ssh DSCP match 0x2e
-    0     0 ACCEPT     all  --  swp1   any     anywhere             anywhere             DSCP match 0x0e
-    0     0 ACCEPT     all  --  any    any     10.0.0.17            anywhere             DSCP match 0x00
-    0     0 ACCEPT     tcp  --  any    any     10.0.0.17            10.0.100.27          tcp spts:webmin:20000
-    dpts:webmin:2002
-
-# Send 100 packets with a small payload on host1 with a DSCP value of AF13 with a destination of host2:
-
-cumulus@host1$ mz eth1 -A 10.0.0.17 -B 10.0.100.27 -c 100 -v -t ip
-  IP:  ver=4, len=20, tos=0, id=0, frag=0, ttl=255, proto=0, sum=0, SA=10.0.0.17, DA=10.0.100.27,
-      payload=
-
-# Verify the 100 packets are matched on switch1
-
-cumulus@switch1$ sudo cl-acltool -L ip
--------------------------------
-Listing rules of type iptables:
--------------------------------
-TABLE filter :
-Chain INPUT (policy ACCEPT 9314 packets, 753K bytes)
-  pkts bytes target     prot opt in     out     source               destination
-  chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
-  pkts bytes target     prot opt in     out     source               destination
-  100  6400 ACCEPT     tcp  --  any    any     anywhere             anywhere             tcp dpt:ssh DSCP match 0x2e
-  100  7000 ACCEPT     all  --  swp3   any     anywhere             anywhere             DSCP match 0x0e
-  100  6400 ACCEPT     all  --  any    any     10.0.0.17            anywhere             DSCP match 0x00
-    0     0 ACCEPT     tcp  --  any    any     10.0.0.17            10.0.100.27          tcp spts:webmin:20000 dpts:webmin:2002
-
-# Send 100 packets on host1 with a destination of host2:
-
-cumulus@host1$ mz eth1 -A 10.0.0.17 -B 10.0.100.27 -c 100 -v -t ip
- IP:  ver=4, len=20, tos=56, id=0, frag=0, ttl=255, proto=0, sum=0, SA=10.0.0.17, DA=10.0.100.27,
-     payload=
-
-# Verify the 100 packets are matched on switch1
-
-cumulus@switch1$ sudo cl-acltool -L ip
--------------------------------
-Listing rules of type iptables:
--------------------------------
-TABLE filter :
-Chain INPUT (policy ACCEPT 9314 packets, 753K bytes)
-  pkts bytes target     prot opt in     out     source               destination
-Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
-  pkts bytes target     prot opt in     out     source               destination
-  100  6400 ACCEPT     tcp  --  any    any     anywhere             anywhere             tcp dpt:ssh DSCP match 0x2e
-  100  7000 ACCEPT     all  --  swp3   any     anywhere             anywhere             DSCP match 0x0e
-    0     0 ACCEPT     all  --  any    any     10.0.0.17            anywhere             DSCP match 0x00
-    0     0 ACCEPT     tcp  --  any    any     10.0.0.17            10.0.100.27          tcp spts:webmin:20000 dpts:webmin:2002Still working
-```
 
 ### Filter Specific TCP Flags
 
@@ -988,8 +817,8 @@ In the following example, 10.10.10.1/32 is the interface IP address (or loopback
 {{< tab "iptables rule ">}}
 
 ```
--A FORWARD -i swp+ -s 10.255.4.0/24 -d 10.10.10.1/32 -j ACCEPT
--A FORWARD -i swp+ -d 10.10.10.1/32 -j DROP
+-A INPUT -i swp+ -s 10.255.4.0/24 -d 10.10.10.1/32 -j ACCEPT
+-A INPUT -i swp+ -d 10.10.10.1/32 -j DROP
 ```
 
 Apply the rule:
@@ -1009,7 +838,7 @@ cumulus@switch:~$ nv set acl example2 rule 10 action permit
 cumulus@switch:~$ nv set acl example2 rule 20 match ip source-ip ANY 
 cumulus@switch:~$ nv set acl example2 rule 20 match ip dest-ip 10.10.10.1/32
 cumulus@switch:~$ nv set acl example2 rule 20 action deny
-cumulus@switch:~$ nv set interface swp2 acl example2 inbound
+cumulus@switch:~$ nv set interface swp1-48 acl example2 inbound control-plane
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1352,7 +1181,7 @@ pkts bytes target  prot opt in   out   source    destination
 ```
 
 However, running `cl-acltool -i` or `reboot` removes them. To ensure that Cumulus Linux can hardware accelerate all rules that can be in hardware, place them in the `/etc/cumulus/acl/policy.conf` file, then run `cl-acltool -i`.
-
+<!--
 ### Hardware Limitations
 
 Due to hardware limitations in the Spectrum ASIC, {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD policers">}} and the BFD-related control plane share rules. The following default rules share the same policer in the `00control_plan.rules` file:
@@ -1370,7 +1199,7 @@ Due to hardware limitations in the Spectrum ASIC, {{<link url="Bidirectional-For
 ```
 
 To work around this limitation, set the rate and burst for all these rules to the same values with the `--set-rate` and `--set-burst` options.
-
+-->
 ### Where to Assign Rules
 
 - If you assign a switch port to a bond, you must assign any egress rules to the bond.
@@ -1390,7 +1219,7 @@ error: hw sync failed (sync_acl hardware installation failed)
 Installing acl policy... Rolling back ..
 failed.
 ```
-
+<!--
 ### INPUT Chain Rules
 
 Cumulus Linux implements INPUT chain rules using a trap mechanism and assigns trap IDs to packets that go to the CPU. The default INPUT chain rules map to these trap IDs. However, if a packet matches multiple traps, an internal priority mechanism resolves them. which can be different from the rule priorities. The default expected rule does not police the packet but another rule polices it instead. For example, the LOCAL rule polices ICMP packets that go to the CPU instead of the ICMP rule. Also, multiple rules can share the same trap, where the largest of the policer values applies.
@@ -1404,7 +1233,7 @@ FORWARD chain rules can drop packets that go through the switch. Exercise cautio
 ### Hardware Policing of Packets in the Input Chain
 
 Certain platforms have limitations on hardware policing packets in the INPUT chain. To work around these limitations, Cumulus Linux supports kernel based policing of these packets in software using limit or hashlimit matches. Cumulus Linux does not hardware offload rules with these matches, but ignores them during hardware install.
-
+-->
 ### ACLs Do not Match when the Output Port on the ACL is a Subinterface
 
 The ACL does not match on packets when you configure a subinterface as the output port. The ACL matches on packets only if the primary port is as an output port. If a subinterface is an output or egress port, the packets match correctly.

@@ -128,6 +128,29 @@ The {{bridge monitor}} command correctly shows the value.</td>
 <td></td>
 </tr>
 <tr>
+<td>2821869</td>
+<td>The {{cl-route-check --layer3}} command fails with a memory error. For example:
+
+cumulus@switch:~$ sudo cl-route-check --layer3
+Traceback (most recent call last):
+ File "/usr/cumulus/bin/cl-route-check", line 1270, in &lt;module&gt;
+  routing.collect_data()
+ File "/usr/cumulus/bin/cl-route-check", line 528, in collect_data
+  self.collect_data_bgp_ipv4()
+ File "/usr/cumulus/bin/cl-route-check", line 711, in collect_data_bgp_ipv4
+  bgp_ipv4 = json.loads(output)
+ File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+  return _default_decoder.decode(s)
+ File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+  obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+ File "/usr/lib/python2.7/json/decoder.py", line 382, in raw_decode
+  obj, end = self.scan_once(s, idx)
+MemoryError
+</td>
+<td>3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2820758</td>
 <td>The following vulnerabilities have been announced in curl:
 CVE-2021-22946 Crafted answers from a server might force clients to not use TLS on connections though TLS was required and expected.
@@ -135,6 +158,29 @@ CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server migh
 Vulnerable: &lt;= 7.38.0-4+deb8u21
 Fixed: 7.38.0-4+deb8u22</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2817130</td>
+<td>The {{cl-route-check --layer3}} command fails with a memory error. For example:
+
+cumulus@switch:~$ sudo cl-route-check --layer3
+Traceback (most recent call last):
+ File "/usr/cumulus/bin/cl-route-check", line 1270, in &lt;module&gt;
+  routing.collect_data()
+ File "/usr/cumulus/bin/cl-route-check", line 528, in collect_data
+  self.collect_data_bgp_ipv4()
+ File "/usr/cumulus/bin/cl-route-check", line 711, in collect_data_bgp_ipv4
+  bgp_ipv4 = json.loads(output)
+ File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+  return _default_decoder.decode(s)
+ File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+  obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+ File "/usr/lib/python2.7/json/decoder.py", line 382, in raw_decode
+  obj, end = self.scan_once(s, idx)
+MemoryError
+</td>
+<td>3.7.15</td>
 <td></td>
 </tr>
 <tr>

@@ -767,7 +767,9 @@ cumulus@switch:~$ nv set interface swp1-48 acl EXAMPLE1 inbound
 cumulus@switch:~$ nv config apply
 ```
 
-NOTE: ADD info about file containing 48 lines
+{{%notice note%}}
+To specify all ports on the switch in NVUE (swp+ in an iptables rule), you must set the range of interfaces on the switch as in the examples above (`nv set interface swp1-48`). This command creates as many rules in the `/etc/cumulus/acl/policy.d/50_cue.rules` file as the number of interfaces in the range you specify.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1062,7 +1064,7 @@ cumulus@switch:~$ nv config apply
 
 The following rule blocks any UDP traffic with source port 200 and destination port 50 going from server02 to the leaf02 control plane (rule 3 in the diagram above).
 
-{{< tabs "1233 ">}}
+{{< tabs "1065 ">}}
 {{< tab "iptables Rule ">}}
 
 ```
@@ -1089,7 +1091,7 @@ cumulus@switch:~$ nv config apply
 
 The following rule blocks any TCP traffic with source port 123 and destination port 123 going from leaf02 to server02 (rule 4 in the diagram above).
 
-{{< tabs "1260 ">}}
+{{< tabs "1092 ">}}
 {{< tab "iptables Rule ">}}
 
 ```
@@ -1115,22 +1117,72 @@ cumulus@switch:~$ nv config apply
 
 ### Combined Rules
 
-The following rules block any TCP traffic with source port 123 and destination port 123 going from any switch port egress or generated from the switch.
+{{< tabs "1118 ">}}
+{{< tab "iptables Rule ">}}
+
+The following rule blocks any TCP traffic with source port 123 and destination port 123 going from any switch port egress or generated from the switch.
+
+```
+[iptables] 
+-A OUTPUT,FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP
+```
+
+This also becomes two ACLs and is the same as:
 
 ```
 [iptables]
--t mangle -A PREROUTING -i swp+ -p tcp -m multiport --sports 123 -m multiport --dports 123 -j DROP
--A OUTPUT -o swp+ -p tcp -m multiport --sports 123 -m multiport --dports 123 -j DROP
+-A FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP 
+-A OUTPUT -o swp+ -p tcp --sport 123 --dport 123 -j DROP
 ```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port 123
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 123
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
+cumulus@switch:~$ nv set interface swp1-48 acl EXAMPLE1 outbound
+cumulus@switch:~$ nv set acl EXAMPLE2 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 match ip source-port 123
+cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 match ip dest-port 123
+cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 action deny
+cumulus@switch:~$ nv set interface swp1-48 acl EXAMPLE2 outbound control-plane
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Layer 2 Rules (ebtables)
 
 The following rule blocks any traffic with source MAC address 00:00:00:00:00:12 and destination MAC address 08:9e:01:ce:e2:04 going from any switch port egress or ingress.
 
+{{< tabs "1118 ">}}
+{{< tab "iptables Rule ">}}
+
 ```
 [ebtables]
 -A FORWARD -s 00:00:00:00:00:12 -d 08:9e:01:ce:e2:04 -j DROP
 ```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE type mac
+cumulus@switch:~$ nv set acl EXAMPLE rule 10 match mac source-mac 00:00:00:00:00:12
+cumulus@switch:~$ nv set acl EXAMPLE rule 10 match mac dest-mac 08:9e:01:ce:e2:04
+cumulus@switch:~$ nv set acl EXAMPLE rule 10 action deny
+cumulus@switch:~$ nv set interface swp1-48 acl EXAMPLE inbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Considerations
 

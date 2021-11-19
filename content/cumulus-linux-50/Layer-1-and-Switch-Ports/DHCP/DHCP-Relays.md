@@ -92,6 +92,9 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
+{{< /tab >}}
+{{< /tabs >}}
+
 <!--
 IPv4
 
@@ -107,9 +110,6 @@ cumulus@leaf01:~$ net commit
 IPv6
 
 You cannot configure IPv6 relays with NCLU commands. Use the Linux Commands.
-
-{{< /tab >}}
-{{< /tabs >}}
 -->
 
 {{%notice note%}}

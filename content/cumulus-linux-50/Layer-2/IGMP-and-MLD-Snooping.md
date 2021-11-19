@@ -170,7 +170,7 @@ For large multicast environments, the default [CoPP](## "Control Plane Policing"
 - For MLD, the default forwarding rate is set to 300 packets per second and the default burst rate is set to 100 packets per second.
 
 To tune the IGMP and MLD forwarding and burst rates:
-
+<!--
 {{< tabs "171 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -188,7 +188,13 @@ cumulus@switch:~$
 {{< /tab >}}
 {{< tab "Edit /etc/cumulus/control-plane/policers.conf ">}}
 
-1. Edit the `/etc/cumulus/control-plane/policers.conf` file. For IGMP, change the `copp.igmp.rate` and `copp.igmp.burst` parameters. For MLD, change the `copp.icmp6_def_mld.rate` and `copp.icmp6_def_mld.burst` parameters.
+{{< /tab >}}
+{{< /tabs >}}
+-->
+1. Edit the `/etc/cumulus/control-plane/policers.conf` file. 
+
+   - For IGMP, change the `copp.igmp.rate` and `copp.igmp.burst` parameters.
+   - For MLD, change the `copp.icmp6_def_mld.rate` and `copp.icmp6_def_mld.burst` parameters.
 
    The following example changes the IGMP and MLD forwarding rate to 400 packets per second and the burst rate to 200 packets per second:
 
@@ -210,9 +216,6 @@ cumulus@switch:~$
    ```
    cumulus@switch:~$ switchdctl --load /etc/cumulus/control-plane/policers.conf
    ```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ## Disable IGMP and MLD Snooping
 

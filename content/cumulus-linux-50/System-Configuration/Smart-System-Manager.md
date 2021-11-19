@@ -35,7 +35,7 @@ The following command restarts the system in cold mode:
 {{< tabs "28 ">}}
 {{< tab "NVUE Command ">}}
 
-NVUE command is not supported.
+The NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -57,7 +57,7 @@ The following command restarts the system in fast mode:
 {{< tabs "52 ">}}
 {{< tab "NVUE Command ">}}
 
-NVUE command is not supported.
+The NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -83,7 +83,7 @@ Warm boot resets any manually configured FEC settings.
 {{< tabs "76 ">}}
 {{< tab "NVUE Command ">}}
 
-NVUE command is not supported.
+The NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -113,7 +113,7 @@ The following command upgrades all the system components:
 {{< tabs "88 ">}}
 {{< tab "NVUE Command ">}}
 
-NVUE command is not supported.
+The NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -135,7 +135,7 @@ The following command provides information on the components you want to upgrade
 {{< tabs "114 ">}}
 {{< tab "NVUE Command ">}}
 
-NVUE command is not supported.
+The NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -167,7 +167,7 @@ Run the following command to enable maintenance mode. When maintenance mode is o
 {{< tabs "150 ">}}
 {{< tab "NVUE Command ">}}
 
-NVUE command is not supported.
+The NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -189,7 +189,7 @@ You can run additional commands to bring all the ports down, then up to restore 
 {{< tabs "176 ">}}
 {{< tab "NVUE Command ">}}
 
-NVUE command is not supported.
+The NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -219,7 +219,7 @@ Run the following command to disable maintenance mode and restore normal operati
 {{< tabs "210 ">}}
 {{< tab "NVUE Command ">}}
 
-NVUE command is not supported.
+The NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}

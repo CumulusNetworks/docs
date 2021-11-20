@@ -30,7 +30,7 @@ To make the transition from NCLU to NVUE configuration easier, you can use this 
         <code>net add hostname &lt;hostname&gt;</code>
         </td>
         <td style="vertical-align : middle">
-        <code>nv set platform hostname &lt;hostname&gt;</code>
+        <code>nv set system hostname &lt;hostname&gt;</code>
         </td>
         <td>
         </td>       

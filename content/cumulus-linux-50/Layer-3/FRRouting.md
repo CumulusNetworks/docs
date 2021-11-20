@@ -481,6 +481,47 @@ hostname spine01-1
 If you configure the same numbered BGP neighbor with both the `neighbor x.x.x.x` and `neighbor swp# interface` commands, two neighbor entries are present for the same IP address in the configuration. To correct this issue, update the configuration and restart the FRR service.
 {{%/notice%}}
 
+## TCP Sockets and BGP Peering Sessions
+
+The FRR startup configuration includes a setting for the maximum number of open files allowed. For BGP, open files include TCP sockets that BGP connections use. Either BGP speaker can initiate a BGP peering almost simultaneously; therefore, you can have two TCP sockets for a single BGP peer. These two sockets exist until the BGP protocol determines which socket to use, then the other socket closes.
+
+The default setting of 1024 open files supports approximately 512 BGP peering sessions. If you expect your network deployment to have more BGP peering sessions, you need to update this setting.
+
+{{%notice note%}}
+NVIDIA recommends you set the value to at least twice the maximum number of BGP peering sessions you expect.
+{{%/notice%}}
+
+To update the open files setting:
+
+1. Edit the `/lib/systemd/system/frr.service` file and change the `LimitNOFILE` parameter. The following example sets the `LimitNOFILE` parameter to 4096.
+
+   ````
+   cumulus@switch:~$ sudo cat /lib/systemd/system/frr.service
+   [Unit]
+   Description=FRRouting
+   Documentation=https://frrouting.readthedocs.io/en/latest/setup.html
+   After=networking.service csmgrd.service
+   
+   [Service]
+   Nice=-5
+   Type=forking
+   NotifyAccess=all
+   StartLimitInterval=3m
+   StartLimitBurst=3
+   TimeoutSec=2m
+   WatchdogSec=60s
+   RestartSec=5
+   Restart=on-abnormal
+   LimitNOFILE=4096
+   ...
+   ```
+
+2. Restart the FRR service.
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart frr.service
+   ```
+
 ## Related Information
 
 - {{<exlink url="https://frrouting.org" text="FRRouting website">}}

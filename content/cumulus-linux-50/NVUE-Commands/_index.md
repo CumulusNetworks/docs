@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1600
 toc: 2
 ---
-To see a list of all the NVUE `nv show`, `nv set`, `nv unset`, `nv action`, and `nv config` commands, run `nv list-commands`:
+To see a list of all the NVUE `nv show`, `nv set`, `nv unset`, `nv action`, and `nv config` commands, run `nv list-commands`. To see a description of a command, type the command and add `-h`; for example, `nv show router nexthop-group -h`.
 
 ```
 cumulus@cumulus:mgmt:~$ nv list-commands

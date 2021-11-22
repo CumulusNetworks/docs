@@ -281,6 +281,16 @@ This is a cosmetic software issue and not indicative of a hardware failure on th
 <td></td>
 </tr>
 <tr>
+<td>2713888</td>
+<td>With the {{ip-acl-heavy}} TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly.
+
+hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources
+
+To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
+<td>3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2711533</td>
 <td>On the AS7326-56X switch, the link lights for 25G ports configured to work at 1G do not illuminate.</td>
 <td>4.2.1-4.4.0</td>

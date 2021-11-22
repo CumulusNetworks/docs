@@ -495,7 +495,7 @@ To update the open files setting:
 
 1. Edit the `/lib/systemd/system/frr.service` file and change the `LimitNOFILE` parameter. The following example sets the `LimitNOFILE` parameter to 4096.
 
-   ````
+   ```
    cumulus@switch:~$ sudo cat /lib/systemd/system/frr.service
    [Unit]
    Description=FRRouting

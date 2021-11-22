@@ -483,9 +483,9 @@ If you configure the same numbered BGP neighbor with both the `neighbor x.x.x.x`
 
 ### TCP Sockets and BGP Peering Sessions
 
-The FRR startup configuration includes a setting for the maximum number of open files allowed. For BGP, open files include TCP sockets that BGP connections use. Either BGP speaker can initiate a BGP peering almost simultaneously; therefore, you can have two TCP sockets for a single BGP peer. These two sockets exist until the BGP protocol determines which socket to use, then the other socket closes.
+The FRR startup configuration includes a setting for the maximum number of open files allowed. For BGP, open files include TCP sockets that BGP connections use. Either BGP speaker can start a BGP peering almost simultaneously; therefore, you can have two TCP sockets for a single BGP peer. These two sockets exist until the BGP protocol determines which socket to use, then the other socket closes.
 
-The default setting of 1024 open files supports approximately 512 BGP peering sessions. If you expect your network deployment to have more BGP peering sessions, you need to update this setting.
+The default setting of 1024 open files supports up to 512 BGP peering sessions. If you expect your network deployment to have more BGP peering sessions, you need to update this setting.
 
 {{%notice note%}}
 NVIDIA recommends you set the value to at least twice the maximum number of BGP peering sessions you expect.

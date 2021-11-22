@@ -4,7 +4,10 @@ author: NVIDIA
 weight: 1600
 toc: 2
 ---
-To see a list of all the NVUE `nv show`, `nv set`, `nv unset`, `nv action`, and `nv config` commands, run `nv list-commands`. To see a description of a command, type the command and add `-h`; for example, `nv show router nexthop-group -h`.
+
+## List All Commands
+
+To see a list of all the NVUE `nv show`, `nv set`, `nv unset`, `nv action`, and `nv config` commands, run `nv list-commands`:
 
 ```
 cumulus@cumulus:mgmt:~$ nv list-commands
@@ -2948,3 +2951,26 @@ nv config show
 nv config patch <cue-file>
 nv config history [<revision>]
 ```
+
+## Show a Command Description
+
+To see a description for a command, type the command with `-h` at the end:
+
+```
+cumulus@cumulus:mgmt:~$ nv set mlag backup -h
+Usage:
+  nv set mlag backup [options] <backup-id> ...
+
+Description:
+  Set of MLAG backups
+
+Identifiers:
+  <backup-id>  Backup IP for peer to reach us
+
+General Options:
+  -h, --help   Show help.
+```
+
+{{%notice note%}}
+When you use `-h`, replace any variables in the command with a value. For example, for the `nv set vrf <vrf-id> router pim` command, type `nv set vrf default router pim -h`.
+{{%/notice%}}

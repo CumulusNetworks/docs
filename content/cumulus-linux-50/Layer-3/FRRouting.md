@@ -481,7 +481,7 @@ hostname spine01-1
 If you configure the same numbered BGP neighbor with both the `neighbor x.x.x.x` and `neighbor swp# interface` commands, two neighbor entries are present for the same IP address in the configuration. To correct this issue, update the configuration and restart the FRR service.
 {{%/notice%}}
 
-## TCP Sockets and BGP Peering Sessions
+### TCP Sockets and BGP Peering Sessions
 
 The FRR startup configuration includes a setting for the maximum number of open files allowed. For BGP, open files include TCP sockets that BGP connections use. Either BGP speaker can initiate a BGP peering almost simultaneously; therefore, you can have two TCP sockets for a single BGP peer. These two sockets exist until the BGP protocol determines which socket to use, then the other socket closes.
 

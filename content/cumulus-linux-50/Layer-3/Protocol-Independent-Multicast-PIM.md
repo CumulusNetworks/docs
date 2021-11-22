@@ -293,6 +293,7 @@ cumulus@leaf01:~$ net add pim rp 10.10.10.102 224.10.2.0/24
 -->
 
 {{%notice note%}}
+- You can either configure RP mappings for different multicast groups (as shown above) or use a prefix list to specify the RP to group mapping. You cannot use both methods at the same time.
 - NVIDIA recommends that you do not use a spine switch as an RP when using eBGP in a Clos network. See the [PIM Overview knowledge-base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/PIM-Overview" >}}).
 - zebra does not resolve the next hop for the RP through the default route. To prevent multicast forwarding from failing, either provide a specific route to the RP or run the vtysh `ip nht resolve-via-default` configuration command to resolve the next hop for the RP through the default route.
 {{%/notice%}}
@@ -1121,7 +1122,7 @@ For large multicast environments, the default [CoPP](## "Control Plane Policing"
 - The default PIM forwarding rate and burst rate is set to 2000 packets per second.
 - The default IGMP forwarding rate and burst rate is set to 1000 packets per second.
 
-To adjust the the policer:
+To adjust the policer:
 <!--
 {{< tabs "991 ">}}
 {{< tab "NVUE Commands ">}}

@@ -1,14 +1,14 @@
 ---
-title: NVIDIA Cumulus NetQ 4.0 Release Notes
+title: NVIDIA Cumulus NetQ 4.1 Release Notes
 author: NVIDIA
 weight: 30
 product: Cumulus NetQ
-version: "4.0"
+version: "4.1"
 toc: 1
 type: rn
 pdfhidden: True
 ---
-{{<rn_xls_link dir="cumulus-netq-40" >}}
+{{<rn_xls_link dir="cumulus-netq-41" >}}
 ## 4.0.1 Release Notes
 ### Open Issues in 4.0.1
 

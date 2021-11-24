@@ -358,7 +358,7 @@ cumulus@spine01:~$ net commit
 ```
 -->
 
-You can confirm the configuration with the <!--NCLU `net show bgp neighbor <neighbor>` command or the -->vtysh `show ip bgp neighbor <neighbor>` command.
+You can confirm the configuration with the vtysh `show ip bgp neighbor <neighbor>` command or the `net show bgp neighbor <neighbor>` command.
 <!-- vale off -->
 {{< expand "example" >}}
 
@@ -661,7 +661,7 @@ line vty
 ```
 -->
 
-With the above configuration, the <!-- NCLU `net show bgp vrf RED summary` command and the--> vtysh `show ip bgp vrf RED summary` command shows the local ASN as 65532.
+With the above configuration, the vtysh `show ip bgp vrf RED summary` command and the `net show bgp vrf RED summary` command output shows the local ASN as 65532.
 
 ```
 cumulus@border01:mgmt:~$ sudo vtysh
@@ -681,7 +681,7 @@ Total number of neighbors 1
 ...
 ```
 
-The <!-- NCLU `net show bgp summary` command and the -->vtysh `show ip bgp summary` command displays the global table, where the local ASN 65132 peers with spine01.
+The vtysh `show ip bgp summary` command and the `net show bgp summary` command displays the global table, where the local ASN 65132 peers with spine01.
 
 ```
 cumulus@border01:mgmt:~$ sudo vtysh
@@ -1020,11 +1020,11 @@ cumulus@leaf01:~$ net commit
 -->
 
 ## Suppress Route Advertisement
-
+<!--
 {{%notice note%}}
 Suppress Route Advertisement is an early access feature.
 {{%/notice%}}
-
+-->
 You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers.
 
 {{< tabs "TabID788 ">}}
@@ -1038,27 +1038,46 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
-```
-cumulus@leaf01:~$ sudo vtysh
-...
-leaf01# configure terminal
-leaf01(config)# router bgp 65101
-leaf01(config-router)# bgp suppress-fib-pending
-leaf01(config-router)# end
-leaf01# write memory
-leaf01# exit
-```
+1. Run the following vtysh commands:
 
-The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+   ```
+   cumulus@leaf01:~$ sudo vtysh
+   ...
+   leaf01# configure terminal
+   leaf01(config)# router bgp 65101
+   leaf01(config-router)# bgp suppress-fib-pending
+   leaf01(config-router)# end
+   leaf01# write memory
+   leaf01# exit
+   ```
 
-```
-...
-router bgp 65199
- bgp router-id 10.10.10.101
- neighbor swp51 remote-as external
- bgp suppress-fib-pending
-...
-```
+   The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+   ```
+   ...
+   router bgp 65199
+   bgp router-id 10.10.10.101
+   neighbor swp51 remote-as external
+   bgp suppress-fib-pending
+   ...
+   ```
+
+2. Edit the `/etc/cumulus/switchd.d/kernel_route_offload_flags.conf` file to set the `kernel_route_offload_flags` parameter to 2:
+
+   ```
+   cumulus@leaf01:~$ sudo nano /etc/cumulus/switchd.d/kernel_route_offload_flags.conf  
+   # Set routing-forwarding-sync mode for routes.
+   #  0: No notification on HW install success or failure (default mode)
+   #  1: Notify HW install failure
+   #  2: Notify HW install success/failure
+   kernel_route_offload_flags = 2
+   ```
+
+3. Restart switchd:
+
+   ```
+   cumulus@leaf01:~$ sudo systemctl restart switchd.service
+   ```
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1119,7 +1138,7 @@ Hostname: spine01
 ...
 ```
 
-To view the current additional paths, run <!--the NCLU command `net show bgp <prefix>` or -->the vtysh `show ip bgp <prefix>` command. The example output shows that the TX node adds an additional path for receiving. Each path has a unique AddPath ID.
+To view the current additional paths, run the vtysh `show ip bgp <prefix>` command or the `net show bgp <prefix>` command. The example output shows that the TX node adds an additional path for receiving. Each path has a unique AddPath ID.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -1226,7 +1245,7 @@ The following example configuration shows how BGP add-path TX advertises the bes
 | -- | -- |
 | {{< img src = "/images/cumulus-linux/bgp-add-path-tx.png" >}} | In this configuration:<ul><li>Every leaf and every spine has a different ASN</li><li>eBGP is configured between:<ul><li>leaf01 and spine01, spine02</li><li>leaf03 and spine01, spine02</li><li>leaf01 and leaf02 (leaf02 only has a single peer, which is leaf01)</li></ul><li>leaf01 is configured to advertise the best path learned from each AS to BGP neighbor leaf02</li><li>leaf03 generates a loopback IP address (10.10.10.3/32) into BGP with a network statement</li></ul>|
 <!-- vale on -->
-When you run the <!--`net show bgp 10.10.10.3/32` command or the-->`show ip bgp 10.10.10.3/32` command on leaf02, the command output shows the leaf03 loopback IP address and two BGP paths, both from leaf01:
+When you run the `show ip bgp 10.10.10.3/32` command or the `net show bgp 10.10.10.3/32` command on leaf02, the command output shows the leaf03 loopback IP address and two BGP paths, both from leaf01:
 
 ```
 cumulus@leaf02:mgmt:~$ sudo vtysh
@@ -1271,7 +1290,7 @@ The following example commands configure the switch to send a 10.0.0.0/8 summary
 - Create a route map called ADVERTISEMAP that uses the prefix list ADVERTISE.
 - Configure BGP neighbor swp51 to use the route maps.
 
-{{< tabs "962 ">}}
+{{< tabs "1293 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1311,12 +1330,6 @@ leaf01# write memory
 leaf01# exit
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-<!--
-NCLU commands are not supported.
--->
-
 The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
@@ -1333,12 +1346,25 @@ route-map EXISTMAP permit 10
 match ip address prefix-list EXIST
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 Cumulus Linux scans the entire [RIB](## "BGP Routing Information Base") table every 60 seconds. You can set the conditional advertisement timer to increase or decrease how often you want Cumulus Linux to scan the RIB table. You can set a value between 5 and 240 seconds.
 
 {{%notice note%}}
-- A lower value (such as 5) increases the amount of processing needed. Use caution when configuring conditional advertisement on a large number of BGP neighbors.
-- NVUE commands are not supported for the conditional advertisement timer. Only change the timer if you configured conditional advertisement with vtysh.
+A lower value (such as 5) increases the amount of processing needed. Use caution when configuring conditional advertisement on a large number of BGP neighbors.
 {{%/notice%}}
+
+{{< tabs "1358 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set vrf default router bgp timers conditional-advertise 100
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -1369,6 +1395,9 @@ router bgp 65101
  neighbor swp52 timers connect 10
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Next Hop Tracking
 
@@ -1756,7 +1785,7 @@ cumulus@leaf01:~$ net commit
 ```
 -->
 
-When you enable graceful BGP shutdown, Cumulus Linux adds the `graceful-shutdown` community to all paths from eBGP peers and sets the `local-pref` for that route to `0`. To see the configuration, run the <!--NCLU command `net show bgp <route>` or the -->vtysh command `show ip bgp <route>`. For example:
+When you enable graceful BGP shutdown, Cumulus Linux adds the `graceful-shutdown` community to all paths from eBGP peers and sets the `local-pref` for that route to `0`. To see the configuration, run the vtysh `show ip bgp <route>` command or the `net show bgp <route>` command. For example:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -2113,7 +2142,7 @@ cumulus@leaf01:~$ net commit
 ```
 -->
 
-To show BGP graceful restart information, run the <!--NCLU `net show bgp neighbor <neighbour> graceful-restart` command or the -->vtysh `show ip bgp neighbor <neighbor> graceful-restart` command.
+To show BGP graceful restart information, run the vtysh `show ip bgp neighbor <neighbor> graceful-restart` command or the `net show bgp neighbor <neighbour> graceful-restart` command.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -2215,7 +2244,7 @@ router bgp 65199
 ```
 -->
 
-To show the configured timers and information about the transitions when a convergence event occurs, run the <!--NCLU `net show bgp summary` command or the -->vtysh `show ip bgp summary` command.
+To show the configured timers and information about the transitions when a convergence event occurs, run the vtysh `show ip bgp summary` command or the `net show bgp summary` command.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -2237,7 +2266,7 @@ Total number of neighbors 1
 ...
 ```
 
-The <!--NCLU `net show bgp summary json` and the -->vtysh `show ip bgp summary json` command shows the last convergence event.
+The vtysh `show ip bgp summary json` command and the `net show bgp summary json` command shows the last convergence event.
 
 ## BGP Community Lists
 <!-- vale off -->

@@ -578,7 +578,7 @@ The following examples adds a command to an interface to enable proxy ARP:
 {{< tabs "TabID640 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE command is not supported.
+The NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -960,7 +960,7 @@ To work around this issue, configure the IP address scope:
 {{< tabs "TabID589 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE command is not supported.
+The NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

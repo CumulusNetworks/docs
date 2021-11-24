@@ -7,7 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2845538</td>
+<td>2855908</td>
+<td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
+To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2854784</td>
+<td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2845537</td>
 <td>CVE-2020-19143: A flaw was discovered in tiff, a Tag Image File Format library, which may result in denial of service or the execution of arbitrary code if malformed image files are processed.
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u2
 Fixed: 4.1.0+git191117-2~deb10u3</td>
@@ -25,9 +38,21 @@ Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td></td>
 </tr>
 <tr>
-<td>2840819</td>
+<td>2840818</td>
 <td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
 <td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2839140</td>
+<td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2829196</td>
+<td>After bringing up a bridge port, there is a multi second delay before the bridge port is able to learn any MAC addresses or neighbors, which causes a forwarding delay (about six seconds with 300 or more VLANs).</td>
+<td>3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -253,6 +278,16 @@ To work around this issue, restart FRR with the {{sudo systemctl restart frr}} c
 <td>On the Celestica Seastone switch, when you run {{ smonctl -v}}, the DIMM 1 Temp Sensor shows as absent.
 This is a cosmetic software issue and not indicative of a hardware failure on the system.</td>
 <td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2713888</td>
+<td>With the {{ip-acl-heavy}} TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly.
+
+hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources
+
+To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
+<td>3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>

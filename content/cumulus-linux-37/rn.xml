@@ -7,6 +7,61 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2859177</td>
+<td>The {{cl-route-check --layer3}} command fails with a memory error. For example:
+
+cumulus@switch:~$ sudo cl-route-check --layer3
+Traceback (most recent call last):
+ File "/usr/cumulus/bin/cl-route-check", line 1270, in &lt;module&gt;
+  routing.collect_data()
+ File "/usr/cumulus/bin/cl-route-check", line 528, in collect_data
+  self.collect_data_bgp_ipv4()
+ File "/usr/cumulus/bin/cl-route-check", line 711, in collect_data_bgp_ipv4
+  bgp_ipv4 = json.loads(output)
+ File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+  return _default_decoder.decode(s)
+ File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+  obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+ File "/usr/lib/python2.7/json/decoder.py", line 382, in raw_decode
+  obj, end = self.scan_once(s, idx)
+MemoryError
+</td>
+<td>3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2855881</td>
+<td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
+CVE-2021-32672: Random heap reading issue with Lua Debugger.
+CVE-2021-32687: Integer to heap buffer overflow with intsets, when set-max-intset-entries is manually configured to a non-default, very large value.
+CVE-2021-32675: Denial Of Service when processing RESP request payloads with a large number of elements on many connections.
+CVE-2021-32626: Specially crafted Lua scripts may result with Heap buffer overflow.
+Vulnerable: &lt;= 2:2.8.17-1+deb8u8
+Fixed: 2:2.8.17-1+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2855879</td>
+<td>The following vulnerabilities have been announced in the python3.4 package:
+CVE-2021-3426: Running &apos;pydoc -p&apos; allows other local users to extract arbitrary files. The &apos;/getfile?key=path&apos; URL allows to read arbitrary file on the filesystem.
+CVE-2021-3733: The ReDoS-vulnerable regex has quadratic worst-case complexity
+and it allows cause a denial of service when identifying crafted invalid RFCs. This ReDoS issue is on the client side and needs remote attackers to control the HTTP server.
+CVE-2021-3737: HTTP client can get stuck infinitely reading len(line) &lt; 64k lines after receiving a '100 Continue' HTTP response. This could lead to the client being a bandwidth sink for anyone in control of a server.
+Vulnerable: &lt;= 3.4.2-1+deb8u10
+Fixed: 3.4.2-1+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2850806</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).
+Vulnerable: &lt;= 1:9.9.5.dfsg-9+deb8u22
+Fixed: 1:9.9.5.dfsg-9+deb8u23</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2845540</td>
 <td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
 Vulnerable: &lt;= 1.7.5-11+deb8u8
@@ -38,6 +93,12 @@ Fixed: 0.13-4~deb8u3</td>
 Vulnerable: &lt;= 1.0.1t-1+deb8u15
 Fixed: 1.0.1t-1+deb8u16</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2829196</td>
+<td>After bringing up a bridge port, there is a multi second delay before the bridge port is able to learn any MAC addresses or neighbors, which causes a forwarding delay (about six seconds with 300 or more VLANs).</td>
+<td>3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -97,6 +158,29 @@ CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server migh
 Vulnerable: &lt;= 7.38.0-4+deb8u21
 Fixed: 7.38.0-4+deb8u22</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2817130</td>
+<td>The {{cl-route-check --layer3}} command fails with a memory error. For example:
+
+cumulus@switch:~$ sudo cl-route-check --layer3
+Traceback (most recent call last):
+ File "/usr/cumulus/bin/cl-route-check", line 1270, in &lt;module&gt;
+  routing.collect_data()
+ File "/usr/cumulus/bin/cl-route-check", line 528, in collect_data
+  self.collect_data_bgp_ipv4()
+ File "/usr/cumulus/bin/cl-route-check", line 711, in collect_data_bgp_ipv4
+  bgp_ipv4 = json.loads(output)
+ File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+  return _default_decoder.decode(s)
+ File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+  obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+ File "/usr/lib/python2.7/json/decoder.py", line 382, in raw_decode
+  obj, end = self.scan_once(s, idx)
+MemoryError
+</td>
+<td>3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -276,6 +360,16 @@ Fixed: 2.4.10-10+deb8u18</td>
 Vulnerable: &lt;= 1.5.6-5+deb8u1
 Fixed: 1.5.6-5+deb8u2</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2713888</td>
+<td>With the {{ip-acl-heavy}} TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly.
+
+hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources
+
+To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
+<td>3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2359,6 +2453,38 @@ These messages are harmless and can be ignored.</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2855881</td>
+<td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
+CVE-2021-32672: Random heap reading issue with Lua Debugger.
+CVE-2021-32687: Integer to heap buffer overflow with intsets, when set-max-intset-entries is manually configured to a non-default, very large value.
+CVE-2021-32675: Denial Of Service when processing RESP request payloads with a large number of elements on many connections.
+CVE-2021-32626: Specially crafted Lua scripts may result with Heap buffer overflow.
+Vulnerable: &lt;= 2:2.8.17-1+deb8u8
+Fixed: 2:2.8.17-1+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2855879</td>
+<td>The following vulnerabilities have been announced in the python3.4 package:
+CVE-2021-3426: Running &apos;pydoc -p&apos; allows other local users to extract arbitrary files. The &apos;/getfile?key=path&apos; URL allows to read arbitrary file on the filesystem.
+CVE-2021-3733: The ReDoS-vulnerable regex has quadratic worst-case complexity
+and it allows cause a denial of service when identifying crafted invalid RFCs. This ReDoS issue is on the client side and needs remote attackers to control the HTTP server.
+CVE-2021-3737: HTTP client can get stuck infinitely reading len(line) &lt; 64k lines after receiving a '100 Continue' HTTP response. This could lead to the client being a bandwidth sink for anyone in control of a server.
+Vulnerable: &lt;= 3.4.2-1+deb8u10
+Fixed: 3.4.2-1+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2850806</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).
+Vulnerable: &lt;= 1:9.9.5.dfsg-9+deb8u22
+Fixed: 1:9.9.5.dfsg-9+deb8u23</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2845540</td>
@@ -4697,6 +4823,38 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2855881</td>
+<td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
+CVE-2021-32672: Random heap reading issue with Lua Debugger.
+CVE-2021-32687: Integer to heap buffer overflow with intsets, when set-max-intset-entries is manually configured to a non-default, very large value.
+CVE-2021-32675: Denial Of Service when processing RESP request payloads with a large number of elements on many connections.
+CVE-2021-32626: Specially crafted Lua scripts may result with Heap buffer overflow.
+Vulnerable: &lt;= 2:2.8.17-1+deb8u8
+Fixed: 2:2.8.17-1+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2855879</td>
+<td>The following vulnerabilities have been announced in the python3.4 package:
+CVE-2021-3426: Running &apos;pydoc -p&apos; allows other local users to extract arbitrary files. The &apos;/getfile?key=path&apos; URL allows to read arbitrary file on the filesystem.
+CVE-2021-3733: The ReDoS-vulnerable regex has quadratic worst-case complexity
+and it allows cause a denial of service when identifying crafted invalid RFCs. This ReDoS issue is on the client side and needs remote attackers to control the HTTP server.
+CVE-2021-3737: HTTP client can get stuck infinitely reading len(line) &lt; 64k lines after receiving a '100 Continue' HTTP response. This could lead to the client being a bandwidth sink for anyone in control of a server.
+Vulnerable: &lt;= 3.4.2-1+deb8u10
+Fixed: 3.4.2-1+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2850806</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).
+Vulnerable: &lt;= 1:9.9.5.dfsg-9+deb8u22
+Fixed: 1:9.9.5.dfsg-9+deb8u23</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2845540</td>
@@ -7578,6 +7736,38 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2855881</td>
+<td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
+CVE-2021-32672: Random heap reading issue with Lua Debugger.
+CVE-2021-32687: Integer to heap buffer overflow with intsets, when set-max-intset-entries is manually configured to a non-default, very large value.
+CVE-2021-32675: Denial Of Service when processing RESP request payloads with a large number of elements on many connections.
+CVE-2021-32626: Specially crafted Lua scripts may result with Heap buffer overflow.
+Vulnerable: &lt;= 2:2.8.17-1+deb8u8
+Fixed: 2:2.8.17-1+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2855879</td>
+<td>The following vulnerabilities have been announced in the python3.4 package:
+CVE-2021-3426: Running &apos;pydoc -p&apos; allows other local users to extract arbitrary files. The &apos;/getfile?key=path&apos; URL allows to read arbitrary file on the filesystem.
+CVE-2021-3733: The ReDoS-vulnerable regex has quadratic worst-case complexity
+and it allows cause a denial of service when identifying crafted invalid RFCs. This ReDoS issue is on the client side and needs remote attackers to control the HTTP server.
+CVE-2021-3737: HTTP client can get stuck infinitely reading len(line) &lt; 64k lines after receiving a '100 Continue' HTTP response. This could lead to the client being a bandwidth sink for anyone in control of a server.
+Vulnerable: &lt;= 3.4.2-1+deb8u10
+Fixed: 3.4.2-1+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2850806</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).
+Vulnerable: &lt;= 1:9.9.5.dfsg-9+deb8u22
+Fixed: 1:9.9.5.dfsg-9+deb8u23</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2845540</td>
@@ -10666,6 +10856,38 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2855881</td>
+<td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
+CVE-2021-32672: Random heap reading issue with Lua Debugger.
+CVE-2021-32687: Integer to heap buffer overflow with intsets, when set-max-intset-entries is manually configured to a non-default, very large value.
+CVE-2021-32675: Denial Of Service when processing RESP request payloads with a large number of elements on many connections.
+CVE-2021-32626: Specially crafted Lua scripts may result with Heap buffer overflow.
+Vulnerable: &lt;= 2:2.8.17-1+deb8u8
+Fixed: 2:2.8.17-1+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2855879</td>
+<td>The following vulnerabilities have been announced in the python3.4 package:
+CVE-2021-3426: Running &apos;pydoc -p&apos; allows other local users to extract arbitrary files. The &apos;/getfile?key=path&apos; URL allows to read arbitrary file on the filesystem.
+CVE-2021-3733: The ReDoS-vulnerable regex has quadratic worst-case complexity
+and it allows cause a denial of service when identifying crafted invalid RFCs. This ReDoS issue is on the client side and needs remote attackers to control the HTTP server.
+CVE-2021-3737: HTTP client can get stuck infinitely reading len(line) &lt; 64k lines after receiving a '100 Continue' HTTP response. This could lead to the client being a bandwidth sink for anyone in control of a server.
+Vulnerable: &lt;= 3.4.2-1+deb8u10
+Fixed: 3.4.2-1+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2850806</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).
+Vulnerable: &lt;= 1:9.9.5.dfsg-9+deb8u22
+Fixed: 1:9.9.5.dfsg-9+deb8u23</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2845540</td>
 <td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
 Vulnerable: &lt;= 1.7.5-11+deb8u8
@@ -13619,6 +13841,38 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2855881</td>
+<td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
+CVE-2021-32672: Random heap reading issue with Lua Debugger.
+CVE-2021-32687: Integer to heap buffer overflow with intsets, when set-max-intset-entries is manually configured to a non-default, very large value.
+CVE-2021-32675: Denial Of Service when processing RESP request payloads with a large number of elements on many connections.
+CVE-2021-32626: Specially crafted Lua scripts may result with Heap buffer overflow.
+Vulnerable: &lt;= 2:2.8.17-1+deb8u8
+Fixed: 2:2.8.17-1+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2855879</td>
+<td>The following vulnerabilities have been announced in the python3.4 package:
+CVE-2021-3426: Running &apos;pydoc -p&apos; allows other local users to extract arbitrary files. The &apos;/getfile?key=path&apos; URL allows to read arbitrary file on the filesystem.
+CVE-2021-3733: The ReDoS-vulnerable regex has quadratic worst-case complexity
+and it allows cause a denial of service when identifying crafted invalid RFCs. This ReDoS issue is on the client side and needs remote attackers to control the HTTP server.
+CVE-2021-3737: HTTP client can get stuck infinitely reading len(line) &lt; 64k lines after receiving a '100 Continue' HTTP response. This could lead to the client being a bandwidth sink for anyone in control of a server.
+Vulnerable: &lt;= 3.4.2-1+deb8u10
+Fixed: 3.4.2-1+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2850806</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).
+Vulnerable: &lt;= 1:9.9.5.dfsg-9+deb8u22
+Fixed: 1:9.9.5.dfsg-9+deb8u23</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2845540</td>
 <td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
 Vulnerable: &lt;= 1.7.5-11+deb8u8
@@ -16216,6 +16470,38 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2855881</td>
+<td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
+CVE-2021-32672: Random heap reading issue with Lua Debugger.
+CVE-2021-32687: Integer to heap buffer overflow with intsets, when set-max-intset-entries is manually configured to a non-default, very large value.
+CVE-2021-32675: Denial Of Service when processing RESP request payloads with a large number of elements on many connections.
+CVE-2021-32626: Specially crafted Lua scripts may result with Heap buffer overflow.
+Vulnerable: &lt;= 2:2.8.17-1+deb8u8
+Fixed: 2:2.8.17-1+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2855879</td>
+<td>The following vulnerabilities have been announced in the python3.4 package:
+CVE-2021-3426: Running &apos;pydoc -p&apos; allows other local users to extract arbitrary files. The &apos;/getfile?key=path&apos; URL allows to read arbitrary file on the filesystem.
+CVE-2021-3733: The ReDoS-vulnerable regex has quadratic worst-case complexity
+and it allows cause a denial of service when identifying crafted invalid RFCs. This ReDoS issue is on the client side and needs remote attackers to control the HTTP server.
+CVE-2021-3737: HTTP client can get stuck infinitely reading len(line) &lt; 64k lines after receiving a '100 Continue' HTTP response. This could lead to the client being a bandwidth sink for anyone in control of a server.
+Vulnerable: &lt;= 3.4.2-1+deb8u10
+Fixed: 3.4.2-1+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2850806</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).
+Vulnerable: &lt;= 1:9.9.5.dfsg-9+deb8u22
+Fixed: 1:9.9.5.dfsg-9+deb8u23</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2845540</td>
 <td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
 Vulnerable: &lt;= 1.7.5-11+deb8u8
@@ -18256,6 +18542,38 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2855881</td>
+<td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
+CVE-2021-32672: Random heap reading issue with Lua Debugger.
+CVE-2021-32687: Integer to heap buffer overflow with intsets, when set-max-intset-entries is manually configured to a non-default, very large value.
+CVE-2021-32675: Denial Of Service when processing RESP request payloads with a large number of elements on many connections.
+CVE-2021-32626: Specially crafted Lua scripts may result with Heap buffer overflow.
+Vulnerable: &lt;= 2:2.8.17-1+deb8u8
+Fixed: 2:2.8.17-1+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2855879</td>
+<td>The following vulnerabilities have been announced in the python3.4 package:
+CVE-2021-3426: Running &apos;pydoc -p&apos; allows other local users to extract arbitrary files. The &apos;/getfile?key=path&apos; URL allows to read arbitrary file on the filesystem.
+CVE-2021-3733: The ReDoS-vulnerable regex has quadratic worst-case complexity
+and it allows cause a denial of service when identifying crafted invalid RFCs. This ReDoS issue is on the client side and needs remote attackers to control the HTTP server.
+CVE-2021-3737: HTTP client can get stuck infinitely reading len(line) &lt; 64k lines after receiving a '100 Continue' HTTP response. This could lead to the client being a bandwidth sink for anyone in control of a server.
+Vulnerable: &lt;= 3.4.2-1+deb8u10
+Fixed: 3.4.2-1+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2850806</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).
+Vulnerable: &lt;= 1:9.9.5.dfsg-9+deb8u22
+Fixed: 1:9.9.5.dfsg-9+deb8u23</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2845540</td>
@@ -20608,6 +20926,38 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2855881</td>
+<td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
+CVE-2021-32672: Random heap reading issue with Lua Debugger.
+CVE-2021-32687: Integer to heap buffer overflow with intsets, when set-max-intset-entries is manually configured to a non-default, very large value.
+CVE-2021-32675: Denial Of Service when processing RESP request payloads with a large number of elements on many connections.
+CVE-2021-32626: Specially crafted Lua scripts may result with Heap buffer overflow.
+Vulnerable: &lt;= 2:2.8.17-1+deb8u8
+Fixed: 2:2.8.17-1+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2855879</td>
+<td>The following vulnerabilities have been announced in the python3.4 package:
+CVE-2021-3426: Running &apos;pydoc -p&apos; allows other local users to extract arbitrary files. The &apos;/getfile?key=path&apos; URL allows to read arbitrary file on the filesystem.
+CVE-2021-3733: The ReDoS-vulnerable regex has quadratic worst-case complexity
+and it allows cause a denial of service when identifying crafted invalid RFCs. This ReDoS issue is on the client side and needs remote attackers to control the HTTP server.
+CVE-2021-3737: HTTP client can get stuck infinitely reading len(line) &lt; 64k lines after receiving a '100 Continue' HTTP response. This could lead to the client being a bandwidth sink for anyone in control of a server.
+Vulnerable: &lt;= 3.4.2-1+deb8u10
+Fixed: 3.4.2-1+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2850806</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).
+Vulnerable: &lt;= 1:9.9.5.dfsg-9+deb8u22
+Fixed: 1:9.9.5.dfsg-9+deb8u23</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2845540</td>
 <td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
 Vulnerable: &lt;= 1.7.5-11+deb8u8
@@ -22384,6 +22734,38 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2855881</td>
+<td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
+CVE-2021-32672: Random heap reading issue with Lua Debugger.
+CVE-2021-32687: Integer to heap buffer overflow with intsets, when set-max-intset-entries is manually configured to a non-default, very large value.
+CVE-2021-32675: Denial Of Service when processing RESP request payloads with a large number of elements on many connections.
+CVE-2021-32626: Specially crafted Lua scripts may result with Heap buffer overflow.
+Vulnerable: &lt;= 2:2.8.17-1+deb8u8
+Fixed: 2:2.8.17-1+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2855879</td>
+<td>The following vulnerabilities have been announced in the python3.4 package:
+CVE-2021-3426: Running &apos;pydoc -p&apos; allows other local users to extract arbitrary files. The &apos;/getfile?key=path&apos; URL allows to read arbitrary file on the filesystem.
+CVE-2021-3733: The ReDoS-vulnerable regex has quadratic worst-case complexity
+and it allows cause a denial of service when identifying crafted invalid RFCs. This ReDoS issue is on the client side and needs remote attackers to control the HTTP server.
+CVE-2021-3737: HTTP client can get stuck infinitely reading len(line) &lt; 64k lines after receiving a '100 Continue' HTTP response. This could lead to the client being a bandwidth sink for anyone in control of a server.
+Vulnerable: &lt;= 3.4.2-1+deb8u10
+Fixed: 3.4.2-1+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2850806</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).
+Vulnerable: &lt;= 1:9.9.5.dfsg-9+deb8u22
+Fixed: 1:9.9.5.dfsg-9+deb8u23</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2845540</td>
@@ -24499,6 +24881,38 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2855881</td>
+<td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
+CVE-2021-32672: Random heap reading issue with Lua Debugger.
+CVE-2021-32687: Integer to heap buffer overflow with intsets, when set-max-intset-entries is manually configured to a non-default, very large value.
+CVE-2021-32675: Denial Of Service when processing RESP request payloads with a large number of elements on many connections.
+CVE-2021-32626: Specially crafted Lua scripts may result with Heap buffer overflow.
+Vulnerable: &lt;= 2:2.8.17-1+deb8u8
+Fixed: 2:2.8.17-1+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2855879</td>
+<td>The following vulnerabilities have been announced in the python3.4 package:
+CVE-2021-3426: Running &apos;pydoc -p&apos; allows other local users to extract arbitrary files. The &apos;/getfile?key=path&apos; URL allows to read arbitrary file on the filesystem.
+CVE-2021-3733: The ReDoS-vulnerable regex has quadratic worst-case complexity
+and it allows cause a denial of service when identifying crafted invalid RFCs. This ReDoS issue is on the client side and needs remote attackers to control the HTTP server.
+CVE-2021-3737: HTTP client can get stuck infinitely reading len(line) &lt; 64k lines after receiving a '100 Continue' HTTP response. This could lead to the client being a bandwidth sink for anyone in control of a server.
+Vulnerable: &lt;= 3.4.2-1+deb8u10
+Fixed: 3.4.2-1+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2850806</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).
+Vulnerable: &lt;= 1:9.9.5.dfsg-9+deb8u22
+Fixed: 1:9.9.5.dfsg-9+deb8u23</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2845540</td>
 <td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
 Vulnerable: &lt;= 1.7.5-11+deb8u8
@@ -26357,6 +26771,38 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2855881</td>
+<td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
+CVE-2021-32672: Random heap reading issue with Lua Debugger.
+CVE-2021-32687: Integer to heap buffer overflow with intsets, when set-max-intset-entries is manually configured to a non-default, very large value.
+CVE-2021-32675: Denial Of Service when processing RESP request payloads with a large number of elements on many connections.
+CVE-2021-32626: Specially crafted Lua scripts may result with Heap buffer overflow.
+Vulnerable: &lt;= 2:2.8.17-1+deb8u8
+Fixed: 2:2.8.17-1+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2855879</td>
+<td>The following vulnerabilities have been announced in the python3.4 package:
+CVE-2021-3426: Running &apos;pydoc -p&apos; allows other local users to extract arbitrary files. The &apos;/getfile?key=path&apos; URL allows to read arbitrary file on the filesystem.
+CVE-2021-3733: The ReDoS-vulnerable regex has quadratic worst-case complexity
+and it allows cause a denial of service when identifying crafted invalid RFCs. This ReDoS issue is on the client side and needs remote attackers to control the HTTP server.
+CVE-2021-3737: HTTP client can get stuck infinitely reading len(line) &lt; 64k lines after receiving a '100 Continue' HTTP response. This could lead to the client being a bandwidth sink for anyone in control of a server.
+Vulnerable: &lt;= 3.4.2-1+deb8u10
+Fixed: 3.4.2-1+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2850806</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).
+Vulnerable: &lt;= 1:9.9.5.dfsg-9+deb8u22
+Fixed: 1:9.9.5.dfsg-9+deb8u23</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2845540</td>
 <td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
 Vulnerable: &lt;= 1.7.5-11+deb8u8
@@ -27865,6 +28311,38 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2855881</td>
+<td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
+CVE-2021-32672: Random heap reading issue with Lua Debugger.
+CVE-2021-32687: Integer to heap buffer overflow with intsets, when set-max-intset-entries is manually configured to a non-default, very large value.
+CVE-2021-32675: Denial Of Service when processing RESP request payloads with a large number of elements on many connections.
+CVE-2021-32626: Specially crafted Lua scripts may result with Heap buffer overflow.
+Vulnerable: &lt;= 2:2.8.17-1+deb8u8
+Fixed: 2:2.8.17-1+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2855879</td>
+<td>The following vulnerabilities have been announced in the python3.4 package:
+CVE-2021-3426: Running &apos;pydoc -p&apos; allows other local users to extract arbitrary files. The &apos;/getfile?key=path&apos; URL allows to read arbitrary file on the filesystem.
+CVE-2021-3733: The ReDoS-vulnerable regex has quadratic worst-case complexity
+and it allows cause a denial of service when identifying crafted invalid RFCs. This ReDoS issue is on the client side and needs remote attackers to control the HTTP server.
+CVE-2021-3737: HTTP client can get stuck infinitely reading len(line) &lt; 64k lines after receiving a '100 Continue' HTTP response. This could lead to the client being a bandwidth sink for anyone in control of a server.
+Vulnerable: &lt;= 3.4.2-1+deb8u10
+Fixed: 3.4.2-1+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2850806</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).
+Vulnerable: &lt;= 1:9.9.5.dfsg-9+deb8u22
+Fixed: 1:9.9.5.dfsg-9+deb8u23</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2845540</td>
@@ -29402,6 +29880,38 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2855881</td>
+<td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
+CVE-2021-32672: Random heap reading issue with Lua Debugger.
+CVE-2021-32687: Integer to heap buffer overflow with intsets, when set-max-intset-entries is manually configured to a non-default, very large value.
+CVE-2021-32675: Denial Of Service when processing RESP request payloads with a large number of elements on many connections.
+CVE-2021-32626: Specially crafted Lua scripts may result with Heap buffer overflow.
+Vulnerable: &lt;= 2:2.8.17-1+deb8u8
+Fixed: 2:2.8.17-1+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2855879</td>
+<td>The following vulnerabilities have been announced in the python3.4 package:
+CVE-2021-3426: Running &apos;pydoc -p&apos; allows other local users to extract arbitrary files. The &apos;/getfile?key=path&apos; URL allows to read arbitrary file on the filesystem.
+CVE-2021-3733: The ReDoS-vulnerable regex has quadratic worst-case complexity
+and it allows cause a denial of service when identifying crafted invalid RFCs. This ReDoS issue is on the client side and needs remote attackers to control the HTTP server.
+CVE-2021-3737: HTTP client can get stuck infinitely reading len(line) &lt; 64k lines after receiving a '100 Continue' HTTP response. This could lead to the client being a bandwidth sink for anyone in control of a server.
+Vulnerable: &lt;= 3.4.2-1+deb8u10
+Fixed: 3.4.2-1+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2850806</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).
+Vulnerable: &lt;= 1:9.9.5.dfsg-9+deb8u22
+Fixed: 1:9.9.5.dfsg-9+deb8u23</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2845540</td>
@@ -31040,6 +31550,38 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2855881</td>
+<td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
+CVE-2021-32672: Random heap reading issue with Lua Debugger.
+CVE-2021-32687: Integer to heap buffer overflow with intsets, when set-max-intset-entries is manually configured to a non-default, very large value.
+CVE-2021-32675: Denial Of Service when processing RESP request payloads with a large number of elements on many connections.
+CVE-2021-32626: Specially crafted Lua scripts may result with Heap buffer overflow.
+Vulnerable: &lt;= 2:2.8.17-1+deb8u8
+Fixed: 2:2.8.17-1+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2855879</td>
+<td>The following vulnerabilities have been announced in the python3.4 package:
+CVE-2021-3426: Running &apos;pydoc -p&apos; allows other local users to extract arbitrary files. The &apos;/getfile?key=path&apos; URL allows to read arbitrary file on the filesystem.
+CVE-2021-3733: The ReDoS-vulnerable regex has quadratic worst-case complexity
+and it allows cause a denial of service when identifying crafted invalid RFCs. This ReDoS issue is on the client side and needs remote attackers to control the HTTP server.
+CVE-2021-3737: HTTP client can get stuck infinitely reading len(line) &lt; 64k lines after receiving a '100 Continue' HTTP response. This could lead to the client being a bandwidth sink for anyone in control of a server.
+Vulnerable: &lt;= 3.4.2-1+deb8u10
+Fixed: 3.4.2-1+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2850806</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).
+Vulnerable: &lt;= 1:9.9.5.dfsg-9+deb8u22
+Fixed: 1:9.9.5.dfsg-9+deb8u23</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2845540</td>
@@ -32723,6 +33265,38 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2855881</td>
+<td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
+CVE-2021-32672: Random heap reading issue with Lua Debugger.
+CVE-2021-32687: Integer to heap buffer overflow with intsets, when set-max-intset-entries is manually configured to a non-default, very large value.
+CVE-2021-32675: Denial Of Service when processing RESP request payloads with a large number of elements on many connections.
+CVE-2021-32626: Specially crafted Lua scripts may result with Heap buffer overflow.
+Vulnerable: &lt;= 2:2.8.17-1+deb8u8
+Fixed: 2:2.8.17-1+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2855879</td>
+<td>The following vulnerabilities have been announced in the python3.4 package:
+CVE-2021-3426: Running &apos;pydoc -p&apos; allows other local users to extract arbitrary files. The &apos;/getfile?key=path&apos; URL allows to read arbitrary file on the filesystem.
+CVE-2021-3733: The ReDoS-vulnerable regex has quadratic worst-case complexity
+and it allows cause a denial of service when identifying crafted invalid RFCs. This ReDoS issue is on the client side and needs remote attackers to control the HTTP server.
+CVE-2021-3737: HTTP client can get stuck infinitely reading len(line) &lt; 64k lines after receiving a '100 Continue' HTTP response. This could lead to the client being a bandwidth sink for anyone in control of a server.
+Vulnerable: &lt;= 3.4.2-1+deb8u10
+Fixed: 3.4.2-1+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2850806</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).
+Vulnerable: &lt;= 1:9.9.5.dfsg-9+deb8u22
+Fixed: 1:9.9.5.dfsg-9+deb8u23</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2845540</td>
 <td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
 Vulnerable: &lt;= 1.7.5-11+deb8u8
@@ -33714,6 +34288,38 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2855881</td>
+<td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
+CVE-2021-32672: Random heap reading issue with Lua Debugger.
+CVE-2021-32687: Integer to heap buffer overflow with intsets, when set-max-intset-entries is manually configured to a non-default, very large value.
+CVE-2021-32675: Denial Of Service when processing RESP request payloads with a large number of elements on many connections.
+CVE-2021-32626: Specially crafted Lua scripts may result with Heap buffer overflow.
+Vulnerable: &lt;= 2:2.8.17-1+deb8u8
+Fixed: 2:2.8.17-1+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2855879</td>
+<td>The following vulnerabilities have been announced in the python3.4 package:
+CVE-2021-3426: Running &apos;pydoc -p&apos; allows other local users to extract arbitrary files. The &apos;/getfile?key=path&apos; URL allows to read arbitrary file on the filesystem.
+CVE-2021-3733: The ReDoS-vulnerable regex has quadratic worst-case complexity
+and it allows cause a denial of service when identifying crafted invalid RFCs. This ReDoS issue is on the client side and needs remote attackers to control the HTTP server.
+CVE-2021-3737: HTTP client can get stuck infinitely reading len(line) &lt; 64k lines after receiving a '100 Continue' HTTP response. This could lead to the client being a bandwidth sink for anyone in control of a server.
+Vulnerable: &lt;= 3.4.2-1+deb8u10
+Fixed: 3.4.2-1+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2850806</td>
+<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).
+Vulnerable: &lt;= 1:9.9.5.dfsg-9+deb8u22
+Fixed: 1:9.9.5.dfsg-9+deb8u23</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2845540</td>

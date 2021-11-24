@@ -100,6 +100,7 @@ The only additional configuration required to implement asymmetric routing beyon
 In distributed symmetric routing, each VTEP acts as a layer 3 gateway, performing routing for its attached hosts; however, both the ingress VTEP and egress VTEP route the packets (similar to the traditional routing behavior of routing to a next hop router). In the VXLAN encapsulated packet, the inner destination MAC address is the router MAC address of the egress VTEP to indicate that the egress VTEP is the next hop and also needs to perform routing. All routing happens in the context of a tenant (VRF). For a packet that the ingress VTEP receives from a locally attached host, the SVI interface corresponding to the VLAN determines the VRF. For a packet that the egress VTEP receives over the VXLAN tunnel, the VNI in the packet has to specify the VRF. For symmetric routing, this is a VNI corresponding to the tenant and is different from either the source VNI or the destination VNI. This VNI is a layer 3 VNI or interconnecting VNI. The regular VNI, which maps a VLAN, is the layer 2 VNI.
 
 {{%notice note%}}
+- Cumulus Linux supports symmetric routing on NVIDIA Spectrum-A1 and later.
 - Cumulus Linux uses a one-to-one mapping between a layer 3 VNI and a tenant (VRF).
 - The VRF to layer 3 VNI mapping has to be consistent across all VTEPs.
 - A layer 3 VNI and a layer 2 VNI cannot have the same ID. If the VNI IDs are the same, Cumulus Linux does not create the layer 2 VNI.
@@ -349,7 +350,8 @@ EVPN in Cumulus Linux supports prefix-based routing using EVPN type-5 (prefix) r
 EVPN prefix routes carry the layer 3 VNI and router MAC address and follow the symmetric routing model to route to the destination prefix.
 
 {{%notice note%}}
-When connecting to a WAN edge router to reach destinations outside the data center, deploy specific border or exit leaf switches to originate the type-5 routes.
+- When connecting to a WAN edge router to reach destinations outside the data center, deploy specific border or exit leaf switches to originate the type-5 routes.
+- On switches with Spectrum ASICs, centralized routing, symmetric routing, and prefix-based routing only work with Spectrum-A1 and later.
 {{%/notice%}}
 <!-- vale off -->
 ### Install EVPN Type-5 Routes
@@ -606,7 +608,7 @@ cumulus@leaf01:~$ net commit
 
 #### Show Advertise Primary IP Address Information
 
-To show Advertise Primary IP Address parameters, run the <!--NCLU `net show bgp l2vpn evpn vni <vni>` command or the -->vtysh `show bgp l2vpn evpn vni <vni>` command. For example:
+To show Advertise Primary IP Address parameters, run the vtysh `show bgp l2vpn evpn vni <vni>` command or the `net show bgp l2vpn evpn vni <vni>` command. For example:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -629,7 +631,7 @@ VNI: 4001 (known to the kernel)
     65101:4001
 ```
 
-To show EVPN routes with Primary IP Advertisement, run the <!--NCLU `net show bgp l2vpn evpn route` command or the -->vtysh `show bgp l2vpn evpn route` command. For example:
+To show EVPN routes with Primary IP Advertisement, run the vtysh `show bgp l2vpn evpn route` command or the `net show bgp l2vpn evpn route` command. For example:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -648,7 +650,7 @@ Route Distinguisher: 10.10.10.1:3
 ...
 ```
 
-To show the learned route from an external router injected as a type-5 route, run the <!--NCLU `net show bgp vrf <vrf> ipv4 unicast` command or the -->vtysh `show bgp vrf <vrf> ipv4 unicast` command.
+To show the learned route from an external router injected as a type-5 route, run the vtysh `show bgp vrf <vrf> ipv4 unicast` command or the `net show bgp vrf <vrf> ipv4 unicast` command.
 
 ## Downstream VNI
 

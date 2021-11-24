@@ -12,31 +12,10 @@ This document supports the Cumulus Linux 5.0 release, and lists new platforms an
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.0
 <!-- vale on -->
-Cumulus Linux 5.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
-
-### New Platforms
-
-- NVIDIA SN2201 (100G Spectrum-1)
-- NVIDIA SN4600C (100G Spectrum-3)
-- NVIDIA SN3700C-S (100G Spectrum-2) with Secure Boot
+Cumulus Linux 5.0 provides bug fixes, and contains several new features and improvements.
 
 ### New Features and Enhancements
 
-- New NVUE commands to:
-  - Configure PIM, IGMP and VRRP
-  - Set the time zone
-  - Include interface descriptions (alias)
-  - Reboot the switch
-  - Clear counters, such as RoCE counters
-- Modified NVUE commands:
-  - BGP `static-network` is now `network`
-  - `nv set platform config` command is now `nv set system config`
-  - `nv set platform hostname value <hostname>` command is now `nv set system hostname <hostname>`
-- cl-support now includes CPLD register information
+- The {{<link url="NVIDIA-User-Experience-NVUE" text="NVUE object model">}} includes many improvements, and has updated and additional commands. For example, you can now use NVUE to configure {{<link url="Protocol-Independent-Multicast-PIM" text="PIM">}}, {{<link url="IGMP-and-MLD-Snooping" text="IGMP">}} and {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP/#vrrp" text="VRRP">}}, set the {{<link title="Setting the Date and Time" text="time zone">}} and add a description (alias) for an interface.
 - DHCPv6 supports SVI interfaces
-- MPLS LSR support with BGP labeled-unicast signaling
-- New forwarding resource profiles: `v6-lpm-heavy-1` and `l2-heavy-3`
-- SNMP enhancements:
-  - Support for buffer queue utilisation
-  - link up and link down count
-  - VRF aware routing MIB
+- SNMP enhancements

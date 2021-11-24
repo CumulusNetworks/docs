@@ -8,10 +8,10 @@ toc: 4
 Cumulus Linux exposes network interfaces for several types of physical and logical devices:
 
 - `lo` is the network loopback device
-- `ethN` are switch management ports (for out of band management only)
-- `swpN` are switch front panel ports
-- (optional) `brN` are bridges (IEEE 802.1Q VLANs)
-- (optional) `bondN` are bonds (IEEE 802.3ad link aggregation trunks, or port channels)
+- `eth` is a switch management port (for out of band management only)
+- `swp` is a switch front panel port
+- (optional) `br` is a bridge (IEEE 802.1Q VLAN)
+- (optional) `bond` is a bond (IEEE 802.3ad link aggregation trunk, or port channel)
 
 Each physical network interface (port) has several settings:
 
@@ -21,7 +21,7 @@ Each physical network interface (port) has several settings:
 - [MTU](## "Maximum Transmission Unit")
 - [FEC](## "Forward Error Correction")
 
-For **Spectrum ASICs**, MTU is the only port attribute you can directly configure. The Spectrum firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until the link comes up. However, you can disable FEC if necessary, which forces the firmware to not try any FEC options.
+For NVIDIA **Spectrum ASICs**, MTU is the only port attribute you can directly configure. The Spectrum firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until the link comes up. However, you can disable FEC if necessary, which forces the firmware to not try any FEC options.
 
 ## MTU
 
@@ -163,9 +163,9 @@ The switch forwards all packets that are within the MTU value set for the egress
 Run the following command to drop **all** IP packets that are larger in size than the MTU value for the egress layer 3 interface instead of fragmenting packets:
 
 {{< tabs "TabID166 ">}}
-{{< tab "NVUE Command ">}}
+{{< tab "NVUE Commands ">}}
 
-NVUE command is not supported.
+The NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -1625,10 +1625,6 @@ When configuring port speed or break outs in the `/etc/cumulus/ports.conf` file,
 <!-- vale on -->
 - If you break out a switch port or remove a break out port and you set the port speed in both the `/etc/cumulus/ports.conf` file and the `/etc/network/interfaces` file.
 
-### Port Speed Configuration
-
-If you change the port speed in the `/etc/cumulus/ports.conf` file but the speed for that port is also in the `/etc/network/interfaces` file, after you edit the `/etc/cumulus/ports.conf` file and restart `switchd`, you must also run the `ifreload -a` command.
-
 <!-- vale off -->
 <!-- Vale issue #253 -->
 ### 1000BASE-T SFP Modules Supported Only on Certain 25G Platforms
@@ -1643,7 +1639,7 @@ The following  25G switches support 1000BASE-T SFP modules:
 
 ### NVIDIA SN2100 Switch and eth0 Link Speed
 
-After rebooting the NVIDIA SN2100 switch, eth0 always has a speed of 100Mb/s. If you bring the interface down and then back up again, the interface negotiates 1000Mb. This only occurs the first time the interface comes up.
+After rebooting the NVIDIA SN2100 switch, eth0 always has a speed of 100MB per second. If you bring the interface down and then back up again, the interface negotiates 1000MB. This only occurs the first time the interface comes up.
 
 To work around this issue, add the following commands to the `/etc/rc.local` file to flap the interface automatically when the switch boots:
 

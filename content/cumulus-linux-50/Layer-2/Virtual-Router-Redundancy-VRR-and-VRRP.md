@@ -542,7 +542,7 @@ vrrp 44 ipv6 2001:0db8::1
 
 ### Show VRRP Configuration
 
-To show virtual router information on a switch, run <!--the NCLU `net show vrrp <VRID>` command or -->the vtysh `show vrrp <VRID>` command. For example:
+To show virtual router information on a switch, run the vtysh `show vrrp <VRID>` command or the `net show vrrp <VRID>` command. For example:
 
 ```
 cumulus@spine01:~$ show vrrp 44

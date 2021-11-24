@@ -367,7 +367,7 @@ cumulus@leaf01:~$ nv set interface swp52 router ospf network-type point-to-point
 cumulus@leaf01:~$ nv config apply
 ```
 
-The NVUE commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+After you run `nv config save`, the NVUE commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
@@ -956,12 +956,6 @@ cumulus@leaf01:~$ nv set evpn evi 10 route-advertise svi-ip on
 cumulus@leaf01:~$ nv config apply
 ```
 
-The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
-
-```
-cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
-```
-
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
@@ -1103,7 +1097,7 @@ router bgp 65101
 To reenable BUM flooding, run the NCLU `net del bgp l2vpn evpn disable-flooding` command.
 -->
 
-To show that BUM flooding is off, run the <!--NCLU `net show bgp l2vpn evpn vni` command or the -->vtysh `show bgp l2vpn evpn vni` command. For example:
+To show that BUM flooding is off, run the vtysh `show bgp l2vpn evpn vni` command or the NCLU `net show bgp l2vpn evpn vni` command. For example:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -1124,7 +1118,7 @@ Flags: * - Kernel
 * 4001       L3   10.1.20.2:5           65101:4001                65101:4001               RED
 ```
 
-Run the <!--NCLU `net show bgp l2vpn evpn route type multicast` command or the -->vtysh `show bgp l2vpn evpn route type multicast` command to make sure there are no EVPN type-3 routes that originate locally.
+Run the vtysh `show bgp l2vpn evpn route type multicast` command or the `net show bgp l2vpn evpn route type multicast` command to make sure there are no EVPN type-3 routes that originate locally.
 
 ## Extended Mobility
 
@@ -1134,7 +1128,7 @@ Extended mobility not only supports virtual machine *moves*, but also where one 
 
 Cumulus Linux enables extended mobility by default.
 
-To examine the sequence numbers for a host or virtual machine MAC address and IP address, run the <!--NCLU `net show evpn mac vni <vni> mac <address>` command or the -->vtysh `show evpn mac vni <vni> mac <address>` command. For example:
+To examine the sequence numbers for a host or virtual machine MAC address and IP address, run the vtysh `show evpn mac vni <vni> mac <address>` command or the `net show evpn mac vni <vni> mac <address>` command. For example:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1472,7 +1466,7 @@ IP: 10.0.0.9
   Duplicate, detected at Tue Nov  6 18:55:29 2018
 ```
 
-To show a list of MAC addresses detected as duplicate for a specific VNI or for all VNIs, run the <!--NCLU `net show evpn mac vni <vni-id|all> duplicate` command or the -->vtysh `show evpn mac vni <vni-id|all> duplicate` command. The following example command shows a list of duplicate MAC addresses for VNI 1001:
+To show a list of MAC addresses detected as duplicate for a specific VNI or for all VNIs, run the vtysh `show evpn mac vni <vni-id|all> duplicate` command or the `net show evpn mac vni <vni-id|all> duplicate` command. The following example command shows a list of duplicate MAC addresses for VNI 1001:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1483,7 +1477,7 @@ MAC               Type   Intf/Remote VTEP      VLAN
 aa:bb:cc:dd:ee:ff local  hostbond3             1001
 ```
 
-To show a list of IP addresses detected as duplicate for a specific VNI or for all VNIs, run the <!--NCLU `net show evpn arp-cache vni <vni-id|all> duplicate` command or the -->vtysh `show evpn arp-cache vni <vni-id|all> duplicate` command. The following example command shows a list of duplicate IP addresses for VNI 1001:
+To show a list of IP addresses detected as duplicate for a specific VNI or for all VNIs, run the vtysh `show evpn arp-cache vni <vni-id|all> duplicate` command or the `net show evpn arp-cache vni <vni-id|all> duplicate` command. The following example command shows a list of duplicate IP addresses for VNI 1001:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1496,7 +1490,7 @@ IP                Type   State    MAC                Remote VTEP
 10.10.0.12        remote active   aa:22:aa:aa:aa:aa  172.16.0.16
 ```
 
-To show configured duplicate address detection parameters, run the <!--NCLU `net show evpn` command or the -->vtysh `show evpn` command:
+To show configured duplicate address detection parameters, run the vtysh `show evpn` command or the `net show evpn` command:
 
 ```
 cumulus@switch:~$ sudo vtysh

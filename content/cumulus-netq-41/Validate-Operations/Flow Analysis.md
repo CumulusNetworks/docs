@@ -72,6 +72,11 @@ The dashboard header shows the monitored flow settings:
 The flow analysis graph is color coded relative to the values measured across devices. Lower values are displayed in green, and higher values are displayed in orange. The color gradient is displayed below the graph along with the low and high values from the collected flow data. Each hop in the path is represented in the graph with a vertical grey-striped line labeled by hostname. The following example shows a single path:
 
 {{<figure src="/images/netq/single-path-graph.png" width="800">}}
+
+The Flow Graph panel on the right side of the dashboard will display the devices along the selected path:
+
+{{<figure src="/images/netq/flow-graph-single-path.png" width="200">}}
+
 ### View Flow Latency
 
 The latency measured by Flow Analysis is the total transit time of sampled packets through individual devices. A summary of measured latency for each device is displayed above the main Flow Analysis graph:
@@ -94,4 +99,20 @@ The main Flow Analysis dashboard also displays the buffer occupancy of each devi
 {{<figure src="/images/netq/buffer-occupancy-main2.png" width="1000">}}
 
 ### View Multiple Paths
+
+When packets matching the flow settings traverse multiple paths in the topology, the flow graph will display latency and buffer occupancy for each path:
+
+{{<figure src="/images/netq/multi-path-main-flow-graph.png" width="800">}}
+
+You can switch between paths by clicking on an alternate path in the **Flow Graph** panel, or by clicking on an unselected path on the main analysis graph:
+
+{{<figure src="/images/netq/flow-graph-choose-alt.png" width="200">}}
+
+You can also select the desired path and view the amount of packets distributed over each path on the detail panel on the left side of the dashboard:
+
+{{<figure src="/images/netq/multi-path-path-selection-panel.png" width="1000">}}
 ### View Device Statistics
+
+You can view interface statistics, resource utilization, and alarms for each device by clicking on a device in the **Flow Graph** panel, or by clicking on the striped grey line associated with a device in the main flow analysis graph. This will change the left panel details to show statistics for that device:
+
+{{<figure src="/images/netq/device statistics - left panel.png" width="600">}}

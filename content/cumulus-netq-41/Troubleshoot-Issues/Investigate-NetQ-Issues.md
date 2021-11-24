@@ -195,8 +195,7 @@ cumulus@server:~$ sudo opta-support
 Please send /var/support/opta_support_server_2021119_165552.txz to Nvidia support.
 
 ```
-
-To export network validation check data in addition to OPTA health data to the support bundle, the {{<link title="Install NetQ CLI#configure-netq-cli-using-the-cli" text="NetQ CLI must be activated with AuthKeys">}}. If the CLI access key is not activated, a notification will be displayed that `netq show` output will not be collected:
+To export network validation check data in addition to OPTA health data to the support bundle, the {{<link title="Install NetQ CLI#configure-netq-cli-using-the-cli" text="NetQ CLI must be activated with AuthKeys">}}. If the CLI access key is not activated, the command output displays a notification and data collection excludes `netq show` output:
 
 ```
 cumulus@server:~$ sudo opta-support

@@ -145,12 +145,12 @@ The VXLAN validation tests look for configuration consistency across all VTEPs. 
 
 ## Addresses Validation Tests
 
-The duplicate address detection validation tests look for duplicate IPv4 and IPv6 addresses assigned to interfaces across devices in the inventory. You can accomplish this with the following tests:
+The duplicate address detection validation tests look for duplicate IPv4 and IPv6 addresses assigned to interfaces across devices in the inventory, and check for duplicate /32 host routes in each VRF. You can accomplish this with the following tests:
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
-| 0 | IPv4 Duplicate Addresses | Checks for duplicate IPv4 addresses across devices in the inventory |
-| 1 | IPv6 Duplicate Addresses | Checks for duplicate IPv6 addresses across devices in the inventory |
+| 0 | IPv4 Duplicate Addresses | Checks for duplicate IPv4 addresses |
+| 1 | IPv6 Duplicate Addresses | Checks for duplicate IPv6 addresses |
 
 {{<notice note>}}
 

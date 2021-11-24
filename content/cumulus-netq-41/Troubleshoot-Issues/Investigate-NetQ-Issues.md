@@ -188,10 +188,18 @@ Refer to {{<link title="Verify Network Connectivity/#create-a-layer-3-on-demand-
 
 ## Generate a Support File
 
-The `opta-support` command generates an archive of useful information for troubleshooting issues with NetQ. It is an extension of the `cl-support` command in Cumulus Linux. It provides information about the NetQ Platform configuration and runtime statistics as well as output from the `docker ps` command. The NVIDIA support team might request the output of this command when assisting with any issues that you could not solve with your own troubleshooting. To export network validation check data in addition to OPTA health data to the support bundle, the {{<link title="Install NetQ CLI#configure-netq-cli-using-the-cli" text="NetQ CLI must be activated with AuthKeys">}}.
+The `opta-support` command generates an archive of useful information for troubleshooting issues with NetQ. It is an extension of the `cl-support` command in Cumulus Linux. It provides information about the NetQ Platform configuration and runtime statistics as well as output from the `docker ps` command. The NVIDIA support team might request the output of this command when assisting with any issues that you could not solve with your own troubleshooting. 
 
 ```
 cumulus@server:~$ sudo opta-support
 Please send /var/support/opta_support_server_2021119_165552.txz to Nvidia support.
 
+```
+To export network validation check data in addition to OPTA health data to the support bundle, the {{<link title="Install NetQ CLI#configure-netq-cli-using-the-cli" text="NetQ CLI must be activated with AuthKeys">}}. If the CLI access key is not activated, the command output displays a notification and data collection excludes `netq show` output:
+
+```
+cumulus@server:~$ sudo opta-support
+Access key is not found. Please check the access key entered or generate a fresh access_key,secret_key pair and add it to the CLI configuration
+Proceeding with opta-support generation without netq show outputs
+Please send /var/support/opta_support_server_20211122_22259.txz to Nvidia support.
 ```

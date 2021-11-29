@@ -83,7 +83,7 @@ To make a configuration change with the NVUE API:
 
    ```
 
-2. Record the revision ID. In the above example, the revision ID is `"changeset/cumulus/2021-11-02_16.09.18_5Z1K"`
+2. Record the revision ID. In the above example, the revision ID is `"changeset/cumulus/2021-11-02_16.09.18_5Z1K"`.
 
 3. Make the change using a PATCH and link it to the revision ID:
 
@@ -131,13 +131,13 @@ To make a configuration change with the NVUE API:
 
 ### Unset a Configuration Change
 
-To unset a change, using the `null` value to the key. For example, to delete `vlan100` from a switch, use the following syntax:
+To unset a change, use the `null` value to the key. For example, to delete `vlan100` from a switch, use the following syntax:
 
 ```
 $ curl -u 'cumulus:cumulus' -d '{"vlan100":null}' -H 'Content-Type: application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=changeset/cumulus/2021-11-29_11.46.23_6C7T
 ```
 
-To unset, the `PATCH` action must still be used, but the value indicates that the entry should be removed. Notice that the data is `{"vlan100":null}` with the PATCH action.
+When you unset a change, you must still use the `PATCH` action. The value indicates removal of the entry. The data is `{"vlan100":null}` with the PATCH action.
 
 ### Troubleshoot Configuration Changes
 

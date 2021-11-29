@@ -645,10 +645,10 @@ Edit the `/etc/network/interfaces` file to **remove** the line `ipv6-addrgen off
 You can add a static MAC address entry to the layer 2 table for an interface within the VLAN-aware bridge by running a command similar to the following:
 
 ```
-cumulus@switch:~$ sudo bridge fdb add 12:34:56:12:34:56 dev swp1 vlan 150 master static
+cumulus@switch:~$ sudo bridge fdb add 12:34:56:12:34:56 dev swp1 vlan 150 master static sticky
 cumulus@switch:~$ sudo bridge fdb show
 44:38:39:00:00:7c dev swp1 master bridge permanent
-12:34:56:12:34:56 dev swp1 vlan 150 master bridge static
+12:34:56:12:34:56 dev swp1 vlan 150 sticky master bridge static
 44:38:39:00:00:7c dev swp1 self permanent
 12:12:12:12:12:12 dev swp1 self permanent
 12:34:12:34:12:34 dev swp1 self permanent

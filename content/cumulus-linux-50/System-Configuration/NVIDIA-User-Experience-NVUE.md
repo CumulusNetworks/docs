@@ -66,7 +66,7 @@ cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:
 ...
 ```
 
-### Make a Configuration Change
+### Set a Configuration Change
 
 To make a configuration change with the NVUE API:
 
@@ -131,6 +131,16 @@ To make a configuration change with the NVUE API:
      "::1/128": {}
    }
    ```
+
+### Unset a Configuration Change
+
+To unset a change, use the `null` value to the key. For example, to delete `vlan100` from a switch, use the following syntax:
+
+```
+$ curl -u 'cumulus:cumulus' -d '{"vlan100":null}' -H 'Content-Type: application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=changeset/cumulus/2021-11-29_11.46.23_6C7T
+```
+
+When you unset a change, you must still use the `PATCH` action. The value indicates removal of the entry. The data is `{"vlan100":null}` with the PATCH action.
 
 ### Troubleshoot Configuration Changes
 

@@ -186,7 +186,7 @@ NVIDIA Spectrum switches support a maximum of 15996 VLAN elements and calculate 
 
 If you enable multiple VLAN-aware bridges for more than 4000 VLAN elements (bridge domains), you must specify the number of VLAN elements in the `/etc/mlx/datapath/broadcast_domains.conf` file.
 - To specify the total number of bridge domains you want to use, uncomment and edit the `broadcast_domain.max_vlans` parameter. The default value is 4096.
-- To specify the number of subinterfaces you want to use, uncomment and edit the `broadcast_domain.max_subinterfaces` parameter. The default value is 3872.
+- To specify the total number of subinterfaces you want to use, uncomment and edit the `broadcast_domain.max_subinterfaces` parameter. The default value is 3872.
 
 The number of `broadcast_domain.max_vlans` plus `broadcast_domain.max_subinterfaces` cannot exceed 15996.
 

@@ -10,10 +10,8 @@ You can use *gNMI*, the {{<exlink url="https://github.com/openconfig/gnmi" text=
 
 ### Configure the gNMI Agent
 
-To configure the gNMI agent, you need to enable it on every switch you want to use with gNMI. Optionally, you can update these default settings:
+To configure the gNMI agent, you need to enable it on every switch you want to use with gNMI. Optionally, you can update the default gNMI port. The gNMI agent listens over port 9339 by default. You can change this setting in case you use that port in another application:
 
-- **Log level**: The default log level is *info*. You can change the default setting to *debug*, *warning*, or *error*.
-- **Default gNMI port**: The gNMI agent listens over port 9339 by default. You can change this setting in case you use that port in another application.
 
 The `/etc/netq/netq.yml` file stores the configuration.
 
@@ -22,9 +20,6 @@ To configure the gNMI agent on a switch:
 1. Enable the gNMI agent:
 
        cumulus@switch:~$ netq config add agent gnmi-enable true
-1. If you want to change the default log level to something other than *info* (choose from *debug*, *warning*, or *error*), run:
-
-       cumulus@switch:~$ netq config add agent gnmi-log-level [debug|warning|error]
 
 1. If you want to change the default port over which the gNMI agent listens, run:
 

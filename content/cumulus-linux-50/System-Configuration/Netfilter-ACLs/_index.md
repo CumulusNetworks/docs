@@ -642,7 +642,7 @@ Rule 2 never matches on ingress. Both rules share the same mark.
 
 ## Common Examples
 
-## Data Plane Traffic
+### Data Plane Traffic
 
 You can configure quality of service for traffic on the data plane. By using QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds.
 
@@ -723,6 +723,8 @@ cumulus@switch:~$ switchdctl --load /etc/cumulus/control-plane/policers.conf
 
 {{< /tab >}}
 {{< /tabs >}}
+
+To show the control plane police configuration and statistics, run the `mlxcmd traps show copp-stats` command.
 
 ### Set DSCP on Transit Traffic
 

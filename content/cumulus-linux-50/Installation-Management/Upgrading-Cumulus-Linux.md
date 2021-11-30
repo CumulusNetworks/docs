@@ -86,10 +86,12 @@ Understanding the location of configuration data is important for successful upg
 
 If you use certain forms of network virtualization, such as {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V" text="VMware NSX-V">}}, you update the `/usr/share/openvswitch/scripts/ovs-ctl-vtep` file. This file is not marked as a configuration file; therefore, if the file contents change in a newer release of Cumulus Linux, they overwrite any changes you make to the file. Be sure to back up this file and the database file `conf.db` before upgrading.
 
-{{%notice note%}}
 The following commands verify which files have changed compared to the previous Cumulus Linux install. Be sure to back up any changed files.
 - Run the `sudo dpkg --verify` command to show a list of changed files.
 - Run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command to see if any of the generated `/etc/default/isc-*` files have changed.
+
+{{%notice warning%}}
+After you upgrade to Cumulus Linux 5.0, running NVUE configuration commands replaces the configuration in the applicable configuration files and removes any configuration that you back up before the upgrade. If you use automation tools like Ansible, Chef, or Puppet for configuration management, consider using Linux commands to configure the switch instead of NVUE.
 {{%/notice%}}
 
 <!-- ### NVUE replaces NCLU

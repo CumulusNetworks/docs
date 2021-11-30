@@ -19,10 +19,8 @@ Configuring EVPN-MH involves setting an Ethernet segment system MAC address (`es
 While you can specify a different `es-sys-mac` on different Ethernet segments attached to the same switch, the `es-sys-mac` must be the same on the downlinks attached to the same server.
 
 {{%notice info%}}
-
-When using Spectrum 2 or Spectrum 3 switches, an Ethernet segment can span more than two switches. Each Ethernet segment is a distinct redundancy group.
-
-However, when using Spectrum A1 switches, a maximum of two switches can participate in a redundancy group or Ethernet segment.
+- With Spectrum 2 or Spectrum 3 switches, an Ethernet segment can span more than two switches. Each Ethernet segment is a distinct redundancy group.
+- With Spectrum A1 switches, a maximum of two switches can participate in a redundancy group or Ethernet segment.
 
 {{%/notice%}}
 
@@ -32,8 +30,8 @@ However, when using Spectrum A1 switches, a maximum of two switches can particip
 - EVPN BUM traffic handling with {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN-PIM">}} on multihomed sites via Type-4/ESR routes, which includes split-horizon-filtering and designated forwarder election.
 
   {{%notice warning%}}
-
-Head-end replication is not supported with multihoming, so you must use {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN-PIM">}} for BUM traffic handling.
+- Head-end replication is not supported with multihoming; use {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN-PIM">}} for BUM traffic handling.
+- {{<link url="EVPN-Enhancements/#duplicate-address-detection" text="Duplicate address detection">}} is not supported with multihoming.
 
 {{%/notice%}}
 
@@ -48,11 +46,11 @@ Head-end replication is not supported with multihoming, so you must use {{<link 
 
 {{%notice warning%}}
 
-In order to use EVPN-MH, you must remove any MLAG configuration on the switch. This entails:
+To use EVPN-MH, you must remove any MLAG configuration on the switch:
 
-- Removing the `clag-id` from all interfaces in the `/etc/network/interfaces` file.
-- Removing the peerlink interfaces in the `/etc/network/interfaces` file.
-- Then running `ifreload` to reload the configuration:<pre>cumulus@switch:~$ sudo ifreload</pre>
+- Remove the `clag-id` from all interfaces in the `/etc/network/interfaces` file.
+- Remove the peerlink interfaces in the `/etc/network/interfaces` file.
+- Run `ifreload` to reload the configuration:<pre>cumulus@switch:~$ sudo ifreload</pre>
 
 {{%/notice%}}
 

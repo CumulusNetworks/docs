@@ -140,11 +140,11 @@ Then upload the `topology.dot` and `topology.svg` files to the proper locations 
 
 ## NetQ Integration
 
-You can include NetQ with any simulation. To do this, drag the `node` icon into the canvas and change the `OS` field to a NetQ version.
+You can include NetQ with any simulation. To do this, make sure the NetQ toggle switch is enabled, which is the default behavior.
 
-{{<img src="/images/guides/nvidia-air/NetqCustomTopo.png" width="225px">}}
+{{<img src="/images/guides/nvidia-air/NetQSlider.png" width="240px">}}
 
-You do not need any other additional connectivity to get NetQ functionality. The only requirement is the existence of a NetQ node. As long as you defined the NetQ node in the simulation, the platform automatically creates the NetQ agents and does the registration.
+To disable NetQ, simply click the toggle switch to disable it.
 
 ## Create a Custom Topology from the Production Network
 

@@ -642,49 +642,62 @@ Rule 2 never matches on ingress. Both rules share the same mark.
 
 ## Common Examples
 
-### Control Plane and Data Plane Traffic
+### Control Plane Policers
 
-You can configure quality of service for traffic on both the control plane and the data plane. By using QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds.
+You can configure quality of service for traffic on the control plane and rate limit traffic so incoming packets drop if they exceed certain thresholds in the following ways:
+- Run NVUE commands.
+- Edit the `/etc/cumulus/control-plane/policers.conf` file.
 
 {{%notice note%}}
-Counters on POLICE ACL rules in `iptables` do not show dropped packets due to those rules.
+Cumulus Linux 5.0 and later no longer uses INPUT chain rules to configure trap group policers.
 {{%/notice%}}
 
-Use the `POLICE` target with `iptables`. `POLICE` takes these arguments:
+{{< tabs "655 ">}}
+{{< tab "NVUE Commands ">}}
 
-- `--set-class value` sets the system internal class of service queue configuration to *value*.
-- `--set-rate value` specifies the maximum rate in kilobytes (KB) or packets.
-- `--set-burst value` specifies the number of packets or kilobytes (KB) allowed to arrive sequentially.
-- `--set-mode string` sets the mode in *KB* (kilobytes) or *pkt* (packets) for rate and burst size.
-
-For example, to rate limit the incoming traffic on swp1 to 400 packets per second with a burst of 100 packets per second and set the class of the queue for the policed traffic as 0: set this rule in your appropriate `.rules` file:
-
-{{< tabs "665 ">}}
-{{< tab "iptables rule ">}}
-
-Set this rule in your appropriate `.rules` file:
+The following example changes the PIM trap group forwarding rate and burst rate to 400 packets per second, and the IGMP trap group forwarding rate to 400 packets per second and burst rate to 200 packets per second:
 
 ```
--A INPUT -i swp1 -j POLICE --set-mode pkt --set-rate 400 --set-burst 100 --set-class 0
-```
-
-Apply the rule:
-
-```
-cumulus@switch:~$ sudo cl-acltool -i
+cumulus@switch:~$ nv set control-plane policer
+cumulus@switch:~$ 
+cumulus@switch:~$ 
+cumulus@switch:~$ 
+cumulus@switch:~$ 
+cumulus@switch:~$ 
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "NVUE Commands ">}}
+{{< tab "/etc/cumulus/control-plane/policers.conf File ">}}
+
+To rate limit traffic using the `/etc/cumulus/control-plane/policers.conf` file, you:
+- Enable an individual policer for a trap group (set `enable` to `TRUE`).
+- Set the policer rate in packets per second.
+- Set the policer burst rate in packets per second.
+
+After you edit the `/etc/cumulus/control-plane/policers.conf` file, you must reload the file with the `switchdctl --load /etc/cumulus/control-plane/policers.conf` command.
+
+{{%notice note%}}
+When `enable` is FALSE for a trap group, the trap group and `catch-all` trap group have a shared policer. When `enable` is TRUE, Cumulus Linux creates an individual policer for the trap group.
+{{%/notice%}}
+
+The following example changes the PIM trap group forwarding rate and burst rate to 400 packets per second, and the IGMP trap group forwarding rate to 400 packets per second and burst rate to 200 packets per second:
 
 ```
-cumulus@switch:~$ nv set acl example4 type ipv4
-cumulus@switch:~$ nv set acl example4 rule 1 action police mode packet
-cumulus@switch:~$ nv set acl example4 rule 1 action police rate 400
-cumulus@switch:~$ nv set acl example4 rule 1 action police burst 100
-cumulus@switch:~$ nv set acl example4 rule 1 action set class 0
-cumulus@switch:~$ nv set interface swp1 acl example4 inbound control-plane
-cumulus@switch:~$ nv config apply
+cumulus@switch:~$ sudo nano /etc/cumulus/control-plane/policers.conf
+...
+copp.pim_ospf_rip.enable = TRUE
+copp.pim_ospf_rip.rate = 400
+copp.pim_ospf_rip.burst = 400
+...
+copp.igmp.enable = TRUE
+copp.igmp.rate = 400
+copp.igmp.burst = 200
+...
+```
+
+```
+cumulus@switch:~$ switchdctl --load /etc/cumulus/control-plane/policers.conf
 ```
 
 {{< /tab >}}

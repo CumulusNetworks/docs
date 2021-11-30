@@ -642,6 +642,27 @@ Rule 2 never matches on ingress. Both rules share the same mark.
 
 ## Common Examples
 
+## Data Plane Traffic
+
+You can configure quality of service for traffic on the data plane. By using QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds.
+
+{{%notice note%}}
+Counters on POLICE ACL rules in `iptables` do not show dropped packets due to those rules.
+{{%/notice%}}
+
+Use the `POLICE` target with `iptables`. `POLICE` takes these arguments:
+
+- `--set-class value` sets the system internal class of service queue configuration to *value*.
+- `--set-rate value` specifies the maximum rate in kilobytes (KB) or packets.
+- `--set-burst value` specifies the number of packets or kilobytes (KB) allowed to arrive sequentially.
+- `--set-mode string` sets the mode in *KB* (kilobytes) or *pkt* (packets) for rate and burst size.
+
+For example, to rate limit the incoming traffic on swp1 to 400 packets per second with a burst of 100 packets per second and set the class of the queue for the policed traffic as 0, set this rule in your appropriate `.rules` file:
+
+```
+-A FORWARD -i swp1 -j POLICE --set-mode pkt --set-rate 400 --set-burst 100 --set-class 0
+```
+
 ### Control Plane Policers
 
 You can configure quality of service for traffic on the control plane and rate limit traffic so incoming packets drop if they exceed certain thresholds in the following ways:
@@ -649,7 +670,7 @@ You can configure quality of service for traffic on the control plane and rate l
 - Edit the `/etc/cumulus/control-plane/policers.conf` file.
 
 {{%notice note%}}
-Cumulus Linux 5.0 and later no longer uses INPUT chain rules to configure trap group policers.
+Cumulus Linux 5.0 and later no longer uses INPUT chain rules to configure control plane policers.
 {{%/notice%}}
 
 {{< tabs "655 ">}}

@@ -77,6 +77,7 @@ The following features are not supported with EVPN-MH:
 
 - {{<link url="Traditional-Bridge-Mode" text="Traditional bridge mode">}}
 - {{<link url="Inter-subnet-Routing/#asymmetric-routing" text="Distributed asymmetric routing">}}
+- {{<link url="EVPN-Enhancements/#duplicate-address-detection" text="Duplicate address detection">}}
 
 ## Basic Configuration
 

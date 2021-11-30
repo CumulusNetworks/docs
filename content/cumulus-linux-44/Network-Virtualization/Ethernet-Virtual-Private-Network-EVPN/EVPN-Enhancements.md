@@ -1190,8 +1190,8 @@ By default, when the switch detects a duplicate address, it flags the address as
 
 {{%notice note%}}
 - If the switch flags a MAC address as duplicate, it also flags all IP addresses associated with that MAC as duplicates. However, in an MLAG configuration, sometimes only one of the MLAG peers flags the associated IP addresses as duplicates.
-
 - In an MLAG configuration, MAC mobility detection runs independently on each switch in the MLAG pair. Based on the sequence in which local learning and, or route withdrawal from the remote VTEP occurs, the MAC mobility counter for a type-2 route increments only on one of the switches in the MLAG pair. In rare cases, it is possible for neither VTEP to increment the MAC mobility counter for the type-2 prefix.
+- Duplicate address detection is not supported in an {{<link title="EVPN Multihoming" text="EVPN multihoming">}} configuration.
 {{%/notice%}}
 
 ### When Does Duplicate Address Detection Trigger?

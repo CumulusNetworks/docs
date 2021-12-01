@@ -225,7 +225,7 @@ peerings?
 pluggable
 png
 poed
-policers
+(Policers|policers)
 portwd
 ppp
 (PPS|pps)

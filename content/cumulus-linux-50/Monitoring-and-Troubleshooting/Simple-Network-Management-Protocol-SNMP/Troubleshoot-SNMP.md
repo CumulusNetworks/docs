@@ -35,16 +35,3 @@ snmp-server
   trap-link-up check-frequency 10
   trap-snmp-auth-failures
 ```
-
-```
-cumulus@switch:~$ net show configuration commands
-...
-net add snmp-server listening-address all
-net add snmp-server readonly-community allpass access any
-net add snmp-server readonly-community temp2 access 1.1.1.1
-net add snmp-server readonly-community temp2 access 2.2.2.2
-net add snmp-server trap-destination 1.1.1.1 community-password public version 2c
-net add snmp-server trap-link-up check-frequency 10
-net add snmp-server trap-snmp-auth-failures
-...
-```

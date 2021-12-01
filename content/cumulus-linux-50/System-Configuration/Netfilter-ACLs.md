@@ -726,6 +726,99 @@ cumulus@switch:~$ switchdctl --load /etc/cumulus/control-plane/policers.conf
 
 To show the control plane police configuration and statistics, run the `mlxcmd traps show copp-stats` command.
 
+{{< expand "Policers Default Values" >}}
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/cumulus/control-plane/policers.conf
+copp.arp.enable = TRUE
+copp.arp.rate = 800
+copp.arp.burst = 800
+
+copp.bfd.enable = TRUE
+copp.bfd.rate = 2000
+copp.bfd.burst = 2000
+
+copp.pim_ospf_rip.enable = TRUE
+copp.pim_ospf_rip.rate = 2000
+copp.pim_ospf_rip.burst = 2000
+
+copp.bgp.enable = TRUE
+copp.bgp.rate = 2000
+copp.bgp.burst = 2000
+
+copp.clag.enable = TRUE
+copp.clag.rate = 2000
+copp.clag.burst = 2000
+
+copp.icmp_def.enable = TRUE
+copp.icmp_def.rate = 100
+copp.icmp_def.burst = 40
+
+copp.dhcp_ptp.enable = TRUE
+copp.dhcp_ptp.rate = 2000
+copp.dhcp_ptp.burst = 2000
+
+copp.igmp.enable = TRUE
+copp.igmp.rate = 1000
+copp.igmp.burst = 1000
+
+copp.ssh.enable = TRUE
+copp.ssh.rate = 1000
+copp.ssh.burst = 1000
+
+copp.icmp6_neigh.enable = TRUE
+copp.icmp6_neigh.rate = 500
+copp.icmp6_neigh.burst = 500
+
+copp.icmp6_def_mld.enable = TRUE
+copp.icmp6_def_mld.rate = 300
+copp.icmp6_def_mld.burst = 100
+
+copp.lacp.enable = TRUE
+copp.lacp.rate = 2000
+copp.lacp.burst = 2000
+
+copp.lldp.enable = TRUE
+copp.lldp.rate = 200
+copp.lldp.burst = 200
+
+copp.rpvst.enable = TRUE
+copp.rpvst.rate = 2000
+copp.rpvst.burst = 2000
+
+copp.eapol.enable = TRUE
+copp.eapol.rate = 2000
+copp.eapol.burst = 2000
+
+copp.ip2me.enable = TRUE
+copp.ip2me.rate = 1000
+copp.ip2me.burst = 1000
+
+copp.acl_log.enable = TRUE
+copp.acl_log.rate = 100
+copp.acl_log.burst = 100
+
+copp.nat.enable = TRUE
+copp.nat.rate = 200
+copp.nat.burst = 200
+
+copp.stp.enable = TRUE
+copp.stp.rate = 2000
+copp.stp.burst = 2000
+
+copp.l3_local.enable = TRUE
+copp.l3_local.rate = 400
+copp.l3_local.burst = 100
+
+copp.span_cpu.enable = TRUE
+copp.span_cpu.rate = 100
+copp.span_cpu.burst = 100
+
+copp.catch_all.enable = TRUE
+copp.catch_all.rate = 100
+copp.catch_all.burst = 100
+```
+{{< /expand >}}
+
 ### Set DSCP on Transit Traffic
 
 The examples here use the *mangle* table to modify the packet as it transits the switch. DSCP is in {{<exlink url="https://en.wikipedia.org/wiki/Differentiated_services#Configuration_guidelines" text="decimal notation">}} in the examples below.

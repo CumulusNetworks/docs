@@ -19,6 +19,12 @@
 <td></td>
 </tr>
 <tr>
+<td>2866111</td>
+<td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2866097</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.0</td>
@@ -54,6 +60,14 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 
 3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2862269</td>
+<td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
+Vulnerable: &lt;= 9.4.26-0+deb8u4
+Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -2491,6 +2505,12 @@ These messages are harmless and can be ignored.</td>
 <td></td>
 </tr>
 <tr>
+<td>2866111</td>
+<td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2866097</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.0</td>
@@ -2526,6 +2546,14 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 
 3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2862269</td>
+<td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
+Vulnerable: &lt;= 9.4.26-0+deb8u4
+Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -4873,6 +4901,12 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2866111</td>
+<td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2866097</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.0</td>
@@ -4908,6 +4942,14 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 
 3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2862269</td>
+<td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
+Vulnerable: &lt;= 9.4.26-0+deb8u4
+Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -7798,6 +7840,12 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2866111</td>
+<td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2866097</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.0</td>
@@ -7833,6 +7881,14 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 
 3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2862269</td>
+<td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
+Vulnerable: &lt;= 9.4.26-0+deb8u4
+Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -10928,6 +10984,12 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2866111</td>
+<td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2866097</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.0</td>
@@ -10963,6 +11025,14 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 
 3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2862269</td>
+<td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
+Vulnerable: &lt;= 9.4.26-0+deb8u4
+Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -13925,6 +13995,20 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2866111</td>
+<td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2862269</td>
+<td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
+Vulnerable: &lt;= 9.4.26-0+deb8u4
+Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2855881</td>
 <td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
 CVE-2021-32672: Random heap reading issue with Lua Debugger.
@@ -16554,6 +16638,20 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2866111</td>
+<td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2862269</td>
+<td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
+Vulnerable: &lt;= 9.4.26-0+deb8u4
+Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2855881</td>
 <td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
 CVE-2021-32672: Random heap reading issue with Lua Debugger.
@@ -18626,6 +18724,20 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2866111</td>
+<td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2862269</td>
+<td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
+Vulnerable: &lt;= 9.4.26-0+deb8u4
+Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2855881</td>
@@ -21010,6 +21122,20 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2866111</td>
+<td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2862269</td>
+<td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
+Vulnerable: &lt;= 9.4.26-0+deb8u4
+Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2855881</td>
 <td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
 CVE-2021-32672: Random heap reading issue with Lua Debugger.
@@ -22818,6 +22944,20 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2866111</td>
+<td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2862269</td>
+<td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
+Vulnerable: &lt;= 9.4.26-0+deb8u4
+Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2855881</td>
@@ -24965,6 +25105,20 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2866111</td>
+<td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2862269</td>
+<td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
+Vulnerable: &lt;= 9.4.26-0+deb8u4
+Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2855881</td>
 <td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
 CVE-2021-32672: Random heap reading issue with Lua Debugger.
@@ -26855,6 +27009,20 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2866111</td>
+<td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2862269</td>
+<td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
+Vulnerable: &lt;= 9.4.26-0+deb8u4
+Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2855881</td>
 <td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
 CVE-2021-32672: Random heap reading issue with Lua Debugger.
@@ -28395,6 +28563,20 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2866111</td>
+<td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2862269</td>
+<td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
+Vulnerable: &lt;= 9.4.26-0+deb8u4
+Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2855881</td>
@@ -29964,6 +30146,20 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2866111</td>
+<td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2862269</td>
+<td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
+Vulnerable: &lt;= 9.4.26-0+deb8u4
+Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2855881</td>
@@ -31634,6 +31830,20 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2866111</td>
+<td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2862269</td>
+<td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
+Vulnerable: &lt;= 9.4.26-0+deb8u4
+Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2855881</td>
@@ -33349,6 +33559,20 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2866111</td>
+<td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2862269</td>
+<td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
+Vulnerable: &lt;= 9.4.26-0+deb8u4
+Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2855881</td>
 <td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
 CVE-2021-32672: Random heap reading issue with Lua Debugger.
@@ -34372,6 +34596,20 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2866111</td>
+<td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2862269</td>
+<td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
+Vulnerable: &lt;= 9.4.26-0+deb8u4
+Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2855881</td>

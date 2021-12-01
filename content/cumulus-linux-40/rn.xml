@@ -1086,6 +1086,12 @@ To work around this issue, change the value of arp_ignore to 2. See &lt;a href="
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2873322</td>
+<td>CVE-2020-21913: International Components for Unicode (ICU-20850) v66.1 was discovered to contain a use after free bug in the pkg_createWithAssemblyCode function in the file tools/pkgdata/pkgdata.cpp.</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2845537</td>
 <td>CVE-2020-19143: A flaw was discovered in tiff, a Tag Image File Format library, which may result in denial of service or the execution of arbitrary code if malformed image files are processed.
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u2

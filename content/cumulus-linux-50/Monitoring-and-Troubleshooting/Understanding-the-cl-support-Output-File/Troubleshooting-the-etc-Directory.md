@@ -64,6 +64,8 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | frr |
 | fstab |
 | gai.conf |
+| .git|
+| .gitignore |
 | groff |
 | group |
 | group- |
@@ -72,6 +74,7 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | gshadow- |
 | gss |
 | gunicorn.conf.py |
+| hdparm.conf |
 | host.conf |
 | hostname |
 | hosts |
@@ -112,6 +115,7 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | logrotate.conf.cumulus-orig |
 | logrotate.d |
 | lsb-release |
+| lttng |
 | lvm |
 | machine-id |
 | magic |
@@ -146,6 +150,7 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | pam.conf |
 | pam.d |
 | passwd |
+| passwd- |
 | perl |
 | profile |
 | profile.cumulus |
@@ -154,6 +159,7 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | protocols |
 | ptm.d |
 | ptp4l.conf |
+| .pwd.lock |
 | python |
 | python2.7 |
 | python3 |
@@ -166,7 +172,6 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | rc4.d |
 | rc5.d |
 | rc6.d |
-| rc.local |
 | rcS.d |
 | rdnbrd.conf |
 | resolv.conf |
@@ -202,6 +207,7 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | subgid- |
 | subuid |
 | subuid- |
+| sudoers |
 | sudoers.d |
 | sv |
 | sysctl.conf |

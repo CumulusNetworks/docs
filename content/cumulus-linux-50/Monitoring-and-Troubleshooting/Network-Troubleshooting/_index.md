@@ -174,7 +174,7 @@ Mausezahn will send 4 frames...
 
 ## Create Counter ACL Rules
 
-In Linux, all ACL rules are always counted. To create an ACL rule for counting purposes only, set the rule action to ACCEPT. See the {{<link url="Netfilter-ACLs" text="Netfilter">}} chapter for details on how to use `cl-acltool` to set up iptables-/ip6tables-/ebtables-based ACLs.
+In Linux, all ACL rules are always counted. To create an ACL rule for counting purposes only, set the rule action to ACCEPT. For details on how to use `cl-acltool` to set up iptables, ip6tables, and ebtables-based ACLs, see {{<link url="Netfilter-ACLs" text="Netfilter ACLs">}}.
 
 {{%notice note%}}
 Always place your rule files under `/etc/cumulus/acl/policy.d/`.

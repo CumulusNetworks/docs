@@ -22,7 +22,6 @@ NetQ 4.1.0 includes the following new features and improvements:
 - The k8s cluster security certificate is now valid for 10 years from the date of installation.
 - Enhanced monitoring for the SONiC operating system. Support includes collection of the MAC FDB, interface counters, and DOM information. This is an early access feature.
 - Validation performance improvements and the ability to {{<link title="Validation Checks#disabling-validation-checks" text="disable validation checks.">}}
-- Support for monitoring traditional mode bridges on Cumulus Linux.
 - {{<link title="Configure System Event Notifications#create-a-channel" text="Generic webhook notification channel.">}}
 - {{<link title="Manage Device Groups" text="Device group labels">}} to create validations for specific sets of devices.
 - {{<link title="Validation Checks#addresses-validation-tests" text="Validation for duplicate IP address detection in your network.">}}

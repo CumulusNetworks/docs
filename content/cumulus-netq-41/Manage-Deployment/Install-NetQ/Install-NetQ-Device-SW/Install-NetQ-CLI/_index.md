@@ -524,7 +524,7 @@ To generate AuthKeys:
 
 3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (Main Menu), select *Management* under **Admin**.
 
-    {{<figure src="/images/netq/main-menu-admin-mgmt-selected-320-41.png" width="300">}}
+    {{<figure src="/images/netq/main-menu-admin-mgmt-selected-410.png" width="300">}}
 
 4. Click **Manage** on the User Accounts card.
 
@@ -599,7 +599,7 @@ To generate AuthKeys:
 
 3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (Main Menu), select *Management* under **Admin**.
 
-    {{<figure src="/images/netq/main-menu-admin-mgmt-selected-320-41.png" width="300">}}
+    {{<figure src="/images/netq/main-menu-admin-mgmt-selected-410.png" width="300">}}
 
 4. Click **Manage** on the User Accounts card.
 

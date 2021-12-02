@@ -320,7 +320,7 @@ This section provides on-demand validation examples for a variety of protocols a
 
 {{<tab "Addresses">}}
 
-The duplicate address detection validation tests look for duplicate IPv4 and IPv6 addresses assigned to interfaces across devices in the inventory.
+The duplicate address detection validation tests look for duplicate IPv4 and IPv6 addresses assigned to interfaces across devices in the inventory, and check for duplicate /32 host routes in each VRF.
 
 ```
 cumulus@switch:mgmt:~$ netq check addresses

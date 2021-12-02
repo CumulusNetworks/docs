@@ -19,6 +19,12 @@ To start a new flow analysis, click the **Flow Analysis** menu and select **Crea
 
 {{<figure src="/images/netq/new-flow-analysis.png" width="350">}}
 
+{{<notice note>}}
+
+Flow Analysis requires {{<link title="Manage Switches through Their Lifecycle" text="Lifecycle Management">}} (LCM) to be enabled. The Flow Analysis menu on the workbench will not be visisble when LCM is disabled. LCM is enabled for on-premises deployments by default and disabled for cloud deployments by default. Contact your local NVIDIA sales representative or submit a support ticket to activate LCM on cloud deployments.
+
+{{</notice>}}
+
 ### Flow Analysis Settings
 
 The Flow Analysis wizard will prompt you to enter the source IP address, destination IP address, source port, VRF, destination port, and protocol of the flow you wish to analyze. The only optional parameter is the source port, for when the ephemeral source port of a flow may be unknown:
@@ -83,7 +89,7 @@ The latency measured by Flow Analysis is the total transit time of sampled packe
 
 {{<figure src="/images/netq/per-device-latency-summary.png" width="600">}}
 
-The average latency for packets in the flow is displayed under the hostname of each device, along with the minimum and maximum latencies observed during the analysis lifetime.
+The average latency for packets in the flow is displayed under the hostname of each device, along with the minimum and maximum latencies observed during the analysis lifetime. The 95th percentile (P95) latency value for sampled packets is also displayed. The P95 calculation represents the latency value that 95 percent of the sampled packets is lower than for the analysed flow.
 
 You can also use your cursor to hover over sections of the main analysis graph to view average latency values for each device in a path:
 

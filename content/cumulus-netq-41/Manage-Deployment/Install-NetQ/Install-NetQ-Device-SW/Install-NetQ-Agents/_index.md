@@ -11,7 +11,7 @@ After installing your {{<link url="Install-NetQ" text="NetQ software">}}, you sh
 - SONiC 202012 and later
 - CentOS 7
 - RHEL 7.1
-- Ubuntu 16.04 and 18.04
+- Ubuntu 18.04
 
 ## Prepare for NetQ Agent Installation
 
@@ -436,18 +436,6 @@ root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-app
 2. Add the Ubuntu repository:
 
     {{<tabs "Get NetQ Agent Package" >}}
-{{<tab "Ubuntu 16.04" >}}
-
-Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:
-
-```
-root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
-...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
-...
-```
-
-{{</tab>}}
 
 {{<tab "Ubuntu 18.04" >}}
 
@@ -465,7 +453,7 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
 {{</tabs>}}
 
     {{<notice note>}}
-The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.0</code> &mdash; use that instead.
+The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.1</code> &mdash; use that instead.
     {{</notice>}}
 
 {{</tab>}}
@@ -495,7 +483,7 @@ To install the NetQ Agent (this example uses Cumulus Linux but the steps are the
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.0.0" opsys="cl">}}
+    {{<netq-install/agent-version version="4.1.0" opsys="cl">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -555,7 +543,7 @@ To install the NetQ Agent:
     root@rhel7:~# rpm -q -netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.0.0" opsys="rh">}}
+    {{<netq-install/agent-version version="4.1.0" opsys="rh">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -584,7 +572,7 @@ To install the NetQ Agent:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.0.0" opsys="ub">}}
+    {{<netq-install/agent-version version="4.1.0" opsys="ub">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 

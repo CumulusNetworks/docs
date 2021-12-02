@@ -157,6 +157,8 @@ cumulus@<hostname>:~$ netq install standalone activate-job config-key <text-opta
 
 ## Add More Nodes to Your Server Cluster
 
+### Add More Nodes Using the Admin UI
+
 Installation of NetQ with a server cluster sets up the master and two worker nodes. To expand your cluster to include up to a total of 10 nodes, use the Admin UI.
 
 {{<notice note>}}
@@ -190,3 +192,27 @@ To add more worker nodes:
     If the addition fails for any reason, download the log file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" height="18" width="18"/>, run `netq bootstrap reset` on this new worker node, and then try again.
 
 7. Repeat this process to add more worker nodes as needed.
+
+### Add More Nodes Using the CLI
+
+You can add additional nodes to your server cluster on-premise and cloud deployments using the CLI:
+
+{{<tabs "addworkerCLI">}}
+
+{{<tab "On-premise Deployments">}}
+
+Run the following CLI command to add a new worker node for on-premise deployments:
+
+```netq install cluster add-worker <text-worker-01>```
+
+{{</tab>}}
+
+{{<tab "Cloud Deployments">}}
+
+Run the following CLI command to add a new worker node for cloud deployments:
+
+```netq install opta cluster add-worker <text-worker-01>```
+
+{{</tab>}}
+
+{{</tabs>}}

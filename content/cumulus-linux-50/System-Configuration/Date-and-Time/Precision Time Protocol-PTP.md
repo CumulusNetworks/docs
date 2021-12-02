@@ -22,18 +22,20 @@ PTP in Cumulus Linux uses the `linuxptp` package that includes the following pro
 - `timemaster` provides System Clock and PTP synchronization
 - `monitor` provides monitoring
 
-{{%notice note%}}
 Cumulus Linux supports:
 - PTP boundary clock mode only (the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks).
 - Both IPv4 and IPv6 UDP PTP encapsulation. Cumulus Linux does not support 802.3 encapsulation.
 - Only a single PTP domain per network.
-- Multicast and mixed message mode but *not* unicast only message mode.
+- PTP on layer 3 interfaces, trunk ports, and switch ports belonging to a VLAN. Cumulus Linux does *not* support PTP on bonds.
+- Multicast and mixed message mode. Cumulus Linux does *not* support PTP unicast only message mode.
 - End-to-End delay mechanism (not Peer-to-Peer).
 - Two-step clock correction mode, where PTP notes time when the packet goes out of the port and sends the time in a separate (follow-up) message. Cumulus Linux does not support one-step mode.
 - Hardware time stamping for PTP packets. This allows PTP to avoid inaccuracies caused by message transfer delays and improves the accuracy of time synchronization.
 
-You cannot run both PTP and NTP on the switch.
-By default, Cumulus Linux enables PTP in the default VRF and in any new VRFs you create. You can disable PTP on a VRF to isolate PTP traffic.
+{{%notice note%}}
+- On NVIDIA switches with Spectrum-2 and later, PTP is not supported on 1G interfaces.
+- You cannot run *both* PTP and NTP on the switch.
+- By default, Cumulus Linux enables PTP in the default VRF and in any new VRFs you create. You can disable PTP on a VRF to isolate PTP traffic.
 {{%/notice%}}
 
 ## Basic Configuration
@@ -502,11 +504,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 Cumulus Linux supports the following PTP message modes:
 - *Multicast*, where the ports subscribe to two multicast addresses, one for event messages with timestamps and the other for general messages without timestamps. The Sync message that the master sends is a multicast message; all slave ports receive this message because the slaves need the time from the master. The slave ports in turn generate a Delay Request to the master. This is a multicast message that the intended master for the message and other slave ports receive. Similarly, all slave ports in addition to the intended slave port receive the master's Delay Response. The slave ports receiving the unintended Delay Requests and Responses need to drop the packets. This can affect network bandwidth if there are hundreds of slave ports.
 - *Mixed*, where Sync and Announce messages are multicast messages but Delay Request and Response messages are unicast. This avoids the issue seen in multicast message mode where every slave port sees Delay Requests and Responses from every other slave port.
-<!-- vale off -->
-   {{%notice warning%}}
-Mixed mode is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) in Cumulus Linux.
-{{%/notice%}}
-<!-- vale on -->
+
 Multicast mode is the default setting. To set the message mode to *mixed* on an interface:
 
 {{< tabs "TabID494 ">}}
@@ -557,11 +555,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tabs >}}
 
 ### TTL for a PTP Message
-<!-- vale off -->
-{{%notice warning%}}
-TTL for a PTP message is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) in Cumulus Linux.
-{{%/notice%}}
-<!-- vale on -->
+
 To restrict the number of hops a PTP message can travel, set the TTL on the PTP interface. You can set a value between 1 and 255.
 
 {{< tabs "TabID462 ">}}

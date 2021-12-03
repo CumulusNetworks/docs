@@ -35,7 +35,7 @@ Cumulus Linux supports:
 {{%notice note%}}
 - On NVIDIA switches with Spectrum-2 and later, PTP is not supported on 1G interfaces.
 - You cannot run *both* PTP and NTP on the switch.
-- By default, Cumulus Linux enables PTP in the default VRF and in any new VRFs you create. You can disable PTP on a VRF to isolate PTP traffic.
+- PTP is supported in the default VRF only.
 {{%/notice%}}
 
 ## Basic Configuration
@@ -772,14 +772,14 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tab >}}
 {{< /tabs >}}
 
-## PTP on a VRF
+<!--## PTP on a VRF
 
 By default, Cumulus Linux enables PTP in the default VRF and in any VRFs you create. To isolate traffic to a specific VRF, disable PTP on any other VRFs.
-<!-- vale off -->
+
 {{%notice warning%}}
 PTP in a VRF other than the default is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) in Cumulus Linux.
 {{%/notice%}}
-<!-- vale on -->
+
 {{< tabs "TabID777 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -795,7 +795,7 @@ Linux commands are not supported.
 
 {{< /tab >}}
 {{< /tabs >}}
-
+-->
 ## Delete PTP Configuration
 
 To delete PTP configuration, delete the PTP master and slave interfaces. The following example commands delete the PTP interfaces `swp1`, `swp2`, and `swp3`.

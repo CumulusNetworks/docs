@@ -4,11 +4,11 @@ author: NVIDIA
 weight: 5
 toc: 2
 ---
-This document supports the Cumulus Linux 5.0.0 release, and lists new platforms, features, and enhancements.
+This document supports the Cumulus Linux 5.0 release, and lists new platforms, features, and enhancements.
 
-- For a list of all the platforms supported in Cumulus Linux 5.0.0, see the {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
-- For a list of open and fixed issues in Cumulus Linux 5.0.0, see the {{<link title="Cumulus Linux 5.0 Release Notes" text="Cumulus Linux 5.0 Release Notes">}}.
-- To upgrade to Cumulus Linux 5.0.0, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
+- For a list of all the platforms supported in Cumulus Linux 5.0, see the {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
+- For a list of open and fixed issues in Cumulus Linux 5.0, see the {{<link title="Cumulus Linux 5.0 Release Notes" text="Cumulus Linux 5.0 Release Notes">}}.
+- To upgrade to Cumulus Linux 5.0, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.0.0
 <!-- vale on -->
@@ -16,10 +16,10 @@ Cumulus Linux 5.0.0 supports new platforms, provides bug fixes, and contains sev
 
 ### Platforms
 
-- NVIDIA SN4700 (400G Spectrum A1)
-- NVIDIA SN4410 (100G Spectrum A1)
-- NVIDIA SN4600C (100G Spectrum A1)
 - NVIDIA SN3700C-S (100G Spectrum-2) with Secure Boot is now GA
+<!-- - NVIDIA SN4700 (400G Spectrum A1)
+- NVIDIA SN4410 (100G Spectrum A1)
+- NVIDIA SN4600C (100G Spectrum A1)-->
 
 ### New Features and Enhancements
 
@@ -41,7 +41,7 @@ Cumulus Linux 5.0.0 supports new platforms, provides bug fixes, and contains sev
 - SNMP enhancements include VRF-aware FRRouting MIBs and the ability to get the link up and link down count.
 - DHCPv6 supports SVI interfaces.
 - {{<link url="Optional-BGP-Configuration/#suppress-route-advertisement" text="Suppress route advertisement">}} is now GA.
-- Host Based Networking (HBN) support. Cumulus Linux on the DPU simplifies host networking so that you can manage your network policies end to end, regardless of the server end point type. With HBN, you do not need to configure LACP or MLAG. In addition, ECMP provides high availablity.
+<!-- - Host Based Networking (HBN) support. Cumulus Linux on the DPU simplifies host networking so that you can manage your network policies end to end, regardless of the server end point type. With HBN, you do not need to configure LACP or MLAG. In addition, ECMP provides high availablity.-->
 
 {{%notice note%}}
 Cumulus Linux 5.0.0 replaces NCLU with the NVUE object model. After you upgrade to Cumulus Linux 5.0.0, running NVUE configuration commands replaces the configuration in the applicable configuration files and removes any configuration you add manually or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:

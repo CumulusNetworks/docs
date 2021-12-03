@@ -70,6 +70,13 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 <td></td>
 </tr>
 <tr>
+<td>2855908</td>
+<td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
+To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2854784</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
 <td>4.3.0-4.4.0</td>
@@ -1102,6 +1109,12 @@ NVIDIA does not recommend running NTP with a source interface other than eth0 as
 <td>When you manually set the link speed or duplex mode with ethtool to an unsupported value, then run a TDR check against the interface, you encounter a {{switchd}} service heartbeat failure.
 To work around this issue, reboot the switch to clear the condition. Avoid setting the interface speed or duplex mode directly with ethtool.</td>
 <td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2553104</td>
+<td>SPAN to CPU in Spectrum1 and SpectrumA1 isn't supported.</td>
+<td>4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>

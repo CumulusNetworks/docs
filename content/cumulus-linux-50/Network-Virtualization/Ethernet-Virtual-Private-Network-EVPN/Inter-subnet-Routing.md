@@ -744,13 +744,11 @@ cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast redi
 cumulus@leaf01:~$ nv set vrf RED router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set vrf RED router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
-cumulus@leaf01:~$ nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
 cumulus@leaf01:~$ nv set vrf RED router bgp route-import from-evpn route-target 65163:6000
 cumulus@leaf01:~$ nv set vrf BLUE router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set vrf BLUE router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on
-cumulus@leaf01:~$ nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
 cumulus@leaf01:~$ nv set vrf BLUE router bgp route-import from-evpn route-target 65163:6000
 cumulus@leaf01:~$ nv set evpn multihoming enable on
@@ -832,6 +830,476 @@ cumulus@border01:~$ nv set interface bond1-3 evpn multihoming segment mac-addres
 cumulus@border01:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
 cumulus@border01:~$ nv set interface swp51-52 evpn multihoming uplink on
 cumulus@border01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "/etc/nvue.d/startup.yaml ">}}
+
+{{< tabs "TabID841 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10':
+              vni:
+                '10': {}
+            '20':
+              vni:
+                '20': {}
+            '30':
+              vni:
+                '30': {}
+    evpn:
+      enable: on
+      multihoming:
+        enable: on
+    interface:
+      bond1:
+        bond:
+          lacp-bypass: on
+          member:
+            swp1: {}
+        bridge:
+          domain:
+            br_default:
+              access: 10
+        evpn:
+          multihoming:
+            segment:
+              df-preference: 50000
+              enable: on
+              local-id: 1
+              mac-address: 44:38:39:BE:EF:AA
+        link:
+          mtu: 9000
+        type: bond
+      bond2:
+        bond:
+          lacp-bypass: on
+          member:
+            swp2: {}
+        bridge:
+          domain:
+            br_default:
+              access: 20
+        evpn:
+          multihoming:
+            segment:
+              df-preference: 50000
+              enable: on
+              local-id: 2
+              mac-address: 44:38:39:BE:EF:AA
+        link:
+          mtu: 9000
+        type: bond
+      bond3:
+        bond:
+          lacp-bypass: on
+          member:
+            swp3: {}
+        bridge:
+          domain:
+            br_default:
+              access: 30
+        evpn:
+          multihoming:
+            segment:
+              df-preference: 50000
+              enable: on
+              local-id: 3
+              mac-address: 44:38:39:BE:EF:AA
+        link:
+          mtu: 9000
+        type: bond
+      lo:
+        ip:
+          address:
+            10.10.10.1/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp51:
+        evpn:
+          multihoming:
+            uplink: on
+        type: swp
+      swp52:
+        evpn:
+          multihoming:
+            uplink: on
+        type: swp
+      vlan10:
+        ip:
+          address:
+            10.1.10.2/24: {}
+          vrf: RED
+          vrr:
+            address:
+              10.1.10.1/24: {}
+            enable: on
+            mac-address: 00:00:00:00:00:10
+            state:
+              up: {}
+        type: svi
+        vlan: 10
+      vlan20:
+        ip:
+          address:
+            10.1.20.2/24: {}
+          vrf: RED
+          vrr:
+            address:
+              10.1.20.1/24: {}
+            enable: on
+            mac-address: 00:00:00:00:00:20
+            state:
+              up: {}
+        type: svi
+        vlan: 20
+      vlan30:
+        ip:
+          address:
+            10.1.30.2/24: {}
+          vrf: BLUE
+          vrr:
+            address:
+              10.1.30.1/24: {}
+            enable: on
+            mac-address: 00:00:00:00:00:30
+            state:
+              up: {}
+        type: svi
+        vlan: 30
+    nve:
+      vxlan:
+        arp-nd-suppress: on
+        enable: on
+        source:
+          address: 10.10.10.1
+    router:
+      bgp:
+        autonomous-system: 65101
+        enable: on
+        router-id: 10.10.10.1
+      vrr:
+        enable: on
+    system:
+      global:
+        anycast-mac: 44:38:39:BE:EF:AA
+    vrf:
+      BLUE:
+        evpn:
+          enable: on
+          vni:
+            '4002': {}
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                redistribute:
+                  connected:
+                    enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            autonomous-system: 65101
+            enable: on
+            route-import:
+              from-evpn:
+                route-target:
+                  65163:6000: {}
+            router-id: 10.10.10.1
+      RED:
+        evpn:
+          enable: on
+          vni:
+            '4001': {}
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                redistribute:
+                  connected:
+                    enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            autonomous-system: 65101
+            enable: on
+            route-import:
+              from-evpn:
+                route-target:
+                  65163:6000: {}
+            router-id: 10.10.10.1
+      default:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                redistribute:
+                  connected:
+                    enable: on
+            enable: on
+            neighbor:
+              swp51:
+                peer-group: underlay
+                type: unnumbered
+              swp52:
+                peer-group: underlay
+                type: unnumbered
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+                remote-as: external
+```
+
+{{< /tab >}}
+{{< tab "border01 ">}}
+
+```
+cumulus@border01:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '2001':
+              vni:
+                '2001': {}
+            '2002':
+              vni:
+                '2002': {}
+            '2010':
+              vni:
+                '2010': {}
+    evpn:
+      enable: on
+      multihoming:
+        enable: on
+    interface:
+      bond1:
+        bond:
+          lacp-bypass: on
+          member:
+            swp1: {}
+        bridge:
+          domain:
+            br_default:
+              access: 2001
+        evpn:
+          multihoming:
+            segment:
+              df-preference: 50000
+              enable: on
+              local-id: 1
+              mac-address: 44:38:39:BE:EF:FF
+        link:
+          mtu: 9000
+        type: bond
+      bond2:
+        bond:
+          lacp-bypass: on
+          member:
+            swp2: {}
+        bridge:
+          domain:
+            br_default:
+              access: 2002
+        evpn:
+          multihoming:
+            segment:
+              df-preference: 50000
+              enable: on
+              local-id: 2
+              mac-address: 44:38:39:BE:EF:FF
+        link:
+          mtu: 9000
+        type: bond
+      bond3:
+        bond:
+          lacp-bypass: on
+          member:
+            swp3: {}
+        bridge:
+          domain:
+            br_default:
+              access: 2010
+        evpn:
+          multihoming:
+            segment:
+              df-preference: 50000
+              enable: on
+              local-id: 3
+              mac-address: 44:38:39:BE:EF:FF
+        link:
+          mtu: 9000
+        type: bond
+      lo:
+        ip:
+          address:
+            10.10.10.63/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp51:
+        evpn:
+          multihoming:
+            uplink: on
+        type: swp
+      swp52:
+        evpn:
+          multihoming:
+            uplink: on
+        type: swp
+      vlan2001:
+        ip:
+          address:
+            10.1.201.1/24: {}
+          vrf: EXTERNAL1
+        type: svi
+        vlan: 2001
+      vlan2002:
+        ip:
+          address:
+            10.1.202.1/24: {}
+          vrf: EXTERNAL2
+        type: svi
+        vlan: 2002
+      vlan2010:
+        ip:
+          address:
+            10.1.210.1/24: {}
+          vrf: VRF10
+        type: svi
+        vlan: 2010
+    nve:
+      vxlan:
+        arp-nd-suppress: on
+        enable: on
+        source:
+          address: 10.10.10.63
+    router:
+      bgp:
+        autonomous-system: 65163
+        enable: on
+        router-id: 10.10.10.63
+    system:
+      global:
+        anycast-mac: 44:38:39:BE:EF:FF
+    vrf:
+      EXTERNAL1:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                redistribute:
+                  connected:
+                    enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            autonomous-system: 65163
+            enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+            router-id: 10.10.10.63
+      EXTERNAL2:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                redistribute:
+                  connected:
+                    enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            autonomous-system: 65163
+            enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+            router-id: 10.10.10.63
+      VRF10:
+        evpn:
+          enable: on
+          vni:
+            '6000': {}
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                redistribute:
+                  connected:
+                    enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            autonomous-system: 65163
+            enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+            route-import:
+              from-evpn:
+                route-target:
+                  65101:4001: {}
+                  65101:4002: {}
+            router-id: 10.10.10.63
+      default:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                redistribute:
+                  connected:
+                    enable: on
+            enable: on
+            neighbor:
+              swp51:
+                peer-group: underlay
+                type: unnumbered
+              swp52:
+                peer-group: underlay
+                type: unnumbered
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+                remote-as: external
 ```
 
 {{< /tab >}}
@@ -1083,85 +1551,107 @@ iface br_l3vni
 ```
 cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
 ...
-vrf BLUE
- vni 4002
- exit-vrf
-!
-vrf RED
- vni 4001
- exit-vrf
-!
+evpn mh mac-holdtime 1080
+evpn mh neigh-holdtime 1080
+evpn mh startup-delay 180
 interface bond1
- evpn mh es-df-pref 50000
- evpn mh es-id 1
- evpn mh es-sys-mac 44:38:39:be:ef:aa
-!
+evpn mh es-df-pref 50000
+evpn mh es-id 1
+evpn mh es-sys-mac 44:38:39:BE:EF:AA
 interface bond2
- evpn mh es-df-pref 50000
- evpn mh es-id 2
- evpn mh es-sys-mac 44:38:39:be:ef:aa
-!
+evpn mh es-df-pref 50000
+evpn mh es-id 2
+evpn mh es-sys-mac 44:38:39:BE:EF:AA
 interface bond3
- evpn mh es-df-pref 50000
- evpn mh es-id 3
- evpn mh es-sys-mac 44:38:39:be:ef:aa
-!
+evpn mh es-df-pref 50000
+evpn mh es-id 3
+evpn mh es-sys-mac 44:38:39:BE:EF:AA
 interface swp51
- evpn mh uplink
-!
+evpn mh uplink
 interface swp52
- evpn mh uplink
-!
-router bgp 65101
- bgp router-id 10.10.10.1
- bgp bestpath as-path multipath-relax
- neighbor underlay peer-group
- neighbor underlay remote-as external
- neighbor underlay advertisement-interval 0
- neighbor underlay timers 3 9
- neighbor underlay timers connect 10
- neighbor swp51 interface peer-group underlay
- neighbor swp51 advertisement-interval 0
- neighbor swp51 timers 3 9
- neighbor swp51 timers connect 10
- neighbor swp52 interface peer-group underlay
- neighbor swp52 advertisement-interval 0
- neighbor swp52 timers 3 9
- neighbor swp52 timers connect 10
- !
- address-family ipv4 unicast
-  redistribute connected
-  maximum-paths 64
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor underlay activate
-  advertise-all-vni
- exit-address-family
-!
+evpn mh uplink
+vrf BLUE
+vni 4002
+exit-vrf
+vrf RED
+vni 4001
+exit-vrf
+vrf default
+exit-vrf
+vrf mgmt
+exit-vrf
+router bgp 65101 vrf default
+bgp router-id 10.10.10.1
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor underlay peer-group
+neighbor underlay remote-as external
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
+neighbor swp51 interface peer-group underlay
+neighbor swp51 timers 3 9
+neighbor swp51 timers connect 10
+neighbor swp51 advertisement-interval 0
+neighbor swp51 capability extended-nexthop
+neighbor swp52 interface peer-group underlay
+neighbor swp52 timers 3 9
+neighbor swp52 timers connect 10
+neighbor swp52 advertisement-interval 0
+neighbor swp52 capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor swp51 activate
+neighbor swp52 activate
+neighbor underlay activate
+exit-address-family
+address-family l2vpn evpn
+advertise-all-vni
+neighbor swp51 activate
+neighbor swp52 activate
+neighbor underlay activate
+exit-address-family
+! end of router bgp 65101 vrf default
 router bgp 65101 vrf RED
- bgp router-id 10.10.10.1
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family l2vpn evpn
-  advertise ipv4 unicast
-  route-target import 65163:6000
- exit-address-family
-!
+bgp router-id 10.10.10.1
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+exit-address-family
+address-family l2vpn evpn
+advertise ipv4 unicast
+route-target import 65163:6000
+exit-address-family
+! end of router bgp 65101 vrf RED
 router bgp 65101 vrf BLUE
- bgp router-id 10.10.10.1
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family l2vpn evpn
-  advertise ipv4 unicast
-  route-target import 65163:6000
- exit-address-family
+bgp router-id 10.10.10.1
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+exit-address-family
+address-family l2vpn evpn
+advertise ipv4 unicast
+route-target import 65163:6000
+exit-address-family
+! end of router bgp 65101 vrf BLUE
 ```
 
 {{< /tab >}}
@@ -1170,94 +1660,145 @@ router bgp 65101 vrf BLUE
 ```
 cumulus@border01:~$ sudo cat /etc/frr/frr.conf
 ...
-vrf VRF10
- vni 6000
- exit-vrf
-!
+evpn mh mac-holdtime 1080
+evpn mh neigh-holdtime 1080
+evpn mh startup-delay 180
 interface bond1
- evpn mh es-df-pref 50000
- evpn mh es-id 1
- evpn mh es-sys-mac 44:38:39:be:ef:ff
-!
+evpn mh es-df-pref 50000
+evpn mh es-id 1
+evpn mh es-sys-mac 44:38:39:BE:EF:FF
 interface bond2
- evpn mh es-df-pref 50000
- evpn mh es-id 2
- evpn mh es-sys-mac 44:38:39:be:ef:ff
-!
+evpn mh es-df-pref 50000
+evpn mh es-id 2
+evpn mh es-sys-mac 44:38:39:BE:EF:FF
 interface bond3
- evpn mh es-df-pref 50000
- evpn mh es-id 3
- evpn mh es-sys-mac 44:38:39:be:ef:ff
-!
+evpn mh es-df-pref 50000
+evpn mh es-id 3
+evpn mh es-sys-mac 44:38:39:BE:EF:FF
 interface swp51
- evpn mh uplink
-!
+evpn mh uplink
 interface swp52
- evpn mh uplink
-!
-router bgp 65163
- bgp router-id 10.10.10.63
- bgp bestpath as-path multipath-relax
- neighbor underlay peer-group
- neighbor underlay remote-as external
- neighbor underlay advertisement-interval 0
- neighbor underlay timers 3 9
- neighbor underlay timers connect 10
- neighbor swp51 interface peer-group underlay
- neighbor swp51 advertisement-interval 0
- neighbor swp51 timers 3 9
- neighbor swp51 timers connect 10
- neighbor swp52 interface peer-group underlay
- neighbor swp52 advertisement-interval 0
- neighbor swp52 timers 3 9
- neighbor swp52 timers connect 10
- !
- address-family ipv4 unicast
-  redistribute connected
-  maximum-paths 64
-  maximum-paths ibgp 64
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor underlay activate
-  advertise-all-vni
- exit-address-family
-!
+evpn mh uplink
+vrf EXTERNAL1
+exit-vrf
+vrf EXTERNAL2
+exit-vrf
+vrf VRF10
+vni 6000
+exit-vrf
+vrf default
+exit-vrf
+vrf mgmt
+exit-vrf
+router bgp 65163 vrf default
+bgp router-id 10.10.10.63
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor underlay peer-group
+neighbor underlay remote-as external
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
+neighbor swp51 interface peer-group underlay
+neighbor swp51 timers 3 9
+neighbor swp51 timers connect 10
+neighbor swp51 advertisement-interval 0
+neighbor swp51 capability extended-nexthop
+neighbor swp52 interface peer-group underlay
+neighbor swp52 timers 3 9
+neighbor swp52 timers connect 10
+neighbor swp52 advertisement-interval 0
+neighbor swp52 capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor swp51 activate
+neighbor swp52 activate
+neighbor underlay activate
+exit-address-family
+address-family l2vpn evpn
+advertise-all-vni
+neighbor swp51 activate
+neighbor swp52 activate
+neighbor underlay activate
+exit-address-family
+! end of router bgp 65163 vrf default
 router bgp 65163 vrf VRF10
- bgp router-id 10.10.10.63
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family l2vpn evpn
-  advertise ipv4 unicast
-  route-target import 65101:4001
-  route-target import 65101:4002
- exit-address-family
-!
+bgp router-id 10.10.10.63
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor underlay peer-group
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor underlay activate
+exit-address-family
+address-family l2vpn evpn
+advertise ipv4 unicast
+route-target import 65101:4001
+route-target import 65101:4002
+neighbor underlay activate
+exit-address-family
+! end of router bgp 65163 vrf VRF10
 router bgp 65163 vrf EXTERNAL1
- bgp router-id 10.10.10.63
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family l2vpn evpn
-  advertise ipv4 unicast
- exit-address-family
-!
+bgp router-id 10.10.10.63
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor underlay peer-group
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor underlay activate
+exit-address-family
+address-family l2vpn evpn
+advertise ipv4 unicast
+neighbor underlay activate
+exit-address-family
+! end of router bgp 65163 vrf EXTERNAL1
 router bgp 65163 vrf EXTERNAL2
- bgp router-id 10.10.10.63
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family l2vpn evpn
-  advertise ipv4 unicast
- exit-address-family
- ...
+bgp router-id 10.10.10.63
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor underlay peer-group
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor underlay activate
+exit-address-family
+address-family l2vpn evpn
+advertise ipv4 unicast
+neighbor underlay activate
+exit-address-family
+! end of router bgp 65163 vrf EXTERNAL2
 ```
 
 {{< /tab >}}

@@ -438,8 +438,11 @@ nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> nexthop <nexthop-id>
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> peer
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> flags
+nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> bestpath
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> aspath
-nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> aspath <aspath-id>
+nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> community
+nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> large-community
+nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> ext-community
 nv show vrf <vrf-id> router bgp address-family l2vpn-evpn
 nv show vrf <vrf-id> router bgp address-family ipv6-unicast
 nv show vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route
@@ -467,8 +470,11 @@ nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route
 nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> nexthop <nexthop-id>
 nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> peer
 nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> flags
+nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> bestpath
 nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> aspath
-nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> aspath <aspath-id>
+nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> community
+nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> large-community
+nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> ext-community
 nv show vrf <vrf-id> router bgp path-selection
 nv show vrf <vrf-id> router bgp path-selection aspath
 nv show vrf <vrf-id> router bgp path-selection med
@@ -774,7 +780,6 @@ nv set router ospf router-id (none|<ipv4>)
 nv set router pim
 nv set router pim timers
 nv set router pim timers hello-interval 1-180
-nv set router pim timers holdtime (1-180|auto)
 nv set router pim timers register-suppress 5-60000
 nv set router pim timers join-prune-interval 60-600
 nv set router pim timers keep-alive 31-60000
@@ -901,7 +906,6 @@ nv set interface <interface-id> router ospf priority 0-255
 nv set interface <interface-id> router pim
 nv set interface <interface-id> router pim timers
 nv set interface <interface-id> router pim timers hello-interval (1-180|auto)
-nv set interface <interface-id> router pim timers holdtime (1-180|auto)
 nv set interface <interface-id> router pim bfd
 nv set interface <interface-id> router pim bfd enable (on|off)
 nv set interface <interface-id> router pim bfd detect-multiplier 2-255
@@ -1613,6 +1617,7 @@ nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> prefix-lis
 nv set vrf <vrf-id> router pim address-family ipv4-unicast ssm-prefix-list (none|<instance-name>)
 nv set vrf <vrf-id> router pim address-family ipv4-unicast register-accept-list (none|<instance-name>)
 nv set vrf <vrf-id> router pim address-family ipv4-unicast send-v6-secondary (on|off)
+nv set vrf <vrf-id> router pim enable (on|off)
 nv set vrf <vrf-id> router ospf
 nv set vrf <vrf-id> router ospf area <area-id>
 nv set vrf <vrf-id> router ospf area <area-id> filter-list
@@ -1888,7 +1893,6 @@ nv unset router ospf router-id
 nv unset router pim
 nv unset router pim timers
 nv unset router pim timers hello-interval
-nv unset router pim timers holdtime
 nv unset router pim timers register-suppress
 nv unset router pim timers join-prune-interval
 nv unset router pim timers keep-alive
@@ -2026,7 +2030,6 @@ nv unset interface <interface-id> router ospf priority
 nv unset interface <interface-id> router pim
 nv unset interface <interface-id> router pim timers
 nv unset interface <interface-id> router pim timers hello-interval
-nv unset interface <interface-id> router pim timers holdtime
 nv unset interface <interface-id> router pim bfd
 nv unset interface <interface-id> router pim bfd enable
 nv unset interface <interface-id> router pim bfd detect-multiplier
@@ -2809,6 +2812,7 @@ nv unset vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> prefix-l
 nv unset vrf <vrf-id> router pim address-family ipv4-unicast ssm-prefix-list
 nv unset vrf <vrf-id> router pim address-family ipv4-unicast register-accept-list
 nv unset vrf <vrf-id> router pim address-family ipv4-unicast send-v6-secondary
+nv unset vrf <vrf-id> router pim enable
 nv unset vrf <vrf-id> router ospf
 nv unset vrf <vrf-id> router ospf area
 nv unset vrf <vrf-id> router ospf area <area-id>

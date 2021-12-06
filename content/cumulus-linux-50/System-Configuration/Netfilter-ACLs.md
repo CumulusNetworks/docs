@@ -686,11 +686,11 @@ The trap group can be: `arp`, `bfd`, `pim-ospf-rip`, `bgp`, `clag`, `icmp-def`, 
 The following example changes the PIM trap group forwarding rate and burst rate to 400 packets per second, and the IGMP trap group forwarding rate to 400 packets per second and burst rate to 200 packets per second:
 
 ```
-cumulus@switch:~$ nv set system control-plane policer pim-ospf-rip burst 400
 cumulus@switch:~$ nv set system control-plane policer pim-ospf-rip rate 400
+cumulus@switch:~$ nv set system control-plane policer pim-ospf-rip burst 400
 cumulus@switch:~$ nv set system control-plane policer pim-ospf-rip state on
-cumulus@switch:~$ nv set system control-plane policer igmp burst 400
 cumulus@switch:~$ nv set system control-plane policer igmp rate 400
+cumulus@switch:~$ nv set system control-plane policer igmp burst 200
 cumulus@switch:~$ nv set system control-plane policer igmp state on
 cumulus@switch:~$ nv config apply
 ```
@@ -700,8 +700,8 @@ cumulus@switch:~$ nv config apply
 
 To rate limit traffic using the `/etc/cumulus/control-plane/policers.conf` file, you:
 - Enable an individual policer for a trap group (set `enable` to `TRUE`).
-- Set the policer rate in packets per second.
-- Set the policer burst rate in packets per second.
+- Set the policer rate in packets per second. The forwarding rate is the maximum rate in kilobytes (KB) or packets.
+- Set the policer burst rate in packets per second. The burst rate is the number of packets or kilobytes (KB) allowed to arrive sequentially.
 
 After you edit the `/etc/cumulus/control-plane/policers.conf` file, you must reload the file with the `switchdctl --load /etc/cumulus/control-plane/policers.conf` command.
 

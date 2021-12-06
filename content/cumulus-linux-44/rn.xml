@@ -7,6 +7,19 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2875296</td>
+<td>On the Mellanox Spectrum-2 switches, after running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
+To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2873322</td>
+<td>CVE-2020-21913: International Components for Unicode (ICU-20850) v66.1 was discovered to contain a use after free bug in the pkg_createWithAssemblyCode function in the file tools/pkgdata/pkgdata.cpp.</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2873186</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.0</td>
@@ -54,6 +67,13 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 
 3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2855908</td>
+<td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
+To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
+<td>4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -565,6 +585,13 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <td></td>
 </tr>
 <tr>
+<td>2653493</td>
+<td>After running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
+To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2639303</td>
 <td>When you use NCLU to delete a bond, then add an interface, NCLU reports an error similar to the following:
 ERROR: 'NoneType' object has no attribute 'conf_key_value_multiple_values'
@@ -802,6 +829,12 @@ NVIDIA does not recommend running NTP with a source interface other than eth0 as
 <td>When you manually set the link speed or duplex mode with ethtool to an unsupported value, then run a TDR check against the interface, you encounter a {{switchd}} service heartbeat failure.
 To work around this issue, reboot the switch to clear the condition. Avoid setting the interface speed or duplex mode directly with ethtool.</td>
 <td>3.7.12-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2553104</td>
+<td>SPAN to CPU in Spectrum1 and SpectrumA1 isn't supported.</td>
+<td>4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1756,7 +1789,7 @@ Fixed: 9.11.5.P4+dfsg-5.1+deb10u5</td>
 </tr>
 <tr>
 <td>2643822</td>
-<td>After running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
+<td>On the Mellanox Spectrum-2 switches, after running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
 To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
 <td>4.2.1-4.3.0</td>
 </tr>

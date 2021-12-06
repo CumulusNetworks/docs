@@ -396,13 +396,13 @@ cumulus@switch:~$ sudo ip6tables -L
 cumulus@switch:~$ sudo ebtables -L
 ```
 
-To flush all installed rules, run:
+To remove all installed rules, run:
 
 ```
 cumulus@switch:~$ sudo cl-acltool -F all
 ```
 
-To flush only the IPv4 `iptables` rules, run:
+To remove only the IPv4 `iptables` rules, run:
 
 ```
 cumulus@switch:~$ sudo cl-acltool -F ip
@@ -642,6 +642,27 @@ Rule 2 never matches on ingress. Both rules share the same mark.
 
 ## Common Examples
 
+### Data Plane Policers
+
+You can configure quality of service for traffic on the data plane. By using QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds.
+
+{{%notice note%}}
+Counters on POLICE ACL rules in `iptables` do not show dropped packets due to those rules.
+{{%/notice%}}
+
+Use the `POLICE` target with `iptables`. `POLICE` takes these arguments:
+
+- `--set-class value` sets the system internal class of service queue configuration to *value*.
+- `--set-rate value` specifies the maximum rate in kilobytes (KB) or packets.
+- `--set-burst value` specifies the number of packets or kilobytes (KB) allowed to arrive sequentially.
+- `--set-mode string` sets the mode in *KB* (kilobytes) or *pkt* (packets) for rate and burst size.
+
+For example, to rate limit the incoming traffic on swp1 to 400 packets per second with a burst of 100 packets per second and set the class of the queue for the policed traffic as 0, set this rule in your appropriate `.rules` file:
+
+```
+-A FORWARD -i swp1 -j POLICE --set-mode pkt --set-rate 400 --set-burst 100 --set-class 0
+```
+
 ### Control Plane Policers
 
 You can configure quality of service for traffic on the control plane and rate limit traffic so incoming packets drop if they exceed certain thresholds in the following ways:
@@ -649,7 +670,7 @@ You can configure quality of service for traffic on the control plane and rate l
 - Edit the `/etc/cumulus/control-plane/policers.conf` file.
 
 {{%notice note%}}
-Cumulus Linux 5.0 and later no longer uses INPUT chain rules to configure trap group policers.
+Cumulus Linux 5.0 and later no longer uses INPUT chain rules to configure control plane policers.
 {{%/notice%}}
 
 {{< tabs "655 ">}}
@@ -702,6 +723,101 @@ cumulus@switch:~$ switchdctl --load /etc/cumulus/control-plane/policers.conf
 
 {{< /tab >}}
 {{< /tabs >}}
+
+To show the control plane police configuration and statistics, run the NVUE `nv show system control-plane policer --view=statistics` command or the Linux `mlxcmd traps show copp-stats` command.
+
+{{< expand "Policers Default Values" >}}
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/cumulus/control-plane/policers.conf
+copp.arp.enable = TRUE
+copp.arp.rate = 800
+copp.arp.burst = 800
+
+copp.bfd.enable = TRUE
+copp.bfd.rate = 2000
+copp.bfd.burst = 2000
+
+copp.pim_ospf_rip.enable = TRUE
+copp.pim_ospf_rip.rate = 2000
+copp.pim_ospf_rip.burst = 2000
+
+copp.bgp.enable = TRUE
+copp.bgp.rate = 2000
+copp.bgp.burst = 2000
+
+copp.clag.enable = TRUE
+copp.clag.rate = 2000
+copp.clag.burst = 2000
+
+copp.icmp_def.enable = TRUE
+copp.icmp_def.rate = 100
+copp.icmp_def.burst = 40
+
+copp.dhcp_ptp.enable = TRUE
+copp.dhcp_ptp.rate = 2000
+copp.dhcp_ptp.burst = 2000
+
+copp.igmp.enable = TRUE
+copp.igmp.rate = 1000
+copp.igmp.burst = 1000
+
+copp.ssh.enable = TRUE
+copp.ssh.rate = 1000
+copp.ssh.burst = 1000
+
+copp.icmp6_neigh.enable = TRUE
+copp.icmp6_neigh.rate = 500
+copp.icmp6_neigh.burst = 500
+
+copp.icmp6_def_mld.enable = TRUE
+copp.icmp6_def_mld.rate = 300
+copp.icmp6_def_mld.burst = 100
+
+copp.lacp.enable = TRUE
+copp.lacp.rate = 2000
+copp.lacp.burst = 2000
+
+copp.lldp.enable = TRUE
+copp.lldp.rate = 200
+copp.lldp.burst = 200
+
+copp.rpvst.enable = TRUE
+copp.rpvst.rate = 2000
+copp.rpvst.burst = 2000
+
+copp.eapol.enable = TRUE
+copp.eapol.rate = 2000
+copp.eapol.burst = 2000
+
+copp.ip2me.enable = TRUE
+copp.ip2me.rate = 1000
+copp.ip2me.burst = 1000
+
+copp.acl_log.enable = TRUE
+copp.acl_log.rate = 100
+copp.acl_log.burst = 100
+
+copp.nat.enable = TRUE
+copp.nat.rate = 200
+copp.nat.burst = 200
+
+copp.stp.enable = TRUE
+copp.stp.rate = 2000
+copp.stp.burst = 2000
+
+copp.l3_local.enable = TRUE
+copp.l3_local.rate = 400
+copp.l3_local.burst = 100
+
+copp.span_cpu.enable = TRUE
+copp.span_cpu.rate = 100
+copp.span_cpu.burst = 100
+
+copp.catch_all.enable = TRUE
+copp.catch_all.rate = 100
+copp.catch_all.burst = 100
+```
+{{< /expand >}}
 
 ### Set DSCP on Transit Traffic
 

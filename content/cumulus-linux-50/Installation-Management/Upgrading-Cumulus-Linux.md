@@ -86,19 +86,16 @@ Understanding the location of configuration data is important for successful upg
 
 If you use certain forms of network virtualization, such as {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V" text="VMware NSX-V">}}, you update the `/usr/share/openvswitch/scripts/ovs-ctl-vtep` file. This file is not marked as a configuration file; therefore, if the file contents change in a newer release of Cumulus Linux, they overwrite any changes you make to the file. Be sure to back up this file and the database file `conf.db` before upgrading.
 
-{{%notice note%}}
 The following commands verify which files have changed compared to the previous Cumulus Linux install. Be sure to back up any changed files.
 - Run the `sudo dpkg --verify` command to show a list of changed files.
 - Run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command to see if any of the generated `/etc/default/isc-*` files have changed.
+
+{{%notice warning%}}
+After you upgrade to Cumulus Linux 5.0, running NVUE configuration commands replaces the configuration in the applicable configuration files and removes any configuration you add manually to the files or with automation tools like Ansible, Chef, or Puppet. To keep your configuration in the configuration files, you can:
+- {{<link url="NVIDIA-User-Experience-NVUE/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
+- Update your automation tools to use NVUE.
+- Use Linux commands to configure the switch instead of NVUE.
 {{%/notice%}}
-
-<!-- ### NVUE replaces NCLU
-
-{{<link title="NVIDIA User Experience - NVUE" text="Cumulus User Experience (NVUE)">}} is a new object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) with a robust API that allows multiple interfaces to both view and configure any element within the system. NVUE replaces the NCLU command line interface.
-
-{{<notice info>}}
-NVUE is created from the ground up and does not inherit any previous functionality from NCLU. Certain features are not yet supported by NVUE. If you are an NCLU user, confirm that your features are fully supported in NVUE before upgrading to Cumulus Linux 5.0. If you use a feature that is not yet supported, you can either remain on your current 4.x release or perform all your switch configuration using Linux and vtysh commands.
-{{</notice>}}-->
 
 ## Upgrade Cumulus Linux
 

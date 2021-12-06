@@ -1622,6 +1622,11 @@ cumulus@switch:~$ sudo ethtool -m swp1 | egrep 'Vendor|type|power\s+:'
 ### Auto-negotiation and FEC
 <!-- vale on -->
 If auto-negotiation is off on 100G and 25G interfaces, you must set FEC to *OFF*, RS, or BaseR to match the neighbor. The FEC default setting of *auto* does not link up when auto-negotiation is off.
+<!-- vale off -->
+<!-- Vale issue #253 -->
+### Auto-negotiation and Link Speed
+<!-- vale on -->
+If auto-negotiation is on and the link speed is set for a port, auto-negotiation takes precedence over the link speed setting.
 
 ### Port Speed and the ifreload -a Command
 

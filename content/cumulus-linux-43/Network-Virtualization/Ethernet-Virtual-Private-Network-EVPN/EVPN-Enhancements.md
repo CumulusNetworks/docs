@@ -1031,15 +1031,9 @@ Duplicate address detection is enabled by default and triggers when:
 By default, when a duplicate address is detected, Cumulus Linux flags the address as a duplicate and generates an error in syslog so that you can troubleshoot the reason and address the fault, then clear the duplicate address flag. No functional action is taken on the address.
 
 {{%notice note%}}
-
-If a MAC address is flagged as a duplicate, all IP addresses associated with that MAC are flagged as duplicates. However, in an MLAG configuration, only one of the MLAG peers might flag the associated IP addresses as duplicates.
-
-{{%/notice%}}
-
-{{%notice note%}}
-
-In an MLAG configuration, MAC mobility detection runs independently on each switch in the MLAG pair. Based on the sequence in which local learning and/or route withdrawal from the remote VTEP occurs, a type-2 route might have its MAC mobility counter incremented only on one of the switches in the MLAG pair. In rare cases, it is possible for neither VTEP to increment the MAC mobility counter for the type-2 prefix.
-
+- If a MAC address is flagged as a duplicate, all IP addresses associated with that MAC are flagged as duplicates. However, in an MLAG configuration, only one of the MLAG peers might flag the associated IP addresses as duplicates.
+- In an MLAG configuration, MAC mobility detection runs independently on each switch in the MLAG pair. Based on the sequence in which local learning and/or route withdrawal from the remote VTEP occurs, a type-2 route might have its MAC mobility counter incremented only on one of the switches in the MLAG pair. In rare cases, it is possible for neither VTEP to increment the MAC mobility counter for the type-2 prefix.
+- Duplicate address detection is not supported in an {{<link title="EVPN Multihoming" text="EVPN multihoming">}} configuration.
 {{%/notice%}}
 
 ### When Does Duplicate Address Detection Trigger?

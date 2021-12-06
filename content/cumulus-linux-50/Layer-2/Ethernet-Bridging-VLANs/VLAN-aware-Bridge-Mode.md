@@ -182,7 +182,15 @@ cumulus@switch:~$ net commit
 -->
 
 {{%notice note%}}
-NVIDIA Spectrum switches support a maximum of 6000 VLAN elements and calculate the total number of VLAN elements as the number of VLANs times the number of configured bridges. For example, 6 bridges, each containing 1000 VLANS totals 6000 VLAN elements.
+NVIDIA Spectrum-2 switches and later support a maximum of 15996 VLAN elements and calculate the total number of VLAN elements as the number of VLANs times the number of configured bridges. For example, 6 bridges, each containing 2600 VLANS totals 15600 VLAN elements.
+
+If you enable multiple VLAN-aware bridges for more than 4096 VLAN elements (bridge domains), you must specify the number of VLAN elements in the `/etc/mlx/datapath/broadcast_domains.conf` file, then restart `switchd` with the `systemctl restart switchd` command to apply the configuration.
+- To specify the total number of bridge domains you want to use, uncomment and edit the `broadcast_domain.max_vlans` parameter. The default value is 4096.
+- To specify the total number of subinterfaces you want to use, uncomment and edit the `broadcast_domain.max_subinterfaces` parameter. The default value is 3872.
+
+The number of `broadcast_domain.max_vlans` plus `broadcast_domain.max_subinterfaces` cannot exceed 15996.
+
+Increasing the `broadcast_domain.max_vlans` parameter can affect layer 2 multicast scale support.
 {{%/notice%}}
 
 ## Reserved VLAN Range
@@ -629,10 +637,10 @@ cumulus@switch:~$ net commit
 You can add a static MAC address entry to the layer 2 table for an interface within the VLAN-aware bridge by running a command similar to the following:
 
 ```
-cumulus@switch:~$ sudo bridge fdb add 12:34:56:12:34:56 dev swp1 vlan 150 master static
+cumulus@switch:~$ sudo bridge fdb add 12:34:56:12:34:56 dev swp1 vlan 150 master static sticky
 cumulus@switch:~$ sudo bridge fdb show
 44:38:39:00:00:7c dev swp1 master bridge permanent
-12:34:56:12:34:56 dev swp1 vlan 150 master bridge static
+12:34:56:12:34:56 dev swp1 vlan 150 sticky master bridge static
 44:38:39:00:00:7c dev swp1 self permanent
 12:12:12:12:12:12 dev swp1 self permanent
 12:34:12:34:12:34 dev swp1 self permanent

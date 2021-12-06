@@ -40,15 +40,33 @@ To create a workbench:
 
 1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> in the workbench header.
 
-      {{<figure src="/images/netq/add-custom-workbench-modal-230.png" width="200">}}
+      {{<figure src="/images/netq/workbench-new-name-410.png" width="600">}}
 
 2. Enter a name for the workbench.
 
-3. Click **Create** to open a blank new workbench, or **Cancel** to discard the workbench.
+3. Click "Set as home workbench" if you would like to set this as your new default home workbench.
 
-4. Add cards to the workbench using <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> or <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/>.
+4. Select the cards you would like to display on your new workbench by clicking on the desired cards:
+
+      {{<figure src="/images/netq/workbench-new-cards-410.png" width="600">}}
+
+5. Click **Create** to create your new workbench.
 
 Refer to {{<link url="Access-Data-with-Cards">}} for information about interacting with cards on your workbenches.
+
+### Clone a Workbench
+
+To create a duplicate clone based on an existing workbench:
+
+1. Click <img src="/images/netq/clone.svg" height="18" width="18"/> in the workbench header.
+
+2. Set a name for the cloned workbench.
+
+3. Click "set as home workbench" if you would like to set this as your new default home workbench.
+
+4. Click **Clone** to clone the workbench.
+
+      {{<figure src="/images/netq/workbench-clone-410.png" width="600">}}
 
 ### Remove a Workbench
 

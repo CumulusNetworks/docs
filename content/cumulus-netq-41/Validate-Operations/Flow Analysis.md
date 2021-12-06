@@ -108,7 +108,7 @@ The main Flow Analysis dashboard also displays the buffer occupancy of each devi
 
 When packets matching the flow settings traverse multiple paths in the topology, the flow graph will display latency and buffer occupancy for each path:
 
-{{<figure src="/images/netq/flow-multipath-410.png" width="800">}}
+{{<figure src="/images/netq/flow-multipath-demo-410.png" width="800">}}
 
 You can switch between paths by clicking on an alternate path in the **Flow Graph** panel, or by clicking on an unselected path on the main analysis graph:
 

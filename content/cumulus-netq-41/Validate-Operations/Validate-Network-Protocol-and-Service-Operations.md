@@ -116,6 +116,19 @@ Vrf Consistency Test             : passed
 L3 VNI RMAC Test                 : skipped
 ```
 
+{{%notice note%}}
+Validations that support the `streaming` keyword can query real time streaming information to return results faster compared to traditional on-demand checks. The following netq checks support a streaming query:
+
+- netq check agents
+- netq check bgp
+- netq check interfaces
+- netq check mlag
+- netq check mtu
+- netq check ntp
+- netq check evpn
+- netq check vxlan
+{{%/notice%}}
+
 {{</tab>}}
 
 {{<tab "netq add validation">}}
@@ -314,7 +327,21 @@ The results of the `netq add validation` command are displayed in the terminal w
 
 #### On-Demand CLI Validation Examples
 
-This section provides on-demand validation examples for a variety of protocols and elements.
+This section provides CLI validation examples for a variety of protocols and elements.
+
+{{%notice note%}}
+Validations that support the `streaming` keyword can query real time streaming information to return results faster compared to traditional on-demand checks. The following netq checks support a streaming query:
+
+- netq check agents
+- netq check bgp
+- netq check interfaces
+- netq check mlag
+- netq check mtu
+- netq check ntp
+- netq check evpn
+- netq check vxlan
+{{%/notice%}}
+
 
 {{<tabs "CLI Examples">}}
 
@@ -348,7 +375,7 @@ Refer to {{<link url="Validation-Checks/#netq-agent-validation-tests" text="NetQ
 The default validation confirms that the NetQ Agent is running on all monitored nodes and provides a summary of the validation results. This example shows the results of a fully successful validation.
 
 ```
-cumulus@switch:~$ netq check agents
+cumulus@switch:~$ netq check agents streaming
 agent check result summary:
 
 Checked nodes       : 13
@@ -369,7 +396,7 @@ Refer to {{<link url="Validation-Checks/#netq-agent-validation-tests" text="NetQ
 The default validation runs a networkwide BGP connectivity and configuration check on all nodes running the BGP service:
 
 ```
-cumulus@switch:~$ netq check bgp
+cumulus@switch:~$ netq check bgp streaming
 bgp check result summary:
 
 Checked nodes       : 8
@@ -566,7 +593,7 @@ Refer to {{<link url="Validation-Checks/#cumulus-linux-version-tests" text="Cumu
 The default validation runs a networkwide EVPN connectivity and configuration check on all nodes running the EVPN service. This example shows results for a fully successful validation.
 
 ```
-cumulus@switch:~$ netq check evpn
+cumulus@switch:~$ netq check evpn streaming
 evpn check result summary:
 
 Checked nodes       : 6
@@ -721,7 +748,7 @@ Vrf Consistency Test             : skipped
 The default validation runs a networkwide connectivity and configuration check on all interfaces. This example shows results for a fully successful validation.
 
 ```
-cumulus@switch:~$ netq check interfaces
+cumulus@switch:~$ netq check interfaces streaming
 interface check result summary:
 
 Checked nodes       : 12
@@ -787,7 +814,7 @@ Refer to {{<link url="Validation-Checks#interface-validation-tests" text="Interf
 The default validate verifies that all corresponding interface links have matching MTUs. This example shows no mismatches.
 
 ```
-cumulus@switch:~$ netq check mtu
+cumulus@switch:~$ netq check mtu streaming
 mtu check result summary:
 
 Checked nodes       : 12
@@ -815,7 +842,7 @@ Refer to {{<link url="Validation-Checks/#link-mtu-validation-tests" text="Link M
 The default validation runs a networkwide MLAG connectivity and configuration check on all nodes running the MLAG service. This example shows results for a fully successful validation.
 
 ```
-cumulus@switch:~$ netq check mlag
+cumulus@switch:~$ netq check mlag streaming
 mlag check result summary:
 
 Checked nodes       : 4
@@ -959,7 +986,7 @@ The default validation checks for synchronization of the NTP server with all nod
 This example shows that *server04* has an error.
 
 ```
-cumulus@switch:~$ netq check ntp
+cumulus@switch:~$ netq check ntp streaming
 ntp check result summary:
 
 Checked nodes       : 12
@@ -1079,7 +1106,7 @@ Refer to {{<link url="Validation-Checks/#vlan-validation-tests" text="VLAN Valid
 Validate the VXLAN configuration and that they are operating properly:
 
 ```
-cumulus@switch:~$ netq check vxlan
+cumulus@switch:~$ netq check vxlan streaming
 vxlan check result summary:
 
 Checked nodes       : 6

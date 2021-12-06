@@ -108,17 +108,24 @@ The main Flow Analysis dashboard also displays the buffer occupancy of each devi
 
 When packets matching the flow settings traverse multiple paths in the topology, the flow graph will display latency and buffer occupancy for each path:
 
-{{<figure src="/images/netq/multi-path-main-flow-graph.png" width="800">}}
+{{<figure src="/images/netq/flow-multipath-410.png" width="800">}}
 
 You can switch between paths by clicking on an alternate path in the **Flow Graph** panel, or by clicking on an unselected path on the main analysis graph:
 
-{{<figure src="/images/netq/flow-graph-choose-alt.png" width="200">}}
+{{<figure src="/images/netq/flow-multipath-flowgraph-410.png" width="200">}}
 
 You can also select the desired path and view the amount of packets distributed over each path on the detail panel on the left side of the dashboard:
 
-{{<figure src="/images/netq/multi-path-path-selection-panel.png" width="1000">}}
+{{<figure src="/images/netq/flow-multipath-pathselection-410.png" width="600">}}
 ### View Device Statistics
 
 You can view interface statistics, resource utilization, and alarms for each device by clicking on a device in the **Flow Graph** panel, or by clicking on the striped grey line associated with a device in the main flow analysis graph. This will change the left panel details to show statistics for that device:
 
 {{<figure src="/images/netq/device statistics - left panel.png" width="600">}}
+
+The **Flow Graph** panel also presents the option to bring up the topology view where you can also click the paths and devices to view statistics. Click {{<img src="/images/netq/flow-view-in-topology-410.png" height="29" width="141">}} to bring up the topology view:
+
+{{<figure src="/images/netq/flow-topology-view-410.png" width="600">}}
+
+
+

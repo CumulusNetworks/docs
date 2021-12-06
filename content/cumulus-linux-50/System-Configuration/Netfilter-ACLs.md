@@ -673,18 +673,25 @@ You can configure quality of service for traffic on the control plane and rate l
 Cumulus Linux 5.0 and later no longer uses INPUT chain rules to configure control plane policers.
 {{%/notice%}}
 
-{{< tabs "655 ">}}
+{{< tabs "676 ">}}
 {{< tab "NVUE Commands ">}}
+
+To configure control plane policers:
+- Set the burst rate for the trap group with the `nv set system control-plane policer <trap-group> burst <value>` command. The burst rate is the number of packets or kilobytes (KB) allowed to arrive sequentially.
+- Set the forwarding rate for the trap group with the `nv set system control-plane policer <trap-group> rate <value>` command. The forwarding rate is the maximum rate in kilobytes (KB) or packets.
+- Enable the trap group with the `nv set system control-plane policer <trap-group> state on` command.
+
+The trap group can be: `arp`, `bfd`, `pim-ospf-rip`, `bgp`, `clag`, `icmp-def`, `dhcp-ptp`, `igmp`, `ssh`, `icmp6-neigh`, `icmp6-def-mld`, `lacp`, `lldp`, `rpvst`, `eapol`, `ip2me`, `acl-log`, `nat`, `stp`, `l3-local`, `span-cpu`, `catch-all`, or `NONE`.
 
 The following example changes the PIM trap group forwarding rate and burst rate to 400 packets per second, and the IGMP trap group forwarding rate to 400 packets per second and burst rate to 200 packets per second:
 
 ```
-cumulus@switch:~$ nv set control-plane policer
-cumulus@switch:~$ 
-cumulus@switch:~$ 
-cumulus@switch:~$ 
-cumulus@switch:~$ 
-cumulus@switch:~$ 
+cumulus@switch:~$ nv set system control-plane policer pim-ospf-rip rate 400
+cumulus@switch:~$ nv set system control-plane policer pim-ospf-rip burst 400
+cumulus@switch:~$ nv set system control-plane policer pim-ospf-rip state on
+cumulus@switch:~$ nv set system control-plane policer igmp rate 400
+cumulus@switch:~$ nv set system control-plane policer igmp burst 200
+cumulus@switch:~$ nv set system control-plane policer igmp state on
 cumulus@switch:~$ nv config apply
 ```
 
@@ -693,8 +700,8 @@ cumulus@switch:~$ nv config apply
 
 To rate limit traffic using the `/etc/cumulus/control-plane/policers.conf` file, you:
 - Enable an individual policer for a trap group (set `enable` to `TRUE`).
-- Set the policer rate in packets per second.
-- Set the policer burst rate in packets per second.
+- Set the policer rate in packets per second. The forwarding rate is the maximum rate in kilobytes (KB) or packets.
+- Set the policer burst rate in packets per second. The burst rate is the number of packets or kilobytes (KB) allowed to arrive sequentially.
 
 After you edit the `/etc/cumulus/control-plane/policers.conf` file, you must reload the file with the `switchdctl --load /etc/cumulus/control-plane/policers.conf` command.
 

@@ -47,13 +47,13 @@ Basic PTP configuration requires you:
 The basic configuration shown below uses the *default* PTP settings:
 - The clock mode is Boundary. This is the only clock mode that Cumulus Linux supports.
 - The PTP profile is default-1588; the profile in the IEEE 1588 standard. This is the only profile that Cumulus Linux supports.
-- {{<link url="#ptp-clock-domain" text="The PTP clock domain">}} is 0.
+- {{<link url="#clock-domains" text="The PTP clock domain">}} is 0.
 - {{<link url="#ptp-priority" text="PTP Priority1 and Priority2">}} are both 128.
-- {{<link url="#one-step-and-two-step-mode" text="The hardware packet time stamping mode" >}} is two-step.
+- The hardware packet time stamping mode is two-step.
 - {{<link url="#transport-mode" text="The transport mode">}} is IPv4.
-- {{<link url="#diffserv-code-point-dscp" text="The DSCP" >}} is 43 for both general and event messages.
+- {{<link url="#dscp" text="The DSCP" >}} is 43 for both general and event messages.
 - {{<link url="#acceptable-master-table" text="Announce messages from any master are accepted">}}.
-- {{<link url="#message-mode" text="Message Mode">}} is multicast.
+- {{<link url="#mixed-mode" text="Message Mode">}} is multicast.
 - The delay mechanism is End-to-End (E2E).
 
 To configure optional settings, such as the PTP domain, priority, transport mode, DSCP, and timers, see {{<link url="#optional-configuration" text="Optional Configuration">}} below.

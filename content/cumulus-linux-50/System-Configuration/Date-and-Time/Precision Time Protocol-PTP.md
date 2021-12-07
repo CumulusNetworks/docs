@@ -104,8 +104,8 @@ priority2               128
 domainNumber            0
 
 twoStepFlag             1
-dscp_event              43
-dscp_general            43
+dscp_event              46
+dscp_general            46
 
 offset_from_master_min_threshold   -50
 offset_from_master_max_threshold   50
@@ -121,25 +121,9 @@ verbose                 0
 summary_interval        0
 
 #
-# servo parameters
-#
-pi_proportional_const   0.000000
-pi_integral_const       0.000000
-pi_proportional_scale   0.700000
-pi_proportional_exponent -0.300000
-pi_proportional_norm_max 0.700000
-pi_integral_scale       0.300000
-pi_integral_exponent    0.400000
-pi_integral_norm_max    0.300000
-step_threshold          0.000002
-first_step_threshold    0.000020
-max_frequency           900000000
-sanity_freq_limit       0
-
-#
 # Default interface options
 #
-time_stamping           hardware
+time_stamping           software
 
 
 # Interfaces in which ptp should be enabled
@@ -247,8 +231,8 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 # Default Data Set
 #
 slaveOnly               0
-priority1               254
-priority2               254
+priority1               128
+priority2               128
 domainNumber            3
 ...
 ```
@@ -291,8 +275,8 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 # Default Data Set
 #
 slaveOnly               0
-priority1               254
-priority2               254
+priority1               200
+priority2               200
 domainNumber            3
 ...
 ```
@@ -374,8 +358,8 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 # Default Data Set
 #
 slaveOnly               0
-priority1               254
-priority2               254
+priority1               200
+priority2               200
 domainNumber            3
 
 twoStepFlag             1
@@ -413,7 +397,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 ...
 # Default interface options
 #
-time_stamping           hardware
+time_stamping           software
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -473,7 +457,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 ...
 # Default interface options
 #
-time_stamping           hardware
+time_stamping           software
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -510,13 +494,11 @@ Multicast mode is the default setting. To set the message mode to *mixed* on an 
 {{< tabs "TabID494 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE commands are not supported.
-<!--
 ```
 cumulus@switch:~$ nv set interface swp1 ptp message-mode mixed
 cumulus@switch:~$ nv config apply
 ```
--->
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -527,7 +509,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 ...
 # Default interface options
 #
-time_stamping           hardware
+time_stamping           software
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -539,11 +521,11 @@ logAnnounceInterval     0
 logSyncInterval         -3
 logMinDelayReqInterval  -3
 announceReceiptTimeout  3
+Hybrid_e2e              1
 udp_ttl                 20
 masterOnly              1
 delay_mechanism         E2E
 network_transport       UDPv4
-Hybrid_e2e              1
 ...
 ```
 
@@ -576,7 +558,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 ...
 # Default interface options
 #
-time_stamping           hardware
+time_stamping           software
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -640,7 +622,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 #
 # Default interface options
 #
-time_stamping           hardware
+time_stamping           software
 
 
 [acceptable_master_table]
@@ -657,7 +639,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 #
 # Default interface options
 #
-time_stamping           hardware
+time_stamping           software
 
 
 [acceptable_master_table]
@@ -671,7 +653,7 @@ To enable the PTP acceptable master table option for swp1, add `acceptable_maste
 ...
 # Default interface options
 #
-time_stamping           hardware
+time_stamping           software
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -746,7 +728,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 ...
 # Default interface options
 #
-time_stamping           hardware
+time_stamping           software
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -820,7 +802,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 ...
 # Default interface options
 #
-time_stamping           hardware
+time_stamping           software
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -889,15 +871,19 @@ nv show service ptp <instance-id>
 nv show service ptp <instance-id> acceptable-master
 nv show service ptp <instance-id> acceptable-master <clock-id>
 nv show service ptp <instance-id> monitor
+nv show service ptp <instance-id> monitor timestamp-log
 nv show service ptp <instance-id> monitor violations
-nv show service ptp <instance-id> monitor violations forced-master
-nv show service ptp <instance-id> monitor violations forced-master <clock-id>
-nv show service ptp <instance-id> monitor violations acceptable-master
-nv show service ptp <instance-id> monitor violations acceptable-master <clock-id>
+nv show service ptp <instance-id> monitor violations log
+nv show service ptp <instance-id> monitor violations log acceptable-master
+nv show service ptp <instance-id> monitor violations log forced-master
+nv show service ptp <instance-id> monitor violations log max-offset
+nv show service ptp <instance-id> monitor violations log min-offset
+nv show service ptp <instance-id> monitor violations log path-delay
 nv show service ptp <instance-id> current
 nv show service ptp <instance-id> clock-quality
 nv show service ptp <instance-id> parent
 nv show service ptp <instance-id> parent grandmaster-clock-quality
+nv show service ptp <instance-id> time-properties
 ...
 ```
 
@@ -971,32 +957,28 @@ cumulus@switch:~$ sudo cat /etc/nvue.d/startup.yaml
             10.10.10.1/32: {}
         type: loopback
       swp1:
+        ptp:
+          enable: on
         type: swp
-        service:
-          ptp:
-            enable: on
       swp2:
+        ptp:
+          enable: on
         type: swp
-        service:
-          ptp:
-            enable: on
       swp3:
+        ptp:
+          enable: on
         type: swp
-        service:
-          ptp:
-            enable: on
       swp4:
+        ptp:
+          enable: on
         type: swp
-        service:
-          ptp:
-            enable: on
     service:
       ptp:
         '1':
+          domain: 3
           enable: on
           priority1: 254
           priority2: 254
-          domain: 3
 ```
 
 {{< /tab >}}
@@ -1014,15 +996,13 @@ priority1               254
 priority2               254
 domainNumber            3
 
-clock_type              BC
-
 twoStepFlag             1
-dscp_event              43
-dscp_general            43
+dscp_event              46
+dscp_general            46
 
-offset_from_master_min_threshold   -200
-offset_from_master_max_threshold   200
-mean_path_delay_threshold          1
+offset_from_master_min_threshold   -50
+offset_from_master_max_threshold   50
+mean_path_delay_threshold          200
 
 #
 # Run time options
@@ -1036,7 +1016,7 @@ summary_interval        0
 #
 # Default interface options
 #
-time_stamping           hardware
+time_stamping           software
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports

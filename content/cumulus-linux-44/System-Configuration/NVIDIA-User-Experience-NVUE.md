@@ -84,7 +84,7 @@ To make a configuration change with the NVUE API:
    ```
 
    {{%notice note%}}
-To authorize the `cumulus` user to access the NVUE API, you must change the default password for the `cumulus` user.
+To allow the `cumulus` user access to the NVUE API, you must change the default password for the `cumulus` user.
 {{%/notice%}}
 
 2. Record the revision ID. In the above example, the revision ID is `"changeset/cumulus/2021-11-02_16.09.18_5Z1K"`.

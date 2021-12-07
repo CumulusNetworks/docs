@@ -350,6 +350,12 @@ nv show service dhcp-server6 <vrf-id> static
 nv show service dhcp-server6 <vrf-id> static <static-id>
 nv show service lldp
 nv show system
+nv show system control-plane
+nv show system control-plane trap
+nv show system control-plane trap <trap-id>
+nv show system control-plane policer
+nv show system control-plane policer <policer-id>
+nv show system control-plane policer <policer-id> statistics
 nv show system message
 nv show system global
 nv show system global reserved
@@ -1106,6 +1112,13 @@ nv set service lldp tx-interval 10-300
 nv set service lldp tx-hold-multiplier 1-10
 nv set service lldp dot1-tlv (on|off)
 nv set system
+nv set system control-plane
+nv set system control-plane trap <trap-id>
+nv set system control-plane trap <trap-id> state (on|off)
+nv set system control-plane policer <policer-id>
+nv set system control-plane policer <policer-id> state (on|off)
+nv set system control-plane policer <policer-id> burst 10-10000
+nv set system control-plane policer <policer-id> rate 10-10000
 nv set system message
 nv set system message pre-login <value>
 nv set system message post-login <value>
@@ -1407,12 +1420,12 @@ nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-e
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn soft-reconfiguration (on|off)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn nexthop-setting (auto|self|force)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn add-path-tx (off|all-paths|best-per-as)
-nv set vrf <vrf-id> router bgp peer-group <peer-group-id> remote-as (1-4294967295|internal|external)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> password none
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> enforce-first-as (on|off)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> passive-mode (on|off)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> nexthop-connected-check (on|off)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> multihop-ttl (1-255|auto)
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> remote-as (1-4294967295|internal|external)
 nv set vrf <vrf-id> router bgp route-export
 nv set vrf <vrf-id> router bgp route-export to-evpn
 nv set vrf <vrf-id> router bgp route-export to-evpn route-target <rt-id>
@@ -1568,7 +1581,6 @@ nv set vrf <vrf-id> router bgp neighbor <neighbor-id> timers keepalive (1-65535|
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> timers hold (3-65535|none|auto)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> timers connection-retry (1-65535|auto)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> timers route-advertisement (1-600|none|auto)
-nv set vrf <vrf-id> router bgp neighbor <neighbor-id> remote-as (1-4294967295|internal|external)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> password none
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> enforce-first-as (on|off)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> passive-mode (on|off)
@@ -1577,6 +1589,7 @@ nv set vrf <vrf-id> router bgp neighbor <neighbor-id> multihop-ttl (1-255|auto)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> enable (on|off)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> type (numbered|unnumbered)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> peer-group (none|<instance-name>)
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> remote-as (1-4294967295|auto|internal|external)
 nv set vrf <vrf-id> router bgp enable (on|off)
 nv set vrf <vrf-id> router bgp autonomous-system (1-4294967295|auto|leaf|spine)
 nv set vrf <vrf-id> router bgp router-id (auto|<ipv4>)
@@ -2275,6 +2288,15 @@ nv unset service lldp tx-interval
 nv unset service lldp tx-hold-multiplier
 nv unset service lldp dot1-tlv
 nv unset system
+nv unset system control-plane
+nv unset system control-plane trap
+nv unset system control-plane trap <trap-id>
+nv unset system control-plane trap <trap-id> state
+nv unset system control-plane policer
+nv unset system control-plane policer <policer-id>
+nv unset system control-plane policer <policer-id> state
+nv unset system control-plane policer <policer-id> burst
+nv unset system control-plane policer <policer-id> rate
 nv unset system message
 nv unset system message pre-login
 nv unset system message post-login
@@ -2591,12 +2613,12 @@ nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn soft-reconfiguration
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn nexthop-setting
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn add-path-tx
-nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> remote-as
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> password
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> enforce-first-as
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> passive-mode
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> nexthop-connected-check
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> multihop-ttl
+nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> remote-as
 nv unset vrf <vrf-id> router bgp route-export
 nv unset vrf <vrf-id> router bgp route-export to-evpn
 nv unset vrf <vrf-id> router bgp route-export to-evpn route-target
@@ -2755,7 +2777,6 @@ nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> timers keepalive
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> timers hold
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> timers connection-retry
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> timers route-advertisement
-nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> remote-as
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> password
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> enforce-first-as
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> passive-mode
@@ -2764,6 +2785,7 @@ nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> multihop-ttl
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> enable
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> type
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> peer-group
+nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> remote-as
 nv unset vrf <vrf-id> router bgp enable
 nv unset vrf <vrf-id> router bgp autonomous-system
 nv unset vrf <vrf-id> router bgp router-id

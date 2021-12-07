@@ -1892,7 +1892,10 @@ ip pim rp 10.10.10.101
 {{< /tabs >}}
 
 {{< /tab >}}
-{{< tab "Try It " >}}
+{{< /tabs >}}
+
+<!--
+Try It
     {{< simulation name="Try It CL44 - PIMv3" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
 
 This simulation starts with the example PIM configuration. To simplify the example, only one spine and two leafs are in the topology. The demo is pre-configured using NVUE commands.
@@ -1903,11 +1906,7 @@ This simulation starts with the example PIM configuration. To simplify the examp
 
 To further validate the configuration, run the PIM show commands listed in the troubleshooting section above.
 
-{{< /tab >}}
-{{< /tabs >}}
-<!--
-{{< tabs "TabID1849 ">}}
-{{< tab "leaf01 ">}}
+leaf01 
 
 ```
 cumulus@leaf01:~$ net add loopback lo ip address 10.10.10.1/32
@@ -1929,8 +1928,7 @@ cumulus@leaf01:~$ net add pim rp 10.10.10.101
 cumulus@leaf01:~$ net commit
 ```
 
-{{< /tab >}}
-{{< tab "leaf02 ">}}
+tab "leaf02
 
 ```
 cumulus@leaf02:~$ net add loopback lo ip address 10.10.10.2/32
@@ -1951,9 +1949,7 @@ cumulus@leaf02:~$ net add vlan 20 igmp
 cumulus@leaf02:~$ net add pim rp 10.10.10.101
 cumulus@leaf02:~$ net commit
 ```
-
-{{< /tab >}}
-{{< tab "spine01 ">}}
+spine01
 
 ```
 cumulus@spine01:~$ net add loopback lo ip address 10.10.10.101/32
@@ -1968,10 +1964,8 @@ cumulus@spine01:~$ net add interface swp2 pim
 cumulus@spine01:~$ net add pim rp 10.10.10.101 
 cumulus@spine01:~$ net commit
 ```
-
-{{< /tab >}}
-{{< /tabs >}}
 -->
+
 <!-- vale on -->
 
 ## Considerations

@@ -12,8 +12,8 @@ The following Try It demos are available:
 - {{<link url="EVPN-Multihoming/#evpn-mh-with-head-end-replication" text="EVPN multihoming">}}
 - {{<link url="Configuration-Examples/#nvue-commands-2" text="EVPN symmetric routing">}}
 - {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#nvue-commands" text="MLAG">}}
-- {{<link url="Protocol-Independent-Multicast-PIM/#example-pim-configuration" text="PIM">}}
 - {{<link url="Static-VXLAN-Tunnels/#single-vxlan-device" text="Single VXLAN device">}}
+<!-- - {{<link url="Protocol-Independent-Multicast-PIM/#example-pim-configuration" text="PIM">}}-->
 
 ## Access a Try It Demo
 

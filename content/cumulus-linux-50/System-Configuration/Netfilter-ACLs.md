@@ -651,7 +651,7 @@ Counters on POLICE ACL rules in `iptables` do not show dropped packets due to th
 {{%/notice%}}
 
 {{< tabs "653 ">}}
-{{< tab "NVUE Commands ">}
+{{< tab "NVUE Commands ">}}
 
 The following example rate limits the incoming traffic on swp1 to 400 packets per second with a burst of 200 packets per second:
 

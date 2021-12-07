@@ -30,7 +30,7 @@ Cumulus Linux supports:
 - Multicast and mixed message mode. Cumulus Linux does *not* support PTP unicast only message mode.
 - End-to-End delay mechanism (not Peer-to-Peer).
 - Two-step clock correction mode, where PTP notes time when the packet goes out of the port and sends the time in a separate (follow-up) message. Cumulus Linux does not support one-step mode.
-- Hardware time stamping for PTP packets. This allows PTP to avoid inaccuracies caused by message transfer delays and improves the accuracy of time synchronization.
+<!--- Hardware time stamping for PTP packets. This allows PTP to avoid inaccuracies caused by message transfer delays and improves the accuracy of time synchronization.-->
 
 {{%notice note%}}
 - On NVIDIA switches with Spectrum-2 and later, PTP is not supported on 1G interfaces.
@@ -48,14 +48,14 @@ Basic PTP configuration requires you:
 The basic configuration shown below uses the *default* PTP settings:
 - The clock mode is Boundary. This is the only clock mode that Cumulus Linux supports.
 - The PTP profile is default-1588; the profile in the IEEE 1588 standard. This is the only profile that Cumulus Linux supports.
-- {{<link url="#ptp-clock-domain" text="The PTP clock domain">}} is 0.
+- {{<link url="#clock-domains" text="The PTP clock domain">}} is 0.
 - {{<link url="#ptp-priority" text="PTP Priority1 and Priority2">}} are both 128.
-- {{<link url="#one-step-and-two-step-mode" text="The hardware packet time stamping mode" >}} is two-step.
 - {{<link url="#transport-mode" text="The transport mode">}} is IPv4.
-- {{<link url="#diffserv-code-point-dscp" text="The DSCP" >}} is 43 for both general and event messages.
+- {{<link url="#dscp" text="The DSCP" >}} is 46 for both general and event messages.
 - {{<link url="#acceptable-master-table" text="Announce messages from any master are accepted">}}.
-- {{<link url="#message-mode" text="Message Mode">}} is multicast.
+- {{<link url="#mixed-mode" text="Message Mode">}} is multicast.
 - The delay mechanism is End-to-End (E2E).
+<!-- - {{<link url="#one-step-and-two-step-mode" text="The hardware packet time stamping mode" >}} is two-step.-->
 
 To configure optional settings, such as the PTP domain, priority, transport mode, DSCP, and timers, see {{<link url="#optional-configuration" text="Optional Configuration">}} below.
 

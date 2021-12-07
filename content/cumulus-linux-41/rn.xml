@@ -7,6 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2877796</td>
+<td>CVE-2021-43527: The NSS package is vulnerable to a heap overflow when verifying DSA/RSA-PSS DER-encoded signatures.
+Vulnerable: &lt;= 3.42.1-1+deb10u3
+Fixed: 3.42.1-1+deb10u4</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2873322</td>
 <td>CVE-2020-21913: International Components for Unicode (ICU-20850) v66.1 was discovered to contain a use after free bug in the pkg_createWithAssemblyCode function in the file tools/pkgdata/pkgdata.cpp.</td>
 <td>4.0.0-4.4.0</td>
@@ -51,7 +59,7 @@ Fixed: 1.1.1d-0+deb10u7</td>
 </tr>
 <tr>
 <td>2755614</td>
-<td>Host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry when {{route_preferred_over_neigh}} is set to {{FALSE}} in {{/etc/cumulus/switchd.conf}} </td>
+<td>When {{route_preferred_over_neigh}} is set to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
 </tr>
@@ -2939,6 +2947,14 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2877796</td>
+<td>CVE-2021-43527: The NSS package is vulnerable to a heap overflow when verifying DSA/RSA-PSS DER-encoded signatures.
+Vulnerable: &lt;= 3.42.1-1+deb10u3
+Fixed: 3.42.1-1+deb10u4</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2873322</td>
 <td>CVE-2020-21913: International Components for Unicode (ICU-20850) v66.1 was discovered to contain a use after free bug in the pkg_createWithAssemblyCode function in the file tools/pkgdata/pkgdata.cpp.</td>
 <td>4.0.0-4.4.0</td>
@@ -2971,7 +2987,7 @@ Fixed: 1.1.1d-0+deb10u7</td>
 </tr>
 <tr>
 <td>2755614</td>
-<td>Host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry when {{route_preferred_over_neigh}} is set to {{FALSE}} in {{/etc/cumulus/switchd.conf}} </td>
+<td>When {{route_preferred_over_neigh}} is set to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
 </tr>

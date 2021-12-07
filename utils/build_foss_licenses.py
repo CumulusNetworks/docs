@@ -84,11 +84,11 @@ def format_license_string(license_string):
 
     return modified_string
 
-def build_foss_license_markdown(csv_file, version):
+def build_foss_license_markdown(csv_file, version, product):
     '''
     Builds a list of lines that contain the entire formatted foss licenses in markdown table format.
 
-    json_file - the json output to parse and build foss licenses from
+    csv_file - the csv output to parse and build foss licenses from
     version - a full version string, i.e., 3.7.11
     product - a product_string() output, i.e., Cumulus Linux
     '''
@@ -96,13 +96,16 @@ def build_foss_license_markdown(csv_file, version):
     header = True
     f = open(csv_file, "r")
     for line in f:
-        split_line = line.split(",")
+        split_line = line.replace("\"", "").split(",")
         license_string = format_license_string(split_line[2])
 
         if header:
             output.append("| {} | {} | {} |\n".format(split_line[0], split_line[1].strip(), license_string))
         else:
-            output.append("| {{{{<foss_file text=\"{}\" url=\"cumulus-linux-{}/Whats-New/licenses/{}.txt\" >}}}} | {} | {} |\n".format(split_line[0], version_string(version).replace(".", ""), split_line[0], split_line[1].strip(), license_string))
+            if product == "cl":
+                output.append("| {{{{<foss_file text=\"{}\" url=\"cumulus-linux-{}/Whats-New/licenses/{}.txt\" >}}}} | {} | {} |\n".format(split_line[0], version_string(version).replace(".", ""), split_line[0], split_line[1].strip(), license_string))
+            if product == "netq":
+                output.append("| {{{{<foss_file text=\"{}\" url=\"cumulus-netq-{}/Whats-New/licenses/{}.txt\" >}}}} | {} | {} |\n".format(split_line[0], version_string(version).replace(".", ""), split_line[0], split_line[1].strip(), license_string))
         if header:
             output.append("|---	        |---	        |---	    |\n")
             header = False
@@ -149,24 +152,28 @@ def read_markdown_header(product, version):
     if product == "cl":
         input_file = "content/{}/Whats-New/foss.md".format(directory)
     elif product == "netq":
-        input_file = "content/{}/More-Documents/foss.md".format(directory)
+        input_file = "content/{}/Whats-New/foss.md".format(directory)
     else:
         print("Unknown product {}. Exiting".format(product))
         exit(1)
 
     header_lines = []
-    with open(input_file, "r") as in_file:
-        # skip the first line, it should be just a yaml header of "---"
-        header_lines.append(in_file.readline())
-        for line in in_file:
-            current_line = line
-            if current_line.strip("\n") == "---":
-                break
-            header_lines.append(current_line)
-        else:
-            # There is no frontmatter yaml header
-            return []
-        header_lines.append("---\n")
+
+    # If the foss.md file exists, read it in, otherwise return an empty header_lines
+    if os.path.exists(input_file):
+        with open(input_file, "r") as in_file:
+            # skip the first line, it should be just a yaml header of "---"
+            header_lines.append(in_file.readline())
+            for line in in_file:
+                current_line = line
+                if current_line.strip("\n") == "---":
+                    break
+                header_lines.append(current_line)
+            else:
+                # There is no frontmatter yaml header
+                return []
+            header_lines.append("---\n")
+
     return header_lines
 
 def write_foss_licenses(output, product, version):
@@ -193,6 +200,7 @@ def build_foss_license_markdown_files(product, version_list):
     # Sort the lists based on semver, most recent first.
     # I don't know what this does but that's what Stackoverflow is for
     # https://stackoverflow.com/a/2574090
+
     version_list.sort(key=lambda s: list(map(int, s.split('.'))), reverse=True)
 
     # We need to map major.minors to full release list,
@@ -222,20 +230,25 @@ def build_foss_license_markdown_files(product, version_list):
             print("Building markdown for {} {}\n".format(product_string(product), version))
             version_output.append("## {} Open Source Software Licenses \n".format(version))
 
-            version_output.extend(build_foss_license_markdown("content/cumulus-linux-{}/Whats-New/licenses/FOSS-{}.csv".format(version_string(version).replace(".", ""), version), version))
+            if product == "cl":
+                version_output.extend(build_foss_license_markdown("content/cumulus-linux-{}/Whats-New/licenses/FOSS-{}.csv".format(version_string(version).replace(".", ""), version), version, product))
+
+            if product == "netq":
+                version_output.extend(build_foss_license_markdown("content/cumulus-netq-{}/Whats-New/licenses/FOSS-{}.csv".format(version_string(version).replace(".", ""), ""), version, product))
 
         # The version_output now contains the RNs for all maintenance releases in order.
         # Write out the markdown file.
         write_foss_licenses(version_output, product, version)
 
-def process_foss_tar(version):
+def process_foss_tar(product, version):
     '''
     Download the tar file containing the foss licenses.
 
+    product - either "cl" or "netq"
     version - the version to capture foss tar files for
     '''
-    print("Downloading license file for {}".format(version))
-    url = "https://d2whzysjlaya8k.cloudfront.net/cl/{}/FOSS-{}.tgz".format(version, version)
+    print("Downloading license file for {} {}".format(product_string(product), version))
+    url = "https://d2whzysjlaya8k.cloudfront.net/{}/{}/FOSS-{}.tgz".format(product, version, version)
 
     response = requests.get(url, stream=True)
 
@@ -245,14 +258,29 @@ def process_foss_tar(version):
 
     with open("temp.tgz", "wb") as f:
         f.write(response.raw.read())
-    license_dir = "content/cumulus-linux-{}/Whats-New/licenses/".format(version_string(version).replace(".", ""))
+
+    if product == "cl":
+        license_dir = "content/cumulus-linux-{}/Whats-New/licenses/".format(version_string(version).replace(".", ""))
+        tared_folder = license_dir
+    elif product == "netq":
+        license_dir = "content/cumulus-netq-{}/Whats-New/licenses/".format(version_string(version).replace(".", ""))
+        # NetQ licenses are put inside a folder /inside/ the tar.
+        tared_folder = license_dir + "FOSS-{}/".format(version)
+    else:
+        print("Unknown product {}. Exiting".format(product))
+        exit(1)
+
     tar = tarfile.open("temp.tgz")
     tar.extractall(path=license_dir)
 
-    for file in listdir(license_dir):
+    for file in listdir(tared_folder):
         if file.endswith(".csv") or file.endswith(".txt"):
+            # Move from tared_folder to license_dir, if they are different, but do not change the file type
+            os.rename("{}{}".format(tared_folder, file), "{}{}".format(license_dir, file))
             continue
-        os.rename("{}{}".format(license_dir, file), "{}{}.txt".format(license_dir, file))
+
+        # Move from tared_folder to license_dir, if they are different. Always add .txt
+        os.rename("{}{}".format(tared_folder, file), "{}{}.txt".format(license_dir, file))
 
     os.remove("temp.tgz")
 
@@ -304,11 +332,12 @@ def main():
     '''
     print("Fetching product and version list")
     products = get_products()
-
+    # products = {"netq": ["4.1.0-SNAPSHOT"]}
     cvs_file_list = []
+
     for product in products:
-        for value in products[product]:
-            cvs_file_list.append(process_foss_tar(value))
+        for version in products[product]:
+            cvs_file_list.append(process_foss_tar(product, version))
 
         build_foss_license_markdown_files(product, products[product])
 

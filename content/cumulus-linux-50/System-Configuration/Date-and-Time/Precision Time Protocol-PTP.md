@@ -20,7 +20,6 @@ PTP in Cumulus Linux uses the `linuxptp` package that includes the following pro
 - `ptp4l` provides the PTP protocol and state machines
 - `phc2sys` provides PTP Hardware Clock and System Clock synchronization
 - `timemaster` provides System Clock and PTP synchronization
-- `monitor` provides monitoring
 
 Cumulus Linux supports:
 - PTP boundary clock mode only (the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks).
@@ -42,8 +41,8 @@ Cumulus Linux supports:
 
 Basic PTP configuration requires you:
 
-- Enable PTP on the switch to start the `ptp4l` and `phc2sys` processes.
-- Configure the interfaces on the switch that you want to use for PTP. Each interface must be a layer 3 routed interface with an IP address. You do not need to specify which is a master interface and which is a slave interface; the PTP Best Master Clock Algorithm (BMCA) determines the master and slave.
+- Enable PTP on the switch.
+- Configure PTP on at least one interface; this can be a layer 3 routed port, switch port, or trunk port. You do not need to specify which is a master interface and which is a slave interface; the PTP Best Master Clock Algorithm (BMCA) determines the master and slave.
 
 The basic configuration shown below uses the *default* PTP settings:
 - The clock mode is Boundary. This is the only clock mode that Cumulus Linux supports.
@@ -60,7 +59,7 @@ The basic configuration shown below uses the *default* PTP settings:
 To configure optional settings, such as the PTP domain, priority, transport mode, DSCP, and timers, see {{<link url="#optional-configuration" text="Optional Configuration">}} below.
 
 {{%notice note%}}
-You can configure PTP with NVUE or by manually editing `/etc/cumulus/switchd.conf` file. You cannot configure PTP with NCLU.
+You can configure PTP with NVUE or by manually editing `/etc/cumulus/switchd.conf` file.
 {{%/notice%}}
 
 {{< tabs "TabID36 ">}}

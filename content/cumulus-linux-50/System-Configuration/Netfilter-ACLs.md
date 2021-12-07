@@ -650,18 +650,38 @@ You can configure quality of service for traffic on the data plane. By using QoS
 Counters on POLICE ACL rules in `iptables` do not show dropped packets due to those rules.
 {{%/notice%}}
 
+{{< tabs "653 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example rate limits the incoming traffic on swp1 to 400 packets per second with a burst of 200 packets per second:
+
+```
+cumulus@switch:~$ nv set acl example1 type ipv4
+cumulus@switch:~$ nv set acl example1 rule 10 action police
+cumulus@switch:~$ nv set acl example1 rule 10 action police mode packet
+cumulus@switch:~$ nv set acl example1 rule 10 action police burst 200
+cumulus@switch:~$ nv set acl example1 rule 10 action police rate 400
+cumulus@switch:~$ nv set interface swp1 acl example1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "/etc/cumulus/control-plane/policers.conf File ">}}
+
 Use the `POLICE` target with `iptables`. `POLICE` takes these arguments:
 
-- `--set-class value` sets the system internal class of service queue configuration to *value*.
 - `--set-rate value` specifies the maximum rate in kilobytes (KB) or packets.
 - `--set-burst value` specifies the number of packets or kilobytes (KB) allowed to arrive sequentially.
 - `--set-mode string` sets the mode in *KB* (kilobytes) or *pkt* (packets) for rate and burst size.
 
-For example, to rate limit the incoming traffic on swp1 to 400 packets per second with a burst of 100 packets per second and set the class of the queue for the policed traffic as 0, set this rule in your appropriate `.rules` file:
+For example, to rate limit the incoming traffic on swp1 to 400 packets per second with a burst of 200 packets per second and set this rule in your appropriate `.rules` file:
 
 ```
--A FORWARD -i swp1 -j POLICE --set-mode pkt --set-rate 400 --set-burst 100 --set-class 0
+-t mangle -A PREROUTING -i swp1  -j POLICE --set-mode pkt --set-rate 400 --set-burst 200
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Control Plane Policers
 
@@ -679,7 +699,6 @@ Cumulus Linux 5.0 and later no longer uses INPUT chain rules to configure contro
 To configure control plane policers:
 - Set the burst rate for the trap group with the `nv set system control-plane policer <trap-group> burst <value>` command. The burst rate is the number of packets or kilobytes (KB) allowed to arrive sequentially.
 - Set the forwarding rate for the trap group with the `nv set system control-plane policer <trap-group> rate <value>` command. The forwarding rate is the maximum rate in kilobytes (KB) or packets.
-- Enable the trap group with the `nv set system control-plane policer <trap-group> state on` command.
 
 The trap group can be: `arp`, `bfd`, `pim-ospf-rip`, `bgp`, `clag`, `icmp-def`, `dhcp-ptp`, `igmp`, `ssh`, `icmp6-neigh`, `icmp6-def-mld`, `lacp`, `lldp`, `rpvst`, `eapol`, `ip2me`, `acl-log`, `nat`, `stp`, `l3-local`, `span-cpu`, `catch-all`, or `NONE`.
 
@@ -691,7 +710,6 @@ cumulus@switch:~$ nv set system control-plane policer pim-ospf-rip burst 400
 cumulus@switch:~$ nv set system control-plane policer pim-ospf-rip state on
 cumulus@switch:~$ nv set system control-plane policer igmp rate 400
 cumulus@switch:~$ nv set system control-plane policer igmp burst 200
-cumulus@switch:~$ nv set system control-plane policer igmp state on
 cumulus@switch:~$ nv config apply
 ```
 

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2879645</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2873186</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.0</td>
@@ -71,6 +77,28 @@ Fixed: 9.4.26-0+deb8u5</td>
 <td></td>
 </tr>
 <tr>
+<td>2862211</td>
+<td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
+To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2862210</td>
+<td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
+To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2859177</td>
 <td>The {{cl-route-check --layer3}} command fails with a memory error. For example:
 
@@ -123,6 +151,12 @@ Fixed: 3.4.2-1+deb8u11</td>
 Vulnerable: &lt;= 1:9.9.5.dfsg-9+deb8u22
 Fixed: 1:9.9.5.dfsg-9+deb8u23</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2847179</td>
+<td>When you disable bridge learning on an 802.1X interface, the MLAG peer no longer learns the host MAC address even though it receives traffic from that MAC.</td>
+<td>3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -248,6 +282,24 @@ MemoryError
 <td></td>
 </tr>
 <tr>
+<td>2815646</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815645</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815592</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2813826</td>
 <td>Two security issues were found in TIFF, a widely used format for storing image data, as follows:
 CVE-2020-19131: Buffer Overflow in LibTiff allows attackers to cause a denial of service via the "invertImage()" function in the component "tiffcrop".
@@ -266,6 +318,12 @@ CVE-2021-40438: A crafted request uri-path can cause mod_proxy to forward the re
 Vulnerable: &lt;= 2.4.10-10+deb8u18
 Fixed: 2.4.10-10+deb8u19</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2803044</td>
+<td>In an EVPN configuration with IP or MAC mobility, higher MM EVPN routes do not remove the old ARP entries during VIP migration between VTEP racks.</td>
+<td>3.7.14.2-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -2557,6 +2615,28 @@ Fixed: 9.4.26-0+deb8u5</td>
 <td></td>
 </tr>
 <tr>
+<td>2862211</td>
+<td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
+To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2862210</td>
+<td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
+To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2855881</td>
 <td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
 CVE-2021-32672: Random heap reading issue with Lua Debugger.
@@ -2642,6 +2722,24 @@ Fixed: 7.38.0-4+deb8u22</td>
 <td></td>
 </tr>
 <tr>
+<td>2815646</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815645</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815592</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2813826</td>
 <td>Two security issues were found in TIFF, a widely used format for storing image data, as follows:
 CVE-2020-19131: Buffer Overflow in LibTiff allows attackers to cause a denial of service via the "invertImage()" function in the component "tiffcrop".
@@ -2660,6 +2758,12 @@ CVE-2021-40438: A crafted request uri-path can cause mod_proxy to forward the re
 Vulnerable: &lt;= 2.4.10-10+deb8u18
 Fixed: 2.4.10-10+deb8u19</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2803044</td>
+<td>In an EVPN configuration with IP or MAC mobility, higher MM EVPN routes do not remove the old ARP entries during VIP migration between VTEP racks.</td>
+<td>3.7.14.2-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -4953,6 +5057,28 @@ Fixed: 9.4.26-0+deb8u5</td>
 <td></td>
 </tr>
 <tr>
+<td>2862211</td>
+<td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
+To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2862210</td>
+<td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
+To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2855881</td>
 <td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
 CVE-2021-32672: Random heap reading issue with Lua Debugger.
@@ -5035,6 +5161,24 @@ CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server migh
 Vulnerable: &lt;= 7.38.0-4+deb8u21
 Fixed: 7.38.0-4+deb8u22</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2815646</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815645</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815592</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -7892,6 +8036,28 @@ Fixed: 9.4.26-0+deb8u5</td>
 <td></td>
 </tr>
 <tr>
+<td>2862211</td>
+<td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
+To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2862210</td>
+<td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
+To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2855881</td>
 <td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
 CVE-2021-32672: Random heap reading issue with Lua Debugger.
@@ -7974,6 +8140,24 @@ CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server migh
 Vulnerable: &lt;= 7.38.0-4+deb8u21
 Fixed: 7.38.0-4+deb8u22</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2815646</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815645</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815592</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -11036,6 +11220,28 @@ Fixed: 9.4.26-0+deb8u5</td>
 <td></td>
 </tr>
 <tr>
+<td>2862211</td>
+<td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
+To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2862210</td>
+<td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
+To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2855881</td>
 <td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
 CVE-2021-32672: Random heap reading issue with Lua Debugger.
@@ -11118,6 +11324,24 @@ CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server migh
 Vulnerable: &lt;= 7.38.0-4+deb8u21
 Fixed: 7.38.0-4+deb8u22</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2815646</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815645</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815592</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -14009,6 +14233,14 @@ Fixed: 9.4.26-0+deb8u5</td>
 <td></td>
 </tr>
 <tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2855881</td>
 <td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
 CVE-2021-32672: Random heap reading issue with Lua Debugger.
@@ -16652,6 +16884,14 @@ Fixed: 9.4.26-0+deb8u5</td>
 <td></td>
 </tr>
 <tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2855881</td>
 <td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
 CVE-2021-32672: Random heap reading issue with Lua Debugger.
@@ -18736,6 +18976,14 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -21136,6 +21384,14 @@ Fixed: 9.4.26-0+deb8u5</td>
 <td></td>
 </tr>
 <tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2855881</td>
 <td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
 CVE-2021-32672: Random heap reading issue with Lua Debugger.
@@ -22956,6 +23212,14 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -25119,6 +25383,14 @@ Fixed: 9.4.26-0+deb8u5</td>
 <td></td>
 </tr>
 <tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2855881</td>
 <td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
 CVE-2021-32672: Random heap reading issue with Lua Debugger.
@@ -27023,6 +27295,14 @@ Fixed: 9.4.26-0+deb8u5</td>
 <td></td>
 </tr>
 <tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2855881</td>
 <td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
 CVE-2021-32672: Random heap reading issue with Lua Debugger.
@@ -28575,6 +28855,14 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -30158,6 +30446,14 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -31842,6 +32138,14 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -33573,6 +33877,14 @@ Fixed: 9.4.26-0+deb8u5</td>
 <td></td>
 </tr>
 <tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2855881</td>
 <td>A number of vulnerabilities were discovered in Redis, a popular key/value database:
 CVE-2021-32672: Random heap reading issue with Lua Debugger.
@@ -34608,6 +34920,14 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>

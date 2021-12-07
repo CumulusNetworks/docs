@@ -20,7 +20,6 @@ PTP in Cumulus Linux uses the `linuxptp` package that includes the following pro
 - `ptp4l` provides the PTP protocol and state machines
 - `phc2sys` provides PTP Hardware Clock and System Clock synchronization
 - `timemaster` provides System Clock and PTP synchronization
-- `monitor` provides monitoring
 
 Cumulus Linux supports:
 - PTP boundary clock mode only (the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks).

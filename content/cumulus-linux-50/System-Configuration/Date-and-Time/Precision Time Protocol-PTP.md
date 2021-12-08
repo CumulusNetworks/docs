@@ -62,10 +62,13 @@ To configure optional settings, such as the PTP domain, priority, transport mode
 You can configure PTP with NVUE or by manually editing `/etc/cumulus/switchd.conf` file.
 {{%/notice%}}
 
-{{< tabs "TabID36 ">}}
+{{< tabs "TabID65 ">}}
 {{< tab "NVUE Commands ">}}
 
 The NVUE `nv set service PTP` commands require an instance number (1 in the example command below) for management purposes.
+
+{{< tabs "TabID68 ">}}
+{{< tab "Layer 3 Routed Port ">}}
 
 ```
 cumulus@switch:~$ nv set service ptp 1 enable on
@@ -77,6 +80,57 @@ cumulus@switch:~$ nv config apply
 ```
 
 The configuration writes to the `/etc/ptp4l.conf` file.
+
+{{< /tab >}}
+{{< tab "Trunk Port VLAN ">}}
+
+```
+cumulus@switch:~$ nv set service ptp 1 enable on
+cumulus@switch:~$ nv set bridge domain br_default
+cumulus@switch:~$ nv set bridge domain br_default type vlan-aware
+cumulus@switch:~$ nv set bridge domain br_default vlan 10-100
+cumulus@switch:~$ nv set bridge domain bridge vlan 10 ptp enable on
+cumulus@switch:~$ nv set interface vlan10 type svi
+cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.2/24
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default vlan 10
+cumulus@switch:~$ nv set interface swp1 ptp enable on
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+- You can configure only one address; either IPv4 or IPv6.
+- For IPv6, set the trunk port transport mode to ipv6.
+{{%/notice%}}
+
+The configuration writes to the `/etc/ptp4l.conf` file.
+
+{{< /tab >}}
+{{< tab "Switch Port (Access Port) VLAN ">}}
+
+```
+cumulus@switch:~$ nv set service ptp 1 enable on
+cumulus@switch:~$ nv set bridge domain br_default
+cumulus@switch:~$ nv set bridge domain br_default type vlan-aware
+cumulus@switch:~$ nv set bridge domain br_default vlan 10-100
+cumulus@switch:~$ nv set bridge domain bridge vlan 10 ptp enable on
+cumulus@switch:~$ nv set interface vlan10 type svi
+cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.2/24
+cumulus@switch:~$ nv set interface swp2 bridge domain br_default
+cumulus@switch:~$ nv set interface swp2 bridge domain br_default access 10
+cumulus@switch:~$ nv set interface swp2 ptp enable on
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+- You can configure only one address; either IPv4 or IPv6.
+- For IPv6, set the trunk port transport mode to ipv6.
+{{%/notice%}}
+
+The configuration writes to the `/etc/ptp4l.conf` file.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

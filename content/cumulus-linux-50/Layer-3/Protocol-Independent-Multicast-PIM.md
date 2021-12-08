@@ -1132,7 +1132,6 @@ The following example commands set the PIM forwarding and burst rate to 400 pack
 ```
 cumulus@switch:~$ nv set system control-plane policer pim-ospf-rip rate 400
 cumulus@switch:~$ nv set system control-plane policer pim-ospf-rip burst 400
-cumulus@switch:~$ nv set system control-plane policer pim-ospf-rip state on
 cumulus@switch:~$ nv config apply 
 ```
 
@@ -1141,7 +1140,6 @@ The following example commands set the IGMP forwarding rate to 400 and the IGMP 
 ```
 cumulus@switch:~$ nv set system control-plane policer igmp rate 400
 cumulus@switch:~$ nv set system control-plane policer igmp burst 200
-cumulus@switch:~$ nv set system control-plane policer igmp state on
 cumulus@switch:~$ nv config apply 
 ```
 

@@ -16,7 +16,7 @@ Fixed: 3.42.1-1+deb10u4</td>
 </tr>
 <tr>
 <td>2875338</td>
-<td>After a large number of VNIs come up, Zebra consumes 100 percent CPU for 20-30 minutes.</td>
+<td>In a scaled EVPN MLAG configuration with 400 or more VNIs and 20K or more MAC addresses, when the peerlink is flapped causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service may undergo a restart. After FRR restarts or the CPU utilization settles down, the system works normally.</td>
 <td>4.2.1-4.4.0</td>
 <td></td>
 </tr>
@@ -138,6 +138,12 @@ Fixed: 1.24.1-1+deb 10u1</td>
 Vulnerable: &lt;= 1.17-3+deb10u1
 Fixed: 1.17-3+deb10u2</td>
 <td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2738625</td>
+<td>When you configure the switch with the minimum reserved VLAN of 150 and the internal VLANs are exhausted, the MLAG peer does not  forward the VLAN.</td>
+<td>3.7.15, 4.2.1-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1872,7 +1878,7 @@ Fixed: 3.42.1-1+deb10u4</td>
 </tr>
 <tr>
 <td>2875338</td>
-<td>After a large number of VNIs come up, Zebra consumes 100 percent CPU for 20-30 minutes.</td>
+<td>In a scaled EVPN MLAG configuration with 400 or more VNIs and 20K or more MAC addresses, when the peerlink is flapped causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service may undergo a restart. After FRR restarts or the CPU utilization settles down, the system works normally.</td>
 <td>4.2.1-4.4.0</td>
 <td></td>
 </tr>
@@ -1994,6 +2000,12 @@ Fixed: 1.24.1-1+deb 10u1</td>
 Vulnerable: &lt;= 1.17-3+deb10u1
 Fixed: 1.17-3+deb10u2</td>
 <td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2738625</td>
+<td>When you configure the switch with the minimum reserved VLAN of 150 and the internal VLANs are exhausted, the MLAG peer does not  forward the VLAN.</td>
+<td>3.7.15, 4.2.1-4.4.0</td>
 <td></td>
 </tr>
 <tr>

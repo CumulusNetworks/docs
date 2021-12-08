@@ -179,7 +179,6 @@ The following example commands set the IGMP forwarding rate to 400 and the IGMP 
 ```
 cumulus@switch:~$ nv set system control-plane policer igmp rate 400
 cumulus@switch:~$ nv set system control-plane policer igmp burst 200
-cumulus@switch:~$ nv set system control-plane policer igmp state on
 cumulus@switch:~$ nv config apply
 ```
 

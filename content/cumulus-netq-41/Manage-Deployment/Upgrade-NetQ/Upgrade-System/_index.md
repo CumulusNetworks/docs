@@ -23,15 +23,15 @@ To complete the preparation:
 
 2. Download the relevant software.
 
-    {{<netq-install/upgrade-image version="4.0">}}
+    {{<netq-install/upgrade-image version="4.1">}}
 
 3. Copy the file to the `/mnt/installables/` directory on your appliance or VM.
 
-4. Update `/etc/apt/sources.list.d/cumulus-netq.list` to netq-4.0 as follows:
+4. Update `/etc/apt/sources.list.d/cumulus-netq.list` to netq-4.1 as follows:
 
     ```
     cat /etc/apt/sources.list.d/cumulus-netq.list
-    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-4.0
+    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-4.1
     ```
 
 5. Update the NetQ `debian` packages.

@@ -330,8 +330,8 @@ flow_control.egress_service_pool = 1
 #
 port.service_pool.1.ingress_buffer.reserved = 0
 port.service_pool.1.ingress_buffer.dynamic_quota = ALPHA_1
-port.service_pool.1.egress_buffer.reserved = 0
-port.service_pool.1.egress_buffer.dynamic_quota = ALPHA_INFINITY
+port.service_pool.1.egress_buffer.uc.reserved = 0
+port.service_pool.1.egress_buffer.uc.dynamic_quota = ALPHA_INFINITY
 #
 flow_control.ingress_buffer.dynamic_quota = ALPHA_1
 flow_control.egress_buffer.reserved = 0

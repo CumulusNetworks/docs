@@ -11,7 +11,7 @@ The *cumulus* account:
 - Uses the default password `cumulus`. You must change the default password when you log into Cumulus Linux for the first time.
 - Is a user account in the *sudo* group with sudo privileges.
 - Can log in to the system through all the usual channels, such as console and {{<link url="SSH-for-Remote-Access" text="SSH">}}.
-- Along with the cumulus group, has both show and edit rights for NCLU.
+- Along with the cumulus group, has both show and edit rights for NVUE.
 
 The *root* account:
 
@@ -27,7 +27,6 @@ cumulus@switch:~$ sudo adduser NEWUSERNAME sudo
 
 To access the switch without a password, you need to {{<link url="Single-User-Mode-Password-Recovery" text="boot into a single shell/user mode">}}.
 
-<!--WHAT HAPPENS FOR NVUE? - You can add and configure user accounts in Cumulus Linux with read-only or edit permissions for NCLU. For more information, see Configure User Accounts.-->
 
 ## Enable Remote Access for the root User
 

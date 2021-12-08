@@ -898,22 +898,26 @@ NVUE provides several show commands for PTP. You can view the current PTP config
 ```
 cumulus@switch:~$ nv show service ptp 1
 
-                       operational  applied   description
-----------------------  -----------  --------  ----------------------------------------------------------------------
-enable                  off          on        Turn the feature 'on' or 'off'.  The default is 'off'.
-clock-mode                           boundary  Clock mode
-domain                               3         Domain number of the current syntonization
-ipv4-dscp                            43        Sets the Diffserv code point for all PTP packets originated locally.
-message-mode                         mixed     Mode in which PTP delay message is transmitted.
-priority1                            254       Priority1 attribute of the local clock
-priority2                            254       Priority2 attribute of the local clock
-two-step                             off       Determines if the Clock is a 2 step clock
+---------------------------  -----------  -------  --------------------------------------------------------------------
+enable                                    on       Turn the feature 'on' or 'off'.  The default is 'off'.
+domain                                    0        Domain number of the current syntonization
+ip-dscp                                   46       Sets the Diffserv code point for all PTP packets originated locally.
+priority1                                 128      Priority1 attribute of the local clock
+priority2                                 128      Priority2 attribute of the local clock
+two-step                                  on       Determines if the Clock is a 2 step clock
+[acceptable-master]                                Collection of acceptable masters
 monitor
-  max-offset-threshold               200       Maximum offset threshold in nano seconds
-  min-offset-threshold               -200      Minimum offset threshold in nano seconds
-  path-delay-threshold               1         Path delay threshold in nano seconds
+  max-offset-threshold                    50       Maximum offset threshold in nano seconds
+  max-timestamp-entries                   400      Maximum timestamp entries allowed
+  max-violation-log-entries               8        Maximum violation log entries per set
+  max-violation-log-sets                  8        Maximum violation logs sets allowed
+  min-offset-threshold                    -50      Minimum offset threshold in nano seconds
+  path-delay-threshold                    200      Path delay threshold in nano seconds
+  violation-log-interval                  0        violation log intervals in seconds
 ...
 ```
+
+To see 
 
 To see the list of NVUE show commands for PTP, run `nv list-commands service ptp`:
 

@@ -6167,6 +6167,11 @@ To avoid this issue, wait 15 seconds before insertion and before removal of the 
 <td>4.0.0-4.0.1</td>
 </tr>
 <tr>
+<td>2544914</td>
+<td>On the NVIDIA SN3700C switch, when you split ports from 100G to 2x50G, {{switchd}} fails to start.</td>
+<td>4.0.0-4.0.1</td>
+</tr>
+<tr>
 <td>2544854</td>
 <td>On the Dell S5248F-ON switch, CPU core temp sensors may show as ABSENT.</td>
 <td>4.0.0-4.0.1</td>

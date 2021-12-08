@@ -16,7 +16,7 @@ Fixed: 3.42.1-1+deb10u4</td>
 </tr>
 <tr>
 <td>2875338</td>
-<td>After a large number of VNIs come up, Zebra consumes 100 percent CPU for 20-30 minutes.</td>
+<td>In a scaled EVPN MLAG configuration with 400 or more VNIs and 20K or more MAC addresses, when the peerlink is flapped causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service may undergo a restart. After FRR restarts or the CPU utilization settles down, the system works normally.</td>
 <td>4.2.1-4.4.0</td>
 <td></td>
 </tr>
@@ -72,12 +72,12 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 </tr>
 <tr>
 <td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
+To work around this issue:
 
-You can work around this issue with the following steps:
+1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
 
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
 
 $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 
@@ -92,7 +92,7 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
         }
    }
 
-3. Reboot the affected switch(es)</td>
+3. Reboot the affected switches.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
@@ -104,13 +104,6 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 </tr>
 <tr>
 <td>2862211</td>
-<td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
-To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2862210</td>
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
 To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
@@ -371,6 +364,12 @@ Fixed: 1.17-3+deb10u2</td>
 <td>2739402</td>
 <td>The destination MAC address of ERSPAN GRE packets is set to all zeros.</td>
 <td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2738625</td>
+<td>When you configure the switch with the minimum reserved VLAN of 150 and the internal VLANs are exhausted, the MLAG peer does not  forward the VLAN.</td>
+<td>3.7.15, 4.2.1-4.4.0</td>
 <td></td>
 </tr>
 <tr>

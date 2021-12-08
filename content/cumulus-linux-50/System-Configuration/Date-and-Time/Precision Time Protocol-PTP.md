@@ -99,7 +99,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-- You can onfigure only one address; either IPv4 or IPv6.
+- You can configure only one address; either IPv4 or IPv6.
 - For IPv6, set the trunk port transport mode to ipv6.
 {{%/notice%}}
 
@@ -123,7 +123,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-- You can onfigure only one address; either IPv4 or IPv6.
+- You can configure only one address; either IPv4 or IPv6.
 - For IPv6, set the trunk port transport mode to ipv6.
 {{%/notice%}}
 

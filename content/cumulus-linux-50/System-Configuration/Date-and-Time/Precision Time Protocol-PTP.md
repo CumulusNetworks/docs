@@ -88,7 +88,7 @@ The configuration writes to the `/etc/ptp4l.conf` file.
 cumulus@switch:~$ nv set service ptp 1 enable on
 cumulus@switch:~$ nv set bridge domain br_default
 cumulus@switch:~$ nv set bridge domain br_default type vlan-aware
-cumulus@switch:~$ nv set bridge domain br_default vlan 10-100
+cumulus@switch:~$ nv set bridge domain br_default vlan 10-30
 cumulus@switch:~$ nv set bridge domain bridge vlan 10 ptp enable on
 cumulus@switch:~$ nv set interface vlan10 type svi
 cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.2/24
@@ -112,7 +112,7 @@ The configuration writes to the `/etc/ptp4l.conf` file.
 cumulus@switch:~$ nv set service ptp 1 enable on
 cumulus@switch:~$ nv set bridge domain br_default
 cumulus@switch:~$ nv set bridge domain br_default type vlan-aware
-cumulus@switch:~$ nv set bridge domain br_default vlan 10-100
+cumulus@switch:~$ nv set bridge domain br_default vlan 10-30
 cumulus@switch:~$ nv set bridge domain bridge vlan 10 ptp enable on
 cumulus@switch:~$ nv set interface vlan10 type svi
 cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.2/24
@@ -850,10 +850,10 @@ Cumulus Linux monitors clock correction and path delay against thresholds, and g
 
 | Command | Description |
 | ----- | ----------- |
-| `nv set service ptp <instance> monitor min-offset-threshold` | Sets the minimum difference allowed in nanoseconds between the master and slave time. The default value is -50 nanoseconds.|
-| `nv set service ptp <instance> monitor max-offset-threshold` | Sets the maximum difference allowed in nanoseconds between the master and slave time. The default value is 50 nanoseconds.|
+| `nv set service ptp <instance> monitor min-offset-threshold` | Sets the minimum difference allowed in nanoseconds between the master and slave time. A log message generates if the offset goes below -50 nanoseconds.|
+| `nv set service ptp <instance> monitor max-offset-threshold` | Sets the maximum difference allowed in nanoseconds between the master and slave time. A log message generates if the offset goes above 50 nanoseconds.|
 | `nv set service ptp <instance> monitor path-delay-threshold` | Sets the mean time in nanoseconds that PTP packets take to travel between the master and slave.  The default value is 300 nanoseconds. |
-| `nv set service ptp <instance> monitor max-timestamp-entries` | Sets the maximum number of timestamp entries allowed. You can specify a value between 400 and 1000. The default value is 400 entries.|
+| `nv set service ptp <instance> monitor max-timestamp-entries` | Sets the maximum number of timestamp entries allowed. Cumulus Linux upddates the timestamps continuously. You can specify a value between 400 and 1000. The default value is 400 entries.|
 | `nv set service ptp <instance> monitor max-violation-log-sets` | Sets the maximum number of violation log sets allowed. You can specify a value between 8 and 128. The default value is 8 sets.|
 | `nv set service ptp <instance> monitor max-violation-log-entries` | Sets the maximum number of violation log entries allowed for each set. You can specify a value between 8 and 128. The default value is 8 entries.|
 | `nv set service ptp <instance> monitor violation-log-interval` | Sets the violation log interval in seconds. You can specify a value between 0 and 259200 seconds. The default value is 0 seconds.|

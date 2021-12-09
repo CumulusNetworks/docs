@@ -29,7 +29,7 @@ Cumulus Linux supports:
 - Multicast and mixed message mode. Cumulus Linux does *not* support PTP unicast only message mode.
 - End-to-End delay mechanism (not Peer-to-Peer).
 - Two-step clock correction mode, where PTP notes time when the packet goes out of the port and sends the time in a separate (follow-up) message. Cumulus Linux does not support one-step mode.
-<!--- Hardware time stamping for PTP packets. This allows PTP to avoid inaccuracies caused by message transfer delays and improves the accuracy of time synchronization.-->
+- Hardware time stamping for PTP packets. This allows PTP to avoid inaccuracies caused by message transfer delays and improves the accuracy of time synchronization.
 
 {{%notice note%}}
 - On NVIDIA switches with Spectrum-2 and later, PTP is not supported on 1G interfaces.
@@ -54,7 +54,7 @@ The basic configuration shown below uses the *default* PTP settings:
 - {{<link url="#acceptable-master-table" text="Announce messages from any master are accepted">}}.
 - {{<link url="#mixed-mode" text="Message Mode">}} is multicast.
 - The delay mechanism is End-to-End (E2E).
-<!-- - {{<link url="#one-step-and-two-step-mode" text="The hardware packet time stamping mode" >}} is two-step.-->
+- The hardware packet time stamping mode is two-step (the only mode that Cumulus Linux supports).
 
 To configure optional settings, such as the PTP domain, priority, transport mode, DSCP, and timers, see {{<link url="#optional-configuration" text="Optional Configuration">}} below.
 
@@ -176,7 +176,7 @@ summary_interval        0
 #
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 
 # Interfaces in which ptp should be enabled
@@ -195,6 +195,41 @@ delay_mechanism         E2E
 network_transport       UDPv4
 
 [swp2]
+logAnnounceInterval     0
+logSyncInterval         -3
+logMinDelayReqInterval  -3
+announceReceiptTimeout  3
+udp_ttl                 1
+masterOnly              0
+delay_mechanism         E2E
+network_transport       UDPv4
+```
+
+For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP adress of the VLAN interface:
+
+```
+[swp1]
+l2_mode                 trunk
+vlan_intf               vlan10
+src_ip                  10.1.10.2
+logAnnounceInterval     0
+logSyncInterval         -3
+logMinDelayReqInterval  -3
+announceReceiptTimeout  3
+udp_ttl                 1
+masterOnly              0
+delay_mechanism         E2E
+network_transport       UDPv4
+For a switch VLAN, add
+```
+
+For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP adress of the VLAN interface:
+
+```
+[swp2]
+l2_mode                 access
+vlan_intf               vlan10
+src_ip                  10.1.10.2
 logAnnounceInterval     0
 logSyncInterval         -3
 logMinDelayReqInterval  -3
@@ -450,7 +485,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 ...
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -510,7 +545,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 ...
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -562,7 +597,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 ...
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -611,7 +646,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 ...
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -675,7 +710,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 #
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 
 [acceptable_master_table]
@@ -692,7 +727,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 #
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 
 [acceptable_master_table]
@@ -706,7 +741,7 @@ To enable the PTP acceptable master table option for swp1, add `acceptable_maste
 ...
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -781,7 +816,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 ...
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -855,7 +890,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 ...
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -1073,7 +1108,7 @@ summary_interval        0
 #
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports

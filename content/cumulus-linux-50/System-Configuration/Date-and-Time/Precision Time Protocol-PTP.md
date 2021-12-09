@@ -853,7 +853,7 @@ Cumulus Linux monitors clock correction and path delay against thresholds, and g
 | `nv set service ptp <instance> monitor min-offset-threshold` | Sets the minimum difference allowed in nanoseconds between the master and slave time. The default value is -50 nanoseconds.|
 | `nv set service ptp <instance> monitor max-offset-threshold` | Sets the maximum difference allowed in nanoseconds between the master and slave time. The default value is 50 nanoseconds.|
 | `nv set service ptp <instance> monitor path-delay-threshold` | Sets the mean time in nanoseconds that PTP packets take to travel between the master and slave. The default value is 200 nanoseconds. |
-| `nv set service ptp <instance> monitor max-timestamp-entries` | Sets the maximum number of timestamp entries allowed. Cumulus Linux upddates the timestamps continuously. You can specify a value between 400 and 1000. The default value is 400 entries.|
+| `nv set service ptp <instance> monitor max-timestamp-entries` | Sets the maximum number of timestamp entries allowed. Cumulus Linux updates the timestamps continuously. You can specify a value between 400 and 1000. The default value is 400 entries.|
 | `nv set service ptp <instance> monitor max-violation-log-sets` | Sets the maximum number of violation log sets allowed. You can specify a value between 8 and 128. The default value is 8 sets.|
 | `nv set service ptp <instance> monitor max-violation-log-entries` | Sets the maximum number of violation log entries allowed for each set. You can specify a value between 8 and 128. The default value is 8 entries.|
 | `nv set service ptp <instance> monitor violation-log-interval` | Sets the violation log interval in seconds. You can specify a value between 0 and 259200 seconds. The default value is 0 seconds.|
@@ -1122,7 +1122,8 @@ path-delay-count  0                     Number of Path delay violations
 
 ### PTP Show Commands
 
-To see the list of NVUE show commands for PTP, run the `nv list-commands service ptp` command. To show the list of show commands for a PTP interface, run the `nv list-commands interface` command, then scroll to see PTP.
+- To see the list of NVUE show commands for PTP, run the `nv list-commands service ptp` command.
+- To show the list of show commands for a PTP interface, run the `nv list-commands interface` command, then scroll to see PTP.
 
 ```
 cumulus@switch:~$ nv list-commands service ptp

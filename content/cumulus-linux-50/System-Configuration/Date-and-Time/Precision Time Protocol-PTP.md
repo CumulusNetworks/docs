@@ -49,14 +49,14 @@ The basic configuration shown below uses the *default* PTP settings:
 - The PTP profile is default-1588; the profile in the IEEE 1588 standard. This is the only profile that Cumulus Linux supports.
 - {{<link url="#clock-domains" text="The PTP clock domain">}} is 0.
 - {{<link url="#ptp-priority" text="PTP Priority1 and Priority2">}} are both 128.
-- {{<link url="#transport-mode" text="The transport mode">}} is IPv4.
 - {{<link url="#dscp" text="The DSCP" >}} is 46 for both general and event messages.
-- {{<link url="#acceptable-master-table" text="Announce messages from any master are accepted">}}.
-- {{<link url="#mixed-mode" text="Message Mode">}} is multicast.
+- {{<link url="#Transport-mode" text="The PPT interface transport mode">}} is IPv4.
+- {{<link url="#Forced-master-mode" text="Announce messages from any master are accepted">}}.
+- {{<link url="#Message-mode" text="The PTP Interface Message Mode">}} is multicast.
 - The delay mechanism is End-to-End (E2E).
-- The hardware packet time stamping mode is two-step (the only mode that Cumulus Linux supports).
+- The hardware packet time stamping mode is two-step. Cumulus Linux does not support one-step mode.
 
-To configure optional settings, such as the PTP domain, priority, transport mode, DSCP, and timers, see {{<link url="#optional-configuration" text="Optional Configuration">}} below.
+To configure optional settings, such as the PTP domain, priority, and DSCP, the PTP interface transport mode and timers, and PTP monitoring, see the Optional Configuration sections below.
 
 {{%notice note%}}
 You can configure PTP with NVUE or by manually editing `/etc/cumulus/switchd.conf` file.
@@ -249,7 +249,7 @@ network_transport       UDPv4
 {{< /tab >}}
 {{< /tabs >}}
 
-## Optional Configuration
+## Optional Global PTP Configuration
 
 <!--### PTP Profiles
 
@@ -463,6 +463,8 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tab >}}
 {{< /tabs >}}
 
+## Optional PTP Interface Configuration
+
 ### Transport Mode
 
 By default, Cumulus Linux encapsulates PTP messages in UDP/IPV4 frames. To encapsulate PTP messages on an interface in UDP/IPV6 frames:
@@ -521,7 +523,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tab >}}
 {{< /tabs >}}
 
-### Forced Master
+### Forced Master Mode
 
 By default, PTP ports are in auto mode, where the BMC algorithm determines the state of the port.
 
@@ -571,7 +573,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tab >}}
 {{< /tabs >}}
 
-### Mixed Mode
+### Message Mode
 
 Cumulus Linux supports the following PTP message modes:
 - *Multicast*, where the ports subscribe to two multicast addresses, one for event messages with timestamps and the other for general messages without timestamps. The Sync message that the master sends is a multicast message; all slave ports receive this message because the slaves need the time from the master. The slave ports in turn generate a Delay Request to the master. This is a multicast message that the intended master for the message and other slave ports receive. Similarly, all slave ports in addition to the intended slave port receive the master's Delay Response. The slave ports receiving the unintended Delay Requests and Responses need to drop the packets. This can affect network bandwidth if there are hundreds of slave ports.
@@ -656,6 +658,78 @@ time_stamping           hardware
 [swp1]
 logAnnounceInterval     0
 logSyncInterval         -3
+logMinDelayReqInterval  -3
+announceReceiptTimeout  3
+udp_ttl                 20
+masterOnly              1
+delay_mechanism         E2E
+network_transport       UDPv4
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### PTP Interface Timers
+
+You can set the following timers for PTP messages.
+
+| Timer | Description |
+| ----- | ----------- |
+| `announce-interval` | The average interval between successive Announce messages. Specify the value as a power of two in seconds. |
+| `announce-timeout` | The number of announce intervals that have to occur without receiving an Announce message before a timeout occurs. <br>Make sure that this value is longer than the announce-interval in your network.|
+| `delay-req-interval` | The minimum average time interval allowed between successive Delay Required messages. |
+| `sync-interval` | The interval between PTP synchronization messages on an interface. Specify the value as a power of two in seconds. |
+
+- To set the timers with NVUE, run the `nv set interface <interface> ptp timers <timer> <value>` command.
+- To set the timers with Linux commands, edit the `/etc/ptp4l.conf` file and set the timers in the `Default interface options` section.
+
+{{< tabs "TabID542 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example sets the announce interval between successive Announce messages on swp1 to -1.
+
+```
+cumulus@switch:~$ nv set interface swp1 ptp timers announce-interval -1
+cumulus@switch:~$ nv config apply
+```
+
+The following example sets the mean sync-interval for multicast messages on swp1 to -5.
+
+```
+cumulus@switch:~$ nv set interface swp1 ptp timers sync-interval -5
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `Default interface options` section of the `/etc/ptp4l.conf` file:
+
+- To set the announce interval between successive Announce messages on swp1 to -1, change the `logAnnounceInterval` setting for the interface to -1.
+- To set the mean sync-interval for multicast messages on swp1 to -5, change the `logSyncInterval` setting for the interface to -5.
+
+After you edit the `/etc/ptp4l.conf` file, restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+# Default interface options
+#
+time_stamping           hardware
+
+# Interfaces in which ptp should be enabled
+# these interfaces should be routed ports
+# if an interface does not have an ip address
+# the ptp4l will not work as expected.
+
+[swp1]
+logAnnounceInterval     -1
+logSyncInterval         -5
 logMinDelayReqInterval  -3
 announceReceiptTimeout  3
 udp_ttl                 20
@@ -770,68 +844,54 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tab >}}
 {{< /tabs >}}
 
-### PTP Timers
+## Optional Monitor Configuration
 
-You can set the following timers for PTP messages.
+Cumulus Linux monitors clock correction and path delay against thresholds, and generates counters that show in the `nv show interface swp5 ptp` command output and log messages when PTP reaches the thresholds. You can configure the following monitor settings:
 
-| Timer | Description |
+| Command | Description |
 | ----- | ----------- |
-| `announce-interval` | The average interval between successive Announce messages. Specify the value as a power of two in seconds. |
-| `announce-timeout` | The number of announce intervals that have to occur without receiving an Announce message before a timeout occurs. <br>Make sure that this value is longer than the announce-interval in your network.|
-| `delay-req-interval` | The minimum average time interval allowed between successive Delay Required messages. |
-| `sync-interval` | The interval between PTP synchronization messages on an interface. Specify the value as a power of two in seconds. |
+| `nv set service ptp <instance> monitor min-offset-threshold` | Sets the minimum difference allowed in nanoseconds between the master and slave time. The default value is -50 nanoseconds.|
+| `nv set service ptp <instance> monitor max-offset-threshold` | Sets the maximum difference allowed in nanoseconds between the master and slave time. The default value is 50 nanoseconds.|
+| `nv set service ptp <instance> monitor path-delay-threshold` | Sets the mean time in nanoseconds that PTP packets take to travel between the master and slave.  The default value is 300 nanoseconds. |
+| `nv set service ptp <instance> monitor max-timestamp-entries` | Sets the maximum number of timestamp entries allowed. You can specify a value between 400 and 1000. The default value is 400 entries.|
+| `nv set service ptp <instance> monitor max-violation-log-sets` | Sets the maximum number of violation log sets allowed. You can specify a value between 8 and 128. The default value is 8 sets.|
+| `nv set service ptp <instance> monitor max-violation-log-entries` | Sets the maximum number of violation log entries allowed for each set. You can specify a value between 8 and 128. The default value is 8 entries.|
+| `nv set service ptp <instance> monitor violation-log-interval` | Sets the violation log interval in seconds. You can specify a value between 0 and 259200 seconds. The default value is 0 seconds.|
 
-- To set the timers with NVUE, run the `nv set interface <interface> ptp timers <timer> <value>` command.
-- To set the timers with Linux commands, edit the `/etc/ptp4l.conf` file and set the timers in the `Default interface options` section.
+The following examples set the path delay threshold to 300:
 
-{{< tabs "TabID542 ">}}
+{{< tabs "TabID482 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example sets the announce interval between successive Announce messages on swp1 to -1.
-
 ```
-cumulus@switch:~$ nv set interface swp1 ptp timers announce-interval -1
-cumulus@switch:~$ nv config apply
-```
-
-The following example sets the mean sync-interval for multicast messages on swp1 to -5.
-
-```
-cumulus@switch:~$ nv set interface swp1 ptp timers sync-interval -5
+cumulus@switch:~$ nv set service ptp 1 monitor path-delay-threshold 300
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `Default interface options` section of the `/etc/ptp4l.conf` file:
-
-- To set the announce interval between successive Announce messages on swp1 to -1, change the `logAnnounceInterval` setting for the interface to -1.
-- To set the mean sync-interval for multicast messages on swp1 to -5, change the `logSyncInterval` setting for the interface to -5.
-
-After you edit the `/etc/ptp4l.conf` file, restart the `ptp4l` service.
+Edit the `/etc/ptp4l.conf` file to change the `mean_path_delay_threshold` setting to 300, then restart the `ptp4l` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 ...
-# Default interface options
+global]
 #
-time_stamping           hardware
+# Default Data Set
+#
+slaveOnly               0
+priority1               128
+priority2               128
+domainNumber            0
 
-# Interfaces in which ptp should be enabled
-# these interfaces should be routed ports
-# if an interface does not have an ip address
-# the ptp4l will not work as expected.
+twoStepFlag             1
+dscp_event              46
+dscp_general            46
 
-[swp1]
-logAnnounceInterval     -1
-logSyncInterval         -5
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
-udp_ttl                 20
-masterOnly              1
-delay_mechanism         E2E
-network_transport       UDPv4
+offset_from_master_min_threshold   -50
+offset_from_master_max_threshold   50
+mean_path_delay_threshold          300
 ...
 ```
 
@@ -928,7 +988,7 @@ cumulus@switch:~$ sudo systemctl disable ptp4l.service phc2sys.service
 
 ## Troubleshooting
 
-NVUE provides several show commands for PTP. You can view the current PTP configuration, monitor violations, and see time attributes of the clock.
+### PTP Configuration and Status
 
 To show a summary of the PTP configuration on the switch, run the `nv show service ptp <instance>` command:
 
@@ -956,9 +1016,9 @@ monitor
 You can drill down with the following `nv show service ptp <instance>` commands:
 - `nv show service ptp <instance> acceptable-master` shows a collection of acceptable masters.
 - `nv show service ptp <instance> monitor` shows PTP monitor configuration.
-- `nv show service ptp <instance> current` shows local states learned PTP message exchange.
+- `nv show service ptp <instance> current` shows the local states learned during PTP message exchange.
 - `nv show service ptp <instance> clock-quality` shows the clock quality status.
-- `nv show service ptp <instance> parent` shows local states learned from PTP message exchange.
+- `nv show service ptp <instance> parent` shows the local states learned during PTP message exchange.
 - `nv show service ptp <instance> time-properties` shows the clock time attributes.
 
 To check configuration and counters for a PTP interface, run the `nv show interface <interface> ptp` command:
@@ -1006,55 +1066,6 @@ counters
   tx-sync                  21099                    Number of Sync messages transmitted
 ```
 
-You can check PTP logs and counters:
-- To show the collection of violation logs, run the `nv show service ptp 1 monitor timestamp-log` command.
-- To show PTP violations, run the `nv show service ptp 1 monitor violations` command.
-
-To see the list of NVUE show commands for PTP, run the `nv list-commands service ptp` command. To show the list of show commands for a PTP  interface, run the `nv list-commands interface` command.
-
-```
-cumulus@switch:~$ nv list-commands service ptp
-nv show service ptp
-nv show service ptp <instance-id>
-nv show service ptp <instance-id> acceptable-master
-nv show service ptp <instance-id> acceptable-master <clock-id>
-nv show service ptp <instance-id> monitor
-nv show service ptp <instance-id> monitor timestamp-log
-nv show service ptp <instance-id> monitor violations
-nv show service ptp <instance-id> monitor violations log
-nv show service ptp <instance-id> monitor violations log acceptable-master
-nv show service ptp <instance-id> monitor violations log forced-master
-nv show service ptp <instance-id> monitor violations log max-offset
-nv show service ptp <instance-id> monitor violations log min-offset
-nv show service ptp <instance-id> monitor violations log path-delay
-nv show service ptp <instance-id> current
-nv show service ptp <instance-id> clock-quality
-nv show service ptp <instance-id> parent
-nv show service ptp <instance-id> parent grandmaster-clock-quality
-nv show service ptp <instance-id> time-properties
-...
-```
-
-```
-cumulus@switch:~$ nv list-commands interface
-...
-nv set interface <interface-id> ptp
-nv set interface <interface-id> ptp timers
-nv set interface <interface-id> ptp timers announce-interval -3-4
-nv set interface <interface-id> ptp timers sync-interval -7-1
-nv set interface <interface-id> ptp timers delay-req-interval -7-6
-nv set interface <interface-id> ptp timers announce-timeout 2-10
-nv set interface <interface-id> ptp enable (on|off)
-nv set interface <interface-id> ptp instance <value>
-nv set interface <interface-id> ptp forced-master (on|off)
-nv set interface <interface-id> ptp acceptable-master (on|off)
-nv set interface <interface-id> ptp delay-mechanism end-to-end
-nv set interface <interface-id> ptp transport (ipv4|ipv6|802.3)
-nv set interface <interface-id> ptp ttl 1-255
-nv set interface <interface-id> ptp message-mode (multicast|unicast|mixed)
-...
-```
-
 To view PTP status information, including the delta in nanoseconds from the master clock:
 
 ```
@@ -1087,6 +1098,62 @@ sending: GET TIME_STATUS_NP
         lastGmPhaseChange          0x0000'0000000000000000.0000
         gmPresent                  true
         gmIdentity                 000200.fffe.000005
+```
+
+### PTP Violations
+
+You can check PTP violations:
+- To show the collection of violation logs, run the `nv show service ptp <instance> monitor timestamp-log` command.
+- To show PTP violations, run the `nv show service ptp <instance> monitor violations` command.
+
+The following example shows that there are no violations:
+
+```
+cumulus@switch:~$ nv show service ptp 1 monitor violations
+                  operational  applied  description
+----------------  -----------  -------  -----------------------------------------------
+last-max-offset                         Time at which last max offest violation occured
+last-min-offset                         Time at which last min offest violation occured
+last-path-delay                         Time at which last path delay violation occured
+max-offset-count  0                     Number of maximum offset violations
+min-offset-count  0                     Number of min offset violations
+path-delay-count  0                     Number of Path delay violations
+```
+
+### PTP Show Commands
+
+To see the list of NVUE show commands for PTP, run the `nv list-commands service ptp` command. To show the list of show commands for a PTP interface, run the `nv list-commands interface` command, then scroll to see PTP.
+
+```
+cumulus@switch:~$ nv list-commands service ptp
+nv show service ptp
+nv show service ptp <instance-id>
+nv show service ptp <instance-id> acceptable-master
+nv show service ptp <instance-id> acceptable-master <clock-id>
+nv show service ptp <instance-id> monitor
+nv show service ptp <instance-id> monitor timestamp-log
+nv show service ptp <instance-id> monitor violations
+nv show service ptp <instance-id> monitor violations log
+nv show service ptp <instance-id> monitor violations log acceptable-master
+nv show service ptp <instance-id> monitor violations log forced-master
+nv show service ptp <instance-id> monitor violations log max-offset
+nv show service ptp <instance-id> monitor violations log min-offset
+nv show service ptp <instance-id> monitor violations log path-delay
+nv show service ptp <instance-id> current
+nv show service ptp <instance-id> clock-quality
+nv show service ptp <instance-id> parent
+nv show service ptp <instance-id> parent grandmaster-clock-quality
+nv show service ptp <instance-id> time-properties
+...
+```
+
+```
+cumulus@switch:~$ nv list-commands interface
+...
+nv show interface <interface-id> ptp
+nv show interface <interface-id> ptp timers
+nv show interface <interface-id> ptp counters
+...
 ```
 
 ## Example Configuration

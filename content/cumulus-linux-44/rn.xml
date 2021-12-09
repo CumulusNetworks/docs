@@ -27,6 +27,12 @@ Fixed: 3.42.1-1+deb10u4</td>
 <td></td>
 </tr>
 <tr>
+<td>2875337</td>
+<td>In a scaled EVPN MLAG configuration with 400 or more VNIs and 20K or more MAC addresses, when the peerlink is flapped causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service may undergo a restart. After FRR restarts or the CPU utilization settles down, the system works normally.</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2875301</td>
 <td>When an IPv4 address is not configured on a tenant VRF loopback interface, the {{switchd}} process slowly leaks memory, which results in unresolved next hops. 
 To work around this issue, configure an IPv4 address on all VRF interfaces.</td>

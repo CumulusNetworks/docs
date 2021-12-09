@@ -928,33 +928,89 @@ cumulus@switch:~$ sudo systemctl disable ptp4l.service phc2sys.service
 
 ## Troubleshooting
 
-NVUE provides several show commands for PTP. You can view the current PTP configuration, monitor violations, and see time attributes of the clock. For example, to show a summary of the PTP configuration on the switch, run the `nv show service ptp <instance>` command:
+NVUE provides several show commands for PTP. You can view the current PTP configuration, monitor violations, and see time attributes of the clock.
+
+To show a summary of the PTP configuration on the switch, run the `nv show service ptp <instance>` command:
 
 ```
 cumulus@switch:~$ nv show service ptp 1
 
 ---------------------------  -----------  -------  --------------------------------------------------------------------
-enable                                    on       Turn the feature 'on' or 'off'.  The default is 'off'.
-domain                                    0        Domain number of the current syntonization
-ip-dscp                                   46       Sets the Diffserv code point for all PTP packets originated locally.
-priority1                                 128      Priority1 attribute of the local clock
-priority2                                 128      Priority2 attribute of the local clock
-two-step                                  on       Determines if the Clock is a 2 step clock
-[acceptable-master]                                Collection of acceptable masters
+enable                       on           on       Turn the feature 'on' or 'off'.  The default is 'off'.
+domain                       0            0        Domain number of the current syntonization
+ip-dscp                      46           46       Sets the Diffserv code point for all PTP packets originated locally.
+priority1                    128          128      Priority1 attribute of the local clock
+priority2                    128          128      Priority2 attribute of the local clock
+two-step                     on           on       Determines if the Clock is a 2 step clock
 monitor
-  max-offset-threshold                    50       Maximum offset threshold in nano seconds
+  max-offset-threshold       50           50       Maximum offset threshold in nano seconds
   max-timestamp-entries                   400      Maximum timestamp entries allowed
   max-violation-log-entries               8        Maximum violation log entries per set
   max-violation-log-sets                  8        Maximum violation logs sets allowed
-  min-offset-threshold                    -50      Minimum offset threshold in nano seconds
-  path-delay-threshold                    200      Path delay threshold in nano seconds
+  min-offset-threshold       -50          -50      Minimum offset threshold in nano seconds
+  path-delay-threshold       200          200      Path delay threshold in nano seconds
   violation-log-interval                  0        violation log intervals in seconds
 ...
 ```
 
-To see 
+You can drill down with the following `nv show service ptp <instance>` commands:
+- `nv show service ptp <instance> acceptable-master` shows a collection of acceptable masters.
+- `nv show service ptp <instance> monitor` shows PTP monitor configuration.
+- `nv show service ptp <instance> current` shows local states learned PTP message exchange.
+- `nv show service ptp <instance> clock-quality` shows the clock quality status.
+- `nv show service ptp <instance> parent` shows local states learned from PTP message exchange.
+- `nv show service ptp <instance> time-properties` shows the clock time attributes.
 
-To see the list of NVUE show commands for PTP, run `nv list-commands service ptp`:
+To check configuration and counters for a PTP interface, run the `nv show interface <interface> ptp` command:
+
+```
+cumulus@leaf03:mgmt:~$ nv show interface swp1 ptp
+                           operational  applied     description
+-------------------------  -----------  ----------  ----------------------------------------------------------------------
+enable                                  on          Turn the feature 'on' or 'off'.  The default is 'off'.
+acceptable-master                       off         Determines if acceptable master check is enabled for this interface.
+delay-mechanism            end-to-end   end-to-end  Mode in which PTP message is transmitted.
+forced-master              off          off         Configures PTP interfaces to forced master state.
+instance                                1           PTP instance number.
+message-mode                            multicast   Mode in which PTP delay message is transmitted.
+transport                  ipv4         ipv4        Transport method for the PTP messages.
+ttl                        1            1           Maximum number of hops the PTP messages can make before it gets dro...
+timers
+  announce-interval        0            0           Mean time interval between successive Announce messages.  It's spec...
+  announce-timeout         3            3           The number of announceIntervals that have to pass without receipt o...
+  delay-req-interval       -3           -3          The minimum permitted mean time interval between successive Delay R...
+  sync-interval            -3           -3          The mean SyncInterval for multicast messages.  It's specified as a...
+peer-mean-path-delay       0                        An estimate of the current one-way propagation delay on the link wh...
+port-state                 master                   State of the port
+protocol-version           2                        The PTP version in use on the port
+counters
+  rx-announce              0                        Number of Announce messages received
+  rx-delay-req             0                        Number of Delay Request messages received
+  rx-delay-resp            0                        Number of Delay response messages received
+  rx-delay-resp-follow-up  0                        Number of Delay response follow upmessages received
+  rx-follow-up             0                        Number of Follow up messages received
+  rx-management            0                        Number of Management messages received
+  rx-peer-delay-req        0                        Number of Peer Delay Request messages received
+  rx-peer-delay-resp       0                        Number of Peer Delay Response messages received
+  rx-signaling             0                        Number of singnaling messages received
+  rx-sync                  0                        Number of Sync messages received
+  tx-announce              2639                     Number of Announce messages transmitted
+  tx-delay-req             0                        Number of Delay Request messages transmitted
+  tx-delay-resp            0                        Number of Delay response messages transmitted
+  tx-delay-resp-follow-up  0                        Number of Delay response follow upmessages transmitted
+  tx-follow-up             21099                    Number of Follow up messages transmitted
+  tx-management            0                        Number of Management messages transmitted
+  tx-peer-delay-req        0                        Number of Peer Delay Request messages transmitted
+  tx-peer-delay-resp       0                        Number of Peer Delay Response messages transmitted
+  tx-signaling             0                        Number of singnaling messages transmitted
+  tx-sync                  21099                    Number of Sync messages transmitted
+```
+
+You can check PTP logs and counters:
+- To show the collection of violation logs, run the `nv show service ptp 1 monitor timestamp-log` command.
+- To show PTP violations, run the `nv show service ptp 1 monitor violations` command.
+
+To see the list of NVUE show commands for PTP, run the `nv list-commands service ptp` command. To show the list of show commands for a PTP  interface, run the `nv list-commands interface` command.
 
 ```
 cumulus@switch:~$ nv list-commands service ptp
@@ -976,6 +1032,26 @@ nv show service ptp <instance-id> clock-quality
 nv show service ptp <instance-id> parent
 nv show service ptp <instance-id> parent grandmaster-clock-quality
 nv show service ptp <instance-id> time-properties
+...
+```
+
+```
+cumulus@switch:~$ nv list-commands interface
+...
+nv set interface <interface-id> ptp
+nv set interface <interface-id> ptp timers
+nv set interface <interface-id> ptp timers announce-interval -3-4
+nv set interface <interface-id> ptp timers sync-interval -7-1
+nv set interface <interface-id> ptp timers delay-req-interval -7-6
+nv set interface <interface-id> ptp timers announce-timeout 2-10
+nv set interface <interface-id> ptp enable (on|off)
+nv set interface <interface-id> ptp instance <value>
+nv set interface <interface-id> ptp forced-master (on|off)
+nv set interface <interface-id> ptp acceptable-master (on|off)
+nv set interface <interface-id> ptp delay-mechanism end-to-end
+nv set interface <interface-id> ptp transport (ipv4|ipv6|802.3)
+nv set interface <interface-id> ptp ttl 1-255
+nv set interface <interface-id> ptp message-mode (multicast|unicast|mixed)
 ...
 ```
 

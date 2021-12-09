@@ -1086,6 +1086,14 @@ To work around this issue, change the value of arp_ignore to 2. See &lt;a href="
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2877796</td>
+<td>CVE-2021-43527: The NSS package is vulnerable to a heap overflow when verifying DSA/RSA-PSS DER-encoded signatures.
+Vulnerable: &lt;= 3.42.1-1+deb10u3
+Fixed: 3.42.1-1+deb10u4</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2873322</td>
 <td>CVE-2020-21913: International Components for Unicode (ICU-20850) v66.1 was discovered to contain a use after free bug in the pkg_createWithAssemblyCode function in the file tools/pkgdata/pkgdata.cpp.</td>
 <td>4.0.0-4.4.0</td>
@@ -1118,7 +1126,7 @@ Fixed: 1.1.1d-0+deb10u7</td>
 </tr>
 <tr>
 <td>2755614</td>
-<td>Host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry when {{route_preferred_over_neigh}} is set to {{FALSE}} in {{/etc/cumulus/switchd.conf}} </td>
+<td>When {{route_preferred_over_neigh}} is set to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
 </tr>
@@ -3506,6 +3514,12 @@ To work around this issue, run the {{sudo systemctl restart lldpd.service}} comm
 <td></td>
 </tr>
 <tr>
+<td>2544914</td>
+<td>On the NVIDIA SN3700C switch, when you split ports from 100G to 2x50G, {{switchd}} fails to start.</td>
+<td>4.0.0-4.0.1</td>
+<td>4.1.0-4.4.0</td>
+</tr>
+<tr>
 <td>2544904</td>
 <td>After you delete an IPv6 numbered BGP peer group neighbor, Cumulus Linux might continue to send route advertisements.
 To work around this issue, restart FRR after removing the IPv6 numbered configuration.</td>
@@ -4306,6 +4320,39 @@ Fixed: 5.8.0-cl3u11, 5.8.0-cl4u4</td>
 <td>3.7.6</td>
 </tr>
 <tr>
+<td>2551554</td>
+<td>Customers running security scans on Cumulus Linux 4 may encounter the listing of an incorrect version of u-boot 2014.10+dfsg1-4 with the following vulnerabilities:
+
+CVE-2017-3225
+CVE-2017-3226
+CVE-2018-18440
+CVE-2019-11690
+CVE-2019-13103
+CVE-2019-14192
+CVE-2019-14193
+CVE-2019-14194
+CVE-2019-14195
+CVE-2019-14196
+CVE-2019-14197
+CVE-2019-14198
+CVE-2019-14199
+CVE-2019-14200
+CVE-2019-14201
+CVE-2019-14202
+CVE-2019-14203
+CVE-2019-14204
+CVE-2020-10648
+
+The u-boot-tools package is not installed on the switch by default, but is available in the repository for optional installation.  On Cumulus Linux 4, the version is at least 2019.01+dfsg-7.  However, the older versions available for optional installation on Cumulus Linux 3 may be vulnerable.
+
+According to https://security-tracker.debian.org/tracker/source-package/u-boot , all except the following are fixed in 2019.01+dfsg-7:
+
+CVE-2017-3225: https://security-tracker.debian.org/tracker/CVE-2017-3225 says "Negligible security impact".
+CVE-2017-3226: https://security-tracker.debian.org/tracker/CVE-2017-3226 says "Negligible security impact".
+CVE-2018-18440: https://security-tracker.debian.org/tracker/CVE-2018-18440 says "No security impact as supported/packaged in Debian".</td>
+<td>3.7.12-3.7.15</td>
+</tr>
+<tr>
 <td>2551288</td>
 <td>When you remove BFD configuration by editing the {{/etc/frr/frr.conf}} file and restarting FRR, you see a traceback.
 To work around this issue, either use NCLU or vtysh commands to remove the BFD configuration, or restart FRR with the new {{/etc/frr/frr.conf}} file.</td>
@@ -4341,6 +4388,15 @@ To work around this issue, reboot the leaf switch or restart {{switchd}}.</td>
 Dec 20 08:43:27 netflow-nms sfcapd[3991]: SFLOW: readFlowSample_header() undefined headerProtocol = 0
 
 </td>
+<td>3.7.11-3.7.15</td>
+</tr>
+<tr>
+<td>2547349</td>
+<td>When you change an interface IP address, then change it back, static routes are misprogrammed.
+One of the following actions recovers the routes:
+- Bounce both layer 3 interfaces
+- Remove or add static routes in FRR
+- Restart FRR</td>
 <td>3.7.11-3.7.15</td>
 </tr>
 <tr>
@@ -4394,6 +4450,19 @@ Fixed versions: 4.9.3-1~deb10u1 on Cumulus Linux 4, 4.9.3-1~deb8u1 on Cumulus Li
 <td>2544814</td>
 <td>If a router MAC address changes on a VTEP, other VTEPs might still point to the previous router MAC address.</td>
 <td>3.7.10</td>
+</tr>
+<tr>
+<td>2544671</td>
+<td>Package : sudo
+CVE ID : CVE-2019-14287
+Debian Bug : 942322
+Joe Vennix discovered that sudo, a program designed to provide limited super user privileges to specific users, when configured to allow a user to run commands as an arbitrary user via the ALL keyword in a Runas specification, allows to run commands as root by specifying the user ID -1 or 4294967295. This could allow a user with sufficient sudo privileges to run commands as root even if the Runas specification explicitly disallows root access.
+Details can be found in the upstream advisory at https://www.sudo.ws/alerts/minus_1_uid.html .
+We recommend that you upgrade your sudo packages. For the detailed security status of sudo please refer to its security tracker page at: https://security-tracker.debian.org/tracker/sudo
+Vulnerable versions: &lt; 1.8.27-1+deb10u1
+Fixed versions: &gt;= 1.8.27-1+deb10u1
+To work around this iisue, disable (comment out) any sudoers entries in {{/etc/sudoers}} or files in {{/etc/sudoers.d}} that have entries with {{!root}} in them. Only root or other users with a uid of 0 that are affected.</td>
+<td>3.7.9-3.7.15</td>
 </tr>
 <tr>
 <td>2544608</td>

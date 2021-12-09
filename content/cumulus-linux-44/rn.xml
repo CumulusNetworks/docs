@@ -7,6 +7,39 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2879712</td>
+<td>TACACS+ and RADIUS package installation from the CumulusLinux-4.4-latest distribution on apt.cumulusnetworks.com fails because package metadata in the preinstalled {{cumulus-local-apt-archive}} package is incorrect.  The SHA512 checksum causes a hash sum mismatch.</td>
+<td>4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2877796</td>
+<td>CVE-2021-43527: The NSS package is vulnerable to a heap overflow when verifying DSA/RSA-PSS DER-encoded signatures.
+Vulnerable: &lt;= 3.42.1-1+deb10u3
+Fixed: 3.42.1-1+deb10u4</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2875338</td>
+<td>In a scaled EVPN MLAG configuration with 400 or more VNIs and 20K or more MAC addresses, when the peerlink is flapped causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service may undergo a restart. After FRR restarts or the CPU utilization settles down, the system works normally.</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2875337</td>
+<td>In a scaled EVPN MLAG configuration with 400 or more VNIs and 20K or more MAC addresses, when the peerlink is flapped causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service may undergo a restart. After FRR restarts or the CPU utilization settles down, the system works normally.</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2875301</td>
+<td>When an IPv4 address is not configured on a tenant VRF loopback interface, the {{switchd}} process slowly leaks memory, which results in unresolved next hops. 
+To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2875296</td>
 <td>On the Mellanox Spectrum-2 switches, after running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
 To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
@@ -32,6 +65,18 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td></td>
 </tr>
 <tr>
+<td>2867156</td>
+<td>TACACS+ client package installation from the CumulusLinux-4.4-latest distribution on apt.cumulusnetworks.com fails because package metadata in the preinstalled {{cumulus-local-apt-archive}} package is incorrect, which causes a hash sum mismatch.</td>
+<td>4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2867058</td>
+<td>On the Dell Z9264F-ON switch, interfaces that use the QSFP28 module remain down after you restart {{switchd}}.</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2866097</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.0</td>
@@ -45,12 +90,12 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 </tr>
 <tr>
 <td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
+To work around this issue:
 
-You can work around this issue with the following steps:
+1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
 
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
 
 $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 
@@ -65,7 +110,20 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
         }
    }
 
-3. Reboot the affected switch(es)</td>
+3. Reboot the affected switches.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2866080</td>
+<td>On the Maverick S4148T switch with MLAG, Cumulus Linux drops LACP, ARP, LLDP and BGP traffic.</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2862211</td>
+<td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
+To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
@@ -77,8 +135,38 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td></td>
 </tr>
 <tr>
+<td>2854787</td>
+<td>An unexpected software system shutdown can occur due to a thermal zones issue in the {{hw-management}} package. The following message might appear in {{/var/log/syslog}} before the shutdown:
+
+thermal thermal_zoneX: critical temperature reached (33 C), shutting down
+</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2854784</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2853630</td>
+<td>In an MLAG and VXLAN Active Active configuration, when you add a new VNI on the primary MLAG switch only, you see packet loss over the old VNI. </td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2853536</td>
+<td>MLAG between Cumulus Linux and Arista devices might result in some links being suspended by the Arista devices with the error {{LACP partner validation failed}}.
+This happens when you use the same LACP port ID for more than one bond member on the Cumulus Linux switch.
+To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance-xor}} command on the bond on the Cumulus Linux switch. For proper operation, you need to make the equivalent change on the device on the other side of the link.</td>
+<td>4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2848219</td>
+<td>On Dell S3048 switches configured for 802.1x auth, you might see file descriptor exhaustion with Hostapd messages indicating that Cumulus Linux is unable to open {{/dev/urandom}} or write out the transient ACL files.
+To work around this issue, reboot the switch.</td>
 <td>4.3.0-4.4.0</td>
 <td></td>
 </tr>
@@ -88,6 +176,12 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u2
 Fixed: 4.1.0+git191117-2~deb10u3</td>
 <td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2845531</td>
+<td>If you update the MAC address of an SVI when the SVI is in a {{protodown}} state (for example, when no bridge ports that carry this VNI are operationally up or if the MAC address of the SVI's parent bridge changes), {{clagd}} does not notice the change. The MLAG peer incorrectly maintains a PERMANENT neighbor entry for the SVI IP that points to the old MAC address.</td>
+<td>4.2.1-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -109,6 +203,12 @@ Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <tr>
 <td>2839140</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2837378</td>
+<td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0-4.4.0</td>
 <td></td>
 </tr>
@@ -137,6 +237,24 @@ To work around this issue, run the {{sudo systemctl restart snmpd.service}} comm
 <td>2816069</td>
 <td>On the EdgeCore AS7326 switch, unicast ARP requests are not forwarded to the control plane.</td>
 <td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815646</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815645</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815592</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -169,6 +287,19 @@ kernel: sx_core: __sx_core_post_send: Cannot send packet on dqn [1] sdq stuck
 <td>2799568</td>
 <td>When you add or remove a global unicast address from an interface, BGP does not update the global next hop advertised to the unnumbered BGP peer.</td>
 <td>4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2798406</td>
+<td>If an MLAG failure of an EVPN Active-Active VTEP pair occurs after you disable EVPN Advertise Primary IP Address, remote VTEPs might not be able to install the anycast RMAC of the failed MLAG peers or the related bridge FDB entry.
+To work around this issue, do not disable EVPN Advertise Primary IP Address, which is enabled by default when you use {{address-virtual}} for layer 3 VNI SVI interfaces.</td>
+<td>4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2794766</td>
+<td>The Mellanox 3700C switch reports a slow memory leak in sx_sdk. Memory increases by about 240B/hour and does not free up.</td>
+<td>4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -246,7 +377,7 @@ This affects failed neighbor entries on routed interfaces that are not SVIs.</td
 </tr>
 <tr>
 <td>2755614</td>
-<td>Host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry when {{route_preferred_over_neigh}} is set to {{FALSE}} in {{/etc/cumulus/switchd.conf}} </td>
+<td>When {{route_preferred_over_neigh}} is set to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
 </tr>
@@ -279,6 +410,12 @@ CVE-2020-27153: a double free flaw in the disconnect_cb() routine in the gattool
 Vulnerable: &lt;= 5.50-1.2~deb10u1
 Fixed: 5.50-1.2~deb10u2</td>
 <td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2752330</td>
+<td>With BGP and layer 2 forwarding, Smart System Manager warm boot mode can cause packet loss.</td>
+<td>4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -340,6 +477,12 @@ Fixed: 1.17-3+deb10u2</td>
 <td>2739402</td>
 <td>The destination MAC address of ERSPAN GRE packets is set to all zeros.</td>
 <td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2738625</td>
+<td>When you configure the switch with the minimum reserved VLAN of 150 and the internal VLANs are exhausted, the MLAG peer does not  forward the VLAN.</td>
+<td>3.7.15, 4.2.1-4.4.0</td>
 <td></td>
 </tr>
 <tr>

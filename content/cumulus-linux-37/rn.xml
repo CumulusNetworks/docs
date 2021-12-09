@@ -7,6 +7,47 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2885241</td>
+<td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
+Vulnerable: &lt;= 3.26-1+debu8u13
+Fixed: 3.26-1+debu8u14</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885240</td>
+<td>CVE-2021-33285 CVE-2021-33286 CVE-2021-33287 CVE-2021-33289 CVE-2021-35266 CVE-2021-35267 CVE-2021-35268 CVE-2021-35269 CVE-2021-39251 CVE-2021-39252 CVE-2021-39253 CVE-2021-39254 CVE-2021-39255 CVE-2021-39256 CVE-2021-39257 CVE-2021-39258 CVE-2021-39259 CVE-2021-39260 CVE-2021-39261 CVE-2021-39262 CVE-2021-39263: Several vulnerabilities were discovered in NTFS-3G, a read-write NTFS driver for FUSE. A local user can take advantage of these flaws for local root privilege escalation.
+Vulnerable: &lt;= 2014.2.15AR.2-1+deb8u4
+Fixed: 2014.2.15AR.2-1+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885239</td>
+<td>CVE-2021-43618: GNU Multiple Precision Arithmetic Library (GMP) through 6.2.1 has an mpz/inp_raw.c integer overflow and resultant buffer overflow via crafted input, leading to a segmentation fault on 32-bit platforms.
+Vulnerable: 6.0.0+dfsg-6 on armel platform
+Fixed: 6.0.0+dfsg-6+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885238</td>
+<td>The following vulnerabilities have been announced in bluez, the Linux Bluetooth protocol stack:
+CVE-2019-8921: SDP infoleak; the vulnerability lies in the handling of a SVC_ATTR_REQ by the SDP implementation of BlueZ. By crafting a malicious CSTATE, it is possible to trick the server into returning more bytes than the buffer actually holds, resulting in leaking arbitrary heap data.
+CVE-2019-8922: SDP Heap Overflow; this vulnerability lies in the SDP protocol handling of attribute requests as well. By requesting a huge number of attributes at the same time, an attacker can overflow the static buffer provided to hold the response.
+CVE-2021-41229: sdp_cstate_alloc_buf allocates memory which will always be hung in the singly linked list of cstates and will not be freed. This will cause a memory leak over time. The data can be a very large object, which can be caused by an attacker continuously sending sdp packets and this may cause the service of the target device to crash.
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u3
+Fixed: 5.43-2+deb9u2~deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2879645</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2873186</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.0</td>
@@ -38,12 +79,12 @@
 </tr>
 <tr>
 <td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
+To work around this issue:
 
-You can work around this issue with the following steps:
+1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
 
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
 
 $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 
@@ -58,7 +99,7 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
         }
    }
 
-3. Reboot the affected switch(es)</td>
+3. Reboot the affected switches.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
@@ -67,6 +108,27 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2862214</td>
+<td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
+<td>3.7.14.2-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2862211</td>
+<td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
+To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -123,6 +185,12 @@ Fixed: 3.4.2-1+deb8u11</td>
 Vulnerable: &lt;= 1:9.9.5.dfsg-9+deb8u22
 Fixed: 1:9.9.5.dfsg-9+deb8u23</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2847179</td>
+<td>When you disable bridge learning on an 802.1X interface, the MLAG peer no longer learns the host MAC address even though it receives traffic from that MAC.</td>
+<td>3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -248,6 +316,24 @@ MemoryError
 <td></td>
 </tr>
 <tr>
+<td>2815646</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815645</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815592</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2813826</td>
 <td>Two security issues were found in TIFF, a widely used format for storing image data, as follows:
 CVE-2020-19131: Buffer Overflow in LibTiff allows attackers to cause a denial of service via the "invertImage()" function in the component "tiffcrop".
@@ -266,6 +352,12 @@ CVE-2021-40438: A crafted request uri-path can cause mod_proxy to forward the re
 Vulnerable: &lt;= 2.4.10-10+deb8u18
 Fixed: 2.4.10-10+deb8u19</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2803044</td>
+<td>In an EVPN configuration with IP or MAC mobility, higher MM EVPN routes do not remove the old ARP entries during VIP migration between VTEP racks.</td>
+<td>3.7.14.2-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -368,6 +460,12 @@ Fixed: 2.8.9dev1-2+deb8u2</td>
 Vulnerable: &lt;= 1.0.25-9.1+deb8u5
 Fixed: 1.0.25-9.1+deb8u6</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2738625</td>
+<td>When you configure the switch with the minimum reserved VLAN of 150 and the internal VLANs are exhausted, the MLAG peer does not  forward the VLAN.</td>
+<td>3.7.15, 4.2.1-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -939,6 +1037,40 @@ To work around this issue, remove, then add back the VRRP configuration with NCL
 <td></td>
 </tr>
 <tr>
+<td>2551554</td>
+<td>Customers running security scans on Cumulus Linux 4 may encounter the listing of an incorrect version of u-boot 2014.10+dfsg1-4 with the following vulnerabilities:
+
+CVE-2017-3225
+CVE-2017-3226
+CVE-2018-18440
+CVE-2019-11690
+CVE-2019-13103
+CVE-2019-14192
+CVE-2019-14193
+CVE-2019-14194
+CVE-2019-14195
+CVE-2019-14196
+CVE-2019-14197
+CVE-2019-14198
+CVE-2019-14199
+CVE-2019-14200
+CVE-2019-14201
+CVE-2019-14202
+CVE-2019-14203
+CVE-2019-14204
+CVE-2020-10648
+
+The u-boot-tools package is not installed on the switch by default, but is available in the repository for optional installation.  On Cumulus Linux 4, the version is at least 2019.01+dfsg-7.  However, the older versions available for optional installation on Cumulus Linux 3 may be vulnerable.
+
+According to https://security-tracker.debian.org/tracker/source-package/u-boot , all except the following are fixed in 2019.01+dfsg-7:
+
+CVE-2017-3225: https://security-tracker.debian.org/tracker/CVE-2017-3225 says "Negligible security impact".
+CVE-2017-3226: https://security-tracker.debian.org/tracker/CVE-2017-3226 says "Negligible security impact".
+CVE-2018-18440: https://security-tracker.debian.org/tracker/CVE-2018-18440 says "No security impact as supported/packaged in Debian".</td>
+<td>3.7.12-3.7.15</td>
+<td>4.0.0-4.4.0</td>
+</tr>
+<tr>
 <td>2551305</td>
 <td>The {{net show configuration}} command provides the wrong {{net add}} command for ACL under the VLAN interface.
 
@@ -1270,6 +1402,16 @@ Dec 20 08:43:27 netflow-nms sfcapd[3991]: SFLOW: readFlowSample_header() undefin
 <td>4.0.0-4.4.0</td>
 </tr>
 <tr>
+<td>2547349</td>
+<td>When you change an interface IP address, then change it back, static routes are misprogrammed.
+One of the following actions recovers the routes:
+- Bounce both layer 3 interfaces
+- Remove or add static routes in FRR
+- Restart FRR</td>
+<td>3.7.11-3.7.15</td>
+<td>4.0.0-4.4.0</td>
+</tr>
+<tr>
 <td>2547123</td>
 <td>On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</td>
 <td>3.7.11-4.1.1</td>
@@ -1472,6 +1614,20 @@ To work around this issue, run the {{sudo systemctl restart lldpd.service}} comm
 To work around this issue, restart FRR after removing the IPv6 numbered configuration.</td>
 <td>3.7.9-4.1.1</td>
 <td>4.2.0-4.4.0</td>
+</tr>
+<tr>
+<td>2544671</td>
+<td>Package : sudo
+CVE ID : CVE-2019-14287
+Debian Bug : 942322
+Joe Vennix discovered that sudo, a program designed to provide limited super user privileges to specific users, when configured to allow a user to run commands as an arbitrary user via the ALL keyword in a Runas specification, allows to run commands as root by specifying the user ID -1 or 4294967295. This could allow a user with sufficient sudo privileges to run commands as root even if the Runas specification explicitly disallows root access.
+Details can be found in the upstream advisory at https://www.sudo.ws/alerts/minus_1_uid.html .
+We recommend that you upgrade your sudo packages. For the detailed security status of sudo please refer to its security tracker page at: https://security-tracker.debian.org/tracker/sudo
+Vulnerable versions: &lt; 1.8.27-1+deb10u1
+Fixed versions: &gt;= 1.8.27-1+deb10u1
+To work around this iisue, disable (comment out) any sudoers entries in {{/etc/sudoers}} or files in {{/etc/sudoers.d}} that have entries with {{!root}} in them. Only root or other users with a uid of 0 that are affected.</td>
+<td>3.7.9-3.7.15</td>
+<td>4.0.0-4.4.0</td>
 </tr>
 <tr>
 <td>2544556</td>
@@ -2493,6 +2649,41 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2885241</td>
+<td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
+Vulnerable: &lt;= 3.26-1+debu8u13
+Fixed: 3.26-1+debu8u14</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885240</td>
+<td>CVE-2021-33285 CVE-2021-33286 CVE-2021-33287 CVE-2021-33289 CVE-2021-35266 CVE-2021-35267 CVE-2021-35268 CVE-2021-35269 CVE-2021-39251 CVE-2021-39252 CVE-2021-39253 CVE-2021-39254 CVE-2021-39255 CVE-2021-39256 CVE-2021-39257 CVE-2021-39258 CVE-2021-39259 CVE-2021-39260 CVE-2021-39261 CVE-2021-39262 CVE-2021-39263: Several vulnerabilities were discovered in NTFS-3G, a read-write NTFS driver for FUSE. A local user can take advantage of these flaws for local root privilege escalation.
+Vulnerable: &lt;= 2014.2.15AR.2-1+deb8u4
+Fixed: 2014.2.15AR.2-1+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885239</td>
+<td>CVE-2021-43618: GNU Multiple Precision Arithmetic Library (GMP) through 6.2.1 has an mpz/inp_raw.c integer overflow and resultant buffer overflow via crafted input, leading to a segmentation fault on 32-bit platforms.
+Vulnerable: 6.0.0+dfsg-6 on armel platform
+Fixed: 6.0.0+dfsg-6+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885238</td>
+<td>The following vulnerabilities have been announced in bluez, the Linux Bluetooth protocol stack:
+CVE-2019-8921: SDP infoleak; the vulnerability lies in the handling of a SVC_ATTR_REQ by the SDP implementation of BlueZ. By crafting a malicious CSTATE, it is possible to trick the server into returning more bytes than the buffer actually holds, resulting in leaking arbitrary heap data.
+CVE-2019-8922: SDP Heap Overflow; this vulnerability lies in the SDP protocol handling of attribute requests as well. By requesting a huge number of attributes at the same time, an attacker can overflow the static buffer provided to hold the response.
+CVE-2021-41229: sdp_cstate_alloc_buf allocates memory which will always be hung in the singly linked list of cstates and will not be freed. This will cause a memory leak over time. The data can be a very large object, which can be caused by an attacker continuously sending sdp packets and this may cause the service of the target device to crash.
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u3
+Fixed: 5.43-2+deb9u2~deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2873186</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.0</td>
@@ -2524,12 +2715,12 @@ These messages are harmless and can be ignored.</td>
 </tr>
 <tr>
 <td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
+To work around this issue:
 
-You can work around this issue with the following steps:
+1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
 
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
 
 $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 
@@ -2544,7 +2735,7 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
         }
    }
 
-3. Reboot the affected switch(es)</td>
+3. Reboot the affected switches.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
@@ -2553,6 +2744,27 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2862214</td>
+<td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
+<td>3.7.14.2-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2862211</td>
+<td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
+To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -2642,6 +2854,24 @@ Fixed: 7.38.0-4+deb8u22</td>
 <td></td>
 </tr>
 <tr>
+<td>2815646</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815645</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815592</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2813826</td>
 <td>Two security issues were found in TIFF, a widely used format for storing image data, as follows:
 CVE-2020-19131: Buffer Overflow in LibTiff allows attackers to cause a denial of service via the "invertImage()" function in the component "tiffcrop".
@@ -2660,6 +2890,12 @@ CVE-2021-40438: A crafted request uri-path can cause mod_proxy to forward the re
 Vulnerable: &lt;= 2.4.10-10+deb8u18
 Fixed: 2.4.10-10+deb8u19</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2803044</td>
+<td>In an EVPN configuration with IP or MAC mobility, higher MM EVPN routes do not remove the old ARP entries during VIP migration between VTEP racks.</td>
+<td>3.7.14.2-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -3707,6 +3943,40 @@ To work around this issue, remove, then add back the VRRP configuration with NCL
 <td></td>
 </tr>
 <tr>
+<td>2551554</td>
+<td>Customers running security scans on Cumulus Linux 4 may encounter the listing of an incorrect version of u-boot 2014.10+dfsg1-4 with the following vulnerabilities:
+
+CVE-2017-3225
+CVE-2017-3226
+CVE-2018-18440
+CVE-2019-11690
+CVE-2019-13103
+CVE-2019-14192
+CVE-2019-14193
+CVE-2019-14194
+CVE-2019-14195
+CVE-2019-14196
+CVE-2019-14197
+CVE-2019-14198
+CVE-2019-14199
+CVE-2019-14200
+CVE-2019-14201
+CVE-2019-14202
+CVE-2019-14203
+CVE-2019-14204
+CVE-2020-10648
+
+The u-boot-tools package is not installed on the switch by default, but is available in the repository for optional installation.  On Cumulus Linux 4, the version is at least 2019.01+dfsg-7.  However, the older versions available for optional installation on Cumulus Linux 3 may be vulnerable.
+
+According to https://security-tracker.debian.org/tracker/source-package/u-boot , all except the following are fixed in 2019.01+dfsg-7:
+
+CVE-2017-3225: https://security-tracker.debian.org/tracker/CVE-2017-3225 says "Negligible security impact".
+CVE-2017-3226: https://security-tracker.debian.org/tracker/CVE-2017-3226 says "Negligible security impact".
+CVE-2018-18440: https://security-tracker.debian.org/tracker/CVE-2018-18440 says "No security impact as supported/packaged in Debian".</td>
+<td>3.7.12-3.7.15</td>
+<td>4.0.0-4.4.0</td>
+</tr>
+<tr>
 <td>2551305</td>
 <td>The {{net show configuration}} command provides the wrong {{net add}} command for ACL under the VLAN interface.
 
@@ -4055,6 +4325,16 @@ Dec 20 08:43:27 netflow-nms sfcapd[3991]: SFLOW: readFlowSample_header() undefin
 <td>4.0.0-4.4.0</td>
 </tr>
 <tr>
+<td>2547349</td>
+<td>When you change an interface IP address, then change it back, static routes are misprogrammed.
+One of the following actions recovers the routes:
+- Bounce both layer 3 interfaces
+- Remove or add static routes in FRR
+- Restart FRR</td>
+<td>3.7.11-3.7.15</td>
+<td>4.0.0-4.4.0</td>
+</tr>
+<tr>
 <td>2547123</td>
 <td>On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</td>
 <td>3.7.11-4.1.1</td>
@@ -4257,6 +4537,20 @@ To work around this issue, run the {{sudo systemctl restart lldpd.service}} comm
 To work around this issue, restart FRR after removing the IPv6 numbered configuration.</td>
 <td>3.7.9-4.1.1</td>
 <td>4.2.0-4.4.0</td>
+</tr>
+<tr>
+<td>2544671</td>
+<td>Package : sudo
+CVE ID : CVE-2019-14287
+Debian Bug : 942322
+Joe Vennix discovered that sudo, a program designed to provide limited super user privileges to specific users, when configured to allow a user to run commands as an arbitrary user via the ALL keyword in a Runas specification, allows to run commands as root by specifying the user ID -1 or 4294967295. This could allow a user with sufficient sudo privileges to run commands as root even if the Runas specification explicitly disallows root access.
+Details can be found in the upstream advisory at https://www.sudo.ws/alerts/minus_1_uid.html .
+We recommend that you upgrade your sudo packages. For the detailed security status of sudo please refer to its security tracker page at: https://security-tracker.debian.org/tracker/sudo
+Vulnerable versions: &lt; 1.8.27-1+deb10u1
+Fixed versions: &gt;= 1.8.27-1+deb10u1
+To work around this iisue, disable (comment out) any sudoers entries in {{/etc/sudoers}} or files in {{/etc/sudoers.d}} that have entries with {{!root}} in them. Only root or other users with a uid of 0 that are affected.</td>
+<td>3.7.9-3.7.15</td>
+<td>4.0.0-4.4.0</td>
 </tr>
 <tr>
 <td>2544556</td>
@@ -4901,6 +5195,41 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2885241</td>
+<td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
+Vulnerable: &lt;= 3.26-1+debu8u13
+Fixed: 3.26-1+debu8u14</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885240</td>
+<td>CVE-2021-33285 CVE-2021-33286 CVE-2021-33287 CVE-2021-33289 CVE-2021-35266 CVE-2021-35267 CVE-2021-35268 CVE-2021-35269 CVE-2021-39251 CVE-2021-39252 CVE-2021-39253 CVE-2021-39254 CVE-2021-39255 CVE-2021-39256 CVE-2021-39257 CVE-2021-39258 CVE-2021-39259 CVE-2021-39260 CVE-2021-39261 CVE-2021-39262 CVE-2021-39263: Several vulnerabilities were discovered in NTFS-3G, a read-write NTFS driver for FUSE. A local user can take advantage of these flaws for local root privilege escalation.
+Vulnerable: &lt;= 2014.2.15AR.2-1+deb8u4
+Fixed: 2014.2.15AR.2-1+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885239</td>
+<td>CVE-2021-43618: GNU Multiple Precision Arithmetic Library (GMP) through 6.2.1 has an mpz/inp_raw.c integer overflow and resultant buffer overflow via crafted input, leading to a segmentation fault on 32-bit platforms.
+Vulnerable: 6.0.0+dfsg-6 on armel platform
+Fixed: 6.0.0+dfsg-6+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885238</td>
+<td>The following vulnerabilities have been announced in bluez, the Linux Bluetooth protocol stack:
+CVE-2019-8921: SDP infoleak; the vulnerability lies in the handling of a SVC_ATTR_REQ by the SDP implementation of BlueZ. By crafting a malicious CSTATE, it is possible to trick the server into returning more bytes than the buffer actually holds, resulting in leaking arbitrary heap data.
+CVE-2019-8922: SDP Heap Overflow; this vulnerability lies in the SDP protocol handling of attribute requests as well. By requesting a huge number of attributes at the same time, an attacker can overflow the static buffer provided to hold the response.
+CVE-2021-41229: sdp_cstate_alloc_buf allocates memory which will always be hung in the singly linked list of cstates and will not be freed. This will cause a memory leak over time. The data can be a very large object, which can be caused by an attacker continuously sending sdp packets and this may cause the service of the target device to crash.
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u3
+Fixed: 5.43-2+deb9u2~deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2866111</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
@@ -4920,12 +5249,12 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 </tr>
 <tr>
 <td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
+To work around this issue:
 
-You can work around this issue with the following steps:
+1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
 
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
 
 $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 
@@ -4940,7 +5269,7 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
         }
    }
 
-3. Reboot the affected switch(es)</td>
+3. Reboot the affected switches.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
@@ -4949,6 +5278,21 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2862211</td>
+<td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
+To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -5035,6 +5379,24 @@ CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server migh
 Vulnerable: &lt;= 7.38.0-4+deb8u21
 Fixed: 7.38.0-4+deb8u22</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2815646</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815645</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815592</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -6117,6 +6479,40 @@ To work around this issue, remove, then add back the VRRP configuration with NCL
 <td></td>
 </tr>
 <tr>
+<td>2551554</td>
+<td>Customers running security scans on Cumulus Linux 4 may encounter the listing of an incorrect version of u-boot 2014.10+dfsg1-4 with the following vulnerabilities:
+
+CVE-2017-3225
+CVE-2017-3226
+CVE-2018-18440
+CVE-2019-11690
+CVE-2019-13103
+CVE-2019-14192
+CVE-2019-14193
+CVE-2019-14194
+CVE-2019-14195
+CVE-2019-14196
+CVE-2019-14197
+CVE-2019-14198
+CVE-2019-14199
+CVE-2019-14200
+CVE-2019-14201
+CVE-2019-14202
+CVE-2019-14203
+CVE-2019-14204
+CVE-2020-10648
+
+The u-boot-tools package is not installed on the switch by default, but is available in the repository for optional installation.  On Cumulus Linux 4, the version is at least 2019.01+dfsg-7.  However, the older versions available for optional installation on Cumulus Linux 3 may be vulnerable.
+
+According to https://security-tracker.debian.org/tracker/source-package/u-boot , all except the following are fixed in 2019.01+dfsg-7:
+
+CVE-2017-3225: https://security-tracker.debian.org/tracker/CVE-2017-3225 says "Negligible security impact".
+CVE-2017-3226: https://security-tracker.debian.org/tracker/CVE-2017-3226 says "Negligible security impact".
+CVE-2018-18440: https://security-tracker.debian.org/tracker/CVE-2018-18440 says "No security impact as supported/packaged in Debian".</td>
+<td>3.7.12-3.7.15</td>
+<td>4.0.0-4.4.0</td>
+</tr>
+<tr>
 <td>2551305</td>
 <td>The {{net show configuration}} command provides the wrong {{net add}} command for ACL under the VLAN interface.
 
@@ -6465,6 +6861,16 @@ Dec 20 08:43:27 netflow-nms sfcapd[3991]: SFLOW: readFlowSample_header() undefin
 <td>4.0.0-4.4.0</td>
 </tr>
 <tr>
+<td>2547349</td>
+<td>When you change an interface IP address, then change it back, static routes are misprogrammed.
+One of the following actions recovers the routes:
+- Bounce both layer 3 interfaces
+- Remove or add static routes in FRR
+- Restart FRR</td>
+<td>3.7.11-3.7.15</td>
+<td>4.0.0-4.4.0</td>
+</tr>
+<tr>
 <td>2547123</td>
 <td>On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</td>
 <td>3.7.11-4.1.1</td>
@@ -6667,6 +7073,20 @@ To work around this issue, run the {{sudo systemctl restart lldpd.service}} comm
 To work around this issue, restart FRR after removing the IPv6 numbered configuration.</td>
 <td>3.7.9-4.1.1</td>
 <td>4.2.0-4.4.0</td>
+</tr>
+<tr>
+<td>2544671</td>
+<td>Package : sudo
+CVE ID : CVE-2019-14287
+Debian Bug : 942322
+Joe Vennix discovered that sudo, a program designed to provide limited super user privileges to specific users, when configured to allow a user to run commands as an arbitrary user via the ALL keyword in a Runas specification, allows to run commands as root by specifying the user ID -1 or 4294967295. This could allow a user with sufficient sudo privileges to run commands as root even if the Runas specification explicitly disallows root access.
+Details can be found in the upstream advisory at https://www.sudo.ws/alerts/minus_1_uid.html .
+We recommend that you upgrade your sudo packages. For the detailed security status of sudo please refer to its security tracker page at: https://security-tracker.debian.org/tracker/sudo
+Vulnerable versions: &lt; 1.8.27-1+deb10u1
+Fixed versions: &gt;= 1.8.27-1+deb10u1
+To work around this iisue, disable (comment out) any sudoers entries in {{/etc/sudoers}} or files in {{/etc/sudoers.d}} that have entries with {{!root}} in them. Only root or other users with a uid of 0 that are affected.</td>
+<td>3.7.9-3.7.15</td>
+<td>4.0.0-4.4.0</td>
 </tr>
 <tr>
 <td>2544556</td>
@@ -7249,6 +7669,12 @@ To work around this issue, correct the bridge VIDs and restart {{switchd}} or de
 <th> Affects </th>
 </tr>
 <tr>
+<td>2556019</td>
+<td>After you add an interface to a bridge using the NCLU {{net add bridge bridge ports &lt;interface&gt;}} command, the bridge can go down and its MAC address changes.
+To work around this issue, use Linux commands to add an interface to a bridge.</td>
+<td>3.7.9-3.7.13</td>
+</tr>
+<tr>
 <td>2554706</td>
 <td>CVE-2020-8037: The ppp de-capsulator in tcpdump 4.9.3 can be convinced to allocate a large amount of memory.  The buffer should be big enough to hold the captured data, but it doesn’t need to be big enough to hold the entire on-the-network packet, if we haven’t captured all of it.
 Vulnerable: &lt;= 4.9.3-1~deb8u1
@@ -7435,6 +7861,15 @@ CVE-2020-24977: Out-of-bounds read restricted to xmllint --htmlout.
 CVE-2020-7595: Infinite loop in xmlStringLenDecodeEntities can cause a denial of service.
 Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u8
 Fixed: 2.9.1+dfsg1-5+deb8u9</td>
+<td>3.7.13</td>
+</tr>
+<tr>
+<td>2553151</td>
+<td>The following security vulnerabilities have been announced in imagemagick:
+CVE-2017-12806: A memory exhaustion vulnerability was found in the function format8BIM, which allows attackers to cause a denial of service.
+CVE-2019-13308, CVE-2019-13391: Heap-based buffer overflow in MagickCore/fourier.c in ComplexImages may cause a denial-of-service or other unspecified results.
+Vulnerable: &lt;= 6.8.9.9-5+deb8u20
+Fixed: 6.8.9.9-5+deb8u21</td>
 <td>3.7.13</td>
 </tr>
 <tr>
@@ -7840,6 +8275,41 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2885241</td>
+<td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
+Vulnerable: &lt;= 3.26-1+debu8u13
+Fixed: 3.26-1+debu8u14</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885240</td>
+<td>CVE-2021-33285 CVE-2021-33286 CVE-2021-33287 CVE-2021-33289 CVE-2021-35266 CVE-2021-35267 CVE-2021-35268 CVE-2021-35269 CVE-2021-39251 CVE-2021-39252 CVE-2021-39253 CVE-2021-39254 CVE-2021-39255 CVE-2021-39256 CVE-2021-39257 CVE-2021-39258 CVE-2021-39259 CVE-2021-39260 CVE-2021-39261 CVE-2021-39262 CVE-2021-39263: Several vulnerabilities were discovered in NTFS-3G, a read-write NTFS driver for FUSE. A local user can take advantage of these flaws for local root privilege escalation.
+Vulnerable: &lt;= 2014.2.15AR.2-1+deb8u4
+Fixed: 2014.2.15AR.2-1+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885239</td>
+<td>CVE-2021-43618: GNU Multiple Precision Arithmetic Library (GMP) through 6.2.1 has an mpz/inp_raw.c integer overflow and resultant buffer overflow via crafted input, leading to a segmentation fault on 32-bit platforms.
+Vulnerable: 6.0.0+dfsg-6 on armel platform
+Fixed: 6.0.0+dfsg-6+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885238</td>
+<td>The following vulnerabilities have been announced in bluez, the Linux Bluetooth protocol stack:
+CVE-2019-8921: SDP infoleak; the vulnerability lies in the handling of a SVC_ATTR_REQ by the SDP implementation of BlueZ. By crafting a malicious CSTATE, it is possible to trick the server into returning more bytes than the buffer actually holds, resulting in leaking arbitrary heap data.
+CVE-2019-8922: SDP Heap Overflow; this vulnerability lies in the SDP protocol handling of attribute requests as well. By requesting a huge number of attributes at the same time, an attacker can overflow the static buffer provided to hold the response.
+CVE-2021-41229: sdp_cstate_alloc_buf allocates memory which will always be hung in the singly linked list of cstates and will not be freed. This will cause a memory leak over time. The data can be a very large object, which can be caused by an attacker continuously sending sdp packets and this may cause the service of the target device to crash.
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u3
+Fixed: 5.43-2+deb9u2~deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2866111</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
@@ -7859,12 +8329,12 @@ To work around this issue, modify the routing design or policy such that routes 
 </tr>
 <tr>
 <td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
+To work around this issue:
 
-You can work around this issue with the following steps:
+1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
 
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
 
 $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 
@@ -7879,7 +8349,7 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
         }
    }
 
-3. Reboot the affected switch(es)</td>
+3. Reboot the affected switches.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
@@ -7888,6 +8358,21 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2862211</td>
+<td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
+To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -7974,6 +8459,24 @@ CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server migh
 Vulnerable: &lt;= 7.38.0-4+deb8u21
 Fixed: 7.38.0-4+deb8u22</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2815646</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815645</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815592</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -8447,6 +8950,13 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 <td>4.2.1-4.4.0</td>
 </tr>
 <tr>
+<td>2556019</td>
+<td>After you add an interface to a bridge using the NCLU {{net add bridge bridge ports &lt;interface&gt;}} command, the bridge can go down and its MAC address changes.
+To work around this issue, use Linux commands to add an interface to a bridge.</td>
+<td>3.7.9-3.7.13</td>
+<td>3.7.14-3.7.15</td>
+</tr>
+<tr>
 <td>2555428</td>
 <td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
 This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
@@ -8774,6 +9284,16 @@ CVE-2020-24977: Out-of-bounds read restricted to xmllint --htmlout.
 CVE-2020-7595: Infinite loop in xmlStringLenDecodeEntities can cause a denial of service.
 Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u8
 Fixed: 2.9.1+dfsg1-5+deb8u9</td>
+<td>3.7.13</td>
+<td>3.7.14-3.7.15</td>
+</tr>
+<tr>
+<td>2553151</td>
+<td>The following security vulnerabilities have been announced in imagemagick:
+CVE-2017-12806: A memory exhaustion vulnerability was found in the function format8BIM, which allows attackers to cause a denial of service.
+CVE-2019-13308, CVE-2019-13391: Heap-based buffer overflow in MagickCore/fourier.c in ComplexImages may cause a denial-of-service or other unspecified results.
+Vulnerable: &lt;= 6.8.9.9-5+deb8u20
+Fixed: 6.8.9.9-5+deb8u21</td>
 <td>3.7.13</td>
 <td>3.7.14-3.7.15</td>
 </tr>
@@ -9149,6 +9669,40 @@ To work around this issue, manually delete the dynamic FDB entry that is associa
 To work around this issue, remove, then add back the VRRP configuration with NCLU or vtysh commands.</td>
 <td>3.7.13-3.7.15, 4.2.0-4.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2551554</td>
+<td>Customers running security scans on Cumulus Linux 4 may encounter the listing of an incorrect version of u-boot 2014.10+dfsg1-4 with the following vulnerabilities:
+
+CVE-2017-3225
+CVE-2017-3226
+CVE-2018-18440
+CVE-2019-11690
+CVE-2019-13103
+CVE-2019-14192
+CVE-2019-14193
+CVE-2019-14194
+CVE-2019-14195
+CVE-2019-14196
+CVE-2019-14197
+CVE-2019-14198
+CVE-2019-14199
+CVE-2019-14200
+CVE-2019-14201
+CVE-2019-14202
+CVE-2019-14203
+CVE-2019-14204
+CVE-2020-10648
+
+The u-boot-tools package is not installed on the switch by default, but is available in the repository for optional installation.  On Cumulus Linux 4, the version is at least 2019.01+dfsg-7.  However, the older versions available for optional installation on Cumulus Linux 3 may be vulnerable.
+
+According to https://security-tracker.debian.org/tracker/source-package/u-boot , all except the following are fixed in 2019.01+dfsg-7:
+
+CVE-2017-3225: https://security-tracker.debian.org/tracker/CVE-2017-3225 says "Negligible security impact".
+CVE-2017-3226: https://security-tracker.debian.org/tracker/CVE-2017-3226 says "Negligible security impact".
+CVE-2018-18440: https://security-tracker.debian.org/tracker/CVE-2018-18440 says "No security impact as supported/packaged in Debian".</td>
+<td>3.7.12-3.7.15</td>
+<td>4.0.0-4.4.0</td>
 </tr>
 <tr>
 <td>2551305</td>
@@ -9576,6 +10130,16 @@ Dec 20 08:43:27 netflow-nms sfcapd[3991]: SFLOW: readFlowSample_header() undefin
 <td>4.0.0-4.4.0</td>
 </tr>
 <tr>
+<td>2547349</td>
+<td>When you change an interface IP address, then change it back, static routes are misprogrammed.
+One of the following actions recovers the routes:
+- Bounce both layer 3 interfaces
+- Remove or add static routes in FRR
+- Restart FRR</td>
+<td>3.7.11-3.7.15</td>
+<td>4.0.0-4.4.0</td>
+</tr>
+<tr>
 <td>2547340</td>
 <td>When {{host-resources}} and {{ucd-snmp-mib}} are polled, you see permission denied messages similar to the following:
 
@@ -9821,6 +10385,20 @@ To work around this issue, run the {{sudo systemctl restart lldpd.service}} comm
 To work around this issue, restart FRR after removing the IPv6 numbered configuration.</td>
 <td>3.7.9-4.1.1</td>
 <td>4.2.0-4.4.0</td>
+</tr>
+<tr>
+<td>2544671</td>
+<td>Package : sudo
+CVE ID : CVE-2019-14287
+Debian Bug : 942322
+Joe Vennix discovered that sudo, a program designed to provide limited super user privileges to specific users, when configured to allow a user to run commands as an arbitrary user via the ALL keyword in a Runas specification, allows to run commands as root by specifying the user ID -1 or 4294967295. This could allow a user with sufficient sudo privileges to run commands as root even if the Runas specification explicitly disallows root access.
+Details can be found in the upstream advisory at https://www.sudo.ws/alerts/minus_1_uid.html .
+We recommend that you upgrade your sudo packages. For the detailed security status of sudo please refer to its security tracker page at: https://security-tracker.debian.org/tracker/sudo
+Vulnerable versions: &lt; 1.8.27-1+deb10u1
+Fixed versions: &gt;= 1.8.27-1+deb10u1
+To work around this iisue, disable (comment out) any sudoers entries in {{/etc/sudoers}} or files in {{/etc/sudoers.d}} that have entries with {{!root}} in them. Only root or other users with a uid of 0 that are affected.</td>
+<td>3.7.9-3.7.15</td>
+<td>4.0.0-4.4.0</td>
 </tr>
 <tr>
 <td>2544556</td>
@@ -10984,6 +11562,41 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2885241</td>
+<td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
+Vulnerable: &lt;= 3.26-1+debu8u13
+Fixed: 3.26-1+debu8u14</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885240</td>
+<td>CVE-2021-33285 CVE-2021-33286 CVE-2021-33287 CVE-2021-33289 CVE-2021-35266 CVE-2021-35267 CVE-2021-35268 CVE-2021-35269 CVE-2021-39251 CVE-2021-39252 CVE-2021-39253 CVE-2021-39254 CVE-2021-39255 CVE-2021-39256 CVE-2021-39257 CVE-2021-39258 CVE-2021-39259 CVE-2021-39260 CVE-2021-39261 CVE-2021-39262 CVE-2021-39263: Several vulnerabilities were discovered in NTFS-3G, a read-write NTFS driver for FUSE. A local user can take advantage of these flaws for local root privilege escalation.
+Vulnerable: &lt;= 2014.2.15AR.2-1+deb8u4
+Fixed: 2014.2.15AR.2-1+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885239</td>
+<td>CVE-2021-43618: GNU Multiple Precision Arithmetic Library (GMP) through 6.2.1 has an mpz/inp_raw.c integer overflow and resultant buffer overflow via crafted input, leading to a segmentation fault on 32-bit platforms.
+Vulnerable: 6.0.0+dfsg-6 on armel platform
+Fixed: 6.0.0+dfsg-6+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885238</td>
+<td>The following vulnerabilities have been announced in bluez, the Linux Bluetooth protocol stack:
+CVE-2019-8921: SDP infoleak; the vulnerability lies in the handling of a SVC_ATTR_REQ by the SDP implementation of BlueZ. By crafting a malicious CSTATE, it is possible to trick the server into returning more bytes than the buffer actually holds, resulting in leaking arbitrary heap data.
+CVE-2019-8922: SDP Heap Overflow; this vulnerability lies in the SDP protocol handling of attribute requests as well. By requesting a huge number of attributes at the same time, an attacker can overflow the static buffer provided to hold the response.
+CVE-2021-41229: sdp_cstate_alloc_buf allocates memory which will always be hung in the singly linked list of cstates and will not be freed. This will cause a memory leak over time. The data can be a very large object, which can be caused by an attacker continuously sending sdp packets and this may cause the service of the target device to crash.
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u3
+Fixed: 5.43-2+deb9u2~deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2866111</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
@@ -11003,12 +11616,12 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 </tr>
 <tr>
 <td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
+To work around this issue:
 
-You can work around this issue with the following steps:
+1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
 
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
 
 $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 
@@ -11023,7 +11636,7 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
         }
    }
 
-3. Reboot the affected switch(es)</td>
+3. Reboot the affected switches.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
@@ -11032,6 +11645,21 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2862211</td>
+<td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
+To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -11118,6 +11746,24 @@ CVE-2021-22947 When using STARTTLS to initiate a TLS connection, the server migh
 Vulnerable: &lt;= 7.38.0-4+deb8u21
 Fixed: 7.38.0-4+deb8u22</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2815646</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815645</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2815592</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -11579,6 +12225,13 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 <td>4.2.1-4.4.0</td>
 </tr>
 <tr>
+<td>2556019</td>
+<td>After you add an interface to a bridge using the NCLU {{net add bridge bridge ports &lt;interface&gt;}} command, the bridge can go down and its MAC address changes.
+To work around this issue, use Linux commands to add an interface to a bridge.</td>
+<td>3.7.9-3.7.13</td>
+<td>3.7.14-3.7.15</td>
+</tr>
+<tr>
 <td>2554785</td>
 <td>After you reboot a Broadcom switch, {{switchd}} might fail to restart and you see logs in {{switchd.log}} similar to the following:
 
@@ -11965,6 +12618,40 @@ To work around this issue, manually delete the dynamic FDB entry that is associa
 <td>When you configure a bridge in the {{/etc/network/interfaces}} file, then try to reconfigure the bridge to be a VRF interface with the same name, {{ifreload}}/{{ifup}} commands fail with an {{invalid table id}} or {{unable to get vrf table id}} error.</td>
 <td>3.7.12-4.3.0</td>
 <td>4.4.0</td>
+</tr>
+<tr>
+<td>2551554</td>
+<td>Customers running security scans on Cumulus Linux 4 may encounter the listing of an incorrect version of u-boot 2014.10+dfsg1-4 with the following vulnerabilities:
+
+CVE-2017-3225
+CVE-2017-3226
+CVE-2018-18440
+CVE-2019-11690
+CVE-2019-13103
+CVE-2019-14192
+CVE-2019-14193
+CVE-2019-14194
+CVE-2019-14195
+CVE-2019-14196
+CVE-2019-14197
+CVE-2019-14198
+CVE-2019-14199
+CVE-2019-14200
+CVE-2019-14201
+CVE-2019-14202
+CVE-2019-14203
+CVE-2019-14204
+CVE-2020-10648
+
+The u-boot-tools package is not installed on the switch by default, but is available in the repository for optional installation.  On Cumulus Linux 4, the version is at least 2019.01+dfsg-7.  However, the older versions available for optional installation on Cumulus Linux 3 may be vulnerable.
+
+According to https://security-tracker.debian.org/tracker/source-package/u-boot , all except the following are fixed in 2019.01+dfsg-7:
+
+CVE-2017-3225: https://security-tracker.debian.org/tracker/CVE-2017-3225 says "Negligible security impact".
+CVE-2017-3226: https://security-tracker.debian.org/tracker/CVE-2017-3226 says "Negligible security impact".
+CVE-2018-18440: https://security-tracker.debian.org/tracker/CVE-2018-18440 says "No security impact as supported/packaged in Debian".</td>
+<td>3.7.12-3.7.15</td>
+<td>4.0.0-4.4.0</td>
 </tr>
 <tr>
 <td>2551543</td>
@@ -12824,6 +13511,16 @@ Dec 20 08:43:27 netflow-nms sfcapd[3991]: SFLOW: readFlowSample_header() undefin
 <td>4.0.0-4.4.0</td>
 </tr>
 <tr>
+<td>2547349</td>
+<td>When you change an interface IP address, then change it back, static routes are misprogrammed.
+One of the following actions recovers the routes:
+- Bounce both layer 3 interfaces
+- Remove or add static routes in FRR
+- Restart FRR</td>
+<td>3.7.11-3.7.15</td>
+<td>4.0.0-4.4.0</td>
+</tr>
+<tr>
 <td>2547292</td>
 <td>On the Broadcom Trident3 switch with DHCP relay, where the DHCP server is reachable through the EVPN overlay, DHCP discover packets forwarded to the CPU might appear corrupt and might not get forwarded.</td>
 <td>3.7.9-3.7.12, 4.0.0-4.4.0</td>
@@ -13122,6 +13819,20 @@ To work around this issue, run the {{sudo systemctl restart lldpd.service}} comm
 To work around this issue, restart FRR after removing the IPv6 numbered configuration.</td>
 <td>3.7.9-4.1.1</td>
 <td>4.2.0-4.4.0</td>
+</tr>
+<tr>
+<td>2544671</td>
+<td>Package : sudo
+CVE ID : CVE-2019-14287
+Debian Bug : 942322
+Joe Vennix discovered that sudo, a program designed to provide limited super user privileges to specific users, when configured to allow a user to run commands as an arbitrary user via the ALL keyword in a Runas specification, allows to run commands as root by specifying the user ID -1 or 4294967295. This could allow a user with sufficient sudo privileges to run commands as root even if the Runas specification explicitly disallows root access.
+Details can be found in the upstream advisory at https://www.sudo.ws/alerts/minus_1_uid.html .
+We recommend that you upgrade your sudo packages. For the detailed security status of sudo please refer to its security tracker page at: https://security-tracker.debian.org/tracker/sudo
+Vulnerable versions: &lt; 1.8.27-1+deb10u1
+Fixed versions: &gt;= 1.8.27-1+deb10u1
+To work around this iisue, disable (comment out) any sudoers entries in {{/etc/sudoers}} or files in {{/etc/sudoers.d}} that have entries with {{!root}} in them. Only root or other users with a uid of 0 that are affected.</td>
+<td>3.7.9-3.7.15</td>
+<td>4.0.0-4.4.0</td>
 </tr>
 <tr>
 <td>2544556</td>
@@ -13995,6 +14706,41 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2885241</td>
+<td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
+Vulnerable: &lt;= 3.26-1+debu8u13
+Fixed: 3.26-1+debu8u14</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885240</td>
+<td>CVE-2021-33285 CVE-2021-33286 CVE-2021-33287 CVE-2021-33289 CVE-2021-35266 CVE-2021-35267 CVE-2021-35268 CVE-2021-35269 CVE-2021-39251 CVE-2021-39252 CVE-2021-39253 CVE-2021-39254 CVE-2021-39255 CVE-2021-39256 CVE-2021-39257 CVE-2021-39258 CVE-2021-39259 CVE-2021-39260 CVE-2021-39261 CVE-2021-39262 CVE-2021-39263: Several vulnerabilities were discovered in NTFS-3G, a read-write NTFS driver for FUSE. A local user can take advantage of these flaws for local root privilege escalation.
+Vulnerable: &lt;= 2014.2.15AR.2-1+deb8u4
+Fixed: 2014.2.15AR.2-1+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885239</td>
+<td>CVE-2021-43618: GNU Multiple Precision Arithmetic Library (GMP) through 6.2.1 has an mpz/inp_raw.c integer overflow and resultant buffer overflow via crafted input, leading to a segmentation fault on 32-bit platforms.
+Vulnerable: 6.0.0+dfsg-6 on armel platform
+Fixed: 6.0.0+dfsg-6+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885238</td>
+<td>The following vulnerabilities have been announced in bluez, the Linux Bluetooth protocol stack:
+CVE-2019-8921: SDP infoleak; the vulnerability lies in the handling of a SVC_ATTR_REQ by the SDP implementation of BlueZ. By crafting a malicious CSTATE, it is possible to trick the server into returning more bytes than the buffer actually holds, resulting in leaking arbitrary heap data.
+CVE-2019-8922: SDP Heap Overflow; this vulnerability lies in the SDP protocol handling of attribute requests as well. By requesting a huge number of attributes at the same time, an attacker can overflow the static buffer provided to hold the response.
+CVE-2021-41229: sdp_cstate_alloc_buf allocates memory which will always be hung in the singly linked list of cstates and will not be freed. This will cause a memory leak over time. The data can be a very large object, which can be caused by an attacker continuously sending sdp packets and this may cause the service of the target device to crash.
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u3
+Fixed: 5.43-2+deb9u2~deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2866111</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
@@ -14005,6 +14751,14 @@ net.ipv6.ip6frag_high_thresh = 262144
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -14478,6 +15232,13 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 <td>4.2.1-4.4.0</td>
 </tr>
 <tr>
+<td>2556019</td>
+<td>After you add an interface to a bridge using the NCLU {{net add bridge bridge ports &lt;interface&gt;}} command, the bridge can go down and its MAC address changes.
+To work around this issue, use Linux commands to add an interface to a bridge.</td>
+<td>3.7.9-3.7.13</td>
+<td>3.7.14-3.7.15</td>
+</tr>
+<tr>
 <td>2554785</td>
 <td>After you reboot a Broadcom switch, {{switchd}} might fail to restart and you see logs in {{switchd.log}} similar to the following:
 
@@ -14948,6 +15709,16 @@ Fixed: 2.1+dfsg-12+deb8u13</td>
 Dec 20 08:43:27 netflow-nms sfcapd[3991]: SFLOW: readFlowSample_header() undefined headerProtocol = 0
 
 </td>
+<td>3.7.11-3.7.15</td>
+<td>4.0.0-4.4.0</td>
+</tr>
+<tr>
+<td>2547349</td>
+<td>When you change an interface IP address, then change it back, static routes are misprogrammed.
+One of the following actions recovers the routes:
+- Bounce both layer 3 interfaces
+- Remove or add static routes in FRR
+- Restart FRR</td>
 <td>3.7.11-3.7.15</td>
 <td>4.0.0-4.4.0</td>
 </tr>
@@ -15428,6 +16199,20 @@ To work around this issue, run the {{sudo systemctl restart lldpd.service}} comm
 To work around this issue, restart FRR after removing the IPv6 numbered configuration.</td>
 <td>3.7.9-4.1.1</td>
 <td>4.2.0-4.4.0</td>
+</tr>
+<tr>
+<td>2544671</td>
+<td>Package : sudo
+CVE ID : CVE-2019-14287
+Debian Bug : 942322
+Joe Vennix discovered that sudo, a program designed to provide limited super user privileges to specific users, when configured to allow a user to run commands as an arbitrary user via the ALL keyword in a Runas specification, allows to run commands as root by specifying the user ID -1 or 4294967295. This could allow a user with sufficient sudo privileges to run commands as root even if the Runas specification explicitly disallows root access.
+Details can be found in the upstream advisory at https://www.sudo.ws/alerts/minus_1_uid.html .
+We recommend that you upgrade your sudo packages. For the detailed security status of sudo please refer to its security tracker page at: https://security-tracker.debian.org/tracker/sudo
+Vulnerable versions: &lt; 1.8.27-1+deb10u1
+Fixed versions: &gt;= 1.8.27-1+deb10u1
+To work around this iisue, disable (comment out) any sudoers entries in {{/etc/sudoers}} or files in {{/etc/sudoers.d}} that have entries with {{!root}} in them. Only root or other users with a uid of 0 that are affected.</td>
+<td>3.7.9-3.7.15</td>
+<td>4.0.0-4.4.0</td>
 </tr>
 <tr>
 <td>2544556</td>
@@ -16638,6 +17423,41 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2885241</td>
+<td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
+Vulnerable: &lt;= 3.26-1+debu8u13
+Fixed: 3.26-1+debu8u14</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885240</td>
+<td>CVE-2021-33285 CVE-2021-33286 CVE-2021-33287 CVE-2021-33289 CVE-2021-35266 CVE-2021-35267 CVE-2021-35268 CVE-2021-35269 CVE-2021-39251 CVE-2021-39252 CVE-2021-39253 CVE-2021-39254 CVE-2021-39255 CVE-2021-39256 CVE-2021-39257 CVE-2021-39258 CVE-2021-39259 CVE-2021-39260 CVE-2021-39261 CVE-2021-39262 CVE-2021-39263: Several vulnerabilities were discovered in NTFS-3G, a read-write NTFS driver for FUSE. A local user can take advantage of these flaws for local root privilege escalation.
+Vulnerable: &lt;= 2014.2.15AR.2-1+deb8u4
+Fixed: 2014.2.15AR.2-1+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885239</td>
+<td>CVE-2021-43618: GNU Multiple Precision Arithmetic Library (GMP) through 6.2.1 has an mpz/inp_raw.c integer overflow and resultant buffer overflow via crafted input, leading to a segmentation fault on 32-bit platforms.
+Vulnerable: 6.0.0+dfsg-6 on armel platform
+Fixed: 6.0.0+dfsg-6+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885238</td>
+<td>The following vulnerabilities have been announced in bluez, the Linux Bluetooth protocol stack:
+CVE-2019-8921: SDP infoleak; the vulnerability lies in the handling of a SVC_ATTR_REQ by the SDP implementation of BlueZ. By crafting a malicious CSTATE, it is possible to trick the server into returning more bytes than the buffer actually holds, resulting in leaking arbitrary heap data.
+CVE-2019-8922: SDP Heap Overflow; this vulnerability lies in the SDP protocol handling of attribute requests as well. By requesting a huge number of attributes at the same time, an attacker can overflow the static buffer provided to hold the response.
+CVE-2021-41229: sdp_cstate_alloc_buf allocates memory which will always be hung in the singly linked list of cstates and will not be freed. This will cause a memory leak over time. The data can be a very large object, which can be caused by an attacker continuously sending sdp packets and this may cause the service of the target device to crash.
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u3
+Fixed: 5.43-2+deb9u2~deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2866111</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
@@ -16648,6 +17468,14 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -17113,6 +17941,13 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 </td>
 <td>3.7.9-4.2.0</td>
 <td>4.2.1-4.4.0</td>
+</tr>
+<tr>
+<td>2556019</td>
+<td>After you add an interface to a bridge using the NCLU {{net add bridge bridge ports &lt;interface&gt;}} command, the bridge can go down and its MAC address changes.
+To work around this issue, use Linux commands to add an interface to a bridge.</td>
+<td>3.7.9-3.7.13</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2553887</td>
@@ -17711,6 +18546,20 @@ Fixed versions: 4.9.3-1~deb10u1 on Cumulus Linux 4, 4.9.3-1~deb8u1 on Cumulus Li
 <td>Setting ProtoDown on ports populated with SFP modules providing RJ-45 1000BASE-T interfaces does not cause the carrier to be dropped. The kernel shows carrier down; however, the remote device still shows a link.</td>
 <td>3.7.6-3.7.10, 4.0.0-4.4.0</td>
 <td>3.7.11-3.7.15</td>
+</tr>
+<tr>
+<td>2544671</td>
+<td>Package : sudo
+CVE ID : CVE-2019-14287
+Debian Bug : 942322
+Joe Vennix discovered that sudo, a program designed to provide limited super user privileges to specific users, when configured to allow a user to run commands as an arbitrary user via the ALL keyword in a Runas specification, allows to run commands as root by specifying the user ID -1 or 4294967295. This could allow a user with sufficient sudo privileges to run commands as root even if the Runas specification explicitly disallows root access.
+Details can be found in the upstream advisory at https://www.sudo.ws/alerts/minus_1_uid.html .
+We recommend that you upgrade your sudo packages. For the detailed security status of sudo please refer to its security tracker page at: https://security-tracker.debian.org/tracker/sudo
+Vulnerable versions: &lt; 1.8.27-1+deb10u1
+Fixed versions: &gt;= 1.8.27-1+deb10u1
+To work around this iisue, disable (comment out) any sudoers entries in {{/etc/sudoers}} or files in {{/etc/sudoers.d}} that have entries with {{!root}} in them. Only root or other users with a uid of 0 that are affected.</td>
+<td>3.7.9-3.7.15</td>
+<td>4.0.0-4.4.0</td>
 </tr>
 <tr>
 <td>2544624</td>
@@ -18726,6 +19575,41 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2885241</td>
+<td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
+Vulnerable: &lt;= 3.26-1+debu8u13
+Fixed: 3.26-1+debu8u14</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885240</td>
+<td>CVE-2021-33285 CVE-2021-33286 CVE-2021-33287 CVE-2021-33289 CVE-2021-35266 CVE-2021-35267 CVE-2021-35268 CVE-2021-35269 CVE-2021-39251 CVE-2021-39252 CVE-2021-39253 CVE-2021-39254 CVE-2021-39255 CVE-2021-39256 CVE-2021-39257 CVE-2021-39258 CVE-2021-39259 CVE-2021-39260 CVE-2021-39261 CVE-2021-39262 CVE-2021-39263: Several vulnerabilities were discovered in NTFS-3G, a read-write NTFS driver for FUSE. A local user can take advantage of these flaws for local root privilege escalation.
+Vulnerable: &lt;= 2014.2.15AR.2-1+deb8u4
+Fixed: 2014.2.15AR.2-1+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885239</td>
+<td>CVE-2021-43618: GNU Multiple Precision Arithmetic Library (GMP) through 6.2.1 has an mpz/inp_raw.c integer overflow and resultant buffer overflow via crafted input, leading to a segmentation fault on 32-bit platforms.
+Vulnerable: 6.0.0+dfsg-6 on armel platform
+Fixed: 6.0.0+dfsg-6+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885238</td>
+<td>The following vulnerabilities have been announced in bluez, the Linux Bluetooth protocol stack:
+CVE-2019-8921: SDP infoleak; the vulnerability lies in the handling of a SVC_ATTR_REQ by the SDP implementation of BlueZ. By crafting a malicious CSTATE, it is possible to trick the server into returning more bytes than the buffer actually holds, resulting in leaking arbitrary heap data.
+CVE-2019-8922: SDP Heap Overflow; this vulnerability lies in the SDP protocol handling of attribute requests as well. By requesting a huge number of attributes at the same time, an attacker can overflow the static buffer provided to hold the response.
+CVE-2021-41229: sdp_cstate_alloc_buf allocates memory which will always be hung in the singly linked list of cstates and will not be freed. This will cause a memory leak over time. The data can be a very large object, which can be caused by an attacker continuously sending sdp packets and this may cause the service of the target device to crash.
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u3
+Fixed: 5.43-2+deb9u2~deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2866111</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
@@ -18736,6 +19620,14 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -19178,6 +20070,13 @@ FIxed: 2.6.1-2+deb8u6</td>
 <td>4.2.1-4.4.0</td>
 </tr>
 <tr>
+<td>2556019</td>
+<td>After you add an interface to a bridge using the NCLU {{net add bridge bridge ports &lt;interface&gt;}} command, the bridge can go down and its MAC address changes.
+To work around this issue, use Linux commands to add an interface to a bridge.</td>
+<td>3.7.9-3.7.13</td>
+<td>3.7.14-3.7.15</td>
+</tr>
+<tr>
 <td>2553887</td>
 <td>When using TACACS+ configured with a DEFAULT user providing privilege level lower than 16, TACACS+ configured users with privilege level 16 access might not be able to run privilege level 16 NCLU commands, such as {{net add}} and {{net del}} and see an error similar to the following:
 
@@ -19495,6 +20394,20 @@ To work around this issue, restart FRR after removing the IPv6 numbered configur
 <td>Setting ProtoDown on ports populated with SFP modules providing RJ-45 1000BASE-T interfaces does not cause the carrier to be dropped. The kernel shows carrier down; however, the remote device still shows a link.</td>
 <td>3.7.6-3.7.10, 4.0.0-4.4.0</td>
 <td>3.7.11-3.7.15</td>
+</tr>
+<tr>
+<td>2544671</td>
+<td>Package : sudo
+CVE ID : CVE-2019-14287
+Debian Bug : 942322
+Joe Vennix discovered that sudo, a program designed to provide limited super user privileges to specific users, when configured to allow a user to run commands as an arbitrary user via the ALL keyword in a Runas specification, allows to run commands as root by specifying the user ID -1 or 4294967295. This could allow a user with sufficient sudo privileges to run commands as root even if the Runas specification explicitly disallows root access.
+Details can be found in the upstream advisory at https://www.sudo.ws/alerts/minus_1_uid.html .
+We recommend that you upgrade your sudo packages. For the detailed security status of sudo please refer to its security tracker page at: https://security-tracker.debian.org/tracker/sudo
+Vulnerable versions: &lt; 1.8.27-1+deb10u1
+Fixed versions: &gt;= 1.8.27-1+deb10u1
+To work around this iisue, disable (comment out) any sudoers entries in {{/etc/sudoers}} or files in {{/etc/sudoers.d}} that have entries with {{!root}} in them. Only root or other users with a uid of 0 that are affected.</td>
+<td>3.7.9-3.7.15</td>
+<td>4.0.0-4.4.0</td>
 </tr>
 <tr>
 <td>2544624</td>
@@ -21122,6 +22035,41 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2885241</td>
+<td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
+Vulnerable: &lt;= 3.26-1+debu8u13
+Fixed: 3.26-1+debu8u14</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885240</td>
+<td>CVE-2021-33285 CVE-2021-33286 CVE-2021-33287 CVE-2021-33289 CVE-2021-35266 CVE-2021-35267 CVE-2021-35268 CVE-2021-35269 CVE-2021-39251 CVE-2021-39252 CVE-2021-39253 CVE-2021-39254 CVE-2021-39255 CVE-2021-39256 CVE-2021-39257 CVE-2021-39258 CVE-2021-39259 CVE-2021-39260 CVE-2021-39261 CVE-2021-39262 CVE-2021-39263: Several vulnerabilities were discovered in NTFS-3G, a read-write NTFS driver for FUSE. A local user can take advantage of these flaws for local root privilege escalation.
+Vulnerable: &lt;= 2014.2.15AR.2-1+deb8u4
+Fixed: 2014.2.15AR.2-1+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885239</td>
+<td>CVE-2021-43618: GNU Multiple Precision Arithmetic Library (GMP) through 6.2.1 has an mpz/inp_raw.c integer overflow and resultant buffer overflow via crafted input, leading to a segmentation fault on 32-bit platforms.
+Vulnerable: 6.0.0+dfsg-6 on armel platform
+Fixed: 6.0.0+dfsg-6+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885238</td>
+<td>The following vulnerabilities have been announced in bluez, the Linux Bluetooth protocol stack:
+CVE-2019-8921: SDP infoleak; the vulnerability lies in the handling of a SVC_ATTR_REQ by the SDP implementation of BlueZ. By crafting a malicious CSTATE, it is possible to trick the server into returning more bytes than the buffer actually holds, resulting in leaking arbitrary heap data.
+CVE-2019-8922: SDP Heap Overflow; this vulnerability lies in the SDP protocol handling of attribute requests as well. By requesting a huge number of attributes at the same time, an attacker can overflow the static buffer provided to hold the response.
+CVE-2021-41229: sdp_cstate_alloc_buf allocates memory which will always be hung in the singly linked list of cstates and will not be freed. This will cause a memory leak over time. The data can be a very large object, which can be caused by an attacker continuously sending sdp packets and this may cause the service of the target device to crash.
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u3
+Fixed: 5.43-2+deb9u2~deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2866111</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
@@ -21132,6 +22080,14 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -22946,6 +23902,41 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2885241</td>
+<td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
+Vulnerable: &lt;= 3.26-1+debu8u13
+Fixed: 3.26-1+debu8u14</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885240</td>
+<td>CVE-2021-33285 CVE-2021-33286 CVE-2021-33287 CVE-2021-33289 CVE-2021-35266 CVE-2021-35267 CVE-2021-35268 CVE-2021-35269 CVE-2021-39251 CVE-2021-39252 CVE-2021-39253 CVE-2021-39254 CVE-2021-39255 CVE-2021-39256 CVE-2021-39257 CVE-2021-39258 CVE-2021-39259 CVE-2021-39260 CVE-2021-39261 CVE-2021-39262 CVE-2021-39263: Several vulnerabilities were discovered in NTFS-3G, a read-write NTFS driver for FUSE. A local user can take advantage of these flaws for local root privilege escalation.
+Vulnerable: &lt;= 2014.2.15AR.2-1+deb8u4
+Fixed: 2014.2.15AR.2-1+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885239</td>
+<td>CVE-2021-43618: GNU Multiple Precision Arithmetic Library (GMP) through 6.2.1 has an mpz/inp_raw.c integer overflow and resultant buffer overflow via crafted input, leading to a segmentation fault on 32-bit platforms.
+Vulnerable: 6.0.0+dfsg-6 on armel platform
+Fixed: 6.0.0+dfsg-6+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885238</td>
+<td>The following vulnerabilities have been announced in bluez, the Linux Bluetooth protocol stack:
+CVE-2019-8921: SDP infoleak; the vulnerability lies in the handling of a SVC_ATTR_REQ by the SDP implementation of BlueZ. By crafting a malicious CSTATE, it is possible to trick the server into returning more bytes than the buffer actually holds, resulting in leaking arbitrary heap data.
+CVE-2019-8922: SDP Heap Overflow; this vulnerability lies in the SDP protocol handling of attribute requests as well. By requesting a huge number of attributes at the same time, an attacker can overflow the static buffer provided to hold the response.
+CVE-2021-41229: sdp_cstate_alloc_buf allocates memory which will always be hung in the singly linked list of cstates and will not be freed. This will cause a memory leak over time. The data can be a very large object, which can be caused by an attacker continuously sending sdp packets and this may cause the service of the target device to crash.
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u3
+Fixed: 5.43-2+deb9u2~deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2866111</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
@@ -22956,6 +23947,14 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -25105,6 +26104,41 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2885241</td>
+<td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
+Vulnerable: &lt;= 3.26-1+debu8u13
+Fixed: 3.26-1+debu8u14</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885240</td>
+<td>CVE-2021-33285 CVE-2021-33286 CVE-2021-33287 CVE-2021-33289 CVE-2021-35266 CVE-2021-35267 CVE-2021-35268 CVE-2021-35269 CVE-2021-39251 CVE-2021-39252 CVE-2021-39253 CVE-2021-39254 CVE-2021-39255 CVE-2021-39256 CVE-2021-39257 CVE-2021-39258 CVE-2021-39259 CVE-2021-39260 CVE-2021-39261 CVE-2021-39262 CVE-2021-39263: Several vulnerabilities were discovered in NTFS-3G, a read-write NTFS driver for FUSE. A local user can take advantage of these flaws for local root privilege escalation.
+Vulnerable: &lt;= 2014.2.15AR.2-1+deb8u4
+Fixed: 2014.2.15AR.2-1+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885239</td>
+<td>CVE-2021-43618: GNU Multiple Precision Arithmetic Library (GMP) through 6.2.1 has an mpz/inp_raw.c integer overflow and resultant buffer overflow via crafted input, leading to a segmentation fault on 32-bit platforms.
+Vulnerable: 6.0.0+dfsg-6 on armel platform
+Fixed: 6.0.0+dfsg-6+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885238</td>
+<td>The following vulnerabilities have been announced in bluez, the Linux Bluetooth protocol stack:
+CVE-2019-8921: SDP infoleak; the vulnerability lies in the handling of a SVC_ATTR_REQ by the SDP implementation of BlueZ. By crafting a malicious CSTATE, it is possible to trick the server into returning more bytes than the buffer actually holds, resulting in leaking arbitrary heap data.
+CVE-2019-8922: SDP Heap Overflow; this vulnerability lies in the SDP protocol handling of attribute requests as well. By requesting a huge number of attributes at the same time, an attacker can overflow the static buffer provided to hold the response.
+CVE-2021-41229: sdp_cstate_alloc_buf allocates memory which will always be hung in the singly linked list of cstates and will not be freed. This will cause a memory leak over time. The data can be a very large object, which can be caused by an attacker continuously sending sdp packets and this may cause the service of the target device to crash.
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u3
+Fixed: 5.43-2+deb9u2~deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2866111</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
@@ -25115,6 +26149,14 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -27009,6 +28051,41 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2885241</td>
+<td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
+Vulnerable: &lt;= 3.26-1+debu8u13
+Fixed: 3.26-1+debu8u14</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885240</td>
+<td>CVE-2021-33285 CVE-2021-33286 CVE-2021-33287 CVE-2021-33289 CVE-2021-35266 CVE-2021-35267 CVE-2021-35268 CVE-2021-35269 CVE-2021-39251 CVE-2021-39252 CVE-2021-39253 CVE-2021-39254 CVE-2021-39255 CVE-2021-39256 CVE-2021-39257 CVE-2021-39258 CVE-2021-39259 CVE-2021-39260 CVE-2021-39261 CVE-2021-39262 CVE-2021-39263: Several vulnerabilities were discovered in NTFS-3G, a read-write NTFS driver for FUSE. A local user can take advantage of these flaws for local root privilege escalation.
+Vulnerable: &lt;= 2014.2.15AR.2-1+deb8u4
+Fixed: 2014.2.15AR.2-1+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885239</td>
+<td>CVE-2021-43618: GNU Multiple Precision Arithmetic Library (GMP) through 6.2.1 has an mpz/inp_raw.c integer overflow and resultant buffer overflow via crafted input, leading to a segmentation fault on 32-bit platforms.
+Vulnerable: 6.0.0+dfsg-6 on armel platform
+Fixed: 6.0.0+dfsg-6+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885238</td>
+<td>The following vulnerabilities have been announced in bluez, the Linux Bluetooth protocol stack:
+CVE-2019-8921: SDP infoleak; the vulnerability lies in the handling of a SVC_ATTR_REQ by the SDP implementation of BlueZ. By crafting a malicious CSTATE, it is possible to trick the server into returning more bytes than the buffer actually holds, resulting in leaking arbitrary heap data.
+CVE-2019-8922: SDP Heap Overflow; this vulnerability lies in the SDP protocol handling of attribute requests as well. By requesting a huge number of attributes at the same time, an attacker can overflow the static buffer provided to hold the response.
+CVE-2021-41229: sdp_cstate_alloc_buf allocates memory which will always be hung in the singly linked list of cstates and will not be freed. This will cause a memory leak over time. The data can be a very large object, which can be caused by an attacker continuously sending sdp packets and this may cause the service of the target device to crash.
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u3
+Fixed: 5.43-2+deb9u2~deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2866111</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
@@ -27019,6 +28096,14 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -28565,6 +29650,41 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2885241</td>
+<td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
+Vulnerable: &lt;= 3.26-1+debu8u13
+Fixed: 3.26-1+debu8u14</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885240</td>
+<td>CVE-2021-33285 CVE-2021-33286 CVE-2021-33287 CVE-2021-33289 CVE-2021-35266 CVE-2021-35267 CVE-2021-35268 CVE-2021-35269 CVE-2021-39251 CVE-2021-39252 CVE-2021-39253 CVE-2021-39254 CVE-2021-39255 CVE-2021-39256 CVE-2021-39257 CVE-2021-39258 CVE-2021-39259 CVE-2021-39260 CVE-2021-39261 CVE-2021-39262 CVE-2021-39263: Several vulnerabilities were discovered in NTFS-3G, a read-write NTFS driver for FUSE. A local user can take advantage of these flaws for local root privilege escalation.
+Vulnerable: &lt;= 2014.2.15AR.2-1+deb8u4
+Fixed: 2014.2.15AR.2-1+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885239</td>
+<td>CVE-2021-43618: GNU Multiple Precision Arithmetic Library (GMP) through 6.2.1 has an mpz/inp_raw.c integer overflow and resultant buffer overflow via crafted input, leading to a segmentation fault on 32-bit platforms.
+Vulnerable: 6.0.0+dfsg-6 on armel platform
+Fixed: 6.0.0+dfsg-6+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885238</td>
+<td>The following vulnerabilities have been announced in bluez, the Linux Bluetooth protocol stack:
+CVE-2019-8921: SDP infoleak; the vulnerability lies in the handling of a SVC_ATTR_REQ by the SDP implementation of BlueZ. By crafting a malicious CSTATE, it is possible to trick the server into returning more bytes than the buffer actually holds, resulting in leaking arbitrary heap data.
+CVE-2019-8922: SDP Heap Overflow; this vulnerability lies in the SDP protocol handling of attribute requests as well. By requesting a huge number of attributes at the same time, an attacker can overflow the static buffer provided to hold the response.
+CVE-2021-41229: sdp_cstate_alloc_buf allocates memory which will always be hung in the singly linked list of cstates and will not be freed. This will cause a memory leak over time. The data can be a very large object, which can be caused by an attacker continuously sending sdp packets and this may cause the service of the target device to crash.
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u3
+Fixed: 5.43-2+deb9u2~deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2866111</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
@@ -28575,6 +29695,14 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -30148,6 +31276,41 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2885241</td>
+<td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
+Vulnerable: &lt;= 3.26-1+debu8u13
+Fixed: 3.26-1+debu8u14</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885240</td>
+<td>CVE-2021-33285 CVE-2021-33286 CVE-2021-33287 CVE-2021-33289 CVE-2021-35266 CVE-2021-35267 CVE-2021-35268 CVE-2021-35269 CVE-2021-39251 CVE-2021-39252 CVE-2021-39253 CVE-2021-39254 CVE-2021-39255 CVE-2021-39256 CVE-2021-39257 CVE-2021-39258 CVE-2021-39259 CVE-2021-39260 CVE-2021-39261 CVE-2021-39262 CVE-2021-39263: Several vulnerabilities were discovered in NTFS-3G, a read-write NTFS driver for FUSE. A local user can take advantage of these flaws for local root privilege escalation.
+Vulnerable: &lt;= 2014.2.15AR.2-1+deb8u4
+Fixed: 2014.2.15AR.2-1+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885239</td>
+<td>CVE-2021-43618: GNU Multiple Precision Arithmetic Library (GMP) through 6.2.1 has an mpz/inp_raw.c integer overflow and resultant buffer overflow via crafted input, leading to a segmentation fault on 32-bit platforms.
+Vulnerable: 6.0.0+dfsg-6 on armel platform
+Fixed: 6.0.0+dfsg-6+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885238</td>
+<td>The following vulnerabilities have been announced in bluez, the Linux Bluetooth protocol stack:
+CVE-2019-8921: SDP infoleak; the vulnerability lies in the handling of a SVC_ATTR_REQ by the SDP implementation of BlueZ. By crafting a malicious CSTATE, it is possible to trick the server into returning more bytes than the buffer actually holds, resulting in leaking arbitrary heap data.
+CVE-2019-8922: SDP Heap Overflow; this vulnerability lies in the SDP protocol handling of attribute requests as well. By requesting a huge number of attributes at the same time, an attacker can overflow the static buffer provided to hold the response.
+CVE-2021-41229: sdp_cstate_alloc_buf allocates memory which will always be hung in the singly linked list of cstates and will not be freed. This will cause a memory leak over time. The data can be a very large object, which can be caused by an attacker continuously sending sdp packets and this may cause the service of the target device to crash.
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u3
+Fixed: 5.43-2+deb9u2~deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2866111</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
@@ -30158,6 +31321,14 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -31832,6 +33003,41 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2885241</td>
+<td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
+Vulnerable: &lt;= 3.26-1+debu8u13
+Fixed: 3.26-1+debu8u14</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885240</td>
+<td>CVE-2021-33285 CVE-2021-33286 CVE-2021-33287 CVE-2021-33289 CVE-2021-35266 CVE-2021-35267 CVE-2021-35268 CVE-2021-35269 CVE-2021-39251 CVE-2021-39252 CVE-2021-39253 CVE-2021-39254 CVE-2021-39255 CVE-2021-39256 CVE-2021-39257 CVE-2021-39258 CVE-2021-39259 CVE-2021-39260 CVE-2021-39261 CVE-2021-39262 CVE-2021-39263: Several vulnerabilities were discovered in NTFS-3G, a read-write NTFS driver for FUSE. A local user can take advantage of these flaws for local root privilege escalation.
+Vulnerable: &lt;= 2014.2.15AR.2-1+deb8u4
+Fixed: 2014.2.15AR.2-1+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885239</td>
+<td>CVE-2021-43618: GNU Multiple Precision Arithmetic Library (GMP) through 6.2.1 has an mpz/inp_raw.c integer overflow and resultant buffer overflow via crafted input, leading to a segmentation fault on 32-bit platforms.
+Vulnerable: 6.0.0+dfsg-6 on armel platform
+Fixed: 6.0.0+dfsg-6+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885238</td>
+<td>The following vulnerabilities have been announced in bluez, the Linux Bluetooth protocol stack:
+CVE-2019-8921: SDP infoleak; the vulnerability lies in the handling of a SVC_ATTR_REQ by the SDP implementation of BlueZ. By crafting a malicious CSTATE, it is possible to trick the server into returning more bytes than the buffer actually holds, resulting in leaking arbitrary heap data.
+CVE-2019-8922: SDP Heap Overflow; this vulnerability lies in the SDP protocol handling of attribute requests as well. By requesting a huge number of attributes at the same time, an attacker can overflow the static buffer provided to hold the response.
+CVE-2021-41229: sdp_cstate_alloc_buf allocates memory which will always be hung in the singly linked list of cstates and will not be freed. This will cause a memory leak over time. The data can be a very large object, which can be caused by an attacker continuously sending sdp packets and this may cause the service of the target device to crash.
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u3
+Fixed: 5.43-2+deb9u2~deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2866111</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
@@ -31842,6 +33048,14 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -33559,6 +34773,41 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2885241</td>
+<td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
+Vulnerable: &lt;= 3.26-1+debu8u13
+Fixed: 3.26-1+debu8u14</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885240</td>
+<td>CVE-2021-33285 CVE-2021-33286 CVE-2021-33287 CVE-2021-33289 CVE-2021-35266 CVE-2021-35267 CVE-2021-35268 CVE-2021-35269 CVE-2021-39251 CVE-2021-39252 CVE-2021-39253 CVE-2021-39254 CVE-2021-39255 CVE-2021-39256 CVE-2021-39257 CVE-2021-39258 CVE-2021-39259 CVE-2021-39260 CVE-2021-39261 CVE-2021-39262 CVE-2021-39263: Several vulnerabilities were discovered in NTFS-3G, a read-write NTFS driver for FUSE. A local user can take advantage of these flaws for local root privilege escalation.
+Vulnerable: &lt;= 2014.2.15AR.2-1+deb8u4
+Fixed: 2014.2.15AR.2-1+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885239</td>
+<td>CVE-2021-43618: GNU Multiple Precision Arithmetic Library (GMP) through 6.2.1 has an mpz/inp_raw.c integer overflow and resultant buffer overflow via crafted input, leading to a segmentation fault on 32-bit platforms.
+Vulnerable: 6.0.0+dfsg-6 on armel platform
+Fixed: 6.0.0+dfsg-6+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885238</td>
+<td>The following vulnerabilities have been announced in bluez, the Linux Bluetooth protocol stack:
+CVE-2019-8921: SDP infoleak; the vulnerability lies in the handling of a SVC_ATTR_REQ by the SDP implementation of BlueZ. By crafting a malicious CSTATE, it is possible to trick the server into returning more bytes than the buffer actually holds, resulting in leaking arbitrary heap data.
+CVE-2019-8922: SDP Heap Overflow; this vulnerability lies in the SDP protocol handling of attribute requests as well. By requesting a huge number of attributes at the same time, an attacker can overflow the static buffer provided to hold the response.
+CVE-2021-41229: sdp_cstate_alloc_buf allocates memory which will always be hung in the singly linked list of cstates and will not be freed. This will cause a memory leak over time. The data can be a very large object, which can be caused by an attacker continuously sending sdp packets and this may cause the service of the target device to crash.
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u3
+Fixed: 5.43-2+deb9u2~deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2866111</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
@@ -33569,6 +34818,14 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -34598,6 +35855,41 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2885241</td>
+<td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
+Vulnerable: &lt;= 3.26-1+debu8u13
+Fixed: 3.26-1+debu8u14</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885240</td>
+<td>CVE-2021-33285 CVE-2021-33286 CVE-2021-33287 CVE-2021-33289 CVE-2021-35266 CVE-2021-35267 CVE-2021-35268 CVE-2021-35269 CVE-2021-39251 CVE-2021-39252 CVE-2021-39253 CVE-2021-39254 CVE-2021-39255 CVE-2021-39256 CVE-2021-39257 CVE-2021-39258 CVE-2021-39259 CVE-2021-39260 CVE-2021-39261 CVE-2021-39262 CVE-2021-39263: Several vulnerabilities were discovered in NTFS-3G, a read-write NTFS driver for FUSE. A local user can take advantage of these flaws for local root privilege escalation.
+Vulnerable: &lt;= 2014.2.15AR.2-1+deb8u4
+Fixed: 2014.2.15AR.2-1+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885239</td>
+<td>CVE-2021-43618: GNU Multiple Precision Arithmetic Library (GMP) through 6.2.1 has an mpz/inp_raw.c integer overflow and resultant buffer overflow via crafted input, leading to a segmentation fault on 32-bit platforms.
+Vulnerable: 6.0.0+dfsg-6 on armel platform
+Fixed: 6.0.0+dfsg-6+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2885238</td>
+<td>The following vulnerabilities have been announced in bluez, the Linux Bluetooth protocol stack:
+CVE-2019-8921: SDP infoleak; the vulnerability lies in the handling of a SVC_ATTR_REQ by the SDP implementation of BlueZ. By crafting a malicious CSTATE, it is possible to trick the server into returning more bytes than the buffer actually holds, resulting in leaking arbitrary heap data.
+CVE-2019-8922: SDP Heap Overflow; this vulnerability lies in the SDP protocol handling of attribute requests as well. By requesting a huge number of attributes at the same time, an attacker can overflow the static buffer provided to hold the response.
+CVE-2021-41229: sdp_cstate_alloc_buf allocates memory which will always be hung in the singly linked list of cstates and will not be freed. This will cause a memory leak over time. The data can be a very large object, which can be caused by an attacker continuously sending sdp packets and this may cause the service of the target device to crash.
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u3
+Fixed: 5.43-2+deb9u2~deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2866111</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
@@ -34608,6 +35900,14 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2861951</td>
+<td>CVE-2020-6097, CVE-2021-41054: atftp is vulnerable to denial of service due to a buffer overflow triggered by crafted requests to the server.
+Vulnerable: &lt;= 0.7.git20120829-1+deb8u1
+Fixed: 0.7.git20120829-1+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>

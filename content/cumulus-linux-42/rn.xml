@@ -7,6 +7,26 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2877796</td>
+<td>CVE-2021-43527: The NSS package is vulnerable to a heap overflow when verifying DSA/RSA-PSS DER-encoded signatures.
+Vulnerable: &lt;= 3.42.1-1+deb10u3
+Fixed: 3.42.1-1+deb10u4</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2875338</td>
+<td>In a scaled EVPN MLAG configuration with 400 or more VNIs and 20K or more MAC addresses, when the peerlink is flapped causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service may undergo a restart. After FRR restarts or the CPU utilization settles down, the system works normally.</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2875337</td>
+<td>In a scaled EVPN MLAG configuration with 400 or more VNIs and 20K or more MAC addresses, when the peerlink is flapped causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service may undergo a restart. After FRR restarts or the CPU utilization settles down, the system works normally.</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2875296</td>
 <td>On the Mellanox Spectrum-2 switches, after running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
 To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
@@ -40,6 +60,12 @@ Fixed: 4.1.0+git191117-2~deb10u3</td>
 <td></td>
 </tr>
 <tr>
+<td>2845531</td>
+<td>If you update the MAC address of an SVI when the SVI is in a {{protodown}} state (for example, when no bridge ports that carry this VNI are operationally up or if the MAC address of the SVI's parent bridge changes), {{clagd}} does not notice the change. The MLAG peer incorrectly maintains a PERMANENT neighbor entry for the SVI IP that points to the old MAC address.</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2840818</td>
 <td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
 <td>4.0.0-4.4.0</td>
@@ -64,7 +90,7 @@ Fixed: 1.1.1d-0+deb10u7</td>
 </tr>
 <tr>
 <td>2755614</td>
-<td>Host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry when {{route_preferred_over_neigh}} is set to {{FALSE}} in {{/etc/cumulus/switchd.conf}} </td>
+<td>When {{route_preferred_over_neigh}} is set to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
 </tr>
@@ -118,6 +144,12 @@ Fixed: 1.24.1-1+deb 10u1</td>
 Vulnerable: &lt;= 1.17-3+deb10u1
 Fixed: 1.17-3+deb10u2</td>
 <td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2738625</td>
+<td>When you configure the switch with the minimum reserved VLAN of 150 and the internal VLANs are exhausted, the MLAG peer does not  forward the VLAN.</td>
+<td>3.7.15, 4.2.1-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1843,6 +1875,26 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2877796</td>
+<td>CVE-2021-43527: The NSS package is vulnerable to a heap overflow when verifying DSA/RSA-PSS DER-encoded signatures.
+Vulnerable: &lt;= 3.42.1-1+deb10u3
+Fixed: 3.42.1-1+deb10u4</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2875338</td>
+<td>In a scaled EVPN MLAG configuration with 400 or more VNIs and 20K or more MAC addresses, when the peerlink is flapped causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service may undergo a restart. After FRR restarts or the CPU utilization settles down, the system works normally.</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2875337</td>
+<td>In a scaled EVPN MLAG configuration with 400 or more VNIs and 20K or more MAC addresses, when the peerlink is flapped causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service may undergo a restart. After FRR restarts or the CPU utilization settles down, the system works normally.</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2875296</td>
 <td>On the Mellanox Spectrum-2 switches, after running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
 To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
@@ -1876,6 +1928,12 @@ Fixed: 4.1.0+git191117-2~deb10u3</td>
 <td></td>
 </tr>
 <tr>
+<td>2845531</td>
+<td>If you update the MAC address of an SVI when the SVI is in a {{protodown}} state (for example, when no bridge ports that carry this VNI are operationally up or if the MAC address of the SVI's parent bridge changes), {{clagd}} does not notice the change. The MLAG peer incorrectly maintains a PERMANENT neighbor entry for the SVI IP that points to the old MAC address.</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2840818</td>
 <td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
 <td>4.0.0-4.4.0</td>
@@ -1900,7 +1958,7 @@ Fixed: 1.1.1d-0+deb10u7</td>
 </tr>
 <tr>
 <td>2755614</td>
-<td>Host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry when {{route_preferred_over_neigh}} is set to {{FALSE}} in {{/etc/cumulus/switchd.conf}} </td>
+<td>When {{route_preferred_over_neigh}} is set to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
 </tr>
@@ -1954,6 +2012,12 @@ Fixed: 1.24.1-1+deb 10u1</td>
 Vulnerable: &lt;= 1.17-3+deb10u1
 Fixed: 1.17-3+deb10u2</td>
 <td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2738625</td>
+<td>When you configure the switch with the minimum reserved VLAN of 150 and the internal VLANs are exhausted, the MLAG peer does not  forward the VLAN.</td>
+<td>3.7.15, 4.2.1-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4584,6 +4648,14 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2877796</td>
+<td>CVE-2021-43527: The NSS package is vulnerable to a heap overflow when verifying DSA/RSA-PSS DER-encoded signatures.
+Vulnerable: &lt;= 3.42.1-1+deb10u3
+Fixed: 3.42.1-1+deb10u4</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2873322</td>
 <td>CVE-2020-21913: International Components for Unicode (ICU-20850) v66.1 was discovered to contain a use after free bug in the pkg_createWithAssemblyCode function in the file tools/pkgdata/pkgdata.cpp.</td>
 <td>4.0.0-4.4.0</td>
@@ -4628,7 +4700,7 @@ Fixed: 1.1.1d-0+deb10u7</td>
 </tr>
 <tr>
 <td>2755614</td>
-<td>Host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry when {{route_preferred_over_neigh}} is set to {{FALSE}} in {{/etc/cumulus/switchd.conf}} </td>
+<td>When {{route_preferred_over_neigh}} is set to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
 </tr>

@@ -207,6 +207,11 @@ To work around this issue, run the following command on the NetQ telemetry serve
 <td></td>
 </tr>
 <tr>
+<td>2556754</td>
+<td>netq-agent installed on Cumulus Linux might slowly leak memory during sustained layer two network events at high scale.</td>
+<td>3.3.0-3.3.1</td>
+</tr>
+<tr>
 <td>2553453</td>
 <td>The {{netqd}} daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and {{netq show}} commands are run.</td>
 <td>3.1.0-3.3.1</td>

@@ -407,6 +407,7 @@ You can also set these optional parameters:
 | `priority` | 100 | The priority level of the virtual router within the virtual router group, which determines the role that each virtual router plays and what happens if the master fails. Virtual routers have a priority between 1 and 254; the router with the highest priority becomes the master. |
 | `advertisement interval` | 1000 milliseconds | The advertisement interval is the interval between successive advertisements by the master in a virtual router group. You can specify a value between 10 and 40950.|
 | `preempt` | enabled | Preempt mode lets the router take over as master for a virtual router group if it has a higher priority than the current master. Preempt mode is on by default. To disable preempt mode, edit the `/etc/frr/frr.conf` file to add the line `no vrrp <VRID> preempt` to the interface stanza, then restart the FRR service.|
+| `version` | 3 | The VRRP protocol version. You can specify a value of either 2 or 3.|
 
 The following example commands configure two switches (spine01 and spine02) that form one virtual router group (VRID 44) with IPv4 address 10.0.0.1/24 and IPv6 address 2001:0db8::1/64. *spine01* is the master; it has a priority of 254. *spine02* is the backup VRRP router.
 

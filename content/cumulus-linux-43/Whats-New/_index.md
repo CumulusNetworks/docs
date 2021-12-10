@@ -12,7 +12,11 @@ This document supports the Cumulus Linux 4.3 release, and lists new platforms an
 <!-- vale off -->
 ## What's New in Cumulus Linux 4.3.0
 <!-- vale on -->
-Cumulus Linux 4.3.0 provides bug fixes, and contains several new features and enhancements.
+Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains several new features and enhancements.
+
+### New Platforms
+
+- NVIDIA SN4700 (400G Spectrum-3)
 
 ### New Features and Enhancements
 

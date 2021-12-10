@@ -4425,6 +4425,11 @@ To work around this issue, manually set the MAC address of the bridge interface 
 <td>3.7.11-3.7.13, 4.0.0-4.2.0</td>
 </tr>
 <tr>
+<td>2552452</td>
+<td>When a bond name is too long, ifupdown2 creates the bond devices in the kernel with truncated names.</td>
+<td>4.2.0</td>
+</tr>
+<tr>
 <td>2552407</td>
 <td>The following vulnerability has been announced in the json-c / libjson_c3 packages:
 CVE-2020-12762: json-c through 0.14 has an integer overflow and out-of-bounds write via a large JSON file, as demonstrated by printbuf_memappend.
@@ -5762,6 +5767,12 @@ To work around this issue, manually set the MAC address of the bridge interface 
 To work around this issue, use NCLU to configure RoCE with PFC or list individual ports in the {{traffic.conf}} file.</td>
 <td>4.2.0-4.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2552452</td>
+<td>When a bond name is too long, ifupdown2 creates the bond devices in the kernel with truncated names.</td>
+<td>4.2.0</td>
+<td>4.2.1-4.4.0</td>
 </tr>
 <tr>
 <td>2552407</td>

@@ -33,8 +33,8 @@ Cumulus Linux 5.0.0 supports new platforms, provides bug fixes, and contains sev
   Important NVUE command updates include:
      - {{<link url="Basic-BGP-Configuration" text="BGP">}} `peer` is now BGP `neighbor` (for example, `nv set vrf default router bgp peer swp51 remote-as external`)
      - {{<link url="Basic-BGP-Configuration" text="BGP">}} `static-network` is now `network` (for example, `nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32`)
-     - The Cumulus Linux 4.4 `platform` commands are now under `system` (for example, `nv set system hostname`)
-     - The `platform` commands now configure hardware components (for example, `nv set platform hardware component device type linecard`)
+     - The Cumulus Linux 4.4 `platform` {{<link url="NVIDIA-User-Experience-NVUE/#command-categories" text="commands">}} are now under `system` (for example, `nv set system hostname`)
+     - The `platform` {{<link url="NVIDIA-User-Experience-NVUE/#command-categories" text="commands">}} now configure hardware components (for example, `nv set platform hardware component device type linecard`)
      - New {{<link url="NVIDIA-User-Experience-NVUE/#configuration-management-commands" text="configuration management commands">}}: `nv config show -o commands` shows the currently applied configuration commands and `nv config diff -o commands` shows differences between two configuration revisions.
 
 - {{<link url="Precision-Time-Protocol-PTP" text="PTP Boundary Clock">}} enhancements; {{<link url="Precision-Time-Protocol-PTP/#message-mode" text="Message mode">}}, {{<link url="Precision-Time-Protocol-PTP/#acceptable-master-table" text="acceptable master table">}}, {{<link url="Precision-Time-Protocol-PTP/#dscp" text="DSCP">}}, and {{<link url="Precision-Time-Protocol-PTP/#ttl-for-a-ptp-message" text="TTL for a PTP message">}} are now GA.

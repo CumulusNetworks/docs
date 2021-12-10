@@ -29,7 +29,7 @@ Cumulus Linux 4.4.0 supports new platforms, provides bug fixes, and contains sev
 
 ### New Platforms
 
-- NVIDIA SN3700C-S (100G Spectrum-2) with Secure Boot
+- NVIDIA SN3700C-S (100G Spectrum-2) with Secure Boot (early access)
 
 ### New Features and Enhancements
 

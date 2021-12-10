@@ -30,21 +30,24 @@ Cumulus Linux 5.0.0 supports new platforms, provides bug fixes, and contains sev
      - {{<link title="Setting the Date and Time" text="The time zone">}}
      - {{<link url="Interface-Configuration-and-Management/#interface-descriptions" text="Interface descriptions (aliases)">}}
 
-  Important command updates include:
-     - BGP `peer` is now BGP `neighbor` (for example, `nv set vrf default router bgp peer swp51 remote-as external`)
-     - BGP `static-network` is now `network` (for example, `nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32`)
+  Important NVUE command updates include:
+     - {{<link url="Basic-BGP-Configuration" text="BGP">}} `peer` is now BGP `neighbor` (for example, `nv set vrf default router bgp peer swp51 remote-as external`)
+     - {{<link url="Basic-BGP-Configuration" text="BGP">}} `static-network` is now `network` (for example, `nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32`)
      - The Cumulus Linux 4.4 `platform` commands are now under `system` (for example, `nv set system hostname`)
      - The `platform` commands now configure hardware components (for example, `nv set platform hardware component device type linecard`)
-     - Two new configuration management commands: `nv config show -o commands` shows the currently applied configuration commands and `nv config diff -o commands` shows differences between two configuration revisions.
+     - New {{<link url="NVIDIA-User-Experience-NVUE/#configuration-management-commands" text="configuration management commands">}}: `nv config show -o commands` shows the currently applied configuration commands and `nv config diff -o commands` shows differences between two configuration revisions.
 
-- {{<link url="Precision-Time-Protocol-PTP" text="PTP Boundary Clock">}} enhancements; {{<link url="Precision-Time-Protocol-PTP/#mixed-mode" text="mixed mode">}}, {{<link url="Precision-Time-Protocol-PTP/#acceptable-master-table" text="acceptable master table">}}, {{<link url="Precision-Time-Protocol-PTP/#dscp" text="DSCP">}}, and {{<link url="Precision-Time-Protocol-PTP/#ttl-for-a-ptp-message" text="TTL for a PTP message">}} are now GA.
+- {{<link url="Precision-Time-Protocol-PTP" text="PTP Boundary Clock">}} enhancements; {{<link url="Precision-Time-Protocol-PTP/#message-mode" text="Message mode">}}, {{<link url="Precision-Time-Protocol-PTP/#acceptable-master-table" text="acceptable master table">}}, {{<link url="Precision-Time-Protocol-PTP/#dscp" text="DSCP">}}, and {{<link url="Precision-Time-Protocol-PTP/#ttl-for-a-ptp-message" text="TTL for a PTP message">}} are now GA.
 - The maximum number of {{<link url="VLAN-aware-Bridge-Mode/#configure-multiple-vlan-aware-bridges" text="VLAN elements">}} supported with multiple bridges increases to 16K.
-- SNMP enhancements include VRF-aware FRRouting MIBs and the ability to get the link up and link down count.
+- {{<link url="Simple-Network-Management-Protocol-SNMP" text="SNMP">}} enhancements include VRF-aware FRRouting MIBs and the ability to get the link up and link down count.
 - {{<link url="Optional-BGP-Configuration/#suppress-route-advertisement" text="Suppress route advertisement">}} is now GA.
+- {{<link url="Netfilter-ACLs" text="Netfilter-ACL">}} enhancements include:
+  - {{<link url="Netfilter-ACLs/#control-plane-policers" text="New control plane policer configuration">}}
+  - {{<link url="Netfilter-ACLs/#install-and-manage-acl-rules-with-nvue" text="Updated rules with NVUE">}}; Cumulus Linux now uses the `-t mangle -A PREROUTING` chain for ingress rules and the `-t mangle -A POSTROUTING` chain for egress rules instead of the `- A FORWARD` chain.
 <!-- - Host Based Networking (HBN) support. Cumulus Linux on the DPU simplifies host networking so that you can manage your network policies end to end, regardless of the server end point type. With HBN, you do not need to configure LACP or MLAG. In addition, ECMP provides high availablity.-->
 
 {{%notice note%}}
-Cumulus Linux 5.0.0 replaces NCLU with the NVUE object model. After you upgrade to Cumulus Linux 5.0.0, running NVUE configuration commands replaces the configuration in the applicable configuration files and removes any configuration you add manually or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
+Cumulus Linux 5.0.0 replaces NCLU with the {{<link url="NVIDIA-User-Experience-NVUE" text="NVUE object model">}}. After you upgrade to Cumulus Linux 5.0.0, running NVUE configuration commands replaces the configuration in the applicable configuration files and removes any configuration you add manually or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
 
 - Update your automation tools to use NVUE.
 - {{<link url="NVIDIA-User-Experience-NVUE/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.

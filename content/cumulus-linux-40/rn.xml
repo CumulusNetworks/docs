@@ -1577,6 +1577,14 @@ Fixed: 1.0.4-0-cl4.3.0u2</td>
 <td>3.7.14.2-3.7.15</td>
 </tr>
 <tr>
+<td>2555908</td>
+<td>If the you add the MLAG backup IP address to the MLAG peer in the secondary role while the peer link is down, the LACP sys-mac does not use the MLAG system MAC address (clagd-sys-mac) when the peer link comes back up.
+To work around this issue, wait until the peer link is up to add the MLAG backup IP address.  
+To recover from this condition, restart {{clagd}} with the {{sudo systemctl restart clagd}} command.</td>
+<td>3.7.12-4.0.1</td>
+<td>4.1.0-4.4.0</td>
+</tr>
+<tr>
 <td>2555761</td>
 <td>The following vulnerabilities were announced in the p11-kit (libp11-kit0) packages:
 CVE-2020-29361: Multiple integer overflows have been discovered in the array allocations in the p11-kit library and the p11-kit list command, where overflow checks are missing before calling realloc or calloc.
@@ -4380,6 +4388,11 @@ To work around this issue, reboot the leaf switch or restart {{switchd}}.</td>
 <td>2548191</td>
 <td>A security scanner may detect a version of wpa or hostapd that is not listed as having been fixed for CVE-2019-13377 and/or CVE-2019-16275.  Cumulus Linux since 3.7.9 and 4.0.0 has a customized version of wpa and hostapd which includes the fixes for these vulnerabilities.</td>
 <td>3.7.8</td>
+</tr>
+<tr>
+<td>2548155</td>
+<td>The {{net show bgp neighbor swpX json}} command shows negative output for the {{bgpTimerUpMsec}} timer.</td>
+<td>3.7.10-3.7.15</td>
 </tr>
 <tr>
 <td>2547381</td>

@@ -155,9 +155,13 @@ To access the NVUE REST API from a font panel port (swp) on the switch:
 
 2. Edit the `nvue.conf` file and add the `listen` directive with the IPv4 or IPv6 address of the swp interface you want to use.
 
-   The default `nvue.conf` file includes a single `listen localhost:8765 ssl;` entry. Add an entry for each swp interface with its IP address. Make sure to use an accessible HTTP (TCP) port (subject to any ACL/firewall rules).
+   The default `nvue.conf` file includes a single `listen localhost:8765 ssl;` entry. Add an entry for each swp interface with its IP address. Make sure to use an accessible HTTP (TCP) port (subject to any ACL/firewall rules). For information on the NGINX `listen` directive, see {{<exlink url="http://nginx.org/en/docs/http/ngx_http_core_module.html#listen" text="the NGINX documentation" >}}.
 
-For information on the NGINX `listen` directive, see {{<exlink url="http://nginx.org/en/docs/http/ngx_http_core_module.html#listen" text="the NGINX documentation" >}}.
+3. Restart the `nginx` service:
+
+   ```
+   cumulus@switch:~$ sudo systemctl reload-or-restart nginx
+   ```
 
 {{%notice note%}}
 - The swp interfaces must be part of the default VRF on the Cumulus Linux switch or virtual appliance.

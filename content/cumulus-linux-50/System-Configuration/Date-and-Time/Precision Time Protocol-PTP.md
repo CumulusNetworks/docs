@@ -848,6 +848,9 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 Cumulus Linux monitors clock correction and path delay against thresholds, and generates counters that show in the `nv show interface swp5 ptp` command output and log messages when PTP reaches the thresholds. You can configure the following monitor settings:
 
+{{< tabs "TabID851 ">}}
+{{< tab "NVUE Commands ">}}
+
 | Command | Description |
 | ----- | ----------- |
 | `nv set service ptp <instance> monitor min-offset-threshold` | Sets the minimum difference allowed in nanoseconds between the master and slave time. The default value is -50 nanoseconds.|
@@ -858,10 +861,7 @@ Cumulus Linux monitors clock correction and path delay against thresholds, and g
 | `nv set service ptp <instance> monitor max-violation-log-entries` | Sets the maximum number of violation log entries allowed for each set. You can specify a value between 8 and 128. The default value is 8 entries.|
 | `nv set service ptp <instance> monitor violation-log-interval` | Sets the violation log interval in seconds. You can specify a value between 0 and 259200 seconds. The default value is 0 seconds.|
 
-The following examples set the path delay threshold to 300:
-
-{{< tabs "TabID482 ">}}
-{{< tab "NVUE Commands ">}}
+The following example sets the path delay threshold to 300:
 
 ```
 cumulus@switch:~$ nv set service ptp 1 monitor path-delay-threshold 300
@@ -871,7 +871,15 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ptp4l.conf` file to change the `mean_path_delay_threshold` setting to 300, then restart the `ptp4l` service.
+You can can configure the following monitor settings manually in the `/etc/ptp4l.conf` file. Be sure to run the `sudo systemctl restart ptp4l.service` to apply the settings.
+
+| Parameter | Description |
+| ----- | ----------- |
+| `offset_from_master_min_threshold` | Sets the minimum difference allowed in nanoseconds between the master and slave time. The default value is -50 nanoseconds. |
+| `offset_from_master_max_threshold` | Sets the maximum difference allowed in nanoseconds between the master and slave time. The default value is 50 nanoseconds. |
+| `mean_path_delay_threshold` | Sets the mean time in nanoseconds that PTP packets take to travel between the master and slave. The default value is 200 nanoseconds. |
+
+The following example sets the path delay threshold to 300 nanoseconds:
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -893,10 +901,6 @@ offset_from_master_min_threshold   -50
 offset_from_master_max_threshold   50
 mean_path_delay_threshold          300
 ...
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
 {{< /tab >}}

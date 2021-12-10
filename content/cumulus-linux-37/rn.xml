@@ -7,6 +7,13 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2890648</td>
+<td>Some ECMP next-hops might fail installation into hardware at high ECMP group and route scale. The following log message will be observed when this condition occurs:
+{{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
+<td>3.7.9-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2885241</td>
 <td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 3.26-1+debu8u13
@@ -39,12 +46,6 @@ CVE-2021-41229: sdp_cstate_alloc_buf allocates memory which will always be hung 
 Vulnerable: &lt;= 5.43-2+deb9u2~deb8u3
 Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2879645</td>
-<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -840,6 +841,14 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <td>4.2.1-4.4.0</td>
 </tr>
 <tr>
+<td>2555908</td>
+<td>If the you add the MLAG backup IP address to the MLAG peer in the secondary role while the peer link is down, the LACP sys-mac does not use the MLAG system MAC address (clagd-sys-mac) when the peer link comes back up.
+To work around this issue, wait until the peer link is up to add the MLAG backup IP address.  
+To recover from this condition, restart {{clagd}} with the {{sudo systemctl restart clagd}} command.</td>
+<td>3.7.12-4.0.1</td>
+<td>4.1.0-4.4.0</td>
+</tr>
+<tr>
 <td>2555528</td>
 <td>In an EVPN Active/Active configuration, when one of the peers reboots and begins to refresh IP neighbor entries shared by the MLAG peer, some of these ARP messages might be dropped by the MLAG peer's ARP policer.
 To work around this issue, increase the burst value of the ARP policers to 200 or higher.</td>
@@ -1327,6 +1336,12 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td>On switches with the Trident2+ ASIC, adding SPAN rules disables PBR rules.</td>
 <td>3.7.3-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2548155</td>
+<td>The {{net show bgp neighbor swpX json}} command shows negative output for the {{bgpTimerUpMsec}} timer.</td>
+<td>3.7.10-3.7.15</td>
+<td>4.0.0-4.4.0</td>
 </tr>
 <tr>
 <td>2548117</td>
@@ -2649,6 +2664,13 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2890648</td>
+<td>Some ECMP next-hops might fail installation into hardware at high ECMP group and route scale. The following log message will be observed when this condition occurs:
+{{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
+<td>3.7.9-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2885241</td>
 <td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 3.26-1+debu8u13
@@ -3633,6 +3655,14 @@ To work around this issue, after upgrading both switches, restart the {{clagd}} 
 <td>3.7.15</td>
 </tr>
 <tr>
+<td>2555908</td>
+<td>If the you add the MLAG backup IP address to the MLAG peer in the secondary role while the peer link is down, the LACP sys-mac does not use the MLAG system MAC address (clagd-sys-mac) when the peer link comes back up.
+To work around this issue, wait until the peer link is up to add the MLAG backup IP address.  
+To recover from this condition, restart {{clagd}} with the {{sudo systemctl restart clagd}} command.</td>
+<td>3.7.12-4.0.1</td>
+<td>4.1.0-4.4.0</td>
+</tr>
+<tr>
 <td>2555690</td>
 <td>The NET-SNMP-EXTEND-MIB, disabled in Cumulus Linux 4.2.1 and 3.7.14 to prevent security vulnerability CVE-2020-15862, is re-enabled read-only.</td>
 <td>3.7.14-3.7.14.2, 4.2.1-4.4.0</td>
@@ -4250,6 +4280,12 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td>On switches with the Trident2+ ASIC, adding SPAN rules disables PBR rules.</td>
 <td>3.7.3-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2548155</td>
+<td>The {{net show bgp neighbor swpX json}} command shows negative output for the {{bgpTimerUpMsec}} timer.</td>
+<td>3.7.10-3.7.15</td>
+<td>4.0.0-4.4.0</td>
 </tr>
 <tr>
 <td>2548117</td>
@@ -5195,6 +5231,13 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2890648</td>
+<td>Some ECMP next-hops might fail installation into hardware at high ECMP group and route scale. The following log message will be observed when this condition occurs:
+{{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
+<td>3.7.9-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2885241</td>
 <td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 3.26-1+debu8u13
@@ -6122,6 +6165,14 @@ To work around this issue, after upgrading both switches, restart the {{clagd}} 
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.0</td>
 </tr>
 <tr>
+<td>2555908</td>
+<td>If the you add the MLAG backup IP address to the MLAG peer in the secondary role while the peer link is down, the LACP sys-mac does not use the MLAG system MAC address (clagd-sys-mac) when the peer link comes back up.
+To work around this issue, wait until the peer link is up to add the MLAG backup IP address.  
+To recover from this condition, restart {{clagd}} with the {{sudo systemctl restart clagd}} command.</td>
+<td>3.7.12-4.0.1</td>
+<td>4.1.0-4.4.0</td>
+</tr>
+<tr>
 <td>2555690</td>
 <td>The NET-SNMP-EXTEND-MIB, disabled in Cumulus Linux 4.2.1 and 3.7.14 to prevent security vulnerability CVE-2020-15862, is re-enabled read-only.</td>
 <td>3.7.14-3.7.14.2, 4.2.1-4.4.0</td>
@@ -6786,6 +6837,12 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td>On switches with the Trident2+ ASIC, adding SPAN rules disables PBR rules.</td>
 <td>3.7.3-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2548155</td>
+<td>The {{net show bgp neighbor swpX json}} command shows negative output for the {{bgpTimerUpMsec}} timer.</td>
+<td>3.7.10-3.7.15</td>
+<td>4.0.0-4.4.0</td>
 </tr>
 <tr>
 <td>2548117</td>
@@ -8275,6 +8332,13 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2890648</td>
+<td>Some ECMP next-hops might fail installation into hardware at high ECMP group and route scale. The following log message will be observed when this condition occurs:
+{{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
+<td>3.7.9-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2885241</td>
 <td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 3.26-1+debu8u13
@@ -8955,6 +9019,14 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 To work around this issue, use Linux commands to add an interface to a bridge.</td>
 <td>3.7.9-3.7.13</td>
 <td>3.7.14-3.7.15</td>
+</tr>
+<tr>
+<td>2555908</td>
+<td>If the you add the MLAG backup IP address to the MLAG peer in the secondary role while the peer link is down, the LACP sys-mac does not use the MLAG system MAC address (clagd-sys-mac) when the peer link comes back up.
+To work around this issue, wait until the peer link is up to add the MLAG backup IP address.  
+To recover from this condition, restart {{clagd}} with the {{sudo systemctl restart clagd}} command.</td>
+<td>3.7.12-4.0.1</td>
+<td>4.1.0-4.4.0</td>
 </tr>
 <tr>
 <td>2555428</td>
@@ -10025,6 +10097,12 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td>On switches with the Trident2+ ASIC, adding SPAN rules disables PBR rules.</td>
 <td>3.7.3-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2548155</td>
+<td>The {{net show bgp neighbor swpX json}} command shows negative output for the {{bgpTimerUpMsec}} timer.</td>
+<td>3.7.10-3.7.15</td>
+<td>4.0.0-4.4.0</td>
 </tr>
 <tr>
 <td>2548117</td>
@@ -11562,6 +11640,13 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2890648</td>
+<td>Some ECMP next-hops might fail installation into hardware at high ECMP group and route scale. The following log message will be observed when this condition occurs:
+{{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
+<td>3.7.9-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2885241</td>
 <td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 3.26-1+debu8u13
@@ -12230,6 +12315,14 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 To work around this issue, use Linux commands to add an interface to a bridge.</td>
 <td>3.7.9-3.7.13</td>
 <td>3.7.14-3.7.15</td>
+</tr>
+<tr>
+<td>2555908</td>
+<td>If the you add the MLAG backup IP address to the MLAG peer in the secondary role while the peer link is down, the LACP sys-mac does not use the MLAG system MAC address (clagd-sys-mac) when the peer link comes back up.
+To work around this issue, wait until the peer link is up to add the MLAG backup IP address.  
+To recover from this condition, restart {{clagd}} with the {{sudo systemctl restart clagd}} command.</td>
+<td>3.7.12-4.0.1</td>
+<td>4.1.0-4.4.0</td>
 </tr>
 <tr>
 <td>2554785</td>
@@ -13331,6 +13424,12 @@ codecs.</td>
 <td>On switches with the Trident2+ ASIC, adding SPAN rules disables PBR rules.</td>
 <td>3.7.3-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2548155</td>
+<td>The {{net show bgp neighbor swpX json}} command shows negative output for the {{bgpTimerUpMsec}} timer.</td>
+<td>3.7.10-3.7.15</td>
+<td>4.0.0-4.4.0</td>
 </tr>
 <tr>
 <td>2548117</td>
@@ -14706,6 +14805,13 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2890648</td>
+<td>Some ECMP next-hops might fail installation into hardware at high ECMP group and route scale. The following log message will be observed when this condition occurs:
+{{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
+<td>3.7.9-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2885241</td>
 <td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 3.26-1+debu8u13
@@ -15527,6 +15633,12 @@ To work around this issue, reboot the leaf switch or restart {{switchd}}.</td>
 <td>On switches with the Trident2+ ASIC, adding SPAN rules disables PBR rules.</td>
 <td>3.7.3-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2548155</td>
+<td>The {{net show bgp neighbor swpX json}} command shows negative output for the {{bgpTimerUpMsec}} timer.</td>
+<td>3.7.10-3.7.15</td>
+<td>4.0.0-4.4.0</td>
 </tr>
 <tr>
 <td>2548110</td>
@@ -17219,6 +17331,12 @@ https://security-tracker.debian.org/tracker/CVE-2019-14378</td>
 <td>3.7.10</td>
 </tr>
 <tr>
+<td>2543473</td>
+<td>Configuring an inbound route map to manually change the next hop IP address received from an eBGP peer locally causes the next hop to not be updated when advertising this route out to other eBGP peers. 
+To work around this issue, set a "dummy" route map outbound to the eBGP peer or configure the route map to manually set the next hop outbound from the originating eBGP peer. </td>
+<td>3.7.6-3.7.10</td>
+</tr>
+<tr>
 <td>2543373</td>
 <td>After a remote VTEP peer link goes down, the tunnel destination IP address might be incorrect in hardware, which might cause loss of overlay communication between VTEPs.</td>
 <td>3.7.8-3.7.10</td>
@@ -17421,6 +17539,13 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2890648</td>
+<td>Some ECMP next-hops might fail installation into hardware at high ECMP group and route scale. The following log message will be observed when this condition occurs:
+{{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
+<td>3.7.9-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2885241</td>
@@ -18100,6 +18225,12 @@ To work around this issue, reboot the leaf switch or restart {{switchd}}.</td>
 <td>On switches with the Trident2+ ASIC, adding SPAN rules disables PBR rules.</td>
 <td>3.7.3-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2548155</td>
+<td>The {{net show bgp neighbor swpX json}} command shows negative output for the {{bgpTimerUpMsec}} timer.</td>
+<td>3.7.10-3.7.15</td>
+<td>4.0.0-4.4.0</td>
 </tr>
 <tr>
 <td>2548110</td>
@@ -18906,6 +19037,13 @@ https://security-tracker.debian.org/tracker/CVE-2019-14378</td>
 <td>3.7.11-3.7.15</td>
 </tr>
 <tr>
+<td>2543473</td>
+<td>Configuring an inbound route map to manually change the next hop IP address received from an eBGP peer locally causes the next hop to not be updated when advertising this route out to other eBGP peers. 
+To work around this issue, set a "dummy" route map outbound to the eBGP peer or configure the route map to manually set the next hop outbound from the originating eBGP peer. </td>
+<td>3.7.6-3.7.10</td>
+<td>3.7.11-3.7.15</td>
+</tr>
+<tr>
 <td>2543471</td>
 <td>On switches with the Spectrum ASIC, the underlay hashes VXLAN packets for a given overlay flow randomly.
 To work around this issue, configure the ECMP hash seed to the same value on the EVPN egress leaf switches.</td>
@@ -19573,6 +19711,13 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2890648</td>
+<td>Some ECMP next-hops might fail installation into hardware at high ECMP group and route scale. The following log message will be observed when this condition occurs:
+{{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
+<td>3.7.9-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2885241</td>
@@ -20734,6 +20879,13 @@ See /var/log/netd.log for more details.
 <td>Tomahawk 40G DACs cannot disable auto-negotiation.</td>
 <td>3.7.7-3.7.15</td>
 <td>4.0.0-4.4.0</td>
+</tr>
+<tr>
+<td>2543473</td>
+<td>Configuring an inbound route map to manually change the next hop IP address received from an eBGP peer locally causes the next hop to not be updated when advertising this route out to other eBGP peers. 
+To work around this issue, set a "dummy" route map outbound to the eBGP peer or configure the route map to manually set the next hop outbound from the originating eBGP peer. </td>
+<td>3.7.6-3.7.10</td>
+<td>3.7.11-3.7.15</td>
 </tr>
 <tr>
 <td>2543471</td>
@@ -22966,6 +23118,13 @@ See /var/log/netd.log for more details.
 <td>3.7.9-3.7.15</td>
 </tr>
 <tr>
+<td>2543473</td>
+<td>Configuring an inbound route map to manually change the next hop IP address received from an eBGP peer locally causes the next hop to not be updated when advertising this route out to other eBGP peers. 
+To work around this issue, set a "dummy" route map outbound to the eBGP peer or configure the route map to manually set the next hop outbound from the originating eBGP peer. </td>
+<td>3.7.6-3.7.10</td>
+<td>3.7.11-3.7.15</td>
+</tr>
+<tr>
 <td>2543471</td>
 <td>On switches with the Spectrum ASIC, the underlay hashes VXLAN packets for a given overlay flow randomly.
 To work around this issue, configure the ECMP hash seed to the same value on the EVPN egress leaf switches.</td>
@@ -24743,6 +24902,13 @@ See /var/log/netd.log for more details.
 <td>{{{watchfrr}} calls {{sudo /usr/sbin/service frr restart bgpd}} but restarts all FRR daemons which can cause a large outage. This occurs because {{watchfrr}} uses an old style service command, which causes all daemons to restart when a daemon fails. </td>
 <td>3.7.7-3.7.8</td>
 <td>3.7.9-3.7.15</td>
+</tr>
+<tr>
+<td>2543473</td>
+<td>Configuring an inbound route map to manually change the next hop IP address received from an eBGP peer locally causes the next hop to not be updated when advertising this route out to other eBGP peers. 
+To work around this issue, set a "dummy" route map outbound to the eBGP peer or configure the route map to manually set the next hop outbound from the originating eBGP peer. </td>
+<td>3.7.6-3.7.10</td>
+<td>3.7.11-3.7.15</td>
 </tr>
 <tr>
 <td>2543471</td>
@@ -26862,6 +27028,13 @@ You can now install such rules with swp+.</td>
 <td>In an ebtables rule, ERSPAN (upper case) does not work. You need to specify erspan (lower case).</td>
 <td>3.7.6-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2543473</td>
+<td>Configuring an inbound route map to manually change the next hop IP address received from an eBGP peer locally causes the next hop to not be updated when advertising this route out to other eBGP peers. 
+To work around this issue, set a "dummy" route map outbound to the eBGP peer or configure the route map to manually set the next hop outbound from the originating eBGP peer. </td>
+<td>3.7.6-3.7.10</td>
+<td>3.7.11-3.7.15</td>
 </tr>
 <tr>
 <td>2543211</td>
@@ -32639,6 +32812,11 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Affects </th>
 </tr>
 <tr>
+<td>2547838</td>
+<td>The {{link-down yes}} parameter in the {{/etc/network/interfaces}} file does not work on subinterfaces configured in a VRF.</td>
+<td>3.7.2</td>
+</tr>
+<tr>
 <td>2539386</td>
 <td>Traffic increments the FORWARD ACL rule counter, but nothing is logged to syslog. </td>
 <td></td>
@@ -33513,6 +33691,12 @@ Fixed: 1.6.2-3+deb8u3</td>
 <td>When you restart {{clagd}}, the edge port setting on the peer link changes.</td>
 <td>3.7.2-3.7.13, 4.0.0-4.4.0</td>
 <td>3.7.14-3.7.15</td>
+</tr>
+<tr>
+<td>2547838</td>
+<td>The {{link-down yes}} parameter in the {{/etc/network/interfaces}} file does not work on subinterfaces configured in a VRF.</td>
+<td>3.7.2</td>
+<td>3.7.3-3.7.15</td>
 </tr>
 <tr>
 <td>2546868</td>

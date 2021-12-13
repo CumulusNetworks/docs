@@ -590,7 +590,23 @@ iface br0.10
 ```
 
 {{%notice note%}}
-In an MLAG and traditional bridge configuration, NVIDIA recommends that you set bridge learning to off on all VLANs over the peerlink except for the layer 3 peerlink subinterface.
+In an MLAG and traditional bridge configuration, NVIDIA recommends that you set bridge learning to off on all VLANs over the peerlink except for the layer 3 peerlink subinterface; for example:
+
+```
+...
+auto peerlink
+iface peerlink
+    bridge-learning off
+    
+auto peerlink.1510
+iface peerlink.1510
+    bridge-learning off
+
+auto peerlink.4094
+iface peerlink.4094
+...
+```
+
 {{%/notice%}}
 
 ### Configure a Backup UDP Port

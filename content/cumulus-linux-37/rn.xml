@@ -49,6 +49,12 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td></td>
 </tr>
 <tr>
+<td>2879645</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2873186</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-4.4.0</td>

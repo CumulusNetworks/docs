@@ -884,6 +884,7 @@ cumulus@switch:~$ net del vlan 20 acl ipv4 rflx_tcp_ingress inbound
 cumulus@switch:~$ net del vlan 20 acl ipv4 rflx_tcp_egress outbound
 cumulus@switch:~$ net commit
 ```
+-->
 ## Match on ECN Bits in the TCP IP Header
 
 [ECN](## "Explicit Congestion Notification") allows end-to-end notification of network congestion without dropping packets. In Cumulus Linux 4.4.2 and later, you can add ECN rules to match on the [ECE](## "ECN-Echo"), [CWR](## "Congestion Window Received"), and [ECT](## "ECN Capable Transport") flags in the TCP IPv4 header.
@@ -997,7 +998,6 @@ cumulus@switch:~$ sudo cl-acltool -i
 
 {{< /tab >}}
 {{< /tabs >}}
--->
 
 ## Example Configuration
 

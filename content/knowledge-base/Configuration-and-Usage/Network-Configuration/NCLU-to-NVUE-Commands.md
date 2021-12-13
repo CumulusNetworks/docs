@@ -943,8 +943,6 @@ ACLs in Cumulus Linux are based on Linux iptables with the following default beh
 <!-- vale on -->
 In addition to NCLU commands, you can configure ACLs straight by setting ebtables and iptables rules. To ease ACL management on the system, you can use a tool called `cl-acltool`.
 
-For more information, refer to the {{<kb_link latest="cl" url="System-Configuration/Netfilter-ACLs/_index.md" text="Netfilter - ACLs" >}} section of the Cumulus Linux User Guide.
-
 <table>
     <tr>
         <th>

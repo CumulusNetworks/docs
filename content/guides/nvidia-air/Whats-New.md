@@ -11,7 +11,7 @@ Check out some of the latest features added to the {{<exlink url="https://air.nv
 ## December 2021
 <!-- Air:WhatsNew -->
 - Improved fidelity of operating systems used in custom topologies
-- VMs in a custom topology now use their operating system's default username and password. See the {{<link title="Quick Start#logging-into-virtual-machines" text="Quick Start">}} guide for more details.
+- VMs in a custom topology now use their operating system's default username and password. See the {{<link url="/Quick-Start#logging-into-virtual-machines" text="Quick Start">}} guide for more details.
 <!-- Air:WhatsNew -->
 
 ## September 2021

@@ -165,7 +165,10 @@ Run the following command to drop **all** IP packets that are larger in size tha
 {{< tabs "TabID166 ">}}
 {{< tab "NVUE Commands ">}}
 
-The NVUE command is not supported.
+```
+cumulus@switch:~$ nv set system control-plane trap l3-mtu-err state off
+cumulus@switch:~$ nv config apply
+```
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -176,13 +179,6 @@ cumulus@switch:~$ echo "0 >" /cumulus/switchd/config/trap/l3-mtu-err/enable
 
 {{< /tab >}}
 {{< /tabs >}}
-
-<!--
-```
-cumulus@switch:~$ net add trap l3-mtu-err action off
-cumulus@switch:~$ net commit
-```
--->
 
 ## FEC
 

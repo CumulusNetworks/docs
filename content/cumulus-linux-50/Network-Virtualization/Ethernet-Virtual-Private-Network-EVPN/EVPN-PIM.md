@@ -58,13 +58,6 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-Run the `net add vxlan <interface> vxlan mcastgrp <ip-address>` command. For example:
-
-```
-cumulus@switch:~$ net add vxlan vxlan10 vxlan mcastgrp 224.0.0.10
-```
--->
 
 {{%notice note%}}
 One multicast group per layer 2 VNI is optimal configuration for underlay bandwidth utilization. However, you can specify the same multicast group for more than one layer 2 VNI.
@@ -72,7 +65,7 @@ One multicast group per layer 2 VNI is optimal configuration for underlay bandwi
 <!-- vale off -->
 ## Verify EVPN-PIM
 <!-- vale on -->
-Run the <!--NCLU `net show mroute` command or the -->vtysh `show ip mroute` command to review the multicast route information in FRR. When using EVPN-PIM, every VTEP acts as both source and destination for a VNI-MDT group, therefore, mroute entries on each VTEP should look like this:
+Run the `net show mroute` command or the vtysh `show ip mroute` command to review the multicast route information in FRR. When using EVPN-PIM, every VTEP acts as both source and destination for a VNI-MDT group, therefore, mroute entries on each VTEP should look like this:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -120,7 +113,7 @@ cumulus@switch:~$ bridge fdb show | grep 00:00:00:00:00:00
 The `show ip mroute count` command, often used to check multicast packet counts does *not* update for encapsulated BUM traffic originating or terminating on the VTEPs.
 {{%/notice%}}
 
-Run the <!--NCLU `net show evpn vni <vni>` command or the -->vtysh `show evpn vni <vni>` command to ensure that your layer 2 VNI has the correct flooding information:
+Run the `net show evpn vni <vni>` command or the vtysh `show evpn vni <vni>` command to ensure that your layer 2 VNI has the correct flooding information:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -436,12 +429,3 @@ cumulus@switch:~$
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-Run the `net add interface <peerlink> pim` command. For example:
-
-```
-cumulus@switch:~$ net add interface peerlink.4094 pim
-cumulus@switch:~$ net commit
-cumulus@switch:~$ net pending
-```
--->

@@ -81,21 +81,6 @@ cumulus@leaf01:~$ ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add interface swp1 bridge access 10
-cumulus@leaf01:~$ net add interface swp2 bridge access 20
-cumulus@leaf01:~$ net add vxlan vni10 vxlan id 10
-cumulus@leaf01:~$ net add vxlan vni20 vxlan id 20
-cumulus@leaf01:~$ net add bridge bridge ports vni10,vni20
-cumulus@leaf01:~$ net add bridge bridge vids 10,20
-cumulus@leaf01:~$ net add vxlan vni10 bridge access 10
-cumulus@leaf01:~$ net add vxlan vni20 bridge access 20
-cumulus@leaf01:~$ net add loopback lo vxlan local-tunnelip 10.10.10.1
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
--->
 
 ## Single VXLAN Device
 

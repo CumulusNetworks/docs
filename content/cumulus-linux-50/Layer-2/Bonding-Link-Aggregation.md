@@ -206,12 +206,12 @@ Each bond configuration option, except for `bond slaves,` has the recommended va
 
 | Parameter |  Description|
 |---------- | ---------- |
-| `bond-mode 802.3ad`<br><br>`bond-mode balance-xor` | Cumulus Linux supports IEEE 802.3ad link aggregation mode (802.3ad) and balance-xor mode.<br>The default mode is 802.3ad.<!--<br><br>NCLU commands:`net add bond <bond-name> bond mode balance-xor`--> <br><br>NVUE commands:<br>802.3ad mode: `nv set interface <bond-name> bond mode lacp`<br> balance-xor mode: `nv set interface <bond-name> bond mode static`{{%notice note%}}- When you enable balance-xor mode, the bonding of slave interfaces are static and all slave interfaces are active for load balancing and fault tolerance. The switch bases packet transmission on the bond on the hash policy in xmit-hash-policy.
+| `bond-mode 802.3ad`<br><br>`bond-mode balance-xor` | Cumulus Linux supports IEEE 802.3ad link aggregation mode (802.3ad) and balance-xor mode.<br>The default mode is 802.3ad.<br><br>NVUE commands:<br>802.3ad mode: `nv set interface <bond-name> bond mode lacp`<br> balance-xor mode: `nv set interface <bond-name> bond mode static`{{%notice note%}}- When you enable balance-xor mode, the bonding of slave interfaces are static and all slave interfaces are active for load balancing and fault tolerance. The switch bases packet transmission on the bond on the hash policy in xmit-hash-policy.
 - When you use balance-xor mode to dual-connect host-facing bonds in an MLAG environment, you must configure the `clag-id` parameter with the same value on both MLAG switches. Otherwise, the MLAG switch pair treats the bonds as single-connected.
 - Use balance-xor mode only if you cannot use LACP; LACP can detect mismatched link attributes between bond members and can even detect misconnections.{{%/notice%}} |
 | `bond miimon <value>` | This is the [miimon frequency](## "MII link monitoring frequency") that defines how often (in milliseconds) to inspect the link state of each slave for failures. You can specify a value between 0 and 255. The default value is 100.<br><br>The NVUE command is not supported.|
 | `bond-use-carrier no` | Sets miimon to use either MII or ethtool ioctls, or netif_carrier_ok() to determine the link status. The default setting is `yes`, where miimon uses netif_carrier_ok(). Set this option to `no` if you want miimon to use the MII or ethtool ioctl method to determine the link state.<br><br>The NVUE command is not supported.|
-| `bond-lacp-bypass-allow`| Enables LACP bypass.<!--<br><br>NCLU command: `net add bond <bond-name> bond lacp-bypass-allow`--> <br><br>NVUE command: `nv set interface <bond-name> bond lacp-bypass on` |
+| `bond-lacp-bypass-allow`| Enables LACP bypass.<br><br>NVUE command: `nv set interface <bond-name> bond lacp-bypass on` |
 | `bond-lacp-rate <rate>` | Sets the rate at which the link partner transmits LACP control packets: `fast` or `slow`. The defaut setting is `fast`.<br><br>NVUE commands:<br>`nv set interface <bond-name> bond lacp-rate fast`<br>`nv set interface <bond-name> bond lacp-rate slow`|
 | `bond-min-links <value>` | Defines the minimum number of links (between 0 and 255) that must be active before the bond goes into service. The default value is 1.<br><br>Use a value greater than 1 if you need higher level services to ensure a minimum aggregate bandwidth level before activating a bond. Keeping the `bond-min-links` value at 1 indicates the bond must have at least one active member. If the number of active members drops below the `bond-min-links` setting, the bond appears to upper-level protocols as link-down. When the number of active links returns to greater than or equal to `bond-min-links <value>`, the bond becomes link-up.<br><br>The NVUE command is not supported.|
 
@@ -239,48 +239,6 @@ Link Failure Count: 0
 Permanent HW addr: 44:38:39:00:00:03
 Slave queue ID: 0
 ```
-
-<!--
-Run the `net show interface <bond>` command:
-
-```
-cumulus@switch:~$ net show interface bond1
-    Name    MAC                Speed    MTU    Mode
---  ------  -----------------  -------  -----  ------
-UP  bond1   00:02:00:00:00:12  20G      1500   Bond
-
-Bond Details
----------------  -------------
-Bond Mode:       Balance-XOR
-Load Balancing:  Layer3+4
-Minimum Links:   1
-In CLAG:         CLAG Inactive
-
-
-    Port     Speed      TX    RX    Err    Link Failures
---  -------  -------  ----  ----  -----  ---------------
-UP  swp3(P)  10G         0     0      0                0
-UP  swp4(P)  10G         0     0      0                0
-
-
-LLDP
--------  ----  ------------
-swp3(P)  ====  swp1(p1c1h1)
-swp4(P)  ====  swp2(p1c1h1)Routing
--------
-  Interface bond1 is up, line protocol is up
-  Link ups:       3    last: 2017/04/26 21:00:38.26
-  Link downs:     2    last: 2017/04/26 20:59:56.78
-  PTM status: disabled
-  vrf: Default-IP-Routing-Table
-  index 31 metric 0 mtu 1500
-  flags: <UP,BROADCAST,RUNNING,MULTICAST>
-  Type: Ethernet
-  HWaddr: 00:02:00:00:00:12
-  inet6 fe80::202:ff:fe00:12/64
-  Interface Type Other
-```
--->
 
 {{%notice info%}}
 The detailed output in `/proc/net/bonding/<filename>` includes the actor/partner LACP information. This information is not necessary and requires you to use `sudo` to view the file.

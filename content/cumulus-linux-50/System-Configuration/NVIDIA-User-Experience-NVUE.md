@@ -13,18 +13,6 @@ NVUE follows a declarative model, removing context-specific commands and setting
 ## NVUE Service
 
 Cumulus Linux installs NVUE by default and enables the NVUE service `nvued`.
-<!--
-To run NVUE commands, you must enable and start the NVUE service (`nvued`):
-
-```
-cumulus@switch:~$ sudo systemctl enable nvued
-cumulus@switch:~$ sudo systemctl start nvued
-```
-
-{{%notice info%}}
-Do not mix NVUE and NCLU commands to configure the switch; use either the NCLU CLI or the NVUE CLI.
-{{%/notice%}}
--->
 
 ## NVUE REST API
 

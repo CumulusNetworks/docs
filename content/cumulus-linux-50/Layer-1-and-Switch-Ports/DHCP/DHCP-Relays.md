@@ -95,23 +95,6 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
-<!--
-IPv4
-
-```
-cumulus@leaf01:~$ net add dhcp relay interface swp51
-cumulus@leaf01:~$ net add dhcp relay interface swp52
-cumulus@leaf01:~$ net add dhcp relay interface vlan10
-cumulus@leaf01:~$ net add dhcp relay interface peerlink.4094
-cumulus@leaf01:~$ net add dhcp relay server 172.16.1.102
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-IPv6
-
-You cannot configure IPv6 relays with NCLU commands. Use the Linux Commands.
--->
-
 {{%notice note%}}
 - You configure a DHCP relay on a per-VLAN basis, specifying the SVI, not the parent bridge. In the example above, you specify *vlan10* as the SVI for VLAN 10 but you do not specify the bridge named *bridge*.
 - When you configure DHCP relay with VRR, the DHCP relay client must run on the SVI; not on the -v0 interface.

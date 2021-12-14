@@ -14,7 +14,7 @@ The RD disambiguates EVPN routes in different VNIs (they can have the same MAC a
 
 For eBGP EVPN peering, the peers are in a different AS so using an automatic RT of *AS:VNI* does not work for route import. Therefore, Cumulus Linux treats the import RT as *\*:VNI* to determine which received routes apply to a particular VNI. This only applies when the switch auto-derives the import RT.
 
-If you do *not* want to derive RDs and RTs automatically, you can define them manually. The following example commands are per VNI. <!--You must specify these commands under `address-family l2vpn evpn` in BGP.-->
+If you do *not* want to derive RDs and RTs automatically, you can define them manually. The following example commands are per VNI.
 
 {{< tabs "TabID19 ">}}
 {{< tab "NVUE Commands ">}}
@@ -115,60 +115,6 @@ address-family l2vpn evpn
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-{{< tabs "TabID22 ">}}
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:~$ net add bgp l2vpn evpn vni 10 rd 10.10.10.1:20
-cumulus@leaf01:~$ net add bgp l2vpn evpn vni 10 route-target export 65101:10
-cumulus@leaf01:~$ net add bgp l2vpn evpn vni 10 route-target import 65102:10
-cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-all-vni
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-The NCLU commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
-
-```
-...
-address-family l2vpn evpn
-  advertise-all-vni
-  vni 10
-   rd 10.10.10.1:20
-   route-target export 65101:10
-   route-target import 65102:10
-...
-```
-
-{{< /tab >}}
-{{< tab "leaf03 ">}}
-
-```
-cumulus@leaf03:~$ net add bgp l2vpn evpn vni 10 rd 10.10.10.3:20
-cumulus@leaf03:~$ net add bgp l2vpn evpn vni 10 route-target export 65102:10
-cumulus@leaf03:~$ net add bgp l2vpn evpn vni 10 route-target import 65101:10
-cumulus@leaf03:~$ net add bgp l2vpn evpn advertise-all-vni
-cumulus@leaf03:~$ net pending
-cumulus@leaf03:~$ net commit
-```
-
-The NCLU commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
-
-```
-...
-address-family l2vpn evpn
-  advertise-all-vni
-  vni 10
-   rd 10.10.10.3:20
-   route-target export 65102:10
-   route-target import 65101:10
-...
-```
-
-{{< /tab >}}
-{{< /tabs >}}
--->
 
 {{%notice note%}}
 If you delete the RD or RT later, it reverts back to its corresponding default value.
@@ -278,60 +224,6 @@ address-family l2vpn evpn
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-{{< tabs "TabID172 ">}}
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:~$ net add bgp l2vpn evpn vni 10 route-target import 65102:10
-cumulus@leaf01:~$ net add bgp l2vpn evpn vni 10 route-target import 65102:20
-cumulus@leaf01:~$ net add bgp l2vpn evpn vni 20 route-target both 65101:10
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-The NCLU commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
-
-```
-...
-address-family l2vpn evpn
-  vni 10
-    route-target import 65102:10
-    route-target import 65102:20
-  vni 20
-    route-target import 65101:10
-    route-target export 65101:10
-...
-```
-
-{{< /tab >}}
-{{< tab "leaf03 ">}}
-
-```
-cumulus@leaf03:~$ net add bgp l2vpn evpn vni 10 route-target import 65101:10
-cumulus@leaf03:~$ net add bgp l2vpn evpn vni 10 route-target import 65101:20
-cumulus@leaf03:~$ net add bgp l2vpn evpn vni 20 route-target both 65102:10
-cumulus@leaf03:~$ net pending
-cumulus@leaf03:~$ net commit
-```
-
-The NCLU commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
-
-```
-...
-address-family l2vpn evpn
-  vni 10
-    route-target import 65101:10
-    route-target import 65101:20
-  vni 20
-    route-target import 65102:10
-    route-target export 65102:10
-...
-```
-
-{{< /tab >}}
-{{< /tabs >}}
--->
 
 ## Enable EVPN in an iBGP Environment with an OSPF Underlay
 
@@ -547,72 +439,6 @@ Router ospf
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add bgp autonomous-system 65101
-cumulus@leaf01:~$ net add bgp l2vpn evpn neighbor 10.10.10.2 remote-as internal
-cumulus@leaf01:~$ net add bgp l2vpn evpn neighbor 10.10.10.3 remote-as internal
-cumulus@leaf01:~$ net add bgp l2vpn evpn neighbor 10.10.10.4 remote-as internal
-cumulus@leaf01:~$ net add bgp l2vpn evpn neighbor 10.10.10.2 activate
-cumulus@leaf01:~$ net add bgp l2vpn evpn neighbor 10.10.10.3 activate
-cumulus@leaf01:~$ net add bgp l2vpn evpn neighbor 10.10.10.4 activate
-cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-all-vni
-cumulus@leaf01:~$ net add ospf router-id 10.10.10.1
-cumulus@leaf01:~$ net add loopback lo ospf area 0.0.0.0
-cumulus@leaf01:~$ net add ospf passive-interface lo
-cumulus@leaf01:~$ net add interface swp49 ospf area 0.0.0.0
-cumulus@leaf01:~$ net add interface swp50 ospf area 0.0.0.0
-cumulus@leaf01:~$ net add interface swp51 ospf area 0.0.0.0
-cumulus@leaf01:~$ net add interface swp52 ospf area 0.0.0.0
-cumulus@leaf01:~$ net add interface swp49 ospf network point-to-point
-cumulus@leaf01:~$ net add interface swp50 ospf network point-to-point
-cumulus@leaf01:~$ net add interface swp51 ospf network point-to-point
-cumulus@leaf01:~$ net add interface swp52 ospf network point-to-point
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-The NCLU commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
-
-```
-...
-interface lo
-  ip ospf area 0.0.0.0
-!
-interface swp49
-  ip ospf area 0.0.0.0
-  ip ospf network point-to-point
-!
-interface swp50
-  ip ospf area 0.0.0.0
-  ip ospf network point-to-point
-!
-interface swp51
-  ip ospf area 0.0.0.0
-  ip ospf network point-to-point
-!
-interface swp52
-  ip ospf area 0.0.0.0
-  ip ospf network point-to-point
-!
-router bgp 65101
-  neighbor 10.10.10.2 remote-as internal
-  neighbor 10.10.10.3 remote-as internal
-  neighbor 10.10.10.4 remote-as internal
-  !
-  address-family l2vpn evpn
-  neighbor 10.10.10.2 activate
-  neighbor 10.10.10.3 activate
-  neighbor 10.10.10.4 activate
-  advertise-all-vni
-  exit-address-family
-  !
-Router ospf
-  Ospf router-id 10.10.10.1
-  Passive-interface lo
-...
-```
--->
 
 ## ARP and ND Suppression
 
@@ -677,24 +503,6 @@ iface vni20
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add bridge bridge ports vni10,vni20
-cumulus@leaf01:~$ net add bridge bridge vids 10,20
-cumulus@leaf01:~$ net add vxlan vni10 vxlan id 10
-cumulus@leaf01:~$ net add vxlan vni20 vxlan id 20
-cumulus@leaf01:~$ net add vxlan vni10 bridge access 10
-cumulus@leaf01:~$ net add vxlan vni20 bridge access 20
-cumulus@leaf01:~$ net add vxlan vni10 vxlan local-tunnelip 10.10.10.1
-cumulus@leaf01:~$ net add vxlan vni20 vxlan local-tunnelip 10.10.10.1
-cumulus@leaf01:~$ net add vlan 10 ip forward off
-cumulus@leaf01:~$ net add vlan 10 ipv6 forward off
-cumulus@leaf01:~$ net add vlan 20 ip forward off
-cumulus@leaf01:~$ net add vlan 20 ipv6 forward off
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
--->
 
 For a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, you must edit the bridge configuration in the `/etc/network/interfaces` file using a text editor:
 
@@ -760,14 +568,6 @@ iface vni20
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net del vxlan vni10 bridge arp-nd-suppress
-cumulus@leaf01:~$ net del vxlan vni20 bridge arp-nd-suppress
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
--->
 
 ## Configure Static MAC Addresses
 
@@ -797,13 +597,6 @@ iface bridge
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add bridge post-up bridge fdb add 26:76:e6:93:32:78 dev bond1 vlan 10 master static
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
--->
 
 For a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, you must edit the bridge configuration in the `/etc/network/interfaces` file using a text editor:
 
@@ -848,13 +641,6 @@ leaf01# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add routing route-map map1 permit 1 match evpn route-type prefix
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
--->
 
 {{%notice note%}}
 You must apply the route map for the configuration to take effect. See {{<link url="Route-Filtering-and-Redistribution/#route-maps" text="Route Maps">}} for more information.
@@ -890,13 +676,6 @@ switch# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add routing route-map map1 permit 1 match evpn vni 1000
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 {{%notice note%}}
 You can only match type-2 and type-5 routes based on VNI.
@@ -938,13 +717,6 @@ leaf01# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-svi-ip
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
--->
 
 To advertise a *specific* SVI IP/MAC address, run these commands:
 
@@ -986,25 +758,6 @@ exit-address-family
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add bgp l2vpn evpn vni 10 advertise-svi-ip
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
-...
-address-family l2vpn evpn
-  vni 10
-  advertise-svi-ip
-exit-address-family
-...
-```
--->
 
 ## Disable BUM Flooding
 
@@ -1075,27 +828,6 @@ leaf01# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add bgp l2vpn evpn disable-flooding
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router bgp 65101
- !
- address-family l2vpn evpn
-  flooding disable
- exit-address-family
-...
-```
-
-To reenable BUM flooding, run the NCLU `net del bgp l2vpn evpn disable-flooding` command.
--->
 
 To show that BUM flooding is off, run the vtysh `show bgp l2vpn evpn vni` command or the NCLU `net show bgp l2vpn evpn vni` command. For example:
 
@@ -1205,13 +937,6 @@ switch# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection max-moves 10 time 1200
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 To disable duplicate address detection, see {{<link url="#disable-duplicate-address-detection" text="Disable Duplicate Address Detection">}} below.
 
@@ -1277,13 +1002,6 @@ switch# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection freeze 1000
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 {{%notice note%}}
 Set the freeze timer to be three times the duplicate address detection window. For example, if the duplicate address detection window is 180 seconds, set the freeze timer to 540 seconds.
@@ -1316,13 +1034,6 @@ switch# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection freeze permanent
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ### Clear Duplicate Addresses
 
@@ -1345,13 +1056,6 @@ switch# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net clear evpn dup-addr vni 101 ip 10.0.0.9
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 To clear duplicate addresses for all VNIs, run the following command:
 
@@ -1372,13 +1076,6 @@ switch# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net clear evpn dup-addr vni all
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 {{%notice note%}}
 - In an MLAG configuration, you need to run the clear command on both the MLAG primary and secondary switch.
@@ -1414,19 +1111,12 @@ switch# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net del bgp l2vpn evpn dup-addr-detection
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 When you disable duplicate address detection, Cumulus Linux clears the configuration and all existing duplicate addresses.
 
 ### Show Detected Duplicate Address Information
 
-During the duplicate address detection process, you can see the start time and current detection count with the <!--NCLU `net show evpn mac vni <vni_id> mac <mac_addr>` command or the -->vtysh `show evpn mac vni <vni_id> mac <mac_addr>` command. The following command example shows that detection starts for MAC address 00:01:02:03:04:11 for VNI 1001 on Tuesday, Nov 6 at 18:55:05 and Cumulus Linux detects one move.
+During the duplicate address detection process, you can see the start time and current detection count with the vtysh `show evpn mac vni <vni_id> mac <mac_addr>` command. The following command example shows that detection starts for MAC address 00:01:02:03:04:11 for VNI 1001 on Tuesday, Nov 6 at 18:55:05 and Cumulus Linux detects one move.
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1440,7 +1130,7 @@ MAC: 00:01:02:03:04:11
     10.0.1.26 Active
 ```
 
-After the duplicate MAC address clears, the <!--NCLU `net show evpn mac vni <vni_id> mac <mac_addr>` command or the -->vtysh `show evpn mac vni <vni_id> mac <mac_addr>` command shows:
+After the duplicate MAC address clears, the vtysh `show evpn mac vni <vni_id> mac <mac_addr>` command shows:
 
 ```
 MAC: 00:01:02:03:04:11
@@ -1451,7 +1141,7 @@ MAC: 00:01:02:03:04:11
     10.0.1.26 Active
 ```
 
-To display information for a duplicate IP address, run the <!--NCLU `net show evpn arp-cache vni <vni_id> ip <ip_addr>` command or the -->vtysh `show evpn arp-cache vni <vni_id> ip <ip_addr>` command. The following command example shows information for IP address 10.0.0.9 for VNI 1001.
+To display information for a duplicate IP address, run the vtysh `show evpn arp-cache vni <vni_id> ip <ip_addr>` command. The following command example shows information for IP address 10.0.0.9 for VNI 1001.
 
 ```
 cumulus@switch:~$ sudo vtysh

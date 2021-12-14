@@ -67,14 +67,6 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add vrf BLUE vrf-table auto
-cumulus@switch:~$ net add interface swp1 vrf BLUE
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ### Specify a Table ID
 
@@ -113,13 +105,6 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add vrf BLUE vrf-table 1016
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 {{%notice note%}}
 The table ID range **must** be between 1001 to 1255. Cumulus Linux reserves this range for VRF table IDs.
@@ -229,7 +214,6 @@ Cumulus Linux supports dynamic VRF route leaking (not static route leaking).
 - You cannot route leak overlapping addresses.
 - You can use VRF route leaking with EVPN in a symmetric routing configuration only.
 - You cannot use VRF route leaking between the tenant VRF and the default VRF with onlink next hops (BGP unnumbered).
-<!-- - The NCLU command to configure route leaking fails if you name the VRF `red` (lowercase letters only). This is not a problem if you name the VRF `RED` (uppercase letters) or has a name other than red. To work around this issue, rename the VRF or run the vtysh command instead. This is a known limitation in `network-docopt`.-->
 {{%/notice%}}
 
 ### Configure Route Leaking
@@ -288,24 +272,6 @@ router bgp 65001 vrf RED
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add bgp vrf RED ipv4 unicast import vrf BLUE
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router bgp 65001 vrf RED
- !
- address-family ipv4 unicast
-  import vrf BLUE
-...
-```
--->
 
 ### Exclude Certain Prefixes
 
@@ -349,17 +315,6 @@ switch# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add bgp vrf RED ipv4 unicast import vrf BLUE
-cumulus@switch:~$ net add routing route-map BLUEtoRED permit 10
-cumulus@switch:~$ net add routing route-map BLUEtoRED permit 10 match source-protocol bgp
-cumulus@switch:~$ net add routing route-map BLUEtoRED permit 10 set community 11:11
-cumulus@switch:~$ net add bgp vrf RED ipv4 unicast import vrf route-map BLUEtoRED
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ### Verify Route Leaking Configuration
 
@@ -432,13 +387,6 @@ switch# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net del bgp vrf RED ipv4 unicast import vrf BLUE
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 {{%notice note%}}
 Cumulus Linux no longer supports kernel commands. To avoid issues with VRF route leaking in FRR, do not use the kernel commands.
@@ -523,33 +471,6 @@ router bgp 65001 vrf RED
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add vrf RED vrf-table auto
-cumulus@switch:~$ net add vrf RED ip address 10.10.10.1/32
-cumulus@switch:~$ net add interface swp51 vrf RED
-cumulus@switch:~$ net add bgp vrf RED autonomous-system 65001
-cumulus@switch:~$ net add bgp vrf RED router-id 10.10.10.1
-cumulus@switch:~$ net add bgp vrf RED neighbor swp51 remote-as external
-cumulus@switch:~$ net add bgp vrf RED ipv4 unicast redistribute connected
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router bgp 65001 vrf RED
- router-id 10.10.10.1
- neighbor swp51 interface
- neighbor swp51 remote-as external
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
-...
-```
--->
 
 ### OSPF
 
@@ -625,44 +546,6 @@ router ospf vrf RED
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add vrf RED ip address 10.10.10.1/32
-cumulus@switch:~$ net add interface swp51 ip address 10.0.1.0/31
-cumulus@switch:~$ net add ospf vrf RED router-id 10.10.10.1
-cumulus@switch:~$ net add ospf vrf RED network 10.10.10.1/32 area 0.0.0.1
-cumulus@switch:~$ net add ospf vrf RED network 10.0.1.0/31 area 0.0.0.0
-cumulus@switch:~$ net add ospf vrf RED redistribute connected
-cumulus@switch:~$ net add ospf vrf RED redistribute bgp
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The NCLU commands save the configuration in the `/etc/network/interfaces` file and the `/etc/frr/frr.conf` file. For example:
-
-```
-cumulus@switch:~$ sudo cat /etc/network/interfaces
-auto lo
-iface lo inet loopback
-  address 10.10.10.1/32
-auto swp51
-iface swp51
-  address 10.0.1.0/31
-...
-```
-
-```
-cumulus@switch:~$ sudo cat /etc/frr/frr.conf
-...
-router ospf vrf RED
-  ospf router-id 10.10.10.1
-  network 10.10.10.1/32 area 0.0.0.0
-  network 10.0.1.0/31 area 0.0.0.0
-  redistribute connected
-  redistribute bgp
-...
-```
--->
 
 ## DHCP with VRF
 
@@ -925,7 +808,7 @@ cumulus@switch:~$ sudo traceroute -i BLUE
 
 ## Troubleshooting
 
-You can use <!--NCLU, -->vtysh or Linux show commands to troubleshoot VRFs.
+You can use vtysh or Linux show commands to troubleshoot VRFs.
 
 {{< tabs "TabID642 ">}}
 {{< tab "vtysh Commands ">}}
@@ -1189,155 +1072,6 @@ You can also show routes in a VRF using the `ip [-6] route show vrf <vrf-name>` 
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-To show the routes in a VRF, run the `net show route vrf <vrf-name>` command. For example:
-
-```
-cumulus@switch:~$ net show route vrf RED
-RIB entry for RED
-=================
-Codes: K - kernel route, C - connected, S - static, R - RIP,
-       O - OSPF, I - IS-IS, B - BGP, T - Table,
-       > - selected route, * - FIB route
-
-C>* 169.254.2.8/30 is directly connected, swp1.2
-C>* 169.254.2.12/30 is directly connected, swp2.2
-C>* 169.254.2.16/30 is directly connected, swp3.2
-```
-
-To show the BGP summary for a VRF, run the `net show bgp vrf <vrf-name> summary` command. For example:
-
-```
-cumulus@switch:~$ net show bgp vrf RED summary
-BGP router identifier 6.0.2.7, local AS number 64900 vrf-id 14
-BGP table version 0
-RIB entries 1, using 120 bytes of memory
-Peers 6, using 97 KiB of memory
-Peer groups 2, using 112 bytes of memory
-
-Neighbor         V  AS   MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
-s3(169.254.2.18)
-                 4 65000  102039  102040        0    0    0 3d13h03m        0
-s1(169.254.2.10)
-                 4 65000  102039  102040        0    0    0 3d13h03m        0
-s2(169.254.2.14)
-                 4 65000  102039  102040        0    0    0 3d13h03m        0
-
-Total number of neighbors 3
-```
-
-To show BGP (IPv4) routes in a VRF, run the `net show bgp vrf <vrf-name>` command. For example::
-
-```
-cumulus@switch:~$ net show bgp vrf RED
-BGP table version is 0, local router ID is 6.0.2.7
-Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
-              i internal, r RIB-failure, S Stale, R Removed
-Origin codes: i - IGP, e - EGP, ? - incomplete
-
-  Network          Next Hop            Metric LocPrf Weight Path
-  20.7.2.0/24      0.0.0.0                  0         32768 i
-
-Total number of prefixes 1
-```
-
-{{%notice note%}}
-To show BGP IPv6 routes in the VRF, you need to run the vtysh `show bgp vrf <vrf-name>` command.
-{{%/notice%}}
-
-To show the OSPF VRFs, run the `net show ospf vrf all` command. For example:
-
-```
-cumulus@switch:~$ net show ospf vrf all
-Name                                  Id         RouterId
-Default-IP-Routing-Table              0          6.0.0.7
-RED                               45         9.9.12.7
-BLUE                               52         9.9.13.7
-
-Total number of OSPF VRFs: 3
-```
-
-To show all the OSPF routes in a VRF, run the `net show ospf vrf <vrf-name> route` command. For example:
-
-```
-cumulus@switch:~$ net show ospf vrf RED route
-Codes: K - kernel route, C - connected, S - static, R - RIP,
-       O - OSPF, I - IS-IS, B - BGP, P - PIM, E - EIGRP, N - NHRP,
-       T - Table, v - VNC, V - VNC-Direct, A - Babel,
-       > - selected route, * - FIB route
-
-VRF RED:
-O>* 6.0.0.1/32 [110/210] via 200.254.2.10, swp2s0.2, 00:13:30
-    *                    via 200.254.2.14, swp2s1.2, 00:13:30
-    *                    via 200.254.2.18, swp2s2.2, 00:13:30
-O>* 6.0.0.2/32 [110/210] via 200.254.2.10, swp2s0.2, 00:13:30
-    *                    via 200.254.2.14, swp2s1.2, 00:13:30
-    *                    via 200.254.2.18, swp2s2.2, 00:13:30
-O>* 9.9.12.5/32 [110/20] via 200.254.2.10, swp2s0.2, 00:13:29
-    *                    via 200.254.2.14, swp2s1.2, 00:13:29
-    *                    via 200.254.2.18, swp2s2.2, 00:13:29
-```
-
-To show which interfaces are in a VRF (either BGP or OSPF), run the `net show vrf list` command. For example:
-
-```
-cumulus@switch:~$ net show vrf list
-VRF: mgmt
---------------------
-eth0              UP     a0:00:00:00:00:11 <BROADCAST,MULTICAST,UP,LOWER_UP>
-
-VRF: BLUE
---------------------
-vlan13@bridge     UP     44:38:39:00:00:03 <BROADCAST,MULTICAST,UP,LOWER_UP>
-vlan13-v0@vlan13  UP     44:39:39:ff:00:13 <BROADCAST,MULTICAST,UP,LOWER_UP>
-vlan24@bridge     UP     44:38:39:00:00:03 <BROADCAST,MULTICAST,UP,LOWER_UP>
-vlan24-v0@vlan24  UP     44:39:39:ff:00:24 <BROADCAST,MULTICAST,UP,LOWER_UP>
-vlan4001@bridge   UP     44:39:39:ff:40:94 <BROADCAST,MULTICAST,UP,LOWER_UP>
-```
-
-To show the interfaces for a specific VRF, run the `net show vrf list <vrf-name>` command. For example:
-
-```
-cumulus@switch:~$ net show vrf list BLUE
-VRF: BLUE
---------------------
-vlan13@bridge     UP      44:38:39:00:00:03 <BROADCAST,MULTICAST,UP,LOWER_UP>
-vlan13-v0@vlan13  UP      44:39:39:ff:00:13 <BROADCAST,MULTICAST,UP,LOWER_UP>
-vlan24@bridge     UP      44:38:39:00:00:03 <BROADCAST,MULTICAST,UP,LOWER_UP>
-vlan24-v0@vlan24  UP      44:39:39:ff:00:24 <BROADCAST,MULTICAST,UP,LOWER_UP>
-vlan4001@bridge   UP      44:39:39:ff:40:94 <BROADCAST,MULTICAST,UP,LOWER_UP>
-```
-
-{{%notice note%}}
-You can only specify one VRF with the `net show vrf list <vrf-name>` command. For example, `net show vrf list mgmt BLUE` is an invalid command.
-{{%/notice%}}
-
-To show the VNIs for the interfaces in a VRF, run the `net show vrf vni` command. For example:
-
-```
-cumulus@switch:~$ net show vrf vni
-VRF         VNI     VxLAN IF    L3-SVI    State  Rmac
-BLUE      104001  vxlan4001   vlan4001  Up     44:39:39:ff:40:94
-```
-
-To see the VNIs for the interfaces in a VRF in JSON format, run the `net show vrf vni json` command. For example:
-
-```
-cumulus@switch:~$ net show vrf vni json
-{
-  "vrfs":[
-    {
-      "vrf":"BLUE",
-      "vni":104001,
-      "vxlanIntf":"vxlan4001",
-      "sviIntf":"vlan4001",
-      "state":"Up",
-      "routerMac":"44:39:39:ff:40:94"
-    }
-  ]
-}
-```
--->
 
 ## Considerations
 
@@ -1345,4 +1079,3 @@ cumulus@switch:~$ net show vrf vni json
 - Setting the router ID outside of BGP using the `router-id` option causes all BGP instances to get the same router ID. If you want each BGP instance to have its own router ID, specify the `router-id` under the BGP instance using `bgp router-id`. If you specify both `router-id` and `bgp router-id`, the ID under the BGP instance overrides the one you provide outside BGP.
 - You cannot configure {{<link url="Basic-Configuration/#enable-evpn-between-bgp-neighbors" text="EVPN address families">}} within a VRF.
 - When you take down a VRF using `ifdown`, Cumulus Linux removes all routes associated with that VRF from FRR but it does *not* remove the routes from the kernel.
-<!-- - The NCLU command to remove a BGP neighbor (`net del bgp neighbor <interface> remote-as <asn>`) does not remove the BGP neighbor statement in the `/etc/network/interfaces` file when the BGP unnumbered interface belongs to a VRF. However, if the interface belongs to the default VRF, the NCLU command removes the BGP neighbor statement.-->

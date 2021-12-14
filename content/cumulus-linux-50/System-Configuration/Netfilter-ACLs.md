@@ -295,77 +295,6 @@ cumulus@switch:~$ nv config apply
 
 To see the list of NVUE ACL commands, run the `nv list-commands acl` command.
 
-<!--## Install and Manage ACL Rules with NCLU
-
-NCLU provides an easy way to create custom ACLs. The rules you create live in the `/var/lib/cumulus/nclu/nclu_acl.conf` file, which Cumulus Linux converts to a rules file, `/etc/cumulus/acl/policy.d/50_nclu_acl.rules`. The rules you create with NCLU are independent of the default files in `/etc/cumulus/acl/policy.d/00control_plane.rules` and `99control_plane_catch_all.rules`. If you update the content in these files after a Cumulus Linux upgrade, you do not lose the rules.
-
-Instead of crafting a rule by hand then installing it with `cl-acltool`, NCLU handles most options automatically. For example, consider the following `iptables` rule:
-
-```
--A FORWARD -i swp1 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT
-```
-
-To create this rule  with NCLU and call it *EXAMPLE1*:
-
-```
-cumulus@switch:~$ net add acl ipv4 EXAMPLE1 accept tcp source-ip 10.0.14.2/32 source-port any dest-ip 10.0.15.8/32 dest-port any
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-NCLU adds all options, such as the `-j` and `-p`, even `FORWARD` in the above rule automatically when you apply the rule to the control plane; NCLU figures it all out for you.
-
-You can also set a priority value, which specifies the order in which the rules execute and the order in which they appear in the rules file. Lower numbers execute first. To add a new rule in the middle, first run `net show config acl`, which displays the priority numbers. Otherwise, new rules append to the end of the list of rules in the `nclu_acl.conf` and `50_nclu_acl.rules` files.
-
-{{%notice note%}}
-
-If you need to edit a rule manually, do not edit the `50_nclu_acl.rules` file. Instead, edit the `nclu_acl.conf` file.
-
-{{%/notice%}}
-
-After you add the rule, you need to apply it to an inbound or outbound interface with the `net add int acl` command. The inbound interface in the following example is swp1:
-
-```
-cumulus@switch:~$ net add int swp1 acl ipv4 EXAMPLE1 inbound
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-After you commit your changes, verify the rule; run `net show configuration acl`:
-
-```
-cumulus@switch:~$ net show configuration acl
-acl ipv4 EXAMPLEv4 priority 10 accept tcp source-ip 10.0.14.2/32 source-port any dest-ip 10.0.15.8/32 dest-port any
-
-interface swp1
-acl ipv4 EXAMPLE1 inbound
-```
-
-To see all installed rules, run `cat` on the `50_nclu_acl.rules` file:
-
-```
-cumulus@switch:~$ cat /etc/cumulus/acl/policy.d/50_nclu_acl.rules
-[iptables]
-# swp1: acl ipv4 EXAMPLE1 inbound
--A FORWARD -i swp1 -o swp2 -j ACCEPT -p tcp -s 10.0.14.2/32 -d 10.0.15.8/32 --dport 110
-```
-
-For rules affecting the INPUT chain, apply the rule to a control plane interface with `net add control-plane`:
-
-```
-cumulus@switch:~$ net add control-plane acl ipv4 EXAMPLE1 inbound
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-To remove a rule, run `net del acl ipv4|ipv6|mac RULENAME`. This command deletes all rules from the `50_nclu_acl.rules` file with the name you specify. The command also deletes the interfaces referenced in the `nclu_acl.conf` file.
-
-```
-cumulus@switch:~$ net del acl ipv4 EXAMPLE1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 <!-- vale off -->
 ## Install and Manage ACL Rules with cl-acltool
 <!-- vale on -->
@@ -1000,15 +929,6 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add acl ipv4 test priority 10 accept source-ip 10.255.4.0/24 dest-ip 10.10.10.1/32
-cumulus@switch:~$ net add acl ipv4 test priority 20 drop source-ip any dest-ip 10.10.10.1/32
-cumulus@switch:~$ net add control-plane acl ipv4 test inbound
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ### Match on ECN Bits in the TCP IP Header
 
@@ -1053,14 +973,6 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-Run the `net add acl ipv4 <rule-name> <action> tcp ece` command:
-
-```
-cumulus@switch:~$ net add acl ipv4 ece-rule accept tcp ece
-cumulus@switch:~$ net commit
-```
--->
 
 #### Match on the CWR Bit
 
@@ -1099,14 +1011,6 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-Run the `net add acl ipv4 <rule-name> <action> tcp cwr` command:
-
-```
-cumulus@switch:~$ net add acl ipv4 cwr-rule accept tcp cwr
-cumulus@switch:~$ net commit
-```
--->
 
 #### Match on the ECT Bit
 
@@ -1145,14 +1049,6 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-Run the `net add acl ipv4 <acl-name> <action> tcp ecn <value>` command. You can specify a value between 0 and 3.
-
-```
-cumulus@switch:~$ net add acl ipv4 ect-rule accept tcp ecn 1
-cumulus@switch:~$ net commit
-```
--->
 
 ## Example Configuration
 

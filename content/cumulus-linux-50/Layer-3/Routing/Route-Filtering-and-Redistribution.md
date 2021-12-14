@@ -63,26 +63,6 @@ ip prefix-list prefixlist1 seq 1 permit 10.0.0.0/16 le 30
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add routing prefix-list ipv4 prefixlist1 permit 10.0.0.0/16 le 30
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-cumulus@switch:~$ sudo cat /etc/frr/frr.conf
-...
-router ospf
- ospf router-id 10.10.10.1
- timers throttle spf 80 100 6000
- passive-interface vlan10
- passive-interface vlan20
-ip prefix-list prefixlist1 seq 1 permit 10.0.0.0/16 le 30
-```
--->
 
 To use this prefix list in a route map called MAP1:
 
@@ -121,13 +101,6 @@ match ip address prefix-list prefixlist1
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add routing route-map MAP1 permit 10 match ip-prefix-list prefixlist1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ## Route Maps
 
@@ -174,24 +147,6 @@ route-map routemap1 permit 10
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add routing route-map routemap1 permit 10 match interface swp51
-cumulus@switch:~$ net add routing route-map routemap1 permit 10 set metric 50
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-cumulus@switch:~$ sudo cat /etc/frr/frr.conf
-...
-route-map routemap1 permit 10
- match interface swp51
- set metric 50
-```
--->
 
 ### Apply a Route Map
 
@@ -230,21 +185,6 @@ ip protocol bgp route-map routemap1
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add routing protocol bgp route-map routemap1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-cumulus@switch:~$ sudo cat /etc/frr/frr.conf
-...
-ip protocol bgp route-map routemap1
-```
--->
 
 For [BGP](## "Border Gateway Protocol"), you can also apply a route map on route updates from BGP to Zebra. You can match on prefix, next hop, communities, and so on. You can set the metric and next hop only. Route maps do not affect the BGP internal RIB. You can use both IPv4 and IPv6 address families. Route maps work on multi-paths; however, BGP bases the metric setting on the best path only.
 
@@ -254,17 +194,6 @@ To apply a route map to filter route updates from BGP into Zebra, run the follow
 cumulus@switch:$ nv set vrf default router bgp address-family ipv4-unicast rib-filter routemap1
 cumulus@switch:$ nv config apply
 ```
-<!--
-```
-cumulus@switch:$ net add bgp table-map routemap2
-cumulus@switch:$ net pending
-cumulus@switch:$ net commit
-```
-
-{{%notice note%}}
-In NCLU, you can only set the community number in a route map. You cannot set other community options such as `no-export`, `no-advertise`, or `additive`.
-{{%/notice%}}
--->
 
 ## Route Redistribution
 
@@ -296,13 +225,6 @@ cumulus@switch:~$
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add bgp redistribute ospf
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 To redistribute all directly connected networks, use the `redistribute connected` command. For example:
 
@@ -330,13 +252,6 @@ cumulus@switch:~$
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add bgp redistribute connected
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 {{%notice note%}}
 For OSPF, redistribution loads the database unnecessarily with type-5 LSAs. Only use this method to generate real external prefixes (type-5 LSAs).

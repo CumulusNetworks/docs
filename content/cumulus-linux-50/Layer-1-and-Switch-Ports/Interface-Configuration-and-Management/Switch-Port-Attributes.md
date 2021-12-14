@@ -122,11 +122,7 @@ When configuring MTU for a bond, configure the MTU value directly under the bond
 VLAN interfaces inherit their MTU settings from their physical devices or their lower interface; for example, swp1.100 inherits its MTU setting from swp1. Therefore, specifying an MTU on swp1 ensures that swp1.100 inherits the MTU setting for swp1.
 
 If you are working with {{<link url="Network-Virtualization" text="VXLANs">}}, the MTU for a virtual network interface (VNI must be 50 bytes smaller than the MTU of the physical interfaces on the switch, as various headers and other data require those 50 bytes. Also, consider setting the MTU much higher than 1500.
-<!--
-{{%notice note%}}
-The MTU for an SVI interface, such as vlan10, comes from the bridge. When you use NCLU to change the MTU for an SVI and the MTU setting is higher than it is for the other bridge member interfaces, the MTU for all bridge member interfaces changes to the new setting. If you need to use a mixed MTU configuration for SVIs, (if some SVIs have a higher MTU and some lower), set the MTU for all member interfaces to the maximum value, then set the MTU on the specific SVIs that need to run at a lower MTU.
-{{%/notice%}}
--->
+
 To show the MTU setting for an interface:
 
 {{< tabs "TabID354 ">}}
@@ -165,7 +161,10 @@ Run the following command to drop **all** IP packets that are larger in size tha
 {{< tabs "TabID166 ">}}
 {{< tab "NVUE Commands ">}}
 
-The NVUE command is not supported.
+```
+cumulus@switch:~$ nv set system control-plane trap l3-mtu-err state off
+cumulus@switch:~$ nv config apply
+```
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -176,13 +175,6 @@ cumulus@switch:~$ echo "0 >" /cumulus/switchd/config/trap/l3-mtu-err/enable
 
 {{< /tab >}}
 {{< /tabs >}}
-
-<!--
-```
-cumulus@switch:~$ net add trap l3-mtu-err action off
-cumulus@switch:~$ net commit
-```
--->
 
 ## FEC
 
@@ -1536,7 +1528,7 @@ This section shows basic commands for troubleshooting switch ports. For a more c
 
 ### Statistics
 
-To show high-level interface statistics, run<!--the NCLU `net show interface` command. The NVUE Command is--> `nv show interface <interface>`.
+To show high-level interface statistics, run the `nv show interface <interface>` command.
 
 ```
 cumulus@switch:~$ nv show interface swp1

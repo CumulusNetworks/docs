@@ -10,7 +10,7 @@ The following outputs are from the {{<exlink url="https://gitlab.com/cumulus-con
 
 ## General Linux Commands
 
-You can use various `iproute2` <!--and `NCLU` commands--> to examine links, VLAN mappings and the bridge MAC forwarding database known to the Linux kernel. You can also use these commands to examine the neighbor cache and the routing table (for the underlay or for a specific tenant VRF). Some of the key commands are:
+You can use various `iproute2` commands to examine links, VLAN mappings and the bridge MAC forwarding database known to the Linux kernel. You can also use these commands to examine the neighbor cache and the routing table (for the underlay or for a specific tenant VRF). Some of the key commands are:
 
 - `ip [-d] link show`
 - `bridge link show`
@@ -29,8 +29,8 @@ cumulus@leaf01:~$ ip -d link show type vxlan
     bridge_slave state forwarding priority 8 cost 100 hairpin off guard off root_block off fastleave off learning off flood on port_id 0x8005 port_no 0x5 designated_port 32773 designated_cost 0 designated_bridge 8000.76:ed:2a:8a:67:24 designated_root 8000.76:ed:2a:8a:67:24 hold_timer    0.00 message_age_timer    0.00 forward_delay_timer    0.00 topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 mcast_fast_leave off mcast_flood on neigh_suppress on group_fwd_mask 0x0 group_fwd_mask_str 0x0 group_fwd_maskhi 0x0 group_fwd_maskhi_str 0x0 vlan_tunnel off isolated off addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535
 ...
 ```
-<!--
-The following example output for the `nv show bridge domain br_default mac-table` command shows:
+
+The following example output for the `net show bridge macs` command shows:
 
 - bond1 is an access port with VLAN ID 10, which maps to VXLAN interface vni10.
 - 26:76:e6:93:32:78 is the server01 host MAC learned on bond1.
@@ -75,7 +75,7 @@ The following example output for the `net show neighbor` command shows:
 - 10.1.20.105 is remote-host, server05 on VLAN 20.
 
 ```
-cumulus@leaf01:mgmt:~$ net show neigh
+cumulus@leaf01:mgmt:~$ net show neighbor
 Neighbor                   MAC                Interface      AF    STATE
 -------------------------  -----------------  -------------  ----  ---------
 10.1.10.104                68:0f:31:ae:3d:7a  vlan10         IPv4  zebra
@@ -96,7 +96,7 @@ Neighbor                   MAC                Interface      AF    STATE
 10.1.10.3                  c0:8a:e6:03:96:d0  vlan10         IPv4  PERMANENT
 ...
 ```
--->
+
 ## General BGP Commands
 
 If you use BGP for the underlay routing, run the vtysh `show bgp summary` command or the `net show bgp summary` command to view a summary of the layer 3 fabric connectivity:

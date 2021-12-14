@@ -428,7 +428,7 @@ C>* 172.16.10.0/24 is directly connected, swp3, 3d00h26m
 
 ## Check BGP Timer Settings
 
-To check BGP timers, such as the BGP keepalive interval, hold time, and advertisement interval, run the <!--NCLU `net show bgp neighbor <peer>` command or the -->vtysh `show ip bgp neighbor <peer>` command. For example:
+To check BGP timers, such as the BGP keepalive interval, hold time, and advertisement interval, run the vtysh `show ip bgp neighbor <peer>` command. For example:
 
 ```
 cumulus@leaf01:~$ sudo vtysh

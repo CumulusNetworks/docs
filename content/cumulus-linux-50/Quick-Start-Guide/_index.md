@@ -30,7 +30,7 @@ These steps describe a flexible unattended installation method; you do not need 
 {{%/notice%}}
 
 After installing Cumulus Linux, you are ready to:
-- Log in to Cumulus Linux on the switch.<!--\- Install the Cumulus Linux license.-->
+- Log in to Cumulus Linux on the switch.
 - Configure Cumulus Linux. This quick start guide provides instructions on configuring switch ports and a loopback interface.
 
 ## Get Started
@@ -92,14 +92,7 @@ iface eth0
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add interface eth0 ip address 192.0.2.42/24
-cumulus@switch:~$ net add interface eth0 ip gateway 192.0.2.1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
+
 ### Configure the Hostname
 
 The hostname identifies the switch; make sure you configure the hostname to be unique and descriptive.
@@ -135,15 +128,6 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add hostname leaf01
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The above command modifies both the `/etc/hostname` and `/etc/hosts` files.
--->
 
 {{%notice note%}}
 The command prompt in the terminal does not reflect the new hostname until you either log out of the switch or start a new shell.
@@ -239,27 +223,6 @@ To view link status, run the `ip link show` command.
 {{< /tab >}}
 {{< /tabs >}}
 
-<!--
-
-To administratively enable a port:
-
-```
-cumulus@switch:~$ net add interface swp1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-To administratively enable all physical ports on a switch that has ports numbered from swp1 to swp52:
-
-```
-cumulus@switch:~$ net add interface swp1-52
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-To view link status, run the `net show interface all` command.
-
--->
 ## Configure Layer 2 Ports
 
 Cumulus Linux does not put all ports into a bridge by default. To create a bridge and configure one or more front panel ports as members of the bridge:
@@ -318,23 +281,6 @@ cumulus@switch:~$ sudo ifup -a
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-In the following configuration example, the front panel port swp1 is in a bridge called *bridge*.
-
-```
-cumulus@switch:~$ net add bridge bridge ports swp1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-You can add a range of ports in one command. For example, to add swp1 through swp10, swp12, and swp14 through swp20 to bridge:
-
-```
-cumulus@switch:~$ net add bridge bridge ports swp1-10,12,14-20
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 For more information about Ethernet bridges, see {{<link url="Ethernet-Bridging-VLANs" text="Ethernet Bridging - VLANs">}}.
 
@@ -398,25 +344,6 @@ cumulus@switch:~$ sudo ifup -a
 {{< /tab >}}
 {{< /tabs >}}
 
-<!--
-In the following configuration example, the front panel port swp1 is a layer 3 access port:
-
-```
-cumulus@switch:~$ net add interface swp1 ip address 10.1.1.1/30
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-To add an IP address to a bridge interface, you must put it into a VLAN interface. If you want to use a VLAN other than the native one, set the bridge PVID:
-
-```
-cumulus@switch:~$ net add vlan 100 ip address 10.2.2.1/24
-cumulus@switch:~$ net add bridge bridge pvid 100
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
-
 ## Configure a Loopback Interface
 
 Cumulus Linux has a preconfigured loopback interface. When the switch boots up, the loopback interface, called *lo*, is up and assigned an IP address of 127.0.0.1.
@@ -448,15 +375,6 @@ iface lo inet loopback
 
 {{< /tab >}}
 {{< /tabs >}}
-
-<!--
-
-```
-cumulus@switch:~$ net add loopback lo ip address 10.1.1.1/32
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 {{%notice note%}}
 If you configure an IP address without a subnet mask, it becomes a /32 IP address. For example, 10.10.10.1 is 10.10.10.1/32.

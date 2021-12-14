@@ -8,9 +8,14 @@ product: NVIDIA Air
 
 Check out some of the latest features added to the {{<exlink url="https://air.nvidia.com" text="NVIDIA Air Infrastructure Simulation Platform">}}.
 
+## December 2021
+<!-- Air:WhatsNew -->
+- Improved fidelity of operating systems used in custom topologies
+- VMs in a custom topology now use their operating system's default username and password. See the {{<link title="Quick Start#logging-into-virtual-machines" text="Quick Start">}} guide for more details.
+<!-- Air:WhatsNew -->
+
 ## September 2021
 <!-- vale off -->
-<!-- Air:WhatsNew -->
 - Enable UEFI SecureBoot for virtual machines using the `secureboot` option in your DOT file. For example:
 
 ```
@@ -18,7 +23,6 @@ Check out some of the latest features added to the {{<exlink url="https://air.nv
 ```
 
 - {{<exlink url="https://air.nvidia.com/marketplace" text="Demo Marketplace">}}: Get a jump start on your network configuration by checking out some pre-built feature demos, or submit your own!
-<!-- Air:WhatsNew -->
 - This page! Be sure to check back often to see the latest features we're adding to NVIDIA Air.
 <!-- vale on -->
 ## August 2021

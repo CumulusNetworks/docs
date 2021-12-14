@@ -32,7 +32,7 @@ Auto BGP assigns private ASNs in the range 4200000000 through 4294967294. This i
 - It is not necessary to use auto BGP across all switches in your configuration. For example, you can use auto BGP to configure one switch but set ASNs manually to other switches.
 - USe auto BGP in two-tier spine and leaf networks. Using auto BGP in three-tier networks with super spines can result in incorrect ASN assignments.
 - The `leaf` keyword generates the ASN based on a hash of the switch MAC address. The ASN assigned can change after a switch replacement.
-- You can configure auto BGP with <!--NCLU or -->NVUE.
+- You can configure auto BGP with NVUE.
 {{%/notice%}}
 
 ### eBGP and iBGP

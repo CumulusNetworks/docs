@@ -17,9 +17,6 @@ Cumulus Linux 5.0.0 supports new platforms, provides bug fixes, and contains sev
 ### Platforms
 
 - NVIDIA SN3700C-S (100G Spectrum-2) with Secure Boot is now GA
-<!-- - NVIDIA SN4700 (400G Spectrum A1)
-- NVIDIA SN4410 (100G Spectrum A1)
-- NVIDIA SN4600C (100G Spectrum A1)-->
 
 ### New Features and Enhancements
 
@@ -44,7 +41,6 @@ Cumulus Linux 5.0.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link url="Netfilter-ACLs" text="Netfilter-ACL">}} enhancements include:
   - {{<link url="Netfilter-ACLs/#control-plane-policers" text="New control plane policer configuration">}}
   - {{<link url="Netfilter-ACLs/#install-and-manage-acl-rules-with-nvue" text="Updated rules">}}; Cumulus Linux now uses the `-t mangle -A PREROUTING` chain for ingress rules and the `-t mangle -A POSTROUTING` chain for egress rules instead of the `- A FORWARD` chain. Previously configured rules with `- A FORWARD` chain are still supported.
-<!-- - Host Based Networking (HBN) support. Cumulus Linux on the DPU simplifies host networking so that you can manage your network policies end to end, regardless of the server end point type. With HBN, you do not need to configure LACP or MLAG. In addition, ECMP provides high availablity.-->
 
 {{%notice note%}}
 Cumulus Linux 5.0.0 replaces NCLU with the {{<link url="NVIDIA-User-Experience-NVUE" text="NVUE object model">}}. After you upgrade to Cumulus Linux 5.0.0, running NVUE configuration commands replaces the configuration in the applicable configuration files and removes any configuration you add manually or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:

@@ -386,42 +386,6 @@ result: 0 Success
 
 {{< /expand >}}
 
-<!--### NCLU
-
-To use NCLU, a user must be in either the `netshow` or `netedit` NCLU group in the LDAP database. You can either:
-
-- Add a user or one of their groups to the `/etc/netd.conf` file manually.
-- Add a user to the local `/etc/group` file as a member of the `netshow` or `netedit` groups.
-
-In the following example, a user that is *not* in the `netshow` or `netedit` NCLU group in the LDAP database runs the NCLU `net show version` command, which produces an error:
-
-```
-hsolo@switch:~$ net show version
-ERROR: 'getpwuid(): uid not found: 0922'
-See /var/log/netd.log for more details
-```
-
-To add user to the `netshow` or `netedit` NCLU group in the LDAP database, either edit the `/etc/group` file manually or use the `sudo adduser USERNAME netshow` command, then restart `netd`. For example, to add the user bill to the `netshow` group:
-
-```
-cumulus@switch:~$ sudo adduser hsolo netshow
-Adding user `hsolo' to group `netshow' ...
-Adding user hsolo to group netshow
-Done.
-
-cumulus@switch:~$ sudo systemctl restart netd
-```
-
-Now, the user can run the NCLU `net show` commands:
-
-```
-hsolo@switch:~$ net show version
-NCLU_VERSION=1.0-cl4u5
-DISTRIB_ID="Cumulus Linux"
-DISTRIB_RELEASE=4.1.0
-DISTRIB_DESCRIPTION="Cumulus Linux 4.1.0"
-```
--->
 ### LDAP Browsers
 
 The GUI LDAP clients are free tools that show the structure of the LDAP database graphically.

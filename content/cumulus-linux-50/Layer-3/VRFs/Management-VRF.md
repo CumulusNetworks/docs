@@ -242,39 +242,6 @@ route-map REDISTRIBUTE-CONNECTED permit 1000
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add routing route-map REDISTRIBUTE-CONNECTED deny 100 match interface eth0
-cumulus@switch:~$ net add routing route-map REDISTRIBUTE-CONNECTED permit 1000
-cumulus@switch:~$ net add bgp redistribute connected route-map REDISTRIBUTE-CONNECTED
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router bgp 65101
- bgp router-id 10.10.10.1
- neighbor swp51 interface remote-as external
- neighbor swp52 interface remote-as external
- !
- address-family ipv4 unicast
-  network 10.1.10.0/24
-  network 10.10.10.1/32
-  redistribute connected route-map REDISTRIBUTE-CONNECTED
-  maximum-paths 64
-  maximum-paths ibgp 64
- exit-address-family
-!
-route-map REDISTRIBUTE-CONNECTED deny 100
-match interface eth0
-!
-route-map REDISTRIBUTE-CONNECTED permit 1000
-...
-```
--->
 
 ## SSH within a Management VRF Context
 
@@ -303,36 +270,7 @@ To get the route for any VRF, run the `ip route get <ip-address> oif <vrf-name>`
 ```
 cumulus@switch:~$ ip route get <ip-address> oif mgmt
 ```
-<!--
-The `ip route show` command shows the switch port (*main*) table. You can see the data plane routing table with the `net show route vrf main` command.
 
-To show information for eth0 (the management routing table), run the `net show route vrf mgmt` command:
-
-```
-cumulus@switch:~$ net show route vrf mgmt
-default via 192.168.0.1 dev eth0
-```
-
-```
-cumulus@switch:~$ net show route
-default via 10.23.23.3 dev swp17  proto zebra  metric 20
-10.3.3.3 via 10.23.23.3 dev swp17
-10.23.23.0/24 dev swp17  proto kernel  scope link  src 10.23.23.2
-192.168.0.0/24 dev eth0  proto kernel  scope link  src 192.168.0.11
-```
-
-If you run the `ip route get` command to return information about a single route, the command resolves over the *mgmt* table by default. To obtain information about the route in the switching silicon, run this command:
-
-```
-cumulus@switch:~$ net show route <ip-address>
-```
-
-To show the route for any VRF, run the `net show route vrf <vrf-name> <ip-address>` command:
-
-```
-cumulus@switch:~$ net show route vrf mgmt <ip-address>
-```
--->
 <!-- vale off -->
 ## mgmt Interface Class
 <!-- vale on -->
@@ -411,15 +349,6 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add dns nameserver ipv4 192.0.2.1
-cumulus@switch:~$ net add dns nameserver ipv4 198.51.100.31 vrf mgmt
-cumulus@switch:~$ net add dns nameserver ipv4 203.0.113.13 vrf mgmt
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 {{%notice note%}}
 - Because FIB rules force DNS lookups out of the management interface, this can affect data plane ports if you use overlapping addresses. For example, when the switch learns the DNS server IP address over the management VRF, it creates a FIB rule for that IP address. When DHCP relay has the same IP address, the switch forwards any DHCP discover packet arriving on the front panel port out of the management interface (eth0) even though a route is present out the front-panel port.

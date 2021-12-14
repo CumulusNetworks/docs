@@ -60,26 +60,6 @@ cumulus@switch:~$ ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-<!--
-```
-cumulus@switch:~$ net add bridge bridge ports swp1-2
-cumulus@switch:~$ net add bridge bridge vids 10,20
-cumulus@switch:~$ net add bridge bridge pvid 1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The above commands create the following code snippet in the `/etc/network/interfaces` file:
-
-```
-auto bridge
-iface bridge
-    bridge-ports swp1 swp2
-    bridge-pvid 1
-    bridge-vids 10 20
-    bridge-vlan-aware yes
-```
--->
 The Primary VLAN Identifier (PVID) of the bridge defaults to 1. You do *not* have to specify `bridge-pvid` for a bridge or a port. However, even though this does not affect the configuration, it helps other users for readability. The following configurations are identical to each other and the configuration above:
 
 ```
@@ -168,18 +148,6 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add bridge bridge1 ports swp1-2
-cumulus@switch:~$ net add bridge bridge1 vids 10,20
-cumulus@switch:~$ net add bridge bridge1 pvid 1
-cumulus@switch:~$ net add bridge bridge2 ports swp3
-cumulus@switch:~$ net add bridge bridge2 vids 10
-cumulus@switch:~$ net add bridge bridge2 pvid 1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 {{%notice note%}}
 NVIDIA Spectrum-2 switches and later support a maximum of 15996 VLAN elements and calculate the total number of VLAN elements as the number of VLANs times the number of configured bridges. For example, 6 bridges, each containing 2600 VLANs totals 15600 VLAN elements.
@@ -250,16 +218,6 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add bridge bridge ports swp1-3
-cumulus@switch:~$ net add bridge bridge vids 10,20
-cumulus@switch:~$ net add bridge bridge pvid 1
-cumulus@switch:~$ net add interface swp3 bridge vids 20
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ## Access Ports and Tagged Packets
 
@@ -310,17 +268,6 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add bridge bridge ports swp1-2
-cumulus@switch:~$ net add bridge bridge vids 10,20
-cumulus@switch:~$ net add bridge bridge pvid 1
-cumulus@switch:~$ net add interface swp1 bridge access 10
-cumulus@switch:~$ net add interface swp2 bridge access 10
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ## Drop Untagged Frames
 
@@ -366,13 +313,6 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add interface swp2 bridge allow-untagged no
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit 
-```
--->
 
 When you check VLAN membership for that port, it shows that there is **no** untagged VLAN.
 
@@ -481,14 +421,6 @@ iface bridge1_vlan10
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add vlan 10 ip address 10.1.10.2/24
-cumulus@switch:~$ net add vlan 10 ipv6 address 2001:db8::1/32
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 The first time you configure a switch, all southbound bridge ports are down; therefore, by default, the SVI is also down. You can force the SVI to always be up by disabling interface state tracking so that the SVI is always in the UP state, even if all member ports are down. Other implementations describe this feature as *no autostate*. This is beneficial if you want to perform connectivity testing.
 
@@ -603,13 +535,6 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add vlan 10 ipv6-addrgen off
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 To reenable automatic link-local address generation for a VLAN:
 
@@ -625,13 +550,6 @@ Edit the `/etc/network/interfaces` file to **remove** the line `ipv6-addrgen off
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net del vlan 10 ipv6-addrgen off
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ## Static MAC Address Entries
 

@@ -64,7 +64,7 @@ For static **PAT**, create a rule that matches a source or destination IP addres
 
 For NVIDIA switches with Spectrum-2 and later, you can include the outgoing or incoming interface.
 
-To create rules, use <!-- either NCLU or -->`cl-acltool`.
+To create rules, use `cl-acltool`.
 
 To add NAT rules using `cl-acltool`, either edit an existing file in the `/etc/cumulus/acl/policy.d` directory and add rules under `[iptables]` or create a new file in the `/etc/cumulus/acl/policy.d` directory and add rules under an `[iptables]` section. For example:
 
@@ -114,85 +114,6 @@ The following *double NAT* rule translates both the source and destination IP ad
 
 To delete a static NAT rule, remove the rule from the policy file in the  `/etc/cumulus/acl/policy.d` directory, then run the `sudo cl-acltool -i command`.
 
-<!--
-Use the following NCLU commands:
-
-**NAT**
-
-```
-net add nat static snat|dnat <protocol> <ip-address> [out-interface|in-interface <interface>] translate <ip-address>
-```
-
-**PAT**
-
-```
-net add nat static snat|dnat <protocol> <ip-address> <port> [out-interface|in-interface <interface>] translate <ip-address> <port>
-```
-
-Where:
-
-- `snat` is the source NAT
-- `dnat` is the destination NAT
-- `protocol` is TCP, ICMP, or UDP. You must specify a protocol.
-- `out-interface` is the outbound interface for `snat` (NVIDIA Spectrum-2 switches only)
-- `in-interface` is the inbound interface for `dnat` (NVIDIA Spectrum-2 switches only)
-
-**Command Examples**
-
-The following rule matches TCP packets with source IP address 10.0.0.1 and translates the IP address to 172.30.58.80:
-
-```
-cumulus@switch:~$ net add nat static snat tcp 10.0.0.1 translate 172.30.58.80
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The following rule matches ICMP packets with destination IP address 172.30.58.80 on interface swp51 and translates the IP address to 10.0.0.1
-
-```
-cumulus@switch:~$ net add nat static dnat icmp 172.30.58.80 in-interface swp51 translate 10.0.0.1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The following rule matches UDP packets with source IP address 10.0.0.1 and source port 5000, and translates the IP address to 172.30.58.80 and the port to 6000.
-
-```
-cumulus@switch:~$ net add nat static snat udp 10.0.0.1 5000 translate 172.30.58.80 6000
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The following rule matches UDP packets with destination IP address 172.30.58.80 and destination port 6000 on interface swp51, and translates the IP address to 10.0.0.1 and the port to 5000:
-
-```
-cumulus@switch:~$ net add nat static dnat udp 172.30.58.80 6000 in-interface swp51 translate 10.0.0.1 5000
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The following *double NAT* rule matches both the source and destination IP addresses of incoming and outgoing ICMP packets:  
-- For outgoing messages, NAT changes the inside local IP address 172.16.10.2 to the inside global IP address 130.1.100.10 and the outside local IP address 26.26.26.26 to the outside global IP address 140.1.1.2.
-- For incoming messages, NAT changes the inside global IP address 130.1.100.10 to the inside local IP address 172.16.10.2 and the outside global IP address 140.1.1.2 to the outside local IP address 26.26.26.26.
-
-```
-cumulus@switch:~$ net add nat static snat icmp 172.16.10.2 translate 130.1.100.100
-cumulus@switch:~$ net add nat static dnat icmp 26.26.26.26 translate 140.1.1.2
-cumulus@switch:~$ net add nat static snat icmp 140.1.1.2 translate 26.26.26.26
-cumulus@switch:~$ net add nat static dnat icmp 130.1.100.100 translate 172.16.10.2 
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit 
-```
-
-To delete a static rule, run the `net del` command. For example:
-
-```
-cumulus@switch:~$ net del nat static snat tcp 10.0.0.1 translate 172.30.58.80
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
-
 ## Dynamic NAT
 
 Dynamic NAT maps private IP addresses and ports to a public IP address and port range or a public IP address range and port range. Cumulus Linux assigns IP addresses from a pool of addresses dynamically. When the switch releases entries after a period of inactivity, it maps new incoming connections dynamically to the freed up addresses and ports.
@@ -222,7 +143,7 @@ The `/etc/cumulus/switchd.conf` file includes the following configuration option
 | ------ | ----------- |
 | nat.age_poll_interval | The period of inactivity before `switchd` releases a NAT entry from the translation table.<br>The default value is 5 minutes. The minimum value is 1 minute. The maximum value is 24 hours.|
 | nat.table_size | The maximum number of dynamic `snat` and `dnat` entries in the translation table. The default value is 1024.<br>NVIDIA Spectrum-2 switches support a maximum of 8192 entries. |
-| nat.config_table_size | The maximum number of rules allowed <!--(NCLU or cl-acltool)-->.<br>The default value is 64. The minimum value is 64. The maximum value is 1024. |
+| nat.config_table_size | The maximum number of rules allowed.<br>The default value is 64. The minimum value is 64. The maximum value is 1024. |
 <!-- vale on -->
 After you change any of the dynamic NAT configuration options, restart `switchd`.
 <!-- vale off -->
@@ -278,80 +199,6 @@ The following rule matches ICMP packets with source IP address in the range 10.0
 ```
 
 To delete a dynamic NAT rule, remove the rule from the policy file in the  `/etc/cumulus/acl/policy.d` directory, then run the `sudo cl-acltool -i` command.
-
-<!--
-Use the following NCLU commands:
-
-**NAT**
-
-```
-net add nat dynamic snat|dnat <protocol> source-ip <ipv4-address/prefixlen>|destination-ip <ip-address/prefixlen> out-interface|in-interface translate <ipv4-address>|<ip-address-range>
-```
-
-**PAT**
-
-```
-net add nat dynamic snat|dnat <protocol> source-ip <ipv4-address/prefixlen>|destination-ip <ipv4-address/prefixlen> source-port <port>|destination-port <port> out-interface|in-interface translate <ipv4-address> <port-range>|<ipv4-address-range> <port-range>
-```
-
-Where:
-
-- `snat` is the source NAT
-- `dnat` is the destination NAT
-- `protocol` is TCP, ICMP, or UDP. You must specify a protocol.
-- `out-interface` is the outbound interface for `snat` (NVIDIA Spectrum-2 switches only)
-- `in-interface` is the inbound interface for `dnat` (NVIDIA Spectrum-2 switches only)
-
-**Example Commands**
-
-The following rule matches TCP packets with source IP address in the range 10.0.0.0/24 on outbound interface swp5 and translates the address dynamically to an IP address in the range 172.30.58.0-172.30.58.80:
-
-```
-cumulus@switch:~$ net add nat dynamic snat tcp source-ip 10.0.0.0/24 out-interface swp5 translate 172.30.58.0-172.30.58.80
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The following rule matches UDP packets with source IP address in the range 10.0.0.0/24 and translates the addresses dynamically to IP address 172.30.58.80 with layer 4 ports in the range 1024-1200:
-
-```
-cumulus@switch:~$ net add nat dynamic snat udp source-ip 10.0.0.0/24 translate 172.30.58.80 1024-1200
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The following rule matches UDP packets with source IP address in the range 10.0.0.0/24 on source port 5000 and translates the addresses dynamically to IP address 172.30.58.80 with layer 4 ports in the range 1024-1200:
-
-```
-cumulus@switch:~$ net add nat dynamic snat udp source-ip 10.0.0.0/24 source-port 5000 translate 172.30.58.80 1024-1200
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The following rule matches TCP packets with destination IP address in the range 10.1.0.0/24 and translates the address dynamically to IP address range 172.30.58.0-172.30.58.80 with layer 4 ports in the range 1024-1200:
-
-```
-cumulus@switch:~$ net add nat dynamic dnat tcp destination-ip 10.1.0.0/24 translate 172.30.58.0-172.30.58.80 1024-1200
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The following rule matches ICMP packets with source IP address in the range 10.0.0.0/24 and destination IP address in the range 10.1.0.0/24. The rule translates the address dynamically to IP address range 172.30.58.0-172.30.58.80 with layer 4 ports in the range 1024-1200:
-
-```
-cumulus@switch:~$ net add nat dynamic snat icmp source-ip 10.0.0.0/24 destination-ip 10.1.0.0/24 translate 172.30.58.0-172.30.58.80 1024-1200
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-To delete a dynamic rule, run the `net del` command. For example:
-
-```
-cumulus@switch:~$ net del nat dynamic snat tcp source-ip 10.0.0.0/24 translate 172.30.58.0-172.30.58.80 1024-1200
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ## Show Configured NAT Rules
 

@@ -85,14 +85,6 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add vlan 10 ip address-virtual 00:00:5E:00:01:01 10.1.10.1/24
-cumulus@switch:~$ net add vlan 10 ipv6 address-virtual 00:00:5e:00:01:00 10.1.20.1/24
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ### Configure the Hosts
 
@@ -383,7 +375,7 @@ All virtual routers use 00:00:5E:00:01:XX for IPv4 gateways or 00:00:5E:00:02:XX
 - Cumulus Linux supports both VRRPv2 and VRRPv3. The default protocol version is VRRPv3.
 - You can configure a maximum of 255 virtual routers on a switch.
 - You cannot use VRRP with [MLAG](## "Multi-chassis Link Aggregation").
-- To configure VRRP on an [SVI](## "Switched Virtual Interface") or {{<link url="Traditional-Bridge-Mode" text="traditional mode bridge">}}, you need to edit the `etc/network/interfaces` and `/etc/frr/frr.conf` files.<!-- NCLU commands do not support SVIs or traditional mode bridges.-->
+- To configure VRRP on an [SVI](## "Switched Virtual Interface") or {{<link url="Traditional-Bridge-Mode" text="traditional mode bridge">}}, you need to edit the `etc/network/interfaces` and `/etc/frr/frr.conf` files.
 - You can use VRRP with [EVPN](## "Ethernet Virtual Private Network"), and on layer 3 interfaces and subinterfaces that are part of a [VRF](## "Virtual Routing and Forwarding").
 {{%/notice%}}
 
@@ -516,7 +508,7 @@ cumulus@spine02:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
-The <!--NCLU and -->vtysh commands save the configuration in the `/etc/network/interfaces` file and the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/network/interfaces` file and the `/etc/frr/frr.conf` file. For example:
 
 ```
 cumulus@spine01:~$ sudo cat /etc/network/interfaces

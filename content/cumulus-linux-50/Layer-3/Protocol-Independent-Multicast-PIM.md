@@ -33,7 +33,7 @@ The following illustration shows a basic PIM [ASM](## "Any-source Mulitcast") co
 To configure PIM:
 - Enable PIM on all interfaces that connect to a multicast source or receiver, and on the interface with the RP address.
 
-  With NVUE, you must also run the `nv set router pim enable on` command to enable and start the PIM service. This is not required for <!--NCLU and -->vtysh configuration.
+  With NVUE, you must also run the `nv set router pim enable on` command to enable and start the PIM service. This is not required for vtysh configuration.
 
 - Enable [IGMP](## "Internet Group Management Protocol") on all interfaces that attach to a host and all interfaces that attach to a multicast receiver. IGMP version 3 is the default. Only specify the version if you want to use IGMP version 2. For [SSM](## "Source Specific Multicast"), you must use IGMP version 3.
 - For [ASM](## "Any-source Mulitcast"), on each PIM enabled switch, specify the IP address of the RP for the multicast group. You can also configure PIM to send traffic from specific multicast groups to specific RPs.
@@ -220,45 +220,6 @@ The [FRR](## "FRRouting") package includes PIM. For proper PIM operation, PIM de
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-{{< tabs "TabID224 ">}}
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:~$ net add vlan 10 pim
-cumulus@leaf01:~$ net add vlan 10 igmp
-cumulus@leaf01:~$ net add interface swp51 pim
-cumulus@leaf01:~$ net add pim rp 10.10.10.101
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "leaf02 ">}}
-
-```
-cumulus@leaf02:~$ net add vlan 20 pim
-cumulus@leaf02:~$ net add vlan 20 igmp
-cumulus@leaf02:~$ net add interface swp51 pim
-cumulus@leaf02:~$ net add pim rp 10.10.10.101
-cumulus@leaf02:~$ net pending
-cumulus@leaf02:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "spine01 ">}}
-
-```
-cumulus@spine01:~$ net add interface swp1 pim
-cumulus@spine01:~$ net add interface swp2 pim
-cumulus@spine01:~$ net add pim rp 10.10.10.101 
-cumulus@spine01:~$ net pending
-cumulus@spine01:~$ net commit
-```
-
-{{< /tab >}}
-{{< /tabs >}}
--->
 
 The above commands configure the switch to send all multicast traffic to RP 10.10.10.101. The following commands configure PIM to send traffic from multicast group 224.10.0.0/16 to RP 10.10.10.101 and traffic from multicast group 224.10.2.0/24 to RP 10.10.10.102:
 
@@ -285,12 +246,6 @@ spine01# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add pim rp 10.10.10.101 224.10.0.0/16
-cumulus@leaf01:~$ net add pim rp 10.10.10.102 224.10.2.0/24
-```
--->
 
 {{%notice note%}}
 - You can either configure RP mappings for different multicast groups (as shown above) or use a prefix list to specify the RP to group mapping. You cannot use both methods at the same time.
@@ -340,7 +295,7 @@ switch# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-To view the configured prefix list, run the <!--NCLU `net show mroute` command or the -->vtysh `show ip mroute` command. The following command shows that SPT switchover (`pimreg`) is on 235.0.0.0.
+To view the configured prefix list, run the vtysh `show ip mroute` command. The following command shows that SPT switchover (`pimreg`) is on 235.0.0.0.
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -413,32 +368,6 @@ PIM: ip prefix-list my-custom-ssm-range: 1 entries
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-Create a prefix list with the `permit` keyword to match address ranges that you want to treat as multicast groups and the `deny` keyword for the address ranges you do not want to treat as multicast groups:
-
-```
-cumulus@switch:~$ net add routing prefix-list ipv4 my-custom-ssm-range seq 5 permit 232.0.0.0/8 ge 32
-cumulus@switch:~$ net add routing prefix-list ipv4 my-custom-ssm-range seq 10 permit 238.0.0.0/8 ge 32
-```
-
-Apply the custom prefix list:
-
-```
-cumulus@switch:~$ net add pim ssm prefix-list my-custom-ssm-range
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-To view the configured prefix lists, run the `net show ip prefix-list` command:
-
-```
-cumulus@switch:~$ net show ip prefix-list my-custom-ssm-range
-ZEBRA: ip prefix-list my-custom-ssm-range: 1 entries
-   seq 5 permit 232.0.0.0/8 ge 32
-PIM: ip prefix-list my-custom-ssm-range: 1 entries
-   seq 10 permit 232.0.0.0/8 ge 32
-```
--->
 
 ### PIM and ECMP
 
@@ -498,23 +427,6 @@ switch# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-To configure PIM to use all the available next hops when installing mroutes:
-
-```
-cumulus@switch:~$ net add pim ecmp
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-To recalculate all stream paths over one of the ECMP paths if the switch loses a path:
-
-```
-cumulus@switch:~$ net add pim ecmp rebalance
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 To show the next hop for a specific source or group, run the vtysh `show ip pim nexthop` command:
 
@@ -562,13 +474,6 @@ switch# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add interface swp1 multicast boundary oil my-prefix-list
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ### MSDP
 
@@ -696,55 +601,6 @@ The following steps configure a Cumulus switch to use MSDP:
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-1. Add an anycast IP address to the loopback interface for each RP in the domain:
-
-   ```
-   cumulus@rp01:~$ net add loopback lo ip address 10.10.10.101/32
-   cumulus@rp01:~$ net add loopback lo ip address 10.100.100.100/32
-   ```
-
-2. On every multicast switch, configure the group to RP mapping using the anycast address:
-
-   ```
-   cumulus@switch:$ net add pim rp 10.100.100.100 224.0.0.0/4
-   cumulus@switch:$ net pending
-   cumulus@switch:$ net commit
-   ```
-
-3. Configure the MSDP mesh group for all active RPs. The following example uses three RPs:
-
-   The mesh group must include all RPs in the domain as members, with a unique address as the source. This configuration results in MSDP peerings between all RPs.
-
-   ```
-   cumulus@rp01:$ net add msdp mesh-group cumulus member 100.1.1.2
-   cumulus@rp01:$ net add msdp mesh-group cumulus member 100.1.1.3
-
-   cumulus@rp02:$ net add msdp mesh-group cumulus member 100.1.1.1
-   cumulus@rp02:$ net add msdp mesh-group cumulus member 100.1.1.3
-
-   cumulus@rp03:$ net add msdp mesh-group cumulus member 100.1.1.1
-   cumulus@rp03:$ net add msdp mesh-group cumulus member 100.1.1.2
-   ```
-
-4. Pick the local loopback address as the source of the MSDP control packets:
-
-   ```
-   cumulus@rp01:$ net add msdp mesh-group cumulus source 10.10.10.101
-
-   cumulus@rp02:$ net add msdp mesh-group cumulus source 10.10.10.102
-
-   cumulus@rp03:$ net add msdp mesh-group cumulus source 10.10.10.103
-   ```
-
-5. Inject the anycast IP address into the IGP of the domain. If the network uses unnumbered BGP as the IGP, avoid using the anycast IP address to establish unicast or multicast peerings. For PIM-SM, ensure that you use the unique address as the PIM hello source by setting the source:
-
-   ```
-   cumulus@rp01:$ net add loopback lo pim use-source 10.100.100.100
-   cumulus@rp01:$ net pending
-   cumulus@rp01:$ net commit
-   ```
--->
 
 ### PIM in a VRF
 
@@ -834,31 +690,6 @@ switch# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-Add the VRFs and associate them with switch ports:
-
-```
-cumulus@switch:~$ net add vrf RED
-cumulus@switch:~$ net add vrf BLUE
-cumulus@switch:~$ net add interface swp1 vrf RED
-cumulus@switch:~$ net add interface swp2 vrf BLUE
-```
-
-Add PIM configuration:
-
-```
-cumulus@switch:~$ net add interface swp1 pim
-cumulus@switch:~$ net add interface swp2 pim
-cumulus@switch:~$ net add bgp vrf RED auto 65001
-cumulus@switch:~$ net add bgp vrf BLUE auto 65000
-cumulus@switch:~$ net add bgp vrf RED router-id 10.1.1.1
-cumulus@switch:~$ net add bgp vrf BLUE router-id 10.1.1.2
-cumulus@switch:~$ net add bgp vrf RED neighbor swp1 interface remote-as external
-cumulus@switch:~$ net add bgp vrf BLUE neighbor swp2 interface remote-as external
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ### BFD for PIM Neighbors
 
@@ -922,28 +753,6 @@ spine01# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-{{< tabs "TabID920 ">}}
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:~$ net add interface swp51 pim bfd
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "spine01 ">}}
-
-```
-cumulus@spine01:~$ net add interface swp1 pim bfd
-cumulus@spine01:~$ net pending
-cumulus@spine01:~$ net commit
-```
-
-{{< /tab >}}
-{{< /tabs >}}
--->
 
 ### Allow RP
 
@@ -1008,9 +817,9 @@ Cumulus Linux provides the following PIM timers:
 
 | Timer | Description |
 |------ | ----------- |
-| `hello-interval` | The interval in seconds at which the PIM router sends hello messages to discover PIM neighbors and maintain PIM neighbor relationships. You can specify a value between 1 and 180. The default setting is 30 seconds. With <!--NCLU and -->vtysh, you set the hello interval for a specific PIM enabled interface. With NVUE, you can set the hello interval globally for all PIM enabled interfaces or for a specific PIM enabled interface.  |
-| `holdtime`  | The number of seconds during which the neighbor must be in a reachable state. `auto` (the default setting) uses three and half times the `hello-interval`. You can specify a value between 1 and 180. With <!--NCLU and -->vtysh, you set the holdtime for a specific PIM enabled interface. With NVUE, you can set the holdtime globally for all PIM enabled interfaces or for a specific PIM enabled interface.|
-| `join-prune-interval` | The interval in seconds at which a PIM router sends join/prune messages to its upstream neighbors for a state update. You can specify a value between 60 and 600. The default setting is 60 seconds. You set the `join-prune-interval` globally for all PIM enabled interfaces. NVUE <!--and NCLU -->also provides the option of setting the `join-prune-interval` for a specific VRF.|
+| `hello-interval` | The interval in seconds at which the PIM router sends hello messages to discover PIM neighbors and maintain PIM neighbor relationships. You can specify a value between 1 and 180. The default setting is 30 seconds. With vtysh, you set the hello interval for a specific PIM enabled interface. With NVUE, you can set the hello interval globally for all PIM enabled interfaces or for a specific PIM enabled interface.  |
+| `holdtime`  | The number of seconds during which the neighbor must be in a reachable state. `auto` (the default setting) uses three and half times the `hello-interval`. You can specify a value between 1 and 180. With vtysh, you set the holdtime for a specific PIM enabled interface. With NVUE, you can set the holdtime globally for all PIM enabled interfaces or for a specific PIM enabled interface.|
+| `join-prune-interval` | The interval in seconds at which a PIM router sends join/prune messages to its upstream neighbors for a state update. You can specify a value between 60 and 600. The default setting is 60 seconds. You set the `join-prune-interval` globally for all PIM enabled interfaces. NVUE also provides the option of setting the `join-prune-interval` for a specific VRF.|
 | `keep-alive` | The timeout value for the S,G stream in seconds. You can specify a value between 31 and 60000. The default setting is 210 seconds. You can set the `keep-alive` timer globally or all PIM enabled interfaces or for a specific VRF.|
 | `register-suppress` | The number of seconds during which to stop sending register messages to the RP. You can specify a value between 5 and 60000. The default setting is 60 seconds. You can set the `keep-alive` timer globally for all PIM enabled interfaces or for a specific VRF. |
 | `rp-keep-alive` | NVUE only. The timeout value for the RP in seconds. You can specify a value between 31 and 60000. The default setting is 185 seconds. You set the `register-suppress-time` timer globally for all PIM enabled interfacesor for a specific VRF.|
@@ -1086,34 +895,6 @@ switch# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-The following example commands set the `join-prune-interval` to 100 seconds, the `keep-alive` timer to 10000 seconds, and the `register-suppress` time to 20000 seconds globally for all PIM enabled interfaces:
-
-```
-cumulus@switch:~$ net add pim join-prune-interval 100
-cumulus@switch:~$ net add pim keep-alive-timer 10000
-cumulus@switch:~$ net add pim register-suppress-time 20000
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The following example commands set the `hello-interval` to 60 seconds and the `holdtime` to 120 seconds for swp51:
-
-```
-cumulus@switch:~$ net add interface swp1 pim hello 60 120
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The following example commands set the `join-prune-interval` to 100 and the `keep-alive-timer` to 10000 for VRF RED:
-
-```
-cumulus@switch:~$ net add pim vrf RED join-prune-interval 100
-cumulus@switch:~$ net add pim vrf RED keep-alive-timer 10000
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ### Improve Multicast Convergence
 
@@ -1241,14 +1022,6 @@ leaf01# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add vlan 10 pim active-active
-cumulus@leaf01:~$ net add vlan 10 igmp
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
--->
 
 To verify PIM active-active configuration, run the vtysh `show ip pim mlag summary` command or the `net show pim mlag summary` command:
 

@@ -149,11 +149,7 @@ cumulus@switch:~$ nv set service syslog default server 192.168.0.254 port 514
 cumulus@switch:~$ nv set service syslog default server 192.168.0.254 protocol udp
 cumulus@switch:~$ nv config apply
 ```
-<!--
-cumulus@switch:~$ net add syslog host ipv4 192.168.0.254 port udp 514
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
--->
+
 The configuration creates the `/etc/rsyslog.d/11-remotesyslog-default.conf` file. The file has the following content:
 
 ```
@@ -202,7 +198,6 @@ Cumulus Linux sends logs through `rsyslog`, which writes them to files in the `/
 | 66-ptp4l.conf | Logs PTP messages to `/var/log/ptp4l.log`.|
 | 99-syslog.conf | Sends all remaining processes that use `rsyslog` to `/var/log/syslog`. |
 
-<!--| 40-netd.conf | Logs `netd` messages to `/var/log/netd.log` for NCLU. |-->
 Cumulus Linux rotates and compresses log files into an archive. Processes that do not use `rsyslog` write to their own log files within the `/var/log` directory. For more information on specific log files, see {{<link url="Troubleshooting-Log-Files">}}.
 
 ### Enable Remote syslog

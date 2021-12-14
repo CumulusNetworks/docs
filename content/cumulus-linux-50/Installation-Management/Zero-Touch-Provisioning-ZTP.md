@@ -300,7 +300,7 @@ After initially configuring a node with ZTP, use {{<exlink url="http://docs.ansi
 
 ### Disable the DHCP Hostname Override Setting
 
-Make sure to disable the DHCP hostname override setting in your script<!--(NCLU does this automatically)-->.
+Make sure to disable the DHCP hostname override setting in your script.
 
 ```
 function set_hostname(){
@@ -309,30 +309,6 @@ function set_hostname(){
     hostnamectl set-hostname $1
 }
 ```
-
-<!--
-### NCLU in ZTP Scripts
-
-{{%notice note%}}
-You cannot use all NCLU commands with ZTP.
-{{%/notice%}}
-
-When you use NCLU in ZTP scripts, add the following loop to make sure NCLU has time to start up.
-
-```
-# Waiting for NCLU to finish starting up
-last_code=1
-while [ "1" == "$last_code" ]; do
-    net show interface &> /dev/null
-    last_code=$?
-done
-
-net add vrf mgmt
-net add time zone Etc/UTC
-net add time ntp server 192.168.0.254 iburst
-net commit
-```
--->
 
 ## Test ZTP Scripts
 

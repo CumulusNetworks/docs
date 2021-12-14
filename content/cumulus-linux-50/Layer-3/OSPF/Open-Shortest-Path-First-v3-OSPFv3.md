@@ -121,7 +121,7 @@ The following example commands configure OSPF numbered on leaf01 and spine01.
 {{< /tab >}}
 {{< /tabs >}}
 
-The <!--NCLU and -->vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 {{< tabs "TabID208 ">}}
 {{< tab "leaf01 ">}}
@@ -153,40 +153,6 @@ router ospf6
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-NCLU Commands
-
-{{< tabs "TabID165 ">}}
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:~$ net add loopback lo ip address 2001:db8::a0a:0a01/128
-cumulus@leaf01:~$ net add interface swp51 ip address 2001:db8::a00:0101/127
-cumulus@leaf01:~$ net add ospf6 router-id 10.10.10.1
-cumulus@leaf01:~$ net add ospf6 interface lo area 0.0.0.0
-cumulus@leaf01:~$ net add ospf6 interface swp51 area 0.0.0.0
-cumulus@leaf01:~$ net add interface swp1 ospf6 passive
-cumulus@leaf01:~$ net add interface swp2 ospf6 passive
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "spine01 ">}}
-
-```
-cumulus@spine01:~$ net add loopback lo ip address 2001:db8::a0a:0a65/128
-cumulus@spine01:~$ net add interface swp1 ip address 2001:db8::a00:0100/127
-cumulus@spine01:~$ net add ospf6 router-id 10.10.10.101
-cumulus@spine01:~$ net add ospf6 interface lo area 0.0.0.0
-cumulus@spine01:~$ net add ospf6 interface swp1 area 0.0.0.0
-cumulus@spine01:~$ net pending
-cumulus@spine01:~$ net commit
-```
-
-{{< /tab >}}
-{{< /tabs >}}
--->
 
 ### OSPFv3 Unnumbered
 
@@ -300,44 +266,7 @@ spine01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-<!--
-NCLU Commands
-
-{{< tabs "TabID312 ">}}
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:~$ net add loopback lo ip address 2001:db8::a0a:0a01/128
-cumulus@leaf01:~$ net add interface swp51 ip address 2001:db8::a0a:0a01/128
-cumulus@leaf01:~$ net add ospf6 router-id 10.10.10.1
-cumulus@leaf01:~$ net add ospf6 interface lo area 0.0.0.0
-cumulus@leaf01:~$ net add ospf6 interface swp51 area 0.0.0.0
-cumulus@leaf01:~$ net add interface swp1 ospf6 passive
-cumulus@leaf01:~$ net add interface swp2 ospf6 passive
-cumulus@leaf01:~$ net add interface swp51 ospf6 network point-to-point
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "spine01 ">}}
-
-```
-cumulus@spine01:~$ net add loopback lo ip address 2001:db8::a0a:0a65/128
-cumulus@spine01:~$ net add interface swp1 ip address 2001:db8::a0a:0a65/128
-cumulus@spine01:~$ net add ospf6 router-id 10.10.10.101
-cumulus@spine01:~$ net add ospf6 interface lo area 0.0.0.0
-cumulus@spine01:~$ net add ospf6 interface swp1 area 0.0.0.0
-cumulus@spine01:~$ net add interface swp1 ospf6 network point-to-point
-cumulus@spine01:~$ net pending
-cumulus@spine01:~$ net commit
-```
-
-{{< /tab >}}
-{{< /tabs >}}
--->
-
-The <!--NCLU and -->vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 {{< tabs "TabID366 ">}}
 {{< tab "leaf01 ">}}
@@ -404,15 +333,8 @@ switch(config-if)# end
 switch# write memory
 switch# exit
 ```
-<!--
-```
-cumulus@switch:~$ net add interface swp51 ospf6 network point-to-point
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
-The <!--NCLU and -->vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -436,7 +358,7 @@ switch# write memory
 switch# exit
 ```
 
-The <!--NCLU and -->vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -447,15 +369,6 @@ interface swp51
 ...
 ```
 
-<!--
-```
-cumulus@switch:~$ net add interface swp51 ospf6 hello-interval 5
-cumulus@switch:~$ net add interface swp51 ospf6 dead-interval 60
-cumulus@switch:~$ net add interface swp51 ospf6 priority 5
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 The following example command configures interface swp51 with the IPv6 advertise prefix list named `myfilter`:
 
 ```
@@ -468,15 +381,8 @@ switch(config-if)# end
 switch# write memory
 switch# exit
 ```
-<!--
-```
-cumulus@switch:~$ net add interface swp51 ospf6 advertise prefix-list myfilter
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
-The <!--NCLU and -->vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -498,15 +404,7 @@ switch# write memory
 switch# exit
 ```
 
-<!--
-```
-cumulus@switch:~$ net add interface swp51 ospf6 cost 1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
-
-The <!--NCLU and -->vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -515,7 +413,7 @@ interface swp51
 ...
 ```
 
-To show the configured OSPF interface parameter values, run the <!--NCLU `net show ospf6 interface` command or the -->vtysh `show ipv6 ospf6 interface` command.
+To show the configured OSPF interface parameter values, run the vtysh `show ipv6 ospf6 interface` command.
 
 ### SPF Timer Defaults
 
@@ -538,15 +436,7 @@ switch# write memory
 switch# exit
 ```
 
-<!--
-```
-cumulus@switch:~$ net add ospf6 timers throttle spf 80 100 6000
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
-
-The <!--NCLU and -->vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -559,7 +449,7 @@ router ospf6
 ...
 ```
 
-To see the configured SPF timer values, run the <!--NCLU `net show ospf6` command or the -->vtysh `show ipv6 ospf6` command.
+To see the configured SPF timer values, run the vtysh `show ipv6 ospf6` command.
 
 ### Configure the OSPFv3 Area
 
@@ -608,33 +498,8 @@ switch(config-ospf6)# end
 switch# write memory
 switch# exit
 ```
-<!--
-The following example command removes the `3:3::/64` route from the routing table. Without a route in the table, any destinations in that network are not reachable.
 
-```
-cumulus@switch:~$ net add ospf6 area 0.0.0.0 range 3:3::/64 not-advertise
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The following example command creates a summary route for all the routes in the range 2001::/64:
-
-```
-cumulus@switch:~$ net add ospf6 area 0.0.0.0 range 2001::/64 advertise
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-You can also configure the cost for a summary route, which Cumulus Linux uses to determine the shortest paths to the destination. The value for cost must be between 0 and 16777215.
-
-```
-cumulus@switch:~$ net add ospf6 area 0.0.0.0 range 2001::/64 cost 160
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
-
-The <!--NCLU and -->vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -665,15 +530,7 @@ switch# write memory
 switch# exit
 ```
 
-<!--
-```
-cumulus@switch:~$ net add ospf6 area 0.0.0.1 stub
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
-
-The <!--NCLU and -->vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -698,15 +555,7 @@ switch# write memory
 switch# exit
 ```
 
-<!--
-```
-cumulus@switch:~$ net add ospf6 area 0.0.0.1 stub no-summary
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
-
-The <!--NCLU and -->vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -745,15 +594,7 @@ switch# write memory
 switch# exit
 ```
 
-<!--
-```
-cumulus@switch:~$ net add ospf6 auto-cost reference-bandwidth 90000
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
-
-The <!--NCLU and -->vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -822,41 +663,8 @@ switch(config-ospf6)# end
 switch# write memory
 switch# exit
 ```
-<!--
-This example command sets the distance for an entire group of routes:
 
-```
-cumulus@switch:~$ net add ospf6 distance 254
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-This example command changes the OSPF administrative distance to 150 for internal routes and 220 for external routes:
-
-```
-cumulus@switch:~$ net add ospf6 distance ospf6 intra-area 150 inter-area 150 external 220
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-This example command changes the OSPF administrative distance to 150 for internal routes to a subnet or network inside the same area as the router:
-
-```
-cumulus@switch:~$ net add ospf6 distance ospf6 intra-area 150
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-This example command changes the OSPF administrative distance to 150 for internal routes to a subnet in an area of which the router is *not* a part:
-
-```
-cumulus@switch:~$ net add ospf6 distance ospf6 inter-area 150
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
-
-The <!--NCLU and -->vtysh commands save the configuration to the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration to the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -870,16 +678,7 @@ router ospf6
 ## Troubleshooting
 
 Cumulus Linux provides several OSPFv3 troubleshooting commands:
-<!--
-| To   | <div style="width:330px">NCLU Command | <div style="width:330px">vtysh Command |
-| --- | ---- | ----- |
-| Show neighbor states | `net show ospf6 neighbor` | `show ipv6 ospf6 neighbor` |
-| Verify that the LSDB is the same across all routers in the network | `net show ospf6 database` | `show ipv6 ospf6 database` |
-| Determine why Cumulus Linux does forward an OSPF route correctly |`net show route ospf6` | `show ipv6 ospf6 route` |
-| Show OSPF interfaces | `net show ospf6 interface` | `show ipv6 ospf6 interface` |
-| Help visualize the network view | `net show ospf6 spf tree` | `show ipv6 ospf6 spf tree` |
-| Show information about the OSPFv3 process | `net show ospf6` | `show ipv6 ospf6` |
--->
+
 | To   | <div style="width:330px">vtysh Command |
 | --- | ---- |
 | Show neighbor states | `show ipv6 ospf6 neighbor` |

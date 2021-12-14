@@ -204,9 +204,6 @@ Monitoring the routing table provides trending on the size of the infrastructure
 | Host Entries | `cl-resource-query`<br>`cl-resource-query -k` | 600 seconds |
 | Route Entries | `cl-resource-query`<br>`cl-resource-query -k` | 600 seconds |
 
-<!--
-You can also run the `net show system asic` command, which is the NCLU command equivalent of `cl-resource-query`.
--->
 
 ### Routing Logs
 

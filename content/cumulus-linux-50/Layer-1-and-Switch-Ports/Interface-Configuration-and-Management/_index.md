@@ -495,33 +495,6 @@ cumulus@switch:~$ sudo ip addr del 2001:DB8::1/126 dev swp1
 {{< /tab >}}
 {{< /tabs >}}
 
-<!--
-```
-cumulus@switch:~$ net add interface swp1 ip address 12.0.0.1/30
-cumulus@switch:~$ net add interface swp1 ip address 12.0.0.2/30
-cumulus@switch:~$ net add interface swp1 ipv6 address 2001:DB8::1/126
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-These commands create the following code snippet in the `/etc/network/interfaces` file:
-
-```
-auto swp1
-iface swp1
-    address 12.0.0.1/30
-    address 12.0.0.2/30
-    address 2001:DB8::1/126
-```
-
-- NCLU adds the address method and address family when needed:
-
-   ```
-   auto lo
-   iface lo inet loopback
-   ```
--->
-
 ## Interface Descriptions
 
 You can add a description (alias) to an interface.

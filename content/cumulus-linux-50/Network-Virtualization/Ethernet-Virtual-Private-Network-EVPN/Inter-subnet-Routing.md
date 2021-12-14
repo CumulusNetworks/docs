@@ -60,26 +60,6 @@ router bgp 65101
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add bgp autonomous-system 65101
-cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-default-gw
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-The NCLU commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
-
-```
-...
-router bgp 65101
-...
-  address-family l2vpn evpn
-    advertise-default-gw
-  exit-address-family
-...
-```
--->
 
 {{%notice note%}}
 You can deploy centralized routing at the VNI level, where you can configure the `advertise-default-gw` command per VNI; you use centralized routing for certain VNIs and distributed symmetric routing (described below) other VNIs. NVIDIA does not recommend this type of configuration.
@@ -151,16 +131,6 @@ auto bridge
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add vxlan vni10 vxlan id 10
-cumulus@leaf01:~$ net add vxlan vni10 bridge access 10
-cumulus@leaf01:~$ net add vxlan vni10 vxlan local-tunnelip 10.10.10.1
-cumulus@leaf01:~$ net add bridge bridge ports vni10
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
--->
 
 ### Configure an SVI for the Layer 3 VNI
 
@@ -191,13 +161,6 @@ iface vlan10
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add vlan10 vrf RED
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
--->
 
 {{%notice note%}}
 When two VTEPs are operating in **VXLAN active-active** mode and performing **symmetric** routing, you need to configure the router MAC corresponding to each layer 3 VNI to ensure both VTEPs use the same MAC address. Specify the `address-virtual` (MAC address) for the SVI corresponding to the layer 3 VNI. Use the same address on both switches in the MLAG pair. Use the MLAG system MAC address. See {{<link url="#advertise-primary-ip-address-vxlan-active-active-mode" text="Advertise Primary IP Address">}}.
@@ -256,13 +219,6 @@ vrf RED
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add vrf RED vni 4001
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
--->
 
 ### Configure RD and RTs for the Tenant VRF
 
@@ -306,25 +262,6 @@ router bgp 65101 vrf RED
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn rd 10.1.20.2:5
-cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn route-target import 65102:4001
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-The NCLU commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
-
-```
-...
-router bgp 65101 vrf RED
-  address-family l2vpn evpn
-  rd 10.1.20.2:5
-  route-target import 65102:4001
-...
-```
--->
 
 {{%notice note%}}
 The tenant VRF RD and RTs are different from the RD and RTs for the layer 2 VNI. See {{<link url="EVPN-Enhancements#define-rds-and-rts" text="Define RDs and RTs">}}.
@@ -404,25 +341,6 @@ end
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn advertise ipv4 unicast
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-The NCLU commands create the following snippet in the `/etc/frr/frr.conf` file:
-
-```
-...
-router bgp 65101 vrf RED
-  address-family l2vpn evpn
-    advertise ipv4 unicast
-  exit-address-family
-end
-...
-```
--->
 
 ### Control RIB Routes
 
@@ -455,13 +373,7 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn advertise ipv4 unicast route-map map1
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
--->
+
 <!-- vale off -->
 ### Originate Default EVPN Type-5 Routes
 <!-- vale on -->
@@ -528,13 +440,6 @@ iface vlan4001
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add vlan 4001 ip address-virtual 44:38:39:BE:EF:AA
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
--->
 
 #### Optional Configuration
 
@@ -598,13 +503,6 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net del bgp vrf RED l2vpn evpn advertise-pip
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
--->
 
 #### Show Advertise Primary IP Address Information
 

@@ -10,11 +10,6 @@ Smart System Manager includes the following modes:
 - Restart
 - Upgrade
 - Maintenance
-<!--
-{{%notice note%}}
-- The Smart System Manager NCLU commands do not require a `net commit`.
-{{%/notice%}}
--->
 
 ## Restart Mode
 

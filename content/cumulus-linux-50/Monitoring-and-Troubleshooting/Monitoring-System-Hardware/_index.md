@@ -95,8 +95,6 @@ The `smonctl` command includes the following options:
 
 For more information, read `man smond` and `man smonctl`.
 
-<!--You can also run these NCLU commands to show sensor information: `net show system sensors`, `net show system sensors detail`, and `net show system sensors json`.-->
-
 ## sensors Command
 
 Run the `sensors` command to monitor the health of your switch hardware, such as power, temperature and fan speeds. This command executes `{{<exlink url="https://en.wikipedia.org/wiki/Lm_sensors" text="lm-sensors">}}`.

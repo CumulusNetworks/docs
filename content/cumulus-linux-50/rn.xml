@@ -7,6 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2891257</td>
+<td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
+Vulnerable: &lt;= 2.6.20-0+deb10u1
+Fixed: 2.6.20-0+deb10u2</td>
+<td>4.0.0-4.4.0, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2890683</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
@@ -56,7 +64,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2859015</td>
-<td>In a static VXLAN configuration with a traditional VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit.
+<td>In a static VXLAN configuration with a traditional VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
 
 warning: vni10: possible mis-configuration detected: l2-vni configured with bridge-learning ON while EVPN is also configured - these two parameters conflict with each other.
 </td>
@@ -109,12 +117,7 @@ Fixed: 3.42.1-1+deb10u4</td>
 </tr>
 <tr>
 <td>2873186</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
-<td>3.7.14.2-4.4.0</td>
-</tr>
-<tr>
-<td>2873186</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
+<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-4.4.0</td>
 </tr>
 <tr>
@@ -187,28 +190,6 @@ MemoryError
 <td>3.7.15-4.4.0</td>
 </tr>
 <tr>
-<td>2821869</td>
-<td>The {{cl-route-check --layer3}} command fails with a memory error. For example:
-
-cumulus@switch:~$ sudo cl-route-check --layer3
-Traceback (most recent call last):
- File "/usr/cumulus/bin/cl-route-check", line 1270, in &lt;module&gt;
-  routing.collect_data()
- File "/usr/cumulus/bin/cl-route-check", line 528, in collect_data
-  self.collect_data_bgp_ipv4()
- File "/usr/cumulus/bin/cl-route-check", line 711, in collect_data_bgp_ipv4
-  bgp_ipv4 = json.loads(output)
- File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
-  return _default_decoder.decode(s)
- File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
-  obj, end = self.raw_decode(s, idx=_w(s, 0).end())
- File "/usr/lib/python2.7/json/decoder.py", line 382, in raw_decode
-  obj, end = self.scan_once(s, idx)
-MemoryError
-</td>
-<td>3.7.15-4.4.0</td>
-</tr>
-<tr>
 <td>2820565</td>
 <td>SNMP does not start and you see errors similar to the following:
 
@@ -240,7 +221,7 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 </tr>
 <tr>
 <td>2792616</td>
-<td>If a neighbor entry (ARP or NDP) is used as a next hop of a route that is synchronized into hardware, the neighbor entry is not removed from hardware after the neighbor is no longer reachable.  As a result, routed traffic matching this prefix is incorrectly hardware-forwarded via the stale neighbor information.</td>
+<td>If a neighbor entry (ARP or NDP) is used as a next hop of a route that is synchronized into hardware, the neighbor entry is not removed from hardware after the neighbor is no longer reachable.  As a result, routed traffic matching this prefix is incorrectly hardware forwarded through the stale neighbor information.</td>
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>

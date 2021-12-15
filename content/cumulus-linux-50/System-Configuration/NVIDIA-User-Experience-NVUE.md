@@ -133,7 +133,7 @@ $ curl -u 'cumulus:cumulus' -d '{"vlan100":null}' -H 'Content-Type: application/
 
 When you unset a change, you must still use the `PATCH` action. The value indicates removal of the entry. The data is `{"vlan100":null}` with the PATCH action.
 
-### Access the NVUE REST API from a Font Panel Port
+### Access the NVUE REST API from a Front Panel Port
 
 To access the NVUE REST API from a font panel port (swp) on the switch:
 

@@ -88,52 +88,6 @@ agentAddress udp:66.66.66.66:161,udp:77.77.77.77:161,udp6:[2001::1]:161
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-To configure the `snmpd` daemon to listen on the localhost IPv4 and IPv6 interfaces, run:
-
-```
-cumulus@switch:~$ net add snmp-server listening-address localhost
-cumulus@switch:~$ net add snmp-server listening-address localhost-v6
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{%notice tip%}}
-If you configure the listening address on the loopback interface, because it is not a change from the default, a message appears in the console stating that the configuration has not changed.
-
-```
-cumulus@switch:~$ net add snmp-server listening-address localhost
-Cannot add 127.0.0.1. It is already a listener-address
-The configuration has not changed.
-```
-
-{{%/notice%}}
-
-To configure the `snmpd` daemon to listen on all interfaces for either IPv4 or IPv6 UDP port 161 SNMP requests, run the following command, which removes all other individual IP addresses configured:
-
-```
-cumulus@switch:~$ net add snmp-server listening-address all
-cumulus@switch:~$ net add snmp-server listening-address all-v6
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-To configure `snmpd` to listen to a specific IPv4 or IPv6 address, run:
-
-```
-cumulus@switch:~$ net add snmp-server listening-address 192.168.200.11
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-To configure `snmpd` to listen to a group of addresses with space separated values for incoming SNMP queries, run:
-
-```
-cumulus@switch:~$ net add snmp-server listening-address 192.168.200.11 192.168.200.21
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 #### SNMP and VRFs
 
@@ -159,24 +113,6 @@ agentAddress udp:66.66.66.66:161,udp:77.77.77.77:161,udp6:[2001::1]:161
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-The following command configures `snmpd` to listen to IP address 10.10.10.10 on eth0, the management interface in the management VRF:
-
-```
-cumulus@switch:~$ net add snmp-server listening-address 10.10.10.10 vrf mgmt
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-By default, `snmpd` does not cross VRF table boundaries. To listen on IP addresses in different VRF tables, use multiple listening-address commands each with a VRF name, as shown below.
-
-```
-cumulus@switch:~$ net add snmp-server listening-address 10.10.10.10 vrf rocket
-cumulus@switch:~$ net add snmp-server listening-address 10.10.10.20 vrf turtle
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ### Configure the SNMPv3 Username
 
@@ -288,71 +224,6 @@ The `snmpd` daemon reads the information from the `/var/lib/snmp/snpmd.conf` fil
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-For no authentication, run:
-
-```
-cumulus@switch:~$ net add snmp-server username testusernoauth auth-none
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-For MD5 authentication, run:
-
-```
-cumulus@switch:~$ net add snmp-server username testuserauth auth-md5 myauthmd5password
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-For SHA authentication, run:
-
-```
-cumulus@switch:~$ net add snmp-server username limiteduser1 auth-sha SHApassword1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-If you specify MD5 or SHA authentication, you can also specify an AES or DES encryption password to encrypt the contents of the request and response packets.
-
-```
-cumulus@switch:~$ net add snmp-server username testuserboth auth-md5 mynewmd5password encrypt-aes myencryptsecret
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-You can restrict a user to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in `/usr/share/snmp/mibs/`. If the MIB you want to use does not install by default, you must install it with the latest Debian `snmp-mibs-downloader` package.
-
-```
-cumulus@switch:~$ net add snmp-server username limiteduser1 auth-md5 md5password1 encrypt-aes myaessecret oid 1.3.6.1.2.1.1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-You can restrict a user to a predefined view:
-
-```
-cumulus@switch:~$ net add snmp-server username limiteduser1 auth-md5 md5password1 encrypt-aes myaessecret viewname rocket
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The example below defines five users, each with a different combination of authentication and encryption:
-
-```
-cumulus@switch:~$ net add snmp-server username user1 auth-none
-cumulus@switch:~$ net add snmp-server username user2 auth-md5 user2password
-cumulus@switch:~$ net add snmp-server username user3 auth-md5 user3password encrypt-des user3encryption
-cumulus@switch:~$ net add snmp-server username user666 auth-sha user666password encrypt-aes user666encryption
-cumulus@switch:~$ net add snmp-server username user999 auth-md5 user999password encrypt-des user999encryption
-cumulus@switch:~$ net add snmp-server username user1 auth-none oid 1.3.6.1.2.1
-cumulus@switch:~$ net add snmp-server username user1 auth-none oid system
-cumulus@switch:~$ net add snmp-server username user2 auth-md5 test1234 view testview oid 1.3.6.1.2.1
-cumulus@switch:~$ net add snmp-server username user3 auth-sha testshax encrypt-aes testaesx oid 1.3.6.1.2.1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ### Configure an SNMP View Definition
 
@@ -385,23 +256,12 @@ view systemonly included .1.3.6.1.2.1.3
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add snmp-server viewname cumulusOnly included .1.3.6.1.4.1.40310
-cumulus@switch:~$ net add snmp-server viewname cumulusCounters included .1.3.6.1.4.1.40310.2
-cumulus@switch:~$ net add snmp-server readonly-community simplepassword access any view cumulusOnly
-cumulus@switch:~$ net add snmp-server username testusernoauth auth-none view cumulusOnly
-cumulus@switch:~$ net add snmp-server username limiteduser1 auth-md5 md5password1 encrypt-aes myaessecret view cumulusCounters
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ### Configure the Community String
 
 Cumulus Linux disables `snmpd` authentication for SNMPv1 and SNMPv2c by default. To enable authentication, provide a password (community string) for SNMPv1 or SNMPv2c environments so that the `snmpd` daemon can respond to requests. By default, this provides access to the full OID tree for such requests, regardless of their source. Cumulus Linux does not set a default password so `snmpd` does not respond to any requests that arrive unless you set the read-only community password.
 
-For SNMPv1 and SNMPv2c, you can specify a read-only community string. For SNMPv3, you can specify a read-only or a read-write community string (as long as you are not using the preferred {{<link url="#configure-the-snmpv3-username" text="username method">}}; see above). <!--You must configure the read-write community string in the `snmpd.conf` file; you cannot use NCLU. When you configure a read-write community string, you can edit the SNMP configuration later with NCLU.-->
+For SNMPv1 and SNMPv2c, you can specify a read-only community string. For SNMPv3, you can specify a read-only or a read-write community string (as long as you are not using the preferred {{<link url="#configure-the-snmpv3-username" text="username method">}}; see above).
 
 You can specify a source IP address token to restrict access to only that a host or network.
 
@@ -448,28 +308,6 @@ cumulus@switch:~$ systemctl restart snmpd.service
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-The following example configuration:
-
-- Sets the read-only community string to `simplepassword` for SNMP requests.
-- Restricts requests to only those that come from hosts in the 192.168.200.10/24 subnet.
-- Restricts viewing to the `mysystem` view, which you define with the `viewname` command.
-
-```
-cumulus@switch:~$ net add snmp-server viewname mysystem included 1.3.6.1.2.1.1
-cumulus@switch:~$ net add snmp-server readonly-community simplepassword access 192.168.200.10/24 view mysystem
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-This example creates a read-only community password `showitall` that allows access to the entire OID tree for requests originating from any source IP address.
-
-```
-cumulus@switch:~$ net add snmp-server readonly-community showitall access any
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ### Configure System Settings
 
@@ -500,39 +338,6 @@ sysname CumulusBox number 1,543,567
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-For example, to set the system physical location for the node in the SNMPv2-MIB system table, run:
-
-```
-cumulus@switch:~$ net add snmp-server system-location My private bunker
-cumulus@switch:~$ net commit
-```
-
-To set the username and email address of the contact person for this managed node, run:
-
-```
-cumulus@switch:~$ net add snmp-server system-contact user X at myemail@example.com
-cumulus@switch:~$ net commit
-```
-
-To set an administratively assigned name for the managed node, run the following command. Typically, this is the fully qualified domain name of the node.
-
-```
-cumulus@switch:~$ net add snmp-server system-name CumulusBox number 1,543,567
-cumulus@switch:~$ net commit
-```
-
-These commands append the following content to the `/etc/snmp/snmpd.conf` file:
-
-```
-cumulus@switch:~$ cat /etc/snmp/snmpd.conf
-...
-syscontact user X at myemail@example.com
-syslocation My private bunker
-sysname CumulusBox number 1,543,567
-...
-```
--->
 
 ## Enable SNMP Support for FRR
 
@@ -617,15 +422,6 @@ This configuration grants access to a large number of MIBs, including all SNMPv2
 
 To enable the .1.3.6.1.2.1 range, make sure the view commands include the required MIB objects.
 
-<!--## Restore the Default SNMP Configuration
-
-The following command removes all custom entries in the `/etc/snmp/snmpd.conf` file and replaces them with defaults, including for all SNMPv3 usernames and read only communities. The command configures a `listening-address` for the localhost.
-
-```
-cumulus@switch:~$ net del snmp-server all
-cumulus@switch:~$ net commit
-```
--->
 ## Set up the Custom MIBs on the NMS
 
 You do not need to change the `/etc/snmp/snmpd.conf` file on the switch to support the custom MIBs. The file includes the following lines by default and provides support for both the Cumulus Counters and the Cumulus Resource Query MIBs.
@@ -715,49 +511,3 @@ sysservices 72
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add snmp-server listening-address all
-cumulus@switch:~$ net add snmp-server readonly-community tempPassword access any
-cumulus@switch:~$ net add snmp-server trap-destination 1.1.1.1 community-password mypass version 2c
-cumulus@switch:~$ net add snmp-server trap-link-up check-frequency 15
-cumulus@switch:~$ net add snmp-server trap-link-down check-frequency 10
-cumulus@switch:~$ net add snmp-server trap-cpu-load-average one-minute 7.45 five-minute 5.14
-cumulus@switch:~$ net add snmp-server trap-snmp-auth-failures
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-These commands create the following `/etc/snmp/snmpd.conf` file:
-
-```
-cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
-agentaddress udp:161
-agentxperms 777 777 snmp snmp
-agentxsocket /var/agentx/master
-+authtrapenable 1
-createuser _snmptrapusernameX
-iquerysecname _snmptrapusernameX
-load 7.45 5.14 0
-master agentx
-monitor -r 60 -o laNames -o laErrMessage "laTable" laErrorFlag != 0
-monitor CumulusLinkDOWN -S -r 10 -o ifName -o ifIndex -o ifAdminStatus -o ifOperStatus ifOperStatus == 2
-monitor CumulusLinkUP -S -r 15 -o ifName -o ifIndex -o ifAdminStatus -o ifOperStatus ifOperStatus != 2
-pass -p 10 1.3.6.1.2.1.1.1 /usr/share/snmp/sysDescr_pass.py
-pass_persist 1.2.840.10006.300.43 /usr/share/snmp/ieee8023_lag_pp.py
-pass_persist 1.3.6.1.2.1.17 /usr/share/snmp/bridge_pp.py
-pass_persist 1.3.6.1.2.1.31.1.1.1.18 /usr/share/snmp/snmpifAlias_pp.py
-pass_persist 1.3.6.1.2.1.47 /usr/share/snmp/entity_pp.py
-pass_persist 1.3.6.1.2.1.99 /usr/share/snmp/entity_sensor_pp.py
-pass_persist 1.3.6.1.4.1.40310.1 /usr/share/snmp/resq_pp.py
-pass_persist 1.3.6.1.4.1.40310.2 /usr/share/snmp/cl_drop_cntrs_pp.py
-pass_persist 1.3.6.1.4.1.40310.3 /usr/share/snmp/cl_poe_pp.py
-rocommunity neteng default
-rocommunity tempPassword default
-rouser _snmptrapusernameX
-syslocation leaf01
-sysobjectid 1.3.6.1.4.1.40310
-sysservices 72
-trap2sink 1.1.1.1 mypass
-```
--->

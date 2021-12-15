@@ -50,14 +50,6 @@ interface vni10
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add interface swp1 bridge l2protocol-tunnel all
-cumulus@switch:~$ net add interface vni10 bridge l2protocol-tunnel all
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 To configure bridge layer 2 protocol tunneling for a **specific** protocol, such as LACP:
 
@@ -100,14 +92,6 @@ interface vni10
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add interface swp1 bridge l2protocol-tunnel lacp
-cumulus@switch:~$ net add interface vni10 bridge l2protocol-tunnel lacp
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 {{%notice note%}}
 You must enable layer 2 protocol tunneling on the VXLAN link in addition to the interface so that the packets get bridged and forwarded correctly.

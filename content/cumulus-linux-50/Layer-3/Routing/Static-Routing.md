@@ -241,7 +241,7 @@ The default route created by the `gateway` parameter in ifupdown2 does not insta
 ### Deleting Routes through the Linux Shell
 
 To avoid incorrect routing, **do not** use the Linux shell to delete static routes that you added with vtysh commands. Delete the routes with the vtysh commands.
-
+<!--
 ### IPv6 Default Route with a Source IP Address on eth0
 
 If you install an IPv6 default route on eth0 with a source IP address, the configuration either fails at reboot or the first time you run `ifup -dv eth0`, you see a warning.
@@ -271,7 +271,7 @@ To avoid this issue, you can do one of the following:
    cumulus@leaf01:~$ net pending
    cumulus@leaf01:~$ net commit
    ```
-
+-->
 ### IPv4 and IPv6 Neighbor Cache Aging Timer
 
 Cumulus Linux does not support different neighbor cache aging timer settings for IPv4 and IPv6.

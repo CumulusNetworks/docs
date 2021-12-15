@@ -318,7 +318,7 @@ e. To continue installing Cumulus Linux, mount the USB drive to move files:
 
 You can run several installer command line options from ONIE to perform basic switch configuration automatically after installation completes and Cumulus Linux boots for the first time. These options enable you to:
 
-- Set a unique password for the *cumulus* user<!-- - Apply a Cumulus Linux license-->
+- Set a unique password for the *cumulus* user
 - Provide an initial network configuration
 - Execute a ZTP script to perform necessary configuration
 
@@ -364,14 +364,6 @@ To provide a hashed password instead of a clear text password, use the `--hashed
 {{%notice note%}}
 If you specify both the `--password` and `--hashed-password` options, the `--hashed-password` option takes precedence and the switch ignores he `--password` option.
 {{%/notice%}}
-
-<!--### Apply a Cumulus Linux License
-
-To apply a license and start the `switchd` service automatically after Cumulus Linux boots for the first time after installation, use the `--license <license-string>` option. For example:
-
-```
-ONIE:/ # ./cumulus-linux-4.4.0-mlx-amd64.bin  --license 'customer@datacenter.com|4C3YMCACDiK0D/EnrxlXpj71FBBNAg4Yrq+brza4ZtJFCInvalid'
-```-->
 
 ### Provide Initial Network Configuration
 
@@ -427,7 +419,6 @@ You can set these variables:
 | `CL_INSTALLER_INTERFACES_FILENAME` | Defines the name of the file on the ONIE filesystem you want to use as the `/etc/network/interfaces` file. <br>This variable is equivalent to the ONIE installer command line option `--interfaces-file`.|
 | `CL_INSTALLER_INTERFACES_CONTENT` | Describes the network interfaces available on your system and how to activate them. Setting this variable defines the contents of the `/etc/network/interfaces` file.<br>There is no equivalent ONIE installer command line option.<br>If you set both the `CL_INSTALLER_INTERFACES_FILENAME` and `CL_INSTALLER_INTERFACES_CONTENT` variables, the `CL_INSTALLER_INTERFACES_FILENAME` takes precedence. |
 | `CL_INSTALLER_ZTP_FILENAME` | Defines the name of the ZTP file on the ONIE filesystem you want to execute at first boot after installation. <br>This variable is equivalent to the ONIE installer command line option `--ztp`|
-<!-- | `CL_INSTALLER_LICENSE` | Defines the Cumulus Linux license you want to install.<br>This variable is equivalent to the ONIE installer command line option `--license`.| -->
 
 ### Edit the Image File
 

@@ -620,10 +620,6 @@ iface swp49
 - `mstpd` remains the user space protocol daemon.
 - Cumulus Linux supports {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="Rapid Spanning Tree Protocol (RSTP)">}}.
 
-<!--### IGMP Snooping
-
-IGMP snooping and group membership are supported on a per-VLAN basis; however, the IGMP snooping configuration (including enable, disable, and mrouter ports) is defined on a per-bridge port basis.-->
-
 ### VLAN Translation
 
 You cannot enable VLAN translation on a bridge in VLAN-aware mode. Only traditional mode bridges support VLAN translation.

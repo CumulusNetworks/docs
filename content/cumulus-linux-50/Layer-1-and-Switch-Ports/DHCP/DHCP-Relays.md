@@ -245,34 +245,6 @@ cumulus@leaf01:~$ nv set service dhcp-relay default giaddr-interface swp2 10.0.0
 {{< /tab >}}
 {{< /tabs >}}
 
-<!--
-Run the `net add dhcp relay giaddr-interface` command with the interface or the interface and IP address you want to use.
-
-This example uses the first IP address on the loopback interface as the giaddr:
-
-```
-cumulus@leaf01:~$ net add dhcp relay giaddr-interface lo
-```
-
-The first IP address on the loopback interface is typically the 127.0.0.1 address. This example uses IP address 10.10.10.1 on the loopback interface as the giaddr:
-
-```
-cumulus@leaf01:~$ net add dhcp relay giaddr-interface lo 10.10.10.1
-```
-
-This example uses the first IP address on swp2 as the giaddr:
-
-```
-cumulus@leaf01:~$ net add dhcp relay giaddr-interface swp2
-```
-
-This example uses IP address 10.0.0.4 on swp2 as the giaddr:
-
-```
-cumulus@leaf01:~$ net add dhcp relay giaddr-interface swp2 10.0.0.4
-```
--->
-
 ### Gateway IP Address as Source IP for Relayed DHCP Packets (Advanced)
 
 You can configure the `dhcrelay` service to forward IPv4 (only) DHCP packets to a DHCP server and ensure that the source IP address of the relayed packet is the same as the gateway IP address.
@@ -311,14 +283,6 @@ cumulus@leaf01:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
-
-<!--
-```
-cumulus@leaf:~$ net add dhcp relay use-giaddr-as-src
-cumulus@leaf:~$ net pending
-cumulus@leaf:~$ net commit
-```
--->
 
 ### Configure Multiple DHCP Relays
 

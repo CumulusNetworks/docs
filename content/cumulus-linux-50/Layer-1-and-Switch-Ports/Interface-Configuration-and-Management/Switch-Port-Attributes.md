@@ -71,22 +71,6 @@ A runtime configuration is non-persistent; the configuration you create does not
 {{< /tab >}}
 {{< /tabs >}}
 
-<!--
-```
-cumulus@switch:~$ net add interface swp1 mtu 1500
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-These commands create the following code snippet in the `/etc/network/interfaces` file:
-
-```
-auto swp1
-iface swp1
-    mtu 1500
-```
--->
-
 ### Set a Global Policy
 
 To set a global MTU policy, create a policy document (called `mtu.json`). For example:
@@ -143,14 +127,6 @@ cumulus@switch:~$ ip link show dev swp1
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net show interface swp1
-    Name    MAC                Speed      MTU  Mode
---  ------  -----------------  -------  -----  ---------
-UP  swp1    44:38:39:00:00:04  1G        9216  Access/L2
-```
--->
 
 ### Drop Packets that Exceed the Egress Layer 3 MTU
 
@@ -364,14 +340,6 @@ A runtime configuration is non-persistent. The configuration you create does not
 {{< /tab >}}
 {{< /tabs >}}
 
-<!--
-```
-cumulus@switch:~$ sudo net add interface swp1 link fec rs
-cumulus@switch:~$ sudo net pending
-cumulus@switch:~$ sudo net commit
-```
--->
-
 To enable **Base-R/FireCode FEC** on a link:
 
 {{< tabs "TabID366 ">}}
@@ -415,14 +383,6 @@ A runtime configuration is non-persistent. The configuration you create does not
 
 {{< /tab >}}
 {{< /tabs >}}
-
-<!--
-```
-cumulus@switch:~$ sudo net add interface swp1 link fec baser
-cumulus@switch:~$ sudo net pending
-cumulus@switch:~$ sudo net commit
-```
--->
 
 To enable FEC with Auto-negotiation:
 
@@ -469,14 +429,6 @@ A runtime configuration is non-persistent. The configuration you create does not
 
 {{< /tab >}}
 {{< /tabs >}}
-
-<!--
-```
-cumulus@switch:~$ sudo net add interface swp1 link autoneg on
-cumulus@switch:~$ sudo net pending
-cumulus@switch:~$ sudo net commit
-```
--->
 
 To show the FEC and auto-negotiation settings for an interface:
 
@@ -533,14 +485,6 @@ A runtime configuration is non-persistent. The configuration you create does not
 
 {{< /tab >}}
 {{< /tabs >}}
-
-<!--
-```
-cumulus@switch:~$ sudo net add interface swp1 link fec off
-cumulus@switch:~$ sudo net pending
-cumulus@switch:~$ sudo net commit
-```
--->
 
 ## Default Policies for Interface Settings
 
@@ -1116,7 +1060,7 @@ Maximum 100G ports: 80
 {{< /tab >}}
 
 {{< /tabs >}}
-<!-- SN4600 PLATFORM IS PLANNED TO AUG21 (CL4.4.1?)
+<!-- SN4600 PLATFORM IS PLANNED TO AUG21 (CL4.4.2?)
 {< tab "SN4600">}}
 
 SN4600 64xQSFP56 (200GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 1G.
@@ -1244,7 +1188,7 @@ Maximum 400G ports: 32
 {{< /tab >}}
 
 {{< /tabs >}}
-<!-- SN4800 PLATFORM IS PLANNED TO NOV21 (CL5.0?)
+<!-- SN4800 PLATFORM IS PLANNED TO NOV21 (CL5.1?)
 {< tab "SN4800">}}
 
 SN4800 is a modular chassis with up to 8 line cards. Each line card can have up to 16 MAC addresses and can be of a different port form-factor and speed.
@@ -1401,42 +1345,6 @@ cumulus@switch:~$ sudo systemctl reload switchd.service
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-This example command breaks out the 100G port on swp1 into four 25G ports:
-
-```
-cumulus@switch:~$ net add interface swp1 breakout 4x25G
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-To break out a port into four 10G ports, you must **also** disable the next port.
-
-```
-cumulus@switch:~$ net add interface swp2 breakout disabled
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-These commands break out swp1 into four 25G interfaces in the `/etc/cumulus/ports.conf` file and create four interfaces in the `/etc/network/interfaces` file:
-
-```
-cumulus@switch:~$ cat /etc/network/interfaces
-...
-auto swp1s0
-iface swp1s0
-
-auto swp1s1
-iface swp1s1
-
-auto swp1s2
-iface swp1s2
-
-auto swp1s3
-iface swp1s3
-...
-```
--->
 
 ### Remove a Breakout Port
 
@@ -1486,37 +1394,6 @@ To remove a breakout port:
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-1. Run the `net del interface <interface>` command. For example:
-
-    ```
-    cumulus@switch:~$ net del interface swp1s0
-    cumulus@switch:~$ net del interface swp1s1
-    cumulus@switch:~$ net del interface swp1s2
-    cumulus@switch:~$ net del interface swp1s3
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
-    ```
-
-2. Manually edit the `/etc/cumulus/ports.conf` file to configure the interface for the original speed. For example:
-
-    ```
-    cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
-    ...
-
-    1=100G
-    2=100G
-    3=100G
-    4=100G
-    ...
-    ```
-
-3. Reload `switchd`. The reload does **not** interrupt network services.
-
-   ```
-   cumulus@switch:~$ sudo systemctl reload switchd.service
-   ```
--->
 
 ## Logical Switch Port Limitations
 
@@ -1614,13 +1491,9 @@ If auto-negotiation is on and the link speed is set for a port, auto-negotiation
 
 ### Port Speed and the ifreload -a Command
 
-When configuring port speed or break outs in the `/etc/cumulus/ports.conf` file, you need to run the `ifreload -a` command to reload the configuration after restarting `switchd` in the following cases:
-
-<!-- vale off -->
-<!-- acceptable use of "since" -->
-- If you configure, or configure then remove the port speed in the `/etc/cumulus/ports.conf` file and you also set or remove the speed on the same physical port or breakouts of that port in the `/etc/network/interfaces` file since the last time you restarted `switchd`.
-<!-- vale on -->
-- If you break out a switch port or remove a break out port and you set the port speed in both the `/etc/cumulus/ports.conf` file and the `/etc/network/interfaces` file.
+When you configure port speed or break outs in the `/etc/cumulus/ports.conf` file, you must run the `ifreload -a` command to reload the configuration after restarting `switchd` if:
+- You configure or configure then remove the port speed in the `/etc/cumulus/ports.conf` file and you also set or remove the speed on the same physical port or breakouts of that port in the `/etc/network/interfaces` file after the last time you restarted `switchd`.
+- You break out a switch port or remove a break out port, and you set the port speed in both the `/etc/cumulus/ports.conf` file and the `/etc/network/interfaces` file.
 
 <!-- vale off -->
 <!-- Vale issue #253 -->

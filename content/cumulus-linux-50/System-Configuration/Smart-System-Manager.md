@@ -41,11 +41,6 @@ cumulus@switch:~$ sudo csmgrctl -c
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net system maintenance restart cold
-```
--->
 
 The following command restarts the system in fast mode:
 
@@ -63,11 +58,6 @@ cumulus@switch:~$ sudo csmgrctl -f
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net system maintenance restart fast
-```
--->
 
 The following command restarts the system in warm mode.
 
@@ -89,11 +79,6 @@ cumulus@switch:~$ sudo csmgrctl -w
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net system maintenance restart warm
-```
--->
 
 ## Upgrade Mode
 
@@ -119,11 +104,6 @@ cumulus@switch:~$ sudo csmgrctl -u
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net system maintenance upgrade all
-```
--->
 
 The following command provides information on the components you want to upgrade:
 
@@ -141,11 +121,6 @@ cumulus@switch:~$ sudo csmgrctl -d
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net system maintenance upgrade dry-run
-```
--->
 
 ## Maintenance Mode
 
@@ -173,11 +148,6 @@ cumulus@switch:~$ sudo csmgrctl -m1
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net system maintenance mode enable
-```
--->
 
 You can run additional commands to bring all the ports down, then up to restore the port admin state.
 
@@ -196,12 +166,6 @@ cumulus@switch:~$ sudo csmgrctl -p1
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net system maintenance ports down
-cumulus@switch:~$ net system maintenance ports up
-```
--->
 
 {{%notice note%}}
 Before you disable maintenance mode, be sure to bring the ports back up.
@@ -225,15 +189,10 @@ cumulus@switch:~$ sudo csmgrctl -m0
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net system maintenance mode disable
-```
--->
 
 ### Show Maintenance Mode Status
 
-To see the status of maintenance mode, run the <!--NCLU `net system maintenance show status` command or the -->Linux `sudo csmgrctl -s` command. For example:
+To see the status of maintenance mode, run the Linux `sudo csmgrctl -s` command. For example:
 
 ```
 cumulus@switch:~$ sudo csmgrctl -s

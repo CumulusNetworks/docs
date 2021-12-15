@@ -233,32 +233,30 @@ To work around this issue, reboot the switch.</td>
 </tr>
 <tr>
 <td>2848204</td>
-<td>You can import any type-1 through type-5 route into a VNI as long as the prefix has an RT that matches an import RT policy; for example:
+<td>FRR does not prevent EVPN routes from being imported into VNIs when they are not needed. For example, you can import a type-5 route into a layer 2 VNI if the configured import route target matches the route target on the type-5 route. When this occurs, the network address of the IP prefix carried within the type-5 route incorrectly shows as a remote VTEP for the layer 2 VNI in the {{net show evpn vni &lt;l2vni&gt;}} command output. For example:
 
 router bgp 64100 
- bgp router-id 10.10.10.10
- no bgp default ipv4-unicast
-  ...
  address-family l2vpn evpn
- ...
   vni 10 
-   rd 10.10.10.20:9204
-   route-target import 9200:9204     &lt;&lt;&lt;&lt;&lt;
-   route-target export 9200:9204
+   route-target import 9200:9204     &lt;&lt;&lt;&lt;&lt;  l2vni import-rt
   exit-vni
- ...
 router bgp 6400 vrf RED 
- bgp router-id 10.10.10.10
- no bgp default ipv4-unicast
- !
- ...
- !
  address-family l2vpn evpn
   advertise ipv4 unicast
-  rd 10.10.10.20:9204
-  route-target import 9200:9204    &lt;&lt;&lt;&lt;&lt;
-  route-target export 9200:9204
+  route-target import 9200:9204    &lt;&lt;&lt;&lt;&lt;  l3vni import-rt
  exit-address-family
+
+Imported Route:
+
+*  [5]:[0]:[32]:[10.252.11.124]
+                    10.249.129.158                         0 4200858009 64810 64819 64895 64895 64890 64893 64894 i
+                    RT:9200:9204 ET:8 Rmac:c0:d6:82:56:82:a1
+
+{{net show evpn vni 9204}} snippet:
+
+VNI: 9204
+ Type: L2
+  10.252.11.124 flood: -
 </td>
 <td>4.4.0</td>
 <td></td>

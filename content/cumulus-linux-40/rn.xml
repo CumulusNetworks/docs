@@ -1086,6 +1086,22 @@ To work around this issue, change the value of arp_ignore to 2. See &lt;a href="
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2891257</td>
+<td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
+Vulnerable: &lt;= 2.6.20-0+deb10u1
+Fixed: 2.6.20-0+deb10u2</td>
+<td>4.0.0-4.4.0, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2891256</td>
+<td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
+Vulnerable: &lt;= 2.6.20-0+deb10u1
+Fixed: 2.6.20-0+deb10u2</td>
+<td>4.0.0-4.4.0, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2891255</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
@@ -3562,6 +3578,13 @@ To work around this issue and bring the interfaces up, perform the following con
 <td>3.7.11-3.7.15, 4.1.0-4.4.0</td>
 </tr>
 <tr>
+<td>2545054</td>
+<td>When you run the NCLU {{net del interface}} command to delete an interface that has a description in the {{/etc/frr/frr.conf}} file but the {{/etc/frr/daemons}} file does not contain {{zebra=yes}, all running FRR daemons ({{bgpd}}, {{ospfd}}, {{ospf6d}}) restart.
+To work around this issue, remove all interfaces from the {{/etc/frr/frr.conf}} file that are unrelated to routing. </td>
+<td>4.0.0-4.1.1</td>
+<td>4.2.0-4.4.0</td>
+</tr>
+<tr>
 <td>2545049</td>
 <td>When networking fails to start properly, an MLAG memory leak occurs, which might cause memory issues.</td>
 <td>3.7.9-3.7.10, 4.0.0-4.0.1</td>
@@ -4508,6 +4531,11 @@ CVE-2019-11135, CVE-2019-11139: Intel CPU transactional memory vulnerability.  N
 For the detailed security status of linux, refer to its security tracker page at:
 https://security-tracker.debian.org/tracker/linux</td>
 <td></td>
+</tr>
+<tr>
+<td>2545192</td>
+<td>{{switchd}} does not program multicast routes 224/8 into hardware.</td>
+<td>3.7.9-3.7.10</td>
 </tr>
 <tr>
 <td>2545013</td>

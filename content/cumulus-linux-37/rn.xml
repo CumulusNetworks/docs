@@ -7,6 +7,19 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2896733</td>
+<td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
+To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
+<td>3.7.15, 4.3.0-4.4.0, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2896672</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2896450</td>
 <td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.0</td>
@@ -52,12 +65,6 @@ CVE-2021-41229: sdp_cstate_alloc_buf allocates memory which will always be hung 
 Vulnerable: &lt;= 5.43-2+deb9u2~deb8u3
 Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2879645</td>
-<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -166,6 +173,13 @@ Traceback (most recent call last):
 MemoryError
 </td>
 <td>3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2855908</td>
+<td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
+To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
+<td>3.7.15, 4.3.0-4.4.0, 5.0.0</td>
 <td></td>
 </tr>
 <tr>
@@ -17074,6 +17088,11 @@ https://security-tracker.debian.org/tracker/linux</td>
 <td>3.7.2-3.7.10, 4.0.0-4.0.1</td>
 </tr>
 <tr>
+<td>2545192</td>
+<td>{{switchd}} does not program multicast routes 224/8 into hardware.</td>
+<td>3.7.9-3.7.10</td>
+</tr>
+<tr>
 <td>2545132</td>
 <td>On the Mellanox switch, ACL lookups are performed for VLAN matches when no rules with {{UNTAGGED}} match are present.</td>
 <td>3.7.2-3.7.10, 4.0.0-4.0.1</td>
@@ -18560,6 +18579,12 @@ To work around this issue, run the {{ip -6 route flush cache &lt;IPv6-address&gt
 <td>On the Edgecore AS6812 switch, you might see rare I2C errors.</td>
 <td>3.7.2-4.0.1</td>
 <td>4.1.0-4.4.0</td>
+</tr>
+<tr>
+<td>2545192</td>
+<td>{{switchd}} does not program multicast routes 224/8 into hardware.</td>
+<td>3.7.9-3.7.10</td>
+<td>3.7.11-3.7.15</td>
 </tr>
 <tr>
 <td>2545132</td>
@@ -20465,6 +20490,12 @@ To work around this issue, run the {{ip -6 route flush cache &lt;IPv6-address&gt
 <td>On the Edgecore AS6812 switch, you might see rare I2C errors.</td>
 <td>3.7.2-4.0.1</td>
 <td>4.1.0-4.4.0</td>
+</tr>
+<tr>
+<td>2545192</td>
+<td>{{switchd}} does not program multicast routes 224/8 into hardware.</td>
+<td>3.7.9-3.7.10</td>
+<td>3.7.11-3.7.15</td>
 </tr>
 <tr>
 <td>2545132</td>

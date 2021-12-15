@@ -80,29 +80,31 @@ Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-{{<version>}}
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-{{<version>}}
 ...
 ```
 
 {{<notice tip>}}
-You  can use the <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
+You  can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
 {{</notice>}}
 
 {{</tab>}}
 
-{{<tab "Cumulus Linux 4.x">}}
+{{<tab "Cumulus Linux 4.x and above">}}
 
-Add the repository:
+The `netq-agent` package is installed on Cumulus Linux 4.4 and above by default.
+
+To add the repository, uncomment or add the following line in `/etc/apt/sources.list`:
 
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-{{<version>}}
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-{{<version>}}
 ...
 ```
 
 {{<notice tip>}}
-You can use the <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
+You can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
 {{</notice>}}
 
 Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
@@ -178,11 +180,11 @@ To obtain the NetQ Agent package:
 
        admin@switch:~$ sudo vi /etc/apt/sources.list
        ...
-       deb http://apps3.cumulusnetworks.com/repos/deb buster netq-latest
+       deb https://apps3.cumulusnetworks.com/repos/deb buster netq-latest
        ...
 1. Add the SONiC repo key:
 
-       admin@switch:~$ sudo wget -qO - http://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -
+       admin@switch:~$ sudo wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -
 
 {{</tab>}}
 

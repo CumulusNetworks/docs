@@ -301,7 +301,7 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
 {{</tabs>}}
 
     {{<notice note>}}
-The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.0</code> &mdash; use that instead.
+The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.1</code> &mdash; use that instead.
     {{</notice>}}
 
 ## Install NetQ CLI
@@ -331,27 +331,31 @@ Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-4.0
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-4.1
 ...
 ```
 
 {{<notice tip>}}
-You can use the <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
+You can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
 {{</notice>}}
 
 {{</tab>}}
 
-{{<tab "Cumulus Linux 4.x" >}}
+{{<tab "Cumulus Linux 4.x and above" >}}
+
+The `netq-apps` package is installed on Cumulus Linux 4.4 and above by default.
+
+To add the repository, uncomment or add the following line in `/etc/apt/sources.list`:
 
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.0
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.1
 ...
 ```
 
 {{<notice tip>}}
-You can use the <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
+You can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
 {{</notice>}}
 
 {{</tab>}}
@@ -371,7 +375,7 @@ You can use the <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinu
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.0" opsys="cl">}}
+{{<netq-install/cli-version version="4.1" opsys="cl">}}
 <!-- vale on -->
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -391,7 +395,7 @@ To obtain the NetQ Agent package:
 
        admin@switch:~$ sudo nano /etc/apt/sources.list
        ...
-       deb [arch=amd64] http://apps3.cumulusnetworks.com/repos/deb buster netq-4.0
+       deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb buster netq-4.1
        ...
 
 2. Update the local `apt` repository and install the software on the switch.
@@ -405,9 +409,9 @@ To obtain the NetQ Agent package:
     admin@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    You should see version 4.0.0 and update 34 in the results. For example:
+    You should see version 4.1.0 and update 36 in the results. For example:
 
-    - netq-apps_<strong>4.0.0</strong>-deb10u<strong>34</strong>~1622184065.3c77d9bd_amd64.deb
+    - netq-apps_<strong>4.1.0</strong>-deb10u<strong>36</strong>~1622184065.3c77d9bd_amd64.deb
 
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -427,14 +431,14 @@ To obtain the NetQ Agent package:
     ```
     root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
     ...
-    [cumulus-arch-netq-4.0]
+    [cumulus-arch-netq-4.1]
     name=Cumulus netq packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.0/$basearch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.1/$basearch
     gpgcheck=1
     enabled=1
-    [cumulus-noarch-netq-4.0]
+    [cumulus-noarch-netq-4.1]
     name=Cumulus netq architecture-independent packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.0/noarch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.1/noarch
     gpgcheck=1
     enabled=1
     ...
@@ -453,7 +457,7 @@ To obtain the NetQ Agent package:
     root@rhel7:~# rpm -q -netq-apps
     ```
 <!-- vale off -->
-    {{<netq-install/cli-version version="4.0.0" opsys="rh">}}
+    {{<netq-install/cli-version version="4.1.0" opsys="rh">}}
 <!-- vale on -->
 5. Continue with the next section.
 
@@ -474,7 +478,7 @@ To obtain the NetQ Agent package:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-    {{<netq-install/cli-version version="4.0" opsys="ub">}}
+    {{<netq-install/cli-version version="4.1" opsys="ub">}}
 <!-- vale on -->
 3. Continue with NetQ CLI configuration in the next section.
 

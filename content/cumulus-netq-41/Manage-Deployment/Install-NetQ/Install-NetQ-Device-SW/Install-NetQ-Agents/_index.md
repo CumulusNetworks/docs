@@ -113,6 +113,31 @@ cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-app
 
 {{</tab>}}
 
+{{<tab "Cumulus Linux 5.x">}}
+
+The `netq-agent` package is installed on Cumulus Linux 5.x by default.
+
+To add the repository, uncomment or add the following line in `/etc/apt/sources.list`:
+
+```
+cumulus@switch:~$ sudo nano /etc/apt/sources.list
+...
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-5 netq-{{<version>}}
+...
+```
+
+{{<notice tip>}}
+You can use the <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-5 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
+{{</notice>}}
+
+Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
+
+```
+cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -
+```
+
+{{</tab>}}
+
 {{</tabs>}}
 
 {{</tab>}}

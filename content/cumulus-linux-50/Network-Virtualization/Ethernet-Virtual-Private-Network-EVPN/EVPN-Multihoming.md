@@ -657,7 +657,7 @@ Route Distinguisher: 10.10.10.3:2
 
 ## Example Configuration
 
-The following configuration examples use the topology illustrated below and configure EVPN multihoming with head end replication using single VXLAN devices.
+The following configuration examples use the topology illustrated below and configure EVPN multihoming with head end replication using single VXLAN devices. The examples provide configuration for server01 through server04. The configuration for server05 and server06 are not included for simplicity.
 
 {{<img src="/images/cumulus-linux/EVPN-MH-example-config-citc.png">}}
 

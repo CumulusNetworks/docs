@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2893000"></a> [2893000](#2893000) <a name="2893000"></a> <br /> | CVE-2021-44228: Apache Log4j2 <=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints. | 2.4.0-2.4.1, 3.0.0-3.3.1, 4.0.0-4.0.1 | |
 | <a name="2555854"></a> [2555854](#2555854) <a name="2555854"></a> <br />NETQ-8245 | NetQ Agent: If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten. | 3.0.0-3.3.1, 4.0.0-4.0.1 | |
 | <a name="2553453"></a> [2553453](#2553453) <a name="2553453"></a> <br />NETQ-7318 | The <code>netqd</code> daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and <code>netq show</code> commands are run. | 3.1.0-3.3.1 | 4.0.0-4.0.1|
 | <a name="2551790"></a> [2551790](#2551790) <a name="2551790"></a> <br />NETQ-6732 | CLI: Upgrade to NetQ 3.1.0 using the CLI fails due to an authentication issue. To work around this issue, run the <code>netq bootstrap master upgrade</code> command as usual, then use the Admin UI to complete the upgrade at _https://\<netq-appl-vm-hostname-or-ipaddr\>:8443_. | 3.1.0-3.1.1 | 3.2.0-3.3.1|

@@ -115,28 +115,7 @@ iface lo inet loopback
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-{{< tabs "TabID70 ">}}
-{{< tab "leaf01 ">}}
 
-```
-cumulus@leaf01:~$ net add loopback lo clag vxlan-anycast-ip 10.0.1.12
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "leaf02 ">}}
-
-```
-cumulus@leaf02:~$ net add loopback lo clag vxlan-anycast-ip 10.0.1.12
-cumulus@leaf02:~$ net pending
-cumulus@leaf02:~$ net commit
-```
-
-{{< /tab >}}
-{{< /tabs >}}
--->
 <!-- vale off -->
 ## Example VXLAN Active-Active Configuration
 

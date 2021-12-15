@@ -71,31 +71,6 @@ cumulus@switch:~$ sudo ifup swp1 --admin-state
 {{< /tab >}}
 {{< /tabs >}}
 
-<!--
-To put an interface into an admin *down* state:
-
-```
-cumulus@switch:~$ net add interface swp1 link down
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-These commands create the following configuration in the `/etc/network/interfaces` file:
-
-```
-auto swp1
-iface swp1
-    link-down yes
-```
-
-To bring the interface back *up*:
-
-```
-cumulus@switch:~$ net del interface swp1 link down
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 For additional information on interface administrative state and physical state, refer to [this knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Monitoring/Monitor-Interface-Administrative-State-and-Physical-State-on-Cumulus-Linux" >}}).
 
 ## Interface Classes
@@ -211,15 +186,6 @@ iface lo inet loopback
 
 {{< /tab >}}
 {{< /tabs >}}
-
-<!--
-
-```
-cumulus@switch:~$ net add loopback lo ip address 10.10.10.1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 {{%notice note%}}
 - If the IP address has no subnet mask, it automatically becomes a /32 IP address. For example, 10.10.10.1 is 10.10.10.1/32.
@@ -532,14 +498,6 @@ iface swp1
 {{< /tab >}}
 {{< /tabs >}}
 
-<!--
-```
-cumulus@switch:~$ net add interface swp1 alias hypervisor_port_1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
-
 ## Interface Commands
 
 You can specify user commands for an interface that run at pre-up, up, post-up, pre-down, down, and post-down.
@@ -576,23 +534,6 @@ iface bridge.100
 
 {{< /tab >}}
 {{< /tabs >}}
-
-<!--
-```
-cumulus@switch:~$ net add interface swp1 post-up echo 1 > /proc/sys/net/ipv4/conf/swp1/proxy_arp
-cumulus@switch:~$ net add interface ip address 10.0.0.1/30
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{%notice warning%}}
-If your `post-up` command also starts, restarts, or reloads any `systemd` service, you must use the `--no-block` option with `systemctl`. Otherwise, that service or even the switch itself might hang after starting or restarting. For example, to restart the `dhcrelay` service after bringing up VLAN 100, first run:
-
-```
-cumulus@switch:~$ net add vlan 100 post-up systemctl --no-block restart dhcrelay.service
-```
-{{%/notice%}}
--->
 
 ## Source Interface File Snippets
 
@@ -653,29 +594,6 @@ iface br1
 
 {{< /tab >}}
 {{< /tabs >}}
-
-<!--
-Use commas to separate different port ranges (for example, swp1-46,10-12):
-
-```
-cumulus@switch:~$ net add bridge bridge ports swp1-4,6,10-12
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-These commands produce the following snippet in the `/etc/network/interfaces` file. The file renders the list of ports individually.
-
-```
-...
-auto bridge
-iface bridge
-    bridge-ports swp1 swp2 swp3 swp4 swp6 swp10 swp11 swp12
-    bridge-vlan-aware yes
-auto swp1
-iface swp1
-...
-```
--->
 
 ## Mako Templates
 
@@ -752,12 +670,6 @@ cumulus@switch:~$ ip link show dev swp1
 {{< /tab >}}
 {{< /tabs >}}
 
-<!--
-```
-cumulus@switch:~$ net show interface swp1
-```
--->
-
 To show the assigned IP address on an interface:
 
 {{< tabs "TabID898 ">}}
@@ -783,12 +695,6 @@ cumulus@switch:~$ ip addr show swp1
 {{< /tab >}}
 {{< /tabs >}}
 
-<!--
-```
-cumulus@switch:~$ net show interface swp1
-```
--->
-
 To show the description (alias) for an interface:
 
 {{< tabs "TabID923 ">}}
@@ -810,39 +716,6 @@ cumulus@switch$ ip link show swp1
 
 {{< /tab >}}
 {{< /tabs >}}
-
-<!--
-```
-cumulus@switch$ net show interface swp1
-    Name   MAC                Speed     MTU   Mode
---  ----   -----------------  -------   -----  ---------
-UP  swp1   44:38:39:00:00:04  1G        1500   Access/L2
-Alias
------
-hypervisor_port_1
-```
-
-To show the interface description (alias) for all interfaces on the switch:
-
-```
-cumulus@switch:~$ net show interface alias
-State    Name            Mode              Alias
------    -------------   -------------     ------------------
-UP       bond01          LACP
-UP       bond02          LACP
-UP       bridge          Bridge/L2
-UP       eth0            Mgmt
-UP       lo              Loopback          loopback interface
-UP       mgmt            Interface/L3
-UP       peerlink        LACP
-UP       peerlink.4094   SubInt/L3
-UP       swp1            BondMember        hypervisor_port_1
-UP       swp2            BondMember        to Server02
-...
-```
-
-To show the interface description for all interfaces on the switch in JSON format, run the `net show interface alias json` command.
--->
 
 ## Considerations
 
@@ -950,13 +823,7 @@ Then run the `ifreload -a` command on this configuration.
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add interface swp6 post-up ip address add 71.21.21.20/32 dev swp6 scope site
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
+
 The following configuration shows the correct scope:
 
 ```

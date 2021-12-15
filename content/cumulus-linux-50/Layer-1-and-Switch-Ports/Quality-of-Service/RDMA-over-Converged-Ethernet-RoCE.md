@@ -22,12 +22,7 @@ To configure RoCE with PFC and ECN:
 cumulus@switch:~$ nv set qos roce
 cumulus@switch:~$ nv config apply
 ```
-<!--
-```
-cumulus@switch:~$ net add roce lossless
-cumulus@switch:~$ net commit
-```
--->
+
 {{% notice note %}}
 NVUE defaults to `roce mode lossless`. The command `nv set qos roce` and `nv set qos roce mode lossless` are equivalent.
 
@@ -51,13 +46,6 @@ cumulus@switch:~$ nv set qos roce mode lossy
 cumulus@switch:~$ nv config apply
 ```
 
-<!--
-```
-cumulus@switch:~$ net add roce lossy
-cumulus@switch:~$ net commit
-```
--->
-
 ## Remove RoCE Configuration
 
 To remove RoCE configurations:
@@ -66,13 +54,6 @@ To remove RoCE configurations:
 cumulus@switch:~$ nv unset qos roce
 cumulus@switch:~$ nv config apply
 ```
-
-<!--
-```
-cumulus@switch:~$ net del roce
-cumulus@switch:~$ net commit
-```
--->
 
 ## Verify RoCE Configuration
 

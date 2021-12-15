@@ -148,12 +148,6 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:mgmt:~$ net add interface swp1 bridge portmcrouter enabled
-cumulus@switch:mgmt:~$ net commit
-```
--->
 
 {{%notice note%}}
 OMF increases memory usage, which can impact scaling on Spectrum 1 switches.
@@ -250,13 +244,6 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add bridge bridge mcsnoop no
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ## Troubleshooting
 

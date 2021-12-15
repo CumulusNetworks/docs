@@ -72,24 +72,6 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add snmp-server trap-destination localhost vrf rocket community-password mymanagementvrfpassword version 1
-cumulus@switch:~$ net add snmp-server trap-destination localhost-v6 community-password mynotsosecretpassword version 2c
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-These commands create the following configuration in the `/etc/snmp/snmpd.conf` file:
-
-```
-cumulus@switch:~$ cat /etc/snmp/snmpd.conf
-...
-trap2sink [::1] mynotsosecretpassword
-trapsink 127.0.0.1@rocket mymanagementvrfpassword
-...
-```
--->
 
 ### SNMPv3 Trap and Inform Messages
 
@@ -125,16 +107,6 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-For inform messages, the engine ID/username creates the username on the receiving trap daemon server. The trap receiver sends the response for the trap message using its own engine ID/username. In practice, the trap daemon generates the usernames with its own engine ID. The SNMP server (or agent) needs to use these engine ID and usernames when configuring the inform messages so that they authenticate and the correct response goes to the sending `snmpd` agent.
-
-```
-cumulus@switch:~$ net add snmp-server trap-destination localhost username myv3user auth-md5 md5password1 encrypt-aes myaessecret engine-id  0x80001f888070939b14a514da5a00000000 inform
-cumulus@switch:~$ net add snmp-server trap-destination localhost vrf mgmt username mymgmtvrfusername auth-md5 md5password2 encrypt-aes myaessecret2 engine-id  0x80001f888070939b14a514da5a00000000 inform
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ### Source Traps from a Different Source IP Address
 
@@ -269,23 +241,6 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-To enable notifications to send interface link up events to SNMP trap destinations every 15 seconds, run:
-
-```
-cumulus@switch:~$ net add snmp-server trap-link-up check-frequency 15
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-To enable notifications to send interface link down events to SNMP trap destinations every 10 seconds, run:
-
-```
-cumulus@switch:~$ net add snmp-server trap-link-down check-frequency 10
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ### Configure Free Memory Notifications
 
@@ -335,13 +290,6 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add snmp-server trap-cpu-load-average one-minute 4.34 five-minute 2.32 fifteen-minute 6.5
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ### Configure Disk Utilization Notifications
 
@@ -390,13 +338,7 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add snmp-server trap-snmp-auth-failures
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
+
 <!-- vale off -->
 ### Monitor UCD-SNMP-MIB Tables
 <!-- vale on -->

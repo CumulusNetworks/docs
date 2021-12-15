@@ -102,18 +102,6 @@ iface bond2
 {{< /tab >}}
 {{< /tabs >}}
 
-<!--
-The example also adds a description for the bonds (an alias), which is optional.
-
-```
-cumulus@leaf01:~$ net add bond bond1 bond slaves swp1
-cumulus@leaf01:~$ net add bond bond1 alias bond1 on swp1
-cumulus@leaf01:~$ net add bond bond2 bond slaves swp2
-cumulus@leaf01:~$ net add bond bond2 alias bond2 on swp2
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
--->
 3. Add a unique MLAG ID to each bond.
 
    You must specify a unique MLAG ID (clag-id) for every dual-connected bond on each peer switch so that switches know which links dual-connect or connect to the same host or switch. The value must be between 1 and 65535 and must be the same on both peer switches. A value of 0 disables MLAG on the bond.
@@ -153,14 +141,6 @@ iface bond2
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add bond bond1 clag id 1
-cumulus@leaf01:~$ net add bond bond2 clag id 2
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
--->
 
 4. Add the bonds you created above to a bridge. The example commands below add bond1 and bond2 to a VLAN-aware bridge.
 
@@ -191,14 +171,6 @@ iface bridge
 
 {{< /tab >}}
 {{< /tabs >}}
-
-<!--
-```
-cumulus@leaf01:~$ net add bridge bridge ports bond1,bond2
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
--->
 
 5. Create the inter-chassis bond and the peer link VLAN (as a VLAN subinterface). You also need to provide the peer link IP address, the MLAG bond interfaces, the MLAG system MAC address, and the backup interface.
    - By default, Cumulus Linux configures the inter-chassis bond with the name *peerlink* and the peer link VLAN with the name *peerlink.4094*. Use *peerlink.4094* to ensure that the VLAN is independent of the bridge and spanning tree forwarding decisions.
@@ -412,13 +384,6 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add interface peerlink.4094 clag priority 2048
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
--->
 
 The switch with the lower priority value is in the primary role; the default value is 32768 and the range is between 0 and 65535.
 
@@ -493,15 +458,6 @@ cumulus@leaf01:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-Run the `net add interface peerlink.4094 clag args <timer> <value>` command. The following example command sets the peerlink timer to 900 seconds:
-
-```
-cumulus@leaf01:~$ net add interface peerlink.4094 clag args --initDelay 100
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
--->
 
 ### Configure MLAG with a Traditional Mode Bridge
 
@@ -566,13 +522,6 @@ Run the `sudo ifreload -a` command to apply all the configuration changes:
 ```
 cumulus@leaf01:~$ sudo ifreload -a
 ```
-<!--
-```
-cumulus@leaf01:~$ net add interface peerlink.4094 clag args --backupPort 5400
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
--->
 
 ## Best Practices
 
@@ -631,16 +580,6 @@ cumulus@leaf01:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add bond peerlink mtu 1500
-cumulus@leaf01:~$ net add bond uplink mtu 1500
-cumulus@leaf01:~$ net add bond bond1 mtu 1500
-cumulus@leaf01:~$ net add bond bond2 mtu 1500
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
--->
 
 ### STP and MLAG
 

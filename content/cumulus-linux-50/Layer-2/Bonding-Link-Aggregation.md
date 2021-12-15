@@ -116,13 +116,6 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add bond bond0 bond slaves swp1-4
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 {{%notice note%}}
 - By default, the bond uses IEEE 802.3ad link aggregation mode. To configure the bond in balance-xor mode, see {{<link url="#configure-bond-options" text="Configuration Parameters">}} below.
@@ -192,13 +185,6 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add bond bond1 bond mode balance-xor
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 {{%notice note%}}
 Each bond configuration option, except for `bond slaves,` has the recommended value by default in Cumulus Linux. Only configure an option if you need a different setting. For more information on configuration values, refer to the {{<link url="#related-information" text="Related Information">}} section below.

@@ -83,26 +83,6 @@ route-map ucmp-route-map permit 10
  set extcommunity bandwidth num-multipaths
 ...
 ```
-<!--
-```
-cumulus@leaf01:~$ net add routing route-map ucmp-route-map permit 10 set extcommunity bandwidth num-multipaths
-cumulus@leaf01:~$ net add bgp neighbor 10.1.1.1 route-map ucmp-route-map out
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-address-family ipv4 unicast
- neighbor 10.1.1.1 route-map ucmp-route-map out
-!
-route-map ucmp-route-map permit 10
- set extcommunity bandwidth num-multipaths
-...
-```
--->
 
 ### Set the BGP Link Bandwidth Extended Community Against Certain Prefixes
 
@@ -137,30 +117,6 @@ route-map ucmp-route-map permit 10
  set extcommunity bandwidth num-multipaths
 ...
 ```
-<!--
-```
-cumulus@leaf01:~$ net add routing prefix-list ipv4 anycast-ip permit 192.168.0.0/16 le 32
-cumulus@leaf01:~$ net add routing route-map ucmp-route-map permit 10 match ip address prefix-list anycast-ip
-cumulus@leaf01:~$ net add routing route-map ucmp-route-map permit 10 set extcommunity bandwidth num-multipaths
-cumulus@leaf01:~$ net add bgp neighbor 10.1.1.1 route-map ucmp-route-map out
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-address-family ipv4 unicast
- neighbor 10.1.1.1 route-map ucmp-route-map out
-!
-ip prefix-list anycast-ip permit 192.168.0.0/16 le 32
-route-map ucmp-route-map permit 10
- match ip address prefix-list anycast-ip
- set extcommunity bandwidth num-multipaths
-...
-```
--->
 
 ### EVPN Configuration
 
@@ -194,29 +150,6 @@ route-map ucmp-route-map permit 10
  set extcommunity bandwidth num-multipaths
 ...
 ```
-<!--
-```
-cumulus@leaf01:~$ net add routing route-map ucmp-route-map permit 10 set extcommunity bandwidth num-multipaths
-cumulus@leaf01:~$ net add bgp vrf turtle l2vpn evpn advertise ipv4 unicast route-map ucmp-route-map
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
- address-family l2vpn evpn
-  advertise ipv4 unicast route-map ucmp-route-map
- exit-address-family
-!
-ip prefix-list anycast-ip permit 192.168.0.0/16 le 32
-route-map ucmp-route-map permit 10
- match ip address prefix-list anycast-ip
- set extcommunity bandwidth num-multipaths
-...
-```
--->
 
 ## Control UCMP on the Receiving Switch
 
@@ -235,7 +168,7 @@ By default, if some of the multipaths do not have link bandwidth, Cumulus Linux 
 
 Change this setting per BGP instance for both IPv4 and IPv6 unicast routes in the BGP instance. For EVPN, set the options on the tenant VRF.
 
-Run the <!--NCLU `net add bestpath bandwidth ignore|skip-missing|default-weight-for-missing` command or the -->vtysh `bgp bestpath bandwidth ignore|skip-missing|default-weight-for-missing` command.
+Run the vtysh `bgp bestpath bandwidth ignore|skip-missing|default-weight-for-missing` command.
 
 The following commands set link bandwidth processing to skip paths without link bandwidth and perform UCMP among the other paths:
 
@@ -268,32 +201,6 @@ router bgp 65011
   exit-address-family
  ...
  ```
-<!--
-```
-cumulus@switch:~$ net add bgp bestpath bandwidth skip-missing
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-router bgp 65011
-  bgp bestpath as-path multipath-relax
-  neighbor LEAF peer-group
-  neighbor LEAF remote-as external
-  neighbor swp1 interface peer-group LEAF
-  neighbor swp2 interface peer-group LEAF
-  neighbor swp3 interface peer-group LEAF
-  neighbor swp4 interface peer-group LEAF
-  bgp bestpath bandwidth skip-missing
-!
-  address-family ipv4 unicast
-    network 10.0.0.1/32
-  exit-address-family
- ...
- ```
--->
 
 ### BGP Link Bandwidth Outside a Domain
 
@@ -303,7 +210,7 @@ The BGP link bandwidth extended community is automatically passed on with the pr
 You cannot disable just the BGP link bandwidth extended community from advertising to a neighbor; you either send all BGP extended communities, or none.
 {{%/notice%}}
 
-To disable all BGP extended communities on a peer or peer group (per address family), run the <!--NCLU `net del bgp neighbor <neighbor> send-community extended` command or the -->vtysh `no neighbor <neighbor> send-community extended` command:
+To disable all BGP extended communities on a peer or peer group (per address family), run the vtysh `no neighbor <neighbor> send-community extended` command:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -315,14 +222,6 @@ switch(config-router)# end
 switch# write memory
 switch# exit
 ```
-
-<!--
-```
-cumulus@switch:~$ net del bgp neighbor 10.10.0.2 send-community extended
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ## Troubleshooting
 
@@ -357,7 +256,7 @@ Paths: (2 available, best #2, table default)
 The bandwidth value used by UCMP is only to determine the percentage of load to a given next hop and has no impact on actual link or flow bandwidth.
 {{%/notice%}}
 
-To show EVPN type-5 routes, run the <!--NCLU `net show bgp l2vpn evpn route type prefix` command or the -->vtysh `show bgp l2vpn evpn route type prefix` command.
+To show EVPN type-5 routes, run the `net show bgp l2vpn evpn route type prefix` command or the vtysh `show bgp l2vpn evpn route type prefix` command.
 
 The bandwidth shows both as bytes per second (unsigned 32 bits) as well as in Gbps, Mbps, or Kbps. For example:
 
@@ -374,7 +273,7 @@ Origin codes: i - IGP, e - EGP, ? - incomplete
             RT:65050:104001 LB:65050:134217728 (1.000 Gbps) ET:8 Rmac:36:4f:15:ea:81:90
 ```
 
-To see weights associated with next hops for a route with multiple paths, run the <!--NCLU `net show route` command or the -->vtysh `show ip route` command. For example:
+To see weights associated with next hops for a route with multiple paths, run the `net show route` command or the vtysh `show ip route` command. For example:
 
 ```
 cumulus@switch:~$ sudo vtysh

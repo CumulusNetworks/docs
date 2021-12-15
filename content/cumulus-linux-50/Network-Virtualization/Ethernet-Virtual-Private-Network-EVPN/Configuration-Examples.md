@@ -14,8 +14,6 @@ The configuration examples use the reference topology below:
 <!-- vale off -->
 {{< img src = "/images/cumulus-linux/reference-topology-full.png" >}}
 
-<!-- You can see these configurations in action and explore further by selecting one of the demos in {{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/" text="Cumulus in the Cloud">}} (a free, personal, virtual data center network that provides a low-effort way to see Cumulus Linux in action). -->
-
 ## Layer 2 EVPN with External Routing
 
 The following example configures a network infrastructure that creates a layer 2 extension between racks. Inter-VXLAN routed traffic routes between VXLANs on an external device.

@@ -106,6 +106,32 @@ The example below shows the creation of a service for TCP port 1022. The externa
 The **Enable SSH** button automatically populates the Services panel with an SSH session. It is a shortcut to enable inbound SSH to the oob-mgmt-server so that you can leverage your preferred local SSH client. Note that SSH password authentication is disabled on the oob-mgmt-server by default, so you must upload SSH keys to your user profile so you can use this feature. More information about uploading SSH keys to the user profile is in {{<link url="#user-settings" text="User Settings">}} below.
 <!-- vale on -->
 
+## Logging into Virtual Machines
+
+Use the operating system's default credentials to log into your virtual machine(s). Note that some operating systems may require you to change your password after the first successful login.
+
+- **Out-of-band management server (oob-mgmt-server)**
+    - Username: `ubuntu`
+    - Password: `nvidia`
+- **Out-of-band management switch (oob-mgmt-switch)**
+    - Username: `cumulus`
+    - Password: `cumulus`
+- **NVIDIA Cumulus Linux** (version 4.2 and higher)
+    - Username: `cumulus`
+    - Password: `cumulus`
+- **NVIDIA Cumulus Linux** (version 4.1 and lower)
+    - Username: `cumulus`
+    - Password: `CumulusLinux!`
+- **NVIDIA Cumulus NetQ**
+    - Username: `cumulus`
+    - Password: `cumulus`
+- **SONiC**
+    - Username: `admin`
+    - Password: `YourPaSsWoRd`
+- **Ubuntu**
+    - Username: `ubuntu`
+    - Password: `nvidia`
+
 ## Manage a Simulation
 
 From the Air landing page, you can manage simulations. There are three options for each public simulation:

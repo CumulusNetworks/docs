@@ -334,79 +334,7 @@ You only need to set the `advertise-all-vni` option on leafs that are VTEPs. The
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-1. Configure VXLAN Interfaces. The following example creates two VXLAN interfaces (vni10 and vni20), adds the VXLAN devices to the bridge, and sets the VXLAN local tunnel IP address to 10.10.10.1. For more information on how to configure VXLAN interfaces, see {{<link url="VXLAN-Devices" text="VXLAN Devices">}}.
 
-   ```
-   cumulus@leaf01:~$ net add vxlan vni10 vxlan id 10
-   cumulus@leaf01:~$ net add vxlan vni20 vxlan id 20
-   cumulus@leaf01:~$ net add bridge bridge ports vni10,vni20
-   cumulus@leaf01:~$ net add bridge bridge vids 10,20
-   cumulus@leaf01:~$ net add vxlan vni10 bridge access 10
-   cumulus@leaf01:~$ net add vxlan vni20 bridge access 20
-   cumulus@leaf01:~$ net add loopback lo vxlan local-tunnelip 10.10.10.1
-   ```
-
-2. Configure BGP. The following example commands assign an ASN and router ID to leaf01 and spine01, specify the interfaces between the two BGP peers, and the prefixes to originate. For complete information on how to configure BGP, see {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol - BGP">}}.
-
-   {{< tabs "TabID38 ">}}
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:~$ net add bgp autonomous-system 65101
-cumulus@leaf01:~$ net add bgp router-id 10.10.10.1
-cumulus@leaf01:~$ net add bgp neighbor swp51 interface remote-as external
-cumulus@leaf01:~$ net add bgp ipv4 unicast network 10.10.10.1/32
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "spine01 ">}}
-
-```
-cumulus@spine01:~$ net add bgp autonomous-system 65199
-cumulus@spine01:~$ net add bgp router-id 10.10.10.101
-cumulus@spine01:~$ net add bgp neighbor swp1 remote-as external
-cumulus@spine01:~$ net add bgp ipv4 unicast network 10.10.10.101/32
-cumulus@spine01:~$ net pending
-cumulus@spine01:~$ net commit
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-3. Activate the EVPN address family and enable EVPN between BGP neighbors. The following example commands enable EVPN between leaf01 and spine01:
-
-   {{< tabs "TabID67 ">}}
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:~$ net add bgp l2vpn evpn neighbor swp51 activate
-```
-
-{{< /tab >}}
-{{< tab "spine01 ">}}
-
-```
-cumulus@spine01:~$ net add bgp l2vpn evpn neighbor swp1 activate
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-4. FRR is not aware of any local VNIs, MAC addresses, or neighbors associated with those VNIs until you enable the BGP control plane for all VNIs configured on the switch by setting the `advertise-all-vni` option.
-
-```
-cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-all-vni
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{%notice note%}}
-You only need this configuration on leafs that are VTEPs. The switch accepts EVPN routes from a BGP peer even without this explicit EVPN configuration and maintains the routes in the global EVPN routing table. However, Cumulus Linux only imports the routes into the per-VNI routing table and installs the appropriate entries in the kernel when the VNI corresponding to the received route is locally known.
-{{%/notice%}}
--->
 <!-- vale off -->
 ## EVPN and VXLAN Active-active Mode
 <!-- vale on -->

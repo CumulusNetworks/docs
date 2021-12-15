@@ -89,20 +89,7 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add vxlan vni-1000 vxlan id 1000
-cumulus@switch:~$ net add vxlan vni-1000 vxlan local-tunnelip 10.0.0.1
-cumulus@switch:~$ net add vxlan vni-1000 bridge access 100
-cumulus@switch:~$ net add vxlan vni-3000 vxlan id 3000
-cumulus@switch:~$ net add vxlan vni-3000 vxlan local-tunnelip 10.0.0.1
-cumulus@switch:~$ net add vxlan vni-3000 bridge access 200
-cumulus@switch:~$ net add bridge bridge vlan-protocol 802.1ad
-cumulus@switch:~$ net add bridge bridge ports swp3,vni-1000,vni-3000
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
+
 <!-- vale off -->
 ### Customer-facing Edge Switch
 <!-- vale on -->
@@ -158,31 +145,15 @@ iface bridge
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add interface swp3 bridge access 100
-cumulus@switch:~$ net add interface swp4 bridge access 200
-cumulus@switch:~$ net add vxlan vni-1000 vxlan id 1000
-cumulus@switch:~$ net add vxlan vni-1000 vxlan local-tunnelip 10.0.0.1
-cumulus@switch:~$ net add vxlan vni-1000 bridge access 100
-cumulus@switch:~$ net add vxlan vni-3000 vxlan id 3000
-cumulus@switch:~$ net add vxlan vni-3000 vxlan local-tunnelip 10.0.0.1
-cumulus@switch:~$ net add vxlan vni-3000 bridge access 200
-cumulus@switch:~$ net add bridge bridge ports swp3,swp4,vni-1000,vni-3000
-cumulus@switch:~$ net add bridge bridge vlan-protocol 802.1ad
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
--->
 
 ### View the Configuration
-<!--
+
 In the output below, customer A is on VLAN 100 (S-TAG) and customer B is on VLAN 200 (S-TAG).
 
-To check the public cloud-facing switch, run the NVUE `nv show bridge domain <bridge-name> vlan` command:
+To check the public cloud-facing switch, run the `net show  <bridge-name> vlan` command:
 
 ```
-cumulus@switch:~$ nv show bridge domain br_default vlan
+cumulus@switch:~$ net show bridge vlan
 
 Interface      VLAN  Flags                  VNI
 -----------  ------  ---------------------  -----
@@ -193,10 +164,10 @@ vni-1000       100   PVID, Egress Untagged   1000
 vni-3000       200   PVID, Egress Untagged   3000
 ```
 
-To check the customer-facing switch, run the NVUE `nv show bridge domain <bridge-name> vlan` command:
+To check the customer-facing switch, run the `net show  <bridge-name> vlan` command:
 
 ```
-cumulus@switch:~$ nv show bridge domain br_default vlan
+cumulus@switch:~$ net show bridge vlan
 Interface      VLAN  Flags                  VNI
 -----------  ------  ---------------------  -----
 swp3            100  PVID, Egress Untagged
@@ -204,7 +175,7 @@ swp4            200  PVID, Egress Untagged
 vni-1000        100  PVID, Egress Untagged  1000
 vni-3000        200  PVID, Egress Untagged  3000
 ```
--->
+
 <!-- vale off -->
 To verify that the bridge is configured for QinQ, run the `ip -d link show bridge` commands and check for *vlan\_protocol 802.1ad* in the output:
 <!-- vale on -->
@@ -295,19 +266,6 @@ iface custA-10-azr
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@switch:~$ net add interface swp3.100.10
-cumulus@switch:~$ net add interface swp3.100.10 stp portbpdufilter
-cumulus@switch:~$ net add interface swp3.100.10 stp bpduguard
-cumulus@switch:~$ net add vxlan vni1000 vxlan id 1000
-cumulus@switch:~$ net add vxlan vni1000 stp portbpdufilter
-cumulus@switch:~$ net add vxlan vni1000 stp bpduguard
-cumulus@switch:~$ net add vxlan vni1000 vxlan local-tunnelip 10.0.0.1
-cumulus@switch:~$ net add bridge custA-10-azr
-cumulus@switch:~$ net add bridge custA-10-azr ports swp3.100.10,vni1000
-```
--->
 
 To check the configuration, run the `brctl show` command:
 

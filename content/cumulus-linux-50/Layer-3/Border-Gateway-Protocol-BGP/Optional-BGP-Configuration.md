@@ -79,24 +79,6 @@ The following example commands create the peer group SPINE and configure BGP pee
 
 NVUE commands are not supported.
 
-<!--```
-cumulus@leaf01:~$ nv set vrf default router bgp peer-group SPINE
-cumulus@leaf01:~$ nv set vrf default router bgp peer-group SPINE remote-as external
-cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ nv config apply
-```
-NCLU FOR REFERENCE
-```
-cumulus@leaf01:~$ net add bgp neighbor SPINE peer-group
-cumulus@leaf01:~$ net add bgp neighbor SPINE remote-as external
-cumulus@leaf01:~$ net add bgp listen range 10.0.1.0/24 peer-group SPINE
-cumulus@leaf01:~$ net add bgp listen limit 5
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-The `net add bgp listen limit` command limits the number of dynamic peers. The default value is *100*.
--->
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
@@ -126,28 +108,6 @@ router bgp 65101
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-```
-cumulus@leaf01:~$ net add bgp neighbor SPINE peer-group
-cumulus@leaf01:~$ net add bgp neighbor SPINE remote-as external
-cumulus@leaf01:~$ net add bgp listen range 10.0.1.0/24 peer-group SPINE
-cumulus@leaf01:~$ net add bgp listen limit 5
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-The `net add bgp listen limit` command limits the number of dynamic peers. The default value is *100*.
-
-The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-router bgp 65101
-  neighbor SPINE peer-group
-  neighbor SPINE remote-as external
-  bgp listen limit 5
-  bgp listen range 10.0.1.0/24 peer-group SPINE
-```
--->
 
 ## eBGP Multihop
 

@@ -829,7 +829,7 @@ leaf01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-To show that BUM flooding is off, run the vtysh `show bgp l2vpn evpn vni` command or the NCLU `net show bgp l2vpn evpn vni` command. For example:
+To show that BUM flooding is off, run the vtysh `show bgp l2vpn evpn vni` command or the `net show bgp l2vpn evpn vni` command. For example:
 
 ```
 cumulus@leaf01:~$ sudo vtysh

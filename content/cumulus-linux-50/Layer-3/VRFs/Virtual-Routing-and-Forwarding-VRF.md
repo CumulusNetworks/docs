@@ -285,7 +285,7 @@ The following example configures a route map to match the source protocol BGP an
 ```
 cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast route-import from-vrf list BLUE
 cumulus@switch:~$ nv set router policy route-map BLUEtoRED rule 10 match type ipv4
-cumulus@switch:~$   BLUEtoRED rule 10 match source-protocol bgp 
+cumulus@switch:~$ nv set router policy route-map BLUEtoRED rule 10 match source-protocol bgp 
 cumulus@switch:~$ nv set router policy route-map BLUEtoRED rule 10 action permit
 cumulus@switch:~$ nv set router policy route-map BLUEtoRED rule 10 set community 11:11
 cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast route-import from-vrf route-map BLUEtoRED

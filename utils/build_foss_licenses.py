@@ -234,7 +234,7 @@ def build_foss_license_markdown_files(product, version_list):
                 version_output.extend(build_foss_license_markdown("content/cumulus-linux-{}/Whats-New/licenses/FOSS-{}.csv".format(version_string(version).replace(".", ""), version), version, product))
 
             if product == "netq":
-                version_output.extend(build_foss_license_markdown("content/cumulus-netq-{}/Whats-New/licenses/FOSS-{}.csv".format(version_string(version).replace(".", ""), ""), version, product))
+                version_output.extend(build_foss_license_markdown("content/cumulus-netq-{}/Whats-New/licenses/FOSS-{}.csv".format(version_string(version).replace(".", ""), version), version, product))
 
         # The version_output now contains the RNs for all maintenance releases in order.
         # Write out the markdown file.

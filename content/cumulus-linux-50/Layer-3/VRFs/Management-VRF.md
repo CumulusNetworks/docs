@@ -191,8 +191,9 @@ NVIDIA recommends route maps to control advertised networks that you redistribut
 {{< tab "NVUE Commands ">}}
 
 ```
+cumulus@switch:~$ nv set router policy route-map REDISTRIBUTE rule 10 match type ipv4
 cumulus@switch:~$ nv set router policy route-map REDISTRIBUTE rule 10 match interface eth0
-cumulus@switch:~$ nv set router policy route-map REDISTRIBUTE rule 100 action deny
+cumulus@switch:~$ nv set router policy route-map REDISTRIBUTE rule 10 action deny
 cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected route-map REDISTRIBUTE
 cumulus@switch:~$ nv config apply
 ```

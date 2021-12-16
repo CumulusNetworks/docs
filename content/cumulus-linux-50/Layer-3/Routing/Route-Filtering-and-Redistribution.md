@@ -71,6 +71,7 @@ To use this prefix list in a route map called MAP1:
 
 ```
 cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 match type ipv4
 cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 match ip-prefix-list prefixlist1
 cumulus@switch:~$ nv config apply
 ```

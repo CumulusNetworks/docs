@@ -620,9 +620,11 @@ The following example commands configure EVPN to advertise type-5 routes:
 {{< tab "NVUE Commands ">}}
 
 ```
+cumulus@leaf01:~$ nv set router policy route-map map1 rule 10 match type ipv4
 cumulus@leaf01:~$ nv set router policy route-map map1 rule 10 match evpn-route-type ip-prefix
 cumulus@leaf01:~$ nv set router policy route-map map1 rule 10 action permit
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast route-export to-evpn route-map map1
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -829,7 +831,7 @@ leaf01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-To show that BUM flooding is off, run the vtysh `show bgp l2vpn evpn vni` command or the NCLU `net show bgp l2vpn evpn vni` command. For example:
+To show that BUM flooding is off, run the vtysh `show bgp l2vpn evpn vni` command or the `net show bgp l2vpn evpn vni` command. For example:
 
 ```
 cumulus@leaf01:~$ sudo vtysh

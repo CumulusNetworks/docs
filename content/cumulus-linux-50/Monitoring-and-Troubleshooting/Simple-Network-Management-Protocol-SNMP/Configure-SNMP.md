@@ -356,9 +356,13 @@ To enable SNMP support for FRR:
 1. Configure AgentX access in FRR:
 
    ```
-   cumulus@switch:~$ net add routing agentx
-   cumulus@switch:~$ net pending
-   cumulus@switch:~$ net commit
+   cumulus@switch:~$ sudo vtysh
+   ...
+   switch# configure terminal
+   switch(config)# agentx
+   switch(config)# end
+   switch# write memory
+   switch# exit
    ```
 
 2. Edit `/etc/frr/daemons` and add a line like the following to configure the appropriate routing daemon; the example below uses `bgpd`, the BGP daemon.

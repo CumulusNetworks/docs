@@ -973,9 +973,9 @@ Use caution when configuring conditional advertisement on a large number of BGP 
 The following example commands configure the switch to send a 10.0.0.0/8 summary route only if the 10.0.0.0/24 route exists in the routing table. The commands perform the following configuration:
 - Enable the conditional advertisement option.
 - Create a prefix list called EXIST with the route 10.0.0.0/24.
-- Create a route map called EXISTMAP that uses the prefix list EXIST.
+- Create a route map called EXISTMAP that uses the prefix list EXIST. You must provide the route map match type (`ipv4` or `ipv6`).
 - Create a prefix list called ADVERTISE with the route to advertise (10.0.0.0/8).
-- Create a route map called ADVERTISEMAP that uses the prefix list ADVERTISE.
+- Create a route map called ADVERTISEMAP that uses the prefix list ADVERTISE. You must provide the route map match type (`ipv4` or `ipv6`).
 - Configure BGP neighbor swp51 to use the route maps.
 
 {{< tabs "1293 ">}}
@@ -984,11 +984,13 @@ The following example commands configure the switch to send a 10.0.0.0/8 summary
 ```
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise enable on 
 cumulus@leaf01:~$ nv set router policy prefix-list EXIST rule 10 match 10.0.0.0/24
-cumulus@leaf01:~$ nv set router policy prefix-list EXIST rule 10 action permit 
+cumulus@leaf01:~$ nv set router policy prefix-list EXIST rule 10 action permit
+cumulus@leaf01:~$ nv set router policy route-map EXISTMAP rule 10 match type ipv4
 cumulus@leaf01:~$ nv set router policy route-map EXISTMAP rule 10 action permit
 cumulus@leaf01:~$ nv set router policy route-map EXISTMAP rule 10 match ip-prefix-list EXIST
 cumulus@leaf01:~$ nv set router policy prefix-list ADVERTISE rule 10 action permit
 cumulus@leaf01:~$ nv set router policy prefix-list ADVERTISE rule 10 match 10.0.0.0/8
+cumulus@leaf01:~$ nv set router policy route-map ADVERTISEMAP rule 10 match type ipv4
 cumulus@leaf01:~$ nv set router policy route-map ADVERTISEMAP rule 10 action permit
 cumulus@leaf01:~$ nv set router policy route-map ADVERTISEMAP rule 10 match ip-prefix-list ADVERTISE
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise advertise-map ADVERTISEMAP

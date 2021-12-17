@@ -234,7 +234,7 @@ def build_foss_license_markdown_files(product, version_list):
                 version_output.extend(build_foss_license_markdown("content/cumulus-linux-{}/Whats-New/licenses/FOSS-{}.csv".format(version_string(version).replace(".", ""), version), version, product))
 
             if product == "netq":
-                version_output.extend(build_foss_license_markdown("content/cumulus-netq-{}/Whats-New/licenses/FOSS-{}.csv".format(version_string(version).replace(".", ""), ""), version, product))
+                version_output.extend(build_foss_license_markdown("content/cumulus-netq-{}/Whats-New/licenses/FOSS-{}.csv".format(version_string(version).replace(".", ""), version), version, product))
 
         # The version_output now contains the RNs for all maintenance releases in order.
         # Write out the markdown file.
@@ -296,7 +296,7 @@ def get_products():
     # Some versions are included in the JSON file that don't have correct licenses
     # This is the list of versions to exclude from processing
     cl_exclude_list = ["3.7.12", "4.1.0", "4.1.1"]
-    netq_exclude_list = []
+    netq_exclude_list = ["4.1.0"]
 
     session = requests.Session()
     url = "https://d2whzysjlaya8k.cloudfront.net/release_notes_and_license_list.json"

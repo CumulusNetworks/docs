@@ -296,7 +296,7 @@ def get_products():
     # Some versions are included in the JSON file that don't have correct licenses
     # This is the list of versions to exclude from processing
     cl_exclude_list = ["3.7.12", "4.1.0", "4.1.1"]
-    netq_exclude_list = ["4.1.1"]
+    netq_exclude_list = ["4.1.0"]
 
     session = requests.Session()
     url = "https://d2whzysjlaya8k.cloudfront.net/release_notes_and_license_list.json"

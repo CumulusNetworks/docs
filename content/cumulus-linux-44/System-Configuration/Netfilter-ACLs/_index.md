@@ -998,7 +998,6 @@ cumulus@switch:~$ sudo cl-acltool -i
 {{< /tab >}}
 {{< /tabs >}}
 -->
-
 ## Example Configuration
 
 The following example demonstrates how Cumulus Linux applies several different rules.

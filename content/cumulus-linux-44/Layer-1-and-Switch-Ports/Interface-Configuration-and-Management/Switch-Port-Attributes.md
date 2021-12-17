@@ -158,7 +158,7 @@ cumulus@switch:~$ ip link show dev swp1
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!--
 ### Drop Packets that Exceed the Egress Layer 3 MTU
 
 The switch forwards all packets that are within the MTU value set for the egress layer 3 interface. However, when packets are larger in size than the MTU value, the switch fragments the packets that do *not* have the [DF](## "Don’t Fragment") bit set and drops the packets that *do* have the [DF](## "Don’t Fragment") bit set.
@@ -182,7 +182,7 @@ cumulus@switch:~$ echo "0 >" /cumulus/switchd/config/trap/l3-mtu-err/enable
 
 {{< /tab >}}
 {{< /tabs >}}
-
+-->
 ## FEC
 
 {{<exlink url="https://en.wikipedia.org/wiki/Forward_error_correction" text="Forward Error Correction (FEC)">}} is an encoding and decoding layer that enables the switch to detect and correct bit errors introduced over the cable between two interfaces. The target IEEE bit error rate (BER) on high speed Ethernet links is 10<sup>-12</sup>. Because 25G transmission speeds can introduce a higher than acceptable BER on a link, FEC is often required to correct errors to achieve the target BER at 25G, 4x25G, 100G, and higher link speeds. The type and grade of a cable or module and the medium of transmission determine which FEC setting is necessary.

@@ -93,11 +93,11 @@ Now that the appliances are up and running, verify that the software is availabl
 
 1. On the master node, verify that the needed packages are present and of the correct release, version {{<version>}}.
 
-    {{<netq-install/verify-pkgs version="4.0" platform="appliance">}}
+    {{<netq-install/verify-pkgs version="4.1" platform="appliance">}}
 
 2. Verify the installation images are present and of the correct release, version {{<version>}}.
 
-    {{<netq-install/verify-image deployment="onprem" version="4.0">}}
+    {{<netq-install/verify-image deployment="onprem" version="4.1">}}
 
 3. Verify the master node is ready for installation. Fix any errors indicated before installing the NetQ software.
 
@@ -105,15 +105,15 @@ Now that the appliances are up and running, verify that the software is availabl
 
 4. Run the Bootstrap CLI. Be sure to replace the *eno1* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="single" version="4.0" platform="appliance" deployment="onprem">}}
+    {{<netq-install/bootstrap server="single" version="4.1" platform="appliance" deployment="onprem">}}
 
 5. Consider the following for container environments, and make adjustments as needed.
 
-    {{<netq-install/container version="4.0">}}
+    {{<netq-install/container version="4.1">}}
 
 6. On one or your worker nodes, verify that the needed packages are present and of the correct release, version {{<version>}} and update 34 or later.
 
-    {{<netq-install/verify-pkgs version="4.0" platform="appliance">}}
+    {{<netq-install/verify-pkgs version="4.1" platform="appliance">}}
 
 7. Configure the IP address, hostname, and password using the same steps as for the master node. Refer to {{<link title="#Configure the Password, Hostname and IP Address" text="Configure the Password, Hostname and IP Address">}}.
 
@@ -123,11 +123,11 @@ Make a note of the private IP addresses you assign to the master and worker node
 
 8. Verify that the needed packages are present and of the correct release, version {{<version>}} and update 34.
 
-    {{<netq-install/verify-pkgs version="4.0" platform="appliance">}}
+    {{<netq-install/verify-pkgs version="4.1" platform="appliance">}}
 
 9. Verify that the needed files are present and of the correct release.
 
-    {{<netq-install/verify-image deployment="onprem" version="4.0">}}
+    {{<netq-install/verify-image deployment="onprem" version="4.1">}}
 
 10. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
 
@@ -135,7 +135,7 @@ Make a note of the private IP addresses you assign to the master and worker node
 
 11. Run the Bootstrap CLI on the worker node.
 
-    {{<netq-install/bootstrap server="cluster" version="4.0">}}
+    {{<netq-install/bootstrap server="cluster" version="4.1">}}
 
 12. Repeat Steps 5-10 for each additional worker node (NetQ On-premises Appliance).
 

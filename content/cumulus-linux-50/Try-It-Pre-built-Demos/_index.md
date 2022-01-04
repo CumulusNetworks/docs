@@ -9,9 +9,9 @@ This documentation includes pre-built **Try It** demos for certain Cumulus Linux
 The following Try It demos are available:
 - {{<link url="Configuration-Example/#nvue-commands" text="BGP">}}
 - {{<link url="Inter-subnet-Routing/#configure-route-targets" text="EVPN downstream VNI">}}
-- {{<link url="EVPN-Multihoming/#evpn-mh-with-head-end-replication" text="EVPN multihoming">}}
-- {{<link url="Configuration-Examples/#nvue-commands-2" text="EVPN symmetric routing">}}
-- {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#nvue-commands" text="MLAG">}}
+- {{<link url="EVPN-Multihoming/#example-configuration" text="EVPN multihoming">}}
+- {{<link url="Configuration-Examples/#evpn-symmetric-routing" text="EVPN symmetric routing">}}
+- {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#configuration-example" text="MLAG">}}
 - {{<link url="Static-VXLAN-Tunnels/#single-vxlan-device" text="Single VXLAN device">}}
 <!-- - {{<link url="Protocol-Independent-Multicast-PIM/#example-pim-configuration" text="PIM">}}-->
 

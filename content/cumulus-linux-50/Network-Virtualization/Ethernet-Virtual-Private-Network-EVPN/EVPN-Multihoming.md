@@ -3254,6 +3254,10 @@ This simulation starts with the EVPN-MH with Head End Replication configuration.
 
 To further validate the configuration, run the commands shown in the troublshooting section below.
 
+{{%notice note%}}
+This simulation runs on Cumulus Linux 4.4. Cumulus Linux 5.0 configuration is coming soon.
+{{%/notice%}}
+
 {{</tab>}}
 {{</tabs>}}
 

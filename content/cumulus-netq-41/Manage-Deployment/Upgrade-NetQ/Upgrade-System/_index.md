@@ -38,8 +38,8 @@ To complete the preparation:
 
     ```
     cumulus@<hostname>:~$ sudo apt-get update
-    Get:1 http://apps3.cumulusnetworks.com/repos/deb bionic InRelease [13.8 kB]
-    Get:2 http://apps3.cumulusnetworks.com/repos/deb bionic/netq-4.0 amd64 Packages [758 B]
+    Get:1 https://apps3.cumulusnetworks.com/repos/deb bionic InRelease [13.8 kB]
+    Get:2 https://apps3.cumulusnetworks.com/repos/deb bionic/netq-4.1 amd64 Packages [758 B]
     Hit:3 http://archive.ubuntu.com/ubuntu bionic InRelease
     Get:4 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
     Get:5 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
@@ -60,11 +60,11 @@ To complete the preparation:
     ...
     Fetched 39.8 MB in 3s (13.5 MB/s)
     ...
-    Unpacking netq-agent (4.0.0-ub18.04u33~1614767175.886b337) ...
+    Unpacking netq-agent (4.1.0-ub18.04u33~1621860085.c5a5d7e) ...
     ...
-    Unpacking netq-apps (4.0.0-ub18.04u33~1614767175.886b337) ...
-    Setting up netq-apps (4.0.0-ub18.04u33~1614767175.886b337) ...
-    Setting up netq-agent (4.0.0-ub18.04u33~1614767175.886b337) ...
+    Unpacking netq-apps (4.1.0-ub18.04u33~1621860085.c5a5d7e) ...
+    Setting up netq-apps (4.1.0-ub18.04u33~1621860085.c5a5d7e) ...
+    Setting up netq-agent (4.1.0-ub18.04u33~1621860085.c5a5d7e) ...
     Processing triggers for rsyslog (8.32.0-1ubuntu4) ...
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ```
@@ -207,6 +207,47 @@ You can now upgrade your appliance using the NetQ Admin UI, in the next section.
 
 ## Run the Upgrade
 
+{{%notice note%}}
+The following items should be checked prior to upgrading NetQ:
+
+1. Check if enough disk space is available before you proceed with the upgrade:
+
+```
+cumulus@netq-appliance:~$ df -h /
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1       248G   70G  179G  28% /
+cumulus@netq-appliance:~$
+```
+
+We recommend the `Use%` to be under 70%.
+
+You may delete previous software tarballs under `/mnt/installables/` to regain some space.
+If you can not bring it under 70%, please contact NVIDIA Support to assist with the upgrade.
+
+2. Run the `netq show opta-health` command and check that all pods are in the `READY` state. If not, please contact NVIDIA support for assistance.
+
+3. Check if the certificates are expired:
+
+```
+cumulus@netq-appliance:~$ sudo grep client-certificate-data /etc/kubernetes/kubelet.conf | cut -d: -f2 | xargs | base64 -d | openssl x509 -dates -noout | grep notAfter | cut -f2 -d=
+Dec 18 17:53:16 2021 GMT
+cumulus@netq-appliance:~$
+```
+
+If the date in the above output is in the past, run the following commands before proceeding with the upgrade:
+```
+sudo cp /etc/kubernetes/kubelet.conf /etc/kubernetes/kubelet.conf.bak
+sudo sed -i 's/client-certificate-data.*/client-certificate-data: \/var\/lib\/kubelet\/pki\/kubelet-client-current.pem/g' /etc/kubernetes/kubelet.conf
+sudo sed -i 's/client-key.*/client-key: \/var\/lib\/kubelet\/pki\/kubelet-client-current.pem/g' /etc/kubernetes/kubelet.conf
+sudo systemctl restart kubelet
+```
+
+Check if the kubelet process is running with the `sudo systemctl status kubelet` command before proceeding with the upgrade.
+
+If any issue occurs, please contact NVIDIA Support for assistance.
+
+{{%/notice%}}
+
 You can upgrade the NetQ platform in one of two ways:
 
 - Using the `netq upgrade` CLI command, which works with any supported older versions
@@ -244,9 +285,9 @@ netq upgrade bundle /mnt/installables/NetQ-4.1.0-opta.tgz
 
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
-    BOOTSTRAP_VERSION=4.0.0
-    APPLIANCE_MANIFEST_HASH=74ac3017d5
-    APPLIANCE_VERSION=4.0.0
+    BOOTSTRAP_VERSION=4.1.0
+    APPLIANCE_MANIFEST_HASH=85575c98a3
+    APPLIANCE_VERSION=4.1.0
     ```
 
 ### Upgrade Using the NetQ Admin UI

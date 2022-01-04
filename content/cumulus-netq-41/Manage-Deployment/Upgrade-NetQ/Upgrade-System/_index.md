@@ -208,7 +208,7 @@ You can now upgrade your appliance using the NetQ Admin UI, in the next section.
 ## Run the Upgrade
 
 {{%notice note%}}
-The following items should be checked prior to upgrading NetQ:
+Verify the following items before upgrading NetQ:
 
 1. Check if enough disk space is available before you proceed with the upgrade:
 
@@ -219,14 +219,14 @@ Filesystem      Size  Used Avail Use% Mounted on
 cumulus@netq-appliance:~$
 ```
 
-We recommend the `Use%` to be under 70%.
+The recommended `Use%` to proceed with installation is under 70%.
 
-You may delete previous software tarballs under `/mnt/installables/` to regain some space.
-If you can not bring it under 70%, please contact NVIDIA Support to assist with the upgrade.
+You can delete previous software tarballs in the `/mnt/installables/` directory to regain some space.
+If you can not bring disk space to under 70% usage, contact the NVIDIA Support team.
 
-2. Run the `netq show opta-health` command and check that all pods are in the `READY` state. If not, please contact NVIDIA support for assistance.
+2. Run the `netq show opta-health` command and check that all pods are in the `READY` state. If not, contact the NVIDIA support team.
 
-3. Check if the certificates are expired:
+3. Check if the certificates have expired:
 
 ```
 cumulus@netq-appliance:~$ sudo grep client-certificate-data /etc/kubernetes/kubelet.conf | cut -d: -f2 | xargs | base64 -d | openssl x509 -dates -noout | grep notAfter | cut -f2 -d=
@@ -244,7 +244,7 @@ sudo systemctl restart kubelet
 
 Check if the kubelet process is running with the `sudo systemctl status kubelet` command before proceeding with the upgrade.
 
-If any issue occurs, please contact NVIDIA Support for assistance.
+If any issue occurs, contact the NVIDIA Support team.
 
 {{%/notice%}}
 

@@ -446,7 +446,7 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# bgp router-id 10.10.10.1
-leaf01(config-router)# neighbor swp1 remote-as external
+leaf01(config-router)# neighbor swp51 interface remote-as external
 leaf01(config-router)# address-family ipv4
 leaf01(config-router-af)# network 10.10.10.1/32
 leaf01(config-router-af)# network 10.1.10.0/24
@@ -463,7 +463,7 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# bgp router-id 10.10.10.1
-leaf01(config-router)# neighbor swp51 remote-as external
+leaf01(config-router)# neighbor swp51 interface remote-as external
 leaf01(config-router)# address-family ipv6 unicast
 leaf01(config-router-af)# neighbor swp51 activate
 leaf01(config-router-af)# network 2001:db8::1/128
@@ -479,8 +479,7 @@ cumulus@leaf01:~$  sudo cat /etc/frr/frr.conf
 ...
 router bgp 65101
  bgp router-id 10.10.10.1
- neighbor swp51 interface
- neighbor swp51 remote-as external
+ neighbor swp51 interface remote-as external
  !
  address-family ipv4 unicast
   network 10.10.10.1/32
@@ -498,7 +497,7 @@ cumulus@spine01:~$ sudo vtysh
 spine01# configure terminal
 spine01(config)# router bgp 65199
 spine01(config-router)# bgp router-id 10.10.10.101
-spine01(config-router)# neighbor swp1 remote-as external
+spine01(config-router)# neighbor swp1 interface remote-as external
 spine01(config-router)# address-family ipv4
 spine01(config-router-af)# network 10.10.10.101/32
 spine01(config-router-af)# end
@@ -514,7 +513,7 @@ cumulus@spine01:~$ sudo vtysh
 spine01# configure terminal
 spine01(config)# router bgp 65199
 spine01(config-router)# bgp router-id 10.10.10.101
-spine01(config-router)# neighbor swp1 remote-as external
+spine01(config-router)# neighbor swp1 interface remote-as external
 spine01(config-router)# address-family ipv6 unicast
 spine01(config-router-af)# neighbor swp1 activate
 spine01(config-router-af)# network 2001:db8::101/128
@@ -530,8 +529,7 @@ cumulus@spine01:~$  sudo cat /etc/frr/frr.conf
 ...
 router bgp 65199
  bgp router-id 10.10.10.101
- neighbor swp1 interface
- neighbor swp1 remote-as external
+ neighbor swp1 interface remote-as external
  !
  address-family ipv4 unicast
   network 10.10.10.101/32

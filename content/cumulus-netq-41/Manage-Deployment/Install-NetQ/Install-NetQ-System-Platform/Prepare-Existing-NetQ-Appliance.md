@@ -136,7 +136,7 @@ To prepare your appliance:
         ```
 
         {{<notice note>}}
-The use of <code>netq-latest</code> in this example means that a <code>get</code> to the repository always retrieves the latest version of NetQ; this applies even for major version updates. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.0</code> &mdash; use that instead.
+The use of <code>netq-latest</code> in this example means that a <code>get</code> to the repository always retrieves the latest version of NetQ; this applies even for major version updates. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.1</code> &mdash; use that instead.
         {{</notice>}}
 
 6. Install Python.
@@ -175,7 +175,7 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
     5. Click **All downloads** next to **NVIDIA NetQ**.
 
-    6. Select *4.0.0* from the **NetQ Version** dropdown.
+    6. Select *4.1.0* from the **NetQ Version** dropdown.
 
     7. Select *KVM* from the **Hypervisor** dropdown.
 
@@ -191,12 +191,12 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
         ```
         cumulus@<hostname>:~$ dpkg -l | grep netq
-        ii  netq-agent   4.0.0-ub18.04u33~1614767175.886b337_amd64   NVIDIA NetQ Telemetry Agent for Ubuntu
-        ii  netq-apps    4.0.0-ub18.04u33~1614767175.886b337_amd64   NVIDIA NetQ Fabric Validation Application for Ubuntu
+        ii  netq-agent   4.1.0-ub18.04u33~1614767175.886b337_amd64   NVIDIA NetQ Telemetry Agent for Ubuntu
+        ii  netq-apps    4.1.0-ub18.04u33~1614767175.886b337_amd64   NVIDIA NetQ Fabric Validation Application for Ubuntu
 
         cumulus@<hostname>:~$ cd /mnt/installables/
         cumulus@<hostname>:/mnt/installables$ ls
-        NetQ-4.0.0.tgz  netq-bootstrap-4.0.0.tgz
+        NetQ-4.1.0.tgz  netq-bootstrap-4.1.0.tgz
         ```
 
     12. Run the following commands.

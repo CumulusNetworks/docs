@@ -222,7 +222,7 @@ cumulus@netq-appliance:~$
 The recommended `Use%` to proceed with installation is under 70%.
 
 You can delete previous software tarballs in the `/mnt/installables/` directory to regain some space.
-If you can not bring disk space to under 70% usage, contact the NVIDIA Support team.
+If you can not bring disk space to under 70% usage, contact the NVIDIA support team.
 
 2. Run the `netq show opta-health` command and check that all pods are in the `READY` state. If not, contact the NVIDIA support team.
 

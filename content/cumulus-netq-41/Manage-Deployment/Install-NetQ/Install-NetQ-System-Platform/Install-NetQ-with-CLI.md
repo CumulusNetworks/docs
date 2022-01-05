@@ -80,7 +80,7 @@ Run the following command on your NetQ Cloud Appliance with the `config-key` sen
 <!-- vale on -->
 
 ```
-cumulus@<hostname>:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.0.0-opta.tgz config-key <your-config-key-from-email> proxy-host <proxy-hostname> proxy-port <proxy-port>
+cumulus@<hostname>:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.1.0-opta.tgz config-key <your-config-key-from-email> proxy-host <proxy-hostname> proxy-port <proxy-port>
 ```
 
 {{</tab>}}
@@ -92,7 +92,7 @@ Run the following commands on your *master* NetQ Cloud Appliance with the `confi
 <!-- vale on -->
 
 ```
-cumulus@<hostname>:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.0.0-opta.tgz config-key <your-config-key-from-email> workers <worker-1-ip> <worker-2-ip> proxy-host <proxy-hostname> proxy-port <proxy-port>
+cumulus@<hostname>:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.1.0-opta.tgz config-key <your-config-key-from-email> workers <worker-1-ip> <worker-2-ip> proxy-host <proxy-hostname> proxy-port <proxy-port>
 ```
 
 {{</tab>}}

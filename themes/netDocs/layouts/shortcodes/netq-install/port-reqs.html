@@ -39,6 +39,28 @@ You must open the following ports on your NetQ Platform:
     <td style="text-align:center">TCP</td>
     <td>SSH</td>
     </tr>
+    <td style="text-align:right">179</td>
+    <td style="text-align:center">TCP</td>
+    <td>Calico networking (BGP)</td>
+    </tr>
+    <td style="text-align:right">4</td>
+    <td style="text-align:center">IP Protocol</td>
+    <td>Calico networking (IP-in-IP Protocol)</td>
+    </tr>
+    <td style="text-align:right">4789</td>
+    <td style="text-align:center">UDP</td>
+    <td>Calico networking (VxLAN)</td>
+    </tr>
+    <td style="text-align:right">6443</td>
+    <td style="text-align:center">TCP</td>
+    <td>kube-apiserver</td>
+    </tr>
+    <td style="text-align:right">2379</td>
+    <td style="text-align:center">TCP</td>
+    <td>etcd datastore</td>
+    </tr>
+    </tr>
+    </tr>
     </tbody>
     </table>
 

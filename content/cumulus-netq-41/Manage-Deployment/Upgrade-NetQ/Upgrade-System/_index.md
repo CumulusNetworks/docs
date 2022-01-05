@@ -208,7 +208,7 @@ You can now upgrade your appliance using the NetQ Admin UI, in the next section.
 ## Run the Upgrade
 
 {{%notice note%}}
-Verify the following items before upgrading NetQ:
+Verify the following items before upgrading NetQ. For cluster deployments, verify steps 1 and 3 on all nodes in the cluster:
 
 1. Check if enough disk space is available before you proceed with the upgrade:
 
@@ -226,7 +226,7 @@ If you can not bring disk space to under 70% usage, contact the NVIDIA support t
 
 2. Run the `netq show opta-health` command and check that all pods are in the `READY` state. If not, contact the NVIDIA support team.
 
-3. Check if the certificates have expired:
+3. If you are upgrading from NetQ 4.0.1 or previous verisons, check if the certificates have expired:
 
 ```
 cumulus@netq-appliance:~$ sudo grep client-certificate-data /etc/kubernetes/kubelet.conf | cut -d: -f2 | xargs | base64 -d | openssl x509 -dates -noout | grep notAfter | cut -f2 -d=

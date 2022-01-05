@@ -237,7 +237,7 @@ cumulus@netq-appliance:~$
 If the date in the above output is in the past, run the following commands before proceeding with the upgrade:
 ```
 sudo cp /etc/kubernetes/kubelet.conf /etc/kubernetes/kubelet.conf.bak
-sudo sed -i 's/client-certificate-data.*/client-certificate-data: \/var\/lib\/kubelet\/pki\/kubelet-client-current.pem/g' /etc/kubernetes/kubelet.conf
+sudo sed -i 's/client-certificate-data.*/client-certificate: \/var\/lib\/kubelet\/pki\/kubelet-client-current.pem/g' /etc/kubernetes/kubelet.conf
 sudo sed -i 's/client-key.*/client-key: \/var\/lib\/kubelet\/pki\/kubelet-client-current.pem/g' /etc/kubernetes/kubelet.conf
 sudo systemctl restart kubelet
 ```

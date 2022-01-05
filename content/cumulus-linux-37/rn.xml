@@ -7,6 +7,35 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2917487</td>
+<td>BGP unnumbered sessions with the subinterfaces do not establish if you use different passwords for BGP.</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2910862</td>
+<td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
+Vulnerable: &lt;= 0.13.62-3+deb8u2
+Fixed: 0.13.62-3+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2910861</td>
+<td>CVE-2021-41819: A cookie prefix spoofing vulnerability in CGI::Cookie.parse.
+CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on date parsing methods.
+Vulnerable: &lt;= 2.1.5-2+deb8u12
+Fixed: 2.1.5-2+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2910017</td>
+<td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
+<td>3.7.15, 4.0.0-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
@@ -320,18 +349,6 @@ Fixed: 7.38.0-4+deb8u22</td>
 <td></td>
 </tr>
 <tr>
-<td>2815645</td>
-<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2815592</td>
-<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2813826</td>
 <td>Two security issues were found in TIFF, a widely used format for storing image data, as follows:
 CVE-2020-19131: Buffer Overflow in LibTiff allows attackers to cause a denial of service via the "invertImage()" function in the component "tiffcrop".
@@ -355,7 +372,7 @@ Fixed: 2.4.10-10+deb8u19</td>
 <tr>
 <td>2803044</td>
 <td>In an EVPN configuration with IP or MAC mobility, higher MM EVPN routes do not remove the old ARP entries during VIP migration between VTEP racks.</td>
-<td>3.7.14.2-3.7.15</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -2655,6 +2672,23 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2910862</td>
+<td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
+Vulnerable: &lt;= 0.13.62-3+deb8u2
+Fixed: 0.13.62-3+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2910861</td>
+<td>CVE-2021-41819: A cookie prefix spoofing vulnerability in CGI::Cookie.parse.
+CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on date parsing methods.
+Vulnerable: &lt;= 2.1.5-2+deb8u12
+Fixed: 2.1.5-2+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2896450</td>
 <td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
@@ -2879,18 +2913,6 @@ Fixed: 7.38.0-4+deb8u22</td>
 <td></td>
 </tr>
 <tr>
-<td>2815645</td>
-<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2815592</td>
-<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2813826</td>
 <td>Two security issues were found in TIFF, a widely used format for storing image data, as follows:
 CVE-2020-19131: Buffer Overflow in LibTiff allows attackers to cause a denial of service via the "invertImage()" function in the component "tiffcrop".
@@ -2914,7 +2936,7 @@ Fixed: 2.4.10-10+deb8u19</td>
 <tr>
 <td>2803044</td>
 <td>In an EVPN configuration with IP or MAC mobility, higher MM EVPN routes do not remove the old ARP entries during VIP migration between VTEP racks.</td>
-<td>3.7.14.2-3.7.15</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -5222,6 +5244,23 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2910862</td>
+<td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
+Vulnerable: &lt;= 0.13.62-3+deb8u2
+Fixed: 0.13.62-3+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2910861</td>
+<td>CVE-2021-41819: A cookie prefix spoofing vulnerability in CGI::Cookie.parse.
+CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on date parsing methods.
+Vulnerable: &lt;= 2.1.5-2+deb8u12
+Fixed: 2.1.5-2+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2896450</td>
 <td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
@@ -5423,18 +5462,6 @@ Fixed: 7.38.0-4+deb8u22</td>
 </tr>
 <tr>
 <td>2815646</td>
-<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2815645</td>
-<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2815592</td>
 <td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
 <td></td>
@@ -8329,6 +8356,23 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2910862</td>
+<td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
+Vulnerable: &lt;= 0.13.62-3+deb8u2
+Fixed: 0.13.62-3+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2910861</td>
+<td>CVE-2021-41819: A cookie prefix spoofing vulnerability in CGI::Cookie.parse.
+CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on date parsing methods.
+Vulnerable: &lt;= 2.1.5-2+deb8u12
+Fixed: 2.1.5-2+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2896450</td>
 <td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
@@ -8530,18 +8574,6 @@ Fixed: 7.38.0-4+deb8u22</td>
 </tr>
 <tr>
 <td>2815646</td>
-<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2815645</td>
-<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2815592</td>
 <td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
 <td></td>
@@ -11643,6 +11675,23 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2910862</td>
+<td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
+Vulnerable: &lt;= 0.13.62-3+deb8u2
+Fixed: 0.13.62-3+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2910861</td>
+<td>CVE-2021-41819: A cookie prefix spoofing vulnerability in CGI::Cookie.parse.
+CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on date parsing methods.
+Vulnerable: &lt;= 2.1.5-2+deb8u12
+Fixed: 2.1.5-2+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2896450</td>
 <td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
@@ -11844,18 +11893,6 @@ Fixed: 7.38.0-4+deb8u22</td>
 </tr>
 <tr>
 <td>2815646</td>
-<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2815645</td>
-<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2815592</td>
 <td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
 <td></td>
@@ -14814,6 +14851,23 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2910862</td>
+<td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
+Vulnerable: &lt;= 0.13.62-3+deb8u2
+Fixed: 0.13.62-3+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2910861</td>
+<td>CVE-2021-41819: A cookie prefix spoofing vulnerability in CGI::Cookie.parse.
+CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on date parsing methods.
+Vulnerable: &lt;= 2.1.5-2+deb8u12
+Fixed: 2.1.5-2+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2890648</td>
 <td>Some ECMP next-hops might fail installation into hardware at high ECMP group and route scale. The following log message will be observed when this condition occurs:
 {{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
@@ -17555,6 +17609,23 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2910862</td>
+<td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
+Vulnerable: &lt;= 0.13.62-3+deb8u2
+Fixed: 0.13.62-3+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2910861</td>
+<td>CVE-2021-41819: A cookie prefix spoofing vulnerability in CGI::Cookie.parse.
+CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on date parsing methods.
+Vulnerable: &lt;= 2.1.5-2+deb8u12
+Fixed: 2.1.5-2+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2890648</td>
 <td>Some ECMP next-hops might fail installation into hardware at high ECMP group and route scale. The following log message will be observed when this condition occurs:
 {{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
@@ -19731,6 +19802,23 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2910862</td>
+<td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
+Vulnerable: &lt;= 0.13.62-3+deb8u2
+Fixed: 0.13.62-3+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2910861</td>
+<td>CVE-2021-41819: A cookie prefix spoofing vulnerability in CGI::Cookie.parse.
+CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on date parsing methods.
+Vulnerable: &lt;= 2.1.5-2+deb8u12
+Fixed: 2.1.5-2+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2890648</td>
@@ -22213,6 +22301,23 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2910862</td>
+<td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
+Vulnerable: &lt;= 0.13.62-3+deb8u2
+Fixed: 0.13.62-3+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2910861</td>
+<td>CVE-2021-41819: A cookie prefix spoofing vulnerability in CGI::Cookie.parse.
+CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on date parsing methods.
+Vulnerable: &lt;= 2.1.5-2+deb8u12
+Fixed: 2.1.5-2+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2885241</td>
 <td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 3.26-1+debu8u13
@@ -24085,6 +24190,23 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2910862</td>
+<td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
+Vulnerable: &lt;= 0.13.62-3+deb8u2
+Fixed: 0.13.62-3+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2910861</td>
+<td>CVE-2021-41819: A cookie prefix spoofing vulnerability in CGI::Cookie.parse.
+CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on date parsing methods.
+Vulnerable: &lt;= 2.1.5-2+deb8u12
+Fixed: 2.1.5-2+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2885241</td>
@@ -26296,6 +26418,23 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2910862</td>
+<td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
+Vulnerable: &lt;= 0.13.62-3+deb8u2
+Fixed: 0.13.62-3+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2910861</td>
+<td>CVE-2021-41819: A cookie prefix spoofing vulnerability in CGI::Cookie.parse.
+CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on date parsing methods.
+Vulnerable: &lt;= 2.1.5-2+deb8u12
+Fixed: 2.1.5-2+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2885241</td>
 <td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 3.26-1+debu8u13
@@ -28250,6 +28389,23 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2910862</td>
+<td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
+Vulnerable: &lt;= 0.13.62-3+deb8u2
+Fixed: 0.13.62-3+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2910861</td>
+<td>CVE-2021-41819: A cookie prefix spoofing vulnerability in CGI::Cookie.parse.
+CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on date parsing methods.
+Vulnerable: &lt;= 2.1.5-2+deb8u12
+Fixed: 2.1.5-2+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2885241</td>
 <td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 3.26-1+debu8u13
@@ -29847,6 +30003,23 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2910862</td>
+<td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
+Vulnerable: &lt;= 0.13.62-3+deb8u2
+Fixed: 0.13.62-3+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2910861</td>
+<td>CVE-2021-41819: A cookie prefix spoofing vulnerability in CGI::Cookie.parse.
+CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on date parsing methods.
+Vulnerable: &lt;= 2.1.5-2+deb8u12
+Fixed: 2.1.5-2+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2885241</td>
@@ -31473,6 +31646,23 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2910862</td>
+<td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
+Vulnerable: &lt;= 0.13.62-3+deb8u2
+Fixed: 0.13.62-3+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2910861</td>
+<td>CVE-2021-41819: A cookie prefix spoofing vulnerability in CGI::Cookie.parse.
+CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on date parsing methods.
+Vulnerable: &lt;= 2.1.5-2+deb8u12
+Fixed: 2.1.5-2+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2885241</td>
@@ -33205,6 +33395,23 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2910862</td>
+<td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
+Vulnerable: &lt;= 0.13.62-3+deb8u2
+Fixed: 0.13.62-3+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2910861</td>
+<td>CVE-2021-41819: A cookie prefix spoofing vulnerability in CGI::Cookie.parse.
+CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on date parsing methods.
+Vulnerable: &lt;= 2.1.5-2+deb8u12
+Fixed: 2.1.5-2+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2885241</td>
@@ -34983,6 +35190,23 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2910862</td>
+<td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
+Vulnerable: &lt;= 0.13.62-3+deb8u2
+Fixed: 0.13.62-3+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2910861</td>
+<td>CVE-2021-41819: A cookie prefix spoofing vulnerability in CGI::Cookie.parse.
+CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on date parsing methods.
+Vulnerable: &lt;= 2.1.5-2+deb8u12
+Fixed: 2.1.5-2+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2885241</td>
 <td>CVE-2021-43527: nss, the Mozilla Network Security Service library, is prone to a heap overflow flaw when verifying DSA or RSA-PPS signatures, which could result in denial of service or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 3.26-1+debu8u13
@@ -36063,6 +36287,23 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2910862</td>
+<td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
+Vulnerable: &lt;= 0.13.62-3+deb8u2
+Fixed: 0.13.62-3+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2910861</td>
+<td>CVE-2021-41819: A cookie prefix spoofing vulnerability in CGI::Cookie.parse.
+CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on date parsing methods.
+Vulnerable: &lt;= 2.1.5-2+deb8u12
+Fixed: 2.1.5-2+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2885241</td>

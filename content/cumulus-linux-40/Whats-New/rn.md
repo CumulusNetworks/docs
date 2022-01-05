@@ -151,6 +151,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2910017"></a> [2910017](#2910017) <a name="2910017"></a> <br /> | SNMP reports the same <code>ifType</code> of <code>ethernetCsmacd(6)</code> for loopback interfaces. | 3.7.15, 4.0.0-4.4.2, 5.0.0 | |
 | <a name="2891257"></a> [2891257](#2891257) <a name="2891257"></a> <br /> | CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file<br />Vulnerable: <= 2.6.20-0+deb10u1Fixed: 2.6.20-0+deb10u2 | 4.0.0-4.4.2, 5.0.0 | |
 | <a name="2891256"></a> [2891256](#2891256) <a name="2891256"></a> <br /> | CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file<br />Vulnerable: <= 2.6.20-0+deb10u1Fixed: 2.6.20-0+deb10u2 | 4.0.0-4.4.2, 5.0.0 | |
 | <a name="2891255"></a> [2891255](#2891255) <a name="2891255"></a> <br /> | CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file<br />Vulnerable: <= 2.6.20-0+deb10u1Fixed: 2.6.20-0+deb10u2 | 4.0.0-4.4.1, 5.0.0 | 4.4.2|

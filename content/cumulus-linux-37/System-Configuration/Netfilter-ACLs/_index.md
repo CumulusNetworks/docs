@@ -539,7 +539,7 @@ rules you create live in the `/var/lib/cumulus/nclu/nclu_acl.conf` file,
 which gets converted to a rules file,
 `/etc/cumulus/acl/policy.d/50_nclu_acl.rules`. This way, the rules you
 create with NCLU are independent of the two default files in
-`/etc/cumulus/acl/policy.d/``00control_plane.rules` and
+`/etc/cumulus/acl/policy.d/00control_plane.rules` and
 `99control_plane_catch_all.rules`, as the content in these files might
 get updated after you upgrade Cumulus Linux.
 
@@ -1618,7 +1618,7 @@ disable atomic update mode.
 
 To do so, enable nonatomic update mode by setting the value for
 `acl.non_atomic_update_mode` to TRUE in `/etc/cumulus/switchd.conf`,
-then {{<link url="Configuring-switchd#restart-switchd" text="restart `switchd`">}}.
+then {{<link url="Configuring-switchd#restart-switchd" text="restart switchd">}}.
 
     acl.non_atomic_update_mode = TRUE
 
@@ -1647,7 +1647,7 @@ for ingress rules.
 On a Trident3 switch, you must enable nonatomic update mode before you
 can configure ERSPAN. To do so, set the value for
 `acl.non_atomic_update_mode` to TRUE in `/etc/cumulus/switchd.conf`,
-then {{<link url="Configuring-switchd#restart-switchd" text="restart `switchd`">}}.
+then {{<link url="Configuring-switchd#restart-switchd" text="restart switchd">}}.
 
     acl.non_atomic_update_mode = TRUE
 

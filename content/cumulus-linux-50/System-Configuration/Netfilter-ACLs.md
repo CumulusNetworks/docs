@@ -46,7 +46,7 @@ Rules have several different components:
 
 {{< img src = "/images/cumulus-linux/acl-anatomy-rule-50.png" >}}
 
-- **Table:** The first argument is the *table*. The second example does not specify a table; the filter table is the default.
+- **Table:** The first argument is the *table*.
 - **Chain:** The second argument is the *chain*. Each table supports several different chains. See {{<link url="#tables" text="Tables">}} above.
 - **Matches:** The third argument is the *match*. You can specify multiple matches in a single rule. However, the more matches you use in a rule, the more memory the rule consumes.
 - **Jump:** The *jump* specifies the target of the rule; what action to take if the packet matches the rule. If you omit this option in a rule, matching the rule has no effect on the packet, but the counters on the rule increment.
@@ -547,7 +547,7 @@ Rule 1: `-A FORWARD -o vlan100 -p icmp6 -j ACCEPT`
 
 Rule 2: `-A FORWARD -o vlan101 -p icmp6 -s 01::02 -j ACCEPT`
 
-Rule 1 matches all icmp6 packets from to all out interfaces in the ingress TCAM.`
+Rule 1 matches all icmp6 packets from to all out interfaces in the ingress TCAM.
 
 This prevents rule 2 from matching, which is more specific but with a different out interface. Make sure to put more specific matches above more general matches even if the output interfaces are different.
 

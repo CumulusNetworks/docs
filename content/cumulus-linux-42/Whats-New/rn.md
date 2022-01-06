@@ -14,6 +14,9 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2910017"></a> [2910017](#2910017) <a name="2910017"></a> <br /> | SNMP reports the same <code>ifType</code> of <code>ethernetCsmacd(6)</code> for loopback interfaces. | 3.7.15, 4.0.0-4.4.2, 5.0.0 | |
+| <a name="2902013"></a> [2902013](#2902013) <a name="2902013"></a> <br /> | The NCLU commit  command adds a five second delay. | 4.2.1-4.4.2 | |
+| <a name="2899414"></a> [2899414](#2899414) <a name="2899414"></a> <br /> | After you provision a new switch with ZTP,  you cannot reach the switch because the IP or default route on eth0 is deleted. This issue occurs when the system time is ahead of NTP time and the DHCP lease is acquired before ZTP synchronizes the system clock to the NTP clock<br />To work around this issue, flap eth0.  | 4.2.1-4.4.2, 5.0.0 | |
 | <a name="2891257"></a> [2891257](#2891257) <a name="2891257"></a> <br /> | CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file<br />Vulnerable: <= 2.6.20-0+deb10u1Fixed: 2.6.20-0+deb10u2 | 4.0.0-4.4.2, 5.0.0 | |
 | <a name="2891256"></a> [2891256](#2891256) <a name="2891256"></a> <br /> | CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file<br />Vulnerable: <= 2.6.20-0+deb10u1Fixed: 2.6.20-0+deb10u2 | 4.0.0-4.4.2, 5.0.0 | |
 | <a name="2891255"></a> [2891255](#2891255) <a name="2891255"></a> <br /> | CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file<br />Vulnerable: <= 2.6.20-0+deb10u1Fixed: 2.6.20-0+deb10u2 | 4.0.0-4.4.1, 5.0.0 | 4.4.2|
@@ -277,6 +280,9 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2910017"></a> [2910017](#2910017) <a name="2910017"></a> <br /> | SNMP reports the same <code>ifType</code> of <code>ethernetCsmacd(6)</code> for loopback interfaces. | 3.7.15, 4.0.0-4.4.2, 5.0.0 | |
+| <a name="2902013"></a> [2902013](#2902013) <a name="2902013"></a> <br /> | The NCLU commit  command adds a five second delay. | 4.2.1-4.4.2 | |
+| <a name="2899414"></a> [2899414](#2899414) <a name="2899414"></a> <br /> | After you provision a new switch with ZTP,  you cannot reach the switch because the IP or default route on eth0 is deleted. This issue occurs when the system time is ahead of NTP time and the DHCP lease is acquired before ZTP synchronizes the system clock to the NTP clock<br />To work around this issue, flap eth0.  | 4.2.1-4.4.2, 5.0.0 | |
 | <a name="2891257"></a> [2891257](#2891257) <a name="2891257"></a> <br /> | CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file<br />Vulnerable: <= 2.6.20-0+deb10u1Fixed: 2.6.20-0+deb10u2 | 4.0.0-4.4.2, 5.0.0 | |
 | <a name="2891256"></a> [2891256](#2891256) <a name="2891256"></a> <br /> | CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file<br />Vulnerable: <= 2.6.20-0+deb10u1Fixed: 2.6.20-0+deb10u2 | 4.0.0-4.4.2, 5.0.0 | |
 | <a name="2891255"></a> [2891255](#2891255) <a name="2891255"></a> <br /> | CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file<br />Vulnerable: <= 2.6.20-0+deb10u1Fixed: 2.6.20-0+deb10u2 | 4.0.0-4.4.1, 5.0.0 | 4.4.2|
@@ -655,6 +661,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2910017"></a> [2910017](#2910017) <a name="2910017"></a> <br /> | SNMP reports the same <code>ifType</code> of <code>ethernetCsmacd(6)</code> for loopback interfaces. | 3.7.15, 4.0.0-4.4.2, 5.0.0 | |
 | <a name="2891257"></a> [2891257](#2891257) <a name="2891257"></a> <br /> | CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file<br />Vulnerable: <= 2.6.20-0+deb10u1Fixed: 2.6.20-0+deb10u2 | 4.0.0-4.4.2, 5.0.0 | |
 | <a name="2891256"></a> [2891256](#2891256) <a name="2891256"></a> <br /> | CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file<br />Vulnerable: <= 2.6.20-0+deb10u1Fixed: 2.6.20-0+deb10u2 | 4.0.0-4.4.2, 5.0.0 | |
 | <a name="2891255"></a> [2891255](#2891255) <a name="2891255"></a> <br /> | CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file<br />Vulnerable: <= 2.6.20-0+deb10u1Fixed: 2.6.20-0+deb10u2 | 4.0.0-4.4.1, 5.0.0 | 4.4.2|

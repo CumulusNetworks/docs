@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2910017</td>
+<td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
+<td>3.7.15, 4.0.0-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2891257</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
@@ -3070,6 +3076,12 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2910017</td>
+<td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
+<td>3.7.15, 4.0.0-4.4.2, 5.0.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2891257</td>

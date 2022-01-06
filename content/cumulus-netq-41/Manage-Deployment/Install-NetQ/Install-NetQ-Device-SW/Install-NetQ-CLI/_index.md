@@ -343,7 +343,7 @@ You can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLin
 
 {{<tab "Cumulus Linux 4.x and above" >}}
 
-The `netq-apps` package is installed on Cumulus Linux 4.4 and above by default.
+Cumulus Linux 4.4 and above includes the `netq-apps` package by default.
 
 To add the repository, uncomment or add the following line in `/etc/apt/sources.list`:
 

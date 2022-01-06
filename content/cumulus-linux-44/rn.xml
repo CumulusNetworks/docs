@@ -7,9 +7,48 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2917487</td>
+<td>BGP unnumbered sessions with the subinterfaces do not establish if you use different passwords for BGP.</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2913859</td>
+<td>ECMP error messages, similar to the following, show in log files:
+
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_sdk_nexthop_wrap.c:361 ERR ECMP: cmd CREATE failed: No More Resources, nexthops 1
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_sdk_nexthop_wrap.c:621 ERR ECMP: failed to CREATE static ecmp in hw
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_sdk_nexthop_wrap.c:656 ERR ECMP: cmd CREATE failed: No More Resources, nexthops 1
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:1540 ERR ECMP: failed to allocate hw ecmp status No More Resources
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:1561 ERR ECMP: error allocating static ecmp
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find ecmp container
+</td>
+<td>4.4.0-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2910017</td>
+<td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
+<td>3.7.15, 4.0.0-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2904239</td>
 <td>If a ZTP script is executed without modifying network configuration (interface or routing configuration) and is configured to reboot the switch, ZTP might continue to run on subsequent reboots. To work around this issue, ensure ZTP modifies networking configuration in {{/etc/network/interfaces}} or {{/etc/frr.conf}}.</td>
 <td>4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2902013</td>
+<td>The NCLU commit  command adds a five second delay.</td>
+<td>4.2.1-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2899414</td>
+<td>After you provision a new switch with ZTP,  you cannot reach the switch because the IP or default route on eth0 is deleted. This issue occurs when the system time is ahead of NTP time and the DHCP lease is acquired before ZTP synchronizes the system clock to the NTP clock.
+To work around this issue, flap eth0. </td>
+<td>4.2.1-4.4.2, 5.0.0</td>
 <td></td>
 </tr>
 <tr>
@@ -159,6 +198,12 @@ To work around this issue, load the port configuration in a staggered manner (gr
 <td>5.0.0</td>
 </tr>
 <tr>
+<td>2860363</td>
+<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
+<td>4.4.0-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2855908</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
@@ -200,12 +245,6 @@ CVE-2017-9778: Vulnerability to a negative length field in DWARF section, result
 Vulnerable: crash 7.2.8-1+cl4u1 and 7.2.8-1+cl3u1 with embedded gdb 7.6
 Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>3.7.15-4.4.2</td>
-<td>5.0.0</td>
-</tr>
-<tr>
-<td>2839140</td>
-<td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
-<td>4.3.0-4.4.2</td>
 <td>5.0.0</td>
 </tr>
 <tr>
@@ -271,18 +310,6 @@ To work around this issue, run the {{sudo systemctl restart snmpd.service}} comm
 <td></td>
 </tr>
 <tr>
-<td>2815645</td>
-<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2815592</td>
-<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2804044</td>
 <td>The SDK process sx_core prints the messages shown below and the switch stops forwarding traffic.
 
@@ -290,6 +317,12 @@ kernel: sx_core: Did not receive completion for SDQ dqn (1) idx (849) after 10 s
 kernel: sx_core: __sx_core_post_send: Cannot send packet on dqn [1] sdq stuck
 </td>
 <td>4.4.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2803044</td>
+<td>In an EVPN configuration with IP or MAC mobility, higher MM EVPN routes do not remove the old ARP entries during VIP migration between VTEP racks.</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -859,12 +892,6 @@ NVIDIA does not recommend running NTP with a source interface other than eth0 as
 To work around this issue, reboot the switch to clear the condition. Avoid setting the interface speed or duplex mode directly with ethtool.</td>
 <td>3.7.12-3.7.15, 4.0.0-4.4.2</td>
 <td></td>
-</tr>
-<tr>
-<td>2553104</td>
-<td>SPAN to CPU in Spectrum1 and SpectrumA1 isn't supported.</td>
-<td>4.3.0-4.4.2</td>
-<td>5.0.0</td>
 </tr>
 <tr>
 <td>2553015</td>
@@ -1726,6 +1753,11 @@ Fixed: 3.42.1-1+deb10u4</td>
 <td>4.0.0-4.4.1</td>
 </tr>
 <tr>
+<td>2854785</td>
+<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
+<td>4.3.0-4.4.1</td>
+</tr>
+<tr>
 <td>2848204</td>
 <td>FRR does not prevent EVPN routes from being imported into VNIs when they are not needed. For example, you can import a type-5 route into a layer 2 VNI if the configured import route target matches the route target on the type-5 route. When this occurs, the network address of the IP prefix carried within the type-5 route incorrectly shows as a remote VTEP for the layer 2 VNI in the {{net show evpn vni &lt;l2vni&gt;}} command output. For example:
 
@@ -1765,6 +1797,11 @@ Fixed: 4.1.0+git191117-2~deb10u3</td>
 <td>2840818</td>
 <td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
 <td>4.0.0-4.4.1</td>
+</tr>
+<tr>
+<td>2839140</td>
+<td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
+<td>4.3.0-4.4.1</td>
 </tr>
 <tr>
 <td>2802207</td>
@@ -1894,6 +1931,45 @@ Fixed: 1.24.1-1+deb 10u1</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2917487</td>
+<td>BGP unnumbered sessions with the subinterfaces do not establish if you use different passwords for BGP.</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2913859</td>
+<td>ECMP error messages, similar to the following, show in log files:
+
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_sdk_nexthop_wrap.c:361 ERR ECMP: cmd CREATE failed: No More Resources, nexthops 1
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_sdk_nexthop_wrap.c:621 ERR ECMP: failed to CREATE static ecmp in hw
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_sdk_nexthop_wrap.c:656 ERR ECMP: cmd CREATE failed: No More Resources, nexthops 1
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:1540 ERR ECMP: failed to allocate hw ecmp status No More Resources
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:1561 ERR ECMP: error allocating static ecmp
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find ecmp container
+</td>
+<td>4.4.0-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2910017</td>
+<td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
+<td>3.7.15, 4.0.0-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2902013</td>
+<td>The NCLU commit  command adds a five second delay.</td>
+<td>4.2.1-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2899414</td>
+<td>After you provision a new switch with ZTP,  you cannot reach the switch because the IP or default route on eth0 is deleted. This issue occurs when the system time is ahead of NTP time and the DHCP lease is acquired before ZTP synchronizes the system clock to the NTP clock.
+To work around this issue, flap eth0. </td>
+<td>4.2.1-4.4.2, 5.0.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2896733</td>
@@ -2084,6 +2160,12 @@ To work around this issue, load the port configuration in a staggered manner (gr
 <td>5.0.0</td>
 </tr>
 <tr>
+<td>2860363</td>
+<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
+<td>4.4.0-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2859177</td>
 <td>The {{cl-route-check --layer3}} command fails with a memory error. For example:
 
@@ -2123,8 +2205,8 @@ thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 <td>4.4.2</td>
 </tr>
 <tr>
-<td>2854784</td>
-<td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
+<td>2854785</td>
+<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
 <td>4.3.0-4.4.1</td>
 <td>4.4.2</td>
 </tr>
@@ -2212,8 +2294,8 @@ Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <tr>
 <td>2839140</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
-<td>4.3.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.3.0-4.4.1</td>
+<td>4.4.2</td>
 </tr>
 <tr>
 <td>2837378</td>
@@ -2278,18 +2360,6 @@ To work around this issue, run the {{sudo systemctl restart snmpd.service}} comm
 <td></td>
 </tr>
 <tr>
-<td>2815645</td>
-<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2815592</td>
-<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2804044</td>
 <td>The SDK process sx_core prints the messages shown below and the switch stops forwarding traffic.
 
@@ -2297,6 +2367,12 @@ kernel: sx_core: Did not receive completion for SDQ dqn (1) idx (849) after 10 s
 kernel: sx_core: __sx_core_post_send: Cannot send packet on dqn [1] sdq stuck
 </td>
 <td>4.4.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2803044</td>
+<td>In an EVPN configuration with IP or MAC mobility, higher MM EVPN routes do not remove the old ARP entries during VIP migration between VTEP racks.</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -2999,12 +3075,6 @@ NVIDIA does not recommend running NTP with a source interface other than eth0 as
 To work around this issue, reboot the switch to clear the condition. Avoid setting the interface speed or duplex mode directly with ethtool.</td>
 <td>3.7.12-3.7.15, 4.0.0-4.4.2</td>
 <td></td>
-</tr>
-<tr>
-<td>2553104</td>
-<td>SPAN to CPU in Spectrum1 and SpectrumA1 isn't supported.</td>
-<td>4.3.0-4.4.2</td>
-<td>5.0.0</td>
 </tr>
 <tr>
 <td>2553015</td>

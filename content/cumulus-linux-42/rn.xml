@@ -7,6 +7,25 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2910017</td>
+<td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
+<td>3.7.15, 4.0.0-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2902013</td>
+<td>The NCLU commit  command adds a five second delay.</td>
+<td>4.2.1-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2899414</td>
+<td>After you provision a new switch with ZTP,  you cannot reach the switch because the IP or default route on eth0 is deleted. This issue occurs when the system time is ahead of NTP time and the DHCP lease is acquired before ZTP synchronizes the system clock to the NTP clock.
+To work around this issue, flap eth0. </td>
+<td>4.2.1-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2891257</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
@@ -1991,6 +2010,25 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2910017</td>
+<td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
+<td>3.7.15, 4.0.0-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2902013</td>
+<td>The NCLU commit  command adds a five second delay.</td>
+<td>4.2.1-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2899414</td>
+<td>After you provision a new switch with ZTP,  you cannot reach the switch because the IP or default route on eth0 is deleted. This issue occurs when the system time is ahead of NTP time and the DHCP lease is acquired before ZTP synchronizes the system clock to the NTP clock.
+To work around this issue, flap eth0. </td>
+<td>4.2.1-4.4.2, 5.0.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2891257</td>
@@ -4887,6 +4925,12 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2910017</td>
+<td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
+<td>3.7.15, 4.0.0-4.4.2, 5.0.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2891257</td>

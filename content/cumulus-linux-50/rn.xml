@@ -7,6 +7,45 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2917487</td>
+<td>BGP unnumbered sessions with the subinterfaces do not establish if you use different passwords for BGP.</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2914835</td>
+<td>NVUE flexible snippets create invalid YAML files.</td>
+<td>5.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2913859</td>
+<td>ECMP error messages, similar to the following, show in log files:
+
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_sdk_nexthop_wrap.c:361 ERR ECMP: cmd CREATE failed: No More Resources, nexthops 1
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_sdk_nexthop_wrap.c:621 ERR ECMP: failed to CREATE static ecmp in hw
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_sdk_nexthop_wrap.c:656 ERR ECMP: cmd CREATE failed: No More Resources, nexthops 1
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:1540 ERR ECMP: failed to allocate hw ecmp status No More Resources
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:1561 ERR ECMP: error allocating static ecmp
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find ecmp container
+</td>
+<td>4.4.0-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2910017</td>
+<td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
+<td>3.7.15, 4.0.0-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2899414</td>
+<td>After you provision a new switch with ZTP,  you cannot reach the switch because the IP or default route on eth0 is deleted. This issue occurs when the system time is ahead of NTP time and the DHCP lease is acquired before ZTP synchronizes the system clock to the NTP clock.
+To work around this issue, flap eth0. </td>
+<td>4.2.1-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
@@ -99,6 +138,12 @@ To work around this issue, restart {{switchd}} with {{sudo systemctl restart swi
 <td></td>
 </tr>
 <tr>
+<td>2860363</td>
+<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
+<td>4.4.0-4.4.1, 5.0.0</td>
+<td>4.4.2</td>
+</tr>
+<tr>
 <td>2859015</td>
 <td>In a static VXLAN configuration with a traditional VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
 
@@ -124,6 +169,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <tr>
 <td>2847755</td>
 <td>When you use NCLU to remove the configuration for a peer that is a member of a group but also has other peer-specific configuration, you must remove the peer-specific configuration before you delete the peer in a separate NCLU commit.</td>
+<td>5.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2847618</td>
+<td>When you enable PIM on VLAN interfaces, multicast throughput might not achieve line rate depending on packet sizes in the multicast flow.</td>
 <td>5.0.0</td>
 <td></td>
 </tr>
@@ -203,7 +254,7 @@ Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <tr>
 <td>2839140</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
-<td>4.3.0-4.4.2</td>
+<td>4.3.0-4.4.1</td>
 </tr>
 <tr>
 <td>2835817</td>
@@ -416,11 +467,6 @@ Fixed: 1.24.1-1+deb 10u1</td>
 <td>If you apply an outbound route map to a BGP peer that uses {{set as-path prepend last-as}}, advertised locally-originated routes have the ASN of the peer prepended to the AS path.
 This might trigger AS path loop prevention on the peer, where the peer ignores locally-originated prefixes.</td>
 <td>4.2.1-4.4.2</td>
-</tr>
-<tr>
-<td>2553104</td>
-<td>SPAN to CPU in Spectrum1 and SpectrumA1 isn't supported.</td>
-<td>4.3.0-4.4.2</td>
 </tr>
 </table>
 </tables>

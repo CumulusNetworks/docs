@@ -1164,7 +1164,7 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!--
 ### Combined Rules
 
 {{< tabs "1118 ">}}
@@ -1206,7 +1206,7 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
-
+-->
 ### Layer 2 Rules (ebtables)
 
 The following rule blocks any traffic with source MAC address 00:00:00:00:00:12 and destination MAC address 08:9e:01:ce:e2:04 going from any switch port egress or ingress.

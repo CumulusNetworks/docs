@@ -734,7 +734,7 @@ Rule 1: `-A FORWARD --out-interface vlan100 -p icmp6 -j ACCEPT`
 
 Rule 2: `-A FORWARD --out-interface vlan101 -p icmp6 -s 01::02 -j ACCEPT`
 
-Rule 1 matches all icmp6 packets from to all out interfaces in the ingress TCAM.`
+Rule 1 matches all icmp6 packets from to all out interfaces in the ingress TCAM.
 
 This prevents rule 2 from getting matched, which is more specific but with a different out interface. Make sure to put more specific matches above more general matches even if the output interfaces are different.
 

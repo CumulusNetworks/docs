@@ -38,7 +38,6 @@ cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 remote-as external
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 remote-as external
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.1.10.0/24
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf01:~$ nv config apply
 ```

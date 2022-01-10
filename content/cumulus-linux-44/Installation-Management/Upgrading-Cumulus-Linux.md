@@ -109,7 +109,7 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
 
 The decision to upgrade Cumulus Linux by either installing a Cumulus Linux image or upgrading packages depends on your environment and your preferences. Here are some recommendations for each upgrade method.
 
-**Installing a Cumulus Linux image** is best if you are performing a rolling upgrade in a production environment and if are using up-to-date and comprehensive automation scripts. This upgrade method enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 3.7.14 to 4.4.0). 
+**Install a Cumulus Linux image** if you are performing a rolling upgrade in a production environment and if are using up-to-date and comprehensive automation scripts. This upgrade method enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 3.7.14 to 4.4.0).
 
 {{%notice note%}}
 To upgrade to Cumulus Linux 4.4.0 from a previous release, you must install a Cumulus Linux image; package upgrade is not supported.
@@ -125,7 +125,7 @@ Be aware of the following when installing the Cumulus Linux image:
 - If configuration files do not restore correctly and you cannot ssh to the switch from in-band management, you must use out-of-band connectivity (eth0 or console).
 - You *must* reinstall and reconfigure third-party applications after upgrade.
 
-**Package upgrade** is best if you are upgrading from Cumulus Linux 4.4.0 to a later 4.4.x release, or if you use third-party applications. Package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install.
+**Run Package upgrade** if you are upgrading from Cumulus Linux 4.4.0 to a later 4.4.x release, or if you use third-party applications. Package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install.
 
 Be aware of the following when upgrading packages:
 

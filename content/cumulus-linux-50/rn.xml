@@ -1,5 +1,5 @@
 <tables>
-<table name="Open Issues in 5.0.0">
+<table name="Open Issues in 5.0.1">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -9,13 +9,7 @@
 <tr>
 <td>2917487</td>
 <td>BGP unnumbered sessions with the subinterfaces do not establish if you use different passwords for BGP.</td>
-<td>3.7.15, 4.3.0-4.4.0, 5.0.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2914835</td>
-<td>NVUE flexible snippets create invalid YAML files.</td>
-<td>5.0.0</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -29,18 +23,218 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:1540 ERR ECMP: failed to allo
 Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:1561 ERR ECMP: error allocating static ecmp
 Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find ecmp container
 </td>
-<td>4.4.0, 5.0.0</td>
+<td>4.4.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2910017</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
-<td>3.7.15, 4.0.0-4.4.0, 5.0.0</td>
+<td>3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2899414</td>
+<td>After you provision a new switch with ZTP,  you cannot reach the switch because the IP or default route on eth0 is deleted. This issue occurs when the system time is ahead of NTP time and the DHCP lease is acquired before ZTP synchronizes the system clock to the NTP clock.
+To work around this issue, flap eth0. </td>
+<td>4.2.1-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2896733</td>
+<td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
+To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2895333</td>
+<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
+<td>4.4.0-4.4.1, 5.0.0-5.0.1</td>
+<td>4.4.2</td>
+</tr>
+<tr>
+<td>2891257</td>
+<td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
+Vulnerable: &lt;= 2.6.20-0+deb10u1
+Fixed: 2.6.20-0+deb10u2</td>
+<td>4.0.0-4.4.1, 5.0.0-5.0.1</td>
+<td>4.4.2</td>
+</tr>
+<tr>
+<td>2891256</td>
+<td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
+Vulnerable: &lt;= 2.6.20-0+deb10u1
+Fixed: 2.6.20-0+deb10u2</td>
+<td>4.0.0-4.4.1, 5.0.0-5.0.1</td>
+<td>4.4.2</td>
+</tr>
+<tr>
+<td>2891255</td>
+<td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
+Vulnerable: &lt;= 2.6.20-0+deb10u1
+Fixed: 2.6.20-0+deb10u2</td>
+<td>4.0.0-4.4.1, 5.0.0-5.0.1</td>
+<td>4.4.2</td>
+</tr>
+<tr>
+<td>2890683</td>
+<td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
+Vulnerable: 2.6.0+dfsg.1-1
+Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
+<td>4.0.0-4.4.1, 5.0.0-5.0.1</td>
+<td>4.4.2</td>
+</tr>
+<tr>
+<td>2890682</td>
+<td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
+Vulnerable: 2.6.0+dfsg.1-1
+Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
+<td>4.0.0-4.4.1, 5.0.0-5.0.1</td>
+<td>4.4.2</td>
+</tr>
+<tr>
+<td>2890681</td>
+<td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
+Vulnerable: 2.6.0+dfsg.1-1
+Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
+<td>4.0.0-4.4.1, 5.0.0-5.0.1</td>
+<td>4.4.2</td>
+</tr>
+<tr>
+<td>2886488</td>
+<td>NVUE commands fail to configure port mirroring.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2873053</td>
+<td>When any host side bond member port is brought admin down and up (ifdown/ifup) in an EVPN Multihoming scenario, sometimes the VTEP doesn't program the local MAC addresses in hardware.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2872277</td>
+<td>The NVUE {{nv set router bgp wait-for-install on}} command fails to enable BGP suppress route advertisement.
+To work around this issue, restart {{switchd}} with {{sudo systemctl restart switchd.service}} after you run the NVUE command. </td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2868301</td>
+<td>The {{validate-ports -d}} command does not return the correct speeds for ports. Use the speeds specified in the {{/etc/cumulus/ports.conf}} file.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2867248</td>
+<td>The {{validate-ports -d}} command does not return the correct speeds for ports. Use the speeds specified in the {{/etc/cumulus/ports.conf}} file.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2860363</td>
+<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
+<td>4.4.0-4.4.1, 5.0.0-5.0.1</td>
+<td>4.4.2</td>
+</tr>
+<tr>
+<td>2859015</td>
+<td>In a static VXLAN configuration with a traditional VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
+
+warning: vni10: possible mis-configuration detected: l2-vni configured with bridge-learning ON while EVPN is also configured - these two parameters conflict with each other.
+</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2855908</td>
+<td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
+To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2847919</td>
+<td>Configuring a router with the REST API through the switch front panel ports (swps) is supported in the default VRF only.
+To work around this issue, use the localHost IP address or the MGMT IP address to configure router using the Rest API.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2847755</td>
+<td>When you use NCLU to remove the configuration for a peer that is a member of a group but also has other peer-specific configuration, you must remove the peer-specific configuration before you delete the peer in a separate NCLU commit.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2847618</td>
+<td>When you enable PIM on VLAN interfaces, multicast throughput might not achieve line rate depending on packet sizes in the multicast flow.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2823307</td>
+<td>Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2812075</td>
+<td>When you configure PIM, you can either configure RP mappings for different multicast groups or use a prefix list to specify the RP to group mapping. You cannot use the two methods together.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+</table>
+<table name="Fixed Issues in 5.0.1">
+<tr>
+<th> Issue ID </th>
+<th> Description </th>
+<th> Affects </th>
+</tr>
+<tr>
+<td>2908541</td>
+<td>Running {{apt dist-upgrade}} causes {{switchd}} to stop and never start again.  Do not use {{apt dist-upgrade}}; use {{apt upgrade}} instead. Cumulus Linux does not support {{apt dist-upgrade}}.
+To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no longer works, run the {{apt install sx-sdk-eth-dev}} command (and run the command for any other removed package) or reinstall the Cumulus Linux image.</td>
+<td>5.0.0</td>
+</tr>
+</table>
+<table name="Open Issues in 5.0.0">
+<tr>
+<th> Issue ID </th>
+<th> Description </th>
+<th> Affects </th>
+<th> Fixed </th>
+</tr>
+<tr>
+<td>2917487</td>
+<td>BGP unnumbered sessions with the subinterfaces do not establish if you use different passwords for BGP.</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2913859</td>
+<td>ECMP error messages, similar to the following, show in log files:
+
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_sdk_nexthop_wrap.c:361 ERR ECMP: cmd CREATE failed: No More Resources, nexthops 1
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_sdk_nexthop_wrap.c:621 ERR ECMP: failed to CREATE static ecmp in hw
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_sdk_nexthop_wrap.c:656 ERR ECMP: cmd CREATE failed: No More Resources, nexthops 1
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:1540 ERR ECMP: failed to allocate hw ecmp status No More Resources
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:1561 ERR ECMP: error allocating static ecmp
+Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find ecmp container
+</td>
+<td>4.4.0-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2910017</td>
+<td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
+<td>3.7.15, 4.0.0-4.4.2, 5.0.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2908541</td>
-<td>Running {{apt dist-upgrade}} causes {{switchd}} to stop and never start again.  Do not use {{apt dist-upgrade}}; use {{apt upgrade}} instead.</td>
+<td>Running {{apt dist-upgrade}} causes {{switchd}} to stop and never start again.  Do not use {{apt dist-upgrade}}; use {{apt upgrade}} instead. Cumulus Linux does not support {{apt dist-upgrade}}.
+To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no longer works, run the {{apt install sx-sdk-eth-dev}} command (and run the command for any other removed package) or reinstall the Cumulus Linux image.</td>
 <td>5.0.0</td>
 <td></td>
 </tr>
@@ -48,69 +242,69 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>2899414</td>
 <td>After you provision a new switch with ZTP,  you cannot reach the switch because the IP or default route on eth0 is deleted. This issue occurs when the system time is ahead of NTP time and the DHCP lease is acquired before ZTP synchronizes the system clock to the NTP clock.
 To work around this issue, flap eth0. </td>
-<td>4.2.1-4.4.0, 5.0.0</td>
+<td>4.2.1-4.4.2, 5.0.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15, 4.3.0-4.4.0, 5.0.0</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2895333</td>
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0, 5.0.0</td>
-<td></td>
+<td>4.4.0-4.4.1, 5.0.0</td>
+<td>4.4.2</td>
 </tr>
 <tr>
 <td>2891257</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.0, 5.0.0</td>
-<td></td>
+<td>4.0.0-4.4.1, 5.0.0</td>
+<td>4.4.2</td>
 </tr>
 <tr>
 <td>2891256</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.0, 5.0.0</td>
-<td></td>
+<td>4.0.0-4.4.1, 5.0.0</td>
+<td>4.4.2</td>
 </tr>
 <tr>
 <td>2891255</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.0, 5.0.0</td>
-<td></td>
+<td>4.0.0-4.4.1, 5.0.0</td>
+<td>4.4.2</td>
 </tr>
 <tr>
 <td>2890683</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.0, 5.0.0</td>
-<td></td>
+<td>4.0.0-4.4.1, 5.0.0</td>
+<td>4.4.2</td>
 </tr>
 <tr>
 <td>2890682</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.0, 5.0.0</td>
-<td></td>
+<td>4.0.0-4.4.1, 5.0.0</td>
+<td>4.4.2</td>
 </tr>
 <tr>
 <td>2890681</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.0, 5.0.0</td>
-<td></td>
+<td>4.0.0-4.4.1, 5.0.0</td>
+<td>4.4.2</td>
 </tr>
 <tr>
 <td>2886488</td>
@@ -146,8 +340,8 @@ To work around this issue, restart {{switchd}} with {{sudo systemctl restart swi
 <tr>
 <td>2860363</td>
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0, 5.0.0</td>
-<td></td>
+<td>4.4.0-4.4.1, 5.0.0</td>
+<td>4.4.2</td>
 </tr>
 <tr>
 <td>2859015</td>
@@ -162,7 +356,7 @@ warning: vni10: possible mis-configuration detected: l2-vni configured with brid
 <td>2855908</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15, 4.3.0-4.4.0, 5.0.0</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0</td>
 <td></td>
 </tr>
 <tr>
@@ -208,23 +402,23 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>CVE-2021-43527: The NSS package is vulnerable to a heap overflow when verifying DSA/RSA-PSS DER-encoded signatures.
 Vulnerable: &lt;= 3.42.1-1+deb10u3
 Fixed: 3.42.1-1+deb10u4</td>
-<td>4.0.0-4.4.0</td>
+<td>4.0.0-4.4.1</td>
 </tr>
 <tr>
 <td>2873320</td>
 <td>CVE-2020-21913: International Components for Unicode (ICU-20850) v66.1 was discovered to contain a use after free bug in the pkg_createWithAssemblyCode function in the file tools/pkgdata/pkgdata.cpp.</td>
-<td>4.0.0-4.4.0</td>
+<td>4.0.0-4.4.1</td>
 </tr>
 <tr>
 <td>2873186</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when adding new VLANS or bridges. </td>
-<td>3.7.14.2-4.4.0</td>
+<td>3.7.14.2-4.4.2</td>
 </tr>
 <tr>
 <td>2862211</td>
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
 To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
-<td>3.7.12-4.4.0</td>
+<td>3.7.12-4.4.2</td>
 </tr>
 <tr>
 <td>2845647</td>
@@ -236,12 +430,12 @@ To work around this issue, load the port configuration in a staggered manner (gr
 <td>CVE-2020-19143: A flaw was discovered in tiff, a Tag Image File Format library, which may result in denial of service or the execution of arbitrary code if malformed image files are processed.
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u2
 Fixed: 4.1.0+git191117-2~deb10u3</td>
-<td>4.0.0-4.4.0</td>
+<td>4.0.0-4.4.1</td>
 </tr>
 <tr>
 <td>2845531</td>
 <td>If you update the MAC address of an SVI when the SVI is in a {{protodown}} state (for example, when no bridge ports that carry this VNI are operationally up or if the MAC address of the SVI's parent bridge changes), {{clagd}} does not notice the change. The MLAG peer incorrectly maintains a PERMANENT neighbor entry for the SVI IP that points to the old MAC address.</td>
-<td>4.2.1-4.4.0</td>
+<td>4.2.1-4.4.2</td>
 </tr>
 <tr>
 <td>2845290</td>
@@ -250,22 +444,27 @@ CVE-2019-1010180: Buffer overflow which can be triggered by debugging an ELF fil
 CVE-2017-9778: Vulnerability to a negative length field in DWARF section, resulting in excessive memory allocation.
 Vulnerable: crash 7.2.8-1+cl4u1 and 7.2.8-1+cl3u1 with embedded gdb 7.6
 Fixed: crash 7.2.8-1+cl5.0.0u6</td>
-<td>3.7.15-4.4.0</td>
+<td>3.7.15-4.4.2</td>
 </tr>
 <tr>
 <td>2840817</td>
 <td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
-<td>4.0.0-4.4.0</td>
+<td>4.0.0-4.4.1</td>
 </tr>
 <tr>
 <td>2839140</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
-<td>4.3.0-4.4.0</td>
+<td>4.3.0-4.4.1</td>
 </tr>
 <tr>
 <td>2835817</td>
 <td>Multicast packets are not seen on a SPAN port.</td>
 <td></td>
+</tr>
+<tr>
+<td>2826121</td>
+<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
+<td>4.3.0-4.4.1</td>
 </tr>
 <tr>
 <td>2821869</td>
@@ -287,7 +486,7 @@ Traceback (most recent call last):
   obj, end = self.scan_once(s, idx)
 MemoryError
 </td>
-<td>3.7.15-4.4.0</td>
+<td>3.7.15-4.4.2</td>
 </tr>
 <tr>
 <td>2820565</td>
@@ -301,28 +500,28 @@ snmpd.service - Simple Network Management Protocol (SNMP) Daemon.
  Main PID: 1987 (code=exited, status=1/FAILURE)
 
 To work around this issue, run the {{sudo systemctl restart snmpd.service}} command.</td>
-<td>4.3.0-4.4.0</td>
+<td>4.3.0-4.4.2</td>
 </tr>
 <tr>
 <td>2799575</td>
 <td>When next hop tracking fails for a global next hop, BGP invalidates the entire path instead of only invalidating the global next hop.</td>
-<td>4.4.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2799568</td>
 <td>When you add or remove a global unicast address from an interface, BGP does not update the global next hop advertised to the unnumbered BGP peer.</td>
-<td>4.4.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2798406</td>
 <td>If an MLAG failure of an EVPN Active-Active VTEP pair occurs after you disable EVPN Advertise Primary IP Address, remote VTEPs might not be able to install the anycast RMAC of the failed MLAG peers or the related bridge FDB entry.
 To work around this issue, do not disable EVPN Advertise Primary IP Address, which is enabled by default when you use {{address-virtual}} for layer 3 VNI SVI interfaces.</td>
-<td>4.4.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2792616</td>
 <td>If a neighbor entry (ARP or NDP) is used as a next hop of a route that is synchronized into hardware, the neighbor entry is not removed from hardware after the neighbor is no longer reachable.  As a result, routed traffic matching this prefix is incorrectly hardware forwarded through the stale neighbor information.</td>
-<td>4.3.0-4.4.0</td>
+<td>4.3.0-4.4.2</td>
 </tr>
 <tr>
 <td>2782032</td>
@@ -332,41 +531,41 @@ CVE-2021-3712: buffer overrun when processing ASN.1 strings in the X509_aux_prin
 More details at https://www.openssl.org/news/secadv/20210824.txt .
 Vulnerable: &lt;= 1.1.1d-0+deb10u6
 Fixed: 1.1.1d-0+deb10u7</td>
-<td>4.0.0-4.4.0</td>
+<td>4.0.0-4.4.1</td>
 </tr>
 <tr>
 <td>2780915</td>
 <td>In NVUE, you can't deactivate the IPv4 address family per neighbor.</td>
-<td>4.4.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2780834</td>
 <td>To enable an address family on a peer, you have to enable the address family  globally.</td>
-<td>4.4.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2780211</td>
 <td>When you use the NVUE {{nv set vrf default router bgp peer &lt;peer&gt; local-as asn &lt;asn&gt;}} command to configure a local AS, Cumulus Linux does not update the {{etc/frr/frr.conf}} file.</td>
-<td>4.4.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2755615</td>
 <td>When {{route_preferred_over_neigh}} is set to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
-<td>4.0.0-4.4.0</td>
+<td>4.0.0-4.4.1</td>
 </tr>
 <tr>
 <td>2754690</td>
 <td>CVE-2021-3672: in c-ares, a library that performs DNS requests and name resolution asynchronously, missing input validation of hostnames returned by DNS servers can lead to output of wrong hostnames (leading to Domain Hijacking).
 Vulnerable: 1.14.0-1
 Fixed: 1.14.0-1+deb10u1</td>
-<td>4.0.0-4.4.0</td>
+<td>4.0.0-4.4.1</td>
 </tr>
 <tr>
 <td>2754684</td>
 <td>CVE-2021-38165: lynx, a non-graphical (text-mode) web browser, does not properly handle the userinfo subcomponent of a URI, which can lead to leaking of credential in cleartext in SNI data.
 Vulnerable: 2.8.9rel.1-3
 Fixed: 2.8.9rel.1-3+deb10u1</td>
-<td>4.0.0-4.4.0</td>
+<td>4.0.0-4.4.1</td>
 </tr>
 <tr>
 <td>2754678</td>
@@ -374,17 +573,17 @@ Fixed: 2.8.9rel.1-3+deb10u1</td>
 CVE-2020-27153: a double free flaw in the disconnect_cb() routine in the gattool. A remote attacker can take advantage of this flaw during service discovery for denial of service, or potentially, execution of arbitrary code.
 Vulnerable: &lt;= 5.50-1.2~deb10u1
 Fixed: 5.50-1.2~deb10u2</td>
-<td>4.0.0-4.4.0</td>
+<td>4.0.0-4.4.1</td>
 </tr>
 <tr>
 <td>2752330</td>
 <td>With BGP and layer 2 forwarding, Smart System Manager warm boot mode can cause packet loss.</td>
-<td>4.4.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2747750</td>
 <td>Links connected between a Spectrum 2 switch configured for warm boot and Spectrum 3 switches configured for cold boot might not come up when the switches are booted.</td>
-<td></td>
+<td>4.4.2</td>
 </tr>
 <tr>
 <td>2747604</td>
@@ -394,19 +593,19 @@ or potentially the execution of arbitrary code when processing a
 malformed audio file.
 Vulnerable: 1.0.28-6
 Fixed: 1.0.28-6+deb10u1</td>
-<td>4.0.0-4.4.0</td>
+<td>4.0.0-4.4.1</td>
 </tr>
 <tr>
 <td>2739638</td>
 <td>CVE-2021-36222: It was discovered that the Key Distribution Center (KDC) in krb5, the MIT implementation of Kerberos, is prone to a NULL pointer dereference flaw. An unauthenticated attacker can take advantage of this flaw to cause a denial of service (KDC crash) by sending a request containing a PA-ENCRYPTED-CHALLENGE padata element without using FAST.
 Vulnerable: &lt;= 1.17-3+deb10u1
 Fixed: 1.17-3+deb10u2</td>
-<td>4.0.0-4.4.0</td>
+<td>4.0.0-4.4.1</td>
 </tr>
 <tr>
 <td>2739402</td>
 <td>The destination MAC address of ERSPAN GRE packets is set to all zeros.</td>
-<td>4.3.0-4.4.0</td>
+<td>4.3.0-4.4.2</td>
 </tr>
 <tr>
 <td>2736249</td>
@@ -419,7 +618,7 @@ See "systemctl status frr.service" and "journalctl -xe" for details.</td>
 <td>2736244</td>
 <td>When you run the vtysh command to enable BGP graceful restart on a peer multiple times, the command fails with the following error:
 % The Graceful Restart command used is not valid at this moment.</td>
-<td>4.4.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2734275</td>
@@ -433,46 +632,46 @@ Device is not ready: absent
 <tr>
 <td>2734119</td>
 <td>The ESI line of {{show bgp l2vpn evpn route}} command always shows VNI: 0. This is a cosmetic software issue.</td>
-<td>4.3.0-4.4.0</td>
+<td>4.3.0-4.4.2</td>
 </tr>
 <tr>
 <td>2732587</td>
 <td>The bridge MAC address is updated during a port change on bridge interfaces.</td>
-<td>4.3.0-4.4.0</td>
+<td>4.3.0-4.4.2</td>
 </tr>
 <tr>
 <td>2728119</td>
 <td>When VRF devices are deleted and reconfigured (for example, during a networking service restart), dynamic BGP neighbors might fail to reestablish. 
 To work around this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
-<td>4.3.0-4.4.0</td>
+<td>4.3.0-4.4.2</td>
 </tr>
 <tr>
 <td>2716838</td>
 <td>CVE-2021-22918: An out-of-bounds read was discovered in the uv__idna_to_ascii() function of Libuv, an asynchronous event notification library, which could result in denial of service or information disclosure.
 Vulnerable: 1.24.1-1
 Fixed: 1.24.1-1+deb 10u1</td>
-<td>4.0.0-4.4.0</td>
+<td>4.0.0-4.4.1</td>
 </tr>
 <tr>
 <td>2698649</td>
 <td>When configuring a single VXLAN device in the {{/etc/network/interfaces}} file, if you edit the multicast group address in {{vxlan-mcastgrp-map}}, then revert the change, the change does not take effect.</td>
-<td>4.4.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2687344</td>
 <td>On the NVIDIA SN3700 switch, the decode-syseeprom shows {{device absent}} for a PSU that is present.</td>
-<td>4.4.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2556811</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-4.4.0</td>
+<td>3.7.12-4.4.2</td>
 </tr>
 <tr>
 <td>2554783</td>
 <td>If you apply an outbound route map to a BGP peer that uses {{set as-path prepend last-as}}, advertised locally-originated routes have the ASN of the peer prepended to the AS path.
 This might trigger AS path loop prevention on the peer, where the peer ignores locally-originated prefixes.</td>
-<td>4.2.1-4.4.0</td>
+<td>4.2.1-4.4.2</td>
 </tr>
 </table>
 </tables>

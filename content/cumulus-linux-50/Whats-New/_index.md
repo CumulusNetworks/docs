@@ -10,6 +10,10 @@ This document supports the Cumulus Linux 5.0 release, and lists new platforms, f
 - For a list of open and fixed issues in Cumulus Linux 5.0, see the {{<link title="Cumulus Linux 5.0 Release Notes" text="Cumulus Linux 5.0 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.0, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 <!-- vale off -->
+## What's New in Cumulus Linux 5.0.1
+<!-- vale on -->
+Cumulus Linux 5.0.1 resolves an issue with the Cumulus Linux repository that enabled an unnecessary package upgrade.
+<!-- vale off -->
 ## What's New in Cumulus Linux 5.0.0
 <!-- vale on -->
 Cumulus Linux 5.0.0 supports new platforms, provides bug fixes, and contains several new features and improvements.

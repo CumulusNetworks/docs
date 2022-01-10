@@ -10,7 +10,7 @@ The NVUE object model definition uses the {{<exlink url="https://github.com/OAI/
 
 The OAS schema forms the management plane model with which you configure, monitor, and manage the Cumulus Linux switch. The v3.0.2 version of OAS defines the NVUE data model.
 
-Like other systems that use OpenAPI, the NVUE OAS schema defines the endpoints (paths) exposed as RESTful APIs. These REST APIs enable you to perform various create, retrieve, update, delete, and eXecute (CRUDX) operations. The OAS schema also describes the API inputs and outputs (data models).
+Like other systems that use OpenAPI, the NVUE OAS schema defines the endpoints (paths) exposed as RESTful APIs. With these REST APIs, you can perform various create, retrieve, update, delete, and eXecute (CRUDX) operations. The OAS schema also describes the API inputs and outputs (data models).
 
 You can use the NVUE object model in these two ways:
 

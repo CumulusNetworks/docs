@@ -5,12 +5,12 @@ weight: 1130
 toc: 4
 ---
 *What Just Happened* (WJH) provides real time visibility into network problems and has two components:
-- Cumulus Linux includes the WJH agent by default so that you can stream detailed and contextual telemetry for off-switch analysis with tools, such as [NVIDIA NetQ]({{<ref "/cumulus-netq-41" >}}). 
-- Cumulus Linux includes the WJH service so that you can diagnose network problems by looking at dropped packets. WJH shows layer 1, layer 2, layer 3, buffer, tunnel, and ACL related issues.
+- The WJH agent enables you to stream detailed and contextual telemetry for off-switch analysis with tools, such as [NVIDIA NetQ]({{<ref "/cumulus-netq-41" >}}).
+- The WJH service enables you to diagnose network problems by looking at dropped packets. WJH monitors layer 1, layer 2, layer 3, buffer, tunnel, and ACL related issues.
 
 ## Enable the WJH Service
 
-Cumulus Linux does not enable WJH by default. To enable the WJH service:
+Cumulus Linux does not enable the WJH service by default. To enable the WJH service:
 
 ```
 cumulus@switch:~$ sudo systemctl enable what-just-happened
@@ -21,7 +21,7 @@ cumulus@switch:~$ sudo systemctl start what-just-happened
 
 By default, WJH monitors all layer 1, layer 2, layer 3, buffer, tunnel, and ACL related issues. You can configure WJH to monitor specific types of dropped packets only.
 
-Edit the `/etc/what-just-happened/what-just-happened.json` file and remove the drop category value from inside the square brackets ([]). You must restart the WJH service after you edit the file.
+Edit the `/etc/what-just-happened/what-just-happened.json` file and remove the drop category value from inside the square brackets ([]). After you edit the file, you must restart the WJH service with the `sudo systemctl restart what-just-happened` command.
 
 The following example configures WJH to only monitor forwarding, tunnel, and ACL packet drops:
 
@@ -56,9 +56,9 @@ cumulus@switch:~$ sudo systemctl restart what-just-happened
 
 ## Run WJH Commands
 
-After you start the WJH service, you can run the following commands from the command line.
+After you start the WJH service, you can run commands from the command line to show information about dropped packets and diagnose network problems.
 
-In the commands, `<channel>` can be `forwarding`, `layer-1`, `buffer`, `tunnel`, or `acl`.
+In the following commands, `<channel>` can be `forwarding`, `layer-1`, `buffer`, `tunnel`, or `acl`.
 
 | <div style="width:450px">Command  | Description |
 | -------  | ----------- |

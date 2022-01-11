@@ -247,9 +247,7 @@ NCLU adds all options, such as the `-j` and `-p`, even `FORWARD` in the above ru
 You can also set a priority value, which specifies the order in which the rules execute and the order in which they appear in the rules file. Lower numbers execute first. To add a new rule in the middle, first run `net show config acl`, which displays the priority numbers. Otherwise, new rules append to the end of the list of rules in the `nclu_acl.conf` and `50_nclu_acl.rules` files.
 
 {{%notice note%}}
-
 If you need to edit a rule manually, do not edit the `50_nclu_acl.rules` file. Instead, edit the `nclu_acl.conf` file.
-
 {{%/notice%}}
 
 After you add the rule, you need to apply it to an inbound or outbound interface with the `net add int acl` command. The inbound interface in the following example is swp1:
@@ -286,6 +284,10 @@ cumulus@switch:~$ net add control-plane acl ipv4 EXAMPLE1 inbound
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
+
+{{%notice note%}}
+The `net add control-plane` command applies the rule to all data plane ports (swps). To apply the rule to all ports including eth0, run the `net add control-plane-all` command.
+{{%/notice%}}
 
 To remove a rule, run `net del acl ipv4|ipv6|mac RULENAME`. This command deletes all rules from the `50_nclu_acl.rules` file with the name you specify. The command also deletes the interfaces referenced in the `nclu_acl.conf` file.
 

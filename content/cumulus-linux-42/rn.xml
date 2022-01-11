@@ -9,28 +9,30 @@
 <tr>
 <td>2910017</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
-<td>3.7.15, 4.0.0-4.4.2, 5.0.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2902013</td>
-<td>The NCLU commit  command adds a five second delay.</td>
-<td>4.2.1-4.4.2</td>
+<td>3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2899414</td>
 <td>After you provision a new switch with ZTP,  you cannot reach the switch because the IP or default route on eth0 is deleted. This issue occurs when the system time is ahead of NTP time and the DHCP lease is acquired before ZTP synchronizes the system clock to the NTP clock.
 To work around this issue, flap eth0. </td>
-<td>4.2.1-4.4.2, 5.0.0</td>
+<td>4.2.1-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
+</tr>
+<tr>
+<td>2893895</td>
+<td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
+Vulnerable: &lt;= 2.8.90-1-cl4u5
+Fixed: 2.8.90-1-cl4u6, 2.8.90-1-cl4.4.0u1, 2.8.90-1-cl5.0.0u8</td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2891257</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.2, 5.0.0</td>
+<td>4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -38,7 +40,7 @@ Fixed: 2.6.20-0+deb10u2</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.2, 5.0.0</td>
+<td>4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -46,7 +48,7 @@ Fixed: 2.6.20-0+deb10u2</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.1, 5.0.0</td>
+<td>4.0.0-4.4.1, 5.0.0-5.0.1</td>
 <td>4.4.2</td>
 </tr>
 <tr>
@@ -54,7 +56,7 @@ Fixed: 2.6.20-0+deb10u2</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.2, 5.0.0</td>
+<td>4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -62,7 +64,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.2, 5.0.0</td>
+<td>4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -70,16 +72,16 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.1, 5.0.0</td>
+<td>4.0.0-4.4.1, 5.0.0-5.0.1</td>
 <td>4.4.2</td>
 </tr>
 <tr>
-<td>2877796</td>
+<td>2877797</td>
 <td>CVE-2021-43527: The NSS package is vulnerable to a heap overflow when verifying DSA/RSA-PSS DER-encoded signatures.
 Vulnerable: &lt;= 3.42.1-1+deb10u3
 Fixed: 3.42.1-1+deb10u4</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2875338</td>
@@ -101,16 +103,16 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td></td>
 </tr>
 <tr>
-<td>2873322</td>
+<td>2873323</td>
 <td>CVE-2020-21913: International Components for Unicode (ICU-20850) v66.1 was discovered to contain a use after free bug in the pkg_createWithAssemblyCode function in the file tools/pkgdata/pkgdata.cpp.</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2873186</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2866097</td>
@@ -129,7 +131,7 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
 To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2859177</td>
@@ -155,18 +157,18 @@ MemoryError
 <td>4.4.2</td>
 </tr>
 <tr>
-<td>2845537</td>
+<td>2845538</td>
 <td>CVE-2020-19143: A flaw was discovered in tiff, a Tag Image File Format library, which may result in denial of service or the execution of arbitrary code if malformed image files are processed.
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u2
 Fixed: 4.1.0+git191117-2~deb10u3</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2845531</td>
 <td>If you update the MAC address of an SVI when the SVI is in a {{protodown}} state (for example, when no bridge ports that carry this VNI are operationally up or if the MAC address of the SVI's parent bridge changes), {{clagd}} does not notice the change. The MLAG peer incorrectly maintains a PERMANENT neighbor entry for the SVI IP that points to the old MAC address.</td>
 <td>4.2.1-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2845290</td>
@@ -176,13 +178,13 @@ CVE-2017-9778: Vulnerability to a negative length field in DWARF section, result
 Vulnerable: crash 7.2.8-1+cl4u1 and 7.2.8-1+cl3u1 with embedded gdb 7.6
 Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>3.7.15-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2840818</td>
+<td>2840819</td>
 <td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2821869</td>
@@ -205,7 +207,30 @@ Traceback (most recent call last):
 MemoryError
 </td>
 <td>3.7.15-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2817130</td>
+<td>The {{cl-route-check --layer3}} command fails with a memory error. For example:
+
+cumulus@switch:~$ sudo cl-route-check --layer3
+Traceback (most recent call last):
+ File "/usr/cumulus/bin/cl-route-check", line 1270, in &lt;module&gt;
+  routing.collect_data()
+ File "/usr/cumulus/bin/cl-route-check", line 528, in collect_data
+  self.collect_data_bgp_ipv4()
+ File "/usr/cumulus/bin/cl-route-check", line 711, in collect_data_bgp_ipv4
+  bgp_ipv4 = json.loads(output)
+ File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+  return _default_decoder.decode(s)
+ File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+  obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+ File "/usr/lib/python2.7/json/decoder.py", line 382, in raw_decode
+  obj, end = self.scan_once(s, idx)
+MemoryError
+</td>
+<td>3.7.15-4.4.2</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2816069</td>
@@ -214,65 +239,79 @@ MemoryError
 <td></td>
 </tr>
 <tr>
-<td>2782033</td>
+<td>2782035</td>
 <td>The following vulnerabilities have been announced in the openssl packages:
 CVE-2021-3711: buffer overflow vulnerability in SM2 decryption.
 CVE-2021-3712: buffer overrun when processing ASN.1 strings in the X509_aux_print() function.
 More details at https://www.openssl.org/news/secadv/20210824.txt .
 Vulnerable: &lt;= 1.1.1d-0+deb10u6
 Fixed: 1.1.1d-0+deb10u7</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2755614</td>
+<td>2770226</td>
+<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
+<td>3.7.14.2-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2755615</td>
 <td>When {{route_preferred_over_neigh}} is set to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2754691</td>
+<td>2754692</td>
 <td>CVE-2021-3672: in c-ares, a library that performs DNS requests and name resolution asynchronously, missing input validation of hostnames returned by DNS servers can lead to output of wrong hostnames (leading to Domain Hijacking).
 Vulnerable: 1.14.0-1
 Fixed: 1.14.0-1+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2754685</td>
+<td>2754686</td>
 <td>CVE-2021-38165: lynx, a non-graphical (text-mode) web browser, does not properly handle the userinfo subcomponent of a URI, which can lead to leaking of credential in cleartext in SNI data.
 Vulnerable: 2.8.9rel.1-3
 Fixed: 2.8.9rel.1-3+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2754679</td>
+<td>2754680</td>
 <td>CVE-2020-26558 / CVE-2021-0129: Bluez does not properly check permissions during pairing operation, which could allow an attacker to impersonate the initiating device.
 CVE-2020-27153: a double free flaw in the disconnect_cb() routine in the gattool. A remote attacker can take advantage of this flaw during service discovery for denial of service, or potentially, execution of arbitrary code.
 Vulnerable: &lt;= 5.50-1.2~deb10u1
 Fixed: 5.50-1.2~deb10u2</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2747605</td>
+<td>2747606</td>
 <td>CVE-2021-3246: a buffer overflow in libsndfile, a library
 for reading/writing audio files, which could result in denial of service
 or potentially the execution of arbitrary code when processing a
 malformed audio file.
 Vulnerable: 1.0.28-6
 Fixed: 1.0.28-6+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2739639</td>
+<td>2739690</td>
+<td>CVE-2021-22918: An out-of-bounds read was discovered in the uv__idna_to_ascii() function of Libuv, an asynchronous event notification library, which could result in denial of service or information disclosure.
+Vulnerable: 1.24.1-1
+Fixed: 1.24.1-1+deb 10u1</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2739640</td>
 <td>CVE-2021-36222: It was discovered that the Key Distribution Center (KDC) in krb5, the MIT implementation of Kerberos, is prone to a NULL pointer dereference flaw. An unauthenticated attacker can take advantage of this flaw to cause a denial of service (KDC crash) by sending a request containing a PA-ENCRYPTED-CHALLENGE padata element without using FAST.
 Vulnerable: &lt;= 1.17-3+deb10u1
 Fixed: 1.17-3+deb10u2</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2738625</td>
@@ -281,13 +320,19 @@ Fixed: 1.17-3+deb10u2</td>
 <td></td>
 </tr>
 <tr>
-<td>2734122</td>
+<td>2736265</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0-4.4.2</td>
+</tr>
+<tr>
+<td>2734126</td>
 <td>CVE-2021-33910: The Qualys Research Labs discovered that an attacker-controlled allocation using the alloca() function could result in memory
 corruption, allowing to crash systemd and hence the entire operating system.  Details can be found at https://www.qualys.com/2021/07/20/cve-2021-33910/denial-of-service-systemd.txt .
 Vulnerable: &lt;= 241-7~deb10u7
 Fixed: 241-7~deb10u8</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2</td>
 </tr>
 <tr>
 <td>2728207</td>
@@ -324,14 +369,6 @@ Fixed: 2.4.47+dfsg-3+deb10u6</td>
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2716838</td>
-<td>CVE-2021-22918: An out-of-bounds read was discovered in the uv__idna_to_ascii() function of Libuv, an asynchronous event notification library, which could result in denial of service or information disclosure.
-Vulnerable: 1.24.1-1
-Fixed: 1.24.1-1+deb 10u1</td>
-<td>4.0.0-4.4.1</td>
-<td>4.4.2</td>
-</tr>
-<tr>
 <td>2711533</td>
 <td>On the AS7326-56X switch, the link lights for 25G ports configured to work at 1G do not illuminate.</td>
 <td>4.2.1-4.4.2</td>
@@ -355,12 +392,12 @@ To workaround this issue, run the command against each VRF independently.</td>
 <td></td>
 </tr>
 <tr>
-<td>2695526</td>
+<td>2695527</td>
 <td>CVE-2021-3580 CVE-2021-20305: Multiple vulnerabilities were discovered in nettle, a low level cryptographic library, which could result in denial of service (remote crash in RSA decryption via specially crafted ciphertext, crash on ECDSA signature verification) or incorrect verification of ECDSA signatures.
 Vulnerable: 3.4.1-1
 Fixed: 3.4.1-1+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2691590</td>
@@ -371,12 +408,12 @@ Fixed: 4.11.4+107-gef32c7afa2-1</td>
 <td></td>
 </tr>
 <tr>
-<td>2687159</td>
+<td>2687160</td>
 <td>CVE-2018-25009 CVE-2018-25010 CVE-2018-25011 CVE-2018-25013 CVE-2018-25014 CVE-2020-36328 CVE-2020-36329 CVE-2020-36330 CVE-2020-36331 CVE-2020-36332: Multiple vulnerabilities were discovered in libwebp, the implementation of the WebP image format, which could result in denial of service, memory disclosure or potentially the execution of arbitrary code if malformed images are processed.
 Vulnerable: 0.6.1-2
 Fixed: 0.6.1-2+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2685994</td>
@@ -402,11 +439,11 @@ Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2682971</td>
+<td>2682973</td>
 <td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
 Vulnerable: 0.12.2+cl4u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2682780</td>
@@ -416,12 +453,12 @@ To work around this issue, add the MAC access list configuration to the end of t
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2679948</td>
+<td>2679950</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.4.2</td>
-<td></td>
+<td>3.7.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2677049</td>
@@ -430,13 +467,13 @@ Fixed: 4.3.1-6-cl3.7.16u1</td>
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2671667</td>
+<td>2671668</td>
 <td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could
 result in denial of service and potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.14.2-2+deb10u3
 Fixed: 1.14.2-2+deb10u4</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2669858</td>
@@ -446,28 +483,40 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <td></td>
 </tr>
 <tr>
-<td>2666838</td>
+<td>2666839</td>
 <td>CVE-2021-31535: missing length validation in various functions provided by libx11, the X11 client-side library, allow to inject X11 protocol commands on X clients, leading to authentication bypass, denial of service or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.6.7-1+deb10u1
 Fixed: 1.6.7-1+deb10u2</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2663479</td>
+<td>2663480</td>
 <td>CVE-2021-3520: integer overflow flaw in lz4, a fast LZ compression algorithm library, resulting in memory corruption.
 Vulnerable: 1.8.3-1
 Fixed: 1.8.3-1+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2656527</td>
+<td>2660583</td>
+<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a double-failure (peer link failure and backup IP failure)</td>
+<td>3.7.14-4.3.0</td>
+<td>4.4.0-4.4.2</td>
+</tr>
+<tr>
+<td>2656530</td>
 <td>CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
 Vulnerable: 2.40.1-6
 Fixed: 2.40.1-6+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
+</tr>
+<tr>
+<td>2654715</td>
+<td>The {{cl-acltool}} takes a significant amount of time to run, which can slow down automation scripts.</td>
+<td>4.2.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2653493</td>
@@ -501,64 +550,52 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2644053</td>
+<td>2644054</td>
 <td>The following vulnerabilities have been announced in BIND:
 CVE-2021-25214: a malformed incoming IXFR transfer could trigger an assertion failure in named, resulting in denial of service.
 CVE-2021-25215: named could crash when a DNAME record placed in the ANSWER section during DNAME chasing turned out to be the final answer to a client query.
 CVE-2021-25216: the SPNEGO implementation used by BIND is prone to a buffer overflow vulnerability. This update switches to use the SPNEGO implementation from the Kerberos libraries.
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u4
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u5</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2637554</td>
-<td>The {{cl-acltool}} takes a significant amount of time to run, which can slow down automation scripts.</td>
-<td>4.2.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2633061</td>
+<td>2633062</td>
 <td>The following vulnerability affects the libgstreamer-plugins-base1.0-0 package.  There is no CVE yet; the Debian advisory number is DSA-4903-1.
 Multiple vulnerabilities were discovered in plugins for the GStreamer media framework, which may result in denial of service or potentially the execution of arbitrary code if a malformed media file is opened.
 Vulnerable: 1.14.4-2
 Fixed: 1.14.4-2+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2628693</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2617000</td>
+<td>2617001</td>
 <td>CVE-2021-26933 CVE-2021-27379
 Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, privilege escalation or memory disclosure.
 Vulnerable: &lt; 4.11.4+99-g8bce4698f6-1
 Fixed: 4.11.4+99-g8bce4698f6-1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2616998</td>
+<td>2616999</td>
 <td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
 Vulnerable: 1.9.1~dfsg-1
 Fixed: 1.9.1~dfsg-1+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2616987</td>
+<td>2616988</td>
 <td>CVE-2020-6851 CVE-2020-8112 CVE-2020-15389 CVE-2020-27814 CVE-2020-27823 CVE-2020-27824 CVE-2020-27841 CVE-2020-27842 CVE-2020-27843 CVE-2020-27845: Multiple vulnerabilities have been discovered in openjpeg2, the open-source JPEG 2000 codec, which could result in denial of service or the execution of arbitrary code when opening a malformed image.
 Vulnerable: &lt;= 2.3.0-2+deb10u1
 Fixed: 2.3.0-2+deb10u2</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2616976</td>
+<td>2616977</td>
 <td>Multiple vulnerabilities were discovered in cURL, an URL transfer library:
 CVE-2020-8169: partial password leak to DNS servers.
 CVE-2020-8177: malicious server could cause curl -J -i to overwrite a local file.
@@ -570,32 +607,32 @@ CVE-2021-22876: libcurl did not strip user credentials from URL when populating 
 CVE-2021-22890: libcurl using HTTPS proxy with TLS1.3 could use the wrong session ticket and bypass server TLS certificate check.
 Vulnerable: &lt;= 7.64.0-4+deb10u1
 Fixed: 7.64.0-4+deb10u2</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2616967</td>
+<td>2616968</td>
 <td>CVE-2021-28957: lxml, a Python binding for the libxml2 and libxslt libraries, did not properly sanitize its input. This would allow a malicious user to mount a cross-site scripting attack.
 Vulnerable: &lt;= 4.3.2-1+deb10u2
 Fixed: 4.3.2-1+deb10u3</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2616964</td>
+<td>2616965</td>
 <td>CVE-2021-27291: Pygments, a syntax highlighting package written in Python 3, used regular expressions which could result in denial of service.
 Vulnerable: &lt;= 2.3.1+dfsg-1+deb10u1
 Fixed: 2.3.1+dfsg-1+deb10u2</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2616954</td>
+<td>2616955</td>
 <td>CVE-2021-3449: A NULL pointer dereference was found in the signature_algorithms processing in OpenSSL, a Secure Sockets Layer toolkit, which could result in denial of service.
 Vulnerable: &lt;= 1.1.1d-0+deb10u5
 Fixed: 1.1.1d-0+deb10u6</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2614016</td>
@@ -627,13 +664,13 @@ To work around this issue, either use the {{vtysh}} commands or edit the {{/etc/
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2566878</td>
+<td>2566880</td>
 <td>CVE-2021-27803: A vulnerability was discovered in how p2p/p2p_pd.c in wpa_supplicant before 2.10 processes P2P (Wi-Fi Direct) provision discovery requests. It could result in denial of service or other impact (potentially execution of arbitrary code), for an attacker within radio range.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.4.2</td>
-<td>3.7.15</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
+<td>3.7.15, 4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2564534</td>
+<td>2564839</td>
 <td>Several vulnerabilities have been discovered in the GRUB2 bootloader:
 CVE-2020-14372: It was discovered that the acpi command allows a privileged user to load crafted ACPI tables when Secure Boot is enabled.
 CVE-2020-25632: A use-after-free vulnerability was found in the rmmod command.
@@ -642,8 +679,8 @@ CVE-2020-27749: A stack buffer overflow flaw was found in grub_parser_split_cmdl
 CVE-2020-27779: It was discovered that the cutmem command allows a privileged user  to remove memory regions when Secure Boot is enabled.
 CVE-2021-20225: A heap out-of-bounds write vulnerability was found in the short form option parser.
 CVE-2021-20233: A heap out-of-bound write flaw was found caused by mis-calculation of space required for quoting in the menu rendering.</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2558184</td>
@@ -655,30 +692,30 @@ CVE-2021-20233: A heap out-of-bound write flaw was found caused by mis-calculati
 <td>2556811</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2556781</td>
+<td>2556783</td>
 <td>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.
 Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.4.2</td>
-<td>3.7.15</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
+<td>3.7.15, 4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556777</td>
+<td>2556778</td>
 <td>CVE-2021-26937: A  flaw in the handling of combining characters in screen, a terminal multiplexer with VT100/ANSI terminal emulation can result in denial of service, or potentially the execution of arbitrary code via a specially crafted UTF-8 character sequence.
 Vulnerable: 4.6.2-3
 Fixed: 4.6.2-3+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556774</td>
+<td>2556775</td>
 <td>DSA-4859-1 (no CVE): zstd, a compression utility, was vulnerable to a race condition: it temporarily exposed, during a very short timeframe, a world-readable version of its input even if the original file had restrictive permissions.
 Vulnerable: &lt;= 1.3.8+dfsg-3+deb10u1
 Fixed: 1.3.8+dfsg-3+deb10u2</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2556772</td>
@@ -692,21 +729,21 @@ To work around this issue, run the {{/usr/bin/clagctl verifyvlans}} command or t
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556762</td>
+<td>2556764</td>
 <td>In a configuration with both traditional and vlan-aware bridges, the VLAN membership check on a vlan-aware switch does not drop PVST BPBUs that come from a traditional bridge.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.4.2</td>
-<td>3.7.15</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
+<td>3.7.15, 4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556730</td>
+<td>2556731</td>
 <td>CVE-2020-8625: A buffer overflow vulnerability was discovered in the SPNEGO implementation affecting the GSSAPI security policy negotiation in BIND, a DNS server implementation, which could result in denial of service (daemon crash), or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u2
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u3</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556690</td>
+<td>2556691</td>
 <td>The following vulnerabilities have been announced in the openssl packages:
 CVE-2021-23840: Calls to EVP_CipherUpdate, EVP_EncryptUpdate and EVP_DecryptUpdate may overflow the output length argument in some cases where the input length is close to the maximum permissable length for an integer on the platform. In such cases the return value from the function call will be 1 (indicating success), but the output length value will be negative. This could cause applications to behave incorrectly or crash.
 CVE-2021-23841: The OpenSSL public API function X509_issuer_and_serial_hash() attempts to create a unique hash value based on the issuer and serial number data contained
@@ -714,30 +751,22 @@ within an X509 certificate. However it fails to correctly handle any errors that
 CVE-2019-1551: There is an overflow bug in the x64_64 Montgomery squaring procedure used in exponentiation with 512-bit moduli. No EC algorithms are affected. Analysis suggests that attacks against 2-prime RSA1024, 3-prime RSA1536, and DSA1024 as a result of this defect would be very difficult to perform and are not believed likely. Attacks against DH512 are considered just feasible. However, for an attack the target would have to re-use the DH512 private key, which is not recommended anyway. Also applications directly using the low level API BN_mod_exp may be affected if they use BN_FLG_CONSTTIME.
 Vulnerable: &lt;= 1.1.1d-0+deb10u4
 Fixed: 1.1.1d-0+deb10u5</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556658</td>
-<td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
-Vulnerable: &lt;= 2.8.90-1-cl4u5
-Fixed: 2.8.90-1-cl4u6, 2.8.90-1-cl4.4.0u1, 2.8.90-1-cl5.0.0u8</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2556568</td>
+<td>2556569</td>
 <td>DSA-4850-1 (no CVE): libzstd adds read permissions to files while being compressed or uncompressed.
 Vulnerable: 1.3.8+dfsg-3
 Fixed: 1.3.8+dfsg-3+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556499</td>
+<td>2556500</td>
 <td>Cumulus Linux does not support bond members at 200G or greater.</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2556462</td>
@@ -863,17 +892,17 @@ To work around this issue, use Mellanox ethernet modules with the Mellanox SN342
 <td></td>
 </tr>
 <tr>
-<td>2554797</td>
+<td>2554798</td>
 <td>On the Mellanox SN3700C switch, PIM multicast packets are duplicated at the egress VTEP.</td>
-<td>4.2.0-4.4.2</td>
-<td></td>
+<td>4.2.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2554783</td>
 <td>If you apply an outbound route map to a BGP peer that uses {{set as-path prepend last-as}}, advertised locally-originated routes have the ASN of the peer prepended to the AS path.
 This might trigger AS path loop prevention on the peer, where the peer ignores locally-originated prefixes.</td>
 <td>4.2.1-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2554720</td>
@@ -1612,7 +1641,7 @@ See /var/log/netd.log for more details.
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2543164</td>
@@ -2020,28 +2049,30 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <tr>
 <td>2910017</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
-<td>3.7.15, 4.0.0-4.4.2, 5.0.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2902013</td>
-<td>The NCLU commit  command adds a five second delay.</td>
-<td>4.2.1-4.4.2</td>
+<td>3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2899414</td>
 <td>After you provision a new switch with ZTP,  you cannot reach the switch because the IP or default route on eth0 is deleted. This issue occurs when the system time is ahead of NTP time and the DHCP lease is acquired before ZTP synchronizes the system clock to the NTP clock.
 To work around this issue, flap eth0. </td>
-<td>4.2.1-4.4.2, 5.0.0</td>
+<td>4.2.1-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
+</tr>
+<tr>
+<td>2893895</td>
+<td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
+Vulnerable: &lt;= 2.8.90-1-cl4u5
+Fixed: 2.8.90-1-cl4u6, 2.8.90-1-cl4.4.0u1, 2.8.90-1-cl5.0.0u8</td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2891257</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.2, 5.0.0</td>
+<td>4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2049,7 +2080,7 @@ Fixed: 2.6.20-0+deb10u2</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.2, 5.0.0</td>
+<td>4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2057,7 +2088,7 @@ Fixed: 2.6.20-0+deb10u2</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.1, 5.0.0</td>
+<td>4.0.0-4.4.1, 5.0.0-5.0.1</td>
 <td>4.4.2</td>
 </tr>
 <tr>
@@ -2065,7 +2096,7 @@ Fixed: 2.6.20-0+deb10u2</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.2, 5.0.0</td>
+<td>4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2073,7 +2104,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.2, 5.0.0</td>
+<td>4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2081,16 +2112,16 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.1, 5.0.0</td>
+<td>4.0.0-4.4.1, 5.0.0-5.0.1</td>
 <td>4.4.2</td>
 </tr>
 <tr>
-<td>2877796</td>
+<td>2877797</td>
 <td>CVE-2021-43527: The NSS package is vulnerable to a heap overflow when verifying DSA/RSA-PSS DER-encoded signatures.
 Vulnerable: &lt;= 3.42.1-1+deb10u3
 Fixed: 3.42.1-1+deb10u4</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2875338</td>
@@ -2112,16 +2143,16 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td></td>
 </tr>
 <tr>
-<td>2873322</td>
+<td>2873323</td>
 <td>CVE-2020-21913: International Components for Unicode (ICU-20850) v66.1 was discovered to contain a use after free bug in the pkg_createWithAssemblyCode function in the file tools/pkgdata/pkgdata.cpp.</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2873186</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2866097</td>
@@ -2140,7 +2171,7 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
 To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2859177</td>
@@ -2166,18 +2197,18 @@ MemoryError
 <td>4.4.2</td>
 </tr>
 <tr>
-<td>2845537</td>
+<td>2845538</td>
 <td>CVE-2020-19143: A flaw was discovered in tiff, a Tag Image File Format library, which may result in denial of service or the execution of arbitrary code if malformed image files are processed.
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u2
 Fixed: 4.1.0+git191117-2~deb10u3</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2845531</td>
 <td>If you update the MAC address of an SVI when the SVI is in a {{protodown}} state (for example, when no bridge ports that carry this VNI are operationally up or if the MAC address of the SVI's parent bridge changes), {{clagd}} does not notice the change. The MLAG peer incorrectly maintains a PERMANENT neighbor entry for the SVI IP that points to the old MAC address.</td>
 <td>4.2.1-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2845290</td>
@@ -2187,13 +2218,13 @@ CVE-2017-9778: Vulnerability to a negative length field in DWARF section, result
 Vulnerable: crash 7.2.8-1+cl4u1 and 7.2.8-1+cl3u1 with embedded gdb 7.6
 Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>3.7.15-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2840818</td>
+<td>2840819</td>
 <td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2821869</td>
@@ -2216,7 +2247,30 @@ Traceback (most recent call last):
 MemoryError
 </td>
 <td>3.7.15-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2817130</td>
+<td>The {{cl-route-check --layer3}} command fails with a memory error. For example:
+
+cumulus@switch:~$ sudo cl-route-check --layer3
+Traceback (most recent call last):
+ File "/usr/cumulus/bin/cl-route-check", line 1270, in &lt;module&gt;
+  routing.collect_data()
+ File "/usr/cumulus/bin/cl-route-check", line 528, in collect_data
+  self.collect_data_bgp_ipv4()
+ File "/usr/cumulus/bin/cl-route-check", line 711, in collect_data_bgp_ipv4
+  bgp_ipv4 = json.loads(output)
+ File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+  return _default_decoder.decode(s)
+ File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+  obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+ File "/usr/lib/python2.7/json/decoder.py", line 382, in raw_decode
+  obj, end = self.scan_once(s, idx)
+MemoryError
+</td>
+<td>3.7.15-4.4.2</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2816069</td>
@@ -2225,65 +2279,79 @@ MemoryError
 <td></td>
 </tr>
 <tr>
-<td>2782033</td>
+<td>2782035</td>
 <td>The following vulnerabilities have been announced in the openssl packages:
 CVE-2021-3711: buffer overflow vulnerability in SM2 decryption.
 CVE-2021-3712: buffer overrun when processing ASN.1 strings in the X509_aux_print() function.
 More details at https://www.openssl.org/news/secadv/20210824.txt .
 Vulnerable: &lt;= 1.1.1d-0+deb10u6
 Fixed: 1.1.1d-0+deb10u7</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2755614</td>
+<td>2770226</td>
+<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
+<td>3.7.14.2-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2755615</td>
 <td>When {{route_preferred_over_neigh}} is set to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2754691</td>
+<td>2754692</td>
 <td>CVE-2021-3672: in c-ares, a library that performs DNS requests and name resolution asynchronously, missing input validation of hostnames returned by DNS servers can lead to output of wrong hostnames (leading to Domain Hijacking).
 Vulnerable: 1.14.0-1
 Fixed: 1.14.0-1+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2754685</td>
+<td>2754686</td>
 <td>CVE-2021-38165: lynx, a non-graphical (text-mode) web browser, does not properly handle the userinfo subcomponent of a URI, which can lead to leaking of credential in cleartext in SNI data.
 Vulnerable: 2.8.9rel.1-3
 Fixed: 2.8.9rel.1-3+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2754679</td>
+<td>2754680</td>
 <td>CVE-2020-26558 / CVE-2021-0129: Bluez does not properly check permissions during pairing operation, which could allow an attacker to impersonate the initiating device.
 CVE-2020-27153: a double free flaw in the disconnect_cb() routine in the gattool. A remote attacker can take advantage of this flaw during service discovery for denial of service, or potentially, execution of arbitrary code.
 Vulnerable: &lt;= 5.50-1.2~deb10u1
 Fixed: 5.50-1.2~deb10u2</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2747605</td>
+<td>2747606</td>
 <td>CVE-2021-3246: a buffer overflow in libsndfile, a library
 for reading/writing audio files, which could result in denial of service
 or potentially the execution of arbitrary code when processing a
 malformed audio file.
 Vulnerable: 1.0.28-6
 Fixed: 1.0.28-6+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2739639</td>
+<td>2739690</td>
+<td>CVE-2021-22918: An out-of-bounds read was discovered in the uv__idna_to_ascii() function of Libuv, an asynchronous event notification library, which could result in denial of service or information disclosure.
+Vulnerable: 1.24.1-1
+Fixed: 1.24.1-1+deb 10u1</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2739640</td>
 <td>CVE-2021-36222: It was discovered that the Key Distribution Center (KDC) in krb5, the MIT implementation of Kerberos, is prone to a NULL pointer dereference flaw. An unauthenticated attacker can take advantage of this flaw to cause a denial of service (KDC crash) by sending a request containing a PA-ENCRYPTED-CHALLENGE padata element without using FAST.
 Vulnerable: &lt;= 1.17-3+deb10u1
 Fixed: 1.17-3+deb10u2</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2738625</td>
@@ -2292,13 +2360,19 @@ Fixed: 1.17-3+deb10u2</td>
 <td></td>
 </tr>
 <tr>
-<td>2734122</td>
+<td>2736265</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0-4.4.2</td>
+</tr>
+<tr>
+<td>2734126</td>
 <td>CVE-2021-33910: The Qualys Research Labs discovered that an attacker-controlled allocation using the alloca() function could result in memory
 corruption, allowing to crash systemd and hence the entire operating system.  Details can be found at https://www.qualys.com/2021/07/20/cve-2021-33910/denial-of-service-systemd.txt .
 Vulnerable: &lt;= 241-7~deb10u7
 Fixed: 241-7~deb10u8</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2</td>
 </tr>
 <tr>
 <td>2728207</td>
@@ -2335,14 +2409,6 @@ Fixed: 2.4.47+dfsg-3+deb10u6</td>
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2716838</td>
-<td>CVE-2021-22918: An out-of-bounds read was discovered in the uv__idna_to_ascii() function of Libuv, an asynchronous event notification library, which could result in denial of service or information disclosure.
-Vulnerable: 1.24.1-1
-Fixed: 1.24.1-1+deb 10u1</td>
-<td>4.0.0-4.4.1</td>
-<td>4.4.2</td>
-</tr>
-<tr>
 <td>2711533</td>
 <td>On the AS7326-56X switch, the link lights for 25G ports configured to work at 1G do not illuminate.</td>
 <td>4.2.1-4.4.2</td>
@@ -2366,12 +2432,12 @@ To workaround this issue, run the command against each VRF independently.</td>
 <td></td>
 </tr>
 <tr>
-<td>2695526</td>
+<td>2695527</td>
 <td>CVE-2021-3580 CVE-2021-20305: Multiple vulnerabilities were discovered in nettle, a low level cryptographic library, which could result in denial of service (remote crash in RSA decryption via specially crafted ciphertext, crash on ECDSA signature verification) or incorrect verification of ECDSA signatures.
 Vulnerable: 3.4.1-1
 Fixed: 3.4.1-1+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2691590</td>
@@ -2382,12 +2448,12 @@ Fixed: 4.11.4+107-gef32c7afa2-1</td>
 <td></td>
 </tr>
 <tr>
-<td>2687159</td>
+<td>2687160</td>
 <td>CVE-2018-25009 CVE-2018-25010 CVE-2018-25011 CVE-2018-25013 CVE-2018-25014 CVE-2020-36328 CVE-2020-36329 CVE-2020-36330 CVE-2020-36331 CVE-2020-36332: Multiple vulnerabilities were discovered in libwebp, the implementation of the WebP image format, which could result in denial of service, memory disclosure or potentially the execution of arbitrary code if malformed images are processed.
 Vulnerable: 0.6.1-2
 Fixed: 0.6.1-2+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2685994</td>
@@ -2413,11 +2479,11 @@ Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2682971</td>
+<td>2682973</td>
 <td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
 Vulnerable: 0.12.2+cl4u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2682780</td>
@@ -2427,12 +2493,12 @@ To work around this issue, add the MAC access list configuration to the end of t
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2679948</td>
+<td>2679950</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.4.2</td>
-<td></td>
+<td>3.7.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2677049</td>
@@ -2441,13 +2507,13 @@ Fixed: 4.3.1-6-cl3.7.16u1</td>
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2671667</td>
+<td>2671668</td>
 <td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could
 result in denial of service and potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.14.2-2+deb10u3
 Fixed: 1.14.2-2+deb10u4</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2669858</td>
@@ -2457,28 +2523,40 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <td></td>
 </tr>
 <tr>
-<td>2666838</td>
+<td>2666839</td>
 <td>CVE-2021-31535: missing length validation in various functions provided by libx11, the X11 client-side library, allow to inject X11 protocol commands on X clients, leading to authentication bypass, denial of service or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.6.7-1+deb10u1
 Fixed: 1.6.7-1+deb10u2</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2663479</td>
+<td>2663480</td>
 <td>CVE-2021-3520: integer overflow flaw in lz4, a fast LZ compression algorithm library, resulting in memory corruption.
 Vulnerable: 1.8.3-1
 Fixed: 1.8.3-1+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2656527</td>
+<td>2660583</td>
+<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a double-failure (peer link failure and backup IP failure)</td>
+<td>3.7.14-4.3.0</td>
+<td>4.4.0-4.4.2</td>
+</tr>
+<tr>
+<td>2656530</td>
 <td>CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
 Vulnerable: 2.40.1-6
 Fixed: 2.40.1-6+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
+</tr>
+<tr>
+<td>2654715</td>
+<td>The {{cl-acltool}} takes a significant amount of time to run, which can slow down automation scripts.</td>
+<td>4.2.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2653493</td>
@@ -2512,64 +2590,52 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2644053</td>
+<td>2644054</td>
 <td>The following vulnerabilities have been announced in BIND:
 CVE-2021-25214: a malformed incoming IXFR transfer could trigger an assertion failure in named, resulting in denial of service.
 CVE-2021-25215: named could crash when a DNAME record placed in the ANSWER section during DNAME chasing turned out to be the final answer to a client query.
 CVE-2021-25216: the SPNEGO implementation used by BIND is prone to a buffer overflow vulnerability. This update switches to use the SPNEGO implementation from the Kerberos libraries.
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u4
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u5</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2637554</td>
-<td>The {{cl-acltool}} takes a significant amount of time to run, which can slow down automation scripts.</td>
-<td>4.2.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2633061</td>
+<td>2633062</td>
 <td>The following vulnerability affects the libgstreamer-plugins-base1.0-0 package.  There is no CVE yet; the Debian advisory number is DSA-4903-1.
 Multiple vulnerabilities were discovered in plugins for the GStreamer media framework, which may result in denial of service or potentially the execution of arbitrary code if a malformed media file is opened.
 Vulnerable: 1.14.4-2
 Fixed: 1.14.4-2+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2628693</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2617000</td>
+<td>2617001</td>
 <td>CVE-2021-26933 CVE-2021-27379
 Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, privilege escalation or memory disclosure.
 Vulnerable: &lt; 4.11.4+99-g8bce4698f6-1
 Fixed: 4.11.4+99-g8bce4698f6-1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2616998</td>
+<td>2616999</td>
 <td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
 Vulnerable: 1.9.1~dfsg-1
 Fixed: 1.9.1~dfsg-1+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2616987</td>
+<td>2616988</td>
 <td>CVE-2020-6851 CVE-2020-8112 CVE-2020-15389 CVE-2020-27814 CVE-2020-27823 CVE-2020-27824 CVE-2020-27841 CVE-2020-27842 CVE-2020-27843 CVE-2020-27845: Multiple vulnerabilities have been discovered in openjpeg2, the open-source JPEG 2000 codec, which could result in denial of service or the execution of arbitrary code when opening a malformed image.
 Vulnerable: &lt;= 2.3.0-2+deb10u1
 Fixed: 2.3.0-2+deb10u2</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2616976</td>
+<td>2616977</td>
 <td>Multiple vulnerabilities were discovered in cURL, an URL transfer library:
 CVE-2020-8169: partial password leak to DNS servers.
 CVE-2020-8177: malicious server could cause curl -J -i to overwrite a local file.
@@ -2581,32 +2647,32 @@ CVE-2021-22876: libcurl did not strip user credentials from URL when populating 
 CVE-2021-22890: libcurl using HTTPS proxy with TLS1.3 could use the wrong session ticket and bypass server TLS certificate check.
 Vulnerable: &lt;= 7.64.0-4+deb10u1
 Fixed: 7.64.0-4+deb10u2</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2616967</td>
+<td>2616968</td>
 <td>CVE-2021-28957: lxml, a Python binding for the libxml2 and libxslt libraries, did not properly sanitize its input. This would allow a malicious user to mount a cross-site scripting attack.
 Vulnerable: &lt;= 4.3.2-1+deb10u2
 Fixed: 4.3.2-1+deb10u3</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2616964</td>
+<td>2616965</td>
 <td>CVE-2021-27291: Pygments, a syntax highlighting package written in Python 3, used regular expressions which could result in denial of service.
 Vulnerable: &lt;= 2.3.1+dfsg-1+deb10u1
 Fixed: 2.3.1+dfsg-1+deb10u2</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2616954</td>
+<td>2616955</td>
 <td>CVE-2021-3449: A NULL pointer dereference was found in the signature_algorithms processing in OpenSSL, a Secure Sockets Layer toolkit, which could result in denial of service.
 Vulnerable: &lt;= 1.1.1d-0+deb10u5
 Fixed: 1.1.1d-0+deb10u6</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2614016</td>
@@ -2638,13 +2704,13 @@ To work around this issue, either use the {{vtysh}} commands or edit the {{/etc/
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2566878</td>
+<td>2566880</td>
 <td>CVE-2021-27803: A vulnerability was discovered in how p2p/p2p_pd.c in wpa_supplicant before 2.10 processes P2P (Wi-Fi Direct) provision discovery requests. It could result in denial of service or other impact (potentially execution of arbitrary code), for an attacker within radio range.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.4.2</td>
-<td>3.7.15</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
+<td>3.7.15, 4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2564534</td>
+<td>2564839</td>
 <td>Several vulnerabilities have been discovered in the GRUB2 bootloader:
 CVE-2020-14372: It was discovered that the acpi command allows a privileged user to load crafted ACPI tables when Secure Boot is enabled.
 CVE-2020-25632: A use-after-free vulnerability was found in the rmmod command.
@@ -2653,8 +2719,8 @@ CVE-2020-27749: A stack buffer overflow flaw was found in grub_parser_split_cmdl
 CVE-2020-27779: It was discovered that the cutmem command allows a privileged user  to remove memory regions when Secure Boot is enabled.
 CVE-2021-20225: A heap out-of-bounds write vulnerability was found in the short form option parser.
 CVE-2021-20233: A heap out-of-bound write flaw was found caused by mis-calculation of space required for quoting in the menu rendering.</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2558184</td>
@@ -2666,30 +2732,30 @@ CVE-2021-20233: A heap out-of-bound write flaw was found caused by mis-calculati
 <td>2556811</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2556781</td>
+<td>2556783</td>
 <td>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.
 Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.4.2</td>
-<td>3.7.15</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
+<td>3.7.15, 4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556777</td>
+<td>2556778</td>
 <td>CVE-2021-26937: A  flaw in the handling of combining characters in screen, a terminal multiplexer with VT100/ANSI terminal emulation can result in denial of service, or potentially the execution of arbitrary code via a specially crafted UTF-8 character sequence.
 Vulnerable: 4.6.2-3
 Fixed: 4.6.2-3+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556774</td>
+<td>2556775</td>
 <td>DSA-4859-1 (no CVE): zstd, a compression utility, was vulnerable to a race condition: it temporarily exposed, during a very short timeframe, a world-readable version of its input even if the original file had restrictive permissions.
 Vulnerable: &lt;= 1.3.8+dfsg-3+deb10u1
 Fixed: 1.3.8+dfsg-3+deb10u2</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2556772</td>
@@ -2703,21 +2769,21 @@ To work around this issue, run the {{/usr/bin/clagctl verifyvlans}} command or t
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556762</td>
+<td>2556764</td>
 <td>In a configuration with both traditional and vlan-aware bridges, the VLAN membership check on a vlan-aware switch does not drop PVST BPBUs that come from a traditional bridge.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.4.2</td>
-<td>3.7.15</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
+<td>3.7.15, 4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556730</td>
+<td>2556731</td>
 <td>CVE-2020-8625: A buffer overflow vulnerability was discovered in the SPNEGO implementation affecting the GSSAPI security policy negotiation in BIND, a DNS server implementation, which could result in denial of service (daemon crash), or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u2
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u3</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556690</td>
+<td>2556691</td>
 <td>The following vulnerabilities have been announced in the openssl packages:
 CVE-2021-23840: Calls to EVP_CipherUpdate, EVP_EncryptUpdate and EVP_DecryptUpdate may overflow the output length argument in some cases where the input length is close to the maximum permissable length for an integer on the platform. In such cases the return value from the function call will be 1 (indicating success), but the output length value will be negative. This could cause applications to behave incorrectly or crash.
 CVE-2021-23841: The OpenSSL public API function X509_issuer_and_serial_hash() attempts to create a unique hash value based on the issuer and serial number data contained
@@ -2725,30 +2791,22 @@ within an X509 certificate. However it fails to correctly handle any errors that
 CVE-2019-1551: There is an overflow bug in the x64_64 Montgomery squaring procedure used in exponentiation with 512-bit moduli. No EC algorithms are affected. Analysis suggests that attacks against 2-prime RSA1024, 3-prime RSA1536, and DSA1024 as a result of this defect would be very difficult to perform and are not believed likely. Attacks against DH512 are considered just feasible. However, for an attack the target would have to re-use the DH512 private key, which is not recommended anyway. Also applications directly using the low level API BN_mod_exp may be affected if they use BN_FLG_CONSTTIME.
 Vulnerable: &lt;= 1.1.1d-0+deb10u4
 Fixed: 1.1.1d-0+deb10u5</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556658</td>
-<td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
-Vulnerable: &lt;= 2.8.90-1-cl4u5
-Fixed: 2.8.90-1-cl4u6, 2.8.90-1-cl4.4.0u1, 2.8.90-1-cl5.0.0u8</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2556568</td>
+<td>2556569</td>
 <td>DSA-4850-1 (no CVE): libzstd adds read permissions to files while being compressed or uncompressed.
 Vulnerable: 1.3.8+dfsg-3
 Fixed: 1.3.8+dfsg-3+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556499</td>
+<td>2556500</td>
 <td>Cumulus Linux does not support bond members at 200G or greater.</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2556462</td>
@@ -3013,10 +3071,10 @@ To work around this issue, use Mellanox ethernet modules with the Mellanox SN342
 <td></td>
 </tr>
 <tr>
-<td>2554797</td>
+<td>2554798</td>
 <td>On the Mellanox SN3700C switch, PIM multicast packets are duplicated at the egress VTEP.</td>
-<td>4.2.0-4.4.2</td>
-<td></td>
+<td>4.2.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2554785</td>
@@ -3052,7 +3110,7 @@ To work around this issue, configure Cumulus Linux to boot with the {{ntel_iommu
 <td>If you apply an outbound route map to a BGP peer that uses {{set as-path prepend last-as}}, advertised locally-originated routes have the ASN of the peer prepended to the AS path.
 This might trigger AS path loop prevention on the peer, where the peer ignores locally-originated prefixes.</td>
 <td>4.2.1-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2554730</td>
@@ -4203,7 +4261,7 @@ To work around this issue, wait up to 15 seconds on 40G interfaces and 30 second
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2543164</td>
@@ -4941,15 +4999,23 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <tr>
 <td>2910017</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
-<td>3.7.15, 4.0.0-4.4.2, 5.0.0</td>
+<td>3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
+</tr>
+<tr>
+<td>2893895</td>
+<td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
+Vulnerable: &lt;= 2.8.90-1-cl4u5
+Fixed: 2.8.90-1-cl4u6, 2.8.90-1-cl4.4.0u1, 2.8.90-1-cl5.0.0u8</td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2891257</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.2, 5.0.0</td>
+<td>4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4957,7 +5023,7 @@ Fixed: 2.6.20-0+deb10u2</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.2, 5.0.0</td>
+<td>4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4965,7 +5031,7 @@ Fixed: 2.6.20-0+deb10u2</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.1, 5.0.0</td>
+<td>4.0.0-4.4.1, 5.0.0-5.0.1</td>
 <td>4.4.2</td>
 </tr>
 <tr>
@@ -4973,7 +5039,7 @@ Fixed: 2.6.20-0+deb10u2</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.2, 5.0.0</td>
+<td>4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4981,7 +5047,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.2, 5.0.0</td>
+<td>4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4989,28 +5055,28 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.1, 5.0.0</td>
+<td>4.0.0-4.4.1, 5.0.0-5.0.1</td>
 <td>4.4.2</td>
 </tr>
 <tr>
-<td>2877796</td>
+<td>2877797</td>
 <td>CVE-2021-43527: The NSS package is vulnerable to a heap overflow when verifying DSA/RSA-PSS DER-encoded signatures.
 Vulnerable: &lt;= 3.42.1-1+deb10u3
 Fixed: 3.42.1-1+deb10u4</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2873322</td>
+<td>2873323</td>
 <td>CVE-2020-21913: International Components for Unicode (ICU-20850) v66.1 was discovered to contain a use after free bug in the pkg_createWithAssemblyCode function in the file tools/pkgdata/pkgdata.cpp.</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2873186</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2866097</td>
@@ -5029,7 +5095,7 @@ Fixed: 3.42.1-1+deb10u4</td>
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
 To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2859177</td>
@@ -5055,12 +5121,12 @@ MemoryError
 <td>4.4.2</td>
 </tr>
 <tr>
-<td>2845537</td>
+<td>2845538</td>
 <td>CVE-2020-19143: A flaw was discovered in tiff, a Tag Image File Format library, which may result in denial of service or the execution of arbitrary code if malformed image files are processed.
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u2
 Fixed: 4.1.0+git191117-2~deb10u3</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2845290</td>
@@ -5070,13 +5136,13 @@ CVE-2017-9778: Vulnerability to a negative length field in DWARF section, result
 Vulnerable: crash 7.2.8-1+cl4u1 and 7.2.8-1+cl3u1 with embedded gdb 7.6
 Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>3.7.15-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2840818</td>
+<td>2840819</td>
 <td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2821869</td>
@@ -5099,77 +5165,120 @@ Traceback (most recent call last):
 MemoryError
 </td>
 <td>3.7.15-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2782033</td>
+<td>2817130</td>
+<td>The {{cl-route-check --layer3}} command fails with a memory error. For example:
+
+cumulus@switch:~$ sudo cl-route-check --layer3
+Traceback (most recent call last):
+ File "/usr/cumulus/bin/cl-route-check", line 1270, in &lt;module&gt;
+  routing.collect_data()
+ File "/usr/cumulus/bin/cl-route-check", line 528, in collect_data
+  self.collect_data_bgp_ipv4()
+ File "/usr/cumulus/bin/cl-route-check", line 711, in collect_data_bgp_ipv4
+  bgp_ipv4 = json.loads(output)
+ File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+  return _default_decoder.decode(s)
+ File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+  obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+ File "/usr/lib/python2.7/json/decoder.py", line 382, in raw_decode
+  obj, end = self.scan_once(s, idx)
+MemoryError
+</td>
+<td>3.7.15-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2782035</td>
 <td>The following vulnerabilities have been announced in the openssl packages:
 CVE-2021-3711: buffer overflow vulnerability in SM2 decryption.
 CVE-2021-3712: buffer overrun when processing ASN.1 strings in the X509_aux_print() function.
 More details at https://www.openssl.org/news/secadv/20210824.txt .
 Vulnerable: &lt;= 1.1.1d-0+deb10u6
 Fixed: 1.1.1d-0+deb10u7</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2755614</td>
+<td>2770226</td>
+<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
+<td>3.7.14.2-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2755615</td>
 <td>When {{route_preferred_over_neigh}} is set to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2754691</td>
+<td>2754692</td>
 <td>CVE-2021-3672: in c-ares, a library that performs DNS requests and name resolution asynchronously, missing input validation of hostnames returned by DNS servers can lead to output of wrong hostnames (leading to Domain Hijacking).
 Vulnerable: 1.14.0-1
 Fixed: 1.14.0-1+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2754685</td>
+<td>2754686</td>
 <td>CVE-2021-38165: lynx, a non-graphical (text-mode) web browser, does not properly handle the userinfo subcomponent of a URI, which can lead to leaking of credential in cleartext in SNI data.
 Vulnerable: 2.8.9rel.1-3
 Fixed: 2.8.9rel.1-3+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2754679</td>
+<td>2754680</td>
 <td>CVE-2020-26558 / CVE-2021-0129: Bluez does not properly check permissions during pairing operation, which could allow an attacker to impersonate the initiating device.
 CVE-2020-27153: a double free flaw in the disconnect_cb() routine in the gattool. A remote attacker can take advantage of this flaw during service discovery for denial of service, or potentially, execution of arbitrary code.
 Vulnerable: &lt;= 5.50-1.2~deb10u1
 Fixed: 5.50-1.2~deb10u2</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2747605</td>
+<td>2747606</td>
 <td>CVE-2021-3246: a buffer overflow in libsndfile, a library
 for reading/writing audio files, which could result in denial of service
 or potentially the execution of arbitrary code when processing a
 malformed audio file.
 Vulnerable: 1.0.28-6
 Fixed: 1.0.28-6+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2739639</td>
+<td>2739690</td>
+<td>CVE-2021-22918: An out-of-bounds read was discovered in the uv__idna_to_ascii() function of Libuv, an asynchronous event notification library, which could result in denial of service or information disclosure.
+Vulnerable: 1.24.1-1
+Fixed: 1.24.1-1+deb 10u1</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2739640</td>
 <td>CVE-2021-36222: It was discovered that the Key Distribution Center (KDC) in krb5, the MIT implementation of Kerberos, is prone to a NULL pointer dereference flaw. An unauthenticated attacker can take advantage of this flaw to cause a denial of service (KDC crash) by sending a request containing a PA-ENCRYPTED-CHALLENGE padata element without using FAST.
 Vulnerable: &lt;= 1.17-3+deb10u1
 Fixed: 1.17-3+deb10u2</td>
-<td>4.0.0-4.4.2</td>
-<td>5.0.0</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2734122</td>
+<td>2736265</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0-4.4.2</td>
+</tr>
+<tr>
+<td>2734126</td>
 <td>CVE-2021-33910: The Qualys Research Labs discovered that an attacker-controlled allocation using the alloca() function could result in memory
 corruption, allowing to crash systemd and hence the entire operating system.  Details can be found at https://www.qualys.com/2021/07/20/cve-2021-33910/denial-of-service-systemd.txt .
 Vulnerable: &lt;= 241-7~deb10u7
 Fixed: 241-7~deb10u8</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2</td>
 </tr>
 <tr>
 <td>2728207</td>
@@ -5206,14 +5315,6 @@ Fixed: 2.4.47+dfsg-3+deb10u6</td>
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2716838</td>
-<td>CVE-2021-22918: An out-of-bounds read was discovered in the uv__idna_to_ascii() function of Libuv, an asynchronous event notification library, which could result in denial of service or information disclosure.
-Vulnerable: 1.24.1-1
-Fixed: 1.24.1-1+deb 10u1</td>
-<td>4.0.0-4.4.1</td>
-<td>4.4.2</td>
-</tr>
-<tr>
 <td>2699399</td>
 <td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
 
@@ -5225,12 +5326,12 @@ To workaround this issue, run the command against each VRF independently.</td>
 <td></td>
 </tr>
 <tr>
-<td>2695526</td>
+<td>2695527</td>
 <td>CVE-2021-3580 CVE-2021-20305: Multiple vulnerabilities were discovered in nettle, a low level cryptographic library, which could result in denial of service (remote crash in RSA decryption via specially crafted ciphertext, crash on ECDSA signature verification) or incorrect verification of ECDSA signatures.
 Vulnerable: 3.4.1-1
 Fixed: 3.4.1-1+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2691590</td>
@@ -5241,12 +5342,12 @@ Fixed: 4.11.4+107-gef32c7afa2-1</td>
 <td></td>
 </tr>
 <tr>
-<td>2687159</td>
+<td>2687160</td>
 <td>CVE-2018-25009 CVE-2018-25010 CVE-2018-25011 CVE-2018-25013 CVE-2018-25014 CVE-2020-36328 CVE-2020-36329 CVE-2020-36330 CVE-2020-36331 CVE-2020-36332: Multiple vulnerabilities were discovered in libwebp, the implementation of the WebP image format, which could result in denial of service, memory disclosure or potentially the execution of arbitrary code if malformed images are processed.
 Vulnerable: 0.6.1-2
 Fixed: 0.6.1-2+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2685994</td>
@@ -5266,11 +5367,11 @@ Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2682971</td>
+<td>2682973</td>
 <td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
 Vulnerable: 0.12.2+cl4u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2682780</td>
@@ -5280,12 +5381,12 @@ To work around this issue, add the MAC access list configuration to the end of t
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2679948</td>
+<td>2679950</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.4.2</td>
-<td></td>
+<td>3.7.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2677049</td>
@@ -5294,13 +5395,13 @@ Fixed: 4.3.1-6-cl3.7.16u1</td>
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2671667</td>
+<td>2671668</td>
 <td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could
 result in denial of service and potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.14.2-2+deb10u3
 Fixed: 1.14.2-2+deb10u4</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2669858</td>
@@ -5310,28 +5411,40 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <td></td>
 </tr>
 <tr>
-<td>2666838</td>
+<td>2666839</td>
 <td>CVE-2021-31535: missing length validation in various functions provided by libx11, the X11 client-side library, allow to inject X11 protocol commands on X clients, leading to authentication bypass, denial of service or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.6.7-1+deb10u1
 Fixed: 1.6.7-1+deb10u2</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2663479</td>
+<td>2663480</td>
 <td>CVE-2021-3520: integer overflow flaw in lz4, a fast LZ compression algorithm library, resulting in memory corruption.
 Vulnerable: 1.8.3-1
 Fixed: 1.8.3-1+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2656527</td>
+<td>2660583</td>
+<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a double-failure (peer link failure and backup IP failure)</td>
+<td>3.7.14-4.3.0</td>
+<td>4.4.0-4.4.2</td>
+</tr>
+<tr>
+<td>2656530</td>
 <td>CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
 Vulnerable: 2.40.1-6
 Fixed: 2.40.1-6+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
+</tr>
+<tr>
+<td>2654715</td>
+<td>The {{cl-acltool}} takes a significant amount of time to run, which can slow down automation scripts.</td>
+<td>4.2.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2653400</td>
@@ -5358,58 +5471,52 @@ Fixed: 2.40.1-6+deb10u1</td>
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2644053</td>
+<td>2644054</td>
 <td>The following vulnerabilities have been announced in BIND:
 CVE-2021-25214: a malformed incoming IXFR transfer could trigger an assertion failure in named, resulting in denial of service.
 CVE-2021-25215: named could crash when a DNAME record placed in the ANSWER section during DNAME chasing turned out to be the final answer to a client query.
 CVE-2021-25216: the SPNEGO implementation used by BIND is prone to a buffer overflow vulnerability. This update switches to use the SPNEGO implementation from the Kerberos libraries.
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u4
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u5</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2637554</td>
-<td>The {{cl-acltool}} takes a significant amount of time to run, which can slow down automation scripts.</td>
-<td>4.2.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2633061</td>
+<td>2633062</td>
 <td>The following vulnerability affects the libgstreamer-plugins-base1.0-0 package.  There is no CVE yet; the Debian advisory number is DSA-4903-1.
 Multiple vulnerabilities were discovered in plugins for the GStreamer media framework, which may result in denial of service or potentially the execution of arbitrary code if a malformed media file is opened.
 Vulnerable: 1.14.4-2
 Fixed: 1.14.4-2+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2617000</td>
+<td>2617001</td>
 <td>CVE-2021-26933 CVE-2021-27379
 Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, privilege escalation or memory disclosure.
 Vulnerable: &lt; 4.11.4+99-g8bce4698f6-1
 Fixed: 4.11.4+99-g8bce4698f6-1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2616998</td>
+<td>2616999</td>
 <td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
 Vulnerable: 1.9.1~dfsg-1
 Fixed: 1.9.1~dfsg-1+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2616987</td>
+<td>2616988</td>
 <td>CVE-2020-6851 CVE-2020-8112 CVE-2020-15389 CVE-2020-27814 CVE-2020-27823 CVE-2020-27824 CVE-2020-27841 CVE-2020-27842 CVE-2020-27843 CVE-2020-27845: Multiple vulnerabilities have been discovered in openjpeg2, the open-source JPEG 2000 codec, which could result in denial of service or the execution of arbitrary code when opening a malformed image.
 Vulnerable: &lt;= 2.3.0-2+deb10u1
 Fixed: 2.3.0-2+deb10u2</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2616976</td>
+<td>2616977</td>
 <td>Multiple vulnerabilities were discovered in cURL, an URL transfer library:
 CVE-2020-8169: partial password leak to DNS servers.
 CVE-2020-8177: malicious server could cause curl -J -i to overwrite a local file.
@@ -5421,32 +5528,32 @@ CVE-2021-22876: libcurl did not strip user credentials from URL when populating 
 CVE-2021-22890: libcurl using HTTPS proxy with TLS1.3 could use the wrong session ticket and bypass server TLS certificate check.
 Vulnerable: &lt;= 7.64.0-4+deb10u1
 Fixed: 7.64.0-4+deb10u2</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2616967</td>
+<td>2616968</td>
 <td>CVE-2021-28957: lxml, a Python binding for the libxml2 and libxslt libraries, did not properly sanitize its input. This would allow a malicious user to mount a cross-site scripting attack.
 Vulnerable: &lt;= 4.3.2-1+deb10u2
 Fixed: 4.3.2-1+deb10u3</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2616964</td>
+<td>2616965</td>
 <td>CVE-2021-27291: Pygments, a syntax highlighting package written in Python 3, used regular expressions which could result in denial of service.
 Vulnerable: &lt;= 2.3.1+dfsg-1+deb10u1
 Fixed: 2.3.1+dfsg-1+deb10u2</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2616954</td>
+<td>2616955</td>
 <td>CVE-2021-3449: A NULL pointer dereference was found in the signature_algorithms processing in OpenSSL, a Secure Sockets Layer toolkit, which could result in denial of service.
 Vulnerable: &lt;= 1.1.1d-0+deb10u5
 Fixed: 1.1.1d-0+deb10u6</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2614016</td>
@@ -5478,13 +5585,13 @@ To work around this issue, either use the {{vtysh}} commands or edit the {{/etc/
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2566878</td>
+<td>2566880</td>
 <td>CVE-2021-27803: A vulnerability was discovered in how p2p/p2p_pd.c in wpa_supplicant before 2.10 processes P2P (Wi-Fi Direct) provision discovery requests. It could result in denial of service or other impact (potentially execution of arbitrary code), for an attacker within radio range.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.4.2</td>
-<td>3.7.15</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
+<td>3.7.15, 4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2564534</td>
+<td>2564839</td>
 <td>Several vulnerabilities have been discovered in the GRUB2 bootloader:
 CVE-2020-14372: It was discovered that the acpi command allows a privileged user to load crafted ACPI tables when Secure Boot is enabled.
 CVE-2020-25632: A use-after-free vulnerability was found in the rmmod command.
@@ -5493,8 +5600,8 @@ CVE-2020-27749: A stack buffer overflow flaw was found in grub_parser_split_cmdl
 CVE-2020-27779: It was discovered that the cutmem command allows a privileged user  to remove memory regions when Secure Boot is enabled.
 CVE-2021-20225: A heap out-of-bounds write vulnerability was found in the short form option parser.
 CVE-2021-20233: A heap out-of-bound write flaw was found caused by mis-calculation of space required for quoting in the menu rendering.</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2558184</td>
@@ -5506,47 +5613,47 @@ CVE-2021-20233: A heap out-of-bound write flaw was found caused by mis-calculati
 <td>2556811</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2556781</td>
+<td>2556783</td>
 <td>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.
 Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.4.2</td>
-<td>3.7.15</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
+<td>3.7.15, 4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556777</td>
+<td>2556778</td>
 <td>CVE-2021-26937: A  flaw in the handling of combining characters in screen, a terminal multiplexer with VT100/ANSI terminal emulation can result in denial of service, or potentially the execution of arbitrary code via a specially crafted UTF-8 character sequence.
 Vulnerable: 4.6.2-3
 Fixed: 4.6.2-3+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556774</td>
+<td>2556775</td>
 <td>DSA-4859-1 (no CVE): zstd, a compression utility, was vulnerable to a race condition: it temporarily exposed, during a very short timeframe, a world-readable version of its input even if the original file had restrictive permissions.
 Vulnerable: &lt;= 1.3.8+dfsg-3+deb10u1
 Fixed: 1.3.8+dfsg-3+deb10u2</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556762</td>
+<td>2556764</td>
 <td>In a configuration with both traditional and vlan-aware bridges, the VLAN membership check on a vlan-aware switch does not drop PVST BPBUs that come from a traditional bridge.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.4.2</td>
-<td>3.7.15</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
+<td>3.7.15, 4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556730</td>
+<td>2556731</td>
 <td>CVE-2020-8625: A buffer overflow vulnerability was discovered in the SPNEGO implementation affecting the GSSAPI security policy negotiation in BIND, a DNS server implementation, which could result in denial of service (daemon crash), or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u2
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u3</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556690</td>
+<td>2556691</td>
 <td>The following vulnerabilities have been announced in the openssl packages:
 CVE-2021-23840: Calls to EVP_CipherUpdate, EVP_EncryptUpdate and EVP_DecryptUpdate may overflow the output length argument in some cases where the input length is close to the maximum permissable length for an integer on the platform. In such cases the return value from the function call will be 1 (indicating success), but the output length value will be negative. This could cause applications to behave incorrectly or crash.
 CVE-2021-23841: The OpenSSL public API function X509_issuer_and_serial_hash() attempts to create a unique hash value based on the issuer and serial number data contained
@@ -5554,30 +5661,22 @@ within an X509 certificate. However it fails to correctly handle any errors that
 CVE-2019-1551: There is an overflow bug in the x64_64 Montgomery squaring procedure used in exponentiation with 512-bit moduli. No EC algorithms are affected. Analysis suggests that attacks against 2-prime RSA1024, 3-prime RSA1536, and DSA1024 as a result of this defect would be very difficult to perform and are not believed likely. Attacks against DH512 are considered just feasible. However, for an attack the target would have to re-use the DH512 private key, which is not recommended anyway. Also applications directly using the low level API BN_mod_exp may be affected if they use BN_FLG_CONSTTIME.
 Vulnerable: &lt;= 1.1.1d-0+deb10u4
 Fixed: 1.1.1d-0+deb10u5</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556658</td>
-<td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
-Vulnerable: &lt;= 2.8.90-1-cl4u5
-Fixed: 2.8.90-1-cl4u6, 2.8.90-1-cl4.4.0u1, 2.8.90-1-cl5.0.0u8</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2556568</td>
+<td>2556569</td>
 <td>DSA-4850-1 (no CVE): libzstd adds read permissions to files while being compressed or uncompressed.
 Vulnerable: 1.3.8+dfsg-3
 Fixed: 1.3.8+dfsg-3+deb10u1</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556499</td>
+<td>2556500</td>
 <td>Cumulus Linux does not support bond members at 200G or greater.</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2556279</td>
@@ -5727,10 +5826,10 @@ Fixed: 2.4.47+dfsg-3+deb10u4</td>
 <td>4.3.0-4.4.2</td>
 </tr>
 <tr>
-<td>2554797</td>
+<td>2554798</td>
 <td>On the Mellanox SN3700C switch, PIM multicast packets are duplicated at the egress VTEP.</td>
-<td>4.2.0-4.4.2</td>
-<td></td>
+<td>4.2.0-4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2554785</td>
@@ -7146,7 +7245,7 @@ To work around this issue, wait up to 15 seconds on 40G interfaces and 30 second
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2543164</td>

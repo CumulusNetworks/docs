@@ -361,6 +361,7 @@ DAEMON_ARGS="-c"
 ## Caveats and Errata
 
 - Annex E (and hence Annex D) of IEEE802.1AB (lldp) is not supported.
+- If you configure both an eth0 IP address and a loopback IP address on the switch, LLDP advertises the loopback IP address as the management IP address. In this case, the Cumulus Linux switch behaves more like a typical Linux host than a networking appliance.
 
 ## Related Information
 

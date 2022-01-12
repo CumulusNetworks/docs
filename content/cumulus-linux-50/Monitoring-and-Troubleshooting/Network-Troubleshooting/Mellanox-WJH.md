@@ -6,7 +6,7 @@ toc: 4
 ---
 *What Just Happened* (WJH) provides real time visibility into network problems and has two components:
 - The WJH agent enables you to stream detailed and contextual telemetry for off-switch analysis with tools, such as [NVIDIA NetQ]({{<ref "/cumulus-netq-41" >}}).
-- The WJH service enables you to diagnose network problems by looking at dropped packets. WJH monitors layer 1, layer 2, layer 3, buffer, tunnel, and ACL related issues.
+- The WJH service enables you to diagnose network problems by looking at dropped packets. WJH monitors forwarding (layer 2, layer 3, and tunnel) related issues.
 
 ## Enable the WJH Service
 

@@ -1126,6 +1126,17 @@ The following example shows the logical port limitation provided in the Dell Z92
 
 Mellanox SN2700 and SN2700B switches have a limit of 64 logical ports in total. However, the logical ports must be configured in a specific way. See the note above.
 
+<!-- vale off -->
+### ports.conf File Validator
+<!-- vale on -->
+Cumulus Linux includes a `ports.conf` validator that `switchd` runs automatically before the switch starts up to confirm that the file syntax is correct. You can run the validator manually to verify the syntax of the file whenever you make changes. The validator is useful if you want to copy a new `ports.conf` file to the switch with automation tools, then validate that it has the correct syntax.
+
+To run the validator manually, run the `/usr/cumulus/bin/validate-ports -f <file>` command. For example:
+
+```
+cumulus@switch:~$ /usr/cumulus/bin/validate-ports -f /etc/cumulus/ports.conf
+```
+
 ## Verification and Troubleshooting Commands
 
 ### Statistics

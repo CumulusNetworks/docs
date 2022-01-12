@@ -7,9 +7,17 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2923737</td>
+<td>2932121</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2923748</td>
+<td>CVE-2021-43818: lxml is a library for processing XML and HTML in the Python language. Prior to version 4.6.5, the HTML Cleaner in lxml.html lets certain crafted script content pass through, as well as script content in SVG files embedded using data URIs.
+Vulnerable: &lt;= 3.4.0-1+deb8u4
+Fixed: 3.4.0-1+deb8u5</td>
+<td>3.7.15</td>
 <td></td>
 </tr>
 <tr>

@@ -1398,6 +1398,16 @@ To remove a breakout port:
 ## Logical Switch Port Limitations
 
 100G and 40G switches can support a certain number of logical ports depending on the switch. Before you configure any logical ports on a switch, check the limitations listed in the `/etc/cumulus/ports.conf`file.
+<!-- vale off -->
+### ports.conf File Validator
+<!-- vale on -->
+Cumulus Linux includes a `ports.conf` validator that `switchd` runs automatically before the switch starts up to confirm that the file syntax is correct. You can run the validator manually to verify the syntax of the file whenever you make changes. The validator is useful if you want to copy a new `ports.conf` file to the switch with automation tools, then validate that it has the correct syntax.
+
+To run the validator manually, run the `/usr/cumulus/bin/validate-ports -f <file>` command. For example:
+
+```
+cumulus@switch:~$ /usr/cumulus/bin/validate-ports -f /etc/cumulus/ports.conf
+```
 
 ## Troubleshooting
 

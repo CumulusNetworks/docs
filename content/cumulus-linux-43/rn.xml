@@ -13,6 +13,14 @@
 <td></td>
 </tr>
 <tr>
+<td>2932084</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
+Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
+Fixed: 9.27~dfsg-2+deb10u5</td>
+<td>4.0.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2917487</td>
 <td>BGP unnumbered sessions with the subinterfaces do not establish if you use different passwords for BGP.</td>
 <td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
@@ -22,6 +30,12 @@
 <td>2910017</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2902013</td>
+<td>The NCLU commit  command adds a five second delay.</td>
+<td>4.2.1-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -849,6 +863,13 @@ Fixed: 9.11.5.P4+dfsg-5.1+deb10u5</td>
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
+<td>2643822</td>
+<td>On the Mellanox Spectrum-2 switches, after running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
+To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
+<td>4.2.1-4.3.0</td>
+<td>4.4.0-4.4.2</td>
+</tr>
+<tr>
 <td>2639303</td>
 <td>When you use NCLU to delete a bond, then add an interface, NCLU reports an error similar to the following:
 ERROR: 'NoneType' object has no attribute 'conf_key_value_multiple_values'
@@ -963,6 +984,12 @@ Fixed: 1.1.1d-0+deb10u6</td>
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
+<td>2582639</td>
+<td>On NVIDIA Spectrum switches, BUM traffic might be dropped during VXLAN decapsulation in an EVPN multihoming environment after multiple PIM uplink interfaces flap.</td>
+<td>4.3.0</td>
+<td>4.4.0-4.4.2</td>
+</tr>
+<tr>
 <td>2578872</td>
 <td>CVE-2021-20270: It was discovered that Pygments, a syntax highlighting package written in Python, could be forced into an infinite loop, resulting in denial of service.
 Vulnerable: 2.3.1+dfsg-1
@@ -976,12 +1003,6 @@ Fixed: 2.3.1+dfsg-1+deb10u1</td>
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u1
 Fixed: 4.1.0+git191117-2~deb10u2</td>
 <td>4.0.0-4.3.0</td>
-<td>4.4.0-4.4.2</td>
-</tr>
-<tr>
-<td>2578814</td>
-<td>On NVIDIA Spectrum switches, BUM traffic might be dropped during VXLAN decapsulation in an EVPN multihoming environment after multiple PIM uplink interfaces flap.</td>
-<td>4.3.0</td>
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>

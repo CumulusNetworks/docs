@@ -7,9 +7,31 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2932085</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
+Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
+Fixed: 9.27~dfsg-2+deb10u5</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2932083</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
+Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
+Fixed: 9.27~dfsg-2+deb10u5</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2917487</td>
 <td>BGP unnumbered sessions with the subinterfaces do not establish if you use different passwords for BGP.</td>
 <td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2914835</td>
+<td>NVUE flexible snippets create invalid YAML files.</td>
+<td>5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -174,9 +196,31 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2932085</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
+Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
+Fixed: 9.27~dfsg-2+deb10u5</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2932083</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
+Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
+Fixed: 9.27~dfsg-2+deb10u5</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2917487</td>
 <td>BGP unnumbered sessions with the subinterfaces do not establish if you use different passwords for BGP.</td>
 <td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2914835</td>
+<td>NVUE flexible snippets create invalid YAML files.</td>
+<td>5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>

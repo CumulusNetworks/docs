@@ -13,6 +13,14 @@
 <td></td>
 </tr>
 <tr>
+<td>2932084</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
+Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
+Fixed: 9.27~dfsg-2+deb10u5</td>
+<td>4.0.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2917487</td>
 <td>BGP unnumbered sessions with the subinterfaces do not establish if you use different passwords for BGP.</td>
 <td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
@@ -42,6 +50,12 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>2904239</td>
 <td>If a ZTP script is executed without modifying network configuration (interface or routing configuration) and is configured to reboot the switch, ZTP might continue to run on subsequent reboots. To work around this issue, ensure ZTP modifies networking configuration in {{/etc/network/interfaces}} or {{/etc/frr.conf}}.</td>
 <td>4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2902013</td>
+<td>The NCLU commit  command adds a five second delay.</td>
+<td>4.2.1-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -1904,6 +1918,14 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <td></td>
 </tr>
 <tr>
+<td>2932084</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
+Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
+Fixed: 9.27~dfsg-2+deb10u5</td>
+<td>4.0.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2923458</td>
 <td>At high interface scale (around 100 or more combined SVI and VNI interfaces), the {{sudo ifreload -a}} command might report a buffer underrun event with the message {{error: Buffer underrun}}.</td>
 <td>4.4.0-4.4.1</td>
@@ -1933,6 +1955,12 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>2910017</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2902013</td>
+<td>The NCLU commit  command adds a five second delay.</td>
+<td>4.2.1-4.4.2</td>
 <td></td>
 </tr>
 <tr>

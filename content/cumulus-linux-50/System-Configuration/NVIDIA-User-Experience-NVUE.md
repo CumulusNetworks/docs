@@ -239,7 +239,9 @@ To resolve this issue, include `"auto-prompt":{"ays": "ays_yes"}` to the configu
 $ curl -u 'cumulus:cumulus' -d '{"state":"apply","auto-prompt":{"ays": "ays_yes"}}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2021-11-02_16.09.18_5Z1K
 ```
 
-For information about using the NVUE API, refer to the {{<mib_link url="cumulus-linux-44/api/index.html" text="NVUE API documentation.">}}
+### NVUE REST API Documentation
+
+For information about using the NVUE API, refer to the {{<mib_link url="cumulus-linux-50/api/index.html" text="NVUE API documentation.">}}
 
 ## NVUE CLI
 

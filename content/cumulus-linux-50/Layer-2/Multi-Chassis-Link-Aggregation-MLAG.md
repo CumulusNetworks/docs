@@ -612,9 +612,9 @@ When planning for link failures for a full rack, you need only set enough bandwi
 
 ### Peer Link Routing
 
-NVIDIA Spectrum switches drop routed traffic arriving on MLAG peerlink interfaces destined to remote VXLAN VTEPs, similar to the {{<link url="#large-packet-drops-on-the-peer-link-interface" text="loop prevention mechanism">}} that prevents forwarding traffic received on the peerlink to dual-connected bonds. The switch forwards natively routed packets (packets that would not be routed to a VNI requiring VXLAN encapsulation) that arrive on a peerlink interface as normal. To avoid dropping traffic destined to remote VTEPs, configure routes and host default gateways to avoid crossing routed `peerlink` subinterfaces.
+NVIDIA Spectrum switches drop routed traffic that arrives on an MLAG peerlink interface and routes to a remote VXLAN VTEP. This behavior is similar to the {{<link url="#large-packet-drops-on-the-peer-link-interface" text="loop avoidance mechanism">}} that prevents the switch from forwarding traffic from the peerlink to dual-connected bonds. The switch forwards [natively routed packets](## "packets that do not route to a VNI and therefore require VXLAN encapsulation") that arrive on a peerlink interface as normal. To avoid dropping traffic that routes to a remote VTEP, configure routes and host default gateways to avoid crossing routed `peerlink` subinterfaces.
 
-If you have a requirement to route traffic to an MLAG peer switch for VXLAN forwarding to accommodate uplink failures or other design needs, configure a routing adjacency across a separate routed interface that is not the MLAG `peerlink`.
+If you need to route traffic to an MLAG peer switch for VXLAN forwarding to accommodate uplink failures or other design needs, configure a routing adjacency across a separate routed interface that is not the MLAG `peerlink`.
 
 ## Configuration Example
 

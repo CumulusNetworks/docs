@@ -765,9 +765,11 @@ When planning for link failures for a full rack, you need only allocate enough b
 
 ### Peer Link Routing
 
-When enabling a routing protocol in an MLAG environment, it is also necessary to manage the uplinks; by default MLAG is not aware of layer 3 uplink interfaces. If there is a peer link failure, MLAG does not remove static routes or bring down a BGP or OSPF adjacency unless you use a separate link state daemon such as `ifplugd`.
+NVIDIA Spectrum switches drop routed traffic that arrives on an MLAG peerlink interface and routes to a remote VXLAN VTEP. This behavior is similar to the {{<link url="#large-packet-drops-on-the-peer-link-interface" text="loop avoidance mechanism">}} that prevents the switch from forwarding traffic from the peerlink to dual-connected bonds. The switch forwards [natively routed packets](## "packets that do not route to a VNI and therefore require VXLAN encapsulation") that arrive on a peerlink interface as normal. To avoid dropping traffic that routes to a remote VTEP, configure routes and host default gateways to avoid crossing routed `peerlink` subinterfaces.
 
-When you use MLAG with VRR, set up a routed adjacency across the peerlink.4094 interface. If a routed connection is not built across the peer link, during an uplink failure on one of the switches in the MLAG pair, egress traffic might not be forwarded if the destination is on the switch whose uplinks are down.
+If you need to route traffic to an MLAG peer switch for VXLAN forwarding to accommodate uplink failures or other design needs, configure a routing adjacency across a separate routed interface that is not the MLAG `peerlink`.
+
+Broadcom switches that use MLAG and VRR allow routed adjacencies across the peerlink.4094 interface. The switch can forward traffic arriving on the peerlink to remote VTEPs.
 
 To set up the adjacency, configure a {{<link url="Border-Gateway-Protocol-BGP#bgp-unnumbered" text="BGP">}} or {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} unnumbered peering, as appropriate for your network.
 

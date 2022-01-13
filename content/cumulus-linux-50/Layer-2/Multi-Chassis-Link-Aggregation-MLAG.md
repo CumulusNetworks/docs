@@ -612,62 +612,9 @@ When planning for link failures for a full rack, you need only set enough bandwi
 
 ### Peer Link Routing
 
-When enabling a routing protocol in an MLAG environment, it is also necessary to manage the uplinks; by default MLAG is not aware of layer 3 uplink interfaces. If there is a peer link failure, MLAG does not remove static routes or bring down a BGP or OSPF adjacency unless you use a separate link state daemon such as `ifplugd`.
+NVIDIA Spectrum switches drop routed traffic arriving on MLAG peerlink interfaces destined to remote VXLAN VTEPs, similar to the {{<link url="#large-packet-drops-on-the-peer-link-interface" text="loop prevention mechanism">}} that prevents forwarding traffic received on the peerlink to dual-connected bonds. The switch forwards natively routed packets (packets that would not be routed to a VNI requiring VXLAN encapsulation) that arrive on a peerlink interface as normal. To avoid dropping traffic destined to remote VTEPs, configure routes and host default gateways to avoid crossing routed `peerlink` subinterfaces.
 
-When you use MLAG with VRR, set up a routed adjacency across the peerlink.4094 interface. If a routed connection is not built across the peer link, during an uplink failure on one of the switches in the MLAG pair, egress traffic does not forward if the destination is on the switch whose uplinks are down.
-
-To set up the adjacency, configure a {{<link url="Border-Gateway-Protocol-BGP#bgp-unnumbered" text="BGP">}} or {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} unnumbered peering, as appropriate for your network.
-
-For BGP, use a configuration like this:
-
-{{< tabs "TabID704 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor peerlink remote-as internal
-cumulus@leaf01:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@leaf01:~$ sudo vtysh
-leaf01# configure terminal
-leaf01(config)# router bgp 65101
-leaf01(config-router)# bgp router-id 10.10.10.1
-leaf01(config-router)# neighbor peerlink remote-as external
-leaf01(config-router)# end
-leaf01# write memory
-leaf01# exit
-cumulus@leaf01:~$
-```
-
-If you are using {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}} and MLAG, you need to enable the EVPN address family across the peerlink.4094 interface as well:
-
-```
-cumulus@leaf01:~$ sudo vtysh
-leaf01# configure terminal
-leaf01(config)# router bgp 65101
-leaf01(config-router)# bgp router-id 10.10.10.1
-leaf01(config-router)# neighbor peerlink remote-as external
-leaf01(config-router)# address-family l2vpn evpn
-leaf01(config-router-af)# neighbor peerlink activate
-leaf01(config-router-af)# end
-leaf01# write memory
-leaf01# exit
-cumulus@leaf01:~$
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-For OSPF, use a configuration like this:
-
-```
-cumulus@leaf01:~$ nv set interface peerlink.4094 router ospf area 0.0.0.1
-cumulus@leaf01:~$ nv config apply
-```
+If you have a requirement to route traffic to an MLAG peer switch for VXLAN forwarding to accommodate uplink failures or other design needs, configure a routing adjacency across a separate routed interface that is not the MLAG `peerlink`.
 
 ## Configuration Example
 

@@ -57,7 +57,7 @@ cumulus@switch:~$ nv set interface <interface> bridge domain br_default
 
 | NX-OS Command | NVUE Command | Comments |
 | -----         | -----        | -----    |
-| `switchport mode access` |  `nv set interface <interface> bridge domain br_default access` | |
+| `switchport mode access` |  `nv set interface <interface> bridge domain br_default access <vlan>` | Use `<auto>` to inherit the defualt bridge switchport configuration. |
 | `switchport access vlan <vlan>` |  `nv set interface <interface> bridge domain br_default access <vlan>` | |
 | `switchport mode trunk` | `nv set interface <interface> bridge domain br_default` | Ports you add to a bridge are trunk ports by default. |
 | `switchport trunk allowed vlan <vlan-list>` | `nv set interface <interface> bridge domain br_default vlan <vlan-list>` | |

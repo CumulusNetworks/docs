@@ -7,6 +7,50 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2934940</td>
+<td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
+This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
+<td>3.7.13-4.2.1</td>
+<td>4.3.0-4.4.2</td>
+</tr>
+<tr>
+<td>2934939</td>
+<td>When using {{aggregate-address summary-only}} BGP configuration, if any component route within the summary is updated, all component routes within the summary will be updated in the RIB on the device advertising the summary. This condition can result in increased CPU usage.
+
+To workaround this issue, remove the aggregate-address summary-only configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected
+
+
+After:
+ip route 10.10.0.0/16 Null0
+   !
+   address-family ipv4 unicast
+   redistribute connected route-map DENY-COMPONENTS
+   redistribute static
+    exit-address-family
+   ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+   !
+   route-map DENY-COMPONENTS deny 10
+    match ip address prefix-list NO-COMPONENTS
+   !
+   route-map DENY-COMPONENTS permit 20
+
+Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2934938</td>
+<td>When the {{clagd}} process terminates unexpectedly due to signals such as sig11 or sig6, no core file  is generated.</td>
+<td>3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2932121</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0-4.4.2</td>
@@ -504,6 +548,12 @@ Fixed: 2.8.9dev1-2+deb8u2</td>
 <td>2754791</td>
 <td>Remote MAC addreses in zebra are out of sync with {{bgpd}}. The zebra MAC addresses point to an incorrect (old) VTEP IP  address and the sequence number is one higher than in BGP. </td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2754789</td>
+<td>When the {{clagd}} process terminates unexpectedly due to signals such as sig11 or sig6, no core file  is generated.</td>
+<td>3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -2706,6 +2756,44 @@ These messages are harmless and can be ignored.</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2934940</td>
+<td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
+This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
+<td>3.7.13-3.7.15, 4.2.1-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2934939</td>
+<td>When using {{aggregate-address summary-only}} BGP configuration, if any component route within the summary is updated, all component routes within the summary will be updated in the RIB on the device advertising the summary. This condition can result in increased CPU usage.
+
+To workaround this issue, remove the aggregate-address summary-only configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected
+
+
+After:
+ip route 10.10.0.0/16 Null0
+   !
+   address-family ipv4 unicast
+   redistribute connected route-map DENY-COMPONENTS
+   redistribute static
+    exit-address-family
+   ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+   !
+   route-map DENY-COMPONENTS deny 10
+    match ip address prefix-list NO-COMPONENTS
+   !
+   route-map DENY-COMPONENTS permit 20
+
+Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2910862</td>
@@ -5284,6 +5372,44 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2934940</td>
+<td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
+This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
+<td>3.7.13-3.7.15, 4.2.1-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2934939</td>
+<td>When using {{aggregate-address summary-only}} BGP configuration, if any component route within the summary is updated, all component routes within the summary will be updated in the RIB on the device advertising the summary. This condition can result in increased CPU usage.
+
+To workaround this issue, remove the aggregate-address summary-only configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected
+
+
+After:
+ip route 10.10.0.0/16 Null0
+   !
+   address-family ipv4 unicast
+   redistribute connected route-map DENY-COMPONENTS
+   redistribute static
+    exit-address-family
+   ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+   !
+   route-map DENY-COMPONENTS deny 10
+    match ip address prefix-list NO-COMPONENTS
+   !
+   route-map DENY-COMPONENTS permit 20
+
+Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2910862</td>
@@ -8396,6 +8522,44 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2934940</td>
+<td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
+This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
+<td>3.7.13-3.7.15, 4.2.1-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2934939</td>
+<td>When using {{aggregate-address summary-only}} BGP configuration, if any component route within the summary is updated, all component routes within the summary will be updated in the RIB on the device advertising the summary. This condition can result in increased CPU usage.
+
+To workaround this issue, remove the aggregate-address summary-only configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected
+
+
+After:
+ip route 10.10.0.0/16 Null0
+   !
+   address-family ipv4 unicast
+   redistribute connected route-map DENY-COMPONENTS
+   redistribute static
+    exit-address-family
+   ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+   !
+   route-map DENY-COMPONENTS deny 10
+    match ip address prefix-list NO-COMPONENTS
+   !
+   route-map DENY-COMPONENTS permit 20
+
+Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2910862</td>
@@ -11715,6 +11879,37 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2934939</td>
+<td>When using {{aggregate-address summary-only}} BGP configuration, if any component route within the summary is updated, all component routes within the summary will be updated in the RIB on the device advertising the summary. This condition can result in increased CPU usage.
+
+To workaround this issue, remove the aggregate-address summary-only configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected
+
+
+After:
+ip route 10.10.0.0/16 Null0
+   !
+   address-family ipv4 unicast
+   redistribute connected route-map DENY-COMPONENTS
+   redistribute static
+    exit-address-family
+   ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+   !
+   route-map DENY-COMPONENTS deny 10
+    match ip address prefix-list NO-COMPONENTS
+   !
+   route-map DENY-COMPONENTS permit 20
+
+Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2910862</td>

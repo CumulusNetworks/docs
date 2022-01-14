@@ -279,6 +279,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2934940"></a> [2934940](#2934940) <a name="2934940"></a> <br /> | When you change the SVI <code>vlan-id</code> value in the <code>/etc/network/interfaces</code> file, then run <code>ifreload -a</code>, the 802.1Q ID for the SVI in the kernel does not change.<br />This operation is not supported in the kernel without recreating the SVI. To apply the change, run <code>ifdown</code>, then <code>ifup</code> for the SVI to recreate the interface. | 3.7.13-3.7.15, 4.2.1-4.4.2 | |
 | <a name="2932084"></a> [2932084](#2932084) <a name="2932084"></a> <br /> | CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed<br />Vulnerable: <= 9.27~dfsg-2+deb10u4Fixed: 9.27~dfsg-2+deb10u5 | 4.0.0-4.4.2 | |
 | <a name="2910017"></a> [2910017](#2910017) <a name="2910017"></a> <br /> | SNMP reports the same <code>ifType</code> of <code>ethernetCsmacd(6)</code> for loopback interfaces. | 3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1 | |
 | <a name="2902013"></a> [2902013](#2902013) <a name="2902013"></a> <br /> | The NCLU commit  command adds a five second delay. | 4.2.1-4.4.2 | |

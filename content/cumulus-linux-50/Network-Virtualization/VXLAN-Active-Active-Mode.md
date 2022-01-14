@@ -309,7 +309,7 @@ auto swp49
 iface swp49
 
 auto swp50
-iface sw50p
+iface swp50
 
 auto peerlink
 iface peerlink

@@ -1169,15 +1169,11 @@ iface swp2
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL44 - MLAG" showNodes="leaf01,leaf02,spine01,server01,server02,server03" >}}
+    {{< simulation name="Try It CL501 - MLAG" showNodes="leaf01,leaf02,spine01,server01,server02,server03" >}}
 
 This simulation starts with the example MLAG configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 
 To validate the configuration, run the commands listed in the troubleshooting section below.
-
-{{%notice note%}}
-This simulation runs on Cumulus Linux 4.4. Cumulus Linux 5.0 configuration is coming soon.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}

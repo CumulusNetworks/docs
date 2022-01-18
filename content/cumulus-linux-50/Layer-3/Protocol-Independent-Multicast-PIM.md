@@ -1388,6 +1388,7 @@ cumulus@leaf01:~$ nv set router pim enable on
 cumulus@leaf01:~$ nv set interface lo ip address 10.10.10.1/32
 cumulus@leaf01:~$ nv set interface swp1,swp49,swp51
 cumulus@leaf01:~$ nv set interface swp1 bridge domain br_default
+cumulus@leaf01:~$ nv set interface swp1 bridge domain br_default access 10
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 10
 cumulus@leaf01:~$ nv set interface vlan10 ip address 10.1.10.1/24
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
@@ -1411,6 +1412,7 @@ cumulus@leaf02:~$ nv set router pim enable on
 cumulus@leaf02:~$ nv set interface lo ip address 10.10.10.2/32
 cumulus@leaf02:~$ nv set interface swp2,swp49,swp51
 cumulus@leaf02:~$ nv set interface swp2 bridge domain br_default
+cumulus@leaf02:~$ nv set interface swp2 bridge domain br_default access 20
 cumulus@leaf02:~$ nv set bridge domain br_default vlan 20
 cumulus@leaf02:~$ nv set interface vlan20 ip address 10.2.10.1/24
 cumulus@leaf02:~$ nv set router bgp autonomous-system 65102
@@ -1661,6 +1663,19 @@ ip pim rp 10.10.10.101
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "Try It " >}}
+    {{< simulation name="Try It CL44 - PIMv3" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
+
+This simulation starts with the example PIM configuration. To simplify the example, only one spine and two leafs are in the topology. The demo is pre-configured using NCLU commands (Cumulus Linux 4.4 does not support NVUE commands for PIM).
+
+- To show the multicast routing table, run the NCLU `net show mroute` command on the FHR (leaf01), RP (spine01), or LHR (leaf02).
+- To see the active source on the RP, run the `net show pim upstream` command on spine01.
+- To show information about known S,Gs, the [IIF](## "Incoming Interface") and the [OIL](## "Outgoing Interface"), run the `net show pim state` command on the FHR (leaf01), RP (spine01), or LHR (leaf02).
+
+To further validate the configuration, run the PIM show commands listed in the troubleshooting section above.
+
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2935122</td>
+<td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
+<td>4.3.0-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2935121</td>
+<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
+<td>4.3.0-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2934219</td>
+<td>If you configure an INPUT chain ACL rule to drop all packets ({{-A INPUT -j DROP}}), {{switchd}} fails to restart.</td>
+<td>4.4.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2932121</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0-4.4.2</td>
@@ -18,12 +36,6 @@
 Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
 Fixed: 9.27~dfsg-2+deb10u5</td>
 <td>4.0.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2917487</td>
-<td>BGP unnumbered sessions with the subinterfaces do not establish if you use different passwords for BGP.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -56,13 +68,6 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>2902013</td>
 <td>The NCLU commit  command adds a five second delay.</td>
 <td>4.2.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2899414</td>
-<td>After you provision a new switch with ZTP,  you cannot reach the switch because the IP or default route on eth0 is deleted. This issue occurs when the system time is ahead of NTP time and the DHCP lease is acquired before ZTP synchronizes the system clock to the NTP clock.
-To work around this issue, flap eth0. </td>
-<td>4.2.1-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -614,12 +619,6 @@ Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
 <td>3.7.14-3.7.15, 4.0.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2663119</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>4.3.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -1912,10 +1911,21 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2934940</td>
-<td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
-This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
-<td>3.7.13-3.7.15, 4.2.1-4.4.2</td>
+<td>2935122</td>
+<td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
+<td>4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2935121</td>
+<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
+<td>4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2934219</td>
+<td>If you configure an INPUT chain ACL rule to drop all packets ({{-A INPUT -j DROP}}), {{switchd}} fails to restart.</td>
+<td>4.4.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -1937,12 +1947,6 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <td>At high interface scale (around 100 or more combined SVI and VNI interfaces), the {{sudo ifreload -a}} command might report a buffer underrun event with the message {{error: Buffer underrun}}.</td>
 <td>4.4.0-4.4.1</td>
 <td>4.4.2</td>
-</tr>
-<tr>
-<td>2917487</td>
-<td>BGP unnumbered sessions with the subinterfaces do not establish if you use different passwords for BGP.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2913859</td>
@@ -1968,13 +1972,6 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>2902013</td>
 <td>The NCLU commit  command adds a five second delay.</td>
 <td>4.2.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2899414</td>
-<td>After you provision a new switch with ZTP,  you cannot reach the switch because the IP or default route on eth0 is deleted. This issue occurs when the system time is ahead of NTP time and the DHCP lease is acquired before ZTP synchronizes the system clock to the NTP clock.
-To work around this issue, flap eth0. </td>
-<td>4.2.1-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2182,13 +2179,13 @@ thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 <td>2854785</td>
 <td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
 <td>4.3.0-4.4.1</td>
-<td>4.4.2, 5.0.0-5.0.1</td>
+<td>4.4.2</td>
 </tr>
 <tr>
 <td>2854784</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
 <td>4.3.0-4.4.1</td>
-<td>4.4.2, 5.0.0-5.0.1</td>
+<td>4.4.2</td>
 </tr>
 <tr>
 <td>2853630</td>
@@ -2830,12 +2827,6 @@ Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
 <td>3.7.14-3.7.15, 4.0.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2663119</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>4.3.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>

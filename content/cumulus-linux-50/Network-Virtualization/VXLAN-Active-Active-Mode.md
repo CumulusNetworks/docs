@@ -4,16 +4,20 @@ author: NVIDIA
 weight: 615
 toc: 3
 ---
-*VXLAN active-active mode* enables a pair of {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} switches to act as a single [VTEP](## "Virtual Tunnel End Point"), providing active-active VXLAN termination for bare metal as well as virtualized workloads.
+*VXLAN active-active mode* enables a pair of [MLAG](## "Multi Chassis Link Aggregation") switches to act as a single [VTEP](## "Virtual Tunnel End Point"), providing active-active VXLAN termination for bare metal as well as virtualized workloads.
 
 To work correctly, VXLAN active-active mode requires the following underlying technologies:
 - {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}
 - {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}
-- {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-filter" text="BPDU filter">}} and {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-guard" text="BPDU guard">}} on the VXLAN interfaces if the bridge that connects to the VXLAN has STP.
+- {{<link url="VXLAN-Devices" text="VXLAN interfaces">}}
+
+{{%notice note%}}
+If the bridge that connects to the VXLAN uses [STP](## "Spanning Tree Protocol"), you must configure {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-filter" text="BPDU filter">}} and {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-guard" text="BPDU guard">}} on the VXLAN interfaces.
+{{%/notice%}}
 <!-- vale off -->
 ## Configure VXLAN Active-Active
 <!-- vale on -->
-To configure VXLAN active-active, you must provision each individual switch in an MLAG pair with a virtual IP address for VXLAN data-path termination. The VXLAN termination address is an anycast IP address that you configure under the loopback interface. With MLAG peering, both switches use the anycast IP address for VXLAN encapsulation and decapsulation. This enables remote VTEPs to learn the host MAC addresses attached to the MLAG switches against one logical VTEP, even though the switches independently encapsulate and decapsulate layer 2 traffic originating from the host.
+To configure VXLAN active-active, you must provision each switch in an MLAG pair with a virtual IP address for VXLAN data-path termination. The VXLAN termination address is an anycast IP address that you configure under the loopback interface. With MLAG peering, both switches use the anycast IP address for VXLAN encapsulation and decapsulation. This enables remote VTEPs to learn the host MAC addresses attached to the MLAG switches against one logical VTEP, even though the switches independently encapsulate and decapsulate layer 2 traffic originating from the host.
 
 MLAG dynamically adds and removes the anycast IP address as the loopback interface address as follows:
 
@@ -25,7 +29,6 @@ MLAG dynamically adds and removes the anycast IP address as the loopback interfa
 - The active-active configuration for a given VXLAN interface must be consistent between the MLAG switches; MLAG ensures that the configuration is consistent before bringing up the VXLAN interfaces.
   - The anycast virtual IP address for VXLAN termination must be the same on both switches in the MLAG pair.
   - You must configure a VXLAN interface with the same VXLAN ID, which must be administratively up on both switches in the MLAG pair. Run the `clagctl` command to check if any VXLAN switches are in a PROTO_DOWN state.
-
 {{%/notice%}}
 
 To configure the anycast IP address:

@@ -2015,13 +2015,6 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2934940</td>
-<td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
-This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
-<td>3.7.13-3.7.15, 4.2.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2932084</td>
 <td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
 Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
@@ -2039,13 +2032,6 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <td>2902013</td>
 <td>The NCLU commit  command adds a five second delay.</td>
 <td>4.2.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2899414</td>
-<td>After you provision a new switch with ZTP,  you cannot reach the switch because the IP or default route on eth0 is deleted. This issue occurs when the system time is ahead of NTP time and the DHCP lease is acquired before ZTP synchronizes the system clock to the NTP clock.
-To work around this issue, flap eth0. </td>
-<td>4.2.1-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2916,8 +2902,8 @@ Fixed: 4.11.4+57-g41a822c392-2</td>
 <td>2555428</td>
 <td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
 This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
-<td>3.7.13-4.2.1</td>
-<td>4.3.0-4.4.2</td>
+<td>3.7.13-3.7.15, 4.2.1-4.4.2</td>
+<td></td>
 </tr>
 <tr>
 <td>2555426</td>
@@ -5693,13 +5679,6 @@ Fixed: 4.11.4+57-g41a822c392-2</td>
 <td>2555484</td>
 <td>{{ospf6d}} restarts when you run the NCLU {{net show ospf6 databse}} command or the vtysh {{show ipv6 ospf6 database}} command. </td>
 <td>4.2.0-4.2.1</td>
-<td>4.3.0-4.4.2</td>
-</tr>
-<tr>
-<td>2555428</td>
-<td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
-This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
-<td>3.7.13-4.2.1</td>
 <td>4.3.0-4.4.2</td>
 </tr>
 <tr>

@@ -1767,13 +1767,6 @@ Fixed: 4.11.4+57-g41a822c392-2</td>
 <td>4.3.0-4.4.2</td>
 </tr>
 <tr>
-<td>2555428</td>
-<td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
-This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
-<td>3.7.13-4.2.1</td>
-<td>4.3.0-4.4.2</td>
-</tr>
-<tr>
 <td>2555400</td>
 <td>On the Edgecore AS7312 switch, eth0 and swp use the same MAC address.</td>
 <td>3.7.14-3.7.14.2, 4.0.0-4.4.2</td>

@@ -7,10 +7,15 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2934940</td>
-<td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
-This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
-<td>3.7.13-3.7.15, 4.2.1-4.4.2</td>
+<td>2935122</td>
+<td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
+<td>4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2935121</td>
+<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
+<td>4.3.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -28,12 +33,6 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <td></td>
 </tr>
 <tr>
-<td>2917487</td>
-<td>BGP unnumbered sessions with the subinterfaces do not establish if you use different passwords for BGP.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2910017</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1</td>
@@ -43,13 +42,6 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <td>2902013</td>
 <td>The NCLU commit  command adds a five second delay.</td>
 <td>4.2.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2899414</td>
-<td>After you provision a new switch with ZTP,  you cannot reach the switch because the IP or default route on eth0 is deleted. This issue occurs when the system time is ahead of NTP time and the DHCP lease is acquired before ZTP synchronizes the system clock to the NTP clock.
-To work around this issue, flap eth0. </td>
-<td>4.2.1-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -241,13 +233,13 @@ thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 <td>2854785</td>
 <td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
 <td>4.3.0-4.4.1</td>
-<td>4.4.2, 5.0.0-5.0.1</td>
+<td>4.4.2</td>
 </tr>
 <tr>
 <td>2854784</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
 <td>4.3.0-4.4.1</td>
-<td>4.4.2, 5.0.0-5.0.1</td>
+<td>4.4.2</td>
 </tr>
 <tr>
 <td>2853630</td>
@@ -293,6 +285,12 @@ Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
+<td>2839140</td>
+<td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
+<td>4.3.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
+</tr>
+<tr>
 <td>2837378</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0-4.4.2</td>
@@ -303,6 +301,12 @@ Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>After bringing up a bridge port, there is a multi second delay before the bridge port is able to learn any MAC addresses or neighbors, which causes a forwarding delay (about six seconds with 300 or more VLANs).</td>
 <td>3.7.15, 4.3.0-4.4.2</td>
 <td></td>
+</tr>
+<tr>
+<td>2826121</td>
+<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
+<td>4.3.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2821869</td>
@@ -800,12 +804,6 @@ Vulnerable: 1.8.3-1
 Fixed: 1.8.3-1+deb10u1</td>
 <td>4.0.0-4.3.0</td>
 <td>4.4.0-4.4.2</td>
-</tr>
-<tr>
-<td>2663119</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>4.3.0-4.4.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2660583</td>

@@ -3245,7 +3245,7 @@ cumulus@spine02:~$ cat /etc/nvue.d/startup.yaml
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL44 - EVPN Multihoming" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
+    {{< simulation name="Try It CL501 - EVPN Multihoming" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
 
 This simulation starts with the EVPN-MH with Head End Replication configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 
@@ -3254,9 +3254,6 @@ This simulation starts with the EVPN-MH with Head End Replication configuration.
 
 To further validate the configuration, run the commands shown in the troublshooting section below.
 
-{{%notice note%}}
-This simulation runs on Cumulus Linux 4.4. Cumulus Linux 5.0 configuration is coming soon.
-{{%/notice%}}
 
 {{</tab>}}
 {{</tabs>}}

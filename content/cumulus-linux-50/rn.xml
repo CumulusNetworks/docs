@@ -23,12 +23,6 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <td></td>
 </tr>
 <tr>
-<td>2917487</td>
-<td>BGP unnumbered sessions with the subinterfaces do not establish if you use different passwords for BGP.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2914835</td>
 <td>NVUE flexible snippets create invalid YAML files.</td>
 <td>5.0.0-5.0.1</td>
@@ -52,13 +46,6 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>2910017</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2899414</td>
-<td>After you provision a new switch with ZTP,  you cannot reach the switch because the IP or default route on eth0 is deleted. This issue occurs when the system time is ahead of NTP time and the DHCP lease is acquired before ZTP synchronizes the system clock to the NTP clock.
-To work around this issue, flap eth0. </td>
-<td>4.2.1-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -212,12 +199,6 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <td></td>
 </tr>
 <tr>
-<td>2917487</td>
-<td>BGP unnumbered sessions with the subinterfaces do not establish if you use different passwords for BGP.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2914835</td>
 <td>NVUE flexible snippets create invalid YAML files.</td>
 <td>5.0.0-5.0.1</td>
@@ -249,13 +230,6 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no longer works, run the {{apt install sx-sdk-eth-dev}} command (and run the command for any other removed package) or reinstall the Cumulus Linux image.</td>
 <td>5.0.0</td>
 <td>5.0.1</td>
-</tr>
-<tr>
-<td>2899414</td>
-<td>After you provision a new switch with ZTP,  you cannot reach the switch because the IP or default route on eth0 is deleted. This issue occurs when the system time is ahead of NTP time and the DHCP lease is acquired before ZTP synchronizes the system clock to the NTP clock.
-To work around this issue, flap eth0. </td>
-<td>4.2.1-4.4.2, 5.0.0-5.0.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2896733</td>

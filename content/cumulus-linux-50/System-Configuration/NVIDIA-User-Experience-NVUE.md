@@ -462,7 +462,7 @@ The NVUE configuration management commands manage and apply configurations.
 | `nv config show -o commands` | Shows the currently applied configuration commands. |
 | `nv config diff -o commands` | Shows differences between two configuration revisions. |
 
-You can use the NVUE configuration management commands to back up and restore configuration when you upgrade Cumulus Linux on the switch. Refer to {{<link url="Upgrading-Cumulus-Linux/#back-up-configuration-with-nvue" text="Upgrading CumulusLinux">}}.
+You can use the NVUE configuration management commands to back up and restore configuration when you upgrade Cumulus Linux on the switch. Refer to {{<link url="Upgrading-Cumulus-Linux/#back-up-configuration-with-nvue" text="Upgrading Cumulus Linux">}}.
 
 ### List All NVUE Commands
 

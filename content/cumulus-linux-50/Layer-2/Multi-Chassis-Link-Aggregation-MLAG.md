@@ -624,7 +624,7 @@ For BGP, use a configuration like this:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor peerlink remote-as internal
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor peerlink.4094 remote-as internal
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -636,7 +636,7 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# bgp router-id 10.10.10.1
-leaf01(config-router)# neighbor peerlink remote-as external
+leaf01(config-router)# neighbor peerlink.4094 remote-as external
 leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
@@ -650,9 +650,9 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# bgp router-id 10.10.10.1
-leaf01(config-router)# neighbor peerlink remote-as external
+leaf01(config-router)# neighbor peerlink.4094 remote-as external
 leaf01(config-router)# address-family l2vpn evpn
-leaf01(config-router-af)# neighbor peerlink activate
+leaf01(config-router-af)# neighbor peerlink.4094 activate
 leaf01(config-router-af)# end
 leaf01# write memory
 leaf01# exit

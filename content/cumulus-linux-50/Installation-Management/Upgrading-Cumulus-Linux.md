@@ -106,8 +106,8 @@ After you upgrade to Cumulus Linux 5.0, running NVUE configuration commands repl
 ### Back Up and Restore Configuration with NVUE
 
 To back up and restore the configuration on the switch with NVUE, you can either:
-- Back up and restore the NVUE configuration file.
-- Back up and restore the NVUE configuration commands.
+- Back up and restore the NVUE configuration file (available when upgrading from 4.4 and later).
+- Back up and restore the NVUE configuration commands (available when upgrading from 5.0 and later).
 
 To back up and restore the configuration file:
 

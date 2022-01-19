@@ -6,18 +6,18 @@ toc: 3
 ---
 *VXLAN active-active mode* enables a pair of [MLAG](## "Multi Chassis Link Aggregation") switches to act as a single [VTEP](## "Virtual Tunnel End Point"), providing active-active VXLAN termination for bare metal as well as virtualized workloads.
 
-To work correctly, VXLAN active-active mode requires the following underlying technologies:
+To use VXLAN active-active mode, you need to configure:
 - {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}
 - {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}
-- {{<link url="VXLAN-Devices" text="VXLAN interfaces">}}
+- {{<link url="VXLAN-Devices" text="VXLAN devices">}}
 
 {{%notice note%}}
-If the bridge that connects to the VXLAN uses [STP](## "Spanning Tree Protocol"), you must configure {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-filter" text="BPDU filter">}} and {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-guard" text="BPDU guard">}} on the VXLAN interfaces.
+If the bridge that connects to the VXLAN uses [STP](## "Spanning Tree Protocol"), you must set {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-filter" text="BPDU filter">}} and {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-guard" text="BPDU guard">}} on the VXLAN interfaces.
 {{%/notice%}}
 <!-- vale off -->
 ## Configure VXLAN Active-Active
 <!-- vale on -->
-To configure VXLAN active-active, you must provision each switch in an MLAG pair with a virtual IP address for VXLAN data-path termination. The VXLAN termination address is an anycast IP address that you configure under the loopback interface. With MLAG peering, both switches use the anycast IP address for VXLAN encapsulation and decapsulation. This enables remote VTEPs to learn the host MAC addresses attached to the MLAG switches against one logical VTEP, even though the switches independently encapsulate and decapsulate layer 2 traffic originating from the host.
+To configure VXLAN active-active mode, you must provision each switch in an MLAG pair with a virtual IP address for VXLAN data-path termination. The VXLAN termination address is an anycast IP address that you configure under the loopback interface. With MLAG peering, both switches use the anycast IP address for VXLAN encapsulation and decapsulation. This enables remote VTEPs to learn the host MAC addresses attached to the MLAG switches against one logical VTEP, even though the switches independently encapsulate and decapsulate layer 2 traffic originating from the host.
 
 MLAG dynamically adds and removes the anycast IP address as the loopback interface address as follows:
 
@@ -26,7 +26,7 @@ MLAG dynamically adds and removes the anycast IP address as the loopback interfa
 3. The `clagd` daemon adds the anycast address to the loopback interface as a second address. It then changes the local IP address of the VXLAN interface from a unique address to the anycast IP address and puts the interface in an UP state.
 
 {{%notice note%}}
-- The active-active configuration for a given VXLAN interface must be consistent between the MLAG switches; MLAG ensures that the configuration is consistent before bringing up the VXLAN interfaces.
+- The active-active configuration for a given VXLAN interface must be consistent between both switches in the MLAG pair; MLAG ensures that the configuration is consistent before bringing up the VXLAN interfaces.
   - The anycast virtual IP address for VXLAN termination must be the same on both switches in the MLAG pair.
   - You must configure a VXLAN interface with the same VXLAN ID, which must be administratively up on both switches in the MLAG pair. Run the `clagctl` command to check if any VXLAN switches are in a PROTO_DOWN state.
 {{%/notice%}}
@@ -75,6 +75,7 @@ auto lo
 iface lo inet loopback
   address 10.10.10.1/32
   clagd-vxlan-anycast-ip 10.0.1.12
+...
 ```
 
 {{< /tab >}}
@@ -87,6 +88,7 @@ auto lo
 iface lo inet loopback
   address 10.10.10.2/32
   clagd-vxlan-anycast-ip 10.0.1.12
+...
 ```
 
 {{< /tab >}}
@@ -206,12 +208,12 @@ Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Dow
 
 {{< img src = "/images/cumulus-linux/vxlan-active-active-example.png" >}}
 <!-- vale on -->
-This commands in this example configure:
+The commands in this example configure:
 - MLAG between leaf01 and leaf02, and between leaf03 and leaf04.
 - BGP unnumbered on all leafs and spines.
 - A single VXLAN device (vxlan48) on each leaf. VLAN 10 maps to VNI 10 and VLAN 20 to VNI 20. The VXLAN device is part of the default bridge `br_default`.
 - The anycast IP address 10.0.1.12 on leaf01 and leaf02, and 10.0.1.34 on leaf03 and leaf04.
-- Layer 2 bonds that link server01 to leaf01 and leaf02, and server03 to leaf03 and leaf04.
+- Layer 2 bonds that link server01 to leaf01 and leaf02, and server03 to leaf03 and leaf04. The example shows the server01 and server03 `/etc/network/interfaces` file configuration.
 
 {{< tabs "TabID113 ">}}
 {{< tab "NVUE Commands ">}}

@@ -127,7 +127,7 @@ To back up and restore the configuration file:
    applied
    ```
 
-To backup the configuration commands:
+To backup and restore the configuration commands:
 
 1. Run the `nv config show -o commands > backup.config` command to save the commands to the `backup.config` file:
 

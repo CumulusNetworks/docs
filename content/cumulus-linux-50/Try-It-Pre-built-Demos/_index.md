@@ -13,7 +13,7 @@ The following Try It demos are available:
 - {{<link url="Configuration-Examples/#evpn-symmetric-routing" text="EVPN symmetric routing">}}
 - {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#configuration-example" text="MLAG">}}
 - {{<link url="Static-VXLAN-Tunnels/#single-vxlan-device" text="Single VXLAN device">}}
-<!-- - {{<link url="Protocol-Independent-Multicast-PIM/#example-pim-configuration" text="PIM">}}-->
+- {{<link url="Protocol-Independent-Multicast-PIM/#example-pim-configuration" text="PIM">}}
 
 ## Access a Try It Demo
 

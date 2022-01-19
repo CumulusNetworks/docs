@@ -1607,7 +1607,7 @@ ip pim rp 10.10.10.101
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL501 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
+    {{< simulation name="Try It CL44 - PIMv3" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
 
 This simulation starts with the example PIM configuration. To simplify the example, only one spine and two leafs are in the topology. The demo is pre-configured using NCLU commands (Cumulus Linux 4.4 does not support NVUE commands for PIM).
 

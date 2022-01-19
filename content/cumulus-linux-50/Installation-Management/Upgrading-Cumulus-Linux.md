@@ -106,8 +106,8 @@ After you upgrade to Cumulus Linux 5.0, running NVUE configuration commands repl
 ### Back Up and Restore Configuration with NVUE
 
 To back up and restore the configuration on the switch with NVUE, you can either:
-- Back up and restore the NVUE configuration file.
-- Back up and restore the NVUE configuration commands.
+- Back up and restore the NVUE configuration file (available when upgrading from 4.4 and later).
+- Back up and restore the NVUE configuration commands (available when upgrading from 5.0 and later).
 
 To back up and restore the configuration file:
 
@@ -127,7 +127,7 @@ To back up and restore the configuration file:
    applied
    ```
 
-To backup the configuration commands:
+To backup and restore the configuration commands:
 
 1. Run the `nv config show -o commands > backup.config` command to save the commands to the `backup.config` file:
 
@@ -145,7 +145,7 @@ To backup the configuration commands:
 
 4. Verify the configuration on the switch, then run the `nv config save` command to save the configuration to the `/etc/nvue.d/startup.yaml` file.
 
-The NVUE object model is described in {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
+For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
 
 ## Upgrade Cumulus Linux
 

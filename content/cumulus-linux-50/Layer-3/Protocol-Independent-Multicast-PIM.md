@@ -1666,9 +1666,9 @@ ip pim rp 10.10.10.101
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL44 - PIMv3" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
+    {{< simulation name="Try It CL501 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
 
-This simulation starts with the example PIM configuration. To simplify the example, only one spine and two leafs are in the topology. The demo is pre-configured using NCLU commands (Cumulus Linux 4.4 does not support NVUE commands for PIM).
+This simulation starts with the example PIM configuration. To simplify the example, only one spine and two leafs are in the topology. The demo is pre-configured using NVUE commands.
 
 - To show the multicast routing table, run the NCLU `net show mroute` command on the FHR (leaf01), RP (spine01), or LHR (leaf02).
 - To see the active source on the RP, run the `net show pim upstream` command on spine01.
@@ -1676,82 +1676,8 @@ This simulation starts with the example PIM configuration. To simplify the examp
 
 To further validate the configuration, run the PIM show commands listed in the troubleshooting section above.
 
-
 {{< /tab >}}
 {{< /tabs >}}
-
-<!--
-Try It
-    {{< simulation name="Try It CL44 - PIMv3" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
-
-This simulation starts with the example PIM configuration. To simplify the example, only one spine and two leafs are in the topology. The demo is pre-configured using NVUE commands.
-
-- To show the multicast routing table, run the vtysh `show ip mroute` command on the FHR (leaf01), RP (spine01), or LHR (leaf02).
-- To see the active source on the RP, run the vtysh `show ip pim upstream` command on spine01.
-- To show information about known S,Gs, the [IIF](## "Incoming Interface") and the [OIL](## "Outgoing Interface"), run the vtysh `show ipcpim state` command on the FHR (leaf01), RP (spine01), or LHR (leaf02).
-
-To further validate the configuration, run the PIM show commands listed in the troubleshooting section above.
-
-leaf01 
-
-```
-cumulus@leaf01:~$ net add loopback lo ip address 10.10.10.1/32
-cumulus@leaf01:~$ net add interface swp1,swp49,swp51
-cumulus@leaf01:~$ net add bridge bridge ports swp1
-cumulus@leaf01:~$ net add vlan 10 ip address 10.1.10.1/24
-cumulus@leaf01:~$ net add interface swp1 bridge access 10 
-cumulus@leaf01:~$ net add bridge bridge vids 10
-cumulus@leaf01:~$ net add bgp autonomous-system 65101
-cumulus@leaf01:~$ net add bgp router-id 10.10.10.1
-cumulus@leaf01:~$ net add bgp neighbor swp51 remote-as external
-cumulus@leaf01:~$ net add bgp ipv4 unicast network 10.10.10.1/32
-cumulus@leaf01:~$ net add bgp ipv4 unicast network 10.1.10.0/24
-cumulus@leaf01:~$ net add loopback lo pim
-cumulus@leaf01:~$ net add interface swp51 pim
-cumulus@leaf01:~$ net add vlan 10 pim
-cumulus@leaf01:~$ net add vlan 10 igmp
-cumulus@leaf01:~$ net add pim rp 10.10.10.101
-cumulus@leaf01:~$ net commit
-```
-
-tab "leaf02
-
-```
-cumulus@leaf02:~$ net add loopback lo ip address 10.10.10.2/32
-cumulus@leaf02:~$ net add interface swp2,swp49,swp51
-cumulus@leaf02:~$ net add bridge bridge ports swp2
-cumulus@leaf02:~$ net add vlan 20 ip address 10.2.10.1/24
-cumulus@leaf02:~$ net add interface swp2 bridge access 20
-cumulus@leaf02:~$ net add bridge bridge vids 20
-cumulus@leaf02:~$ net add bgp autonomous-system 65102
-cumulus@leaf02:~$ net add bgp router-id 10.10.10.2
-cumulus@leaf02:~$ net add bgp neighbor swp51 remote-as external
-cumulus@leaf02:~$ net add bgp ipv4 unicast network 10.10.10.2/32
-cumulus@leaf02:~$ net add bgp ipv4 unicast network 10.2.10.0/24
-cumulus@leaf02:~$ net add loopback lo pim
-cumulus@leaf02:~$ net add interface swp51 pim
-cumulus@leaf02:~$ net add vlan 20 pim
-cumulus@leaf02:~$ net add vlan 20 igmp
-cumulus@leaf02:~$ net add pim rp 10.10.10.101
-cumulus@leaf02:~$ net commit
-```
-spine01
-
-```
-cumulus@spine01:~$ net add loopback lo ip address 10.10.10.101/32
-cumulus@spine01:~$ net add bgp autonomous-system 65199
-cumulus@spine01:~$ net add bgp router-id 10.10.10.101
-cumulus@spine01:~$ net add bgp neighbor swp1 remote-as external
-cumulus@spine01:~$ net add bgp neighbor swp2 remote-as external
-cumulus@spine01:~$ net add bgp ipv4 unicast network 10.10.10.101/32
-cumulus@spine01:~$ net add loopback lo pim
-cumulus@spine01:~$ net add interface swp1 pim
-cumulus@spine01:~$ net add interface swp2 pim
-cumulus@spine01:~$ net add pim rp 10.10.10.101 
-cumulus@spine01:~$ net commit
-```
--->
-
 <!-- vale on -->
 
 ## Considerations

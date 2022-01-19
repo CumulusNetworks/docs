@@ -103,6 +103,50 @@ After you upgrade to Cumulus Linux 5.0, running NVUE configuration commands repl
 - Use Linux commands to configure the switch instead of NVUE.
 {{%/notice%}}
 
+### Back Up and Restore Configuration with NVUE
+
+To back up and restore the configuration on the switch with NVUE, you can either:
+- Back up and restore the NVUE configuration file.
+- Back up and restore the NVUE configuration commands.
+
+To back up and restore the configuration file:
+
+1. Save the configuration to the `/etc/nvue.d/startup.yaml` file with the `nv config save` command:
+
+   ```
+   cumulus@switch:~$ nv config save
+   saved
+   ```
+
+2. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different location.
+
+3. After upgrade is complete, restore the configuration. Copy the `/etc/nvue.d/startup.yaml` file to the switch, then run the `nv config apply startup` command:
+
+   ```
+   cumulus@switch:~$ nv config apply startup
+   applied
+   ```
+
+To backup the configuration commands:
+
+1. Run the `nv config show -o commands > backup.config` command to save the commands to the `backup.config` file:
+
+   ```
+   cumulus@switch:~$ nv config show -o commands > backup.config
+   ```
+
+2. Copy the `backup.config` file off the switch to a different location.
+
+3. After upgrade is complete, restore the configuration. Copy the `backup.config` file to the switch, then run the `source backup.config` command to run all the commands in the file.
+
+   ```
+   cumulus@switch:~$ source backup.config
+   ```
+
+4. Verify the configuration on the switch, then run the `nv config save` command to save the configuration to the `/etc/nvue.d/startup.yaml` file.
+
+The NVUE object model is described in {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
+
 ## Upgrade Cumulus Linux
 
 [ONIE](## "Open Network Install Environment") is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.

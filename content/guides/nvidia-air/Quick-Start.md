@@ -2,7 +2,6 @@
 title: Quick Start
 author: NVIDIA
 weight: 20
-version: "1.0"
 product: NVIDIA Air
 ---
 

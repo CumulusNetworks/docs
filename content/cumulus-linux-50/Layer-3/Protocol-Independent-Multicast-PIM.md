@@ -1450,6 +1450,221 @@ cumulus@spine01:~$ nv config apply
 {{< /tabs >}}
 
 {{< /tab >}}
+{{< tab "/etc/nvue.d/startup.yaml ">}}
+
+{{< tabs "TabID1455 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10': {}
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.1/32: {}
+        router:
+          pim:
+            enable: on
+        type: loopback
+      swp1:
+        bridge:
+          domain:
+            br_default: {}
+        type: swp
+      swp49:
+        type: swp
+      swp51:
+        router:
+          pim:
+            enable: on
+        type: swp
+      vlan10:
+        ip:
+          address:
+            10.1.10.1/24: {}
+          igmp:
+            enable: on
+        router:
+          pim:
+            enable: on
+        type: svi
+        vlan: 10
+    router:
+      bgp:
+        autonomous-system: 65101
+        enable: on
+        router-id: 10.10.10.1
+      pim:
+        enable: on
+    system:
+      hostname: leaf01
+    vrf:
+      default:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                network:
+                  10.1.10.0/24: {}
+                  10.10.10.1/32: {}
+            enable: on
+            neighbor:
+              swp51:
+                remote-as: external
+                type: unnumbered
+          pim:
+            address-family:
+              ipv4-unicast:
+                rp:
+                  10.10.10.101: {}
+            enable: on
+```
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '20': {}
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.2/32: {}
+        router:
+          pim:
+            enable: on
+        type: loopback
+      swp2:
+        bridge:
+          domain:
+            br_default: {}
+        type: swp
+      swp49:
+        type: swp
+      swp51:
+        router:
+          pim:
+            enable: on
+        type: swp
+      vlan20:
+        ip:
+          address:
+            10.2.10.1/24: {}
+          igmp:
+            enable: on
+        router:
+          pim:
+            enable: on
+        type: svi
+        vlan: 20
+    router:
+      bgp:
+        autonomous-system: 65102
+        enable: on
+        router-id: 10.10.10.2
+      pim:
+        enable: on
+    system:
+      hostname: leaf02
+    vrf:
+      default:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                network:
+                  10.2.10.0/24: {}
+                  10.10.10.2/32: {}
+            enable: on
+            neighbor:
+              swp51:
+                remote-as: external
+                type: unnumbered
+          pim:
+            address-family:
+              ipv4-unicast:
+                rp:
+                  10.10.10.101: {}
+            enable: on
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.101/32: {}
+        router:
+          pim:
+            enable: on
+        type: loopback
+      swp1:
+        router:
+          pim:
+            enable: on
+        type: swp
+      swp2:
+        router:
+          pim:
+            enable: on
+        type: swp
+    router:
+      bgp:
+        autonomous-system: 65199
+        enable: on
+        router-id: 10.10.10.101
+      pim:
+        enable: on
+    system:
+      hostname: spine01
+    vrf:
+      default:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                network:
+                  10.10.10.101/32: {}
+            enable: on
+            neighbor:
+              swp1:
+                remote-as: external
+                type: unnumbered
+              swp2:
+                remote-as: external
+                type: unnumbered
+          pim:
+            address-family:
+              ipv4-unicast:
+                rp:
+                  10.10.10.101: {}
+            enable: on
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "/etc/network/interfaces ">}}
 
 {{< tabs "TabID1458 ">}}

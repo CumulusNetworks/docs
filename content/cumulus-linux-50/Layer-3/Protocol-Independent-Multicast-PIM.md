@@ -1457,9 +1457,20 @@ cumulus@spine01:~$ nv config apply
 
 ```
 cumulus@leaf01:mgmt:~$ sudo cat /etc/network/interfaces
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.1/32
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
 auto swp1
 iface swp1
     bridge-access 10
@@ -1467,24 +1478,19 @@ auto swp49
 iface swp49
 auto swp51
 iface swp51
-auto bridge
-iface bridge
-    bridge-ports swp1
-    bridge-vids 10
-    bridge-vlan-aware yes
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-    address ::1/128
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
 auto vlan10
 iface vlan10
     address 10.1.10.1/24
+    hwaddress 44:38:39:22:01:b1
+    vlan-raw-device br_default
     vlan-id 10
-    vlan-raw-device bridge
+auto br_default
+iface br_default
+    bridge-ports swp1
+    hwaddress 44:38:39:22:01:b1
+    bridge-vlan-aware yes
+    bridge-vids 10
+    bridge-pvid 1
 ```
 
 {{< /tab >}}
@@ -1492,9 +1498,20 @@ iface vlan10
 
 ```
 cumulus@leaf02:mgmt:~$ sudo cat /etc/network/interfaces
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.2/32
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
 auto swp2
 iface swp2
     bridge-access 20
@@ -1502,24 +1519,19 @@ auto swp49
 iface swp49
 auto swp51
 iface swp51
-auto bridge
-iface bridge
-    bridge-ports swp2
-    bridge-vids 20
-    bridge-vlan-aware yes
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-    address ::1/128
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
 auto vlan20
 iface vlan20
     address 10.2.10.1/24
+    hwaddress 44:38:39:22:01:af
+    vlan-raw-device br_default
     vlan-id 20
-    vlan-raw-device bridge
+auto br_default
+iface br_default
+    bridge-ports swp2
+    hwaddress 44:38:39:22:01:af
+    bridge-vlan-aware yes
+    bridge-vids 20
+    bridge-pvid 1
 ```
 
 {{< /tab >}}
@@ -1527,21 +1539,24 @@ iface vlan20
 
 ```
 cumulus@spine01:mgmt:~$ sudo cat /etc/network/interfaces
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.101/32
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
 auto swp1
 iface swp1
 auto swp2
 iface swp2
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-    address ::1/128
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
 ```
 
 {{< /tab >}}
@@ -1595,22 +1610,41 @@ iface eth2 inet manual
 ```
 cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
-router bgp 65101
- bgp router-id 10.10.10.1
- neighbor swp51 interface
- neighbor swp51 remote-as external
- address-family ipv4 unicast
-  network 10.10.10.1/32
-  network 10.1.10.0/24
- exit-address-family
 interface lo
- ip pim
+ip pim
 interface swp51
- ip pim
+ip pim
 interface vlan10
- ip pim
- ip igmp
-ip pim rp 10.10.10.101
+ip igmp
+ip igmp version 3
+ip igmp query-interval 125
+ip igmp last-member-query-interval 10
+ip igmp query-max-response-time 100
+ip pim
+vrf default
+ip pim rp 10.10.10.101 224.0.0.0/4
+exit-vrf
+vrf mgmt
+exit-vrf
+router bgp 65101 vrf default
+bgp router-id 10.10.10.1
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor swp51 interface remote-as external
+neighbor swp51 timers 3 9
+neighbor swp51 timers connect 10
+neighbor swp51 advertisement-interval 0
+neighbor swp51 capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+network 10.1.10.0/24
+network 10.10.10.1/32
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor swp51 activate
+exit-address-family
 ```
 
 {{< /tab >}}
@@ -1619,22 +1653,41 @@ ip pim rp 10.10.10.101
 ```
 cumulus@leaf02:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
-router bgp 65102
- bgp router-id 10.10.10.2
- neighbor swp51 interface
- neighbor swp51 remote-as external
- address-family ipv4 unicast
-  network 10.10.10.2/32
-  network 10.2.10.0/24
- exit-address-family
 interface lo
- ip pim
+ip pim
 interface swp51
- ip pim
+ip pim
 interface vlan20
- ip pim
- ip igmp
-ip pim rp 10.10.10.101
+ip igmp
+ip igmp version 3
+ip igmp query-interval 125
+ip igmp last-member-query-interval 10
+ip igmp query-max-response-time 100
+ip pim
+vrf default
+ip pim rp 10.10.10.101 224.0.0.0/4
+exit-vrf
+vrf mgmt
+exit-vrf
+router bgp 65102 vrf default
+bgp router-id 10.10.10.2
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor swp51 interface remote-as external
+neighbor swp51 timers 3 9
+neighbor swp51 timers connect 10
+neighbor swp51 advertisement-interval 0
+neighbor swp51 capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+network 10.10.10.2/32
+network 10.2.10.0/24
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor swp51 activate
+exit-address-family
 ```
 
 {{< /tab >}}
@@ -1643,22 +1696,41 @@ ip pim rp 10.10.10.101
 ```
 cumulus@spine01:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
-router bgp 65199
- bgp router-id 10.10.10.101
- neighbor swp1 interface
- neighbor swp1 remote-as external
- neighbor swp2 interface
- neighbor swp2 remote-as external
- address-family ipv4 unicast
-  network 10.10.10.101/32
- exit-address-family
 interface lo
- ip pim
+ip pim
 interface swp1
- ip pim
+ip pim
 interface swp2
- ip pim
-ip pim rp 10.10.10.101
+ip pim
+vrf default
+ip pim rp 10.10.10.101 224.0.0.0/4
+exit-vrf
+vrf mgmt
+exit-vrf
+router bgp 65199 vrf default
+bgp router-id 10.10.10.101
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor swp1 interface remote-as external
+neighbor swp1 timers 3 9
+neighbor swp1 timers connect 10
+neighbor swp1 advertisement-interval 0
+neighbor swp1 capability extended-nexthop
+neighbor swp2 interface remote-as external
+neighbor swp2 timers 3 9
+neighbor swp2 timers connect 10
+neighbor swp2 advertisement-interval 0
+neighbor swp2 capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+network 10.10.10.101/32
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor swp1 activate
+neighbor swp2 activate
+exit-address-family
 ```
 
 {{< /tab >}}

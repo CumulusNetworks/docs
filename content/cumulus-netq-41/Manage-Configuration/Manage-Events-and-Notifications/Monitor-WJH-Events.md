@@ -66,7 +66,14 @@ Using <em>wjh_dump.py</em> on an NVIDIA platform that is running Cumulus Linux a
 
 ## Configure Latency and Congestion Thresholds
 
-WJH latency and congestion metrics depend on threshold settings to trigger the events. WJH measures packet latency as the time spent inside a single system (switch). WJH measures congestion as a percentage of buffer occupancy on the switch. When specified, WJH triggers events when they cross high and/or low thresholds.
+{{%notice note%}}
+
+WJH latency and congestion threshold configuration is supported on NVIDIA Spectrum 2 switches and above.
+
+{{%/notice%}}
+
+
+WJH latency and congestion metrics depend on threshold settings to trigger the events. WJH measures packet latency as the time spent inside a single system (switch). WJH measures congestion as a percentage of buffer occupancy on the switch. When specified, WJH triggers events when measured values cross high thresholds and events are suppressed when values are below low thresholds. 
 
 To configure these thresholds, run:
 
@@ -76,13 +83,13 @@ netq config add agent wjh-threshold (latency|congestion) <text-tc-list> <text-po
 
 You can specify multiple traffic classes and multiple ports by separating the classes or ports by a comma (no spaces).
 
-This example creates latency thresholds for Class *3* traffic on port *swp1* where the upper threshold is *10* and the lower threshold is *1*.
+This example creates latency thresholds for Class *3* traffic on port *swp1* where the upper threshold is *10 usecs* and the lower threshold is *1 usec*:
 
 ```
 cumulus@switch:~$ sudo netq config add agent wjh-threshold latency 3 swp1 10 1
 ```
 
-This example creates congestion thresholds for Class *4* traffic on port *swp1* where the upper threshold is *200* and the lower threshold is *10*.
+This example creates congestion thresholds for Class *4* traffic on port *swp1* where the upper threshold is *200 cells* and the lower threshold is *10 cells*, where a cell is a unit of 144 bytes:
 
 ```
 cumulus@switch:~$ sudo netq config add agent wjh-threshold congestion 4 swp1 200 10

@@ -204,7 +204,7 @@ Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Dow
 ```
 
 <!-- vale off -->
-## Example VXLAN Active-Active Configuration
+## Configuration Example
 
 {{< img src = "/images/cumulus-linux/vxlan-active-active-example.png" >}}
 <!-- vale on -->

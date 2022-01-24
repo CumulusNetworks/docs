@@ -1359,7 +1359,7 @@ Source                Group               RP   Local    SPT      Uptime
 10.1.10.101       239.1.1.2    100.10.10.101       n      n    00:00:25
 ```
 
-## Example PIM Configuration
+## Configuration Example
 
 The following example configures PIM and BGP on leaf01, leaf02, and spine01.
 

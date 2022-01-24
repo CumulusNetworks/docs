@@ -73,7 +73,7 @@ WJH latency and congestion threshold configuration is supported on NVIDIA Spectr
 {{%/notice%}}
 
 
-WJH latency and congestion metrics depend on threshold settings to trigger the events. WJH measures packet latency as the time spent inside a single system (switch). WJH measures congestion as a percentage of buffer occupancy on the switch. When specified, WJH triggers events when measured values cross high thresholds and events are suppressed when values are below low thresholds. 
+WJH latency and congestion metrics depend on threshold settings to trigger the events. WJH measures packet latency as the time spent inside a single system (switch). When specified, WJH triggers events when measured values cross high thresholds and events are suppressed when values are below low thresholds. 
 
 To configure these thresholds, run:
 

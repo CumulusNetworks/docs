@@ -211,6 +211,7 @@ Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Dow
 The commands in this example configure:
 - MLAG between leaf01 and leaf02, and between leaf03 and leaf04.
 - BGP unnumbered on all leafs and spines.
+- EVPN as the control plane for VXLAN between BGP neighbors.
 - A single VXLAN device (vxlan48) on each leaf. VLAN 10 maps to VNI 10 and VLAN 20 to VNI 20. The VXLAN device is part of the default bridge `br_default`.
 - The anycast IP address 10.0.1.12 on leaf01 and leaf02, and 10.0.1.34 on leaf03 and leaf04.
 - Layer 2 bonds that link server01 to leaf01 and leaf02, and server03 to leaf03 and leaf04. The example shows the server01 and server03 `/etc/network/interfaces` file configuration.
@@ -241,8 +242,13 @@ cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 remote-as external
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
+cumulus@leaf01:~$ nv set evpn enable on
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor peerlink.4094 address-family l2vpn-evpn enable on
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -269,8 +275,13 @@ cumulus@leaf02:~$ nv set router bgp autonomous-system 65102
 cumulus@leaf02:~$ nv set router bgp router-id 10.10.10.2
 cumulus@leaf02:~$ nv set vrf default router bgp neighbor swp51 remote-as external
 cumulus@leaf02:~$ nv set vrf default router bgp neighbor swp52 remote-as external
+cumulus@leaf02:~$ nv set vrf default router bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.2/32
 cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
+cumulus@leaf02:~$ nv set evpn enable on
+cumulus@leaf02:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn enable on
+cumulus@leaf02:~$ nv set vrf default router bgp neighbor swp52 address-family l2vpn-evpn enable on
+cumulus@leaf02:~$ nv set vrf default router bgp neighbor peerlink.4094 address-family l2vpn-evpn enable on
 cumulus@leaf02:~$ nv config apply
 ```
 
@@ -297,8 +308,13 @@ cumulus@leaf03:~$ nv set router bgp autonomous-system 65103
 cumulus@leaf03:~$ nv set router bgp router-id 10.10.10.3
 cumulus@leaf03:~$ nv set vrf default router bgp neighbor swp51 remote-as external
 cumulus@leaf03:~$ nv set vrf default router bgp neighbor swp52 remote-as external
+cumulus@leaf03:~$ nv set vrf default router bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf03:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.3/32
 cumulus@leaf03:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
+cumulus@leaf03:~$ nv set evpn enable on
+cumulus@leaf03:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn enable on
+cumulus@leaf03:~$ nv set vrf default router bgp neighbor swp52 address-family l2vpn-evpn enable on
+cumulus@leaf03:~$ nv set vrf default router bgp neighbor peerlink.4094 address-family l2vpn-evpn enable on
 cumulus@leaf03:~$ nv config apply
 ```
 
@@ -325,8 +341,13 @@ cumulus@leaf04:~$ nv set router bgp autonomous-system 65104
 cumulus@leaf04:~$ nv set router bgp router-id 10.10.10.4
 cumulus@leaf04:~$ nv set vrf default router bgp neighbor swp51 remote-as external
 cumulus@leaf04:~$ nv set vrf default router bgp neighbor swp52 remote-as external
+cumulus@leaf04:~$ nv set vrf default router bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf04:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.4/32
 cumulus@leaf04:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
+cumulus@leaf04:~$ nv set evpn enable on
+cumulus@leaf04:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn enable on
+cumulus@leaf04:~$ nv set vrf default router bgp neighbor swp52 address-family l2vpn-evpn enable on
+cumulus@leaf04:~$ nv set vrf default router bgp neighbor peerlink.4094 address-family l2vpn-evpn enable on
 cumulus@leaf04:~$ nv config apply
 ```
 
@@ -344,6 +365,10 @@ cumulus@spine01:~$ nv set vrf default router bgp neighbor swp2 remote-as externa
 cumulus@spine01:~$ nv set vrf default router bgp neighbor swp3 remote-as external
 cumulus@spine01:~$ nv set vrf default router bgp neighbor swp4 remote-as external
 cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 address-family l2vpn-evpn enable on
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp2 address-family l2vpn-evpn enable on
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp3 address-family l2vpn-evpn enable on
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp4 address-family l2vpn-evpn enable on
 cumulus@spine01:~$ nv config apply
 ```
 
@@ -361,6 +386,10 @@ cumulus@spine02:~$ nv set vrf default router bgp neighbor swp2 remote-as externa
 cumulus@spine02:~$ nv set vrf default router bgp neighbor swp3 remote-as external
 cumulus@spine02:~$ nv set vrf default router bgp neighbor swp4 remote-as external
 cumulus@spine02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
+cumulus@spine02:~$ nv set vrf default router bgp neighbor swp1 address-family l2vpn-evpn enable on
+cumulus@spine02:~$ nv set vrf default router bgp neighbor swp2 address-family l2vpn-evpn enable on
+cumulus@spine02:~$ nv set vrf default router bgp neighbor swp3 address-family l2vpn-evpn enable on
+cumulus@spine02:~$ nv set vrf default router bgp neighbor swp4 address-family l2vpn-evpn enable on
 cumulus@spine02:~$ nv config apply
 ```
 
@@ -386,6 +415,8 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
             '20':
               vni:
                 '20': {}
+    evpn:
+      enable: on
     interface:
       bond1:
         bond:
@@ -459,12 +490,26 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
                 redistribute:
                   connected:
                     enable: on
+              l2vpn-evpn:
+                enable: on
             enable: on
             neighbor:
+              peerlink.4094:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+                remote-as: external
+                type: unnumbered
               swp51:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
                 remote-as: external
                 type: unnumbered
               swp52:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
                 remote-as: external
                 type: unnumbered
 ```
@@ -485,6 +530,8 @@ cumulus@leaf02:~$ sudo cat /etc/nvue.d/startup.yaml
             '20':
               vni:
                 '20': {}
+    evpn:
+      enable: on
     interface:
       bond1:
         bond:
@@ -558,12 +605,26 @@ cumulus@leaf02:~$ sudo cat /etc/nvue.d/startup.yaml
                 redistribute:
                   connected:
                     enable: on
+              l2vpn-evpn:
+                enable: on
             enable: on
             neighbor:
+              peerlink.4094:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+                remote-as: external
+                type: unnumbered
               swp51:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
                 remote-as: external
                 type: unnumbered
               swp52:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
                 remote-as: external
                 type: unnumbered
 ```
@@ -584,6 +645,8 @@ cumulus@leaf03:~$ sudo cat /etc/nvue.d/startup.yaml
             '20':
               vni:
                 '20': {}
+    evpn:
+      enable: on
     interface:
       bond1:
         bond:
@@ -657,12 +720,26 @@ cumulus@leaf03:~$ sudo cat /etc/nvue.d/startup.yaml
                 redistribute:
                   connected:
                     enable: on
+              l2vpn-evpn:
+                enable: on
             enable: on
             neighbor:
+              peerlink.4094:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+                remote-as: external
+                type: unnumbered
               swp51:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
                 remote-as: external
                 type: unnumbered
               swp52:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
                 remote-as: external
                 type: unnumbered
 ```
@@ -683,6 +760,8 @@ cumulus@leaf04:~$ sudo cat /etc/nvue.d/startup.yaml
             '20':
               vni:
                 '20': {}
+    evpn:
+      enable: on
     interface:
       bond1:
         bond:
@@ -756,12 +835,26 @@ cumulus@leaf04:~$ sudo cat /etc/nvue.d/startup.yaml
                 redistribute:
                   connected:
                     enable: on
+              l2vpn-evpn:
+                enable: on
             enable: on
             neighbor:
+              peerlink.4094:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+                remote-as: external
+                type: unnumbered
               swp51:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
                 remote-as: external
                 type: unnumbered
               swp52:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
                 remote-as: external
                 type: unnumbered
 ```
@@ -786,6 +879,9 @@ cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
         type: swp
       swp4:
         type: swp
+    nve:
+      vxlan:
+        enable: on
     router:
       bgp:
         autonomous-system: 65199
@@ -803,18 +899,32 @@ cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
                 redistribute:
                   connected:
                     enable: on
+              l2vpn-evpn:
+                enable: on
             enable: on
             neighbor:
               swp1:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
                 remote-as: external
                 type: unnumbered
               swp2:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
                 remote-as: external
                 type: unnumbered
               swp3:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
                 remote-as: external
                 type: unnumbered
               swp4:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
                 remote-as: external
                 type: unnumbered
             peer-group:
@@ -859,18 +969,32 @@ cumulus@spine02:~$ sudo cat /etc/nvue.d/startup.yaml
                 redistribute:
                   connected:
                     enable: on
+              l2vpn-evpn:
+                enable: on
             enable: on
             neighbor:
               swp1:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
                 remote-as: external
                 type: unnumbered
               swp2:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
                 remote-as: external
                 type: unnumbered
               swp3:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
                 remote-as: external
                 type: unnumbered
               swp4:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
                 remote-as: external
                 type: unnumbered
             peer-group:
@@ -1232,39 +1356,34 @@ iface swp4
 ```
 auto lo
 iface lo inet loopback
-
 auto lo
 iface lo inet static
-  address 10.0.0.31/32
-  
+address 10.0.0.31/32
+
 auto eth0
 iface eth0 inet dhcp
 
 auto eth1
-iface eth1 inet manual
-    bond-master bond1
+iface eth1
 
 auto eth2
-iface eth2 inet manual
-    bond-master bond1
+iface eth2
 
 auto bond1
-iface bond1 inet static
-  bond-slaves none
-  bond-miimon 100
-  bond-min-links 1
-  bond-mode 802.3ad
-  bond-xmit-hash-policy layer3+4
-  bond-lacp-rate 1
-  address 172.16.1.101/24
+iface bond1
+bond-slaves eth1 eth2
+bond-miimon 100
+bond-min-links 1
+bond-mode 802.3ad
+bond-xmit-hash-policy layer3+4
+bond-lacp-rate 1
 
 auto bond1.10
-iface bond1.10 inet static
-  address 172.16.10.101/24
-  
+iface bond1.10
+address 172.16.10.101/24
 auto bond1.20
-iface bond1.20 inet static
-  address 172.16.20.101/24
+iface bond1.20
+address 172.16.20.101/24
 ```
 
 {{< /tab >}}
@@ -1276,48 +1395,374 @@ iface lo inet loopback
 
 auto lo
 iface lo inet static
-  address 10.0.0.33/32
-  
+address 10.0.0.33/32
+
 auto eth0
 iface eth0 inet dhcp
 
 auto eth1
-iface eth1 inet manual
-    bond-master bond0
+iface eth1
 
 auto eth2
-iface eth2 inet manual
-    bond-master bond0
+iface eth2
 
 auto bond1
-iface bond1 inet static
-  bond-slaves none
-  bond-miimon 100
-  bond-min-links 1
-  bond-mode 802.3ad
-  bond-xmit-hash-policy layer3+4
-  bond-lacp-rate 1
-  address 172.16.1.103/24
+iface bond1
+bond-slaves eth1 eth2
+bond-miimon 100
+bond-min-links 1
+bond-mode 802.3ad
+bond-xmit-hash-policy layer3+4
+bond-lacp-rate 1
 
 auto bond1.10
-iface bond1.10 inet static
-  address 172.16.10.103/24
-  
+iface bond1.10
+address 172.16.10.103/24
 auto bond1.20
-iface bond1.20 inet static
-  address 172.16.20.103/24
+iface bond1.20
+address 172.16.20.103/24
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
+
+{{< /tab >}}
+{{< tab "/etc/frr/frr.conf ">}}
+
+{{< tabs "TabID1432 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+...
+vrf default
+exit-vrf
+vrf mgmt
+exit-vrf
+router bgp 65101 vrf default
+bgp router-id 10.10.10.1
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor peerlink.4094 interface remote-as external
+neighbor peerlink.4094 timers 3 9
+neighbor peerlink.4094 timers connect 10
+neighbor peerlink.4094 advertisement-interval 0
+neighbor peerlink.4094 capability extended-nexthop
+neighbor swp51 interface remote-as external
+neighbor swp51 timers 3 9
+neighbor swp51 timers connect 10
+neighbor swp51 advertisement-interval 0
+neighbor swp51 capability extended-nexthop
+neighbor swp52 interface remote-as external
+neighbor swp52 timers 3 9
+neighbor swp52 timers connect 10
+neighbor swp52 advertisement-interval 0
+neighbor swp52 capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+network 10.10.10.1/32
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor peerlink.4094 activate
+neighbor swp51 activate
+neighbor swp52 activate
+exit-address-family
+address-family l2vpn evpn
+advertise-all-vni
+neighbor peerlink.4094 activate
+neighbor swp51 activate
+neighbor swp52 activate
+exit-address-family
+! end of router bgp 65101 vrf default
+```
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:~$ sudo cat /etc/frr/frr.conf
+...
+vrf default
+exit-vrf
+vrf mgmt
+exit-vrf
+router bgp 65102 vrf default
+bgp router-id 10.10.10.2
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor peerlink.4094 interface remote-as external
+neighbor peerlink.4094 timers 3 9
+neighbor peerlink.4094 timers connect 10
+neighbor peerlink.4094 advertisement-interval 0
+neighbor peerlink.4094 capability extended-nexthop
+neighbor swp51 interface remote-as external
+neighbor swp51 timers 3 9
+neighbor swp51 timers connect 10
+neighbor swp51 advertisement-interval 0
+neighbor swp51 capability extended-nexthop
+neighbor swp52 interface remote-as external
+neighbor swp52 timers 3 9
+neighbor swp52 timers connect 10
+neighbor swp52 advertisement-interval 0
+neighbor swp52 capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+network 10.10.10.2/32
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor peerlink.4094 activate
+neighbor swp51 activate
+neighbor swp52 activate
+exit-address-family
+address-family l2vpn evpn
+advertise-all-vni
+neighbor peerlink.4094 activate
+neighbor swp51 activate
+neighbor swp52 activate
+exit-address-family
+! end of router bgp 65102 vrf default
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ sudo cat /etc/frr/frr.conf
+...
+vrf default
+exit-vrf
+vrf mgmt
+exit-vrf
+router bgp 65103 vrf default
+bgp router-id 10.10.10.3
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor peerlink.4094 interface remote-as external
+neighbor peerlink.4094 timers 3 9
+neighbor peerlink.4094 timers connect 10
+neighbor peerlink.4094 advertisement-interval 0
+neighbor peerlink.4094 capability extended-nexthop
+neighbor swp51 interface remote-as external
+neighbor swp51 timers 3 9
+neighbor swp51 timers connect 10
+neighbor swp51 advertisement-interval 0
+neighbor swp51 capability extended-nexthop
+neighbor swp52 interface remote-as external
+neighbor swp52 timers 3 9
+neighbor swp52 timers connect 10
+neighbor swp52 advertisement-interval 0
+neighbor swp52 capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+network 10.10.10.3/32
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor peerlink.4094 activate
+neighbor swp51 activate
+neighbor swp52 activate
+exit-address-family
+address-family l2vpn evpn
+advertise-all-vni
+neighbor peerlink.4094 activate
+neighbor swp51 activate
+neighbor swp52 activate
+exit-address-family
+! end of router bgp 65103 vrf default
+```
+
+{{< /tab >}}
+{{< tab "leaf04 ">}}
+
+```
+cumulus@leaf04:~$ sudo cat /etc/frr/frr.conf
+...
+vrf default
+exit-vrf
+vrf mgmt
+exit-vrf
+router bgp 65104 vrf default
+bgp router-id 10.10.10.4
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor peerlink.4094 interface remote-as external
+neighbor peerlink.4094 timers 3 9
+neighbor peerlink.4094 timers connect 10
+neighbor peerlink.4094 advertisement-interval 0
+neighbor peerlink.4094 capability extended-nexthop
+neighbor swp51 interface remote-as external
+neighbor swp51 timers 3 9
+neighbor swp51 timers connect 10
+neighbor swp51 advertisement-interval 0
+neighbor swp51 capability extended-nexthop
+neighbor swp52 interface remote-as external
+neighbor swp52 timers 3 9
+neighbor swp52 timers connect 10
+neighbor swp52 advertisement-interval 0
+neighbor swp52 capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+network 10.10.10.4/32
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor peerlink.4094 activate
+neighbor swp51 activate
+neighbor swp52 activate
+exit-address-family
+address-family l2vpn evpn
+advertise-all-vni
+neighbor peerlink.4094 activate
+neighbor swp51 activate
+neighbor swp52 activate
+exit-address-family
+! end of router bgp 65104 vrf default
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ sudo cat /etc/frr/frr.conf
+...
+vrf default
+exit-vrf
+vrf mgmt
+exit-vrf
+router bgp 65199 vrf default
+bgp router-id 10.10.10.101
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor underlay peer-group
+neighbor underlay remote-as external
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
+neighbor swp1 interface remote-as external
+neighbor swp1 timers 3 9
+neighbor swp1 timers connect 10
+neighbor swp1 advertisement-interval 0
+neighbor swp1 capability extended-nexthop
+neighbor swp2 interface remote-as external
+neighbor swp2 timers 3 9
+neighbor swp2 timers connect 10
+neighbor swp2 advertisement-interval 0
+neighbor swp2 capability extended-nexthop
+neighbor swp3 interface remote-as external
+neighbor swp3 timers 3 9
+neighbor swp3 timers connect 10
+neighbor swp3 advertisement-interval 0
+neighbor swp3 capability extended-nexthop
+neighbor swp4 interface remote-as external
+neighbor swp4 timers 3 9
+neighbor swp4 timers connect 10
+neighbor swp4 advertisement-interval 0
+neighbor swp4 capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor swp1 activate
+neighbor swp2 activate
+neighbor swp3 activate
+neighbor swp4 activate
+neighbor underlay activate
+exit-address-family
+address-family l2vpn evpn
+neighbor swp1 activate
+neighbor swp2 activate
+neighbor swp3 activate
+neighbor swp4 activate
+exit-address-family
+! end of router bgp 65199 vrf default
+```
+
+{{< /tab >}}
+{{< tab "spine02 ">}}
+
+```
+cumulus@spine02:~$ sudo cat /etc/frr/frr.conf
+...
+vrf default
+exit-vrf
+vrf mgmt
+exit-vrf
+router bgp 65199 vrf default
+bgp router-id 10.10.10.102
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor underlay peer-group
+neighbor underlay remote-as external
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
+neighbor swp1 interface remote-as external
+neighbor swp1 timers 3 9
+neighbor swp1 timers connect 10
+neighbor swp1 advertisement-interval 0
+neighbor swp1 capability extended-nexthop
+neighbor swp2 interface remote-as external
+neighbor swp2 timers 3 9
+neighbor swp2 timers connect 10
+neighbor swp2 advertisement-interval 0
+neighbor swp2 capability extended-nexthop
+neighbor swp3 interface remote-as external
+neighbor swp3 timers 3 9
+neighbor swp3 timers connect 10
+neighbor swp3 advertisement-interval 0
+neighbor swp3 capability extended-nexthop
+neighbor swp4 interface remote-as external
+neighbor swp4 timers 3 9
+neighbor swp4 timers connect 10
+neighbor swp4 advertisement-interval 0
+neighbor swp4 capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor swp1 activate
+neighbor swp2 activate
+neighbor swp3 activate
+neighbor swp4 activate
+neighbor underlay activate
+exit-address-family
+address-family l2vpn evpn
+neighbor swp1 activate
+neighbor swp2 activate
+neighbor swp3 activate
+neighbor swp4 activate
+exit-address-family
+! end of router bgp 65199 vrf default
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL501 - VXLAN Active-Active" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server03" >}}
+    {{< simulation name="Try It CL501 - VXLAN Active-ActiveV2" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server03" >}}
 
 The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 
 To validate the configuration, run the commands shown in the troublshooting section above.
--->
+
 {{< /tab >}}
 {{< /tabs >}}

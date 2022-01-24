@@ -14,9 +14,8 @@ The following Try It demos are available:
 - {{<link url="Configuration-Examples/#evpn-symmetric-routing" text="EVPN symmetric routing">}}
 - {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#configuration-example" text="MLAG">}}
 - {{<link url="Static-VXLAN-Tunnels/#single-vxlan-device" text="Single VXLAN device">}}
-<!--
 - {{<link url="VXLAN-Active-active-Mode/#configuration-example" text="VXLAN Active-active Mode">}}
--->
+
 ## Access a Try It Demo
 
 To access a demo, click the **Try It** tab in a Configuration Example section of the documentation:

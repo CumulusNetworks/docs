@@ -8,13 +8,15 @@ This documentation includes pre-built **Try It** demos for certain Cumulus Linux
 
 The following Try It demos are available:
 - {{<link url="Configuration-Example" text="BGP">}}
+- {{<link url="Protocol-Independent-Multicast-PIM/#configuration-example" text="PIM">}}
 - {{<link url="Inter-subnet-Routing/#configure-route-targets" text="EVPN downstream VNI">}}
 - {{<link url="EVPN-Multihoming/#configuration-example" text="EVPN multihoming">}}
 - {{<link url="Configuration-Examples/#evpn-symmetric-routing" text="EVPN symmetric routing">}}
 - {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#configuration-example" text="MLAG">}}
 - {{<link url="Static-VXLAN-Tunnels/#single-vxlan-device" text="Single VXLAN device">}}
-- {{<link url="Protocol-Independent-Multicast-PIM/#configuration-example" text="PIM">}}
-
+<!--
+- {{<link url="VXLAN-Active-active-Mode/#configuration-example" text="VXLAN Active-active Mode">}}
+-->
 ## Access a Try It Demo
 
 To access a demo, click the **Try It** tab in a Configuration Example section of the documentation:

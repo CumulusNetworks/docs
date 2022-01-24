@@ -446,6 +446,8 @@ ARP suppression with EVPN allows a VTEP to suppress ARP flooding over VXLAN tunn
 
 Cumulus Linux enables ARP and ND suppression by default on all VNIs to reduce ARP and ND packet flooding over VXLAN tunnels.
 
+This functionality needs L3 interfaces (SVIs) to be provisioned by the operator in order to work.
+
 {{%notice note%}}
 ARP and ND suppression only suppresses the flooding of known hosts. To disable all flooding refer to the {{<link title="#Disable BUM Flooding" text="Disable BUM Flooding" >}} section.
 {{%/notice%}}

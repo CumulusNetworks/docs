@@ -204,7 +204,7 @@ Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Dow
 ```
 
 <!-- vale off -->
-## Example VXLAN Active-Active Configuration
+## Configuration Example
 
 {{< img src = "/images/cumulus-linux/vxlan-active-active-example.png" >}}
 <!-- vale on -->
@@ -368,6 +368,520 @@ cumulus@spine02:~$ nv config apply
 {{< /tabs >}}
 
 {{< /tab >}}
+{{< tab "/etc/nvue.d/startup.yaml ">}}
+
+{{< tabs "TabID373 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10':
+              vni:
+                '10': {}
+            '20':
+              vni:
+                '20': {}
+    interface:
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            enable: on
+            id: 1
+        bridge:
+          domain:
+            br_default: {}
+        type: bond
+      lo:
+        ip:
+          address:
+            10.10.10.1/32: {}
+        type: loopback
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        base-interface: peerlink
+        type: sub
+        vlan: 4094
+      swp1:
+        type: swp
+      swp49:
+        type: swp
+      swp50:
+        type: swp
+      swp51:
+        type: swp
+      swp52:
+        type: swp
+      vlan10:
+        type: svi
+        vlan: 10
+      vlan20:
+        type: svi
+        vlan: 20
+    mlag:
+      backup:
+        10.10.10.2: {}
+      enable: on
+      mac-address: 44:38:39:BE:EF:AA
+      peer-ip: linklocal
+    nve:
+      vxlan:
+        enable: on
+        mlag:
+          shared-address: 10.0.1.12
+    router:
+      bgp:
+        autonomous-system: 65101
+        enable: on
+        router-id: 10.10.10.1
+    system:
+      hostname: leaf01
+    vrf:
+      default:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                network:
+                  10.10.10.1/32: {}
+                redistribute:
+                  connected:
+                    enable: on
+            enable: on
+            neighbor:
+              swp51:
+                remote-as: external
+                type: unnumbered
+              swp52:
+                remote-as: external
+                type: unnumbered
+```
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10':
+              vni:
+                '10': {}
+            '20':
+              vni:
+                '20': {}
+    interface:
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            enable: on
+            id: 1
+        bridge:
+          domain:
+            br_default: {}
+        type: bond
+      lo:
+        ip:
+          address:
+            10.10.10.2/32: {}
+        type: loopback
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        base-interface: peerlink
+        type: sub
+        vlan: 4094
+      swp1:
+        type: swp
+      swp49:
+        type: swp
+      swp50:
+        type: swp
+      swp51:
+        type: swp
+      swp52:
+        type: swp
+      vlan10:
+        type: svi
+        vlan: 10
+      vlan20:
+        type: svi
+        vlan: 20
+    mlag:
+      backup:
+        10.10.10.1: {}
+      enable: on
+      mac-address: 44:38:39:BE:EF:AA
+      peer-ip: linklocal
+    nve:
+      vxlan:
+        enable: on
+        mlag:
+          shared-address: 10.0.1.12
+    router:
+      bgp:
+        autonomous-system: 65102
+        enable: on
+        router-id: 10.10.10.2
+    system:
+      hostname: leaf02
+    vrf:
+      default:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                network:
+                  10.10.10.2/32: {}
+                redistribute:
+                  connected:
+                    enable: on
+            enable: on
+            neighbor:
+              swp51:
+                remote-as: external
+                type: unnumbered
+              swp52:
+                remote-as: external
+                type: unnumbered
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10':
+              vni:
+                '10': {}
+            '20':
+              vni:
+                '20': {}
+    interface:
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            enable: on
+            id: 1
+        bridge:
+          domain:
+            br_default: {}
+        type: bond
+      lo:
+        ip:
+          address:
+            10.10.10.3/32: {}
+        type: loopback
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        base-interface: peerlink
+        type: sub
+        vlan: 4094
+      swp1:
+        type: swp
+      swp49:
+        type: swp
+      swp50:
+        type: swp
+      swp51:
+        type: swp
+      swp52:
+        type: swp
+      vlan10:
+        type: svi
+        vlan: 10
+      vlan20:
+        type: svi
+        vlan: 20
+    mlag:
+      backup:
+        10.10.10.4: {}
+      enable: on
+      mac-address: 44:38:39:BE:EF:BB
+      peer-ip: linklocal
+    nve:
+      vxlan:
+        enable: on
+        mlag:
+          shared-address: 10.0.1.34
+    router:
+      bgp:
+        autonomous-system: 65103
+        enable: on
+        router-id: 10.10.10.3
+    system:
+      hostname: leaf03
+    vrf:
+      default:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                network:
+                  10.10.10.3/32: {}
+                redistribute:
+                  connected:
+                    enable: on
+            enable: on
+            neighbor:
+              swp51:
+                remote-as: external
+                type: unnumbered
+              swp52:
+                remote-as: external
+                type: unnumbered
+```
+
+{{< /tab >}}
+{{< tab "leaf04 ">}}
+
+```
+cumulus@leaf04:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10':
+              vni:
+                '10': {}
+            '20':
+              vni:
+                '20': {}
+    interface:
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            enable: on
+            id: 1
+        bridge:
+          domain:
+            br_default: {}
+        type: bond
+      lo:
+        ip:
+          address:
+            10.10.10.4/32: {}
+        type: loopback
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        base-interface: peerlink
+        type: sub
+        vlan: 4094
+      swp1:
+        type: swp
+      swp49:
+        type: swp
+      swp50:
+        type: swp
+      swp51:
+        type: swp
+      swp52:
+        type: swp
+      vlan10:
+        type: svi
+        vlan: 10
+      vlan20:
+        type: svi
+        vlan: 20
+    mlag:
+      backup:
+        10.10.10.3: {}
+      enable: on
+      mac-address: 44:38:39:BE:EF:BB
+      peer-ip: linklocal
+    nve:
+      vxlan:
+        enable: on
+        mlag:
+          shared-address: 10.0.1.34
+    router:
+      bgp:
+        autonomous-system: 65104
+        enable: on
+        router-id: 10.10.10.4
+    system:
+      hostname: leaf04
+    vrf:
+      default:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                network:
+                  10.10.10.4/32: {}
+                redistribute:
+                  connected:
+                    enable: on
+            enable: on
+            neighbor:
+              swp51:
+                remote-as: external
+                type: unnumbered
+              swp52:
+                remote-as: external
+                type: unnumbered
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.101/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp4:
+        type: swp
+    router:
+      bgp:
+        autonomous-system: 65199
+        enable: on
+        router-id: 10.10.10.101
+    system:
+      hostname: spine01
+    vrf:
+      default:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                redistribute:
+                  connected:
+                    enable: on
+            enable: on
+            neighbor:
+              swp1:
+                remote-as: external
+                type: unnumbered
+              swp2:
+                remote-as: external
+                type: unnumbered
+              swp3:
+                remote-as: external
+                type: unnumbered
+              swp4:
+                remote-as: external
+                type: unnumbered
+            peer-group:
+              underlay:
+                remote-as: external
+```
+
+{{< /tab >}}
+{{< tab "spine02 ">}}
+
+```
+cumulus@spine02:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.102/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp4:
+        type: swp
+    router:
+      bgp:
+        autonomous-system: 65199
+        enable: on
+        router-id: 10.10.10.102
+    system:
+      hostname: spine02
+    vrf:
+      default:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                redistribute:
+                  connected:
+                    enable: on
+            enable: on
+            neighbor:
+              swp1:
+                remote-as: external
+                type: unnumbered
+              swp2:
+                remote-as: external
+                type: unnumbered
+              swp3:
+                remote-as: external
+                type: unnumbered
+              swp4:
+                remote-as: external
+                type: unnumbered
+            peer-group:
+              underlay:
+                remote-as: external
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "/etc/network/interfaces ">}}
 
 {{< tabs "TabID122 ">}}
@@ -438,6 +952,7 @@ iface br_default
     hwaddress 44:38:39:22:01:af
     bridge-vlan-aware yes
     bridge-vids 10 20
+    bridge-pvid 1
 ```
 
 {{< /tab >}}
@@ -508,6 +1023,7 @@ iface br_default
     hwaddress 44:38:39:22:01:af
     bridge-vlan-aware yes
     bridge-vids 10 20
+    bridge-pvid 1
 ```
 
 {{< /tab >}}
@@ -578,6 +1094,7 @@ iface br_default
     hwaddress 44:38:39:22:01:bb
     bridge-vlan-aware yes
     bridge-vids 10 20
+    bridge-pvid 1
 ```
 
 {{< /tab >}}
@@ -648,6 +1165,7 @@ iface br_default
     hwaddress 44:38:39:22:01:c1
     bridge-vlan-aware yes
     bridge-vids 10 20
+    bridge-pvid 1
 ```
 
 {{< /tab >}}
@@ -792,6 +1310,14 @@ iface bond1.20 inet static
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+{{< /tab >}}
+{{< tab "Try It " >}}
+    {{< simulation name="Try It CL501 - VXLAN Active-Active" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server03" >}}
 
+The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
+
+To validate the configuration, run the commands shown in the troublshooting section above.
+-->
 {{< /tab >}}
 {{< /tabs >}}

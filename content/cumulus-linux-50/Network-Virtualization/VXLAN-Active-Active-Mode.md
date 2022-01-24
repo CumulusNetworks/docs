@@ -879,9 +879,6 @@ cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
         type: swp
       swp4:
         type: swp
-    nve:
-      vxlan:
-        enable: on
     router:
       bgp:
         autonomous-system: 65199

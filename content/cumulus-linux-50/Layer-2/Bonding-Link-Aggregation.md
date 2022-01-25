@@ -203,39 +203,92 @@ Each bond configuration option, except for `bond slaves,` has the recommended va
 
 ## Show Bond Information
 
-To show information for a bond, run the `sudo cat /proc/net/bonding/<bond>` command:
+To show information for a bond, run the NVUE `nv show interface <bond> bond` command:
+
+```
+cumulus@switch:~$ nv show interface bond1 bond
+                  operational  applied  description
+----------------  -----------  -------  ------------------------------------------------------
+down-delay        0            0        bond down delay
+lacp-bypass                    off      lacp bypass
+lacp-rate         fast         fast     lacp rate
+mode                           lacp     bond mode
+up-delay          0            0        bond up delay
+[member]          swp1         swp1     Set of bond members
+mlag
+  enable                       on       Turn the feature 'on' or 'off'.  The default is 'off'.
+  id              1            1        MLAG id
+  peer-interface  bond1                 Peer interface
+  status          dual                  Mlag Interface status
+```
+
+You can also run the Linux `sudo cat /proc/net/bonding/<bond>` command:
 
 ```
 cumulus@switch:~$ sudo cat /proc/net/bonding/bond01
-
-Ethernet Channel Bonding Driver: v3.7.1 (April 27, 2011)
-Bonding Mode: load balancing (xor)
+...
+Bonding Mode: IEEE 802.3ad Dynamic link aggregation
 Transmit Hash Policy: layer3+4 (1)
 MII Status: up
 MII Polling Interval (ms): 100
 Up Delay (ms): 0
 Down Delay (ms): 0
 
+802.3ad info
+LACP rate: fast
+Min links: 1
+Aggregator selection policy (ad_select): stable
+System priority: 65535
+System MAC address: 44:38:39:be:ef:aa
+Active Aggregator Info:
+	Aggregator ID: 1
+	Number of ports: 1
+	Actor Key: 9
+	Partner Key: 9
+	Partner Mac Address: 44:38:39:00:00:12
 
 Slave Interface: swp1
 MII Status: up
 Speed: 1000 Mbps
 Duplex: full
 Link Failure Count: 0
-Permanent HW addr: 44:38:39:00:00:03
+Permanent HW addr: 44:38:39:00:00:11
 Slave queue ID: 0
+Aggregator ID: 1
+Actor Churn State: none
+Partner Churn State: none
+Actor Churned Count: 1
+Partner Churned Count: 2
+details actor lacp pdu:
+    system priority: 65535
+    system mac address: 44:38:39:be:ef:aa
+    port key: 9
+    port priority: 255
+    port number: 1
+    port state: 63
+details partner lacp pdu:
+    system priority: 65535
+    system mac address: 44:38:39:00:00:12
+    oper key: 9
+    port priority: 255
+    port number: 1
+    port state: 63
 ```
 
-{{%notice info%}}
-The detailed output in `/proc/net/bonding/<filename>` includes the actor/partner LACP information. This information is not necessary and requires you to use `sudo` to view the file.
-{{%/notice%}}
+To show specific bond information, use the `nv show interface <bond> <option>` commands:
+
+```
+cumulus@switch:~$ nv show interface bond1 TAB
+acl        bridge     ip         lldp       ptp        router     
+bond       evpn       link       pluggable  qos
+```
 
 ## Considerations
 
 - An interface cannot belong to multiple bonds.
 - A bond can have subinterfaces, but subinterfaces cannot have a bond.
 - A bond cannot enslave VLAN subinterfaces.
-- Set all slave ports within a bond to the same speed or duplex and make sure they match the slave ports of the link partner.
+- All slave ports within a bond must have the same speed or duplex and match the slave ports of the link partner.
 
 ## Related Information
 

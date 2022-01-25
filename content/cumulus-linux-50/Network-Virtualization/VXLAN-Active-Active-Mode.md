@@ -9,11 +9,8 @@ toc: 3
 To use VXLAN active-active mode, you need to configure:
 - {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}
 - {{<link url="VXLAN-Devices" text="VXLAN interfaces">}}
-- A routing protocol such as {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}, or a {{<link url="Static-VXLAN-Tunnels" text="static VXLAN tunnel">}}
+- A routing protocol such as {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}, and either {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}} or {{<link url="Static-VXLAN-Tunnels" text="static VXLAN tunnels">}}
 
-{{%notice note%}}
-If the bridge that connects to the VXLAN uses [STP](## "Spanning Tree Protocol"), you must set {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-filter" text="BPDU filter">}} and {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-guard" text="BPDU guard">}} on the VXLAN interfaces.
-{{%/notice%}}
 <!-- vale off -->
 ## Configure VXLAN Active-Active
 <!-- vale on -->

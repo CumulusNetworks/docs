@@ -2015,6 +2015,30 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2943443</td>
+<td>Cumulus Linux lets you add more than one VXLAN interface to same VLAN on the same bridge. This is an invalid configuration as certain Cumulus Linux components, such as {{switchd}}, expect a single VNI for a given bridge or VLAN.</td>
+<td>3.7.15, 4.2.1-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2940063</td>
+<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
+<td>3.7.12-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2940052</td>
+<td>When you configure the switch with the minimum reserved VLAN of 150 and the internal VLANs are exhausted, the MLAG peer does not  forward the VLAN.</td>
+<td>3.7.15, 4.2.1-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2940051</td>
+<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
+<td>3.7.14.2-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
 <td>2932084</td>
 <td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
 Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
@@ -2092,19 +2116,7 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2873186</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when adding new VLANS or bridges. </td>
-<td>3.7.14.2-4.4.2</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2866096</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.2</td>
 <td></td>
@@ -2233,12 +2245,6 @@ Fixed: 1.1.1d-0+deb10u7</td>
 <td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2770226</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
-<td>3.7.14.2-4.4.2</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>2755615</td>
 <td>When {{route_preferred_over_neigh}} is set to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
 <td>4.0.0-4.4.1</td>
@@ -2295,12 +2301,6 @@ Vulnerable: &lt;= 1.17-3+deb10u1
 Fixed: 1.17-3+deb10u2</td>
 <td>4.0.0-4.4.1</td>
 <td>4.4.2, 5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2738625</td>
-<td>When you configure the switch with the minimum reserved VLAN of 150 and the internal VLANs are exhausted, the MLAG peer does not  forward the VLAN.</td>
-<td>3.7.15, 4.2.1-4.4.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2736265</td>
@@ -2679,12 +2679,6 @@ CVE-2021-20233: A heap out-of-bound write flaw was found caused by mis-calculati
 <td></td>
 </tr>
 <tr>
-<td>2556811</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-4.4.2</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>2556783</td>
 <td>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.
 Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</td>
@@ -2815,12 +2809,6 @@ ERROR: Command not found
 <td>You cannot set the time zone can with NCLU commands.</td>
 <td>4.1.1-4.3.0</td>
 <td>4.4.0-4.4.2</td>
-</tr>
-<tr>
-<td>2556061</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>4.2.1-4.4.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2556010</td>
@@ -4947,6 +4935,18 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2940063</td>
+<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
+<td>3.7.12-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2940051</td>
+<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
+<td>3.7.14.2-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
 <td>2932084</td>
 <td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
 Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
@@ -4999,19 +4999,7 @@ Fixed: 3.42.1-1+deb10u4</td>
 <td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2873186</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when adding new VLANS or bridges. </td>
-<td>3.7.14.2-4.4.2</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2866096</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.2</td>
 <td></td>
@@ -5126,12 +5114,6 @@ Vulnerable: &lt;= 1.1.1d-0+deb10u6
 Fixed: 1.1.1d-0+deb10u7</td>
 <td>4.0.0-4.4.1</td>
 <td>4.4.2, 5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2770226</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
-<td>3.7.14.2-4.4.2</td>
-<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2755615</td>
@@ -5534,12 +5516,6 @@ CVE-2021-20233: A heap out-of-bound write flaw was found caused by mis-calculati
 <td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
 <td>3.7.11-3.7.15, 4.1.1-4.4.2</td>
 <td></td>
-</tr>
-<tr>
-<td>2556811</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-4.4.2</td>
-<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2556783</td>

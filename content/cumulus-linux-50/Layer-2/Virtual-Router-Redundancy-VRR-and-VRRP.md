@@ -365,6 +365,17 @@ iface uplink:400 inet static
 {{< /tab >}}
 {{< /tabs >}}
 
+{{< /tab >}}
+{{< tab "Try It " >}}
+    {{< simulation name="Try It CL501 - VRR" showNodes="leaf01,leaf02,server01,server02" >}}
+
+This demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
+
+To validate the configuration, run the `nv show interface vlan10 ip vrr` command.
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## VRRP
 
 [VRRP](## "Virtual Router Redundancy Protocol") allows two or more network devices in an active standby configuration to share a single virtual default gateway. The VRRP router that forwards packets at any given time is the master. If this VRRP router fails, another VRRP standby router automatically takes over as master. The master sends VRRP advertisements to other VRRP routers in the same virtual router group, which include the priority and state of the master. VRRP router priority determines the role that each virtual router plays and who becomes the new master if the master fails.

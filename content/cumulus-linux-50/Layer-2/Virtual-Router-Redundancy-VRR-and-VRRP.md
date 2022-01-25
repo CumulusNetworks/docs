@@ -94,7 +94,7 @@ Configure the links between the hosts and the routers in *active-active* mode fo
 
 ### Configuration Example
 
-The following examle creates an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} configuration that incorporates VRR.
+The following example creates an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} configuration that incorporates VRR.
 
 {{%notice note%}}
 The examples use a single virtual MAC address for VLANs. You can add a unique MAC address for each VLAN, but this is not necessary.

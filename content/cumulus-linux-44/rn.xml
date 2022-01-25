@@ -7,6 +7,50 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2943443</td>
+<td>Cumulus Linux lets you add more than one VXLAN interface to same VLAN on the same bridge. This is an invalid configuration as certain Cumulus Linux components, such as {{switchd}}, expect a single VNI for a given bridge or VLAN.</td>
+<td>3.7.15, 4.2.1-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2943201</td>
+<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
+<td>4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2943080</td>
+<td>The overlay ASN is removed after a route flap.</td>
+<td>4.4.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2941558</td>
+<td>CVE-2021-43818: lxml, a Python binding for the libxml2 and libxslt libraries, does not properly sanitize its input, which could lead to cross-site scripting.
+Vulnerable: &lt;= 4.3.2-1+deb10u3
+Fixed: 4.3.2-1+deb10u4</td>
+<td>4.4.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2940063</td>
+<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
+<td>3.7.12-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2940052</td>
+<td>When you configure the switch with the minimum reserved VLAN of 150 and the internal VLANs are exhausted, the MLAG peer does not  forward the VLAN.</td>
+<td>3.7.15, 4.2.1-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2940051</td>
+<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
+<td>3.7.14.2-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
 <td>2935122</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
 <td>4.3.0-4.4.2</td>
@@ -103,12 +147,6 @@ To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <td></td>
 </tr>
 <tr>
-<td>2873186</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when adding new VLANS or bridges. </td>
-<td>3.7.14.2-4.4.2</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>2873185</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.2</td>
@@ -122,12 +160,6 @@ To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 </tr>
 <tr>
 <td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-4.4.2</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2866096</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-4.4.2</td>
 <td>5.0.0-5.0.1</td>
@@ -432,12 +464,6 @@ See "systemctl status frr.service" and "journalctl -xe" for details.
 <td>5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2738625</td>
-<td>When you configure the switch with the minimum reserved VLAN of 150 and the internal VLANs are exhausted, the MLAG peer does not  forward the VLAN.</td>
-<td>3.7.15, 4.2.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2736244</td>
 <td>When you run the vtysh command to enable BGP graceful restart on a peer multiple times, the command fails with the following error:
 % The Graceful Restart command used is not valid at this moment.</td>
@@ -692,12 +718,6 @@ To work around this issue, disable OSPF debugs from global configuration mode.</
 <td>2556249</td>
 <td>On a Mellanox switch configured with the {{max acl-heavy}} or {{ip-acl-heavy}} profile, the {{cl-resource-query -j}} command takes a long time to run.</td>
 <td>4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2556061</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>4.2.1-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -1911,6 +1931,50 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2943443</td>
+<td>Cumulus Linux lets you add more than one VXLAN interface to same VLAN on the same bridge. This is an invalid configuration as certain Cumulus Linux components, such as {{switchd}}, expect a single VNI for a given bridge or VLAN.</td>
+<td>3.7.15, 4.2.1-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2943201</td>
+<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
+<td>4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2943080</td>
+<td>The overlay ASN is removed after a route flap.</td>
+<td>4.4.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2941558</td>
+<td>CVE-2021-43818: lxml, a Python binding for the libxml2 and libxslt libraries, does not properly sanitize its input, which could lead to cross-site scripting.
+Vulnerable: &lt;= 4.3.2-1+deb10u3
+Fixed: 4.3.2-1+deb10u4</td>
+<td>4.4.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2940063</td>
+<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
+<td>3.7.12-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2940052</td>
+<td>When you configure the switch with the minimum reserved VLAN of 150 and the internal VLANs are exhausted, the MLAG peer does not  forward the VLAN.</td>
+<td>3.7.15, 4.2.1-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2940051</td>
+<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
+<td>3.7.14.2-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
 <td>2935122</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
 <td>4.3.0-4.4.2</td>
@@ -2056,12 +2120,6 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td>5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2873186</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when adding new VLANS or bridges. </td>
-<td>3.7.14.2-4.4.2</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>2873185</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.2</td>
@@ -2081,12 +2139,6 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 </tr>
 <tr>
 <td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2866096</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.2</td>
 <td></td>
@@ -2466,12 +2518,6 @@ This affects failed neighbor entries on routed interfaces that are not SVIs.</td
 <td>4.4.2</td>
 </tr>
 <tr>
-<td>2770226</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
-<td>3.7.14.2-4.4.2</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>2770030</td>
 <td>When you modify the default pre-auth policy located in {{/etc/cumulus/acl/policy.d/dot1x_preauth_dacl}}, after restarting {{hostapd}} the {{/etc/cumulus/acl/policy.d/dot1x_preauth_dacl}} directory is deleted and recreated with the default rule set that comes from the {{hostapd}} binary.</td>
 <td>4.3.0-4.4.2</td>
@@ -2586,12 +2632,6 @@ Fixed: 1.17-3+deb10u2</td>
 <td>The destination MAC address of ERSPAN GRE packets is set to all zeros.</td>
 <td>4.3.0-4.4.2</td>
 <td>5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2738625</td>
-<td>When you configure the switch with the minimum reserved VLAN of 150 and the internal VLANs are exhausted, the MLAG peer does not  forward the VLAN.</td>
-<td>3.7.15, 4.2.1-4.4.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2736244</td>
@@ -2871,12 +2911,6 @@ To work around this issue, disable pruning for IPv6 multicast by setting {{bridg
 <td></td>
 </tr>
 <tr>
-<td>2556811</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-4.4.2</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>2556591</td>
 <td>After upgrading to Cumulus Linux, MLAG ports might remain down with {{clagctl}} and {{net show clag}} reporting {{bridge-priority-mismatch}}.
 To work around this issue, run the {{sudo ifreload -a}} command on both peers, or configure {{bridge-bridgeprio}} to be the same value as {{mstpctl-treeprio}} on the bridge interface in the {{/etc/network/interfaces}} file, then run {{sudo ifreload -a}}.</td>
@@ -2907,12 +2941,6 @@ To work around this issue, disable OSPF debugs from global configuration mode.</
 <td>2556249</td>
 <td>On a Mellanox switch configured with the {{max acl-heavy}} or {{ip-acl-heavy}} profile, the {{cl-resource-query -j}} command takes a long time to run.</td>
 <td>4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2556061</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>4.2.1-4.4.2</td>
 <td></td>
 </tr>
 <tr>

@@ -107,66 +107,326 @@ The examples use a single virtual MAC address for VLANs. You can add a unique MA
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ nv set interface lo ip address 10.10.10.1/32
-cumulus@leaf01:~$ nv set interface swp1-3,swp49-51
-cumulus@leaf01:~$ nv set interface bond1 bond member swp1
-cumulus@leaf01:~$ nv set interface bond2 bond member swp2
-cumulus@leaf01:~$ nv set interface bond3 bond member swp3
-cumulus@leaf01:~$ nv set interface bond1 bond mlag id 1
-cumulus@leaf01:~$ nv set interface bond2 bond mlag id 2
-cumulus@leaf01:~$ nv set interface bond3 bond mlag id 3
-cumulus@leaf01:~$ nv set interface bond1-3 bridge domain br_default
-cumulus@leaf01:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
-cumulus@leaf01:~$ nv set mlag backup 10.10.10.2
-cumulus@leaf01:~$ nv set mlag peer-ip linklocal
-cumulus@leaf01:~$ nv set bridge domain br_default vlan 10,20,30
-cumulus@leaf01:~$ nv set interface vlan10 ip address 10.1.10.2/24
-cumulus@leaf01:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf01:~$ nv set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
-cumulus@leaf01:~$ nv set interface vlan10 ip vrr state up
-cumulus@leaf01:~$ nv set interface vlan20 ip address 10.1.20.2/24
-cumulus@leaf01:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf01:~$ nv set interface vlan20 ip vrr mac-address 00:00:5e:00:01:00
-cumulus@leaf01:~$ nv set interface vlan20 ip vrr state up
-cumulus@leaf01:~$ nv set interface vlan30 ip address 10.1.30.2/24
-cumulus@leaf01:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf01:~$ nv set interface vlan30 ip vrr mac-address 00:00:5e:00:01:00
-cumulus@leaf01:~$ nv set interface vlan30 ip vrr state up
-cumulus@leaf01:~$ nv config apply
+cumulus@leaf01:mgmt:~$ nv set interface lo ip address 10.10.10.1/32
+cumulus@leaf01:mgmt:~$ nv set interface swp1-3,swp49-51
+cumulus@leaf01:mgmt:~$ nv set interface bond1 bond member swp1
+cumulus@leaf01:mgmt:~$ nv set interface bond2 bond member swp2
+cumulus@leaf01:mgmt:~$ nv set interface bond3 bond member swp3
+cumulus@leaf01:mgmt:~$ nv set interface bond1 bond mlag id 1
+cumulus@leaf01:mgmt:~$ nv set interface bond2 bond mlag id 2
+cumulus@leaf01:mgmt:~$ nv set interface bond3 bond mlag id 3
+cumulus@leaf01:mgmt:~$ nv set interface bond1-3 bridge domain br_default
+cumulus@leaf01:mgmt:~$ nv set interface peerlink bond member swp49-50
+cumulus@leaf01:mgmt:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:mgmt:~$ nv set mlag backup 10.10.10.2
+cumulus@leaf01:mgmt:~$ nv set mlag peer-ip linklocal
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10,20,30
+cumulus@leaf01:mgmt:~$ nv set interface vlan10 ip address 10.1.10.2/24
+cumulus@leaf01:mgmt:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@leaf01:mgmt:~$ nv set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@leaf01:mgmt:~$ nv set interface vlan10 ip vrr state up
+cumulus@leaf01:mgmt:~$ nv set interface vlan20 ip address 10.1.20.2/24
+cumulus@leaf01:mgmt:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
+cumulus@leaf01:mgmt:~$ nv set interface vlan20 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@leaf01:mgmt:~$ nv set interface vlan20 ip vrr state up
+cumulus@leaf01:mgmt:~$ nv set interface vlan30 ip address 10.1.30.2/24
+cumulus@leaf01:mgmt:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
+cumulus@leaf01:mgmt:~$ nv set interface vlan30 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@leaf01:mgmt:~$ nv set interface vlan30 ip vrr state up
+cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "leaf02 ">}}
 
 ```
-cumulus@leaf02:~$ nv set interface lo ip address 10.10.10.2/32
-cumulus@leaf02:~$ nv set interface swp1-3,swp49-51
-cumulus@leaf02:~$ nv set interface bond1 bond member swp1
-cumulus@leaf02:~$ nv set interface bond2 bond member swp2
-cumulus@leaf02:~$ nv set interface bond3 bond member swp3
-cumulus@leaf02:~$ nv set interface bond1 bond mlag id 1
-cumulus@leaf02:~$ nv set interface bond2 bond mlag id 2
-cumulus@leaf02:~$ nv set interface bond3 bond mlag id 3
-cumulus@leaf02:~$ nv set interface bond1-3 bridge domain br_default
-cumulus@leaf02:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf02:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
-cumulus@leaf02:~$ nv set mlag backup 10.10.10.1
-cumulus@leaf02:~$ nv set mlag peer-ip linklocal
-cumulus@leaf02:~$ nv set bridge domain br_default vlan 10,20,30
-cumulus@leaf02:~$ nv set interface vlan10 ip address 10.1.10.3/24
-cumulus@leaf02:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf02:~$ nv set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
-cumulus@leaf02:~$ nv set interface vlan10 ip vrr state up
-cumulus@leaf02:~$ nv set interface vlan20 ip address 10.1.20.3/24
-cumulus@leaf02:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf02:~$ nv set interface vlan20 ip vrr mac-address 00:00:5e:00:01:00
-cumulus@leaf02:~$ nv set interface vlan20 ip vrr state up
-cumulus@leaf02:~$ nv set interface vlan30 ip address 10.1.30.2/24
-cumulus@leaf02:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf02:~$ nv set interface vlan30 ip vrr mac-address 00:00:5e:00:01:00
-cumulus@leaf02:~$ nv set interface vlan30 ip vrr state up
-cumulus@leaf02:~$ nv config apply
+cumulus@leaf02:mgmt:~$ nv set interface lo ip address 10.10.10.2/32
+cumulus@leaf02:mgmt:~$ nv set interface swp1-3,swp49-51
+cumulus@leaf02:mgmt:~$ nv set interface bond1 bond member swp1
+cumulus@leaf02:mgmt:~$ nv set interface bond2 bond member swp2
+cumulus@leaf02:mgmt:~$ nv set interface bond3 bond member swp3
+cumulus@leaf02:mgmt:~$ nv set interface bond1 bond mlag id 1
+cumulus@leaf02:mgmt:~$ nv set interface bond2 bond mlag id 2
+cumulus@leaf02:mgmt:~$ nv set interface bond3 bond mlag id 3
+cumulus@leaf02:mgmt:~$ nv set interface bond1-3 bridge domain br_default
+cumulus@leaf02:mgmt:~$ nv set interface peerlink bond member swp49-50
+cumulus@leaf02:mgmt:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf02:mgmt:~$ nv set mlag backup 10.10.10.1
+cumulus@leaf02:mgmt:~$ nv set mlag peer-ip linklocal
+cumulus@leaf02:mgmt:~$ nv set bridge domain br_default vlan 10,20,30
+cumulus@leaf02:mgmt:~$ nv set interface vlan10 ip address 10.1.10.3/24
+cumulus@leaf02:mgmt:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@leaf02:mgmt:~$ nv set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@leaf02:mgmt:~$ nv set interface vlan10 ip vrr state up
+cumulus@leaf02:mgmt:~$ nv set interface vlan20 ip address 10.1.20.3/24
+cumulus@leaf02:mgmt:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
+cumulus@leaf02:mgmt:~$ nv set interface vlan20 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@leaf02:mgmt:~$ nv set interface vlan20 ip vrr state up
+cumulus@leaf02:mgmt:~$ nv set interface vlan30 ip address 10.1.30.2/24
+cumulus@leaf02:mgmt:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
+cumulus@leaf02:mgmt:~$ nv set interface vlan30 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@leaf02:mgmt:~$ nv set interface vlan30 ip vrr state up
+cumulus@leaf02:mgmt:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "/etc/nvue.d/startup.yaml">}}
+
+{{< tabs "TabID178 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
+- set:
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10': {}
+            '20': {}
+            '30': {}
+    interface:
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            enable: on
+            id: 1
+        bridge:
+          domain:
+            br_default: {}
+        type: bond
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          mlag:
+            enable: on
+            id: 2
+        bridge:
+          domain:
+            br_default: {}
+        type: bond
+      bond3:
+        bond:
+          member:
+            swp3: {}
+          mlag:
+            enable: on
+            id: 3
+        bridge:
+          domain:
+            br_default: {}
+        type: bond
+      lo:
+        ip:
+          address:
+            10.10.10.1/32: {}
+        type: loopback
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        base-interface: peerlink
+        type: sub
+        vlan: 4094
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp49:
+        type: swp
+      swp50:
+        type: swp
+      swp51:
+        type: swp
+      vlan10:
+        ip:
+          address:
+            10.1.10.2/24: {}
+          vrr:
+            address:
+              10.1.10.1/24: {}
+            enable: on
+            mac-address: 00:00:5e:00:01:00
+            state:
+              up: {}
+        type: svi
+        vlan: 10
+      vlan20:
+        ip:
+          address:
+            10.1.20.2/24: {}
+          vrr:
+            address:
+              10.1.20.1/24: {}
+            enable: on
+            mac-address: 00:00:5e:00:01:00
+            state:
+              up: {}
+        type: svi
+        vlan: 20
+      vlan30:
+        ip:
+          address:
+            10.1.30.2/24: {}
+          vrr:
+            address:
+              10.1.30.1/24: {}
+            enable: on
+            mac-address: 00:00:5e:00:01:00
+            state:
+              up: {}
+        type: svi
+        vlan: 30
+    mlag:
+      backup:
+        10.10.10.2: {}
+      enable: on
+      init-delay: 100
+      mac-address: 44:38:39:BE:EF:AA
+      peer-ip: linklocal
+    router:
+      vrr:
+        enable: on
+    system:
+      hostname: leaf01
+```
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10': {}
+            '20': {}
+            '30': {}
+    interface:
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            enable: on
+            id: 1
+        bridge:
+          domain:
+            br_default: {}
+        type: bond
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          mlag:
+            enable: on
+            id: 2
+        bridge:
+          domain:
+            br_default: {}
+        type: bond
+      bond3:
+        bond:
+          member:
+            swp3: {}
+          mlag:
+            enable: on
+            id: 3
+        bridge:
+          domain:
+            br_default: {}
+        type: bond
+      lo:
+        ip:
+          address:
+            10.10.10.2/32: {}
+        type: loopback
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        base-interface: peerlink
+        type: sub
+        vlan: 4094
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp49:
+        type: swp
+      swp50:
+        type: swp
+      swp51:
+        type: swp
+      vlan10:
+        ip:
+          address:
+            10.1.10.3/24: {}
+          vrr:
+            address:
+              10.1.10.1/24: {}
+            enable: on
+            mac-address: 00:00:5e:00:01:00
+            state:
+              up: {}
+        type: svi
+        vlan: 10
+      vlan20:
+        ip:
+          address:
+            10.1.20.3/24: {}
+          vrr:
+            address:
+              10.1.20.1/24: {}
+            enable: on
+            mac-address: 00:00:5e:00:01:00
+            state:
+              up: {}
+        type: svi
+        vlan: 20
+      vlan30:
+        ip:
+          address:
+            10.1.30.3/24: {}
+          vrr:
+            address:
+              10.1.30.1/24: {}
+            enable: on
+            mac-address: 00:00:5e:00:01:00
+            state:
+              up: {}
+        type: svi
+        vlan: 30
+    mlag:
+      backup:
+        10.10.10.1: {}
+      enable: on
+      init-delay: 100
+      mac-address: 44:38:39:BE:EF:AA
+      peer-ip: linklocal
+    router:
+      vrr:
+        enable: on
+    system:
+      hostname: leaf02
 ```
 
 {{< /tab >}}
@@ -175,10 +435,12 @@ cumulus@leaf02:~$ nv config apply
 {{< /tab >}}
 {{< tab "/etc/network/interfaces">}}
 
-{{< tabs "TabID166 ">}}
+{{< tabs "TabID190 ">}}
 {{< tab "leaf01 ">}}
 
 ```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/network/interfaces
+...
 auto lo
 iface lo inet loopback
 auto mgmt
@@ -266,6 +528,8 @@ iface br_default
 {{< tab "leaf02 ">}}
 
 ```
+cumulus@leaf02:mgmt:~$ sudo cat /etc/network/interfaces
+...
 auto lo
 iface lo inet loopback
    address 10.10.10.2/32
@@ -354,6 +618,8 @@ iface br_default
 {{< tab "server01 ">}}
 
 ```
+cumulus@server01:mgmt:~$ sudo cat /etc/network/interfaces
+...
 auto eth0
 iface eth0 inet dhcp
   post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
@@ -389,6 +655,8 @@ iface bond1.30
 {{< tab "server02 ">}}
 
 ```
+cumulus@server02:mgmt:~$ sudo cat /etc/network/interfaces
+...
 auto eth0
 iface eth0 inet dhcp
   post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2

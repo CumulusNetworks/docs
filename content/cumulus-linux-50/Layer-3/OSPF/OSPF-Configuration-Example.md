@@ -47,7 +47,7 @@ cumulus@leaf01:~$ nv set interface bond1 bridge domain br_default access 10
 cumulus@leaf01:~$ nv set interface bond2 bridge domain br_default access 20
 cumulus@leaf01:~$ nv set interface bond3 bridge domain br_default access 30
 cumulus@leaf01:~$ nv set vrf default router ospf router-id 10.10.10.1
-cumulus@leaf01:~$ nv set interface lo router ospf area 0
+cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 cumulus@leaf01:~$ nv set interface swp51 router ospf area 0
 cumulus@leaf01:~$ nv set interface swp52 router ospf area 0
 cumulus@leaf01:~$ nv set interface swp51 router ospf network-type point-to-point
@@ -98,7 +98,7 @@ cumulus@leaf02:~$ nv set interface bond1 bridge domain br_default access 10
 cumulus@leaf02:~$ nv set interface bond2 bridge domain br_default access 20
 cumulus@leaf02:~$ nv set interface bond3 bridge domain br_default access 30
 cumulus@leaf02:~$ nv set vrf default router ospf router-id 10.10.10.2
-cumulus@leaf02:~$ nv set interface lo router ospf area 0
+cumulus@leaf02:~$ nv set vrf default router ospf area 0 network 10.10.10.2/32
 cumulus@leaf02:~$ nv set interface swp51 router ospf area 0
 cumulus@leaf02:~$ nv set interface swp52 router ospf area 0
 cumulus@leaf02:~$ nv set interface swp51 router ospf network-type point-to-point
@@ -129,7 +129,7 @@ cumulus@spine01:~$ nv set interface swp2 ip address 10.10.10.101/32
 cumulus@spine01:~$ nv set interface swp5 ip address 10.10.10.101/32
 cumulus@spine01:~$ nv set interface swp6 ip address 10.10.10.101/32
 cumulus@spine01:~$ nv set vrf default router ospf router-id 10.10.10.101
-cumulus@spine01:~$ nv set interface lo router ospf area 0
+cumulus@spine01:~$ nv set vrf default router ospf area 0 network 10.10.10.101/32
 cumulus@spine01:~$ nv set interface swp1 router ospf area 0
 cumulus@spine01:~$ nv set interface swp1 router ospf network-type point-to-point
 cumulus@spine01:~$ nv set interface swp1 router ospf timers hello-interval 5
@@ -162,7 +162,7 @@ cumulus@spine02:~$ nv set interface swp2 ip address 10.10.10.102/32
 cumulus@spine02:~$ nv set interface swp5 ip address 10.10.10.102/32
 cumulus@spine02:~$ nv set interface swp6 ip address 10.10.10.102/32
 cumulus@spine02:~$ nv set vrf default router ospf router-id 10.10.10.102
-cumulus@spine02:~$ nv set interface lo router ospf area 0
+cumulus@spine02:~$ nv set vrf default router ospf area 0 network 10.10.10.102/32
 cumulus@spine02:~$ nv set interface swp1 router ospf area 0
 cumulus@spine02:~$ nv set interface swp1 router ospf network-type point-to-point
 cumulus@spine02:~$ nv set interface swp1 router ospf timers hello-interval 5
@@ -207,7 +207,7 @@ cumulus@border01:~$ nv set mlag backup 10.10.10.64
 cumulus@border01:~$ nv set mlag peer-ip linklocal
 cumulus@border01:~$ nv set bridge domain br_default untagged 1
 cumulus@border01:~$ nv set vrf default router ospf router-id 10.10.10.63
-cumulus@border01:~$ nv set interface lo router ospf area 0
+cumulus@border01:~$ nv set vrf default router ospf area 0 network 10.10.10.63/32
 cumulus@border01:~$ nv set interface swp51 router ospf area 0
 cumulus@border01:~$ nv set interface swp51 router ospf network-type point-to-point
 cumulus@border01:~$ nv set interface swp51 router ospf timers hello-interval 5
@@ -252,7 +252,7 @@ cumulus@border02:~$ nv set mlag backup 10.10.10.63
 cumulus@border02:~$ nv set mlag peer-ip linklocal
 cumulus@border02:~$ nv set bridge domain br_default untagged 1
 cumulus@border02:~$ nv set vrf default router ospf router-id 10.10.10.64
-cumulus@border02:~$ nv set interface lo router ospf area 0
+cumulus@border02:~$ nv set vrf default router ospf area 0 network 10.10.10.64/32
 cumulus@border02:~$ nv set interface swp51 router ospf area 0
 cumulus@border02:~$ nv set interface swp51 router ospf network-type point-to-point
 cumulus@border02:~$ nv set interface swp51 router ospf timers hello-interval 5
@@ -287,11 +287,20 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
           address:
             10.10.10.1/32: {}
         type: loopback
+      swp51:
+        ip:
+          address:
+            10.10.10.1/32: {}
+        type: swp
         router:
           ospf:
             area: 0
             enable: on
-      swp51:
+            network-type: point-to-point
+            timers:
+              hello-interval: 5
+              dead-interval: 60
+      swp52:
         ip:
           address:
             10.10.10.1/32: {}
@@ -358,9 +367,9 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
         vlan: 10
         router:
           ospf:
-            passive: on
-            enable: on
             area: 0
+            enable: on
+            passive: on
       vlan20:
         ip:
           address:
@@ -369,9 +378,9 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
         vlan: 20
         router:
           ospf:
-            passive: on
-            enable: on
             area: 0
+            enable: on
+            passive: on
       vlan30:
         ip:
           address:
@@ -380,19 +389,9 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
         vlan: 30
         router:
           ospf:
+            area: 0
+            enable: on
             passive: on
-            enable: on
-            area: 0
-      swp52:
-        router:
-          ospf:
-            area: 0
-            enable: on
-            network-type: point-to-point
-            timers:
-              hello-interval: 5
-              dead-interval: 60
-        type: swp
     mlag:
       mac-address: 44:38:39:BE:EF:AA
       backup:
@@ -406,12 +405,16 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
             '20': {}
             '30': {}
           untagged: 1
-     vrf:
+    vrf:
       default:
         router:
           ospf:
             router-id: 10.10.10.1
             enable: on
+            area:
+              '0':
+                network:
+                  10.10.10.1/32: {}
     router:
       ospf:
         enable: on
@@ -434,11 +437,20 @@ cumulus@leaf02:~$ sudo cat /etc/nvue.d/startup.yaml
           address:
             10.10.10.2/32: {}
         type: loopback
+      swp51:
+        ip:
+          address:
+            10.10.10.2/32: {}
+        type: swp
         router:
           ospf:
             area: 0
             enable: on
-      swp51:
+            network-type: point-to-point
+            timers:
+              hello-interval: 5
+              dead-interval: 60
+      swp52:
         ip:
           address:
             10.10.10.2/32: {}
@@ -530,16 +542,6 @@ cumulus@leaf02:~$ sudo cat /etc/nvue.d/startup.yaml
             area: 0
             enable: on
             passive: on
-      swp52:
-        router:
-          ospf:
-            area: 0
-            enable: on
-            network-type: point-to-point
-            timers:
-              hello-interval: 5
-              dead-interval: 60
-        type: swp
     mlag:
       mac-address: 44:38:39:BE:EF:AA
       backup:
@@ -553,12 +555,16 @@ cumulus@leaf02:~$ sudo cat /etc/nvue.d/startup.yaml
             '20': {}
             '30': {}
           untagged: 1
-     vrf:
+    vrf:
       default:
         router:
           ospf:
             router-id: 10.10.10.2
             enable: on
+            area:
+              '0':
+                network:
+                  10.10.10.2/32: {}
     router:
       ospf:
         enable: on
@@ -581,10 +587,6 @@ cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
           address:
             10.10.10.101/32: {}
         type: loopback
-        router:
-          ospf:
-            area: 0
-            enable: on
       swp1:
         ip:
           address:
@@ -643,6 +645,10 @@ cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
           ospf:
             router-id: 10.10.10.101
             enable: on
+            area:
+              '0':
+                network:
+                  10.10.10.101/32: {}
     router:
       ospf:
         enable: on
@@ -664,10 +670,6 @@ cumulus@spine02:~$ sudo cat /etc/nvue.d/startup.yaml
           address:
             10.10.10.102/32: {}
         type: loopback
-        router:
-          ospf:
-            area: 0
-            enable: on
       swp1:
         ip:
           address:
@@ -726,6 +728,10 @@ cumulus@spine02:~$ sudo cat /etc/nvue.d/startup.yaml
           ospf:
             router-id: 10.10.10.102
             enable: on
+            area:
+              '0':
+                network:
+                  10.10.10.102/32: {}
     router:
       ospf:
         enable: on
@@ -747,10 +753,6 @@ cumulus@border01:~$ sudo cat /etc/nvue.d/startup.yaml
           address:
             10.10.10.63/32: {}
         type: loopback
-        router:
-          ospf:
-            area: 0
-            enable: on
       swp51:
         ip:
           address:
@@ -838,6 +840,10 @@ cumulus@border01:~$ sudo cat /etc/nvue.d/startup.yaml
           ospf:
             router-id: 10.10.10.63
             enable: on
+            area:
+              '0':
+                network:
+                  10.10.10.63/32: {}
     router:
       ospf:
         enable: on
@@ -859,10 +865,6 @@ cumulus@border02:~$ sudo cat /etc/nvue.d/startup.yaml
           address:
             10.10.10.64/32: {}
         type: loopback
-        router:
-          ospf:
-            area: 0
-            enable: on
       swp51:
         ip:
           address:
@@ -964,8 +966,13 @@ cumulus@border02:~$ sudo cat /etc/nvue.d/startup.yaml
       default:
         router:
           ospf:
-            router-id: 10.10.10.102
-            enable: onrouter:
+            router-id: 10.10.10.64
+            enable: on
+            area:
+              '0':
+                network:
+                  10.10.10.64/32: {}
+    router:
       ospf:
         enable: on
         timers:
@@ -985,106 +992,83 @@ cumulus@border02:~$ sudo cat /etc/nvue.d/startup.yaml
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.1/32
-
-auto swp1
-iface swp1
-
-auto swp2
-iface swp2
-
-auto swp3
-iface swp3
-
-auto swp49
-iface swp49
-
-auto swp50
-iface swp50
-
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
 auto swp51
 iface swp51
     address 10.10.10.1/32
-
 auto swp52
 iface swp52
     address 10.10.10.1/32
-
 auto bond1
 iface bond1
-    bond-lacp-bypass-allow yes
     bond-slaves swp1
-    bridge-access 10
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
     clag-id 1
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-
+    bridge-access 10
 auto bond2
 iface bond2
-    bond-lacp-bypass-allow yes
     bond-slaves swp2
-    bridge-access 20
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
     clag-id 2
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-
+    bridge-access 20
 auto bond3
 iface bond3
-    bond-lacp-bypass-allow yes
     bond-slaves swp3
-    bridge-access 30
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
     clag-id 3
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-
-auto bridge
-iface bridge
-    bridge-ports bond1 bond2 bond3 peerlink
-    bridge-pvid 1
-    bridge-vids 10 20 30
-    bridge-vlan-aware yes
-
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-    address ::1/128
-
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-
+    bridge-access 30
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
-
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 auto peerlink.4094
 iface peerlink.4094
-    clagd-backup-ip 10.10.10.2
     clagd-peer-ip linklocal
-    clagd-priority 1000
+    clagd-backup-ip 10.10.10.2
     clagd-sys-mac 44:38:39:BE:EF:AA
-
+    clagd-args --initDelay 180
 auto vlan10
 iface vlan10
     address 10.1.10.2/24
+    hwaddress 44:38:39:22:01:b1
+    vlan-raw-device br_default
     vlan-id 10
-    vlan-raw-device bridge
-
 auto vlan20
 iface vlan20
     address 10.1.20.2/24
+    hwaddress 44:38:39:22:01:b1
+    vlan-raw-device br_default
     vlan-id 20
-    vlan-raw-device bridge
-
 auto vlan30
 iface vlan30
     address 10.1.30.2/24
+    hwaddress 44:38:39:22:01:b1
+    vlan-raw-device br_default
     vlan-id 30
-    vlan-raw-device bridge
+auto br_default
+iface br_default
+    bridge-ports bond1 bond2 bond3 peerlink
+    hwaddress 44:38:39:22:01:b1
+    bridge-vlan-aware yes
+    bridge-vids 10 20 30
+    bridge-pvid 1
 ```
 
 {{< /tab >}}
@@ -1092,105 +1076,83 @@ iface vlan30
 
 ```
 cumulus@leaf02:~$ sudo cat /etc/network/interfaces
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.2/32
-
-auto swp1
-iface swp1
-
-auto swp2
-iface swp2
-
-auto swp3
-iface swp3
-
-auto swp49
-iface swp49
-
-auto swp50
-iface swp50
-
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
 auto swp51
 iface swp51
     address 10.10.10.2/32
-
 auto swp52
 iface swp52
     address 10.10.10.2/32
-
 auto bond1
 iface bond1
-    bond-lacp-bypass-allow yes
     bond-slaves swp1
-    bridge-access 10
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
     clag-id 1
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-
+    bridge-access 10
 auto bond2
 iface bond2
-    bond-lacp-bypass-allow yes
     bond-slaves swp2
-    bridge-access 20
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
     clag-id 2
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-
+    bridge-access 20
 auto bond3
 iface bond3
-    bond-lacp-bypass-allow yes
     bond-slaves swp3
-    bridge-access 30
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
     clag-id 3
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-
-auto bridge
-iface bridge
-    bridge-ports bond1 bond2 bond3 peerlink
-    bridge-pvid 1
-    bridge-vids 10 20 30
-    bridge-vlan-aware yes
-
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-    address ::1/128
-
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-
+    bridge-access 30
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
-
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 auto peerlink.4094
 iface peerlink.4094
-    clagd-backup-ip 10.10.10.1
     clagd-peer-ip linklocal
-    clagd-priority 1000
+    clagd-backup-ip 10.10.10.1
     clagd-sys-mac 44:38:39:BE:EF:AA
-
+    clagd-args --initDelay 180
 auto vlan10
 iface vlan10
     address 10.1.10.2/24
+    hwaddress 44:38:39:22:01:af
+    vlan-raw-device br_default
     vlan-id 10
-    vlan-raw-device bridge
-
 auto vlan20
 iface vlan20
     address 10.1.20.2/24
+    hwaddress 44:38:39:22:01:af
+    vlan-raw-device br_default
     vlan-id 20
-    vlan-raw-device bridge
-
 auto vlan30
 iface vlan30
     address 10.1.30.2/24
+    hwaddress 44:38:39:22:01:af
+    vlan-raw-device br_default
     vlan-id 30
-    vlan-raw-device bridge
+auto br_default
+iface br_default
+    bridge-ports bond1 bond2 bond3 peerlink
+    hwaddress 44:38:39:22:01:af
+    bridge-vlan-aware yes
+    bridge-vids 10 20 30
+    bridge-pvid 1
 ```
 
 {{< /tab >}}
@@ -1198,36 +1160,32 @@ iface vlan30
 
 ```
 cumulus@spine01:~$ cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.101/32
-
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
 auto swp1
 iface swp1
     address 10.10.10.101/32
-
 auto swp2
 iface swp2
     address 10.10.10.101/32
-
 auto swp5
 iface swp5
     address 10.10.10.101/32
-
 auto swp6
 iface swp6
     address 10.10.10.101/32
-
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-    address ::1/128
-
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
 ```
 
 {{< /tab >}}
@@ -1235,35 +1193,32 @@ iface eth0 inet dhcp
 
 ```
 cumulus@spine02:~$ cat /etc/network/interfaces
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.102/32
-
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
 auto swp1
 iface swp1
     address 10.10.10.102/32
-
 auto swp2
 iface swp2
     address 10.10.10.102/32
-
 auto swp5
 iface swp5
     address 10.10.10.102/32
-
 auto swp6
 iface swp6
     address 10.10.10.102/32
-
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-    address ::1/128
-
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
 ```
 
 {{< /tab >}}
@@ -1271,74 +1226,62 @@ iface eth0 inet dhcp
 
 ```
 cumulus@border01:~$ sudo cat /etc/network/interfaces
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.63/32
-
-auto swp1
-iface swp1
-
-auto swp2
-iface swp2
-
-auto swp49
-iface swp49
-
-auto swp50
-iface swp50
-
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
 auto swp51
 iface swp51
     address 10.10.10.63/32
-
 auto swp52
 iface swp52
     address 10.10.10.63/32
-
 auto bond1
 iface bond1
-    bond-lacp-bypass-allow yes
     bond-slaves swp1
-    bridge-access 10
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
     clag-id 1
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-
+    bridge-access 10
 auto bond2
 iface bond2
-    bond-lacp-bypass-allow yes
     bond-slaves swp2
-    bridge-access 20
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
     clag-id 2
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-
-auto bridge
-iface bridge
-    bridge-ports bond1 bond2 peerlink
-    bridge-pvid 1
-    bridge-vlan-aware yes
-
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-    address ::1/128
-
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-
+    bridge-access 20
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
-
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 auto peerlink.4094
 iface peerlink.4094
-    clagd-backup-ip 10.10.10.64
     clagd-peer-ip linklocal
-    clagd-priority 1000
+    clagd-backup-ip 10.10.10.64
     clagd-sys-mac 44:38:39:BE:EF:FF
+    clagd-args --initDelay 180
+auto swp1
+iface swp1
+auto swp2
+iface swp2
+auto br_default
+iface br_default
+    bridge-ports bond1 bond2 peerlink
+    hwaddress 44:38:39:22:01:ab
+    bridge-vlan-aware yes
+    bridge-vids 1
+    bridge-pvid 1
 ```
 
 {{< /tab >}}
@@ -1346,90 +1289,76 @@ iface peerlink.4094
 
 ```
 cumulus@border02:~$ sudo cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.64/32
-
-auto swp1
-iface swp1
-
-auto swp2
-iface swp2
-
-auto swp49
-iface swp49
-
-auto swp50
-iface swp50
-
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
 auto swp51
 iface swp51
     address 10.10.10.64/32
-
 auto swp52
 iface swp52
     address 10.10.10.64/32
-
 auto bond1
 iface bond1
-    bond-lacp-bypass-allow yes
     bond-slaves swp1
-    bridge-access 10
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
     clag-id 1
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-
+    bridge-access 10
 auto bond2
 iface bond2
-    bond-lacp-bypass-allow yes
     bond-slaves swp2
-    bridge-access 20
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
     clag-id 2
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-
-auto bridge
-iface bridge
-    bridge-ports bond1 bond2 peerlink
-    bridge-pvid 1
-    bridge-vids 10 20
-    bridge-vlan-aware yes
-
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-    address ::1/128
-
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-
+    bridge-access 20
+auto vlan10
+iface vlan10
+    ip-forward off
+    ip6-forward off
+    hwaddress 44:38:39:22:01:b3
+    vlan-raw-device br_default
+    vlan-id 10
+auto vlan20
+iface vlan20
+    ip-forward off
+    ip6-forward off
+    hwaddress 44:38:39:22:01:b3
+    vlan-raw-device br_default
+    vlan-id 20
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
-
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 auto peerlink.4094
 iface peerlink.4094
-    clagd-backup-ip 10.10.10.63
     clagd-peer-ip linklocal
-    clagd-priority 1000
+    clagd-backup-ip 10.10.10.63
     clagd-sys-mac 44:38:39:BE:EF:FF
-
-auto vlan10
-iface vlan10
-    ip6-forward off
-    ip-forward off
-    vlan-id 10
-    vlan-raw-device bridge
-
-auto vlan20
-iface vlan20
-    ip6-forward off
-    ip-forward off
-    vlan-id 20
-    vlan-raw-device bridge
+    clagd-args --initDelay 180
+auto swp1
+iface swp1
+auto swp2
+iface swp2
+auto br_default
+iface br_default
+    bridge-ports bond1 bond2 peerlink
+    hwaddress 44:38:39:22:01:b3
+    bridge-vlan-aware yes
+    bridge-vids 1
+    bridge-pvid 1
 ```
 
 {{< /tab >}}
@@ -1444,30 +1373,37 @@ iface vlan20
 ```
 cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
 ...
-router ospf
- ospf router-id 10.10.10.1
- passive-interface vlan10
- passive-interface vlan20
- passive-interface vlan30
- timers throttle spf 80 100 6000
-interface lo
- ip ospf area 0
 interface swp51
- ip ospf area 0
- ip ospf network point-to-point
- ip ospf hello-interval 5
- ip ospf dead-interval 60
+ip ospf area 0
+ip ospf network point-to-point
+ip ospf hello-interval 5
+ip ospf dead-interval 60
 interface swp52
- ip ospf area 0
- ip ospf network point-to-point
- ip ospf hello-interval 5
- ip ospf dead-interval 60
+ip ospf area 0
+ip ospf network point-to-point
+ip ospf hello-interval 5
+ip ospf dead-interval 60
 interface vlan10
- ip ospf area 0
+ip ospf area 0
+router ospf
+passive-interface vlan10
 interface vlan20
- ip ospf area 0
+ip ospf area 0
+router ospf
+passive-interface vlan20
 interface vlan30
- ip ospf area 0
+ip ospf area 0
+router ospf
+passive-interface vlan30
+vrf default
+exit-vrf
+vrf mgmt
+exit-vrf
+router ospf
+ospf router-id 10.10.10.1
+network 10.10.10.1/32 area 0
+timers throttle spf 80 100 6000
+! end of router ospf block
 ```
 
 {{< /tab >}}
@@ -1476,30 +1412,37 @@ interface vlan30
 ```
 cumulus@leaf02:~$ sudo cat /etc/frr/frr.conf
 ...
-router ospf
- ospf router-id 10.10.10.2
- passive-interface vlan10
- passive-interface vlan20
- passive-interface vlan30
- timers throttle spf 80 100 6000
-interface lo
- ip ospf area 0
 interface swp51
- ip ospf area 0
- ip ospf network point-to-point
- ip ospf hello-interval 5
- ip ospf dead-interval 60
+ip ospf area 0
+ip ospf network point-to-point
+ip ospf hello-interval 5
+ip ospf dead-interval 60
 interface swp52
- ip ospf area 0
- ip ospf network point-to-point
- ip ospf hello-interval 5
- ip ospf dead-interval 60
+ip ospf area 0
+ip ospf network point-to-point
+ip ospf hello-interval 5
+ip ospf dead-interval 60
 interface vlan10
- ip ospf area 0
+ip ospf area 0
+router ospf
+passive-interface vlan10
 interface vlan20
- ip ospf area 0
+ip ospf area 0
+router ospf
+passive-interface vlan20
 interface vlan30
- ip ospf area 0
+ip ospf area 0
+router ospf
+passive-interface vlan30
+vrf default
+exit-vrf
+vrf mgmt
+exit-vrf
+router ospf
+ospf router-id 10.10.10.2
+network 10.10.10.2/32 area 0
+timers throttle spf 80 100 6000
+! end of router ospf block
 ```
 
 {{< /tab >}}
@@ -1508,31 +1451,35 @@ interface vlan30
 ```
 cumulus@spine01:~$ sudo cat /etc/frr/frr.conf
 ...
-router ospf
- ospf router-id 10.10.10.101
- timers throttle spf 80 100 6000
-interface lo
- ip ospf area 0
 interface swp1
- ip ospf area 0
- ip ospf network point-to-point
- ip ospf hello-interval 5
- ip ospf dead-interval 60
+ip ospf area 0
+ip ospf network point-to-point
+ip ospf hello-interval 5
+ip ospf dead-interval 60
 interface swp2
- ip ospf area 0
- ip ospf network point-to-point
- ip ospf hello-interval 5
- ip ospf dead-interval 60
+ip ospf area 0
+ip ospf network point-to-point
+ip ospf hello-interval 5
+ip ospf dead-interval 60
 interface swp5
- ip ospf area 0
- ip ospf network point-to-point
- ip ospf hello-interval 5
- ip ospf dead-interval 60
+ip ospf area 0
+ip ospf network point-to-point
+ip ospf hello-interval 5
+ip ospf dead-interval 60
 interface swp6
- ip ospf area 0
- ip ospf network point-to-point
- ip ospf hello-interval 5
- ip ospf dead-interval 60
+ip ospf area 0
+ip ospf network point-to-point
+ip ospf hello-interval 5
+ip ospf dead-interval 60
+vrf default
+exit-vrf
+vrf mgmt
+exit-vrf
+router ospf
+ospf router-id 10.10.10.101
+network 10.10.10.101/32 area 0
+timers throttle spf 0 100 6000
+! end of router ospf block
 ```
 
 {{< /tab >}}
@@ -1541,31 +1488,35 @@ interface swp6
 ```
 cumulus@spine02:~$ sudo cat /etc/frr/frr.conf
 ...
-router ospf
- ospf router-id 10.10.10.102
- timers throttle spf 80 100 6000
-interface lo
- ip ospf area 0
 interface swp1
- ip ospf area 0
- ip ospf network point-to-point
- ip ospf hello-interval 5
- ip ospf dead-interval 60
+ip ospf area 0
+ip ospf network point-to-point
+ip ospf hello-interval 5
+ip ospf dead-interval 60
 interface swp2
- ip ospf area 0
- ip ospf network point-to-point
- ip ospf hello-interval 5
- ip ospf dead-interval 60
+ip ospf area 0
+ip ospf network point-to-point
+ip ospf hello-interval 5
+ip ospf dead-interval 60
 interface swp5
- ip ospf area 0
- ip ospf network point-to-point
- ip ospf hello-interval 5
- ip ospf dead-interval 60
+ip ospf area 0
+ip ospf network point-to-point
+ip ospf hello-interval 5
+ip ospf dead-interval 60
 interface swp6
- ip ospf area 0
- ip ospf network point-to-point
- ip ospf hello-interval 5
- ip ospf dead-interval 60
+ip ospf area 0
+ip ospf network point-to-point
+ip ospf hello-interval 5
+ip ospf dead-interval 60
+vrf default
+exit-vrf
+vrf mgmt
+exit-vrf
+router ospf
+ospf router-id 10.10.10.102
+network 10.10.10.102/32 area 0
+timers throttle spf 0 100 6000
+! end of router ospf block
 ```
 
 {{< /tab >}}
@@ -1574,25 +1525,29 @@ interface swp6
 ```
 cumulus@border01:~$ sudo cat /etc/frr/frr.conf
 ...
-router ospf
- ospf router-id 10.10.10.63
- timers throttle spf 80 100 6000
-interface lo
- ip ospf area 0
-interface swp51
- ip ospf area 0
- ip ospf network point-to-point
- ip ospf hello-interval 5
- ip ospf dead-interval 60
-interface swp52
- ip ospf area 0
- ip ospf network point-to-point
- ip ospf hello-interval 5
- ip ospf dead-interval 60
 interface swp1
- ip ospf area 1
+ip ospf area 1
 interface swp2
- ip ospf area 1
+ip ospf area 1
+interface swp51
+ip ospf area 0
+ip ospf network point-to-point
+ip ospf hello-interval 5
+ip ospf dead-interval 60
+interface swp52
+ip ospf area 0
+ip ospf network point-to-point
+ip ospf hello-interval 5
+ip ospf dead-interval 60
+vrf default
+exit-vrf
+vrf mgmt
+exit-vrf
+router ospf
+ospf router-id 10.10.10.63
+network 10.10.10.63/32 area 0
+timers throttle spf 0 100 6000
+! end of router ospf block
 ```
 
 {{< /tab >}}
@@ -1601,25 +1556,29 @@ interface swp2
 ```
 cumulus@border02:~$ sudo cat /etc/frr/frr.conf
 ...
-router ospf
- ospf router-id 10.10.10.64
- timers throttle spf 80 100 6000
-interface lo
- ip ospf area 0
-interface swp51
- ip ospf area 0
- ip ospf network point-to-point
- ip ospf hello-interval 5
- ip ospf dead-interval 60
-interface swp52
- ip ospf area 0
- ip ospf network point-to-point
- ip ospf hello-interval 5
- ip ospf dead-interval 60
 interface swp1
- ip ospf area 1
+ip ospf area 1
 interface swp2
- ip ospf area 1
+ip ospf area 1
+interface swp51
+ip ospf area 0
+ip ospf network point-to-point
+ip ospf hello-interval 5
+ip ospf dead-interval 60
+interface swp52
+ip ospf area 0
+ip ospf network point-to-point
+ip ospf hello-interval 5
+ip ospf dead-interval 60
+vrf default
+exit-vrf
+vrf mgmt
+exit-vrf
+router ospf
+ospf router-id 10.10.10.64
+network 10.10.10.64/32 area 0
+timers throttle spf 0 100 6000
+! end of router ospf block
 ```
 
 {{< /tab >}}

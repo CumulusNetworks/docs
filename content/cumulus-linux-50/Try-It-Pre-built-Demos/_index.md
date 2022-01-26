@@ -8,6 +8,7 @@ This documentation includes pre-built **Try It** demos for certain Cumulus Linux
 
 The following Try It demos are available:
 - {{<link url="Configuration-Example" text="BGP">}}
+- {{<link url="OSPF-Configuration-Example" text="OSPF">}}
 - {{<link url="Protocol-Independent-Multicast-PIM/#configuration-example" text="PIM">}}
 - {{<link url="Inter-subnet-Routing/#configure-route-targets" text="EVPN downstream VNI">}}
 - {{<link url="EVPN-Multihoming/#configuration-example" text="EVPN multihoming">}}

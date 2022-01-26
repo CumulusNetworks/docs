@@ -41,6 +41,15 @@ cumulus@leaf01:~$ nv set mlag peer-ip linklocal
 cumulus@leaf01:~$ nv set interface vlan10 ip address 10.1.10.2/24
 cumulus@leaf01:~$ nv set interface vlan20 ip address 10.1.20.2/24
 cumulus@leaf01:~$ nv set interface vlan30 ip address 10.1.30.2/24
+cumulus@leaf01:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@leaf01:~$ nv set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@leaf01:~$ nv set interface vlan10 ip vrr state up
+cumulus@leaf01:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
+cumulus@leaf01:~$ nv set interface vlan20 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@leaf01:~$ nv set interface vlan20 ip vrr state up
+cumulus@leaf01:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
+cumulus@leaf01:~$ nv set interface vlan30 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@leaf01:~$ nv set interface vlan30 ip vrr state up
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 10,20,30
 cumulus@leaf01:~$ nv set bridge domain br_default untagged 1
 cumulus@leaf01:~$ nv set interface bond1 bridge domain br_default access 10
@@ -89,9 +98,18 @@ cumulus@leaf02:~$ nv set interface peerlink bond member swp49-50
 cumulus@leaf02:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
 cumulus@leaf02:~$ nv set mlag backup 10.10.10.1
 cumulus@leaf02:~$ nv set mlag peer-ip linklocal
-cumulus@leaf02:~$ nv set interface vlan10 ip address 10.1.10.2/24
-cumulus@leaf02:~$ nv set interface vlan20 ip address 10.1.20.2/24
-cumulus@leaf02:~$ nv set interface vlan30 ip address 10.1.30.2/24
+cumulus@leaf02:~$ nv set interface vlan10 ip address 10.1.10.3/24
+cumulus@leaf02:~$ nv set interface vlan20 ip address 10.1.20.3/24
+cumulus@leaf02:~$ nv set interface vlan30 ip address 10.1.30.3/24
+cumulus@leaf02:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@leaf02:~$ nv set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@leaf02:~$ nv set interface vlan10 ip vrr state up
+cumulus@leaf02:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
+cumulus@leaf02:~$ nv set interface vlan20 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@leaf02:~$ nv set interface vlan20 ip vrr state up
+cumulus@leaf02:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
+cumulus@leaf02:~$ nv set interface vlan30 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@leaf02:~$ nv set interface vlan30 ip vrr state up
 cumulus@leaf02:~$ nv set bridge domain br_default vlan 10,20,30
 cumulus@leaf02:~$ nv set bridge domain br_default untagged 1
 cumulus@leaf02:~$ nv set interface bond1 bridge domain br_default access 10
@@ -198,9 +216,14 @@ cumulus@border01:~$ nv set interface bond1 bond mlag id 1
 cumulus@border01:~$ nv set interface bond2 bond mlag id 2
 cumulus@border01:~$ nv set interface bond1 bond lacp-bypass on
 cumulus@border01:~$ nv set interface bond2 bond lacp-bypass on
-cumulus@border01:~$ nv set interface bond1 bridge domain br_default access 10
-cumulus@border01:~$ nv set interface bond2 bridge domain br_default access 20
+cumulus@border01:~$ nv set interface bond1 bridge domain br_default access 2001
+cumulus@border01:~$ nv set interface bond2 bridge domain br_default access 2001
 cumulus@border01:~$ nv set interface bond1-2 bridge domain br_default
+cumulus@border01:~$ nv set interface vlan2001
+cumulus@border01:~$ nv set interface vlan2001 ip address 10.1.201.2/24
+cumulus@border01:~$ nv set interface vlan2001 ip vrr address 10.1.201.1/24
+cumulus@border01:~$ nv set interface vlan2001 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@border01:~$ nv set interface vlan2001 ip vrr state up
 cumulus@border01:~$ nv set interface peerlink bond member swp49-50
 cumulus@border01:~$ nv set mlag mac-address 44:38:39:BE:EF:FF
 cumulus@border01:~$ nv set mlag backup 10.10.10.64
@@ -216,8 +239,7 @@ cumulus@border01:~$ nv set interface swp52 router ospf area 0
 cumulus@border01:~$ nv set interface swp52 router ospf network-type point-to-point
 cumulus@border01:~$ nv set interface swp52 router ospf timers hello-interval 5
 cumulus@border01:~$ nv set interface swp52 router ospf timers dead-interval 60
-cumulus@border01:~$ nv set interface swp1 router ospf area 1
-cumulus@border01:~$ nv set interface swp2 router ospf area 1
+cumulus@border01:~$ nv set interface vlan2001 router ospf area 1
 cumulus@border01:~$ nv set router ospf timers spf max-holdtime 6000
 cumulus@border01:~$ nv set router ospf timers spf holdtime 100
 cumulus@border01:~$ nv set router ospf timers spf max-holdtime 6000
@@ -237,15 +259,14 @@ cumulus@border02:~$ nv set interface bond1 bond mlag id 1
 cumulus@border02:~$ nv set interface bond2 bond mlag id 2
 cumulus@border02:~$ nv set interface bond1 bond lacp-bypass on
 cumulus@border02:~$ nv set interface bond2 bond lacp-bypass on
-cumulus@border02:~$ nv set interface bond1 bridge domain br_default access 10
-cumulus@border02:~$ nv set interface bond2 bridge domain br_default access 20
+cumulus@border02:~$ nv set interface bond1 bridge domain br_default access 2001
+cumulus@border02:~$ nv set interface bond2 bridge domain br_default access 2001
 cumulus@border02:~$ nv set interface bond1-2 bridge domain br_default
-cumulus@border02:~$ nv set interface vlan10
-cumulus@border02:~$ nv set interface vlan20
-cumulus@border02:~$ nv set interface vlan10 ip ipv4 forward off
-cumulus@border02:~$ nv set interface vlan10 ip ipv6 forward off
-cumulus@border02:~$ nv set interface vlan20 ip ipv4 forward off
-cumulus@border02:~$ nv set interface vlan20 ip ipv6 forward off
+cumulus@border02:~$ nv set interface vlan2001
+cumulus@border02:~$ nv set interface vlan2001 ip address 10.1.201.3/24
+cumulus@border02:~$ nv set interface vlan2001 ip vrr address 10.1.201.1/24
+cumulus@border02:~$ nv set interface vlan2001 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@border02:~$ nv set interface vlan2001 ip vrr state up
 cumulus@border02:~$ nv set interface peerlink bond member swp49-50
 cumulus@border02:~$ nv set mlag mac-address 44:38:39:BE:EF:FF
 cumulus@border02:~$ nv set mlag backup 10.10.10.63
@@ -261,8 +282,7 @@ cumulus@border02:~$ nv set interface swp52 router ospf area 0
 cumulus@border02:~$ nv set interface swp52 router ospf network-type point-to-point
 cumulus@border02:~$ nv set interface swp52 router ospf timers hello-interval 5
 cumulus@border02:~$ nv set interface swp52 router ospf timers dead-interval 60
-cumulus@border02:~$ nv set interface swp1 router ospf area 1
-cumulus@border02:~$ nv set interface swp2 router ospf area 1
+cumulus@border02:~$ nv set interface vlan2001 router ospf area 1
 cumulus@border02:~$ nv set router ospf timers spf max-holdtime 6000
 cumulus@border02:~$ nv set router ospf timers spf holdtime 100
 cumulus@border02:~$ nv set router ospf timers spf max-holdtime 6000
@@ -279,7 +299,7 @@ cumulus@border02:~$ nv config apply
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
+cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
 - set:
     interface:
       lo:
@@ -363,6 +383,12 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
         ip:
           address:
             10.1.10.2/24: {}
+          vrr:
+            address:
+              10.1.10.1/24: {}
+            mac-address: 00:00:5e:00:01:00
+            state:
+              up: {}
         type: svi
         vlan: 10
         router:
@@ -374,6 +400,12 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
         ip:
           address:
             10.1.20.2/24: {}
+          vrr:
+            address:
+              10.1.20.1/24: {}
+            mac-address: 00:00:5e:00:01:00
+            state:
+              up: {}
         type: svi
         vlan: 20
         router:
@@ -385,6 +417,12 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
         ip:
           address:
             10.1.30.2/24: {}
+          vrr:
+            address:
+              10.1.30.1/24: {}
+            mac-address: 00:00:5e:00:01:00
+            state:
+              up: {}
         type: svi
         vlan: 30
         router:
@@ -423,13 +461,16 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
             delay: 80
             holdtime: 100
             max-holdtime: 6000
+    platform:
+      hostname:
+        value: leaf01
 ```
 
 {{< /tab >}}
 {{< tab "leaf02 ">}}
 
 ```
-cumulus@leaf02:~$ sudo cat /etc/nvue.d/startup.yaml
+cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
 - set:
     interface:
       lo:
@@ -512,7 +553,13 @@ cumulus@leaf02:~$ sudo cat /etc/nvue.d/startup.yaml
       vlan10:
         ip:
           address:
-            10.1.10.2/24: {}
+            10.1.10.3/24: {}
+          vrr:
+            address:
+              10.1.10.1/24: {}
+            mac-address: 00:00:5e:00:01:00
+            state:
+              up: {}
         type: svi
         vlan: 10
         router:
@@ -523,7 +570,13 @@ cumulus@leaf02:~$ sudo cat /etc/nvue.d/startup.yaml
       vlan20:
         ip:
           address:
-            10.1.20.2/24: {}
+            10.1.20.3/24: {}
+          vrr:
+            address:
+              10.1.20.1/24: {}
+            mac-address: 00:00:5e:00:01:00
+            state:
+              up: {}
         type: svi
         vlan: 20
         router:
@@ -534,7 +587,13 @@ cumulus@leaf02:~$ sudo cat /etc/nvue.d/startup.yaml
       vlan30:
         ip:
           address:
-            10.1.30.2/24: {}
+            10.1.30.3/24: {}
+          vrr:
+            address:
+              10.1.30.1/24: {}
+            mac-address: 00:00:5e:00:01:00
+            state:
+              up: {}
         type: svi
         vlan: 30
         router:
@@ -573,6 +632,9 @@ cumulus@leaf02:~$ sudo cat /etc/nvue.d/startup.yaml
             delay: 80
             holdtime: 100
             max-holdtime: 6000
+    platform:
+      hostname:
+        value: leaf02
 ```
 
 {{< /tab >}}
@@ -745,8 +807,11 @@ cumulus@spine02:~$ sudo cat /etc/nvue.d/startup.yaml
 {{< tab "border01 ">}}
 
 ```
-cumulus@border01:~$ sudo cat /etc/nvue.d/startup.yaml
+cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
 - set:
+    platform:
+      hostname:
+        value: border01
     interface:
       lo:
         ip:
@@ -790,7 +855,7 @@ cumulus@border01:~$ sudo cat /etc/nvue.d/startup.yaml
         bridge:
           domain:
             br_default:
-              access: 10
+              access: 2001
       bond2:
         bond:
           member:
@@ -802,7 +867,23 @@ cumulus@border01:~$ sudo cat /etc/nvue.d/startup.yaml
         bridge:
           domain:
             br_default:
-              access: 20
+              access: 2001
+      vlan2001:
+        type: svi
+        vlan: 2001
+        ip:
+          address:
+            10.1.201.2/24: {}
+          vrr:
+            address:
+              10.1.201.1/24: {}
+            mac-address: 00:00:5e:00:01:00
+            state:
+              up: {}
+        router:
+          ospf:
+            area: 1
+            enable: on
       peerlink:
         bond:
           member:
@@ -813,18 +894,6 @@ cumulus@border01:~$ sudo cat /etc/nvue.d/startup.yaml
         type: sub
         base-interface: peerlink
         vlan: 4094
-      swp1:
-        router:
-          ospf:
-            area: 1
-            enable: on
-        type: swp
-      swp2:
-        router:
-          ospf:
-            area: 1
-            enable: on
-        type: swp
     mlag:
       mac-address: 44:38:39:BE:EF:FF
       backup:
@@ -857,8 +926,11 @@ cumulus@border01:~$ sudo cat /etc/nvue.d/startup.yaml
 {{< tab "border02 ">}}
 
 ```
-cumulus@border02:~$ sudo cat /etc/nvue.d/startup.yaml 
+cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
 - set:
+    platform:
+      hostname:
+        value: border02
     interface:
       lo:
         ip:
@@ -902,7 +974,7 @@ cumulus@border02:~$ sudo cat /etc/nvue.d/startup.yaml
         bridge:
           domain:
             br_default:
-              access: 10
+              access: 2001
       bond2:
         bond:
           member:
@@ -914,23 +986,23 @@ cumulus@border02:~$ sudo cat /etc/nvue.d/startup.yaml
         bridge:
           domain:
             br_default:
-              access: 20
-      vlan10:
+              access: 2001
+      vlan2001:
         type: svi
-        vlan: 10
+        vlan: 2001
         ip:
-          ipv4:
-            forward: off
-          ipv6:
-            forward: off
-      vlan20:
-        type: svi
-        vlan: 20
-        ip:
-          ipv4:
-            forward: off
-          ipv6:
-            forward: off
+          address:
+            10.1.201.3/24: {}
+          vrr:
+            address:
+              10.1.201.1/24: {}
+            mac-address: 00:00:5e:00:01:00
+            state:
+              up: {}
+        router:
+          ospf:
+            area: 1
+            enable: on
       peerlink:
         bond:
           member:
@@ -941,18 +1013,6 @@ cumulus@border02:~$ sudo cat /etc/nvue.d/startup.yaml
         type: sub
         base-interface: peerlink
         vlan: 4094
-      swp1:
-        router:
-          ospf:
-            area: 1
-            enable: on
-        type: swp
-      swp2:
-        router:
-          ospf:
-            area: 1
-            enable: on
-        type: swp
     mlag:
       mac-address: 44:38:39:BE:EF:FF
       backup:
@@ -991,27 +1051,32 @@ cumulus@border02:~$ sudo cat /etc/nvue.d/startup.yaml
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ sudo cat /etc/network/interfaces
+cumulus@leaf01:mgmt:~$ sudo cat /etc/network/interfaces
 ...
 auto lo
 iface lo inet loopback
     address 10.10.10.1/32
+
 auto mgmt
 iface mgmt
     address 127.0.0.1/8
     address ::1/128
     vrf-table auto
+
 auto eth0
 iface eth0 inet dhcp
     ip-forward off
     ip6-forward off
     vrf mgmt
+
 auto swp51
 iface swp51
     address 10.10.10.1/32
+
 auto swp52
 iface swp52
     address 10.10.10.1/32
+
 auto bond1
 iface bond1
     bond-slaves swp1
@@ -1019,6 +1084,7 @@ iface bond1
     bond-lacp-bypass-allow yes
     clag-id 1
     bridge-access 10
+
 auto bond2
 iface bond2
     bond-slaves swp2
@@ -1026,6 +1092,7 @@ iface bond2
     bond-lacp-bypass-allow yes
     clag-id 2
     bridge-access 20
+
 auto bond3
 iface bond3
     bond-slaves swp3
@@ -1033,35 +1100,44 @@ iface bond3
     bond-lacp-bypass-allow yes
     clag-id 3
     bridge-access 30
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
     bond-mode 802.3ad
     bond-lacp-bypass-allow no
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-backup-ip 10.10.10.2
     clagd-sys-mac 44:38:39:BE:EF:AA
     clagd-args --initDelay 180
+
 auto vlan10
 iface vlan10
     address 10.1.10.2/24
+    address-virtual 00:00:5e:00:01:00 10.1.10.1/24
     hwaddress 44:38:39:22:01:b1
     vlan-raw-device br_default
     vlan-id 10
+
 auto vlan20
 iface vlan20
     address 10.1.20.2/24
+    address-virtual 00:00:5e:00:01:00 10.1.20.1/24
     hwaddress 44:38:39:22:01:b1
     vlan-raw-device br_default
     vlan-id 20
+
 auto vlan30
 iface vlan30
     address 10.1.30.2/24
+    address-virtual 00:00:5e:00:01:00 10.1.30.1/24
     hwaddress 44:38:39:22:01:b1
     vlan-raw-device br_default
     vlan-id 30
+
 auto br_default
 iface br_default
     bridge-ports bond1 bond2 bond3 peerlink
@@ -1080,22 +1156,27 @@ cumulus@leaf02:~$ sudo cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.2/32
+
 auto mgmt
 iface mgmt
     address 127.0.0.1/8
     address ::1/128
     vrf-table auto
+
 auto eth0
 iface eth0 inet dhcp
     ip-forward off
     ip6-forward off
     vrf mgmt
+
 auto swp51
 iface swp51
     address 10.10.10.2/32
+
 auto swp52
 iface swp52
     address 10.10.10.2/32
+
 auto bond1
 iface bond1
     bond-slaves swp1
@@ -1103,6 +1184,7 @@ iface bond1
     bond-lacp-bypass-allow yes
     clag-id 1
     bridge-access 10
+
 auto bond2
 iface bond2
     bond-slaves swp2
@@ -1110,6 +1192,7 @@ iface bond2
     bond-lacp-bypass-allow yes
     clag-id 2
     bridge-access 20
+
 auto bond3
 iface bond3
     bond-slaves swp3
@@ -1117,35 +1200,44 @@ iface bond3
     bond-lacp-bypass-allow yes
     clag-id 3
     bridge-access 30
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
     bond-mode 802.3ad
     bond-lacp-bypass-allow no
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-backup-ip 10.10.10.1
     clagd-sys-mac 44:38:39:BE:EF:AA
     clagd-args --initDelay 180
+
 auto vlan10
 iface vlan10
-    address 10.1.10.2/24
+    address 10.1.10.3/24
+    address-virtual 00:00:5e:00:01:00 10.1.10.1/24
     hwaddress 44:38:39:22:01:af
     vlan-raw-device br_default
     vlan-id 10
+
 auto vlan20
 iface vlan20
-    address 10.1.20.2/24
+    address 10.1.20.3/24
+    address-virtual 00:00:5e:00:01:00 10.1.20.1/24
     hwaddress 44:38:39:22:01:af
     vlan-raw-device br_default
     vlan-id 20
+
 auto vlan30
 iface vlan30
-    address 10.1.30.2/24
+    address 10.1.30.3/24
+    address-virtual 00:00:5e:00:01:00 10.1.30.1/24
     hwaddress 44:38:39:22:01:af
     vlan-raw-device br_default
     vlan-id 30
+
 auto br_default
 iface br_default
     bridge-ports bond1 bond2 bond3 peerlink
@@ -1230,51 +1322,64 @@ cumulus@border01:~$ sudo cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.63/32
+
 auto mgmt
 iface mgmt
     address 127.0.0.1/8
     address ::1/128
     vrf-table auto
+
 auto eth0
 iface eth0 inet dhcp
     ip-forward off
     ip6-forward off
     vrf mgmt
+
 auto swp51
 iface swp51
     address 10.10.10.63/32
+
 auto swp52
 iface swp52
     address 10.10.10.63/32
+
 auto bond1
 iface bond1
     bond-slaves swp1
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
     clag-id 1
-    bridge-access 10
+    bridge-access 2001
+
 auto bond2
 iface bond2
     bond-slaves swp2
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
     clag-id 2
-    bridge-access 20
+    bridge-access 2001
+
+auto vlan2001
+iface vlan2001
+    address 10.1.201.2/24
+    address-virtual 00:00:5e:00:01:00 10.1.201.1/24
+    hwaddress 44:38:39:22:01:ab
+    vlan-raw-device br_default
+    vlan-id 2001
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
     bond-mode 802.3ad
     bond-lacp-bypass-allow no
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-backup-ip 10.10.10.64
     clagd-sys-mac 44:38:39:BE:EF:FF
     clagd-args --initDelay 180
-auto swp1
-iface swp1
-auto swp2
-iface swp2
+
 auto br_default
 iface br_default
     bridge-ports bond1 bond2 peerlink
@@ -1293,65 +1398,64 @@ cumulus@border02:~$ sudo cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.64/32
+
 auto mgmt
 iface mgmt
     address 127.0.0.1/8
     address ::1/128
     vrf-table auto
+
 auto eth0
 iface eth0 inet dhcp
     ip-forward off
     ip6-forward off
     vrf mgmt
+
 auto swp51
 iface swp51
     address 10.10.10.64/32
+
 auto swp52
 iface swp52
     address 10.10.10.64/32
+
 auto bond1
 iface bond1
     bond-slaves swp1
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
     clag-id 1
-    bridge-access 10
+    bridge-access 2001
+
 auto bond2
 iface bond2
     bond-slaves swp2
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
     clag-id 2
-    bridge-access 20
-auto vlan10
-iface vlan10
-    ip-forward off
-    ip6-forward off
+    bridge-access 2001
+
+auto vlan2001
+iface vlan2001
+    address 10.1.201.3/24
+    address-virtual 00:00:5e:00:01:00 10.1.201.1/24
     hwaddress 44:38:39:22:01:b3
     vlan-raw-device br_default
-    vlan-id 10
-auto vlan20
-iface vlan20
-    ip-forward off
-    ip6-forward off
-    hwaddress 44:38:39:22:01:b3
-    vlan-raw-device br_default
-    vlan-id 20
+    vlan-id 2001
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
     bond-mode 802.3ad
     bond-lacp-bypass-allow no
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-backup-ip 10.10.10.63
     clagd-sys-mac 44:38:39:BE:EF:FF
     clagd-args --initDelay 180
-auto swp1
-iface swp1
-auto swp2
-iface swp2
+
 auto br_default
 iface br_default
     bridge-ports bond1 bond2 peerlink
@@ -1525,10 +1629,6 @@ timers throttle spf 0 100 6000
 ```
 cumulus@border01:~$ sudo cat /etc/frr/frr.conf
 ...
-interface swp1
-ip ospf area 1
-interface swp2
-ip ospf area 1
 interface swp51
 ip ospf area 0
 ip ospf network point-to-point
@@ -1539,6 +1639,8 @@ ip ospf area 0
 ip ospf network point-to-point
 ip ospf hello-interval 5
 ip ospf dead-interval 60
+interface vlan2001
+ip ospf area 1
 vrf default
 exit-vrf
 vrf mgmt
@@ -1556,10 +1658,6 @@ timers throttle spf 0 100 6000
 ```
 cumulus@border02:~$ sudo cat /etc/frr/frr.conf
 ...
-interface swp1
-ip ospf area 1
-interface swp2
-ip ospf area 1
 interface swp51
 ip ospf area 0
 ip ospf network point-to-point
@@ -1570,6 +1668,8 @@ ip ospf area 0
 ip ospf network point-to-point
 ip ospf hello-interval 5
 ip ospf dead-interval 60
+interface vlan2001
+ip ospf area 1
 vrf default
 exit-vrf
 vrf mgmt

@@ -12,7 +12,7 @@ The example configuration configures:
 - OSPFv2 *unnumbered* on all leafs and spines
 - [MLAG](## "Multi-chassis Link Aggregation") on leaf01 and leaf02, and on border01 and border02
 - leaf01, leaf02, spine01, and spine02 in area 0
-- border01 and border02 (ABRs) in area 0 (lo, swp51, swp52) and area 1 (swp1, swp2)
+- border01 and border02 (ABRs) in area 0 and area 1
 
 {{< tabs "TabID801 ">}}
 {{< tab "NVUE Commands ">}}

@@ -2015,6 +2015,14 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949514</td>
+<td>CVE-2022-22747: Incorrect parsing of pkcs7 sequences in nss, the Mozilla Network Security Service library, may result in denial of service.
+Vulnerable: &lt;= 2:3.42.1-1+deb10u4
+Fixed: 2:3.42.1-1+deb10u5</td>
+<td>4.0.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2943443</td>
 <td>Cumulus Linux lets you add more than one VXLAN interface to same VLAN on the same bridge. This is an invalid configuration as certain Cumulus Linux components, such as {{switchd}}, expect a single VNI for a given bridge or VLAN.</td>
 <td>3.7.15, 4.2.1-4.4.2, 5.0.0-5.0.1</td>
@@ -2405,7 +2413,7 @@ To work around this issue, configure the loopback interface in the desired OSPF 
 
 cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </td>
-<td>4.0.0-4.4.2</td>
+<td>4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4935,6 +4943,14 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949514</td>
+<td>CVE-2022-22747: Incorrect parsing of pkcs7 sequences in nss, the Mozilla Network Security Service library, may result in denial of service.
+Vulnerable: &lt;= 2:3.42.1-1+deb10u4
+Fixed: 2:3.42.1-1+deb10u5</td>
+<td>4.0.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2940063</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-4.4.2</td>
@@ -5264,7 +5280,7 @@ To work around this issue, configure the loopback interface in the desired OSPF 
 
 cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </td>
-<td>4.0.0-4.4.2</td>
+<td>4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>

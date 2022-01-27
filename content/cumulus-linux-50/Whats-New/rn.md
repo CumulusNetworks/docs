@@ -41,6 +41,7 @@ pdfhidden: True
 | <a name="2847618"></a> [2847618](#2847618) <a name="2847618"></a> <br /> | When you enable PIM on VLAN interfaces, multicast throughput might not achieve line rate depending on packet sizes in the multicast flow. | 5.0.0-5.0.1 | |
 | <a name="2823307"></a> [2823307](#2823307) <a name="2823307"></a> <br /> | Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration.  | 5.0.0-5.0.1 | |
 | <a name="2812075"></a> [2812075](#2812075) <a name="2812075"></a> <br /> | When you configure PIM, you can either configure RP mappings for different multicast groups or use a prefix list to specify the RP to group mapping. You cannot use the two methods together. | 5.0.0-5.0.1 | |
+| <a name="2685994"></a> [2685994](#2685994) <a name="2685994"></a> <br /> | When you use the NVUE command <code>nv set interface lo router ospf area</code> to configure OSPF on a loopback interface, the configuration fails to apply<br />To work around this issue, configure the loopback interface in the desired OSPF area with the <code>nv set vrf default router ospf area 0 network</code> command and reference the assigned prefix of the loopback interface. For example:<pre>cumulus&#64;leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32</pre> | 4.0.0-4.4.2, 5.0.0-5.0.1 | |
 
 ### Fixed Issues in 5.0.1
 |  Issue ID 	|   Description	|   Affects	|
@@ -80,6 +81,7 @@ pdfhidden: True
 | <a name="2847618"></a> [2847618](#2847618) <a name="2847618"></a> <br /> | When you enable PIM on VLAN interfaces, multicast throughput might not achieve line rate depending on packet sizes in the multicast flow. | 5.0.0-5.0.1 | |
 | <a name="2823307"></a> [2823307](#2823307) <a name="2823307"></a> <br /> | Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration.  | 5.0.0-5.0.1 | |
 | <a name="2812075"></a> [2812075](#2812075) <a name="2812075"></a> <br /> | When you configure PIM, you can either configure RP mappings for different multicast groups or use a prefix list to specify the RP to group mapping. You cannot use the two methods together. | 5.0.0-5.0.1 | |
+| <a name="2685994"></a> [2685994](#2685994) <a name="2685994"></a> <br /> | When you use the NVUE command <code>nv set interface lo router ospf area</code> to configure OSPF on a loopback interface, the configuration fails to apply<br />To work around this issue, configure the loopback interface in the desired OSPF area with the <code>nv set vrf default router ospf area 0 network</code> command and reference the assigned prefix of the loopback interface. For example:<pre>cumulus&#64;leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32</pre> | 4.0.0-4.4.2, 5.0.0-5.0.1 | |
 
 ### Fixed Issues in 5.0.0
 |  Issue ID 	|   Description	|   Affects	|

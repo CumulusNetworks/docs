@@ -7,6 +7,34 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2947680</td>
 <td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
 <td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
@@ -2821,6 +2849,34 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2941560</td>
 <td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
 Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
@@ -5485,6 +5541,34 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2941560</td>
@@ -8679,6 +8763,34 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2941560</td>
@@ -12082,6 +12194,34 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2941560</td>
 <td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
 Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
@@ -15340,6 +15480,34 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2941560</td>
 <td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
 Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
@@ -18099,6 +18267,34 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2941560</td>
 <td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
 Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
@@ -20293,6 +20489,34 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2941560</td>
@@ -22793,6 +23017,34 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2941560</td>
 <td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
 Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
@@ -24690,6 +24942,34 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2941560</td>
@@ -26926,6 +27206,34 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2941560</td>
 <td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
 Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
@@ -28905,6 +29213,34 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2941560</td>
 <td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
 Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
@@ -30527,6 +30863,34 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2941560</td>
@@ -32178,6 +32542,34 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2941560</td>
@@ -33935,6 +34327,34 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2941560</td>
@@ -35738,6 +36158,34 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2941560</td>
 <td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
 Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
@@ -36843,6 +37291,34 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2941560</td>

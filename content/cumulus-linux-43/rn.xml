@@ -135,13 +135,7 @@ Fixed: 3.42.1-1+deb10u4</td>
 </tr>
 <tr>
 <td>2875338</td>
-<td>In a scaled EVPN MLAG configuration with 400 or more VNIs and 20K or more MAC addresses, when the peerlink is flapped causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service may undergo a restart. After FRR restarts or the CPU utilization settles down, the system works normally.</td>
-<td>4.2.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2875337</td>
-<td>In a scaled EVPN MLAG configuration with 400 or more VNIs and 20K or more MAC addresses, when the peerlink is flapped causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service may undergo a restart. After FRR restarts or the CPU utilization settles down, the system works normally.</td>
+<td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
 <td>4.2.1-4.4.2</td>
 <td></td>
 </tr>
@@ -696,8 +690,8 @@ To workaround this issue, run the command against each VRF independently.</td>
 <tr>
 <td>2699378</td>
 <td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
-<td>4.3.0-4.4.2</td>
-<td></td>
+<td>4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2695527</td>
@@ -710,8 +704,8 @@ Fixed: 3.4.1-1+deb10u1</td>
 <tr>
 <td>2695314</td>
 <td>In a VRRP configuration, BGP unnumbered sessions for VRFs fail to establish after a networking restart.</td>
-<td>4.3.0-4.4.2</td>
-<td></td>
+<td>4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2691590</td>
@@ -1009,6 +1003,12 @@ Fixed: 1.1.1d-0+deb10u6</td>
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
+<td>2599274</td>
+<td>On Mellanox Spectrum platforms, when there is an MSTP forwarding state change on a bonds (for example, when the state changes from blocking to forwarding), the MSTP hardware table might set some VLANs to blocking when they should be forwarding. A a result, all packets on these VLANs drop at ingress.</td>
+<td>4.3.0-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
 <td>2582639</td>
 <td>On NVIDIA Spectrum switches, BUM traffic might be dropped during VXLAN decapsulation in an EVPN multihoming environment after multiple PIM uplink interfaces flap.</td>
 <td>4.3.0</td>
@@ -1273,6 +1273,12 @@ This might trigger AS path loop prevention on the peer, where the peer ignores l
 To work around this issue, configure {{ip pim use-source}} on each unnumbered interface directly or ensure {{ip pim use-source}} is applied to the loopback before other unnumbered interfaces are enabled for PIM.</td>
 <td>3.7.13-3.7.15, 4.2.1-4.4.2</td>
 <td></td>
+</tr>
+<tr>
+<td>2554670</td>
+<td>When you have a large number of ACLs, the {{cl-acltool -L ip}} and {{cl-resource-query}} commands take a long time to complete.</td>
+<td>4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2554582</td>

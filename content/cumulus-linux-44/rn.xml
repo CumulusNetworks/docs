@@ -143,13 +143,7 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 </tr>
 <tr>
 <td>2875338</td>
-<td>In a scaled EVPN MLAG configuration with 400 or more VNIs and 20K or more MAC addresses, when the peerlink is flapped causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service may undergo a restart. After FRR restarts or the CPU utilization settles down, the system works normally.</td>
-<td>4.2.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2875337</td>
-<td>In a scaled EVPN MLAG configuration with 400 or more VNIs and 20K or more MAC addresses, when the peerlink is flapped causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service may undergo a restart. After FRR restarts or the CPU utilization settles down, the system works normally.</td>
+<td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
 <td>4.2.1-4.4.2</td>
 <td></td>
 </tr>
@@ -588,22 +582,10 @@ To workaround this issue, run the command against each VRF independently.</td>
 <td></td>
 </tr>
 <tr>
-<td>2699378</td>
-<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
-<td>4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2698649</td>
 <td>When configuring a single VXLAN device in the {{/etc/network/interfaces}} file, if you edit the multicast group address in {{vxlan-mcastgrp-map}}, then revert the change, the change does not take effect.</td>
 <td>4.4.0-4.4.2</td>
 <td>5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2695314</td>
-<td>In a VRRP configuration, BGP unnumbered sessions for VRFs fail to establish after a networking restart.</td>
-<td>4.3.0-4.4.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2691590</td>
@@ -680,6 +662,12 @@ See /var/log/netd.log for more details.</td>
 <td>If the IGMP and MLD querier is configured on only one of the peer switches in an MLAG configuration, when IGMP packets are sent to the peer with no querier, IGMP leave messages have no effect. </td>
 <td>4.4.0-4.4.2</td>
 <td></td>
+</tr>
+<tr>
+<td>2599274</td>
+<td>On Mellanox Spectrum platforms, when there is an MSTP forwarding state change on a bonds (for example, when the state changes from blocking to forwarding), the MSTP hardware table might set some VLANs to blocking when they should be forwarding. A a result, all packets on these VLANs drop at ingress.</td>
+<td>4.3.0-4.4.2</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2596458</td>
@@ -2117,13 +2105,7 @@ Fixed: 3.42.1-1+deb10u4</td>
 </tr>
 <tr>
 <td>2875338</td>
-<td>In a scaled EVPN MLAG configuration with 400 or more VNIs and 20K or more MAC addresses, when the peerlink is flapped causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service may undergo a restart. After FRR restarts or the CPU utilization settles down, the system works normally.</td>
-<td>4.2.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2875337</td>
-<td>In a scaled EVPN MLAG configuration with 400 or more VNIs and 20K or more MAC addresses, when the peerlink is flapped causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service may undergo a restart. After FRR restarts or the CPU utilization settles down, the system works normally.</td>
+<td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
 <td>4.2.1-4.4.2</td>
 <td></td>
 </tr>
@@ -2209,12 +2191,6 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
 <td>3.7.12-4.4.2</td>
 <td>5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2860363</td>
-<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0-4.4.2, 5.0.0-5.0.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2859177</td>
@@ -2824,22 +2800,10 @@ To workaround this issue, run the command against each VRF independently.</td>
 <td></td>
 </tr>
 <tr>
-<td>2699378</td>
-<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
-<td>4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2698649</td>
 <td>When configuring a single VXLAN device in the {{/etc/network/interfaces}} file, if you edit the multicast group address in {{vxlan-mcastgrp-map}}, then revert the change, the change does not take effect.</td>
 <td>4.4.0-4.4.2</td>
 <td>5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2695314</td>
-<td>In a VRRP configuration, BGP unnumbered sessions for VRFs fail to establish after a networking restart.</td>
-<td>4.3.0-4.4.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2691590</td>
@@ -2923,6 +2887,12 @@ See /var/log/netd.log for more details.</td>
 <td>If the IGMP and MLD querier is configured on only one of the peer switches in an MLAG configuration, when IGMP packets are sent to the peer with no querier, IGMP leave messages have no effect. </td>
 <td>4.4.0-4.4.2</td>
 <td></td>
+</tr>
+<tr>
+<td>2599274</td>
+<td>On Mellanox Spectrum platforms, when there is an MSTP forwarding state change on a bonds (for example, when the state changes from blocking to forwarding), the MSTP hardware table might set some VLANs to blocking when they should be forwarding. A a result, all packets on these VLANs drop at ingress.</td>
+<td>4.3.0-4.4.2</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2596458</td>
@@ -3987,6 +3957,11 @@ Fixed: 3.4.1-1+deb10u1</td>
 <td>4.0.0-4.3.0</td>
 </tr>
 <tr>
+<td>2691506</td>
+<td>In a VRRP configuration, BGP unnumbered sessions for VRFs fail to establish after a networking restart.</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>2687159</td>
 <td>CVE-2018-25009 CVE-2018-25010 CVE-2018-25011 CVE-2018-25013 CVE-2018-25014 CVE-2020-36328 CVE-2020-36329 CVE-2020-36330 CVE-2020-36331 CVE-2020-36332: Multiple vulnerabilities were discovered in libwebp, the implementation of the WebP image format, which could result in denial of service, memory disclosure or potentially the execution of arbitrary code if malformed images are processed.
 Vulnerable: 0.6.1-2
@@ -4016,6 +3991,11 @@ To work around this issue, add the MAC access list configuration to the end of t
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
 <td>3.7.0-4.3.0</td>
+</tr>
+<tr>
+<td>2679936</td>
+<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>2677049</td>

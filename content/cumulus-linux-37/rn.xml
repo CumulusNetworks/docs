@@ -55,6 +55,16 @@ Fixed: 9.26a~dfsg-0+deb8u</td>
 <td></td>
 </tr>
 <tr>
+<td>2940076</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2940067</td>
 <td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
 
@@ -755,6 +765,16 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>2700767</td>
 <td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2699464</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -2885,6 +2905,16 @@ Fixed: 9.26a~dfsg-0+deb8u</td>
 <td></td>
 </tr>
 <tr>
+<td>2940076</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2940067</td>
 <td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
 
@@ -3419,6 +3449,16 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>2700767</td>
 <td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2699464</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -5579,6 +5619,16 @@ Fixed: 9.26a~dfsg-0+deb8u</td>
 <td></td>
 </tr>
 <tr>
+<td>2940076</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2940067</td>
 <td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
 
@@ -6058,6 +6108,16 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>2700767</td>
 <td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2699464</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -8801,6 +8861,16 @@ Fixed: 9.26a~dfsg-0+deb8u</td>
 <td></td>
 </tr>
 <tr>
+<td>2940076</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2940067</td>
 <td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
 
@@ -9280,6 +9350,16 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>2700767</td>
 <td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2699464</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -12230,6 +12310,16 @@ Fixed: 9.26a~dfsg-0+deb8u</td>
 <td></td>
 </tr>
 <tr>
+<td>2940076</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2940067</td>
 <td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
 
@@ -12702,6 +12792,16 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>2700767</td>
 <td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2699464</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>

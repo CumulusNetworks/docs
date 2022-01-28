@@ -31,6 +31,12 @@
 <td></td>
 </tr>
 <tr>
+<td>2940005</td>
+<td>If you reboot the switch reboot when using WJH, you need to start the {{what-just-happened}} service even if the service is enabled.</td>
+<td>5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2939231</td>
 <td>If you use NVUE to configure selective route leaking to exclude certain prefixes, the route map fails to apply when you run the {{nv config apply}} command.</td>
 <td>5.0.0-5.0.1</td>
@@ -79,6 +85,16 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td></td>
 </tr>
 <tr>
+<td>2898044</td>
+<td>NVUE commands including the {{nv config apply}} command might fail with the following error because the {{/etc/resolv.conf}} file is missing.
+
+Failed to prepare to apply
+Unrecoverable internal error
+</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
@@ -108,8 +124,21 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4.4.2</td>
 </tr>
 <tr>
+<td>2888153</td>
+<td>If {{switchd}} restarts after you reboot or upgrade the system with a fast boot or warm boot, traffic directed to the system itself might be impacted. This problem only affects systems with the SP1 silicon and only if it has undergone a fast boot or warm boot first.
+To work around this issue, either perform a cold boot or run the {{ip link set up dev swid0_eth}} command with every {{switchd}} restart.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2886488</td>
 <td>NVUE commands fail to configure port mirroring.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2885287</td>
+<td>When you change the port breakout configuration, you must restart {{switchd}} to clean up any previously-associated port states and reinitialize the ports. Reloading {{switchd}} does not work.</td>
 <td>5.0.0-5.0.1</td>
 <td></td>
 </tr>
@@ -137,12 +166,6 @@ To work around this issue, restart {{switchd}} with {{sudo systemctl restart swi
 <td>The {{validate-ports -d}} command does not return the correct speeds for ports. Use the speeds specified in the {{/etc/cumulus/ports.conf}} file.</td>
 <td>5.0.0-5.0.1</td>
 <td></td>
-</tr>
-<tr>
-<td>2860363</td>
-<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0-4.4.1, 5.0.0-5.0.1</td>
-<td>4.4.2</td>
 </tr>
 <tr>
 <td>2859015</td>
@@ -182,6 +205,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <tr>
 <td>2823307</td>
 <td>Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2821544</td>
+<td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
 <td>5.0.0-5.0.1</td>
 <td></td>
 </tr>
@@ -302,6 +331,16 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <td>5.0.1</td>
 </tr>
 <tr>
+<td>2898044</td>
+<td>NVUE commands including the {{nv config apply}} command might fail with the following error because the {{/etc/resolv.conf}} file is missing.
+
+Failed to prepare to apply
+Unrecoverable internal error
+</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
@@ -331,8 +370,21 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4.4.2</td>
 </tr>
 <tr>
+<td>2888153</td>
+<td>If {{switchd}} restarts after you reboot or upgrade the system with a fast boot or warm boot, traffic directed to the system itself might be impacted. This problem only affects systems with the SP1 silicon and only if it has undergone a fast boot or warm boot first.
+To work around this issue, either perform a cold boot or run the {{ip link set up dev swid0_eth}} command with every {{switchd}} restart.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2886488</td>
 <td>NVUE commands fail to configure port mirroring.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2885287</td>
+<td>When you change the port breakout configuration, you must restart {{switchd}} to clean up any previously-associated port states and reinitialize the ports. Reloading {{switchd}} does not work.</td>
 <td>5.0.0-5.0.1</td>
 <td></td>
 </tr>
@@ -359,12 +411,6 @@ To work around this issue, restart {{switchd}} with {{sudo systemctl restart swi
 <td>2867248</td>
 <td>The {{validate-ports -d}} command does not return the correct speeds for ports. Use the speeds specified in the {{/etc/cumulus/ports.conf}} file.</td>
 <td>5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2860363</td>
-<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -405,6 +451,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <tr>
 <td>2823307</td>
 <td>Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2821544</td>
+<td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
 <td>5.0.0-5.0.1</td>
 <td></td>
 </tr>
@@ -695,6 +747,11 @@ Fixed: 1.24.1-1+deb 10u1</td>
 <td>2687344</td>
 <td>On the NVIDIA SN3700 switch, the decode-syseeprom shows {{device absent}} for a PSU that is present.</td>
 <td>4.4.0-4.4.2</td>
+</tr>
+<tr>
+<td>2599274</td>
+<td>On Mellanox Spectrum platforms, when there is an MSTP forwarding state change on a bonds (for example, when the state changes from blocking to forwarding), the MSTP hardware table might set some VLANs to blocking when they should be forwarding. A a result, all packets on these VLANs drop at ingress.</td>
+<td>4.3.0-4.4.2</td>
 </tr>
 <tr>
 <td>2556811</td>

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2951110</td>
+<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>3.7.15, 4.1.1-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2949123</td>
 <td>The NVUE command {{nv show service ntp mgmt server}} does not show any configured servers.</td>
 <td>5.0.0-5.0.1</td>
@@ -44,14 +50,6 @@
 </tr>
 <tr>
 <td>2932085</td>
-<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
-Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
-Fixed: 9.27~dfsg-2+deb10u5</td>
-<td>5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2932083</td>
 <td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
 Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
 Fixed: 9.27~dfsg-2+deb10u5</td>
@@ -252,6 +250,12 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2951110</td>
+<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>3.7.15, 4.1.1-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2949123</td>
 <td>The NVUE command {{nv show service ntp mgmt server}} does not show any configured servers.</td>
 <td>5.0.0-5.0.1</td>
@@ -283,14 +287,6 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 </tr>
 <tr>
 <td>2932085</td>
-<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
-Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
-Fixed: 9.27~dfsg-2+deb10u5</td>
-<td>5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2932083</td>
 <td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
 Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
 Fixed: 9.27~dfsg-2+deb10u5</td>

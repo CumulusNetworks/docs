@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2951110"></a> [2951110](#2951110) <a name="2951110"></a> <br />CM-30182 | The <code>net show time ntp servers</code> command does not show any output with management VRF. | 3.7.15, 4.1.1-4.4.2, 5.0.0-5.0.1 | |
 | <a name="2949602"></a> [2949602](#2949602) <a name="2949602"></a> <br /> | CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input. | 3.7.0-3.7.15 | |
 | <a name="2949586"></a> [2949586](#2949586) <a name="2949586"></a> <br /> | CVE-2022-21699: ipython may execute untrusted files in the current working directory<br />Vulnerable: 2.3.0-2Fixed: 2.3.0-2+deb8u1 | 3.7.0-3.7.15 | |
 | <a name="2949585"></a> [2949585](#2949585) <a name="2949585"></a> <br /> | CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog. | 3.7.0-3.7.15 | |

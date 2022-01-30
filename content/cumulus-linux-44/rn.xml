@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2951110</td>
+<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>3.7.15, 4.1.1-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2949514</td>
 <td>CVE-2022-22747: Incorrect parsing of pkcs7 sequences in nss, the Mozilla Network Security Service library, may result in denial of service.
 Vulnerable: &lt;= 2:3.42.1-1+deb10u4
@@ -77,23 +83,9 @@ Fixed: 4.3.2-1+deb10u4</td>
 <td>5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2934219</td>
-<td>If you configure an INPUT chain ACL rule to drop all packets ({{-A INPUT -j DROP}}), {{switchd}} fails to restart.</td>
-<td>4.4.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2932121</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2932084</td>
-<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
-Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
-Fixed: 9.27~dfsg-2+deb10u5</td>
-<td>4.0.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -980,12 +972,6 @@ To work around this issue, remove, then add back the VRRP configuration with NCL
 <td>2550974</td>
 <td>On the Dell S3000 switch, after installing the Cumulus Linux 4.1.1 disk image without a license, the switch sends a link beat if a remote host port is configured.</td>
 <td>3.7.11-3.7.15, 4.1.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2550950</td>
-<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
-<td>4.1.1-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -1933,6 +1919,12 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2951110</td>
+<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>3.7.15, 4.1.1-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2949514</td>
 <td>CVE-2022-22747: Incorrect parsing of pkcs7 sequences in nss, the Mozilla Network Security Service library, may result in denial of service.
 Vulnerable: &lt;= 2:3.42.1-1+deb10u4
@@ -2003,23 +1995,9 @@ Fixed: 4.3.2-1+deb10u4</td>
 <td></td>
 </tr>
 <tr>
-<td>2934219</td>
-<td>If you configure an INPUT chain ACL rule to drop all packets ({{-A INPUT -j DROP}}), {{switchd}} fails to restart.</td>
-<td>4.4.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2932121</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2932084</td>
-<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
-Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
-Fixed: 9.27~dfsg-2+deb10u5</td>
-<td>4.0.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -3199,12 +3177,6 @@ To work around this issue, remove, then add back the VRRP configuration with NCL
 <td>2550974</td>
 <td>On the Dell S3000 switch, after installing the Cumulus Linux 4.1.1 disk image without a license, the switch sends a link beat if a remote host port is configured.</td>
 <td>3.7.11-3.7.15, 4.1.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2550950</td>
-<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
-<td>4.1.1-4.4.2</td>
 <td></td>
 </tr>
 <tr>

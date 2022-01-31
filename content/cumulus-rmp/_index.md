@@ -45,7 +45,7 @@ features:
 Cumulus RMP 3.6.2 contains several bug fixes and the following new
 feature:
 
-- NCLU commands available for [configuring traditional mode bridges]({{<ref "/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode" >}})
+- NCLU commands available for [configuring traditional mode bridges]({{<ref "/cumulus-linux-37/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode" >}})
 
 ### What's New in Cumulus RMP 3.6.0
 

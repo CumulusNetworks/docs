@@ -1,0 +1,38 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: rake
+Upstream-Contact: Hiroshi SHIBATA and Eric Hodel
+Source: https://github.com/ruby/rake
+
+Files: *
+Copyright: © Jim Weirich
+License: Expat
+
+Files: debian/*
+Copyright: 2018 Georg Faerber <georg@riseup.net>
+           2015 Christian Hofstaedtler <christian@hofstaedtler.name>
+           2014 Caitlin Matos <caitlin.maots@zoho.com>
+           2013-2016 Cédric Boutillier <boutil@debian.org>
+           2011-2017 Antonio Terceiro <terceiro@debian.org>
+           2011-2014 Ondřej Surý <ondrej@debian.org>
+           2011-2012 Paul van Tilburg <paul@luon.net>
+License: Expat
+
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining
+ a copy of this software and associated documentation files (the
+ "Software"), to deal in the Software without restriction, including
+ without limitation the rights to use, copy, modify, merge, publish,
+ distribute, sublicense, and/or sell copies of the Software, and to
+ permit persons to whom the Software is furnished to do so, subject to
+ the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included
+ in all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

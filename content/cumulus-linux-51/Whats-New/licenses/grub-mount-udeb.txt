@@ -1,0 +1,1 @@
+grub-mount-udeb has no copyright file

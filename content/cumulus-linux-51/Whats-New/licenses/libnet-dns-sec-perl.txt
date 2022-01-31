@@ -1,0 +1,68 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Source: https://metacpan.org/release/Net-DNS-SEC
+Upstream-Contact: net-dns-users@nlnetlabs.nl
+Upstream-Name: Net-DNS-SEC
+
+Files: *
+Copyright: 2001-2005 RIPE NCC
+License: BSD-ish
+
+Files: SEC.xs
+ lib/Net/DNS/SEC/libcrypto.pod
+Copyright: 2018, Dick Franks
+License: BSD-ish
+
+Files: lib/Net/DNS/SEC.pm
+Copyright: 2014-2018, Dick Franks
+ 2001-2005, RIPE NCC
+License: BSD-ish
+
+Files: lib/Net/DNS/SEC/RSA.pm
+ lib/Net/DNS/SEC/ECCGOST.pm
+ lib/Net/DNS/SEC/Private.pm
+ lib/Net/DNS/SEC/ECDSA.pm
+ lib/Net/DNS/SEC/DSA.pm
+ lib/Net/DNS/SEC/EdDSA.pm
+Copyright: 2014,2018 Dick Franks
+License: BSD-ish
+
+Files: debian/*
+Copyright: 2008-2017, Ondřej Surý <ondrej@debian.org>
+ 2016, 2018, Angel Abad <angel@debian.org>
+ 2016, Axel Beckert <abe@debian.org>
+ 2018, gregor herrmann <gregoa@debian.org>
+License: Artistic or GPL-1+
+
+License: Artistic
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the Artistic License, which comes with Perl.
+ .
+ On Debian systems, the complete text of the Artistic License can be
+ found in `/usr/share/common-licenses/Artistic'.
+
+License: GPL-1+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 1, or (at your option)
+ any later version.
+ .
+ On Debian systems, the complete text of version 1 of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL-1'.
+
+License: BSD-ish
+ Permission to use, copy, modify, and distribute this software and its
+ documentation for any purpose and without fee is hereby granted,
+ provided that the above copyright notice appear in all copies and
+ that both that copyright notice and this permission notice appear in
+ supporting documentation, and that the name of the author not be used
+ in advertising or publicity pertaining to distribution of the
+ software without specific, written prior permission.
+ .
+ THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE,
+ INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS; IN
+ NO EVENT SHALL AUTHOR BE LIABLE FOR ANY SPECIAL, INDIRECT OR
+ CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
+ OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE
+ OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE
+ USE OR PERFORMANCE OF THIS SOFTWARE.
+

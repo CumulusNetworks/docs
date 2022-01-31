@@ -7,6 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2951110</td>
+<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>3.7.15, 4.1.1-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2949514</td>
+<td>CVE-2022-22747: Incorrect parsing of pkcs7 sequences in nss, the Mozilla Network Security Service library, may result in denial of service.
+Vulnerable: &lt;= 2:3.42.1-1+deb10u4
+Fixed: 2:3.42.1-1+deb10u5</td>
+<td>4.0.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2940063</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-4.4.2</td>
@@ -17,14 +31,6 @@
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-4.4.2</td>
 <td>5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2932084</td>
-<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
-Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
-Fixed: 9.27~dfsg-2+deb10u5</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2910017</td>
@@ -336,7 +342,7 @@ To work around this issue, configure the loopback interface in the desired OSPF 
 
 cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </td>
-<td>4.0.0-4.4.2</td>
+<td>4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1373,12 +1379,6 @@ zebra increments the local MAC mobility sequence number and considers the MAC ad
 <td>After you enable ROCE with the {{net add interface &lt;switch-port&gt; storage-optimized pfc}} command, you cannot verify the command because it is not shown in the {{net show config}} command output.</td>
 <td>4.1.1-4.2.1</td>
 <td>4.3.0-4.4.2</td>
-</tr>
-<tr>
-<td>2550950</td>
-<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
-<td>4.1.1-4.4.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2550942</td>
@@ -3082,6 +3082,14 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949514</td>
+<td>CVE-2022-22747: Incorrect parsing of pkcs7 sequences in nss, the Mozilla Network Security Service library, may result in denial of service.
+Vulnerable: &lt;= 2:3.42.1-1+deb10u4
+Fixed: 2:3.42.1-1+deb10u5</td>
+<td>4.0.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2940063</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-4.4.2</td>
@@ -3092,14 +3100,6 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-4.4.2</td>
 <td>5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2932084</td>
-<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
-Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
-Fixed: 9.27~dfsg-2+deb10u5</td>
-<td>4.0.0-4.4.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2910017</td>
@@ -3405,7 +3405,7 @@ To work around this issue, configure the loopback interface in the desired OSPF 
 
 cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </td>
-<td>4.0.0-4.4.2</td>
+<td>4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>

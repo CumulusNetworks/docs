@@ -517,7 +517,7 @@ The following table lists the most important services in Cumulus Linux.
 | portwd       | Reads pluggable information over the I2C bus. Identifies and classifies the optics that are inserted into the system. Sets interface speeds and capabilities to match the optics.   | YES, eventually, if optics are added/removed |
 | frr          | {{<link url="FRRouting-Overview" text="FRRouting">}}, handles routing protocols. There are separate processes for each routing protocol, like bgpd and ospfd.                    | YES if routing                               |
 | clag         | Cumulus link aggregation daemon, handles {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}.   | YES if using MLAG |
-| neighmgrd    | Synchronizes MAC address information when MLAG is in use. | YES if using MLAG                            |
+|neighmgrd|Keeps neighbor entries refreshed, snoops on ARP and ND packets if ARP suppression is on, and refreshes VRR MAC addresses.| YES |
 | mstpd        | {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree" text="Spanning tree protocol">}} daemon. | YES if using layer 2            |
 | ptmd         | {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager">}}, verifies cabling based on {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}} output, also sets up {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}} sessions. | YES if using BFD                             |
 | netd         | {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}} back end.      |

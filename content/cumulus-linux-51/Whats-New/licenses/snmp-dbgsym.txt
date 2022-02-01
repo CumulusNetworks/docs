@@ -1,0 +1,1 @@
+snmp-dbgsym has no copyright file

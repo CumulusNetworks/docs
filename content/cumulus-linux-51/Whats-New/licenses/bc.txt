@@ -1,0 +1,131 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: bc
+Source: ftp://ftp.gnu.org/gnu/bc/
+
+Files: *
+Copyright: Copyright (C) 1989–2006 Free Software Foundation, Inc.
+License: GPL-2.0+
+Comment: bc was written by Phil Nelson, Ken Pizzini wrote dc
+
+Files: doc/dc.info
+Copyright: Copyright (C) 1984, 1994, 1997, 1998, 2000,
+                         2005, 2006 Free Software Foundation, Inc.
+License: permissive
+ Permission is granted to make and distribute verbatim copies of this
+ manual provided the copyright notice and this permission notice are
+ preserved on all copies.
+ .
+ Permission is granted to copy and distribute modified versions of this
+ manual under the conditions for verbatim copying, provided that the
+ entire resulting derived work is distributed under the terms of a
+ permission notice identical to this one.
+ .
+ Permission is granted to copy and distribute translations of this
+ manual into another language, under the above conditions for modified
+ versions, except that this permission notice may be stated in a
+ translation approved by the Foundation.
+
+Files: doc/bc.texi
+Copyright: Copyright (C) 1991–1994, 1997, 2003, 2006 Free Software
+                         Foundation, Inc.
+License: permissive'
+ Permission is granted to make and distribute verbatim copies of
+ this manual provided the copyright notice and this permission notice
+ are preserved on all copies.
+ .
+ Permission is granted to process this file through TeX and print the
+ results, provided the printed document carries copying permission
+ notice identical to this one except for the removal of this paragraph
+ (this paragraph not being relevant to the printed manual).
+ .
+ Permission is granted to copy and distribute modified versions of this
+ manual under the conditions for verbatim copying, provided that the entire
+ resulting derived work is distributed under the terms of a permission
+ notice identical to this one.
+ .
+ Permission is granted to copy and distribute translations of this manual
+ into another language, under the above conditions for modified versions,
+ except that this permission notice may be stated in a translation approved
+ by the Foundation.
+
+Files: doc/texinfo.tex
+Copyright: Copyright (C) 1985–1986, 1988, 1990–2005
+                         Free Software Foundation, Inc.
+License: GPL-2.0+ with Texinfo exception
+ This texinfo.tex file is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation; either version 2, or (at
+ your option) any later version.
+ .
+ This texinfo.tex file is distributed in the hope that it will be
+ useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this texinfo.tex file; see the file COPYING.  If not, write
+ to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ Boston, MA 02110-1301, USA.
+ .
+ As a special exception, when this file is read by TeX when processing
+ a Texinfo source document, you may use the result without
+ restriction.  (This has been our intent since Texinfo was invented.)
+
+Files: install-sh
+Copyright: Copyright (C) 1994 X Consortium
+Comment:
+ This originates from X11R5 (mit/util/scripts/install.sh), which was
+ later released in X11R6 (xc/config/util/install.sh) with the
+ following copyright and license.
+License: X11 and public-domain
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to
+ deal in the Software without restriction, including without limitation the
+ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ sell copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+ X CONSORTIUM BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+ AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNEC-
+ TION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ .
+ Except as contained in this notice, the name of the X Consortium shall not
+ be used in advertising or otherwise to promote the sale, use or other deal-
+ ings in this Software without prior written authorization from the X Consor-
+ tium.
+ .
+ FSF changes to this file are in the public domain.
+
+Files: debian/*
+Copyright: Copyright (C) 1997–1999 James Troup <troup@debian.org>
+           Copyright (C) 1999–2004 Dirk Eddelbuettel <edd@debian.org>
+           Copyright (C) 2005–2013 John Hasler <jhasler@debian.org>
+           Copyright (C) 2009      Francois Marier <francois@debian.org>
+           Copyright (C) 2013–2014 Ryan Kavanagh <rak@debian.org>
+License: GPL-2.0+
+Comment: Bill Mitchell and Austin Donnelly maintained the package prior
+ to James Troup's maintainership. The dates during which they maintained the
+ package are lost to history.
+
+License: GPL-2.0+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".

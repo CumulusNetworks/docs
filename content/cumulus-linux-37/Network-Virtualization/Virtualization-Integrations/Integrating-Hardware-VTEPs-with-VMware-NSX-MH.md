@@ -19,9 +19,9 @@ components:
     Trident II, or Maverick chipset or a Mellanox Spectrum chipset
     running Cumulus Linux
   - OVSDB server (ovsdb-server), included in Cumulus Linux and supports
-    [VLAN-aware bridges](/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
+    [VLAN-aware bridges](/cumulus-linux-37/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
   - VTEPd (ovs-vtepd), included in Cumulus Linux and supports
-    [VLAN-aware bridges](/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
+    [VLAN-aware bridges](/cumulus-linux-37/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
 
 Integrating a VXLAN with NSX involves:
 
@@ -36,9 +36,9 @@ Integrating a VXLAN with NSX involves:
     the same subnet; there must be at least one layer 3 hop between the
     VXLAN source and destination.
   - There is no support for 
-    [VXLAN routing](/cumulus-linux-36/Network-Virtualization/VXLAN-Routing)
+    [VXLAN routing](/cumulus-linux-37/Network-Virtualization/VXLAN-Routing)
     in the Trident II chipset; use a loopback interface
-    ([hyperloop](/cumulus-linux-36/Network-Virtualization/VXLAN-Routing/#vxlan-routing-data-plane-and-broadcom-trident-ii-platforms))
+    ([hyperloop](/cumulus-linux-37/Network-Virtualization/VXLAN-Routing/#vxlan-routing-data-plane-and-broadcom-trident-ii-platforms))
     instead.
   - The `ovsdb-server` cannot select the loopback interface as the
     source IP address, causing TOR registration to the controller to

@@ -618,13 +618,45 @@ When you use MLAG with VRR, set up a routed adjacency across the peerlink.4094 i
 
 To set up the adjacency, configure a {{<link url="Border-Gateway-Protocol-BGP#bgp-unnumbered" text="BGP">}} or {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} unnumbered peering, as appropriate for your network.
 
+{{%notice note%}}
+
+The {{<link url="#large-packet-drops-on-the-peer-link-interface" text="MLAG loop avoidance mechanism">}} also drops routed traffic that arrives on an MLAG peerlink interface and routes to a dual-connected VNI.
+
+If you need to route unencapsulated traffic to an MLAG peer switch for VXLAN forwarding to accommodate uplink failures or other design needs, configure a routing adjacency across a separate routed interface that is not the MLAG `peerlink`.
+
+{{%/notice%}}
+
 For BGP, use a configuration like this:
 
 {{< tabs "TabID704 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add bgp neighbor peerlink.4094 interface remote-as internal
+cumulus@leaf01:~$ net commit
+```
+
+If you are using {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}} and MLAG, you need to enable the EVPN address family across the peerlink.4094 interface as well:
+
+```
+cumulus@leaf01:~$ net add bgp neighbor peerlink.4094 interface remote-as internal
+cumulus@leaf01:~$ net add bgp l2vpn evpn neighbor peerlink.4094 activate
+cumulus@leaf01:~$ net commit
+```
+
+{{%notice note%}}
+If you use NCLU to create an iBGP peering across the peer link, the `net add bgp l2vpn evpn neighbor peerlink.4094 activate` command creates a new eBGP neighbor when one is already configured for iBGP. The existing iBGP configuration is still valid.
+{{%/notice%}}
+
+{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```
+<<<<<<< HEAD
+cumulus@leaf01:~$ nv set vrf default router bgp peer peerlink remote-as internal
+=======
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor peerlink.4094 remote-as internal
+>>>>>>> origin/stage
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -664,10 +696,25 @@ cumulus@leaf01:~$
 
 For OSPF, use a configuration like this:
 
+{{< tabs "TabID787 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add interface peerlink.4094 ospf area 0.0.0.1
+cumulus@v:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
 ```
 cumulus@leaf01:~$ nv set interface peerlink.4094 router ospf area 0.0.0.1
 cumulus@leaf01:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 
 ## Configuration Example
 

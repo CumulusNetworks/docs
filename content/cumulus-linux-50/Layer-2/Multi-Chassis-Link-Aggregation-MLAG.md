@@ -652,7 +652,11 @@ If you use NCLU to create an iBGP peering across the peer link, the `net add bgp
 {{< tab "NVUE Commands ">}}
 
 ```
+<<<<<<< HEAD
 cumulus@leaf01:~$ nv set vrf default router bgp peer peerlink remote-as internal
+=======
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor peerlink.4094 remote-as internal
+>>>>>>> origin/stage
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -664,7 +668,7 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# bgp router-id 10.10.10.1
-leaf01(config-router)# neighbor peerlink remote-as external
+leaf01(config-router)# neighbor peerlink.4094 remote-as external
 leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
@@ -678,9 +682,9 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# bgp router-id 10.10.10.1
-leaf01(config-router)# neighbor peerlink remote-as external
+leaf01(config-router)# neighbor peerlink.4094 remote-as external
 leaf01(config-router)# address-family l2vpn evpn
-leaf01(config-router-af)# neighbor peerlink activate
+leaf01(config-router-af)# neighbor peerlink.4094 activate
 leaf01(config-router-af)# end
 leaf01# write memory
 leaf01# exit
@@ -1212,15 +1216,11 @@ iface swp2
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL44 - MLAG" showNodes="leaf01,leaf02,spine01,server01,server02,server03" >}}
+    {{< simulation name="Try It CL501 - MLAG" showNodes="leaf01,leaf02,spine01,server01,server02,server03" >}}
 
 This simulation starts with the example MLAG configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 
 To validate the configuration, run the commands listed in the troubleshooting section below.
-
-{{%notice note%}}
-This simulation runs on Cumulus Linux 4.4. Cumulus Linux 5.0 configuration is coming soon.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}

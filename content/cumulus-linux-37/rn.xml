@@ -7,6 +7,166 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2951110</td>
+<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>3.7.15, 4.1.1-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2947680</td>
+<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2943443</td>
+<td>Cumulus Linux lets you add more than one VXLAN interface to same VLAN on the same bridge. This is an invalid configuration as certain Cumulus Linux components, such as {{switchd}}, expect a single VNI for a given bridge or VLAN.</td>
+<td>3.7.15, 4.2.1-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2941560</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
+Fixed: 9.26a~dfsg-0+deb8u</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2940076</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2940067</td>
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+
+You can work around this issue with the following steps:
+
+1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
+2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+
+$ cat /etc/network/ifupdown2/policy.d/vxlan.json
+
+   {
+        "vxlan": {
+            "module_globals": { "vxlan-purge-remotes": "no" },
+            "defaults": {
+                "vxlan-ageing": "1800",
+                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
+                "vxlan-learning": "off" &lt;= This line needs to be added
+             }
+        }
+   }
+
+3. Reboot the affected switch(es)</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2940063</td>
+<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
+<td>3.7.12-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2940052</td>
+<td>When you configure the switch with the minimum reserved VLAN of 150 and the internal VLANs are exhausted, the MLAG peer does not  forward the VLAN.</td>
+<td>3.7.15, 4.2.1-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2940051</td>
+<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
+<td>3.7.14.2-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2934940</td>
+<td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
+This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
+<td>3.7.13-4.2.1</td>
+<td>4.3.0-4.4.2</td>
+</tr>
+<tr>
+<td>2934939</td>
+<td>When you configure BGP {{aggregate-address summary-only}} and any component route within the summary updates, all component routes within the summary update in the RIB on the device advertising the summary. This condition might result in increased CPU usage.
+
+To workaround this issue, remove the {{aggregate-address summary-only}} configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected
+
+
+After:
+
+ip route 10.10.0.0/16 Null0
+   !
+   address-family ipv4 unicast
+   redistribute connected route-map DENY-COMPONENTS
+   redistribute static
+    exit-address-family
+   ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+   !
+   route-map DENY-COMPONENTS deny 10
+    match ip address prefix-list NO-COMPONENTS
+   !
+   route-map DENY-COMPONENTS permit 20
+
+
+This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2934938</td>
+<td>When the {{clagd}} process terminates unexpectedly due to signals such as sig11 or sig6, no core file  is generated.</td>
+<td>3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2934935</td>
+<td>{switchd}} can cause a memory leak.</td>
+<td>3.7.14.2-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2932121</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0-4.4.2</td>
@@ -18,12 +178,6 @@
 Vulnerable: &lt;= 3.4.0-1+deb8u4
 Fixed: 3.4.0-1+deb8u5</td>
 <td>3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2917487</td>
-<td>BGP unnumbered sessions with the subinterfaces do not establish if you use different passwords for BGP.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -104,12 +258,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td></td>
 </tr>
 <tr>
-<td>2873186</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when adding new VLANS or bridges. </td>
-<td>3.7.14.2-4.4.2</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>2873185</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.2</td>
@@ -123,12 +271,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 </tr>
 <tr>
 <td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-4.4.2</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2866096</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-4.4.2</td>
 <td>5.0.0-5.0.1</td>
@@ -457,12 +599,6 @@ To work around this issue, remove the unnecessary eBGP IPv4 peering.</td>
 <td>4.3.0-4.4.2</td>
 </tr>
 <tr>
-<td>2783520</td>
-<td>When the {{clagd}} process terminates unexpectedly due to signals such as sig11 or sig6, no core file  is generated.</td>
-<td>3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2770226</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-4.4.2</td>
@@ -515,9 +651,9 @@ Fixed: 1.0.25-9.1+deb8u6</td>
 <td></td>
 </tr>
 <tr>
-<td>2738625</td>
-<td>When you configure the switch with the minimum reserved VLAN of 150 and the internal VLANs are exhausted, the MLAG peer does not  forward the VLAN.</td>
-<td>3.7.15, 4.2.1-4.4.2</td>
+<td>2740162</td>
+<td>{switchd}} can cause a memory leak.</td>
+<td>3.7.14.2-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -638,6 +774,16 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td></td>
 </tr>
 <tr>
+<td>2699464</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2699399</td>
 <td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
 
@@ -650,9 +796,9 @@ To workaround this issue, run the command against each VRF independently.</td>
 </tr>
 <tr>
 <td>2687332</td>
-<td>When using {{aggregate-address summary-only}} BGP configuration, if any component route within the summary is updated, all component routes within the summary will be updated in the RIB on the device advertising the summary. This condition can result in increased CPU usage.
+<td>When you configure BGP {{aggregate-address summary-only}} and any component route within the summary updates, all component routes within the summary update in the RIB on the device advertising the summary. This condition might result in increased CPU usage.
 
-To workaround this issue, remove the aggregate-address summary-only configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+To workaround this issue, remove the {{aggregate-address summary-only}} configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
 
 Before:
 
@@ -662,6 +808,7 @@ address-family ipv4 unicast
 
 
 After:
+
 ip route 10.10.0.0/16 Null0
    !
    address-family ipv4 unicast
@@ -675,7 +822,34 @@ ip route 10.10.0.0/16 Null0
    !
    route-map DENY-COMPONENTS permit 20
 
-Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+
+This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2684452</td>
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+
+You can work around this issue with the following steps:
+
+1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
+2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+
+$ cat /etc/network/ifupdown2/policy.d/vxlan.json
+
+   {
+        "vxlan": {
+            "module_globals": { "vxlan-purge-remotes": "no" },
+            "defaults": {
+                "vxlan-ageing": "1800",
+                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
+                "vxlan-learning": "off" &lt;= This line needs to be added
+             }
+        }
+   }
+
+3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
@@ -904,13 +1078,6 @@ To recover from this condition, restart {{clagd}} with the {{sudo systemctl rest
 <td>In an EVPN Active/Active configuration, when one of the peers reboots and begins to refresh IP neighbor entries shared by the MLAG peer, some of these ARP messages might be dropped by the MLAG peer's ARP policer.
 To work around this issue, increase the burst value of the ARP policers to 200 or higher.</td>
 <td>3.7.14-4.2.1</td>
-<td>4.3.0-4.4.2</td>
-</tr>
-<tr>
-<td>2555428</td>
-<td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
-This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
-<td>3.7.13-4.2.1</td>
 <td>4.3.0-4.4.2</td>
 </tr>
 <tr>
@@ -2708,6 +2875,136 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2941560</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
+Fixed: 9.26a~dfsg-0+deb8u</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2940076</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2940067</td>
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+
+You can work around this issue with the following steps:
+
+1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
+2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+
+$ cat /etc/network/ifupdown2/policy.d/vxlan.json
+
+   {
+        "vxlan": {
+            "module_globals": { "vxlan-purge-remotes": "no" },
+            "defaults": {
+                "vxlan-ageing": "1800",
+                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
+                "vxlan-learning": "off" &lt;= This line needs to be added
+             }
+        }
+   }
+
+3. Reboot the affected switch(es)</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2940063</td>
+<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
+<td>3.7.12-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2940051</td>
+<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
+<td>3.7.14.2-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2934940</td>
+<td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
+This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
+<td>3.7.13-4.2.1</td>
+<td>4.3.0-4.4.2</td>
+</tr>
+<tr>
+<td>2934939</td>
+<td>When you configure BGP {{aggregate-address summary-only}} and any component route within the summary updates, all component routes within the summary update in the RIB on the device advertising the summary. This condition might result in increased CPU usage.
+
+To workaround this issue, remove the {{aggregate-address summary-only}} configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected
+
+
+After:
+
+ip route 10.10.0.0/16 Null0
+   !
+   address-family ipv4 unicast
+   redistribute connected route-map DENY-COMPONENTS
+   redistribute static
+    exit-address-family
+   ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+   !
+   route-map DENY-COMPONENTS deny 10
+    match ip address prefix-list NO-COMPONENTS
+   !
+   route-map DENY-COMPONENTS permit 20
+
+
+This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2934935</td>
+<td>{switchd}} can cause a memory leak.</td>
+<td>3.7.14.2-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2910862</td>
 <td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
 Vulnerable: &lt;= 0.13.62-3+deb8u2
@@ -2728,13 +3025,6 @@ Fixed: 2.1.5-2+deb8u13</td>
 <td>2896450</td>
 <td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2890648</td>
-<td>Some ECMP next-hops might fail installation into hardware at high ECMP group and route scale. The following log message will be observed when this condition occurs:
-{{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
-<td>3.7.9-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -2773,12 +3063,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td></td>
 </tr>
 <tr>
-<td>2873186</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when adding new VLANS or bridges. </td>
-<td>3.7.14.2-4.4.2</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>2873185</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.2</td>
@@ -2792,12 +3076,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 </tr>
 <tr>
 <td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2866096</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.2</td>
 <td></td>
@@ -3021,12 +3299,6 @@ To work around this issue, remove the unnecessary eBGP IPv4 peering.</td>
 <td>4.3.0-4.4.2</td>
 </tr>
 <tr>
-<td>2770226</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
-<td>3.7.14.2-4.4.2</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>2769687</td>
 <td>CVE-2021-22898: Information disclosure in connection to telnet servers was fixed in curl, a client-side URL transfer library.
 Vulnerable: &lt;= 7.38.0-4+deb8u20
@@ -3070,6 +3342,12 @@ Fixed: 2.8.9dev1-2+deb8u2</td>
 Vulnerable: &lt;= 1.0.25-9.1+deb8u5
 Fixed: 1.0.25-9.1+deb8u6</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2740162</td>
+<td>{switchd}} can cause a memory leak.</td>
+<td>3.7.14.2-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -3180,10 +3458,20 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td></td>
 </tr>
 <tr>
+<td>2699464</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2687332</td>
-<td>When using {{aggregate-address summary-only}} BGP configuration, if any component route within the summary is updated, all component routes within the summary will be updated in the RIB on the device advertising the summary. This condition can result in increased CPU usage.
+<td>When you configure BGP {{aggregate-address summary-only}} and any component route within the summary updates, all component routes within the summary update in the RIB on the device advertising the summary. This condition might result in increased CPU usage.
 
-To workaround this issue, remove the aggregate-address summary-only configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+To workaround this issue, remove the {{aggregate-address summary-only}} configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
 
 Before:
 
@@ -3193,6 +3481,7 @@ address-family ipv4 unicast
 
 
 After:
+
 ip route 10.10.0.0/16 Null0
    !
    address-family ipv4 unicast
@@ -3206,7 +3495,34 @@ ip route 10.10.0.0/16 Null0
    !
    route-map DENY-COMPONENTS permit 20
 
-Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+
+This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2684452</td>
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+
+You can work around this issue with the following steps:
+
+1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
+2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+
+$ cat /etc/network/ifupdown2/policy.d/vxlan.json
+
+   {
+        "vxlan": {
+            "module_globals": { "vxlan-purge-remotes": "no" },
+            "defaults": {
+                "vxlan-ageing": "1800",
+                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
+                "vxlan-learning": "off" &lt;= This line needs to be added
+             }
+        }
+   }
+
+3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
@@ -3551,12 +3867,6 @@ To work around this issue, disable ARP suppression.</td>
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556811</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-4.4.2</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>2556782</td>
 <td>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.
 Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</td>
@@ -3781,13 +4091,6 @@ Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6
 Fixed: 1.900.1-debian1-2.4+deb8u7</td>
 <td>3.7.14-3.7.14.2</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2555428</td>
-<td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
-This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
-<td>3.7.13-4.2.1</td>
-<td>4.3.0-4.4.2</td>
 </tr>
 <tr>
 <td>2555401</td>
@@ -5286,6 +5589,124 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2941560</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
+Fixed: 9.26a~dfsg-0+deb8u</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2940076</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2940067</td>
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+
+You can work around this issue with the following steps:
+
+1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
+2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+
+$ cat /etc/network/ifupdown2/policy.d/vxlan.json
+
+   {
+        "vxlan": {
+            "module_globals": { "vxlan-purge-remotes": "no" },
+            "defaults": {
+                "vxlan-ageing": "1800",
+                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
+                "vxlan-learning": "off" &lt;= This line needs to be added
+             }
+        }
+   }
+
+3. Reboot the affected switch(es)</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2940063</td>
+<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
+<td>3.7.12-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2934940</td>
+<td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
+This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
+<td>3.7.13-4.2.1</td>
+<td>4.3.0-4.4.2</td>
+</tr>
+<tr>
+<td>2934939</td>
+<td>When you configure BGP {{aggregate-address summary-only}} and any component route within the summary updates, all component routes within the summary update in the RIB on the device advertising the summary. This condition might result in increased CPU usage.
+
+To workaround this issue, remove the {{aggregate-address summary-only}} configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected
+
+
+After:
+
+ip route 10.10.0.0/16 Null0
+   !
+   address-family ipv4 unicast
+   redistribute connected route-map DENY-COMPONENTS
+   redistribute static
+    exit-address-family
+   ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+   !
+   route-map DENY-COMPONENTS deny 10
+    match ip address prefix-list NO-COMPONENTS
+   !
+   route-map DENY-COMPONENTS permit 20
+
+
+This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2910862</td>
 <td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
 Vulnerable: &lt;= 0.13.62-3+deb8u2
@@ -5306,13 +5727,6 @@ Fixed: 2.1.5-2+deb8u13</td>
 <td>2896450</td>
 <td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2890648</td>
-<td>Some ECMP next-hops might fail installation into hardware at high ECMP group and route scale. The following log message will be observed when this condition occurs:
-{{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
-<td>3.7.9-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -5358,12 +5772,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 </tr>
 <tr>
 <td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2866096</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.2</td>
 <td></td>
@@ -5709,10 +6117,20 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td></td>
 </tr>
 <tr>
+<td>2699464</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2687332</td>
-<td>When using {{aggregate-address summary-only}} BGP configuration, if any component route within the summary is updated, all component routes within the summary will be updated in the RIB on the device advertising the summary. This condition can result in increased CPU usage.
+<td>When you configure BGP {{aggregate-address summary-only}} and any component route within the summary updates, all component routes within the summary update in the RIB on the device advertising the summary. This condition might result in increased CPU usage.
 
-To workaround this issue, remove the aggregate-address summary-only configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+To workaround this issue, remove the {{aggregate-address summary-only}} configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
 
 Before:
 
@@ -5722,6 +6140,7 @@ address-family ipv4 unicast
 
 
 After:
+
 ip route 10.10.0.0/16 Null0
    !
    address-family ipv4 unicast
@@ -5735,7 +6154,34 @@ ip route 10.10.0.0/16 Null0
    !
    route-map DENY-COMPONENTS permit 20
 
-Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+
+This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2684452</td>
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+
+You can work around this issue with the following steps:
+
+1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
+2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+
+$ cat /etc/network/ifupdown2/policy.d/vxlan.json
+
+   {
+        "vxlan": {
+            "module_globals": { "vxlan-purge-remotes": "no" },
+            "defaults": {
+                "vxlan-ageing": "1800",
+                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
+                "vxlan-learning": "off" &lt;= This line needs to be added
+             }
+        }
+   }
+
+3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
@@ -6057,12 +6503,6 @@ To work around this issue, disable ARP suppression.</td>
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556811</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-4.4.2</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>2556782</td>
 <td>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.
 Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</td>
@@ -6328,13 +6768,6 @@ Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6
 Fixed: 1.900.1-debian1-2.4+deb8u7</td>
 <td>3.7.14-3.7.14.2</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2555428</td>
-<td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
-This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
-<td>3.7.13-4.2.1</td>
-<td>4.3.0-4.4.2</td>
 </tr>
 <tr>
 <td>2555401</td>
@@ -8398,6 +8831,124 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2941560</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
+Fixed: 9.26a~dfsg-0+deb8u</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2940076</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2940067</td>
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+
+You can work around this issue with the following steps:
+
+1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
+2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+
+$ cat /etc/network/ifupdown2/policy.d/vxlan.json
+
+   {
+        "vxlan": {
+            "module_globals": { "vxlan-purge-remotes": "no" },
+            "defaults": {
+                "vxlan-ageing": "1800",
+                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
+                "vxlan-learning": "off" &lt;= This line needs to be added
+             }
+        }
+   }
+
+3. Reboot the affected switch(es)</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2940063</td>
+<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
+<td>3.7.12-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2934940</td>
+<td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
+This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
+<td>3.7.13-4.2.1</td>
+<td>4.3.0-4.4.2</td>
+</tr>
+<tr>
+<td>2934939</td>
+<td>When you configure BGP {{aggregate-address summary-only}} and any component route within the summary updates, all component routes within the summary update in the RIB on the device advertising the summary. This condition might result in increased CPU usage.
+
+To workaround this issue, remove the {{aggregate-address summary-only}} configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected
+
+
+After:
+
+ip route 10.10.0.0/16 Null0
+   !
+   address-family ipv4 unicast
+   redistribute connected route-map DENY-COMPONENTS
+   redistribute static
+    exit-address-family
+   ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+   !
+   route-map DENY-COMPONENTS deny 10
+    match ip address prefix-list NO-COMPONENTS
+   !
+   route-map DENY-COMPONENTS permit 20
+
+
+This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2910862</td>
 <td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
 Vulnerable: &lt;= 0.13.62-3+deb8u2
@@ -8418,13 +8969,6 @@ Fixed: 2.1.5-2+deb8u13</td>
 <td>2896450</td>
 <td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2890648</td>
-<td>Some ECMP next-hops might fail installation into hardware at high ECMP group and route scale. The following log message will be observed when this condition occurs:
-{{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
-<td>3.7.9-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -8470,12 +9014,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 </tr>
 <tr>
 <td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2866096</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.2</td>
 <td></td>
@@ -8821,10 +9359,20 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td></td>
 </tr>
 <tr>
+<td>2699464</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2687332</td>
-<td>When using {{aggregate-address summary-only}} BGP configuration, if any component route within the summary is updated, all component routes within the summary will be updated in the RIB on the device advertising the summary. This condition can result in increased CPU usage.
+<td>When you configure BGP {{aggregate-address summary-only}} and any component route within the summary updates, all component routes within the summary update in the RIB on the device advertising the summary. This condition might result in increased CPU usage.
 
-To workaround this issue, remove the aggregate-address summary-only configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+To workaround this issue, remove the {{aggregate-address summary-only}} configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
 
 Before:
 
@@ -8834,6 +9382,7 @@ address-family ipv4 unicast
 
 
 After:
+
 ip route 10.10.0.0/16 Null0
    !
    address-family ipv4 unicast
@@ -8847,7 +9396,34 @@ ip route 10.10.0.0/16 Null0
    !
    route-map DENY-COMPONENTS permit 20
 
-Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+
+This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2684452</td>
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+
+You can work around this issue with the following steps:
+
+1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
+2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+
+$ cat /etc/network/ifupdown2/policy.d/vxlan.json
+
+   {
+        "vxlan": {
+            "module_globals": { "vxlan-purge-remotes": "no" },
+            "defaults": {
+                "vxlan-ageing": "1800",
+                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
+                "vxlan-learning": "off" &lt;= This line needs to be added
+             }
+        }
+   }
+
+3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
@@ -9095,12 +9671,6 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 <td></td>
 </tr>
 <tr>
-<td>2556811</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-4.4.2</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>2556233</td>
 <td>Some ECMP next-hops might fail installation into hardware at high ECMP group and route scale. The following log message will be observed when this condition occurs:
 {{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
@@ -9129,13 +9699,6 @@ To work around this issue, wait until the peer link is up to add the MLAG backup
 To recover from this condition, restart {{clagd}} with the {{sudo systemctl restart clagd}} command.</td>
 <td>3.7.12-4.0.1</td>
 <td>4.1.0-4.4.2</td>
-</tr>
-<tr>
-<td>2555428</td>
-<td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
-This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
-<td>3.7.13-4.2.1</td>
-<td>4.3.0-4.4.2</td>
 </tr>
 <tr>
 <td>2555278</td>
@@ -11717,6 +12280,117 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2941560</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
+Fixed: 9.26a~dfsg-0+deb8u</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2940076</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2940067</td>
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+
+You can work around this issue with the following steps:
+
+1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
+2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+
+$ cat /etc/network/ifupdown2/policy.d/vxlan.json
+
+   {
+        "vxlan": {
+            "module_globals": { "vxlan-purge-remotes": "no" },
+            "defaults": {
+                "vxlan-ageing": "1800",
+                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
+                "vxlan-learning": "off" &lt;= This line needs to be added
+             }
+        }
+   }
+
+3. Reboot the affected switch(es)</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2940063</td>
+<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
+<td>3.7.12-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2934939</td>
+<td>When you configure BGP {{aggregate-address summary-only}} and any component route within the summary updates, all component routes within the summary update in the RIB on the device advertising the summary. This condition might result in increased CPU usage.
+
+To workaround this issue, remove the {{aggregate-address summary-only}} configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected
+
+
+After:
+
+ip route 10.10.0.0/16 Null0
+   !
+   address-family ipv4 unicast
+   redistribute connected route-map DENY-COMPONENTS
+   redistribute static
+    exit-address-family
+   ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+   !
+   route-map DENY-COMPONENTS deny 10
+    match ip address prefix-list NO-COMPONENTS
+   !
+   route-map DENY-COMPONENTS permit 20
+
+
+This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2910862</td>
 <td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
 Vulnerable: &lt;= 0.13.62-3+deb8u2
@@ -11737,13 +12411,6 @@ Fixed: 2.1.5-2+deb8u13</td>
 <td>2896450</td>
 <td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2890648</td>
-<td>Some ECMP next-hops might fail installation into hardware at high ECMP group and route scale. The following log message will be observed when this condition occurs:
-{{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
-<td>3.7.9-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -11789,12 +12456,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 </tr>
 <tr>
 <td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2866096</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.2</td>
 <td></td>
@@ -12140,10 +12801,20 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td></td>
 </tr>
 <tr>
+<td>2699464</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2687332</td>
-<td>When using {{aggregate-address summary-only}} BGP configuration, if any component route within the summary is updated, all component routes within the summary will be updated in the RIB on the device advertising the summary. This condition can result in increased CPU usage.
+<td>When you configure BGP {{aggregate-address summary-only}} and any component route within the summary updates, all component routes within the summary update in the RIB on the device advertising the summary. This condition might result in increased CPU usage.
 
-To workaround this issue, remove the aggregate-address summary-only configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+To workaround this issue, remove the {{aggregate-address summary-only}} configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
 
 Before:
 
@@ -12153,6 +12824,7 @@ address-family ipv4 unicast
 
 
 After:
+
 ip route 10.10.0.0/16 Null0
    !
    address-family ipv4 unicast
@@ -12166,7 +12838,34 @@ ip route 10.10.0.0/16 Null0
    !
    route-map DENY-COMPONENTS permit 20
 
-Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+
+This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2684452</td>
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
+
+You can work around this issue with the following steps:
+
+1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
+2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
+
+$ cat /etc/network/ifupdown2/policy.d/vxlan.json
+
+   {
+        "vxlan": {
+            "module_globals": { "vxlan-purge-remotes": "no" },
+            "defaults": {
+                "vxlan-ageing": "1800",
+                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
+                "vxlan-learning": "off" &lt;= This line needs to be added
+             }
+        }
+   }
+
+3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
@@ -12400,12 +13099,6 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 <td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
 <td>3.7.11-3.7.15, 4.1.1-4.4.2</td>
 <td></td>
-</tr>
-<tr>
-<td>2556811</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-4.4.2</td>
-<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2556233</td>
@@ -14893,6 +15586,42 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2941560</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
+Fixed: 9.26a~dfsg-0+deb8u</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2910862</td>
 <td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
 Vulnerable: &lt;= 0.13.62-3+deb8u2
@@ -14907,13 +15636,6 @@ CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on 
 Vulnerable: &lt;= 2.1.5-2+deb8u12
 Fixed: 2.1.5-2+deb8u13</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2890648</td>
-<td>Some ECMP next-hops might fail installation into hardware at high ECMP group and route scale. The following log message will be observed when this condition occurs:
-{{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
-<td>3.7.9-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -17651,6 +18373,42 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2941560</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
+Fixed: 9.26a~dfsg-0+deb8u</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2910862</td>
 <td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
 Vulnerable: &lt;= 0.13.62-3+deb8u2
@@ -17665,13 +18423,6 @@ CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on 
 Vulnerable: &lt;= 2.1.5-2+deb8u12
 Fixed: 2.1.5-2+deb8u13</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2890648</td>
-<td>Some ECMP next-hops might fail installation into hardware at high ECMP group and route scale. The following log message will be observed when this condition occurs:
-{{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
-<td>3.7.9-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -19846,6 +20597,42 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2941560</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
+Fixed: 9.26a~dfsg-0+deb8u</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2910862</td>
 <td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
 Vulnerable: &lt;= 0.13.62-3+deb8u2
@@ -19860,13 +20647,6 @@ CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on 
 Vulnerable: &lt;= 2.1.5-2+deb8u12
 Fixed: 2.1.5-2+deb8u13</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2890648</td>
-<td>Some ECMP next-hops might fail installation into hardware at high ECMP group and route scale. The following log message will be observed when this condition occurs:
-{{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
-<td>3.7.9-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -22343,6 +23123,42 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2941560</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
+Fixed: 9.26a~dfsg-0+deb8u</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2910862</td>
 <td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
 Vulnerable: &lt;= 0.13.62-3+deb8u2
@@ -24232,6 +25048,42 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2941560</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
+Fixed: 9.26a~dfsg-0+deb8u</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2910862</td>
@@ -26460,6 +27312,42 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2941560</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
+Fixed: 9.26a~dfsg-0+deb8u</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2910862</td>
 <td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
 Vulnerable: &lt;= 0.13.62-3+deb8u2
@@ -28431,6 +29319,42 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2941560</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
+Fixed: 9.26a~dfsg-0+deb8u</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2910862</td>
 <td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
 Vulnerable: &lt;= 0.13.62-3+deb8u2
@@ -30045,6 +30969,42 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2941560</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
+Fixed: 9.26a~dfsg-0+deb8u</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2910862</td>
@@ -31688,6 +32648,42 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2941560</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
+Fixed: 9.26a~dfsg-0+deb8u</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2910862</td>
@@ -33437,6 +34433,42 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2941560</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
+Fixed: 9.26a~dfsg-0+deb8u</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2910862</td>
@@ -35232,6 +36264,42 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2941560</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
+Fixed: 9.26a~dfsg-0+deb8u</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2910862</td>
 <td>CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file".
 Vulnerable: &lt;= 0.13.62-3+deb8u2
@@ -36329,6 +37397,42 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2949602</td>
+<td>CVE-2017-12613: When apr_time_exp*() or apr_os_exp_time*() functions are invoked with an invalid month field value in Apache Portable Runtime APR 1.6.2 and prior, out of bounds memory may be accessed in converting this value to an apr_time_exp_t value, potentially revealing the contents of a different static heap value or resulting in program termination, and may represent an information disclosure or denial of service vulnerability to applications which call these APR functions with unvalidated external input.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949586</td>
+<td>CVE-2022-21699: ipython may execute untrusted files in the current working directory.
+Vulnerable: 2.3.0-2
+Fixed: 2.3.0-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949585</td>
+<td>CVE-2017-16611: In libxfont, an X11 font rasterisation library, by creating symlinks, a local attacker can open (but not read) local files as user root. This might create unwanted actions with special files like /dev/watchdog.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2949584</td>
+<td>CVE-2022-22747: nss, the Mozilla Network Security Service library, was vulnerable to a NULL pointer dereference when parsing empty PKCS 7 sequences, which could result in denial of service.
+Vulnerable: &lt;= 3.26-1+debu8u15
+Fixed: 3.26-1+debu8u16</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2941560</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document files are processed.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
+Fixed: 9.26a~dfsg-0+deb8u</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2910862</td>

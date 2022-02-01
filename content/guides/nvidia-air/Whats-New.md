@@ -2,7 +2,6 @@
 title: What's New in NVIDIA Air
 author: NVIDIA
 weight: 20
-version: "1.0"
 product: NVIDIA Air
 ---
 

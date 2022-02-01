@@ -2,7 +2,6 @@
 title: Custom Topology
 author: NVIDIA
 weight: 40
-version: "1.0"
 product: NVIDIA Air
 ---
 

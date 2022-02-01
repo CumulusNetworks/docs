@@ -7,23 +7,71 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2932121</td>
-<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0-4.4.2</td>
+<td>2951110</td>
+<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>3.7.15, 4.1.1-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
-<td>2932084</td>
-<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
-Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
-Fixed: 9.27~dfsg-2+deb10u5</td>
+<td>2949514</td>
+<td>CVE-2022-22747: Incorrect parsing of pkcs7 sequences in nss, the Mozilla Network Security Service library, may result in denial of service.
+Vulnerable: &lt;= 2:3.42.1-1+deb10u4
+Fixed: 2:3.42.1-1+deb10u5</td>
 <td>4.0.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
-<td>2917487</td>
-<td>BGP unnumbered sessions with the subinterfaces do not establish if you use different passwords for BGP.</td>
+<td>2949512</td>
+<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
+<td>4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2947680</td>
+<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
 <td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2943443</td>
+<td>Cumulus Linux lets you add more than one VXLAN interface to same VLAN on the same bridge. This is an invalid configuration as certain Cumulus Linux components, such as {{switchd}}, expect a single VNI for a given bridge or VLAN.</td>
+<td>3.7.15, 4.2.1-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2940063</td>
+<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
+<td>3.7.12-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2940052</td>
+<td>When you configure the switch with the minimum reserved VLAN of 150 and the internal VLANs are exhausted, the MLAG peer does not  forward the VLAN.</td>
+<td>3.7.15, 4.2.1-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2940051</td>
+<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
+<td>3.7.14.2-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2935122</td>
+<td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
+<td>4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2935121</td>
+<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
+<td>4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2932121</td>
+<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
+<td>3.7.15, 4.3.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -36,13 +84,6 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <td>2902013</td>
 <td>The NCLU commit  command adds a five second delay.</td>
 <td>4.2.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2899414</td>
-<td>After you provision a new switch with ZTP,  you cannot reach the switch because the IP or default route on eth0 is deleted. This issue occurs when the system time is ahead of NTP time and the DHCP lease is acquired before ZTP synchronizes the system clock to the NTP clock.
-To work around this issue, flap eth0. </td>
-<td>4.2.1-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -92,13 +133,7 @@ Fixed: 3.42.1-1+deb10u4</td>
 </tr>
 <tr>
 <td>2875338</td>
-<td>In a scaled EVPN MLAG configuration with 400 or more VNIs and 20K or more MAC addresses, when the peerlink is flapped causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service may undergo a restart. After FRR restarts or the CPU utilization settles down, the system works normally.</td>
-<td>4.2.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2875337</td>
-<td>In a scaled EVPN MLAG configuration with 400 or more VNIs and 20K or more MAC addresses, when the peerlink is flapped causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service may undergo a restart. After FRR restarts or the CPU utilization settles down, the system works normally.</td>
+<td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
 <td>4.2.1-4.4.2</td>
 <td></td>
 </tr>
@@ -123,12 +158,6 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2873186</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when adding new VLANS or bridges. </td>
-<td>3.7.14.2-4.4.2</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>2873185</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.2</td>
@@ -142,12 +171,6 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 </tr>
 <tr>
 <td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2866096</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.2</td>
 <td></td>
@@ -234,13 +257,13 @@ thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 <td>2854785</td>
 <td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
 <td>4.3.0-4.4.1</td>
-<td>4.4.2, 5.0.0-5.0.1</td>
+<td>4.4.2</td>
 </tr>
 <tr>
 <td>2854784</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
 <td>4.3.0-4.4.1</td>
-<td>4.4.2, 5.0.0-5.0.1</td>
+<td>4.4.2</td>
 </tr>
 <tr>
 <td>2853630</td>
@@ -286,6 +309,12 @@ Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
+<td>2839140</td>
+<td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
+<td>4.3.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
+</tr>
+<tr>
 <td>2837378</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0-4.4.2</td>
@@ -296,6 +325,12 @@ Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>After bringing up a bridge port, there is a multi second delay before the bridge port is able to learn any MAC addresses or neighbors, which causes a forwarding delay (about six seconds with 300 or more VLANs).</td>
 <td>3.7.15, 4.3.0-4.4.2</td>
 <td></td>
+</tr>
+<tr>
+<td>2826121</td>
+<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
+<td>4.3.0-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2821869</td>
@@ -420,12 +455,6 @@ This affects failed neighbor entries on routed interfaces that are not SVIs.</td
 <td>4.4.2</td>
 </tr>
 <tr>
-<td>2770226</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
-<td>3.7.14.2-4.4.2</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>2770030</td>
 <td>When you modify the default pre-auth policy located in {{/etc/cumulus/acl/policy.d/dot1x_preauth_dacl}}, after restarting {{hostapd}} the {{/etc/cumulus/acl/policy.d/dot1x_preauth_dacl}} directory is deleted and recreated with the default rule set that comes from the {{hostapd}} binary.</td>
 <td>4.3.0-4.4.2</td>
@@ -510,12 +539,6 @@ Fixed: 1.17-3+deb10u2</td>
 <td>The destination MAC address of ERSPAN GRE packets is set to all zeros.</td>
 <td>4.3.0-4.4.2</td>
 <td>5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2738625</td>
-<td>When you configure the switch with the minimum reserved VLAN of 150 and the internal VLANs are exhausted, the MLAG peer does not  forward the VLAN.</td>
-<td>3.7.15, 4.2.1-4.4.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2736265</td>
@@ -665,8 +688,8 @@ To workaround this issue, run the command against each VRF independently.</td>
 <tr>
 <td>2699378</td>
 <td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
-<td>4.3.0-4.4.2</td>
-<td></td>
+<td>4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2695527</td>
@@ -679,8 +702,8 @@ Fixed: 3.4.1-1+deb10u1</td>
 <tr>
 <td>2695314</td>
 <td>In a VRRP configuration, BGP unnumbered sessions for VRFs fail to establish after a networking restart.</td>
-<td>4.3.0-4.4.2</td>
-<td></td>
+<td>4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2691590</td>
@@ -705,7 +728,7 @@ To work around this issue, configure the loopback interface in the desired OSPF 
 
 cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </td>
-<td>4.0.0-4.4.2</td>
+<td>4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -793,12 +816,6 @@ Vulnerable: 1.8.3-1
 Fixed: 1.8.3-1+deb10u1</td>
 <td>4.0.0-4.3.0</td>
 <td>4.4.0-4.4.2</td>
-</tr>
-<tr>
-<td>2663119</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>4.3.0-4.4.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2660583</td>
@@ -984,6 +1001,12 @@ Fixed: 1.1.1d-0+deb10u6</td>
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
+<td>2599274</td>
+<td>On Mellanox Spectrum platforms, when there is an MSTP forwarding state change on a bonds (for example, when the state changes from blocking to forwarding), the MSTP hardware table might set some VLANs to blocking when they should be forwarding. A a result, all packets on these VLANs drop at ingress.</td>
+<td>4.3.0-4.4.2</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
 <td>2582639</td>
 <td>On NVIDIA Spectrum switches, BUM traffic might be dropped during VXLAN decapsulation in an EVPN multihoming environment after multiple PIM uplink interfaces flap.</td>
 <td>4.3.0</td>
@@ -1049,12 +1072,6 @@ CVE-2021-20233: A heap out-of-bound write flaw was found caused by mis-calculati
 To work around this issue, disable ARP suppression.</td>
 <td>3.7.14-3.7.14.2, 4.3.0</td>
 <td>3.7.15, 4.4.0-4.4.2</td>
-</tr>
-<tr>
-<td>2556811</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-4.4.2</td>
-<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2556783</td>
@@ -1180,12 +1197,6 @@ ERROR: Command not found
 <td>4.4.0-4.4.2</td>
 </tr>
 <tr>
-<td>2556061</td>
-<td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
-<td>4.2.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2555932</td>
 <td>On Mellanox switches, you can't ping the SVI of the MLAG peer over the peer link after the packet is VXLAN decapsulated.</td>
 <td>4.2.1-4.4.2</td>
@@ -1260,6 +1271,12 @@ This might trigger AS path loop prevention on the peer, where the peer ignores l
 To work around this issue, configure {{ip pim use-source}} on each unnumbered interface directly or ensure {{ip pim use-source}} is applied to the loopback before other unnumbered interfaces are enabled for PIM.</td>
 <td>3.7.13-3.7.15, 4.2.1-4.4.2</td>
 <td></td>
+</tr>
+<tr>
+<td>2554670</td>
+<td>When you have a large number of ACLs, the {{cl-acltool -L ip}} and {{cl-resource-query}} commands take a long time to complete.</td>
+<td>4.3.0</td>
+<td>4.4.0-4.4.2</td>
 </tr>
 <tr>
 <td>2554582</td>
@@ -1491,12 +1508,6 @@ To work around this issue, remove, then add back the VRRP configuration with NCL
 <td>2550974</td>
 <td>On the Dell S3000 switch, after installing the Cumulus Linux 4.1.1 disk image without a license, the switch sends a link beat if a remote host port is configured.</td>
 <td>3.7.11-3.7.15, 4.1.1-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2550950</td>
-<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
-<td>4.1.1-4.4.2</td>
 <td></td>
 </tr>
 <tr>

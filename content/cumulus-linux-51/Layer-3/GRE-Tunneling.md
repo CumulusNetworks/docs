@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 970
 toc: 3
 ---
-Generic Routing Encapsulation (GRE) is a tunneling protocol that encapsulates network layer protocols inside virtual point-to-point links over an Internet Protocol network. The tunnel source and tunnel destination addresses at each endpoint identify the two endpoints.
+[GRE](## "Generic Routing Encapsulation") is a tunneling protocol that encapsulates network layer protocols inside virtual point-to-point links over an Internet Protocol network. The tunnel source and tunnel destination addresses on each side identify the two endpoints.
 
 GRE packets travel directly between the two endpoints through a virtual tunnel. As a packet comes across other routers, there is no interaction with its payload; the routers only parse the outer IP packet. When the packet reaches the endpoint of the GRE tunnel, the switch de-encapsulates the outer packet, parses the payload, then forwards it to its ultimate destination.
 
@@ -32,37 +32,45 @@ The following configuration example shows the commands used to set up a bidirect
 
 {{< img src = "/images/cumulus-linux/gre-tunnel-config.png" >}}
 
-**Tunnel-R1 commands:**
+{{< tabs "TabID35 ">}}
+{{< tab "NVUE Commands">}}
+
+{{< tabs "TabID38 ">}}
+{{< tab "leaf01 ">}}
 
 ```
-cumulus@switch:~$ sudo ip tunnel add Tunnel-R2 mode gre remote 10.0.0.2 local 10.0.0.9 ttl 255
-cumulus@switch:~$ sudo ip link set Tunnel-R2 up
-cumulus@switch:~$ sudo ip addr add 10.0.100.1 dev Tunnel-R2
-cumulus@switch:~$ sudo ip route add 10.0.100.0/24 dev Tunnel-R2
+cumulus@leaf01:~$ nv set
+cumulus@leaf01:~$ nv config apply
 ```
 
-**Tunnel-R2 commands:**
+{{< /tab >}}
+{{< tab "leaf03 ">}}
 
 ```
-cumulus@switch:~$ sudo ip Tunnel add Tunnel-R1 mode gre remote 10.0.0.9 local 10.0.0.2 ttl 255
-cumulus@switch:~$ sudo ip link set Tunnel-R1 up
-cumulus@switch:~$ sudo ip addr add 10.0.200.1 dev Tunnel-R1
-cumulus@switch:~$ sudo ip route add 10.0.200.0/24 dev Tunnel-R1
+cumulus@leaf03:~$ nv set
+cumulus@leaf03:~$ nv config
 ```
 
-To apply the GRE tunnel configuration automatically at reboot, instead of running the commands from the command line (as above), you can add the following commands directly in the `/etc/network/interfaces` file.
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+{{< tabs "TabID58 ">}}
+{{< tab "leaf01 ">}}
+
+Edit the `/etc/network/interfaces` file to add the following configuration:
 
 ```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
+cumulus@leaf01:~$ sudo nano /etc/network/interfaces
 ...
-# Tunnel-R1 configuration
 auto swp1 #underlay interface for tunnel
 iface swp1
     link-speed 10000
     link-duplex full
     link-autoneg off
     address 10.0.0.9/24
-
 auto Tunnel-R2
 iface Tunnel-R2
     tunnel-mode gre
@@ -71,15 +79,22 @@ iface Tunnel-R2
     tunnel-ttl 255
     address 10.0.100.1
     up ip route add 10.0.100.0/24 dev Tunnel-R2
+```
 
-# Tunnel-R2 configuration
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+Edit the `/etc/network/interfaces` file to add the following configuration:
+
+```
+cumulus@leaf03:~$ sudo nano /etc/network/interfaces
+...
 auto swp1 #underlay interface for tunnel
 iface swp1
     link-speed 10000
     link-duplex full
     link-autoneg off
     address 10.0.0.2/24
-
 auto Tunnel-R1
 iface Tunnel-R1
     tunnel-mode gre
@@ -90,9 +105,15 @@ iface Tunnel-R1
     up ip route add 10.0.200.0/24 dev Tunnel-R1
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Verify GRE Tunnel Settings
 
-To check GRE tunnel settings, run the `ip tunnel show` command or the `ifquery --check` command. For example:
+To check GRE tunnel settings, run the the NVUE `nv show ???` command, or the Linux `ip tunnel show` or `ifquery --check` command. For example:
 
 ```
 cumulus@switch:~$ ip tunnel show
@@ -121,11 +142,9 @@ cumulus@switch:~$ sudo ip tunnel del Tunnel-R2 mode gre remote 10.0.0.2 local 10
 ```
 
 {{%notice note%}}
-
 You can delete a GRE tunnel directly from the `/etc/network/interfaces` file instead of using the `ip tunnel del` command. Make sure you run the `ifreload - a` command after you update the interfaces file.
 
 This action is disruptive as the switch removes the tunnel, then recreates it with the new settings.
-
 {{%/notice%}}
 
 ## Change GRE Tunnel Settings
@@ -137,7 +156,5 @@ cumulus@switch:~$ sudo ip tunnel change Tunnel-R2 mode gre local 10.0.0.2 remote
 ```
 
 {{%notice note%}}
-
 You can make changes to GRE tunnel settings directly in the `/etc/network/interfaces` file instead of using the `ip tunnel change` command. Make sure you run the `ifreload - a` command after you update the interfaces file.
-
 {{%/notice%}}

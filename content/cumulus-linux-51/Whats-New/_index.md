@@ -17,9 +17,22 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
 ### Platforms
 
 - NVIDIA SN3800(100G Spectrum-3)
+- 1G supported for all Spectrum-2 and Spectrum-3 switches
 
 ### New Features and Enhancements
 
--
--
--
+- {{<link url="GRE-Tunneling" text="GRE tunneling">}}
+- Refactor port configuration
+- Adaptive routing with RoCE
+- Support for custom TLV LLDP messages
+- Support for dynamic LLDP TLV advertisements
+- GTP hashing support
+- Support for layer 3 VXLAN interfaces
+- VXLAN port isolation on Spectrum-3 switches
+- Simplified EVPN configuration
+- Warmboot supported on bonds
+- NVUE enhancements include:
+  - Support control of IPv6 ND processes
+  - Flexible snippet architecture
+  - EVPN, PBR show commands
+  - Logging improvements

@@ -14,6 +14,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2959067"></a> [2959067](#2959067) <a name="2959067"></a> <br /> | ECMP produces errors indicating <code>No More Resources</code> and <code>switchd</code> crashes even when ECMP utilization is low. | 3.7.14.2-3.7.15 | |
+| <a name="2959024"></a> [2959024](#2959024) <a name="2959024"></a> <br /> | ACL rules do not always install in hardware after switch reboot<br />To work around this issue, run the <code>sudo cl-acltool -i</code> command to reinstall the ACL rules. | 3.7.14.2-3.7.15 | |
 | <a name="2957684"></a> [2957684](#2957684) <a name="2957684"></a> <br /> | CVE-2018-19872 CVE-2021-3481 CVE-2021-45930: Multiple out-of-bounds error were discovered in qt4-x11. The highest threat from CVE-2021-3481 (at least) is to data confidentiality the application availability<br />Vulnerable: <=  4.8.6+git64-g5dc8b2b+dfsg-3+deb8u3Fixed: 4.8.6+git64-g5dc8b2b+dfsg-3+deb8u4 | 3.7.0-3.7.15 | |
 | <a name="2951114"></a> [2951114](#2951114) <a name="2951114"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |
 | <a name="2951113"></a> [2951113](#2951113) <a name="2951113"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |
@@ -37,6 +39,7 @@ pdfhidden: True
 | <a name="2934935"></a> [2934935](#2934935) <a name="2934935"></a> <br /> | {switchd</code> can cause a memory leak. | 3.7.14.2-3.7.15 | |
 | <a name="2932121"></a> [2932121](#2932121) <a name="2932121"></a> <br /> | When <code>switchd</code> restarts, the port watch daemon (<code>portwd</code>) attempts to send requests to <code>switchd</code> before <code>switchd</code> is ready. As a result, <code>portwd</code> goes into a failed state because there is no response from <code>switchd</code>. | 3.7.15, 4.3.0-4.4.2 | |
 | <a name="2923748"></a> [2923748](#2923748) <a name="2923748"></a> <br /> | CVE-2021-43818: lxml is a library for processing XML and HTML in the Python language. Prior to version 4.6.5, the HTML Cleaner in lxml.html lets certain crafted script content pass through, as well as script content in SVG files embedded using data URIs<br />Vulnerable: <= 3.4.0-1+deb8u4Fixed: 3.4.0-1+deb8u5 | 3.7.15 | |
+| <a name="2923737"></a> [2923737](#2923737) <a name="2923737"></a> <br /> | When <code>switchd</code> restarts, the port watch daemon (<code>portwd</code>) attempts to send requests to <code>switchd</code> before <code>switchd</code> is ready. As a result, <code>portwd</code> goes into a failed state because there is no response from <code>switchd</code>. | 3.7.15, 4.3.0-4.4.2 | |
 | <a name="2910862"></a> [2910862](#2910862) <a name="2910862"></a> <br /> | CVE-2020-18442: Infinite Loop in zziplib v0.13.69 allows remote attackers to cause a denial of service via the return value "zzip_file_read" in the function "unzzip_cat_file"<br />Vulnerable: <= 0.13.62-3+deb8u2Fixed: 0.13.62-3+deb8u3 | 3.7.0-3.7.15 | |
 | <a name="2910861"></a> [2910861](#2910861) <a name="2910861"></a> <br /> | CVE-2021-41819: A cookie prefix spoofing vulnerability in CGI::Cookie.parse<br />CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on date parsing methods<br />Vulnerable: <= 2.1.5-2+deb8u12Fixed: 2.1.5-2+deb8u13 | 3.7.0-3.7.15 | |
 | <a name="2910017"></a> [2910017](#2910017) <a name="2910017"></a> <br /> | SNMP reports the same <code>ifType</code> of <code>ethernetCsmacd(6)</code> for loopback interfaces. | 3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1 | |
@@ -369,6 +372,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2959067"></a> [2959067](#2959067) <a name="2959067"></a> <br /> | ECMP produces errors indicating <code>No More Resources</code> and <code>switchd</code> crashes even when ECMP utilization is low. | 3.7.14.2-3.7.15 | |
+| <a name="2959024"></a> [2959024](#2959024) <a name="2959024"></a> <br /> | ACL rules do not always install in hardware after switch reboot<br />To work around this issue, run the <code>sudo cl-acltool -i</code> command to reinstall the ACL rules. | 3.7.14.2-3.7.15 | |
 | <a name="2957684"></a> [2957684](#2957684) <a name="2957684"></a> <br /> | CVE-2018-19872 CVE-2021-3481 CVE-2021-45930: Multiple out-of-bounds error were discovered in qt4-x11. The highest threat from CVE-2021-3481 (at least) is to data confidentiality the application availability<br />Vulnerable: <=  4.8.6+git64-g5dc8b2b+dfsg-3+deb8u3Fixed: 4.8.6+git64-g5dc8b2b+dfsg-3+deb8u4 | 3.7.0-3.7.15 | |
 | <a name="2951114"></a> [2951114](#2951114) <a name="2951114"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |
 | <a name="2951113"></a> [2951113](#2951113) <a name="2951113"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |

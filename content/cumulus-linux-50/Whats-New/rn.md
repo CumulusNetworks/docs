@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2957968"></a> [2957968](#2957968) <a name="2957968"></a> <br /> | After you install the RADIUS <code>libnss-mapuser</code> package, the <code>nvued</code> service fails to start. | 5.0.0-5.0.1 | |
 | <a name="2951114"></a> [2951114](#2951114) <a name="2951114"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |
 | <a name="2951113"></a> [2951113](#2951113) <a name="2951113"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |
 | <a name="2951110"></a> [2951110](#2951110) <a name="2951110"></a> <br />CM-30182 | The <code>net show time ntp servers</code> command does not show any output with management VRF. | 3.7.15, 4.1.1-4.4.2, 5.0.0-5.0.1 | |
@@ -60,6 +61,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2957968"></a> [2957968](#2957968) <a name="2957968"></a> <br /> | After you install the RADIUS <code>libnss-mapuser</code> package, the <code>nvued</code> service fails to start. | 5.0.0-5.0.1 | |
 | <a name="2951114"></a> [2951114](#2951114) <a name="2951114"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |
 | <a name="2951113"></a> [2951113](#2951113) <a name="2951113"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |
 | <a name="2951110"></a> [2951110](#2951110) <a name="2951110"></a> <br />CM-30182 | The <code>net show time ntp servers</code> command does not show any output with management VRF. | 3.7.15, 4.1.1-4.4.2, 5.0.0-5.0.1 | |

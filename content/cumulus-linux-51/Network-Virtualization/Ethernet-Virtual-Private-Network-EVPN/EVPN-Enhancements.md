@@ -546,7 +546,7 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file to remove `bridge-arp-nd-suppress on` from the VNI.
+Edit the `/etc/network/interfaces` file to set `bridge-arp-nd-suppress off` on the VNI.
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/network/interfaces
@@ -557,12 +557,14 @@ iface vni10
     bridge-access 10
     vxlan-id 10
     vxlan-local-tunnelip 10.10.10.1
+    bridge-arp-nd-suppress off
 
 auto vni20
 iface vni20
       bridge-access 20
       vxlan-id 20
       vxlan-local-tunnelip 10.10.10.1
+      bridge-arp-nd-suppress off
 ...
 ```
 

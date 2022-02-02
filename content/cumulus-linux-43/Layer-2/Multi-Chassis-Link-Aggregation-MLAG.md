@@ -767,9 +767,17 @@ When planning for link failures for a full rack, you need only allocate enough b
 
 When enabling a routing protocol in an MLAG environment, it is also necessary to manage the uplinks; by default MLAG is not aware of layer 3 uplink interfaces. If there is a peer link failure, MLAG does not remove static routes or bring down a BGP or OSPF adjacency unless you use a separate link state daemon such as `ifplugd`.
 
-When you use MLAG with VRR, set up a routed adjacency across the peerlink.4094 interface. If a routed connection is not built across the peer link, during an uplink failure on one of the switches in the MLAG pair, egress traffic might not be forwarded if the destination is on the switch whose uplinks are down.
+When you use MLAG with VRR, set up a routed adjacency across the peerlink.4094 interface. If a routed connection is not built across the peer link, during an uplink failure on one of the switches in the MLAG pair, egress traffic does not forward if the destination is on the switch whose uplinks are down.
 
 To set up the adjacency, configure a {{<link url="Border-Gateway-Protocol-BGP#bgp-unnumbered" text="BGP">}} or {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} unnumbered peering, as appropriate for your network.
+
+{{%notice note%}}
+
+The {{<link url="#large-packet-drops-on-the-peer-link-interface" text="MLAG loop avoidance mechanism">}} also drops routed traffic that arrives on an MLAG peerlink interface and routes to a dual-connected VNI.
+
+If you need to route unencapsulated traffic to an MLAG peer switch for VXLAN forwarding to accommodate uplink failures or other design needs, configure a routing adjacency across a separate routed interface that is not the MLAG `peerlink`.
+
+{{%/notice%}}
 
 For BGP, use a configuration like this:
 

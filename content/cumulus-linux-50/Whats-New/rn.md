@@ -14,6 +14,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2951114"></a> [2951114](#2951114) <a name="2951114"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |
+| <a name="2951113"></a> [2951113](#2951113) <a name="2951113"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |
 | <a name="2951110"></a> [2951110](#2951110) <a name="2951110"></a> <br />CM-30182 | The <code>net show time ntp servers</code> command does not show any output with management VRF. | 3.7.15, 4.1.1-4.4.2, 5.0.0-5.0.1 | |
 | <a name="2949123"></a> [2949123](#2949123) <a name="2949123"></a> <br /> | The NVUE command <code>nv show service ntp mgmt server</code> does not show any configured servers. | 5.0.0-5.0.1 | |
 | <a name="2947680"></a> [2947680](#2947680) <a name="2947680"></a> <br /> | If the <code>clagd</code> service stops during <code>initDelay</code>, the peerlink flag does not clear from any VNIs that become dual connected during this time. <code>switchd</code> uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop. | 3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |
@@ -58,6 +60,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2951114"></a> [2951114](#2951114) <a name="2951114"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |
+| <a name="2951113"></a> [2951113](#2951113) <a name="2951113"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |
 | <a name="2951110"></a> [2951110](#2951110) <a name="2951110"></a> <br />CM-30182 | The <code>net show time ntp servers</code> command does not show any output with management VRF. | 3.7.15, 4.1.1-4.4.2, 5.0.0-5.0.1 | |
 | <a name="2949123"></a> [2949123](#2949123) <a name="2949123"></a> <br /> | The NVUE command <code>nv show service ntp mgmt server</code> does not show any configured servers. | 5.0.0-5.0.1 | |
 | <a name="2947680"></a> [2947680](#2947680) <a name="2947680"></a> <br /> | If the <code>clagd</code> service stops during <code>initDelay</code>, the peerlink flag does not clear from any VNIs that become dual connected during this time. <code>switchd</code> uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop. | 3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |

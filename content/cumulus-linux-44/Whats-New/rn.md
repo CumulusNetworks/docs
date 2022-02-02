@@ -14,6 +14,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2951114"></a> [2951114](#2951114) <a name="2951114"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |
+| <a name="2951113"></a> [2951113](#2951113) <a name="2951113"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |
 | <a name="2951110"></a> [2951110](#2951110) <a name="2951110"></a> <br />CM-30182 | The <code>net show time ntp servers</code> command does not show any output with management VRF. | 3.7.15, 4.1.1-4.4.2, 5.0.0-5.0.1 | |
 | <a name="2949514"></a> [2949514](#2949514) <a name="2949514"></a> <br /> | CVE-2022-22747: Incorrect parsing of pkcs7 sequences in nss, the Mozilla Network Security Service library, may result in denial of service<br />Vulnerable: <= 2:3.42.1-1+deb10u4Fixed: 2:3.42.1-1+deb10u5 | 4.0.0-4.4.2 | |
 | <a name="2949512"></a> [2949512](#2949512) <a name="2949512"></a> <br /> | On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs. | 4.3.0-4.4.2 | |
@@ -276,6 +278,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2951114"></a> [2951114](#2951114) <a name="2951114"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |
+| <a name="2951113"></a> [2951113](#2951113) <a name="2951113"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |
 | <a name="2951110"></a> [2951110](#2951110) <a name="2951110"></a> <br />CM-30182 | The <code>net show time ntp servers</code> command does not show any output with management VRF. | 3.7.15, 4.1.1-4.4.2, 5.0.0-5.0.1 | |
 | <a name="2949514"></a> [2949514](#2949514) <a name="2949514"></a> <br /> | CVE-2022-22747: Incorrect parsing of pkcs7 sequences in nss, the Mozilla Network Security Service library, may result in denial of service<br />Vulnerable: <= 2:3.42.1-1+deb10u4Fixed: 2:3.42.1-1+deb10u5 | 4.0.0-4.4.2 | |
 | <a name="2949512"></a> [2949512](#2949512) <a name="2949512"></a> <br /> | On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs. | 4.3.0-4.4.2 | |

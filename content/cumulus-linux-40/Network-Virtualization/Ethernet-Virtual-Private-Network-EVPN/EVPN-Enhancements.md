@@ -339,25 +339,7 @@ net.ipv6.neigh.default.gc_thresh2=8192
 
 {{< /expand >}}
 
-Keep ARP and ND suppression enabled to reduce flooding of ARP/ND packets over VXLAN tunnels. However, if you need to disable ARP and ND suppression, follow the example commands below.
-
-{{< tabs "TabID12" >}}
-
-{{< tab "NCLU Commands" >}}
-
-```
-cumulus@switch:~$ net del vxlan vni100 bridge arp-nd-suppress
-cumulus@switch:~$ net del vxlan vni200 bridge arp-nd-suppress
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-
-```
-
-{{< /tab >}}
-
-{{< tab "Linux Commands" >}}
-
-Edit the `/etc/network/interfaces` file to remove `bridge-arp-nd-suppress on` from the VNI.
+Keep ARP and ND suppression enabled to reduce flooding of ARP and ND packets over VXLAN tunnels. However, if you need to disable ARP and ND suppression, edit the `/etc/network/interfaces` file to set `bridge-arp-nd-suppress off` on the VNI:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -368,18 +350,16 @@ iface vni100
     bridge-access 100
     vxlan-id 10100
     vxlan-local-tunnelip 10.0.0.1
+    bridge-arp-nd-suppress off
 
 auto vni200
 iface vni200
       bridge-access 200
       vxlan-id 10200
       vxlan-local-tunnelip 10.0.0.1
+      bridge-arp-nd-suppress off
 ...
 ```
-
-{{< /tab >}}
-
-{{< /tabs >}}
 
 ## Configure Static MAC Addresses
 

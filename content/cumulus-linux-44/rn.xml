@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2951114</td>
+<td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2951113</td>
+<td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
 <td>3.7.15, 4.1.1-4.4.2, 5.0.0-5.0.1</td>
@@ -1923,6 +1935,18 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2951114</td>
+<td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2951113</td>
+<td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2951110</td>

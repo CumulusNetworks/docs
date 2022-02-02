@@ -750,7 +750,7 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file to set `bridge-arp-nd-suppress off` on the VNI.
+Edit the `/etc/network/interfaces` file to set `bridge-arp-nd-suppress off` on the VNI, then run the `ifreload -a` command.
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/network/interfaces
@@ -770,6 +770,10 @@ iface vni20
       vxlan-local-tunnelip 10.10.10.1
       bridge-arp-nd-suppress off
 ...
+```
+
+```
+cumulus@leaf01:~$ sudo ifreload -a
 ```
 
 {{< /tab >}}

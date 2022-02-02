@@ -739,17 +739,7 @@ net.ipv6.neigh.default.gc_thresh2=8192
 
 Keep ARP and ND suppression on to reduce ARP and ND packet flooding over VXLAN tunnels. However, if you need to disable ARP and ND suppression, follow the example commands below.
 
-{{< tabs "TabID593 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net del vxlan vni10 bridge arp-nd-suppress
-cumulus@leaf01:~$ net del vxlan vni20 bridge arp-nd-suppress
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
+{{< tabs "TabID742 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```

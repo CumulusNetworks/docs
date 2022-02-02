@@ -291,7 +291,7 @@ To upgrade the switch using package upgrade:
 Because Cumulus Linux is a collection of different Debian Linux packages, be aware of the following:
 
 - The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you run `sudo -E apt-get upgrade` and the latest Cumulus Linux release on the repository is 5.0.1, these two files display the release as 4.1.0 after the upgrade.
-- The `/etc/image-release` file update **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.0.0, followed by a package upgrade to 5.1.0 using `sudo -E apt-get upgrade`, the `/etc/image-release` file continues to display Cumulus Linux 5.0.0, which is the originally installed base image.
+- The `/etc/image-release` file update **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.0.0, followed by a package upgrade to 5.0.1 using `sudo -E apt-get upgrade`, the `/etc/image-release` file continues to display Cumulus Linux 5.0.0, which is the originally installed base image.
 
 ## Upgrade Switches in an MLAG Pair
 

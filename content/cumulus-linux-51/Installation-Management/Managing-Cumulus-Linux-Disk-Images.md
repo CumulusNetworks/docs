@@ -56,9 +56,7 @@ To see more `onie-install` options, run `man onie-install.`
 To remove all installed images and configurations, and return the switch to its factory defaults, run the `onie-select -k` command.
 
 {{%notice warning%}}
-
 The `onie-select -k` command takes a long time to run as it overwrites the entire NOS section of the flash. Only use this command if you want to erase all NOS data and take the switch out of service.
-
 {{%/notice%}}
 
 ```
@@ -75,14 +73,12 @@ Reboot required to take effect.
 You must reboot the switch to start the uninstallation process.
 
 {{%notice tip%}}
-
 To cancel a pending uninstall operation, run the `onie-select -c` command:
 
 ```
 cumulus@switch:~$ sudo onie-select -c
 Cancelling pending uninstall at next reboot...done.
 ```
-
 {{%/notice%}}
 
 ## Boot Into Rescue Mode
@@ -102,20 +98,16 @@ Reboot required to take effect.
 ```
 
 {{%notice note%}}
-
 You must reboot the system to boot into rescue mode.
-
 {{%/notice%}}
 
 {{%notice tip%}}
-
 To cancel a pending rescue boot operation, run the `onie-select -c` command:
 
 ```
 cumulus@switch:~$ sudo onie-select -c
 Cancelling pending rescue at next reboot...done.
 ```
-
 {{%/notice%}}
 
 ## Inspect the Image File

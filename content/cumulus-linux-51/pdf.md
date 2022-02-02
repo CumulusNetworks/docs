@@ -2,7 +2,7 @@
 title: Cumulus Linux
 layout: pdf
 product: Cumulus Linux
-version: "5.0"
+version: "5.1"
 type: pdf
 bookhidden: true
 draft: true

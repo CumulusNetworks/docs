@@ -121,13 +121,13 @@ Header                        Value                 Example
 ------                        -----                 -------
 User-Agent                                          CumulusLinux-AutoProvision/0.4
 CUMULUS-ARCH                  CPU architecture      x86_64
-CUMULUS-BUILD                                       5.0.0
+CUMULUS-BUILD                                       5.1.0
 CUMULUS-MANUFACTURER                                odm
 CUMULUS-PRODUCTNAME                                 switch_model
 CUMULUS-SERIAL                                      XYZ123004
 CUMULUS-BASE-MAC                                    44:38:39:FF:40:94
 CUMULUS-MGMT-MAC                                    44:38:39:FF:00:00
-CUMULUS-VERSION                                     5.0.0
+CUMULUS-VERSION                                     5.1.0
 CUMULUS-PROV-COUNT                                  0
 CUMULUS-PROV-MAX                                    32
 ```
@@ -271,7 +271,7 @@ function init_ztp(){
     #do normal ZTP tasks
 }
 
-CUMULUS_TARGET_RELEASE=5.0.0
+CUMULUS_TARGET_RELEASE=5.1.0
 CUMULUS_CURRENT_RELEASE=$(cat /etc/lsb-release  | grep RELEASE | cut -d "=" -f2)
 IMAGE_SERVER_HOSTNAME=webserver.example.com
 IMAGE_SERVER= "http:// "$IMAGE_SERVER_HOSTNAME "/ "$CUMULUS_TARGET_RELEASE ".bin "

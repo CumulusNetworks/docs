@@ -14,6 +14,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2951114"></a> [2951114](#2951114) <a name="2951114"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |
+| <a name="2951113"></a> [2951113](#2951113) <a name="2951113"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |
 | <a name="2951110"></a> [2951110](#2951110) <a name="2951110"></a> <br />CM-30182 | The <code>net show time ntp servers</code> command does not show any output with management VRF. | 3.7.15, 4.1.1-4.4.2, 5.0.0-5.0.1 | |
 | <a name="2949514"></a> [2949514](#2949514) <a name="2949514"></a> <br /> | CVE-2022-22747: Incorrect parsing of pkcs7 sequences in nss, the Mozilla Network Security Service library, may result in denial of service<br />Vulnerable: <= 2:3.42.1-1+deb10u4Fixed: 2:3.42.1-1+deb10u5 | 4.0.0-4.4.2 | |
 | <a name="2949512"></a> [2949512](#2949512) <a name="2949512"></a> <br /> | On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs. | 4.3.0-4.4.2 | |
@@ -26,6 +28,7 @@ pdfhidden: True
 | <a name="2935122"></a> [2935122](#2935122) <a name="2935122"></a> <br /> | After building VLAN or VXLAN interfaces, MLAG becomes unstable. | 4.3.0-4.4.2 | |
 | <a name="2935121"></a> [2935121](#2935121) <a name="2935121"></a> <br /> | When you configure 199 VXLANs plus 199 VLANs, <code>clagd</code> crashes every few seconds.  | 4.3.0-4.4.2 | |
 | <a name="2932121"></a> [2932121](#2932121) <a name="2932121"></a> <br /> | When <code>switchd</code> restarts, the port watch daemon (<code>portwd</code>) attempts to send requests to <code>switchd</code> before <code>switchd</code> is ready. As a result, <code>portwd</code> goes into a failed state because there is no response from <code>switchd</code>. | 3.7.15, 4.3.0-4.4.2 | |
+| <a name="2923737"></a> [2923737](#2923737) <a name="2923737"></a> <br /> | When <code>switchd</code> restarts, the port watch daemon (<code>portwd</code>) attempts to send requests to <code>switchd</code> before <code>switchd</code> is ready. As a result, <code>portwd</code> goes into a failed state because there is no response from <code>switchd</code>. | 3.7.15, 4.3.0-4.4.2 | |
 | <a name="2910017"></a> [2910017](#2910017) <a name="2910017"></a> <br /> | SNMP reports the same <code>ifType</code> of <code>ethernetCsmacd(6)</code> for loopback interfaces. | 3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1 | |
 | <a name="2902013"></a> [2902013](#2902013) <a name="2902013"></a> <br /> | The NCLU commit  command adds a five second delay. | 4.2.1-4.4.2 | |
 | <a name="2896733"></a> [2896733](#2896733) <a name="2896733"></a> <br /> | Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send<br />To work around this issue, run the vtysh <code>clear ip mroute</code> command. | 3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |

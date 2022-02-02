@@ -11,8 +11,9 @@ GRE packets travel directly between the two endpoints through a virtual tunnel. 
 GRE uses multiple protocols over a single-protocol backbone and is less demanding than some of the alternative solutions, such as VPN. You can use GRE to transport protocols that the underlying network does not support, work around networks with limited hops, connect non-contiguous subnets, and allow VPNs across wide area networks.
 
 {{%notice note%}}
-- You can use only static routes as a destination for the tunnel interface.
-- You can configure only IPv4 endpoints.
+- You can use only static IPv4 routes as a destination for the tunnel interface.
+- You can only configure IPv4 endpoints.
+- You can only configure point to point GRE tunnels.
 {{%/notice%}}
 
 The following example shows two sites that use IPv4 addresses. Using GRE tunneling, the two end points can encapsulate an IPv4 or IPv6 payload inside an IPv4 packet. The switch routes the packet based on the destination in the outer IPv4 header.
@@ -39,7 +40,12 @@ The following configuration example shows the commands used to set up a bidirect
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ nv set
+cumulus@leaf01:~$ nv set interface tunnel-R2 ip address 10.0.100.1
+cumulus@leaf01:~$ nv set interface tunnel-R2 gre enable on
+cumulus@leaf01:~$ nv set interface tunnel-R2 gre tunnel-endpoint 10.0.0.2
+cumulus@leaf01:~$ nv set interface tunnel-R2 gre tunnel-local 10.0.0.9
+cumulus@leaf01:~$ nv set interface tunnel-R2 gre tunnel-ttl 255
+cumulus@leaf01:~$ nv set interface tunnel-R2 gre route 10.0.100.0/24
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -47,8 +53,13 @@ cumulus@leaf01:~$ nv config apply
 {{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf03:~$ nv set
-cumulus@leaf03:~$ nv config
+cumulus@leaf03:~$ nv set interface tunnel-R1 ip address 10.0.200.1
+cumulus@leaf03:~$ nv set interface tunnel-R1 gre enable on
+cumulus@leaf03:~$ nv set interface tunnel-R1 gre tunnel-endpoint 10.0.0.9
+cumulus@leaf03:~$ nv set interface tunnel-R1 gre tunnel-local 10.0.0.2
+cumulus@leaf03:~$ nv set interface tunnel-R1 gre tunnel-ttl 255
+cumulus@leaf03:~$ nv set interface tunnel-R1 gre route 10.0.200.0/24
+cumulus@leaf03:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -81,6 +92,8 @@ iface Tunnel-R2
     up ip route add 10.0.100.0/24 dev Tunnel-R2
 ```
 
+Run the `ifreload -a` command to load the configuration.
+
 {{< /tab >}}
 {{< tab "leaf03 ">}}
 
@@ -105,13 +118,17 @@ iface Tunnel-R1
     up ip route add 10.0.200.0/24 dev Tunnel-R1
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
+Run the `ifreload -a` command to load the configuration.
 
 {{< /tab >}}
 {{< /tabs >}}
 
-## Verify GRE Tunnel Settings
+{{< /tab >}}
+{{< /tabs >}}
+
+To delete a GRE tunnel, remove the tunnel interface, and remove the routes configured with the tunnel interface, either run the NVU `nv unset` commands or remove the tunnel configuration from the `/etc/network/interfaces` file and run the `ifreload -a` command.
+
+## Troubleshooting
 
 To check GRE tunnel settings, run the the NVUE `nv show ???` command, or the Linux `ip tunnel show` or `ifquery --check` command. For example:
 
@@ -132,29 +149,3 @@ iface Tunnel-R1                                                 [pass]
         tunnel-mode gre                                         [pass]
         address 10.0.200.1/32                                   [pass]
 ```
-
-## Delete a GRE Tunnel Interface
-
-To delete a GRE tunnel, remove the tunnel interface, and remove the routes configured with the tunnel interface, run the `ip tunnel del` command. For example:
-
-```
-cumulus@switch:~$ sudo ip tunnel del Tunnel-R2 mode gre remote 10.0.0.2 local 10.0.0.9 ttl 255
-```
-
-{{%notice note%}}
-You can delete a GRE tunnel directly from the `/etc/network/interfaces` file instead of using the `ip tunnel del` command. Make sure you run the `ifreload - a` command after you update the interfaces file.
-
-This action is disruptive as the switch removes the tunnel, then recreates it with the new settings.
-{{%/notice%}}
-
-## Change GRE Tunnel Settings
-
-Use the `ip tunnel change` command to make changes to the GRE tunnel settings. The following example changes the remote underlay IP address from the original setting to 11.0.0.4:
-
-```
-cumulus@switch:~$ sudo ip tunnel change Tunnel-R2 mode gre local 10.0.0.2 remote 10.0.0.4
-```
-
-{{%notice note%}}
-You can make changes to GRE tunnel settings directly in the `/etc/network/interfaces` file instead of using the `ip tunnel change` command. Make sure you run the `ifreload - a` command after you update the interfaces file.
-{{%/notice%}}

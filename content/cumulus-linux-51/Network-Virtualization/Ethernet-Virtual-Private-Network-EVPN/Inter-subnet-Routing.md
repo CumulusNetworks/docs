@@ -1713,7 +1713,6 @@ This simulation starts with the example downstream VNI configuration. To simplif
 
 To validate the configuration, run the verification commands shown below.
 
-
 {{< /tab >}}
 {{< /tabs >}}
 

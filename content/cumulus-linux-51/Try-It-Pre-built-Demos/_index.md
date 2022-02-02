@@ -29,7 +29,7 @@ NVIDIA Air starts building the simulation and boots the nodes:
 {{< img src = "/images/cumulus-linux/try-it-boot.png" >}}
 
 {{%notice note%}}
-The simulation can take a few minutes to build and might display a grey screen before coming up.
+The simulation can take a few minutes to build and might display a grey screen before loading.
 {{%/notice%}}
 
 ## Run Commands

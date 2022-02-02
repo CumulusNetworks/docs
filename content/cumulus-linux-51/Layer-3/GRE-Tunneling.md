@@ -130,7 +130,7 @@ To delete a GRE tunnel, remove the tunnel interface, and remove the routes confi
 
 ## Troubleshooting
 
-To check GRE tunnel settings, run the the NVUE `nv show ???` command, or the Linux `ip tunnel show` or `ifquery --check` command. For example:
+To check GRE tunnel settings, run the NVUE `nv show ???` command, or the Linux `ip tunnel show` or `ifquery --check` command. For example:
 
 ```
 cumulus@switch:~$ ip tunnel show

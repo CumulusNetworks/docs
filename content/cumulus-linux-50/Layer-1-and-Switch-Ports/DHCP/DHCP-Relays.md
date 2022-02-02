@@ -180,7 +180,7 @@ cumulus@leaf01:~$ nv set service dhcp-relay default giaddress-interface lo
 The first IP address on the loopback interface is typically the 127.0.0.1 address. This example uses IP address 10.10.10.1 on the loopback interface as the giaddr:
 
 ```
-cumulus@leaf01:~$ nv set service dhcp-relay default giaddress-interface lo 10.10.10.1
+cumulus@leaf01:~$ nv set service dhcp-relay default giaddress-interface lo address 10.10.10.1
 ```
 
 This example uses the first IP address on swp2 as the giaddr:
@@ -192,7 +192,7 @@ cumulus@leaf01:~$ nv set service dhcp-relay default giaddr-interface swp2
 This example uses IP address 10.0.0.4 on swp2 as the giaddr:
 
 ```
-cumulus@leaf01:~$ nv set service dhcp-relay default giaddr-interface swp2 10.0.0.4
+cumulus@leaf01:~$ nv set service dhcp-relay default giaddr-interface swp2 address 10.0.0.4
 ```
 
 {{< /tab >}}

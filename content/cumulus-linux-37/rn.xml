@@ -7,6 +7,19 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2959067</td>
+<td>ECMP produces errors indicating {{No More Resources}} and {{switchd}} crashes even when ECMP utilization is low.</td>
+<td>3.7.14.2-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2959024</td>
+<td>ACL rules do not always install in hardware after switch reboot.
+To work around this issue, run the {{sudo cl-acltool -i}} command to reinstall the ACL rules.</td>
+<td>3.7.14.2-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2957684</td>
 <td>CVE-2018-19872 CVE-2021-3481 CVE-2021-45930: Multiple out-of-bounds error were discovered in qt4-x11. The highest threat from CVE-2021-3481 (at least) is to data confidentiality the application availability.
 Vulnerable: &lt;=  4.8.6+git64-g5dc8b2b+dfsg-3+deb8u3
@@ -204,6 +217,12 @@ This example assumes no other static routes are present. Otherwise, you might ne
 Vulnerable: &lt;= 3.4.0-1+deb8u4
 Fixed: 3.4.0-1+deb8u5</td>
 <td>3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2923737</td>
+<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
+<td>3.7.15, 4.3.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -2899,6 +2918,19 @@ These messages are harmless and can be ignored.</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2959067</td>
+<td>ECMP produces errors indicating {{No More Resources}} and {{switchd}} crashes even when ECMP utilization is low.</td>
+<td>3.7.14.2-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2959024</td>
+<td>ACL rules do not always install in hardware after switch reboot.
+To work around this issue, run the {{sudo cl-acltool -i}} command to reinstall the ACL rules.</td>
+<td>3.7.14.2-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2957684</td>

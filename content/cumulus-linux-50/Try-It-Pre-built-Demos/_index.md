@@ -28,6 +28,10 @@ NVIDIA Air starts building the simulation and boots the nodes:
 
 {{< img src = "/images/cumulus-linux/try-it-boot.png" >}}
 
+{{%notice note%}}
+The simulation can take a few minutes to build and might display a grey screen before loading.
+{{%/notice%}}
+
 ## Run Commands
 
 When the simulation is ready, you can log into the leaf and spine switches. The switches are pre-configured with the configuration shown in the documentation. You can run any Cumulus Linux commands to learn more about the feature and configure additional settings.

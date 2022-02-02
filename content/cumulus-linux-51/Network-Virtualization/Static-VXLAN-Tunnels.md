@@ -486,10 +486,6 @@ This simulation starts with the example static VXLAN configuration. The demo is 
 
 To validate the configuration, run the verification commands shown below.
 
-{{%notice note%}}
-This simulation runs on Cumulus Linux 4.4. Cumulus Linux 5.0 configuration is coming soon.
-{{%/notice%}}
-
 {{< /tab >}}
 {{< /tabs >}}
 

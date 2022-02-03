@@ -307,6 +307,44 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 <!-- vale off -->
     {{<cl/restart-switchd>}}
 <!-- vale on -->
+
+## Adaptive Routing
+
+Adaptive routing is a load balancing mechanism that improves network utilization by selecting routes dynamically based on the immediate network state, such as switch queue length and port utilization.
+
+Cumulus Linux supports adaptive routing:
+- On Spectrum-2 and Spectrum-3 switches
+- In RoCE deployments
+- With unicast traffic
+- On physical uplink ports only; not on subinterfaces and not on ports that are part of a bond
+- On interfaces in the same VRF (even in a multi-tenant scenario)
+
+Adaptive routing does not make use of resilient hashing.
+
+Cumulus Linux uses Sticky Free Adaptive Routing mode, which provides a grades-based egress port selection with a periodic update. The is a set time period; you cannot change it. The grade on each port, which is a value between 0 and 4, depends on buffer usage and link utilization. A higher grade, such as 4, indicates that the port is more congested or that the port is down. Each packet routes to the less loaded path to best utilize the fabric resources and avoid congestion.
+
+The adaptive routing engine always selects the least congested port (with the lowest grade). If there are multiple ports with the same grade, the engine randomly selects between them.
+
+To enable adaptive routing:
+
+1. Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file:
+   - Set the global `adaptive_routing.enable` setting to `TRUE`.
+   - Set the port `adaptive_routing.enable` setting to `TRUE` for each port on which you want to enable adaptive routing.
+
+   ```
+   cumulus@switch:~$ sudo nano etc/cumulus/switchd.d/adaptive_routing.conf
+   ## Global adaptive-routing enable/disable setting 
+   adaptive_routing.enable = TRUE
+   ...
+   #interface.swp51.adaptive_routing.enable = TRUE 
+   #interface.swp51.adaptive_routing.link_util_thresh = 70 
+   ...
+   ```
+
+   The `/etc/cumulus/switchd.d/adaptive_routing.conf` file contains additional default adaptive routing settings, which you cannot change.
+
+2. Restart `switchd` with the `systemctl restart switchd` command to apply the configuration.
+
 ## Considerations
 
 ### IPv6 Route Replacement

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2959550</td>
+<td>If two or more FDB entries are added with a single API call {{sx_api_fdb_uc_mac_addr_set}} and one entry already exists while the following entry has a tunnel type and does not exist or is being modified, the following entry might be configured improperly in the hardware. This can cause corruption of the packets that match the FDB entry.</td>
+<td>4.4.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2959309</td>
 <td>When you edit the Cumulus image file and change the  {{CL_INSTALLER_HASHED_PASSWORD}} variable, the installation is successful but you cannot connect to the switch with the new password.</td>
 <td>4.4.0-4.4.2, 5.0.1</td>
@@ -1947,6 +1953,12 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2959550</td>
+<td>If two or more FDB entries are added with a single API call {{sx_api_fdb_uc_mac_addr_set}} and one entry already exists while the following entry has a tunnel type and does not exist or is being modified, the following entry might be configured improperly in the hardware. This can cause corruption of the packets that match the FDB entry.</td>
+<td>4.4.0-4.4.2</td>
+<td></td>
 </tr>
 <tr>
 <td>2959309</td>

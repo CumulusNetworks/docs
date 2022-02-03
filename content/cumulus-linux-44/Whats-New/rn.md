@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2959550"></a> [2959550](#2959550) <a name="2959550"></a> <br /> | If two or more FDB entries are added with a single API call <code>sx_api_fdb_uc_mac_addr_set</code> and one entry already exists while the following entry has a tunnel type and does not exist or is being modified, the following entry might be configured improperly in the hardware. This can cause corruption of the packets that match the FDB entry. | 4.4.0-4.4.2 | |
 | <a name="2959309"></a> [2959309](#2959309) <a name="2959309"></a> <br /> | When you edit the Cumulus image file and change the  <code>CL_INSTALLER_HASHED_PASSWORD</code> variable, the installation is successful but you cannot connect to the switch with the new password. | 4.4.0-4.4.2, 5.0.1 | |
 | <a name="2951114"></a> [2951114](#2951114) <a name="2951114"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |
 | <a name="2951113"></a> [2951113](#2951113) <a name="2951113"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |
@@ -280,6 +281,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2959550"></a> [2959550](#2959550) <a name="2959550"></a> <br /> | If two or more FDB entries are added with a single API call <code>sx_api_fdb_uc_mac_addr_set</code> and one entry already exists while the following entry has a tunnel type and does not exist or is being modified, the following entry might be configured improperly in the hardware. This can cause corruption of the packets that match the FDB entry. | 4.4.0-4.4.2 | |
 | <a name="2959309"></a> [2959309](#2959309) <a name="2959309"></a> <br /> | When you edit the Cumulus image file and change the  <code>CL_INSTALLER_HASHED_PASSWORD</code> variable, the installation is successful but you cannot connect to the switch with the new password. | 4.4.0-4.4.2, 5.0.1 | |
 | <a name="2951114"></a> [2951114](#2951114) <a name="2951114"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |
 | <a name="2951113"></a> [2951113](#2951113) <a name="2951113"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1 | |

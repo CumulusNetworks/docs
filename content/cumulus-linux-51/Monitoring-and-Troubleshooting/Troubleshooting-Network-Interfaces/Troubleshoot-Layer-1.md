@@ -14,7 +14,7 @@ This chapter describes how to troubleshoot layer 1 issues that can affect the po
 The following specifications are useful in understanding and troubleshooting layer 1 problems:
 
 - {{<exlink url="https://standards.ieee.org/standard/802_3-2018.html" text="IEEE 802.3 specifications">}} define the technologies and link characteristics of the various types and speeds of Ethernet technologies.
-- {{<exlink url="https://www.snia.org/technology-communities/sff/specifications" text="SFF MSA specifications">}} define the specifics of the hardware construction and implementations of features of the SFP and QSFP modules themselves.
+- {{<exlink url="https://www.snia.org/technology-communities/sff/specifications" text="SFF MSA specifications">}} define hardware construction and feature implementations specifics of the SFP and QSFP modules.
 
 ### Form Factors
 

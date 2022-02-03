@@ -14,7 +14,7 @@ This chapter describes how to troubleshoot layer 1 issues that can affect the po
 The following specifications are useful in understanding and troubleshooting layer 1 problems:
 
 - {{<exlink url="https://standards.ieee.org/standard/802_3-2018.html" text="IEEE 802.3 specifications">}} define the technologies and link characteristics of the various types and speeds of Ethernet technologies.
-- {{<exlink url="https://www.snia.org/technology-communities/sff/specifications" text="SFF MSA specifications">}} define hardware construction and feature implementations specifics of the SFP and QSFP modules.
+- {{<exlink url="https://www.snia.org/technology-communities/sff/specifications" text="SFF MSA specifications">}} define the SFP and QSFP module hardware construction and feature implementation specifics.
 
 ### Form Factors
 
@@ -23,9 +23,9 @@ Modern Ethernet modules come in one of two form factors:
 - Small Form factor Pluggables (SFP)
 - Quad Small Form factor Pluggables (QSFP)
 
-Each form factor contains an EEPROM with information about the capabilities of the module and various groups of required or optional registers to query or control aspects of the module when needed. The output from the `ethtool -m <swp>` command decodes the main values.
+Each form factor contains an EEPROM with information about the capabilities of the module and various groups of required or optional registers to query or control aspects of the module. The output from the `ethtool -m <swp>` command decodes the main values.
 
-The SFF/MSA specifications define the memory locations for the fields in the EEPROM and the common registers:
+The SFF MSA specifications define the memory locations for the fields in the EEPROM and the common registers:
 
 - SFP: {{<exlink url="https://members.snia.org/document/dl/25916" text="SFF-8472">}}: *Management Interface for SFP+* (PDF)
 - QSFP: {{<exlink url="https://members.snia.org/document/dl/26418" text="SFF-8636">}} *Management Interface for 4-lane Modules and Cables* (PDF)

@@ -9,8 +9,8 @@ Check out some of the latest features added to the {{<exlink url="https://air.nv
 
 ## February 2022
 <!-- Air:WhatsNew -->
-- Fixed a bug that caused new simulations to appear as sleeping while they were loading [``]
-- Fixed a bug that could prevent an error from being displayed when resource budgets were exceeded [``]
+- Fixed a bug that caused new simulations to appear as sleeping while they were loading [`82.2022.0204-013`]
+- Fixed a bug that could prevent an error from being displayed when resource budgets were exceeded [`82.2022.0204-013`]
 <!-- Air:WhatsNew -->
 
 ## January 2022

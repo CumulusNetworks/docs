@@ -305,7 +305,7 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 
 3. {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
 <!-- vale off -->
-    {{<cl/restart-switchd>}}
+{{<cl/restart-switchd>}}
 <!-- vale on -->
 ## Considerations
 

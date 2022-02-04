@@ -305,7 +305,7 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 
 3. {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
 <!-- vale off -->
-    {{<cl/restart-switchd>}}
+{{<cl/restart-switchd>}}
 <!-- vale on -->
 
 ## Adaptive Routing
@@ -314,12 +314,14 @@ Adaptive routing is a load balancing mechanism that improves network utilization
 
 Cumulus Linux supports adaptive routing:
 - On Spectrum-2 and Spectrum-3 switches
-- With {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE" >}}
+- With {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE" >}} only
 - With unicast traffic
 - On physical uplink ports only; not on subinterfaces and not on ports that are part of a bond
 - On interfaces in the same VRF (even in a multi-tenant scenario)
 
+{{%notice note%}}
 Adaptive routing does not make use of resilient hashing.
+{{%/notice%}}
 
 Cumulus Linux uses Sticky Free Adaptive Routing mode, which provides a grades-based egress port selection with a periodic update. This is a set time period; you cannot change it. The grade on each port, which is a value between 0 and 4, depends on buffer usage and link utilization. A higher grade, such as 4, indicates that the port is more congested or that the port is down. Each packet routes to the less loaded path to best utilize the fabric resources and avoid congestion.
 

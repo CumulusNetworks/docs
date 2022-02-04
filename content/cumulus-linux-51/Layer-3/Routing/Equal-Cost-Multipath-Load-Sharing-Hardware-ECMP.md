@@ -316,16 +316,19 @@ Cumulus Linux supports adaptive routing:
 - On Spectrum-2 and Spectrum-3 switches
 - With {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE" >}} only
 - With unicast traffic
-- On physical uplink ports only; not on subinterfaces and not on ports that are part of a bond
-- On interfaces in the same VRF (even in a multi-tenant scenario)
+- On physical uplink (layer 3) ports only; not on subinterfaces and not on ports that are part of a bond
+- On interfaces in the default VRF
 
 {{%notice note%}}
 Adaptive routing does not make use of resilient hashing.
+You must configure adaptive routing on all ports that are part of the same ECMP route.
 {{%/notice%}}
 
 Cumulus Linux uses Sticky Free Adaptive Routing mode, which provides a grades-based egress port selection with a periodic update. The periodic update is a set time period; you cannot change it. The grade on each port, which is a value between 0 and 4, depends on buffer usage and link utilization. A higher grade, such as 4, indicates that the port is more congested or that the port is down. Each packet routes to the less loaded path to best utilize the fabric resources and avoid congestion.
 
 The adaptive routing engine always selects the least congested port (with the lowest grade). If there are multiple ports with the same grade, the engine randomly selects between them.
+
+## Configure Adaptive Routing
 
 To enable adaptive routing:
 
@@ -349,6 +352,9 @@ To enable adaptive routing:
 <!-- vale off -->
 {{<cl/restart-switchd>}}
 <!-- vale on -->
+
+## Troublshoot Adaptive Routing
+
 
 ## Considerations
 

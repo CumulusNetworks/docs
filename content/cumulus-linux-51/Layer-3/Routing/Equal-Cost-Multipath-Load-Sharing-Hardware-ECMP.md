@@ -314,22 +314,22 @@ Adaptive routing is a load balancing mechanism that improves network utilization
 
 Cumulus Linux supports adaptive routing:
 - On Spectrum-2 and Spectrum-3 switches
-- In RoCE deployments
+- With {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE" >}}
 - With unicast traffic
 - On physical uplink ports only; not on subinterfaces and not on ports that are part of a bond
 - On interfaces in the same VRF (even in a multi-tenant scenario)
 
 Adaptive routing does not make use of resilient hashing.
 
-Cumulus Linux uses Sticky Free Adaptive Routing mode, which provides a grades-based egress port selection with a periodic update. The is a set time period; you cannot change it. The grade on each port, which is a value between 0 and 4, depends on buffer usage and link utilization. A higher grade, such as 4, indicates that the port is more congested or that the port is down. Each packet routes to the less loaded path to best utilize the fabric resources and avoid congestion.
+Cumulus Linux uses Sticky Free Adaptive Routing mode, which provides a grades-based egress port selection with a periodic update. This is a set time period; you cannot change it. The grade on each port, which is a value between 0 and 4, depends on buffer usage and link utilization. A higher grade, such as 4, indicates that the port is more congested or that the port is down. Each packet routes to the less loaded path to best utilize the fabric resources and avoid congestion.
 
 The adaptive routing engine always selects the least congested port (with the lowest grade). If there are multiple ports with the same grade, the engine randomly selects between them.
 
 To enable adaptive routing:
 
 1. Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file:
-   - Set the global `adaptive_routing.enable` setting to `TRUE`.
-   - Set the port `adaptive_routing.enable` setting to `TRUE` for each port on which you want to enable adaptive routing.
+   - Set the global `adaptive_routing.enable` parameter to `TRUE`.
+   - For each port on which you want to enable adaptive routing, set the port `adaptive_routing.enable` parameter to `TRUE`.
 
    ```
    cumulus@switch:~$ sudo nano etc/cumulus/switchd.d/adaptive_routing.conf
@@ -341,7 +341,7 @@ To enable adaptive routing:
    ...
    ```
 
-   The `/etc/cumulus/switchd.d/adaptive_routing.conf` file contains additional default adaptive routing settings, which you cannot change.
+   The `/etc/cumulus/switchd.d/adaptive_routing.conf` file contains additional default adaptive routing parmeters, which you cannot change.
 
 2. Restart `switchd` with the `systemctl restart switchd` command to apply the configuration.
 

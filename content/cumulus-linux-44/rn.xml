@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2961008</td>
+<td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
+<td>3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2959550</td>
+<td>If two or more FDB entries are added with a single API call {{sx_api_fdb_uc_mac_addr_set}} and one entry already exists while the following entry has a tunnel type and does not exist or is being modified, the following entry might be configured improperly in the hardware. This can cause corruption of the packets that match the FDB entry.</td>
+<td>4.4.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2959309</td>
 <td>When you edit the Cumulus image file and change the  {{CL_INSTALLER_HASHED_PASSWORD}} variable, the installation is successful but you cannot connect to the switch with the new password.</td>
 <td>4.4.0-4.4.2, 5.0.1</td>
@@ -113,6 +125,14 @@ Fixed: 4.3.2-1+deb10u4</td>
 <td></td>
 </tr>
 <tr>
+<td>2932085</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
+Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
+Fixed: 9.27~dfsg-2+deb10u5</td>
+<td>4.4.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2923737</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0-4.4.2</td>
@@ -130,12 +150,6 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:1561 ERR ECMP: error allocati
 Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find ecmp container
 </td>
 <td>4.4.0-4.4.2, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2910017</td>
-<td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
-<td>3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1949,6 +1963,18 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2961008</td>
+<td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
+<td>3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2959550</td>
+<td>If two or more FDB entries are added with a single API call {{sx_api_fdb_uc_mac_addr_set}} and one entry already exists while the following entry has a tunnel type and does not exist or is being modified, the following entry might be configured improperly in the hardware. This can cause corruption of the packets that match the FDB entry.</td>
+<td>4.4.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2959309</td>
 <td>When you edit the Cumulus image file and change the  {{CL_INSTALLER_HASHED_PASSWORD}} variable, the installation is successful but you cannot connect to the switch with the new password.</td>
 <td>4.4.0-4.4.2, 5.0.1</td>
@@ -2055,6 +2081,14 @@ Fixed: 4.3.2-1+deb10u4</td>
 <td></td>
 </tr>
 <tr>
+<td>2932085</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
+Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
+Fixed: 9.27~dfsg-2+deb10u5</td>
+<td>4.4.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2923737</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0-4.4.2</td>
@@ -2078,12 +2112,6 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:1561 ERR ECMP: error allocati
 Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find ecmp container
 </td>
 <td>4.4.0-4.4.2, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2910017</td>
-<td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
-<td>3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>

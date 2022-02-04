@@ -7,11 +7,19 @@ product: NVIDIA Air
 
 Check out some of the latest features added to the {{<exlink url="https://air.nvidia.com" text="NVIDIA Air Infrastructure Simulation Platform">}}.
 
-## December 2021
+## February 2022
 <!-- Air:WhatsNew -->
+- Fixed a bug that caused new simulations to appear as sleeping while they were loading [`82.2022.0204-013`]
+- Fixed a bug that could prevent an error from being displayed when resource budgets were exceeded [`82.2022.0204-013`]
+<!-- Air:WhatsNew -->
+
+## January 2022
+- Customizable templates for simulation email notifications [82.2022.0131]
+- NVIDIA Cumulus Linux 5.0.1 is now available for use in custom topologies  [82.2022.0112]
+
+## December 2021
 - NVIDIA Cumulus Linux 5.0 is now available for use in custom topologies
 - VMs in a custom topology now use their operating system's default username and password. See the {{<link url="/Quick-Start#logging-into-virtual-machines" text="Quick Start">}} guide for more details.
-<!-- Air:WhatsNew -->
 
 ## September 2021
 <!-- vale off -->

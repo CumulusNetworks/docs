@@ -21,9 +21,9 @@ You can restart the switch in one of the following modes.
 
    When you restart the switch in warm mode, BGP performs a graceful restart if the BGP Graceful Restart option is on. To enable BGP Graceful Restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
 
-   {{%notice note%}}
+   <!--{{%notice note%}}
    A warm boot disrupts bonds, VXLAN traffic, and IP multicast traffic until reboot completes.
-   {{%/notice%}}
+   {{%/notice%}}-->
 
 The following command restarts the system in cold mode:
 

@@ -316,22 +316,23 @@ Cumulus Linux supports adaptive routing:
 - On Spectrum-2 and Spectrum-3 switches
 - With {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE" >}} only
 - With unicast traffic
-- On physical uplink (layer 3) ports only; not on subinterfaces and not on ports that are part of a bond
+- On physical uplink (layer 3) ports only; you cannot configure adaptive routing on subinterfaces or on ports that are part of a bond
 - On interfaces in the default VRF
 
 {{%notice note%}}
 Adaptive routing does not make use of resilient hashing.
 {{%/notice%}}
 
-Cumulus Linux uses Sticky Free Adaptive Routing mode, which uses a grades-based egress port selection with a periodic update.
-- The periodic update is a set time period; you cannot change it. 
+Cumulus Linux uses Sticky Free Adaptive Routing mode, which uses a periodic grades-based egress port selection process.
+
 - The grade on each port, which is a value between 0 and 4, depends on buffer usage and link utilization. A higher grade, such as 4, indicates that the port is more congested or that the port is down. Each packet routes to the less loaded path to best utilize the fabric resources and avoid congestion. The adaptive routing engine always selects the least congested port (with the lowest grade). If there are multiple ports with the same grade, the engine randomly selects between them.
+- The change decision for port selection is set to one microsecond; you cannot change it.
 
 To enable adaptive routing:
 
 1. Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file:
    - Set the global `adaptive_routing.enable` parameter to `TRUE`.
-   - For each port on which you want to enable adaptive routing, set the `interface.<port>.adaptive_routing.enable` parameter to `TRUE`. You must configure adaptive routing on *all* ports that are part of the same ECMP route. Make sure the ports are physical uplink ports. The example shows swp51.
+   - For each port on which you want to enable adaptive routing, set the `interface.<port>.adaptive_routing.enable` parameter to `TRUE`. You must configure adaptive routing on *all* ports that are part of the same ECMP route. Make sure the ports are physical uplink ports. The example configures adaptive routing on swp51.
 
    ```
    cumulus@switch:~$ sudo nano etc/cumulus/switchd.d/adaptive_routing.conf

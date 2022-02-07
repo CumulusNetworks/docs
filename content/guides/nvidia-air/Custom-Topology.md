@@ -166,7 +166,7 @@ After you get the `cl-support` output, you can create a `topology.dot` file usin
 You can run the script using `python3`. Here is some sample output:
 
 ```
-$ python3 cl_support_lldp_parser.py 
+$ python3 cl_support_lldp_parser.py
 Extracting: /home/cumulus/cl_support_lldp_parser/cl_support_leaf01_20210721_164553.txz
 Extracting: /home/cumulus/cl_support_lldp_parser/cl_support_spine02_20210721_164553.txz
 Extracting: /home/cumulus/cl_support_lldp_parser/cl_support_leaf02_20210721_164553.txz
@@ -216,3 +216,12 @@ graph dc1 {
     "spine01":"eth0" -- "oob-mgmt-switch":"swp5"
 }
 ```
+<!-- vale off -->
+### Restoring configuration files
+<!-- vale on -->
+
+After you create the simulation, the goal will be to restore the configuration files.
+
+This {{<exlink url="https://gitlab.com/cumulus-consulting/features/cl_support_file_extractor" text="python script">}} pulls out all the relevant files and collates them into folders so they can be used easily to restore configuration from inside the simulation.
+
+It can be combined with the following {{<exlink url="https://gitlab.com/cumulus-consulting/features/simple-iac" text="infrastructure as code">}} Ansible playbook to restore configurations appropriately.

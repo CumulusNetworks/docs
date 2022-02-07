@@ -542,3 +542,91 @@ router bgp 65199
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Verify Configuration
+
+To verify that the switch can see its BGP neighbors, run the `net show bgp summary` command or the vtysh `show ip bgp summary` command:
+
+{{< tabs "550 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:mgmt:~$ net show bgp summary
+show bgp ipv4 unicast summary
+=============================
+BGP router identifier 10.10.10.1, local AS number 65101 vrf-id 0
+BGP table version 3
+RIB entries 5, using 1000 bytes of memory
+Peers 1, using 23 KiB of memory
+
+Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt
+spine01(swp51)  4      65199        54        55        0    0    0 00:02:29            1        3
+
+Total number of neighbors 1
+...
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:mgmt:~$ net show bgp summary
+show bgp ipv4 unicast summary
+=============================
+BGP router identifier 10.10.10.101, local AS number 65199 vrf-id 0
+BGP table version 3
+RIB entries 5, using 1000 bytes of memory
+Peers 1, using 23 KiB of memory
+
+Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt
+leaf01(swp1)    4      65101        73        73        0    0    0 00:03:25            2        3
+
+Total number of neighbors 1
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To verify that you can see the prefixes of the other neighbor in the routing table, run the `net show route bgp` command or the vtysh `show ip route` command.
+
+{{< tabs "608 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:mgmt:~$ net show route bgp
+RIB entry for bgp
+=================
+Codes: K - kernel route, C - connected, S - static, R - RIP,
+       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, D - SHARP,
+       F - PBR, f - OpenFabric,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+B>* 10.10.10.101/32 [20/0] via fe80::4638:39ff:fe00:1, swp51, weight 1, 00:00:51
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:mgmt:~$ net show route bgp
+RIB entry for bgp
+=================
+Codes: K - kernel route, C - connected, S - static, R - RIP,
+       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, D - SHARP,
+       F - PBR, f - OpenFabric,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+B>* 10.1.10.0/24 [20/0] via fe80::4638:39ff:fe00:2, swp1, weight 1, 00:00:11
+B>* 10.10.10.1/32 [20/0] via fe80::4638:39ff:fe00:2, swp1, weight 1, 00:00:11
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## Related Information
+
+- To configure optional BGP settings, see {{<link url="Optional-BGP-Configuration" >}}.
+- To view and test a full BGP configuration example, see {{<link url="Configuration-Example" >}}.

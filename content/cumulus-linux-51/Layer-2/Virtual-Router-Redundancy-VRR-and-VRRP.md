@@ -6,11 +6,11 @@ toc: 3
 ---
 Cumulus Linux provides the option of using [VRR](## "Virtual Router Redundancy") or [VRRP](## "Virtual Router Redundancy Protocol").
 
-- **VRR** enables hosts to communicate with any redundant router without reconfiguration, by running dynamic router protocols or router redundancy protocols. Redundant routers respond to [ARP](## "Address Resolution Protocol") requests from hosts. Routers respond in an identical manner, but if one fails, the other redundant routers continue to respond. You use VRR with [MLAG](## "Multi-chassis Link Aggregation").
+- **VRR** enables hosts to communicate with any redundant switch without reconfiguration by running dynamic router protocols or router redundancy protocols. Redundant switches respond to [ARP](## "Address Resolution Protocol") requests from hosts. The switches respond in an identical manner, but if one fails, the other redundant switches continue to respond. You use VRR with [MLAG](## "Multi-chassis Link Aggregation").
 
    Use VRR when you connect multiple devices to a single logical connection, such as an MLAG bond. A device that connects to an MLAG bond believes there is a single device on the other end of the bond and only forwards one copy of the transit frames. If the destination of this frame is the virtual MAC address and you are running VRRP, the frame can go to the link connected to the VRRP standby device, which does not forward the frame to the right destination. With the virtual MAC active on both MLAG devices, either MLAG device handles the frame it receives.
 
-- **VRRP** allows two or more network devices in an active or standby configuration to share a single virtual default gateway. The physical VRRP router that forwards packets at any given time is the master. If this VRRP router fails, another VRRP standby router automatically takes over as master. You use VRRP without MLAG.
+- **VRRP** allows two or more network devices in an active or standby configuration to share a single virtual default gateway. The physical VRRP switch that forwards packets at any given time is the master. If this VRRP switch fails, another VRRP standby switch automatically takes over as master. You use VRRP without MLAG.
 
    Use VRRP when you have multiple distinct devices that connect to a layer 2 segment through multiple logical connections (not through a single bond). VRRP elects a single active forwarder that *owns* the virtual MAC address while it is active. This prevents the forwarding database of the layer 2 domain from continuously updating in response to MAC flaps because the switch receives frames sourced from the virtual MAC address from discrete logical connections.
 
@@ -24,19 +24,19 @@ The diagram below illustrates a basic VRR-enabled network configuration.
 
 {{< img src = "/images/cumulus-linux/mlag-dual-connect.png" >}}
 
-The network includes three hosts and two routers running Cumulus Linux that use {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="multi-chassis link aggregation">}} (MLAG).
-- As the bridges in each of the redundant routers connect, they each receive and reply to ARP requests for the virtual router IP address.
-- Each ARP request by a host receives replies from each switch; these replies are identical, and the host receiving the replies either ignores replies after the first, or accepts them and overwrites the previous identical reply.
+The network includes three servers and two Cumulus Linux switches. The switches use {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="multi-chassis link aggregation">}} (MLAG).
+- As the bridges in each of the redundant switches connect, they each receive and reply to ARP requests for the virtual router IP address.
+- Each ARP request by a server receives replies from each switch; these replies are identical, and the server receiving the replies either ignores replies after the first, or accepts them and overwrites the previous identical reply.
 - VRR reserves a range of MAC addresses to prevent MAC address conflicts with other interfaces in the same bridged network. The reserved range is `00:00:5E:00:01:00` to `00:00:5E:00:01:ff`.
 
    Use MAC addresses from the reserved range when configuring VRR. The reserved MAC address range is the same for VRR and VRRP.
 
-### Configure the Routers
+### Configure the Switches
 
-The routers implement the layer 2 network interconnecting the hosts and the redundant routers. To configure the routers, add a bridge with the following interfaces to each router:
+The switches implement the layer 2 network interconnecting the servers and the redundant switches. To configure the switches, add a bridge with the following interfaces to each switch:
 
-- One bond interface or switch port interface to each host. For networks using MLAG, use bond interfaces. Otherwise, use switch port interfaces.
-- One or more interfaces to each peer router. To accommodate higher bandwidth between the routers and to offer link redundancy, multiple inter-peer links are typically bonded interfaces. The VLAN interface must have a unique IP address for both the physical and virtual interface; the switch uses the unique address when it initiates an ARP request.
+- One bond interface or switch port interface to each server. For networks using MLAG, use bond interfaces. Otherwise, use switch port interfaces.
+- One or more interfaces to each peer switch. To accommodate higher bandwidth between the switches and to offer link redundancy, multiple inter-peer links are typically bonded interfaces. The VLAN interface must have a unique IP address for both the physical and virtual interface; the switch uses the unique address when it initiates an ARP request.
 
 {{%notice note%}}
 Cumulus Linux only supports VRR on an [SVI](## "Switched Virtual Interface"). You cannot configure VRR on a physical interface or virtual subinterface.
@@ -86,11 +86,45 @@ cumulus@switch:~$ sudo ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-### Configure the Hosts
+### Configure the Servers
 
-Each host must have two network interfaces. The routers configure the interfaces as bonds running [LACP](## "Link Aggregation Control Protocol"); the hosts must also configure the two interfaces using teaming, port aggregation, port group, or EtherChannel running LACP. Configure the hosts either statically or with DHCP, with a gateway address that is the IP address of the virtual router; this default gateway address never changes.
+Each server must have two network interfaces. The switches configure the interfaces as bonds running [LACP](## "Link Aggregation Control Protocol"); the servers must also configure the two interfaces using teaming, port aggregation, port group, or EtherChannel running LACP. Configure the servers either statically or with DHCP, with a gateway address that is the IP address of the virtual router; this default gateway address never changes.
 
-Configure the links between the hosts and the routers in *active-active* mode for [FHRP](## "First Hop Redundancy Protocol").
+Configure the links between the servers and the switches in *active-active* mode for [FHRP](## "First Hop Redundancy Protocol").
+
+### Troubleshooting
+
+To verify the configuration on the switch, run the `net show interface` command:
+
+```
+cumulus@leaf01:mgmt:~$ net show interface
+State  Name           Spd  MTU    Mode          LLDP                     Summary
+-----  -------------  ---  -----  ------------  -----------------------  -----------------------
+UP     lo             N/A  65536  Loopback                               IP: 127.0.0.1/8
+       lo                                                                IP: 10.10.10.1/32
+       lo                                                                IP: ::1/128
+UP     eth0           1G   1500   Mgmt          oob-mgmt-switch (swp10)  Master: mgmt(UP)
+       eth0                                                              IP: 192.168.200.11/24
+UP     swp1           1G   9216   BondMember                             Master: bond1(UP)
+UP     swp2           1G   9216   BondMember                             Master: bond2(UP)
+UP     swp49          1G   9216   BondMember                             Master: peerlink(UP)
+UP     swp50          1G   9216   BondMember                             Master: peerlink(UP)
+UP     swp51          1G   9216   Default
+UP     bond1          1G   9216   802.3ad                                Master: br_default(UP)
+       bond1                                                             Bond Members: swp1(UP)
+UP     bond2          1G   9216   802.3ad                                Master: br_default(UP)
+       bond2                                                             Bond Members: swp2(UP)
+UP     br_default     N/A  9216   Bridge/L2
+UP     mgmt           N/A  65536  VRF                                    IP: 127.0.0.1/8
+       mgmt                                                              IP: ::1/128
+UP     peerlink       2G   9216   802.3ad                                Master: br_default(UP)
+       peerlink                                                          Bond Members: swp49(UP)
+       peerlink                                                          Bond Members: swp50(UP)
+UP     peerlink.4094  2G   9216   Default
+UP     vlan10         N/A  9216   Interface/L3                           IP: 10.1.10.2/24
+UP     vlan10-v0      N/A  9216   Interface/L3                           IP: 10.1.10.1/24
+...
+```
 
 ### Configuration Example
 

@@ -72,14 +72,13 @@ After you add a node, you can edit it as needed. Click the node to select it and
 
 {{<img src="/images/guides/nvidia-air/CustomTopology_HardwareModel.png" width="800px">}}
 
-- **Ports**: Add, rename and edit port location and information for the diagram.
+- **Ports**: Add, rename, and edit port location and information for the diagram.
 
 {{<img src="/images/guides/nvidia-air/CustomTopology_Ports.png" width="800px">}}
 
 Press the breakout button to simulate breaking out a port into a group of 4.
 
 {{<img src="/images/guides/nvidia-air/CustomTopology_PortsBreakout.png" width="800px">}}
-
 
 ### Connect Nodes
 
@@ -89,13 +88,13 @@ To connect two nodes together, click a port on one node and drag it to the port 
 
 ### ZTP Script
 
-You can include a custom ZTP script as part of the network design. When you create the simulation, the ZTP script gets copied, exactly as pasted into the text field, onto the oob-mgmt-server. Any network node making a ZTP request on the OOB management network has access to this ZTP script through a DHCP server and web server running on the oob-mgmt-server.
+You can include a custom ZTP script as part of the network design. When you create the simulation, the ZTP script is copied, exactly as pasted into the text field, onto the oob-mgmt-server. Any network node making a ZTP request on the OOB management network has access to this ZTP script through a DHCP server and web server running on the oob-mgmt-server.
 
 To upload a ZTP script, click the ZTP script button in the top right of the canvas:
 
 {{<img src="/images/guides/nvidia-air/ZTP.png" width="400px">}}
 
-This opens up a popup window where you paste the contents of the ZTP script. The popup window is already populated with a default script. The default script is a guide to implement common ZTP features on Cumulus Linux, including:
+A popup window opens where you can paste the contents of the ZTP script. The popup window is already populated with a default script. The default script is a guide to implement common ZTP features on Cumulus Linux, including:
 
 - Disabling password expiry
 - Making the `cumulus` user passwordless for `sudo`
@@ -109,7 +108,7 @@ After you apply the ZTP script, the ZTP button changes color from grey to green,
 
 ## Build a Custom Topology
 
-To build a custom topology, choose one of these two options:
+To build a custom topology, you can either:
 
 - Start a simulation directly from the topology builder
 - Export the topology files and upload them directly into Air
@@ -118,50 +117,50 @@ To build a custom topology, choose one of these two options:
 
 ### Start a Simulation Directly
 
-To start a simulation directly from the topology builder, click the `Start Simulation` button. This automatically launches the simulation and redirects to the Air landing page. The topology and the diagram are automatically linked to your simulation, so you do not have to do anything else.
+To start a simulation directly from the topology builder, click the `Start Simulation` button. This automatically launches the simulation and redirects to the Air landing page. The topology and the diagram automatically link to your simulation.
 
 ### Export a Custom Topology
 
-To export a custom topology, first download the requisite files. Click `Export` in the top right button.
+To export a custom topology, download the required files. Click `Export` in the top right button.
 
 This exports two files for download:
 
-- `topology.dot` - Network definition in Graphviz format
-- `topology.svg` - Network diagram in Scalable Vector Graphics format
+- `topology.dot` is the network definition in Graphviz format
+- `topology.svg` is the network diagram in Scalable Vector Graphics format
 
-You can upload both files file into Air via the `Create Simulation` workflow. First, click the `Upload Topology` card:
+You can upload both files file into Air with the `Create Simulation` workflow. First, click the `Upload Topology` card:
 
 {{<img src="/images/guides/nvidia-air/UploadTopology1.png" width="400px">}}
 
-Then upload the `topology.dot` and `topology.svg` files to the proper locations (drag the `topology.dot` file onto the **Drop a topology file here** card and the `topology.svg` file onto the **Drop a diagram here** card):
+Then upload the `topology.dot` and `topology.svg` files to the correct locations (drag the `topology.dot` file onto the **Drop a topology file here** card and the `topology.svg` file onto the **Drop a diagram here** card):
 
 {{<img src="/images/guides/nvidia-air/UploadTopology2.png" width="400px">}}
 
 ## NetQ Integration
 
-You can include NetQ with any simulation. To do this, make sure the NetQ toggle switch is enabled, which is the default behavior.
+You can include NetQ with any simulation. Make sure the NetQ toggle switch is enabled, which is the default behavior.
 
 {{<img src="/images/guides/nvidia-air/NetQSlider.png" width="240px">}}
 
-To disable NetQ, simply click the toggle switch to disable it.
+To disable NetQ, click the toggle switch to disable it.
 
 ## Create a Custom Topology from the Production Network
 
-A common request for the Air custom topology is to create a simulation based on an existing production deployment. The steps below outline how you can accomplish this.
+This section describes how to create a simulation based on an existing production deployment.
 
 <!-- vale off -->
 ### Gather cl-support from the Production Network
 <!-- vale on -->
 
-You can gather the `cl-support` script output by using {{<exlink url="https://gitlab.com/cumulus-consulting/features/cl_support_ansible" text="these playbooks">}}.
+Use {{<exlink url="https://gitlab.com/cumulus-consulting/features/cl_support_ansible" text="these playbooks">}} to gather the `cl-support` script output.
 
-The `ReadMe` in that repository provides instructions how to run the playbook to gather the `cl-support` output.
+The `ReadMe` in the repository provides instructions on how to run the playbook to gather the `cl-support` output.
 
 <!-- vale off -->
 ### Create topology.dot from the Production Network
 <!-- vale on -->
 
-After you get the `cl-support` output, you can create a `topology.dot` file using {{<exlink url="https://gitlab.com/cumulus-consulting/features/cl_support_lldp_parser" text="this script">}}.
+After you obtain the `cl-support` output, you can create a `topology.dot` file with {{<exlink url="https://gitlab.com/cumulus-consulting/features/cl_support_lldp_parser" text="this script">}}.
 
 You can run the script using `python3`. Here is some sample output:
 
@@ -217,11 +216,11 @@ graph dc1 {
 }
 ```
 <!-- vale off -->
-### Restoring configuration files
+### Restore Configuration Files
 <!-- vale on -->
 
-After you create the simulation, the goal will be to restore the configuration files.
+After you create the simulation, you can restore the configuration files.
 
-This {{<exlink url="https://gitlab.com/cumulus-consulting/features/cl_support_file_extractor" text="python script">}} pulls out all the relevant files and collates them into folders so they can be used easily to restore configuration from inside the simulation.
+This {{<exlink url="https://gitlab.com/cumulus-consulting/features/cl_support_file_extractor" text="python script">}} pulls out all the relevant files and collates them into folders so you can use them to restore configuration from inside the simulation.
 
-It can be combined with the following {{<exlink url="https://gitlab.com/cumulus-consulting/features/simple-iac" text="infrastructure as code">}} Ansible playbook to restore configurations appropriately.
+You can also use the {{<exlink url="https://gitlab.com/cumulus-consulting/features/simple-iac" text="infrastructure as code">}} Ansible playbook to restore configurations appropriately.

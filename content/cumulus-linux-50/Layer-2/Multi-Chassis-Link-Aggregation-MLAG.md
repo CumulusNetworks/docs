@@ -1390,8 +1390,7 @@ When an interface goes into a `protodown` state, it results in a local OPER DOWN
 To show an interface in `protodown` state, run the Linux `ip link show` command or the `net show bridge link` command. For example:
 
 ```
-cumulus@leaf01:~$ sudo vtysh
-leaf01# ip link show
+cumulus@leaf01:~$ ip link show
 3: swp1 state DOWN: <NO-CARRIER,BROADCAST,MULTICAST,MASTER,UP> mtu 9216 master pfifo_fast master host-bond1 state DOWN mode DEFAULT qlen 500 protodown on
     link/ether 44:38:39:00:69:84 brd ff:ff:ff:ff:ff:ff
 ```

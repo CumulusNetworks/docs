@@ -26,7 +26,6 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Adaptive routing with RoCE">}}
 - LLDP enhancements include support for custom TLV LLDP messages and dynamic LLDP TLV advertisements
 - GTP hashing support
-- Layer 3 VXLAN interfaces
 - VXLAN port isolation on Spectrum-3 switches
 - Simplified EVPN configuration
 - {{<link url="Smart-System-Manager" text="Bonds support warmboot">}}

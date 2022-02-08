@@ -55,6 +55,8 @@ MLAG has these requirements:
 
 To configure MLAG, you need to create a bond that uses LACP on the dual-connected devices and configure the interfaces (including bonds, VLANs, bridges, and peer links) on each peer switch.
 
+### Configure MLAG Interfaces
+
 Follow these steps on each peer switch in the MLAG pair:
 
 1. On the dual-connected device, such as a host or server that sends traffic to and from the switch, create a bond that uses LACP. The method you use varies with the type of device you are configuring.
@@ -342,6 +344,29 @@ MLAG synchronizes the dynamic state between the two peer switches but it does no
 - Bridge configuration, such as spanning tree parameters or bridge properties.
 - Static address entries, such as static FDB entries and static IGMP entries.
 - QoS configuration, such as ACL entries.
+
+### Verify Configuration
+
+To verify MLAG configuration, run the `net show mlag` command or the `clagctl` command:
+
+```
+cumulus@leaf01:mgmt:~$ net show clag
+The peer is alive
+     Our Priority, ID, and Role: 32768 44:38:39:00:00:11 primary
+    Peer Priority, ID, and Role: 32768 44:38:39:00:00:12 secondary
+          Peer Interface and IP: peerlink.4094 fe80::4638:39ff:fe00:12 (linklocal)
+                      Backup IP: 10.10.10.2 (inactive)
+                     System MAC: 44:38:39:be:ef:aa
+
+CLAG Interfaces
+Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
+----------------   ----------------   -------   --------------------   -----------------
+           bond1   bond1              1         -                      -
+           bond2   bond2              2         -                      -
+           bond3   bond3              3         -                      -
+```
+
+See additional verification commands in {{<link url="#troubleshooting" text="Troubleshooting">}} below.
 
 ## Optional Configuration
 
@@ -676,6 +701,193 @@ For OSPF, use a configuration like this:
 cumulus@leaf01:~$ nv set interface peerlink.4094 router ospf area 0.0.0.1
 cumulus@leaf01:~$ nv config apply
 ```
+
+## Troubleshooting
+
+Use the following troubleshooting tips to check MLAG configuration.
+
+### Check MLAG Status
+
+To check the status of your MLAG configuration:
+
+```
+cumulus@leaf01:~$ clagctl
+The peer is alive
+     Our Priority, ID, and Role: 32768 44:38:39:00:00:11 primary
+    Peer Priority, ID, and Role: 32768 44:38:39:00:00:12 secondary
+          Peer Interface and IP: peerlink.4094 fe80::4638:39ff:fe00:12 (linklocal)
+                      Backup IP: 10.10.10.2 (inactive)
+                     System MAC: 44:38:39:be:ef:aa
+
+CLAG Interfaces
+Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
+----------------   ----------------   -------   --------------------   -----------------
+           bond1   bond1              1         -                      -
+           bond2   bond2              2         -                      -
+           bond3   bond3              3         -                      -
+```
+
+### Show All MLAG Settings
+
+To see all MLAG settings, run the `clagctl params` command:
+
+```
+cumulus@leaf01:~$ clagctl params
+clagVersion = 1.4.0
+clagDataVersion = 1.4.0
+clagCmdVersion = 1.1.0
+peerIp = linklocal
+peerIf = peerlink.4094
+sysMac = 44:38:39:be:ef:aa
+lacpPoll = 2
+currLacpPoll = 2
+peerConnect = 1
+cmdConnect = 1
+peerLinkPoll = 1
+switchdReadyTimeout = 120
+reloadTimer = 300
+periodicRun = 4
+priority = 32768
+quiet = False
+debug = 0x0
+verbose = False
+log = syslog
+vm = True
+peerPort = 5342
+peerTimeout = 20
+initDelay = 100
+sendTimeout = 30
+...
+```
+
+The NVUE `nv show mlag` command shows the current MLAG configuration settings.
+
+### View the MLAG Log File
+
+By default, when running, the `clagd` service logs status messages to the `/var/log/clagd.log` file and to `syslog`:
+
+```
+cumulus@spine01:~$ sudo tail /var/log/clagd.log
+2016-10-03T20:31:50.471400+00:00 spine01 clagd[1235]: Initial config loaded
+2016-10-03T20:31:52.479769+00:00 spine01 clagd[1235]: The peer switch is active.
+2016-10-03T20:31:52.496490+00:00 spine01 clagd[1235]: Initial data sync to peer done.
+2016-10-03T20:31:52.540186+00:00 spine01 clagd[1235]: Role is now primary; elected
+2016-10-03T20:31:54.250572+00:00 spine01 clagd[1235]: HealthCheck: role via backup is primary
+2016-10-03T20:31:54.252642+00:00 spine01 clagd[1235]: HealthCheck: backup active
+2016-10-03T20:31:54.537967+00:00 spine01 clagd[1235]: Initial data sync from peer done.
+2016-10-03T20:31:54.538435+00:00 spine01 clagd[1235]: Initial handshake done.
+2016-10-03T22:47:35.255317+00:00 spine01 clagd[1235]: leaf01-02 is now dual connected.
+```
+
+### Monitor the clagd Service
+
+Due to the critical nature of the `clagd` service, `systemd` continuously monitors its status by receiving notify messages every 30 seconds. If the `clagd` service terminates or becomes unresponsive for any reason and `systemd` receives no messages after 60 seconds, `systemd` restarts the `clagd` service. `systemd` logs these failures in the `/var/log/syslog` file and, on the first failure, also generates a `cl-support`file.
+
+Monitoring occurs automatically as long as:
+- You enable the `clagd` service.
+- You configure the peer IP address (`clagd-peer-ip`), the MLAG system MAC address (`clagd-sys-mac`), and the backup IP address (`clagd-backup-ip`) for an interface.
+- The `clagd` service is running. If you stop `clagd` with the `systemctl stop clagd.service` command, `clagd` monitoring also stops.
+
+You can check if `clagd` is running with the `cl-service-summary` or the `systemctl status` command:
+
+```
+cumulus@leaf01:~$ cl-service-summary
+Service cron               enabled    active
+Service ssh                enabled    active
+Service syslog             enabled    active
+Service asic-monitor       enabled    inactive
+Service clagd              enabled    active
+...
+```
+
+```
+cumulus@leaf01:~$ systemctl status clagd.service
+ ● clagd.service - Cumulus Linux Multi-Chassis LACP Bonding Daemon
+    Loaded: loaded (/lib/systemd/system/clagd.service; enabled)
+    Active: active (running) since Fri 2021-06-11 16:17:19 UTC; 12min ago
+        Docs: man:clagd(8)
+    Main PID: 27078 (clagd)
+    CGroup: /system.slice/clagd.service
+            └─27078 /usr/bin/python3 /usr/sbin/clagd --daemon linklocal peerlink.4094 44:38:39:BE:EF:AA --priority 32768
+```
+
+### Large Packet Drops on the Peer Link Interface
+
+You can expect a large volume of packet drops across one of the peer link interfaces. These drops serve to prevent looping of BUM (broadcast, unknown unicast, multicast) packets. When the switch receives a packet across the peer link, if the destination lookup results in an egress interface that is a dual-connected bond, the switch does not forward the packet (to prevent loops). The peer link records a dropped packet.
+
+To check packet drops across peer link interfaces, run the `ethtool -S <interface>` command:
+
+```
+cumulus@leaf01:mgmt:~$ ethtool -S swp49
+NIC statistics:
+     rx_queue_0_packets: 136
+     rx_queue_0_bytes: 36318
+     rx_queue_0_drops: 0
+     rx_queue_0_xdp_packets: 0
+     rx_queue_0_xdp_tx: 0
+     rx_queue_0_xdp_redirects: 0
+     rx_queue_0_xdp_drops: 0
+     rx_queue_0_kicks: 1
+     tx_queue_0_packets: 200
+     tx_queue_0_bytes: 44244
+     tx_queue_0_xdp_tx: 0
+     tx_queue_0_xdp_tx_drops: 0
+     tx_queue_0_kicks: 195
+```
+
+You can also run the `net show counters` command. The number of dropped packets shows in the `RX_DRP` column.
+
+```
+cumulus@leaf01:~$ net show counters
+
+Kernel Interface table
+Iface            MTU    RX_OK    RX_ERR    RX_DRP    RX_OVR    TX_OK    TX_ERR    TX_DRP    TX_OVR  Flg
+-------------  -----  -------  --------  --------  --------  -------  --------  --------  --------  -----
+bond1           9216        0         0         0         0      542         0         0         0  BMmU
+bond2           9216        0         0         0         0      542         0         0         0  BMmU
+bridge          9216        0         0         0         0       17         0         0         0  BMRU
+eth0            1500     5497         0         0         0      933         0         0         0  BMRU
+lo             65536     1328         0         0         0     1328         0         0         0  LRU
+mgmt           65536      790         0         0         0        0         0        33         0  OmRU
+peerlink        9216    23626         0       520         0    23665         0         0         0  BMmRU
+peerlink.4094   9216     8013         0         0         0     8017         0         0         0  BMRU
+swp1            9216        5         0         0         0      553         0         0         0  BMsRU
+swp2            9216        3         0         0         0      552         0         0         0  BMsRU
+swp49           9216    11822         0         0         0    11852         0         0         0  BMsRU
+swp50           9216    11804         0         0         0    11841         0         0         0  BMsRU
+swp51           9216        0         0         0         0      292         0         0         0  BMRU
+```
+
+### Peer Link Interfaces and the protodown State
+
+In addition to the standard UP and DOWN administrative states, an interface that is a member of an MLAG bond can also be in a `protodown` state. When MLAG detects a problem that can result in connectivity issues, it puts that interface into `protodown` state. Such connectivity issues include:
+
+- When the peer link goes down but the peer switch is up (the backup link is active).
+- When the bond has an MLAG ID but the `clagd` service is not running (you either stop the service or it crashes).
+- When an MLAG-enabled node boots or reboots, the switch puts the MLAG bonds in a `protodown` state until the node establishes a connection to its peer switch, or after five minutes.
+
+When an interface goes into a `protodown` state, it results in a local OPER DOWN (carrier down) on the interface.
+
+To show an interface in `protodown` state, run the Linux `ip link show` command or the `net show bridge link` command. For example:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+leaf01# ip link show
+3: swp1 state DOWN: <NO-CARRIER,BROADCAST,MULTICAST,MASTER,UP> mtu 9216 master pfifo_fast master host-bond1 state DOWN mode DEFAULT qlen 500 protodown on
+    link/ether 44:38:39:00:69:84 brd ff:ff:ff:ff:ff:ff
+```
+
+### LACP Partner MAC Address Duplicate or Mismatch
+
+Cumulus Linux puts interfaces in a protodown state under the following conditions:
+
+- When there is an LACP partner MAC address mismatch. For example if a bond comes up with a `clag-id` and the peer is using a bond with the same `clag-id` but a different LACP partner MAC address. The `clagctl` command output shows the protodown reason as a `partner-mac-mismatch`.
+
+- When there is a duplicate LACP partner MAC address. For example, when there are multiple LACP bonds between the same two LACP endpoints. The `clagctl` command output shows the protodown reason as a `duplicate-partner-mac`.
+
+  To prevent a bond from coming up when an MLAG bond with an LACP partner MAC address already in use comes up, use the `--clag-args --allowPartnerMacDup False` option. This option puts the slaves of that bond interface in a protodown state and the `clagctl` output shows the protodown reason as a `duplicate-partner-mac`.
+
+After you make the necessary cable or configuration changes to avoid the protodown state and you want MLAG to reevaluate the LACP partners, use the `clagctl clearconflictstate` command to remove `duplicate-partner-mac` or `partner-mac-mismatch` from the protodown bonds, allowing them to come back up.
 
 ## Configuration Example
 
@@ -1181,197 +1393,10 @@ iface swp2
 
 This simulation starts with the example MLAG configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 
-To validate the configuration, run the commands listed in the troubleshooting section below.
+To validate the configuration, run the commands listed in the troubleshooting section above.
 
 {{< /tab >}}
 {{< /tabs >}}
-
-## Troubleshooting
-
-Use the following troubleshooting tips to check MLAG configuration.
-
-### Check MLAG Status
-
-To check the status of your MLAG configuration:
-
-```
-cumulus@leaf01:~$ clagctl
-The peer is alive
-     Our Priority, ID, and Role: 32768 44:38:39:00:00:11 primary
-    Peer Priority, ID, and Role: 32768 44:38:39:00:00:12 secondary
-          Peer Interface and IP: peerlink.4094 fe80::4638:39ff:fe00:12 (linklocal)
-                      Backup IP: 10.10.10.2 (inactive)
-                     System MAC: 44:38:39:be:ef:aa
-
-CLAG Interfaces
-Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
-----------------   ----------------   -------   --------------------   -----------------
-           bond1   bond1              1         -                      -
-           bond2   bond2              2         -                      -
-           bond3   bond3              3         -                      -
-```
-
-### Show All MLAG Settings
-
-To see all MLAG settings, run the `clagctl params` command:
-
-```
-cumulus@leaf01:~$ clagctl params
-clagVersion = 1.4.0
-clagDataVersion = 1.4.0
-clagCmdVersion = 1.1.0
-peerIp = linklocal
-peerIf = peerlink.4094
-sysMac = 44:38:39:be:ef:aa
-lacpPoll = 2
-currLacpPoll = 2
-peerConnect = 1
-cmdConnect = 1
-peerLinkPoll = 1
-switchdReadyTimeout = 120
-reloadTimer = 300
-periodicRun = 4
-priority = 32768
-quiet = False
-debug = 0x0
-verbose = False
-log = syslog
-vm = True
-peerPort = 5342
-peerTimeout = 20
-initDelay = 100
-sendTimeout = 30
-...
-```
-
-The NVUE `nv show mlag` command shows the current MLAG configuration settings.
-
-### View the MLAG Log File
-
-By default, when running, the `clagd` service logs status messages to the `/var/log/clagd.log` file and to `syslog`:
-
-```
-cumulus@spine01:~$ sudo tail /var/log/clagd.log
-2016-10-03T20:31:50.471400+00:00 spine01 clagd[1235]: Initial config loaded
-2016-10-03T20:31:52.479769+00:00 spine01 clagd[1235]: The peer switch is active.
-2016-10-03T20:31:52.496490+00:00 spine01 clagd[1235]: Initial data sync to peer done.
-2016-10-03T20:31:52.540186+00:00 spine01 clagd[1235]: Role is now primary; elected
-2016-10-03T20:31:54.250572+00:00 spine01 clagd[1235]: HealthCheck: role via backup is primary
-2016-10-03T20:31:54.252642+00:00 spine01 clagd[1235]: HealthCheck: backup active
-2016-10-03T20:31:54.537967+00:00 spine01 clagd[1235]: Initial data sync from peer done.
-2016-10-03T20:31:54.538435+00:00 spine01 clagd[1235]: Initial handshake done.
-2016-10-03T22:47:35.255317+00:00 spine01 clagd[1235]: leaf01-02 is now dual connected.
-```
-
-### Monitor the clagd Service
-
-Due to the critical nature of the `clagd` service, `systemd` continuously monitors its status by receiving notify messages every 30 seconds. If the `clagd` service terminates or becomes unresponsive for any reason and `systemd` receives no messages after 60 seconds, `systemd` restarts the `clagd` service. `systemd` logs these failures in the `/var/log/syslog` file and, on the first failure, also generates a `cl-support`file.
-
-Monitoring occurs automatically as long as:
-- You enable the `clagd` service.
-- You configure the peer IP address (`clagd-peer-ip`), the MLAG system MAC address (`clagd-sys-mac`), and the backup IP address (`clagd-backup-ip`) for an interface.
-- The `clagd` service is running. If you stop `clagd` with the `systemctl stop clagd.service` command, `clagd` monitoring also stops.
-
-You can check if `clagd` is running with the `cl-service-summary` or the `systemctl status` command:
-
-```
-cumulus@leaf01:~$ cl-service-summary
-Service cron               enabled    active
-Service ssh                enabled    active
-Service syslog             enabled    active
-Service asic-monitor       enabled    inactive
-Service clagd              enabled    active
-...
-```
-
-```
-cumulus@leaf01:~$ systemctl status clagd.service
- ● clagd.service - Cumulus Linux Multi-Chassis LACP Bonding Daemon
-    Loaded: loaded (/lib/systemd/system/clagd.service; enabled)
-    Active: active (running) since Fri 2021-06-11 16:17:19 UTC; 12min ago
-        Docs: man:clagd(8)
-    Main PID: 27078 (clagd)
-    CGroup: /system.slice/clagd.service
-            └─27078 /usr/bin/python3 /usr/sbin/clagd --daemon linklocal peerlink.4094 44:38:39:BE:EF:AA --priority 32768
-```
-
-### Large Packet Drops on the Peer Link Interface
-
-You can expect a large volume of packet drops across one of the peer link interfaces. These drops serve to prevent looping of BUM (broadcast, unknown unicast, multicast) packets. When the switch receives a packet across the peer link, if the destination lookup results in an egress interface that is a dual-connected bond, the switch does not forward the packet (to prevent loops). The peer link records a dropped packet.
-
-To check packet drops across peer link interfaces, run the `ethtool -S <interface>` command:
-
-```
-cumulus@leaf01:mgmt:~$ ethtool -S swp49
-NIC statistics:
-     rx_queue_0_packets: 136
-     rx_queue_0_bytes: 36318
-     rx_queue_0_drops: 0
-     rx_queue_0_xdp_packets: 0
-     rx_queue_0_xdp_tx: 0
-     rx_queue_0_xdp_redirects: 0
-     rx_queue_0_xdp_drops: 0
-     rx_queue_0_kicks: 1
-     tx_queue_0_packets: 200
-     tx_queue_0_bytes: 44244
-     tx_queue_0_xdp_tx: 0
-     tx_queue_0_xdp_tx_drops: 0
-     tx_queue_0_kicks: 195
-```
-
-You can also run the `net show counters` command. The number of dropped packets shows in the `RX_DRP` column.
-
-```
-cumulus@leaf01:~$ net show counters
-
-Kernel Interface table
-Iface            MTU    RX_OK    RX_ERR    RX_DRP    RX_OVR    TX_OK    TX_ERR    TX_DRP    TX_OVR  Flg
--------------  -----  -------  --------  --------  --------  -------  --------  --------  --------  -----
-bond1           9216        0         0         0         0      542         0         0         0  BMmU
-bond2           9216        0         0         0         0      542         0         0         0  BMmU
-bridge          9216        0         0         0         0       17         0         0         0  BMRU
-eth0            1500     5497         0         0         0      933         0         0         0  BMRU
-lo             65536     1328         0         0         0     1328         0         0         0  LRU
-mgmt           65536      790         0         0         0        0         0        33         0  OmRU
-peerlink        9216    23626         0       520         0    23665         0         0         0  BMmRU
-peerlink.4094   9216     8013         0         0         0     8017         0         0         0  BMRU
-swp1            9216        5         0         0         0      553         0         0         0  BMsRU
-swp2            9216        3         0         0         0      552         0         0         0  BMsRU
-swp49           9216    11822         0         0         0    11852         0         0         0  BMsRU
-swp50           9216    11804         0         0         0    11841         0         0         0  BMsRU
-swp51           9216        0         0         0         0      292         0         0         0  BMRU
-```
-
-### Peer Link Interfaces and the protodown State
-
-In addition to the standard UP and DOWN administrative states, an interface that is a member of an MLAG bond can also be in a `protodown` state. When MLAG detects a problem that can result in connectivity issues, it puts that interface into `protodown` state. Such connectivity issues include:
-
-- When the peer link goes down but the peer switch is up (the backup link is active).
-- When the bond has an MLAG ID but the `clagd` service is not running (you either stop the service or it crashes).
-- When an MLAG-enabled node boots or reboots, the switch puts the MLAG bonds in a `protodown` state until the node establishes a connection to its peer switch, or after five minutes.
-
-When an interface goes into a `protodown` state, it results in a local OPER DOWN (carrier down) on the interface.
-
-To show an interface in `protodown` state, run the Linux `ip link show` command or the `net show bridge link` command. For example:
-
-```
-cumulus@leaf01:~$ sudo vtysh
-leaf01# ip link show
-3: swp1 state DOWN: <NO-CARRIER,BROADCAST,MULTICAST,MASTER,UP> mtu 9216 master pfifo_fast master host-bond1 state DOWN mode DEFAULT qlen 500 protodown on
-    link/ether 44:38:39:00:69:84 brd ff:ff:ff:ff:ff:ff
-```
-
-### LACP Partner MAC Address Duplicate or Mismatch
-
-Cumulus Linux puts interfaces in a protodown state under the following conditions:
-
-- When there is an LACP partner MAC address mismatch. For example if a bond comes up with a `clag-id` and the peer is using a bond with the same `clag-id` but a different LACP partner MAC address. The `clagctl` command output shows the protodown reason as a `partner-mac-mismatch`.
-
-- When there is a duplicate LACP partner MAC address. For example, when there are multiple LACP bonds between the same two LACP endpoints. The `clagctl` command output shows the protodown reason as a `duplicate-partner-mac`.
-
-  To prevent a bond from coming up when an MLAG bond with an LACP partner MAC address already in use comes up, use the `--clag-args --allowPartnerMacDup False` option. This option puts the slaves of that bond interface in a protodown state and the `clagctl` output shows the protodown reason as a `duplicate-partner-mac`.
-
-After you make the necessary cable or configuration changes to avoid the protodown state and you want MLAG to reevaluate the LACP partners, use the `clagctl clearconflictstate` command to remove `duplicate-partner-mac` or `partner-mac-mismatch` from the protodown bonds, allowing them to come back up.
 
 ## Related Information
 

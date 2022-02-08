@@ -760,7 +760,29 @@ sendTimeout = 30
 ...
 ```
 
-The NVUE `nv show mlag` command shows the current MLAG configuration settings.
+The NVUE `nv show mlag` command shows the current MLAG configuration settings:
+
+```
+cumulus@leaf01:mgmt:~$ nv show mlag
+                operational              applied            description
+--------------  -----------------------  -----------------  ------------------------------------------------------
+enable                                   on                 Turn the feature 'on' or 'off'.  The default is 'off'.
+debug                                    off                Enable MLAG debugging
+init-delay                               100                The delay, in seconds, before bonds are brought up.
+mac-address     44:38:39:be:ef:aa        44:38:39:BE:EF:AA  Override anycast-mac and anycast-id
+peer-ip         fe80::4638:39ff:fe00:12  linklocal          Peer Ip Address
+priority        32768                    32768              Mlag Priority
+[backup]        10.10.10.2               10.10.10.2         Set of MLAG backups
+backup-active   False                                       Mlag Backup Status
+backup-reason                                               Mlag Backup Reason
+local-id        44:38:39:00:00:11                           Mlag Local Unique Id
+local-role      primary                                     Mlag Local Role
+peer-alive      True                                        Mlag Peer Alive Status
+peer-id         44:38:39:00:00:12                           Mlag Peer Unique Id
+peer-interface  peerlink.4094                               Mlag Peerlink Interface
+peer-priority   32768                                       Mlag Peer Priority
+peer-role       secondary                                   Mlag Peer Role
+```
 
 ### View the MLAG Log File
 
@@ -788,17 +810,7 @@ Monitoring occurs automatically as long as:
 - You configure the peer IP address (`clagd-peer-ip`), the MLAG system MAC address (`clagd-sys-mac`), and the backup IP address (`clagd-backup-ip`) for an interface.
 - The `clagd` service is running. If you stop `clagd` with the `systemctl stop clagd.service` command, `clagd` monitoring also stops.
 
-You can check if `clagd` is running with the `cl-service-summary` or the `systemctl status` command:
-
-```
-cumulus@leaf01:~$ cl-service-summary
-Service cron               enabled    active
-Service ssh                enabled    active
-Service syslog             enabled    active
-Service asic-monitor       enabled    inactive
-Service clagd              enabled    active
-...
-```
+You can check if `clagd` is running with the `systemctl status` command:
 
 ```
 cumulus@leaf01:~$ systemctl status clagd.service
@@ -871,8 +883,7 @@ When an interface goes into a `protodown` state, it results in a local OPER DOWN
 To show an interface in `protodown` state, run the Linux `ip link show` command or the `net show bridge link` command. For example:
 
 ```
-cumulus@leaf01:~$ sudo vtysh
-leaf01# ip link show
+cumulus@leaf01:~$ ip link show
 3: swp1 state DOWN: <NO-CARRIER,BROADCAST,MULTICAST,MASTER,UP> mtu 9216 master pfifo_fast master host-bond1 state DOWN mode DEFAULT qlen 500 protodown on
     link/ether 44:38:39:00:69:84 brd ff:ff:ff:ff:ff:ff
 ```

@@ -1307,17 +1307,7 @@ Monitoring occurs automatically as long as:
 - You configure the peer IP address (`clagd-peer-ip`), the MLAG system MAC address (`clagd-sys-mac`), and the backup IP address (`clagd-backup-ip`) for an interface.
 - The `clagd` service is running. If you stop `clagd` with the `systemctl stop clagd.service` command, `clagd` monitoring also stops.
 
-You can check if `clagd` is running with the `cl-service-summary` or the `systemctl status` command:
-
-```
-cumulus@leaf01:~$ cl-service-summary
-Service cron               enabled    active
-Service ssh                enabled    active
-Service syslog             enabled    active
-Service asic-monitor       enabled    inactive
-Service clagd              enabled    active
-...
-```
+You can check if `clagd` is running with the `systemctl status` command:
 
 ```
 cumulus@leaf01:~$ systemctl status clagd.service
@@ -1390,8 +1380,7 @@ When an interface goes into a `protodown` state, it results in a local OPER DOWN
 To show an interface in `protodown` state, run the Linux `ip link show` command or the `net show bridge link` command. For example:
 
 ```
-cumulus@leaf01:~$ sudo vtysh
-leaf01# ip link show
+cumulus@leaf01:~$ ip link show
 3: swp1 state DOWN: <NO-CARRIER,BROADCAST,MULTICAST,MASTER,UP> mtu 9216 master pfifo_fast master host-bond1 state DOWN mode DEFAULT qlen 500 protodown on
     link/ether 44:38:39:00:69:84 brd ff:ff:ff:ff:ff:ff
 ```

@@ -810,17 +810,7 @@ Monitoring occurs automatically as long as:
 - You configure the peer IP address (`clagd-peer-ip`), the MLAG system MAC address (`clagd-sys-mac`), and the backup IP address (`clagd-backup-ip`) for an interface.
 - The `clagd` service is running. If you stop `clagd` with the `systemctl stop clagd.service` command, `clagd` monitoring also stops.
 
-You can check if `clagd` is running with the `cl-service-summary` or the `systemctl status` command:
-
-```
-cumulus@leaf01:~$ cl-service-summary
-Service cron               enabled    active
-Service ssh                enabled    active
-Service syslog             enabled    active
-Service asic-monitor       enabled    inactive
-Service clagd              enabled    active
-...
-```
+You can check if `clagd` is running with the `systemctl status` command:
 
 ```
 cumulus@leaf01:~$ systemctl status clagd.service

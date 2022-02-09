@@ -668,7 +668,7 @@ iface eth0 inet dhcp
     ip6-forward off
     vrf mgmt
 
-# The following is an access port
+# the following is an access port
 
 auto swp1
 iface swp1
@@ -676,7 +676,7 @@ iface swp1
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
 
-# The following is a trunk port that is pruned native vlan is 1
+# the following is a trunk port that is pruned
 # only .1q tags of 707, 712, 850 are sent and received
 
 auto swp2
@@ -685,14 +685,14 @@ iface swp2
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
 ...
-# The following port is the trunk uplink and inherits all vlans
+# the following port is the trunk uplink and inherits all vlans
 # from br_default; bridge assurance is enabled using portnetwork
 
 auto swp49
 iface swp49
     mstpctl-portnetwork yes
 
-# The following port is the trunk uplink and inherits all vlans
+# the following port is the trunk uplink and inherits all vlans
 # from 'br_default'; bridge assurance is enabled using portnetwork
 
 auto swp50

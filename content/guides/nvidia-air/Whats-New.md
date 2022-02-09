@@ -9,13 +9,13 @@ Check out some of the latest features added to the {{<exlink url="https://air.nv
 
 ## February 2022
 <!-- Air:WhatsNew -->
-- Fixed a bug that caused new simulations to appear as sleeping while they were loading [`82.2022.0204-013`]
-- Fixed a bug that could prevent an error from being displayed when resource budgets were exceeded [`82.2022.0204-013`]
+- Fixed a bug that caused new simulations to appear as sleeping while they were loading [`v82.2022.0204-013`]
+- Fixed a bug that could prevent an error from being displayed when resource budgets were exceeded [`v82.2022.0204-013`]
 <!-- Air:WhatsNew -->
 
 ## January 2022
-- Customizable templates for simulation email notifications [82.2022.0131]
-- NVIDIA Cumulus Linux 5.0.1 is now available for use in custom topologies  [82.2022.0112]
+- Customizable templates for simulation email notifications [`v82.2022.0131`]
+- NVIDIA Cumulus Linux 5.0.1 is now available for use in custom topologies  [`v82.2022.0112`]
 
 ## December 2021
 - NVIDIA Cumulus Linux 5.0 is now available for use in custom topologies

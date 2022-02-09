@@ -7,6 +7,34 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2965759</td>
+<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
+<td>3.7.15, 4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2965753</td>
+<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2961085</td>
+<td>CVE-2021-41816 CVE-2021-41817 CVE-2021-41819: Several vulnerabilities have been discovered in the interpreter for the Ruby language and the Rubygems included, which may result on result in information disclosure or denial of service.
+Vulnerable: 2.7.4-1
+Fixed: 2.7.4-1+deb11u1</td>
+<td>4.0.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2961080</td>
+<td>CVE-2021-28965 CVE-2021-31799 CVE-2021-31810 CVE-2021-41817 CVE-2021-41819 CVE-2021-32066: Several vulnerabilities have been discovered in the interpreter for the Ruby language and the Rubygems included, which may result on result in XML roundtrip attacks, the execution of arbitrary code, information disclosure, StartTLS stripping in IMAP or denial of service.
+Vulnerable: &lt;= 2.5.5-3+deb10u3
+Fixed: 2.5.5-3+deb10u4</td>
+<td>4.0.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2961008</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1</td>
@@ -41,17 +69,11 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <tr>
 <td>2949512</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>4.3.0-4.4.2</td>
+<td>3.7.15, 4.3.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
 <td>2947680</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2947679</td>
 <td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
 <td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>

@@ -7,6 +7,26 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2965759</td>
+<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
+<td>3.7.15, 4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2965753</td>
+<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2964544</td>
+<td>CVE-2022-24130: xterm, an X terminal emulator, when Sixel support is enabled, allows attackers to trigger a buffer overflow in set_sixel in graphics_sixel.c via crafted text.
+Vulnerable: &lt;= 312-2+deb8u3
+Fixed: 312-2+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2961008</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1</td>
@@ -26,12 +46,6 @@ Fixed: 2.1.0-6+deb8u7</td>
 Vulnerable: &lt;= 4.2-3+deb8u4
 Fixed: 4.2-3+deb8u5</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2959067</td>
-<td>ECMP produces errors indicating {{No More Resources}} and {{switchd}} crashes even when ECMP utilization is low.</td>
-<td>3.7.14.2-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -96,13 +110,13 @@ Fixed: 3.26-1+debu8u16</td>
 <td></td>
 </tr>
 <tr>
-<td>2947680</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
+<td>2949512</td>
+<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
+<td>3.7.15, 4.3.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
-<td>2947679</td>
+<td>2947680</td>
 <td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
 <td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
@@ -2936,6 +2950,14 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2964544</td>
+<td>CVE-2022-24130: xterm, an X terminal emulator, when Sixel support is enabled, allows attackers to trigger a buffer overflow in set_sixel in graphics_sixel.c via crafted text.
+Vulnerable: &lt;= 312-2+deb8u3
+Fixed: 312-2+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2959454</td>
 <td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Multiple security vulnerabilities have been discovered in Expat, the XML parsing C library. Integer overflows or invalid shifts may lead to a denial of service or other unspecified impact.
 Vulnerable: &lt;= 2.1.0-6+deb8u6
@@ -2949,12 +2971,6 @@ Fixed: 2.1.0-6+deb8u7</td>
 Vulnerable: &lt;= 4.2-3+deb8u4
 Fixed: 4.2-3+deb8u5</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2959067</td>
-<td>ECMP produces errors indicating {{No More Resources}} and {{switchd}} crashes even when ECMP utilization is low.</td>
-<td>3.7.14.2-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -5697,6 +5713,14 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2964544</td>
+<td>CVE-2022-24130: xterm, an X terminal emulator, when Sixel support is enabled, allows attackers to trigger a buffer overflow in set_sixel in graphics_sixel.c via crafted text.
+Vulnerable: &lt;= 312-2+deb8u3
+Fixed: 312-2+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2959454</td>
@@ -8963,6 +8987,14 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2964544</td>
+<td>CVE-2022-24130: xterm, an X terminal emulator, when Sixel support is enabled, allows attackers to trigger a buffer overflow in set_sixel in graphics_sixel.c via crafted text.
+Vulnerable: &lt;= 312-2+deb8u3
+Fixed: 312-2+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2959454</td>
@@ -12438,6 +12470,14 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2964544</td>
+<td>CVE-2022-24130: xterm, an X terminal emulator, when Sixel support is enabled, allows attackers to trigger a buffer overflow in set_sixel in graphics_sixel.c via crafted text.
+Vulnerable: &lt;= 312-2+deb8u3
+Fixed: 312-2+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2959454</td>
 <td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Multiple security vulnerabilities have been discovered in Expat, the XML parsing C library. Integer overflows or invalid shifts may lead to a denial of service or other unspecified impact.
 Vulnerable: &lt;= 2.1.0-6+deb8u6
@@ -15768,6 +15808,14 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2964544</td>
+<td>CVE-2022-24130: xterm, an X terminal emulator, when Sixel support is enabled, allows attackers to trigger a buffer overflow in set_sixel in graphics_sixel.c via crafted text.
+Vulnerable: &lt;= 312-2+deb8u3
+Fixed: 312-2+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2959454</td>
 <td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Multiple security vulnerabilities have been discovered in Expat, the XML parsing C library. Integer overflows or invalid shifts may lead to a denial of service or other unspecified impact.
 Vulnerable: &lt;= 2.1.0-6+deb8u6
@@ -18579,6 +18627,14 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2964544</td>
+<td>CVE-2022-24130: xterm, an X terminal emulator, when Sixel support is enabled, allows attackers to trigger a buffer overflow in set_sixel in graphics_sixel.c via crafted text.
+Vulnerable: &lt;= 312-2+deb8u3
+Fixed: 312-2+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2959454</td>
 <td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Multiple security vulnerabilities have been discovered in Expat, the XML parsing C library. Integer overflows or invalid shifts may lead to a denial of service or other unspecified impact.
 Vulnerable: &lt;= 2.1.0-6+deb8u6
@@ -20825,6 +20881,14 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2964544</td>
+<td>CVE-2022-24130: xterm, an X terminal emulator, when Sixel support is enabled, allows attackers to trigger a buffer overflow in set_sixel in graphics_sixel.c via crafted text.
+Vulnerable: &lt;= 312-2+deb8u3
+Fixed: 312-2+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2959454</td>
@@ -23377,6 +23441,14 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2964544</td>
+<td>CVE-2022-24130: xterm, an X terminal emulator, when Sixel support is enabled, allows attackers to trigger a buffer overflow in set_sixel in graphics_sixel.c via crafted text.
+Vulnerable: &lt;= 312-2+deb8u3
+Fixed: 312-2+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2959454</td>
 <td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Multiple security vulnerabilities have been discovered in Expat, the XML parsing C library. Integer overflows or invalid shifts may lead to a denial of service or other unspecified impact.
 Vulnerable: &lt;= 2.1.0-6+deb8u6
@@ -25326,6 +25398,14 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2964544</td>
+<td>CVE-2022-24130: xterm, an X terminal emulator, when Sixel support is enabled, allows attackers to trigger a buffer overflow in set_sixel in graphics_sixel.c via crafted text.
+Vulnerable: &lt;= 312-2+deb8u3
+Fixed: 312-2+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2959454</td>
@@ -27614,6 +27694,14 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2964544</td>
+<td>CVE-2022-24130: xterm, an X terminal emulator, when Sixel support is enabled, allows attackers to trigger a buffer overflow in set_sixel in graphics_sixel.c via crafted text.
+Vulnerable: &lt;= 312-2+deb8u3
+Fixed: 312-2+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2959454</td>
 <td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Multiple security vulnerabilities have been discovered in Expat, the XML parsing C library. Integer overflows or invalid shifts may lead to a denial of service or other unspecified impact.
 Vulnerable: &lt;= 2.1.0-6+deb8u6
@@ -29645,6 +29733,14 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2964544</td>
+<td>CVE-2022-24130: xterm, an X terminal emulator, when Sixel support is enabled, allows attackers to trigger a buffer overflow in set_sixel in graphics_sixel.c via crafted text.
+Vulnerable: &lt;= 312-2+deb8u3
+Fixed: 312-2+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2959454</td>
 <td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Multiple security vulnerabilities have been discovered in Expat, the XML parsing C library. Integer overflows or invalid shifts may lead to a denial of service or other unspecified impact.
 Vulnerable: &lt;= 2.1.0-6+deb8u6
@@ -31319,6 +31415,14 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2964544</td>
+<td>CVE-2022-24130: xterm, an X terminal emulator, when Sixel support is enabled, allows attackers to trigger a buffer overflow in set_sixel in graphics_sixel.c via crafted text.
+Vulnerable: &lt;= 312-2+deb8u3
+Fixed: 312-2+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2959454</td>
@@ -33022,6 +33126,14 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2964544</td>
+<td>CVE-2022-24130: xterm, an X terminal emulator, when Sixel support is enabled, allows attackers to trigger a buffer overflow in set_sixel in graphics_sixel.c via crafted text.
+Vulnerable: &lt;= 312-2+deb8u3
+Fixed: 312-2+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2959454</td>
@@ -34831,6 +34943,14 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2964544</td>
+<td>CVE-2022-24130: xterm, an X terminal emulator, when Sixel support is enabled, allows attackers to trigger a buffer overflow in set_sixel in graphics_sixel.c via crafted text.
+Vulnerable: &lt;= 312-2+deb8u3
+Fixed: 312-2+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2959454</td>
@@ -36686,6 +36806,14 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2964544</td>
+<td>CVE-2022-24130: xterm, an X terminal emulator, when Sixel support is enabled, allows attackers to trigger a buffer overflow in set_sixel in graphics_sixel.c via crafted text.
+Vulnerable: &lt;= 312-2+deb8u3
+Fixed: 312-2+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2959454</td>
 <td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Multiple security vulnerabilities have been discovered in Expat, the XML parsing C library. Integer overflows or invalid shifts may lead to a denial of service or other unspecified impact.
 Vulnerable: &lt;= 2.1.0-6+deb8u6
@@ -37843,6 +37971,14 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2964544</td>
+<td>CVE-2022-24130: xterm, an X terminal emulator, when Sixel support is enabled, allows attackers to trigger a buffer overflow in set_sixel in graphics_sixel.c via crafted text.
+Vulnerable: &lt;= 312-2+deb8u3
+Fixed: 312-2+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2959454</td>

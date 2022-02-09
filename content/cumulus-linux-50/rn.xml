@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2965753</td>
+<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2961216</td>
+<td>When there is a peer link failure followed by a power failure or a crash on the primary switch,  the MLAG secondary switch takes up to 24 seconds to change roles to the Primary.</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2961008</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1</td>
@@ -22,6 +34,12 @@
 <td>2957968</td>
 <td>After you install the RADIUS {{libnss-mapuser}} package, the {{nvued}} service fails to start.</td>
 <td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2956336</td>
+<td>WJH shows the reason for a traffic drop to be MLAG port isolation even when MLAG is not configured.</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -55,12 +73,6 @@
 <td></td>
 </tr>
 <tr>
-<td>2947679</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2943443</td>
 <td>Cumulus Linux lets you add more than one VXLAN interface to same VLAN on the same bridge. This is an invalid configuration as certain Cumulus Linux components, such as {{switchd}}, expect a single VNI for a given bridge or VLAN.</td>
 <td>3.7.15, 4.2.1-4.4.2, 5.0.0-5.0.1</td>
@@ -82,6 +94,13 @@
 <td>2939231</td>
 <td>If you use NVUE to configure selective route leaking to exclude certain prefixes, the route map fails to apply when you run the {{nv config apply}} command.</td>
 <td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2933466</td>
+<td>You cannot run NVUE commands to configure route leaking. 
+To work around this issue, create a snippet in yaml format and add the configuration to the {{/etc/frr/frr.conf}} file.</td>
+<td>4.4.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -272,6 +291,18 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2965753</td>
+<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2961216</td>
+<td>When there is a peer link failure followed by a power failure or a crash on the primary switch,  the MLAG secondary switch takes up to 24 seconds to change roles to the Primary.</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2961008</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1</td>
@@ -281,6 +312,12 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <td>2957968</td>
 <td>After you install the RADIUS {{libnss-mapuser}} package, the {{nvued}} service fails to start.</td>
 <td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2956336</td>
+<td>WJH shows the reason for a traffic drop to be MLAG port isolation even when MLAG is not configured.</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -314,12 +351,6 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <td></td>
 </tr>
 <tr>
-<td>2947679</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2943443</td>
 <td>Cumulus Linux lets you add more than one VXLAN interface to same VLAN on the same bridge. This is an invalid configuration as certain Cumulus Linux components, such as {{switchd}}, expect a single VNI for a given bridge or VLAN.</td>
 <td>3.7.15, 4.2.1-4.4.2, 5.0.0-5.0.1</td>
@@ -335,6 +366,13 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <td>2939231</td>
 <td>If you use NVUE to configure selective route leaking to exclude certain prefixes, the route map fails to apply when you run the {{nv config apply}} command.</td>
 <td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2933466</td>
+<td>You cannot run NVUE commands to configure route leaking. 
+To work around this issue, create a snippet in yaml format and add the configuration to the {{/etc/frr/frr.conf}} file.</td>
+<td>4.4.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>

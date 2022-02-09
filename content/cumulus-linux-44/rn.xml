@@ -7,9 +7,51 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2965759</td>
+<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
+<td>3.7.15, 4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2965753</td>
+<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2961216</td>
+<td>When there is a peer link failure followed by a power failure or a crash on the primary switch,  the MLAG secondary switch takes up to 24 seconds to change roles to the Primary.</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2961085</td>
+<td>CVE-2021-41816 CVE-2021-41817 CVE-2021-41819: Several vulnerabilities have been discovered in the interpreter for the Ruby language and the Rubygems included, which may result on result in information disclosure or denial of service.
+Vulnerable: 2.7.4-1
+Fixed: 2.7.4-1+deb11u1</td>
+<td>4.0.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2961080</td>
+<td>CVE-2021-28965 CVE-2021-31799 CVE-2021-31810 CVE-2021-41817 CVE-2021-41819 CVE-2021-32066: Several vulnerabilities have been discovered in the interpreter for the Ruby language and the Rubygems included, which may result on result in XML roundtrip attacks, the execution of arbitrary code, information disclosure, StartTLS stripping in IMAP or denial of service.
+Vulnerable: &lt;= 2.5.5-3+deb10u3
+Fixed: 2.5.5-3+deb10u4</td>
+<td>4.0.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2961008</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2959575</td>
+<td>When a port flaps with PTP enabled, the switch firmware might become unresponsive and you see the following log message:
+
+{{[ptp4l.ERR]: [435345.036] timed out while polling for tx timestamp}} </td>
+<td>4.4.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -22,6 +64,12 @@
 <td>2959309</td>
 <td>When you edit the Cumulus image file and change the  {{CL_INSTALLER_HASHED_PASSWORD}} variable, the installation is successful but you cannot connect to the switch with the new password.</td>
 <td>4.4.0-4.4.2, 5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2956336</td>
+<td>WJH shows the reason for a traffic drop to be MLAG port isolation even when MLAG is not configured.</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -53,7 +101,7 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <tr>
 <td>2949512</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>4.3.0-4.4.2</td>
+<td>3.7.15, 4.3.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -63,9 +111,9 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td></td>
 </tr>
 <tr>
-<td>2947679</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
+<td>2944167</td>
+<td>When you use NCLU commands to add a port to a bridge and the port already exists under the bridge, Cumulus Linux removes all other ports from the bridge.</td>
+<td>4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -119,6 +167,13 @@ Fixed: 4.3.2-1+deb10u4</td>
 <td>5.0.0-5.0.1</td>
 </tr>
 <tr>
+<td>2933466</td>
+<td>You cannot run NVUE commands to configure route leaking. 
+To work around this issue, create a snippet in yaml format and add the configuration to the {{/etc/frr/frr.conf}} file.</td>
+<td>4.4.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2932121</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0-4.4.2</td>
@@ -150,6 +205,12 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:1561 ERR ECMP: error allocati
 Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find ecmp container
 </td>
 <td>4.4.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2904450</td>
+<td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. </td>
+<td>4.4.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -562,12 +623,6 @@ To work around this issue, restart FRR with the {{sudo systemctl restart frr}} c
 <td>On the Celestica Seastone switch, when you run {{ smonctl -v}}, the DIMM 1 Temp Sensor shows as absent.
 This is a cosmetic software issue and not indicative of a hardware failure on the system.</td>
 <td>4.3.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2722322</td>
-<td>When you change the scaled VLAN configuration,  restart networking instead of running the {{ifreload -a}} command to make sure that resources are allocated correctly.</td>
-<td>4.4.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -1975,9 +2030,45 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2965759</td>
+<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
+<td>3.7.15, 4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2965753</td>
+<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2961085</td>
+<td>CVE-2021-41816 CVE-2021-41817 CVE-2021-41819: Several vulnerabilities have been discovered in the interpreter for the Ruby language and the Rubygems included, which may result on result in information disclosure or denial of service.
+Vulnerable: 2.7.4-1
+Fixed: 2.7.4-1+deb11u1</td>
+<td>4.0.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2961080</td>
+<td>CVE-2021-28965 CVE-2021-31799 CVE-2021-31810 CVE-2021-41817 CVE-2021-41819 CVE-2021-32066: Several vulnerabilities have been discovered in the interpreter for the Ruby language and the Rubygems included, which may result on result in XML roundtrip attacks, the execution of arbitrary code, information disclosure, StartTLS stripping in IMAP or denial of service.
+Vulnerable: &lt;= 2.5.5-3+deb10u3
+Fixed: 2.5.5-3+deb10u4</td>
+<td>4.0.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2961008</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2959575</td>
+<td>When a port flaps with PTP enabled, the switch firmware might become unresponsive and you see the following log message:
+
+{{[ptp4l.ERR]: [435345.036] timed out while polling for tx timestamp}} </td>
+<td>4.4.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -2021,17 +2112,11 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <tr>
 <td>2949512</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>4.3.0-4.4.2</td>
+<td>3.7.15, 4.3.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
 <td>2947680</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2947679</td>
 <td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
 <td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
@@ -2087,6 +2172,13 @@ Fixed: 4.3.2-1+deb10u4</td>
 <td></td>
 </tr>
 <tr>
+<td>2933466</td>
+<td>You cannot run NVUE commands to configure route leaking. 
+To work around this issue, create a snippet in yaml format and add the configuration to the {{/etc/frr/frr.conf}} file.</td>
+<td>4.4.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2932121</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0-4.4.2</td>
@@ -2124,6 +2216,12 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:1561 ERR ECMP: error allocati
 Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find ecmp container
 </td>
 <td>4.4.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2904450</td>
+<td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. </td>
+<td>4.4.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -2810,12 +2908,6 @@ This is a cosmetic software issue and not indicative of a hardware failure on th
 <td>In a static VXLAN configuration, the {{bridge-learning on}} setting does not turn on {{VXLAN-learning}}. </td>
 <td>4.4.0-4.4.1</td>
 <td>4.4.2</td>
-</tr>
-<tr>
-<td>2722322</td>
-<td>When you change the scaled VLAN configuration,  restart networking instead of running the {{ifreload -a}} command to make sure that resources are allocated correctly.</td>
-<td>4.4.0-4.4.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2719356</td>

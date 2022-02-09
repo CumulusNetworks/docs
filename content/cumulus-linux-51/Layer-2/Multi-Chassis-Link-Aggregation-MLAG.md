@@ -355,7 +355,7 @@ The peer is alive
      Our Priority, ID, and Role: 32768 44:38:39:00:00:11 primary
     Peer Priority, ID, and Role: 32768 44:38:39:00:00:12 secondary
           Peer Interface and IP: peerlink.4094 fe80::4638:39ff:fe00:12 (linklocal)
-                      Backup IP: 10.10.10.2 (inactive)
+                      Backup IP: 10.10.10.2 (active)
                      System MAC: 44:38:39:be:ef:aa
 
 CLAG Interfaces
@@ -1400,7 +1400,7 @@ iface swp2
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL501 - MLAG" showNodes="leaf01,leaf02,spine01,server01,server02,server03" >}}
+    {{< simulation name="Try It CL501 - MLAGv2" showNodes="leaf01,leaf02,spine01,server01,server02,server03" >}}
 
 This simulation starts with the example MLAG configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

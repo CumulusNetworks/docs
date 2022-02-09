@@ -652,6 +652,7 @@ cumulus@switch:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 
 ```
 cumulus@switch:mgmt:~$ sudo cat /etc/network/interfaces
+...
 auto lo
 iface lo inet loopback
 

@@ -667,7 +667,8 @@ iface eth0 inet dhcp
     ip6-forward off
     vrf mgmt
 # 
-#
+# The following is an access port
+# 
 auto swp1
 iface swp1
     bridge-access 310

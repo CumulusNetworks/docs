@@ -667,19 +667,18 @@ iface eth0 inet dhcp
     ip-forward off
     ip6-forward off
     vrf mgmt
-# 
+ 
 # The following is an access port
-# 
+
 auto swp1
 iface swp1
     bridge-access 310
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
-#
-# The following is a trunk port that is pruned
-# native vlan is 1, but only .1q tags of 707, 712, 850 are
-# sent and received
-#
+
+# The following is a trunk port that is pruned native vlan is 1
+# only .1q tags of 707, 712, 850 are sent and received
+
 auto swp2
 iface swp2
     bridge-vids 707 712 850
@@ -688,24 +687,24 @@ iface swp2
 ...
 # The following port is the trunk uplink and inherits all vlans
 # from br_default; bridge assurance is enabled using portnetwork
-#
+
 auto swp49
 iface swp49
     mstpctl-portnetwork yes
-#
+
 # The following port is the trunk uplink and inherits all vlans
-# from 'br_default'; bridge assurance is enabled using 'portnetwork'
-#
+# from 'br_default'; bridge assurance is enabled using portnetwork
+
 auto swp50
 iface swp50
     mstpctl-portnetwork yes
-#
+
 # ports swp3-swp48 are trunk ports that inherit vlans 
 # 310,700,707,712,850,910 from the bridge br_default
-#
+
 auto br_default
 iface br_default
-    bridge-ports swp3 swp4 swp5 swp6 swp7 swp8 swp9 swp10 swp11 swp12 swp13 swp14 swp15 swp16 swp17 swp18 swp19 swp20 swp21 swp22 swp23 swp24 swp25 swp26 swp27 swp28 swp29 swp30 swp31 swp32 swp33 swp34 swp35 swp36 swp37 swp38 swp39 swp40 swp41 swp42 swp43 swp44 swp45 swp46 swp47 swp48 swp1 swp2 swp49 swp50
+    bridge-ports swp1 swp2 swp3 ... swp49 swp50
     hwaddress 44:38:39:22:01:af
     bridge-vlan-aware yes
     bridge-vids 310 700 707 712 850 910

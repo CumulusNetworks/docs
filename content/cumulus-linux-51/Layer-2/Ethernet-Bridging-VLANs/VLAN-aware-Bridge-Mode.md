@@ -571,46 +571,147 @@ cumulus@switch:~$ sudo bridge fdb show
 
 ## Example Configuration
 
-The following example configuration contains a *pruned* access port and switch port; the ports only send and receive traffic tagged to and from a specific set of VLANs that the `bridge-vids` attribute specifies. The example also contains other switch ports that send and receive traffic from all the defined VLANs.
+The following example configuration contains an access port (swp51), a trunk carrying all VLANs (swp3 thru swp48), and a trunk pruning some VLANs from a switch port (swp2).
+
+{{< tabs "TabID576 ">}}
+{{< tab "NVUE ">}}
 
 ```
-...
-# ports swp3-swp48 are trunk ports which inherit vlans from the 'bridge'
-# ie vlans 310,700,707,712,850,910
+cumulus@switch:mgmt:~$ nv set interface swp3-48 bridge domain br_default
+cumulus@switch:mgmt:~$ nv set bridge domain br_default vlan 310,700,707,712,850,910
+cumulus@switch:mgmt:~$ nv set interface swp1 bridge domain br_default access 310
+cumulus@switch:mgmt:~$ nv set interface swp1 bridge domain br_default stp bpdu-guard on
+cumulus@switch:mgmt:~$ nv set interface swp1 bridge domain br_default stp admin-edge on
+cumulus@switch:mgmt:~$ nv set interface swp2 bridge domain br_default vlan 707,712,850
+cumulus@switch:mgmt:~$ nv set interface swp2 bridge domain br_default stp admin-edge on
+cumulus@switch:mgmt:~$ nv set interface swp2 bridge domain br_default stp bpdu-guard on
+cumulus@switch:mgmt:~$ nv set interface swp49 bridge domain br_default stp network on
+cumulus@switch:mgmt:~$ nv set interface swp50 bridge domain br_default stp network on
+cumulus@switch:mgmt:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "/etc/nvue.d/startup.yaml ">}}
+
+```
+cumulus@switch:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '310': {}
+            '700': {}
+            '707': {}
+            '712': {}
+            '850': {}
+            '910': {}
+    interface:
+      swp1:
+        bridge:
+          domain:
+            br_default:
+              access: 310
+              stp:
+                admin-edge: on
+                bpdu-guard: on
+        type: swp
+      swp2:
+        bridge:
+          domain:
+            br_default:
+              stp:
+                admin-edge: on
+                bpdu-guard: on
+              vlan:
+                '707': {}
+                '712': {}
+                '850': {}
+        type: swp
+      ...  
+      swp49:
+        bridge:
+          domain:
+            br_default:
+              stp:
+                network: on
+        type: swp
+      swp50:
+        bridge:
+          domain:
+            br_default:
+              stp:
+                network: on
+        type: swp
+    system:
+      hostname: switch
+```
+
+{{< /tab >}}
+{{< tab "/etc/network/interfaces">}}
+
+```
+cumulus@switch:mgmt:~$ sudo cat /etc/network/interfaces
+auto lo
+iface lo inet loopback
+
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
+# 
 #
-auto br_default
-iface br_default
-      bridge-ports swp1 swp2 swp3 ... swp51 swp52
-      bridge-vids 310 700 707 712 850 910
-      bridge-vlan-aware yes
 auto swp1
 iface swp1
-      bridge-access 310
-      mstpctl-bpduguard yes
-      mstpctl-portadminedge yes
-# The following is a trunk port that is "pruned".
+    bridge-access 310
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+#
+# The following is a trunk port that is pruned
 # native vlan is 1, but only .1q tags of 707, 712, 850 are
 # sent and received
 #
 auto swp2
 iface swp2
-      mstpctl-bpduguard yes
-      mstpctl-portadminedge yes
-      bridge-vids 707 712 850
+    bridge-vids 707 712 850
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+...
 # The following port is the trunk uplink and inherits all vlans
-# from 'bridge'; bridge assurance is enabled using 'portnetwork' attribute
+# from br_default; bridge assurance is enabled using portnetwork
+#
 auto swp49
 iface swp49
-      mstpctl-portnetwork yes
-      mstpctl-portpathcost 10
+    mstpctl-portnetwork yes
+#
 # The following port is the trunk uplink and inherits all vlans
-# from 'br_default'; bridge assurance is enabled using 'portnetwork' attribute
- auto swp50
- iface swp50
-      mstpctl-portnetwork yes
-      mstpctl-portpathcost 0
-...
+# from 'br_default'; bridge assurance is enabled using 'portnetwork'
+#
+auto swp50
+iface swp50
+    mstpctl-portnetwork yes
+#
+# ports swp3-swp48 are trunk ports that inherit vlans 
+# 310,700,707,712,850,910 from the bridge br_default
+#
+auto br_default
+iface br_default
+    bridge-ports swp3 swp4 swp5 swp6 swp7 swp8 swp9 swp10 swp11 swp12 swp13 swp14 swp15 swp16 swp17 swp18 swp19 swp20 swp21 swp22 swp23 swp24 swp25 swp26 swp27 swp28 swp29 swp30 swp31 swp32 swp33 swp34 swp35 swp36 swp37 swp38 swp39 swp40 swp41 swp42 swp43 swp44 swp45 swp46 swp47 swp48 swp1 swp2 swp49 swp50
+    hwaddress 44:38:39:22:01:af
+    bridge-vlan-aware yes
+    bridge-vids 310 700 707 712 850 910
+    bridge-pvid 1
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Considerations
 

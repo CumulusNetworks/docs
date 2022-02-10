@@ -66,7 +66,32 @@ cumulus@switch:~$ sudo ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-To check the status of the configuration, run the Linux `ip link show` command on the bond and its slave interfaces:
+To show the bond configuration, run the `nv show interface <bond>` command.
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface bond1
+                         operational        applied     description
+-----------------------  -----------------  ----------  ----------------------------------------------------------------------
+type                     bond               bond        The type of interface
+[acl]                                                   Interface ACL rules
+bond
+  down-delay             0                  0           bond down delay
+  lacp-bypass                               on          lacp bypass
+  lacp-rate              fast               fast        lacp rate
+  mode                                      lacp        bond mode
+  up-delay               0                  0           bond up delay
+  [member]               swp1               swp1        Set of bond members
+  mlag
+    enable                                  on          Turn the feature 'on' or 'off'.  The default is 'off'.
+    id                   1                  1           MLAG id
+    peer-interface       bond1                          Peer interface
+    status               dual                           Mlag Interface status
+bridge
+  [domain]               br_default         br_default  Bridge domains on this interface
+...
+```
+
+To check the status of the link, run the Linux `ip link show` command on the bond and its slave interfaces:
 
 ```
 cumulus@switch:~$ ip link show bond1

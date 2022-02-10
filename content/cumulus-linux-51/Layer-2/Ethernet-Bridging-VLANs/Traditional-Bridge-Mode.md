@@ -223,8 +223,6 @@ iface v130
     address 10.0.130.1/24
     bridge-ports swp3.130 bond2.130
     bridge-stp on
-
-#
 ```
 
 To verify the configuration:

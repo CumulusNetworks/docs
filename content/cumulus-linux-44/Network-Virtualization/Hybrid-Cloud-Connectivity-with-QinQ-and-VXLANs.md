@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 630
 toc: 3
 ---
-*QinQ* is an amendment to the {{<exlink url="http://www.ieee802.org/1/pages/802.1Q.html" text="IEEE 802.1Q specification">}} that enables you to insert multiple {{<link url="VLAN-Tagging" text="VLAN tags">}} into a single Ethernet frame.
+*QinQ* is an amendment to the {{<exlink url="http://www.ieee802.org/1/pages/802.1Q.html" text="IEEE 802.1Q specification">}} that enables you to insert multiple VLAN tags into a single Ethernet frame.
 
 QinQ with VXLAN is typically used by a service provider who offers multi-tenant layer 2 connectivity between different customer data centers (private clouds) and also needs to connect those data centers to public cloud providers. Public clouds tend to have a mandatory QinQ handoff interface, where the outer tag is for the customer and the inner tag is for the service.
 

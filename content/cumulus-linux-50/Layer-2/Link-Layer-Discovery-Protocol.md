@@ -4,13 +4,13 @@ author: NVIDIA
 weight: 400
 toc: 3
 ---
-The `lldpd` daemon implements the IEEE802.1AB Link Layer Discovery Protocol (LLDP) standard. LLDP shows which ports are neighbors of a given port.
+[LLDP](## "Link Layer Discovery Protocol") shows which ports are neighbors of a given port.
 
-By default, `lldpd` runs as a daemon and starts at system boot. `lldpd` command line arguments are in the `/etc/default/lldpd` file. Cumulus Linux saves all `lldpd` configuration options in the `/etc/lldpd.conf` file or under `/etc/lldpd.d/`.
+The `lldpd` daemon implements the IEEE802.1AB LLDP standard and starts at system boot. All `lldpd` command line arguments are in the `/etc/default/lldpd` file. Cumulus Linux saves all `lldpd` configuration options in the `/etc/lldpd.conf` file or under `/etc/lldpd.d/`.
 
 `lldpd` supports CDP (Cisco Discovery Protocol, v1 and v2) and logs by default into `/var/log/daemon.log` with an `lldpd` prefix.
 
-You can use the `lldpcli` CLI tool to query the `lldpd` daemon for neighbors, statistics, and other running configuration information. See `man lldpcli(8)` for details.
+You can use the `lldpcli` tool to query the `lldpd` daemon for neighbors, statistics, and other running configuration information. See `man lldpcli(8)` for details.
 
 ## Configure LLDP Timers
 
@@ -30,10 +30,10 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Add the timers to the `/etc/lldpd.conf` file or to your `.conf` file in the `/etc/lldpd.d/` directory.
+Add the timers to the `/etc/lldpd.conf` file in the `/etc/lldpd.d/` directory.
 
 {{%notice note%}}
-Cumulus Linux does not ship with a `/etc/lldpd.conf` file. You must create the `/etc/lldpd.conf` file or create a `.conf` file in the `/etc/lldpd.d/` directory.
+Cumulus Linux does not ship with a `/etc/lldpd.conf` file. You must create the `/etc/lldpd.conf` file in the `/etc/lldpd.d/` directory.
 {{%/notice%}}
 
 ```
@@ -102,7 +102,8 @@ DAEMON_ARGS="-c -x -M 4"
 ```
 
 {{%notice note%}}
-The `-c` option enables backwards compatibility with CDP and the `-M 4` option sends a field in discovery packets to indicate that the switch is a network device.
+- The `-c` option enables backwards compatibility with CDP.
+- The `-M 4` option sends a field in discovery packets to indicate that the switch is a network device.
 {{%/notice%}}
 
 ## Troubleshooting

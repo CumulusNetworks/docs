@@ -325,7 +325,7 @@ cumulus@leaf04:mgmt:~$ net commit
 {{< /tab >}}
 {{< /tabs >}}
 
-For information on how to assign VLANs to trunk ports reference the [VLAN Tagging]({{<ref "/cumulus-linux-44/Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging" >}}) page for more information and commands.
+For information on how to assign VLANs to trunk ports, see [VLAN-aware Bridge Mode]({{<ref "/cumulus-linux-44/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode" >}}) and [Traditional Bridge Mode]({{<ref "/cumulus-linux-44/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode" >}}).
 
 <!-- vale off -->
 ### Switch Ports Configuration - Non-LAG N-VDS Uplink Profile

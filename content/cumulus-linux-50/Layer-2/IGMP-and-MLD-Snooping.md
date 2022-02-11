@@ -4,12 +4,11 @@ author: NVIDIA
 weight: 520
 toc: 3
 ---
-Internet Group Management Protocol (IGMP) snooping and Multicast Listener Discovery (MLD) snooping prevent hosts on a local network from receiving traffic for a multicast group they have not explicitly joined. IGMP snooping is for IPv4 environments and MLD snooping is for IPv6 environments.
+[IGMP](## "Internet Group Management Protocol") and [MLD](## "Multicast Listener Discovery") snooping prevent hosts on a local network from receiving traffic for a multicast group they have not explicitly joined. IGMP snooping is for IPv4 environments and MLD snooping is for IPv6 environments.
 
 The bridge driver in Cumulus Linux kernel includes IGMP and MLD snooping. If you disable IGMP or MLD snooping, multicast traffic floods to all the bridge ports in the bridge. Similarly, in the absence of receivers in a VLAN, multicast traffic floods to all ports in the VLAN.
 
 {{< img src = "/images/cumulus-linux/igmp_snoop_diagram.png" >}}
-
 
 ## Configure the IGMP and MLD Querier
 
@@ -176,9 +175,6 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Edit /etc/cumulus/control-plane/policers.conf ">}}
 
-{{< /tab >}}
-{{< /tabs >}}
-
 1. Edit the `/etc/cumulus/control-plane/policers.conf` file. 
 
    - For IGMP, change the `copp.igmp.rate` and `copp.igmp.burst` parameters.
@@ -204,6 +200,9 @@ cumulus@switch:~$ nv config apply
    ```
    cumulus@switch:~$ switchdctl --load /etc/cumulus/control-plane/policers.conf
    ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Disable IGMP and MLD Snooping
 
@@ -247,7 +246,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 ## Troubleshooting
 
-To show the IGMP/MLD snooping bridge state, run the `brctl showstp <bridge>` command:
+To show the IGMP and MLD snooping bridge state, run the `brctl showstp <bridge>` command:
 
 ```
 cumulus@switch:~$ sudo brctl showstp bridge

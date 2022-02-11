@@ -7,6 +7,51 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2943261</td>
+<td>Scheduled validations can not be edited from the {{Show all scheduled validations}} menu, and individual checks for a scheduled validation can not be ignored on the validation results card. Scheduled validations for specific device groups will not show the device group information on the {{Show all scheduled validations}} display. 
+
+To work around this issue, delete the scheduled validation and create a new one with the desired changes. Device group information for validations can be viewed on the validation results card.</td>
+<td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2896825</td>
+<td>WJH monitoring fails to start with netq-agent on Cumulus Linux 5.0. To work around this issue, reinstall the netq-agent package and configure the netq agent to start monitoring:
+
+1. Add the gpg key for the repository:
+
+{{wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -}}
+
+2. Add the repository to {{/etc/apt/sources.list}}:
+
+{{echo 'deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest' | sudo tee -a /etc/apt/sources.list}}
+
+3. Reinstall the netq-agent package:
+
+{{sudo apt-get update &amp;&amp; sudo apt-get install --reinstall netq-agent}}</td>
+<td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2885440</td>
+<td>After upgrading to NetQ 4.1.0, validation checks might show intermittent errors that are not valid while the validation application processess pending messages after upgrade. This condition will clear once all messages are processed.</td>
+<td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2885312</td>
+<td>EVPN Validation Type 2 checks might show false Duplicate MAC events for MAC addresses that are not duplicated. An example of this is shown below:
+
+   EVPN Type 2 Test details:
+   Hostname          Peer Name         Peer Hostname     Reason                                        Last Changed
+   ----------------- ----------------- ----------------- --------------------------------------------- -------------------------
+   torc-11           -                 -                 Duplicate Mac 00:02:00:00:00:55 VLAN 1249 at  Sun Dec  5 18:26:14 2021
+                                                         torc-21:vx-282 and torc-11:peerlink-3
+   </td>
+<td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2711101</td>
 <td>When RoCE (RDMA over Converged Ethernet) data collection is enabled in Cumulus Linux 4.3.z and 4.4.z, you can experience high dual uplink convergence times.
 To work around this issue, disable RoCE monitoring:
@@ -71,6 +116,51 @@ CVE-2021-45105: Apache Log4j2 versions 2.0-alpha1 through 2.16.0 (excluding 2.12
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2943261</td>
+<td>Scheduled validations can not be edited from the {{Show all scheduled validations}} menu, and individual checks for a scheduled validation can not be ignored on the validation results card. Scheduled validations for specific device groups will not show the device group information on the {{Show all scheduled validations}} display. 
+
+To work around this issue, delete the scheduled validation and create a new one with the desired changes. Device group information for validations can be viewed on the validation results card.</td>
+<td>4.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2896825</td>
+<td>WJH monitoring fails to start with netq-agent on Cumulus Linux 5.0. To work around this issue, reinstall the netq-agent package and configure the netq agent to start monitoring:
+
+1. Add the gpg key for the repository:
+
+{{wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -}}
+
+2. Add the repository to {{/etc/apt/sources.list}}:
+
+{{echo 'deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest' | sudo tee -a /etc/apt/sources.list}}
+
+3. Reinstall the netq-agent package:
+
+{{sudo apt-get update &amp;&amp; sudo apt-get install --reinstall netq-agent}}</td>
+<td>4.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2885440</td>
+<td>After upgrading to NetQ 4.1.0, validation checks might show intermittent errors that are not valid while the validation application processess pending messages after upgrade. This condition will clear once all messages are processed.</td>
+<td>4.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2885312</td>
+<td>EVPN Validation Type 2 checks might show false Duplicate MAC events for MAC addresses that are not duplicated. An example of this is shown below:
+
+   EVPN Type 2 Test details:
+   Hostname          Peer Name         Peer Hostname     Reason                                        Last Changed
+   ----------------- ----------------- ----------------- --------------------------------------------- -------------------------
+   torc-11           -                 -                 Duplicate Mac 00:02:00:00:00:55 VLAN 1249 at  Sun Dec  5 18:26:14 2021
+                                                         torc-21:vx-282 and torc-11:peerlink-3
+   </td>
+<td>4.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2711101</td>

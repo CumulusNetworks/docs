@@ -8,7 +8,7 @@ toc: 4
 This article outlines the release version numbering structure and support policies for NetQ.
 ## Version Definitions
 
-Cumulus NetQ software installation file names include a version number, in the form of x.y.z-OS\~TAG\_CPU.
+NetQ software installation file names include a version number, in the form of x.y.z-OS\~TAG\_CPU.
 
 - **x** represents the major release version number. An increased major release version means that the release might include:
     - New functionality within the existing market.
@@ -35,7 +35,7 @@ For example:
 
 ## Release, Support Lifecycle and Support Policy
 
-NetQ is offered with a per switch subscription that includes support for 1, 3, and 5 years options. The subscription model enables customers to upgrade the software as updates and new versions become available, for the period of the subscription.
+NetQ is offered with a per switch subscription that includes support for 1, 3, and 5 years options. The subscription model allows customers to upgrade the software as updates and new versions become available, for the period of the subscription.
 
 - Review the NetQ [user guide]({{<ref "/cumulus-netq-41/" >}}) for the supported Network Operating System (NOS) versions.
 - Use matching versions of NetQ Server and both NetQ Agent and NetQ Apps packages on switches (e.g., NetQ 4.1.0 Server with NetQ 4.1.0 Agents and Apps on the switches).

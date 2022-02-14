@@ -36,9 +36,9 @@ This number corresponds to the release version of the software. NetQ requires tw
 
 ## Release, Support Lifecycle and Support Policy
 
-NetQ is offered with a per switch subscription that includes support for 1, 3, and 5 years options. The subscription model enables customers to upgrade the software as updates and new versions become available, for the period of the subscription.
+NetQ is offered with a per switch subscription that includes support for 1, 3, and 5 years options. The subscription model allows customers to upgrade the software as updates and new versions become available, for the period of the subscription.
 
-Updates get automatically applied to the NetQ Server running in the Cloud. NVIDIA notifies customers before performing upgrades, and makes release notes available for each release.
+Updates are automatically applied to the NetQ Server running in the Cloud. NVIDIA notifies customers before performing upgrades, and makes release notes available for each release.
 
 It is necessary to upgrade the NetQ Agents and NetQ Apps running on switches to the NetQ Server version that is running in the Cloud. NetQ Server compatibility is tested with the current version and one prior version of Agent and Apps software. Review the NetQ [user guide]({{<ref "/cumulus-netq-41/" >}}) for the supported Network Operating System (NOS) versions. 
 ## Upgrade Process

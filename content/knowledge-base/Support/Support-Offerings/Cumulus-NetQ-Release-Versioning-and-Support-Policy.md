@@ -5,12 +5,7 @@ weight: 703
 toc: 4
 ---
 
-This article outlines the release version numbering structure, and support policies, for:
-
-- Cumulus NetQ 3.x
-- Cumulus NetQ 2.x
-- Cumulus NetQ 1.4
-
+This article outlines the release version numbering structure and support policies for NetQ.
 ## Version Definitions
 
 Cumulus NetQ software installation file names include a version number, in the form of x.y.z-OS\~TAG\_CPU.
@@ -29,29 +24,36 @@ Cumulus NetQ software installation file names include a version number, in the f
     - Feature improvements.
     - Bug fixes and updates.
     - Security updates.
-- **OS** indicates the operating system. Support is available for Cumulus Linux, Ubuntu, Red Hat and CentOS.
+- **OS** indicates the Network Operating System information (cl for Cumulus Linux, deb10 for SONiC)
 - **TAG** represents a timestamp for the release of the version.
-- **CPU** architecture represents architecture. Support is available for x86\_64 and ARM.
+- **CPU** architecture represents architecture.
 
-This number corresponds to the release version of the software. NetQ requires two Debian packages per release. This example shows the first minor release of the third major release, for the Ubuntu OS and x86\_64 CPU architecture:
+For example:
 
-- netq-agent\_3.1.0-ub18.04u28\~1594095612.8f00ba1\_amd64.deb
-- netq-apps\_3.1.0-ub18.04u28\~1594095612.8f00ba1\_amd64.deb
+- netq-agent\_4.1.0-cl4u36~1639165028.2c18daee\_amd64.deb
+- netq-apps\_4.1.0-cl4u36~1639165028.2c18daee\_amd64.deb
 
 ## Release, Support Lifecycle and Support Policy
 
-The Cumulus NetQ license is per Cumulus Linux switch. NetQ is a subscription-based license that includes support for 1, 3, and 5 years options. NetQ has one set of SKUs for 1G switches and one set of SKUs for switches that are 10G and greater. You can install the NetQ agent free-of-charge on Ubuntu, Red Hat, and CentOS endpoints that connect to a NetQ-licensed Cumulus Linux switch. The subscription model enables customers to upgrade the software as updates and new versions become available, for the period of the subscription.
+NetQ is offered with a per switch subscription that includes support for 1, 3, and 5 years options. The subscription model enables customers to upgrade the software as updates and new versions become available, for the period of the subscription.
 
-The following diagram illustrates the release version and support relationship.
+- Review the NetQ [user guide]({{<ref "/cumulus-netq-41/" >}}) for the supported Network Operating System (NOS) versions.
+- Use matching versions of NetQ Server and both NetQ Agent and NetQ Apps packages on switches (e.g., NetQ 4.1.0 Server with NetQ 4.1.0 Agents and Apps on the switches).
+- The product is supported for the period of the subscription and bug fixes are received by upgrading to new versions of software.
+- A NetQ version is supported for two years from its release date. After that date, it is necessary to upgrade to a later release to continue receiving support for the period of the subscription.
 
-{{<img src="/images/knowledge-base/NQ-rel-vers-and-sup-pol.png" width="700">}}
+## NetQ Support Matrix
 
-Customers running NetQ 1.4.x and earlier, can continue to use their current license until their support expires.  These customers have the option to transfer their existing license to the subscription license where they receive the new NetQ 2.1 software, all the support, and upgrades for the next five years for free. Alternately, these customers can continue to use NetQ 1.4 and deploy NetQ 3.x at the same time with the new subscription license.
+The following table depicts the NetQ release support matrix:
 
-## Product End of Life
+| NetQ Release | Release Date | End of Support |
+| :--------: | --------- | --------- |
+| 4.1.z | 13-Jan-2022 | 13-Jan-2024 |
+| 4.0.z| 15-Sep-2021 | 15-Sep-2023 |
+| 3.y | 21-Mar-2021 | 21-Mar-2023 |
 
-Currently, there are no end of life plans for Cumulus NetQ 1.x or 2.x.
+**NetQ 1.y and 2.y releases are End of Support.**
 
 ## Upgrade Process
 
-For information regarding upgrading from previous Cumulus NetQ releases, refer to the [Cumulus NetQ Deployment Guide]({{<ref "/cumulus-netq-33/Manage-Deployment" >}}).
+For information regarding upgrading from previous NetQ releases, refer to the [NetQ Deployment Guide]({{<ref "/cumulus-netq-41/Manage-Deployment" >}}).

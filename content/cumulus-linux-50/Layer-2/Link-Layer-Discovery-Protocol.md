@@ -4,13 +4,11 @@ author: NVIDIA
 weight: 400
 toc: 3
 ---
-[LLDP](## "Link Layer Discovery Protocol") shows which ports are neighbors of a given port.
+[LLDP](## "Link Layer Discovery Protocol") shows information about connected devices.
 
-The `lldpd` daemon implements the IEEE802.1AB LLDP standard and starts at system boot. All `lldpd` command line arguments are in the `/etc/default/lldpd` file. Cumulus Linux saves all `lldpd` configuration options in the `/etc/lldpd.conf` file or under `/etc/lldpd.d/`.
+The `lldpd` daemon implements the IEEE802.1AB LLDP standard and starts at system boot. All `lldpd` command line arguments are in the `/etc/default/lldpd` file.
 
 `lldpd` supports CDP (Cisco Discovery Protocol, v1 and v2) and logs by default into `/var/log/daemon.log` with an `lldpd` prefix.
-
-You can use the `lldpcli` tool to query the `lldpd` daemon for neighbors, statistics, and other running configuration information. See `man lldpcli(8)` for details.
 
 ## Configure LLDP Timers
 
@@ -30,17 +28,19 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Add the timers to the `/etc/lldpd.conf` file in the `/etc/lldpd.d/` directory.
-
-{{%notice note%}}
-Cumulus Linux does not ship with a `/etc/lldpd.conf` file. You must create the `/etc/lldpd.conf` file in the `/etc/lldpd.d/` directory.
-{{%/notice%}}
+Create the `/etc/lldpd.conf` file or create a file in the `/etc/lldpd.d/` directory with a `.conf` suffix.
 
 ```
 cumulus@switch:~$ sudo nano /etc/lldpd.conf
 configure lldp tx-interval 40
 configure lldp tx-hold 3
 ...
+```
+
+Restart the `lldpd` service for the changes to take effect:
+
+```
+cumulus@switch:~$ sudo systemctl restart lldpd
 ```
 
 {{< /tab >}}
@@ -56,6 +56,12 @@ cumulus@switch:~$ sudo nano /etc/default/lldpd
 # Add "-x" to DAEMON_ARGS to start SNMP subagent
 # Enable CDP by default
 DAEMON_ARGS="-c -I *,!swp43"
+```
+
+Restart the `lldpd` service for the changes to take effect:
+
+```
+cumulus@switch:~$ sudo systemctl restart lldpd
 ```
 
 {{< expand "Runtime Configuration (Advanced) "  >}}
@@ -101,6 +107,12 @@ cumulus@switch:~$ sudo nano /etc/default/lldpd
 DAEMON_ARGS="-c -x -M 4"
 ```
 
+Restart the `lldpd` service for the changes to take effect:
+
+```
+cumulus@switch:~$ sudo systemctl restart lldpd
+```
+
 {{%notice note%}}
 - The `-c` option provides backwards compatibility with CDP. See {{<link url="#change-cdp-settings" text="Change CDP Settings">}} below.
 - The `-M 4` option sends a field in discovery packets to indicate that the switch is a network device.
@@ -133,6 +145,8 @@ cumulus@switch:~$ sudo systemctl restart lldpd
 ```
 
 ## Troubleshooting
+
+You can use the `lldpcli` tool to query the `lldpd` daemon for neighbors, statistics, and other running configuration information. See `man lldpcli(8)` for details.
 
 To show all neighbors on all ports and interfaces:
 

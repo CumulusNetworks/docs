@@ -1,5 +1,5 @@
 ---
-title: Cumulus NetQ Cloud Release Versioning and Support Policy
+title: NetQ Cloud Release Versioning and Support Policy
 author: Cumulus Networks
 weight: 704
 toc: 4

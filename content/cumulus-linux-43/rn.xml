@@ -71,6 +71,12 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td></td>
 </tr>
 <tr>
+<td>2947679</td>
+<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2943443</td>
 <td>Cumulus Linux lets you add more than one VXLAN interface to same VLAN on the same bridge. This is an invalid configuration as certain Cumulus Linux components, such as {{switchd}}, expect a single VNI for a given bridge or VLAN.</td>
 <td>3.7.15, 4.2.1-4.4.2, 5.0.0</td>

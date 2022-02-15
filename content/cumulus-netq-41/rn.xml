@@ -18,13 +18,16 @@ To work around this issue, delete the scheduled validation and create a new one 
 <td>2896825</td>
 <td>WJH monitoring fails to start with netq-agent on Cumulus Linux 5.0. To work around this issue, reinstall the netq-agent package and configure the netq agent to start monitoring:
 
+
 1. Add the gpg key for the repository:
 
 {{wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -}}
 
+
 2. Add the repository to {{/etc/apt/sources.list}}:
 
 {{echo 'deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest' | sudo tee -a /etc/apt/sources.list}}
+
 
 3. Reinstall the netq-agent package:
 
@@ -129,13 +132,16 @@ To work around this issue, delete the scheduled validation and create a new one 
 <td>2896825</td>
 <td>WJH monitoring fails to start with netq-agent on Cumulus Linux 5.0. To work around this issue, reinstall the netq-agent package and configure the netq agent to start monitoring:
 
+
 1. Add the gpg key for the repository:
 
 {{wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -}}
 
+
 2. Add the repository to {{/etc/apt/sources.list}}:
 
 {{echo 'deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest' | sudo tee -a /etc/apt/sources.list}}
+
 
 3. Reinstall the netq-agent package:
 

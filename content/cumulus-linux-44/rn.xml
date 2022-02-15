@@ -103,6 +103,12 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td></td>
 </tr>
 <tr>
+<td>2947679</td>
+<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2944167</td>
 <td>When you use NCLU commands to add a port to a bridge and the port already exists under the bridge, Cumulus Linux removes all other ports from the bridge.</td>
 <td>4.4.2</td>
@@ -193,14 +199,10 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 </tr>
 <tr>
 <td>2904450</td>
-<td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. </td>
+<td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
+
+</td>
 <td>4.4.0-4.4.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2904239</td>
-<td>If a ZTP script is executed without modifying network configuration (interface or routing configuration) and is configured to reboot the switch, ZTP might continue to run on subsequent reboots. To work around this issue, ensure ZTP modifies networking configuration in {{/etc/network/interfaces}} or {{/etc/frr.conf}}.</td>
-<td>4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -545,7 +547,7 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <tr>
 <td>2743186</td>
 <td>When you use MD5 passwords and you configure a non-default VRF configuration before the default VRF configuration in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
-<td>4.4.0-4.4.2</td>
+<td>4.4.0-4.4.2, 5.0.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2098,6 +2100,12 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td></td>
 </tr>
 <tr>
+<td>2947679</td>
+<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2943443</td>
 <td>Cumulus Linux lets you add more than one VXLAN interface to same VLAN on the same bridge. This is an invalid configuration as certain Cumulus Linux components, such as {{switchd}}, expect a single VNI for a given bridge or VLAN.</td>
 <td>3.7.15, 4.2.1-4.4.2, 5.0.0</td>
@@ -2188,7 +2196,9 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 </tr>
 <tr>
 <td>2904450</td>
-<td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. </td>
+<td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
+
+</td>
 <td>4.4.0-4.4.2</td>
 <td></td>
 </tr>
@@ -2752,7 +2762,7 @@ Fixed: 1.0.28-6+deb10u1</td>
 <tr>
 <td>2743186</td>
 <td>When you use MD5 passwords and you configure a non-default VRF configuration before the default VRF configuration in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
-<td>4.4.0-4.4.2</td>
+<td>4.4.0-4.4.2, 5.0.0</td>
 <td></td>
 </tr>
 <tr>

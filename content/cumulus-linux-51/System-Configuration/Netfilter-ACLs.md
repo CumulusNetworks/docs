@@ -879,13 +879,13 @@ cumulus@switch:~$ sudo cl-acltool -i
 
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 20 match ip protocol tcp
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 20 match ip tcp flags syn
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 20 match ip tcp mask rst
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 20 match ip tcp mask syn
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 20 match ip tcp mask fin
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 20 match ip tcp mask ack
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 20 action deny 
 cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
 cumulus@switch:~$ nv config apply
 ```

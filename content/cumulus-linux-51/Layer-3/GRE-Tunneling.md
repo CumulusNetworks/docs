@@ -72,130 +72,128 @@ cumulus@leaf03:~$ nv config apply
 {{< tabs "TabID58 ">}}
 {{< tab "leaf01 ">}}
 
-Edit the `/etc/network /interfaces` file to add the following configuration:
+1. Edit the `/etc/network /interfaces` file to add the following configuration:
 
-```
-cumulus@leaf01:~$ sudo nano /etc/network/interfaces
-...
-auto lo
-iface lo inet loopback
+   ```
+   cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+   ...
+   auto lo
+   iface lo inet loopback
 
-auto mgmt
-iface mgmt
-    address 127.0.0.1/8
-    address ::1/128
-    vrf-table auto
+   auto mgmt
+   iface mgmt
+       address 127.0.0.1/8
+       address ::1/128
+       vrf-table auto
 
-auto eth0
-iface eth0 inet dhcp
-    ip-forward off
-    ip6-forward off
-    vrf mgmt
+   auto eth0
+   iface eth0 inet dhcp
+       ip-forward off
+       ip6-forward off
+       vrf mgmt
 
-auto swp1
-iface swp1
-    address 10.0.0.9/24
+   auto swp1
+   iface swp1
+       address 10.0.0.9/24
 
-auto tunnelR2
-iface tunnelR2
-    address 10.1.100.1/30
-    tunnel-mode gre
-    tunnel-local 10.0.0.9
-    tunnel-endpoint 10.0.0.2
-    tunnel-ttl 255
-```
+   auto tunnelR2
+   iface tunnelR2
+       address 10.1.100.1/30
+       tunnel-mode gre
+       tunnel-local 10.0.0.9
+       tunnel-endpoint 10.0.0.2
+       tunnel-ttl 255
+   ```
 
-Run the `ifreload -a` command to load the configuration.
+2. Run the `ifreload -a` command to load the configuration.
 
-Run vtysh commands to configure the static route:
+3. Run vtysh commands to configure the static route:
 
-```
-cumulus@leaf01:mgmt:~$ sudo vtysh
-...
-leaf01# configure terminal
-leaf01(config)# ip route 10.1.1.0/24 tunnelR2
-leaf01(config)# exit
-leaf01# write memory
-leaf01# exit
-cumulus@leaf01:mgmt:~$
-```
+   ```
+   cumulus@leaf01:mgmt:~$ sudo vtysh
+   ...
+   leaf01# configure terminal
+   leaf01(config)# ip route 10.1.1.0/24 tunnelR2
+   leaf01(config)# exit
+   leaf01# write memory
+   leaf01# exit
+   cumulus@leaf01:mgmt:~$
+   ```
 
-The vtysh commands save the static route configuration in the /etc/frr/frr.conf file. For example:
+   The vtysh commands save the static route configuration in the /etc/frr/frr.conf file. For example:
 
-```
-cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
-...
-vrf default
-ip route 10.1.1.0/24 tunnelR2
-exit-vrf
-...
-```
+   ```
+   cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
+   ...
+   vrf default
+   ip route 10.1.1.0/24 tunnelR2
+   exit-vrf
+   ...
+   ```
 
 {{< /tab >}}
 {{< tab "leaf03 ">}}
 
-Edit the `/etc/network/interfaces` file to add the following configuration:
+1. Edit the `/etc/network/interfaces` file to add the following configuration:
 
-```
-cumulus@leaf03:~$ sudo nano /etc/network/interfaces
-...
-auto lo
-iface lo inet loopback
+   ```
+   cumulus@leaf03:~$ sudo nano /etc/network/interfaces
+   ...
+   auto lo
+   iface lo inet loopback
 
-auto mgmt
-iface mgmt
-    address 127.0.0.1/8
-    address ::1/128
-    vrf-table auto
+   auto mgmt
+   iface mgmt
+       address 127.0.0.1/8
+       address ::1/128
+       vrf-table auto
 
-auto eth0
-iface eth0 inet dhcp
-    ip-forward off
-    ip6-forward off
-    vrf mgmt
+   auto eth0
+   iface eth0 inet dhcp
+       ip-forward off
+       ip6-forward off
+       vrf mgmt
 
-auto swp1
-iface swp1
-    address 10.0.0.2/24
+   auto swp1
+   iface swp1
+      address 10.0.0.2/24
 
-auto tunnelR2
-iface tunnelR2
-    address 10.1.100.2/30
-    tunnel-mode gre
-    tunnel-local 10.0.0.2
-    tunnel-endpoint 10.0.0.9
-    tunnel-ttl 255
-```
+   auto tunnelR2
+   iface tunnelR2
+       address 10.1.100.2/30
+       tunnel-mode gre
+       tunnel-local 10.0.0.2
+       tunnel-endpoint 10.0.0.9
+       tunnel-ttl 255
+   ```
 
-Run the `ifreload -a` command to load the configuration.
+2. Run the `ifreload -a` command to load the configuration.
 
-Run vtysh commands to configure the static route:
+3. Run vtysh commands to configure the static route:
 
-```
-cumulus@leaf01:mgmt:~$ sudo vtysh
-...
-leaf01# configure terminal
-leaf01(config)# ip route 10.2.1.0/24 tunnelR1
-leaf01(config)# exit
-leaf01# write memory
-leaf01# exit
-cumulus@leaf01:mgmt:~$
-```
+   ```
+   cumulus@leaf03:mgmt:~$ sudo vtysh
+   ...
+   leaf01# configure terminal
+   leaf01(config)# ip route 10.2.1.0/24 tunnelR1
+   leaf01(config)# exit
+   leaf01# write memory
+   leaf01# exit
+   cumulus@leaf01:mgmt:~$
+   ```
 
-The vtysh commands save the static route configuration in the /etc/frr/frr.conf file. For example:
+   The vtysh commands save the static route configuration in the /etc/frr/frr.conf file. For example:
 
-cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
-
-```
-cumulus@leaf03:mgmt:~$ sudo nano /etc/frr/frr.conf
-...
-vrf default
-ip route 10.2.1.0/24 tunnelR1
-exit-vrf
-vrf mgmt
-exit-vrf
-...
-```
+   ```
+   cumulus@leaf03:mgmt:~$ sudo cat /etc/frr/frr.conf
+   ...
+   vrf default
+   ip route 10.2.1.0/24 tunnelR1
+   exit-vrf
+   vrf mgmt
+   exit-vrf
+   ...
+   ```
 
 {{< /tab >}}
 {{< /tabs >}}

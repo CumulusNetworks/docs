@@ -144,6 +144,10 @@ You must restart the `lldpd` service for the changes to take effect.
 cumulus@switch:~$ sudo systemctl restart lldpd
 ```
 
+## DCBX Options
+
+[DCBX](## "Data Center Bridging Capability Exchange protocol ") is an extension of LLDP.
+
 ## Troubleshooting
 
 You can use the `lldpcli` tool to query the `lldpd` daemon for neighbors, statistics, and other running configuration information. See `man lldpcli(8)` for details.

@@ -29,7 +29,7 @@ To configure GRE tunneling, you create a GRE tunnel interface with routes for tu
 3. Assign an IP address to the tunnel interface.
 4. Add route entries to encapsulate the packets using the tunnel interface.
 
-The following configuration example shows the commands used to set up a bidirectional GRE tunnel between two endpoints: `Tunnel-R1` and `Tunnel-R2`. The local tunnel endpoint for `Tunnel-R1` is 10.0.0.9 and the remote endpoint is 10.0.0.2. The local tunnel endpoint for `Tunnel-R2` is 10.0.0.2 and the remote endpoint is 10.0.0.9.
+The following configuration example shows the commands used to set up a bidirectional GRE tunnel between two endpoints: `TunnelR1` and `TunnelR2`. The local tunnel endpoint for `TunnelR1` is 10.0.0.9 and the remote endpoint is 10.0.0.2. The local tunnel endpoint for `TunnelR2` is 10.0.0.2 and the remote endpoint is 10.0.0.9.
 
 {{< img src = "/images/cumulus-linux/gre-tunnel-config.png" >}}
 
@@ -40,12 +40,11 @@ The following configuration example shows the commands used to set up a bidirect
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ nv set interface tunnel-R2 ip address 10.0.100.1
-cumulus@leaf01:~$ nv set interface tunnel-R2 gre enable on
-cumulus@leaf01:~$ nv set interface tunnel-R2 gre tunnel-endpoint 10.0.0.2
-cumulus@leaf01:~$ nv set interface tunnel-R2 gre tunnel-local 10.0.0.9
-cumulus@leaf01:~$ nv set interface tunnel-R2 gre tunnel-ttl 255
-cumulus@leaf01:~$ nv set interface tunnel-R2 gre route 10.0.100.0/24
+cumulus@leaf01:~$ nv set interface tunnelR2 ip address 10.0.100.1/24
+cumulus@leaf01:~$ nv set interface tunnelR2 tunnel mode gre
+cumulus@leaf01:~$ nv set interface tunnelR2 tunnel dest-ip 10.0.0.2
+cumulus@leaf01:~$ nv set interface tunnelR2 tunnel source-ip 10.0.0.9
+cumulus@leaf01:~$ nv set interface tunnelR2 tunnel ttl 255
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -53,12 +52,11 @@ cumulus@leaf01:~$ nv config apply
 {{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf03:~$ nv set interface tunnel-R1 ip address 10.0.200.1
-cumulus@leaf03:~$ nv set interface tunnel-R1 gre enable on
-cumulus@leaf03:~$ nv set interface tunnel-R1 gre tunnel-endpoint 10.0.0.9
-cumulus@leaf03:~$ nv set interface tunnel-R1 gre tunnel-local 10.0.0.2
-cumulus@leaf03:~$ nv set interface tunnel-R1 gre tunnel-ttl 255
-cumulus@leaf03:~$ nv set interface tunnel-R1 gre route 10.0.200.0/24
+cumulus@leaf03:~$ nv set interface tunnelR2 ip address 10.0.200.1/24
+cumulus@leaf03:~$ nv set interface tunnelR2 tunnel mode gre
+cumulus@leaf03:~$ nv set interface tunnelR2 tunnel dest-ip 10.0.0.9
+cumulus@leaf03:~$ nv set interface tunnelR2 tunnel source-ip 10.0.0.2
+cumulus@leaf03:~$ nv set interface tunnelR2 tunnel ttl 255
 cumulus@leaf03:~$ nv config apply
 ```
 
@@ -82,8 +80,8 @@ iface swp1
     link-duplex full
     link-autoneg off
     address 10.0.0.9/24
-auto Tunnel-R2
-iface Tunnel-R2
+auto TunnelR2
+iface TunnelR2
     tunnel-mode gre
     tunnel-endpoint 10.0.0.2
     tunnel-local 10.0.0.9
@@ -108,8 +106,8 @@ iface swp1
     link-duplex full
     link-autoneg off
     address 10.0.0.2/24
-auto Tunnel-R1
-iface Tunnel-R1
+auto TunnelR1
+iface TunnelR1
     tunnel-mode gre
     tunnel-endpoint 10.0.0.9
     tunnel-local 10.0.0.2
@@ -130,7 +128,7 @@ To delete a GRE tunnel, remove the tunnel interface, and remove the routes confi
 
 ## Troubleshooting
 
-To check GRE tunnel settings, run the NVUE `nv show ???` command, or the Linux `ip tunnel show` or `ifquery --check` command. For example:
+To check GRE tunnel settings, run the NVUE `nv show interface <interface>` command, or the Linux `ip tunnel show` or `ifquery --check` command. For example:
 
 ```
 cumulus@switch:~$ ip tunnel show
@@ -139,10 +137,10 @@ Tunnel-R1: gre/ip remote 10.0.0.2 local 10.0.0.9 ttl 255
 ```
 
 ```
-cumulus@switch:~$ ifquery --check Tunnel-R1
-auto Tunnel-R1
-iface Tunnel-R1                                                 [pass]
-        up ip route add 10.0.200.0/24 dev Tunnel-R1                 []
+cumulus@switch:~$ ifquery --check TunnelR1
+auto TunnelR1
+iface TunnelR1                                                 [pass]
+        up ip route add 10.0.200.0/24 dev TunnelR1                 []
         tunnel-ttl 255                                          [pass]
         tunnel-endpoint 10.0.0.9                                [pass]
         tunnel-local 10.0.0.2                                   [pass]

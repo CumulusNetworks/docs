@@ -7,6 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2972623</td>
+<td>If you change the {{clagd-vxlan-anycast-ip}} setting on both MLAG peers at the same time, both peers use their unique VTEP address indefinitely.</td>
+<td>3.7.15, 4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2971344</td>
+<td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.2.6-2+deb10u1
+Fixed: 2.2.6-2+deb10u2</td>
+<td>4.0.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2965759</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
 <td>3.7.15, 4.3.0-4.4.2</td>
@@ -15,7 +29,13 @@
 <tr>
 <td>2965753</td>
 <td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2965752</td>
+<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -29,25 +49,25 @@ Fixed: 2.5.5-3+deb10u4</td>
 <tr>
 <td>2961008</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
-<td>3.7.15, 4.0.0-4.4.2, 5.0.0</td>
+<td>3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2951114</td>
 <td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2951113</td>
 <td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
-<td>3.7.15, 4.1.1-4.4.2, 5.0.0</td>
+<td>3.7.15, 4.1.1-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -67,26 +87,26 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <tr>
 <td>2947680</td>
 <td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2947679</td>
 <td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2943443</td>
 <td>Cumulus Linux lets you add more than one VXLAN interface to same VLAN on the same bridge. This is an invalid configuration as certain Cumulus Linux components, such as {{switchd}}, expect a single VNI for a given bridge or VLAN.</td>
-<td>3.7.15, 4.2.1-4.4.2, 5.0.0</td>
+<td>3.7.15, 4.2.1-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2940063</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2940052</td>
@@ -98,7 +118,7 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>2940051</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2935122</td>
@@ -134,7 +154,7 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -156,7 +176,7 @@ Fixed: 2.8.90-1-cl4u6, 2.8.90-1-cl4.4.0u1, 2.8.90-1-cl5.0.0u8</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.1, 5.0.0</td>
+<td>4.0.0-4.4.1, 5.0.0-5.0.1</td>
 <td>4.4.2</td>
 </tr>
 <tr>
@@ -164,7 +184,7 @@ Fixed: 2.6.20-0+deb10u2</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.1, 5.0.0</td>
+<td>4.0.0-4.4.1, 5.0.0-5.0.1</td>
 <td>4.4.2</td>
 </tr>
 <tr>
@@ -173,7 +193,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 Vulnerable: &lt;= 3.42.1-1+deb10u3
 Fixed: 3.42.1-1+deb10u4</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2875338</td>
@@ -211,7 +231,7 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td>2873323</td>
 <td>CVE-2020-21913: International Components for Unicode (ICU-20850) v66.1 was discovered to contain a use after free bug in the pkg_createWithAssemblyCode function in the file tools/pkgdata/pkgdata.cpp.</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2873185</td>
@@ -268,7 +288,7 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
 To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2859177</td>
@@ -297,7 +317,7 @@ MemoryError
 <td>2855908</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -340,13 +360,13 @@ To work around this issue, reboot the switch.</td>
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u2
 Fixed: 4.1.0+git191117-2~deb10u3</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2845531</td>
 <td>If you update the MAC address of an SVI when the SVI is in a {{protodown}} state (for example, when no bridge ports that carry this VNI are operationally up or if the MAC address of the SVI's parent bridge changes), {{clagd}} does not notice the change. The MLAG peer incorrectly maintains a PERMANENT neighbor entry for the SVI IP that points to the old MAC address.</td>
 <td>4.2.1-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2845290</td>
@@ -356,19 +376,19 @@ CVE-2017-9778: Vulnerability to a negative length field in DWARF section, result
 Vulnerable: crash 7.2.8-1+cl4u1 and 7.2.8-1+cl3u1 with embedded gdb 7.6
 Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>3.7.15-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2840819</td>
 <td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2839140</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
 <td>4.3.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2837378</td>
@@ -386,7 +406,7 @@ Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>2826121</td>
 <td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
 <td>4.3.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2821869</td>
@@ -409,7 +429,7 @@ Traceback (most recent call last):
 MemoryError
 </td>
 <td>3.7.15-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2820565</td>
@@ -424,7 +444,7 @@ snmpd.service - Simple Network Management Protocol (SNMP) Daemon.
 
 To work around this issue, run the {{sudo systemctl restart snmpd.service}} command.</td>
 <td>4.3.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2817130</td>
@@ -447,7 +467,7 @@ Traceback (most recent call last):
 MemoryError
 </td>
 <td>3.7.15-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2816069</td>
@@ -476,14 +496,14 @@ MemoryError
 <tr>
 <td>2792750</td>
 <td>If you change the {{clagd-vxlan-anycast-ip}} setting on both MLAG peers at the same time, both peers use their unique VTEP address indefinitely.</td>
-<td>4.3.0-4.4.2</td>
+<td>3.7.15, 4.3.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
 <td>2792616</td>
 <td>If a neighbor entry (ARP or NDP) is used as a next hop of a route that is synchronized into hardware, the neighbor entry is not removed from hardware after the neighbor is no longer reachable.  As a result, routed traffic matching this prefix is incorrectly hardware forwarded through the stale neighbor information.</td>
 <td>4.3.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2783611</td>
@@ -500,7 +520,7 @@ More details at https://www.openssl.org/news/secadv/20210824.txt .
 Vulnerable: &lt;= 1.1.1d-0+deb10u6
 Fixed: 1.1.1d-0+deb10u7</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2771871</td>
@@ -520,7 +540,7 @@ This affects failed neighbor entries on routed interfaces that are not SVIs.</td
 <td>2755615</td>
 <td>When {{route_preferred_over_neigh}} is set to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2754791</td>
@@ -534,7 +554,7 @@ This affects failed neighbor entries on routed interfaces that are not SVIs.</td
 Vulnerable: 1.14.0-1
 Fixed: 1.14.0-1+deb10u1</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2754686</td>
@@ -542,7 +562,7 @@ Fixed: 1.14.0-1+deb10u1</td>
 Vulnerable: 2.8.9rel.1-3
 Fixed: 2.8.9rel.1-3+deb10u1</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2754680</td>
@@ -551,7 +571,7 @@ CVE-2020-27153: a double free flaw in the disconnect_cb() routine in the gattool
 Vulnerable: &lt;= 5.50-1.2~deb10u1
 Fixed: 5.50-1.2~deb10u2</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2747606</td>
@@ -562,7 +582,7 @@ malformed audio file.
 Vulnerable: 1.0.28-6
 Fixed: 1.0.28-6+deb10u1</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2739690</td>
@@ -570,7 +590,7 @@ Fixed: 1.0.28-6+deb10u1</td>
 Vulnerable: 1.24.1-1
 Fixed: 1.24.1-1+deb 10u1</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2739648</td>
@@ -588,13 +608,13 @@ See "systemctl status frr.service" and "journalctl -xe" for details.
 Vulnerable: &lt;= 1.17-3+deb10u1
 Fixed: 1.17-3+deb10u2</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2739402</td>
 <td>The destination MAC address of ERSPAN GRE packets is set to all zeros.</td>
 <td>4.3.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2736265</td>
@@ -615,7 +635,7 @@ Fixed: 241-7~deb10u8</td>
 <td>2734119</td>
 <td>The ESI line of {{show bgp l2vpn evpn route}} command always shows VNI: 0. This is a cosmetic software issue.</td>
 <td>4.3.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2734107</td>
@@ -633,7 +653,7 @@ Fixed: 241-7~deb10u8</td>
 <td>2732587</td>
 <td>The bridge MAC address is updated during a port change on bridge interfaces.</td>
 <td>4.3.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2728207</td>
@@ -674,7 +694,7 @@ Fixed: 2.4.47+dfsg-3+deb10u6</td>
 <td>When VRF devices are deleted and reconfigured (for example, during a networking service restart), dynamic BGP neighbors might fail to reestablish. 
 To work around this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>4.3.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2724191</td>
@@ -784,7 +804,7 @@ To work around this issue, configure the loopback interface in the desired OSPF 
 
 cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </td>
-<td>4.0.0-4.4.2, 5.0.0</td>
+<td>4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1060,7 +1080,7 @@ Fixed: 1.1.1d-0+deb10u6</td>
 <td>2599274</td>
 <td>On Mellanox Spectrum platforms, when there is an MSTP forwarding state change on a bonds (for example, when the state changes from blocking to forwarding), the MSTP hardware table might set some VLANs to blocking when they should be forwarding. A a result, all packets on these VLANs drop at ingress.</td>
 <td>4.3.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2582639</td>
@@ -1319,7 +1339,7 @@ This error has no functional impact.</td>
 <td>If you apply an outbound route map to a BGP peer that uses {{set as-path prepend last-as}}, advertised locally-originated routes have the ASN of the peer prepended to the AS path.
 This might trigger AS path loop prevention on the peer, where the peer ignores locally-originated prefixes.</td>
 <td>4.2.1-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2554709</td>
@@ -1943,7 +1963,7 @@ See /var/log/netd.log for more details.
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2543164</td>

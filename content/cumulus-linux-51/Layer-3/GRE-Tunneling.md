@@ -24,14 +24,13 @@ The following example shows two sites that use IPv4 addresses. Using GRE tunneli
 
 To configure GRE tunneling, you create a GRE tunnel interface with routes for tunneling on both endpoints as follows:
 
-1. Create a tunnel interface by specifying an interface name, the tunnel mode as `gre`, the source (local) and destination (remote) underlay IP address, and the `ttl` (optional).
-2. Bring the GRE tunnel interface up.
-3. Assign an IP address to the tunnel interface.
-4. Add route entries to encapsulate the packets using the tunnel interface.
+- Create a tunnel interface by specifying an interface name, the tunnel mode as `gre`, the source (local) and destination (remote) underlay IP address, and the `ttl` (optional).
+- Assign an IP address to the tunnel interface.
+- Add route entries to encapsulate the packets using the tunnel interface.
 
-The following configuration example shows the commands used to set up a bidirectional GRE tunnel between two endpoints: `TunnelR1` and `TunnelR2`. The local tunnel endpoint for `TunnelR1` is 10.0.0.9 and the remote endpoint is 10.0.0.2. The local tunnel endpoint for `TunnelR2` is 10.0.0.2 and the remote endpoint is 10.0.0.9.
+The following configuration example shows the commands used to set up a bidirectional GRE tunnel between two endpoints: `tunnelR1` and `tunnelR2`. The local tunnel endpoint for `tunnelR1` is 10.0.0.9 and the remote endpoint is 10.0.0.2. The local tunnel endpoint for `tunnelR2` is 10.0.0.2 and the remote endpoint is 10.0.0.9.
 
-{{< img src = "/images/cumulus-linux/gre-tunnel-config.png" >}}
+{{< img src = "/images/cumulus-linux/gre-tunnel-config1.png" >}}
 
 {{< tabs "TabID35 ">}}
 {{< tab "NVUE Commands">}}
@@ -40,11 +39,13 @@ The following configuration example shows the commands used to set up a bidirect
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ nv set interface tunnelR2 ip address 10.0.100.1/24
+cumulus@leaf01:~$ nv set interface swp1 ip address 10.0.0.9/24
+cumulus@leaf01:~$ nv set interface tunnelR2 ip address 10.1.100.1/30
 cumulus@leaf01:~$ nv set interface tunnelR2 tunnel mode gre
 cumulus@leaf01:~$ nv set interface tunnelR2 tunnel dest-ip 10.0.0.2
 cumulus@leaf01:~$ nv set interface tunnelR2 tunnel source-ip 10.0.0.9
 cumulus@leaf01:~$ nv set interface tunnelR2 tunnel ttl 255
+cumulus@leaf01:~$ nv set vrf default router static 10.1.1.0/24 via tunnelR2
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -52,11 +53,13 @@ cumulus@leaf01:~$ nv config apply
 {{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf03:~$ nv set interface tunnelR2 ip address 10.0.200.1/24
+cumulus@leaf03:~$ nv set interface swp1 ip address 10.0.0.2/24
+cumulus@leaf03:~$ nv set interface tunnelR2 ip address 10.1.100.2/30
 cumulus@leaf03:~$ nv set interface tunnelR2 tunnel mode gre
 cumulus@leaf03:~$ nv set interface tunnelR2 tunnel dest-ip 10.0.0.9
 cumulus@leaf03:~$ nv set interface tunnelR2 tunnel source-ip 10.0.0.2
 cumulus@leaf03:~$ nv set interface tunnelR2 tunnel ttl 255
+cumulus@leaf03:~$ nv set vrf default router static 10.2.1.0/24 via tunnelR1
 cumulus@leaf03:~$ nv config apply
 ```
 
@@ -69,28 +72,64 @@ cumulus@leaf03:~$ nv config apply
 {{< tabs "TabID58 ">}}
 {{< tab "leaf01 ">}}
 
-Edit the `/etc/network/interfaces` file to add the following configuration:
+Edit the `/etc/network /interfaces` file to add the following configuration:
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/network/interfaces
 ...
-auto swp1 #underlay interface for tunnel
+auto lo
+iface lo inet loopback
+
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
+
+auto swp1
 iface swp1
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
     address 10.0.0.9/24
-auto TunnelR2
-iface TunnelR2
+
+auto tunnelR2
+iface tunnelR2
+    address 10.1.100.1/30
     tunnel-mode gre
-    tunnel-endpoint 10.0.0.2
     tunnel-local 10.0.0.9
+    tunnel-endpoint 10.0.0.2
     tunnel-ttl 255
-    address 10.0.100.1
-    up ip route add 10.0.100.0/24 dev Tunnel-R2
 ```
 
 Run the `ifreload -a` command to load the configuration.
+
+Run vtysh commands to configure the static route:
+
+```
+cumulus@leaf01:mgmt:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# ip route 10.1.1.0/24 tunnelR2
+leaf01(config)# exit
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:mgmt:~$
+```
+
+The vtysh commands save the static route configuration in the /etc/frr/frr.conf file. For example:
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
+vrf default
+ip route 10.1.1.0/24 tunnelR2
+exit-vrf
+...
+```
 
 {{< /tab >}}
 {{< tab "leaf03 ">}}
@@ -100,50 +139,99 @@ Edit the `/etc/network/interfaces` file to add the following configuration:
 ```
 cumulus@leaf03:~$ sudo nano /etc/network/interfaces
 ...
-auto swp1 #underlay interface for tunnel
+auto lo
+iface lo inet loopback
+
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
+
+auto swp1
 iface swp1
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
     address 10.0.0.2/24
-auto TunnelR1
-iface TunnelR1
+
+auto tunnelR2
+iface tunnelR2
+    address 10.1.100.2/30
     tunnel-mode gre
-    tunnel-endpoint 10.0.0.9
     tunnel-local 10.0.0.2
+    tunnel-endpoint 10.0.0.9
     tunnel-ttl 255
-    address 10.0.200.1
-    up ip route add 10.0.200.0/24 dev Tunnel-R1
 ```
 
 Run the `ifreload -a` command to load the configuration.
 
-{{< /tab >}}
-{{< /tabs >}}
+Run vtysh commands to configure the static route:
+
+```
+cumulus@leaf01:mgmt:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# ip route 10.2.1.0/24 tunnelR1
+leaf01(config)# exit
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:mgmt:~$
+```
+
+The vtysh commands save the static route configuration in the /etc/frr/frr.conf file. For example:
+
+cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
+
+```
+cumulus@leaf03:mgmt:~$ sudo nano /etc/frr/frr.conf
+...
+vrf default
+ip route 10.2.1.0/24 tunnelR1
+exit-vrf
+vrf mgmt
+exit-vrf
+...
+```
 
 {{< /tab >}}
 {{< /tabs >}}
 
-To delete a GRE tunnel, remove the tunnel interface, and remove the routes configured with the tunnel interface, either run the NVU `nv unset` commands or remove the tunnel configuration from the `/etc/network/interfaces` file and run the `ifreload -a` command.
+{{< /tab >}}
+{{< /tabs >}}
+
+To delete a GRE tunnel, remove the tunnel interface, and remove the routes configured with the tunnel interface. Either run the NVU `nv unset` commands or remove the tunnel configuration from the `/etc/network/interfaces` file and run the `ifreload -a` command.
 
 ## Troubleshooting
 
-To check GRE tunnel settings, run the NVUE `nv show interface <interface>` command, or the Linux `ip tunnel show` or `ifquery --check` command. For example:
+To check GRE tunnel settings, run the NVUE `nv show interface <interface> tunnel` command, the Linux `ip tunnel show` or `ifquery --check` command. For example:
 
 ```
-cumulus@switch:~$ ip tunnel show
+cumulus@leaf03:mgmt:~$ nv show interface tunnelR2 tunnel
+           operational  applied   description
+---------  -----------  --------  -------------------------------
+dest-ip    10.0.0.9     10.0.0.9  Destination underlay IP address
+mode       gre          gre       tunnel mode
+source-ip  10.0.0.2     10.0.0.2  Source underlay IP address
+ttl                     255       time to live
+```
+
+```
+cumulus@leaf01:mgmt:~$ ip tunnel show
 gre0: gre/ip remote any local any ttl inherit nopmtudisc
-Tunnel-R1: gre/ip remote 10.0.0.2 local 10.0.0.9 ttl 255
+tunnelR2: gre/ip remote 10.0.0.2 local 10.0.0.9 ttl 255
 ```
 
 ```
-cumulus@switch:~$ ifquery --check TunnelR1
-auto TunnelR1
-iface TunnelR1                                                 [pass]
-        up ip route add 10.0.200.0/24 dev TunnelR1                 []
-        tunnel-ttl 255                                          [pass]
-        tunnel-endpoint 10.0.0.9                                [pass]
-        tunnel-local 10.0.0.2                                   [pass]
-        tunnel-mode gre                                         [pass]
-        address 10.0.200.1/32                                   [pass]
+cumulus@leaf01:mgmt:~$ ifquery --check tunnelR2
+auto tunnelR2
+iface tunnelR2                                                 [pass]
+   tunnel-mode gre                                             [pass]
+   tunnel-local 10.0.0.9/32                                    [pass]
+   tunnel-endpoint 10.0.0.2/32                                 [pass]
+   tunnel-ttl 255                                              [pass]
+   address 10.1.100.1/30                                       [pass]
 ```

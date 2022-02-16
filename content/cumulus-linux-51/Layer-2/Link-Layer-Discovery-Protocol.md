@@ -28,7 +28,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Create the `/etc/lldpd.conf` file or create a file in the `/etc/lldpd.d/` directory with a `.conf` suffix.
+Create the `/etc/lldpd.conf` file or create a file in the `/etc/lldpd.d/` directory with a `.conf` suffix and add the timers:
 
 ```
 cumulus@switch:~$ sudo nano /etc/lldpd.conf

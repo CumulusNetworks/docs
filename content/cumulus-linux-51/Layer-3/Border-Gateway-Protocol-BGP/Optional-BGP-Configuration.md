@@ -519,6 +519,131 @@ Total number of neighbors 1
 ...
 ```
 
+## BGP allowas-in
+
+To prevent loops, the switch automatically discards BGP network prefixes if it sees its own ASN in the AS path. However, you can configure Cumulus Linux to receive and process routes even if it detects its own ASN in the AS path (allowas-in).
+
+To enable allowas-in:
+
+{{< tabs "528 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn enable on
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# address-family ipv4 unicast
+switch(config-router-af)# neighbor swp51 allowas-in
+switch(config-router-af)# end
+switch# write memory
+switch# exit
+```
+
+The vtysh commands save the configuration in the `address-family` stanza of the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+address-family ipv4 unicast
+  network 10.10.10.1/32
+  redistribute connected
+  neighbor swp51 allowas-in
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+You can configure additional options:
+- You can set the maximum number of occurrences of the local system's AS number in the received AS path
+- You can allow a received AS path containing the ASN of the local system but only if it is the originating AS
+
+The following example sets the maximum number of occurrences of the local system's AS number in the received AS path to 4:
+
+{{< tabs "571 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn occurrences 4
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# address-family ipv4 unicast
+switch(config-router-af)# neighbor swp51 allowas-in 4
+switch(config-router-af)# end
+switch# write memory
+switch# exit
+```
+
+The vtysh commands save the configuration in the `address-family` stanza of the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+address-family ipv4 unicast
+  network 10.10.10.1/32
+  redistribute connected
+  neighbor swp51 allowas-in 4
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The following example allows a received AS path containing the ASN of the local system but only if it is the originating AS:  
+
+{{< tabs "610 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn origin on
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# address-family ipv4 unicast
+switch(config-router-af)# neighbor swp51 allowas-in origin
+switch(config-router-af)# end
+switch# write memory
+switch# exit
+```
+
+The vtysh commands save the configuration in the `address-family` stanza of the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+address-family ipv4 unicast
+  network 10.10.10.1/32
+  redistribute connected
+  neighbor swp51 allowas-in origin
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## ECMP
 
 BGP supports equal-cost multipathing ({{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP">}}). If a BGP node hears a certain prefix from multiple peers, it has the information necessary to program the routing table and forward traffic for that prefix through all these peers. BGP typically chooses one best path for each prefix and installs that route in the forwarding table.

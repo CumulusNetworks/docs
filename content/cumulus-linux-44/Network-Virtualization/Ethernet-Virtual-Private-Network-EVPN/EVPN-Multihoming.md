@@ -81,7 +81,7 @@ The following features are not supported with EVPN-MH:
 
 ## Basic Configuration
 
-To configure EVPN-MH:
+To configure EVPN-MH, you must complete **all** the following steps:
 1. Enable EVPN multihoming.
 2. Set the Ethernet segment ID.
 3. Set the Ethernet segment system MAC address.

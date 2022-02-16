@@ -1086,6 +1086,14 @@ To work around this issue, change the value of arp_ignore to 2. See &lt;a href="
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2971344</td>
+<td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.2.6-2+deb10u1
+Fixed: 2.2.6-2+deb10u2</td>
+<td>4.0.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2961080</td>
 <td>CVE-2021-28965 CVE-2021-31799 CVE-2021-31810 CVE-2021-41817 CVE-2021-41819 CVE-2021-32066: Several vulnerabilities have been discovered in the interpreter for the Ruby language and the Rubygems included, which may result on result in XML roundtrip attacks, the execution of arbitrary code, information disclosure, StartTLS stripping in IMAP or denial of service.
 Vulnerable: &lt;= 2.5.5-3+deb10u3
@@ -1096,7 +1104,7 @@ Fixed: 2.5.5-3+deb10u4</td>
 <tr>
 <td>2961008</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
-<td>3.7.15, 4.0.0-4.4.2, 5.0.0</td>
+<td>3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1111,13 +1119,13 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>2940063</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2940051</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2893895</td>
@@ -1132,7 +1140,7 @@ Fixed: 2.8.90-1-cl4u6, 2.8.90-1-cl4.4.0u1, 2.8.90-1-cl5.0.0u8</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.1, 5.0.0</td>
+<td>4.0.0-4.4.1, 5.0.0-5.0.1</td>
 <td>4.4.2</td>
 </tr>
 <tr>
@@ -1140,7 +1148,7 @@ Fixed: 2.6.20-0+deb10u2</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.1, 5.0.0</td>
+<td>4.0.0-4.4.1, 5.0.0-5.0.1</td>
 <td>4.4.2</td>
 </tr>
 <tr>
@@ -1149,20 +1157,20 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 Vulnerable: &lt;= 3.42.1-1+deb10u3
 Fixed: 3.42.1-1+deb10u4</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2873323</td>
 <td>CVE-2020-21913: International Components for Unicode (ICU-20850) v66.1 was discovered to contain a use after free bug in the pkg_createWithAssemblyCode function in the file tools/pkgdata/pkgdata.cpp.</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2862211</td>
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
 To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2859177</td>
@@ -1193,7 +1201,7 @@ MemoryError
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u2
 Fixed: 4.1.0+git191117-2~deb10u3</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2845290</td>
@@ -1203,13 +1211,13 @@ CVE-2017-9778: Vulnerability to a negative length field in DWARF section, result
 Vulnerable: crash 7.2.8-1+cl4u1 and 7.2.8-1+cl3u1 with embedded gdb 7.6
 Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>3.7.15-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2840819</td>
 <td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2821869</td>
@@ -1232,7 +1240,7 @@ Traceback (most recent call last):
 MemoryError
 </td>
 <td>3.7.15-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2817130</td>
@@ -1255,7 +1263,7 @@ Traceback (most recent call last):
 MemoryError
 </td>
 <td>3.7.15-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2782035</td>
@@ -1266,13 +1274,13 @@ More details at https://www.openssl.org/news/secadv/20210824.txt .
 Vulnerable: &lt;= 1.1.1d-0+deb10u6
 Fixed: 1.1.1d-0+deb10u7</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2755615</td>
 <td>When {{route_preferred_over_neigh}} is set to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2754692</td>
@@ -1280,7 +1288,7 @@ Fixed: 1.1.1d-0+deb10u7</td>
 Vulnerable: 1.14.0-1
 Fixed: 1.14.0-1+deb10u1</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2754686</td>
@@ -1288,7 +1296,7 @@ Fixed: 1.14.0-1+deb10u1</td>
 Vulnerable: 2.8.9rel.1-3
 Fixed: 2.8.9rel.1-3+deb10u1</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2754680</td>
@@ -1297,7 +1305,7 @@ CVE-2020-27153: a double free flaw in the disconnect_cb() routine in the gattool
 Vulnerable: &lt;= 5.50-1.2~deb10u1
 Fixed: 5.50-1.2~deb10u2</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2747606</td>
@@ -1308,7 +1316,7 @@ malformed audio file.
 Vulnerable: 1.0.28-6
 Fixed: 1.0.28-6+deb10u1</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2739690</td>
@@ -1316,7 +1324,7 @@ Fixed: 1.0.28-6+deb10u1</td>
 Vulnerable: 1.24.1-1
 Fixed: 1.24.1-1+deb 10u1</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2739640</td>
@@ -1324,7 +1332,7 @@ Fixed: 1.24.1-1+deb 10u1</td>
 Vulnerable: &lt;= 1.17-3+deb10u1
 Fixed: 1.17-3+deb10u2</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2, 5.0.0</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2736265</td>
@@ -1417,7 +1425,7 @@ To work around this issue, configure the loopback interface in the desired OSPF 
 
 cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </td>
-<td>4.0.0-4.4.2, 5.0.0</td>
+<td>4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3936,7 +3944,7 @@ To work around this issue, rely on a different source of default route other tha
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2543164</td>

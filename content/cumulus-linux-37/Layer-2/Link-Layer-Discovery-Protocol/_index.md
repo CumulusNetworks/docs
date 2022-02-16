@@ -346,8 +346,7 @@ If you enable the VLAN (dot1) TLV option with a high number of VLANs resulting i
 
 ## Enable the SNMP Subagent in LLDP
 
-LLDP does not enable the SNMP subagent by default. You need to edit
-`/etc/default/lldpd` and enable the `-x` option.
+LLDP does not enable the SNMP subagent by default. You need to edit `/etc/default/lldpd` and enable the `-x` option.
 
 ```
 cumulus@switch:~$ sudo nano /etc/default/lldpd
@@ -355,7 +354,33 @@ cumulus@switch:~$ sudo nano /etc/default/lldpd
 # Add "-x" to DAEMON_ARGS to start SNMP subagent
 
 # Enable CDP by default
-DAEMON_ARGS="-c"
+DAEMON_ARGS="-c -x"
+```
+
+## Change CDP Settings
+
+Cumulus Linux provides support for [CDP](## "Cisco Discovery Protocol ") so that the switch can advertise information about itself with Cisco routers that do not support LLDP. By default, the Cumulus Linux switch sends CDP packets only if the peer sends CDP packets. You can change this setting by replacing `-c` in the `/etc/default/lldpd` file with one of the following options:
+
+| Option | Description |
+|--------|-------------|
+| -cc    | The Cumulus Linux switch sends CDPv1 packets even when there is no detected CDP peer. |
+| -ccc   | The Cumulus Linux switch sends CDPv2 packets even when there is no detected CDP peer. |
+| -cccc  | The Cumulus Linux switch disables CDPv1 and enables CDPv2. |
+| -ccccc | The Cumulus Linux switch disables CDPv1 and forces CDPv2. |
+
+The following example changes the CDP setting to `-ccc` so that the switch sends CDPv2 packets even when there is no detected CDP peer:
+
+```
+cumulus@switch:~$ sudo nano /etc/default/lldpd
+...
+# Enable CDP by default
+DAEMON_ARGS="-ccc -x -M 4"
+```
+
+You must restart the `lldpd` service for the changes to take effect.
+
+```
+cumulus@switch:~$ sudo systemctl restart lldpd
 ```
 
 ## Caveats and Errata

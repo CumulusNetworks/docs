@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2972623</td>
+<td>If you change the {{clagd-vxlan-anycast-ip}} setting on both MLAG peers at the same time, both peers use their unique VTEP address indefinitely.</td>
+<td>3.7.15, 4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2965759</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
 <td>3.7.15, 4.3.0-4.4.2</td>
@@ -15,7 +21,13 @@
 <tr>
 <td>2965753</td>
 <td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2965752</td>
+<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -29,7 +41,7 @@ Fixed: 312-2+deb8u4</td>
 <tr>
 <td>2961008</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
-<td>3.7.15, 4.0.0-4.4.2, 5.0.0</td>
+<td>3.7.15, 4.0.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -66,19 +78,19 @@ Fixed: 4.8.6+git64-g5dc8b2b+dfsg-3+deb8u4</td>
 <tr>
 <td>2951114</td>
 <td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2951113</td>
 <td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
-<td>3.7.15, 4.1.1-4.4.2, 5.0.0</td>
+<td>3.7.15, 4.1.1-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -118,19 +130,19 @@ Fixed: 3.26-1+debu8u16</td>
 <tr>
 <td>2947680</td>
 <td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2947679</td>
 <td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2943443</td>
 <td>Cumulus Linux lets you add more than one VXLAN interface to same VLAN on the same bridge. This is an invalid configuration as certain Cumulus Linux components, such as {{switchd}}, expect a single VNI for a given bridge or VLAN.</td>
-<td>3.7.15, 4.2.1-4.4.2, 5.0.0</td>
+<td>3.7.15, 4.2.1-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -181,7 +193,7 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 <td>2940063</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2940052</td>
@@ -193,7 +205,7 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 <td>2940051</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2934940</td>
@@ -288,7 +300,7 @@ Fixed: 2.1.5-2+deb8u13</td>
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -354,7 +366,7 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td>2866097</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2866084</td>
@@ -401,7 +413,7 @@ Fixed: 9.4.26-0+deb8u5</td>
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
 To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2861951</td>
@@ -438,7 +450,7 @@ MemoryError
 <td>2855908</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -489,7 +501,7 @@ CVE-2017-9778: Vulnerability to a negative length field in DWARF section, result
 Vulnerable: crash 7.2.8-1+cl4u1 and 7.2.8-1+cl3u1 with embedded gdb 7.6
 Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>3.7.15-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2841003</td>
@@ -560,7 +572,7 @@ Traceback (most recent call last):
 MemoryError
 </td>
 <td>3.7.15-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2820758</td>
@@ -593,7 +605,7 @@ Traceback (most recent call last):
 MemoryError
 </td>
 <td>3.7.15-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2815646</td>
@@ -680,10 +692,16 @@ To work around this issue, remove the unnecessary eBGP IPv4 peering.</td>
 <td>4.3.0-4.4.2</td>
 </tr>
 <tr>
+<td>2792750</td>
+<td>If you change the {{clagd-vxlan-anycast-ip}} setting on both MLAG peers at the same time, both peers use their unique VTEP address indefinitely.</td>
+<td>3.7.15, 4.3.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2770226</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2769687</td>
@@ -1136,7 +1154,7 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <td>2556811</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2556037</td>
@@ -2048,7 +2066,7 @@ To work around this issue, rely on a different source of default route other tha
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2543164</td>
@@ -2997,13 +3015,13 @@ Fixed: 4.8.6+git64-g5dc8b2b+dfsg-3+deb8u4</td>
 <tr>
 <td>2951114</td>
 <td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2951113</td>
 <td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3082,13 +3100,13 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 <td>2940063</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2940051</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2934940</td>
@@ -3257,7 +3275,7 @@ Fixed: 9.4.26-0+deb8u5</td>
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
 To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2861951</td>
@@ -5190,7 +5208,7 @@ To work around this issue, rely on a different source of default route other tha
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2543164</td>
@@ -5828,7 +5846,7 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 <td>2940063</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2934940</td>
@@ -5979,7 +5997,7 @@ Fixed: 9.4.26-0+deb8u5</td>
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
 To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2861951</td>
@@ -7920,7 +7938,7 @@ To work around this issue, rely on a different source of default route other tha
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2543164</td>
@@ -9102,7 +9120,7 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 <td>2940063</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2934940</td>
@@ -9253,7 +9271,7 @@ Fixed: 9.4.26-0+deb8u5</td>
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
 To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2861951</td>
@@ -11426,7 +11444,7 @@ To work around this issue, rely on a different source of default route other tha
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2543164</td>
@@ -12583,7 +12601,7 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 <td>2940063</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2934939</td>
@@ -12727,7 +12745,7 @@ Fixed: 9.4.26-0+deb8u5</td>
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
 To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
 <td>3.7.12-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2861951</td>
@@ -15082,7 +15100,7 @@ To work around this issue, rely on a different source of default route other tha
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2543164</td>
@@ -17566,7 +17584,7 @@ To work around this issue, rely on a different source of default route other tha
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2543164</td>
@@ -20250,7 +20268,7 @@ To work around this issue, rely on a different source of default route other tha
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2543164</td>
@@ -22178,7 +22196,7 @@ To work around this issue, rely on a different source of default route other tha
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2543164</td>
@@ -24512,7 +24530,7 @@ To work around this issue, rely on a different source of default route other tha
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2543164</td>
@@ -26364,7 +26382,7 @@ To work around this issue, configure the ECMP hash seed to the same value on the
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2543164</td>
@@ -28556,7 +28574,7 @@ To work around this issue, set a "dummy" route map outbound to the eBGP peer or 
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2543113</td>
@@ -30485,7 +30503,7 @@ You can now install such rules with swp+.</td>
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2543113</td>
@@ -32137,7 +32155,7 @@ You can now install such rules with swp+.</td>
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2543113</td>
@@ -33842,7 +33860,7 @@ You can now install such rules with swp+.</td>
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2543113</td>
@@ -35634,7 +35652,7 @@ https://security-tracker.debian.org/tracker/ghostscript</td>
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2543044</td>
@@ -37455,7 +37473,7 @@ https://security-tracker.debian.org/tracker/ghostscript</td>
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2540845</td>
@@ -38622,7 +38640,7 @@ https://security-tracker.debian.org/tracker/ghostscript</td>
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
 <td>3.7.0-4.4.2</td>
-<td>5.0.0</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2540557</td>

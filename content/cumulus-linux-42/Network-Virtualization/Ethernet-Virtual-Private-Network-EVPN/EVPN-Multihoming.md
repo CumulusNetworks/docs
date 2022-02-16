@@ -56,7 +56,7 @@ To use EVPN-MH, you must remove any MLAG configuration on the switch:
 
 ## Configure EVPN-MH
 
-To configure EVPN-MH, first you need to enable the `evpn.multihoming.enable` variable in `switchd.conf`. Then you need to specify the following required settings:
+To configure EVPN-MH, first you need to enable the `evpn.multihoming.enable` variable in `switchd.conf`. Then, you must specify the following required settings:
 
 - The Ethernet segment ID (`es-id`)
 - The Ethernet segment system MAC address (`es-sys-mac`)

@@ -154,18 +154,18 @@ Cumulus Linux supports the following TLVs:
 |------------------- | ------------ | ----------- |
 | VLAN Name          | 0x3          | The name of any VLAN to which the port belongs.|
 | Port VLAN ID       | 0x1          | The port VLAN identifier.|
-| Link Aggregation   | 0x7          | Indicates if the port supports link aggregation and if it is enabled. |
+| IEEE 802.1 Link Aggregation   | 0x7 | Indicates if the port supports link aggregation and if it is enabled. |
 | ETS Configuration  | 0x9          | Enhanced Transmission Selection configuration. |
 | ETS Recommendation | 0xA          | Enhanced Transmission Selection recommendation.|
 | PFC Configuration  | 0xB          | Priority-based Flow Control.|
-| Link Aggregation   | 0x3          | IEEE 802.3 Organizationally Specific TLVs  |
-| Maximum Frame Size | 0x4          | The supported maximum frame size.|
+| IEEE 802.3 Link Aggregation   | 0x3          | Cumulus Linux transmits the IEEE 802.3 Link Aggregation TLV by default.  |
+| Maximum Frame Size | 0x4          | The MTU configuration on the port. Cumulus Linux transmits this TLV by default.|
 
-### Transmit dot1 TLVs
+### Transmit 802.1 TLVs
 
-You can transmit the dot1 TLVs (VLAN name, Port VLAN ID, and Link Aggregation) when exchanging LLDP messages.
+You can transmit the 802.1 TLV types (VLAN name, Port VLAN ID, and IEEE 802.1 Link Aggregation) when exchanging LLDP messages. By default, transmission of the 802.1 TLV types is off and the switch sends all LLDP PDUs without 802.1 TLVs.
 
-To enable the transmission of the dot1 TLVs, run the `nv set service lldp dot1-tlv on` command:
+To enable the transmission of the 802.1 TLVs, run the `nv set service lldp dot1-tlv on` command:
 
 ```
 cumulus@switch:~$ nv set service lldp dot1-tlv on
@@ -174,7 +174,7 @@ cumulus@switch:~$ nv config apply
 
 ### Transmit QoS TLVs
 
-You can enable the transmission of QoS TLVs (ETS Configuration, ETS Recommendation, PFC Configuration) on an interface. By default, transmission of all TLV types is disabled on an interface.
+You can enable the transmission of QoS TLVs (ETS Configuration, ETS Recommendation, PFC Configuration) on an interface. By default, transmission of all TLV types is disabled on interfaces.
 
 {{%notice note%}}
 Adding the QoS TLVs to LLDP packets on an interface relies on PFC and ETS configuration from `switchd`. Refer to {{<link url="Quality-of-Service" text="Quality of Service">}} for information on configuring PFC and ETS.

@@ -45,7 +45,6 @@ The following platforms are supported in Cumulus Linux 3.7 and are now supported
 - Penguin Arctica 4804iq
 - Penguin Arctica 4806xp
 - QCT QuantaMesh BMS T4048-IX2
-- QCT QuantaMesh T1048-LY4R
 - QCT QuantaMesh BMS T5032-LY6-x86
 - QCT QuantaMesh BMS T3048-LY7
 - SuperMicro SSE-C3632S

@@ -146,7 +146,7 @@ cumulus@switch:~$ sudo systemctl restart lldpd
 
 ## LLDP DCBX TLVs
 
-[DCBX](## "Data Center Bridging Capability Exchange protocol ") is an extension of LLDP. Cumulus Linux supports DCBX [TLVs](## "Type-Length-Value ") to provide additional information to peers, such as VLAN information and [QoS](## "Quality of Service ") in LLDP packets. Adding QoS configuration as part of the DCBX TLVs allows automated configuration on hosts and switches that connect to the switch.
+[DCBX](## "Data Center Bridging Capability Exchange protocol ") is an extension of LLDP. Cumulus Linux supports DCBX [TLVs](## "Type-Length-Value ") to provide additional information in LLDP packets to peers, such as VLAN information and [QoS](## "Quality of Service "). Adding QoS configuration as part of the DCBX TLVs allows automated configuration on hosts and switches that connect to the switch.
 
 Cumulus Linux supports the following TLVs:
 
@@ -154,56 +154,181 @@ Cumulus Linux supports the following TLVs:
 |------------------- | ------------ | ----------- |
 | VLAN Name          | 0x3          | The name of any VLAN to which the port belongs.|
 | Port VLAN ID       | 0x1          | The port VLAN identifier.|
-| IEEE 802.1 Link Aggregation   | 0x7 | Indicates if the port supports link aggregation and if it is enabled. |
-| ETS Configuration  | 0x9          | Enhanced Transmission Selection configuration. |
-| ETS Recommendation | 0xA          | Enhanced Transmission Selection recommendation.|
-| PFC Configuration  | 0xB          | Priority-based Flow Control.|
-| IEEE 802.3 Link Aggregation   | 0x3          | Cumulus Linux transmits the IEEE 802.3 Link Aggregation TLV by default.  |
+| IEEE 802.1 Link Aggregation   | 0x7 | Indicates if the port supports link aggregation and if it is on. |
+| ETS Configuration  | 0x9          | Enhanced Transmission Selection configuration; the ETS configuration settings on the switch.|
+| ETS Recommendation | 0xA          | Enhanced Transmission Selection recommendation; the recommended ETS settings that the switch wants the connected peer interface to use.|
+| PFC Configuration  | 0xB          | Priority-based Flow Control configuration.|
+| IEEE 802.3 Link Aggregation | 0x3 | Cumulus Linux transmits this TLV by default.  |
 | Maximum Frame Size | 0x4          | The MTU configuration on the port. Cumulus Linux transmits this TLV by default.|
-
+<!-- vale off -->
 ### Transmit 802.1 TLVs
+<!-- vale on -->
+You can transmit the 802.1 TLV types (VLAN name, Port VLAN ID, and IEEE 802.1 Link Aggregation) when exchanging LLDP messages. By default, 802.1 TLV transmission is off and the switch sends all LLDP PDUs without 802.1 TLVs.
 
-You can transmit the 802.1 TLV types (VLAN name, Port VLAN ID, and IEEE 802.1 Link Aggregation) when exchanging LLDP messages. By default, transmission of the 802.1 TLV types is off and the switch sends all LLDP PDUs without 802.1 TLVs.
+To enable 802.1 TLV transmission:
 
-To enable the transmission of the 802.1 TLVs, run the `nv set service lldp dot1-tlv on` command:
+{{< tabs "TabID170 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set service lldp dot1-tlv on` command:
 
 ```
 cumulus@switch:~$ nv set service lldp dot1-tlv on
 cumulus@switch:~$ nv config apply
 ```
 
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+Create the `/etc/lldpd.conf` file or create a file in the `/etc/lldpd.d/` directory with a `.conf` suffix and add the `dot1_tlv_enable = TRUE` setting:
+
+```
+cumulus@switch:~$ sudo nano /etc/lldpd.conf
+...
+dot1_tlv_enable = TRUE
+...
+```
+
+You must restart the `lldpd` service for the changes to take effect.
+
+```
+cumulus@switch:~$ sudo systemctl restart lldpd
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Transmit QoS TLVs
 
-You can enable the transmission of QoS TLVs (ETS Configuration, ETS Recommendation, PFC Configuration) on an interface. By default, transmission of all TLV types is disabled on interfaces.
+You can enable QoS TLV transmission (ETS Configuration, ETS Recommendation, PFC Configuration) on an interface. By default, all QoS TLV transmission is off on all interfaces.
 
 {{%notice note%}}
 Adding the QoS TLVs to LLDP packets on an interface relies on PFC and ETS configuration from `switchd`. Refer to {{<link url="Quality-of-Service" text="Quality of Service">}} for information on configuring PFC and ETS.
 {{%/notice%}}
 
-To enable the PFC Configuration TLV, run the `nv set interface <interface> lldp dcbx-pfc-tlv on` command:
+To enable PFC Configuration TLV transmission:
+
+{{< tabs "TabID211 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set interface <interface> lldp dcbx-pfc-tlv on` command:
 
 ```
 cumulus@switch:~$ nv set interface swp1 lldp dcbx-pfc-tlv on
 cumulus@switch:~$ nv config apply
 ```
 
-To enable the ETS configuration TLV, run the `nv set interface <interface> lldp dcbx-ets-config-tlv on` command:
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+Create the `/etc/lldpd.conf` file or create a file in the `/etc/lldpd.d/` directory with a `.conf` suffix and add the `dcbx_pfc_tlv_enable = TRUE` setting:
+
+```
+cumulus@switch:~$ sudo nano /etc/lldpd.conf
+...
+dcbx_pfc_tlv_enable = TRUE
+...
+```
+
+You must restart the `lldpd` service for the changes to take effect.
+
+```
+cumulus@switch:~$ sudo systemctl restart lldpd
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To enable ETS Configuration TLV transmission:
+
+{{< tabs "TabID244 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set interface <interface> lldp dcbx-ets-config-tlv on` command:
 
 ```
 cumulus@switch:~$ nv set interface swp1 lldp dcbx-ets-config-tlv on
 cumulus@switch:~$ nv config apply 
 ```
 
-To enable the ETS Recommendation TLV, run the `nv set interface <interface> lldp dcbx-ets-recomm-tlv on` command:
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+Create the `/etc/lldpd.conf` file or create a file in the `/etc/lldpd.d/` directory with a `.conf` suffix and add the `dcbx_ets_config_tlv_enable = TRUE` setting:
+
+```
+cumulus@switch:~$ sudo nano /etc/lldpd.conf
+...
+dcbx_ets_config_tlv_enable = TRUE
+...
+```
+
+You must restart the `lldpd` service for the changes to take effect.
+
+```
+cumulus@switch:~$ sudo systemctl restart lldpd
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To enable ETS Recommendation TLV transmission:
+
+{{< tabs "TabID274 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set interface <interface> lldp dcbx-ets-recomm-tlv on` command:
 
 ```
 cumulus@switch:~$ nv set interface swp1 lldp dcbx-ets-recomm-tlv on
 cumulus@switch:~$ nv config apply
 ```
 
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+Create the `/etc/lldpd.conf` file or create a file in the `/etc/lldpd.d/` directory with a `.conf` suffix and add the `dcbx_ets_recomm_tlv_enable = TRUE` setting:
+
+```
+cumulus@switch:~$ sudo nano /etc/lldpd.conf
+...
+dcbx_ets_recomm_tlv_enable = TRUE
+...
+```
+
+You must restart the `lldpd` service for the changes to take effect.
+
+```
+cumulus@switch:~$ sudo systemctl restart lldpd
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 {{%notice note%}}
 The interface must be a physical interface; you cannot enable TLVs on bonds.
 {{%/notice%}}
+
+### Show DCBX TLV Settings
+
+To show if 802.1 TLV transmission is on, run the NVUE `nv show service lldp` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show service lldp
+                    operational  applied  description
+------------------  -----------  -------  ----------------------------------------------------------------------
+dot1-tlv            on           on       Enable dot1 TLV advertisements on enabled ports
+tx-hold-multiplier  4            4        < TTL of transmitted packets is calculated by multiplying the tx-in...
+tx-interval         30           30       change transmit delay
+```
+
+To show if Qos TLV transmission is on for an interface, run the NVUE `nv show service lldp interface <interface> tlv` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp51 lldp tlv
+                    operational  applied  description
+------------------  -----------  -------  ----------------------------------------------------------------------
+```
 
 ## Troubleshooting
 

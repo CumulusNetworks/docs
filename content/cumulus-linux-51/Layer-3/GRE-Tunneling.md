@@ -35,6 +35,10 @@ The following configuration example shows the commands used to set up a bidirect
 {{< tabs "TabID35 ">}}
 {{< tab "NVUE Commands">}}
 
+{{%notice note%}}
+If the GRE interface name starts with `tunnel`, NVUE automatically sets the interface type to `tunnel`. If the interface name does not start with `tunnel`, you must set the interface type to `tunnel` with the `nv set interface <interface-name> type tunnel` command.
+{{%/notice%}}
+
 {{< tabs "TabID38 ">}}
 {{< tab "leaf01 ">}}
 

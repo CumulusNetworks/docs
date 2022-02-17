@@ -22,9 +22,9 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
 ### New Features and Enhancements
 
 - {{<link url="GRE-Tunneling" text="GRE tunneling">}}
-- Refactor port configuration
 - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Adaptive routing with RoCE">}}
-- LLDP enhancements include support for custom TLV LLDP messages and dynamic LLDP TLV advertisements
+- {{<link url="Link-Layer-Discovery-Protocol/#lldp-dcbx-tlvs" text="LLDP DCBX TLVs">}}
+- Port configuration changes
 - GTP hashing support
 - VXLAN port isolation on Spectrum-3 switches
 - Simplified EVPN configuration

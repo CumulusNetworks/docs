@@ -144,9 +144,66 @@ You must restart the `lldpd` service for the changes to take effect.
 cumulus@switch:~$ sudo systemctl restart lldpd
 ```
 
-## DCBX Options
+## LLDP DCBX TLVs
 
-[DCBX](## "Data Center Bridging Capability Exchange protocol ") is an extension of LLDP.
+[DCBX](## "Data Center Bridging Capability Exchange protocol ") is an extension of LLDP. Cumulus Linux supports DCBX [TLVs](## "Type-Length-Value ") to provide additional information to peers, such as VLAN information and [QoS](## "Quality of Service ") in LLDP packets. Adding QoS configuration as part of the DCBX TLVs allows automated configuration on hosts and switches that connect to the switch.
+
+Cumulus Linux supports the following TLVs:
+
+| TLV Name           | TLV Subtype  | Description |
+|------------------- | ------------ | ----------- |
+| VLAN Name          | 0x3          | The name of any VLAN to which the port belongs.|
+| Port VLAN ID       | 0x1          | The port VLAN identifier.|
+| Link Aggregation   | 0x7          | Indicates if the port supports link aggregation and if it is enabled. |
+| ETS Configuration  | 0x9          | Enhanced Transmission Selection configuration. |
+| ETS Recommendation | 0xA          | Enhanced Transmission Selection recommendation.|
+| PFC Configuration  | 0xB          | Priority-based Flow Control.|
+| Link Aggregation   | 0x3          | IEEE 802.3 Organizationally Specific TLVs  |
+| Maximum Frame Size | 0x4          | The supported maximum frame size.|
+
+### Transmit dot1 TLVs
+
+You can transmit the dot1 TLVs (VLAN name, Port VLAN ID, and Link Aggregation) when exchanging LLDP messages.
+
+To enable the transmission of the dot1 TLVs, run the `nv set service lldp dot1-tlv on` command:
+
+```
+cumulus@switch:~$ nv set service lldp dot1-tlv on
+cumulus@switch:~$ nv config apply
+```
+
+### Transmit QoS TLVs
+
+You can enable the transmission of QoS TLVs (ETS Configuration, ETS Recommendation, PFC Configuration) on an interface. By default, transmission of all TLV types is disabled on an interface.
+
+{{%notice note%}}
+Adding the QoS TLVs to LLDP packets on an interface relies on PFC and ETS configuration from `switchd`. Refer to {{<link url="Quality-of-Service" text="Quality of Service">}} for information on configuring PFC and ETS.
+{{%/notice%}}
+
+To enable the PFC Configuration TLV, run the `nv set interface <interface> lldp dcbx-pfc-tlv on` command:
+
+```
+cumulus@switch:~$ nv set interface swp1 lldp dcbx-pfc-tlv on
+cumulus@switch:~$ nv config apply
+```
+
+To enable the ETS configuration TLV, run the `nv set interface <interface> lldp dcbx-ets-config-tlv on` command:
+
+```
+cumulus@switch:~$ nv set interface swp1 lldp dcbx-ets-config-tlv on
+cumulus@switch:~$ nv config apply 
+```
+
+To enable the ETS Recommendation TLV, run the `nv set interface <interface> lldp dcbx-ets-recomm-tlv on` command:
+
+```
+cumulus@switch:~$ nv set interface swp1 lldp dcbx-ets-recomm-tlv on
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+The interface must be a physical interface; you cannot enable TLVs on bonds.
+{{%/notice%}}
 
 ## Troubleshooting
 

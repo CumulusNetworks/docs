@@ -21,12 +21,6 @@ supported in Cumulus RMP, [see below](#cumulus-rmp-features).
 
 ## What's New in Cumulus RMP
 
-{{%notice note%}}
-
-Starting with Cumulus Linux 4.0.0, the Cumulus RMP uses the same binary image as Cumulus Linux.
-
-{{%/notice%}}
-
 Cumulus RMP 3.7.0 contains several bug fixes and the following new
 features:
 

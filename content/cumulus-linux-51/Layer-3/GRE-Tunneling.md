@@ -13,7 +13,10 @@ GRE uses multiple protocols over a single-protocol backbone and is less demandin
 {{%notice note%}}
 - You can use only static IPv4 routes as a destination for the tunnel interface.
 - You can only configure IPv4 endpoints.
-- You can only configure point to point GRE tunnels.
+- You can only configure point to point GRE tunnels; only one remote tunnel per interface.
+- You cannot configure two tunnels with same local and remote tunnel IP addresses.
+- GRE tunneling cannot coexist with VXLAN or MPLS on the switch.
+- Cumulus Linux supports a maximum of 256 GRE tunnels.
 {{%/notice%}}
 
 The following example shows two sites that use IPv4 addresses. Using GRE tunneling, the two end points can encapsulate an IPv4 or IPv6 payload inside an IPv4 packet. The switch routes the packet based on the destination in the outer IPv4 header.
@@ -31,6 +34,10 @@ To configure GRE tunneling, you create a GRE tunnel interface with routes for tu
 The following configuration example shows the commands used to set up a bidirectional GRE tunnel between two endpoints: `tunnelR1` and `tunnelR2`. The local tunnel endpoint for `tunnelR1` is 10.0.0.9 and the remote endpoint is 10.0.0.2. The local tunnel endpoint for `tunnelR2` is 10.0.0.2 and the remote endpoint is 10.0.0.9.
 
 {{< img src = "/images/cumulus-linux/gre-tunnel-config1.png" >}}
+
+{{%notice note%}}
+In NVUE, if you create a the GRE interface with a name that starts with `tunnel`, NVUE automatically sets the interface type to `tunnel`. If you create a GRE interface with a name that does *not* start with `tunnel`, you must set the interface type to `tunnel` with the `nv set interface <interface-name> type tunnel` command.
+{{%/notice%}}
 
 {{< tabs "TabID35 ">}}
 {{< tab "NVUE Commands">}}
@@ -205,7 +212,7 @@ To delete a GRE tunnel, remove the tunnel interface, and remove the routes confi
 
 ## Troubleshooting
 
-To check GRE tunnel settings, run the NVUE `nv show interface <interface> tunnel` command, the Linux `ip tunnel show` or `ifquery --check` command. For example:
+To check GRE tunnel settings, run the NVUE `nv show interface <interface> tunnel` command, or run the Linux `ip tunnel show` or `ifquery --check` command. For example:
 
 ```
 cumulus@leaf03:mgmt:~$ nv show interface tunnelR2 tunnel

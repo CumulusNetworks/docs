@@ -27,7 +27,6 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
 - Port configuration changes
 - GTP hashing support
 - VXLAN port isolation on Spectrum-3 switches
-- Simplified EVPN configuration
 - {{<link url="Smart-System-Manager" text="Bonds support warmboot">}}
 - NVUE enhancements include:
   - Support control of IPv6 ND processes

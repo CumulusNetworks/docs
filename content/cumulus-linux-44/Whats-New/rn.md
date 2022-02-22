@@ -15,7 +15,6 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="2971159"></a> [2971159](#2971159) <a name="2971159"></a> <br /> | On rare occasions, the link up time on optical media can be more than five seconds.  | 4.4.3 | |
-| <a name="2971149"></a> [2971149](#2971149) <a name="2971149"></a> <br /> | On rare occasions, the link up time on optical media can be more than five seconds.  | 4.4.3 | |
 | <a name="2965759"></a> [2965759](#2965759) <a name="2965759"></a> <br /> | On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs. | 3.7.15, 4.3.0-4.4.3 | |
 | <a name="2965752"></a> [2965752](#2965752) <a name="2965752"></a> <br /> | The NCLU <code>net show evpn vni detail</code> command output shows duplicate layer 2 VNIs under layer 3 VNIs. | 3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1 | |
 | <a name="2951114"></a> [2951114](#2951114) <a name="2951114"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1 | |

@@ -13,12 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>2971149</td>
-<td>On rare occasions, the link up time on optical media can be more than five seconds. </td>
-<td>4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2965759</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
 <td>3.7.15, 4.3.0-4.4.3</td>

@@ -165,9 +165,9 @@ Cumulus Linux supports the following TLVs:
 | ETS Configuration  | 9       | The [ETS](## "Enhanced Transmission Selection ") configuration settings on the switch.|
 | ETS Recommendation | A       | The recommended [ETS](## "Enhanced Transmission Selection ") settings that the switch wants the connected peer interface to use. |
 | PFC Configuration  | B       | The [PFC](## "Priority-based Flow Control ") configuration settings on the switch. |
-
+<!-- vale off -->
 ### IEEE 802.3 TLVs
-
+<!-- vale on -->
 Cumulus Linux transmits the following 802.3 TLVs by default. You do not need to enable them.
 
 | Name                | Subtype | Description |

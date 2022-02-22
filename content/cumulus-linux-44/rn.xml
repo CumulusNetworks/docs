@@ -7,17 +7,25 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2972623</td>
-<td>If you change the {{clagd-vxlan-anycast-ip}} setting on both MLAG peers at the same time, both peers use their unique VTEP address indefinitely.</td>
-<td>3.7.15, 4.3.0-4.4.2</td>
+<td>2976362</td>
+<td>When a port flaps with PTP enabled, the switch firmware might become unresponsive and you see the following log message:
+
+{{[ptp4l.ERR]: [435345.036] timed out while polling for tx timestamp}} </td>
+<td>4.4.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
-<td>2971344</td>
+<td>2971343</td>
 <td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
 Vulnerable: &lt;= 2.2.6-2+deb10u1
 Fixed: 2.2.6-2+deb10u2</td>
 <td>4.0.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2968495</td>
+<td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
+<td>4.2.1-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -27,25 +35,13 @@ Fixed: 2.2.6-2+deb10u2</td>
 <td></td>
 </tr>
 <tr>
-<td>2965753</td>
-<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2965752</td>
 <td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
 <td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
-<td>2961216</td>
-<td>When there is a peer link failure followed by a power failure or a crash on the primary switch,  the MLAG secondary switch takes up to 24 seconds to change roles to the Primary.</td>
-<td>4.4.2, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2961080</td>
+<td>2961079</td>
 <td>CVE-2021-28965 CVE-2021-31799 CVE-2021-31810 CVE-2021-41817 CVE-2021-41819 CVE-2021-32066: Several vulnerabilities have been discovered in the interpreter for the Ruby language and the Rubygems included, which may result on result in XML roundtrip attacks, the execution of arbitrary code, information disclosure, StartTLS stripping in IMAP or denial of service.
 Vulnerable: &lt;= 2.5.5-3+deb10u3
 Fixed: 2.5.5-3+deb10u4</td>
@@ -73,18 +69,6 @@ Fixed: 2.5.5-3+deb10u4</td>
 <td></td>
 </tr>
 <tr>
-<td>2959309</td>
-<td>When you edit the Cumulus image file and change the  {{CL_INSTALLER_HASHED_PASSWORD}} variable, the installation is successful but you cannot connect to the switch with the new password.</td>
-<td>4.4.0-4.4.2, 5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2956336</td>
-<td>WJH shows the reason for a traffic drop to be MLAG port isolation even when MLAG is not configured.</td>
-<td>4.4.2, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2951114</td>
 <td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
@@ -103,7 +87,7 @@ Fixed: 2.5.5-3+deb10u4</td>
 <td></td>
 </tr>
 <tr>
-<td>2949514</td>
+<td>2949513</td>
 <td>CVE-2022-22747: Incorrect parsing of pkcs7 sequences in nss, the Mozilla Network Security Service library, may result in denial of service.
 Vulnerable: &lt;= 2:3.42.1-1+deb10u4
 Fixed: 2:3.42.1-1+deb10u5</td>
@@ -168,13 +152,13 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>2935122</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
 <td>4.3.0-4.4.2</td>
-<td>5.0.0-5.0.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2935121</td>
 <td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
-<td>4.3.0-4.4.2</td>
-<td>5.0.0-5.0.1</td>
+<td>3.7.15, 4.3.0-4.4.2</td>
+<td></td>
 </tr>
 <tr>
 <td>2933466</td>
@@ -264,6 +248,13 @@ To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <td></td>
 </tr>
 <tr>
+<td>2875296</td>
+<td>On the Mellanox Spectrum-2 switches, after running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
+To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
+<td>4.2.1-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2875279</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
 <td>4.2.1-4.4.2</td>
@@ -284,8 +275,8 @@ To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <tr>
 <td>2866097</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-4.4.2</td>
-<td>5.0.0-5.0.1</td>
+<td>3.7.12-3.7.15, 4.1.1-4.4.2</td>
+<td></td>
 </tr>
 <tr>
 <td>2866084</td>
@@ -456,6 +447,16 @@ MemoryError
 <td></td>
 </tr>
 <tr>
+<td>2804044</td>
+<td>The SDK process sx_core prints the messages shown below and the switch stops forwarding traffic.
+
+kernel: sx_core: Did not receive completion for SDQ dqn (1) idx (849) after 10 seconds
+kernel: sx_core: __sx_core_post_send: Cannot send packet on dqn [1] sdq stuck
+</td>
+<td>4.4.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2803044</td>
 <td>In an EVPN configuration with IP or MAC mobility, higher MM EVPN routes do not remove the old ARP entries during VIP migration between VTEP racks.</td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.2</td>
@@ -523,12 +524,6 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td>5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2770226</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
-<td>3.7.14.2-4.4.2</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>2770030</td>
 <td>When you modify the default pre-auth policy located in {{/etc/cumulus/acl/policy.d/dot1x_preauth_dacl}}, after restarting {{hostapd}} the {{/etc/cumulus/acl/policy.d/dot1x_preauth_dacl}} directory is deleted and recreated with the default rule set that comes from the {{hostapd}} binary.</td>
 <td>4.3.0-4.4.2</td>
@@ -578,7 +573,7 @@ Job for frr.service failed.
 See "systemctl status frr.service" and "journalctl -xe" for details.
 </td>
 <td>4.3.0-4.4.2</td>
-<td>5.0.0-5.0.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2739402</td>
@@ -616,6 +611,18 @@ See "systemctl status frr.service" and "journalctl -xe" for details.
 <td>The bridge MAC address is updated during a port change on bridge interfaces.</td>
 <td>4.3.0-4.4.2</td>
 <td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2728206</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.2</td>
+<td></td>
 </tr>
 <tr>
 <td>2728119</td>
@@ -753,6 +760,13 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <td></td>
 </tr>
 <tr>
+<td>2653493</td>
+<td>After running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
+To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
+<td>4.2.1-4.4.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2639303</td>
 <td>When you use NCLU to delete a bond, then add an interface, NCLU reports an error similar to the following:
 ERROR: 'NoneType' object has no attribute 'conf_key_value_multiple_values'
@@ -791,12 +805,6 @@ To work around this issue, disable pruning for IPv6 multicast by setting {{bridg
 <td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
 <td>3.7.11-3.7.15, 4.1.1-4.4.2</td>
 <td></td>
-</tr>
-<tr>
-<td>2556811</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-4.4.2</td>
-<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2556591</td>
@@ -1858,7 +1866,7 @@ Fixed: 3.42.1-1+deb10u4</td>
 <tr>
 <td>2854785</td>
 <td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
-<td>4.3.0-4.4.1</td>
+<td>3.7.15-4.4.1</td>
 </tr>
 <tr>
 <td>2854784</td>
@@ -2036,17 +2044,25 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2972623</td>
-<td>If you change the {{clagd-vxlan-anycast-ip}} setting on both MLAG peers at the same time, both peers use their unique VTEP address indefinitely.</td>
-<td>3.7.15, 4.3.0-4.4.2</td>
+<td>2976362</td>
+<td>When a port flaps with PTP enabled, the switch firmware might become unresponsive and you see the following log message:
+
+{{[ptp4l.ERR]: [435345.036] timed out while polling for tx timestamp}} </td>
+<td>4.4.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
-<td>2971344</td>
+<td>2971343</td>
 <td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
 Vulnerable: &lt;= 2.2.6-2+deb10u1
 Fixed: 2.2.6-2+deb10u2</td>
 <td>4.0.0-4.4.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2968495</td>
+<td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
+<td>4.2.1-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2056,19 +2072,13 @@ Fixed: 2.2.6-2+deb10u2</td>
 <td></td>
 </tr>
 <tr>
-<td>2965753</td>
-<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2965752</td>
 <td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
 <td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
-<td>2961080</td>
+<td>2961079</td>
 <td>CVE-2021-28965 CVE-2021-31799 CVE-2021-31810 CVE-2021-41817 CVE-2021-41819 CVE-2021-32066: Several vulnerabilities have been discovered in the interpreter for the Ruby language and the Rubygems included, which may result on result in XML roundtrip attacks, the execution of arbitrary code, information disclosure, StartTLS stripping in IMAP or denial of service.
 Vulnerable: &lt;= 2.5.5-3+deb10u3
 Fixed: 2.5.5-3+deb10u4</td>
@@ -2096,12 +2106,6 @@ Fixed: 2.5.5-3+deb10u4</td>
 <td></td>
 </tr>
 <tr>
-<td>2959309</td>
-<td>When you edit the Cumulus image file and change the  {{CL_INSTALLER_HASHED_PASSWORD}} variable, the installation is successful but you cannot connect to the switch with the new password.</td>
-<td>4.4.0-4.4.2, 5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2951114</td>
 <td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
@@ -2120,7 +2124,7 @@ Fixed: 2.5.5-3+deb10u4</td>
 <td></td>
 </tr>
 <tr>
-<td>2949514</td>
+<td>2949513</td>
 <td>CVE-2022-22747: Incorrect parsing of pkcs7 sequences in nss, the Mozilla Network Security Service library, may result in denial of service.
 Vulnerable: &lt;= 2:3.42.1-1+deb10u4
 Fixed: 2:3.42.1-1+deb10u5</td>
@@ -2184,7 +2188,7 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <tr>
 <td>2935121</td>
 <td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
-<td>4.3.0-4.4.2</td>
+<td>3.7.15, 4.3.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -2440,8 +2444,8 @@ thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 <tr>
 <td>2854785</td>
 <td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
-<td>4.3.0-4.4.1</td>
-<td>4.4.2</td>
+<td>3.7.15-4.4.2</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2854784</td>

@@ -7,10 +7,10 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2972623</td>
-<td>If you change the {{clagd-vxlan-anycast-ip}} setting on both MLAG peers at the same time, both peers use their unique VTEP address indefinitely.</td>
-<td>3.7.15, 4.3.0-4.4.2</td>
-<td></td>
+<td>2973714</td>
+<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
+<td>3.7.15-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2971344</td>
@@ -21,15 +21,15 @@ Fixed: 2.2.6-2+deb10u2</td>
 <td></td>
 </tr>
 <tr>
-<td>2965759</td>
-<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>3.7.15, 4.3.0-4.4.2</td>
+<td>2968495</td>
+<td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
+<td>4.2.1-4.4.2, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
-<td>2965753</td>
-<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
-<td>3.7.15, 4.3.0-4.4.2, 5.0.0-5.0.1</td>
+<td>2965759</td>
+<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
+<td>3.7.15, 4.3.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -129,7 +129,7 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <tr>
 <td>2935121</td>
 <td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
-<td>4.3.0-4.4.2</td>
+<td>3.7.15, 4.3.0-4.4.2</td>
 <td></td>
 </tr>
 <tr>
@@ -330,12 +330,6 @@ thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 <td>4.4.2</td>
 </tr>
 <tr>
-<td>2854785</td>
-<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
-<td>4.3.0-4.4.1</td>
-<td>4.4.2</td>
-</tr>
-<tr>
 <td>2854784</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
 <td>4.3.0-4.4.1</td>
@@ -401,12 +395,6 @@ Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>After bringing up a bridge port, there is a multi second delay before the bridge port is able to learn any MAC addresses or neighbors, which causes a forwarding delay (about six seconds with 300 or more VLANs).</td>
 <td>3.7.15, 4.3.0-4.4.2</td>
 <td></td>
-</tr>
-<tr>
-<td>2826121</td>
-<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
-<td>4.3.0-4.4.1</td>
-<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2821869</td>

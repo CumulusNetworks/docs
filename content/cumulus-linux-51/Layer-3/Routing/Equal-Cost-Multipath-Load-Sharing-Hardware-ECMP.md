@@ -308,6 +308,21 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 {{<cl/restart-switchd>}}
 <!-- vale on -->
 
+## GTP Hashing
+
+[GTP](## "GPRS Tunneling Protocol") carries mobile data within the core of the Mobile Operator’s network. Traffic in the mobile operators 5G Mobility core cluster (from cell sites (gNB) to the compute nodes) have the same source and destination IP address. The only way to distinguish the traffic is based on the GTP TEID.  Enabling GTP TEID-based ECMP hashing helps the Cumulus Linux switches in the network to distribute this traffic evenly across ECMP routes.
+
+TEID based ECMP hashing is used for:
+- GTP-U packets ingressing physical ports or bonds. Load balancing based on GTP TEID on bonds is enabled automatically when TEID based ecmp hashing is enabled. You cannot enable load balancing. 
+- VXLAN encapped GTP-U packets terminating on egress VTEPS.
+
+GTP TEID based ecmp hashing or load balancing is only applicable if:
+- The outer header egressing from the port is GTP en-capped 
+- The ingress packet is either a GTP-U packet or VXLAN encapped GTP-U packet.
+
+Cumulus Linux supports GTP Hashing on NVIDIA Spectrum2 and above.
+GTP-C packets are not part of TEID based ECMP hashing.
+
 ## Adaptive Routing
 
 Adaptive routing is a load balancing mechanism that improves network utilization by selecting routes dynamically based on the immediate network state, such as switch queue length and port utilization.

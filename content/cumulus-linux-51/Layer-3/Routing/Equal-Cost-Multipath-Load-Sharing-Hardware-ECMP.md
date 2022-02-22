@@ -324,14 +324,14 @@ GTP TEID-based ECMP hashing is only applicable if:
 - [GTP-C](## "GPRS Tunnelling Protocol Control") packets are not part of TEID-based ECMP hashing.
 {{%/notice%}}
 
-To enable GTP TEID-based hashing, edit the `/etc/cumulus/datapath/traffic.conf` file:
+To enable GTP TEID-based hashing:
 
-1. Uncomment the `hash_config.gtp_teid = true` line.
+1. Edit the `/etc/cumulus/datapath/traffic.conf` file and uncomment the `hash_config.gtp_teid = TRUE` line.
 
    ```
    cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
    ...
-   hash_config.gtp_teid = true
+   hash_config.gtp_teid = TRUE
    ```
 
 2. Run the `echo 1 > /cumulus/switchd/ctrl/hash_config_reload` command. This command does not cause any traffic interruptions.
@@ -340,21 +340,7 @@ To enable GTP TEID-based hashing, edit the `/etc/cumulus/datapath/traffic.conf` 
    cumulus@switch:~$ echo 1 > /cumulus/switchd/ctrl/hash_config_reload
    ```
 
-To disable GTP TEID-based ECMP hashing:
-
-1. Edit the `/etc/cumulus/datapath/traffic.conf` file and set the `hash_config.gtp_teid` parameter to false:
-
-   ```
-   cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
-   ...
-   hash_config.gtp_teid = false
-   ```
-
-2. Run the `echo 1 > /cumulus/switchd/ctrl/hash_config_reload` command. This command does not cause any traffic interruptions.
-
-   ```
-   cumulus@switch:~$ echo 1 > /cumulus/switchd/ctrl/hash_config_reload
-   ```
+To disable GTP TEID-based ECMP hashing, set the `hash_config.gtp_teid` parameter to FALSE, then reload the configuration:
 
 ## Adaptive Routing
 

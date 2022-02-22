@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2973714</td>
+<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
+<td>3.7.15-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
+</tr>
+<tr>
 <td>2971344</td>
 <td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
 Vulnerable: &lt;= 2.2.6-2+deb10u1
@@ -3096,6 +3102,12 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2973714</td>
+<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
+<td>3.7.15-4.4.1</td>
+<td>4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2971344</td>

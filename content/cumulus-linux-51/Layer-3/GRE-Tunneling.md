@@ -46,6 +46,7 @@ In NVUE, if you create a the GRE interface with a name that starts with `tunnel`
 {{< tab "leaf01 ">}}
 
 ```
+cumulus@leaf01:~$ nv set interface lo ip address 10.10.10.1/32
 cumulus@leaf01:~$ nv set interface swp1 ip address 10.2.1.1/24
 cumulus@leaf01:~$ nv set interface tunnelR2 ip address 10.1.100.1/30
 cumulus@leaf01:~$ nv set interface tunnelR2 tunnel mode gre
@@ -60,6 +61,7 @@ cumulus@leaf01:~$ nv config apply
 {{< tab "leaf03 ">}}
 
 ```
+cumulus@leaf03:~$ nv set interface lo ip address 10.10.10.3/32
 cumulus@leaf03:~$ nv set interface swp1 ip address 10.1.1.1/24
 cumulus@leaf03:~$ nv set interface tunnelR1 ip address 10.1.100.2/30
 cumulus@leaf03:~$ nv set interface tunnelR1 tunnel mode gre
@@ -84,6 +86,9 @@ cumulus@leaf03:~$ nv config apply
    ```
    cumulus@leaf01:~$ sudo nano /etc/network/interfaces
    ...
+   auto lo
+   iface lo inet loopback
+      address 10.10.10.1/32
    auto swp1
    iface swp1
       address 10.2.1.1/24
@@ -134,6 +139,9 @@ cumulus@leaf03:~$ nv config apply
    ```
    cumulus@leaf03:~$ sudo nano /etc/network/interfaces
    ...
+   auto lo
+   iface lo inet loopback
+      address 10.10.10.3/32
    auto swp1
    iface swp1
       address 10.1.1.1/24

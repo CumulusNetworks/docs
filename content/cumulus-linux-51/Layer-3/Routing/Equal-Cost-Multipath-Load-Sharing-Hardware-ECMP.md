@@ -316,7 +316,7 @@ TEID-based ECMP hashing is used for:
 - VXLAN encapped GTP-U packets terminating on egress [VTEPs](## "Virtual Tunnel End Points").
 
 GTP TEID-based ECMP hashing is only applicable if:
-- The outer header egressing from the port is GTP encapped.
+- The outer header egressing the port is GTP encapped.
 - The ingress packet is either a GTP-U packet or a VXLAN encapped GTP-U packet.
 
 {{%notice note%}}

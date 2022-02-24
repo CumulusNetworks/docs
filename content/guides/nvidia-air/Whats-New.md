@@ -9,9 +9,10 @@ Check out some of the latest features added to the {{<exlink url="https://air.nv
 
 ## February 2022
 <!-- Air:WhatsNew -->
+- NVIDIA Cumulus Linux 4.4.3 is now available for use in custom topologies [82.2022.0223]
+<!-- Air:WhatsNew -->
 - Fixed a bug that redirected to the login page when "liking" a marketplace demo [82.2022.0216]
 - Fixed a bug that may prevent new simulations from starting [82.2022.0216]
-<!-- Air:WhatsNew -->
 - Improved UI transitions for "Try It" documentation examples [82.2022.0208-009]
 - Fixed a bug that caused new simulations to appear as sleeping while they were loading [82.2022.0204-013]
 - Fixed a bug that could prevent an error from being displayed when resource budgets were exceeded [82.2022.0204-013]

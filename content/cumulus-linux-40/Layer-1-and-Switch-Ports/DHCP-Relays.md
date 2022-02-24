@@ -12,7 +12,7 @@ This topic describes how to configure DHCP relays for IPv4 and IPv6. Configurati
 
 {{%notice note%}}
 
-The `dhcpd` and `dhcrelay` services are disabled by default. After you finish configuring the DHCP relays and servers, you need to start those services. If you intend to run these services within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF/#run-services-within-the-management-vrf" text="these steps">}}.
+The `dhcpd` and `dhcrelay` services are disabled by default. After you finish configuring the DHCP relays and servers, you need to start those services. If you intend to run these services within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf" text="these steps">}}.
 
 {{%/notice%}}
 

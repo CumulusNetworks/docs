@@ -31,6 +31,18 @@
 <td></td>
 </tr>
 <tr>
+<td>2959309</td>
+<td>When you edit the Cumulus image file and change the  {{CL_INSTALLER_HASHED_PASSWORD}} variable, the installation is successful but you cannot connect to the switch with the new password.</td>
+<td>4.4.0-4.4.3, 5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2956336</td>
+<td>WJH shows the reason for a traffic drop to be MLAG port isolation even when MLAG is not configured.</td>
+<td>4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>2951114</td>
 <td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
@@ -1869,6 +1881,12 @@ Fixed: 2.5.5-3+deb10u4</td>
 <td>If two or more FDB entries are added with a single API call {{sx_api_fdb_uc_mac_addr_set}} and one entry already exists while the following entry has a tunnel type and does not exist or is being modified, the following entry might be configured improperly in the hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-4.4.2</td>
 <td>4.4.3</td>
+</tr>
+<tr>
+<td>2959309</td>
+<td>When you edit the Cumulus image file and change the  {{CL_INSTALLER_HASHED_PASSWORD}} variable, the installation is successful but you cannot connect to the switch with the new password.</td>
+<td>4.4.0-4.4.3, 5.0.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2951114</td>
@@ -3912,6 +3930,12 @@ Fixed: 2.5.5-3+deb10u4</td>
 <td>If two or more FDB entries are added with a single API call {{sx_api_fdb_uc_mac_addr_set}} and one entry already exists while the following entry has a tunnel type and does not exist or is being modified, the following entry might be configured improperly in the hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-4.4.2</td>
 <td>4.4.3</td>
+</tr>
+<tr>
+<td>2959309</td>
+<td>When you edit the Cumulus image file and change the  {{CL_INSTALLER_HASHED_PASSWORD}} variable, the installation is successful but you cannot connect to the switch with the new password.</td>
+<td>4.4.0-4.4.3, 5.0.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2951114</td>

@@ -215,7 +215,7 @@ GTP hashing is only applicable if:
 
 {{%notice note%}}
 - Cumulus Linux supports GTP Hashing on NVIDIA Spectrum-2 and later.
-- [GTP-C](## "GPRS Tunnelling Protocol Control") packets are not part of TEID-based ECMP hashing.
+- [GTP-C](## "GPRS Tunnelling Protocol Control") packets are not part of GTP hashing.
 {{%/notice%}}
 
 To enable GTP hashing:

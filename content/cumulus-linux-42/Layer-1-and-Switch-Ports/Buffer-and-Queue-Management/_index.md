@@ -238,7 +238,7 @@ What's the difference between link pause and priority flow control?
 
 Here is an example configuration that enables both types of link pause for swp1 through swp4 and swp6:
 
-``` 
+```
 # to configure pause on a group of ports:
 # -- add or replace port group names in the port group list
 # -- for each port group in the list
@@ -287,7 +287,7 @@ To work around this issue, disable link pause or disable cut-through mode in the
 To disable link pause, comment out the `link_pause*` section in the `/etc/cumulus/datapath/traffic.conf` file:
 
 ```
-cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf 
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
 #link_pause.port_group_list = [port_group_0]
 #link_pause.port_group_0.port_set = swp45-swp54
 #link_pause.port_group_0.rx_enable = true
@@ -365,7 +365,7 @@ On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd
 
 ## Check Interface Buffer Status
 
-- On switches with 
+- On switches with
 {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="ASICs">}}, you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the {{<link title="ASIC Monitoring">}} for details.
 - On Broadcom switches, the buffer status is not visible currently.
 
@@ -548,7 +548,7 @@ dos_enable = false
 
 # Set sflow/sample ingress cpu packet rate and burst in packets/sec
 # Values: {0..16384}
-#sflow.rate = 16384  
+#sflow.rate = 16384
 #sflow.burst = 16384
 
 #Specify the maximum number of paths per route entry.
@@ -634,7 +634,8 @@ On switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switchi
 ```
 remark.port_group_list = [ingress_remark_group, egress_remark_group]
 remark.ingress_remark_group.packet_priority_remark_set = [dscp]
-remark.remark_port_group.port_set = swp1-swp4,swp6
+remark.egress_remark_group.packet_priority_remark_set = [dscp]
+remark.ingress_remark_group.port_set = swp1-swp4,swp6
 remark.egress_remark_group.port_set = swp10-swp20
 remark.egress_remark_group.cos_0.priority_remark.dscp = [2]
 remark.egress_remark_group.cos_1.priority_remark.dscp = [10]

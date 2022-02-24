@@ -41,7 +41,7 @@ To use only gNMI for data collection, disable the NetQ Agent, which is always en
 
 You cannot disable both the NetQ Agent and the gNMI agent.
 
-When both the gNMI agent and the traditional NetQ agent are enabled on Cumulus Linux, the data from OpenConfig models will not be sent to gNMI if a NetQ server is not reachable. WJH data will continue to be streamed in this state. If you are only using gNMI and a NetQ telemetry server does not exist, you should disable the NetQ agent by setting `opta-enable` to `false`.
+When both the gNMI agent and the traditional NetQ agent are enabled on Cumulus Linux, the data from [OpenConfig models](#supported-models) and the `nvidia-if-ethernet-ext` model will not be sent to gNMI if a NetQ server is not reachable. WJH data will continue to be streamed in this state. If you are only using gNMI and a NetQ telemetry server does not exist, you should disable the NetQ agent by setting `opta-enable` to `false`.
 
 {{%/notice%}}
 

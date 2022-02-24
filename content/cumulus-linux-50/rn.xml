@@ -31,6 +31,12 @@
 <td>4.4.3</td>
 </tr>
 <tr>
+<td>2959309</td>
+<td>When you edit the Cumulus image file and change the  {{CL_INSTALLER_HASHED_PASSWORD}} variable, the installation is successful but you cannot connect to the switch with the new password.</td>
+<td>4.4.0-4.4.3, 5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2957968</td>
 <td>After you install the RADIUS {{libnss-mapuser}} package, the {{nvued}} service fails to start.</td>
 <td>5.0.0-5.0.1</td>

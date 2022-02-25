@@ -29,6 +29,7 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
 - MLAG peer link consistency check
 - Port configuration changes
 - VXLAN port isolation on Spectrum-3 switches
+- {{<link url="Precision-Time-Protocol-PTP" text="PTP on bonds">}}
 - 1G supported for all Spectrum-2 and Spectrum-3 switches
 - NVUE enhancements include:
   - Support control of IPv6 ND processes

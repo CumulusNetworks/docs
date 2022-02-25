@@ -16,10 +16,8 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
 
 ### Platforms
 
-- NVIDIA SN4800 (100G Spectrum-3)
+- NVIDIA SN4800 (100G Spectrum-3) available for early access
 - NVIDIA SN2201 (100G Spectrum-1)
-- NVIDIA SN3800(100G Spectrum-3) available for early access
-- 1G supported for all Spectrum-2 and Spectrum-3 switches
 
 ### New Features and Enhancements
 
@@ -28,10 +26,10 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link url="Link-Layer-Discovery-Protocol/#lldp-dcbx-tlvs" text="LLDP DCBX TLVs">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="GTP hashing">}}
 - {{<link url="Smart-System-Manager" text="Bonds support warmboot">}}
-- Port configuration changes
 - MLAG peer link consistency check
-- IPv6 ND process control
+- Port configuration changes
 - VXLAN port isolation on Spectrum-3 switches
+- 1G supported for all Spectrum-2 and Spectrum-3 switches
 - NVUE enhancements include:
   - Support control of IPv6 ND processes
   - Flexible snippet architecture

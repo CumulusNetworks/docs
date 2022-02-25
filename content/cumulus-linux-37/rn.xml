@@ -24,12 +24,6 @@ Fixed: 14.0.2-3+deb8u3</td>
 <td></td>
 </tr>
 <tr>
-<td>2973749</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.</td>
-<td>3.7.10-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2973714</td>
 <td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
 <td>3.7.15-4.4.1</td>
@@ -3026,12 +3020,6 @@ Fixed: 14.0.2-3+deb8u3</td>
 <td></td>
 </tr>
 <tr>
-<td>2973749</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.</td>
-<td>3.7.10-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2964544</td>
 <td>CVE-2022-24130: xterm, an X terminal emulator, when Sixel support is enabled, allows attackers to trigger a buffer overflow in set_sixel in graphics_sixel.c via crafted text.
 Vulnerable: &lt;= 312-2+deb8u3
@@ -5811,12 +5799,6 @@ Fixed: 2.4.10-10+deb8u20</td>
 Vulnerable: &lt;= 14.0.2-3+deb8u2
 Fixed: 14.0.2-3+deb8u3</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2973749</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.</td>
-<td>3.7.10-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -9108,12 +9090,6 @@ Fixed: 2.4.10-10+deb8u20</td>
 Vulnerable: &lt;= 14.0.2-3+deb8u2
 Fixed: 14.0.2-3+deb8u3</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2973749</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.</td>
-<td>3.7.10-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -12615,12 +12591,6 @@ Fixed: 14.0.2-3+deb8u3</td>
 <td></td>
 </tr>
 <tr>
-<td>2973749</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.</td>
-<td>3.7.10-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2964544</td>
 <td>CVE-2022-24130: xterm, an X terminal emulator, when Sixel support is enabled, allows attackers to trigger a buffer overflow in set_sixel in graphics_sixel.c via crafted text.
 Vulnerable: &lt;= 312-2+deb8u3
@@ -15976,12 +15946,6 @@ Fixed: 14.0.2-3+deb8u3</td>
 <td></td>
 </tr>
 <tr>
-<td>2973749</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.</td>
-<td>3.7.10-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2964544</td>
 <td>CVE-2022-24130: xterm, an X terminal emulator, when Sixel support is enabled, allows attackers to trigger a buffer overflow in set_sixel in graphics_sixel.c via crafted text.
 Vulnerable: &lt;= 312-2+deb8u3
@@ -18815,12 +18779,6 @@ Fixed: 2.4.10-10+deb8u20</td>
 Vulnerable: &lt;= 14.0.2-3+deb8u2
 Fixed: 14.0.2-3+deb8u3</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2973749</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.</td>
-<td>3.7.10-3.7.15</td>
 <td></td>
 </tr>
 <tr>

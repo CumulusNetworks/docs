@@ -5,9 +5,9 @@ weight: 121
 toc: 3
 ---
 Use NVUE flexible snippets if you configure Cumulus Linux with NVUE commands, then want to configure a feature that does not yet support the NVUE Object Model. You create a snippet in `yaml` format and add the configuration to either the `/etc/frr/frr.conf` or `/etc/network/interfaces` file.
-
+<!-- vale off -->
 ## /etc/frr/frr.conf Snippets
-
+<!-- vale on -->
 NVUE does not support configuring BGP to peer across the default route. The following example configures BGP to peer across the default route from the default VRF:
 
 1. Create a `.yaml` file with the following snippet:

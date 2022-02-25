@@ -554,7 +554,7 @@ Valid: yes nexthop 192.168.8.2
 Valid: yes nexthop 192.168.8.3
 ```
 
-To see information about a specific next hop group, add the group name at the end of the command; for example, <!--`nv show router nexthop-group group1` or -->`show pbr nexthop-group group1`.
+To see information about a specific next hop group, add the group name at the end of the command; for example,<!--NVUE `nv show router pbr nexthop-group group1` or vtysh--> `show pbr nexthop-group group1`.
 
 {{%notice note%}}
 Each next hop and next hop group uses a new Linux routing table ID.
@@ -566,8 +566,6 @@ In the following example, the PBR-enabled switch has a PBR policy to route all t
 
 {{< img src = "/images/cumulus-linux/pbr-example.png" >}}
 
-The configuration for the example above is:
-
 {{< tabs "TabID197 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -576,7 +574,7 @@ cumulus@switch:~$ nv set router pbr map map1 rule 1 match source-ip 0.0.0.0/0
 cumulus@switch:~$ nv set router nexthop-group group1 via 192.168.0.32
 cumulus@switch:~$ nv set router pbr map map1 rule 1 action nexthop-group group1
 cumulus@switch:~$ nv set interface swp51 router pbr map map1
-cumulus@switch:~$ nv config
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}

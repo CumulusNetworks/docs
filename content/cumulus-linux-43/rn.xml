@@ -7,6 +7,16 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2982536</td>
+<td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
+library, which could result in denial of service or potentially the
+execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.2.6-2+deb10u2
+Fixed: 2.2.6-2+deb10u3</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>2973714</td>
 <td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
 <td>3.7.15-4.4.1</td>

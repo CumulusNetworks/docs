@@ -44,8 +44,6 @@ You must disable the following services in the default VRF if you want to run th
 
 - chef-client
 - collectd
-- dhcpd
-- dhcrelay
 - hsflowd
 - netq-agent
 - netq-notifier

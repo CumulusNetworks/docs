@@ -78,8 +78,6 @@ You can run a variety of services within the management VRF instead of the defau
 
 - chef-client
 - collectd
-- dhcpd
-- dhcrelay
 - hsflowd
 - netq-agent
 - netq-notifier

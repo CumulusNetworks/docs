@@ -205,7 +205,7 @@ Cumulus Linux enables symmetric hashing by default. Make sure that the settings 
 <!-- vale on -->
 [GTP](## "GPRS Tunneling Protocol") carries mobile data within the core of the mobile operator’s network. Traffic in the 5G Mobility core cluster, from cell sites to compute nodes, have the same source and destination IP address. The only way to identify individual flows is with the GTP [TEID](## "Tunnel Endpoint Identifier"). Enabling GTP hashing adds the TEID as a hash parameter and helps the Cumulus Linux switches in the network to distribute mobile data traffic evenly across ECMP routes.
 
-GTP hashing is used for:
+Cumulus Linux uses GTP hashing for:
 - [GTP-U](## "GPRS Tunnelling Protocol User") packets ingressing physical ports or bonds.
 - VXLAN encapsulated GTP-U packets terminating on egress [VTEPs](## "Virtual Tunnel End Points").
 

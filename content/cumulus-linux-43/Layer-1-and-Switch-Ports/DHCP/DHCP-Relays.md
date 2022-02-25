@@ -12,7 +12,7 @@ This topic describes how to configure DHCP relays for IPv4 and IPv6 using the fo
 
 {{%notice note%}}
 
-If you intend to run the `dhcrelay` service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF/#run-services-within-the-management-vrf" text="these steps">}}.
+If you intend to run the `dhcrelay` service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, follow {{<link url="Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf" text="these steps">}}.
 
 {{%/notice%}}
 

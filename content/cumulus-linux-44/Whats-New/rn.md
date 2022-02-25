@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2982536"></a> [2982536](#2982536) <a name="2982536"></a> <br /> | CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing Clibrary, which could result in denial of service or potentially theexecution of arbitrary code, if a malformed XML file is processed<br />Vulnerable: <= 2.2.6-2+deb10u2Fixed: 2.2.6-2+deb10u3 | 4.0.0-4.4.3 | |
 | <a name="2972540"></a> [2972540](#2972540) <a name="2972540"></a> <br /> | With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts. | 3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1 | |
 | <a name="2971159"></a> [2971159](#2971159) <a name="2971159"></a> <br /> | On rare occasions, the link up time on optical media can be more than five seconds.  | 4.4.3 | |
 | <a name="2965759"></a> [2965759](#2965759) <a name="2965759"></a> <br /> | On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs. | 3.7.15, 4.3.0-4.4.3 | |
@@ -263,6 +264,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2982536"></a> [2982536](#2982536) <a name="2982536"></a> <br /> | CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing Clibrary, which could result in denial of service or potentially theexecution of arbitrary code, if a malformed XML file is processed<br />Vulnerable: <= 2.2.6-2+deb10u2Fixed: 2.2.6-2+deb10u3 | 4.0.0-4.4.3 | |
 | <a name="2976362"></a> [2976362](#2976362) <a name="2976362"></a> <br /> | When a port flaps with PTP enabled, the switch firmware might become unresponsive and you see the following log message:<code>&#91;ptp4l.ERR&#93;: &#91;435345.036&#93; timed out while polling for tx timestamp</code>  | 4.4.0-4.4.3 | |
 | <a name="2972540"></a> [2972540](#2972540) <a name="2972540"></a> <br /> | With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts. | 3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1 | |
 | <a name="2971343"></a> [2971343](#2971343) <a name="2971343"></a> <br /> | CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed<br />Vulnerable: <= 2.2.6-2+deb10u1Fixed: 2.2.6-2+deb10u2 | 4.0.0-4.4.3 | |
@@ -544,6 +546,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2982536"></a> [2982536](#2982536) <a name="2982536"></a> <br /> | CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing Clibrary, which could result in denial of service or potentially theexecution of arbitrary code, if a malformed XML file is processed<br />Vulnerable: <= 2.2.6-2+deb10u2Fixed: 2.2.6-2+deb10u3 | 4.0.0-4.4.3 | |
 | <a name="2976362"></a> [2976362](#2976362) <a name="2976362"></a> <br /> | When a port flaps with PTP enabled, the switch firmware might become unresponsive and you see the following log message:<code>&#91;ptp4l.ERR&#93;: &#91;435345.036&#93; timed out while polling for tx timestamp</code>  | 4.4.0-4.4.3 | |
 | <a name="2972540"></a> [2972540](#2972540) <a name="2972540"></a> <br /> | With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts. | 3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1 | |
 | <a name="2971343"></a> [2971343](#2971343) <a name="2971343"></a> <br /> | CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed<br />Vulnerable: <= 2.2.6-2+deb10u1Fixed: 2.2.6-2+deb10u2 | 4.0.0-4.4.3 | |

@@ -18,9 +18,8 @@ The `dhcpd` and `dhcrelay` services are disabled by default. After you
 finish configuring the DHCP relays and servers, you need to start those
 services. If you intend to run these services within a
 {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}},
-including the {{<link url="Management-VRF" text="management VRF">}},
 follow {{<link url=Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf text="these steps">}} for
-configuring them. See also the {{<link url="Virtual-Routing-and-Forwarding-VRF#dhcp-with-vrf" text="VRF chapter">}}.
+configuring them.
 
 {{%/notice%}}
 

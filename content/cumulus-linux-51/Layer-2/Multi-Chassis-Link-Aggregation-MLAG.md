@@ -823,6 +823,96 @@ cumulus@leaf01:~$ systemctl status clagd.service
             └─27078 /usr/bin/python3 /usr/sbin/clagd --daemon linklocal peerlink.4094 44:38:39:BE:EF:AA --priority 32768
 ```
 
+### Peer Link Consistency Check
+
+When you make an MLAG configuration change, Cumulus Linux validates the corresponding parameters on both MLAG peers and takes action based on the type of conflict it sees. For every conflict, the `/var/log/clagd.log` file records a log message.
+
+The following table shows the conflict types and actions that Cumulus Linux takes:
+
+|  Conflict       | Type   | Action|
+| --------------- | ------ | ----- |
+| bridge-stp-mode | Global |  Proto-down only the MLAG bonds on the secondary switch when there is a mismatch. |
+| clag-native-vlan | Interface | Proto-down only the MLAG bonds on the secondary switch when there is a mismatch. |
+| STP Root Bridge Priority | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a mismatch. |
+| system-mac | Global  | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a mismatch.|
+| peer-ip | Global   | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a mismatch. |
+| peerlink-mtu | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a mismatch. |
+| peerlink-native-vlan | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a mismatch.<br>Proto-down the MLAG bonds and VNIs on the secondary switch when there is no PVID. |
+| Vxlan Anycast IP | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is an anycast IP address mismatch across MLAG peers.<br>Proto-down the MLAG bonds and VNIs on the node where there is no configured anycast IP address. |
+| peerlink-bridge-member | Global | Proto-down the MLAG bonds and VNIs on the MLAG switch where this conflict exists. |
+| clag-bonds-bridge-member | Interface | Proto-down the MLAG bonds and VNIs on the MLAG switch where this conflict exists.      |
+| lacp-partner-mac | Interface | Proto-down the MLAG bonds on the MLAG switch where lacp-partner-mac is mismatch or if there is a duplicate partner-mac. |
+| clag-vlans| Interface   |  Suspend the inconsistent VLANs on either MLAG peer if the VLANs are not part of the peer link or if there is mismatch of VLANs configured on the MLAG bonds between the MLAG peers. |
+| peerlink-vlans| Global | Suspend the inconsistent VLANs on either MLAG peer on all the dual-connected MLAG bonds and VXlan interfaces. |
+| VLANs on VXLAN interface in TVD topology not part of peerlink| VXLAN  | Suspend the VLANs on the VXLAN interfaces that are inconsistent. |
+
+To manually check for MLAG inconsistencies, run the following commands:
+
+{{< tabs "TabID851 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example command shows global parameters across both MLAG peers and lists any conflicts:
+
+```
+cumulus@leaf01:~$ nv show mlag consistency-checker global
+
+```
+
+The following example command shows MLAG parameters for all interfaces across both MLAG peers and any lists any conflicts:
+
+```
+cumulus@leaf01:~$ nv show interface --view=mlag-cc
+
+```
+
+The following example command shows MLAG parameters for bond1 across both MLAG peers and lists any conflicts:
+
+```
+cumulus@leaf01:~$ nv show interface swp1 bond mlag consistency-checker
+
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+The following example command shows global parameters across both MLAG peers and lists any conflicts:
+
+```
+cumulus@leaf01:~$ clagctl consistency-check global
+
+```
+
+The following example command shows MLAG parameters for all interfaces across both MLAG peers and any lists any conflicts:
+
+```
+cumulus@leaf01:~$ clagctl consistency-check interface
+
+```
+
+The following example command shows MLAG parameters for bond1 across both MLAG peers and lists any conflicts:
+
+```
+cumulus@leaf01:~$ clagctl consistency-check bond1
+
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The actions that Cumulus Linux takes when there is a conflict are distruptive. If you prefer, you can configure the switch to not take any action when there is a conflict. Edit the `/etc/network/interfaces` file to add the `clagd-args --gracefulConsistencyCheck FALSE` parameter in the `auto peerlink.4094` stanza.
+
+```
+cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+...
+auto peerlink.4094
+iface peerlink.4094
+    clagd-args --gracefulConsistencyCheck FALSE
+    clagd-backup-ip 10.10.10.2
+    clagd-peer-ip linklocal
+    clagd-sys-mac 44:38:39:BE:EF:AA
+...
+```
+
 ### Large Packet Drops on the Peer Link Interface
 
 You can expect a large volume of packet drops across one of the peer link interfaces. These drops serve to prevent looping of BUM (broadcast, unknown unicast, multicast) packets. When the switch receives a packet across the peer link, if the destination lookup results in an egress interface that is a dual-connected bond, the switch does not forward the packet (to prevent loops). The peer link records a dropped packet.

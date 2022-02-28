@@ -14,13 +14,13 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2984205"></a> [2984205](#2984205) <a name="2984205"></a> <br /> | CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crashby reading too much data on the heap<br />Vulnerable: <= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15Fixed: | 3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1 | |
 | <a name="2982536"></a> [2982536](#2982536) <a name="2982536"></a> <br /> | CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing Clibrary, which could result in denial of service or potentially theexecution of arbitrary code, if a malformed XML file is processed<br />Vulnerable: <= 2.2.6-2+deb10u2Fixed: 2.2.6-2+deb10u3 | 4.0.0-4.4.3 | |
 | <a name="2972540"></a> [2972540](#2972540) <a name="2972540"></a> <br /> | With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts. | 3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1 | |
 | <a name="2971159"></a> [2971159](#2971159) <a name="2971159"></a> <br /> | On rare occasions, the link up time on optical media can be more than five seconds.  | 4.4.3 | |
 | <a name="2965759"></a> [2965759](#2965759) <a name="2965759"></a> <br /> | On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs. | 3.7.15, 4.3.0-4.4.3 | |
 | <a name="2965752"></a> [2965752](#2965752) <a name="2965752"></a> <br /> | The NCLU <code>net show evpn vni detail</code> command output shows duplicate layer 2 VNIs under layer 3 VNIs. | 3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1 | |
 | <a name="2959309"></a> [2959309](#2959309) <a name="2959309"></a> <br /> | When you edit the Cumulus image file and change the  <code>CL_INSTALLER_HASHED_PASSWORD</code> variable, the installation is successful but you cannot connect to the switch with the new password. | 4.4.0-4.4.3, 5.0.1 | |
-| <a name="2956336"></a> [2956336](#2956336) <a name="2956336"></a> <br /> | WJH shows the reason for a traffic drop to be MLAG port isolation even when MLAG is not configured. | 4.4.3 | |
 | <a name="2951114"></a> [2951114](#2951114) <a name="2951114"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1 | |
 | <a name="2951113"></a> [2951113](#2951113) <a name="2951113"></a> <br /> | On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot. | 3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1 | |
 | <a name="2951110"></a> [2951110](#2951110) <a name="2951110"></a> <br /> | The <code>net show time ntp servers</code> command does not show any output with management VRF. | 3.7.15, 4.1.1-4.4.3, 5.0.0-5.0.1 | |
@@ -264,6 +264,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2984205"></a> [2984205](#2984205) <a name="2984205"></a> <br /> | CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crashby reading too much data on the heap<br />Vulnerable: <= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15Fixed: | 3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1 | |
 | <a name="2982536"></a> [2982536](#2982536) <a name="2982536"></a> <br /> | CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing Clibrary, which could result in denial of service or potentially theexecution of arbitrary code, if a malformed XML file is processed<br />Vulnerable: <= 2.2.6-2+deb10u2Fixed: 2.2.6-2+deb10u3 | 4.0.0-4.4.3 | |
 | <a name="2976362"></a> [2976362](#2976362) <a name="2976362"></a> <br /> | When a port flaps with PTP enabled, the switch firmware might become unresponsive and you see the following log message:<code>&#91;ptp4l.ERR&#93;: &#91;435345.036&#93; timed out while polling for tx timestamp</code>  | 4.4.0-4.4.3 | |
 | <a name="2972540"></a> [2972540](#2972540) <a name="2972540"></a> <br /> | With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts. | 3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1 | |
@@ -546,6 +547,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="2984205"></a> [2984205](#2984205) <a name="2984205"></a> <br /> | CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crashby reading too much data on the heap<br />Vulnerable: <= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15Fixed: | 3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1 | |
 | <a name="2982536"></a> [2982536](#2982536) <a name="2982536"></a> <br /> | CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing Clibrary, which could result in denial of service or potentially theexecution of arbitrary code, if a malformed XML file is processed<br />Vulnerable: <= 2.2.6-2+deb10u2Fixed: 2.2.6-2+deb10u3 | 4.0.0-4.4.3 | |
 | <a name="2976362"></a> [2976362](#2976362) <a name="2976362"></a> <br /> | When a port flaps with PTP enabled, the switch firmware might become unresponsive and you see the following log message:<code>&#91;ptp4l.ERR&#93;: &#91;435345.036&#93; timed out while polling for tx timestamp</code>  | 4.4.0-4.4.3 | |
 | <a name="2972540"></a> [2972540](#2972540) <a name="2972540"></a> <br /> | With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts. | 3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1 | |

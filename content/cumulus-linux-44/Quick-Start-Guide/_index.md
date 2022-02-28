@@ -40,7 +40,7 @@ When starting Cumulus Linux for the first time, the management port makes a DHCP
 ### Login Credentials
 
 The default installation includes two accounts:
-- The system account (root) has full system privileges. Cumulus linux locks the root account password by default (which prohibits login).
+- The system account (root) has full system privileges. Cumulus Linux locks the root account password by default (which prohibits login).
 - The user account (cumulus) has `sudo` privileges. The cumulus account uses the default password `cumulus`.
 
    When you log in for the first time with the cumulus account, Cumulus Linux prompts you to change the default password. After you provide a new password, the SSH session disconnects and you have to reconnect with the new password.

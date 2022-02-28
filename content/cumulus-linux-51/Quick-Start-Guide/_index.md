@@ -294,7 +294,7 @@ You can configure a front panel port or bridge interface as a layer 3 port.
 The following configuration example configures the front panel port swp1 as a layer 3 access port:
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip address 10.1.1.1/30
+cumulus@switch:~$ nv set interface swp1 ip address 10.0.0.0/31
 cumulus@switch:~$ nv config apply
 ```
 
@@ -302,9 +302,9 @@ To add an IP address to a bridge interface, you must put it into a VLAN interfac
 
 ```
 cumulus@switch:~$ nv set interface swp1-2 bridge domain br_default
-cumulus@switch:~$ nv set bridge domain br_default vlan 100
-cumulus@switch:~$ nv set interface vlan100 ip address 10.2.2.1/24
-cumulus@switch:~$ nv set bridge domain br_default untagged 100
+cumulus@switch:~$ nv set bridge domain br_default vlan 10
+cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.2/24
+cumulus@switch:~$ nv set bridge domain br_default untagged 1
 cumulus@switch:~$ nv config apply
 ```
 
@@ -316,7 +316,7 @@ The following configuration example configures the front panel port swp1 as a la
 ```
 auto swp1
 iface swp1
-  address 10.1.1.1/30
+  address 10.0.0.0/31
 ```
 
 To add an IP address to a bridge interface, include the address under the `iface` stanza in the `/etc/network/interfaces` file. If you want to use a VLAN other than the native one, set the bridge PVID:
@@ -324,9 +324,9 @@ To add an IP address to a bridge interface, include the address under the `iface
 ```
 auto br_default
 iface br_default
-    address 10.2.2.1/24
-    bridge-ports glob swp1-10 swp12 glob swp14-20
-    bridge-pvid 100
+    address 10.1.10.2/24
+    bridge-ports swp1 swp2
+    bridge-pvid 1
 ```
 
 To apply the configuration, check for typos:

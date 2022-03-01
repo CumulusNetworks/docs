@@ -25,12 +25,12 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Adaptive routing with RoCE">}}
 - {{<link url="Link-Layer-Discovery-Protocol/#lldp-dcbx-tlvs" text="LLDP DCBX TLVs">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="GTP hashing">}}
-- {{<link url="Smart-System-Manager" text="warmboot on bonds">}}
+- {{<link url="Smart-System-Manager" text="Warmboot on bonds">}}
 - {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#peer-link-consistency-check" text="MLAG peer link consistency check">}}
 - {{<link url="Precision-Time-Protocol-PTP" text="PTP on bonds">}}
 - VXLAN port isolation on Spectrum-3 switches
 - NVUE enhancements include:
   - Support control of IPv6 ND processes
-  - Flexible snippet architecture
+  - {{<link url="NVUE-Snippets/#flexible-snippets" text="Flexible snippet architecture">}}
   - EVPN, PBR show commands
   - Logging improvements

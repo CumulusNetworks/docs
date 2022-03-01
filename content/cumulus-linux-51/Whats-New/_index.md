@@ -31,6 +31,4 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
 - VXLAN port isolation on Spectrum-3 switches
 - NVUE enhancements include:
   - Support control of IPv6 ND processes
-  - {{<link url="NVUE-Snippets/#flexible-snippets" text="Flexible snippet architecture">}}
-  - EVPN, PBR show commands
-  - Logging improvements
+  - {{<link url="NVUE-Snippets/#flexible-snippets" text="Flexible snippets">}}

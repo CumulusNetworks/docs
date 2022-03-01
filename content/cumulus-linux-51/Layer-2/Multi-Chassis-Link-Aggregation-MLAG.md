@@ -899,7 +899,7 @@ cumulus@leaf01:~$ clagctl consistency-check bond1
 {{< /tab >}}
 {{< /tabs >}}
 
-The actions that Cumulus Linux takes when there is a conflict are distruptive. If you prefer, you can configure the switch to not take any action when there is a conflict. Edit the `/etc/network/interfaces` file to add the `clagd-args --gracefulConsistencyCheck FALSE` parameter in the `auto peerlink.4094` stanza.
+The actions that Cumulus Linux takes when there is a conflict are distruptive. If you prefer, you can configure the switch to not take any action when there is a conflict. Edit the `/etc/network/interfaces` file to add the `clagd-args --gracefulConsistencyCheck FALSE` parameter in the peer link stanza.
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/network/interfaces

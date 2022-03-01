@@ -1,12 +1,18 @@
 ---
-title: NVUE Flexible Snippets
+title: NVUE Snippets
 author: NVIDIA
-weight: 121
+weight: 123
 toc: 3
 ---
-Use NVUE flexible snippets if you configure Cumulus Linux with NVUE commands, then want to configure a feature that does not yet support the NVUE Object Model. You create a snippet in `yaml` format and add the configuration to either the `/etc/frr/frr.conf` or `/etc/network/interfaces` file.
+NVUE supports both snippets and flexible snippets:
+- Use snippets to add configuration to either the `/etc/frr/frr.conf` or `/etc/network/interfaces` file.
+- Use flexible snippets to manage any text file on the system.
+
+## Snippets
+
+Use snippets if you configure Cumulus Linux with NVUE commands, then want to configure a feature that does not yet support the NVUE Object Model. You create a snippet in `yaml` format and add the configuration to either the `/etc/frr/frr.conf` or `/etc/network/interfaces` file.
 <!-- vale off -->
-## /etc/frr/frr.conf Snippets
+### /etc/frr/frr.conf Snippets
 <!-- vale on -->
 NVUE does not support configuring BGP to peer across the default route. The following example configures BGP to peer across the default route from the default VRF:
 
@@ -44,9 +50,9 @@ NVUE does not support configuring BGP to peer across the default route. The foll
    ip nht resolve-via-default
    ```
 
-## /etc/network/interfaces Snippets
+### /etc/network/interfaces Snippets
 
-### Configure MLAG Timers
+#### Configure MLAG Timers
 
 NVUE supports configuring only one of the {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#set-clagctl-timers" text="MLAG service timeouts">}} (initDelay). The following example configures the MLAG peer timeout to 400 seconds:
 
@@ -90,7 +96,7 @@ NVUE supports configuring only one of the {{<link url="Multi-Chassis-Link-Aggreg
    ...
    ```
 
-### Configure a Traditional Bridge
+#### Configure a Traditional Bridge
 
 NVUE does not support configuring traditional bridges. The following example configures a traditional bridge called `br0` with the IP address 11.0.0.10/24. swp1, swp2 are members of the bridge.
 
@@ -134,3 +140,70 @@ NVUE does not support configuring traditional bridges. The following example con
      bridge-ports swp1 swp2
      bridge-vlan-aware no
    ```
+
+## Flexible Snippets
+
+Flexible snippets are an extension of regular snippets that let you manage any text file on the system. You can add content to an existing text file or create a new text file and add content.
+
+Flexible snippets do *not* support:
+- Binary files.
+- Symbolic links.
+- More than 1MB of content.
+- More than one flexible snippet in the same destination file.
+
+{{%notice warning%}}
+Cumulus Linux runs flexible snippets as root. Exercise caution when creating and editing flexible snippets.
+{{%/notice%}}
+
+To create flexible snippets:
+
+1. Create a file in `yaml` format and add each flexible snippet you want to apply in the format shown below.
+
+   ```
+   - set:
+       system:
+        config:
+          snippet:
+            <snippet-name>:
+              file: "<filename>"
+              permissions: "<umask-permissions>"
+              content: |
+                # This is my content 
+   ```
+
+   Adding the `permissions:` line is optional. The default umask persmissions are 644.
+
+   The following example creates two snippets called `mysnippet1` and `mysnippet2` in a file called `./flexible-snippets.yaml`.
+   - `mysnippet1` adds `# This is my content` to the `/etc/file1` file on the system and changes the umask permissions to 0600.
+   - `mysnippet2` adds `# This is my content` to the `/etc/file2` file on the system and uses the default umask persmissions.
+
+   ```
+   cumulus@switch:~$ sudo nano ./flexible-snippets.yaml
+   - set:
+       system:
+        config:
+          snippet:
+            mysnippet1:
+              file: "/etc/file1"
+              permissions: "0600"
+              content: |
+                # This is my content 
+            mysnippet2:
+              file: "file2"
+              content: |
+                # This is my content        
+   ```
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch ./flexible-snippets.yaml
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+NVUE appends the flexible snippet at the end of an existing file. If the file does not exist, NVUE creates the file and adds the content.

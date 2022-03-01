@@ -6,7 +6,7 @@ toc: 3
 ---
 NVUE supports both snippets and flexible snippets:
 - Use snippets to add configuration to either the `/etc/frr/frr.conf` or `/etc/network/interfaces` file.
-- Use flexible snippets to manage any text file on the system.
+- Use flexible snippets to manage any other text file on the system.
 
 ## Snippets
 

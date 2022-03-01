@@ -171,11 +171,11 @@ To create flexible snippets:
                 # This is my content 
    ```
 
-   Adding the `permissions:` line is optional. The default umask persmissions are 644.
+    You can only set the umast permissions to a new file that you create. Adding the `permissions:` line is optional. The default umask persmissions are 644.
 
    The following example creates two snippets called `mysnippet1` and `mysnippet2` in a file called `./flexible-snippets.yaml`.
-   - `mysnippet1` adds `# This is my content` to the `/etc/file1` file on the system and changes the umask permissions to 0600.
-   - `mysnippet2` adds `# This is my content` to the `/etc/file2` file on the system and uses the default umask persmissions.
+   - `mysnippet1` creates the `/etc/file1` file, changes the umask permissions to 0600, and adds the content `# This is my content`.
+   - `mysnippet2` adds `# This is my content` to the `/etc/file2` file that exists on the system.
 
    ```
    cumulus@switch:~$ sudo nano ./flexible-snippets.yaml
@@ -189,7 +189,7 @@ To create flexible snippets:
               content: |
                 # This is my content 
             mysnippet2:
-              file: "file2"
+              file: "/etc/file2"
               content: |
                 # This is my content        
    ```

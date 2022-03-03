@@ -4,33 +4,46 @@ author: NVIDIA
 weight: 1002
 toc: 3
 ---
-[ND](## "Neighbor Discovery") is the IPv6 equivalent of IPv4 ARP for layer 2 address resolution. ND uses IPv6 ICMP messages to discover IPv6 devices, such as switches and servers on the same interface.
+[ND](## "Neighbor Discovery") allows different devices on the same link to advertise their existence to their neighbors and learn about the existence of their neighbors. ND is the IPv6 equivalent of IPv4 ARP for layer 2 address resolution.
 
-ND is on by default in Cumulus Linux. You can tune certain parameters for security reasons and to properly support IPv6 networks.
+ND is on by default in Cumulus Linux. You can tune certain parameters to properly support IPv6 networks and for security reasons.
 
 ## ND Configuration Options
 
 Cumulus Linux provides options to configure:
-- Recursive DNS servers
+- Router Advertisement
 - IPv6 prefixes
+- Recursive DNS servers
 - DNS Search Lists
-- Router advertisement
-- Home agents
-- The MTU for neighbor discovery messages
+- Home Agents
+- MTU for neighbor discovery messages
 
-### Recursive DNS Servers
+### Router Advertisement
 
-To configure recursive DNS servers (RDNSS), you must specify the IPv6 address of each RDNSS you want to advertise.
+Router Advertisment is on by default. You can configure these optional settings:
 
-An optional parameter lets you set the maximum amount of time you want to use the RDNSS for domain name resolution. You can set a value between 0 and 4294967295 seconds or use the keyword `infinte` to set the time to never expire. If you set a value of 0, Cumulus Linux no longer advertises the RDNSS address.
+- Allow consecutive Router Advertisement packets to transmit more frequently than every 3 seconds (fast retransmit). You can set this parameter to `on` or `off`. The default setting is `on`.
+- Set the hop limit value advertised in a Router Advertisement message. You can set a value between 0 and 255. The default value is 64.
+- Set the interval between unsolicited multicast router advertisements from the interface. You can set a value between 70 and 180000 seconds. The default value is 600000 miliseconds.
+- Set the maximum amount of time that you want Router Advertisement messages to exist on the route. You can set a value between 0 and 9000 seconds. The default value is 1800.
+- Allow a dynamic host to use a managed (stateful) protocol for address autoconfiguration in addition to any addresses autoconfigured using stateless address autoconfiguration (managed configuration). Set this parameter to `on` or `off`. By default, this parameter is not set.
+- Allow a dynamic host to use a managed (stateful) protocol for autoconfiguration information other than addresses. Set this parameter to `on` or `off`. By default, this parameter is not set.
+- Set the amount of time that an IPv6 node is considered reachable. You can set a value between 0 and 3600000 milliseconds. The default value is 0.
+- Set the amount of time between neighbor solicitation message retransmission. You can set a value between 0 and 4294967295 milliseconds. The default value is 0.
+- Allow hosts to use router preference to select the default router. You can set a value of high, medium, or low. The default value is medium.
 
-The following command example sets the RDNSS address to 2001:db8:1::100 and the lifetime to infinite:
+Router Advertisment is on by default. To disable Router Advertisement, run the `nv set interface swp1 ip neighbor-discovery router-advertisement enable off` command
 
-{{< tabs "TabID29 ">}}
+The following command example sets the Router Advertisement interval to 600000 milliseconds, the router preference to high, the amount of time that an IPv6 node is considered reachable to 3600000, and the amount of time between neighbor solicitation message retransmission to 4294967295:
+
+{{< tabs "TabID179 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100 lifetime infinite
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement interval 600000
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement router-preference high
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement reachable-time 3600000
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement retransmit-time 4294967295
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
@@ -42,21 +55,44 @@ cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
 leaf01# conf t
 leaf01(config)# interface swp1
-leaf01(config-if)# ipv6 nd rdnss 2001:db8:1::100
+leaf01(config-if)# ipv6 nd ra-interval 600000
+leaf01(config-if)# ipv6 nd router-preference high
+leaf01(config-if)# ipv6 nd reachable-time 3600000
+leaf01(config-if)# ipv6 nd ra-retrans-interval 4294967295
 leaf01(config-if)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:mgmt:~$ 
 ```
 
-The vtysh commands write to the `/etc/frr/frr.conf` file:
+{{< /tab >}}
+{{< /tabs >}}
+
+The following command example sets fast retransmit to off, and managed configuration to on:
+
+{{< tabs "TabID217 ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement fast-retransmit off
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement managed-config on
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
-interface swp1
- ipv6 nd rdnss 2001:db8:1::100 infinite
- ...
+leaf01# conf t
+leaf01(config)# interface swp1
+leaf01(config-if)# ipv6 nd ra-fast-retrans
+leaf01(config-if)# ipv6 nd managed-config-flag
+leaf01(config-if)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:mgmt:~$ 
 ```
 
 {{< /tab >}}
@@ -133,11 +169,55 @@ cumulus@leaf01:mgmt:~$
 {{< /tab >}}
 {{< /tabs >}}
 
+### Recursive DNS Servers
+
+To configure recursive DNS servers (RDNSS), you must specify the IPv6 address of each RDNSS you want to advertise.
+
+An optional parameter lets you set the maximum amount of time you want to use the RDNSS for domain name resolution. You can set a value between 0 and 4294967295 seconds or use the keyword `infinte` to set the time to never expire. If you set a value of 0, Cumulus Linux no longer advertises the RDNSS address.
+
+The following command example sets the RDNSS address to 2001:db8:1::100 and the lifetime to infinite:
+
+{{< tabs "TabID29 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100 lifetime infinite
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:mgmt:~$ sudo vtysh
+...
+leaf01# conf t
+leaf01(config)# interface swp1
+leaf01(config-if)# ipv6 nd rdnss 2001:db8:1::100
+leaf01(config-if)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:mgmt:~$ 
+```
+
+The vtysh commands write to the `/etc/frr/frr.conf` file:
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
+interface swp1
+ ipv6 nd rdnss 2001:db8:1::100 infinite
+ ...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### DNS Search Lists
 
 To configure DNS search lists (DNSSL), you need to specify the domain suffix you want to advertise. An optional parameter lets you set the maximum amount of time you want to use the domain suffix for domain name resolution. You can set a value between 0 and 4294967295 seconds or use the keyword `infinte` to set the time to never expire. A value of 0 tells the host not to use the DNSSL.
 
-The following example command configures the domain suffix to `accounting.nvidia.com` and the the maximum amount of time you want to use the domain suffix to `infinite`:
+The following example command sets the domain suffix to `accounting.nvidia.com` and the maximum amount of time you want to use the domain suffix to `infinite`:
 
 {{< tabs "TabID133 ">}}
 {{< tab "NVUE Commands ">}}
@@ -156,86 +236,6 @@ cumulus@leaf01:mgmt:~$ sudo vtysh
 leaf01# conf t
 leaf01(config)# interface swp1
 leaf01(config-if)# ipv6 nd dnssl accounting.nvidia.com infinite
-leaf01(config-if)# end
-leaf01# write memory
-leaf01# exit
-cumulus@leaf01:mgmt:~$ 
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### Router Advertisement
-
-Router advertisment is on by default. You can configure these optional settings:
-
-- Allow consecutive router advertisement packets to transmit more frequently than every 3 seconds (fast retransmit). You can set this parameter to `on` or `off`. The default setting is `on`.
-- Set the hop limit, which is the value in the hop count field of the IP header in the outgoing router advertisement packet. You can set a value between 0 and 255. The default value is 64.
-- Set the interval between unsolicited multicast router advertisements from the interface. You can set a value between 70 and 180000 seconds. The default value is 600000 miliseconds.
-- Set the maximum amount of time that you want Router Advertisement messages to exist on the route. You can set a value between 0 and 9000 seconds. The default value is 1800.
-- Allow a dynamic host to use a managed (stateful) protocol for address autoconfiguration in addition to any addresses autoconfigured using stateless address autoconfiguration (managed config). Set this parameter to `on` or `off`. By default, this parameter is not set.
-- Allow a dynamic host to use a managed (stateful) protocol for autoconfiguration information other than addresses ((managed config)). Set this parameter to `on` or `off`. By default, this parameter is not set.
-- Set the amount of time that an IPv6 node is considered reachable. You can set a value between 0 and 3600000 milliseconds. The default value is 0.
-- Set the amount of time between neighbor solicitation message retransmission. You can set a value between 0 and 4294967295 milliseconds. The default value is 0.
-- Allow hosts to use router preference to select the default router. You can set a value of high, medium, or low. The default value is medium.
-
-Router advertisment is on by default. To disable router advertisement, run the `nv set interface swp1 ip neighbor-discovery router-advertisement enable off` command
-
-The following command example sets the router advertisement interval to 600000 milliseconds, the router preference to high, the amount of time that an IPv6 node is considered reachable to 3600000, and the amount of time between neighbor solicitation message retransmission to 4294967295:
-
-{{< tabs "TabID179 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement interval 600000
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement router-preference high
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement reachable-time 3600000
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement retransmit-time 4294967295
-cumulus@leaf01:mgmt:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@leaf01:mgmt:~$ sudo vtysh
-...
-leaf01# conf t
-leaf01(config)# interface swp1
-leaf01(config-if)# ipv6 nd ra-interval 600000
-leaf01(config-if)# ipv6 nd router-preference high
-leaf01(config-if)# ipv6 nd reachable-time 3600000
-leaf01(config-if)# ipv6 nd ra-retrans-interval 4294967295
-leaf01(config-if)# end
-leaf01# write memory
-leaf01# exit
-cumulus@leaf01:mgmt:~$ 
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-The following command example sets fast retransmit to off, and managed config to on:
-
-{{< tabs "TabID217 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement fast-retransmit off
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement managed-config on
-cumulus@leaf01:mgmt:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@leaf01:mgmt:~$ sudo vtysh
-...
-leaf01# conf t
-leaf01(config)# interface swp1
-leaf01(config-if)# ipv6 nd ra-fast-retrans
-leaf01(config-if)# ipv6 nd managed-config-flag
 leaf01(config-if)# end
 leaf01# write memory
 leaf01# exit

@@ -32,8 +32,6 @@ Router Advertisment is on by default. You can configure these optional settings:
 - Set the amount of time between neighbor solicitation message retransmission. You can set a value between 0 and 4294967295 milliseconds. The default value is 0.
 - Allow hosts to use router preference to select the default router. You can set a value of high, medium, or low. The default value is medium.
 
-Router Advertisment is on by default. To disable Router Advertisement, run the `nv set interface swp1 ip neighbor-discovery router-advertisement enable off` command
-
 The following command example sets the Router Advertisement interval to 600000 milliseconds, the router preference to high, the amount of time that an IPv6 node is considered reachable to 3600000, and the amount of time between neighbor solicitation message retransmission to 4294967295:
 
 {{< tabs "TabID179 ">}}

@@ -201,7 +201,7 @@ To disable the checks, delete the `ptm-enable` parameter from the interface:
 
 ```
 cumulus@switch:~$ sudo vtysh
-switch# conf t
+switch# configure terminal
 switch(config)# interface swp51
 switch(config-if)# no ptm-enable
 switch(config-if)# end
@@ -214,7 +214,7 @@ If you need to reenable PTM for that interface:
 
 ```
 cumulus@switch:~$ sudo vtysh
-switch# conf t
+switch# configure terminal
 switch(config)# interface swp51
 switch(config-if)# ptm-enable
 

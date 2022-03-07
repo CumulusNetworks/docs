@@ -32,7 +32,13 @@ Router Advertisment is on by default. You can configure these optional settings:
 - Set the amount of time between neighbor solicitation message retransmission. You can set a value between 0 and 4294967295 milliseconds. The default value is 0.
 - Allow hosts to use router preference to select the default router. You can set a value of high, medium, or low. The default value is medium.
 
-The following command example sets the Router Advertisement interval to 600000 milliseconds, the router preference to high, the amount of time that an IPv6 node is considered reachable to 3600000, and the amount of time between neighbor solicitation message retransmission to 4294967295:
+The following command example sets:
+- The Router Advertisement interval to 600000 milliseconds.
+- The router preference to high.
+- The amount of time that an IPv6 node is considered reachable to 3600000.
+- The amount of time between neighbor solicitation message retransmission to 4294967295.
+- The hop limit value advertised in a Router Advertisement message to 100.
+- The maximum amount of time that the Router Advertisement messages exist on the route to 4000.
 
 {{< tabs "TabID179 ">}}
 {{< tab "NVUE Commands ">}}
@@ -42,6 +48,8 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advert
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement router-preference high
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement reachable-time 3600000
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement retransmit-time 4294967295
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement hop-limit 100
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement lifetime 4000
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
@@ -51,12 +59,14 @@ cumulus@leaf01:mgmt:~$ nv config apply
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
-leaf01# conf t
+leaf01# configure terminal
 leaf01(config)# interface swp1
 leaf01(config-if)# ipv6 nd ra-interval 600000
 leaf01(config-if)# ipv6 nd router-preference high
 leaf01(config-if)# ipv6 nd reachable-time 3600000
 leaf01(config-if)# ipv6 nd ra-retrans-interval 4294967295
+leaf01(config-if)# ipv6 nd ra-hop-limit 4294967295
+leaf01(config-if)# ipv6 nd ra-lifetime 4000
 leaf01(config-if)# end
 leaf01# write memory
 leaf01# exit
@@ -83,7 +93,7 @@ cumulus@leaf01:mgmt:~$ nv config apply
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
-leaf01# conf t
+leaf01# configure terminal
 leaf01(config)# interface swp1
 leaf01(config-if)# ipv6 nd ra-fast-retrans
 leaf01(config-if)# ipv6 nd managed-config-flag
@@ -119,13 +129,14 @@ cumulus@leaf01:mgmt:~$ nv config apply
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
+The following command example sets the IPv6 prefix to 2001:db8:1::100/32. FRR (vtysh) does not provide a command to set the amount of time that addresses generated from a prefix remain preferred.
+
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
-leaf01# conf t
+leaf01# configure terminal
 leaf01(config)# interface swp1
 leaf01(config-if)# ipv6 nd prefix 2001:db8:1::100/32 2000000000 
-leaf01(config-if)# ipv6 nd prefix 2001:db8:1::100/32 ?????? 2000000000
 leaf01(config-if)# end
 leaf01# write memory
 leaf01# exit
@@ -153,7 +164,7 @@ cumulus@leaf01:mgmt:~$ nv config apply
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
-leaf01# conf t
+leaf01# configure terminal
 leaf01(config)# interface swp1
 leaf01(config-if)# ipv6 nd prefix 2001:db8:1::100/32 off-link
 leaf01(config-if)# ipv6 nd prefix 2001:db8:1::100/32 no-autoconfig
@@ -186,10 +197,12 @@ cumulus@leaf01:mgmt:~$ nv config apply
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
+The following command example sets the RDNSS address to 2001:db8:1::100. FRR (vtysh) does not provide a command to set the maximum amount of time you want to use the RDNSS for domain name resolution.
+
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
-leaf01# conf t
+leaf01# configure terminal
 leaf01(config)# interface swp1
 leaf01(config-if)# ipv6 nd rdnss 2001:db8:1::100
 leaf01(config-if)# end
@@ -231,7 +244,7 @@ cumulus@leaf01:mgmt:~$ nv config apply
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
-leaf01# conf t
+leaf01# configure terminal
 leaf01(config)# interface swp1
 leaf01(config-if)# ipv6 nd dnssl accounting.nvidia.com infinite
 leaf01(config-if)# end
@@ -268,7 +281,7 @@ cumulus@leaf01:mgmt:~$ nv config apply
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
-leaf01# conf t
+leaf01# configure terminal
 leaf01(config)# interface swp1
 leaf01(config-if)# ipv6 nd home-agent-config-flag
 leaf01(config-if)# ipv6 nd home-agent-preference 100
@@ -302,7 +315,7 @@ cumulus@leaf01:mgmt:~$ nv config apply
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
-leaf01# conf t
+leaf01# configure terminal
 leaf01(config)# interface swp1
 leaf01(config-if)# ipv6 nd mtu 1500
 leaf01(config-if)# end
@@ -332,7 +345,7 @@ cumulus@leaf01:mgmt:~$ nv config apply
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
-leaf01# conf t
+leaf01# configure terminal
 leaf01(config)# interface swp1
 leaf01(config-if)# ipv6 nd suppress-ra
 ```

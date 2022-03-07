@@ -129,13 +129,14 @@ cumulus@leaf01:mgmt:~$ nv config apply
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
+The following command example sets the IPv6 prefix to 2001:db8:1::100/32. FRR (vtysh) does not provide a command to set the amount of time that addresses generated from a prefix remain preferred.
+
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
 leaf01# configure terminal
 leaf01(config)# interface swp1
 leaf01(config-if)# ipv6 nd prefix 2001:db8:1::100/32 2000000000 
-leaf01(config-if)# ipv6 nd prefix 2001:db8:1::100/32 ??????
 leaf01(config-if)# end
 leaf01# write memory
 leaf01# exit
@@ -195,6 +196,8 @@ cumulus@leaf01:mgmt:~$ nv config apply
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
+
+The following command example sets the RDNSS address to 2001:db8:1::100. FRR (vtysh) does not provide a command to set the maximum amount of time you want to use the RDNSS for domain name resolution.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh

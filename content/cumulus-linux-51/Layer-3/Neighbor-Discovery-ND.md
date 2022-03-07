@@ -4,9 +4,9 @@ author: NVIDIA
 weight: 1002
 toc: 3
 ---
-[ND](## "Neighbor Discovery") allows different devices on the same link to advertise their existence to their neighbors and learn about the existence of their neighbors. ND is the IPv6 equivalent of IPv4 ARP for layer 2 address resolution.
+[ND](## "Neighbor Discovery") allows different devices on the same link to advertise their existence to their neighbors and to learn about the existence of their neighbors. ND is the IPv6 equivalent of IPv4 ARP for layer 2 address resolution.
 
-ND is on by default in Cumulus Linux. You can tune certain parameters to properly support IPv6 networks and for security reasons.
+ND is on by default. Cumulus Linux provides a set of configuration options to support IPv6 networks and adjust your security settings.
 
 ## ND Configuration Options
 
@@ -22,23 +22,23 @@ Cumulus Linux provides options to configure:
 
 Router Advertisment is on by default. You can configure these optional settings:
 
-- Allow consecutive Router Advertisement packets to transmit more frequently than every 3 seconds (fast retransmit). You can set this parameter to `on` or `off`. The default setting is `on`.
+- Allow consecutive Router Advertisement packets to transmit more frequently than every three seconds (fast retransmit). You can set this parameter to `on` or `off`. The default setting is `on`.
 - Set the hop limit value advertised in a Router Advertisement message. You can set a value between 0 and 255. The default value is 64.
 - Set the interval between unsolicited multicast router advertisements from the interface. You can set a value between 70 and 180000 seconds. The default value is 600000 miliseconds.
 - Set the maximum amount of time that you want Router Advertisement messages to exist on the route. You can set a value between 0 and 9000 seconds. The default value is 1800.
-- Allow a dynamic host to use a managed (stateful) protocol for address autoconfiguration in addition to any addresses autoconfigured using stateless address autoconfiguration (managed configuration). Set this parameter to `on` or `off`. By default, this parameter is not set.
-- Allow a dynamic host to use a managed (stateful) protocol for autoconfiguration information other than addresses. Set this parameter to `on` or `off`. By default, this parameter is not set.
-- Set the amount of time that an IPv6 node is considered reachable. You can set a value between 0 and 3600000 milliseconds. The default value is 0.
-- Set the amount of time between neighbor solicitation message retransmission. You can set a value between 0 and 4294967295 milliseconds. The default value is 0.
+- Allow a dynamic host to use either a managed (stateful) protocol or a stateless protocol to configure addresses automatically (managed configuration). Set this parameter to `on` or `off`. By default, this parameter is not set.
+- Allow a dynamic host to use a managed (stateful) protocol to configure information other than addresses automatically. Set this parameter to `on` or `off`. By default, this parameter is not set.
+- Set the amount of time that an IPv6 node is reachable. You can set a value between 0 and 3600000 milliseconds. The default value is 0.
+- Set the interval at which neighbor solicitation messages retransmit. You can set a value between 0 and 4294967295 milliseconds. The default value is 0.
 - Allow hosts to use router preference to select the default router. You can set a value of high, medium, or low. The default value is medium.
 
 The following command example sets:
 - The Router Advertisement interval to 600000 milliseconds.
 - The router preference to high.
 - The amount of time that an IPv6 node is considered reachable to 3600000.
-- The amount of time between neighbor solicitation message retransmission to 4294967295.
-- The hop limit value advertised in a Router Advertisement message to 100.
-- The maximum amount of time that the Router Advertisement messages exist on the route to 4000.
+- The interval at which neighbor solicitation messages retransmit to 4294967295.
+- The hop limit value in the Router Advertisement message to 100.
+- The maximum amount of time that Router Advertisement messages exist on the route to 4000.
 
 {{< tabs "TabID179 ">}}
 {{< tab "NVUE Commands ">}}
@@ -76,7 +76,7 @@ cumulus@leaf01:mgmt:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-The following command example sets fast retransmit to off, and managed configuration to on:
+The following command example sets fast retransmit to off and managed configuration to on:
 
 {{< tabs "TabID217 ">}}
 {{< tab "NVUE Commands ">}}
@@ -146,7 +146,7 @@ cumulus@leaf01:mgmt:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-The following command example enables off-link, autoconfiguration, and complete router IP address.
+The following command example sets adverisement to make no statement about prefix on-link or off-link properties, enables the specified prefix to use IPv6 autoconfiguration, and indicates to hosts on the local link that the specified prefix contains a complete IP address.
 
 {{< tabs "TabID99 ">}}
 {{< tab "NVUE Commands ">}}
@@ -182,7 +182,7 @@ cumulus@leaf01:mgmt:~$
 
 To configure recursive DNS servers (RDNSS), you must specify the IPv6 address of each RDNSS you want to advertise.
 
-An optional parameter lets you set the maximum amount of time you want to use the RDNSS for domain name resolution. You can set a value between 0 and 4294967295 seconds or use the keyword `infinte` to set the time to never expire. If you set a value of 0, Cumulus Linux no longer advertises the RDNSS address.
+An optional parameter lets you set the maximum amount of time you want to use the RDNSS for domain name resolution. You can set a value between 0 and 4294967295 seconds or use the keyword `infinte` to set the time to never expire. If you set the value to 0, Cumulus Linux no longer advertises the RDNSS address.
 
 The following command example sets the RDNSS address to 2001:db8:1::100 and the lifetime to infinite:
 
@@ -226,7 +226,9 @@ interface swp1
 
 ### DNS Search Lists
 
-To configure DNS search lists (DNSSL), you need to specify the domain suffix you want to advertise. An optional parameter lets you set the maximum amount of time you want to use the domain suffix for domain name resolution. You can set a value between 0 and 4294967295 seconds or use the keyword `infinte` to set the time to never expire. A value of 0 tells the host not to use the DNSSL.
+To configure DNS search lists (DNSSL), you must specify the domain suffix you want to advertise.
+
+An optional parameter lets you set the maximum amount of time you want to use the domain suffix for domain name resolution. You can set a value between 0 and 4294967295 seconds or use the keyword `infinte` to set the time to never expire. If you set the value to 0, the host does not use the DNSSL.
 
 The following example command sets the domain suffix to `accounting.nvidia.com` and the maximum amount of time you want to use the domain suffix to `infinite`:
 
@@ -264,7 +266,7 @@ You can configure the switch to be a Home Agent with these settings:
 - Set the maximum amount of time you want the router to act as a Home Agent. You can set a value between 0 and 65520 seconds. The default value is 0 (the router is not a Home Agent).
 - Set the Home Agent router preference. You can set a value between 0 and 65535. The default value is 0 (the lowest preference).
 
-The following command example configures the switch as a Home Agent by setting the preference to 100 and the lifetime to 20000 seconds:
+The following command example configures the switch as a Home Agent by setting the maximum amount of time the router acts as a Home Agent to 20000 seconds and the router preference to 100:
 
 {{< tabs "TabID245 ">}}
 {{< tab "NVUE Commands ">}}
@@ -355,7 +357,7 @@ leaf01(config-if)# ipv6 nd suppress-ra
 
 ## Troubleshooting
 
-To show the ND settings for an interface, run the NVU `nv show interface <interface-id> ip neighbor-discovery` command:
+To show the ND settings for an interface, run the NVUE `nv show interface <interface-id> ip neighbor-discovery` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery

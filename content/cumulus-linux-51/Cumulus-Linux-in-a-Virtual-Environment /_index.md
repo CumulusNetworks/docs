@@ -15,3 +15,4 @@ Virtual environments do not support the following Cumulus Linux features:
 - {{<link url="Precision-Time-Protocol-PTP" >}}
 - {{<link url="Prescriptive-Topology-Manager-PTM" >}}
 - {{<link url="Port-Security" >}}
+- {{<link url="SPAN-and-ERSPAN" >}}

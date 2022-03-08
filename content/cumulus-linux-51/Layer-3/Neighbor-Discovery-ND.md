@@ -32,7 +32,7 @@ Router Advertisment is on by default. You can configure these optional settings:
 - Set the interval at which neighbor solicitation messages retransmit. You can set a value between 0 and 4294967295 milliseconds. The default value is 0.
 - Allow hosts to use router preference to select the default router. You can set a value of high, medium, or low. The default value is medium.
 
-The following command example sets:
+The following example commands set:
 - The Router Advertisement interval to 60000 milliseconds (60 seconds).
 - The router preference to high.
 - The amount of time that an IPv6 node is reachable to 3600000.
@@ -90,7 +90,7 @@ interface swp1
 {{< /tab >}}
 {{< /tabs >}}
 
-The following command example sets fast retransmit to off and managed configuration to on:
+The following example commands set fast retransmit to off and managed configuration to on:
 
 {{< tabs "TabID95 ">}}
 {{< tab "NVUE Commands ">}}
@@ -163,7 +163,7 @@ To configure IPv6 prefixes, you must specify the IPv6 prefixes you want to inclu
 - Enable the specified prefix to use for IPv6 autoconfiguration.
 - Indicate to hosts on the local link that the specified prefix contains a complete IP address by setting the R flag.
 
-The following command example configures the IPv6 prefix 2001:db8:1::100/32, and sets the amount of time that the prefix is valid for on-link determination to 2000000000 and the amount of time that addresses generated from a prefix remain preferred to 1000000000.
+The following example commands configure the IPv6 prefix 2001:db8:1::100/32, and set the amount of time that the prefix is valid for on-link determination to 2000000000 and the amount of time that addresses generated from a prefix remain preferred to 1000000000.
 
 {{< tabs "TabID168 ">}}
 {{< tab "NVUE Commands ">}}
@@ -202,7 +202,7 @@ interface swp1
 {{< /tab >}}
 {{< /tabs >}}
 
-The following command example sets adverisement to make no statement about prefix on-link or off-link properties, enables the specified prefix to use IPv6 autoconfiguration, and indicates to hosts on the local link that the specified prefix contains a complete IP address.
+The following example commands set adverisement to make no statement about prefix on-link or off-link properties, enable the specified prefix to use IPv6 autoconfiguration, and indicate to hosts on the local link that the specified prefix contains a complete IP address.
 
 {{< tabs "TabID207 ">}}
 {{< tab "NVUE Commands ">}}
@@ -252,7 +252,7 @@ To configure recursive DNS servers (RDNSS), you must specify the IPv6 address of
 
 An optional parameter lets you set the maximum amount of time you want to use the RDNSS for domain name resolution. You can set a value between 0 and 4294967295 seconds or use the keyword `infinte` to set the time to never expire. If you set the value to 0, Cumulus Linux no longer advertises the RDNSS address.
 
-The following command example sets the RDNSS address to 2001:db8:1::100 and the lifetime to infinite:
+The following example commands set the RDNSS address to 2001:db8:1::100 and the lifetime to infinite:
 
 {{< tabs "TabID257 ">}}
 {{< tab "NVUE Commands ">}}
@@ -264,8 +264,6 @@ cumulus@leaf01:mgmt:~$ nv config apply
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
-
-The following command example sets the RDNSS address to 2001:db8:1::100. FRR (vtysh) does not provide a command to set the maximum amount of time you want to use the RDNSS for domain name resolution.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -344,7 +342,7 @@ You can configure the switch to be a Home Agent with these settings:
 - Set the maximum amount of time you want the router to act as a Home Agent. You can set a value between 0 and 65520 seconds. The default value is 0 (the router is not a Home Agent).
 - Set the Home Agent router preference. You can set a value between 0 and 65535. The default value is 0 (the lowest preference).
 
-The following command example configures the switch as a Home Agent by setting the maximum amount of time the router acts as a Home Agent to 20000 seconds and the router preference to 100:
+The following example commands configure the switch as a Home Agent by setting the maximum amount of time the router acts as a Home Agent to 20000 seconds and the router preference to 100:
 
 {{< tabs "TabID349 ">}}
 {{< tab "NVUE Commands ">}}
@@ -391,7 +389,7 @@ interface swp1
 
 You can set the [MTU](## "Maximum Transmission Unit") for neighbor discovery messages on an interface. You can configure a value between 1 and 65535.
 
-To following command example sets the MTU on swp1 to 1500:
+To following example commands set the MTU on swp1 to 1500:
 
 {{< tabs "TabID396 ">}}
 {{< tab "NVUE Commands ">}}

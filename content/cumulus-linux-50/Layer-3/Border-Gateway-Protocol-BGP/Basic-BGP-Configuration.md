@@ -400,7 +400,7 @@ cumulus@spine01:~$ nv set router bgp autonomous-system 65199
 cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
 cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 remote-as external
 cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unicast enable on
-cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unicast etwork 2001:db8::101/128
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unicast network 2001:db8::101/128
 cumulus@spine01:~$ nv config apply
 ```
 

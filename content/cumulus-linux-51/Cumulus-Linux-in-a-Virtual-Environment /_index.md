@@ -20,7 +20,22 @@ Cumulus Linux in a virtual environment contains the same Cumulus Linux operating
 
 Due to hardware specific implementations, virtual environments do **not** support certain Cumulus Linux features.
 
-| Feature | VX | VX and Emulated ASIC |
+| Feature | Supported in a Virtual Environment |
+| -----------------------------------------------------| ------------|
+|{{<link url="Netfilter-ACLs" text="ACL configuration with the cl-acltool command ">}}|<font color="red">No</font> |
+|{{<link url="Smart-System-Manager" >}}| <font color="red">No</font> |
+|{{<link url="Precision-Time-Protocol-PTP" >}}| <font color="red">No</font> |
+|{{<link url="Prescriptive-Topology-Manager-PTM" >}}| <font color="red">No</font> |
+|{{<link url="Port-Security" >}}| <font color="red">No</font> |
+|{{<link url="SPAN-and-ERSPAN" >}}| <font color="red">No</font> |
+|{{<link url="Monitoring-System-Hardware/#sensors-command" text="Temperature and sensor outputs">}}| <font color="red">No</font> |
+|{{<link url="Quality-of-Service/#mark-and-remark-traffic" text="Packet marking and remarking">}}| <font color="red">No</font> |
+|{{<link url="Quality-of-Service" text="QoS buffer management and buffer monitoring">}}| <font color="red">No</font> |
+|{{<link url="Quality-of-Service/#policing-and-shaping" text="QoS shaping ">}}| <font color="red">No</font> |
+|{{<link title="What Just Happened (WJH)" >}}| <font color="red">No</font> |
+|{{<link url="Network-Address-Translation-NAT" >}}| <font color="red">No</font> |
+<!--
+| Feature | In a Virtual Environment | In a Virtual Environment with Emulated ASIC |
 | -----------------------------------------------------| ------------| --------------|
 |{{<link url="Netfilter-ACLs" text="ACL configuration with the cl-acltool command ">}}|<font color="red">No</font> | <font color="green">yes</font>|
 |{{<link url="Smart-System-Manager" >}}| <font color="red">No</font> | <font color="red">No</font> |
@@ -34,3 +49,4 @@ Due to hardware specific implementations, virtual environments do **not** suppor
 |{{<link url="Quality-of-Service/#policing-and-shaping" text="QoS shaping ">}}| <font color="red">No</font> | <font color="red">No</font> |
 |{{<link title="What Just Happened (WJH)" >}}| <font color="red">No</font> | <font color="green">yes</font> |
 |{{<link url="Network-Address-Translation-NAT" >}}| <font color="red">No</font> | <font color="green">yes</font>|
+-->

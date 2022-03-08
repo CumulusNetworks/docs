@@ -44,7 +44,7 @@ Cumulus VX works with VMware Fusion, Workstation, and vSphere ESXi; however, thi
 
 ## Cumulus VX Compared with Cumulus Linux
 
-The VM is the same Cumulus Linux operating system supported on NVIDIA Ethernet switches and contains all the same software features but in a VM format. Cumulus VX provides full data plane functionality through the Linux kernel, as well as layer 2 VLANs and both VXLAN bridging and VXLAN routing capabilities. Due to hardware limitations, Cumulus VX supports certain functionality but not on Ethernet switches. Due to hardware specific implementations, Cumulus VX does not support certain features.
+The VM is the same Cumulus Linux operating system supported on NVIDIA Ethernet switches and contains all the same software features but in a VM format. Cumulus VX provides full data plane functionality through the Linux kernel, as well as layer 2 VLANs and both VXLAN bridging and VXLAN routing capabilities. Due to hardware specific implementations, Cumulus VX does not support certain features.
 
 Cumulus VX supports all software functions like BGP, spanning-tree, and SNMP, as well as any automation tooling and third-party packages.
 

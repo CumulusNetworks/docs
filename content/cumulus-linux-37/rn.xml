@@ -417,32 +417,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td>5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
-To work around this issue:
-
-1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
-
-2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switches.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2862269</td>
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
@@ -977,32 +951,6 @@ ip route 10.10.0.0/16 Null0
 
 
 This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2684452</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
-
-You can work around this issue with the following steps:
-
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
@@ -3321,32 +3269,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td></td>
 </tr>
 <tr>
-<td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
-To work around this issue:
-
-1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
-
-2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switches.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2862269</td>
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
@@ -3737,32 +3659,6 @@ ip route 10.10.0.0/16 Null0
 
 
 This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2684452</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
-
-You can work around this issue with the following steps:
-
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
@@ -6085,32 +5981,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td></td>
 </tr>
 <tr>
-<td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
-To work around this issue:
-
-1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
-
-2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switches.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2862269</td>
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
@@ -6464,32 +6334,6 @@ ip route 10.10.0.0/16 Null0
 
 
 This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2684452</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
-
-You can work around this issue with the following steps:
-
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
@@ -9395,32 +9239,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td></td>
 </tr>
 <tr>
-<td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
-To work around this issue:
-
-1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
-
-2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switches.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2862269</td>
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
@@ -9774,32 +9592,6 @@ ip route 10.10.0.0/16 Null0
 
 
 This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2684452</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
-
-You can work around this issue with the following steps:
-
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
@@ -12905,32 +12697,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td></td>
 </tr>
 <tr>
-<td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
-To work around this issue:
-
-1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
-
-2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switches.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2862269</td>
 <td>CVE-2021-23214, CVE-2021-23222: postgresql-9.4 may process unencrypted bytes from a database connection even if it is encrypted. A man-in-the-middle attacker can inject arbitrary SQL queries or false responses to the client's queries when a connection is first established.
 Vulnerable: &lt;= 9.4.26-0+deb8u4
@@ -13284,32 +13050,6 @@ ip route 10.10.0.0/16 Null0
 
 
 This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2684452</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
-
-You can work around this issue with the following steps:
-
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15</td>
 <td></td>
 </tr>

@@ -33,9 +33,9 @@ Router Advertisment is on by default. You can configure these optional settings:
 - Allow hosts to use router preference to select the default router. You can set a value of high, medium, or low. The default value is medium.
 
 The following command example sets:
-- The Router Advertisement interval to 600000 milliseconds.
+- The Router Advertisement interval to 60000 milliseconds (60 seconds).
 - The router preference to high.
-- The amount of time that an IPv6 node is considered reachable to 3600000.
+- The amount of time that an IPv6 node is reachable to 3600000.
 - The interval at which neighbor solicitation messages retransmit to 4294967295.
 - The hop limit value in the Router Advertisement message to 100.
 - The maximum amount of time that Router Advertisement messages exist on the route to 4000.
@@ -44,7 +44,7 @@ The following command example sets:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement interval 600000
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement interval 60000
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement router-preference high
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement reachable-time 3600000
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement retransmit-time 4294967295
@@ -61,16 +61,30 @@ cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
 leaf01# configure terminal
 leaf01(config)# interface swp1
-leaf01(config-if)# ipv6 nd ra-interval 600000
+leaf01(config-if)# ipv6 nd ra-interval 60
 leaf01(config-if)# ipv6 nd router-preference high
 leaf01(config-if)# ipv6 nd reachable-time 3600000
 leaf01(config-if)# ipv6 nd ra-retrans-interval 4294967295
-leaf01(config-if)# ipv6 nd ra-hop-limit 4294967295
+leaf01(config-if)# ipv6 nd ra-hop-limit 100
 leaf01(config-if)# ipv6 nd ra-lifetime 4000
 leaf01(config-if)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:mgmt:~$ 
+```
+
+The vtysh commands save the configuration in the `etc/frr/frr.conf` file:
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat etc/frr/frr.conf
+...
+interface swp1
+ ipv6 nd ra-hop-limit 100
+ ipv6 nd ra-interval 60
+ ipv6 nd ra-lifetime 4000
+ ipv6 nd ra-retrans-interval 4294967295
+ ipv6 nd reachable-time 3600000
+ ipv6 nd router-preference high
 ```
 
 {{< /tab >}}
@@ -103,6 +117,16 @@ leaf01# exit
 cumulus@leaf01:mgmt:~$ 
 ```
 
+The vtysh commands save the configuration in the `etc/frr/frr.conf` file:
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat etc/frr/frr.conf
+...
+interface swp1
+ ipv6 nd ra-fast-retrans
+ ipv6 nd managed-config-flag
+```
+
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -129,18 +153,26 @@ cumulus@leaf01:mgmt:~$ nv config apply
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
-The following command example sets the IPv6 prefix to 2001:db8:1::100/32. FRR (vtysh) does not provide a command to set the amount of time that addresses generated from a prefix remain preferred.
-
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
 leaf01# configure terminal
 leaf01(config)# interface swp1
-leaf01(config-if)# ipv6 nd prefix 2001:db8:1::100/32 2000000000 
+leaf01(config-if)# ipv6 nd prefix 2001:db8:1::100/32 2000000000 1000000000
 leaf01(config-if)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:mgmt:~$ 
+```
+
+The vtysh commands write to the `/etc/frr/frr.conf` file:
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
+interface swp1
+ ipv6 nd prefix 2001:db8::/32 2000000000 1000000000
+ ...
 ```
 
 {{< /tab >}}
@@ -175,6 +207,18 @@ leaf01# exit
 cumulus@leaf01:mgmt:~$ 
 ```
 
+The vtysh commands write to the `/etc/frr/frr.conf` file:
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
+interface swp1
+ ipv6 nd prefix 2001:db8::/32 off-link
+ ipv6 nd prefix 2001:db8::/32 router-address
+ ipv6 nd prefix 2001:db8::/32 no-autoconfig
+ ...
+```
+
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -204,7 +248,7 @@ cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
 leaf01# configure terminal
 leaf01(config)# interface swp1
-leaf01(config-if)# ipv6 nd rdnss 2001:db8:1::100
+leaf01(config-if)# ipv6 nd rdnss 2001:db8:1::100 infinite
 leaf01(config-if)# end
 leaf01# write memory
 leaf01# exit
@@ -255,6 +299,16 @@ leaf01# exit
 cumulus@leaf01:mgmt:~$ 
 ```
 
+The vtysh commands write to the `/etc/frr/frr.conf` file:
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
+interface swp1
+ ipv6 nd dnssl accounting.nvidia.com infinite
+...
+```
+
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -294,6 +348,18 @@ leaf01# exit
 cumulus@leaf01:mgmt:~$ 
 ```
 
+The vtysh commands write to the `/etc/frr/frr.conf` file:
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
+interface swp1
+ ipv6 nd home-agent-config-flag
+ ipv6 nd home-agent-lifetime 0
+ ipv6 nd home-agent-preference 100
+...
+```
+
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -324,6 +390,16 @@ leaf01(config-if)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:mgmt:~$ 
+```
+
+The vtysh commands write to the `/etc/frr/frr.conf` file:
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
+interface swp1
+ ipv6 nd mtu 1500
+...
 ```
 
 {{< /tab >}}
@@ -361,79 +437,83 @@ To show the ND settings for an interface, run the NVUE `nv show interface <inter
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery
-                      applied  pending             description
---------------------  -------  ------------------  ----------------------------------------------------------------------
-enable                         on                  Turn the feature 'on' or 'off'.  The default is 'on'.
-[dnssl]                                            Advertise DNS search list using type 31 option RFC8106
+                      applied             description
+--------------------  ------------------  ----------------------------------------------------------------------
+enable                on                  Turn the feature 'on' or 'off'.  The default is 'on'.
 home-agent
-  lifetime                     0                   Lifetime of a home agent in seconds
-  preference                   0                   Home agent's preference value that is used to order the addresses r...
-[prefix]                       2001:db8:1::100/32  IPv6 prefix configuration
-[rdnss]                                            Recursive DNS server addresses to be advertised using type 25 optio...
+  lifetime            0                   Lifetime of a home agent in seconds
+  preference          0                   Home agent's preference value that is used to order the addresses r...
+[prefix]              2001:db8:1::100/32  IPv6 prefix configuration
 router-advertisement
-  enable                       on                  Turn the feature 'on' or 'off'.  The default is 'on'.
-  fast-retransmit              on                  Allow consecutive RA packets more frequently than every 3 seconds
-  hop-limit                    64                  Value in hop count field in IP header of the outgoing router advert...
-  interval                     600000              Maximum time in milliseconds allowed between sending unsolicited mu...
-  interval-option              on                  Indicates hosts that the router will use advertisement interval to...
-  lifetime                     1800                Maximum time in seconds that the router can be treated as default g...
-  managed-config               off                 Knob to allow dynamic host to use managed (stateful) protocol for a...
-  other-config                 off                 Knob to allow dynamic host to use managed (stateful) protocol for a...
-  reachable-time               0                   Time in milliseconds that a IPv6 node is considered reachable
-  retransmit-time              0                   Time in milliseconds between retransmission of neighbor solicitatio...
-  router-preference            medium              Hosts use router preference in selection of the default router
+  enable              on                  Turn the feature 'on' or 'off'.  The default is 'on'.
+  fast-retransmit     off                 Allow consecutive RA packets more frequently than every 3 seconds
+  hop-limit           100                 Value in hop count field in IP header of the outgoing router advert...
+  interval            6000                Maximum time in milliseconds allowed between sending unsolicited mu...
+  interval-option     on                  Indicates hosts that the router will use advertisement interval to...
+  lifetime            4000                Maximum time in seconds that the router can be treated as default g...
+  managed-config      on                  Knob to allow dynamic host to use managed (stateful) protocol for a...
+  other-config        off                 Knob to allow dynamic host to use managed (stateful) protocol for a...
+  reachable-time      3600000             Time in milliseconds that a IPv6 node is considered reachable
+  retransmit-time     4294967295          Time in milliseconds between retransmission of neighbor solicitatio...
+  router-preference   high                Hosts use router preference in selection of the default router
 ```
 
 To show prefix configuration for an interface, run the `nv show interface <interface> ip neighbor-discovery prefix <prefix>` command.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32
-                    applied  pending  description
-------------------  -------  -------  ----------------------------------------------------------------------
-autoconfig                   on       Indicates to hosts on the local link that the specified prefix can...
-off-link                     off      Indicates that adverisement makes no statement about on-link or off...
-preferred-lifetime           604800   Time in seconds that addresses generated from a prefix remain prefe...
-router-address               off      Indicates to hosts on the local link that the specified prefix cont...
-valid-lifetime               2592000  Time in seconds the prefix is valid for on-link determination
+                    applied     description
+------------------  -------     ----------------------------------------------------------------------
+autoconfig          on          Indicates to hosts on the local link that the specified prefix can...
+off-link            on          Indicates that adverisement makes no statement about on-link or off...
+preferred-lifetime  1000000000  Time in seconds that addresses generated from a prefix remain prefe...
+router-address      on          Indicates to hosts on the local link that the specified prefix cont...
+valid-lifetime      2000000000  Time in seconds the prefix is valid for on-link determination
 ```
 
 To show Home Agent configuration for an interface, run the `nv show interface <interface> ip neighbor-discovery home-agent` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery home-agent
-            applied  pending  description
-----------  -------  -------  ----------------------------------------------------------------------
-lifetime             0        Lifetime of a home agent in seconds
-preference           0        Home agent's preference value that is used to order the addresses r...
+            applied  description
+----------  -------  ----------------------------------------------------------------------
+lifetime    20000    Lifetime of a home agent in seconds
+preference  100      Home agent's preference value that is used to order the addresses r...
 ```
 
 To show router advertisement configuration for an interface, run the `nv show interface <interface> ip neighbor-discovery router-advertisement` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery router-advertisement
-                   applied  pending  description
------------------  -------  -------  ----------------------------------------------------------------------
-enable                      on       Turn the feature 'on' or 'off'.  The default is 'on'.
-fast-retransmit             on       Allow consecutive RA packets more frequently than every 3 seconds
-hop-limit                   64       Value in hop count field in IP header of the outgoing router advert...
-interval                    600000   Maximum time in milliseconds allowed between sending unsolicited mu...
-interval-option             on       Indicates hosts that the router will use advertisement interval to...
-lifetime                    1800     Maximum time in seconds that the router can be treated as default g...
-managed-config              off      Knob to allow dynamic host to use managed (stateful) protocol for a...
-other-config                off      Knob to allow dynamic host to use managed (stateful) protocol for a...
-reachable-time              0        Time in milliseconds that a IPv6 node is considered reachable
-retransmit-time             0        Time in milliseconds between retransmission of neighbor solicitatio...
-router-preference           medium   Hosts use router preference in selection of the default router
+                   applied   description
+-----------------  -------   ----------------------------------------------------------------------
+enable             on        Turn the feature 'on' or 'off'.  The default is 'on'.
+fast-retransmit    on        Allow consecutive RA packets more frequently than every 3 seconds
+hop-limit          64        Value in hop count field in IP header of the outgoing router advert...
+interval           600000    Maximum time in milliseconds allowed between sending unsolicited mu...
+interval-option    on        Indicates hosts that the router will use advertisement interval to...
+lifetime           1800      Maximum time in seconds that the router can be treated as default g...
+managed-config     off       Knob to allow dynamic host to use managed (stateful) protocol for a...
+other-config       off       Knob to allow dynamic host to use managed (stateful) protocol for a...
+reachable-time     0         Time in milliseconds that a IPv6 node is considered reachable
+retransmit-time    0         Time in milliseconds between retransmission of neighbor solicitatio...
+router-preference  medium    Hosts use router preference in selection of the default router
 ```
 
-To show RDNSS configuration for an interface, run the `nv show interface <interface> ip neighbor-discovery rdnss` command:
+To show RDNSS configuration for an interface, run the `nv show interface <interface> ip neighbor-discovery rdnss <address>` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery rdnss
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100
+          applied   description
+--------  --------  ----------------------------------------------------------------------
+lifetime  infinite  Maximum time in seconds for which the server may be used for domain...
 ```
 
-To show DNSSL configuration for an interface, run the `nv show interface <interface> ip neighbor-discovery dnssl` command:
+To show DNSSL configuration for an interface, run the `nv show interface <interface> ip neighbor-discovery dnssl <domain-suffix>` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery dnssl
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery dnssl accounting.nvidia.com
+          applied   description
+--------  --------  ----------------------------------------------------------------------
+lifetime  infinite  Maximum time in seconds for which the domain suffix may be used for...
 ```

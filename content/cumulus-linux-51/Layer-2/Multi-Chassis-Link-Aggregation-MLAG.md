@@ -843,7 +843,7 @@ The following table shows the conflict types and actions that Cumulus Linux take
 | clag-bonds-bridge-member | Interface | Proto-down the MLAG bonds and VNIs on the MLAG switch where this conflict exists.      |
 | lacp-partner-mac | Interface | Proto-down the MLAG bonds on the MLAG switch where lacp-partner-mac is mismatch or if there is a duplicate partner-mac. |
 | clag-vlans| Interface   |  Suspend the inconsistent VLANs on either MLAG peer if the VLANs are not part of the peer link or if there is mismatch of VLANs configured on the MLAG bonds between the MLAG peers. |
-| peerlink-vlans| Global | Suspend the inconsistent VLANs on either MLAG peer on all the dual-connected MLAG bonds and VXlan interfaces. |
+| peerlink-vlans| Global | Suspend the inconsistent VLANs on either MLAG peer on all the dual-connected MLAG bonds and VXLAN interfaces. |
 | VLANs on VXLAN interface in TVD topology not part of peerlink| VXLAN  | Suspend the VLANs on the VXLAN interfaces that are inconsistent. |
 
 To manually check for MLAG inconsistencies, run the following commands:

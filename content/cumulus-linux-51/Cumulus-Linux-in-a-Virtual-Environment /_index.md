@@ -12,7 +12,7 @@ NVIDIA provides these virtual environments:
 <!-- vale on -->
 - **Cumulus VX** is a free virtual appliance with the Cumulus Linux operating system. You can install Cumulus VX on a supported hypervisor and configure the VMs with the reference topology or create your own topology. See [NVIDIA Cumulus VX]({{<ref "/cumulus-vx" >}}).
 
-Cumulus Linux in a virtual environment contains the same Cumulus Linux operating system supported on NVIDIA Ethernet switches and contains the same software features. You have the full data plane functionality through the Linux kernel, as well as layer 2 VLANs and both VXLAN bridging and VXLAN routing capabilities.
+Cumulus Linux in a virtual environment contains the same Cumulus Linux operating system as NVIDIA Ethernet switches and contains the same software features. You have the full data plane functionality through the Linux kernel, as well as layer 2 VLANs and both VXLAN bridging and VXLAN routing capabilities.
 
 Due to hardware specific implementations, virtual environments do **not** support these Cumulus Linux features:
 - {{<link url="Netfilter-ACLs" text="ACL configuration with the cl-acltool command ">}}

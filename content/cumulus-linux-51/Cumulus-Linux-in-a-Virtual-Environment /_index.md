@@ -10,7 +10,7 @@ NVIDIA provides these virtual environments:
 <!-- vale off -->
 - **NVIDIA Air** is a cloud hosted platform that works exactly like a real world production deployment. NVIDIA AIR provides pre-built demos using the reference topology. You can also build your own reference topology and configurations. See [NVIDIA AIR]({{<ref "/nvidia-air" >}}).
 <!-- vale on -->
-- **Cumulus VX** is a free virtual machine (VM) that provides all the features of Cumulus Linux. You can install Cumulus VX on a supported hypervisor and configure the VMs with the reference topology or create your own topology. See [NVIDIA Cumulus VX]({{<ref "/cumulus-vx" >}}).
+- **Cumulus VX** is a free virtual appliance with the Cumulus Linux operating system. You can install Cumulus VX on a supported hypervisor and configure the VMs with the reference topology or create your own topology. See [NVIDIA Cumulus VX]({{<ref "/cumulus-vx" >}}).
 
 Cumulus Linux in a virtual environment contains the same Cumulus Linux operating system supported on NVIDIA Ethernet switches and contains the same software features. You have the full data plane functionality through the Linux kernel, as well as layer 2 VLANs and both VXLAN bridging and VXLAN routing capabilities.
 

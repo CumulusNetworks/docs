@@ -26,8 +26,8 @@ Router Advertisment is on by default. You can configure these optional settings:
 - Set the hop limit value advertised in a Router Advertisement message. You can set a value between 0 and 255. The default value is 64.
 - Set the interval between unsolicited multicast router advertisements from the interface. You can set a value between 70 and 180000 seconds. The default value is 600000 miliseconds.
 - Set the maximum amount of time that you want Router Advertisement messages to exist on the route. You can set a value between 0 and 9000 seconds. The default value is 1800.
-- Allow a dynamic host to use either a managed (stateful) protocol or a stateless protocol to configure addresses automatically (managed configuration). Set this parameter to `on` or `off`. By default, this parameter is not set.
-- Allow a dynamic host to use a managed (stateful) protocol to configure information other than addresses automatically. Set this parameter to `on` or `off`. By default, this parameter is not set.
+- Allow a dynamic host to use a managed protocol, such as DHCPv6 to configure IP addresses automatically (managed configuration). Set this parameter to `on` or `off`. By default, this parameter is not set.
+- Allow a dynamic host to use a managed protocol to configure additional information through DHCPv6. Set this parameter to `on` or `off`. By default, this parameter is not set.
 - Set the amount of time that an IPv6 node is reachable. You can set a value between 0 and 3600000 milliseconds. The default value is 0.
 - Set the interval at which neighbor solicitation messages retransmit. You can set a value between 0 and 4294967295 milliseconds. The default value is 0.
 - Allow hosts to use router preference to select the default router. You can set a value of high, medium, or low. The default value is medium.
@@ -40,7 +40,7 @@ The following command example sets:
 - The hop limit value in the Router Advertisement message to 100.
 - The maximum amount of time that Router Advertisement messages exist on the route to 4000.
 
-{{< tabs "TabID179 ">}}
+{{< tabs "TabID43 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -92,7 +92,7 @@ interface swp1
 
 The following command example sets fast retransmit to off and managed configuration to on:
 
-{{< tabs "TabID217 ">}}
+{{< tabs "TabID95 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -130,6 +130,30 @@ interface swp1
 {{< /tab >}}
 {{< /tabs >}}
 
+To disable Router Advertisment:
+
+{{< tabs "TabID135 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement enable off 
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:mgmt:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# interface swp1
+leaf01(config-if)# ipv6 nd suppress-ra
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### IPv6 Prefixes
 
 To configure IPv6 prefixes, you must specify the IPv6 prefixes you want to include in router advertisements. In addition, you can configure these optional settings:
@@ -141,7 +165,7 @@ To configure IPv6 prefixes, you must specify the IPv6 prefixes you want to inclu
 
 The following command example configures the IPv6 prefix 2001:db8:1::100/32, and sets the amount of time that the prefix is valid for on-link determination to 2000000000 and the amount of time that addresses generated from a prefix remain preferred to 1000000000.
 
-{{< tabs "TabID68 ">}}
+{{< tabs "TabID168 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -180,7 +204,7 @@ interface swp1
 
 The following command example sets adverisement to make no statement about prefix on-link or off-link properties, enables the specified prefix to use IPv6 autoconfiguration, and indicates to hosts on the local link that the specified prefix contains a complete IP address.
 
-{{< tabs "TabID99 ">}}
+{{< tabs "TabID207 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -230,7 +254,7 @@ An optional parameter lets you set the maximum amount of time you want to use th
 
 The following command example sets the RDNSS address to 2001:db8:1::100 and the lifetime to infinite:
 
-{{< tabs "TabID29 ">}}
+{{< tabs "TabID257 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -276,7 +300,7 @@ An optional parameter lets you set the maximum amount of time you want to use th
 
 The following example command sets the domain suffix to `accounting.nvidia.com` and the maximum amount of time you want to use the domain suffix to `infinite`:
 
-{{< tabs "TabID133 ">}}
+{{< tabs "TabID303 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -322,7 +346,7 @@ You can configure the switch to be a Home Agent with these settings:
 
 The following command example configures the switch as a Home Agent by setting the maximum amount of time the router acts as a Home Agent to 20000 seconds and the router preference to 100:
 
-{{< tabs "TabID245 ">}}
+{{< tabs "TabID349 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -369,7 +393,7 @@ You can set the [MTU](## "Maximum Transmission Unit") for neighbor discovery mes
 
 To following command example sets the MTU on swp1 to 1500:
 
-{{< tabs "TabID279 ">}}
+{{< tabs "TabID396 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -400,32 +424,6 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
 interface swp1
  ipv6 nd mtu 1500
 ...
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-## Disable ND
-
-To disable ND:
-
-{{< tabs "TabID309 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery enable off
-cumulus@leaf01:mgmt:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@leaf01:mgmt:~$ sudo vtysh
-...
-leaf01# configure terminal
-leaf01(config)# interface swp1
-leaf01(config-if)# ipv6 nd suppress-ra
 ```
 
 {{< /tab >}}

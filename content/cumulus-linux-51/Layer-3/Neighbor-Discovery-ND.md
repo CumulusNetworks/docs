@@ -25,7 +25,7 @@ Router Advertisment is on by default. You can configure these optional settings:
 - Allow consecutive Router Advertisement packets to transmit more frequently than every three seconds (fast retransmit). You can set this parameter to `on` or `off`. The default setting is `on`.
 - Set the hop limit value advertised in a Router Advertisement message. You can set a value between 0 and 255. The default value is 64.
 - Set the interval between unsolicited multicast router advertisements from the interface. You can set a value between 70 and 180000 seconds. The default value is 600000 miliseconds.
-- Set the maximum amount of time that you want Router Advertisement messages to exist on the route. You can set a value between 0 and 9000 seconds. The default value is 1800.
+- Set the maximum amount of time that Router Advertisement messages can exist on the route. You can set a value between 0 and 9000 seconds. The default value is 1800.
 - Allow a dynamic host to use a managed protocol, such as DHCPv6 to configure IP addresses automatically (managed configuration). Set this parameter to `on` or `off`. By default, this parameter is not set.
 - Allow a dynamic host to use a managed protocol to configure additional information through DHCPv6. Set this parameter to `on` or `off`. By default, this parameter is not set.
 - Set the amount of time that an IPv6 node is reachable. You can set a value between 0 and 3600000 milliseconds. The default value is 0.
@@ -160,10 +160,10 @@ To configure IPv6 prefixes, you must specify the IPv6 prefixes you want to inclu
 - Set the amount of time that the prefix is valid for on-link determination. You can set a value between 0 and 4294967295 seconds. The default value is 2592000.
 - Set the amount of time that addresses generated from a prefix remain preferred. You can set a value between 0 and 42949672955 seconds. The default value is 604800.
 - Enable adverisement to make no statement about prefix on-link or off-link properties.
-- Enable the specified prefix to use for IPv6 autoconfiguration.
+- Enable the specified prefix to use IPv6 autoconfiguration.
 - Indicate to hosts on the local link that the specified prefix contains a complete IP address by setting the R flag.
 
-The following example commands configure the IPv6 prefix 2001:db8:1::100/32, and set the amount of time that the prefix is valid for on-link determination to 2000000000 and the amount of time that addresses generated from a prefix remain preferred to 1000000000.
+The following example commands set the IPv6 prefix to 2001:db8:1::100/32, the amount of time that the prefix is valid for on-link determination to 2000000000, and the amount of time that addresses generated from a prefix remain preferred to 1000000000.
 
 {{< tabs "TabID168 ">}}
 {{< tab "NVUE Commands ">}}
@@ -202,7 +202,7 @@ interface swp1
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example commands set adverisement to make no statement about prefix on-link or off-link properties, enable the specified prefix to use IPv6 autoconfiguration, and indicate to hosts on the local link that the specified prefix contains a complete IP address.
+The following example commands set advertisement to make no statement about prefix on-link or off-link properties, enable the specified prefix to use IPv6 autoconfiguration, and indicate to hosts on the local link that the specified prefix contains a complete IP address.
 
 {{< tabs "TabID207 ">}}
 {{< tab "NVUE Commands ">}}

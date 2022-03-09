@@ -9,7 +9,7 @@ toc: 1
 {{<product>}} {{<version>}} eases your customers deployment and maintenance activities for their data center networks with new configuration, performance, and security features and improvements.
 
 <!-- vale off -->
-## What's New in NetQ 4.1.1
+## What's New in NetQ 4.1.1 
 
 <!-- vale on -->
 NetQ 4.1.1 is a maintenance release that contains {{<link title="NVIDIA Cumulus NetQ 4.1 Release Notes#fixed-issues-in-411" text="fixes for security vulnerabilities">}}.

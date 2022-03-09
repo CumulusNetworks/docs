@@ -345,6 +345,12 @@ Fixed: 2.1.5-2+deb8u13</td>
 <td></td>
 </tr>
 <tr>
+<td>2899413</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
+<td>3.7.15, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>

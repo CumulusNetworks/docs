@@ -23,7 +23,7 @@ NetQ LCM does not support upgrading switches to Cumulus Linux 5. To upgrade to C
 
 Three methods are available through LCM for upgrading Cumulus Linux on your switches based on whether the NetQ Agent is already installed on the switch or not, and whether you want to use the NetQ UI or the NetQ CLI:
 
-- Use NetQ UI or NetQ CLI for switches with NetQ 2.4.x or later Agent already installed
+- Use NetQ UI or NetQ CLI for switches with NetQ 2.4.z or later Agent already installed
 - Use NetQ UI for switches without NetQ Agent installed
 
 The workflows vary slightly with each approach:

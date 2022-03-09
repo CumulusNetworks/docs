@@ -17,8 +17,9 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
 ### Platforms
 
 - NVIDIA SN4800 (100G Spectrum-3) available for early access
+<!--
 - NVIDIA SN2201 (100G Spectrum-1)
-
+-->
 ### New Features and Enhancements
 
 - {{<link url="GRE-Tunneling" text="GRE tunneling">}}

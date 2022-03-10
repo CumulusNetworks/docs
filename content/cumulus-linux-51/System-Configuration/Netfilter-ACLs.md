@@ -232,7 +232,7 @@ You can match on VLAN IDs on layer 2 interfaces for ingress rules. The following
 
 ## Install and Manage ACL Rules with NVUE
 
-Instead of crafting a rule by hand, then installing it with `cl-acltool`, you can use NVUE commands. Cumulus Linux converts the commands to the `/etc/cumulus/acl/policy.d/50_cue.rules` file. The rules you create with NVUE are independent of the default files `/etc/cumulus/acl/policy.d/00control_plane.rules` and `99control_plane_catch_all.rules`.
+Instead of crafting a rule by hand, then installing it with `cl-acltool`, you can use NVUE commands. Cumulus Linux converts the commands to the `/etc/cumulus/acl/policy.d/50_nvue.rules` file. The rules you create with NVUE are independent of the default files `/etc/cumulus/acl/policy.d/00control_plane.rules` and `99control_plane_catch_all.rules`.
 
 {{%notice note%}}
 Cumulus Linux 5.0 and later uses the `-t mangle -A PREROUTING` chain for ingress rules and the `-t mangle -A POSTROUTING` chain for egress rules instead of the `- A FORWARD` chain used in previous releases.
@@ -274,10 +274,10 @@ To create this rule with NVUE, follow the steps below. NVUE adds all options in 
    cumulus@switch:~$ nv config apply
    ```
 
-To see all installed rules, examine the `/etc/cumulus/acl/policy.d/50_cue.rules` file:
+To see all installed rules, examine the `/etc/cumulus/acl/policy.d/50_nvue.rules` file:
 
 ```
-cumulus@switch:~$ sudo cat /etc/cumulus/acl/policy.d/50_cue.rules
+cumulus@switch:~$ sudo cat /etc/cumulus/acl/policy.d/50_nvue.rules
 [iptables]
 
 ## ACL EXAMPLE1 in dir inbound on interface swp1 ##
@@ -285,7 +285,7 @@ cumulus@switch:~$ sudo cat /etc/cumulus/acl/policy.d/50_cue.rules
 ...
 ```
 
-To remove this rule, run the `nv unset acl <acl-name>` and `nv unset interface <interface> acl <acl-name>` commands. These commands delete the rule from the `/etc/cumulus/acl/policy.d/50_cue.rules` file.
+To remove this rule, run the `nv unset acl <acl-name>` and `nv unset interface <interface> acl <acl-name>` commands. These commands delete the rule from the `/etc/cumulus/acl/policy.d/50_nvue.rules` file.
 
 ```
 cumulus@switch:~$ nv unset acl EXAMPLE1
@@ -851,7 +851,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-To specify all ports on the switch in NVUE (swp+ in an iptables rule), you must set the range of interfaces on the switch as in the examples above (`nv set interface swp1-48`). This command creates as many rules in the `/etc/cumulus/acl/policy.d/50_cue.rules` file as the number of interfaces in the range you specify.
+To specify all ports on the switch in NVUE (swp+ in an iptables rule), you must set the range of interfaces on the switch as in the examples above (`nv set interface swp1-48`). This command creates as many rules in the `/etc/cumulus/acl/policy.d/50_nvue.rules` file as the number of interfaces in the range you specify.
 {{%/notice%}}
 
 {{< /tab >}}

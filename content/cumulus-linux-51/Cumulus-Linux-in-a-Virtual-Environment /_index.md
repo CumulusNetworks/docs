@@ -1,7 +1,7 @@
 ---
 title: Cumulus Linux in a Virtual Environment
 author: NVIDIA
-weight: 1600
+weight: 1800
 toc: 2
 ---
 Cumulus Linux in a virtual environment enables you to become familiar NVIDIA networking technology, learn and test Cumulus Linux in your own environment, and create a digital twin of your IT infrastructure to validate configurations, features, and automation code.

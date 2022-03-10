@@ -375,8 +375,8 @@ To enable adaptive routing:
    ## Global adaptive-routing enable/disable setting 
    adaptive_routing.enable = TRUE
    ...
-   #interface.swp51.adaptive_routing.enable = TRUE 
-   #interface.swp51.adaptive_routing.link_util_thresh = 70 
+   interface.swp51.adaptive_routing.enable = TRUE 
+   interface.swp51.adaptive_routing.link_util_thresh = 70 
    ...
    ```
 

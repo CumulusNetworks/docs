@@ -7,7 +7,11 @@ toc: 2
 
 ## List All Commands
 
-To see a list of all the NVUE `nv show`, `nv set`, `nv unset`, `nv action`, and `nv config` commands, run `nv list-commands`:
+To see a list of all the NVUE `nv show`, `nv set`, `nv unset`, `nv action`, and `nv config` commands, run `nv list-commands`.
+
+{{%notice note%}}
+The following is only an example of the NVUE command list. To see the most up to date list of commands, run `nv list-commands` on your switch.
+{{%/notice%}}
 
 ```
 cumulus@cumulus:mgmt:~$ nv list-commands

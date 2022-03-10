@@ -7,10 +7,13 @@ product: NVIDIA Air
 
 Check out some of the latest features added to the {{<exlink url="https://air.nvidia.com" text="NVIDIA Air Infrastructure Simulation Platform">}}.
 
+## March 2022
+<!-- Air:WhatsNew -->
+- Resolved an error that occurred when logging in to Air via https://www.nvidia.com/en-us/networking/network-simulation/ [82.2022.0309]
+<!-- Air:WhatsNew -->
+
 ## February 2022
-<!-- Air:WhatsNew -->
 - Fixed incorrect sorting of simulations [82.2022.0228-008]
-<!-- Air:WhatsNew -->
 - NVIDIA Cumulus Linux 4.4.3 is now available for use in custom topologies [82.2022.0223]
 - Fixed a bug that redirected to the login page when "liking" a marketplace demo [82.2022.0216]
 - Fixed a bug that may prevent new simulations from starting [82.2022.0216]

@@ -118,12 +118,6 @@ Fixed: 4.8.6+git64-g5dc8b2b+dfsg-3+deb8u4</td>
 <td></td>
 </tr>
 <tr>
-<td>2951114</td>
-<td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2951113</td>
 <td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
@@ -193,16 +187,6 @@ Fixed: 3.26-1+debu8u16</td>
 Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
 Fixed: 9.26a~dfsg-0+deb8u</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2940076</td>
-<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
-1) high VNI scale
-2) {{switchd}} is busy processing updates
-3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
-The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
-<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -3057,12 +3041,6 @@ Fixed: 4.8.6+git64-g5dc8b2b+dfsg-3+deb8u4</td>
 <td></td>
 </tr>
 <tr>
-<td>2951114</td>
-<td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2951113</td>
 <td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
@@ -3102,16 +3080,6 @@ Fixed: 3.26-1+debu8u16</td>
 Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
 Fixed: 9.26a~dfsg-0+deb8u</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2940076</td>
-<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
-1) high VNI scale
-2) {{switchd}} is busy processing updates
-3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
-The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
-<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -5832,16 +5800,6 @@ Fixed: 3.26-1+debu8u16</td>
 Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
 Fixed: 9.26a~dfsg-0+deb8u</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2940076</td>
-<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
-1) high VNI scale
-2) {{switchd}} is busy processing updates
-3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
-The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
-<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -9090,16 +9048,6 @@ Fixed: 3.26-1+debu8u16</td>
 Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
 Fixed: 9.26a~dfsg-0+deb8u</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2940076</td>
-<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
-1) high VNI scale
-2) {{switchd}} is busy processing updates
-3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
-The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
-<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -12555,16 +12503,6 @@ Fixed: 3.26-1+debu8u16</td>
 Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
 Fixed: 9.26a~dfsg-0+deb8u</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2940076</td>
-<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
-1) high VNI scale
-2) {{switchd}} is busy processing updates
-3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
-The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
-<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>

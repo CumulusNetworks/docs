@@ -427,6 +427,15 @@ interface swp1
 {{< /tab >}}
 {{< /tabs >}}
 
+## Disable ND
+
+To disable ND, run the NVUE `nv set interface <interface> ip neighbor-discovery enable off` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery enable off
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
 ## Troubleshooting
 
 To show the ND settings for an interface, run the NVUE `nv show interface <interface-id> ip neighbor-discovery` command:

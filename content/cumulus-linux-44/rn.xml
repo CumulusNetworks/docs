@@ -7,6 +7,49 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993786</td>
+<td>When you configure QoS remarking on a bond, the port stops forwarding traffic. </td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993471</td>
+<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2989100</td>
+<td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
+<td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2989099</td>
+<td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2982536</td>
+<td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
+library, which could result in denial of service or potentially the
+execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.2.6-2+deb10u2
+Fixed: 2.2.6-2+deb10u3</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>2972540</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
@@ -28,6 +71,12 @@
 <td>2965752</td>
 <td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2961216</td>
+<td>When there is a peer link failure followed by a power failure or a crash on the primary switch,  the MLAG secondary switch takes up to 24 seconds to change roles to the Primary.</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -130,7 +179,7 @@ To work around this issue, create a snippet in yaml format and add the configura
 <tr>
 <td>2923737</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0-4.4.3</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -159,6 +208,12 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>2902013</td>
 <td>The NCLU commit  command adds a five second delay.</td>
 <td>4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2899413</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
+<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -218,32 +273,6 @@ To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <td>5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
-To work around this issue:
-
-1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
-
-2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switches.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2866080</td>
 <td>On the Maverick S4148T switch with MLAG, Cumulus Linux drops LACP, ARP, LLDP and BGP traffic.</td>
 <td>4.3.0-4.4.3</td>
@@ -255,6 +284,12 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
 <td>3.7.12-4.4.3</td>
 <td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2860323</td>
+<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
+<td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2855908</td>
@@ -1777,8 +1812,8 @@ Fixed: 2.5.5-3+deb10u4</td>
 </tr>
 <tr>
 <td>2959550</td>
-<td>If two or more FDB entries are added with a single API call {{sx_api_fdb_uc_mac_addr_set}} and one entry already exists while the following entry has a tunnel type and does not exist or is being modified, the following entry might be configured improperly in the hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0-4.4.2</td>
+<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
+<td>4.4.0-4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2949513</td>
@@ -1801,6 +1836,49 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993786</td>
+<td>When you configure QoS remarking on a bond, the port stops forwarding traffic. </td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993471</td>
+<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2989100</td>
+<td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
+<td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2989099</td>
+<td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2982536</td>
+<td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
+library, which could result in denial of service or potentially the
+execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.2.6-2+deb10u2
+Fixed: 2.2.6-2+deb10u3</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2976362</td>
@@ -1843,6 +1921,12 @@ Fixed: 2.2.6-2+deb10u2</td>
 <td></td>
 </tr>
 <tr>
+<td>2961216</td>
+<td>When there is a peer link failure followed by a power failure or a crash on the primary switch,  the MLAG secondary switch takes up to 24 seconds to change roles to the Primary.</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2961079</td>
 <td>CVE-2021-28965 CVE-2021-31799 CVE-2021-31810 CVE-2021-41817 CVE-2021-41819 CVE-2021-32066: Several vulnerabilities have been discovered in the interpreter for the Ruby language and the Rubygems included, which may result on result in XML roundtrip attacks, the execution of arbitrary code, information disclosure, StartTLS stripping in IMAP or denial of service.
 Vulnerable: &lt;= 2.5.5-3+deb10u3
@@ -1866,8 +1950,8 @@ Fixed: 2.5.5-3+deb10u4</td>
 </tr>
 <tr>
 <td>2959550</td>
-<td>If two or more FDB entries are added with a single API call {{sx_api_fdb_uc_mac_addr_set}} and one entry already exists while the following entry has a tunnel type and does not exist or is being modified, the following entry might be configured improperly in the hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0-4.4.2</td>
+<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
+<td>4.4.0-4.4.2, 5.0.0-5.0.1</td>
 <td>4.4.3</td>
 </tr>
 <tr>
@@ -1986,7 +2070,7 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <tr>
 <td>2923737</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0-4.4.3</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2015,6 +2099,12 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>2902013</td>
 <td>The NCLU commit  command adds a five second delay.</td>
 <td>4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2899413</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
+<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2081,32 +2171,6 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td></td>
 </tr>
 <tr>
-<td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
-To work around this issue:
-
-1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
-
-2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switches.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2866080</td>
 <td>On the Maverick S4148T switch with MLAG, Cumulus Linux drops LACP, ARP, LLDP and BGP traffic.</td>
 <td>4.3.0-4.4.3</td>
@@ -2118,6 +2182,12 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
 <td>3.7.12-4.4.3</td>
 <td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2860323</td>
+<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
+<td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2855908</td>
@@ -3846,6 +3916,49 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993786</td>
+<td>When you configure QoS remarking on a bond, the port stops forwarding traffic. </td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993471</td>
+<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2989100</td>
+<td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
+<td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2989099</td>
+<td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2982536</td>
+<td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
+library, which could result in denial of service or potentially the
+execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.2.6-2+deb10u2
+Fixed: 2.2.6-2+deb10u3</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>2976362</td>
 <td>When a port flaps with PTP enabled, the switch firmware might become unresponsive and you see the following log message:
 
@@ -3909,8 +4022,8 @@ Fixed: 2.5.5-3+deb10u4</td>
 </tr>
 <tr>
 <td>2959550</td>
-<td>If two or more FDB entries are added with a single API call {{sx_api_fdb_uc_mac_addr_set}} and one entry already exists while the following entry has a tunnel type and does not exist or is being modified, the following entry might be configured improperly in the hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0-4.4.2</td>
+<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
+<td>4.4.0-4.4.2, 5.0.0-5.0.1</td>
 <td>4.4.3</td>
 </tr>
 <tr>
@@ -4023,7 +4136,7 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <tr>
 <td>2923737</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0-4.4.3</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4058,6 +4171,12 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>2902013</td>
 <td>The NCLU commit  command adds a five second delay.</td>
 <td>4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2899413</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
+<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4172,32 +4291,6 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td></td>
 </tr>
 <tr>
-<td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
-To work around this issue:
-
-1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
-
-2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switches.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2866080</td>
 <td>On the Maverick S4148T switch with MLAG, Cumulus Linux drops LACP, ARP, LLDP and BGP traffic.</td>
 <td>4.3.0-4.4.3</td>
@@ -4209,6 +4302,12 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
 <td>3.7.12-4.4.3</td>
 <td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2860323</td>
+<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
+<td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2859177</td>
@@ -6203,7 +6302,7 @@ Fixed: 4.1.0+git191117-2~deb10u2</td>
 </tr>
 <tr>
 <td>2577499</td>
-<td>Arista QSFP-40G-SRBD optics do not work on Spectrum platforms.</td>
+<td>QSFP+ 40G optics do not work on Spectrum platforms.</td>
 <td>4.3.0</td>
 </tr>
 <tr>

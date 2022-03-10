@@ -7,14 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2943261</td>
-<td>Scheduled validations can not be edited from the {{Show all scheduled validations}} menu, and individual checks for a scheduled validation can not be ignored on the validation results card. Scheduled validations for specific device groups will not show the device group information on the {{Show all scheduled validations}} display. 
-
-To work around this issue, delete the scheduled validation and create a new one with the desired changes. Device group information for validations can be viewed on the validation results card.</td>
-<td>4.1.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2896825</td>
 <td>WJH monitoring fails to start with netq-agent on Cumulus Linux 5.0. To work around this issue, reinstall the netq-agent package and configure the netq agent to start monitoring:
 
@@ -119,14 +111,6 @@ CVE-2021-45105: Apache Log4j2 versions 2.0-alpha1 through 2.16.0 (excluding 2.12
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
-</tr>
-<tr>
-<td>2943261</td>
-<td>Scheduled validations can not be edited from the {{Show all scheduled validations}} menu, and individual checks for a scheduled validation can not be ignored on the validation results card. Scheduled validations for specific device groups will not show the device group information on the {{Show all scheduled validations}} display. 
-
-To work around this issue, delete the scheduled validation and create a new one with the desired changes. Device group information for validations can be viewed on the validation results card.</td>
-<td>4.1.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2896825</td>

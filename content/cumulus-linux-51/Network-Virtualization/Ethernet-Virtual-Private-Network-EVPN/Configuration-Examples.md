@@ -10,10 +10,6 @@ This section shows the following EVPN configuration examples:
 - EVPN centralized routing
 - EVPN symmetric routing
 
-The configuration examples use the reference topology below:
-<!-- vale off -->
-{{< img src = "/images/cumulus-linux/reference-topology-full.png" >}}
-
 ## Layer 2 EVPN with External Routing
 
 The following example configures a network infrastructure that creates a layer 2 extension between racks. Inter-VXLAN routed traffic routes between VXLANs on an external device.
@@ -27,7 +23,7 @@ The following images shows traffic flow between tenants. For simplicity, the ima
 |   Traffic Flow between server01 and server04  |     |
 | --- | --- |
 | <img width=1000/> {{< img src="/images/cumulus-linux/evpn-layer2-diagram.png" >}} | server01 and server04 are in the same VLAN but are across different leafs.<br><ol><li>server01 makes a LACP hash decision and forwards traffic to leaf01.</li><li>leaf01 does a layer 2 lookup, has the MAC address for server04, and forwards the packet out VNI10, towards leaf04.</li><li>The VXLAN encapsulated frame arrives on leaf04, which does a layer 2 lookup and has the MAC address for server04 in VLAN10.</li></ul>|
-
+<!-- vale off -->
 {{< tabs "TabID1615 ">}}
 {{< tab "NVUE Commands">}}
 

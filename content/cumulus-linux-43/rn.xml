@@ -7,6 +7,43 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993786</td>
+<td>When you configure QoS remarking on a bond, the port stops forwarding traffic. </td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993471</td>
+<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2989099</td>
+<td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2982536</td>
+<td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
+library, which could result in denial of service or potentially the
+execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.2.6-2+deb10u2
+Fixed: 2.2.6-2+deb10u3</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>2973714</td>
 <td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
 <td>3.7.15-4.4.1</td>
@@ -147,13 +184,19 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <tr>
 <td>2923737</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0-4.4.3</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2902013</td>
 <td>The NCLU commit  command adds a five second delay.</td>
 <td>4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2899413</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
+<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -255,32 +298,6 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td>2866097</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
-To work around this issue:
-
-1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
-
-2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switches.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1100,7 +1117,7 @@ Fixed: 4.1.0+git191117-2~deb10u2</td>
 </tr>
 <tr>
 <td>2577499</td>
-<td>Arista QSFP-40G-SRBD optics do not work on Spectrum platforms.</td>
+<td>QSFP+ 40G optics do not work on Spectrum platforms.</td>
 <td>4.3.0</td>
 <td>4.4.0-4.4.3</td>
 </tr>

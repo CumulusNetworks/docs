@@ -7,6 +7,31 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993471</td>
+<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984076</td>
+<td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
+CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
+CVE-2022-0561: Null source pointer passed as an argument to memcpy() function within TIFFFetchStripThing(). This could result in a Denial of Service via crafted TIFF files.
+Vulnerable: &lt;= 4.0.3-12.3+deb8u12
+Fixed: 4.0.3-12.3+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2980901</td>
 <td>CVE-2021-44224: When operating as a forward proxy, Apache was depending on the setup suspectable to denial of service or Server Side Request forgery.
 CVE-2021-44790: A buffer overflow in mod_lua may result in denial of service or potentially the execution of arbitrary code.
@@ -21,12 +46,6 @@ Fixed: 2.4.10-10+deb8u20</td>
 Vulnerable: &lt;= 14.0.2-3+deb8u2
 Fixed: 14.0.2-3+deb8u3</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2973749</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.</td>
-<td>3.7.10-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -305,7 +324,7 @@ Fixed: 3.4.0-1+deb8u5</td>
 <tr>
 <td>2923737</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0-4.4.3</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -323,6 +342,12 @@ CVE-2021-41817: A regular expression denial of service vulnerability (ReDoS) on 
 Vulnerable: &lt;= 2.1.5-2+deb8u12
 Fixed: 2.1.5-2+deb8u13</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2899413</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
+<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -396,32 +421,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-4.4.3</td>
 <td>5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
-To work around this issue:
-
-1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
-
-2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switches.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2862269</td>
@@ -958,32 +957,6 @@ ip route 10.10.0.0/16 Null0
 
 
 This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2684452</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
-
-You can work around this issue with the following steps:
-
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
@@ -3009,6 +2982,25 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984076</td>
+<td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
+CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
+CVE-2022-0561: Null source pointer passed as an argument to memcpy() function within TIFFFetchStripThing(). This could result in a Denial of Service via crafted TIFF files.
+Vulnerable: &lt;= 4.0.3-12.3+deb8u12
+Fixed: 4.0.3-12.3+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2980901</td>
 <td>CVE-2021-44224: When operating as a forward proxy, Apache was depending on the setup suspectable to denial of service or Server Side Request forgery.
 CVE-2021-44790: A buffer overflow in mod_lua may result in denial of service or potentially the execution of arbitrary code.
@@ -3023,12 +3015,6 @@ Fixed: 2.4.10-10+deb8u20</td>
 Vulnerable: &lt;= 14.0.2-3+deb8u2
 Fixed: 14.0.2-3+deb8u3</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2973749</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.</td>
-<td>3.7.10-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -3286,32 +3272,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td>2866097</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
-To work around this issue:
-
-1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
-
-2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switches.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -3705,32 +3665,6 @@ ip route 10.10.0.0/16 Null0
 
 
 This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2684452</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
-
-You can work around this issue with the following steps:
-
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
@@ -5797,6 +5731,25 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984076</td>
+<td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
+CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
+CVE-2022-0561: Null source pointer passed as an argument to memcpy() function within TIFFFetchStripThing(). This could result in a Denial of Service via crafted TIFF files.
+Vulnerable: &lt;= 4.0.3-12.3+deb8u12
+Fixed: 4.0.3-12.3+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2980901</td>
 <td>CVE-2021-44224: When operating as a forward proxy, Apache was depending on the setup suspectable to denial of service or Server Side Request forgery.
 CVE-2021-44790: A buffer overflow in mod_lua may result in denial of service or potentially the execution of arbitrary code.
@@ -5811,12 +5764,6 @@ Fixed: 2.4.10-10+deb8u20</td>
 Vulnerable: &lt;= 14.0.2-3+deb8u2
 Fixed: 14.0.2-3+deb8u3</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2973749</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.</td>
-<td>3.7.10-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -6037,32 +5984,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td>2866097</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
-To work around this issue:
-
-1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
-
-2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switches.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -6419,32 +6340,6 @@ ip route 10.10.0.0/16 Null0
 
 
 This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2684452</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
-
-You can work around this issue with the following steps:
-
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
@@ -9094,6 +8989,25 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984076</td>
+<td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
+CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
+CVE-2022-0561: Null source pointer passed as an argument to memcpy() function within TIFFFetchStripThing(). This could result in a Denial of Service via crafted TIFF files.
+Vulnerable: &lt;= 4.0.3-12.3+deb8u12
+Fixed: 4.0.3-12.3+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2980901</td>
 <td>CVE-2021-44224: When operating as a forward proxy, Apache was depending on the setup suspectable to denial of service or Server Side Request forgery.
 CVE-2021-44790: A buffer overflow in mod_lua may result in denial of service or potentially the execution of arbitrary code.
@@ -9108,12 +9022,6 @@ Fixed: 2.4.10-10+deb8u20</td>
 Vulnerable: &lt;= 14.0.2-3+deb8u2
 Fixed: 14.0.2-3+deb8u3</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2973749</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.</td>
-<td>3.7.10-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -9334,32 +9242,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td>2866097</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
-To work around this issue:
-
-1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
-
-2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switches.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -9716,32 +9598,6 @@ ip route 10.10.0.0/16 Null0
 
 
 This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2684452</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
-
-You can work around this issue with the following steps:
-
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
@@ -12598,6 +12454,25 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984076</td>
+<td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
+CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
+CVE-2022-0561: Null source pointer passed as an argument to memcpy() function within TIFFFetchStripThing(). This could result in a Denial of Service via crafted TIFF files.
+Vulnerable: &lt;= 4.0.3-12.3+deb8u12
+Fixed: 4.0.3-12.3+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2980901</td>
 <td>CVE-2021-44224: When operating as a forward proxy, Apache was depending on the setup suspectable to denial of service or Server Side Request forgery.
 CVE-2021-44790: A buffer overflow in mod_lua may result in denial of service or potentially the execution of arbitrary code.
@@ -12612,12 +12487,6 @@ Fixed: 2.4.10-10+deb8u20</td>
 Vulnerable: &lt;= 14.0.2-3+deb8u2
 Fixed: 14.0.2-3+deb8u3</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2973749</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.</td>
-<td>3.7.10-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -12831,32 +12700,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td>2866097</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
-To work around this issue:
-
-1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
-
-2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switches.</td>
-<td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -13213,32 +13056,6 @@ ip route 10.10.0.0/16 Null0
 
 
 This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2684452</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
-
-You can work around this issue with the following steps:
-
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switch(es)</td>
 <td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
@@ -15959,6 +15776,25 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984076</td>
+<td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
+CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
+CVE-2022-0561: Null source pointer passed as an argument to memcpy() function within TIFFFetchStripThing(). This could result in a Denial of Service via crafted TIFF files.
+Vulnerable: &lt;= 4.0.3-12.3+deb8u12
+Fixed: 4.0.3-12.3+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2980901</td>
 <td>CVE-2021-44224: When operating as a forward proxy, Apache was depending on the setup suspectable to denial of service or Server Side Request forgery.
 CVE-2021-44790: A buffer overflow in mod_lua may result in denial of service or potentially the execution of arbitrary code.
@@ -15973,12 +15809,6 @@ Fixed: 2.4.10-10+deb8u20</td>
 Vulnerable: &lt;= 14.0.2-3+deb8u2
 Fixed: 14.0.2-3+deb8u3</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2973749</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.</td>
-<td>3.7.10-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -18801,6 +18631,25 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984076</td>
+<td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
+CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
+CVE-2022-0561: Null source pointer passed as an argument to memcpy() function within TIFFFetchStripThing(). This could result in a Denial of Service via crafted TIFF files.
+Vulnerable: &lt;= 4.0.3-12.3+deb8u12
+Fixed: 4.0.3-12.3+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2980901</td>
 <td>CVE-2021-44224: When operating as a forward proxy, Apache was depending on the setup suspectable to denial of service or Server Side Request forgery.
 CVE-2021-44790: A buffer overflow in mod_lua may result in denial of service or potentially the execution of arbitrary code.
@@ -18815,12 +18664,6 @@ Fixed: 2.4.10-10+deb8u20</td>
 Vulnerable: &lt;= 14.0.2-3+deb8u2
 Fixed: 14.0.2-3+deb8u3</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2973749</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.</td>
-<td>3.7.10-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -21078,6 +20921,25 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984076</td>
+<td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
+CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
+CVE-2022-0561: Null source pointer passed as an argument to memcpy() function within TIFFFetchStripThing(). This could result in a Denial of Service via crafted TIFF files.
+Vulnerable: &lt;= 4.0.3-12.3+deb8u12
+Fixed: 4.0.3-12.3+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2980901</td>
@@ -23655,6 +23517,25 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984076</td>
+<td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
+CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
+CVE-2022-0561: Null source pointer passed as an argument to memcpy() function within TIFFFetchStripThing(). This could result in a Denial of Service via crafted TIFF files.
+Vulnerable: &lt;= 4.0.3-12.3+deb8u12
+Fixed: 4.0.3-12.3+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2980901</td>
 <td>CVE-2021-44224: When operating as a forward proxy, Apache was depending on the setup suspectable to denial of service or Server Side Request forgery.
 CVE-2021-44790: A buffer overflow in mod_lua may result in denial of service or potentially the execution of arbitrary code.
@@ -25629,6 +25510,25 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984076</td>
+<td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
+CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
+CVE-2022-0561: Null source pointer passed as an argument to memcpy() function within TIFFFetchStripThing(). This could result in a Denial of Service via crafted TIFF files.
+Vulnerable: &lt;= 4.0.3-12.3+deb8u12
+Fixed: 4.0.3-12.3+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2980901</td>
@@ -27942,6 +27842,25 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984076</td>
+<td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
+CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
+CVE-2022-0561: Null source pointer passed as an argument to memcpy() function within TIFFFetchStripThing(). This could result in a Denial of Service via crafted TIFF files.
+Vulnerable: &lt;= 4.0.3-12.3+deb8u12
+Fixed: 4.0.3-12.3+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2980901</td>
 <td>CVE-2021-44224: When operating as a forward proxy, Apache was depending on the setup suspectable to denial of service or Server Side Request forgery.
 CVE-2021-44790: A buffer overflow in mod_lua may result in denial of service or potentially the execution of arbitrary code.
@@ -29998,6 +29917,25 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984076</td>
+<td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
+CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
+CVE-2022-0561: Null source pointer passed as an argument to memcpy() function within TIFFFetchStripThing(). This could result in a Denial of Service via crafted TIFF files.
+Vulnerable: &lt;= 4.0.3-12.3+deb8u12
+Fixed: 4.0.3-12.3+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2980901</td>
 <td>CVE-2021-44224: When operating as a forward proxy, Apache was depending on the setup suspectable to denial of service or Server Side Request forgery.
 CVE-2021-44790: A buffer overflow in mod_lua may result in denial of service or potentially the execution of arbitrary code.
@@ -31697,6 +31635,25 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984076</td>
+<td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
+CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
+CVE-2022-0561: Null source pointer passed as an argument to memcpy() function within TIFFFetchStripThing(). This could result in a Denial of Service via crafted TIFF files.
+Vulnerable: &lt;= 4.0.3-12.3+deb8u12
+Fixed: 4.0.3-12.3+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2980901</td>
@@ -33425,6 +33382,25 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984076</td>
+<td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
+CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
+CVE-2022-0561: Null source pointer passed as an argument to memcpy() function within TIFFFetchStripThing(). This could result in a Denial of Service via crafted TIFF files.
+Vulnerable: &lt;= 4.0.3-12.3+deb8u12
+Fixed: 4.0.3-12.3+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2980901</td>
@@ -35259,6 +35235,25 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984076</td>
+<td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
+CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
+CVE-2022-0561: Null source pointer passed as an argument to memcpy() function within TIFFFetchStripThing(). This could result in a Denial of Service via crafted TIFF files.
+Vulnerable: &lt;= 4.0.3-12.3+deb8u12
+Fixed: 4.0.3-12.3+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2980901</td>
@@ -37139,6 +37134,25 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984076</td>
+<td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
+CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
+CVE-2022-0561: Null source pointer passed as an argument to memcpy() function within TIFFFetchStripThing(). This could result in a Denial of Service via crafted TIFF files.
+Vulnerable: &lt;= 4.0.3-12.3+deb8u12
+Fixed: 4.0.3-12.3+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2980901</td>
 <td>CVE-2021-44224: When operating as a forward proxy, Apache was depending on the setup suspectable to denial of service or Server Side Request forgery.
 CVE-2021-44790: A buffer overflow in mod_lua may result in denial of service or potentially the execution of arbitrary code.
@@ -38321,6 +38335,25 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984076</td>
+<td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
+CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
+CVE-2022-0561: Null source pointer passed as an argument to memcpy() function within TIFFFetchStripThing(). This could result in a Denial of Service via crafted TIFF files.
+Vulnerable: &lt;= 4.0.3-12.3+deb8u12
+Fixed: 4.0.3-12.3+deb8u13</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2980901</td>

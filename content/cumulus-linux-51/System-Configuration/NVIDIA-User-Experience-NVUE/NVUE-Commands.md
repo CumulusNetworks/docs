@@ -1,9 +1,10 @@
 ---
 title: NVUE Commands
 author: NVIDIA
-weight: 1600
+weight: 121
 toc: 2
 ---
+This section shows you how to see a list of all the NVUE commands and how to see command descriptions.
 
 ## List All Commands
 

@@ -24,6 +24,8 @@ nv show router pbr map <pbr-map-id> rule
 nv show router pbr map <pbr-map-id> rule <rule-id>
 nv show router pbr map <pbr-map-id> rule <rule-id> match
 nv show router pbr map <pbr-map-id> rule <rule-id> action
+nv show router pbr map <pbr-map-id> rule <rule-id> action nexthop-group
+nv show router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id>
 nv show router policy
 nv show router policy community-list
 nv show router policy community-list <list-id>
@@ -132,6 +134,8 @@ nv show bridge domain <domain-id> mac-table
 nv show bridge domain <domain-id> mdb
 nv show bridge domain <domain-id> router-port
 nv show mlag
+nv show mlag consistency-checker
+nv show mlag consistency-checker global
 nv show mlag backup
 nv show mlag backup <backup-id>
 nv show mlag fdb
@@ -182,6 +186,8 @@ nv show interface <interface-id>
 nv show interface <interface-id> pluggable
 nv show interface <interface-id> router
 nv show interface <interface-id> router pbr
+nv show interface <interface-id> router pbr map
+nv show interface <interface-id> router pbr map <pbr-map-id>
 nv show interface <interface-id> router ospf
 nv show interface <interface-id> router ospf timers
 nv show interface <interface-id> router ospf authentication
@@ -196,6 +202,7 @@ nv show interface <interface-id> bond
 nv show interface <interface-id> bond member
 nv show interface <interface-id> bond member <member-id>
 nv show interface <interface-id> bond mlag
+nv show interface <interface-id> bond mlag consistency-checker
 nv show interface <interface-id> bridge
 nv show interface <interface-id> bridge domain
 nv show interface <interface-id> bridge domain <domain-id>
@@ -226,11 +233,21 @@ nv show interface <interface-id> ip vrrp virtual-router
 nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id>
 nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id> address
 nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id> address <ip-address-id>
+nv show interface <interface-id> ip neighbor-discovery
+nv show interface <interface-id> ip neighbor-discovery rdnss
+nv show interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id>
+nv show interface <interface-id> ip neighbor-discovery prefix
+nv show interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id>
+nv show interface <interface-id> ip neighbor-discovery dnssl
+nv show interface <interface-id> ip neighbor-discovery dnssl <domain-name-id>
+nv show interface <interface-id> ip neighbor-discovery router-advertisement
+nv show interface <interface-id> ip neighbor-discovery home-agent
 nv show interface <interface-id> lldp
-nv show interface <interface-id> lldp <neighbor-id>
-nv show interface <interface-id> lldp <neighbor-id> bridge
-nv show interface <interface-id> lldp <neighbor-id> bridge vlan
-nv show interface <interface-id> lldp <neighbor-id> bridge vlan <vid>
+nv show interface <interface-id> lldp neighbor
+nv show interface <interface-id> lldp neighbor <neighbor-id>
+nv show interface <interface-id> lldp neighbor <neighbor-id> bridge
+nv show interface <interface-id> lldp neighbor <neighbor-id> bridge vlan
+nv show interface <interface-id> lldp neighbor <neighbor-id> bridge vlan <vid>
 nv show interface <interface-id> link
 nv show interface <interface-id> link state
 nv show interface <interface-id> link dot1x
@@ -263,6 +280,7 @@ nv show interface <interface-id> acl <acl-id> outbound control-plane
 nv show interface <interface-id> ptp
 nv show interface <interface-id> ptp timers
 nv show interface <interface-id> ptp counters
+nv show interface <interface-id> tunnel
 nv show service
 nv show service dns
 nv show service dns <vrf-id>
@@ -432,6 +450,7 @@ nv show vrf <vrf-id> router bgp address-family ipv4-unicast network <static-netw
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list
+nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id>
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast multipaths
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-export
@@ -675,7 +694,7 @@ nv set router pbr map <pbr-map-id> rule <rule-id> match destination-ip (<ipv4-pr
 nv set router pbr map <pbr-map-id> rule <rule-id> match dscp 0-63
 nv set router pbr map <pbr-map-id> rule <rule-id> match ecn 0-3
 nv set router pbr map <pbr-map-id> rule <rule-id> action
-nv set router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <instance-name>
+nv set router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id>
 nv set router pbr map <pbr-map-id> rule <rule-id> action vrf <vrf-name>
 nv set router pbr enable (on|off)
 nv set router policy
@@ -882,11 +901,11 @@ nv set qos
 nv set qos roce
 nv set qos roce enable (on|off)
 nv set qos roce mode (lossy|lossless)
-nv set qos roce cable-length 1-2000
+nv set qos roce cable-length 1-100000
 nv set interface <interface-id>
 nv set interface <interface-id> router
 nv set interface <interface-id> router pbr
-nv set interface <interface-id> router pbr map (none|<instance-name>)
+nv set interface <interface-id> router pbr map <pbr-map-id>
 nv set interface <interface-id> router ospf
 nv set interface <interface-id> router ospf timers
 nv set interface <interface-id> router ospf timers dead-interval (1-65535|minimal)
@@ -981,7 +1000,39 @@ nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> prior
 nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> preempt (on|off|auto)
 nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> advertisement-interval (10-40950|auto)
 nv set interface <interface-id> ip vrrp enable (on|off)
+nv set interface <interface-id> ip neighbor-discovery
+nv set interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id>
+nv set interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id> lifetime (0-4294967295|infinite)
+nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id>
+nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> valid-lifetime 0-4294967295
+nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> preferred-lifetime 0-4294967295
+nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> off-link (on|off)
+nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> autoconfig (on|off)
+nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> router-address (on|off)
+nv set interface <interface-id> ip neighbor-discovery dnssl <domain-name-id>
+nv set interface <interface-id> ip neighbor-discovery dnssl <domain-name-id> lifetime (0-4294967295|infinite)
+nv set interface <interface-id> ip neighbor-discovery router-advertisement
+nv set interface <interface-id> ip neighbor-discovery router-advertisement enable (on|off)
+nv set interface <interface-id> ip neighbor-discovery router-advertisement interval 70-1800000
+nv set interface <interface-id> ip neighbor-discovery router-advertisement interval-option (on|off)
+nv set interface <interface-id> ip neighbor-discovery router-advertisement fast-retransmit (on|off)
+nv set interface <interface-id> ip neighbor-discovery router-advertisement lifetime 0-9000
+nv set interface <interface-id> ip neighbor-discovery router-advertisement reachable-time 0-3600000
+nv set interface <interface-id> ip neighbor-discovery router-advertisement retransmit-time 0-4294967295
+nv set interface <interface-id> ip neighbor-discovery router-advertisement managed-config (on|off)
+nv set interface <interface-id> ip neighbor-discovery router-advertisement other-config (on|off)
+nv set interface <interface-id> ip neighbor-discovery router-advertisement hop-limit 0-255
+nv set interface <interface-id> ip neighbor-discovery router-advertisement router-preference (high|medium|low)
+nv set interface <interface-id> ip neighbor-discovery home-agent
+nv set interface <interface-id> ip neighbor-discovery home-agent lifetime 0-65520
+nv set interface <interface-id> ip neighbor-discovery home-agent preference 0-65535
+nv set interface <interface-id> ip neighbor-discovery enable (on|off)
+nv set interface <interface-id> ip neighbor-discovery mtu 1-65535
 nv set interface <interface-id> ip vrf <vrf-name>
+nv set interface <interface-id> lldp
+nv set interface <interface-id> lldp dcbx-pfc-tlv (on|off)
+nv set interface <interface-id> lldp dcbx-ets-config-tlv (on|off)
+nv set interface <interface-id> lldp dcbx-ets-recomm-tlv (on|off)
 nv set interface <interface-id> link
 nv set interface <interface-id> link state (up|down)
 nv set interface <interface-id> link dot1x
@@ -1021,8 +1072,14 @@ nv set interface <interface-id> ptp delay-mechanism end-to-end
 nv set interface <interface-id> ptp transport (ipv4|ipv6|802.3)
 nv set interface <interface-id> ptp ttl 1-255
 nv set interface <interface-id> ptp message-mode (multicast|unicast|mixed)
+nv set interface <interface-id> tunnel
+nv set interface <interface-id> tunnel source-ip <ipv4>
+nv set interface <interface-id> tunnel dest-ip <ipv4>
+nv set interface <interface-id> tunnel ttl 1-255
+nv set interface <interface-id> tunnel mode gre
+nv set interface <interface-id> tunnel interface <interface-name>
 nv set interface <interface-id> description <value>
-nv set interface <interface-id> type (swp|eth|bond|loopback|svi|sub|peerlink)
+nv set interface <interface-id> type (swp|eth|bond|loopback|svi|sub|peerlink|tunnel)
 nv set interface <interface-id> base-interface (none|<interface-name>)
 nv set interface <interface-id> vlan 1-4094
 nv set service
@@ -1161,7 +1218,7 @@ nv set system config apply
 nv set system config apply ignore <ignore-id>
 nv set system config apply overwrite (all|controlled)
 nv set system hostname <idn-hostname>
-nv set system timezone
+nv set system timezone (Africa/Abidjan|Africa/Accra|Africa/Addis_Ababa|Africa/Algiers|Africa/Asmara|Africa/Bamako|Africa/Bangui|Africa/Banjul|Africa/Bissau|Africa/Blantyre|Africa/Brazzaville|Africa/Bujumbura|Africa/Cairo|Africa/Casablanca|Africa/Ceuta|Africa/Conakry|Africa/Dakar|Africa/Dar_es_Salaam|Africa/Djibouti|Africa/Douala|Africa/El_Aaiun|Africa/Freetown|Africa/Gaborone|Africa/Harare|Africa/Johannesburg|Africa/Juba|Africa/Kampala|Africa/Khartoum|Africa/Kigali|Africa/Kinshasa|Africa/Lagos|Africa/Libreville|Africa/Lome|Africa/Luanda|Africa/Lubumbashi|Africa/Lusaka|Africa/Malabo|Africa/Maputo|Africa/Maseru|Africa/Mbabane|Africa/Mogadishu|Africa/Monrovia|Africa/Nairobi|Africa/Ndjamena|Africa/Niamey|Africa/Nouakchott|Africa/Ouagadougou|Africa/Porto-Novo|Africa/Sao_Tome|Africa/Timbuktu|Africa/Tripoli|Africa/Tunis|Africa/Windhoek|America/Adak|America/Anchorage|America/Anguilla|America/Antigua|America/Araguaina|America/Argentina/Buenos_Aires|America/Argentina/Catamarca|America/Argentina/ComodRivadavia|America/Argentina/Cordoba|America/Argentina/Jujuy|America/Argentina/La_Rioja|America/Argentina/Mendoza|America/Argentina/Rio_Gallegos|America/Argentina/Salta|America/Argentina/San_Juan|America/Argentina/San_Luis|America/Argentina/Tucuman|America/Argentina/Ushuaia|America/Aruba|America/Asuncion|America/Atikokan|America/Atka|America/Bahia|America/Bahia_Banderas|America/Barbados|America/Belem|America/Belize|America/Blanc-Sablon|America/Boa_Vista|America/Bogota|America/Boise|America/Buenos_Aires|America/Cambridge_Bay|America/Campo_Grande|America/Cancun|America/Caracas|America/Catamarca|America/Cayenne|America/Cayman|America/Chicago|America/Chihuahua|America/Coral_Harbour|America/Cordoba|America/Costa_Rica|America/Creston|America/Cuiaba|America/Curacao|America/Danmarkshavn|America/Dawson|America/Dawson_Creek|America/Denver|America/Detroit|America/Dominica|America/Edmonton|America/Eirunepe|America/El_Salvador|America/Ensenada|America/Fort_Nelson|America/Fort_Wayne|America/Fortaleza|America/Glace_Bay|America/Godthab|America/Goose_Bay|America/Grand_Turk|America/Grenada|America/Guadeloupe|America/Guatemala|America/Guayaquil|America/Guyana|America/Halifax|America/Havana|America/Hermosillo|America/Indiana/Indianapolis|America/Indiana/Knox|America/Indiana/Marengo|America/Indiana/Petersburg|America/Indiana/Tell_City|America/Indiana/Vevay|America/Indiana/Vincennes|America/Indiana/Winamac|America/Indianapolis|America/Inuvik|America/Iqaluit|America/Jamaica|America/Jujuy|America/Juneau|America/Kentucky/Louisville|America/Kentucky/Monticello|America/Knox_IN|America/Kralendijk|America/La_Paz|America/Lima|America/Los_Angeles|America/Louisville|America/Lower_Princes|America/Maceio|America/Managua|America/Manaus|America/Marigot|America/Martinique|America/Matamoros|America/Mazatlan|America/Mendoza|America/Menominee|America/Merida|America/Metlakatla|America/Mexico_City|America/Miquelon|America/Moncton|America/Monterrey|America/Montevideo|America/Montreal|America/Montserrat|America/Nassau|America/New_York|America/Nipigon|America/Nome|America/Noronha|America/North_Dakota/Beulah|America/North_Dakota/Center|America/North_Dakota/New_Salem|America/Ojinaga|America/Panama|America/Pangnirtung|America/Paramaribo|America/Phoenix|America/Port-au-Prince|America/Port_of_Spain|America/Porto_Acre|America/Porto_Velho|America/Puerto_Rico|America/Rainy_River|America/Rankin_Inlet|America/Recife|America/Regina|America/Resolute|America/Rio_Branco|America/Rosario|America/Santa_Isabel|America/Santarem|America/Santiago|America/Santo_Domingo|America/Sao_Paulo|America/Scoresbysund|America/Shiprock|America/Sitka|America/St_Barthelemy|America/St_Johns|America/St_Kitts|America/St_Lucia|America/St_Thomas|America/St_Vincent|America/Swift_Current|America/Tegucigalpa|America/Thule|America/Thunder_Bay|America/Tijuana|America/Toronto|America/Tortola|America/Vancouver|America/Virgin|America/Whitehorse|America/Winnipeg|America/Yakutat|America/Yellowknife|Antarctica/Casey|Antarctica/Davis|Antarctica/DumontDUrville|Antarctica/Macquarie|Antarctica/Mawson|Antarctica/McMurdo|Antarctica/Palmer|Antarctica/Rothera|Antarctica/South_Pole|Antarctica/Syowa|Antarctica/Troll|Antarctica/Vostok|Arctic/Longyearbyen|Asia/Aden|Asia/Almaty|Asia/Amman|Asia/Anadyr|Asia/Aqtau|Asia/Aqtobe|Asia/Ashgabat|Asia/Ashkhabad|Asia/Atyrau|Asia/Baghdad|Asia/Bahrain|Asia/Baku|Asia/Bangkok|Asia/Barnaul|Asia/Beirut|Asia/Bishkek|Asia/Brunei|Asia/Calcutta|Asia/Chita|Asia/Choibalsan|Asia/Chongqing|Asia/Chungking|Asia/Colombo|Asia/Dacca|Asia/Damascus|Asia/Dhaka|Asia/Dili|Asia/Dubai|Asia/Dushanbe|Asia/Famagusta|Asia/Gaza|Asia/Harbin|Asia/Hebron|Asia/Ho_Chi_Minh|Asia/Hong_Kong|Asia/Hovd|Asia/Irkutsk|Asia/Istanbul|Asia/Jakarta|Asia/Jayapura|Asia/Jerusalem|Asia/Kabul|Asia/Kamchatka|Asia/Karachi|Asia/Kashgar|Asia/Kathmandu|Asia/Katmandu|Asia/Khandyga|Asia/Kolkata|Asia/Krasnoyarsk|Asia/Kuala_Lumpur|Asia/Kuching|Asia/Kuwait|Asia/Macao|Asia/Macau|Asia/Magadan|Asia/Makassar|Asia/Manila|Asia/Muscat|Asia/Nicosia|Asia/Novokuznetsk|Asia/Novosibirsk|Asia/Omsk|Asia/Oral|Asia/Phnom_Penh|Asia/Pontianak|Asia/Pyongyang|Asia/Qatar|Asia/Qyzylorda|Asia/Rangoon|Asia/Riyadh|Asia/Saigon|Asia/Sakhalin|Asia/Samarkand|Asia/Seoul|Asia/Shanghai|Asia/Singapore|Asia/Srednekolymsk|Asia/Taipei|Asia/Tashkent|Asia/Tbilisi|Asia/Tehran|Asia/Tel_Aviv|Asia/Thimbu|Asia/Thimphu|Asia/Tokyo|Asia/Tomsk|Asia/Ujung_Pandang|Asia/Ulaanbaatar|Asia/Ulan_Bator|Asia/Urumqi|Asia/Ust-Nera|Asia/Vientiane|Asia/Vladivostok|Asia/Yakutsk|Asia/Yangon|Asia/Yekaterinburg|Asia/Yerevan|Atlantic/Azores|Atlantic/Bermuda|Atlantic/Canary|Atlantic/Cape_Verde|Atlantic/Faeroe|Atlantic/Faroe|Atlantic/Jan_Mayen|Atlantic/Madeira|Atlantic/Reykjavik|Atlantic/South_Georgia|Atlantic/St_Helena|Atlantic/Stanley|Australia/ACT|Australia/Adelaide|Australia/Brisbane|Australia/Broken_Hill|Australia/Canberra|Australia/Currie|Australia/Darwin|Australia/Eucla|Australia/Hobart|Australia/LHI|Australia/Lindeman|Australia/Lord_Howe|Australia/Melbourne|Australia/NSW|Australia/North|Australia/Perth|Australia/Queensland|Australia/South|Australia/Sydney|Australia/Tasmania|Australia/Victoria|Australia/West|Australia/Yancowinna|Brazil/Acre|Brazil/DeNoronha|Brazil/East|Brazil/West|Canada/Atlantic|Canada/Central|Canada/East-Saskatchewan|Canada/Eastern|Canada/Mountain|Canada/Newfoundland|Canada/Pacific|Canada/Saskatchewan|Canada/Yukon|Chile/Continental|Chile/EasterIsland|Etc/GMT|Etc/GMT0|Etc/GMT+0|Etc/GMT+1|Etc/GMT+2|Etc/GMT+3|Etc/GMT+4|Etc/GMT+5|Etc/GMT+6|Etc/GMT+7|Etc/GMT+8|Etc/GMT+9|Etc/GMT+10|Etc/GMT+11|Etc/GMT+12|Etc/GMT-0|Etc/GMT-1|Etc/GMT-2|Etc/GMT-3|Etc/GMT-4|Etc/GMT-5|Etc/GMT-6|Etc/GMT-7|Etc/GMT-8|Etc/GMT-9|Etc/GMT-10|Etc/GMT-11|Etc/GMT-12|Etc/GMT-13|Etc/GMT-14|Etc/Greenwich|Etc/UTC|Etc/Universal|Etc/Zulu|Europe/Amsterdam|Europe/Andorra|Europe/Astrakhan|Europe/Athens|Europe/Belfast|Europe/Belgrade|Europe/Berlin|Europe/Bratislava|Europe/Brussels|Europe/Bucharest|Europe/Budapest|Europe/Busingen|Europe/Chisinau|Europe/Copenhagen|Europe/Dublin|Europe/Gibraltar|Europe/Guernsey|Europe/Helsinki|Europe/Isle_of_Man|Europe/Istanbul|Europe/Jersey|Europe/Kaliningrad|Europe/Kiev|Europe/Kirov|Europe/Lisbon|Europe/Ljubljana|Europe/London|Europe/Luxembourg|Europe/Madrid|Europe/Malta|Europe/Mariehamn|Europe/Minsk|Europe/Monaco|Europe/Moscow|Europe/Nicosia|Europe/Oslo|Europe/Paris|Europe/Podgorica|Europe/Prague|Europe/Riga|Europe/Rome|Europe/Samara|Europe/San_Marino|Europe/Sarajevo|Europe/Saratov|Europe/Simferopol|Europe/Skopje|Europe/Sofia|Europe/Stockholm|Europe/Tallinn|Europe/Tirane|Europe/Tiraspol|Europe/Ulyanovsk|Europe/Uzhgorod|Europe/Vaduz|Europe/Vatican|Europe/Vienna|Europe/Vilnius|Europe/Volgograd|Europe/Warsaw|Europe/Zagreb|Europe/Zaporozhye|Europe/Zurich|Indian/Antananarivo|Indian/Chagos|Indian/Christmas|Indian/Cocos|Indian/Comoro|Indian/Kerguelen|Indian/Mahe|Indian/Maldives|Indian/Mauritius|Indian/Mayotte|Indian/Reunion|Mexico/BajaNorte|Mexico/BajaSur|Mexico/General|Pacific/Apia|Pacific/Auckland|Pacific/Bougainville|Pacific/Chatham|Pacific/Chuuk|Pacific/Easter|Pacific/Efate|Pacific/Enderbury|Pacific/Fakaofo|Pacific/Fiji|Pacific/Funafuti|Pacific/Galapagos|Pacific/Gambier|Pacific/Guadalcanal|Pacific/Guam|Pacific/Honolulu|Pacific/Johnston|Pacific/Kiritimati|Pacific/Kosrae|Pacific/Kwajalein|Pacific/Majuro|Pacific/Marquesas|Pacific/Midway|Pacific/Nauru|Pacific/Niue|Pacific/Norfolk|Pacific/Noumea|Pacific/Pago_Pago|Pacific/Palau|Pacific/Pitcairn|Pacific/Pohnpei|Pacific/Ponape|Pacific/Port_Moresby|Pacific/Rarotonga|Pacific/Saipan|Pacific/Samoa|Pacific/Tahiti|Pacific/Tarawa|Pacific/Tongatapu|Pacific/Truk|Pacific/Wake|Pacific/Wallis|Pacific/Yap|US/Alaska|US/Aleutian|US/Arizona|US/Central|US/East-Indiana|US/Eastern|US/Hawaii|US/Indiana-Starke|US/Michigan|US/Mountain|US/Pacific|US/Pacific-New|US/Samoa)
 nv set vrf <vrf-id>
 nv set vrf <vrf-id> loopback
 nv set vrf <vrf-id> loopback ip
@@ -1200,7 +1257,7 @@ nv set vrf <vrf-id> router bgp address-family ipv4-unicast network <static-netwo
 nv set vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id> route-map (none|<instance-name>)
 nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import
 nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf
-nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list
+nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id>
 nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf enable (on|off)
 nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf route-map <instance-name>
 nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths
@@ -1775,6 +1832,7 @@ nv unset router pbr map <pbr-map-id> rule <rule-id> match dscp
 nv unset router pbr map <pbr-map-id> rule <rule-id> match ecn
 nv unset router pbr map <pbr-map-id> rule <rule-id> action
 nv unset router pbr map <pbr-map-id> rule <rule-id> action nexthop-group
+nv unset router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id>
 nv unset router pbr map <pbr-map-id> rule <rule-id> action vrf
 nv unset router pbr enable
 nv unset router policy
@@ -2018,6 +2076,7 @@ nv unset interface <interface-id>
 nv unset interface <interface-id> router
 nv unset interface <interface-id> router pbr
 nv unset interface <interface-id> router pbr map
+nv unset interface <interface-id> router pbr map <pbr-map-id>
 nv unset interface <interface-id> router ospf
 nv unset interface <interface-id> router ospf timers
 nv unset interface <interface-id> router ospf timers dead-interval
@@ -2121,7 +2180,42 @@ nv unset interface <interface-id> ip vrrp virtual-router <virtual-router-id> pri
 nv unset interface <interface-id> ip vrrp virtual-router <virtual-router-id> preempt
 nv unset interface <interface-id> ip vrrp virtual-router <virtual-router-id> advertisement-interval
 nv unset interface <interface-id> ip vrrp enable
+nv unset interface <interface-id> ip neighbor-discovery
+nv unset interface <interface-id> ip neighbor-discovery rdnss
+nv unset interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id>
+nv unset interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id> lifetime
+nv unset interface <interface-id> ip neighbor-discovery prefix
+nv unset interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id>
+nv unset interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> valid-lifetime
+nv unset interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> preferred-lifetime
+nv unset interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> off-link
+nv unset interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> autoconfig
+nv unset interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> router-address
+nv unset interface <interface-id> ip neighbor-discovery dnssl
+nv unset interface <interface-id> ip neighbor-discovery dnssl <domain-name-id>
+nv unset interface <interface-id> ip neighbor-discovery dnssl <domain-name-id> lifetime
+nv unset interface <interface-id> ip neighbor-discovery router-advertisement
+nv unset interface <interface-id> ip neighbor-discovery router-advertisement enable
+nv unset interface <interface-id> ip neighbor-discovery router-advertisement interval
+nv unset interface <interface-id> ip neighbor-discovery router-advertisement interval-option
+nv unset interface <interface-id> ip neighbor-discovery router-advertisement fast-retransmit
+nv unset interface <interface-id> ip neighbor-discovery router-advertisement lifetime
+nv unset interface <interface-id> ip neighbor-discovery router-advertisement reachable-time
+nv unset interface <interface-id> ip neighbor-discovery router-advertisement retransmit-time
+nv unset interface <interface-id> ip neighbor-discovery router-advertisement managed-config
+nv unset interface <interface-id> ip neighbor-discovery router-advertisement other-config
+nv unset interface <interface-id> ip neighbor-discovery router-advertisement hop-limit
+nv unset interface <interface-id> ip neighbor-discovery router-advertisement router-preference
+nv unset interface <interface-id> ip neighbor-discovery home-agent
+nv unset interface <interface-id> ip neighbor-discovery home-agent lifetime
+nv unset interface <interface-id> ip neighbor-discovery home-agent preference
+nv unset interface <interface-id> ip neighbor-discovery enable
+nv unset interface <interface-id> ip neighbor-discovery mtu
 nv unset interface <interface-id> ip vrf
+nv unset interface <interface-id> lldp
+nv unset interface <interface-id> lldp dcbx-pfc-tlv
+nv unset interface <interface-id> lldp dcbx-ets-config-tlv
+nv unset interface <interface-id> lldp dcbx-ets-recomm-tlv
 nv unset interface <interface-id> link
 nv unset interface <interface-id> link state
 nv unset interface <interface-id> link dot1x
@@ -2162,6 +2256,12 @@ nv unset interface <interface-id> ptp delay-mechanism
 nv unset interface <interface-id> ptp transport
 nv unset interface <interface-id> ptp ttl
 nv unset interface <interface-id> ptp message-mode
+nv unset interface <interface-id> tunnel
+nv unset interface <interface-id> tunnel source-ip
+nv unset interface <interface-id> tunnel dest-ip
+nv unset interface <interface-id> tunnel ttl
+nv unset interface <interface-id> tunnel mode
+nv unset interface <interface-id> tunnel interface
 nv unset interface <interface-id> description
 nv unset interface <interface-id> type
 nv unset interface <interface-id> base-interface
@@ -2391,6 +2491,7 @@ nv unset vrf <vrf-id> router bgp address-family ipv4-unicast network <static-net
 nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-import
 nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf
 nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list
+nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id>
 nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf enable
 nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf route-map
 nv unset vrf <vrf-id> router bgp address-family ipv4-unicast multipaths

@@ -16,6 +16,12 @@ Fixed:</td>
 <td></td>
 </tr>
 <tr>
+<td>2993786</td>
+<td>When you configure QoS remarking on a bond, the port stops forwarding traffic. </td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
@@ -88,12 +94,6 @@ Fixed: 2.5.5-3+deb10u4</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15-4.4.2, 5.0.0-5.0.1</td>
 <td>4.4.3</td>
-</tr>
-<tr>
-<td>2951114</td>
-<td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2951113</td>
@@ -185,6 +185,12 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>2902013</td>
 <td>The NCLU commit  command adds a five second delay.</td>
 <td>4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2899413</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
+<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>

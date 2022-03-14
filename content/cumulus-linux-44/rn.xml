@@ -16,6 +16,15 @@ Fixed:</td>
 <td></td>
 </tr>
 <tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2993786</td>
 <td>When you configure QoS remarking on a bond, the port stops forwarding traffic. </td>
 <td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
@@ -37,6 +46,15 @@ Fixed:</td>
 <td>2989099</td>
 <td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
 <td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -77,12 +95,6 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td>2961216</td>
 <td>When there is a peer link failure followed by a power failure or a crash on the primary switch,  the MLAG secondary switch takes up to 24 seconds to change roles to the Primary.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2951114</td>
-<td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1847,6 +1859,15 @@ Fixed:</td>
 <td></td>
 </tr>
 <tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2993786</td>
 <td>When you configure QoS remarking on a bond, the port stops forwarding traffic. </td>
 <td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
@@ -1868,6 +1889,15 @@ Fixed:</td>
 <td>2989099</td>
 <td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
 <td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1953,12 +1983,6 @@ Fixed: 2.5.5-3+deb10u4</td>
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-4.4.2, 5.0.0-5.0.1</td>
 <td>4.4.3</td>
-</tr>
-<tr>
-<td>2951114</td>
-<td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2951113</td>
@@ -3925,6 +3949,15 @@ Fixed:</td>
 <td></td>
 </tr>
 <tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2993786</td>
 <td>When you configure QoS remarking on a bond, the port stops forwarding traffic. </td>
 <td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
@@ -3946,6 +3979,15 @@ Fixed:</td>
 <td>2989099</td>
 <td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
 <td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4025,12 +4067,6 @@ Fixed: 2.5.5-3+deb10u4</td>
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-4.4.2, 5.0.0-5.0.1</td>
 <td>4.4.3</td>
-</tr>
-<tr>
-<td>2951114</td>
-<td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2951113</td>

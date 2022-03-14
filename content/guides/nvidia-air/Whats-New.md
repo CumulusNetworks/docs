@@ -9,6 +9,7 @@ Check out some of the latest features added to the {{<exlink url="https://air.nv
 
 ## March 2022
 <!-- Air:WhatsNew -->
+- Share simulations with your colleagues using the new and improved organizations feature. {{<link url="/Organizations" text="Click here">}} for more details. [82.2022.0314-010]
 - Resolved an error that occurred when logging in to Air via https://www.nvidia.com/en-us/networking/network-simulation/ [82.2022.0309]
 <!-- Air:WhatsNew -->
 

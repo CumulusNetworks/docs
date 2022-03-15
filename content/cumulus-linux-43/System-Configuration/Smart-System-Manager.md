@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 275
 toc: 3
 ---
-Use Smart System Manager to upgrade and troubleshoot an active switch with minimal disruption to the network.
+Use Smart System Manager, also known as [ISSU](## "In Service System Upgrade"), to upgrade and troubleshoot an active switch with minimal disruption to the network.
 
 Smart System Manager includes the following modes:
 - Restart

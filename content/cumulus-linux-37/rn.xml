@@ -435,7 +435,7 @@ Fixed: 9.4.26-0+deb8u5</td>
 <tr>
 <td>2862214</td>
 <td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
-<td>3.7.14.2-3.7.15</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1096,7 +1096,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <tr>
 <td>2652003</td>
 <td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
-<td>3.7.10-3.7.15</td>
+<td>3.7.10-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -3289,7 +3289,7 @@ Fixed: 9.4.26-0+deb8u5</td>
 <tr>
 <td>2862214</td>
 <td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
-<td>3.7.14.2-3.7.15</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -3806,7 +3806,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <tr>
 <td>2652003</td>
 <td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
-<td>3.7.10-3.7.15</td>
+<td>3.7.10-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -6478,7 +6478,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <tr>
 <td>2652003</td>
 <td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
-<td>3.7.10-3.7.15</td>
+<td>3.7.10-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -9725,7 +9725,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <tr>
 <td>2652003</td>
 <td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
-<td>3.7.10-3.7.15</td>
+<td>3.7.10-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -13191,7 +13191,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <tr>
 <td>2652003</td>
 <td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
-<td>3.7.10-3.7.15</td>
+<td>3.7.10-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -16344,7 +16344,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <tr>
 <td>2652003</td>
 <td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
-<td>3.7.10-3.7.15</td>
+<td>3.7.10-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -19217,7 +19217,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <tr>
 <td>2652003</td>
 <td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
-<td>3.7.10-3.7.15</td>
+<td>3.7.10-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>

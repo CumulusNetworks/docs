@@ -98,6 +98,12 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td></td>
 </tr>
 <tr>
+<td>2959309</td>
+<td>When you edit the Cumulus image file and change the  {{CL_INSTALLER_HASHED_PASSWORD}} variable, the installation is successful but you cannot connect to the switch with the new password.</td>
+<td>4.4.0-4.4.3, 5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2951113</td>
 <td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
@@ -288,6 +294,12 @@ To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <td>2866080</td>
 <td>On the Maverick S4148T switch with MLAG, Cumulus Linux drops LACP, ARP, LLDP and BGP traffic.</td>
 <td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2862214</td>
+<td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -727,6 +739,12 @@ Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
 <td>3.7.14-3.7.15, 4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2652003</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>3.7.10-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1985,6 +2003,12 @@ Fixed: 2.5.5-3+deb10u4</td>
 <td>4.4.3</td>
 </tr>
 <tr>
+<td>2959309</td>
+<td>When you edit the Cumulus image file and change the  {{CL_INSTALLER_HASHED_PASSWORD}} variable, the installation is successful but you cannot connect to the switch with the new password.</td>
+<td>4.4.0-4.4.3, 5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2951113</td>
 <td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
@@ -2198,6 +2222,12 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td>2866080</td>
 <td>On the Maverick S4148T switch with MLAG, Cumulus Linux drops LACP, ARP, LLDP and BGP traffic.</td>
 <td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2862214</td>
+<td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2660,6 +2690,12 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <td>After running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
 To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
 <td>4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2652003</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>3.7.10-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4069,6 +4105,12 @@ Fixed: 2.5.5-3+deb10u4</td>
 <td>4.4.3</td>
 </tr>
 <tr>
+<td>2959309</td>
+<td>When you edit the Cumulus image file and change the  {{CL_INSTALLER_HASHED_PASSWORD}} variable, the installation is successful but you cannot connect to the switch with the new password.</td>
+<td>4.4.0-4.4.3, 5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2951113</td>
 <td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
@@ -4330,6 +4372,12 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td>2866080</td>
 <td>On the Maverick S4148T switch with MLAG, Cumulus Linux drops LACP, ARP, LLDP and BGP traffic.</td>
 <td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2862214</td>
+<td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -5013,6 +5061,12 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <td>After running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
 To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
 <td>4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2652003</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>3.7.10-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>

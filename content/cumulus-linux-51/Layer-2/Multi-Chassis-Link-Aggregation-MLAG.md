@@ -825,7 +825,7 @@ cumulus@leaf01:~$ systemctl status clagd.service
 
 ### Peer Link Consistency Check
 
-When you make an MLAG configuration change, Cumulus Linux validates the corresponding parameters on both MLAG peers and takes action based on the type of conflict it sees. For every conflict, the `/var/log/clagd.log` file records a log message.
+When you make an MLAG configuration change, Cumulus Linux validates the corresponding parameters on both MLAG peers automatically and takes action based on the type of conflict it sees. For every conflict, the `/var/log/clagd.log` file records a log message.
 
 The following table shows the conflict types and actions that Cumulus Linux takes:
 
@@ -846,7 +846,7 @@ The following table shows the conflict types and actions that Cumulus Linux take
 | peerlink-vlans| Global | Suspend the inconsistent VLANs on either MLAG peer on all the dual-connected MLAG bonds and VXLAN interfaces. |
 | VLANs on VXLAN interface in TVD topology not part of peerlink| VXLAN  | Suspend the VLANs on the VXLAN interfaces that are inconsistent. |
 
-To manually check for MLAG inconsistencies, run the following commands:
+You can also manually check for MLAG inconsistencies with the following commands:
 
 {{< tabs "TabID851 ">}}
 {{< tab "NVUE Commands ">}}

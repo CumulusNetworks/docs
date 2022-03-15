@@ -16,9 +16,27 @@ Fixed:</td>
 <td></td>
 </tr>
 <tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -118,12 +136,6 @@ Fixed: 4.8.6+git64-g5dc8b2b+dfsg-3+deb8u4</td>
 <td></td>
 </tr>
 <tr>
-<td>2951114</td>
-<td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2951113</td>
 <td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
@@ -193,16 +205,6 @@ Fixed: 3.26-1+debu8u16</td>
 Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
 Fixed: 9.26a~dfsg-0+deb8u</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2940076</td>
-<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
-1) high VNI scale
-2) {{switchd}} is busy processing updates
-3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
-The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
-<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -345,6 +347,12 @@ Fixed: 2.1.5-2+deb8u13</td>
 <td></td>
 </tr>
 <tr>
+<td>2899413</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
+<td>3.7.15, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
@@ -427,7 +435,7 @@ Fixed: 9.4.26-0+deb8u5</td>
 <tr>
 <td>2862214</td>
 <td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
-<td>3.7.14.2-3.7.15</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1088,7 +1096,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <tr>
 <td>2652003</td>
 <td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
-<td>3.7.10-3.7.15</td>
+<td>3.7.10-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2985,6 +2993,24 @@ Fixed:</td>
 <td></td>
 </tr>
 <tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2984076</td>
 <td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
 CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
@@ -3051,12 +3077,6 @@ Fixed: 4.8.6+git64-g5dc8b2b+dfsg-3+deb8u4</td>
 <td></td>
 </tr>
 <tr>
-<td>2951114</td>
-<td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2951113</td>
 <td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
@@ -3096,16 +3116,6 @@ Fixed: 3.26-1+debu8u16</td>
 Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
 Fixed: 9.26a~dfsg-0+deb8u</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2940076</td>
-<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
-1) high VNI scale
-2) {{switchd}} is busy processing updates
-3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
-The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
-<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -3279,7 +3289,7 @@ Fixed: 9.4.26-0+deb8u5</td>
 <tr>
 <td>2862214</td>
 <td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
-<td>3.7.14.2-3.7.15</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -3796,7 +3806,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <tr>
 <td>2652003</td>
 <td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
-<td>3.7.10-3.7.15</td>
+<td>3.7.10-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -5734,6 +5744,24 @@ Fixed:</td>
 <td></td>
 </tr>
 <tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2984076</td>
 <td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
 CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
@@ -5826,16 +5854,6 @@ Fixed: 3.26-1+debu8u16</td>
 Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
 Fixed: 9.26a~dfsg-0+deb8u</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2940076</td>
-<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
-1) high VNI scale
-2) {{switchd}} is busy processing updates
-3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
-The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
-<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -6460,7 +6478,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <tr>
 <td>2652003</td>
 <td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
-<td>3.7.10-3.7.15</td>
+<td>3.7.10-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -8992,6 +9010,24 @@ Fixed:</td>
 <td></td>
 </tr>
 <tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2984076</td>
 <td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
 CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
@@ -9084,16 +9120,6 @@ Fixed: 3.26-1+debu8u16</td>
 Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
 Fixed: 9.26a~dfsg-0+deb8u</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2940076</td>
-<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
-1) high VNI scale
-2) {{switchd}} is busy processing updates
-3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
-The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
-<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -9699,7 +9725,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <tr>
 <td>2652003</td>
 <td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
-<td>3.7.10-3.7.15</td>
+<td>3.7.10-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -12457,6 +12483,24 @@ Fixed:</td>
 <td></td>
 </tr>
 <tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2984076</td>
 <td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
 CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
@@ -12549,16 +12593,6 @@ Fixed: 3.26-1+debu8u16</td>
 Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
 Fixed: 9.26a~dfsg-0+deb8u</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2940076</td>
-<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
-1) high VNI scale
-2) {{switchd}} is busy processing updates
-3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
-The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
-<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -13157,7 +13191,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <tr>
 <td>2652003</td>
 <td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
-<td>3.7.10-3.7.15</td>
+<td>3.7.10-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -15779,6 +15813,24 @@ Fixed:</td>
 <td></td>
 </tr>
 <tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2984076</td>
 <td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
 CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
@@ -16292,7 +16344,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <tr>
 <td>2652003</td>
 <td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
-<td>3.7.10-3.7.15</td>
+<td>3.7.10-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -18634,6 +18686,24 @@ Fixed:</td>
 <td></td>
 </tr>
 <tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2984076</td>
 <td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
 CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
@@ -19147,7 +19217,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <tr>
 <td>2652003</td>
 <td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
-<td>3.7.10-3.7.15</td>
+<td>3.7.10-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -20918,6 +20988,24 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 </tr>
 <tr>
 <td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
 Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
@@ -23520,6 +23608,24 @@ Fixed:</td>
 <td></td>
 </tr>
 <tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2984076</td>
 <td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
 CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
@@ -25507,6 +25613,24 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 </tr>
 <tr>
 <td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
 Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
@@ -27845,6 +27969,24 @@ Fixed:</td>
 <td></td>
 </tr>
 <tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2984076</td>
 <td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
 CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
@@ -29920,6 +30062,24 @@ Fixed:</td>
 <td></td>
 </tr>
 <tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2984076</td>
 <td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
 CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
@@ -31632,6 +31792,24 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 </tr>
 <tr>
 <td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
 Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
@@ -33379,6 +33557,24 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 </tr>
 <tr>
 <td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
 Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
@@ -35232,6 +35428,24 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 </tr>
 <tr>
 <td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
 Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
@@ -37137,6 +37351,24 @@ Fixed:</td>
 <td></td>
 </tr>
 <tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2984076</td>
 <td>CVE-2022-22844: out-of-bounds read in _TIFFmemcpy in certain situations involving a custom tag and 0x0200 as the second word of the DE field.
 CVE-2022-0562: Null source pointer passed as an argument to memcpy() function within TIFFReadDirectory(). This could result in a Denial of Service via crafted TIFF files.
@@ -38332,6 +38564,24 @@ To work around this issue, remove the matching {{network}} statement. </td>
 </tr>
 <tr>
 <td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
 Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15

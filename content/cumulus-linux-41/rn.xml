@@ -16,9 +16,27 @@ Fixed:</td>
 <td></td>
 </tr>
 <tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2989099</td>
 <td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
 <td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -130,7 +148,7 @@ Fixed: 3.42.1-1+deb10u4</td>
 <td></td>
 </tr>
 <tr>
-<td>2862211</td>
+<td>2862210</td>
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
 To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
 <td>3.7.12-4.4.3</td>
@@ -241,7 +259,7 @@ Fixed: 1.1.1d-0+deb10u7</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2755615</td>
+<td>2754723</td>
 <td>When {{route_preferred_over_neigh}} is set to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
 <td>4.0.0-4.4.1</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
@@ -485,7 +503,7 @@ Fixed: 2.40.1-6+deb10u1</td>
 <td>3.7.15, 4.4.0-4.4.3</td>
 </tr>
 <tr>
-<td>2644072</td>
+<td>2644071</td>
 <td>When you stop {{clagd}} on the MLAG primary switch (for example, when you reboot the switch), in rare conditions the MLAG secondary switch might fail to properly assert itself as the MLAG primary switch. To work around this issue, change the primary designation by configuring the {{clagd}} priorities to ensure that you only reboot a switch that is in the MLAG secondary role.</td>
 <td>3.7.15-4.3.0</td>
 <td>4.4.0-4.4.3</td>
@@ -3138,9 +3156,27 @@ Fixed:</td>
 <td></td>
 </tr>
 <tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2989099</td>
 <td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
 <td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2984205</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3240,7 +3276,7 @@ Fixed: 3.42.1-1+deb10u4</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2862211</td>
+<td>2862210</td>
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
 To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
 <td>3.7.12-4.4.3</td>
@@ -3351,7 +3387,7 @@ Fixed: 1.1.1d-0+deb10u7</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2755615</td>
+<td>2754723</td>
 <td>When {{route_preferred_over_neigh}} is set to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
 <td>4.0.0-4.4.1</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
@@ -3595,7 +3631,7 @@ Fixed: 2.40.1-6+deb10u1</td>
 <td>3.7.15, 4.4.0-4.4.3</td>
 </tr>
 <tr>
-<td>2644072</td>
+<td>2644071</td>
 <td>When you stop {{clagd}} on the MLAG primary switch (for example, when you reboot the switch), in rare conditions the MLAG secondary switch might fail to properly assert itself as the MLAG primary switch. To work around this issue, change the primary designation by configuring the {{clagd}} priorities to ensure that you only reboot a switch that is in the MLAG secondary role.</td>
 <td>3.7.15-4.3.0</td>
 <td>4.4.0-4.4.3</td>

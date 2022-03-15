@@ -825,7 +825,7 @@ cumulus@leaf01:~$ systemctl status clagd.service
 
 ### Peer Link Consistency Check
 
-When you make an MLAG configuration change, Cumulus Linux validates the corresponding parameters on both MLAG peers automatically and takes action based on the type of conflict it sees. For every conflict, the `/var/log/clagd.log` file records a log message.
+When you make an MLAG configuration change, Cumulus Linux automatically validates the corresponding parameters on both MLAG peers and takes action based on the type of conflict it sees. For every conflict, the `/var/log/clagd.log` file records a log message.
 
 The following table shows the conflict types and actions that Cumulus Linux takes:
 

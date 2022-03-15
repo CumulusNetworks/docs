@@ -220,12 +220,13 @@ GTP hashing is only applicable if:
 
 To enable GTP hashing:
 
-1. Edit the `/etc/cumulus/datapath/traffic.conf` file and uncomment the `hash_config.gtp_teid = TRUE` line.
+1. Edit the `/etc/cumulus/datapath/traffic.conf` file and change the `lag_hash_config.gtp_teid` parameter to `true`:
 
    ```
    cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
    ...
-   hash_config.gtp_teid = TRUE
+   #GTP-U teid
+   lag_hash_config.gtp_teid = true
    ```
 
 2. Run the `echo 1 > /cumulus/switchd/ctrl/hash_config_reload` command. This command does not cause any traffic interruptions.

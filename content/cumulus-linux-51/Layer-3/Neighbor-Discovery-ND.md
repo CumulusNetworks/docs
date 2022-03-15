@@ -148,7 +148,7 @@ cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
 leaf01# configure terminal
 leaf01(config)# interface swp1
-leaf01(config-if)# ipv6 nd suppress-ra
+leaf01(config-if)# no ipv6 nd suppress-ra
 ```
 
 {{< /tab >}}

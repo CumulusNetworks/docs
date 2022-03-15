@@ -25,7 +25,7 @@ After you log in, the NVIDIA Air landing page appears:
 
 The landing page offers the following options:
 
-- **Organizations**: If you have custom simulations, the `Organizations` dropdown shows the different organizations to which each simulation belongs. This is typically only visible if you are working directly with an NVIDIA Solutions Architect to set up a custom topology.
+- **Filter Organizations**: If you belong to multiple organizations, the filter icon allows you to filter your list of simulations to only those in the chosen organization(s).
 
   {{<img src="/images/guides/nvidia-air/OrganizationDropdown.png" width="250px">}}
 
@@ -37,11 +37,11 @@ The landing page offers the following options:
 
   {{<img src="/images/guides/nvidia-air/BuildSim.png" width="300px">}}
 
-  This launches a new window from where you can choose one of the pre-built demos from the list.
+  This launches a new window from where you can choose from different ways to build a simulation.
 
-  {{<img src="/images/guides/nvidia-air/BuildSim_Demos.png" width="800px">}}
+  {{<img src="/images/guides/nvidia-air/Catalog.png" width="800px">}}
 
-- **Sidebar**: The sidebar to the left has a **Create a Simulation** link to create new simulations, links to the current Cumulus Linux and NetQ user guides and a link to [self-paced labs](https://www.nvidia.com/en-us/networking/linux-on-demand/).
+- **Sidebar**: The sidebar to the left has a **Create a Simulation** link to create new simulations, links to relevant documentation, and other helpful options.
 
 {{<img src="/images/guides/nvidia-air/SideBar.png">}}
 
@@ -143,11 +143,7 @@ From the Air landing page, you can manage simulations. There are three options f
 
 ## User Settings
 
-In the top right of the Air window next to the **Logout** link is a gear icon:
-
-{{<img src="/images/guides/nvidia-air/UserSettingsGear.png" width="100px">}}
-
-Clicking the gear loads the User Settings page where you can:
+The `Settings` section of the sidebar allows you to:
 
 - Generate API tokens
 - Upload SSH keys

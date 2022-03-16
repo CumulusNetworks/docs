@@ -192,6 +192,11 @@ You can enable QoS TLV transmission (ETS Configuration, ETS Recommendation, PFC 
 
 {{%notice note%}}
 Adding the QoS TLVs to LLDP packets on an interface relies on PFC and ETS configuration from `switchd`. Refer to {{<link url="Quality-of-Service" text="Quality of Service">}} for information on configuring PFC and ETS.
+
+When you enable {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="ROCE">}} on the switch:
+- QoS TLV transmission (PFC Configuration, ETS Configuration, and ETS Recommendation) is on globally for all ports, which overrides any QoS TLV transmission setting on a switch port interface.
+- LLDPDUs for all switch port interfaces carry PFC configuration, ETS configuration, and ETS recommendation TLVs. The ETS configuration and PFC configuration TLV payloads are the same for all interfaces.
+- The MTU on the port is the [MFS](## "maximum frame size").
 {{%/notice%}}
 
 To enable PFC Configuration TLV transmission, run the `nv set interface <interface> lldp dcbx-pfc-tlv on` command:
@@ -216,7 +221,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-The interface must be a physical interface; you cannot enable TLVs on bonds.
+The interface must be a physical interface; you cannot enable TLVs on bonds.  
 {{%/notice%}}
 
 ### Show DCBX TLV Settings

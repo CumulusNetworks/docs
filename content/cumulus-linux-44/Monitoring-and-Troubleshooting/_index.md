@@ -199,7 +199,6 @@ Cumulus Linux does not send all log messages to a remote server. To send other l
 
    {{%notice note%}}
 - For TCP-based syslog, use two @@ before the IP address *@@192.168.1.2:514*.
-- Running `syslog` over TCP places a burden on the switch to queue packets in the `syslog` buffer. This has a detrimental effect if the remote `syslog` server becomes unavailable.
 - The file numbering in `/etc/rsyslog.d/` dictates how the rules install into `rsyslog.d`. Lower numbered rules process first and `rsyslog` processing *terminates* with the `stop` keyword. For example, the `rsyslog` configuration for FRR is in the `45-frr.conf` file with an explicit `stop` at the bottom of the file. FRR messages log to the `/var/log/frr/frr.log` file on the local disk only (these messages do not go to a remote server using the default configuration). To log FRR messages remotely in addition to writing FRR messages to the local disk, rename the `99-syslog.conf` file to `11-remotesyslog.conf`. The `11-remotesyslog.conf` rule (transmit to remote server)processes FRR messages first, then the `45-frr.conf` file continues to process the messages (write to local disk in the `/var/log/frr/frr.log` file).
 - Do not use the `imfile` module with any file written by `rsyslogd`.
 {{%/notice%}}

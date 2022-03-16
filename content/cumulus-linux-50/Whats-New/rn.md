@@ -14,6 +14,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3007603"></a> [3007603](#3007603) <a name="3007603"></a> <br /> | CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates<br />Vulnerable: <= 1.1.1d-0+deb10u7Fixed: 1.1.1d-0+deb10u8 | 5.0.0-5.0.1 | |
+| <a name="3007564"></a> [3007564](#3007564) <a name="3007564"></a> <br /> | When you remove the last <code>vxlan-remoteip</code> configuration line from a VNI in the <code>/etc/network/interfaces</code> file, the flood entry is not removed from the kernel. | 3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1 | |
 | <a name="3001503"></a> [3001503](#3001503) <a name="3001503"></a> <br /> | The NVUE <code>nv show interface <interface> bridge domain <domain> <vlan></code> command returns a 404 NOT FOUND error. | 5.0.1 | |
 | <a name="2999243"></a> [2999243](#2999243) <a name="2999243"></a> <br /> | sFlow fails to send flow samples. | 5.0.0-5.0.1 | |
 | <a name="2993960"></a> [2993960](#2993960) <a name="2993960"></a> <br /> | CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crashby reading too much data on the heap<br />Vulnerable: <= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15Fixed: | 3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1 | |
@@ -75,6 +77,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3007603"></a> [3007603](#3007603) <a name="3007603"></a> <br /> | CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates<br />Vulnerable: <= 1.1.1d-0+deb10u7Fixed: 1.1.1d-0+deb10u8 | 5.0.0-5.0.1 | |
+| <a name="3007564"></a> [3007564](#3007564) <a name="3007564"></a> <br /> | When you remove the last <code>vxlan-remoteip</code> configuration line from a VNI in the <code>/etc/network/interfaces</code> file, the flood entry is not removed from the kernel. | 3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1 | |
 | <a name="2999243"></a> [2999243](#2999243) <a name="2999243"></a> <br /> | sFlow fails to send flow samples. | 5.0.0-5.0.1 | |
 | <a name="2993960"></a> [2993960](#2993960) <a name="2993960"></a> <br /> | CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crashby reading too much data on the heap<br />Vulnerable: <= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15Fixed: | 3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1 | |
 | <a name="2993786"></a> [2993786](#2993786) <a name="2993786"></a> <br /> | When you configure QoS remarking on a bond, the port stops forwarding traffic.  | 4.3.0-4.4.3, 5.0.0-5.0.1 | |

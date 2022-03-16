@@ -7,6 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3007603</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.1.1d-0+deb10u7
+Fixed: 1.1.1d-0+deb10u8</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3007564</td>
+<td>When you remove the last {{vxlan-remoteip}} configuration line from a VNI in the {{/etc/network/interfaces}} file, the flood entry is not removed from the kernel.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3001503</td>
 <td>The NVUE {{nv show interface &lt;interface&gt; bridge domain &lt;domain&gt; &lt;vlan&gt;}} command returns a 404 NOT FOUND error.</td>
 <td>5.0.1</td>
@@ -365,6 +379,20 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3007603</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.1.1d-0+deb10u7
+Fixed: 1.1.1d-0+deb10u8</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3007564</td>
+<td>When you remove the last {{vxlan-remoteip}} configuration line from a VNI in the {{/etc/network/interfaces}} file, the flood entry is not removed from the kernel.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2999243</td>

@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3007564"></a> [3007564](#3007564) <a name="3007564"></a> <br /> | When you remove the last <code>vxlan-remoteip</code> configuration line from a VNI in the <code>/etc/network/interfaces</code> file, the flood entry is not removed from the kernel. | 3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1 | |
 | <a name="2993960"></a> [2993960](#2993960) <a name="2993960"></a> <br /> | CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crashby reading too much data on the heap<br />Vulnerable: <= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15Fixed: | 3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1 | |
 | <a name="2993786"></a> [2993786](#2993786) <a name="2993786"></a> <br /> | When you configure QoS remarking on a bond, the port stops forwarding traffic.  | 4.3.0-4.4.3, 5.0.0-5.0.1 | |
 | <a name="2993471"></a> [2993471](#2993471) <a name="2993471"></a> <br /> | When <code>switchd</code> restarts, the port watch daemon (<code>portwd</code>) attempts to send requests to <code>switchd</code> before <code>switchd</code> is ready. As a result, <code>portwd</code> goes into a failed state because there is no response from <code>switchd</code>. | 3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1 | |

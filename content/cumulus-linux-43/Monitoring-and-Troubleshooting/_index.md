@@ -233,13 +233,10 @@ By default, not all log messages are sent to a remote server. To send other log 
    This configuration sends log messages to a remote `syslog` server for the following processes: `clagd`, `switchd`, `ptmd`, `rdnbrd`, `netd` and `syslog`. It follows the same syntax as the `/var/log/syslog` file, where *@* indicates UDP, *192.168.12* is the IP address of the `syslog` server, and *514* is the UDP port.
 
    {{%notice note%}}
-
 - For TCP-based syslog, use two @@ before the IP address *@@192.168.1.2:514*.
 - The numbering of the files in `/etc/rsyslog.d/` dictates how the rules are installed into `rsyslog.d`. Lower numbered rules are processed first, and `rsyslog` processing *terminates* with the `stop` keyword. For example, the `rsyslog` configuration for FRR is stored in the `45-frr.conf` file with an explicit `stop` at the bottom of the file. FRR messages are logged to the `/var/log/frr/frr.log` file on the local disk only (these messages are not sent to a remote server using the default configuration). To log FRR messages remotely in addition to writing FRR messages to the local disk, rename the `99-syslog.conf` file to `11-remotesyslog.conf`. FRR messages are first processed by the `11-remotesyslog.conf` rule (transmit to remote server), then continue to be processed by the `45-frr.conf` file (write to local disk in the `/var/log/frr/frr.log` file).
-
 - Do not use the `imfile` module with any file written by `rsyslogd`.
-
-   {{%/notice%}}
+{{%/notice%}}
 
 2. Restart `rsyslog`.
 

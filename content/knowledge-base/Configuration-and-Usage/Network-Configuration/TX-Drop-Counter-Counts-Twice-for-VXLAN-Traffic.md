@@ -22,7 +22,7 @@ You also see the `HwIfOutNonQDrops` counter counting twice on routed uplink port
 
 ## Example
 
-Consider a network with node Host11 (connects directly to VTEP1 on port swp11) that communicates with Host22 (connects directly to VTEP2 on port swp22). An IP-routed network separates VTEP1 and VTEP2.
+Host11 connects directly to VTEP1 on port swp11 and communicates with Host2, which connects directly to VTEP2 on port swp22. An IP-routed network separates VTEP1 and VTEP2.
 
 For a unidirectional traffic flow from Host11 towards Host22:
 
@@ -35,7 +35,7 @@ In the following example, the host sends 10000 multicast packets:
 - The `RX_OK` column for swp5 shows 10005 and the `TX_OK` column for swp1 shows 20049. These indicate the physical network path for the traffic flow relevant to this example.
 - The `TX_OK` column for vni-1010 shows 20007, which indicates the network path across logical ports that are relevant to this example.
 
-On the ingress VTEP:
+### Ingress VTEP
 
 - The edge port (swp5) receives 10005 packets. 10001 packets show as TX drops on the ingress port because of split-horizon correction.
 - The routed uplink (swp1) sends 20049 packets toward the two remote VTEPs (VTEP2 and VTEP3). vni-1010 has two remote VTEPs in the flood list, so 20007 packets show as `TX_OK`; this is normal behavior.
@@ -58,7 +58,7 @@ swp51      1500     0        0        0         0        0       0         0    
 vni-1010   1500     0        3        0         0        0   20007         0        0        0 BMRU
 ```
 
-For the egress VTEP:
+### Egress VTEP
 
 - The routed uplink port (swp5) receives 10055 packets. 20009 packets show as TX drops on the ingress port (and 20011 packets for the corresponding VNI) because of split-horizon correction.
 - The edge port (swp49) sends 10061 packets towards the destination.

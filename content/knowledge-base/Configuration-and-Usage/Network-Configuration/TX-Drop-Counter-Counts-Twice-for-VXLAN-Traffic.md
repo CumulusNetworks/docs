@@ -29,16 +29,16 @@ For a unidirectional traffic flow from Host11 towards Host22:
 - The ingress VTEP counts TX drops on the edge port where it receives traffic (VTEP1, swp11) at a rate equal to the number of BUM packets that the ingress port receives (from the source of the traffic flow).
 - The egress VTEP counts TX drops on the routed uplink port (VTEP2, swp22) at a rate equal to number of BUM packets multiplied by number of remote VTEPs in the flood list (per VNI).
 
-In the following example, the host sends 10,000 multicast packets:
+In the following example, the host sends 10000 multicast packets:
 
-- Results in red indicate where the `TX_DRP` counter increments because of the split-horizon correction behavior.
-- Results in blue indicate the physical network path for the traffic flow relevant to this example.
-- Results in black indicate the network path across logical ports that are relevant to this example.
+- The `TX_DRP` column for swp5 shows 10001, which indicates where the `TX_DRP` counter increments because of the split-horizon correction behavior.
+- The `RX_OK` column for swp5 shows 10005 and the `TX_OK` column for swp1 shows 20049. These indicate the physical network path for the traffic flow relevant to this example.
+- The `TX_OK` column for vni-1010 shows 20007, which indicates the network path across logical ports that are relevant to this example.
 
 On the ingress VTEP:
 
-- The edge port (swp5) receives 10,005 packets. 10,001 packets show as TX drops on the ingress port because of split-horizon correction.
-- The routed uplink (swp1) sends 20,049 packets toward the two remote VTEPs (VTEP2 and VTEP3). vni-1010 has two remote VTEPs in the flood list, so 20,007 packets show as `TX_OK`; this is normal behavior.
+- The edge port (swp5) receives 10005 packets. 10001 packets show as TX drops on the ingress port because of split-horizon correction.
+- The routed uplink (swp1) sends 20049 packets toward the two remote VTEPs (VTEP2 and VTEP3). vni-1010 has two remote VTEPs in the flood list, so 20007 packets show as `TX_OK`; this is normal behavior.
 
 ```
 cumulus@vtep1:~$ net show counters
@@ -60,8 +60,8 @@ vni-1010   1500     0        3        0         0        0   20007         0    
 
 For the egress VTEP:
 
-- The routed uplink port (swp5) receives 10,055 packets. 20,009 packets show as TX drops on the ingress port (and 20,011 packets for the corresponding VNI) because of split-horizon correction.
-- The edge port (swp49) sends 10,061 packets towards the destination.
+- The routed uplink port (swp5) receives 10055 packets. 20009 packets show as TX drops on the ingress port (and 20011 packets for the corresponding VNI) because of split-horizon correction.
+- The edge port (swp49) sends 10061 packets towards the destination.
 
 ```
 cumulus@vtep2:~$ net show counters

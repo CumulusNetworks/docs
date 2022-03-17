@@ -151,7 +151,7 @@ You can upgrade Cumulus Linux in one of two ways:
 - Install a Cumulus Linux image of the new release, using ONIE.
 - Upgrade only the changed packages using the `sudo -E apt-get update` and `sudo -E apt-get upgrade` command.
 
-Cumulus Linux also provides the Smart System Manager that enables you to upgrade an active switch with minimal disruption to the network. See {{<link url="Smart-System-Manager" text="Smart System Manager">}}.
+Cumulus Linux also provides ISSU to upgrade an active switch with minimal disruption to the network. See {{<link url="In-Service-System-Upgrade-ISSU" text="ISSU">}}.
 
 {{%notice note%}}
 - To upgrade to Cumulus Linux 5.1.0, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with the `apt-get upgrade` command.

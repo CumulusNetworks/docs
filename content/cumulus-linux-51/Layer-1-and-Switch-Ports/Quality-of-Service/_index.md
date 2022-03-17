@@ -10,7 +10,7 @@ This section refers to frames for all internal QoS functionality. Unless explici
 Cumulus Linux supports several different [QoS](## "Quality of Service") features and standards including:
 - [COS](## "Class of Service") and [DSCP](## "Differentiated Services Code Point") marking and remarking
 - Shaping and policing
-- Egress traffic scheduling (802.1Qaz, Enhanced Transmission Selection)
+- Egress traffic scheduling (802.1Qaz, Enhanced Transmission Selection (ETS))
 - Flow control with IEEE Pause Frames, [PFC](## "Priority Flow Control"), and [ECN](## "Explicit Congestion Notification")
 - {{<link title="RDMA over Converged Ethernet - RoCE" text="Lossless and lossy RoCE ">}}
 

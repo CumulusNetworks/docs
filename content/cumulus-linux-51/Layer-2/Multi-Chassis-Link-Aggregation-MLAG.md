@@ -825,23 +825,23 @@ cumulus@leaf01:~$ systemctl status clagd.service
 
 ### Peer Link Consistency Check
 
-When you make an MLAG configuration change, Cumulus Linux validates the corresponding parameters on both MLAG peers automatically and takes action based on the type of conflict it sees. For every conflict, the `/var/log/clagd.log` file records a log message.
+When you make an MLAG configuration change, Cumulus Linux automatically validates the corresponding parameters on both MLAG peers and takes action based on the type of conflict it sees. For every conflict, the `/var/log/clagd.log` file records a log message.
 
-The following table shows the conflict types and actions that Cumulus Linux takes:
+The following table shows the conflict types and actions that Cumulus Linux takes.
 
 |  Conflict       | Type   | Action|
 | --------------- | ------ | ----- |
-| bridge-stp-mode | Global |  Proto-down only the MLAG bonds on the secondary switch when there is a mismatch. |
+| bridge-stp-mode | Global |  Proto-down only the MLAG bonds on the secondary switch when there is an [STP](## "Spanning Tree Protocol") mode mismatch across peers. |
 | clag-native-vlan | Interface | Proto-down only the MLAG bonds on the secondary switch when there is a mismatch. |
-| STP Root Bridge Priority | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a mismatch. |
-| system-mac | Global  | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a mismatch.|
-| peer-ip | Global   | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a mismatch. |
-| peerlink-mtu | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a mismatch. |
-| peerlink-native-vlan | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a mismatch.<br>Proto-down the MLAG bonds and VNIs on the secondary switch when there is no PVID. |
-| Vxlan Anycast IP | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is an anycast IP address mismatch across MLAG peers.<br>Proto-down the MLAG bonds and VNIs on the node where there is no configured anycast IP address. |
-| peerlink-bridge-member | Global | Proto-down the MLAG bonds and VNIs on the MLAG switch where this conflict exists. |
+| STP Root Bridge Priority | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is an [STP](## "Spanning Tree Protocol") priority mismatch across peers. |
+| system-mac | Global  | Proto-down the MLAG bonds and VNIs on the secondary switch when there is an MLAG system MAC address mismatch across peers.|
+| peer-ip | Global   | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a peer IP address mismatch. |
+| peerlink-mtu | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a peer link MTU mismatch across peers. |
+| peerlink-native-vlan | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a peerlink VLAN mismatch across peers.<br>Proto-down the MLAG bonds and VNIs on the secondary switch when there is no PVID. |
+| Vxlan Anycast IP | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is an anycast IP address mismatch across peers.<br>Proto-down the MLAG bonds and VNIs on the node where there is no configured anycast IP address. |
+| peerlink-bridge-member | Global | Proto-down the MLAG bonds and VNIs on the MLAG switch where there is a peerlink bridge member conflict. |
 | clag-bonds-bridge-member | Interface | Proto-down the MLAG bonds and VNIs on the MLAG switch where this conflict exists.      |
-| lacp-partner-mac | Interface | Proto-down the MLAG bonds on the MLAG switch where lacp-partner-mac is mismatch or if there is a duplicate partner-mac. |
+| lacp-partner-mac | Interface | Proto-down the MLAG bonds on the MLAG switch if there is an LACP partner MAC address mismatch or if there is a duplicate LACP partner MAC address. |
 | clag-vlans| Interface   |  Suspend the inconsistent VLANs on either MLAG peer if the VLANs are not part of the peer link or if there is mismatch of VLANs configured on the MLAG bonds between the MLAG peers. |
 | peerlink-vlans| Global | Suspend the inconsistent VLANs on either MLAG peer on all the dual-connected MLAG bonds and VXLAN interfaces. |
 | VLANs on VXLAN interface in TVD topology not part of peerlink| VXLAN  | Suspend the VLANs on the VXLAN interfaces that are inconsistent. |
@@ -851,49 +851,157 @@ You can also manually check for MLAG inconsistencies with the following commands
 {{< tabs "TabID851 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example command shows global parameters across both MLAG peers and lists any conflicts:
+The following example command shows global MLAG settings for each peer and indicates that the MLAG system MAC address does not match:
 
 ```
-cumulus@leaf01:~$ nv show mlag consistency-checker global
-
+cumulus@leaf01:mgmt:~$ nv show mlag consistency-checker global
+Parameter                LocalValue               PeerValue                Conflict                                Summary
+-----------------------  -----------------------  -----------------------  --------------------------------------  -------
++ anycast-ip             -                        -                        anycast ip not configured on clag node
++ bridge-priority        32768                    32768                    -
++ bridge-stp             on                       on                       -
++ bridge-type            vlan-aware               vlan-aware               -
++ clag-pkg-version       1.6.0-cl5.0.1+u15        1.6.0-cl5.0.1+u15        -
++ clag-protocol-version  1.6.0                    1.6.0                    -
++ peer-ip                fe80::4638:39ff:fe00:59  fe80::4638:39ff:fe00:59  -
++ peerlink-master        br_default               NOT-SYNCED               -
++ peerlink-mtu           9216                     9216                     -
++ peerlink-native-vlan   1                        1                        -
++ peerlink-vlans         1, 10, 20, 30            1, 10, 20, 30            -
++ redirect2-enable       yes                      yes                      -
++ system-mac             44:38:39:be:ef:ab        44:38:39:be:ef:aa        system mac mismatch between clag peers
 ```
 
-The following example command shows MLAG parameters for all interfaces across both MLAG peers and any lists any conflicts:
+The following example command shows MLAG settings for all interfaces on each peer with no conflicts:
 
 ```
-cumulus@leaf01:~$ nv show interface --view=mlag-cc
-
+cumulus@leaf01:mgmt:~$ nv show interface --view=mlag-cc
+Interface  Conflict  LocalValue         Parameter         PeerValue
+---------  --------  -----------------  ----------------  -----------------
++ bond1    -         yes                bridge-learning   yes
+  bond1    -         1                  clag-id           1
+  bond1    -         44:38:39:be:ef:aa  lacp-actor-mac    44:38:39:be:ef:aa
+  bond1    -         00:00:00:00:00:00  lacp-partner-mac  00:00:00:00:00:00
+  bond1    -         br_default         master            NOT-SYNCED
+  bond1    -         9216               mtu               9216
+  bond1    -         1                  native-vlan       1
+  bond1    -         1, 10, 20, 30      vlan-id           1, 10, 20, 30
++ bond2    -         yes                bridge-learning   yes
+  bond2    -         2                  clag-id           2
+  bond2    -         44:38:39:be:ef:aa  lacp-actor-mac    44:38:39:be:ef:aa
+  bond2    -         00:00:00:00:00:00  lacp-partner-mac  00:00:00:00:00:00
+  bond2    -         br_default         master            NOT-SYNCED
+  bond2    -         9216               mtu               9216
+  bond2    -         1                  native-vlan       1
+  bond2    -         1, 10, 20, 30      vlan-id           1, 10, 20, 30
++ bond3    -         yes                bridge-learning   yes
+  bond3    -         3                  clag-id           3
+  bond3    -         44:38:39:be:ef:aa  lacp-actor-mac    44:38:39:be:ef:aa
+  bond3    -         00:00:00:00:00:00  lacp-partner-mac  00:00:00:00:00:00
+  bond3    -         br_default         master            NOT-SYNCED
+  bond3    -         9216               mtu               9216
+  bond3    -         1                  native-vlan       1
+  bond3    -         1, 10, 20, 30      vlan-id           1, 10, 20, 30
 ```
 
-The following example command shows MLAG parameters for bond1 across both MLAG peers and lists any conflicts:
+The following example command shows the MLAG settings for bond1 on each peer and indicates that the MTU does not match:
 
 ```
-cumulus@leaf01:~$ nv show interface swp1 bond mlag consistency-checker
-
+cumulus@leaf01:mgmt:~$ nv show interface bond1 bond mlag consistency-checker
+Parameter           LocalValue         PeerValue          Conflict  Summary
+------------------  -----------------  -----------------  --------  -------
++ bridge-learning   yes                yes                -
++ clag-id           1                  1                  -
++ lacp-actor-mac    44:38:39:be:ef:aa  44:38:39:be:ef:aa  -
++ lacp-partner-mac  00:00:00:00:00:00  00:00:00:00:00:00  -
++ master            br_default         NOT-SYNCED         -
++ mtu               4800               1500               mtu mismatch on clag interface between clag peers
++ native-vlan       1                  1                  -
++ vlan-id           1, 10, 20, 30      1, 10, 20, 30      -
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-The following example command shows global parameters across both MLAG peers and lists any conflicts:
+The following example command shows global MLAG settings for each peer and indicates that the MLAG system MAC address does not match:
 
 ```
-cumulus@leaf01:~$ clagctl consistency-check global
-
+cumulus@leaf02:mgmt:~$ clagctl consistency-check global
+Parameter              LocalValue               PeerValue                Conflict
+---------------------  -----------------------  -----------------------  --------------------------------------
+system-mac             44:38:39:be:ef:ab        44:38:39:be:ef:aa        system mac mismatch between clag peers
+clag-protocol-version  1.6.0                    1.6.0                    -
+clag-pkg-version       1.6.0-cl5.0.1+u15        1.6.0-cl5.0.1+u15        -
+bridge-priority        32768                    32768                    -
+anycast-ip             -                        -                        anycast ip not configured on clag node
+peer-ip                fe80::4638:39ff:fe00:59  fe80::4638:39ff:fe00:59  -
+redirect2-enable       yes                      yes                      -
+peerlink-mtu           9216                     9216                     -
+bridge-type            vlan-aware               vlan-aware               -
+peerlink-master        br_default               NOT-SYNCED               -
+peerlink-vlans         1, 10, 20, 30            1, 10, 20, 30            -
+bridge-stp             on                       on                       -
+peerlink-native-vlan   1                        1                        -
 ```
 
-The following example command shows MLAG parameters for all interfaces across both MLAG peers and any lists any conflicts:
+The following example command shows MLAG settings for all interfaces on each peer with no conflicts:
 
 ```
-cumulus@leaf01:~$ clagctl consistency-check interface
+cumulus@leaf01:mgmt:~$ clagctl consistency-check interface
+Clag Interface: bond1
+=====================
+Parameter         LocalValue         PeerValue          Conflict
+----------------  -----------------  -----------------  ----------
+clag-id           1                  1                  -
+lacp-partner-mac  00:00:00:00:00:00  00:00:00:00:00:00  -
+lacp-actor-mac    44:38:39:be:ef:aa  44:38:39:be:ef:aa  -
+vlan-id           1, 10, 20, 30      1, 10, 20, 30      -
+native-vlan       1                  1                  -
+master            br_default         NOT-SYNCED         -
+mtu               9216               9216               -
+bridge-learning   yes                yes                -
 
+Clag Interface: bond2
+=====================
+Parameter         LocalValue         PeerValue          Conflict
+----------------  -----------------  -----------------  ----------
+clag-id           2                  2                  -
+lacp-partner-mac  00:00:00:00:00:00  00:00:00:00:00:00  -
+lacp-actor-mac    44:38:39:be:ef:aa  44:38:39:be:ef:aa  -
+vlan-id           1, 10, 20, 30      1, 10, 20, 30      -
+native-vlan       1                  1                  -
+master            br_default         NOT-SYNCED         -
+mtu               9216               9216               -
+bridge-learning   yes                yes                -
+
+Clag Interface: bond3
+=====================
+Parameter         LocalValue         PeerValue          Conflict
+----------------  -----------------  -----------------  ----------
+clag-id           3                  3                  -
+lacp-partner-mac  00:00:00:00:00:00  00:00:00:00:00:00  -
+lacp-actor-mac    44:38:39:be:ef:aa  44:38:39:be:ef:aa  -
+vlan-id           1, 10, 20, 30      1, 10, 20, 30      -
+native-vlan       1                  1                  -
+master            br_default         NOT-SYNCED         -
+mtu               9216               9216               -
+bridge-learning   yes                yes                -
 ```
 
-The following example command shows MLAG parameters for bond1 across both MLAG peers and lists any conflicts:
+The following example command shows MLAG parameters for bond1 on each peer and indicates that the MTU does not match:
 
 ```
-cumulus@leaf01:~$ clagctl consistency-check bond1
-
+cumulus@leaf01:mgmt:~$ clagctl consistency-check interface bond1
+Parameter         LocalValue         PeerValue          Conflict
+----------------  -----------------  -----------------  ----------
+clag-id           1                  1                  -
+lacp-partner-mac  00:00:00:00:00:00  00:00:00:00:00:00  -
+lacp-actor-mac    44:38:39:be:ef:aa  44:38:39:be:ef:aa  -
+vlan-id           1, 10, 20, 30      1, 10, 20, 30      -
+native-vlan       1                  1                  -
+master            br_default         NOT-SYNCED         -
+mtu               1480               1500               mtu mismatch on clag interface between clag peers
+bridge-learning   yes                yes                -
 ```
 
 {{< /tab >}}
@@ -940,7 +1048,7 @@ NIC statistics:
 You can also run the `net show counters` command. The number of dropped packets shows in the `RX_DRP` column.
 
 ```
-cumulus@leaf01:~$ net show counters
+cumulus@leaf01:mgmt:~$ net show counters
 
 Kernel Interface table
 Iface            MTU    RX_OK    RX_ERR    RX_DRP    RX_OVR    TX_OK    TX_ERR    TX_DRP    TX_OVR  Flg
@@ -973,7 +1081,7 @@ When an interface goes into a `protodown` state, it results in a local OPER DOWN
 To show an interface in `protodown` state, run the Linux `ip link show` command or the `net show bridge link` command. For example:
 
 ```
-cumulus@leaf01:~$ ip link show
+cumulus@leaf01:mgmt:~$ ip link show
 3: swp1 state DOWN: <NO-CARRIER,BROADCAST,MULTICAST,MASTER,UP> mtu 9216 master pfifo_fast master host-bond1 state DOWN mode DEFAULT qlen 500 protodown on
     link/ether 44:38:39:00:69:84 brd ff:ff:ff:ff:ff:ff
 ```

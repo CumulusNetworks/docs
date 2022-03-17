@@ -1,15 +1,19 @@
 ---
-title: Smart System Manager
+title: In Service System Upgrade - ISSU
 author: NVIDIA
 weight: 275
 toc: 3
 ---
-Use Smart System Manager to upgrade and troubleshoot an active switch with minimal disruption to the network.
+Use [ISSU](## "In Service System Upgrade") to upgrade and troubleshoot an active switch with minimal disruption to the network.
 
-Smart System Manager includes the following modes:
+ISSU includes the following modes:
 - Restart
 - Upgrade
 - Maintenance
+
+{{%notice note%}}
+In earlier Cumulus Linux releases, ISSU was Smart System Manager.
+{{%/notice%}}
 
 ## Restart Mode
 
@@ -132,7 +136,7 @@ Depending on your configuration and network topology, complete isolation is not 
 
 ### Enable Maintenance Mode
 
-Run the following command to enable maintenance mode. When maintenance mode is on, Smart System Manager performs a {{<link url="Optional-BGP-Configuration/#graceful-bgp-shutdown" text="graceful BGP shutdown">}}, redirects traffic over the peerlink and brings down the MLAG port link. `switchd` maintains full capability.
+Run the following command to enable maintenance mode. When maintenance mode is on, ISSU performs a {{<link url="Optional-BGP-Configuration/#graceful-bgp-shutdown" text="graceful BGP shutdown">}}, redirects traffic over the peerlink and brings down the MLAG port link. `switchd` maintains full capability.
 
 {{< tabs "150 ">}}
 {{< tab "NVUE Command ">}}
@@ -173,7 +177,7 @@ Before you disable maintenance mode, be sure to bring the ports back up.
 
 ### Disable Maintenance Mode
 
-Run the following command to disable maintenance mode and restore normal operation. When maintenance mode is off, Smart System Manager performs a soft restart, runs a BGP graceful restart, and brings the MLAG port link back up. `switchd` maintains full capability.
+Run the following command to disable maintenance mode and restore normal operation. When maintenance mode is off, ISSU performs a soft restart, runs a BGP graceful restart, and brings the MLAG port link back up. `switchd` maintains full capability.
 
 {{< tabs "210 ">}}
 {{< tab "NVUE Command ">}}

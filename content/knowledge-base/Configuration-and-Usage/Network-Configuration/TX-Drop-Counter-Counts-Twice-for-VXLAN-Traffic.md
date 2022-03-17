@@ -22,7 +22,7 @@ You also see the `HwIfOutNonQDrops` counter counting twice on routed uplink port
 
 ## Example
 
-Consider a network with node Host11 (connects directly to VTEP1 on port swp11) that communicates with Host22 (connects directly to VTEP2 on port swp22). An IP-routed network separates VTEP1 and VTEP2.
+Host11 connects directly to VTEP1 on port swp11 and communicates with Host2, which connects directly to VTEP2 on port swp22. An IP-routed network separates VTEP1 and VTEP2.
 
 For a unidirectional traffic flow from Host11 towards Host22:
 

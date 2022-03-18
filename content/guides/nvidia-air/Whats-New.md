@@ -13,6 +13,7 @@ Check out some of the latest features added to the {{<exlink url="https://air.nv
 - Fixed a bug that prevented VMs from being `Reset` after the guest OS is shutdown [82.2022.0317-014]
 - Fixed a bug that prevented NetQ accounts from being created for some simulations [82.2022.0317-014]
 - Fixed a visual issue that prevented the simulation list from using all of its available space [82.2022.0317-014]
+- Fixed support for email addresses with non-alphanumeric characters [82.2022.0318-009]
 <!-- Air:WhatsNew -->
 - Share simulations with your colleagues using the new and improved organizations feature. {{<link url="/Organizations" text="Click here">}} for more details. [82.2022.0314-010]
 - Resolved an error that occurred when logging in to Air via https://www.nvidia.com/en-us/networking/network-simulation/ [82.2022.0309]

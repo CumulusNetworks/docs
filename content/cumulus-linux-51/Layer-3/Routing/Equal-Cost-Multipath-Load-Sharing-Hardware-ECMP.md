@@ -372,7 +372,7 @@ To enable adaptive routing:
    - For each port on which you want to enable adaptive routing, set the `interface.<port>.adaptive_routing.enable` parameter to `TRUE`. You must configure adaptive routing on *all* ports that are part of the same ECMP route. Make sure the ports are physical uplink ports. The example configures adaptive routing on swp51.
 
    ```
-   cumulus@switch:~$ sudo nano etc/cumulus/switchd.d/adaptive_routing.conf
+   cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
    ## Global adaptive-routing enable/disable setting 
    adaptive_routing.enable = TRUE
    ...

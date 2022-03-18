@@ -838,11 +838,14 @@ The following table shows the conflict types and actions that Cumulus Linux take
 | Peer link native VLAN | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a peer link VLAN mismatch across peers.<br>Proto-down the MLAG bonds and VNIs on the secondary switch when there is no PVID. |
 | VXLAN anycast IP address | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is an anycast IP address mismatch across peers.<br>Proto-down the MLAG bonds and VNIs on the node where there is no configured anycast IP address. |
 | Peer link bridge member | Global | Proto-down the MLAG bonds and VNIs on the MLAG switch where there is a peer link bridge member conflict. |
-| MLAG bonds bridge member | Interface | Proto-down the MLAG bonds and VNIs on the MLAG switch where this conflict exists.      |
+| MLAG bond bridge member | Interface | Proto-down the MLAG bonds and VNIs on the MLAG switch if the MLAG bond is not a bridge member. |
 | LACP partner MAC address | Interface | Proto-down the MLAG bonds on the MLAG switch if there is an LACP partner MAC address mismatch or if there is a duplicate LACP partner MAC address. |
 | MLAG VLANs| Interface   |  Suspend the inconsistent VLANs on either MLAG peer if the VLANs are not part of the peer link or if there is mismatch of VLANs configured on the MLAG bonds between the MLAG peers. |
 | Peer link VLANs| Global | Suspend the inconsistent VLANs on either MLAG peer on all the dual-connected MLAG bonds and VXLAN interfaces. |
 | VLANs on VXLAN interface in TVD topology not part of peer link| VXLAN  | Suspend the VLANs on the VXLAN interfaces that are inconsistent. |
+| VLAN mismatch on VXLAN interface | Interface | Suspend the inconsistent VLAN on either MLAG peer if there is a VLAN mismatch on VXLAN interfaces.|
+| MLAG protocol version | Global | The consistency checker reports that there is an MLAG protocol version mismatch between the MLAG peers. Cumulus Linux does not take any distruptive action. |
+| MLAG package version | Global| The consistency checker reports that there is an MLAG package version mismatch between the MLAG peers. Cumulus Linux does not take any disruptive action.|
 
 You can also manually check for MLAG inconsistencies with the following commands:
 
@@ -851,15 +854,11 @@ You can also manually check for MLAG inconsistencies with the following commands
 
 The following example command shows global MLAG settings for each peer and indicates that the MLAG system MAC address does not match.
 
-{{%notice note%}}
-The example output also shows that there is no anycast IP address on the MLAG node. You only need to configure the anycast IP address in {{<link title="VXLAN Active-active Mode" text="VXLAN active-active mode">}}.
-{{%/notice%}}
-
 ```
 cumulus@leaf01:mgmt:~$ nv show mlag consistency-checker global
 Parameter                LocalValue               PeerValue                Conflict                                Summary
 -----------------------  -----------------------  -----------------------  --------------------------------------  -------
-+ anycast-ip             -                        -                        anycast ip not configured on clag node
++ anycast-ip             -                        -                        -
 + bridge-priority        32768                    32768                    -
 + bridge-stp             on                       on                       -
 + bridge-type            vlan-aware               vlan-aware               -
@@ -927,10 +926,6 @@ Parameter           LocalValue         PeerValue          Conflict  Summary
 
 The following example command shows global MLAG settings for each peer and indicates that the MLAG system MAC address does not match.
 
-{{%notice note%}}
-The example output also shows that there is no anycast IP address on the MLAG node. You only need to configure the anycast IP address in {{<link url="VXLAN-Active-Active-Mode" text="VXLAN active-active mode">}}.
-{{%/notice%}}
-
 ```
 cumulus@leaf02:mgmt:~$ clagctl consistency-check global
 Parameter              LocalValue               PeerValue                Conflict
@@ -939,7 +934,7 @@ system-mac             44:38:39:be:ef:ab        44:38:39:be:ef:aa        system 
 clag-protocol-version  1.6.0                    1.6.0                    -
 clag-pkg-version       1.6.0-cl5.0.1+u15        1.6.0-cl5.0.1+u15        -
 bridge-priority        32768                    32768                    -
-anycast-ip             -                        -                        anycast ip not configured on clag node
+anycast-ip             -                        -                        -
 peer-ip                fe80::4638:39ff:fe00:59  fe80::4638:39ff:fe00:59  -
 redirect2-enable       yes                      yes                      -
 peerlink-mtu           9216                     9216                     -

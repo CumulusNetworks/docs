@@ -424,7 +424,7 @@ The `clagd` service has several timers that you can tune for enhanced performanc
 | ----- | ----------- |
 | `--reloadTimer <seconds>` | The number of seconds to wait for the peer switch to become active. If the peer switch does not become active after the timer expires, the MLAG bonds leave the initialization ({{<link url="#peer-link-interfaces-and-the-protodown-state" text="protodown">}}) state and become active. This provides `clagd` with sufficient time to determine whether the peer switch is coming up or if it is permanently unreachable. <br>The default is 300 seconds.|
 | `--peerTimeout <seconds>`<br> | The number of seconds `clagd` waits without receiving any messages from the peer switch before it determines that the peer is no longer active. At this point, the switch reverts all configuration changes so that it operates as a standard non-MLAG switch. This includes removing all statically assigned MAC addresses, clearing the egress forwarding mask, and allowing addresses to move from any port to the peer port. After a message is again received from the peer, MLAG operation restarts. If this parameter is not specified, `clagd` uses ten times the local `lacpPoll` value. |
-| `--initDelay <seconds>` | The number of seconds `clagd` delays bringing up MLAG bonds and anycast IP addresses. <br>The default is 180 seconds.<br>This timer sets to 0 automatically under the following conditions:<ul><li>When the peer is not alive and the backup link is not active after a reload timeout</li><li>When the peer sends a goodbye (through the peerlink or the backup link)</li><li>When both MLAG sessions come up at the same time</li></ul>|
+| `--initDelay <seconds>` | The number of seconds `clagd` delays bringing up MLAG bonds and anycast IP addresses. <br>The default is 180 seconds.<br>This timer sets to 0 automatically under the following conditions:<ul><li>When the peer is not alive and the backup link is not active after a reload timeout</li><li>When the peer sends a goodbye (through the peer link or the backup link)</li><li>When both MLAG sessions come up at the same time</li></ul>|
 | `--sendTimeout <seconds>` | The number of seconds `clagd` waits until the sending socket times out. If it takes longer than the `sendTimeout` value to send data to the peer, `clagd` generates an exception. <br>The default is 30 seconds. |
 | `--lacpPoll <seconds>` | The number of seconds `clagd` waits before obtaining local LACP information. <br>The default is 2 seconds.|
 
@@ -508,7 +508,7 @@ iface br0.10
 ```
 
 {{%notice note%}}
-In an MLAG and traditional bridge configuration, NVIDIA recommends that you set bridge learning to off on all VLANs over the peerlink except for the layer 3 peerlink subinterface; for example:
+In an MLAG and traditional bridge configuration, NVIDIA recommends that you set bridge learning to off on all VLANs over the peerlink except for the layer 3 peer link subinterface; for example:
 
 ```
 ...
@@ -556,7 +556,7 @@ Follow these best practices when configuring MLAG on your switches.
 
 The bridge MTU determines the {{<link url="Switch-Port-Attributes#mtu" text="MTU">}} in MLAG traffic. The lowest MTU setting of an interface that is a member of the bridge determines the bridge MTU. If you want to set an MTU other than the default of 9216 bytes, you must configure the MTU on each physical interface and the bond interface that is a member of every MLAG bridge in the entire bridged domain.
 
-The following example commands set an MTU of 1500 for each of the bond interfaces (peerlink, uplink, bond1, bond2), which are members of bridge *bridge*:
+The following example commands set an MTU of 1500 for each of the bond interfaces (peer link, uplink, bond1, bond2), which are members of bridge *bridge*:
 
 {{< tabs "TabID498 ">}}
 {{< tab "NVUE Commands ">}}
@@ -644,11 +644,9 @@ When you use MLAG with VRR, set up a routed adjacency across the peerlink.4094 i
 To set up the adjacency, configure a {{<link url="Border-Gateway-Protocol-BGP#bgp-unnumbered" text="BGP">}} or {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} unnumbered peering, as appropriate for your network.
 
 {{%notice note%}}
-
-The {{<link url="#large-packet-drops-on-the-peer-link-interface" text="MLAG loop avoidance mechanism">}} also drops routed traffic that arrives on an MLAG peerlink interface and routes to a dual-connected VNI.
+The {{<link url="#large-packet-drops-on-the-peer-link-interface" text="MLAG loop avoidance mechanism">}} also drops routed traffic that arrives on an MLAG peer link interface and routes to a dual-connected VNI.
 
 If you need to route unencapsulated traffic to an MLAG peer switch for VXLAN forwarding to accommodate uplink failures or other design needs, configure a routing adjacency across a separate routed interface that is not the MLAG `peerlink`.
-
 {{%/notice%}}
 
 For BGP, use a configuration like this:
@@ -831,27 +829,31 @@ The following table shows the conflict types and actions that Cumulus Linux take
 
 |  Conflict       | Type   | Action|
 | --------------- | ------ | ----- |
-| bridge-stp-mode | Global |  Proto-down only the MLAG bonds on the secondary switch when there is an [STP](## "Spanning Tree Protocol") mode mismatch across peers. |
-| clag-native-vlan | Interface | Proto-down only the MLAG bonds on the secondary switch when there is a mismatch. |
-| STP Root Bridge Priority | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is an [STP](## "Spanning Tree Protocol") priority mismatch across peers. |
-| system-mac | Global  | Proto-down the MLAG bonds and VNIs on the secondary switch when there is an MLAG system MAC address mismatch across peers.|
-| peer-ip | Global   | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a peer IP address mismatch. |
-| peerlink-mtu | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a peer link MTU mismatch across peers. |
-| peerlink-native-vlan | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a peerlink VLAN mismatch across peers.<br>Proto-down the MLAG bonds and VNIs on the secondary switch when there is no PVID. |
-| Vxlan Anycast IP | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is an anycast IP address mismatch across peers.<br>Proto-down the MLAG bonds and VNIs on the node where there is no configured anycast IP address. |
-| peerlink-bridge-member | Global | Proto-down the MLAG bonds and VNIs on the MLAG switch where there is a peerlink bridge member conflict. |
-| clag-bonds-bridge-member | Interface | Proto-down the MLAG bonds and VNIs on the MLAG switch where this conflict exists.      |
-| lacp-partner-mac | Interface | Proto-down the MLAG bonds on the MLAG switch if there is an LACP partner MAC address mismatch or if there is a duplicate LACP partner MAC address. |
-| clag-vlans| Interface   |  Suspend the inconsistent VLANs on either MLAG peer if the VLANs are not part of the peer link or if there is mismatch of VLANs configured on the MLAG bonds between the MLAG peers. |
-| peerlink-vlans| Global | Suspend the inconsistent VLANs on either MLAG peer on all the dual-connected MLAG bonds and VXLAN interfaces. |
-| VLANs on VXLAN interface in TVD topology not part of peerlink| VXLAN  | Suspend the VLANs on the VXLAN interfaces that are inconsistent. |
+| Bridge STP mode | Global |  Proto-down only the MLAG bonds on the secondary switch when there is an [STP](## "Spanning Tree Protocol") mode mismatch across peers. |
+| MLAG native VLAN | Interface | Proto-down only the MLAG bonds on the secondary switch when there is native VLAN mismatch. |
+| STP root bridge priority | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is an [STP](## "Spanning Tree Protocol") priority mismatch across peers. |
+| MLAG system MAC address | Global  | Proto-down the MLAG bonds and VNIs on the secondary switch when there is an MLAG system MAC address mismatch across peers.|
+| Peer IP | Global   | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a peer IP address mismatch. |
+| Peer link MTU | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a peer link MTU mismatch across peers. |
+| Peer link native VLAN | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a peer link VLAN mismatch across peers.<br>Proto-down the MLAG bonds and VNIs on the secondary switch when there is no PVID. |
+| VXLAN anycast IP address | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is an anycast IP address mismatch across peers.<br>Proto-down the MLAG bonds and VNIs on the node where there is no configured anycast IP address. |
+| Peer link bridge member | Global | Proto-down the MLAG bonds and VNIs on the MLAG switch where there is a peer link bridge member conflict. |
+| MLAG bonds bridge member | Interface | Proto-down the MLAG bonds and VNIs on the MLAG switch where this conflict exists.      |
+| LACP partner MAC address | Interface | Proto-down the MLAG bonds on the MLAG switch if there is an LACP partner MAC address mismatch or if there is a duplicate LACP partner MAC address. |
+| MLAG VLANs| Interface   |  Suspend the inconsistent VLANs on either MLAG peer if the VLANs are not part of the peer link or if there is mismatch of VLANs configured on the MLAG bonds between the MLAG peers. |
+| Peer link VLANs| Global | Suspend the inconsistent VLANs on either MLAG peer on all the dual-connected MLAG bonds and VXLAN interfaces. |
+| VLANs on VXLAN interface in TVD topology not part of peer link| VXLAN  | Suspend the VLANs on the VXLAN interfaces that are inconsistent. |
 
 You can also manually check for MLAG inconsistencies with the following commands:
 
 {{< tabs "TabID851 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example command shows global MLAG settings for each peer and indicates that the MLAG system MAC address does not match:
+The following example command shows global MLAG settings for each peer and indicates that the MLAG system MAC address does not match.
+
+{{%notice note%}}
+The example output also shows that there is no anycast IP address on the MLAG node. You only need to configure the anycast IP address in {{<link title="VXLAN Active-active Mode" text="VXLAN active-active mode">}}.
+{{%/notice%}}
 
 ```
 cumulus@leaf01:mgmt:~$ nv show mlag consistency-checker global
@@ -923,7 +925,11 @@ Parameter           LocalValue         PeerValue          Conflict  Summary
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-The following example command shows global MLAG settings for each peer and indicates that the MLAG system MAC address does not match:
+The following example command shows global MLAG settings for each peer and indicates that the MLAG system MAC address does not match.
+
+{{%notice note%}}
+The example output also shows that there is no anycast IP address on the MLAG node. You only need to configure the anycast IP address in {{<link url="VXLAN-Active-Active-Mode" text="VXLAN active-active mode">}}.
+{{%/notice%}}
 
 ```
 cumulus@leaf02:mgmt:~$ clagctl consistency-check global

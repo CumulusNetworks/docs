@@ -52,8 +52,8 @@ You will be prompted to confirm uninstallation, type `YES` and hit `Enter` (simi
 
 {{%notice info%}}
 
-If the switch was shipped with ONYX from the factory, its platform identifier (PSID) code is restricted to ONYX. Hence only NVIDIA optics will be supported on it.</br> 
-Cumulus Linux does not have this restriction, so when migrating ONYX to Cumulus Linux, the PSID must be changed in order to remove this lock and enable all non-NVIDIA optics.</br> 
+If the switch was shipped with ONYX from the factory, its platform identifier (PSID) code is restricted to ONYX. Hence only NVIDIA optics will be supported on it. 
+Cumulus Linux does not have this restriction, so when migrating ONYX to Cumulus Linux, the PSID must be changed in order to remove this lock and enable all non-NVIDIA optics.</
 In future releases, this will be done automatically. For more information and assistance in this proccess, contact NVIDIA support.
 
 {{%/notice%}}

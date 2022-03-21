@@ -47,11 +47,11 @@ To confirm that you want to uninstall the MLNX network operating system, type `Y
 
    {{< img src = "/images/knowledge-base/uninstall-onyx/discovery stop.png" >}}
 
-After you uninstall the ONYX image, you can install the Cumulus Linux image. Refer to [Installing a New Cumulus Linux Image]({{<ref "/cumulus-linux-50/Installation-Management/Installing-a-New-Cumulus-Linux-Image.md" >}}).
+7. Install the Cumulus Linux image. Refer to [Installing a New Cumulus Linux Image]({{<ref "/cumulus-linux-50/Installation-Management/Installing-a-New-Cumulus-Linux-Image.md" >}}).
 
 {{%notice info%}}
 If the switch ships with ONYX from the factory, the platform identifier (PSID) code restricts the switch to ONYX and the switch only supports NVIDIA optics. When migrating from ONYX to Cumulus Linux, you must change the PSID to remove this lock and enable all non-NVIDIA optics.
 Future releases plan to change the PSID automatically. For more information, contact NVIDIA support.
 {{%/notice%}}
 
-To make the transition from ONYX to NVUE configuration easier, you can use this {{<exlink url="https://air.nvidia.com/migrate/" text="NVUE Migration Tool">}} to convert your ONYX to NVUE configuration by uploading the running-configuration file from ONYX switch.
+To make the transition from ONYX to NVUE easier, you can use this {{<exlink url="https://air.nvidia.com/migrate/" text="NVUE Migration Tool">}} to upload the running configuration file from the ONYX switch.

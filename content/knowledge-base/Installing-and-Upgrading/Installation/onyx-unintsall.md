@@ -11,42 +11,41 @@ Follow these step-by-step uninstallation proccess:
 
 1. Login into the ONYX switch and reboot it using the `reload` command
 
-    {{< img src = "/images/knowledge-base/onyx-uninstall/onyx-reload.PNG" >}}
+{{< img src = "/images/knowledge-base/onyx-uninstall/onyx-reload.PNG" >}}
 
 2. On switch boot, select the `ONIE: Uninstall OS` from the ONIE grub menu and hit `Enter`
 
-    {{< img src = "/images/knowledge-base/onyx-uninstall/onie-uninstall.PNG" >}}
+{{< img src = "/images/knowledge-base/onyx-uninstall/onie-uninstall.PNG" >}}
 
 {{%notice note%}}
 On very old ONYX versions, which was previously called *MLNX OS*, you may see a different grub menu. In that case, select `ONIE` and hit `Enter`
-
-    {{< img src = "/images/knowledge-base/onyx-uninstall/old-onyx.PNG" >}}
+{{< img src = "/images/knowledge-base/onyx-uninstall/old-onyx.PNG" >}}
 
 You will be prompted to confirm uninstallation, type `YES` and hit `Enter` (similar to the next step). This process could take 60-90 minutes.
 
-    {{< img src = "/images/knowledge-base/onyx-uninstall/old-onyx2.PNG" >}}
+{{< img src = "/images/knowledge-base/onyx-uninstall/old-onyx2.PNG" >}}
 
 {{%/notice%}}
 
 3. Once you select the *onie-uninstall os* mode, you will be prompted to confirm the ONYX NOS uninstallation, type `YES` and hit `Enter`
 
-    {{< img src = "/images/knowledge-base/onyx-uninstall/onie-yes.PNG" >}}
+{{< img src = "/images/knowledge-base/onyx-uninstall/onie-yes.PNG" >}}
 
 4. Now, the uninstallation process will start. It could take a few minutes (but usually several seconds). At the end of the process, the switch reboots automatically and will boot into ONIE again.
 
-    {{< img src = "/images/knowledge-base/onyx-uninstall/onie-uninstall-start.PNG" >}}
+{{< img src = "/images/knowledge-base/onyx-uninstall/onie-uninstall-start.PNG" >}}
 
 5. Once the switch booted back to the ONIE grub menu, select `ONIE: Install OS` and hit `Enter` (this is an automatic selection)
 
-    {{< img src = "/images/knowledge-base/onyx-uninstall/onie-install-os.PNG" >}}
+{{< img src = "/images/knowledge-base/onyx-uninstall/onie-install-os.PNG" >}}
 
 6. After the switch enters into the OS installation mode, it will start the auto-discovery process
 
-    {{< img src = "/images/knowledge-base/onyx-uninstall/install mode.PNG" >}}
+{{< img src = "/images/knowledge-base/onyx-uninstall/install mode.PNG" >}}
 
 7. You can stop the process by hitting `Enter` and executing the the `onie-discovery-stop` command
 
-    {{< img src = "/images/knowledge-base/onyx-uninstall/discovery stop.PNG" >}}
+{{< img src = "/images/knowledge-base/onyx-uninstall/discovery stop.PNG" >}}
 
 8. Now, you can follow the Cumulus Linux image installation steps described in the [Installing a New Cumulus Linux Image]({{<ref "/cumulus-linux-50/Installation-Management/Installing-a-New-Cumulus-Linux-Image.md" >}}) page. 
 

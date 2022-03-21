@@ -22,12 +22,12 @@ On very old ONYX releases, called *MLNX OS*, you might see a different grub menu
 
 {{< img src = "/images/knowledge-base/uninstall-onyx/old-onyx.png" >}}
 
-At the prompt to confirm that you want to uninstall the ONYX network operating system, type `YES`, then press `Enter`. This process can take up to 90 minutes.
+To confirm that you want to uninstall the ONYX network operating system, type `YES` tt the prompt, then press `Enter`. This process can take up to 90 minutes.
 
 {{< img src = "/images/knowledge-base/uninstall-onyx/old-onyx2.png" >}}
 {{%/notice%}}
 
-3. At the prompt to confirm that you want to uninstall the ONYX network operating system, type `YES`, then press `Enter`.
+3. To confirm that you want to uninstall the ONYX network operating system, type `YES` at the prompt, then press `Enter`.
 
    {{< img src = "/images/knowledge-base/uninstall-onyx/onie-yes.png" >}}
 

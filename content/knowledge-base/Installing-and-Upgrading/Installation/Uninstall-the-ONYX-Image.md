@@ -39,7 +39,7 @@ To confirm that you want to uninstall the ONYX network operating system, type `Y
 
    {{< img src = "/images/knowledge-base/uninstall-onyx/onie-install-os.png" >}}
 
-6. After the switch enters OS installation mode, the auto-discovery process starts.
+6. After the switch enters OS Install mode, the ONIE Service Discovery process starts.
 
    {{< img src = "/images/knowledge-base/uninstall-onyx/install mode.png" >}}
 

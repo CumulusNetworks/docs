@@ -5,9 +5,9 @@ weight: 252
 toc: 4
 ---
 
-If you are migrating from {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/onyx/" text="ONYX">}} to Cumulus Linux, firest you have to uninstall the ONYX image from the switch. 
+If you are migrating from {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/onyx/" text="ONYX">}} to Cumulus Linux, first you have to uninstall the ONYX image from the switch. 
 
-Follow these step-by-step uninstallation proccess:
+Follow thןד step-by-step proccess:
 
 1. Login into the ONYX switch and reboot it using the `reload` command
 

@@ -575,11 +575,11 @@ Follow these step-by-step uninstallation proccess:
 {{%notice note%}}
 On very old ONYX versions, which was previously called *MLNX OS*, you may see a different grub menu. In that case, select `ONIE` and hit `Enter`
 
-    {{< img src = "/images/cumulus-linux/old-onyx.PNG" >}}
+    {{< img src = "/images/cumulus-linux/old-onyx.png" >}}
 
 You will be prompted to confirm uninstallation, type `YES` and hit `Enter` (similar to the next step). This process could take 60-90 minutes.
 
-    {{< img src = "/images/cumulus-linux/old-onyx2.PNG" >}}
+    {{< img src = "/images/cumulus-linux/old-onyx2.png" >}}
 
 {{%/notice%}}
 

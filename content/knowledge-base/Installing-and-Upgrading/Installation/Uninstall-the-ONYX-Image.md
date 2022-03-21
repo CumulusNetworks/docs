@@ -7,7 +7,7 @@ toc: 4
 
 If you want to migrate from {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/onyx/" text="ONYX">}} to Cumulus Linux, you must uninstall the ONYX image from the switch before you install Cumulus Linux.
 
-To uninstall the ONYX image:
+Follow this procedure:
 
 1. Log in to the ONYX switch, then run the `reload` command to reboot the switch.
 
@@ -54,4 +54,4 @@ If the switch ships with ONYX from the factory, the platform identifier (PSID) c
 Future releases plan to change the PSID automatically. For more information, contact NVIDIA support.
 {{%/notice%}}
 
-To make the transition from ONYX to NVUE easier, you can use this {{<exlink url="https://air.nvidia.com/migrate/" text="NVUE Migration Tool">}} to upload the running configuration file from the ONYX switch.
+To ease the transition from ONYX to NVUE, you can upload the running configuration file from the ONYX switch with this {{<exlink url="https://air.nvidia.com/migrate/" text="NVUE Migration Tool">}}.

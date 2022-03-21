@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3012899</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3008388</td>
+<td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
+<td>4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3007605</td>
 <td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
 Vulnerable: &lt;= 1.1.1d-0+deb10u7
@@ -18,6 +30,13 @@ Fixed: 1.1.1d-0+deb10u8</td>
 <td>3007564</td>
 <td>When you remove the last {{vxlan-remoteip}} configuration line from a VNI in the {{/etc/network/interfaces}} file, the flood entry is not removed from the kernel.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2999253</td>
+<td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload. 
+This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml packages, which are required for the {{switchd}} consistency check.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -232,9 +251,21 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td></td>
 </tr>
 <tr>
+<td>2896672</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2896450</td>
 <td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2879645</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1858,6 +1889,12 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3012899</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3007605</td>
 <td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
 Vulnerable: &lt;= 1.1.1d-0+deb10u7
@@ -1869,6 +1906,13 @@ Fixed: 1.1.1d-0+deb10u8</td>
 <td>3007564</td>
 <td>When you remove the last {{vxlan-remoteip}} configuration line from a VNI in the {{/etc/network/interfaces}} file, the flood entry is not removed from the kernel.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2999253</td>
+<td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload. 
+This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml packages, which are required for the {{switchd}} consistency check.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2135,9 +2179,21 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td></td>
 </tr>
 <tr>
+<td>2896672</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2896450</td>
 <td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2879645</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3948,6 +4004,12 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3012899</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3007605</td>
 <td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
 Vulnerable: &lt;= 1.1.1d-0+deb10u7
@@ -3959,6 +4021,13 @@ Fixed: 1.1.1d-0+deb10u8</td>
 <td>3007564</td>
 <td>When you remove the last {{vxlan-remoteip}} configuration line from a VNI in the {{/etc/network/interfaces}} file, the flood entry is not removed from the kernel.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2999253</td>
+<td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload. 
+This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml packages, which are required for the {{switchd}} consistency check.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4219,6 +4288,12 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td></td>
 </tr>
 <tr>
+<td>2896672</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2896450</td>
 <td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
@@ -4251,6 +4326,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>TACACS+ and RADIUS package installation from the CumulusLinux-4.4-latest distribution on apt.cumulusnetworks.com fails because package metadata in the preinstalled {{cumulus-local-apt-archive}} package is incorrect.  The SHA512 checksum causes a hash sum mismatch.</td>
 <td>4.4.0-4.4.1</td>
 <td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2879645</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2877796</td>

@@ -18,11 +18,11 @@ To uninstall the ONYX image:
    {{< img src = "/images/knowledge-base/uninstall-onyx/onie-uninstall.png" >}}
    
    {{%notice note%}}
-On very old ONYX releases, called *MLNX OS*, you might see a different GRUB menu. In this case, select `ONIE` and press `Enter`.
+On older ONYX releases, called *MLNX OS*, you might see a different GRUB menu. In this case, select `ONIE` and press `Enter`.
 
 {{< img src = "/images/knowledge-base/uninstall-onyx/old-onyx.png" >}}
 
-To confirm that you want to uninstall the ONYX (MLNX) network operating system, type `YES` at the prompt, then press `Enter`. This process can take up to 90 minutes.
+To confirm that you want to uninstall the MLNX network operating system, type `YES` at the prompt, then press `Enter`. This process can take up to 90 minutes.
 
 {{< img src = "/images/knowledge-base/uninstall-onyx/old-onyx2.png" >}}
 {{%/notice%}}

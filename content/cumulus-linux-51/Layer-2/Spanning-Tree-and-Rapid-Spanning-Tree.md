@@ -303,7 +303,7 @@ cumulus@switch:~$ ip -p -j link show swp5
 To recover from the `protodown` state, remove the protodown reason and protodown from the interface with the `ip link set dev <interface> protodown_reason bpduguard off` command.
 
 ```
-cumulus@switch:~$ ip link set dev swp5 protodown_reason bpduguard off
+cumulus@switch:~$ sudo ip link set dev swp5 protodown_reason bpduguard off
 ```
 
 {{%notice note%}}

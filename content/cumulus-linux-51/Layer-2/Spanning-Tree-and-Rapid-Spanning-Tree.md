@@ -292,7 +292,7 @@ bridge:bond0 CIST info
 {{< /tab >}}
 {{< /tabs >}}
 
-If a port receives a BPDU, it goes into a `protodown` state (which results in a local OPER DOWN (carrier down) on the interface) and logs an error in `/var/log/syslog`. Cumulus Linux sets the protodown reason as `bpduguard`.
+If a port receives a BPDU, it goes into a `protodown` state, which results in a local OPER DOWN (carrier down) on the interface. Cumulus Linux also sets the protodown reason as `bpduguard` and records a log message in `/var/log/syslog`.
 
 To recover from the `protodown` state, remove the protodown reason and protodown from the interface with the `ip link set dev <interface> protodown_reason bpduguard off` command.
 

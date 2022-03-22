@@ -264,8 +264,8 @@ cumulus@switch:~$ nv show bridge domain br_default stp
 {{< tab "Linux Commands ">}}
 
 ```
-cumulus@switch:~$ mstpctl showportdetail bridge bond0
-bridge:bond0 CIST info
+cumulus@switch:~$ mstpctl showportdetail br_default
+bridge:swp5 CIST info
   enabled            no                      role                 Disabled
   port id            8.001                   state                discarding
   external port cost 305                     admin external cost  0
@@ -278,7 +278,7 @@ bridge:bond0 CIST info
   point-to-point     yes                     admin point-to-point auto
   restricted role    no                      restricted TCN       no
   port hello time    10                      disputed             no
-  bpdu guard port    yes                      bpdu guard error     yes
+  bpdu guard port    yes                     bpdu guard error     yes
   network port       no                      BA inconsistent      no
   Num TX BPDU        3                       Num TX TCN           2
   Num RX BPDU        488                     Num RX TCN           2

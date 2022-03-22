@@ -296,6 +296,10 @@ If a port receives a BPDU, it goes into a `protodown` state, which results in a 
 
 To recover from the `protodown` state, remove the protodown reason and protodown from the interface with the `ip link set dev <interface> protodown_reason bpduguard off` command.
 
+```
+cumulus@switch:~$ ip link set dev swp5 protodown_reason bpduguard off
+```
+
 {{%notice note%}}
 Bringing up the disabled port does not correct the problem if the configuration on the connected end station does not resolve.
 {{%/notice%}}

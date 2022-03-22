@@ -218,7 +218,7 @@ Edit the switch port interface stanza in the `/etc/network/interfaces` file to r
 
 ### BPDU Guard
 
-You can configure *BPDU guard* to protect the spanning tree topology from unauthorized switches affecting the forwarding path. For example, if you add a new switch to an access port off a leaf switch and this new switch has a low priority, it can become the new root switch and affect the forwarding path for the entire layer 2 topology.
+You can configure *BPDU guard* to protect the spanning tree topology from an unauthorized device affecting the forwarding path. For example, if you add a new host to an access port off a leaf switch and the host sends an STP BPDU, BPDU guard protects against undesirable topology changes in the environment.
 
 The following example commands set BPDU guard for swp5:
 

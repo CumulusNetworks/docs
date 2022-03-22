@@ -251,12 +251,6 @@ cumulus@switch:~$ sudo ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-If a port receives a BPDU, STP brings down the port and logs an error in `/var/log/syslog`. The following is a sample error:
-
-```
-mstpd: error, MSTP_IN_rx_bpdu: bridge:bond0 Recvd BPDU on BPDU Guard Port - Port Down
-```
-
 To see if a port has BPDU guard on or if the port receives a BPDU:
 
 {{< tabs "TabID454 ">}}
@@ -298,7 +292,9 @@ bridge:bond0 CIST info
 {{< /tab >}}
 {{< /tabs >}}
 
-The only way to recover a port that is in the disabled state is to manually bring up the port with the `sudo ifup <interface>` command. See {{<link title="Interface Configuration and Management">}} for more information about `ifupdown`.
+If a port receives a BPDU, it goes into a `protodown` state, which results in a local OPER DOWN (carrier down) on the interface. Cumulus Linux sets the protodown reason as `bpduguard`.
+
+To recover from the `protodown` state, remove the protodown reason and protodown from the interface with the `ip link set dev <interface> protodown_reason bpduguard off` command.
 
 {{%notice note%}}
 Bringing up the disabled port does not correct the problem if the configuration on the connected end station does not resolve.

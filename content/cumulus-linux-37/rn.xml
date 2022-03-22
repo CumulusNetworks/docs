@@ -13,9 +13,77 @@
 <td></td>
 </tr>
 <tr>
+<td>3010279</td>
+<td>CVE-2022-23308: the application that validates XML using xmlTextReaderRead() with XML_PARSE_DTDATTR and XML_PARSE_DTDVALID enabled becomes vulnerable to this use-after-free bug. This issue can result in denial of service.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u11
+Fixed: 2.9.1+dfsg1-5+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010025</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.0.1t-1+deb8u16
+Fixed: 1.0.1t-1+deb8u17</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010022</td>
+<td>CVE-2021-0561: In the flac package, in append_to_verify_fifo_interleaved_ of stream_encoder.c, there is a possible out of bounds write due to a missing bounds check. This could lead to local information disclosure with no additional execution privileges needed.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3009579</td>
+<td>CVE-2019-20807 CVE-2021-3778 CVE-2021-3796 CVE-2021-3872 CVE-2021-3927 CVE-2021-3928 CVE-2021-3973 CVE-2021-3974 CVE-2021-3984 CVE-2021-4019 CVE-2021-4069 CVE-2021-4192 CVE-2021-4193 CVE-2022-0213 CVE-2022-0319 CVE-2022-0359 CVE-2022-0361 CVE-2022-0368 CVE-2022-0408 CVE-2022-0554 CVE-2022-0685 CVE-2022-0714 CVE-2022-0729: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and Null pointer derefrences may lead to a denial of service (application crash) or other unspecified impact.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>3007564</td>
-<td>When you remove the last {{vxlan-remoteip}} configuration line from a VNI in the {{/etc/network/interfaces}} file, the flood entry is not removed from the kernel.</td>
+<td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2999384</td>
+<td>CVE-2022-21716: In the Twisted Python network framework, SSH client and server implementations could accept an infinite amount of data for the peer’s SSH version identifier and that a buffer then uses all available memory.
+Vulnerable: &lt;= 14.0.2-3+deb8u3
+Fixed: 14.0.2-3+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996342</td>
+<td>CVE-2022-23852 CVE-2022-25235 CVE-2022-25236 CVE-2022-25313 CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.1.0-6+deb8u7
+Fixed: 2.1.0-6+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996115</td>
+<td>CVE-2022-24407: the SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.
+Vulnerable: &lt;= 2.1.26.dfsg1-13+deb8u2
+Fixed: 2.1.26.dfsg1-13+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996112</td>
+<td>CVE-2021-3177 CVE-2021-4189 CVE-2021-23336: Several vulnerabilities were found in Python 3.4, an interactive high-level object-oriented language, that could result in denial of service, port scanning, web cache poisoning or potentially code execution.
+Vulnerable: &lt;= 3.4.2-1+deb8u11
+Fixed: 3.4.2-1+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996111</td>
+<td>CVE-2021-3700: A use-after-free vulnerability was found in Usbredirparser, a parser for the usbredir protocol, which could result in denial of service or potentially arbitrary code execution.
+Vulnerable: 0.7-1
+Fixed: 0.7-1+deb8u1</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -76,12 +144,6 @@ Fixed: 14.0.2-3+deb8u3</td>
 <td>2965759</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
 <td>3.7.15, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2965752</td>
-<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2984,6 +3046,74 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3010279</td>
+<td>CVE-2022-23308: the application that validates XML using xmlTextReaderRead() with XML_PARSE_DTDATTR and XML_PARSE_DTDVALID enabled becomes vulnerable to this use-after-free bug. This issue can result in denial of service.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u11
+Fixed: 2.9.1+dfsg1-5+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010025</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.0.1t-1+deb8u16
+Fixed: 1.0.1t-1+deb8u17</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010022</td>
+<td>CVE-2021-0561: In the flac package, in append_to_verify_fifo_interleaved_ of stream_encoder.c, there is a possible out of bounds write due to a missing bounds check. This could lead to local information disclosure with no additional execution privileges needed.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3009579</td>
+<td>CVE-2019-20807 CVE-2021-3778 CVE-2021-3796 CVE-2021-3872 CVE-2021-3927 CVE-2021-3928 CVE-2021-3973 CVE-2021-3974 CVE-2021-3984 CVE-2021-4019 CVE-2021-4069 CVE-2021-4192 CVE-2021-4193 CVE-2022-0213 CVE-2022-0319 CVE-2022-0359 CVE-2022-0361 CVE-2022-0368 CVE-2022-0408 CVE-2022-0554 CVE-2022-0685 CVE-2022-0714 CVE-2022-0729: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and Null pointer derefrences may lead to a denial of service (application crash) or other unspecified impact.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2999384</td>
+<td>CVE-2022-21716: In the Twisted Python network framework, SSH client and server implementations could accept an infinite amount of data for the peer’s SSH version identifier and that a buffer then uses all available memory.
+Vulnerable: &lt;= 14.0.2-3+deb8u3
+Fixed: 14.0.2-3+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996342</td>
+<td>CVE-2022-23852 CVE-2022-25235 CVE-2022-25236 CVE-2022-25313 CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.1.0-6+deb8u7
+Fixed: 2.1.0-6+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996115</td>
+<td>CVE-2022-24407: the SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.
+Vulnerable: &lt;= 2.1.26.dfsg1-13+deb8u2
+Fixed: 2.1.26.dfsg1-13+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996112</td>
+<td>CVE-2021-3177 CVE-2021-4189 CVE-2021-23336: Several vulnerabilities were found in Python 3.4, an interactive high-level object-oriented language, that could result in denial of service, port scanning, web cache poisoning or potentially code execution.
+Vulnerable: &lt;= 3.4.2-1+deb8u11
+Fixed: 3.4.2-1+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996111</td>
+<td>CVE-2021-3700: A use-after-free vulnerability was found in Usbredirparser, a parser for the usbredir protocol, which could result in denial of service or potentially arbitrary code execution.
+Vulnerable: 0.7-1
+Fixed: 0.7-1+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2993960</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
@@ -5715,6 +5845,74 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3010279</td>
+<td>CVE-2022-23308: the application that validates XML using xmlTextReaderRead() with XML_PARSE_DTDATTR and XML_PARSE_DTDVALID enabled becomes vulnerable to this use-after-free bug. This issue can result in denial of service.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u11
+Fixed: 2.9.1+dfsg1-5+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010025</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.0.1t-1+deb8u16
+Fixed: 1.0.1t-1+deb8u17</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010022</td>
+<td>CVE-2021-0561: In the flac package, in append_to_verify_fifo_interleaved_ of stream_encoder.c, there is a possible out of bounds write due to a missing bounds check. This could lead to local information disclosure with no additional execution privileges needed.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3009579</td>
+<td>CVE-2019-20807 CVE-2021-3778 CVE-2021-3796 CVE-2021-3872 CVE-2021-3927 CVE-2021-3928 CVE-2021-3973 CVE-2021-3974 CVE-2021-3984 CVE-2021-4019 CVE-2021-4069 CVE-2021-4192 CVE-2021-4193 CVE-2022-0213 CVE-2022-0319 CVE-2022-0359 CVE-2022-0361 CVE-2022-0368 CVE-2022-0408 CVE-2022-0554 CVE-2022-0685 CVE-2022-0714 CVE-2022-0729: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and Null pointer derefrences may lead to a denial of service (application crash) or other unspecified impact.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2999384</td>
+<td>CVE-2022-21716: In the Twisted Python network framework, SSH client and server implementations could accept an infinite amount of data for the peer’s SSH version identifier and that a buffer then uses all available memory.
+Vulnerable: &lt;= 14.0.2-3+deb8u3
+Fixed: 14.0.2-3+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996342</td>
+<td>CVE-2022-23852 CVE-2022-25235 CVE-2022-25236 CVE-2022-25313 CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.1.0-6+deb8u7
+Fixed: 2.1.0-6+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996115</td>
+<td>CVE-2022-24407: the SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.
+Vulnerable: &lt;= 2.1.26.dfsg1-13+deb8u2
+Fixed: 2.1.26.dfsg1-13+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996112</td>
+<td>CVE-2021-3177 CVE-2021-4189 CVE-2021-23336: Several vulnerabilities were found in Python 3.4, an interactive high-level object-oriented language, that could result in denial of service, port scanning, web cache poisoning or potentially code execution.
+Vulnerable: &lt;= 3.4.2-1+deb8u11
+Fixed: 3.4.2-1+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996111</td>
+<td>CVE-2021-3700: A use-after-free vulnerability was found in Usbredirparser, a parser for the usbredir protocol, which could result in denial of service or potentially arbitrary code execution.
+Vulnerable: 0.7-1
+Fixed: 0.7-1+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2993960</td>
@@ -8963,6 +9161,74 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3010279</td>
+<td>CVE-2022-23308: the application that validates XML using xmlTextReaderRead() with XML_PARSE_DTDATTR and XML_PARSE_DTDVALID enabled becomes vulnerable to this use-after-free bug. This issue can result in denial of service.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u11
+Fixed: 2.9.1+dfsg1-5+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010025</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.0.1t-1+deb8u16
+Fixed: 1.0.1t-1+deb8u17</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010022</td>
+<td>CVE-2021-0561: In the flac package, in append_to_verify_fifo_interleaved_ of stream_encoder.c, there is a possible out of bounds write due to a missing bounds check. This could lead to local information disclosure with no additional execution privileges needed.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3009579</td>
+<td>CVE-2019-20807 CVE-2021-3778 CVE-2021-3796 CVE-2021-3872 CVE-2021-3927 CVE-2021-3928 CVE-2021-3973 CVE-2021-3974 CVE-2021-3984 CVE-2021-4019 CVE-2021-4069 CVE-2021-4192 CVE-2021-4193 CVE-2022-0213 CVE-2022-0319 CVE-2022-0359 CVE-2022-0361 CVE-2022-0368 CVE-2022-0408 CVE-2022-0554 CVE-2022-0685 CVE-2022-0714 CVE-2022-0729: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and Null pointer derefrences may lead to a denial of service (application crash) or other unspecified impact.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2999384</td>
+<td>CVE-2022-21716: In the Twisted Python network framework, SSH client and server implementations could accept an infinite amount of data for the peer’s SSH version identifier and that a buffer then uses all available memory.
+Vulnerable: &lt;= 14.0.2-3+deb8u3
+Fixed: 14.0.2-3+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996342</td>
+<td>CVE-2022-23852 CVE-2022-25235 CVE-2022-25236 CVE-2022-25313 CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.1.0-6+deb8u7
+Fixed: 2.1.0-6+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996115</td>
+<td>CVE-2022-24407: the SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.
+Vulnerable: &lt;= 2.1.26.dfsg1-13+deb8u2
+Fixed: 2.1.26.dfsg1-13+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996112</td>
+<td>CVE-2021-3177 CVE-2021-4189 CVE-2021-23336: Several vulnerabilities were found in Python 3.4, an interactive high-level object-oriented language, that could result in denial of service, port scanning, web cache poisoning or potentially code execution.
+Vulnerable: &lt;= 3.4.2-1+deb8u11
+Fixed: 3.4.2-1+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996111</td>
+<td>CVE-2021-3700: A use-after-free vulnerability was found in Usbredirparser, a parser for the usbredir protocol, which could result in denial of service or potentially arbitrary code execution.
+Vulnerable: 0.7-1
+Fixed: 0.7-1+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2993960</td>
@@ -12420,6 +12686,74 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3010279</td>
+<td>CVE-2022-23308: the application that validates XML using xmlTextReaderRead() with XML_PARSE_DTDATTR and XML_PARSE_DTDVALID enabled becomes vulnerable to this use-after-free bug. This issue can result in denial of service.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u11
+Fixed: 2.9.1+dfsg1-5+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010025</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.0.1t-1+deb8u16
+Fixed: 1.0.1t-1+deb8u17</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010022</td>
+<td>CVE-2021-0561: In the flac package, in append_to_verify_fifo_interleaved_ of stream_encoder.c, there is a possible out of bounds write due to a missing bounds check. This could lead to local information disclosure with no additional execution privileges needed.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3009579</td>
+<td>CVE-2019-20807 CVE-2021-3778 CVE-2021-3796 CVE-2021-3872 CVE-2021-3927 CVE-2021-3928 CVE-2021-3973 CVE-2021-3974 CVE-2021-3984 CVE-2021-4019 CVE-2021-4069 CVE-2021-4192 CVE-2021-4193 CVE-2022-0213 CVE-2022-0319 CVE-2022-0359 CVE-2022-0361 CVE-2022-0368 CVE-2022-0408 CVE-2022-0554 CVE-2022-0685 CVE-2022-0714 CVE-2022-0729: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and Null pointer derefrences may lead to a denial of service (application crash) or other unspecified impact.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2999384</td>
+<td>CVE-2022-21716: In the Twisted Python network framework, SSH client and server implementations could accept an infinite amount of data for the peer’s SSH version identifier and that a buffer then uses all available memory.
+Vulnerable: &lt;= 14.0.2-3+deb8u3
+Fixed: 14.0.2-3+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996342</td>
+<td>CVE-2022-23852 CVE-2022-25235 CVE-2022-25236 CVE-2022-25313 CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.1.0-6+deb8u7
+Fixed: 2.1.0-6+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996115</td>
+<td>CVE-2022-24407: the SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.
+Vulnerable: &lt;= 2.1.26.dfsg1-13+deb8u2
+Fixed: 2.1.26.dfsg1-13+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996112</td>
+<td>CVE-2021-3177 CVE-2021-4189 CVE-2021-23336: Several vulnerabilities were found in Python 3.4, an interactive high-level object-oriented language, that could result in denial of service, port scanning, web cache poisoning or potentially code execution.
+Vulnerable: &lt;= 3.4.2-1+deb8u11
+Fixed: 3.4.2-1+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996111</td>
+<td>CVE-2021-3700: A use-after-free vulnerability was found in Usbredirparser, a parser for the usbredir protocol, which could result in denial of service or potentially arbitrary code execution.
+Vulnerable: 0.7-1
+Fixed: 0.7-1+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2993960</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
@@ -15732,6 +16066,74 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3010279</td>
+<td>CVE-2022-23308: the application that validates XML using xmlTextReaderRead() with XML_PARSE_DTDATTR and XML_PARSE_DTDVALID enabled becomes vulnerable to this use-after-free bug. This issue can result in denial of service.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u11
+Fixed: 2.9.1+dfsg1-5+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010025</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.0.1t-1+deb8u16
+Fixed: 1.0.1t-1+deb8u17</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010022</td>
+<td>CVE-2021-0561: In the flac package, in append_to_verify_fifo_interleaved_ of stream_encoder.c, there is a possible out of bounds write due to a missing bounds check. This could lead to local information disclosure with no additional execution privileges needed.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3009579</td>
+<td>CVE-2019-20807 CVE-2021-3778 CVE-2021-3796 CVE-2021-3872 CVE-2021-3927 CVE-2021-3928 CVE-2021-3973 CVE-2021-3974 CVE-2021-3984 CVE-2021-4019 CVE-2021-4069 CVE-2021-4192 CVE-2021-4193 CVE-2022-0213 CVE-2022-0319 CVE-2022-0359 CVE-2022-0361 CVE-2022-0368 CVE-2022-0408 CVE-2022-0554 CVE-2022-0685 CVE-2022-0714 CVE-2022-0729: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and Null pointer derefrences may lead to a denial of service (application crash) or other unspecified impact.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2999384</td>
+<td>CVE-2022-21716: In the Twisted Python network framework, SSH client and server implementations could accept an infinite amount of data for the peer’s SSH version identifier and that a buffer then uses all available memory.
+Vulnerable: &lt;= 14.0.2-3+deb8u3
+Fixed: 14.0.2-3+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996342</td>
+<td>CVE-2022-23852 CVE-2022-25235 CVE-2022-25236 CVE-2022-25313 CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.1.0-6+deb8u7
+Fixed: 2.1.0-6+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996115</td>
+<td>CVE-2022-24407: the SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.
+Vulnerable: &lt;= 2.1.26.dfsg1-13+deb8u2
+Fixed: 2.1.26.dfsg1-13+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996112</td>
+<td>CVE-2021-3177 CVE-2021-4189 CVE-2021-23336: Several vulnerabilities were found in Python 3.4, an interactive high-level object-oriented language, that could result in denial of service, port scanning, web cache poisoning or potentially code execution.
+Vulnerable: &lt;= 3.4.2-1+deb8u11
+Fixed: 3.4.2-1+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996111</td>
+<td>CVE-2021-3700: A use-after-free vulnerability was found in Usbredirparser, a parser for the usbredir protocol, which could result in denial of service or potentially arbitrary code execution.
+Vulnerable: 0.7-1
+Fixed: 0.7-1+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2993960</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
@@ -18587,6 +18989,74 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3010279</td>
+<td>CVE-2022-23308: the application that validates XML using xmlTextReaderRead() with XML_PARSE_DTDATTR and XML_PARSE_DTDVALID enabled becomes vulnerable to this use-after-free bug. This issue can result in denial of service.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u11
+Fixed: 2.9.1+dfsg1-5+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010025</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.0.1t-1+deb8u16
+Fixed: 1.0.1t-1+deb8u17</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010022</td>
+<td>CVE-2021-0561: In the flac package, in append_to_verify_fifo_interleaved_ of stream_encoder.c, there is a possible out of bounds write due to a missing bounds check. This could lead to local information disclosure with no additional execution privileges needed.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3009579</td>
+<td>CVE-2019-20807 CVE-2021-3778 CVE-2021-3796 CVE-2021-3872 CVE-2021-3927 CVE-2021-3928 CVE-2021-3973 CVE-2021-3974 CVE-2021-3984 CVE-2021-4019 CVE-2021-4069 CVE-2021-4192 CVE-2021-4193 CVE-2022-0213 CVE-2022-0319 CVE-2022-0359 CVE-2022-0361 CVE-2022-0368 CVE-2022-0408 CVE-2022-0554 CVE-2022-0685 CVE-2022-0714 CVE-2022-0729: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and Null pointer derefrences may lead to a denial of service (application crash) or other unspecified impact.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2999384</td>
+<td>CVE-2022-21716: In the Twisted Python network framework, SSH client and server implementations could accept an infinite amount of data for the peer’s SSH version identifier and that a buffer then uses all available memory.
+Vulnerable: &lt;= 14.0.2-3+deb8u3
+Fixed: 14.0.2-3+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996342</td>
+<td>CVE-2022-23852 CVE-2022-25235 CVE-2022-25236 CVE-2022-25313 CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.1.0-6+deb8u7
+Fixed: 2.1.0-6+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996115</td>
+<td>CVE-2022-24407: the SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.
+Vulnerable: &lt;= 2.1.26.dfsg1-13+deb8u2
+Fixed: 2.1.26.dfsg1-13+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996112</td>
+<td>CVE-2021-3177 CVE-2021-4189 CVE-2021-23336: Several vulnerabilities were found in Python 3.4, an interactive high-level object-oriented language, that could result in denial of service, port scanning, web cache poisoning or potentially code execution.
+Vulnerable: &lt;= 3.4.2-1+deb8u11
+Fixed: 3.4.2-1+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996111</td>
+<td>CVE-2021-3700: A use-after-free vulnerability was found in Usbredirparser, a parser for the usbredir protocol, which could result in denial of service or potentially arbitrary code execution.
+Vulnerable: 0.7-1
+Fixed: 0.7-1+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2993960</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
@@ -20877,6 +21347,74 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3010279</td>
+<td>CVE-2022-23308: the application that validates XML using xmlTextReaderRead() with XML_PARSE_DTDATTR and XML_PARSE_DTDVALID enabled becomes vulnerable to this use-after-free bug. This issue can result in denial of service.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u11
+Fixed: 2.9.1+dfsg1-5+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010025</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.0.1t-1+deb8u16
+Fixed: 1.0.1t-1+deb8u17</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010022</td>
+<td>CVE-2021-0561: In the flac package, in append_to_verify_fifo_interleaved_ of stream_encoder.c, there is a possible out of bounds write due to a missing bounds check. This could lead to local information disclosure with no additional execution privileges needed.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3009579</td>
+<td>CVE-2019-20807 CVE-2021-3778 CVE-2021-3796 CVE-2021-3872 CVE-2021-3927 CVE-2021-3928 CVE-2021-3973 CVE-2021-3974 CVE-2021-3984 CVE-2021-4019 CVE-2021-4069 CVE-2021-4192 CVE-2021-4193 CVE-2022-0213 CVE-2022-0319 CVE-2022-0359 CVE-2022-0361 CVE-2022-0368 CVE-2022-0408 CVE-2022-0554 CVE-2022-0685 CVE-2022-0714 CVE-2022-0729: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and Null pointer derefrences may lead to a denial of service (application crash) or other unspecified impact.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2999384</td>
+<td>CVE-2022-21716: In the Twisted Python network framework, SSH client and server implementations could accept an infinite amount of data for the peer’s SSH version identifier and that a buffer then uses all available memory.
+Vulnerable: &lt;= 14.0.2-3+deb8u3
+Fixed: 14.0.2-3+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996342</td>
+<td>CVE-2022-23852 CVE-2022-25235 CVE-2022-25236 CVE-2022-25313 CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.1.0-6+deb8u7
+Fixed: 2.1.0-6+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996115</td>
+<td>CVE-2022-24407: the SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.
+Vulnerable: &lt;= 2.1.26.dfsg1-13+deb8u2
+Fixed: 2.1.26.dfsg1-13+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996112</td>
+<td>CVE-2021-3177 CVE-2021-4189 CVE-2021-23336: Several vulnerabilities were found in Python 3.4, an interactive high-level object-oriented language, that could result in denial of service, port scanning, web cache poisoning or potentially code execution.
+Vulnerable: &lt;= 3.4.2-1+deb8u11
+Fixed: 3.4.2-1+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996111</td>
+<td>CVE-2021-3700: A use-after-free vulnerability was found in Usbredirparser, a parser for the usbredir protocol, which could result in denial of service or potentially arbitrary code execution.
+Vulnerable: 0.7-1
+Fixed: 0.7-1+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2993960</td>
@@ -23473,6 +24011,74 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3010279</td>
+<td>CVE-2022-23308: the application that validates XML using xmlTextReaderRead() with XML_PARSE_DTDATTR and XML_PARSE_DTDVALID enabled becomes vulnerable to this use-after-free bug. This issue can result in denial of service.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u11
+Fixed: 2.9.1+dfsg1-5+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010025</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.0.1t-1+deb8u16
+Fixed: 1.0.1t-1+deb8u17</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010022</td>
+<td>CVE-2021-0561: In the flac package, in append_to_verify_fifo_interleaved_ of stream_encoder.c, there is a possible out of bounds write due to a missing bounds check. This could lead to local information disclosure with no additional execution privileges needed.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3009579</td>
+<td>CVE-2019-20807 CVE-2021-3778 CVE-2021-3796 CVE-2021-3872 CVE-2021-3927 CVE-2021-3928 CVE-2021-3973 CVE-2021-3974 CVE-2021-3984 CVE-2021-4019 CVE-2021-4069 CVE-2021-4192 CVE-2021-4193 CVE-2022-0213 CVE-2022-0319 CVE-2022-0359 CVE-2022-0361 CVE-2022-0368 CVE-2022-0408 CVE-2022-0554 CVE-2022-0685 CVE-2022-0714 CVE-2022-0729: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and Null pointer derefrences may lead to a denial of service (application crash) or other unspecified impact.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2999384</td>
+<td>CVE-2022-21716: In the Twisted Python network framework, SSH client and server implementations could accept an infinite amount of data for the peer’s SSH version identifier and that a buffer then uses all available memory.
+Vulnerable: &lt;= 14.0.2-3+deb8u3
+Fixed: 14.0.2-3+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996342</td>
+<td>CVE-2022-23852 CVE-2022-25235 CVE-2022-25236 CVE-2022-25313 CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.1.0-6+deb8u7
+Fixed: 2.1.0-6+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996115</td>
+<td>CVE-2022-24407: the SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.
+Vulnerable: &lt;= 2.1.26.dfsg1-13+deb8u2
+Fixed: 2.1.26.dfsg1-13+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996112</td>
+<td>CVE-2021-3177 CVE-2021-4189 CVE-2021-23336: Several vulnerabilities were found in Python 3.4, an interactive high-level object-oriented language, that could result in denial of service, port scanning, web cache poisoning or potentially code execution.
+Vulnerable: &lt;= 3.4.2-1+deb8u11
+Fixed: 3.4.2-1+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996111</td>
+<td>CVE-2021-3700: A use-after-free vulnerability was found in Usbredirparser, a parser for the usbredir protocol, which could result in denial of service or potentially arbitrary code execution.
+Vulnerable: 0.7-1
+Fixed: 0.7-1+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2993960</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
@@ -25466,6 +26072,74 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3010279</td>
+<td>CVE-2022-23308: the application that validates XML using xmlTextReaderRead() with XML_PARSE_DTDATTR and XML_PARSE_DTDVALID enabled becomes vulnerable to this use-after-free bug. This issue can result in denial of service.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u11
+Fixed: 2.9.1+dfsg1-5+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010025</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.0.1t-1+deb8u16
+Fixed: 1.0.1t-1+deb8u17</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010022</td>
+<td>CVE-2021-0561: In the flac package, in append_to_verify_fifo_interleaved_ of stream_encoder.c, there is a possible out of bounds write due to a missing bounds check. This could lead to local information disclosure with no additional execution privileges needed.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3009579</td>
+<td>CVE-2019-20807 CVE-2021-3778 CVE-2021-3796 CVE-2021-3872 CVE-2021-3927 CVE-2021-3928 CVE-2021-3973 CVE-2021-3974 CVE-2021-3984 CVE-2021-4019 CVE-2021-4069 CVE-2021-4192 CVE-2021-4193 CVE-2022-0213 CVE-2022-0319 CVE-2022-0359 CVE-2022-0361 CVE-2022-0368 CVE-2022-0408 CVE-2022-0554 CVE-2022-0685 CVE-2022-0714 CVE-2022-0729: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and Null pointer derefrences may lead to a denial of service (application crash) or other unspecified impact.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2999384</td>
+<td>CVE-2022-21716: In the Twisted Python network framework, SSH client and server implementations could accept an infinite amount of data for the peer’s SSH version identifier and that a buffer then uses all available memory.
+Vulnerable: &lt;= 14.0.2-3+deb8u3
+Fixed: 14.0.2-3+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996342</td>
+<td>CVE-2022-23852 CVE-2022-25235 CVE-2022-25236 CVE-2022-25313 CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.1.0-6+deb8u7
+Fixed: 2.1.0-6+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996115</td>
+<td>CVE-2022-24407: the SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.
+Vulnerable: &lt;= 2.1.26.dfsg1-13+deb8u2
+Fixed: 2.1.26.dfsg1-13+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996112</td>
+<td>CVE-2021-3177 CVE-2021-4189 CVE-2021-23336: Several vulnerabilities were found in Python 3.4, an interactive high-level object-oriented language, that could result in denial of service, port scanning, web cache poisoning or potentially code execution.
+Vulnerable: &lt;= 3.4.2-1+deb8u11
+Fixed: 3.4.2-1+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996111</td>
+<td>CVE-2021-3700: A use-after-free vulnerability was found in Usbredirparser, a parser for the usbredir protocol, which could result in denial of service or potentially arbitrary code execution.
+Vulnerable: 0.7-1
+Fixed: 0.7-1+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2993960</td>
@@ -27798,6 +28472,74 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3010279</td>
+<td>CVE-2022-23308: the application that validates XML using xmlTextReaderRead() with XML_PARSE_DTDATTR and XML_PARSE_DTDVALID enabled becomes vulnerable to this use-after-free bug. This issue can result in denial of service.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u11
+Fixed: 2.9.1+dfsg1-5+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010025</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.0.1t-1+deb8u16
+Fixed: 1.0.1t-1+deb8u17</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010022</td>
+<td>CVE-2021-0561: In the flac package, in append_to_verify_fifo_interleaved_ of stream_encoder.c, there is a possible out of bounds write due to a missing bounds check. This could lead to local information disclosure with no additional execution privileges needed.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3009579</td>
+<td>CVE-2019-20807 CVE-2021-3778 CVE-2021-3796 CVE-2021-3872 CVE-2021-3927 CVE-2021-3928 CVE-2021-3973 CVE-2021-3974 CVE-2021-3984 CVE-2021-4019 CVE-2021-4069 CVE-2021-4192 CVE-2021-4193 CVE-2022-0213 CVE-2022-0319 CVE-2022-0359 CVE-2022-0361 CVE-2022-0368 CVE-2022-0408 CVE-2022-0554 CVE-2022-0685 CVE-2022-0714 CVE-2022-0729: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and Null pointer derefrences may lead to a denial of service (application crash) or other unspecified impact.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2999384</td>
+<td>CVE-2022-21716: In the Twisted Python network framework, SSH client and server implementations could accept an infinite amount of data for the peer’s SSH version identifier and that a buffer then uses all available memory.
+Vulnerable: &lt;= 14.0.2-3+deb8u3
+Fixed: 14.0.2-3+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996342</td>
+<td>CVE-2022-23852 CVE-2022-25235 CVE-2022-25236 CVE-2022-25313 CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.1.0-6+deb8u7
+Fixed: 2.1.0-6+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996115</td>
+<td>CVE-2022-24407: the SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.
+Vulnerable: &lt;= 2.1.26.dfsg1-13+deb8u2
+Fixed: 2.1.26.dfsg1-13+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996112</td>
+<td>CVE-2021-3177 CVE-2021-4189 CVE-2021-23336: Several vulnerabilities were found in Python 3.4, an interactive high-level object-oriented language, that could result in denial of service, port scanning, web cache poisoning or potentially code execution.
+Vulnerable: &lt;= 3.4.2-1+deb8u11
+Fixed: 3.4.2-1+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996111</td>
+<td>CVE-2021-3700: A use-after-free vulnerability was found in Usbredirparser, a parser for the usbredir protocol, which could result in denial of service or potentially arbitrary code execution.
+Vulnerable: 0.7-1
+Fixed: 0.7-1+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2993960</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
@@ -29873,6 +30615,74 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3010279</td>
+<td>CVE-2022-23308: the application that validates XML using xmlTextReaderRead() with XML_PARSE_DTDATTR and XML_PARSE_DTDVALID enabled becomes vulnerable to this use-after-free bug. This issue can result in denial of service.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u11
+Fixed: 2.9.1+dfsg1-5+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010025</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.0.1t-1+deb8u16
+Fixed: 1.0.1t-1+deb8u17</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010022</td>
+<td>CVE-2021-0561: In the flac package, in append_to_verify_fifo_interleaved_ of stream_encoder.c, there is a possible out of bounds write due to a missing bounds check. This could lead to local information disclosure with no additional execution privileges needed.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3009579</td>
+<td>CVE-2019-20807 CVE-2021-3778 CVE-2021-3796 CVE-2021-3872 CVE-2021-3927 CVE-2021-3928 CVE-2021-3973 CVE-2021-3974 CVE-2021-3984 CVE-2021-4019 CVE-2021-4069 CVE-2021-4192 CVE-2021-4193 CVE-2022-0213 CVE-2022-0319 CVE-2022-0359 CVE-2022-0361 CVE-2022-0368 CVE-2022-0408 CVE-2022-0554 CVE-2022-0685 CVE-2022-0714 CVE-2022-0729: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and Null pointer derefrences may lead to a denial of service (application crash) or other unspecified impact.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2999384</td>
+<td>CVE-2022-21716: In the Twisted Python network framework, SSH client and server implementations could accept an infinite amount of data for the peer’s SSH version identifier and that a buffer then uses all available memory.
+Vulnerable: &lt;= 14.0.2-3+deb8u3
+Fixed: 14.0.2-3+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996342</td>
+<td>CVE-2022-23852 CVE-2022-25235 CVE-2022-25236 CVE-2022-25313 CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.1.0-6+deb8u7
+Fixed: 2.1.0-6+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996115</td>
+<td>CVE-2022-24407: the SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.
+Vulnerable: &lt;= 2.1.26.dfsg1-13+deb8u2
+Fixed: 2.1.26.dfsg1-13+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996112</td>
+<td>CVE-2021-3177 CVE-2021-4189 CVE-2021-23336: Several vulnerabilities were found in Python 3.4, an interactive high-level object-oriented language, that could result in denial of service, port scanning, web cache poisoning or potentially code execution.
+Vulnerable: &lt;= 3.4.2-1+deb8u11
+Fixed: 3.4.2-1+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996111</td>
+<td>CVE-2021-3700: A use-after-free vulnerability was found in Usbredirparser, a parser for the usbredir protocol, which could result in denial of service or potentially arbitrary code execution.
+Vulnerable: 0.7-1
+Fixed: 0.7-1+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2993960</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
@@ -31591,6 +32401,74 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3010279</td>
+<td>CVE-2022-23308: the application that validates XML using xmlTextReaderRead() with XML_PARSE_DTDATTR and XML_PARSE_DTDVALID enabled becomes vulnerable to this use-after-free bug. This issue can result in denial of service.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u11
+Fixed: 2.9.1+dfsg1-5+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010025</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.0.1t-1+deb8u16
+Fixed: 1.0.1t-1+deb8u17</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010022</td>
+<td>CVE-2021-0561: In the flac package, in append_to_verify_fifo_interleaved_ of stream_encoder.c, there is a possible out of bounds write due to a missing bounds check. This could lead to local information disclosure with no additional execution privileges needed.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3009579</td>
+<td>CVE-2019-20807 CVE-2021-3778 CVE-2021-3796 CVE-2021-3872 CVE-2021-3927 CVE-2021-3928 CVE-2021-3973 CVE-2021-3974 CVE-2021-3984 CVE-2021-4019 CVE-2021-4069 CVE-2021-4192 CVE-2021-4193 CVE-2022-0213 CVE-2022-0319 CVE-2022-0359 CVE-2022-0361 CVE-2022-0368 CVE-2022-0408 CVE-2022-0554 CVE-2022-0685 CVE-2022-0714 CVE-2022-0729: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and Null pointer derefrences may lead to a denial of service (application crash) or other unspecified impact.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2999384</td>
+<td>CVE-2022-21716: In the Twisted Python network framework, SSH client and server implementations could accept an infinite amount of data for the peer’s SSH version identifier and that a buffer then uses all available memory.
+Vulnerable: &lt;= 14.0.2-3+deb8u3
+Fixed: 14.0.2-3+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996342</td>
+<td>CVE-2022-23852 CVE-2022-25235 CVE-2022-25236 CVE-2022-25313 CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.1.0-6+deb8u7
+Fixed: 2.1.0-6+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996115</td>
+<td>CVE-2022-24407: the SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.
+Vulnerable: &lt;= 2.1.26.dfsg1-13+deb8u2
+Fixed: 2.1.26.dfsg1-13+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996112</td>
+<td>CVE-2021-3177 CVE-2021-4189 CVE-2021-23336: Several vulnerabilities were found in Python 3.4, an interactive high-level object-oriented language, that could result in denial of service, port scanning, web cache poisoning or potentially code execution.
+Vulnerable: &lt;= 3.4.2-1+deb8u11
+Fixed: 3.4.2-1+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996111</td>
+<td>CVE-2021-3700: A use-after-free vulnerability was found in Usbredirparser, a parser for the usbredir protocol, which could result in denial of service or potentially arbitrary code execution.
+Vulnerable: 0.7-1
+Fixed: 0.7-1+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2993960</td>
@@ -33338,6 +34216,74 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3010279</td>
+<td>CVE-2022-23308: the application that validates XML using xmlTextReaderRead() with XML_PARSE_DTDATTR and XML_PARSE_DTDVALID enabled becomes vulnerable to this use-after-free bug. This issue can result in denial of service.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u11
+Fixed: 2.9.1+dfsg1-5+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010025</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.0.1t-1+deb8u16
+Fixed: 1.0.1t-1+deb8u17</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010022</td>
+<td>CVE-2021-0561: In the flac package, in append_to_verify_fifo_interleaved_ of stream_encoder.c, there is a possible out of bounds write due to a missing bounds check. This could lead to local information disclosure with no additional execution privileges needed.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3009579</td>
+<td>CVE-2019-20807 CVE-2021-3778 CVE-2021-3796 CVE-2021-3872 CVE-2021-3927 CVE-2021-3928 CVE-2021-3973 CVE-2021-3974 CVE-2021-3984 CVE-2021-4019 CVE-2021-4069 CVE-2021-4192 CVE-2021-4193 CVE-2022-0213 CVE-2022-0319 CVE-2022-0359 CVE-2022-0361 CVE-2022-0368 CVE-2022-0408 CVE-2022-0554 CVE-2022-0685 CVE-2022-0714 CVE-2022-0729: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and Null pointer derefrences may lead to a denial of service (application crash) or other unspecified impact.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2999384</td>
+<td>CVE-2022-21716: In the Twisted Python network framework, SSH client and server implementations could accept an infinite amount of data for the peer’s SSH version identifier and that a buffer then uses all available memory.
+Vulnerable: &lt;= 14.0.2-3+deb8u3
+Fixed: 14.0.2-3+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996342</td>
+<td>CVE-2022-23852 CVE-2022-25235 CVE-2022-25236 CVE-2022-25313 CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.1.0-6+deb8u7
+Fixed: 2.1.0-6+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996115</td>
+<td>CVE-2022-24407: the SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.
+Vulnerable: &lt;= 2.1.26.dfsg1-13+deb8u2
+Fixed: 2.1.26.dfsg1-13+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996112</td>
+<td>CVE-2021-3177 CVE-2021-4189 CVE-2021-23336: Several vulnerabilities were found in Python 3.4, an interactive high-level object-oriented language, that could result in denial of service, port scanning, web cache poisoning or potentially code execution.
+Vulnerable: &lt;= 3.4.2-1+deb8u11
+Fixed: 3.4.2-1+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996111</td>
+<td>CVE-2021-3700: A use-after-free vulnerability was found in Usbredirparser, a parser for the usbredir protocol, which could result in denial of service or potentially arbitrary code execution.
+Vulnerable: 0.7-1
+Fixed: 0.7-1+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2993960</td>
@@ -35191,6 +36137,74 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3010279</td>
+<td>CVE-2022-23308: the application that validates XML using xmlTextReaderRead() with XML_PARSE_DTDATTR and XML_PARSE_DTDVALID enabled becomes vulnerable to this use-after-free bug. This issue can result in denial of service.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u11
+Fixed: 2.9.1+dfsg1-5+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010025</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.0.1t-1+deb8u16
+Fixed: 1.0.1t-1+deb8u17</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010022</td>
+<td>CVE-2021-0561: In the flac package, in append_to_verify_fifo_interleaved_ of stream_encoder.c, there is a possible out of bounds write due to a missing bounds check. This could lead to local information disclosure with no additional execution privileges needed.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3009579</td>
+<td>CVE-2019-20807 CVE-2021-3778 CVE-2021-3796 CVE-2021-3872 CVE-2021-3927 CVE-2021-3928 CVE-2021-3973 CVE-2021-3974 CVE-2021-3984 CVE-2021-4019 CVE-2021-4069 CVE-2021-4192 CVE-2021-4193 CVE-2022-0213 CVE-2022-0319 CVE-2022-0359 CVE-2022-0361 CVE-2022-0368 CVE-2022-0408 CVE-2022-0554 CVE-2022-0685 CVE-2022-0714 CVE-2022-0729: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and Null pointer derefrences may lead to a denial of service (application crash) or other unspecified impact.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2999384</td>
+<td>CVE-2022-21716: In the Twisted Python network framework, SSH client and server implementations could accept an infinite amount of data for the peer’s SSH version identifier and that a buffer then uses all available memory.
+Vulnerable: &lt;= 14.0.2-3+deb8u3
+Fixed: 14.0.2-3+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996342</td>
+<td>CVE-2022-23852 CVE-2022-25235 CVE-2022-25236 CVE-2022-25313 CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.1.0-6+deb8u7
+Fixed: 2.1.0-6+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996115</td>
+<td>CVE-2022-24407: the SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.
+Vulnerable: &lt;= 2.1.26.dfsg1-13+deb8u2
+Fixed: 2.1.26.dfsg1-13+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996112</td>
+<td>CVE-2021-3177 CVE-2021-4189 CVE-2021-23336: Several vulnerabilities were found in Python 3.4, an interactive high-level object-oriented language, that could result in denial of service, port scanning, web cache poisoning or potentially code execution.
+Vulnerable: &lt;= 3.4.2-1+deb8u11
+Fixed: 3.4.2-1+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996111</td>
+<td>CVE-2021-3700: A use-after-free vulnerability was found in Usbredirparser, a parser for the usbredir protocol, which could result in denial of service or potentially arbitrary code execution.
+Vulnerable: 0.7-1
+Fixed: 0.7-1+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2993960</td>
@@ -37090,6 +38104,74 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3010279</td>
+<td>CVE-2022-23308: the application that validates XML using xmlTextReaderRead() with XML_PARSE_DTDATTR and XML_PARSE_DTDVALID enabled becomes vulnerable to this use-after-free bug. This issue can result in denial of service.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u11
+Fixed: 2.9.1+dfsg1-5+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010025</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.0.1t-1+deb8u16
+Fixed: 1.0.1t-1+deb8u17</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010022</td>
+<td>CVE-2021-0561: In the flac package, in append_to_verify_fifo_interleaved_ of stream_encoder.c, there is a possible out of bounds write due to a missing bounds check. This could lead to local information disclosure with no additional execution privileges needed.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3009579</td>
+<td>CVE-2019-20807 CVE-2021-3778 CVE-2021-3796 CVE-2021-3872 CVE-2021-3927 CVE-2021-3928 CVE-2021-3973 CVE-2021-3974 CVE-2021-3984 CVE-2021-4019 CVE-2021-4069 CVE-2021-4192 CVE-2021-4193 CVE-2022-0213 CVE-2022-0319 CVE-2022-0359 CVE-2022-0361 CVE-2022-0368 CVE-2022-0408 CVE-2022-0554 CVE-2022-0685 CVE-2022-0714 CVE-2022-0729: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and Null pointer derefrences may lead to a denial of service (application crash) or other unspecified impact.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2999384</td>
+<td>CVE-2022-21716: In the Twisted Python network framework, SSH client and server implementations could accept an infinite amount of data for the peer’s SSH version identifier and that a buffer then uses all available memory.
+Vulnerable: &lt;= 14.0.2-3+deb8u3
+Fixed: 14.0.2-3+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996342</td>
+<td>CVE-2022-23852 CVE-2022-25235 CVE-2022-25236 CVE-2022-25313 CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.1.0-6+deb8u7
+Fixed: 2.1.0-6+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996115</td>
+<td>CVE-2022-24407: the SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.
+Vulnerable: &lt;= 2.1.26.dfsg1-13+deb8u2
+Fixed: 2.1.26.dfsg1-13+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996112</td>
+<td>CVE-2021-3177 CVE-2021-4189 CVE-2021-23336: Several vulnerabilities were found in Python 3.4, an interactive high-level object-oriented language, that could result in denial of service, port scanning, web cache poisoning or potentially code execution.
+Vulnerable: &lt;= 3.4.2-1+deb8u11
+Fixed: 3.4.2-1+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996111</td>
+<td>CVE-2021-3700: A use-after-free vulnerability was found in Usbredirparser, a parser for the usbredir protocol, which could result in denial of service or potentially arbitrary code execution.
+Vulnerable: 0.7-1
+Fixed: 0.7-1+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2993960</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
@@ -38291,6 +39373,74 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3010279</td>
+<td>CVE-2022-23308: the application that validates XML using xmlTextReaderRead() with XML_PARSE_DTDATTR and XML_PARSE_DTDVALID enabled becomes vulnerable to this use-after-free bug. This issue can result in denial of service.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u11
+Fixed: 2.9.1+dfsg1-5+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010025</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.0.1t-1+deb8u16
+Fixed: 1.0.1t-1+deb8u17</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3010022</td>
+<td>CVE-2021-0561: In the flac package, in append_to_verify_fifo_interleaved_ of stream_encoder.c, there is a possible out of bounds write due to a missing bounds check. This could lead to local information disclosure with no additional execution privileges needed.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3009579</td>
+<td>CVE-2019-20807 CVE-2021-3778 CVE-2021-3796 CVE-2021-3872 CVE-2021-3927 CVE-2021-3928 CVE-2021-3973 CVE-2021-3974 CVE-2021-3984 CVE-2021-4019 CVE-2021-4069 CVE-2021-4192 CVE-2021-4193 CVE-2022-0213 CVE-2022-0319 CVE-2022-0359 CVE-2022-0361 CVE-2022-0368 CVE-2022-0408 CVE-2022-0554 CVE-2022-0685 CVE-2022-0714 CVE-2022-0729: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and Null pointer derefrences may lead to a denial of service (application crash) or other unspecified impact.</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2999384</td>
+<td>CVE-2022-21716: In the Twisted Python network framework, SSH client and server implementations could accept an infinite amount of data for the peer’s SSH version identifier and that a buffer then uses all available memory.
+Vulnerable: &lt;= 14.0.2-3+deb8u3
+Fixed: 14.0.2-3+deb8u4</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996342</td>
+<td>CVE-2022-23852 CVE-2022-25235 CVE-2022-25236 CVE-2022-25313 CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.1.0-6+deb8u7
+Fixed: 2.1.0-6+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996115</td>
+<td>CVE-2022-24407: the SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.
+Vulnerable: &lt;= 2.1.26.dfsg1-13+deb8u2
+Fixed: 2.1.26.dfsg1-13+deb8u3</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996112</td>
+<td>CVE-2021-3177 CVE-2021-4189 CVE-2021-23336: Several vulnerabilities were found in Python 3.4, an interactive high-level object-oriented language, that could result in denial of service, port scanning, web cache poisoning or potentially code execution.
+Vulnerable: &lt;= 3.4.2-1+deb8u11
+Fixed: 3.4.2-1+deb8u12</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2996111</td>
+<td>CVE-2021-3700: A use-after-free vulnerability was found in Usbredirparser, a parser for the usbredir protocol, which could result in denial of service or potentially arbitrary code execution.
+Vulnerable: 0.7-1
+Fixed: 0.7-1+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2993960</td>

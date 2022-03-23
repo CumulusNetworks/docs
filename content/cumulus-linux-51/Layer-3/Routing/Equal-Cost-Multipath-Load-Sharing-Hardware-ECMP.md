@@ -205,20 +205,55 @@ Cumulus Linux enables symmetric hashing by default. Make sure that the settings 
 <!-- vale on -->
 [GTP](## "GPRS Tunneling Protocol") carries mobile data within the core of the mobile operator’s network. Traffic in the 5G Mobility core cluster, from cell sites to compute nodes, have the same source and destination IP address. The only way to identify individual flows is with the GTP [TEID](## "Tunnel Endpoint Identifier"). Enabling GTP hashing adds the TEID as a hash parameter and helps the Cumulus Linux switches in the network to distribute mobile data traffic evenly across ECMP routes.
 
-Cumulus Linux uses GTP hashing for:
+Cumulus Linux supports TEID-based *ECMP hashing* for:
 - [GTP-U](## "GPRS Tunnelling Protocol User") packets ingressing physical ports or bonds.
 - VXLAN encapsulated GTP-U packets terminating on egress [VTEPs](## "Virtual Tunnel End Points").
 
-GTP hashing is only applicable if the outer header egressing the port is GTP encapsulated and if the ingress packet is either a GTP-U packet or a VXLAN encapsulated GTP-U packet.
+Cumulus Linux supports TEID-based *load balancing* for traffic egressing a bond.
+
+GTP TEID-based ECMP hashing and load balancing is only applicable if the outer header egressing the port is GTP encapsulated and if the ingress packet is either a GTP-U packet or a VXLAN encapsulated GTP-U packet.
 
 {{%notice note%}}
 - Cumulus Linux supports GTP Hashing on NVIDIA Spectrum-2 and later.
 - [GTP-C](## "GPRS Tunnelling Protocol Control") packets are not part of GTP hashing.
 {{%/notice%}}
 
-To enable GTP hashing:
+To enable TEID-based ECMP hashing:
 
 {{< tabs "TabID221 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set 
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+1. Edit the `/etc/cumulus/datapath/traffic.conf` file and change the `lag_hash_config.gtp_teid` parameter to `true`:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
+   ...
+   #GTP-U teid
+   hash_config.gtp_teid = true
+   ```
+
+2. Run the `echo 1 > /cumulus/switchd/ctrl/hash_config_reload` command. This command does not cause any traffic interruptions.
+
+   ```
+   cumulus@switch:~$ echo 1 > /cumulus/switchd/ctrl/hash_config_reload
+   ```
+
+To disable TEID-based ECMP hashing, set the `hash_config.gtp_teid` parameter to `false`, then reload the configuration.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To enable TEID-based load balancing:
+
+{{< tabs "TabID256 ">}}
 {{< tab "NVUE Commands">}}
 
 ```
@@ -244,7 +279,7 @@ cumulus@switch:~$ nv config apply
    cumulus@switch:~$ echo 1 > /cumulus/switchd/ctrl/hash_config_reload
    ```
 
-To disable GTP hashing, set the `hash_config.gtp_teid` parameter to FALSE, then reload the configuration.
+To disable TEID-based load balancing, set the `lag_hash_config.gtp_teid` parameter to `false`, then reload the configuration.
 
 {{< /tab >}}
 {{< /tabs >}}

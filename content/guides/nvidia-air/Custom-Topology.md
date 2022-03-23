@@ -9,9 +9,9 @@ NVIDIA Air fully supports the creation of custom topologies. This feature augmen
 
 To access the custom topologies, do one of the following:
 
-- Click the **Create your own** card on the Create a Simulation page:
+- Click the **Build Your Own** card on the Create a Simulation page:
 
-  {{<img src="/images/guides/nvidia-air/BuildaTopology.png" width="800px">}}
+  {{<img src="/images/guides/nvidia-air/Catalog.png" width="800px">}}
 
 - Go directly by following this link: {{<exlink url="https://air.nvidia.com/build" text="air.nvidia.com/build">}}
 

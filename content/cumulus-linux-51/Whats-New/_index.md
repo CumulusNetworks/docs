@@ -26,9 +26,10 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Adaptive routing with RoCE">}}
 - {{<link url="Link-Layer-Discovery-Protocol/#lldp-dcbx-tlvs" text="LLDP DCBX TLVs">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#gtp-hashing" text="GTP hashing">}}
-- {{<link url="In-Service-Upgrade-ISSU" text="Warmboot on bonds">}}
+- {{<link url="In-Service-System-Upgrade-ISSU" text="Warmboot on bonds">}}
 - {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#peer-link-consistency-check" text="MLAG peer link consistency check">}}
 - {{<link url="Precision-Time-Protocol-PTP" text="PTP on bonds">}}
+- {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#bpdu-guard" text="BPDU guard protodown state and reason">}}
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="Neighbor-Discovery-ND" text="IPv6 ND configuration options">}}
   - {{<link url="NVUE-Snippets/#flexible-snippets" text="Flexible snippets">}}

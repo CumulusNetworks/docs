@@ -7,16 +7,64 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2993960</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3012899</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
-<td>2993959</td>
+<td>3010291</td>
+<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
+Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
+Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3007604</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.1.1d-0+deb10u7
+Fixed: 1.1.1d-0+deb10u8</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3007564</td>
+<td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3007551</td>
+<td>Cumulus Linux forwards routed VXLAN traffic in software because the local VTEP IP address is not included in decapsulation rules.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2999342</td>
+<td>CVE-2020-36311, CVE-2021-3609, CVE-2021-33909, CVE-2021-34693
+Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.
+Fixed: 4.19.194-3</td>
+<td>4.2.1-4.4.1, 5.0.0-5.0.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2999341</td>
+<td>CVE-2021-3570
+The ptp4l program in linuxptp, an implementation of the Precision Time Protocol (PTP), does not validate the messageLength field of incoming messages, allowing a remote attacker to cause a denial of service, information leak, or potentially remote code execution.
+Fixed: 1.9.2-1+deb10u1</td>
+<td>4.2.1-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2999253</td>
+<td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload. 
+This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml packages, which are required for the {{switchd}} consistency check.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993960</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
 Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
@@ -43,15 +91,6 @@ Fixed:</td>
 <td></td>
 </tr>
 <tr>
-<td>2984205</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2982536</td>
 <td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
 library, which could result in denial of service or potentially the
@@ -68,18 +107,18 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2972540</td>
-<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2971344</td>
 <td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
 Vulnerable: &lt;= 2.2.6-2+deb10u1
 Fixed: 2.2.6-2+deb10u2</td>
 <td>4.0.0-4.4.2</td>
 <td>4.4.3</td>
+</tr>
+<tr>
+<td>2968515</td>
+<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
+<td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2968495</td>
@@ -91,12 +130,6 @@ Fixed: 2.2.6-2+deb10u2</td>
 <td>2965759</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
 <td>3.7.15, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2965752</td>
-<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -213,18 +246,16 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td></td>
 </tr>
 <tr>
+<td>2896672</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2896450</td>
 <td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
-</tr>
-<tr>
-<td>2893895</td>
-<td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
-Vulnerable: &lt;= 2.8.90-1-cl4u5
-Fixed: 2.8.90-1-cl4u6, 2.8.90-1-cl4.4.0u1, 2.8.90-1-cl5.0.0u8</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2891257</td>
@@ -241,6 +272,12 @@ Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4.0.0-4.4.1, 5.0.0-5.0.1</td>
 <td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2879645</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2877797</td>
@@ -373,6 +410,13 @@ thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 <tr>
 <td>2853630</td>
 <td>In an MLAG and VXLAN Active Active configuration, when you add a new VNI on the primary MLAG switch only, you see packet loss over the old VNI. </td>
+<td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2849529</td>
+<td>The NTP system clock is unable to synchronize with the NTP server.
+To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.</td>
 <td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
@@ -707,14 +751,6 @@ Fixed: 241-7~deb10u8</td>
 <td>CVE-2020-36221, CVE-2020-36222, CVE-2020-36223, CVE-2020-36224, CVE-2020-36225, CVE-2020-36226, CVE-2020-36227, CVE-2020-36228, CVE-2020-36229, CVE-2020-36230:  Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.
 Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u4
 Fixed: 2.4.47+dfsg-3+deb10u5</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0-4.4.3</td>
-</tr>
-<tr>
-<td>2728134</td>
-<td>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.
-Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u5
-Fixed: 2.4.47+dfsg-3+deb10u6</td>
 <td>4.0.0-4.3.0</td>
 <td>4.4.0-4.4.3</td>
 </tr>
@@ -1159,7 +1195,7 @@ To work around this issue, either use the {{vtysh}} commands or edit the {{/etc/
 <td>3.7.15, 4.4.0-4.4.3</td>
 </tr>
 <tr>
-<td>2564839</td>
+<td>2564838</td>
 <td>Several vulnerabilities have been discovered in the GRUB2 bootloader:
 CVE-2020-14372: It was discovered that the acpi command allows a privileged user to load crafted ACPI tables when Secure Boot is enabled.
 CVE-2020-25632: A use-after-free vulnerability was found in the rmmod command.
@@ -1196,6 +1232,14 @@ Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</td>
 <td>CVE-2021-26937: A  flaw in the handling of combining characters in screen, a terminal multiplexer with VT100/ANSI terminal emulation can result in denial of service, or potentially the execution of arbitrary code via a specially crafted UTF-8 character sequence.
 Vulnerable: 4.6.2-3
 Fixed: 4.6.2-3+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.3</td>
+</tr>
+<tr>
+<td>2556776</td>
+<td>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.
+Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u5
+Fixed: 2.4.47+dfsg-3+deb10u6</td>
 <td>4.0.0-4.3.0</td>
 <td>4.4.0-4.4.3</td>
 </tr>
@@ -1241,6 +1285,14 @@ within an X509 certificate. However it fails to correctly handle any errors that
 CVE-2019-1551: There is an overflow bug in the x64_64 Montgomery squaring procedure used in exponentiation with 512-bit moduli. No EC algorithms are affected. Analysis suggests that attacks against 2-prime RSA1024, 3-prime RSA1536, and DSA1024 as a result of this defect would be very difficult to perform and are not believed likely. Attacks against DH512 are considered just feasible. However, for an attack the target would have to re-use the DH512 private key, which is not recommended anyway. Also applications directly using the low level API BN_mod_exp may be affected if they use BN_FLG_CONSTTIME.
 Vulnerable: &lt;= 1.1.1d-0+deb10u4
 Fixed: 1.1.1d-0+deb10u5</td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.3</td>
+</tr>
+<tr>
+<td>2556659</td>
+<td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
+Vulnerable: &lt;= 2.8.90-1-cl4u5
+Fixed: 2.8.90-1-cl4u6, 2.8.90-1-cl4.4.0u1, 2.8.90-1-cl5.0.0u8</td>
 <td>4.0.0-4.3.0</td>
 <td>4.4.0-4.4.3</td>
 </tr>

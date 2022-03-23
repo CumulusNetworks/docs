@@ -148,6 +148,12 @@ cumulus@switch:~$ sudo systemctl restart lldpd
 
 [DCBX](## "Data Center Bridging Capability Exchange protocol ") is an extension of LLDP. Cumulus Linux supports DCBX [TLVs](## "Type-Length-Value ") to provide additional information in LLDP packets to peers, such as VLAN information and [QoS](## "Quality of Service "). Adding QoS configuration as part of the DCBX TLVs allows automated configuration on hosts and switches that connect to the switch.
 
+{{%notice info%}}
+- Cumulus Linux can send a maximum of 250 VLANS per switch port in one LLDP frame.
+- Cumulus Linux does not support CEE DCBX TLVs.
+- Cumulus Linux limits DCBX support to enabling DCBX TLVs (either with ROCE global configuration or per interface) as documented in the {{<exlink url="https://ieeexplore.ieee.org/document/8403927" text="IEEE 802.1Q standard">}}.
+{{%/notice%}}
+
 Cumulus Linux supports the following TLVs:
 <!-- vale off -->
 ### IEEE 802.1 TLVs
@@ -173,11 +179,11 @@ Cumulus Linux transmits the following 802.3 TLVs by default. You do not need to 
 | Name                | Subtype | Description |
 |-------------------- | ------- | ----------- |
 | Link Aggregation    | 3       | Indicates if the port supports link aggregation and if it is on.  |
-| Maximum Frame Size  | 4       | The MTU configuration on the port. |
+| Maximum Frame Size  | 4       | The MTU configuration on the port. The MTU on the port is the [MFS](## "Maximum Frame Size "). |
 <!-- vale off -->
 ### Transmit IEEE 802.1 TLVs
 <!-- vale on -->
-You can transmit the 802.1 TLV types (VLAN name, Port VLAN ID, and IEEE 802.1 Link Aggregation) when exchanging LLDP messages. By default, 802.1 TLV transmission is off and the switch sends all LLDP PDUs without 802.1 TLVs.
+You can transmit the 802.1 TLV types (VLAN name, Port VLAN ID, and IEEE 802.1 Link Aggregation) when exchanging LLDP messages. By default, 802.1 TLV transmission is off and the switch sends all LLDP frames without 802.1 TLVs.
 
 To enable 802.1 TLV transmission, run the `nv set service lldp dot1-tlv on` command:
 
@@ -190,8 +196,12 @@ cumulus@switch:~$ nv config apply
 
 You can enable QoS TLV transmission (ETS Configuration, ETS Recommendation, PFC Configuration) on an interface. By default, all QoS TLV transmission is off on all interfaces.
 
-{{%notice note%}}
+{{%notice info%}}
 Adding the QoS TLVs to LLDP packets on an interface relies on PFC and ETS configuration from `switchd`. Refer to {{<link url="Quality-of-Service" text="Quality of Service">}} for information on configuring PFC and ETS.
+
+When you enable {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="ROCE">}} on the switch:
+- QoS TLV transmission (PFC Configuration, ETS Configuration, and ETS Recommendation) is on globally for all ports, which overrides any QoS TLV transmission setting on a switch port interface.
+- LLDP frames for all switch port interfaces carry PFC configuration, ETS configuration, ETS recommendation, and APP Priority TLVs. The ETS configuration and PFC configuration TLV payloads are the same for all interfaces.
 {{%/notice%}}
 
 To enable PFC Configuration TLV transmission, run the `nv set interface <interface> lldp dcbx-pfc-tlv on` command:
@@ -216,7 +226,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-The interface must be a physical interface; you cannot enable TLVs on bonds.
+The interface must be a physical interface; you cannot enable TLVs on bonds.  
 {{%/notice%}}
 
 ### Show DCBX TLV Settings

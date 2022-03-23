@@ -1086,16 +1086,23 @@ To work around this issue, change the value of arp_ignore to 2. See &lt;a href="
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2993960</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3010291</td>
+<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
+Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
+Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
+<td>4.0.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
-<td>2993959</td>
+<td>3007604</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.1.1d-0+deb10u7
+Fixed: 1.1.1d-0+deb10u8</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2993960</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
 Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
@@ -1107,15 +1114,6 @@ Fixed:</td>
 <td>2989099</td>
 <td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
 <td>4.0.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2984205</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1175,14 +1173,6 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-4.4.3</td>
 <td>5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2893895</td>
-<td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
-Vulnerable: &lt;= 2.8.90-1-cl4u5
-Fixed: 2.8.90-1-cl4u6, 2.8.90-1-cl4.4.0u1, 2.8.90-1-cl5.0.0u8</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2891257</td>
@@ -1421,14 +1411,6 @@ Fixed: 241-7~deb10u8</td>
 <td>CVE-2020-36221, CVE-2020-36222, CVE-2020-36223, CVE-2020-36224, CVE-2020-36225, CVE-2020-36226, CVE-2020-36227, CVE-2020-36228, CVE-2020-36229, CVE-2020-36230:  Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.
 Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u4
 Fixed: 2.4.47+dfsg-3+deb10u5</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0-4.4.3</td>
-</tr>
-<tr>
-<td>2728134</td>
-<td>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.
-Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u5
-Fixed: 2.4.47+dfsg-3+deb10u6</td>
 <td>4.0.0-4.3.0</td>
 <td>4.4.0-4.4.3</td>
 </tr>
@@ -1683,7 +1665,7 @@ Fixed: 4.1.0+git191117-2~deb10u2</td>
 <td>3.7.15, 4.4.0-4.4.3</td>
 </tr>
 <tr>
-<td>2564839</td>
+<td>2564838</td>
 <td>Several vulnerabilities have been discovered in the GRUB2 bootloader:
 CVE-2020-14372: It was discovered that the acpi command allows a privileged user to load crafted ACPI tables when Secure Boot is enabled.
 CVE-2020-25632: A use-after-free vulnerability was found in the rmmod command.
@@ -1707,6 +1689,14 @@ Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</td>
 <td>CVE-2021-26937: A  flaw in the handling of combining characters in screen, a terminal multiplexer with VT100/ANSI terminal emulation can result in denial of service, or potentially the execution of arbitrary code via a specially crafted UTF-8 character sequence.
 Vulnerable: 4.6.2-3
 Fixed: 4.6.2-3+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.3</td>
+</tr>
+<tr>
+<td>2556776</td>
+<td>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.
+Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u5
+Fixed: 2.4.47+dfsg-3+deb10u6</td>
 <td>4.0.0-4.3.0</td>
 <td>4.4.0-4.4.3</td>
 </tr>
@@ -1741,6 +1731,14 @@ within an X509 certificate. However it fails to correctly handle any errors that
 CVE-2019-1551: There is an overflow bug in the x64_64 Montgomery squaring procedure used in exponentiation with 512-bit moduli. No EC algorithms are affected. Analysis suggests that attacks against 2-prime RSA1024, 3-prime RSA1536, and DSA1024 as a result of this defect would be very difficult to perform and are not believed likely. Attacks against DH512 are considered just feasible. However, for an attack the target would have to re-use the DH512 private key, which is not recommended anyway. Also applications directly using the low level API BN_mod_exp may be affected if they use BN_FLG_CONSTTIME.
 Vulnerable: &lt;= 1.1.1d-0+deb10u4
 Fixed: 1.1.1d-0+deb10u5</td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.3</td>
+</tr>
+<tr>
+<td>2556659</td>
+<td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
+Vulnerable: &lt;= 2.8.90-1-cl4u5
+Fixed: 2.8.90-1-cl4u6, 2.8.90-1-cl4.4.0u1, 2.8.90-1-cl5.0.0u8</td>
 <td>4.0.0-4.3.0</td>
 <td>4.4.0-4.4.3</td>
 </tr>

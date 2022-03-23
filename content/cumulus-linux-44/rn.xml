@@ -7,16 +7,69 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2993960</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3012899</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
-<td>2993959</td>
+<td>3010291</td>
+<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
+Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
+Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3008388</td>
+<td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
+<td>4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3007605</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.1.1d-0+deb10u7
+Fixed: 1.1.1d-0+deb10u8</td>
+<td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3007604</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.1.1d-0+deb10u7
+Fixed: 1.1.1d-0+deb10u8</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3007564</td>
+<td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3007551</td>
+<td>Cumulus Linux forwards routed VXLAN traffic in software because the local VTEP IP address is not included in decapsulation rules.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2999253</td>
+<td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload. 
+This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml packages, which are required for the {{switchd}} consistency check.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2994402</td>
+<td>When you run {{ifquery}} as non-root, EVPN multihoming bond configuration fails.
+To work around this issue, always use sudo when running ifupdown2 commands ({{ifup}}, {{ifreload}}, {{ifdown}}, and {{ifquery}}).</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993960</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
 Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
@@ -49,15 +102,6 @@ Fixed:</td>
 <td></td>
 </tr>
 <tr>
-<td>2984205</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2982536</td>
 <td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
 library, which could result in denial of service or potentially the
@@ -86,21 +130,9 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td></td>
 </tr>
 <tr>
-<td>2965752</td>
-<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2961216</td>
 <td>When there is a peer link failure followed by a power failure or a crash on the primary switch,  the MLAG secondary switch takes up to 24 seconds to change roles to the Primary.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2959309</td>
-<td>When you edit the Cumulus image file and change the  {{CL_INSTALLER_HASHED_PASSWORD}} variable, the installation is successful but you cannot connect to the switch with the new password.</td>
-<td>4.4.0-4.4.3, 5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -242,9 +274,21 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td></td>
 </tr>
 <tr>
+<td>2896672</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2896450</td>
 <td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2879645</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -334,6 +378,13 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 This happens when you use the same LACP port ID for more than one bond member on the Cumulus Linux switch.
 To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance-xor}} command on the bond on the Cumulus Linux switch. For proper operation, you need to make the equivalent change on the device on the other side of the link.</td>
 <td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2849529</td>
+<td>The NTP system clock is unable to synchronize with the NTP server.
+To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.</td>
+<td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1868,16 +1919,63 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2993960</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3012899</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
-<td>2993959</td>
+<td>3010291</td>
+<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
+Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
+Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3007605</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.1.1d-0+deb10u7
+Fixed: 1.1.1d-0+deb10u8</td>
+<td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3007604</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.1.1d-0+deb10u7
+Fixed: 1.1.1d-0+deb10u8</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3007564</td>
+<td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3007551</td>
+<td>Cumulus Linux forwards routed VXLAN traffic in software because the local VTEP IP address is not included in decapsulation rules.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2999253</td>
+<td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload. 
+This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml packages, which are required for the {{switchd}} consistency check.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2994402</td>
+<td>When you run {{ifquery}} as non-root, EVPN multihoming bond configuration fails.
+To work around this issue, always use sudo when running ifupdown2 commands ({{ifup}}, {{ifreload}}, {{ifdown}}, and {{ifquery}}).</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993960</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
 Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
@@ -1910,15 +2008,6 @@ Fixed:</td>
 <td></td>
 </tr>
 <tr>
-<td>2984205</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2982536</td>
 <td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
 library, which could result in denial of service or potentially the
@@ -1926,14 +2015,6 @@ execution of arbitrary code, if a malformed XML file is processed.
 Vulnerable: &lt;= 2.2.6-2+deb10u2
 Fixed: 2.2.6-2+deb10u3</td>
 <td>4.0.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2976362</td>
-<td>When a port flaps with PTP enabled, the switch firmware might become unresponsive and you see the following log message:
-
-{{[ptp4l.ERR]: [435345.036] timed out while polling for tx timestamp}} </td>
-<td>4.4.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1960,12 +2041,6 @@ Fixed: 2.2.6-2+deb10u2</td>
 <td>2965759</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
 <td>3.7.15, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2965752</td>
-<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2001,12 +2076,6 @@ Fixed: 2.5.5-3+deb10u4</td>
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-4.4.2, 5.0.0-5.0.1</td>
 <td>4.4.3</td>
-</tr>
-<tr>
-<td>2959309</td>
-<td>When you edit the Cumulus image file and change the  {{CL_INSTALLER_HASHED_PASSWORD}} variable, the installation is successful but you cannot connect to the switch with the new password.</td>
-<td>4.4.0-4.4.3, 5.0.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2951113</td>
@@ -2163,9 +2232,21 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td></td>
 </tr>
 <tr>
+<td>2896672</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2896450</td>
 <td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2879645</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2262,6 +2343,13 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 This happens when you use the same LACP port ID for more than one bond member on the Cumulus Linux switch.
 To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance-xor}} command on the bond on the Cumulus Linux switch. For proper operation, you need to make the equivalent change on the device on the other side of the link.</td>
 <td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2849529</td>
+<td>The NTP system clock is unable to synchronize with the NTP server.
+To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.</td>
+<td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -3755,6 +3843,20 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Affects </th>
 </tr>
 <tr>
+<td>2999342</td>
+<td>CVE-2020-36311, CVE-2021-3609, CVE-2021-33909, CVE-2021-34693
+Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.
+Fixed: 4.19.194-3</td>
+<td>4.2.1-4.4.1, 5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2999341</td>
+<td>CVE-2021-3570
+The ptp4l program in linuxptp, an implementation of the Precision Time Protocol (PTP), does not validate the messageLength field of incoming messages, allowing a remote attacker to cause a denial of service, information leak, or potentially remote code execution.
+Fixed: 1.9.2-1+deb10u1</td>
+<td>4.2.1-4.4.1</td>
+</tr>
+<tr>
 <td>2923458</td>
 <td>At high interface scale (around 100 or more combined SVI and VNI interfaces), the {{sudo ifreload -a}} command might report a buffer underrun event with the message {{error: Buffer underrun}}.</td>
 <td>4.4.0-4.4.1</td>
@@ -3976,16 +4078,72 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2993960</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3012899</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
-<td>2993959</td>
+<td>3010291</td>
+<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
+Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
+Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3007605</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.1.1d-0+deb10u7
+Fixed: 1.1.1d-0+deb10u8</td>
+<td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3007604</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.1.1d-0+deb10u7
+Fixed: 1.1.1d-0+deb10u8</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3007564</td>
+<td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3007551</td>
+<td>Cumulus Linux forwards routed VXLAN traffic in software because the local VTEP IP address is not included in decapsulation rules.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2999342</td>
+<td>CVE-2020-36311, CVE-2021-3609, CVE-2021-33909, CVE-2021-34693
+Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.
+Fixed: 4.19.194-3</td>
+<td>4.2.1-4.4.1, 5.0.0-5.0.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2999341</td>
+<td>CVE-2021-3570
+The ptp4l program in linuxptp, an implementation of the Precision Time Protocol (PTP), does not validate the messageLength field of incoming messages, allowing a remote attacker to cause a denial of service, information leak, or potentially remote code execution.
+Fixed: 1.9.2-1+deb10u1</td>
+<td>4.2.1-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2999253</td>
+<td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload. 
+This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml packages, which are required for the {{switchd}} consistency check.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993960</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
 Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
@@ -4018,15 +4176,6 @@ Fixed:</td>
 <td></td>
 </tr>
 <tr>
-<td>2984205</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2982536</td>
 <td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
 library, which could result in denial of service or potentially the
@@ -4034,14 +4183,6 @@ execution of arbitrary code, if a malformed XML file is processed.
 Vulnerable: &lt;= 2.2.6-2+deb10u2
 Fixed: 2.2.6-2+deb10u3</td>
 <td>4.0.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2976362</td>
-<td>When a port flaps with PTP enabled, the switch firmware might become unresponsive and you see the following log message:
-
-{{[ptp4l.ERR]: [435345.036] timed out while polling for tx timestamp}} </td>
-<td>4.4.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4071,12 +4212,6 @@ Fixed: 2.2.6-2+deb10u2</td>
 <td></td>
 </tr>
 <tr>
-<td>2965752</td>
-<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2961079</td>
 <td>CVE-2021-28965 CVE-2021-31799 CVE-2021-31810 CVE-2021-41817 CVE-2021-41819 CVE-2021-32066: Several vulnerabilities have been discovered in the interpreter for the Ruby language and the Rubygems included, which may result on result in XML roundtrip attacks, the execution of arbitrary code, information disclosure, StartTLS stripping in IMAP or denial of service.
 Vulnerable: &lt;= 2.5.5-3+deb10u3
@@ -4103,12 +4238,6 @@ Fixed: 2.5.5-3+deb10u4</td>
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-4.4.2, 5.0.0-5.0.1</td>
 <td>4.4.3</td>
-</tr>
-<tr>
-<td>2959309</td>
-<td>When you edit the Cumulus image file and change the  {{CL_INSTALLER_HASHED_PASSWORD}} variable, the installation is successful but you cannot connect to the switch with the new password.</td>
-<td>4.4.0-4.4.3, 5.0.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2951113</td>
@@ -4265,6 +4394,12 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td></td>
 </tr>
 <tr>
+<td>2896672</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2896450</td>
 <td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
@@ -4297,6 +4432,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>TACACS+ and RADIUS package installation from the CumulusLinux-4.4-latest distribution on apt.cumulusnetworks.com fails because package metadata in the preinstalled {{cumulus-local-apt-archive}} package is incorrect.  The SHA512 checksum causes a hash sum mismatch.</td>
 <td>4.4.0-4.4.1</td>
 <td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2879645</td>
+<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2877796</td>
@@ -4456,6 +4597,13 @@ thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 This happens when you use the same LACP port ID for more than one bond member on the Cumulus Linux switch.
 To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance-xor}} command on the bond on the Cumulus Linux switch. For proper operation, you need to make the equivalent change on the device on the other side of the link.</td>
 <td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2849529</td>
+<td>The NTP system clock is unable to synchronize with the NTP server.
+To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.</td>
+<td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>

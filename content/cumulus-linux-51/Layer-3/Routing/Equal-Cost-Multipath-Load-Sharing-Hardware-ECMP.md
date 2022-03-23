@@ -209,9 +209,7 @@ Cumulus Linux uses GTP hashing for:
 - [GTP-U](## "GPRS Tunnelling Protocol User") packets ingressing physical ports or bonds.
 - VXLAN encapsulated GTP-U packets terminating on egress [VTEPs](## "Virtual Tunnel End Points").
 
-GTP hashing is only applicable if:
-- The outer header egressing the port is GTP encapsulated.
-- The ingress packet is either a GTP-U packet or a VXLAN encapsulated GTP-U packet.
+GTP hashing is only applicable if the outer header egressing the port is GTP encapsulated and if the ingress packet is either a GTP-U packet or a VXLAN encapsulated GTP-U packet.
 
 {{%notice note%}}
 - Cumulus Linux supports GTP Hashing on NVIDIA Spectrum-2 and later.
@@ -219,6 +217,17 @@ GTP hashing is only applicable if:
 {{%/notice%}}
 
 To enable GTP hashing:
+
+{{< tabs "TabID221 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set 
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 1. Edit the `/etc/cumulus/datapath/traffic.conf` file and change the `lag_hash_config.gtp_teid` parameter to `true`:
 
@@ -236,6 +245,9 @@ To enable GTP hashing:
    ```
 
 To disable GTP hashing, set the `hash_config.gtp_teid` parameter to FALSE, then reload the configuration.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Resilient Hashing
 

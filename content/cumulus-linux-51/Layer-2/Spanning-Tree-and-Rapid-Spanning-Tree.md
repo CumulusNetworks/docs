@@ -218,7 +218,7 @@ Edit the switch port interface stanza in the `/etc/network/interfaces` file to r
 
 ### BPDU Guard
 
-You can configure *BPDU guard* to protect the spanning tree topology from unauthorized switches affecting the forwarding path. For example, if you add a new switch to an access port off a leaf switch and this new switch has a low priority, it can become the new root switch and affect the forwarding path for the entire layer 2 topology.
+You can configure *BPDU guard* to protect the spanning tree topology from an unauthorized device affecting the forwarding path. For example, if you add a new host to an access port off a leaf switch and the host sends an STP [BPDU](## "Bridge Protocol Data Unit"), BPDU guard protects against undesirable topology changes in the environment.
 
 The following example commands set BPDU guard for swp5:
 
@@ -264,8 +264,8 @@ cumulus@switch:~$ nv show bridge domain br_default stp
 {{< tab "Linux Commands ">}}
 
 ```
-cumulus@switch:~$ mstpctl showportdetail bridge bond0
-bridge:bond0 CIST info
+cumulus@switch:~$ mstpctl showportdetail br_default
+bridge:swp5 CIST info
   enabled            no                      role                 Disabled
   port id            8.001                   state                discarding
   external port cost 305                     admin external cost  0
@@ -278,7 +278,7 @@ bridge:bond0 CIST info
   point-to-point     yes                     admin point-to-point auto
   restricted role    no                      restricted TCN       no
   port hello time    10                      disputed             no
-  bpdu guard port    yes                      bpdu guard error     yes
+  bpdu guard port    yes                     bpdu guard error     yes
   network port       no                      BA inconsistent      no
   Num TX BPDU        3                       Num TX TCN           2
   Num RX BPDU        488                     Num RX TCN           2
@@ -303,7 +303,7 @@ cumulus@switch:~$ ip -p -j link show swp5
 To recover from the `protodown` state, remove the protodown reason and protodown from the interface with the `ip link set dev <interface> protodown_reason bpduguard off` command.
 
 ```
-cumulus@switch:~$ ip link set dev swp5 protodown_reason bpduguard off
+cumulus@switch:~$ sudo ip link set dev swp5 protodown_reason bpduguard off
 ```
 
 {{%notice note%}}

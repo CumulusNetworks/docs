@@ -13,14 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3010290</td>
-<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
-Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
-<td>5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3008388</td>
 <td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
 <td>4.4.3, 5.0.0-5.0.1</td>
@@ -36,20 +28,42 @@ Fixed: 1.1.1d-0+deb10u8</td>
 </tr>
 <tr>
 <td>3007564</td>
-<td>When you remove the last {{vxlan-remoteip}} configuration line from a VNI in the {{/etc/network/interfaces}} file, the flood entry is not removed from the kernel.</td>
+<td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
-<td>3001503</td>
-<td>The NVUE {{nv show interface &lt;interface&gt; bridge domain &lt;domain&gt; &lt;vlan&gt;}} command returns a 404 NOT FOUND error.</td>
-<td>5.0.1</td>
+<td>3007551</td>
+<td>Cumulus Linux forwards routed VXLAN traffic in software because the local VTEP IP address is not included in decapsulation rules.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2999342</td>
+<td>CVE-2020-36311, CVE-2021-3609, CVE-2021-33909, CVE-2021-34693
+Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.
+Fixed: 4.19.194-3</td>
+<td>4.2.1-4.4.1, 5.0.0-5.0.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2999253</td>
+<td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload. 
+This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml packages, which are required for the {{switchd}} consistency check.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2999243</td>
 <td>sFlow fails to send flow samples.</td>
 <td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2994402</td>
+<td>When you run {{ifquery}} as non-root, EVPN multihoming bond configuration fails.
+To work around this issue, always use sudo when running ifupdown2 commands ({{ifup}}, {{ifreload}}, {{ifdown}}, and {{ifquery}}).</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -110,12 +124,6 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
 <td>4.2.1-4.4.2, 5.0.0-5.0.1</td>
 <td>4.4.3</td>
-</tr>
-<tr>
-<td>2965752</td>
-<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2961216</td>
@@ -407,14 +415,6 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <td></td>
 </tr>
 <tr>
-<td>3010290</td>
-<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
-Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
-<td>5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3008388</td>
 <td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
 <td>4.4.3, 5.0.0-5.0.1</td>
@@ -430,14 +430,42 @@ Fixed: 1.1.1d-0+deb10u8</td>
 </tr>
 <tr>
 <td>3007564</td>
-<td>When you remove the last {{vxlan-remoteip}} configuration line from a VNI in the {{/etc/network/interfaces}} file, the flood entry is not removed from the kernel.</td>
+<td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3007551</td>
+<td>Cumulus Linux forwards routed VXLAN traffic in software because the local VTEP IP address is not included in decapsulation rules.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2999342</td>
+<td>CVE-2020-36311, CVE-2021-3609, CVE-2021-33909, CVE-2021-34693
+Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.
+Fixed: 4.19.194-3</td>
+<td>4.2.1-4.4.1, 5.0.0-5.0.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2999253</td>
+<td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload. 
+This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml packages, which are required for the {{switchd}} consistency check.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2999243</td>
 <td>sFlow fails to send flow samples.</td>
 <td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2994402</td>
+<td>When you run {{ifquery}} as non-root, EVPN multihoming bond configuration fails.
+To work around this issue, always use sudo when running ifupdown2 commands ({{ifup}}, {{ifreload}}, {{ifdown}}, and {{ifquery}}).</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -498,12 +526,6 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
 <td>4.2.1-4.4.2, 5.0.0-5.0.1</td>
 <td>4.4.3</td>
-</tr>
-<tr>
-<td>2965752</td>
-<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2961216</td>

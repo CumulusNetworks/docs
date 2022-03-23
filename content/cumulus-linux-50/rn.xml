@@ -114,6 +114,17 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td></td>
 </tr>
 <tr>
+<td>2978165</td>
+<td>When you use NVUE to configure an ACL rule with a {{set cos}} action, the {{nv config apply}} command fails with the following error message:
+{nofromat}
+$ cumulus@switch:~$ nv config apply
+Failed to prepare to apply
+Unrecoverable internal error
+{nofromat}</td>
+<td>5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2972540</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>

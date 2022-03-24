@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - stage
-      - stu-stage
 
 jobs:
   release-notes:
@@ -22,4 +21,4 @@ jobs:
           commit-message: "Automated release note commit"
 
     env:
-      GITHUB_TOKEN: ${{ secrets.STU_GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.PLUMBIS_GITHUB_TOKEN }}

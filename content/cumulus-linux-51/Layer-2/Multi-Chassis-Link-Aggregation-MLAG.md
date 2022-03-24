@@ -829,23 +829,23 @@ The following table shows the conflict types and actions that Cumulus Linux take
 
 |  Conflict       | Type   | Action|
 | --------------- | ------ | ----- |
-| Bridge STP mode | Global |  Proto-down only the MLAG bonds on the secondary switch when there is an [STP](## "Spanning Tree Protocol") mode mismatch across peers. |
-| MLAG native VLAN | Interface | Proto-down only the MLAG bonds on the secondary switch when there is native VLAN mismatch. |
-| STP root bridge priority | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is an [STP](## "Spanning Tree Protocol") priority mismatch across peers. |
-| MLAG system MAC address | Global  | Proto-down the MLAG bonds and VNIs on the secondary switch when there is an MLAG system MAC address mismatch across peers.|
-| Peer IP | Global   | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a peer IP address mismatch. |
-| Peer link MTU | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a peer link MTU mismatch across peers. |
-| Peer link native VLAN | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is a peer link VLAN mismatch across peers.<br>Proto-down the MLAG bonds and VNIs on the secondary switch when there is no PVID. |
-| VXLAN anycast IP address | Global | Proto-down the MLAG bonds and VNIs on the secondary switch when there is an anycast IP address mismatch across peers.<br>Proto-down the MLAG bonds and VNIs on the node where there is no configured anycast IP address. |
-| Peer link bridge member | Global | Proto-down the MLAG bonds and VNIs on the MLAG switch where there is a peer link bridge member conflict. |
-| MLAG bond bridge member | Interface | Proto-down the MLAG bonds and VNIs on the MLAG switch if the MLAG bond is not a bridge member. |
-| LACP partner MAC address | Interface | Proto-down the MLAG bonds on the MLAG switch if there is an LACP partner MAC address mismatch or if there is a duplicate LACP partner MAC address. |
+| Bridge STP mode | Global |  Protodown only the MLAG bonds on the secondary switch when there is an [STP](## "Spanning Tree Protocol") mode mismatch across peers. |
+| MLAG native VLAN | Interface | Protodown only the MLAG bonds on the secondary switch when there is a native VLAN mismatch. |
+| STP root bridge priority | Global | Protodown the MLAG bonds and VNIs on the secondary switch when there is an [STP](## "Spanning Tree Protocol") priority mismatch across peers. |
+| MLAG system MAC address | Global  | Protodown the MLAG bonds and VNIs on the secondary switch when there is an MLAG system MAC address mismatch across peers.|
+| Peer IP | Global   | Protodown the MLAG bonds and VNIs on the secondary switch when there is a peer IP address mismatch. |
+| Peer link MTU | Global | Protodown the MLAG bonds and VNIs on the secondary switch when there is a peer link MTU mismatch across peers. |
+| Peer link native VLAN | Global | Protodown the MLAG bonds and VNIs on the secondary switch when there is a peer link VLAN mismatch across peers.<br>Protodown the MLAG bonds and VNIs on the secondary switch when there is no PVID. |
+| VXLAN anycast IP address | Global | Protodown the MLAG bonds and VNIs on the secondary switch when there is an anycast IP address mismatch across peers.<br>Protodown the MLAG bonds and VNIs on the node where there is no configured anycast IP address. |
+| Peer link bridge member | Global | Protodown the MLAG bonds and VNIs on the MLAG switch where there is a peer link bridge member conflict. |
+| MLAG bond bridge member | Interface | Protodown the MLAG bonds and VNIs on the MLAG switch if the MLAG bond is not a bridge member. |
+| LACP partner MAC address | Interface | Protodown the MLAG bonds on the MLAG switch if there is an LACP partner MAC address mismatch or if there is a duplicate LACP partner MAC address. |
 | MLAG VLANs| Interface   |  Suspend the inconsistent VLANs on either MLAG peer if the VLANs are not part of the peer link or if there is mismatch of VLANs configured on the MLAG bonds between the MLAG peers. |
 | Peer link VLANs| Global | Suspend the inconsistent VLANs on either MLAG peer on all the dual-connected MLAG bonds and VXLAN interfaces. |
 | VLANs on VXLAN interface not part of peer link| VXLAN | Suspend the VLANs on the VXLAN interfaces that are inconsistent. |
 | VLAN on VXLAN interface | VXLAN | Suspend the inconsistent VLAN on either MLAG peer if there is a VLAN mismatch on VXLAN interfaces.|
-| MLAG protocol version | Global | The consistency checker reports that there is an MLAG protocol version mismatch between the MLAG peers. Cumulus Linux does not take any distruptive action. |
-| MLAG package version | Global| The consistency checker reports that there is an MLAG package version mismatch between the MLAG peers. Cumulus Linux does not take any disruptive action.|
+| MLAG protocol version | Global | There is an MLAG protocol version mismatch between the MLAG peers. Cumulus Linux does not take any distruptive action. |
+| MLAG package version | Global| There is an MLAG package version mismatch between the MLAG peers. Cumulus Linux does not take any disruptive action.|
 
 You can also manually check for MLAG inconsistencies with the following commands:
 
@@ -1008,6 +1008,8 @@ bridge-learning   yes                yes                -
 {{< /tab >}}
 {{< /tabs >}}
 
+After you make the necessary configuration changes to avoid the protodown state, you can remove the conflict and allow the bonds to come back up with the NVUE `nv action clear mlag lacp-conflict` command or the Linux `sudo clagctl clearconflictstate` command.
+
 The actions that Cumulus Linux takes when there is a conflict are distruptive. If you prefer, you can configure the switch to not take any action when there is a conflict. Edit the `/etc/network/interfaces` file to add the `clagd-args --gracefulConsistencyCheck FALSE` parameter in the peer link stanza.
 
 ```
@@ -1097,7 +1099,7 @@ Cumulus Linux puts interfaces in a protodown state under the following condition
 
   To prevent a bond from coming up when an MLAG bond with an LACP partner MAC address already in use comes up, use the `--clag-args --allowPartnerMacDup False` option. This option puts the slaves of that bond interface in a protodown state and the `clagctl` output shows the protodown reason as a `duplicate-partner-mac`.
 
-After you make the necessary cable or configuration changes to avoid the protodown state and you want MLAG to reevaluate the LACP partners, use the `clagctl clearconflictstate` command to remove `duplicate-partner-mac` or `partner-mac-mismatch` from the protodown bonds, allowing them to come back up.
+After you make the necessary cable or configuration changes to avoid the protodown state and you want MLAG to reevaluate the LACP partners, run the NVUE `nv action clear mlag lacp-conflict` command or the Linux `clagctl clearconflictstate` command to remove `duplicate-partner-mac` or `partner-mac-mismatch` from the protodown bonds, allowing them to come back up.
 
 ## Configuration Example
 

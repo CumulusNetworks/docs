@@ -193,6 +193,12 @@ Fixed: 4.2-3+deb8u5</td>
 <td></td>
 </tr>
 <tr>
+<td>2959067</td>
+<td>ECMP produces errors indicating {{No More Resources}} and {{switchd}} crashes even when ECMP utilization is low.</td>
+<td>3.7.14.2-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2959024</td>
 <td>ACL rules do not always install in hardware after switch reboot.
 To work around this issue, run the {{sudo cl-acltool -i}} command to reinstall the ACL rules.</td>
@@ -3203,6 +3209,12 @@ Fixed: 2.1.0-6+deb8u7</td>
 Vulnerable: &lt;= 4.2-3+deb8u4
 Fixed: 4.2-3+deb8u5</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2959067</td>
+<td>ECMP produces errors indicating {{No More Resources}} and {{switchd}} crashes even when ECMP utilization is low.</td>
+<td>3.7.14.2-3.7.15</td>
 <td></td>
 </tr>
 <tr>

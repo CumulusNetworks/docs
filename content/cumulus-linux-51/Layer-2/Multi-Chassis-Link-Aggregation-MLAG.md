@@ -844,8 +844,8 @@ The following table shows the conflict types and actions that Cumulus Linux take
 | Peer link VLANs| Global | Suspend the inconsistent VLANs on either MLAG peer on all the dual-connected MLAG bonds and VXLAN interfaces. |
 | VLANs on VXLAN interface not part of peer link| VXLAN | Suspend the VLANs on the VXLAN interfaces that are inconsistent. |
 | VLAN on VXLAN interface | VXLAN | Suspend the inconsistent VLAN on either MLAG peer if there is a VLAN mismatch on VXLAN interfaces.|
-| MLAG protocol version | Global | There is an MLAG protocol version mismatch between the MLAG peers. Cumulus Linux does not take any distruptive action. |
-| MLAG package version | Global| There is an MLAG package version mismatch between the MLAG peers. Cumulus Linux does not take any disruptive action.|
+| MLAG protocol version | Global | The consistency check records an MLAG protocol version mismatch between the MLAG peers. Cumulus Linux does not take any distruptive action. |
+| MLAG package version | Global| The consistency check records an MLAG package version mismatch between the MLAG peers. Cumulus Linux does not take any disruptive action.|
 
 You can also manually check for MLAG inconsistencies with the following commands:
 

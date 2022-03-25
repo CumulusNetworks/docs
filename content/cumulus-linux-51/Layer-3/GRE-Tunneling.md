@@ -14,9 +14,12 @@ GRE uses multiple protocols over a single-protocol backbone and is less demandin
 - You can use only static IPv4 routes as a destination for the tunnel interface.
 - You can only configure IPv4 endpoints.
 - You can only configure point to point GRE tunnels; only one remote tunnel per interface.
-- You cannot configure two tunnels with same local and remote tunnel IP addresses.
-- GRE tunneling cannot coexist with VXLAN or MPLS on the switch.
+- You cannot configure two tunnels with same local and remote tunnel IP address.
+- GRE tunnels cannot coexist with VXLAN or MPLS on the switch.
 - Cumulus Linux supports a maximum of 256 GRE tunnels.
+- GRE tunnels do not support layer 3 protocols, ECMP, QoS, ACLs or NAT.
+- All GRE tunnels share the same [TTL](## "Time to live") value; Cumulus Linux uses the TTL value of the tunnel you configure last.
+- The GRE tunnel [MTU](## "Maximum Transmission Unit ") must be the same as the underlay MTU (otherwise the switch drops the higher packet size).
 {{%/notice%}}
 
 The following example shows two sites that use IPv4 addresses. Using GRE tunneling, the two end points can encapsulate an IPv4 or IPv6 payload inside an IPv4 packet. The switch routes the packet based on the destination in the outer IPv4 header.

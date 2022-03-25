@@ -18,7 +18,14 @@ NetQ Agent validation looks for an agent status of Rotten for each node in the n
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
 | 0 | Agent Health | Checks for nodes that have failed or lost communication |
+## Addresses Validation Tests
 
+The duplicate address detection validation tests look for duplicate IPv4 and IPv6 addresses assigned to interfaces across devices in the inventory, and check for duplicate /32 host routes in each VRF. You can accomplish this with the following tests:
+
+| Test Number | Test Name | Description |
+| :---------: | --------- | ----------- |
+| 0 | IPv4 Duplicate Addresses | Checks for duplicate IPv4 addresses |
+| 1 | IPv6 Duplicate Addresses | Checks for duplicate IPv6 addresses |
 ## BGP Validation Tests
 
 The BGP validation tests look for indications of the session sanity (status and configuration). You can accomplish this with the following tests:
@@ -115,6 +122,17 @@ The OSPF validation tests look for indications of the service health and configu
 | 5 | Interface MTU | Checks for MTU consistency in an OSPF adjacency |
 | 6 | Service Status | Checks for OSPF service health in an OSPF adjacency |
 
+## RoCE Validation Tests
+
+The RoCE validation tests look for consistent RoCE and QoS configurations across nodes. You can accomplish this with the following tests:
+
+| Test Number | Test Name | Description |
+| :---------: | --------- | ----------- |
+| 0 | RoCE Mode | Checks whether RoCE is configured for lossy or lossless mode |
+| 1 | Classification | Checks for consistency of DSCP, service pool, port group, and traffic class settings |
+| 2 | Congestion Control | Checks for consistency of ECN and RED threshold settings |
+| 3 | Flow Control | Checks for consistency of PFC configuration for RoCE lossless mode |
+| 4 | ETS | Checks for consistency of Enhanced Transmission Selection settings |
 ## Sensor Validation Tests
 
 The sensor validation tests looks for chassis power supply, fan, and temperature sensors that are in a bad state. You can accomplish this with the following tests:
@@ -142,21 +160,6 @@ The VXLAN validation tests look for configuration consistency across all VTEPs. 
 | :---------: | --------- | ----------- |
 | 0 | VLAN Consistency | Checks for consistent VLAN to VXLAN mapping across all VTEPs |
 | 1 | BUM replication | Checks for consistent replication group membership across all VTEPs |
-
-## Addresses Validation Tests
-
-The duplicate address detection validation tests look for duplicate IPv4 and IPv6 addresses assigned to interfaces across devices in the inventory, and check for duplicate /32 host routes in each VRF. You can accomplish this with the following tests:
-
-| Test Number | Test Name | Description |
-| :---------: | --------- | ----------- |
-| 0 | IPv4 Duplicate Addresses | Checks for duplicate IPv4 addresses |
-| 1 | IPv6 Duplicate Addresses | Checks for duplicate IPv6 addresses |
-
-{{<notice note>}}
-
-The duplicate address detection validation is only supported using `netq check addresses` on the CLI.
-
-{{</notice>}}
 
 ## Disabling Validation Checks in the NetQ UI
 

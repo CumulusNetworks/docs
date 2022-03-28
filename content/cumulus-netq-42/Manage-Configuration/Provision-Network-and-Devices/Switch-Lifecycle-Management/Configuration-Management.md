@@ -4,6 +4,13 @@ author: NVIDIA
 weight: 660
 toc: 4
 ---
+
+{{<notice warning>}}
+
+Switch configuration management has been deprecated in NetQ 4.2.0. This feature will be removed in NetQ 4.3.0. 
+
+{{</notice>}}
+
 You can use the NetQ UI to configure switches using one or more switch configurations. To enable consistent application of configurations, switch configurations can contain network templates for SNMP, NTP, and user accounts, VLAN and MLAG settings, and configuration profiles for interfaces and NetQ Agents.
 
 If you intend to use network templates or configuration profiles, the recommended workflow is as follows:

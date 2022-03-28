@@ -71,6 +71,7 @@ To create and run a request containing checks on one or more protocols or servic
 To create and run a request containing checks on a single protocol or service all within the NetQ CLI, run the relevant `netq check` command:
 
 ```
+netq check addresses [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <addr-number-range-list> | exclude <addr-number-range-list>] [around <text-time>] [json | summary]
 netq check agents [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <agent-number-range-list> | exclude <agent-number-range-list>] [around <text-time>] [streaming] [json]
 netq check bgp [label <text-label-name> | hostnames <text-list-hostnames>] [vrf <vrf>] [check_filter_id <text-check-filter-id>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [streaming] [json | summary]
 netq check cl-version [label <text-label-name> | hostnames <text-list-hostnames>] [match-version <cl-ver> | min-version <cl-ver>] [check_filter_id <text-check-filter-id>] [include <version-number-range-list> | exclude <version-number-range-list>] [around <text-time>] [json | summary]
@@ -81,10 +82,10 @@ netq check mlag [label <text-label-name> | hostnames <text-list-hostnames> ] [ch
 netq check mtu [label <text-label-name> | hostnames <text-list-hostnames>] [unverified] [check_filter_id <text-check-filter-id>] [include <mtu-number-range-list> | exclude <mtu-number-range-list>] [around <text-time>] [streaming] [json | summary]
 netq check ntp [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <ntp-number-range-list> | exclude <ntp-number-range-list>] [around <text-time>] [streaming] [json | summary]
 netq check ospf [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <ospf-number-range-list> | exclude <ospf-number-range-list>] [around <text-time>] [json | summary]
+netq check roce [streaming] hostnames <text-list-hostnames> check_filter_id <text-check-filter-id> exclude <roce-number-range-list> around <text-time> [json|summary]
 netq check sensors [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <sensors-number-range-list> | exclude <sensors-number-range-list>] [around <text-time>] [streaming] [json | summary]
 netq check vlan [label <text-label-name> | hostnames <text-list-hostnames>] [unverified] [check_filter_id <text-check-filter-id>] [include <vlan-number-range-list> | exclude <vlan-number-range-list>] [around <text-time>] [json | summary]
 netq check vxlan [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <vxlan-number-range-list> | exclude <vxlan-number-range-list>] [around <text-time>] [json | summary]
-netq check addresses [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <addr-number-range-list> | exclude <addr-number-range-list>] [around <text-time>] [json | summary]
 ```
 
 All `netq check` commands have a summary and test results section. Some have additional summary information.
@@ -119,6 +120,7 @@ L3 VNI RMAC Test                 : skipped
 {{%notice note%}}
 Validations that support the `streaming` keyword can query real time streaming information to return results faster compared to traditional on-demand checks. The following netq checks support a streaming query:
 
+- netq check addresses
 - netq check agents
 - netq check bgp
 - netq check interfaces
@@ -126,6 +128,7 @@ Validations that support the `streaming` keyword can query real time streaming i
 - netq check mtu
 - netq check ntp
 - netq check evpn
+- netq check roce
 - netq check vxlan
 {{%/notice%}}
 
@@ -332,6 +335,7 @@ This section provides CLI validation examples for a variety of protocols and ele
 {{%notice note%}}
 Validations that support the `streaming` keyword can query real time streaming information to return results faster compared to traditional on-demand checks. The following netq checks support a streaming query:
 
+- netq check addresses
 - netq check agents
 - netq check bgp
 - netq check interfaces
@@ -339,6 +343,7 @@ Validations that support the `streaming` keyword can query real time streaming i
 - netq check mtu
 - netq check ntp
 - netq check evpn
+- netq check roce
 - netq check vxlan
 {{%/notice%}}
 
@@ -1043,6 +1048,35 @@ tor-2             uplink-2                  0.0.0.20                  27.0.0.20 
 ```
 
 Refer to {{<link url="Validation-Checks/#ospf-validation-tests" text="OSPF Validation Tests">}} for descriptions of these tests.
+
+{{</tab>}}
+
+{{<tab "RoCE">}}
+
+The RoCE validation tests look for consistent RoCE and QoS configurations across nodes.
+
+
+```
+cumulus@switch:mgmt:~$ netq check roce streaming
+roce check result summary:
+
+Total nodes         : 12
+Checked nodes       : 12
+Failed nodes        : 0
+Rotten nodes        : 0
+Warning nodes       : 0
+Skipped nodes       : 0
+
+
+RoCE mode Test                 : passed
+RoCE Classification Test       : passed
+RoCE Congestion Control Test   : passed
+RoCE Flow Control Test         : passed
+RoCE ETS mode Test             : passed
+
+```
+
+Refer to {{<link url="Validation-Checks#roce-validation-tests" text="RoCE Validation Tests">}} for descriptions of these tests.
 
 {{</tab>}}
 

@@ -511,7 +511,7 @@ To integrate your authentication server:
 
 7. Click **Add**.
 
-    {{<figure src="/images/netq/netq-mgmt-sso-success-330.png" width="600">}}
+    {{<figure src="/images/netq/sso-url-41.png" width="600">}}
 
 8. As indicated, copy the redirect URL *https://api.netq.cumulusnetworks.com/netq/auth/v1/sso-callback* into your OpenID Connect configuration.
 

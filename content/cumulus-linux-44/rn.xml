@@ -106,6 +106,12 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td></td>
 </tr>
 <tr>
+<td>2972538</td>
+<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
+<td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2971159</td>
 <td>On rare occasions, the link up time on optical media can be more than five seconds. </td>
 <td>4.4.3</td>
@@ -1995,6 +2001,12 @@ Fixed: 2.2.6-2+deb10u3</td>
 </tr>
 <tr>
 <td>2972540</td>
+<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
+<td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2972538</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
@@ -4151,6 +4163,12 @@ Fixed: 2.2.6-2+deb10u3</td>
 </tr>
 <tr>
 <td>2972540</td>
+<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
+<td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2972538</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td></td>

@@ -205,20 +205,68 @@ Cumulus Linux enables symmetric hashing by default. Make sure that the settings 
 <!-- vale on -->
 [GTP](## "GPRS Tunneling Protocol") carries mobile data within the core of the mobile operator’s network. Traffic in the 5G Mobility core cluster, from cell sites to compute nodes, have the same source and destination IP address. The only way to identify individual flows is with the GTP [TEID](## "Tunnel Endpoint Identifier"). Enabling GTP hashing adds the TEID as a hash parameter and helps the Cumulus Linux switches in the network to distribute mobile data traffic evenly across ECMP routes.
 
-Cumulus Linux uses GTP hashing for:
+Cumulus Linux supports TEID-based *ECMP hashing* for:
 - [GTP-U](## "GPRS Tunnelling Protocol User") packets ingressing physical ports or bonds.
 - VXLAN encapsulated GTP-U packets terminating on egress [VTEPs](## "Virtual Tunnel End Points").
 
-GTP hashing is only applicable if:
-- The outer header egressing the port is GTP encapsulated.
-- The ingress packet is either a GTP-U packet or a VXLAN encapsulated GTP-U packet.
+Cumulus Linux supports TEID-based *load balancing* for traffic egressing a bond.
+
+GTP TEID-based ECMP hashing and load balancing is only applicable if the outer header egressing the port is GTP encapsulated and if the ingress packet is either a GTP-U packet or a VXLAN encapsulated GTP-U packet.
 
 {{%notice note%}}
 - Cumulus Linux supports GTP Hashing on NVIDIA Spectrum-2 and later.
 - [GTP-C](## "GPRS Tunnelling Protocol Control") packets are not part of GTP hashing.
 {{%/notice%}}
 
-To enable GTP hashing:
+To enable TEID-based ECMP hashing:
+
+{{< tabs "TabID221 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set traffic config hash ecmp gtp_teid enable on
+cumulus@switch:~$ nv config apply
+```
+
+To disable TEID-based ECMP hashing, run the `nv set traffic config hash ecmp gtp_teid enable off` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+1. Edit the `/etc/cumulus/datapath/traffic.conf` file and change the `lag_hash_config.gtp_teid` parameter to `true`:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
+   ...
+   #GTP-U teid
+   hash_config.gtp_teid = true
+   ```
+
+2. Run the `echo 1 > /cumulus/switchd/ctrl/hash_config_reload` command. This command does not cause any traffic interruptions.
+
+   ```
+   cumulus@switch:~$ echo 1 > /cumulus/switchd/ctrl/hash_config_reload
+   ```
+
+To disable TEID-based ECMP hashing, set the `hash_config.gtp_teid` parameter to `false`, then reload the configuration.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To enable TEID-based load balancing:
+
+{{< tabs "TabID256 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set traffic config hash lag gtp_teid enable on
+cumulus@switch:~$ nv config apply
+```
+
+To disable TEID-based load balancing, run the `nv set traffic config hash lag gtp_teid enable off` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 1. Edit the `/etc/cumulus/datapath/traffic.conf` file and change the `lag_hash_config.gtp_teid` parameter to `true`:
 
@@ -235,7 +283,10 @@ To enable GTP hashing:
    cumulus@switch:~$ echo 1 > /cumulus/switchd/ctrl/hash_config_reload
    ```
 
-To disable GTP hashing, set the `hash_config.gtp_teid` parameter to FALSE, then reload the configuration.
+To disable TEID-based load balancing, set the `lag_hash_config.gtp_teid` parameter to `false`, then reload the configuration.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Resilient Hashing
 
@@ -350,7 +401,7 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 Adaptive routing is a load balancing mechanism that improves network utilization by selecting routes dynamically based on the immediate network state, such as switch queue length and port utilization.
 
 Cumulus Linux supports adaptive routing:
-- On Spectrum-2 and Spectrum-3 switches
+- On Spectrum-2 and later
 - With {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE" >}} only
 - With unicast traffic
 - On physical uplink (layer 3) ports only; you cannot configure adaptive routing on subinterfaces or on ports that are part of a bond
@@ -361,11 +412,23 @@ Adaptive routing does not make use of resilient hashing.
 {{%/notice%}}
 
 Cumulus Linux uses Sticky Free Adaptive Routing mode, which uses a periodic grades-based egress port selection process.
-
 - The grade on each port, which is a value between 0 and 4, depends on buffer usage and link utilization. A higher grade, such as 4, indicates that the port is more congested or that the port is down. Each packet routes to the less loaded path to best utilize the fabric resources and avoid congestion. The adaptive routing engine always selects the least congested port (with the lowest grade). If there are multiple ports with the same grade, the engine randomly selects between them.
 - The change decision for port selection is set to one microsecond; you cannot change it.
 
 To enable adaptive routing:
+
+{{< tabs "TabID421 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp51 router adaptive-routing enable on
+cumulus@switch:~$ nv config apply
+```
+
+To disable adaptive routing on a port, run the `nv set interface <interface> router adaptive-routing enable off` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 1. Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file:
    - Set the global `adaptive_routing.enable` parameter to `TRUE`.
@@ -374,14 +437,24 @@ To enable adaptive routing:
    ```
    cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
    ## Global adaptive-routing enable/disable setting 
+   ## Global adaptive-routing enable/disable setting
    adaptive_routing.enable = TRUE
-   ...
-   interface.swp51.adaptive_routing.enable = TRUE 
-   interface.swp51.adaptive_routing.link_util_thresh = 70 
+
+   ## Supported AR profile modes : STICKY_FREE
+   #adaptive_routing.profile0.mode = STICKY_FREE
+
+   ## Maximum value for buffer-congestion threshold is 16777216. Unit is in cells
+   #adaptive_routing.congestion_threshold.low = 100
+   #adaptive_routing.congestion_threshold.medium = 1000
+   #adaptive_routing.congestion_threshold.high = 10000
+
+   ## Per-port configuration for adaptive-routing
+   interface.swp51.adaptive_routing.enable = TRUE
+   #interface.swp51.adaptive_routing.link_util_thresh = 70
    ...
    ```
 
-   The `/etc/cumulus/switchd.d/adaptive_routing.conf` file contains additional default adaptive routing parmeters, which you cannot change.
+   The `/etc/cumulus/switchd.d/adaptive_routing.conf` file contains default threshold settings; do not change these settings.
 
 2. {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
 <!-- vale off -->
@@ -391,6 +464,9 @@ To enable adaptive routing:
 To disable adaptive routing globally, set the `adaptive_routing.enable` parameter in the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to `FALSE`.
 
 To disable adaptive routing on a port, set the `interface.<port>.adaptive_routing.enable` parameter in the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to `FALSE`.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Considerations
 

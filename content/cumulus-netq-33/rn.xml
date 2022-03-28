@@ -35,8 +35,8 @@ To work around this issue, run the following command on the NetQ telemetry serve
 <tr>
 <td>2555197</td>
 <td>NetQ CLI: Occasionally, when a command response contains a large number of objects to be displayed the NetQ CLI does not display all results in the console. When this occurs, view all results using the {{json}} format option.</td>
-<td>3.3.0-3.3.1, 4.0.0-4.1.0</td>
-<td></td>
+<td>3.3.0-3.3.1</td>
+<td>4.0.0-4.1.0</td>
 </tr>
 <tr>
 <td>2553453</td>
@@ -484,8 +484,8 @@ Save the file.</td>
 <tr>
 <td>2555197</td>
 <td>NetQ CLI: Occasionally, when a command response contains a large number of objects to be displayed the NetQ CLI does not display all results in the console. When this occurs, view all results using the {{json}} format option.</td>
-<td>3.3.0-3.3.1, 4.0.0-4.1.0</td>
-<td></td>
+<td>3.3.0-3.3.1</td>
+<td>4.0.0-4.1.0</td>
 </tr>
 <tr>
 <td>2553453</td>

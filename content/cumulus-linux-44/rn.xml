@@ -7,9 +7,11 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3012899</td>
-<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3010291</td>
+<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
+Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
+Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
+<td>4.0.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -27,9 +29,23 @@ Fixed: 1.1.1d-0+deb10u8</td>
 <td></td>
 </tr>
 <tr>
+<td>3007604</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.1.1d-0+deb10u7
+Fixed: 1.1.1d-0+deb10u8</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3007564</td>
-<td>When you remove the last {{vxlan-remoteip}} configuration line from a VNI in the {{/etc/network/interfaces}} file, the flood entry is not removed from the kernel.</td>
+<td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3007551</td>
+<td>Cumulus Linux forwards routed VXLAN traffic in software because the local VTEP IP address is not included in decapsulation rules.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -40,18 +56,19 @@ This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml 
 <td></td>
 </tr>
 <tr>
+<td>2994402</td>
+<td>When you run {{ifquery}} as non-root, EVPN multihoming bond configuration fails.
+To work around this issue, always use sudo when running ifupdown2 commands ({{ifup}}, {{ifreload}}, {{ifdown}}, and {{ifquery}}).</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2993960</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
 Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
 Fixed:</td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2993786</td>
-<td>When you configure QoS remarking on a bond, the port stops forwarding traffic. </td>
-<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -89,6 +106,12 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td></td>
 </tr>
 <tr>
+<td>2972538</td>
+<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
+<td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2971159</td>
 <td>On rare occasions, the link up time on optical media can be more than five seconds. </td>
 <td>4.4.3</td>
@@ -98,12 +121,6 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td>2965759</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
 <td>3.7.15, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2965752</td>
-<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -355,6 +372,13 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 This happens when you use the same LACP port ID for more than one bond member on the Cumulus Linux switch.
 To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance-xor}} command on the bond on the Cumulus Linux switch. For proper operation, you need to make the equivalent change on the device on the other side of the link.</td>
 <td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2849529</td>
+<td>The NTP system clock is unable to synchronize with the NTP server.
+To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.</td>
+<td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1889,9 +1913,11 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3012899</td>
-<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3010291</td>
+<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
+Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
+Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
+<td>4.0.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1903,9 +1929,23 @@ Fixed: 1.1.1d-0+deb10u8</td>
 <td></td>
 </tr>
 <tr>
+<td>3007604</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.1.1d-0+deb10u7
+Fixed: 1.1.1d-0+deb10u8</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3007564</td>
-<td>When you remove the last {{vxlan-remoteip}} configuration line from a VNI in the {{/etc/network/interfaces}} file, the flood entry is not removed from the kernel.</td>
+<td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3007551</td>
+<td>Cumulus Linux forwards routed VXLAN traffic in software because the local VTEP IP address is not included in decapsulation rules.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1916,18 +1956,19 @@ This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml 
 <td></td>
 </tr>
 <tr>
+<td>2994402</td>
+<td>When you run {{ifquery}} as non-root, EVPN multihoming bond configuration fails.
+To work around this issue, always use sudo when running ifupdown2 commands ({{ifup}}, {{ifreload}}, {{ifdown}}, and {{ifquery}}).</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2993960</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
 Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
 Fixed:</td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2993786</td>
-<td>When you configure QoS remarking on a bond, the port stops forwarding traffic. </td>
-<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1965,6 +2006,12 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td></td>
 </tr>
 <tr>
+<td>2972538</td>
+<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
+<td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2971343</td>
 <td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
 Vulnerable: &lt;= 2.2.6-2+deb10u1
@@ -1982,12 +2029,6 @@ Fixed: 2.2.6-2+deb10u2</td>
 <td>2965759</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
 <td>3.7.15, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2965752</td>
-<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2290,6 +2331,13 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 This happens when you use the same LACP port ID for more than one bond member on the Cumulus Linux switch.
 To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance-xor}} command on the bond on the Cumulus Linux switch. For proper operation, you need to make the equivalent change on the device on the other side of the link.</td>
 <td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2849529</td>
+<td>The NTP system clock is unable to synchronize with the NTP server.
+To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.</td>
+<td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -3783,6 +3831,20 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Affects </th>
 </tr>
 <tr>
+<td>2999342</td>
+<td>CVE-2020-36311, CVE-2021-3609, CVE-2021-33909, CVE-2021-34693
+Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.
+Fixed: 4.19.194-3</td>
+<td>4.2.1-4.4.1, 5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2999341</td>
+<td>CVE-2021-3570
+The ptp4l program in linuxptp, an implementation of the Precision Time Protocol (PTP), does not validate the messageLength field of incoming messages, allowing a remote attacker to cause a denial of service, information leak, or potentially remote code execution.
+Fixed: 1.9.2-1+deb10u1</td>
+<td>4.2.1-4.4.1</td>
+</tr>
+<tr>
 <td>2923458</td>
 <td>At high interface scale (around 100 or more combined SVI and VNI interfaces), the {{sudo ifreload -a}} command might report a buffer underrun event with the message {{error: Buffer underrun}}.</td>
 <td>4.4.0-4.4.1</td>
@@ -4004,9 +4066,11 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3012899</td>
-<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3010291</td>
+<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
+Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
+Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
+<td>4.0.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4018,10 +4082,40 @@ Fixed: 1.1.1d-0+deb10u8</td>
 <td></td>
 </tr>
 <tr>
+<td>3007604</td>
+<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
+Vulnerable: &lt;= 1.1.1d-0+deb10u7
+Fixed: 1.1.1d-0+deb10u8</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3007564</td>
-<td>When you remove the last {{vxlan-remoteip}} configuration line from a VNI in the {{/etc/network/interfaces}} file, the flood entry is not removed from the kernel.</td>
+<td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
+</tr>
+<tr>
+<td>3007551</td>
+<td>Cumulus Linux forwards routed VXLAN traffic in software because the local VTEP IP address is not included in decapsulation rules.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2999342</td>
+<td>CVE-2020-36311, CVE-2021-3609, CVE-2021-33909, CVE-2021-34693
+Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.
+Fixed: 4.19.194-3</td>
+<td>4.2.1-4.4.1, 5.0.0-5.0.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2999341</td>
+<td>CVE-2021-3570
+The ptp4l program in linuxptp, an implementation of the Precision Time Protocol (PTP), does not validate the messageLength field of incoming messages, allowing a remote attacker to cause a denial of service, information leak, or potentially remote code execution.
+Fixed: 1.9.2-1+deb10u1</td>
+<td>4.2.1-4.4.1</td>
+<td>4.4.2-4.4.3</td>
 </tr>
 <tr>
 <td>2999253</td>
@@ -4037,12 +4131,6 @@ by reading too much data on the heap.
 Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
 Fixed:</td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2993786</td>
-<td>When you configure QoS remarking on a bond, the port stops forwarding traffic. </td>
-<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4080,6 +4168,12 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td></td>
 </tr>
 <tr>
+<td>2972538</td>
+<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
+<td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2971343</td>
 <td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
 Vulnerable: &lt;= 2.2.6-2+deb10u1
@@ -4097,12 +4191,6 @@ Fixed: 2.2.6-2+deb10u2</td>
 <td>2965759</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
 <td>3.7.15, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2965752</td>
-<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4491,6 +4579,13 @@ thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 This happens when you use the same LACP port ID for more than one bond member on the Cumulus Linux switch.
 To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance-xor}} command on the bond on the Cumulus Linux switch. For proper operation, you need to make the equivalent change on the device on the other side of the link.</td>
 <td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2849529</td>
+<td>The NTP system clock is unable to synchronize with the NTP server.
+To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.</td>
+<td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>

@@ -23,12 +23,6 @@ Fixed: 9.9.5.dfsg-9+deb8u24</td>
 <td></td>
 </tr>
 <tr>
-<td>3012899</td>
-<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3010279</td>
 <td>CVE-2022-23308: the application that validates XML using xmlTextReaderRead() with XML_PARSE_DTDATTR and XML_PARSE_DTDVALID enabled becomes vulnerable to this use-after-free bug. This issue can result in denial of service.
 Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u11
@@ -152,6 +146,12 @@ Fixed: 14.0.2-3+deb8u3</td>
 </tr>
 <tr>
 <td>2972540</td>
+<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
+<td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2972538</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td></td>

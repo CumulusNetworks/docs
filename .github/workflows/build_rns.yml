@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - stage
+      - stu-stage
 
 jobs:
   release-notes:

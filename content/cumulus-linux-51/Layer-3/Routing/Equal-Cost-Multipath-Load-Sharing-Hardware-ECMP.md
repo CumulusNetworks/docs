@@ -400,70 +400,78 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 
 Adaptive routing is a load balancing mechanism that improves network utilization by selecting routes dynamically based on the immediate network state, such as switch queue length and port utilization.
 
-Cumulus Linux supports adaptive routing:
-- On Spectrum-2 and later
-- With {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE" >}} only
-- With unicast traffic
-- On physical uplink (layer 3) ports only; you cannot configure adaptive routing on subinterfaces or on ports that are part of a bond
-- On interfaces in the default VRF
+Cumulus Linux only supports adaptive routing with:
+- Switches on Spectrum-2 and later
+- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE" >}}
+- Unicast traffic
+- Physical uplink (layer 3) ports; you *cannot* configure adaptive routing on subinterfaces or on ports that are part of a bond
+- Interfaces in the default VRF
 
 {{%notice note%}}
 Adaptive routing does not make use of resilient hashing.
 {{%/notice%}}
 
-Cumulus Linux uses Sticky Free Adaptive Routing mode, which uses a periodic grades-based egress port selection process.
+Adaptive Routing is in Sticky Free mode, which uses a periodic grades-based egress port selection process.
 - The grade on each port, which is a value between 0 and 4, depends on buffer usage and link utilization. A higher grade, such as 4, indicates that the port is more congested or that the port is down. Each packet routes to the less loaded path to best utilize the fabric resources and avoid congestion. The adaptive routing engine always selects the least congested port (with the lowest grade). If there are multiple ports with the same grade, the engine randomly selects between them.
 - The change decision for port selection is set to one microsecond; you cannot change it.
+
+{{%notice note%}}
+You must configure adaptive routing on *all* ports that are part of the same ECMP route. Make sure the ports are physical uplink ports.
+{{%/notice%}}
 
 To enable adaptive routing:
 
 {{< tabs "TabID421 ">}}
 {{< tab "NVUE Commands ">}}
 
+For each port on which you want to enable adaptive routing, run the `nv set interface <interface> router adaptive-routing enable on` command.
+
 ```
 cumulus@switch:~$ nv set interface swp51 router adaptive-routing enable on
 cumulus@switch:~$ nv config apply
 ```
 
-To disable adaptive routing on a port, run the `nv set interface <interface> router adaptive-routing enable off` command.
+When you run the above command, NVUE:
+- Enables the adaptive routing feature.
+- Sets adaptive routing on the specified port.
+- Sets the link utilization threshold percentage to 70.
+
+To change the link utilization threshold percentage, run the `nv set interface <interface> router adaptive-routing link-utilization-threshold` command. You can set a value between 1 and 100. The default value is 70.
+
+```
+cumulus@switch:~$ nv set interface swp51 router adaptive-routing link-utilization-threshold 100
+cumulus@switch:~$ nv config apply
+```
+
+To disable adaptive routing globally, run the `nv set router adaptive-routing enable off` command. To disable adaptive routing on a port, run the `nv set interface <interface> router adaptive-routing enable off` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 1. Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file:
    - Set the global `adaptive_routing.enable` parameter to `TRUE`.
-   - For each port on which you want to enable adaptive routing, set the `interface.<port>.adaptive_routing.enable` parameter to `TRUE`. You must configure adaptive routing on *all* ports that are part of the same ECMP route. Make sure the ports are physical uplink ports. The example configures adaptive routing on swp51.
+   - For each port on which you want to enable adaptive routing, set the `interface.<port>.adaptive_routing.enable` parameter to `TRUE`.
+   - For each port on which you want to enable adaptive routing, set the `interface.<port>.adaptive_routing.link_util_thresh` parameter to configure the link utilization threshold percentage. You can set a value between 1 and 100. The default value is 70.
 
-   ```
-   cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
-   ## Global adaptive-routing enable/disable setting 
-   ## Global adaptive-routing enable/disable setting
-   adaptive_routing.enable = TRUE
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
+## Global adaptive-routing enable/disable setting 
+adaptive_routing.enable = TRUE
 
-   ## Supported AR profile modes : STICKY_FREE
-   #adaptive_routing.profile0.mode = STICKY_FREE
-
-   ## Maximum value for buffer-congestion threshold is 16777216. Unit is in cells
-   #adaptive_routing.congestion_threshold.low = 100
-   #adaptive_routing.congestion_threshold.medium = 1000
-   #adaptive_routing.congestion_threshold.high = 10000
-
-   ## Per-port configuration for adaptive-routing
-   interface.swp51.adaptive_routing.enable = TRUE
-   #interface.swp51.adaptive_routing.link_util_thresh = 70
-   ...
-   ```
-
-   The `/etc/cumulus/switchd.d/adaptive_routing.conf` file contains default threshold settings; do not change these settings.
+## Per-port configuration
+interface.swp51.adaptive_routing.enable = TRUE
+interface.swp51.adaptive_routing.link_util_thresh = 70
+...
+```
 
 2. {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
 <!-- vale off -->
 {{<cl/restart-switchd>}}
 <!-- vale on -->
 
-To disable adaptive routing globally, set the `adaptive_routing.enable` parameter in the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to `FALSE`.
+To disable adaptive routing globally, set the `adaptive_routing.enable` parameter to `FALSE` in the `/etc/cumulus/switchd.d/adaptive_routing.conf` file.
 
-To disable adaptive routing on a port, set the `interface.<port>.adaptive_routing.enable` parameter in the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to `FALSE`.
+To disable adaptive routing on a port, set the `interface.<port>.adaptive_routing.enable` parameter  to `FALSE` in the `/etc/cumulus/switchd.d/adaptive_routing.conf` file.
 
 {{< /tab >}}
 {{< /tabs >}}

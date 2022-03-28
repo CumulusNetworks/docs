@@ -56,7 +56,7 @@ cumulus@leaf01:~$ nv set interface bond1 bridge domain br_default access 10
 cumulus@leaf01:~$ nv set interface bond2 bridge domain br_default access 20
 cumulus@leaf01:~$ nv set interface bond3 bridge domain br_default access 30
 cumulus@leaf01:~$ nv set vrf default router ospf router-id 10.10.10.1
-cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
+cumulus@leaf01:~$ nv set interface lo router ospf area 0
 cumulus@leaf01:~$ nv set interface swp51 router ospf area 0
 cumulus@leaf01:~$ nv set interface swp52 router ospf area 0
 cumulus@leaf01:~$ nv set interface swp51 router ospf network-type point-to-point
@@ -116,7 +116,7 @@ cumulus@leaf02:~$ nv set interface bond1 bridge domain br_default access 10
 cumulus@leaf02:~$ nv set interface bond2 bridge domain br_default access 20
 cumulus@leaf02:~$ nv set interface bond3 bridge domain br_default access 30
 cumulus@leaf02:~$ nv set vrf default router ospf router-id 10.10.10.2
-cumulus@leaf02:~$ nv set vrf default router ospf area 0 network 10.10.10.2/32
+cumulus@leaf02:~$ nv set interface lo router ospf area 0
 cumulus@leaf02:~$ nv set interface swp51 router ospf area 0
 cumulus@leaf02:~$ nv set interface swp52 router ospf area 0
 cumulus@leaf02:~$ nv set interface swp51 router ospf network-type point-to-point
@@ -147,7 +147,7 @@ cumulus@spine01:~$ nv set interface swp2 ip address 10.10.10.101/32
 cumulus@spine01:~$ nv set interface swp5 ip address 10.10.10.101/32
 cumulus@spine01:~$ nv set interface swp6 ip address 10.10.10.101/32
 cumulus@spine01:~$ nv set vrf default router ospf router-id 10.10.10.101
-cumulus@spine01:~$ nv set vrf default router ospf area 0 network 10.10.10.101/32
+cumulus@spine01:~$ nv set interface lo router ospf area 0
 cumulus@spine01:~$ nv set interface swp1 router ospf area 0
 cumulus@spine01:~$ nv set interface swp1 router ospf network-type point-to-point
 cumulus@spine01:~$ nv set interface swp1 router ospf timers hello-interval 5
@@ -180,7 +180,7 @@ cumulus@spine02:~$ nv set interface swp2 ip address 10.10.10.102/32
 cumulus@spine02:~$ nv set interface swp5 ip address 10.10.10.102/32
 cumulus@spine02:~$ nv set interface swp6 ip address 10.10.10.102/32
 cumulus@spine02:~$ nv set vrf default router ospf router-id 10.10.10.102
-cumulus@spine02:~$ nv set vrf default router ospf area 0 network 10.10.10.102/32
+cumulus@spine02:~$ nv set interface lo router ospf area 0
 cumulus@spine02:~$ nv set interface swp1 router ospf area 0
 cumulus@spine02:~$ nv set interface swp1 router ospf network-type point-to-point
 cumulus@spine02:~$ nv set interface swp1 router ospf timers hello-interval 5
@@ -230,7 +230,7 @@ cumulus@border01:~$ nv set mlag backup 10.10.10.64
 cumulus@border01:~$ nv set mlag peer-ip linklocal
 cumulus@border01:~$ nv set bridge domain br_default untagged 1
 cumulus@border01:~$ nv set vrf default router ospf router-id 10.10.10.63
-cumulus@border01:~$ nv set vrf default router ospf area 0 network 10.10.10.63/32
+cumulus@border01:~$ nv set interface lo router ospf area 0
 cumulus@border01:~$ nv set interface swp51 router ospf area 0
 cumulus@border01:~$ nv set interface swp51 router ospf network-type point-to-point
 cumulus@border01:~$ nv set interface swp51 router ospf timers hello-interval 5
@@ -273,7 +273,7 @@ cumulus@border02:~$ nv set mlag backup 10.10.10.63
 cumulus@border02:~$ nv set mlag peer-ip linklocal
 cumulus@border02:~$ nv set bridge domain br_default untagged 1
 cumulus@border02:~$ nv set vrf default router ospf router-id 10.10.10.64
-cumulus@border02:~$ nv set vrf default router ospf area 0 network 10.10.10.64/32
+cumulus@border02:~$ nv set interface lo router ospf area 0
 cumulus@border02:~$ nv set interface swp51 router ospf area 0
 cumulus@border02:~$ nv set interface swp51 router ospf network-type point-to-point
 cumulus@border02:~$ nv set interface swp51 router ospf timers hello-interval 5
@@ -301,74 +301,63 @@ cumulus@border02:~$ nv config apply
 ```
 cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
 - set:
+    bridge:
+      domain:
+        br_default:
+          untagged: 1
+          vlan:
+            '10': {}
+            '20': {}
+            '30': {}
     interface:
-      lo:
-        ip:
-          address:
-            10.10.10.1/32: {}
-        type: loopback
-      swp51:
-        ip:
-          address:
-            10.10.10.1/32: {}
-        type: swp
-        router:
-          ospf:
-            area: 0
-            enable: on
-            network-type: point-to-point
-            timers:
-              hello-interval: 5
-              dead-interval: 60
-      swp52:
-        ip:
-          address:
-            10.10.10.1/32: {}
-        type: swp
-        router:
-          ospf:
-            area: 0
-            enable: on
-            network-type: point-to-point
-            timers:
-              hello-interval: 5
-              dead-interval: 60
       bond1:
         bond:
+          lacp-bypass: on
           member:
             swp1: {}
           mlag:
+            enable: on
             id: 1
-          lacp-bypass: on
-        type: bond
         bridge:
           domain:
             br_default:
               access: 10
+        type: bond
       bond2:
         bond:
+          lacp-bypass: on
           member:
             swp2: {}
           mlag:
+            enable: on
             id: 2
-          lacp-bypass: on
-        type: bond
         bridge:
           domain:
             br_default:
               access: 20
+        type: bond
       bond3:
         bond:
+          lacp-bypass: on
           member:
             swp3: {}
           mlag:
+            enable: on
             id: 3
-          lacp-bypass: on
-        type: bond
         bridge:
           domain:
             br_default:
               access: 30
+        type: bond
+      lo:
+        ip:
+          address:
+            10.10.10.1/32: {}
+        router:
+          ospf:
+            area: 0
+            enable: on
+        type: loopback
       peerlink:
         bond:
           member:
@@ -376,9 +365,35 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             swp50: {}
         type: peerlink
       peerlink.4094:
-        type: sub
         base-interface: peerlink
+        type: sub
         vlan: 4094
+      swp51:
+        ip:
+          address:
+            10.10.10.1/32: {}
+        router:
+          ospf:
+            area: 0
+            enable: on
+            network-type: point-to-point
+            timers:
+              dead-interval: 60
+              hello-interval: 5
+        type: swp
+      swp52:
+        ip:
+          address:
+            10.10.10.1/32: {}
+        router:
+          ospf:
+            area: 0
+            enable: on
+            network-type: point-to-point
+            timers:
+              dead-interval: 60
+              hello-interval: 5
+        type: swp
       vlan10:
         ip:
           address:
@@ -386,16 +401,17 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           vrr:
             address:
               10.1.10.1/24: {}
+            enable: on
             mac-address: 00:00:5e:00:01:00
             state:
               up: {}
-        type: svi
-        vlan: 10
         router:
           ospf:
             area: 0
             enable: on
             passive: on
+        type: svi
+        vlan: 10
       vlan20:
         ip:
           address:
@@ -403,16 +419,17 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           vrr:
             address:
               10.1.20.1/24: {}
+            enable: on
             mac-address: 00:00:5e:00:01:00
             state:
               up: {}
-        type: svi
-        vlan: 20
         router:
           ospf:
             area: 0
             enable: on
             passive: on
+        type: svi
+        vlan: 20
       vlan30:
         ip:
           address:
@@ -420,39 +437,23 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           vrr:
             address:
               10.1.30.1/24: {}
+            enable: on
             mac-address: 00:00:5e:00:01:00
             state:
               up: {}
-        type: svi
-        vlan: 30
         router:
           ospf:
             area: 0
             enable: on
             passive: on
+        type: svi
+        vlan: 30
     mlag:
-      mac-address: 44:38:39:BE:EF:AA
       backup:
         10.10.10.2: {}
+      enable: on
+      mac-address: 44:38:39:BE:EF:AA
       peer-ip: linklocal
-    bridge:
-      domain:
-        br_default:
-          vlan:
-            '10': {}
-            '20': {}
-            '30': {}
-          untagged: 1
-    vrf:
-      default:
-        router:
-          ospf:
-            router-id: 10.10.10.1
-            enable: on
-            area:
-              '0':
-                network:
-                  10.10.10.1/32: {}
     router:
       ospf:
         enable: on
@@ -461,9 +462,16 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             delay: 80
             holdtime: 100
             max-holdtime: 6000
-    platform:
-      hostname:
-        value: leaf01
+      vrr:
+        enable: on
+    system:
+      hostname: leaf01
+    vrf:
+      default:
+        router:
+          ospf:
+            enable: on
+            router-id: 10.10.10.1
 ```
 
 {{< /tab >}}
@@ -472,74 +480,63 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
 - set:
+    bridge:
+      domain:
+        br_default:
+          untagged: 1
+          vlan:
+            '10': {}
+            '20': {}
+            '30': {}
     interface:
-      lo:
-        ip:
-          address:
-            10.10.10.2/32: {}
-        type: loopback
-      swp51:
-        ip:
-          address:
-            10.10.10.2/32: {}
-        type: swp
-        router:
-          ospf:
-            area: 0
-            enable: on
-            network-type: point-to-point
-            timers:
-              hello-interval: 5
-              dead-interval: 60
-      swp52:
-        ip:
-          address:
-            10.10.10.2/32: {}
-        type: swp
-        router:
-          ospf:
-            area: 0
-            enable: on
-            network-type: point-to-point
-            timers:
-              hello-interval: 5
-              dead-interval: 60
       bond1:
         bond:
+          lacp-bypass: on
           member:
             swp1: {}
           mlag:
+            enable: on
             id: 1
-          lacp-bypass: on
-        type: bond
         bridge:
           domain:
             br_default:
               access: 10
+        type: bond
       bond2:
         bond:
+          lacp-bypass: on
           member:
             swp2: {}
           mlag:
+            enable: on
             id: 2
-          lacp-bypass: on
-        type: bond
         bridge:
           domain:
             br_default:
               access: 20
+        type: bond
       bond3:
         bond:
+          lacp-bypass: on
           member:
             swp3: {}
           mlag:
+            enable: on
             id: 3
-          lacp-bypass: on
-        type: bond
         bridge:
           domain:
             br_default:
               access: 30
+        type: bond
+      lo:
+        ip:
+          address:
+            10.10.10.2/32: {}
+        router:
+          ospf:
+            area: 0
+            enable: on
+        type: loopback
       peerlink:
         bond:
           member:
@@ -547,9 +544,35 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             swp50: {}
         type: peerlink
       peerlink.4094:
-        type: sub
         base-interface: peerlink
+        type: sub
         vlan: 4094
+      swp51:
+        ip:
+          address:
+            10.10.10.2/32: {}
+        router:
+          ospf:
+            area: 0
+            enable: on
+            network-type: point-to-point
+            timers:
+              dead-interval: 60
+              hello-interval: 5
+        type: swp
+      swp52:
+        ip:
+          address:
+            10.10.10.2/32: {}
+        router:
+          ospf:
+            area: 0
+            enable: on
+            network-type: point-to-point
+            timers:
+              dead-interval: 60
+              hello-interval: 5
+        type: swp
       vlan10:
         ip:
           address:
@@ -557,16 +580,17 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           vrr:
             address:
               10.1.10.1/24: {}
+            enable: on
             mac-address: 00:00:5e:00:01:00
             state:
               up: {}
-        type: svi
-        vlan: 10
         router:
           ospf:
             area: 0
             enable: on
             passive: on
+        type: svi
+        vlan: 10
       vlan20:
         ip:
           address:
@@ -574,16 +598,17 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           vrr:
             address:
               10.1.20.1/24: {}
+            enable: on
             mac-address: 00:00:5e:00:01:00
             state:
               up: {}
-        type: svi
-        vlan: 20
         router:
           ospf:
             area: 0
             enable: on
             passive: on
+        type: svi
+        vlan: 20
       vlan30:
         ip:
           address:
@@ -591,39 +616,23 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           vrr:
             address:
               10.1.30.1/24: {}
+            enable: on
             mac-address: 00:00:5e:00:01:00
             state:
               up: {}
-        type: svi
-        vlan: 30
         router:
           ospf:
             area: 0
             enable: on
             passive: on
+        type: svi
+        vlan: 30
     mlag:
-      mac-address: 44:38:39:BE:EF:AA
       backup:
         10.10.10.1: {}
+      enable: on
+      mac-address: 44:38:39:BE:EF:AA
       peer-ip: linklocal
-    bridge:
-      domain:
-        br_default:
-          vlan:
-            '10': {}
-            '20': {}
-            '30': {}
-          untagged: 1
-    vrf:
-      default:
-        router:
-          ospf:
-            router-id: 10.10.10.2
-            enable: on
-            area:
-              '0':
-                network:
-                  10.10.10.2/32: {}
     router:
       ospf:
         enable: on
@@ -632,9 +641,16 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             delay: 80
             holdtime: 100
             max-holdtime: 6000
-    platform:
-      hostname:
-        value: leaf02
+      vrr:
+        enable: on
+    system:
+      hostname: leaf02
+    vrf:
+      default:
+        router:
+          ospf:
+            enable: on
+            router-id: 10.10.10.2
 ```
 
 {{< /tab >}}
@@ -648,76 +664,78 @@ cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
         ip:
           address:
             10.10.10.101/32: {}
+        router:
+          ospf:
+            area: 0
+            enable: on
         type: loopback
       swp1:
         ip:
           address:
             10.10.10.101/32: {}
-        type: swp
         router:
           ospf:
             area: 0
             enable: on
             network-type: point-to-point
             timers:
-              hello-interval: 5
               dead-interval: 60
+              hello-interval: 5
+        type: swp
       swp2:
         ip:
           address:
             10.10.10.101/32: {}
-        type: swp
         router:
           ospf:
             area: 0
             enable: on
             network-type: point-to-point
             timers:
-              hello-interval: 5
               dead-interval: 60
+              hello-interval: 5
+        type: swp
       swp5:
         ip:
           address:
             10.10.10.101/32: {}
-        type: swp
         router:
           ospf:
             area: 0
             enable: on
             network-type: point-to-point
             timers:
-              hello-interval: 5
               dead-interval: 60
+              hello-interval: 5
+        type: swp
       swp6:
         ip:
           address:
             10.10.10.101/32: {}
-        type: swp
         router:
           ospf:
             area: 0
             enable: on
             network-type: point-to-point
             timers:
-              hello-interval: 5
               dead-interval: 60
-    vrf:
-      default:
-        router:
-          ospf:
-            router-id: 10.10.10.101
-            enable: on
-            area:
-              '0':
-                network:
-                  10.10.10.101/32: {}
+              hello-interval: 5
+        type: swp
     router:
       ospf:
         enable: on
         timers:
           spf:
-            max-holdtime: 6000
             holdtime: 100
+            max-holdtime: 6000
+    system:
+      hostname: spine01
+    vrf:
+      default:
+        router:
+          ospf:
+            enable: on
+            router-id: 10.10.10.101
 ```
 
 {{< /tab >}}
@@ -731,76 +749,78 @@ cumulus@spine02:~$ sudo cat /etc/nvue.d/startup.yaml
         ip:
           address:
             10.10.10.102/32: {}
+        router:
+          ospf:
+            area: 0
+            enable: on
         type: loopback
       swp1:
         ip:
           address:
             10.10.10.102/32: {}
-        type: swp
         router:
           ospf:
             area: 0
             enable: on
             network-type: point-to-point
             timers:
-              hello-interval: 5
               dead-interval: 60
+              hello-interval: 5
+        type: swp
       swp2:
         ip:
           address:
             10.10.10.102/32: {}
-        type: swp
         router:
           ospf:
             area: 0
             enable: on
             network-type: point-to-point
             timers:
-              hello-interval: 5
               dead-interval: 60
+              hello-interval: 5
+        type: swp
       swp5:
         ip:
           address:
             10.10.10.102/32: {}
-        type: swp
         router:
           ospf:
             area: 0
             enable: on
             network-type: point-to-point
             timers:
-              hello-interval: 5
               dead-interval: 60
+              hello-interval: 5
+        type: swp
       swp6:
         ip:
           address:
             10.10.10.102/32: {}
-        type: swp
         router:
           ospf:
             area: 0
             enable: on
             network-type: point-to-point
             timers:
-              hello-interval: 5
               dead-interval: 60
-    vrf:
-      default:
-        router:
-          ospf:
-            router-id: 10.10.10.102
-            enable: on
-            area:
-              '0':
-                network:
-                  10.10.10.102/32: {}
+              hello-interval: 5
+        type: swp
     router:
       ospf:
         enable: on
         timers:
           spf:
-            max-holdtime: 6000
             holdtime: 100
+            max-holdtime: 6000
+    system:
+      hostname: spine02
+    vrf:
+      default:
+        router:
+          ospf:
+            enable: on
+            router-id: 10.10.10.102
 ```
 
 {{< /tab >}}
@@ -809,81 +829,46 @@ cumulus@spine02:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
 - set:
-    platform:
-      hostname:
-        value: border01
+    bridge:
+      domain:
+        br_default:
+          untagged: 1
     interface:
+      bond1:
+        bond:
+          lacp-bypass: on
+          member:
+            swp1: {}
+          mlag:
+            enable: on
+            id: 1
+        bridge:
+          domain:
+            br_default:
+              access: 2001
+        type: bond
+      bond2:
+        bond:
+          lacp-bypass: on
+          member:
+            swp2: {}
+          mlag:
+            enable: on
+            id: 2
+        bridge:
+          domain:
+            br_default:
+              access: 2001
+        type: bond
       lo:
         ip:
           address:
             10.10.10.63/32: {}
+        router:
+          ospf:
+            area: 0
+            enable: on
         type: loopback
-      swp51:
-        ip:
-          address:
-            10.10.10.63/32: {}
-        type: swp
-        router:
-          ospf:
-            area: 0
-            enable: on
-            network-type: point-to-point
-            timers:
-              hello-interval: 5
-              dead-interval: 60
-      swp52:
-        ip:
-          address:
-            10.10.10.63/32: {}
-        type: swp
-        router:
-          ospf:
-            area: 0
-            enable: on
-            network-type: point-to-point
-            timers:
-              hello-interval: 5
-              dead-interval: 60
-      bond1:
-        bond:
-          member:
-            swp1: {}
-          mlag:
-            id: 1
-          lacp-bypass: on
-        type: bond
-        bridge:
-          domain:
-            br_default:
-              access: 2001
-      bond2:
-        bond:
-          member:
-            swp2: {}
-          mlag:
-            id: 2
-          lacp-bypass: on
-        type: bond
-        bridge:
-          domain:
-            br_default:
-              access: 2001
-      vlan2001:
-        type: svi
-        vlan: 2001
-        ip:
-          address:
-            10.1.201.2/24: {}
-          vrr:
-            address:
-              10.1.201.1/24: {}
-            mac-address: 00:00:5e:00:01:00
-            state:
-              up: {}
-        router:
-          ospf:
-            area: 1
-            enable: on
       peerlink:
         bond:
           member:
@@ -891,35 +876,75 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             swp50: {}
         type: peerlink
       peerlink.4094:
-        type: sub
         base-interface: peerlink
+        type: sub
         vlan: 4094
-    mlag:
-      mac-address: 44:38:39:BE:EF:FF
-      backup:
-        10.10.10.64: {}
-      peer-ip: linklocal
-    bridge:
-      domain:
-        br_default:
-          untagged: 1
-    vrf:
-      default:
+      swp51:
+        ip:
+          address:
+            10.10.10.63/32: {}
         router:
           ospf:
-            router-id: 10.10.10.63
+            area: 0
             enable: on
-            area:
-              '0':
-                network:
-                  10.10.10.63/32: {}
+            network-type: point-to-point
+            timers:
+              dead-interval: 60
+              hello-interval: 5
+        type: swp
+      swp52:
+        ip:
+          address:
+            10.10.10.63/32: {}
+        router:
+          ospf:
+            area: 0
+            enable: on
+            network-type: point-to-point
+            timers:
+              dead-interval: 60
+              hello-interval: 5
+        type: swp
+      vlan2001:
+        ip:
+          address:
+            10.1.201.2/24: {}
+          vrr:
+            address:
+              10.1.201.1/24: {}
+            enable: on
+            mac-address: 00:00:5e:00:01:00
+            state:
+              up: {}
+        router:
+          ospf:
+            area: 1
+            enable: on
+        type: svi
+        vlan: 2001
+    mlag:
+      backup:
+        10.10.10.64: {}
+      enable: on
+      mac-address: 44:38:39:BE:EF:FF
+      peer-ip: linklocal
     router:
       ospf:
         enable: on
         timers:
           spf:
-            max-holdtime: 6000
             holdtime: 100
+            max-holdtime: 6000
+      vrr:
+        enable: on
+    system:
+      hostname: border01
+    vrf:
+      default:
+        router:
+          ospf:
+            enable: on
+            router-id: 10.10.10.63
 ```
 
 {{< /tab >}}
@@ -928,81 +953,46 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
 - set:
-    platform:
-      hostname:
-        value: border02
+    bridge:
+      domain:
+        br_default:
+          untagged: 1
     interface:
+      bond1:
+        bond:
+          lacp-bypass: on
+          member:
+            swp1: {}
+          mlag:
+            enable: on
+            id: 1
+        bridge:
+          domain:
+            br_default:
+              access: 2001
+        type: bond
+      bond2:
+        bond:
+          lacp-bypass: on
+          member:
+            swp2: {}
+          mlag:
+            enable: on
+            id: 2
+        bridge:
+          domain:
+            br_default:
+              access: 2001
+        type: bond
       lo:
         ip:
           address:
             10.10.10.64/32: {}
+        router:
+          ospf:
+            area: 0
+            enable: on
         type: loopback
-      swp51:
-        ip:
-          address:
-            10.10.10.64/32: {}
-        type: swp
-        router:
-          ospf:
-            area: 0
-            enable: on
-            network-type: point-to-point
-            timers:
-              hello-interval: 5
-              dead-interval: 60
-      swp52:
-        ip:
-          address:
-            10.10.10.64/32: {}
-        type: swp
-        router:
-          ospf:
-            area: 0
-            enable: on
-            network-type: point-to-point
-            timers:
-              hello-interval: 5
-              dead-interval: 60
-      bond1:
-        bond:
-          member:
-            swp1: {}
-          mlag:
-            id: 1
-          lacp-bypass: on
-        type: bond
-        bridge:
-          domain:
-            br_default:
-              access: 2001
-      bond2:
-        bond:
-          member:
-            swp2: {}
-          mlag:
-            id: 2
-          lacp-bypass: on
-        type: bond
-        bridge:
-          domain:
-            br_default:
-              access: 2001
-      vlan2001:
-        type: svi
-        vlan: 2001
-        ip:
-          address:
-            10.1.201.3/24: {}
-          vrr:
-            address:
-              10.1.201.1/24: {}
-            mac-address: 00:00:5e:00:01:00
-            state:
-              up: {}
-        router:
-          ospf:
-            area: 1
-            enable: on
       peerlink:
         bond:
           member:
@@ -1010,35 +1000,75 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             swp50: {}
         type: peerlink
       peerlink.4094:
-        type: sub
         base-interface: peerlink
+        type: sub
         vlan: 4094
-    mlag:
-      mac-address: 44:38:39:BE:EF:FF
-      backup:
-        10.10.10.63: {}
-      peer-ip: linklocal
-    bridge:
-      domain:
-        br_default:
-          untagged: 1
-    vrf:
-      default:
+      swp51:
+        ip:
+          address:
+            10.10.10.64/32: {}
         router:
           ospf:
-            router-id: 10.10.10.64
+            area: 0
             enable: on
-            area:
-              '0':
-                network:
-                  10.10.10.64/32: {}
+            network-type: point-to-point
+            timers:
+              dead-interval: 60
+              hello-interval: 5
+        type: swp
+      swp52:
+        ip:
+          address:
+            10.10.10.64/32: {}
+        router:
+          ospf:
+            area: 0
+            enable: on
+            network-type: point-to-point
+            timers:
+              dead-interval: 60
+              hello-interval: 5
+        type: swp
+      vlan2001:
+        ip:
+          address:
+            10.1.201.3/24: {}
+          vrr:
+            address:
+              10.1.201.1/24: {}
+            enable: on
+            mac-address: 00:00:5e:00:01:00
+            state:
+              up: {}
+        router:
+          ospf:
+            area: 1
+            enable: on
+        type: svi
+        vlan: 2001
+    mlag:
+      backup:
+        10.10.10.63: {}
+      enable: on
+      mac-address: 44:38:39:BE:EF:FF
+      peer-ip: linklocal
     router:
       ospf:
         enable: on
         timers:
           spf:
-            max-holdtime: 6000
             holdtime: 100
+            max-holdtime: 6000
+      vrr:
+        enable: on
+    system:
+      hostname: border02
+    vrf:
+      default:
+        router:
+          ospf:
+            enable: on
+            router-id: 10.10.10.64
 ```
 
 {{< /tab >}}
@@ -1477,6 +1507,8 @@ iface br_default
 ```
 cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
 ...
+interface lo
+ip ospf area 0
 interface swp51
 ip ospf area 0
 ip ospf network point-to-point
@@ -1505,7 +1537,6 @@ vrf mgmt
 exit-vrf
 router ospf
 ospf router-id 10.10.10.1
-network 10.10.10.1/32 area 0
 timers throttle spf 80 100 6000
 ! end of router ospf block
 ```
@@ -1516,6 +1547,8 @@ timers throttle spf 80 100 6000
 ```
 cumulus@leaf02:~$ sudo cat /etc/frr/frr.conf
 ...
+interface lo
+ip ospf area 0
 interface swp51
 ip ospf area 0
 ip ospf network point-to-point
@@ -1544,7 +1577,6 @@ vrf mgmt
 exit-vrf
 router ospf
 ospf router-id 10.10.10.2
-network 10.10.10.2/32 area 0
 timers throttle spf 80 100 6000
 ! end of router ospf block
 ```
@@ -1555,6 +1587,8 @@ timers throttle spf 80 100 6000
 ```
 cumulus@spine01:~$ sudo cat /etc/frr/frr.conf
 ...
+interface lo
+ip ospf area 0
 interface swp1
 ip ospf area 0
 ip ospf network point-to-point
@@ -1581,7 +1615,6 @@ vrf mgmt
 exit-vrf
 router ospf
 ospf router-id 10.10.10.101
-network 10.10.10.101/32 area 0
 timers throttle spf 0 100 6000
 ! end of router ospf block
 ```
@@ -1592,6 +1625,8 @@ timers throttle spf 0 100 6000
 ```
 cumulus@spine02:~$ sudo cat /etc/frr/frr.conf
 ...
+interface lo
+ip ospf area 0
 interface swp1
 ip ospf area 0
 ip ospf network point-to-point
@@ -1618,7 +1653,6 @@ vrf mgmt
 exit-vrf
 router ospf
 ospf router-id 10.10.10.102
-network 10.10.10.102/32 area 0
 timers throttle spf 0 100 6000
 ! end of router ospf block
 ```
@@ -1629,6 +1663,8 @@ timers throttle spf 0 100 6000
 ```
 cumulus@border01:~$ sudo cat /etc/frr/frr.conf
 ...
+interface lo
+ip ospf area 0
 interface swp51
 ip ospf area 0
 ip ospf network point-to-point
@@ -1647,7 +1683,6 @@ vrf mgmt
 exit-vrf
 router ospf
 ospf router-id 10.10.10.63
-network 10.10.10.63/32 area 0
 timers throttle spf 0 100 6000
 ! end of router ospf block
 ```
@@ -1658,6 +1693,8 @@ timers throttle spf 0 100 6000
 ```
 cumulus@border02:~$ sudo cat /etc/frr/frr.conf
 ...
+interface lo
+ip ospf area 0
 interface swp51
 ip ospf area 0
 ip ospf network point-to-point
@@ -1676,7 +1713,6 @@ vrf mgmt
 exit-vrf
 router ospf
 ospf router-id 10.10.10.64
-network 10.10.10.64/32 area 0
 timers throttle spf 0 100 6000
 ! end of router ospf block
 ```

@@ -119,6 +119,12 @@ Unrecoverable internal error
 <td></td>
 </tr>
 <tr>
+<td>2972538</td>
+<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
+<td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2968495</td>
 <td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
 <td>4.2.1-4.4.2, 5.0.0-5.0.1</td>
@@ -504,6 +510,12 @@ Fixed: 2.2.6-2+deb10u3</td>
 </tr>
 <tr>
 <td>2972540</td>
+<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
+<td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2972538</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td></td>

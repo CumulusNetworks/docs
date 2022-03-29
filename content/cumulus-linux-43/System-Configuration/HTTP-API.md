@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 270
 toc: 3
 ---
-Cumulus Linux implements an HTTP application programming interface to the {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}. Instead of accessing Cumulus Linux using SSH, you can interact with the switch using an HTTP client, such as cURL, HTTPie or a web browser.
+Cumulus Linux implements an HTTP application programming interface to {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}. Instead of accessing Cumulus Linux using SSH, you can interact with the switch using an HTTP client, such as cURL, HTTPie or a web browser.
 
 ## HTTP API Basics
 
@@ -102,12 +102,12 @@ To run `net show counters` on the host as a remote procedure call:
 cumulus@switch:~$ curl -X POST -k -u user:pw -H "Content-Type: application/json" -d '{"cmd": "show counters"}' https://192.168.0.32:8080/nclu/v1/rpc
 ```
 
-To add a bridge using ML2:
+<!--To add a bridge using ML2:
 
 ```
 cumulus@switch:~$ curl -X PUT -k -u user:pw https://192.168.0.32:8080/ml2/v1/bridge/"br1"/200
 ```
-
+-->
 ## Considerations
 
 The `/etc/restapi.conf` file is *not* listed in the `net show configuration files` command output.

@@ -434,9 +434,9 @@ cumulus@switch:~$ nv config apply
 When you run the above command, NVUE:
 - Enables the adaptive routing feature.
 - Sets adaptive routing on the specified port.
-- Sets the link utilization threshold percentage to 70.
+- Sets the link utilization threshold percentage to the default value of 70.
 
-To change the link utilization threshold percentage, run the `nv set interface <interface> router adaptive-routing link-utilization-threshold` command. You can set a value between 1 and 100. The default value is 70.
+To change the link utilization threshold percentage, run the `nv set interface <interface> router adaptive-routing link-utilization-threshold` command. You can set a value between 1 and 100.
 
 ```
 cumulus@switch:~$ nv set interface swp51 router adaptive-routing link-utilization-threshold 100
@@ -451,18 +451,28 @@ To disable adaptive routing globally, run the `nv set router adaptive-routing en
 1. Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file:
    - Set the global `adaptive_routing.enable` parameter to `TRUE`.
    - For each port on which you want to enable adaptive routing, set the `interface.<port>.adaptive_routing.enable` parameter to `TRUE`.
-   - For each port on which you want to enable adaptive routing, set the `interface.<port>.adaptive_routing.link_util_thresh` parameter to configure the link utilization threshold percentage. You can set a value between 1 and 100. The default value is 70.
+   - For each port on which you want to enable adaptive routing, set the `interface.<port>.adaptive_routing.link_util_thresh` parameter to configure the link utilization threshold percentage (optional). You can set a value between 1 and 100. The default value is 70.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
 ## Global adaptive-routing enable/disable setting 
 adaptive_routing.enable = TRUE
 
-## Per-port configuration
+## Supported AR profile modes : STICKY_FREE
+#adaptive_routing.profile0.mode = STICKY_FREE
+
+## Maximum value for buffer-congestion threshold is 16777216. Unit is in cells
+#adaptive_routing.congestion_threshold.low = 100
+#adaptive_routing.congestion_threshold.medium = 1000
+#adaptive_routing.congestion_threshold.high = 10000
+
+## Per-port configuration for adaptive-routing
 interface.swp51.adaptive_routing.enable = TRUE
 interface.swp51.adaptive_routing.link_util_thresh = 70
 ...
 ```
+
+The `/etc/cumulus/switchd.d/adaptive_routing.conf` file contains the adaptive routing profile mode (`STICKY_FREE`) and *default* buffer congestion threshold settings; do not change these settings.
 
 2. {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
 <!-- vale off -->

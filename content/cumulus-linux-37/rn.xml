@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3015881</td>
+<td>Traffic flows fail because the remote VTEP IP address is missing in the layer 3 neighbor table on the switch.</td>
+<td>3.7.15, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3014447</td>
 <td>CVE-2022-22719 CVE-2022-22720 CVE-2022-22721 CVE-2022-23943: Several vulnerabilities have been discovered in the Apache HTTP server, which could result in denial of service, request smuggling or buffer overflows.
 Vulnerable: &lt;= 2.4.10-10+deb8u21
@@ -146,6 +152,12 @@ Fixed: 14.0.2-3+deb8u3</td>
 </tr>
 <tr>
 <td>2972540</td>
+<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
+<td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2972538</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td></td>

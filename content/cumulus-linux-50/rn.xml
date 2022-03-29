@@ -7,6 +7,29 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3017042</td>
+<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
+Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
+Fixed: 4.1.0+git191117-2~deb10u4</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3016882</td>
+<td>When you power-cycle a newly installed switch and apply the default configuration, the underlying NVUE repository becomes corrupted. Even if you correct the corruption, NVUE cannot run.
+To recover, uninstall NVUE and delete the {{/var/lib/nvue}} directory:
+
+cumulus@leaf01:~$ sudo apt remove python3-nvue
+cumulus@leaf01:~$ rm -r /var/lib/nvue
+cumulus@leaf01:~$ sudo apt update
+cumulus@leaf01:~$ sudo apt install python3-nvue
+cumulus@leaf01:~$ sudo systemctl enable nvued
+cumulus@leaf01:~$ sudo systemctl start nvued
+</td>
+<td>5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3008388</td>
 <td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
 <td>4.4.3, 5.0.0-5.0.1</td>
@@ -24,12 +47,6 @@ Fixed: 1.1.1d-0+deb10u8</td>
 <td>3007564</td>
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3007551</td>
-<td>Cumulus Linux forwards routed VXLAN traffic in software because the local VTEP IP address is not included in decapsulation rules.</td>
-<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -114,6 +131,12 @@ Unrecoverable internal error
 </tr>
 <tr>
 <td>2972540</td>
+<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
+<td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2972538</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
@@ -408,6 +431,14 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3017042</td>
+<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
+Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
+Fixed: 4.1.0+git191117-2~deb10u4</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3008388</td>
 <td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
 <td>4.4.3, 5.0.0-5.0.1</td>
@@ -425,12 +456,6 @@ Fixed: 1.1.1d-0+deb10u8</td>
 <td>3007564</td>
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3007551</td>
-<td>Cumulus Linux forwards routed VXLAN traffic in software because the local VTEP IP address is not included in decapsulation rules.</td>
-<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -504,6 +529,12 @@ Fixed: 2.2.6-2+deb10u3</td>
 </tr>
 <tr>
 <td>2972540</td>
+<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
+<td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2972538</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td></td>

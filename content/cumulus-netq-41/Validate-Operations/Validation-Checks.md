@@ -28,6 +28,11 @@ The BGP validation tests look for indications of the session sanity (status and 
 | 0 | Session Establishment | Checks that BGP sessions are in an established state |
 | 1 | Address Families | Checks if transmit and receive address family advertisement is consistent between peers of a BGP session |
 | 2 | Router ID | Checks for BGP router ID conflict in the network |
+| 3 | Hold Time | Checks for mismatch of hold time between peers of a BGP session |
+| 4 | Keep Alive Interval  | Checks for mismatch of keep alive interval between peers of a BGP session |
+| 5 | Ipv4 Stale Path Time | Checks for mismatch of IPv4 stale path timer between peers of a BGP session |
+| 6 | IPv6 Stale Path Time | Checks for mismatch of IPv6 stale path timer between peers of a BGP session |
+| 7 | Interface MTU | Checks for consistency of interface MTU for BGP peers |
 
 ## Cumulus Linux Version Tests
 

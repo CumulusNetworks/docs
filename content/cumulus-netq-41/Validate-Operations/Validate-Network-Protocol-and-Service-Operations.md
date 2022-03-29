@@ -121,11 +121,13 @@ Validations that support the `streaming` keyword can query real time streaming i
 
 - netq check agents
 - netq check bgp
+- netq check evpn
 - netq check interfaces
 - netq check mlag
 - netq check mtu
 - netq check ntp
-- netq check evpn
+- netq check sensors
+- netq check vlan
 - netq check vxlan
 {{%/notice%}}
 
@@ -334,11 +336,13 @@ Validations that support the `streaming` keyword can query real time streaming i
 
 - netq check agents
 - netq check bgp
+- netq check evpn
 - netq check interfaces
 - netq check mlag
 - netq check mtu
 - netq check ntp
-- netq check evpn
+- netq check sensors
+- netq check vlan
 - netq check vxlan
 {{%/notice%}}
 

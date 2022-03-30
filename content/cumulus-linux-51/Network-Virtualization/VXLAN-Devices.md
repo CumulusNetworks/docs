@@ -197,7 +197,7 @@ cumulus@leaf01:~$ ifreload -a
 
 ## Automatic VLAN to VNI Mapping
 
-In a VXLAN environment, you need to map individual VLANs to VNIs. For a single VXLAN device, you can do this with a seperate NVUE command per VLAN; however, this can be cumbersome if you have to configure many VLANS or need to isolate tenants and reuse VLANs. To simplify the configuration, you can use these two commands instead:
+In an EVPN VXLAN environment, you need to map individual VLANs to VNIs. For a single VXLAN device, you can do this with a seperate NVUE command per VLAN; however, this can be cumbersome if you have to configure many VLANS or need to isolate tenants and reuse VLANs. To simplify the configuration, you can use these two commands instead:
 - `nv set bridge domain <bridge> vlan <vlans> vni auto` configures the specified VLANs to use automatic mapping.
 - `nv set bridge domain <bridge> vlan-vni-offset` configures the offset you want to use for the VNIs. For example, if you specify an offset of 10000, the VNI is the VLAN plus 10000.
 
@@ -210,6 +210,10 @@ cumulus@switch:mgmt:~$ nv set bridge domain br_01 vlan 10,20,30,40,50 vni auto
 cumulus@switch:mgmt:~$ nv set bridge domain br_01 vlan-vni-offset 20000
 cumulus@switch:mgmt:~$ nv config apply
 ```
+
+{{%notice note%}}
+You cannot use automatic NVUE VLAN to VNI mapping commands to configure static VXLAN tunnels.
+{{%/notice%}}
 
 The following configuration example configures VLANS 10, 20, and 30. The VLANs map automatically to VNIs with an offset of 10000.
 

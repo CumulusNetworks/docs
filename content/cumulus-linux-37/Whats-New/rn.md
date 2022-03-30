@@ -14,7 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="3015881"></a> [3015881](#3015881) <a name="3015881"></a> <br /> | Traffic flows fail because the remote VTEP IP address is missing in the layer 3 neighbor table on the switch. | 3.7.15, 4.3.0-4.4.3 | |
+| <a name="3015881"></a> [3015881](#3015881) <a name="3015881"></a> <br /> | Traffic flows fail because the remote VTEP IP address is missing in the layer 3 neighbor table on the switch. | 3.7.15 | |
 | <a name="3014447"></a> [3014447](#3014447) <a name="3014447"></a> <br /> | CVE-2022-22719 CVE-2022-22720 CVE-2022-22721 CVE-2022-23943: Several vulnerabilities have been discovered in the Apache HTTP server, which could result in denial of service, request smuggling or buffer overflows<br />Vulnerable: <= 2.4.10-10+deb8u21Fixed: 2.4.10-10+deb8u22 | 3.7.0-3.7.15 | |
 | <a name="3014441"></a> [3014441](#3014441) <a name="3014441"></a> <br /> | CVE-2021-25220: bind9, an internet domain name server, was vulnerable to cache poisoning. When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers<br />Vulnerable: <= 9.9.5.dfsg-9+deb8u23Fixed: 9.9.5.dfsg-9+deb8u24 | 3.7.0-3.7.15 | |
 | <a name="3010279"></a> [3010279](#3010279) <a name="3010279"></a> <br /> | CVE-2022-23308: the application that validates XML using xmlTextReaderRead() with XML_PARSE_DTDATTR and XML_PARSE_DTDVALID enabled becomes vulnerable to this use-after-free bug. This issue can result in denial of service<br />Vulnerable: <= 2.9.1+dfsg1-5+deb8u11Fixed: 2.9.1+dfsg1-5+deb8u12 | 3.7.0-3.7.15 | |

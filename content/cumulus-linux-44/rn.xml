@@ -7,7 +7,7 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3018159</td>
+<td>3021897</td>
 <td>After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the {{protodown}} flag ON.</td>
 <td>4.4.3</td>
 <td></td>
@@ -1926,12 +1926,6 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
 Fixed: 4.1.0+git191117-2~deb10u4</td>
 <td>4.4.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>3015881</td>
-<td>Traffic flows fail because the remote VTEP IP address is missing in the layer 3 neighbor table on the switch.</td>
-<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4087,12 +4081,6 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
 Fixed: 4.1.0+git191117-2~deb10u4</td>
 <td>4.4.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>3015881</td>
-<td>Traffic flows fail because the remote VTEP IP address is missing in the layer 3 neighbor table on the switch.</td>
-<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>

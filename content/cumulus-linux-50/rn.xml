@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3021888</td>
+<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down and up ({{ifdown}} and {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3017042</td>
 <td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
@@ -322,12 +328,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2873053</td>
-<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down and up ({{ifdown}} and {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
-<td>5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2872277</td>
 <td>The NVUE {{nv set router bgp wait-for-install on}} command fails to enable BGP suppress route advertisement.
 To work around this issue, restart {{switchd}} with {{sudo systemctl restart switchd.service}} after you run the NVUE command. </td>
@@ -429,6 +429,12 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3021888</td>
+<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down and up ({{ifdown}} and {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3017042</td>
@@ -718,12 +724,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>2879645</td>
 <td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2873053</td>
-<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down and up ({{ifdown}} and {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
-<td>5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>

@@ -95,7 +95,7 @@ The limitations listed for {{<link url="VLAN-aware-Bridge-Mode" text="multiple V
 You can configure a single VXLAN device with NVUE or by manually editing the `/etc/network/interfaces` file.
 When you configure a single VXLAN device with NVUE, Cumulus Linux creates a unique name for the device in the format `vxlan<id>`. Cumulus Linux generates the ID using the bridge name as the hash key.
 
-The following example configuration:
+The following static VXLAN example configuration:
 - Creates a single VXLAN device (vxlan48)
 - Maps VLAN 10 to VNI 10 and VLAN 20 to VNI 20
 - Adds the VXLAN device to the default bridge `br_default`
@@ -194,6 +194,185 @@ cumulus@leaf01:~$ ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Automatic VLAN to VNI Mapping
+
+In a VXLAN environment, you need to map individual VLANs to VNIs. For a single VXLAN device, you can do this with a seperate NVUE command per VLAN; however, this can be cumbersome if you have to configure many VLANS or need to isolate tenants and reuse VLANs. To simplify the configuration, you can use these two commands instead:
+- `nv set bridge domain <bridge> vlan <vlans> vni auto` configures the specified VLANs to use automatic mapping.
+- `nv set bridge domain <bridge> vlan-vni-offset` configures the offset you want to use for the VNIs. For example, if you specify an offset of 10000, the VNIs map to the VLAN prepended with 10000.
+
+The following commands automatically set the VNIs for VLAN 10, 20, 30, 40, and 50 on the default bridge (`br_default`) to 1000010, 1000020, 1000030, 1000040, and 1000050, and set the VNIs for VLAN 10, 20, 30, 40, and 50 on bridge `br_01` to 2000010, 2000020, 2000030, 2000040, and 2000050:
+
+```
+cumulus@switch:mgmt:~$ nv set bridge domain br_default vlan 10,20,30,40,50 vni auto
+cumulus@switch:mgmt:~$ nv set bridge domain br_default vlan-vni-offset 10000
+cumulus@switch:mgmt:~$ nv set bridge domain br_01 vlan 10,20,30,40,50 vni auto
+cumulus@switch:mgmt:~$ nv set bridge domain br_01 vlan-vni-offset 20000
+cumulus@switch:mgmt:~$ nv config apply
+```
+
+The following configuration example configures VLANS 10, 20, and 30. The VLANs map automatically to VNIs with an offset of 10000.
+
+{{< tabs "TabID217 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:mgmt:~$ nv set interface lo ip address 10.10.10.1/32
+cumulus@switch:mgmt:~$ nv set interface swp1-2,swp49-54
+cumulus@switch:mgmt:~$ nv set interface swp1-2 bridge domain br_default
+cumulus@switch:mgmt:~$ nv set bridge domain br_default vlan 10,20,30
+cumulus@switch:mgmt:~$ nv set interface vlan10
+cumulus@switch:mgmt:~$ nv set interface vlan20
+cumulus@switch:mgmt:~$ nv set interface vlan30
+cumulus@switch:mgmt:~$ nv set bridge domain br_default vlan 10,20,30 vni auto
+cumulus@switch:mgmt:~$ nv set bridge domain br_default vlan-vni-offset 10000
+cumulus@switch:mgmt:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "/etc/nvue.d/startup.yaml ">}}
+
+```
+cumulus@switch:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10':
+              vni:
+                auto: {}
+            '20':
+              vni:
+                auto: {}
+            '30':
+              vni:
+                auto: {}
+          vlan-vni-offset: 10000
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.1/32: {}
+        type: loopback
+      swp1:
+        bridge:
+          domain:
+            br_default: {}
+        type: swp
+      swp2:
+        bridge:
+          domain:
+            br_default: {}
+        type: swp
+      swp49:
+        type: swp
+      swp50:
+        type: swp
+      swp51:
+        type: swp
+      swp52:
+        type: swp
+      swp53:
+        type: swp
+      swp54:
+        type: swp
+      vlan10:
+        type: svi
+        vlan: 10
+      vlan20:
+        type: svi
+        vlan: 20
+      vlan30:
+        type: svi
+        vlan: 30
+    nve:
+      vxlan:
+        enable: on
+```
+
+{{< /tab >}}
+{{< tab "/etc/network/interfaces ">}}
+
+```
+cumulus@switch:mgmt:~$ sudo cat /etc/network/interfaces
+auto lo
+iface lo inet loopback
+    address 10.10.10.1/32
+    vxlan-local-tunnelip 10.10.10.1
+
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
+
+auto swp1
+iface swp1
+
+auto swp2
+iface swp2
+
+auto swp49
+iface swp49
+
+auto swp50
+iface swp50
+
+auto swp51
+iface swp51
+
+auto swp52
+iface swp52
+
+auto swp53
+iface swp53
+
+auto swp54
+iface swp54
+
+auto vlan10
+iface vlan10
+    hwaddress 44:38:39:22:01:ab
+    vlan-raw-device br_default
+    vlan-id 10
+
+auto vlan20
+iface vlan20
+    hwaddress 44:38:39:22:01:ab
+    vlan-raw-device br_default
+    vlan-id 20
+
+auto vlan30
+iface vlan30
+    hwaddress 44:38:39:22:01:ab
+    vlan-raw-device br_default
+    vlan-id 30
+
+auto vxlan48
+iface vxlan48
+    bridge-vlan-vni-map 10=10010 20=10020 30=10030
+    bridge-learning off
+
+auto br_default
+iface br_default
+    bridge-ports swp1 swp2 vxlan48
+    hwaddress 44:38:39:22:01:ab
+    bridge-vlan-aware yes
+    bridge-vids 10 20 30
+    bridge-pvid 1
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## Related Information
 
 - For information about VXLAN devices and static VXLAN tunnels, see {{<link url="Static-VXLAN-Tunnels" text="Static VXLAN Tunnels">}}.
 - For information about VXLAN devices and EVPN, see {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}}.

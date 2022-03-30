@@ -197,9 +197,9 @@ cumulus@leaf01:~$ ifreload -a
 
 ## Automatic VLAN to VNI Mapping
 
-In a VXLAN environment, you need to map individual VLANs to VNIs. For a single VXLAN device, you can do this with a seperate NVUE command per VLAN; however, this can be cumbersome if you have to configure many VLANS or need to isolate tenants and reuse VLANs. To simplify the configuration, you can use these two commands instead:
+In an EVPN VXLAN environment, you need to map individual VLANs to VNIs. For a single VXLAN device, you can do this with a seperate NVUE command per VLAN; however, this can be cumbersome if you have to configure many VLANS or need to isolate tenants and reuse VLANs. To simplify the configuration, you can use these two commands instead:
 - `nv set bridge domain <bridge> vlan <vlans> vni auto` configures the specified VLANs to use automatic mapping.
-- `nv set bridge domain <bridge> vlan-vni-offset` configures the offset you want to use for the VNIs. For example, if you specify an offset of 10000, the VNIs map to the VLAN prepended with 10000.
+- `nv set bridge domain <bridge> vlan-vni-offset` configures the offset you want to use for the VNIs. For example, if you specify an offset of 10000, the VNI is the VLAN plus 10000.
 
 The following commands automatically set the VNIs for VLAN 10, 20, 30, 40, and 50 on the default bridge (`br_default`) to 1000010, 1000020, 1000030, 1000040, and 1000050, and set the VNIs for VLAN 10, 20, 30, 40, and 50 on bridge `br_01` to 2000010, 2000020, 2000030, 2000040, and 2000050:
 
@@ -211,6 +211,10 @@ cumulus@switch:mgmt:~$ nv set bridge domain br_01 vlan-vni-offset 20000
 cumulus@switch:mgmt:~$ nv config apply
 ```
 
+{{%notice note%}}
+You cannot use automatic NVUE VLAN to VNI mapping commands to configure static VXLAN tunnels.
+{{%/notice%}}
+
 The following configuration example configures VLANS 10, 20, and 30. The VLANs map automatically to VNIs with an offset of 10000.
 
 {{< tabs "TabID217 ">}}
@@ -218,7 +222,6 @@ The following configuration example configures VLANS 10, 20, and 30. The VLANs m
 
 ```
 cumulus@switch:mgmt:~$ nv set interface lo ip address 10.10.10.1/32
-cumulus@switch:mgmt:~$ nv set interface swp1-2,swp49-54
 cumulus@switch:mgmt:~$ nv set interface swp1-2 bridge domain br_default
 cumulus@switch:mgmt:~$ nv set bridge domain br_default vlan 10,20,30
 cumulus@switch:mgmt:~$ nv set interface vlan10
@@ -265,18 +268,6 @@ cumulus@switch:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           domain:
             br_default: {}
         type: swp
-      swp49:
-        type: swp
-      swp50:
-        type: swp
-      swp51:
-        type: swp
-      swp52:
-        type: swp
-      swp53:
-        type: swp
-      swp54:
-        type: swp
       vlan10:
         type: svi
         vlan: 10
@@ -318,24 +309,6 @@ iface swp1
 
 auto swp2
 iface swp2
-
-auto swp49
-iface swp49
-
-auto swp50
-iface swp50
-
-auto swp51
-iface swp51
-
-auto swp52
-iface swp52
-
-auto swp53
-iface swp53
-
-auto swp54
-iface swp54
 
 auto vlan10
 iface vlan10

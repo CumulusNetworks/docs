@@ -218,7 +218,6 @@ The following configuration example configures VLANS 10, 20, and 30. The VLANs m
 
 ```
 cumulus@switch:mgmt:~$ nv set interface lo ip address 10.10.10.1/32
-cumulus@switch:mgmt:~$ nv set interface swp1-2,swp49-54
 cumulus@switch:mgmt:~$ nv set interface swp1-2 bridge domain br_default
 cumulus@switch:mgmt:~$ nv set bridge domain br_default vlan 10,20,30
 cumulus@switch:mgmt:~$ nv set interface vlan10
@@ -265,18 +264,6 @@ cumulus@switch:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           domain:
             br_default: {}
         type: swp
-      swp49:
-        type: swp
-      swp50:
-        type: swp
-      swp51:
-        type: swp
-      swp52:
-        type: swp
-      swp53:
-        type: swp
-      swp54:
-        type: swp
       vlan10:
         type: svi
         vlan: 10
@@ -318,24 +305,6 @@ iface swp1
 
 auto swp2
 iface swp2
-
-auto swp49
-iface swp49
-
-auto swp50
-iface swp50
-
-auto swp51
-iface swp51
-
-auto swp52
-iface swp52
-
-auto swp53
-iface swp53
-
-auto swp54
-iface swp54
 
 auto vlan10
 iface vlan10

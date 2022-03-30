@@ -6,25 +6,25 @@ toc: 4
 ---
 ## gNMI Support on Cumulus Linux
 
-You can use *gNMI*, the {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC network management interface">}}, to collect system resource, interface, and counter information from Cumulus Linux and export it to your own gNMI client.
+You can use *gNMI* {{<exlink url="https://github.com/openconfig/gnmi" text="(gRPC Network Management Interface)">}} to collect system resource, interface, and counter information from Cumulus Linux and export it to your own gNMI client.
 
 ### Configure the gNMI Agent
 
-To configure the gNMI agent, you need to enable it on every switch you want to use with gNMI. Optionally, you can update the default gNMI port. The gNMI agent listens over port 9339 by default. You can change this setting in case you use that port in another application:
+The gNMI agent is enabled by default. Optionally, you can update the default gNMI port. The gNMI agent listens over port 9339 by default. You can change this setting in case you use that port in another application:
 
 
 The `/etc/netq/netq.yml` file stores the configuration.
 
 To configure the gNMI agent on a switch:
 
-1. Enable the gNMI agent:
+1. If you want to disable the gNMI agent:
 
-       cumulus@switch:~$ netq config add agent gnmi-enable true
+       cumulus@switch:~$ netq config add agent gnmi-enable false
 
-1. If you want to change the default port over which the gNMI agent listens, run:
+2. If you want to change the default port over which the gNMI agent listens, run:
 
        cumulus@switch:~$ netq config add agent gnmi-port <gnmi_port>
-1. Restart the NetQ Agent:
+3. Restart the NetQ Agent after making any gNMI configuration changes:
 
        cumulus@switch:~$ netq config restart agent
 
@@ -37,11 +37,16 @@ To use only gNMI for data collection, disable the NetQ Agent, which is always en
 
     cumulus@switch:~$ netq config add agent opta-enable false
 
-{{%notice info%}}
+{{%notice note%}}
 
-You cannot disable both the NetQ Agent and the gNMI agent.
+You cannot disable both the NetQ and gNMI Agents. If both agents are enabled on Cumulus Linux and a NetQ server is unreachable, the data from the following models are not sent to gNMI:
+- openconfig-interfaces
+- openconfig-if-ethernet 
+- openconfig-if-ethernet-ext
+- openconfig-system
+- nvidia-if-ethernet-ext
 
-If you enable both the gNMI agent and the traditional NetQ agent on Cumulus Linux, the data from [OpenConfig models](#supported-models) and the `nvidia-if-ethernet-ext` model are not sent to gNMI if a NetQ server is not reachable. WJH data continues streaming to gNMI in this state. If you are only using gNMI and a NetQ telemetry server does not exist, you should disable the NetQ agent by setting `opta-enable` to `false`.
+WJH, `openconfig-platform`, and `openconfig-lldp` data continue streaming to gNMI in this state. If you are only using gNMI and a NetQ telemetry server does not exist, you should disable the NetQ agent by setting `opta-enable` to `false`.
 
 {{%/notice%}}
 
@@ -55,6 +60,8 @@ Cumulus Linux supports the following OpenConfig models:
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-if-ethernet.yang" text="openconfig-if-ethernet">}} | AutoNegotiate, PortSpeed, MacAddress, NegotiatedPortSpeed, Counters|
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-if-ethernet-ext.yang" text="openconfig-if-ethernet-ext">}} | Frame size counters |
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/system/openconfig-system.yang" text="openconfig-system">}} | Memory, CPU |
+| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/platform/openconfig-platform.yang" text="openconfig-platform">}} | Platform Data |
+| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/lldp/openconfig-lldp.yang" text="openconfig-lldp">}} | LLDP Data |
 
 gNMI clients can also use the following model for extended ethernet counters:
 <!-- vale off -->

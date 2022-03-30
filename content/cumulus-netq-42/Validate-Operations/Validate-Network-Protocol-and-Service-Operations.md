@@ -120,7 +120,6 @@ L3 VNI RMAC Test                 : skipped
 {{%notice note%}}
 Validations that support the `streaming` keyword can query real time streaming information to return results faster compared to traditional on-demand checks. The following netq checks support a streaming query:
 
-- netq check addresses
 - netq check agents
 - netq check bgp
 - netq check evpn
@@ -337,7 +336,6 @@ This section provides CLI validation examples for a variety of protocols and ele
 {{%notice note%}}
 Validations that support the `streaming` keyword can query real time streaming information to return results faster compared to traditional on-demand checks. The following netq checks support a streaming query:
 
-- netq check addresses
 - netq check agents
 - netq check bgp
 - netq check evpn

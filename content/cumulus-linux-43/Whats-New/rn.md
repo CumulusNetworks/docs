@@ -14,7 +14,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="3015881"></a> [3015881](#3015881) <a name="3015881"></a> <br /> | Traffic flows fail because the remote VTEP IP address is missing in the layer 3 neighbor table on the switch. | 3.7.15, 4.3.0-4.4.3 | |
 | <a name="3010291"></a> [3010291](#3010291) <a name="3010291"></a> <br /> | CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers<br />Vulnerable: <= 9.11.5.P4+dfsg-5.1+deb10u6Fixed: 9.11.5.P4+dfsg-5.1+deb10u7 | 4.0.0-4.4.3 | |
 | <a name="3007604"></a> [3007604](#3007604) <a name="3007604"></a> <br /> | CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates<br />Vulnerable: <= 1.1.1d-0+deb10u7Fixed: 1.1.1d-0+deb10u8 | 4.0.0-4.4.3 | |
 | <a name="3007564"></a> [3007564](#3007564) <a name="3007564"></a> <br /> | After you delete the last <code>vxlan-remoteip</code> configuration line from the <code>/etc/network/interfaces</code> file and run the <code>ifreload -a</code> command, the corresponding BUM flood entry is not removed. | 3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1 | |

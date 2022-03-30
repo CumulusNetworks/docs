@@ -9,7 +9,7 @@
 <tr>
 <td>3015881</td>
 <td>Traffic flows fail because the remote VTEP IP address is missing in the layer 3 neighbor table on the switch.</td>
-<td>3.7.15, 4.3.0-4.4.3</td>
+<td>3.7.15</td>
 <td></td>
 </tr>
 <tr>

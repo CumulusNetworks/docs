@@ -47,7 +47,7 @@ The `decode-syseeprom` command includes the following options:
 | `-h`, `-help` | Displays the help message and exits. |
 | `-a` | Prints the base MAC address for switch interfaces. |
 | `-r` | Prints the number of MAC addresses allocated for the switch interfaces. |
-| `-s` | Sets the EEPROM content (if the EEPROM is writable). You can provide arguments in the command line in a comma separated list in the form `<field>=<value>`. <ul><li>`.` `,` and `=` are not allowed in field names and values.</li><li>Any field not specified defaults to the current value.</li></ul> |
+| `-s` | Sets the EEPROM content (if the EEPROM is writable). You can provide arguments in the command line in a comma separated list in the form `<field>=<value>`. <ul><li>`.` `,` and `=` are not allowed in field names and values.</li><li>Any field not specified defaults to the current value.</li></ul> <br><br>NVIDIA Spectrum switches do not support this option.|
 | `-j`, `--json` | Displays JSON output. |
 | `-t <target>` | Prints the target EEPROM information (board, psu2, psu1). |
 | `--serial`, `-e` | Prints the device serial number. |

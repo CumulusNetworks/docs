@@ -15,13 +15,15 @@ toc: 1
 NetQ 4.2.0 includes the following new features and improvements:
 
 - Improved Event Management
-- Flow Analysis Enhancements:
+- Flow Analysis Enhancements
   - Queue Occupancy
   - Partial Path Support
   - WJH Data
 - {{<link title="Validation Checks#roce-validation-tests" text="RoCE Validation">}}
 - Early Access support for DPU Monitoring
-- New gNMI Object Models
+- {{<link title="gNMI Streaming" text="New gNMI Object Models">}}
+  - openconfig-plaftorm
+  - openconfig-lldp
 - Early Access OPTA Functionality in NetQ Agent
 
 ## Upgrade Paths

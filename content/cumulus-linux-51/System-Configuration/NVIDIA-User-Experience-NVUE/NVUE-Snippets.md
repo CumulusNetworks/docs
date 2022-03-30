@@ -52,7 +52,7 @@ NVUE does not support configuring BGP to peer across the default route. The foll
 
 ### /etc/network/interfaces Snippets
 
-#### Configure MLAG Timers
+#### MLAG Timers Example
 
 NVUE supports configuring only one of the {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#set-clagctl-timers" text="MLAG service timeouts">}} (initDelay). The following example configures the MLAG peer timeout to 400 seconds:
 
@@ -96,7 +96,7 @@ NVUE supports configuring only one of the {{<link url="Multi-Chassis-Link-Aggreg
    ...
    ```
 
-#### Configure a Traditional Bridge
+#### Traditional Bridge Example
 
 NVUE does not support configuring traditional bridges. The following example configures a traditional bridge called `br0` with the IP address 11.0.0.10/24. swp1, swp2 are members of the bridge.
 
@@ -160,6 +160,7 @@ To create flexible snippets:
 1. Create a file in `yaml` format and add each flexible snippet you want to apply in the format shown below.
 
    ```
+   cumulus@leaf01:mgmt:~$ sudo nano ./<filename>.yaml>
    - set:
        system:
         config:
@@ -168,36 +169,41 @@ To create flexible snippets:
               file: "<filename>"
               permissions: "<umask-permissions>"
               content: |
-                # This is my content 
+                # This is my content
+              services:
+                 <name>:
+                   service: <service-name>
+                   action: <action>
    ```
 
-    You can only set the umast permissions to a new file that you create. Adding the `permissions:` line is optional. The default umask persmissions are 644.
+    NVUE appends the flexible snippet at the end of an existing file. If the file does not exist, NVUE creates the file and adds the content.
 
-   The following example creates two snippets called `mysnippet1` and `mysnippet2` in a file called `./flexible-snippets.yaml`.
-   - `mysnippet1` creates the `/etc/file1` file, changes the umask permissions to 0600, and adds the content `# This is my content`.
-   - `mysnippet2` adds `# This is my content` to the `/etc/file2` file that exists on the system.
+    - You can only set the umast permissions to a new file that you create. Adding the `permissions:` line is optional. The default umask persmissions are 644.
+    - You can add a service with an action, such as start, restart, or stop. Adding the `services:` lines is optional. The {{<link url="#snmp-example" text="SNMP example below">}} restarts the `snmpd` service.
+
+### TACACS+ Client Example
+
+The following example creates a snippet called `tacacs-config` in a file called `./tacacs.yaml`. The snippet adds the server 192.168.0.30 and the shared secret `tacacskey` to the `/etc/tacplus_servers` file.
+
+1. Create the `tacacs.yaml` snippet:
 
    ```
-   cumulus@switch:~$ sudo nano ./flexible-snippets.yaml
+   cumulus@leaf01:mgmt:~$ sudo nano ./tacacs.yaml 
    - set:
        system:
         config:
           snippet:
-            mysnippet1:
-              file: "/etc/file1"
-              permissions: "0600"
+            tacacs-config:
+              file: "/etc/tacplus_servers"
               content: |
-                # This is my content 
-            mysnippet2:
-              file: "/etc/file2"
-              content: |
-                # This is my content        
+                secret=tacacskey
+                server=192.168.0.30
    ```
 
 2. Run the following command to patch the configuration:
 
    ```
-   cumulus@switch:~$ nv config patch ./flexible-snippets.yaml
+   cumulus@switch:~$ nv config patch ./snmp.yaml
    ```
 
 3. Run the `nv config apply` command to apply the configuration:
@@ -206,4 +212,46 @@ To create flexible snippets:
    cumulus@switch:~$ nv config apply
    ```
 
-NVUE appends the flexible snippet at the end of an existing file. If the file does not exist, NVUE creates the file and adds the content.
+NVUE appends the snippet at the end of the `/etc/tacplus_servers` file.
+
+### SNMP Example
+
+The following example creates a snippet called `snmp-config` in a file called `./snmp.yaml`. The snippet adds content to the `/etc/snmp/snmpd.conf` file to:
+- Configure the switch to listen on any interface on the management VRF.
+- Create a read-only community.
+- Restart the `snmpd` service.
+
+1. Create the `snmp.yaml` snippet:
+
+   ```
+   cumulus@leaf01:mgmt:~$ sudo nano ./snmp.yaml 
+   - set:
+       system:
+         config:
+           snippet:
+             snmp-config:
+               file: /etc/snmp/snmpd.conf
+               content: |
+                 # Listen on any interface on MGMT VRF
+                 agentaddress udp:@mgmt:161
+                 # Create a Read-Only Community
+                 rocommunity cumuluspassword default
+               services:
+                 snmp:
+                   service: snmpd
+                   action: restart
+   ```
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch ./snmp.yaml
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+NVUE appends the snippet at the end of the `/etc/snmp/snmpd.conf` file.

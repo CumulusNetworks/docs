@@ -199,7 +199,7 @@ cumulus@leaf01:~$ ifreload -a
 
 In a VXLAN environment, you need to map individual VLANs to VNIs. For a single VXLAN device, you can do this with a seperate NVUE command per VLAN; however, this can be cumbersome if you have to configure many VLANS or need to isolate tenants and reuse VLANs. To simplify the configuration, you can use these two commands instead:
 - `nv set bridge domain <bridge> vlan <vlans> vni auto` configures the specified VLANs to use automatic mapping.
-- `nv set bridge domain <bridge> vlan-vni-offset` configures the offset you want to use for the VNIs. For example, if you specify an offset of 10000, the VNIs map to the VLAN prepended with 10000.
+- `nv set bridge domain <bridge> vlan-vni-offset` configures the offset you want to use for the VNIs. For example, if you specify an offset of 10000, the VNI is the VLAN plus 10000.
 
 The following commands automatically set the VNIs for VLAN 10, 20, 30, 40, and 50 on the default bridge (`br_default`) to 1000010, 1000020, 1000030, 1000040, and 1000050, and set the VNIs for VLAN 10, 20, 30, 40, and 50 on bridge `br_01` to 2000010, 2000020, 2000030, 2000040, and 2000050:
 

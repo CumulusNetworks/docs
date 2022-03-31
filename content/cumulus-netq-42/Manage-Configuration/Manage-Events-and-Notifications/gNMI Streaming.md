@@ -24,16 +24,16 @@ Use the following commands to adjust the default settings:
 2. Change the default port over which the gNMI Agent listens:
 
        cumulus@switch:~$ netq config add agent gnmi-port <gnmi_port>
-3. Restart the NetQ Agent (to incorporate the configuration changes):
+3. Restart the NetQ Agent to incorporate the configuration changes:
 
        cumulus@switch:~$ netq config restart agent
 
 
-### Use Only the gNMI Agent
+### Using the gNMI Agent Exclusively
 
-It is possible (although it is not recommended) to collect data using only the gNMI agent, and not the NetQ Agent. However, this sends data only to gNMI and not to NetQ.
+NVIDIA recommends collecting data with both the gNMI and NetQ Agents. However, if you do not want to collect data with both Agents, you can disable the NetQ Agent. Data is then sent exclusively to the gNMI Agent.
 
-To use only gNMI for data collection, disable the NetQ Agent, which is always enabled by default:
+To disable the NetQ Agent, use the following command:
 
     cumulus@switch:~$ netq config add agent opta-enable false
 

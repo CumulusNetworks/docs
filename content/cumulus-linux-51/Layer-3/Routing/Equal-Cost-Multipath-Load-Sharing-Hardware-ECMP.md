@@ -224,11 +224,11 @@ To enable TEID-based ECMP hashing:
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set traffic config hash ecmp gtp_teid enable on
+cumulus@switch:~$ nv set system forwarding ecmp hash gtp-teid enable on
 cumulus@switch:~$ nv config apply
 ```
 
-To disable TEID-based ECMP hashing, run the `nv set traffic config hash ecmp gtp_teid enable off` command.
+To disable TEID-based ECMP hashing, run the `nv set system forwarding ecmp hash gtp-teid enable off` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -259,11 +259,11 @@ To enable TEID-based load balancing:
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set traffic config hash lag gtp_teid enable on
+cumulus@switch:~$ nv set system forwarding lag hash gtp-teid enable on
 cumulus@switch:~$ nv config apply
 ```
 
-To disable TEID-based load balancing, run the `nv set traffic config hash lag gtp_teid enable off` command.
+To disable TEID-based load balancing, run the `nv set system forwarding lag hash gtp-teid enable off` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

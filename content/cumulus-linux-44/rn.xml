@@ -7,9 +7,27 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3023256</td>
+<td>After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the {{protodown}} flag ON.</td>
+<td>4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3021897</td>
 <td>After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the {{protodown}} flag ON.</td>
 <td>4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3021698</td>
+<td>After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards.</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3021693</td>
+<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -18,6 +36,14 @@
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
 Fixed: 4.1.0+git191117-2~deb10u4</td>
 <td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3017043</td>
+<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
+Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
+Fixed: 4.1.0+git191117-2~deb10u4</td>
+<td>4.0.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -77,6 +103,12 @@ by reading too much data on the heap.
 Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
 Fixed:</td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993773</td>
+<td>When a VNI goes into a protodown state, MLAG updates the VTEP IP address, which results in {{switchd}} changing the tunnel SIP in hardware.</td>
+<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -410,6 +442,13 @@ CVE-2017-9778: Vulnerability to a negative length field in DWARF section, result
 Vulnerable: crash 7.2.8-1+cl4u1 and 7.2.8-1+cl3u1 with embedded gdb 7.6
 Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>3.7.15-4.4.3</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2841584</td>
+<td>After you upgrade Cumulus Linux on one of the MLAG peers, the bonds do not come up and the reason shows {{anycast-ip-mismatch}} even though there is no VXLAN configuration on the switch.  
+To work around this issue, configure an anycast IP address under the loopback interface on both switches in the MLAG pair.</td>
+<td>4.4.2-4.4.3</td>
 <td>5.0.0-5.0.1</td>
 </tr>
 <tr>
@@ -835,12 +874,6 @@ To work around this issue, disable pruning for IPv6 multicast by setting {{bridg
 <td></td>
 </tr>
 <tr>
-<td>2558184</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.15, 4.1.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2556811</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-4.4.3</td>
@@ -1093,18 +1126,6 @@ If you want to use {{scp -r}} to copy directory trees, avoid copying directory t
 To disable scp completely, use {{/bin/chmod 0 /usr/bin/scp}} .</td>
 <td>3.7.14-3.7.15, 4.0.0-4.4.3</td>
 <td></td>
-</tr>
-<tr>
-<td>2552214</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14, 4.1.1-4.4.3</td>
-<td>3.7.14.2-3.7.15</td>
-</tr>
-<tr>
-<td>2552213</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14.2, 4.1.1-4.4.3</td>
-<td>3.7.15</td>
 </tr>
 <tr>
 <td>2551565</td>
@@ -1921,11 +1942,31 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3021698</td>
+<td>After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards.</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3021693</td>
+<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3017044</td>
 <td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
 Fixed: 4.1.0+git191117-2~deb10u4</td>
 <td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3017043</td>
+<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
+Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
+Fixed: 4.1.0+git191117-2~deb10u4</td>
+<td>4.0.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1979,6 +2020,12 @@ by reading too much data on the heap.
 Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
 Fixed:</td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993773</td>
+<td>When a VNI goes into a protodown state, MLAG updates the VTEP IP address, which results in {{switchd}} changing the tunnel SIP in hardware.</td>
+<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2371,6 +2418,13 @@ CVE-2017-9778: Vulnerability to a negative length field in DWARF section, result
 Vulnerable: crash 7.2.8-1+cl4u1 and 7.2.8-1+cl3u1 with embedded gdb 7.6
 Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>3.7.15-4.4.3</td>
+<td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2841584</td>
+<td>After you upgrade Cumulus Linux on one of the MLAG peers, the bonds do not come up and the reason shows {{anycast-ip-mismatch}} even though there is no VXLAN configuration on the switch.  
+To work around this issue, configure an anycast IP address under the loopback interface on both switches in the MLAG pair.</td>
+<td>4.4.2-4.4.3</td>
 <td>5.0.0-5.0.1</td>
 </tr>
 <tr>
@@ -2819,12 +2873,6 @@ To work around this issue, disable pruning for IPv6 multicast by setting {{bridg
 <td></td>
 </tr>
 <tr>
-<td>2558184</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.15, 4.1.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2556591</td>
 <td>After upgrading to Cumulus Linux, MLAG ports might remain down with {{clagctl}} and {{net show clag}} reporting {{bridge-priority-mismatch}}.
 To work around this issue, run the {{sudo ifreload -a}} command on both peers, or configure {{bridge-bridgeprio}} to be the same value as {{mstpctl-treeprio}} on the bridge interface in the {{/etc/network/interfaces}} file, then run {{sudo ifreload -a}}.</td>
@@ -3071,18 +3119,6 @@ If you want to use {{scp -r}} to copy directory trees, avoid copying directory t
 To disable scp completely, use {{/bin/chmod 0 /usr/bin/scp}} .</td>
 <td>3.7.14-3.7.15, 4.0.0-4.4.3</td>
 <td></td>
-</tr>
-<tr>
-<td>2552214</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14, 4.1.1-4.4.3</td>
-<td>3.7.14.2-3.7.15</td>
-</tr>
-<tr>
-<td>2552213</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14.2, 4.1.1-4.4.3</td>
-<td>3.7.15</td>
 </tr>
 <tr>
 <td>2551565</td>
@@ -4076,11 +4112,25 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3021693</td>
+<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3017044</td>
 <td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
 Fixed: 4.1.0+git191117-2~deb10u4</td>
 <td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3017043</td>
+<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
+Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
+Fixed: 4.1.0+git191117-2~deb10u4</td>
+<td>4.0.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4143,6 +4193,12 @@ by reading too much data on the heap.
 Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
 Fixed:</td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993773</td>
+<td>When a VNI goes into a protodown state, MLAG updates the VTEP IP address, which results in {{switchd}} changing the tunnel SIP in hardware.</td>
+<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -5246,12 +5302,6 @@ To work around this issue, disable pruning for IPv6 multicast by setting {{bridg
 <td></td>
 </tr>
 <tr>
-<td>2558184</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.15, 4.1.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2556591</td>
 <td>After upgrading to Cumulus Linux, MLAG ports might remain down with {{clagctl}} and {{net show clag}} reporting {{bridge-priority-mismatch}}.
 To work around this issue, run the {{sudo ifreload -a}} command on both peers, or configure {{bridge-bridgeprio}} to be the same value as {{mstpctl-treeprio}} on the bridge interface in the {{/etc/network/interfaces}} file, then run {{sudo ifreload -a}}.</td>
@@ -5498,18 +5548,6 @@ If you want to use {{scp -r}} to copy directory trees, avoid copying directory t
 To disable scp completely, use {{/bin/chmod 0 /usr/bin/scp}} .</td>
 <td>3.7.14-3.7.15, 4.0.0-4.4.3</td>
 <td></td>
-</tr>
-<tr>
-<td>2552214</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14, 4.1.1-4.4.3</td>
-<td>3.7.14.2-3.7.15</td>
-</tr>
-<tr>
-<td>2552213</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14.2, 4.1.1-4.4.3</td>
-<td>3.7.15</td>
 </tr>
 <tr>
 <td>2551565</td>
@@ -6531,6 +6569,11 @@ Fixed: 2.3.1+dfsg-1+deb10u1</td>
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u1
 Fixed: 4.1.0+git191117-2~deb10u2</td>
 <td>4.0.0-4.3.0</td>
+</tr>
+<tr>
+<td>2578845</td>
+<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
+<td>3.7.11-3.7.14, 4.1.1-4.3.0</td>
 </tr>
 <tr>
 <td>2577499</td>

@@ -10,21 +10,21 @@ You can use *gNMI* {{<exlink url="https://github.com/openconfig/gnmi" text="(gRP
 
 ### Configure the gNMI Agent
 
-The gNMI Agent is enabled by default. Optionally, you can update the default gNMI port. The gNMI agent listens over port 9339 by default. You can change this setting in case you use that port in another application:
+The gNMI Agent is enabled by default and listens over port 9339. You can change the default port in case you use that port in another application.
 
 
 The `/etc/netq/netq.yml` file stores the configuration.
 
-To configure the gNMI agent on a switch:
+Use the following commands to adjust the default settings:
 
-1. If you want to disable the gNMI agent:
+1. Disable the gNMI Agent:
 
        cumulus@switch:~$ netq config add agent gnmi-enable false
 
-2. If you want to change the default port over which the gNMI agent listens, run:
+2. Change the default port over which the gNMI Agent listens:
 
        cumulus@switch:~$ netq config add agent gnmi-port <gnmi_port>
-3. Restart the NetQ Agent after making any gNMI configuration changes:
+3. Restart the NetQ Agent (to incorporate the configuration changes):
 
        cumulus@switch:~$ netq config restart agent
 

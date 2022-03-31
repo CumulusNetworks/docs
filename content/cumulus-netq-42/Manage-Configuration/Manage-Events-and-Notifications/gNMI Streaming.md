@@ -10,7 +10,7 @@ You can use *gNMI* {{<exlink url="https://github.com/openconfig/gnmi" text="(gRP
 
 ### Configure the gNMI Agent
 
-The gNMI agent is enabled by default. Optionally, you can update the default gNMI port. The gNMI agent listens over port 9339 by default. You can change this setting in case you use that port in another application:
+The gNMI Agent is enabled by default. Optionally, you can update the default gNMI port. The gNMI agent listens over port 9339 by default. You can change this setting in case you use that port in another application:
 
 
 The `/etc/netq/netq.yml` file stores the configuration.

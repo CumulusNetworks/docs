@@ -225,10 +225,6 @@ hash_config.dport = false
 {{< /tab >}}
 {{< /tabs >}}
 
-{{%notice note%}}
-Cumulus Linux enables symmetric hashing by default. Make sure that the settings for the source IP and destination IP fields match, and that the settings for the source port and destination port fields match; otherwise Cumulus Linux disables symmetric hashing automatically. If necessary, you can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
-{{%/notice%}}
-
 For ECMP load balancing between multiple interfaces that are members of the same bond, you can hash on these fields:
 
 |  Field  | NVUE Command | `/etc/cumulus/datapath/traffic.conf` Parameter|
@@ -244,9 +240,9 @@ For ECMP load balancing between multiple interfaces that are members of the same
 | VLAN ID| `nv set system forwarding lag-hash vlan enable`|`lag_hash_config.vlan_id` |
 | TEID (see {{<link url="#gtp-hashing" text="GTP Hashing, below" >}}) | `nv set system forwarding lag-hash gtp-teid enable`| `lag_hash_config.gtp_teid`|
 
-The following example commands leave out the source MAC address and destination MAC address from the hash calculation:
+The following example commands omit the source MAC address and destination MAC address from the hash calculation:
 
-{{< tabs "TabID173 ">}}
+{{< tabs "TabID149 ">}}
 {{< tab "NVUE Commands">}}
 
 ```
@@ -296,6 +292,11 @@ lag_hash_config.gtp_teid = false
 {{< /tabs >}}
 
 <!-- vale off -->
+
+{{%notice note%}}
+Cumulus Linux enables symmetric hashing by default. Make sure that the settings for the source IP and destination IP fields match, and that the settings for the source port and destination port fields match; otherwise Cumulus Linux disables symmetric hashing automatically. If necessary, you can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
+{{%/notice%}}
+
 ### GTP Hashing
 <!-- vale on -->
 [GTP](## "GPRS Tunneling Protocol") carries mobile data within the core of the mobile operator’s network. Traffic in the 5G Mobility core cluster, from cell sites to compute nodes, have the same source and destination IP address. The only way to identify individual flows is with the GTP [TEID](## "Tunnel Endpoint Identifier"). Enabling GTP hashing adds the TEID as a hash parameter and helps the Cumulus Linux switches in the network to distribute mobile data traffic evenly across ECMP routes.

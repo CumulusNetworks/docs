@@ -55,20 +55,20 @@ For ECMP load balancing between multiple next-hops of a layer 3 route, you can h
 
 |  Field  | NVUE Command | `/etc/cumulus/datapath/traffic.conf` Parameter|
 | -------- | ----------- | --------------------------------------------- |
-| IP protocol | `nv set system forwarding ecmp-hash ip-protocol enable`|`hash_config.ip_prot`|
-| Source IP address| `nv set system forwarding ecmp-hash source-ip enable`|`hash_config.sip`|
-| Destination IP address| `nv set system forwarding ecmp-hash destination-ip enable`|`hash_config.dip`|
-| Source port | `nv set system forwarding ecmp-hash source-port enable`|`hash_config.sport` |
-| Destination port| `nv set system forwarding ecmp-hash destination-port enable`| `hash_config.dport` |
-| IPv6 flow label | `nv set system forwarding ecmp-hash ipv6-label enable`|`hash_config.ip6_label` |
-| Ingress interface | `nv set system forwarding ecmp-hash ingress-interface enable`| `hash_config.ing_intf` |
-| TEID (see {{<link url="#gtp-hashing" text="GTP Hashing, below" >}}) | `nv set system forwarding ecmp-hash gtp-teid enable`| `hash_config.gtp_teid`|
-| Inner IP protocol| `nv set system forwarding ecmp-hash inner-ip-protocol enable `|`hash_config.inner_ip_prot` |
-| Inner source IP address| `nv set system forwarding ecmp-hash inner-source-ip enable`|`hash_config.inner_sip` |
-| Inner destination IP address| `nv set system forwarding ecmp-hash inner-destination-ip enable`|`hash_config.inner_dip` |
-| Inner source port| `nv set system forwarding ecmp-hash inner-source-port enable`| `hash_config.inner-sport` |
-| Inner destination port| `nv set system forwarding ecmp-hash inner-destination-port enable`| `hash_config.inner_dport` |
-| Inner IPv6 flow label | `nv set system forwarding ecmp-hash inner-ipv6-label enable`|`hash_config.inner_ip6_label` |
+| IP protocol | `nv set system forwarding ecmp-hash ip-protocol`|`hash_config.ip_prot`|
+| Source IP address| `nv set system forwarding ecmp-hash source-ip`|`hash_config.sip`|
+| Destination IP address| `nv set system forwarding ecmp-hash destination-ip`|`hash_config.dip`|
+| Source port | `nv set system forwarding ecmp-hash source-port`|`hash_config.sport` |
+| Destination port| `nv set system forwarding ecmp-hash destination-port`| `hash_config.dport` |
+| IPv6 flow label | `nv set system forwarding ecmp-hash ipv6-label`|`hash_config.ip6_label` |
+| Ingress interface | `nv set system forwarding ecmp-hash ingress-interface`| `hash_config.ing_intf` |
+| TEID (see {{<link url="#gtp-hashing" text="GTP Hashing, below" >}}) | `nv set system forwarding ecmp-hash gtp-teid`| `hash_config.gtp_teid`|
+| Inner IP protocol| `nv set system forwarding ecmp-hash inner-ip-protocol `|`hash_config.inner_ip_prot` |
+| Inner source IP address| `nv set system forwarding ecmp-hash inner-source-ip`|`hash_config.inner_sip` |
+| Inner destination IP address| `nv set system forwarding ecmp-hash inner-destination-ip`|`hash_config.inner_dip` |
+| Inner source port| `nv set system forwarding ecmp-hash inner-source-port`| `hash_config.inner-sport` |
+| Inner destination port| `nv set system forwarding ecmp-hash inner-destination-port`| `hash_config.inner_dport` |
+| Inner IPv6 flow label | `nv set system forwarding ecmp-hash inner-ipv6-label`|`hash_config.inner_ip6_label` |
 
 The following example commands omit the source port and destination port from the hash calculation:
 
@@ -76,8 +76,8 @@ The following example commands omit the source port and destination port from th
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set system forwarding ecmp-hash source-port enable off
-cumulus@switch:~$ nv set system forwarding ecmp-hash destination-port enable off
+cumulus@switch:~$ nv set system forwarding ecmp-hash source-port
+cumulus@switch:~$ nv set system forwarding ecmp-hash destination-port
 cumulus@switch:~$ nv config apply
 ```
 
@@ -125,16 +125,16 @@ For ECMP load balancing between multiple interfaces that are members of the same
 
 |  Field  | NVUE Command | `/etc/cumulus/datapath/traffic.conf` Parameter|
 | -------- | ----------- | --------------------------------------------- |
-| IP protocol | `nv set system forwarding lag-hash ip-protocol enable`|`lag_hash_config.ip_prot`|
-| Source MAC address| `nv set system forwarding lag-hash source-mac enable`|`lag_hash_config.smac`|
-| Destination MAC address| `nv set system forwarding lag-hash destination-mac enable`|`lag_hash_config.dmac`|
-| Source IP address | `nv set system forwarding lag-hash source-ip enable`|`lag_hash_config.sip` |
-| Destination IP address| `nv set system forwarding lag-hash destination-ip enable`| `lag_hash_config.dip` |
-| Source port | `nv set system forwarding lag-hash source-port enable`|`lag_hash_config.sport` |
-| Destination port | `nv set system forwarding lag-hash destination-port enable`| `lag_hash_config.dport` |
-| Ethertype| `nv set system forwarding lag-hash ether-type enable `|`lag_hash_config.ether_type` |
-| VLAN ID| `nv set system forwarding lag-hash vlan enable`|`lag_hash_config.vlan_id` |
-| TEID (see {{<link url="#gtp-hashing" text="GTP Hashing, below" >}}) | `nv set system forwarding lag-hash gtp-teid enable`| `lag_hash_config.gtp_teid`|
+| IP protocol | `nv set system forwarding lag-hash ip-protocol`|`lag_hash_config.ip_prot`|
+| Source MAC address| `nv set system forwarding lag-hash source-mac`|`lag_hash_config.smac`|
+| Destination MAC address| `nv set system forwarding lag-hash destination-mac`|`lag_hash_config.dmac`|
+| Source IP address | `nv set system forwarding lag-hash source-ip`|`lag_hash_config.sip` |
+| Destination IP address| `nv set system forwarding lag-hash destination-ip`| `lag_hash_config.dip` |
+| Source port | `nv set system forwarding lag-hash source-port`|`lag_hash_config.sport` |
+| Destination port | `nv set system forwarding lag-hash destination-port`| `lag_hash_config.dport` |
+| Ethertype| `nv set system forwarding lag-hash ether-type`|`lag_hash_config.ether_type` |
+| VLAN ID| `nv set system forwarding lag-hash vlan`|`lag_hash_config.vlan_id` |
+| TEID (see {{<link url="#gtp-hashing" text="GTP Hashing, below" >}}) | `nv set system forwarding lag-hash gtp-teid`| `lag_hash_config.gtp_teid`|
 
 The following example commands omit the source MAC address and destination MAC address from the hash calculation:
 

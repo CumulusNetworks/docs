@@ -15,7 +15,13 @@
 <tr>
 <td>3021897</td>
 <td>After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the {{protodown}} flag ON.</td>
-<td>4.4.3</td>
+<td>4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3021887</td>
+<td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
+<td>4.4.2-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1940,6 +1946,12 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3021887</td>
+<td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
+<td>4.4.2-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>3021698</td>

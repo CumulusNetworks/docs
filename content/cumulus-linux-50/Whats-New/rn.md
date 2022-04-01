@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3021897"></a> [3021897](#3021897) <a name="3021897"></a> <br /> | After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the <code>protodown</code> flag ON. | 4.4.3, 5.0.0-5.0.1 | |
 | <a name="3021888"></a> [3021888](#3021888) <a name="3021888"></a> <br /> | In an EVPN Multihoming configuration, when any host side bond member port is brought admin down and up (<code>ifdown</code> and <code>ifup</code>), the VTEP might not program the local MAC addresses in hardware. | 5.0.0-5.0.1 | |
 | <a name="3021698"></a> [3021698](#3021698) <a name="3021698"></a> <br /> | After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards. | 4.4.2-4.4.3, 5.0.0-5.0.1 | |
 | <a name="3021693"></a> [3021693](#3021693) <a name="3021693"></a> <br /> | GARPs from <code>neighmgrd</code> for remote neighbors are sent over VXLAN when ARP suppression is off. | 3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1 | |
@@ -84,6 +85,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3021897"></a> [3021897](#3021897) <a name="3021897"></a> <br /> | After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the <code>protodown</code> flag ON. | 4.4.3, 5.0.0-5.0.1 | |
 | <a name="3021888"></a> [3021888](#3021888) <a name="3021888"></a> <br /> | In an EVPN Multihoming configuration, when any host side bond member port is brought admin down and up (<code>ifdown</code> and <code>ifup</code>), the VTEP might not program the local MAC addresses in hardware. | 5.0.0-5.0.1 | |
 | <a name="3021698"></a> [3021698](#3021698) <a name="3021698"></a> <br /> | After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards. | 4.4.2-4.4.3, 5.0.0-5.0.1 | |
 | <a name="3021693"></a> [3021693](#3021693) <a name="3021693"></a> <br /> | GARPs from <code>neighmgrd</code> for remote neighbors are sent over VXLAN when ARP suppression is off. | 3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1 | |

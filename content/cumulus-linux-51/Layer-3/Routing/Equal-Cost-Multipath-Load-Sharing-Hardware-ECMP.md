@@ -26,21 +26,17 @@ For Cumulus Linux to consider routes equal, they must:
 Cumulus Linux enables the BGP `maximum-paths` setting by default and installs multiple routes. Refer to {{<link url="Optional-BGP-Configuration#ecmp" text="BGP and ECMP">}}.
 {{%/notice%}}
 
-When multiple routes are in the routing table, a hash determines which path a packet follows. Cumulus Linux hashes on the following fields:
-
+When multiple routes are in the routing table, a hash determines through which path a packet follows. Cumulus Linux hashes on the following fields:
 - IP protocol
 - Ingress interface
 - Source IPv4 or IPv6 address
 - Destination IPv4 or IPv6 address
-- Source MAC address
-- Destination MAC address
+- Source or destination MAC address
 - Ethertype
 - VLAN ID
+- [TEID](## "Tunnel Endpoint Identifier")
 
-For TCP/UDP frames, Cumulus Linux also hashes on:
-
-- Source port
-- Destination port
+For TCP and UDP frames, Cumulus Linux also hashes on the source port or destination port.
 
 {{< img src = "/images/cumulus-linux/ecmp-packet-hash.png" >}}
 
@@ -48,41 +44,6 @@ To prevent out of order packets, ECMP hashes on a per-flow basis; all packets wi
 
 ECMP hashing does not keep a record of packets that hash to each next hop and does not guarantee that traffic to each next hop is equal.
 <!-- vale off -->
-
-## Unique Hash Seed
-
-You can configure a unique hash seed for each switch to prevent *hash polarization*, a type of network congestion that occurs when multiple data flows try to reach a switch using the same switch ports.
-
-You can set a hash seed value between 0 and 4294967295. If you do not specify a value, `switchd` creates a randomly generated seed.
-
-The following example commands configure the hash seed to 50.
-
-{{< tabs "TabID125 ">}}
-{{< tab "NVUE Commands">}}
-
-```
-cumulus@switch:~$ nv set system forwarding hash-seed 50
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit `/etc/cumulus/datapath/traffic.conf` file to change the `ecmp_hash_seed` parameter, then restart `switchd`.
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
-...
-#Specify the hash seed for Equal cost multipath entries
-ecmp_hash_seed = 50
-...
-```
-<!-- vale off -->
-{{<cl/restart-switchd>}}
-<!-- vale on -->
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ## Custom Hashing
 
@@ -171,7 +132,7 @@ For ECMP load balancing between multiple interfaces that are members of the same
 | Destination IP address| `nv set system forwarding lag-hash destination-ip enable`| `lag_hash_config.dip` |
 | Source port | `nv set system forwarding lag-hash source-port enable`|`lag_hash_config.sport` |
 | Destination port | `nv set system forwarding lag-hash destination-port enable`| `lag_hash_config.dport` |
-| Ethernet type| `nv set system forwarding lag-hash ether-type enable `|`lag_hash_config.ether_type` |
+| Ethertype| `nv set system forwarding lag-hash ether-type enable `|`lag_hash_config.ether_type` |
 | VLAN ID| `nv set system forwarding lag-hash vlan enable`|`lag_hash_config.vlan_id` |
 | TEID (see {{<link url="#gtp-hashing" text="GTP Hashing, below" >}}) | `nv set system forwarding lag-hash gtp-teid enable`| `lag_hash_config.gtp_teid`|
 
@@ -181,8 +142,8 @@ The following example commands omit the source MAC address and destination MAC a
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set system forwarding lag-hash source-mac enable off
-cumulus@switch:~$ nv set system forwarding lag-hash destination-mac enable off
+cumulus@switch:~$ nv set system forwarding lag-hash source-mac
+cumulus@switch:~$ nv set system forwarding lag-hash destination-mac
 cumulus@switch:~$ nv config apply
 ```
 
@@ -255,11 +216,11 @@ To enable TEID-based ECMP hashing:
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set system forwarding ecmp hash gtp-teid enable on
+cumulus@switch:~$ nv set system forwarding ecmp-hash gtp-teid
 cumulus@switch:~$ nv config apply
 ```
 
-To disable TEID-based ECMP hashing, run the `nv set system forwarding ecmp hash gtp-teid enable off` command.
+To disable TEID-based ECMP hashing, run the `nv set system forwarding ecmp-hash gtp-teid` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -290,11 +251,11 @@ To enable TEID-based load balancing:
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set system forwarding lag hash gtp-teid enable on
+cumulus@switch:~$ nv set system forwarding lag-hash gtp-teid
 cumulus@switch:~$ nv config apply
 ```
 
-To disable TEID-based load balancing, run the `nv set system forwarding lag hash gtp-teid enable off` command.
+To disable TEID-based load balancing, run the `nv set system forwarding lag-hash gtp-teid` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -324,36 +285,62 @@ To disable TEID-based load balancing, set the `lag_hash_config.gtp_teid` paramet
 {{< /tab >}}
 {{< /tabs >}}
 
+## Unique Hash Seed
+
+You can configure a unique hash seed for each switch to prevent *hash polarization*, a type of network congestion that occurs when multiple data flows try to reach a switch using the same switch ports.
+
+You can set a hash seed value between 0 and 4294967295. If you do not specify a value, `switchd` creates a randomly generated seed.
+
+The following example commands configure the hash seed to 50.
+
+{{< tabs "TabID125 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set system forwarding hash-seed 50
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit `/etc/cumulus/datapath/traffic.conf` file to change the `ecmp_hash_seed` parameter, then restart `switchd`.
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
+...
+#Specify the hash seed for Equal cost multipath entries
+# and for custom ecmp and lag hash
+# Default value: random
+# Value Range: {0..4294967295}
+ecmp_hash_seed = 50
+...
+```
+<!-- vale off -->
+{{<cl/restart-switchd>}}
+<!-- vale on -->
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Resilient Hashing
 
-In Cumulus Linux, when a next hop fails or you remove the next hop from an ECMP pool, the hashing or hash bucket assignment can change. If you have a deployment where you need flows to always use the same next hop, like TCP anycast deployments, this can create session failures.
-
-*Resilient hashing* is an alternate way to manage ECMP groups. The ECMP hash performed with resilient hashing is the same as the default hashing mode. Only the method in which Cumulus Linux assigns next hops to hash buckets differs &mdash; Cumulus Linux assigns next hops to buckets by hashing their header fields and using the resulting hash to index into the table of 2^n hash buckets. Because all packets in a given flow have the same header hash value, they all use the same flow bucket.
+In Cumulus Linux, when a next hop fails or you remove the next hop from an ECMP pool, the hashing or hash bucket assignment can change. *Resilient hashing* is an alternate way to manage ECMP groups. Cumulus Linux assigns next hops to buckets using their hashing header fields and uses the resulting hash to index into the table of 2^n hash buckets. Because all packets in a given flow have the same header hash value, they all use the same flow bucket.
 
 {{%notice note%}}
 - Resilient hashing supports both IPv4 and IPv6 routes.
-- Resilient hashing prevents disruptions when you remove next hops but does not prevent disruption when you add next hops.
+- Resilient hashing prevents disruption when you remove next hops but does not prevent disruption when you add next hops.
 {{%/notice%}}
 
-Cumulus Linux provides two options for configuring resilient hashing, both of which you configure in the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf​` file. The recommended values for the options in the file depend on the desired outcome for a specific network implementation &mdash; the number and duration of flows, and the importance of keeping these flows pinned without interruption.
-
-- `resilient_hash_active_timer`: Protects against TCP session disruption while attempting to populate new next hops. You specify the number of seconds when at least one hash bucket consistently sees no traffic before Cumulus Linux rebalances the flows; the default is 120 seconds. If any one bucket is idle (it sees no traffic for the defined period), the next new flow uses that bucket and flows to the new link. If the network is experiencing a large number of flows, or consistent or persistent flows, it is possible that no buckets remain idle for a consistent 120 second period and the imbalance remains until the timer expires. If a new link comes up and joins a group during this time, traffic does not get allocated to utilize it until a bucket qualifies as *empty* (idle for 120 seconds). This is when a rebalance can occur.
-- `resilient_hash_max_unbalanced_timer`: Forces a rebalance every N seconds. However, while this can correct the persistent imbalance expected with resilient hashing, this rebalance results in the movement of all flows and a break in any TCP sessions that are active at that time.
-
-{{%notice note%}}
-When you configure these options, it is possible that a new next hop does not populate for a long time.
-{{%/notice%}}
-
-The NVIDIA Spectrum ASIC assigns packets to hash buckets and assigns hash buckets to next hops as follows. It also runs a background thread that monitors and can migrate buckets between next hops to rebalance the load.
-
+The NVIDIA Spectrum ASIC assigns packets to hash buckets and assigns hash buckets to next hops. The ASIC also runs a background thread that monitors buckets and can migrate buckets between next hops to rebalance the load.
 - When you remove a next hop, Cumulus Linux distributes the assigned buckets to the remaining next hops.
-- When you add a next hop, Cumulus Linux  assigns **no** buckets to the new next hop until the background thread rebalances the load.
-- The load rebalances when the active flow timer (`resilient_hash_active_timer`) expires only if there are inactive hash buckets available; the new next hop can remain unpopulated until the period set in `resilient_hash_active_timer` expires.
-- When the `resilient_hash_max_unbalanced_timer` setting expires and the load is not balanced, the thread migrates buckets to different next hops to rebalance the load.
+- When you add a next hop, Cumulus Linux assigns **no** buckets to the new next hop until the background thread rebalances the load.
+- The load rebalances when the active flow timer expires only if there are inactive hash buckets available; the new next hop can remain unpopulated until the period set in active flow timer expires.
+- When the unbalanced timer expires and the load is not balanced, the thread migrates buckets to different next hops to rebalance the load.
 
-As a result, any flow can migrate to any next hop, depending on flow activity and load balance conditions; over time, the flow can get pinned, which is the default setting and behavior.
+Any flow can migrate to any next hop, depending on flow activity and load balance conditions. Over time, the flow can get pinned, which is the default setting and behavior.
 
-When you configure resilient hashing, there are a fixed number of buckets. Cumulus Linux assigns next hops in round robin fashion to each of those buckets. In this example, there are 12 buckets and four next hops.
+When you enable resilient hashing, Cumulus Linux assigns next hops in round robin fashion to a fixed number of buckets. In this example, there are 12 buckets and four next hops.
 
 {{< img src = "/images/cumulus-linux/ecmp-reshash-bucket-assignment.png" >}}
 
@@ -372,12 +359,9 @@ Resilient hashing does not prevent possible impact to existing flows when you ad
 {{< img src = "/images/cumulus-linux/ecmp-reshash-add.png" >}}
 
 As a result, some flows hash to new next hops, which can impact anycast deployments.
-<!--
-### Configure Resilient Hashing-->
 
 Cumulus Linux does *not* enable resilient hashing by default. When you enable resilient hashing, all ECMP groups share 65,536 buckets. An ECMP group is a list of unique next hops that multiple ECMP routes reference.
 
-{{%notice info%}}
 An ECMP route counts as a single route with multiple next hops:
 
 ```
@@ -386,45 +370,50 @@ cumulus@switch:~$ ip route show 10.1.1.0/24
   nexthop via 192.168.1.1 dev swp1 weight 1 onlink
   nexthop via 192.168.2.1 dev swp2 weight 1 onlink
 ```
-{{%/notice%}}
 
 All ECMP routes must use the same number of buckets (you cannot configure the number of buckets per ECMP route).
 
-You can configure the number of buckets as 64, 512, or 1024; the default is 64:
-
-| Number of Hash Buckets | Number of Supported ECMP Groups |
-| ---------------------- | ------------------------------- |
-| **64**                 | **1024**                        |
-| 512                    | 128                             |
-| 1024                   | 64                              |
-
+{{%notice note%}}
 A larger number of ECMP buckets reduces the impact on adding new next hops to an ECMP route. However, the system supports fewer ECMP routes. If you install the maximum number of ECMP routes, new ECMP routes log an error and do not install.
 
-{{%notice note%}}
 You can configure route and MAC address hardware resources depending on ECMP bucket size changes. See {{%link title="Routing#NVIDIA Spectrum Switches" text="NVIDIA Spectrum routing resources" %}}.
 {{%/notice%}}
 
-To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
+To enable resilient hashing:
 
-1. Enable resilient hashing:
+{{< tabs "TabID384 ">}}
+{{< tab "NVUE Commands ">}}
 
-    ```
-    # Enable resilient hashing
-    resilient_hash_enable = TRUE
-    ```
+There are no NVUE commands for resilient hashing.
 
-2. **(Optional)** Edit the number of hash buckets:
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
-    ```
-    # Resilient hashing flowset entries per ECMP group
-    # Valid values - 64, 128, 256, 512, 1024
-    resilient_hash_entries_ecmp = 256
-    ```
+1. Edit the `/etc/cumulus/datapath/traffic.conf` file to uncomment and set the `resilient_hash_enable` parameter to `TRUE`.
 
-3. {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
+   You can also set the `resilient_hash_entries_ecmp` parameter to the number of hash buckets to use for all ECMP routes. On Spectrum switches, you can set the number of buckets to 64, 512, 1024, 2048, or 4096. On NVIDIA Spectrum-2 and later, you can set the number of buckets to 64, 128, 256, 512, 1024, 2048, or 4096. The default value is 64.
+
+   ```
+   # Enable resilient hashing
+   resilient_hash_enable = TRUE
+
+   # Resilient hashing flowset entries per ECMP group
+   # 
+   # Mellanox Spectrum platforms:
+   # Valid values - 64, 512, 1024, 2048, 4096
+   #
+   # Mellanox Spectrum2/3 platforms
+   # Valid values -  64, 128, 256, 512, 1024, 2048, 4096
+   #
+   # resilient_hash_entries_ecmp = 64
+   ```
+
+2. {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
 <!-- vale off -->
 {{<cl/restart-switchd>}}
 <!-- vale on -->
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Adaptive Routing
 
@@ -515,7 +504,7 @@ To disable adaptive routing on a port, set the `interface.<port>.adaptive_routin
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- vale off -->
 ## cl-ecmpcalc
 <!-- vale on -->
 Run the `cl-ecmpcalc` command to determine a hardware hash result. For example, you can see which path a flow takes through a network. You must provide all fields in the hash, including the ingress interface, layer 3 source IP, layer 3 destination IP, layer 4 source port, and layer 4 destination port.

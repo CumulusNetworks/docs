@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1006
 toc: 4
 ---
-NetQ provides the ability to analyze active traffic flows in your network. Use the Flow Analysis tool to sample data from TCP and UDP flows in your environment and review latency and buffer utilization statistics across network paths.
+Use the Flow Analysis tool to sample data from TCP and UDP flows in your environment and to review latency and buffer utilization statistics across network paths.
 
 <!-- vale off -->
 {{<notice info>}}
@@ -15,13 +15,13 @@ Flow Analysis is supported on NVIDIA Spectrum 2 and 3 platforms, and requires a 
 <!-- vale on -->
 ## Create New Flow Analysis
 
-To start a new flow analysis, click the **Flow Analysis** menu and select **Create New Flow Analysis**:
+To start a new flow analysis, click the **Flow Analysis** menu and select **Create new flow analysis**:
 
 {{<figure src="/images/netq/new-flow-analysis.png" width="350">}}
 
 {{<notice note>}}
 
-Flow Analysis requires {{<link title="Manage Switches through Their Lifecycle" text="Lifecycle Management">}} (LCM) to be enabled. The Flow Analysis menu on the workbench will not be visisble when LCM is disabled. LCM is enabled for on-premises deployments by default and disabled for cloud deployments by default. Contact your local NVIDIA sales representative or submit a support ticket to activate LCM on cloud deployments.
+You need to enable {{<link title="Manage Switches through Their Lifecycle" text="Lifecycle Management">}} (LCM) to use the Flow Analysis tool. If LCM is disabled, you will not see the Flow Analysis menu in the UI. LCM is enabled for on-premises deployments by default and disabled for cloud deployments by default. Contact your local NVIDIA sales representative or submit a support ticket to activate LCM on cloud deployments.
 
 {{</notice>}}
 
@@ -33,7 +33,7 @@ The Flow Analysis wizard will prompt you to enter the source IP address, destina
 
 ### Flow Monitor Settings
 
-The monitor settings will determine how long to sample a flow, when the sampling should be scheduled, whether the sampling should be bidirectional across the network path(s), and the sampling rate for the flow:
+The monitor settings let you schedule the flow analysis and create its parameters:
 
 {{<figure src="/images/netq/flow-monitor-params.png" width="600">}}
 

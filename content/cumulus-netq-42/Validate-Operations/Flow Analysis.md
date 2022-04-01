@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1006
 toc: 4
 ---
-NetQ provides the ability to analyze active traffic flows in your network. Use the Flow Analysis tool to sample data from TCP and UDP flows in your environment and review latency and buffer utilization statistics across network paths.
+Use the Flow Analysis tool to sample data from TCP and UDP flows in your environment and review latency and buffer utilization statistics across network paths.
 
 <!-- vale off -->
 {{<notice info>}}

@@ -34,7 +34,7 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
   - {{<link url="Neighbor-Discovery-ND" text="IPv6 ND configuration options">}}
   - {{<link url="NVUE-Snippets/#flexible-snippets" text="Flexible snippets">}}
   - {{<link url="VXLAN-Devices/#automatic-vlan-to-vni-mapping" text="Automatic VLAN to VNI mapping">}}
-  - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP commands">}}
+  - New NVUE commands
 
 {{%notice note%}}
 Cumulus Linux 5.1 includes the NVUE object model. After you upgrade to Cumulus Linux 5.1, running NVUE configuration commands replaces the configuration in the applicable configuration files and removes any configuration you add manually or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:

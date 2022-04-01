@@ -125,8 +125,10 @@ The following example commands configure the hash seed to 50.
 {{< tabs "TabID125 ">}}
 {{< tab "NVUE Commands">}}
 
+```
 cumulus@switch:~$ nv set system forwarding hash-seed 50
 cumulus@switch:~$ nv config apply
+```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

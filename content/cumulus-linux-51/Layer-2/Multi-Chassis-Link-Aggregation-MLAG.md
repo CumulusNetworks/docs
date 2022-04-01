@@ -1008,8 +1008,6 @@ bridge-learning   yes                yes                -
 {{< /tab >}}
 {{< /tabs >}}
 
-After you make the necessary configuration changes to avoid the protodown state, you can remove the conflict and allow the bonds to come back up with the NVUE `nv action clear mlag lacp-conflict` or `nv action clear interface <bond-name> bond mlag lacp-conflict` commands, or the Linux `sudo clagctl clearconflictstate` command.
-
 The actions that Cumulus Linux takes when there is a conflict are distruptive. If you prefer, you can configure the switch to not take any action when there is a conflict. Edit the `/etc/network/interfaces` file to add the `clagd-args --gracefulConsistencyCheck FALSE` parameter in the peer link stanza.
 
 ```

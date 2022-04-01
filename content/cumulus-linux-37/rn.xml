@@ -7,6 +7,25 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3021693</td>
+<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3017190</td>
+<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
+To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
+<td>3.7.10-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3015881</td>
+<td>Traffic flows fail because the remote VTEP IP address is missing in the layer 3 neighbor table on the switch.</td>
+<td>3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>3014447</td>
 <td>CVE-2022-22719 CVE-2022-22720 CVE-2022-22721 CVE-2022-23943: Several vulnerabilities have been discovered in the Apache HTTP server, which could result in denial of service, request smuggling or buffer overflows.
 Vulnerable: &lt;= 2.4.10-10+deb8u21
@@ -103,6 +122,12 @@ by reading too much data on the heap.
 Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
 Fixed:</td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2993773</td>
+<td>When a VNI goes into a protodown state, MLAG updates the VTEP IP address, which results in {{switchd}} changing the tunnel SIP in hardware.</td>
+<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1236,12 +1261,6 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <td>2581473</td>
 <td>When netq-agent is installed on the Dell N3048EP platform, switchd might crash if pluggables are installed in the SFP+ ports.</td>
 <td>3.7.13-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2558184</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.15, 4.1.1-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -3042,7 +3061,7 @@ hardware when IPv6 RAs are received on SVIs configured with {{ip-forward off}}.<
 <tr>
 <td>2552213</td>
 <td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14.2, 4.1.1-4.4.3</td>
+<td>3.7.11-3.7.14, 4.1.1-4.3.0</td>
 </tr>
 <tr>
 <td>2550600</td>
@@ -3066,6 +3085,13 @@ These messages are harmless and can be ignored.</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3017190</td>
+<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
+To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
+<td>3.7.10-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>3014447</td>
@@ -4156,12 +4182,6 @@ Fixed: 4.2.1-3+deb8u2</td>
 <td>3.7.15</td>
 </tr>
 <tr>
-<td>2558184</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.15, 4.1.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2556815</td>
 <td>When ARP suppression is enabled, RARP packets sometimes get dropped and are not flooded by the local VTEP. 
 To work around this issue, disable ARP suppression.</td>
@@ -4613,12 +4633,6 @@ If you want to use {{scp -r}} to copy directory trees, avoid copying directory t
 To disable scp completely, use {{/bin/chmod 0 /usr/bin/scp}} .</td>
 <td>3.7.14-3.7.15, 4.0.0-4.4.3</td>
 <td></td>
-</tr>
-<tr>
-<td>2552213</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14.2, 4.1.1-4.4.3</td>
-<td>3.7.15</td>
 </tr>
 <tr>
 <td>2551912</td>
@@ -5880,7 +5894,7 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <tr>
 <td>2552214</td>
 <td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14, 4.1.1-4.4.3</td>
+<td>3.7.11-3.7.14, 4.1.1-4.3.0</td>
 </tr>
 </table>
 <table name="Open Issues in 3.7.14">
@@ -5889,6 +5903,13 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3017190</td>
+<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
+To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
+<td>3.7.10-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>3014447</td>
@@ -6882,12 +6903,6 @@ Fixed: 4.2.1-3+deb8u2</td>
 <td>3.7.15</td>
 </tr>
 <tr>
-<td>2558184</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.15, 4.1.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2556815</td>
 <td>When ARP suppression is enabled, RARP packets sometimes get dropped and are not flooded by the local VTEP. 
 To work around this issue, disable ARP suppression.</td>
@@ -7399,14 +7414,8 @@ To disable scp completely, use {{/bin/chmod 0 /usr/bin/scp}} .</td>
 <tr>
 <td>2552214</td>
 <td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14, 4.1.1-4.4.3</td>
-<td>3.7.14.2-3.7.15</td>
-</tr>
-<tr>
-<td>2552213</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14.2, 4.1.1-4.4.3</td>
-<td>3.7.15</td>
+<td>3.7.11-3.7.14.2, 4.1.1-4.3.0</td>
+<td>3.7.15, 4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2551912</td>
@@ -9223,6 +9232,13 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3017190</td>
+<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
+To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
+<td>3.7.10-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>3014447</td>
 <td>CVE-2022-22719 CVE-2022-22720 CVE-2022-22721 CVE-2022-23943: Several vulnerabilities have been discovered in the Apache HTTP server, which could result in denial of service, request smuggling or buffer overflows.
 Vulnerable: &lt;= 2.4.10-10+deb8u21
@@ -10147,12 +10163,6 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 <td>3.7.15</td>
 </tr>
 <tr>
-<td>2558184</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.15, 4.1.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2556233</td>
 <td>Some ECMP next-hops might fail installation into hardware at high ECMP group and route scale. The following log message will be observed when this condition occurs:
 {{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
@@ -10793,14 +10803,8 @@ Fixed: 2.1+dfsg-12+deb8u16</td>
 <tr>
 <td>2552214</td>
 <td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14, 4.1.1-4.4.3</td>
-<td>3.7.14.2-3.7.15</td>
-</tr>
-<tr>
-<td>2552213</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14.2, 4.1.1-4.4.3</td>
-<td>3.7.15</td>
+<td>3.7.11-3.7.14.2, 4.1.1-4.3.0</td>
+<td>3.7.15, 4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2552205</td>
@@ -12762,6 +12766,13 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3017190</td>
+<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
+To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
+<td>3.7.10-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>3014447</td>
 <td>CVE-2022-22719 CVE-2022-22720 CVE-2022-22721 CVE-2022-23943: Several vulnerabilities have been discovered in the Apache HTTP server, which could result in denial of service, request smuggling or buffer overflows.
 Vulnerable: &lt;= 2.4.10-10+deb8u21
@@ -13667,12 +13678,6 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 <td>3.7.15</td>
 </tr>
 <tr>
-<td>2558184</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.15, 4.1.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2556233</td>
 <td>Some ECMP next-hops might fail installation into hardware at high ECMP group and route scale. The following log message will be observed when this condition occurs:
 {{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
@@ -13928,14 +13933,8 @@ Fixed: 2.1+dfsg-12+deb8u16</td>
 <tr>
 <td>2552214</td>
 <td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14, 4.1.1-4.4.3</td>
-<td>3.7.14.2-3.7.15</td>
-</tr>
-<tr>
-<td>2552213</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14.2, 4.1.1-4.4.3</td>
-<td>3.7.15</td>
+<td>3.7.11-3.7.14.2, 4.1.1-4.3.0</td>
+<td>3.7.15, 4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2552205</td>
@@ -16158,6 +16157,13 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3017190</td>
+<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
+To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
+<td>3.7.10-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>3014447</td>
 <td>CVE-2022-22719 CVE-2022-22720 CVE-2022-22721 CVE-2022-23943: Several vulnerabilities have been discovered in the Apache HTTP server, which could result in denial of service, request smuggling or buffer overflows.
 Vulnerable: &lt;= 2.4.10-10+deb8u21
@@ -16874,12 +16880,6 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 <td>3.7.15</td>
 </tr>
 <tr>
-<td>2558184</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.15, 4.1.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2556233</td>
 <td>Some ECMP next-hops might fail installation into hardware at high ECMP group and route scale. The following log message will be observed when this condition occurs:
 {{WARN xx routes reverted to non-ECMP due to NH table capacity}}</td>
@@ -17011,14 +17011,8 @@ Fixed: 1.6.2-3+deb8u3</td>
 <tr>
 <td>2552214</td>
 <td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14, 4.1.1-4.4.3</td>
-<td>3.7.14.2-3.7.15</td>
-</tr>
-<tr>
-<td>2552213</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14.2, 4.1.1-4.4.3</td>
-<td>3.7.15</td>
+<td>3.7.11-3.7.14.2, 4.1.1-4.3.0</td>
+<td>3.7.15, 4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2551675</td>
@@ -19095,6 +19089,13 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3017190</td>
+<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
+To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
+<td>3.7.10-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>3014447</td>

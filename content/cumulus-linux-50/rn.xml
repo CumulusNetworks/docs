@@ -7,6 +7,53 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3021897</td>
+<td>After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the {{protodown}} flag ON.</td>
+<td>4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3021888</td>
+<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down and up ({{ifdown}} and {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3021698</td>
+<td>After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards.</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3021693</td>
+<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3017042</td>
+<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
+Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
+Fixed: 4.1.0+git191117-2~deb10u4</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3016882</td>
+<td>When you power-cycle a newly installed switch and apply the default configuration, the underlying NVUE repository becomes corrupted. Even if you correct the corruption, NVUE cannot run.
+To recover, uninstall NVUE and delete the {{/var/lib/nvue}} directory:
+
+cumulus@leaf01:~$ sudo apt remove python3-nvue
+cumulus@leaf01:~$ rm -r /var/lib/nvue
+cumulus@leaf01:~$ sudo apt update
+cumulus@leaf01:~$ sudo apt install python3-nvue
+cumulus@leaf01:~$ sudo systemctl enable nvued
+cumulus@leaf01:~$ sudo systemctl start nvued
+</td>
+<td>5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3008388</td>
 <td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
 <td>4.4.3, 5.0.0-5.0.1</td>
@@ -24,12 +71,6 @@ Fixed: 1.1.1d-0+deb10u8</td>
 <td>3007564</td>
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3007551</td>
-<td>Cumulus Linux forwards routed VXLAN traffic in software because the local VTEP IP address is not included in decapsulation rules.</td>
-<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -305,12 +346,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2873053</td>
-<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down and up ({{ifdown}} and {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
-<td>5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2872277</td>
 <td>The NVUE {{nv set router bgp wait-for-install on}} command fails to enable BGP suppress route advertisement.
 To work around this issue, restart {{switchd}} with {{sudo systemctl restart switchd.service}} after you run the NVUE command. </td>
@@ -414,6 +449,38 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3021897</td>
+<td>After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the {{protodown}} flag ON.</td>
+<td>4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3021888</td>
+<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down and up ({{ifdown}} and {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3021698</td>
+<td>After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards.</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3021693</td>
+<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3017042</td>
+<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
+Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
+Fixed: 4.1.0+git191117-2~deb10u4</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3008388</td>
 <td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
 <td>4.4.3, 5.0.0-5.0.1</td>
@@ -431,12 +498,6 @@ Fixed: 1.1.1d-0+deb10u8</td>
 <td>3007564</td>
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3007551</td>
-<td>Cumulus Linux forwards routed VXLAN traffic in software because the local VTEP IP address is not included in decapsulation rules.</td>
-<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -702,12 +763,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2873053</td>
-<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down and up ({{ifdown}} and {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
-<td>5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2872277</td>
 <td>The NVUE {{nv set router bgp wait-for-install on}} command fails to enable BGP suppress route advertisement.
 To work around this issue, restart {{switchd}} with {{sudo systemctl restart switchd.service}} after you run the NVUE command. </td>
@@ -844,6 +899,12 @@ CVE-2017-9778: Vulnerability to a negative length field in DWARF section, result
 Vulnerable: crash 7.2.8-1+cl4u1 and 7.2.8-1+cl3u1 with embedded gdb 7.6
 Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>3.7.15-4.4.3</td>
+</tr>
+<tr>
+<td>2841584</td>
+<td>After you upgrade Cumulus Linux on one of the MLAG peers, the bonds do not come up and the reason shows {{anycast-ip-mismatch}} even though there is no VXLAN configuration on the switch.  
+To work around this issue, configure an anycast IP address under the loopback interface on both switches in the MLAG pair.</td>
+<td>4.4.2-4.4.3</td>
 </tr>
 <tr>
 <td>2840817</td>

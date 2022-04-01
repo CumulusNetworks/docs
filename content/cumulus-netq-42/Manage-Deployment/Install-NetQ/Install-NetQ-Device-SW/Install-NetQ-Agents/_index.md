@@ -7,7 +7,7 @@ toc: 4
 
 After installing your {{<link url="Install-NetQ" text="NetQ software">}}, you should install the NetQ {{<version>}} Agents on each switch you want to monitor. You can install NetQ Agents on switches and servers running:
 
-- Cumulus Linux 3.3.2-3.7.x, 4.0.0 and later
+- Cumulus Linux 3.7.x, 4.0.0, and later
 - SONiC 202012 and later
 - CentOS 7
 - RHEL 7.1
@@ -676,3 +676,7 @@ By default, NetQ uses port 31980 for communication between the NetQ Appliance or
 sudo netq config add agent server 192.168.1.254 port 7379
 sudo netq config restart agent
 ```
+
+### Configure the NetQ Agent OPTA
+
+NetQ Agent OPTA functionality is an Early Access feature. On-switch OPTA is intended for use in small NetQ cloud deployments where a dedicated OPTA might not be necessary. If you need help assessing the correct OPTA configuration for your deployment, {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="contact your NVIDIA">}} sales team.

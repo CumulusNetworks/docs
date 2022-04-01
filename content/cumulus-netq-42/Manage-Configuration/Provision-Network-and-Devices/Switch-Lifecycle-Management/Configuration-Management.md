@@ -7,7 +7,7 @@ toc: 4
 
 {{<notice warning>}}
 
-Switch configuration management has been deprecated in NetQ 4.2.0. This feature will be removed in NetQ 4.3.0. 
+NVIDIA is no longer supporting switch configuration management and will remove this feature in the NetQ 4.3.0 release. {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="Contact your NVIDIA">}} sales team if you have any questions. 
 
 {{</notice>}}
 

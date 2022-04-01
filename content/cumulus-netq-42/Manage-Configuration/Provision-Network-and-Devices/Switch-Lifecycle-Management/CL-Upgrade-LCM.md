@@ -10,12 +10,14 @@ LCM provides the ability to upgrade Cumulus Linux on one or more switches in you
 You can upgrade Cumulus Linux from between the following releases:
 
 - 3.6.z to later versions of 3.y.z
-- 4.y to later versions of 4.y.z
 - 3.6.0 or later to 4.2.0 or later versions of 4.y.z
+- 4.y to later versions of 4.y.z
+- 4.4.z to 5.0.z
+- 5.0.z to 5.1.z
 
 {{<notice warning>}}
 
-NetQ LCM does not support upgrading switches to Cumulus Linux 5. To upgrade to Cumulus Linux 5.0 or above, see the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/" text="Upgrading Cumulus Linux">}} documentation.
+When upgrading to Cumulus Linux 5.y, LCM backs up and restores flat file configurations in Cumulus Linux. After you upgrade to Cumulus Linux 5.0, running NVUE configuration commands replaces the configuration in the applicable configuration files and removes any configuration restored by NetQ LCM. See {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/" text="Upgrading Cumulus Linux">}} for additional information.
 
 {{</notice>}}
 

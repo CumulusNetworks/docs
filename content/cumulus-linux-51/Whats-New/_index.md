@@ -35,3 +35,13 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
   - {{<link url="NVUE-Snippets/#flexible-snippets" text="Flexible snippets">}}
   - {{<link url="VXLAN-Devices/#automatic-vlan-to-vni-mapping" text="Automatic VLAN to VNI mapping">}}
   - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP commands">}}
+
+{{%notice note%}}
+Cumulus Linux 5.1 includes the NVUE object model. After you upgrade to Cumulus Linux 5.1, running NVUE configuration commands replaces the configuration in the applicable configuration files and removes any configuration you add manually or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
+
+- Update your automation tools to use NVUE.
+- {{<link url="NVIDIA-User-Experience-NVUE/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
+- Use Linux and FRR (vtysh) commands instead of NVUE for all switch configuration.
+
+Cumulus Linux 3.7, 4.3, and 4.4 releases continue to support NCLU. For more information, contact your NVIDIA Spectrum platform sales representative.
+{{%/notice%}}

@@ -116,11 +116,22 @@ In most cases, modifying hash buckets has no impact on traffic flows as the swit
 
 ### Configure a Hash Seed to Avoid Hash Polarization
 
-It is useful to have a unique hash seed for each switch. This helps avoid *hash polarization*, a type of network congestion that occurs when multiple data flows try to reach a switch using the same switch ports.
+You can configure a unique hash seed for each switch to prevent *hash polarization*, a type of network congestion that occurs when multiple data flows try to reach a switch using the same switch ports.
 
-The `ecmp_hash_seed` parameter in the `/etc/cumulus/datapath/traffic.conf` file configures the hash seed. The value of the `ecmp_hash_seed` parameter is an integer with a value from 0 to 4294967295. If you do not specify a value, `switchd` creates a randomly generated seed.
+You can set a hash seed value between 0 and 4294967295. If you do not specify a value, `switchd` creates a randomly generated seed.
 
-For example, to set the hash seed to *50*, edit `/etc/cumulus/datapath/traffic.conf` file as shown below, then restart `switchd`.
+The following example commands configure the hash seed to 50.
+
+{{< tabs "TabID125 ">}}
+{{< tab "NVUE Commands">}}
+
+cumulus@switch:~$ nv set system forwarding hash-seed 50
+cumulus@switch:~$ nv config apply
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit `/etc/cumulus/datapath/traffic.conf` file to change the `ecmp_hash_seed` parameter, then restart `switchd`.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
@@ -132,40 +143,56 @@ ecmp_hash_seed = 50
 <!-- vale off -->
 {{<cl/restart-switchd>}}
 <!-- vale on -->
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### ECMP Custom Hashing
 
-You can configure the set of fields used to hash upon during ECMP load balancing. For example, if you do not want to use source or destination port numbers in the hash calculation, you can disable the source port and destination port fields.
+Configure custom hashing to specify what to include in the hash calculation during ECMP load balancing. You can hash on the following:
 
-You can enable/disable the following fields:
+|  Field  | NVUE Command | `/etc/cumulus/datapath/traffic.conf` Parameter|
+| -------- | ----------- | --------------------------------------------- |
+| IP Protocol | `nv set system forwarding ecmp-hash ip-protocol enable`|`hash_config.ip_prot`|
+| Source IP| `nv set system forwarding ecmp-hash source-ip enable`|`hash_config.sip`|
+| Destination IP | `nv set system forwarding ecmp-hash destination-ip enable`|`hash_config.dip`|
+| Source port | `nv set system forwarding ecmp-hash source-port enable`|`hash_config.sport` |
+| Destination port| `nv set system forwarding ecmp-hash destination-port enable`| `hash_config.dport` |
+| IPv6 flow label | `nv set system forwarding ecmp-hash ipv6-label enable`|`hash_config.ip6_label` |
+| Ingress interface | `nv set system forwarding ecmp-hash ingress-interface enable`| `hash_config.ing_intf` |
+| TEID (see {{<link url="#gtp-hashing" text="GTP Hashing, below" >}}) | `nv set system forwarding ecmp-hash gtp-teid enable`| `hash_config.gtp_teid enable`|
+| Inner IP protocol| `nv set system forwarding ecmp-hash inner-ip-protocol enable `|`hash_config.inner_ip_prot` |
+| Inner source IP| `nv set system forwarding ecmp-hash inner-source-ip enable`|`hash_config.inner_sip` |
+| Inner destination IP| `nv set system forwarding ecmp-hash inner-destination-ip enable`|`hash_config.inner_dip` |
+| Inner source port| `nv set system forwarding ecmp-hash inner-source-port enable`| `hash_config.inner-sport` |
+| Inner destination port| `nv set system forwarding ecmp-hash inner-destination-port enable`| `hash_config.inner_dport` |
+| Inner IPv6 flow label | `nv set system forwarding ecmp-hash inner-ipv6-label enable`|`hash_config.inner_ip6_label` |
 
-- IP Protocol
-- Source IP
-- Destination IP
-- Source port
-- Destination port
-- IPv6 flow label
-- Ingress interface
+The following example commands leave out the source port and destination port from the hash calculation:
 
-You can also enable/disable these Inner header fields:
+{{< tabs "TabID173 ">}}
+{{< tab "NVUE Commands">}}
 
-- Inner IP protocol
-- Inner source IP
-- Inner destination IP
-- Inner source port
-- Inner destination port
-- Inner IPv6 flow label
+```
+cumulus@switch:~$ nv set system forwarding ecmp-hash source-port enable off
+cumulus@switch:~$ nv set system forwarding ecmp-hash destination-port enable off
+cumulus@switch:~$ nv config apply
+```
 
-To configure custom hashing, edit the `/etc/cumulus/datapath/traffic.conf` file:
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
-1. To enable custom hashing, uncomment the `hash_config.enable = true` line.
-2. To enable a field, set the field to `true`. To disable a field, set the field to `false`.
-3. Run the `echo 1 > /cumulus/switchd/ctrl/hash_config_reload` command. This command does not cause any traffic interruptions.
-
-The following shows an example `/etc/cumulus/datapath/traffic.conf` file:
+1. Edit the `/etc/cumulus/datapath/traffic.conf` file:
+   - Uncomment the `hash_config.enable = true` option.
+   - Set the `hash_config.sport` and `hash_config.dport` options to `false`.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
 ...
+# HASH config for  ECMP to enable custom fields
+# Fields will be applicable for ECMP hash
+# calculation
+#Note : Currently supported only for MLX platform
 # Uncomment to enable custom fields configured below
 hash_config.enable = true
 
@@ -180,24 +207,20 @@ hash_config.dip = true
 hash_config.sport = false
 #destination port
 hash_config.dport = false
-#ipv6 flow label
-hash_config.ip6_label = true
-#ingress interface
-hash_config.ing_intf = false
-
-#inner fields for  IPv4-over-IPv6 and IPv6-over-IPv6
-hash_config.inner_ip_prot = false
-hash_config.inner_sip = false
-hash_config.inner_dip = false
-hash_config.inner_sport = false
-hash_config.inner_dport = false
-hash_config.inner_ip6_label = false
-# Hash config end #
 ...
 ```
 
+2. Run the `echo 1 > /cumulus/switchd/ctrl/hash_config_reload` command. This command does not cause any traffic interruptions.
+
+   ```
+   cumulus@switch:~$ echo 1 > /cumulus/switchd/ctrl/hash_config_reload
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 {{%notice note%}}
-Cumulus Linux enables symmetric hashing by default. Make sure that the settings for the source IP (`hash_config.sip`) and destination IP (`hash_config.dip`) fields match, and that the settings for the source port (`hash_config.sport`) and destination port (`hash_config.dport`) fields match; otherwise Cumulus Linux disables symmetric hashing automatically. You can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
+Cumulus Linux enables symmetric hashing by default. Make sure that the settings for the source IP and destination IP fields match, and that the settings for the source port and destination port fields match; otherwise Cumulus Linux disables symmetric hashing automatically. If necessary, you can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
 {{%/notice%}}
 
 <!-- vale off -->
@@ -268,10 +291,15 @@ To disable TEID-based load balancing, run the `nv set system forwarding lag hash
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/cumulus/datapath/traffic.conf` file and change the `lag_hash_config.gtp_teid` parameter to `true`:
+1. Edit the `/etc/cumulus/datapath/traffic.conf` file:
+   - Uncomment the `hash_config.enable = true` line.
+   - Change the `lag_hash_config.gtp_teid` parameter to `true`.
 
    ```
    cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
+   ...
+   # Uncomment to enable custom fields configured below
+   hash_config.enable = true
    ...
    #GTP-U teid
    lag_hash_config.gtp_teid = true

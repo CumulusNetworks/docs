@@ -9,7 +9,7 @@ Use the Flow Analysis tool to sample data from TCP and UDP flows in your environ
 <!-- vale off -->
 {{<notice info>}}
 
-Flow Analysis is supported on NVIDIA Spectrum 2 and 3 platforms, and requires a switch fabric running Cumulus Linux version 5.0 or above.
+Flow analysis is supported on NVIDIA Spectrum 2 and 3 platforms, and requires a switch fabric running Cumulus Linux version 5.0 or above.
 
 {{</notice>}}
 <!-- vale on -->
@@ -39,21 +39,21 @@ The monitor settings let you schedule the flow analysis and create its parameter
 
 {{<notice warning>}}
 
-Flow Analysis is impactful to switch CPU during the flow monitor liftime. For high volume flows, it is recommended to set a lower sampling rate for flow analysis to limit switch CPU impact. 
+Running a flow analysis will affect switch CPU performance. For high-volume flows, set a lower sampling rate to limit switch CPU impact. 
 
 {{</notice>}}
 
 ## View Flow Analysis Data
 
-After starting the flow analysis, a flow analysis card will appear on the NetQ Workbench.
+After starting the flow analysis, a flow analysis card will appear on the NetQ Workbench:
 
 {{<figure src="/images/netq/flow-analysis-card.png" width="550">}}
 
-Collected flow analysis data can also be viewed by selecting **Flow Analysis** and **View Previous Flow Analysis** 
+View previous flow analyses by selecting **Flow Analysis** and **View previous flow analysis**: 
 
 {{<figure src="/images/netq/flow-analysis-view-previous.png" width="350">}}
 
-You can select **View details** next to the name of the flow analysis to bring up the analysis dashboard. You can use this dashboard to view latency and buffer statistics for the monitored flow. If bidirectional monitoring for the flow was enabled, you can view the reverse direction of the flow by using the {{<img src="/images/netq/reverse-toggle.svg" height="18" width="18">}} icon. The following example shows flow data across a single path:
+You can select **View details** next to the name of the flow analysis to display the analysis dashboard. You can use this dashboard to view latency and buffer statistics for the monitored flow. If bi-directional monitoring was enabled, you can view the reverse direction of the flow by selecting the {{<img src="/images/netq/reverse-toggle.svg" height="18" width="18">}} icon. The following example shows flow data across a single path:
 
 {{<figure src="/images/netq/flow-analysis-dashboard.png" width="800">}}
 
@@ -79,13 +79,13 @@ The flow analysis graph is color coded relative to the values measured across de
 
 {{<figure src="/images/netq/single-path-graph.png" width="800">}}
 
-The Flow Graph panel on the right side of the dashboard will display the devices along the selected path:
+The Flow Graph panel on the right side of the dashboard displays the devices along the selected path:
 
 {{<figure src="/images/netq/flow-graph-single-path.png" width="200">}}
 
 ### View Flow Latency
 
-The latency measured by Flow Analysis is the total transit time of sampled packets through individual devices. A summary of measured latency for each device is displayed above the main Flow Analysis graph:
+The latency measured by the flow analysis is the total transit time of the sampled packets through individual devices. A summary of measured latency for each device is displayed above the main Flow Analysis graph:
 
 {{<figure src="/images/netq/per-device-latency-summary.png" width="600">}}
 
@@ -119,7 +119,7 @@ You can also select the desired path and view the amount of packets distributed 
 {{<figure src="/images/netq/flow-multipath-pathselection-410.png" width="600">}}
 ### View Device Statistics
 
-You can view interface statistics, resource utilization, and alarms for each device by clicking on a device in the **Flow Graph** panel, or by clicking on the striped grey line associated with a device in the main flow analysis graph. This will change the left panel details to show statistics for that device:
+You can view interface statistics, resource utilization, and alarms for each device by clicking on a device in the **Flow Graph** panel, or by clicking on the striped gray line associated with a device in the main flow analysis graph. This will change the left panel details to show statistics for that device:
 
 {{<figure src="/images/netq/device statistics - left panel.png" width="600">}}
 

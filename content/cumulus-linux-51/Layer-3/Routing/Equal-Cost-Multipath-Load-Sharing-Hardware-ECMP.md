@@ -6,11 +6,9 @@ toc: 3
 ---
 Cumulus Linux enables hardware [ECMP](## "Equal Cost Multi Path") by default. Load sharing occurs automatically for all routes with multiple next hops installed. ECMP load sharing supports both IPv4 and IPv6 routes.
 
-## Equal Cost Routing
+## How Does ECMP Work?
 
-ECMP operates only on equal cost routes in the Linux routing table.
-
-In this example, the 10.1.1.0/24 route has two possible next hops installed in the routing table:
+ECMP operates only on equal cost routes in the Linux routing table. In the following example, the 10.1.1.0/24 route has two possible next hops installed in the routing table:
 
 ```
 cumulus@switch:~$ ip route show 10.1.1.0/24
@@ -24,15 +22,11 @@ For Cumulus Linux to consider routes equal, they must:
 - Originate from the same routing protocol. Routes from different sources are not considered equal. For example, a static route and an OSPF route are not considered for ECMP load sharing.
 - Have equal cost. If two routes from the same protocol are unequal, only the best route installs in the routing table.
 
-{{%notice info%}}
+{{%notice note%}}
 Cumulus Linux enables the BGP `maximum-paths` setting by default and installs multiple routes. Refer to {{<link url="Optional-BGP-Configuration#ecmp" text="BGP and ECMP">}}.
 {{%/notice%}}
 
-## ECMP Hashing
-
-When multiple routes are in the routing table, a hash determines which path a packet follows.
-
-Cumulus Linux hashes on the following fields:
+When multiple routes are in the routing table, a hash determines which path a packet follows. Cumulus Linux hashes on the following fields:
 
 - IP protocol
 - Ingress interface
@@ -52,69 +46,10 @@ For TCP/UDP frames, Cumulus Linux also hashes on:
 
 To prevent out of order packets, ECMP hashes on a per-flow basis; all packets with the same source and destination IP addresses and the same source and destination ports always hash to the same next hop. ECMP hashing does not keep a record of flow states.
 
-ECMP hashing does not keep a record of packets that have hashed to each next hop and does not guarantee that traffic sent to each next hop is equal.
+ECMP hashing does not keep a record of packets that hash to each next hop and does not guarantee that traffic to each next hop is equal.
 <!-- vale off -->
-### cl-ecmpcalc
-<!-- vale on -->
-Because the hash is deterministic and always provides the same result for the same input, you can query the hardware and determine the hash result of a given input. For example, you can see which path a flow takes through a network.
 
-Use the `cl-ecmpcalc` command to determine a hardware hash result. You must provide all fields in the hash, including the ingress interface, layer 3 source IP, layer 3 destination IP, layer 4 source port, and layer 4 destination port.
-
-{{%notice note%}}
-`cl-ecmpcalc` only supports input interfaces that convert to a single physical port in the port tab file, such as the physical switch ports (swp). You can not specify virtual interfaces like bridges, bonds, or subinterfaces.
-{{%/notice%}}
-
-```
-cumulus@switch:~$ sudo cl-ecmpcalc -i swp1 -s 10.0.0.1 -d 10.0.0.1 -p tcp --sport 20000 --dport 80
-ecmpcalc: will query hardware
-swp3
-```
-
-If you omit a field, `cl-ecmpcalc` fails.
-
-```
-cumulus@switch:~$ sudo cl-ecmpcalc -i swp1 -s 10.0.0.1 -d 10.0.0.1 -p tcp
-ecmpcalc: will query hardware
-usage: cl-ecmpcalc [-h] [-v] [-p PROTOCOL] [-s SRC] [--sport SPORT] [-d DST]
-                   [--dport DPORT] [--vid VID] [-i IN_INTERFACE]
-                   [--sportid SPORTID] [--smodid SMODID] [-o OUT_INTERFACE]
-                   [--dportid DPORTID] [--dmodid DMODID] [--hardware]
-                   [--nohardware] [-hs HASHSEED]
-                   [-hf HASHFIELDS [HASHFIELDS ...]]
-                   [--hashfunction {crc16-ccitt,crc16-bisync}] [-e EGRESS]
-                   [-c MCOUNT]
-cl-ecmpcalc: error: --sport and --dport required for TCP and UDP frames
-```
-
-### ECMP Hash Buckets
-
-When there are multiple routes in the routing table, Cumulus Linux assigns each route to an ECMP *bucket*. When the ECMP hash executes, the result of the hash determines which bucket to use.
-
-In the following example, four next hops exist. Three different flows hash to different hash buckets. Each next hop goes to a unique hash bucket.
-
-{{< img src = "/images/cumulus-linux/ecmp-hash-bucket.png" >}}
-
-#### Add a Next Hop
-
-The addition of a next hop creates a new hash bucket. The assignment of next hops to hash buckets, as well as the hash result, sometimes changes with the addition of next hops.
-
-{{< img src = "/images/cumulus-linux/ecmp-hash-bucket-added.png" >}}
-
-With the addition of a new next hop, there is a new hash bucket. As a result, the hash and hash bucket assignment changes, so the existing flows go to different next hops.
-
-#### Remove a Next Hop
-
-When you remove a next hop, the remaining hash bucket assignments can change, which can also change the next hop selected for an existing flow.
-
-{{< img src = "/images/cumulus-linux/ecmp-hash-failure.png" >}}
-
-{{< img src = "/images/cumulus-linux/ecmp-hash-post-failure.png" >}}
-
-A next hop fails, which removes the next hop and hash bucket. It is possible that Cumulus Linux reassigns the remaining next hops.
-
-In most cases, modifying hash buckets has no impact on traffic flows as the switch forwards traffic to a single end host. In deployments where multiple end hosts use the same IP address (anycast), you must use *resilient hashing*.
-
-### Configure a Hash Seed to Avoid Hash Polarization
+## Unique Hash Seed
 
 You can configure a unique hash seed for each switch to prevent *hash polarization*, a type of network congestion that occurs when multiple data flows try to reach a switch using the same switch ports.
 
@@ -149,7 +84,7 @@ ecmp_hash_seed = 50
 {{< /tab >}}
 {{< /tabs >}}
 
-### Configure Custom Hashing
+## Custom Hashing
 
 You can configure custom hashing to specify what to include in the hash calculation during ECMP load balancing between:
 - Multiple next hops of a layer 3 route.
@@ -225,10 +160,6 @@ hash_config.dport = false
 {{< /tab >}}
 {{< /tabs >}}
 
-{{%notice note%}}
-Cumulus Linux enables symmetric hashing by default. Make sure that the settings for the source IP and destination IP fields match, and that the settings for the source port and destination port fields match; otherwise Cumulus Linux disables symmetric hashing automatically. If necessary, you can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
-{{%/notice%}}
-
 For ECMP load balancing between multiple interfaces that are members of the same bond, you can hash on these fields:
 
 |  Field  | NVUE Command | `/etc/cumulus/datapath/traffic.conf` Parameter|
@@ -244,9 +175,9 @@ For ECMP load balancing between multiple interfaces that are members of the same
 | VLAN ID| `nv set system forwarding lag-hash vlan enable`|`lag_hash_config.vlan_id` |
 | TEID (see {{<link url="#gtp-hashing" text="GTP Hashing, below" >}}) | `nv set system forwarding lag-hash gtp-teid enable`| `lag_hash_config.gtp_teid`|
 
-The following example commands leave out the source MAC address and destination MAC address from the hash calculation:
+The following example commands omit the source MAC address and destination MAC address from the hash calculation:
 
-{{< tabs "TabID173 ">}}
+{{< tabs "TabID149 ">}}
 {{< tab "NVUE Commands">}}
 
 ```
@@ -296,7 +227,12 @@ lag_hash_config.gtp_teid = false
 {{< /tabs >}}
 
 <!-- vale off -->
-### GTP Hashing
+
+{{%notice note%}}
+Cumulus Linux enables symmetric hashing by default. Make sure that the settings for the source IP and destination IP fields match, and that the settings for the source port and destination port fields match; otherwise Cumulus Linux disables symmetric hashing automatically. If necessary, you can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
+{{%/notice%}}
+
+## GTP Hashing
 <!-- vale on -->
 [GTP](## "GPRS Tunneling Protocol") carries mobile data within the core of the mobile operator’s network. Traffic in the 5G Mobility core cluster, from cell sites to compute nodes, have the same source and destination IP address. The only way to identify individual flows is with the GTP [TEID](## "Tunnel Endpoint Identifier"). Enabling GTP hashing adds the TEID as a hash parameter and helps the Cumulus Linux switches in the network to distribute mobile data traffic evenly across ECMP routes.
 
@@ -417,13 +353,9 @@ The NVIDIA Spectrum ASIC assigns packets to hash buckets and assigns hash bucket
 
 As a result, any flow can migrate to any next hop, depending on flow activity and load balance conditions; over time, the flow can get pinned, which is the default setting and behavior.
 
-### Resilient Hash Buckets
-
 When you configure resilient hashing, there are a fixed number of buckets. Cumulus Linux assigns next hops in round robin fashion to each of those buckets. In this example, there are 12 buckets and four next hops.
 
 {{< img src = "/images/cumulus-linux/ecmp-reshash-bucket-assignment.png" >}}
-
-### Remove Next Hops
 
 Unlike default ECMP hashing, when you need to remove a next hop, the number of hash buckets does not change.
 
@@ -435,15 +367,13 @@ With 12 buckets and four next hops, instead of reducing the number of buckets, w
 
 After you remove the failed next hop, the remaining next hops replace it. This prevents impact to any flows that hash to working next hops.
 
-### Add Next Hops
-
 Resilient hashing does not prevent possible impact to existing flows when you add new next hops. Because there are a fixed number of buckets, a new next hop requires reassigning next hops to buckets.
 
 {{< img src = "/images/cumulus-linux/ecmp-reshash-add.png" >}}
 
 As a result, some flows hash to new next hops, which can impact anycast deployments.
-
-### Configure Resilient Hashing
+<!--
+### Configure Resilient Hashing-->
 
 Cumulus Linux does *not* enable resilient hashing by default. When you enable resilient hashing, all ECMP groups share 65,536 buckets. An ECMP group is a list of unique next hops that multiple ECMP routes reference.
 
@@ -586,9 +516,59 @@ To disable adaptive routing on a port, set the `interface.<port>.adaptive_routin
 {{< /tab >}}
 {{< /tabs >}}
 
-## Considerations
+## cl-ecmpcalc
+<!-- vale on -->
+Run the `cl-ecmpcalc` command to determine a hardware hash result. For example, you can see which path a flow takes through a network. You must provide all fields in the hash, including the ingress interface, layer 3 source IP, layer 3 destination IP, layer 4 source port, and layer 4 destination port.
 
-### IPv6 Route Replacement
+{{%notice note%}}
+`cl-ecmpcalc` only supports input interfaces that convert to a single physical port in the port tab file, such as the physical switch ports (swp). You can not specify virtual interfaces like bridges, bonds, or subinterfaces.
+{{%/notice%}}
+
+```
+cumulus@switch:~$ sudo cl-ecmpcalc -i swp1 -s 10.0.0.1 -d 10.0.0.1 -p tcp --sport 20000 --dport 80
+ecmpcalc: will query hardware
+swp3
+```
+
+If you omit a field, `cl-ecmpcalc` fails.
+
+```
+cumulus@switch:~$ sudo cl-ecmpcalc -i swp1 -s 10.0.0.1 -d 10.0.0.1 -p tcp
+ecmpcalc: will query hardware
+usage: cl-ecmpcalc [-h] [-v] [-p PROTOCOL] [-s SRC] [--sport SPORT] [-d DST]
+                   [--dport DPORT] [--vid VID] [-i IN_INTERFACE]
+                   [--sportid SPORTID] [--smodid SMODID] [-o OUT_INTERFACE]
+                   [--dportid DPORTID] [--dmodid DMODID] [--hardware]
+                   [--nohardware] [-hs HASHSEED]
+                   [-hf HASHFIELDS [HASHFIELDS ...]]
+                   [--hashfunction {crc16-ccitt,crc16-bisync}] [-e EGRESS]
+                   [-c MCOUNT]
+cl-ecmpcalc: error: --sport and --dport required for TCP and UDP frames
+```
+
+When there are multiple routes in the routing table, Cumulus Linux assigns each route to an ECMP *bucket*. When the ECMP hash executes, the result of the hash determines which bucket to use.
+
+In the following example, four next hops exist. Three different flows hash to different hash buckets. Each next hop goes to a unique hash bucket.
+
+{{< img src = "/images/cumulus-linux/ecmp-hash-bucket.png" >}}
+
+The addition of a next hop creates a new hash bucket. The assignment of next hops to hash buckets, as well as the hash result, sometimes changes with the addition of next hops.
+
+{{< img src = "/images/cumulus-linux/ecmp-hash-bucket-added.png" >}}
+
+With the addition of a new next hop, there is a new hash bucket. As a result, the hash and hash bucket assignment changes, so the existing flows go to different next hops.
+
+When you remove a next hop, the remaining hash bucket assignments can change, which can also change the next hop selected for an existing flow.
+
+{{< img src = "/images/cumulus-linux/ecmp-hash-failure.png" >}}
+
+{{< img src = "/images/cumulus-linux/ecmp-hash-post-failure.png" >}}
+
+A next hop fails, which removes the next hop and hash bucket. It is possible that Cumulus Linux reassigns the remaining next hops.
+
+In most cases, modifying hash buckets has no impact on traffic flows as the switch forwards traffic to a single end host. In deployments where multiple end hosts use the same IP address (anycast), you must use *resilient hashing*.
+
+## Considerations
 
 When the router adds or removes ECMP paths, or when the next hop IP address, interface, or tunnel changes, the next hop information for an IPv6 prefix can change. [FRR](## "FRRouting") deletes the existing route to that prefix from the kernel, then adds a new route with all the relevant new information. In certain situations, Cumulus Linux does not maintain resilient hashing for IPv6 flows.
 

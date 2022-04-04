@@ -6,7 +6,7 @@ subsection: true
 toc: 1
 ---
 
-{{<product>}} {{<version>}} eases your customers deployment and maintenance activities for their data center networks with new configuration, performance, and security features and improvements.
+This page summarizes new feature and improvements for the {{<product>}} {{<version>}} release. For a complete list of open and fixed issues in {{<product>}} {{<version>}}, see the {{<link title="NVIDIA Cumulus NetQ 4.2 Release Notes" text="release notes">}}.
 
 <!-- vale off -->
 ## What's New in NetQ 4.2.0
@@ -39,6 +39,5 @@ You can install NetQ Agents on switches and servers running
 - CentOS 7
 - RHEL 7.1
 - Ubuntu 18.04
-## Additional Information
 
-For information regarding bug fixes and known issues present in this release, refer to the {{<link title="NVIDIA Cumulus NetQ 4.2 Release Notes" text="release notes">}}.
+

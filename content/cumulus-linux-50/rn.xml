@@ -43,11 +43,17 @@ Fixed: 4.1.0+git191117-2~deb10u4</td>
 <td>When you power-cycle a newly installed switch and apply the default configuration, the underlying NVUE repository becomes corrupted. Even if you correct the corruption, NVUE cannot run.
 To recover, uninstall NVUE and delete the {{/var/lib/nvue}} directory:
 
+
 cumulus@leaf01:~$ sudo apt remove python3-nvue
+
 cumulus@leaf01:~$ rm -r /var/lib/nvue
+
 cumulus@leaf01:~$ sudo apt update
+
 cumulus@leaf01:~$ sudo apt install python3-nvue
+
 cumulus@leaf01:~$ sudo systemctl enable nvued
+
 cumulus@leaf01:~$ sudo systemctl start nvued
 </td>
 <td>5.0.1</td>

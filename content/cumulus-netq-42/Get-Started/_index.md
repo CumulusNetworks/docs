@@ -6,4 +6,4 @@ subsection: true
 toc: 1
 ---
 
-This topic provides overviews of NetQ components, architecture, and the CLI and UI interfaces. These provide the basis for understanding and following the instructions contained in the rest of the user guide.
+This section introduces NetQ components, architecture, the command line interface (CLI), and the graphical user interface (GUI).

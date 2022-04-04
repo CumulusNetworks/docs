@@ -13,7 +13,6 @@ Currently, the available documents here include the following:
 
 - {{<link title="NVIDIA Air User Guide">}}
 - {{<link title="Production Ready Automation Guide">}}
-- {{<link title="Campus Architecture Solution Guide">}}
 - {{<link title="Cumulus Linux Security Guide">}}
 - {{<link title="Cumulus Linux Configuration Guide for Ethernet Storage Fabrics">}}
 - {{<link title="Cumulus Linux Deployment Guide for VMware NSX-T">}}

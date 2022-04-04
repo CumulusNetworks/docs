@@ -15,7 +15,8 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="3023256"></a> [3023256](#3023256) <a name="3023256"></a> <br /> | After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the <code>protodown</code> flag ON. | 4.4.3 | |
-| <a name="3021897"></a> [3021897](#3021897) <a name="3021897"></a> <br /> | After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the <code>protodown</code> flag ON. | 4.4.3 | |
+| <a name="3021897"></a> [3021897](#3021897) <a name="3021897"></a> <br /> | After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the <code>protodown</code> flag ON. | 4.4.3, 5.0.0-5.0.1 | |
+| <a name="3021887"></a> [3021887](#3021887) <a name="3021887"></a> <br /> | On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic. | 4.4.2-4.4.3 | |
 | <a name="3021698"></a> [3021698](#3021698) <a name="3021698"></a> <br /> | After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards. | 4.4.2-4.4.3, 5.0.0-5.0.1 | |
 | <a name="3021693"></a> [3021693](#3021693) <a name="3021693"></a> <br /> | GARPs from <code>neighmgrd</code> for remote neighbors are sent over VXLAN when ARP suppression is off. | 3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1 | |
 | <a name="3017044"></a> [3017044](#3017044) <a name="3017044"></a> <br /> | CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed<br />Vulnerable: <= 4.1.0+git191117-2~deb10u3Fixed: 4.1.0+git191117-2~deb10u4 | 4.4.0-4.4.3 | |
@@ -284,6 +285,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3021887"></a> [3021887](#3021887) <a name="3021887"></a> <br /> | On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic. | 4.4.2-4.4.3 | |
 | <a name="3021698"></a> [3021698](#3021698) <a name="3021698"></a> <br /> | After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards. | 4.4.2-4.4.3, 5.0.0-5.0.1 | |
 | <a name="3021693"></a> [3021693](#3021693) <a name="3021693"></a> <br /> | GARPs from <code>neighmgrd</code> for remote neighbors are sent over VXLAN when ARP suppression is off. | 3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1 | |
 | <a name="3017044"></a> [3017044](#3017044) <a name="3017044"></a> <br /> | CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed<br />Vulnerable: <= 4.1.0+git191117-2~deb10u3Fixed: 4.1.0+git191117-2~deb10u4 | 4.4.0-4.4.3 | |

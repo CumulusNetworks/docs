@@ -88,13 +88,13 @@ To connect two nodes together, click a port on one node and drag it to the port 
 
 ### ZTP Script
 
-You can include a custom ZTP script as part of the network design. When you create the simulation, the ZTP script is copied, exactly as pasted into the text field, onto the oob-mgmt-server. Any network node making a ZTP request on the OOB management network has access to this ZTP script through a DHCP server and web server running on the oob-mgmt-server.
+You can include a custom ZTP script as part of the network design. When you create the simulation, NVIDIA Air copies the ZTP script, exactly as pasted into the text field, onto the oob-mgmt-server. Any network node making a ZTP request on the OOB management network has access to this ZTP script through a DHCP server and web server running on the oob-mgmt-server.
 
 To upload a ZTP script, click the ZTP script button in the top right of the canvas:
 
 {{<img src="/images/guides/nvidia-air/ZTP.png" width="400px">}}
 
-A popup window opens where you can paste the contents of the ZTP script. The popup window is already populated with a default script. The default script is a guide to implement common ZTP features on Cumulus Linux, including:
+A popup window opens where you can paste the contents of the ZTP script. The popup window contains a default script. The default script is a guide to implement common ZTP features on Cumulus Linux, including:
 
 - Disabling password expiry
 - Making the `cumulus` user passwordless for `sudo`
@@ -138,7 +138,7 @@ Then upload the `topology.dot` and `topology.svg` files to the correct locations
 
 ## NetQ Integration
 
-You can include NetQ with any simulation. Make sure the NetQ toggle switch is enabled, which is the default behavior.
+You can include NetQ with any simulation. Make sure the NetQ toggle switch is on, which is the default behavior.
 
 {{<img src="/images/guides/nvidia-air/NetQSlider.png" width="240px">}}
 

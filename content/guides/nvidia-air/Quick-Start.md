@@ -25,7 +25,7 @@ After you log in, the NVIDIA Air landing page appears:
 
 The landing page offers the following options:
 
-- **Filter Organizations**: If you belong to multiple organizations, the filter icon allows you to filter your list of simulations to only those in the chosen organization(s).
+- **Filter Organizations**: If you belong to multiple organizations, the filter icon allows you to filter your list of simulations to only those in the chosen organizations.
 
   {{<img src="/images/guides/nvidia-air/OrganizationDropdown.png" width="250px">}}
 
@@ -107,7 +107,7 @@ The **Enable SSH** button automatically populates the Services panel with an SSH
 
 ## Logging into Virtual Machines
 
-Use the operating system's default credentials to log into your virtual machine(s). Note that some operating systems may require you to change your password after the first successful login.
+Use the operating system default credentials to log into your virtual machines. Some operating systems require you to change your password after the first successful login.
 
 - **Out-of-band management server (oob-mgmt-server)**
     - Username: `ubuntu`

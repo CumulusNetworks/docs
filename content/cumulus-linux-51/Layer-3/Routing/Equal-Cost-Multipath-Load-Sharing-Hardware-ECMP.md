@@ -38,7 +38,7 @@ When multiple routes are in the routing table, a hash determines through which p
 
 For TCP and UDP frames, Cumulus Linux also hashes on the source port or destination port.
 
-{{< img src = "/images/cumulus-linux/ecmp-packet-hash.png" >}}
+<!--{{< img src = "/images/cumulus-linux/ecmp-packet-hash.png" >}}-->
 
 To prevent out of order packets, ECMP hashes on a per-flow basis; all packets with the same source and destination IP addresses and the same source and destination ports always hash to the same next hop. ECMP hashing does not keep a record of flow states.
 
@@ -47,28 +47,30 @@ ECMP hashing does not keep a record of packets that hash to each next hop and do
 
 ## Custom Hashing
 
-You can configure custom hashing to specify what to include in the hash calculation during ECMP load balancing between:
-- Multiple next hops of a layer 3 route.
-- Multiple interfaces that are members of the same bond.
+You can configure custom hashing to specify what to include in the hash calculation during load balancing between:
+- Multiple next hops of a layer 3 route (ECMP hashing).
+- Multiple interfaces that are members of the same bond (bond hashing).
+
+### ECMP Hashing
 
 For ECMP load balancing between multiple next-hops of a layer 3 route, you can hash on these fields:
 
-|  Field  | NVUE Command | `/etc/cumulus/datapath/traffic.conf` Parameter|
-| -------- | ----------- | --------------------------------------------- |
-| IP protocol | `nv set system forwarding ecmp-hash ip-protocol`|`hash_config.ip_prot`|
-| Source IP address| `nv set system forwarding ecmp-hash source-ip`|`hash_config.sip`|
-| Destination IP address| `nv set system forwarding ecmp-hash destination-ip`|`hash_config.dip`|
-| Source port | `nv set system forwarding ecmp-hash source-port`|`hash_config.sport` |
-| Destination port| `nv set system forwarding ecmp-hash destination-port`| `hash_config.dport` |
-| IPv6 flow label | `nv set system forwarding ecmp-hash ipv6-label`|`hash_config.ip6_label` |
-| Ingress interface | `nv set system forwarding ecmp-hash ingress-interface`| `hash_config.ing_intf` |
-| TEID (see {{<link url="#gtp-hashing" text="GTP Hashing, below" >}}) | `nv set system forwarding ecmp-hash gtp-teid`| `hash_config.gtp_teid`|
-| Inner IP protocol| `nv set system forwarding ecmp-hash inner-ip-protocol `|`hash_config.inner_ip_prot` |
-| Inner source IP address| `nv set system forwarding ecmp-hash inner-source-ip`|`hash_config.inner_sip` |
-| Inner destination IP address| `nv set system forwarding ecmp-hash inner-destination-ip`|`hash_config.inner_dip` |
-| Inner source port| `nv set system forwarding ecmp-hash inner-source-port`| `hash_config.inner-sport` |
-| Inner destination port| `nv set system forwarding ecmp-hash inner-destination-port`| `hash_config.inner_dport` |
-| Inner IPv6 flow label | `nv set system forwarding ecmp-hash inner-ipv6-label`|`hash_config.inner_ip6_label` |
+|  Field   | Default Setting | NVUE Command | `/etc/cumulus/datapath/traffic.conf` Parameter|
+| -------- | --------------- | ------------ | --------------------------------------------- |
+| IP protocol | on | `nv set system forwarding ecmp-hash ip-protocol`|`hash_config.ip_prot`|
+| Source IP address| on | `nv set system forwarding ecmp-hash source-ip`|`hash_config.sip`|
+| Destination IP address| on | `nv set system forwarding ecmp-hash destination-ip`|`hash_config.dip`|
+| Source port | on | `nv set system forwarding ecmp-hash source-port`|`hash_config.sport` |
+| Destination port| on | `nv set system forwarding ecmp-hash destination-port`| `hash_config.dport` |
+| IPv6 flow label | on | `nv set system forwarding ecmp-hash ipv6-label`|`hash_config.ip6_label` |
+| Ingress interface | off | `nv set system forwarding ecmp-hash ingress-interface`| `hash_config.ing_intf` |
+| TEID (see {{<link url="#gtp-hashing" text="GTP Hashing" >}}) | off | `nv set system forwarding ecmp-hash gtp-teid`| `hash_config.gtp_teid`|
+| Inner IP protocol| off | `nv set system forwarding ecmp-hash inner-ip-protocol `|`hash_config.inner_ip_prot` |
+| Inner source IP address| off | `nv set system forwarding ecmp-hash inner-source-ip`|`hash_config.inner_sip` |
+| Inner destination IP address| off | `nv set system forwarding ecmp-hash inner-destination-ip`|`hash_config.inner_dip` |
+| Inner source port| off | `nv set system forwarding ecmp-hash inner-source-port`| `hash_config.inner-sport` |
+| Inner destination port| off | `nv set system forwarding ecmp-hash inner-destination-port`| `hash_config.inner_dport` |
+| Inner IPv6 flow label | off | `nv set system forwarding ecmp-hash inner-ipv6-label`|`hash_config.inner_ip6_label` |
 
 The following example commands omit the source port and destination port from the hash calculation:
 
@@ -121,20 +123,22 @@ hash_config.dport = false
 {{< /tab >}}
 {{< /tabs >}}
 
+### Bond Hashing
+
 For ECMP load balancing between multiple interfaces that are members of the same bond, you can hash on these fields:
 
-|  Field  | NVUE Command | `/etc/cumulus/datapath/traffic.conf` Parameter|
-| -------- | ----------- | --------------------------------------------- |
-| IP protocol | `nv set system forwarding lag-hash ip-protocol`|`lag_hash_config.ip_prot`|
-| Source MAC address| `nv set system forwarding lag-hash source-mac`|`lag_hash_config.smac`|
-| Destination MAC address| `nv set system forwarding lag-hash destination-mac`|`lag_hash_config.dmac`|
-| Source IP address | `nv set system forwarding lag-hash source-ip`|`lag_hash_config.sip` |
-| Destination IP address| `nv set system forwarding lag-hash destination-ip`| `lag_hash_config.dip` |
-| Source port | `nv set system forwarding lag-hash source-port`|`lag_hash_config.sport` |
-| Destination port | `nv set system forwarding lag-hash destination-port`| `lag_hash_config.dport` |
-| Ethertype| `nv set system forwarding lag-hash ether-type`|`lag_hash_config.ether_type` |
-| VLAN ID| `nv set system forwarding lag-hash vlan`|`lag_hash_config.vlan_id` |
-| TEID (see {{<link url="#gtp-hashing" text="GTP Hashing, below" >}}) | `nv set system forwarding lag-hash gtp-teid`| `lag_hash_config.gtp_teid`|
+|  Field  | Default Setting | NVUE Command | `/etc/cumulus/datapath/traffic.conf` Parameter|
+| ------- | --------------- | ------------ | --------------------------------------------- |
+| IP protocol | on |`nv set system forwarding lag-hash ip-protocol`|`lag_hash_config.ip_prot`|
+| Source MAC address| on |`nv set system forwarding lag-hash source-mac`|`lag_hash_config.smac`|
+| Destination MAC address| on | `nv set system forwarding lag-hash destination-mac`|`lag_hash_config.dmac`|
+| Source IP address | on | `nv set system forwarding lag-hash source-ip`|`lag_hash_config.sip` |
+| Destination IP address| on | `nv set system forwarding lag-hash destination-ip`| `lag_hash_config.dip` |
+| Source port | on | `nv set system forwarding lag-hash source-port`|`lag_hash_config.sport` |
+| Destination port | on | `nv set system forwarding lag-hash destination-port`| `lag_hash_config.dport` |
+| Ethertype| on | `nv set system forwarding lag-hash ether-type`|`lag_hash_config.ether_type` |
+| VLAN ID| on | `nv set system forwarding lag-hash vlan`|`lag_hash_config.vlan_id` |
+| TEID (see {{<link url="#gtp-hashing" text="GTP Hashing" >}})| off | `nv set system forwarding lag-hash gtp-teid`| `lag_hash_config.gtp_teid`|
 
 The following example commands omit the source MAC address and destination MAC address from the hash calculation:
 
@@ -193,7 +197,7 @@ lag_hash_config.gtp_teid = false
 Cumulus Linux enables symmetric hashing by default. Make sure that the settings for the source IP and destination IP fields match, and that the settings for the source port and destination port fields match; otherwise Cumulus Linux disables symmetric hashing automatically. If necessary, you can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
 {{%/notice%}}
 
-## GTP Hashing
+### GTP Hashing
 <!-- vale on -->
 [GTP](## "GPRS Tunneling Protocol") carries mobile data within the core of the mobile operator’s network. Traffic in the 5G Mobility core cluster, from cell sites to compute nodes, have the same source and destination IP address. The only way to identify individual flows is with the GTP [TEID](## "Tunnel Endpoint Identifier"). Enabling GTP hashing adds the TEID as a hash parameter and helps the Cumulus Linux switches in the network to distribute mobile data traffic evenly across ECMP routes.
 

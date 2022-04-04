@@ -7,28 +7,27 @@ toc: 4
 
 {{<product>}} contains the following applications and key components:
 
-- Telemetry data collection and aggregation
+- Telemetry data collection and aggregation via
   - NetQ switch agents
   - NetQ host agents
-  - Telemetry data aggregation
   - Database
 - Data streaming
 - Network services
 - User interfaces
 
-While these functions apply to both the on-premises and in-cloud solutions, where the functions reside varies, as shown here.
+While these functions apply to both the on-premises and in-cloud solutions, they are configured differently, as shown in the following diagrams.
 
 {{<figure src="/images/netq/netq-comps-onpremises-230.png" width="700">}}
 
 {{<figure src="/images/netq/netq-comps-cloud-230.png" width="450">}}
 
-NetQ interfaces with event notification applications, third-party analytics tools.
+NetQ can also integrate with event notification applications and third-party analytics tools.
 
-Each of the NetQ components used to gather, store and process data about the network state are described here.
+The following section describes the NetQ components which gather, store, and process network data. 
 
 ## NetQ Agents
 
-NetQ Agents are software installed and running on every monitored *node* in the network &mdash; including Cumulus® Linux® switches, Linux bare metal hosts, and virtual machines. The NetQ Agents push network data regularly and event information immediately to the NetQ Platform.
+NetQ Agents are installed via software and run on every monitored *node* in the network&mdash;including Cumulus® Linux® switches, Linux bare metal hosts, and virtual machines. The NetQ Agents push network data regularly and event information immediately to the NetQ Platform.
 
 ### Switch Agents
 
@@ -38,7 +37,7 @@ The NetQ Agents running on Cumulus Linux or SONiC switches gather the following 
   - IP addresses (v4 and v6)
   - IP routes (v4 and v6)
   - Links
-  - Bridge FDB (MAC Address table)
+  - Bridge FDB (MAC address table)
   - ARP Entries/Neighbors (IPv4 and IPv6)
 
 for the following protocols:
@@ -62,7 +61,7 @@ The NetQ Agent is supported on hosts running Ubuntu 16.04, Red Hat® Enterprise 
 
 ## NetQ Core
 
-The NetQ core performs the data collection, storage, and processing for delivery to various user interfaces. It is comprised of a collection of scalable components running entirely within a single server. The NetQ software queries this server, rather than individual devices enabling greater scalability of the system. Each of these components is described briefly here.
+The NetQ core performs the data collection, storage, and processing for delivery to various user interfaces. It is composed of a collection of scalable components running entirely within a single server. The NetQ software queries this server, rather than individual devices, enabling greater system scalability. Each of these components is described briefly below.
 
 ### Data Aggregation
 

@@ -1,5 +1,5 @@
 ---
-title: NVIDIA Cumulus Linux Deployment Guide for VMware NSX-T
+title: Cumulus Linux Deployment Guide for VMware NSX-T
 author: NVIDIA Networking
 weight: 50
 product: Cumulus Networks Guides

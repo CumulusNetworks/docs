@@ -1,5 +1,5 @@
 ---
-title: NVIDIA Cumulus Linux Configuration Guide for Ethernet Storage Fabrics
+title: Cumulus Linux Configuration Guide for Ethernet Storage Fabrics
 author: NVIDIA Networking
 weight: 50
 product: Cumulus Networks Guides
@@ -1260,7 +1260,7 @@ VXLAN and EVPN, and EVPN MH are rare configurations in ESF networks so this guid
 Check out the [Network Virtualization]({{<ref "/cumulus-linux-50/Network-Virtualization/" >}}) and [EVPN Multihoming]({{<ref "/cumulus-linux-50/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/EVPN-Multihoming" >}}) documentation for more detailed information and configuration commands.
 
 {{%notice note%}}
-If you use an NSX-T environment, check out this [NVIDIA Cumulus Linux Deployment Guide for VMware NSX-T]({{<ref "/guides/nsxt" >}}).
+If you use an NSX-T environment, check out this [Cumulus Linux Deployment Guide for VMware NSX-T]({{<ref "/guides/nsxt" >}}).
 {{%/notice %}}
 
 ## RDMA over Converged Ethernet (RoCE)

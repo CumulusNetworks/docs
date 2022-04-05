@@ -348,17 +348,17 @@ ONIE:/ # ./cumulus-linux-4.4.0-mlx-amd64.bin --password 'MyP4$$word'
 
 To provide a hashed password instead of a clear text password, use the `--hashed-password '<hash>'` option. An encrypted hash maintains a secure management network.
 
-1. Generate a sha-512 password hash with the following python command. The example command generates a sha-512 password hash for the password `MyP4$$word`.
+1. Generate a sha-512 password hash with the following `openssl` command. The example command generates a sha-512 password hash for the password `MyP4$$word`.
 
    ```
-   user@host:~$ python3 -c "import crypt; print(crypt.crypt('MyP4$$word',salt=crypt.mksalt()))"
-   $6$hs7OPmnrfvLNKfoZ$iB3hy5N6Vv6koqDmxixpTO6lej6VaoKGvs5E8p5zNo4tPec0KKqyQnrFMII3jGxVEYWntG9e7Z7DORdylG5aR/
+   user@host:~$ openssl passwd -6 'MyP4$$word'
+   6$LXOrvmOkqidBGqu7$dy0dpYYllekNKOY/9LLrobWA4iGwL4zHsgG97qFQWAMZ3ZzMeyz11JcqtgwKDEgYR6RtjfDtdPCeuj8eNzLnS.
    ```
 
-1. Specify the new password from the command line of the installer with the `--hashed-password '<hash>'` command:
+2. Specify the new password from the command line of the installer with the `--hashed-password '<hash>'` command:
 
    ```
-   ONIE:/ # ./cumulus-linux-4.4.0-mlx-amd64.bin  --hashed-password '$6$hs7OPmnrfvLNKfoZ$iB3hy5N6Vv6koqDmxixpTO6lej6VaoKGvs5E8p5zNo4tPec0KKqyQnrFMII3jGxVEYWntG9e7Z7DORdylG5aR/'
+   ONIE:/ # ./cumulus-linux-4.4.0-mlx-amd64.bin  --hashed-password '6$LXOrvmOkqidBGqu7$dy0dpYYllekNKOY/9LLrobWA4iGwL4zHsgG97qFQWAMZ3ZzMeyz11JcqtgwKDEgYR6RtjfDtdPCeuj8eNzLnS.'
    ```
 
 {{%notice note%}}

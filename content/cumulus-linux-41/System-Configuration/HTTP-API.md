@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 270
 toc: 3
 ---
-Cumulus Linux implements an HTTP application programing interface to {{<link url="OpenStack-Neutron-ML2-and-Cumulus-Linux" text="OpenStack ML2 driver">}} and {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}. Instead of accessing Cumulus Linux using SSH, you can interact with the switch using an HTTP client, such as cURL, HTTPie or a web browser.
+Cumulus Linux implements an HTTP application programing interface to {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}. Instead of accessing Cumulus Linux using SSH, you can interact with the switch using an HTTP client, such as cURL, HTTPie or a web browser.
 
 ## HTTP API Basics
 
@@ -65,7 +65,7 @@ The default configuration requires all HTTP requests from external sources (not 
 
 The user and password must correspond to a user on the host switch.
 
-### Transport Layer Security
+<!--### Transport Layer SecurityOpenStack-Neutron-ML2-and-Cumulus-Linux
 
 All traffic must be secured in transport using TLSv1.2 by default. Cumulus Linux contains a self-signed certificate and private key used server-side in this application so that it works out of the box, but using your own certificates and keys is highly recommended. Certificates must be in the PEM format.
 
@@ -76,7 +76,7 @@ For step by step documentation for generating self-signed certificates and keys,
 Do not copy the `cumulus.pem` or `cumulus.key` files. After installation, edit the `ssl_certificate` and `ssl_certificate_key` values in the configuration file for your hardware.
 
 {{%/notice%}}
-
+-->
 ### cURL Examples
 
 This section includes several example cURL commands you can use to send HTTP requests to a host. The following settings are used for these examples:
@@ -106,12 +106,12 @@ To run `net show counters` on the host as a remote procedure call:
 cumulus@switch:~$ curl -X POST -k -u user:pw -H "Content-Type: application/json" -d '{"cmd": "show counters"}' https://192.168.0.32:8080/nclu/v1/rpc
 ```
 
-To add a bridge using ML2:
+<!--To add a bridge using ML2:
 
 ```
 cumulus@switch:~$ curl -X PUT -k -u user:pw https://192.168.0.32:8080/ml2/v1/bridge/"br1"/200
 ```
-
+-->
 ## Caveats
 
 The `/etc/restapi.conf` file is *not* listed in the `net show configuration files` command output.

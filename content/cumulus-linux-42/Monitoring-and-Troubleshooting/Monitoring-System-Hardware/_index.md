@@ -59,7 +59,7 @@ Usage: `/usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t <target>][-e][-
 | `-h`, `-help` | Displays the help message and exits. |
 | `-a` | Prints the base MAC address for switch interfaces. |
 | `-r` | Prints the number of MACs allocated for switch interfaces. |
-| `-s` | Sets the EEPROM content if the EEPROM is writable. args can be supplied in the command line in a comma separated list of the form `<field>=<value>`. `.` `,` and `=` are illegal characters in field names and values. Fields that are not specified default to their current values. If args are supplied in the command line, they will be written without confirmation. If args is empty, the values will be prompted interactively. |
+| `-s` | Sets the EEPROM content if the EEPROM is writable. args can be supplied in the command line in a comma separated list of the form `<field>=<value>`. `.` `,` and `=` are illegal characters in field names and values. Fields that are not specified default to their current values. If args are supplied in the command line, they will be written without confirmation. If args is empty, the values will be prompted interactively.<br>NVIDIA Spectrum switches do not support this option. |
 | `-j`, `--json` | Displays JSON output. |
 | `-t <target>` | Prints the target EEPROM (board, psu2, psu1) information.<br><br>**Note**: Some systems that use a BMC to manage sensors (such as the Dell Z9264 and EdgeCore Minipack AS8000) do not provide the PSU EEPROM contents. This is because the BMC connects to the PSUs via I2C and the main CPU of the switch has no direct access. |
 | `--serial`, `-e` | Prints the device serial number. |

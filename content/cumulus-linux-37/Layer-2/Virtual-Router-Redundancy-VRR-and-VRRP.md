@@ -393,7 +393,7 @@ All virtual routers use 00:00:5E:00:01:XX for IPv4 gateways or 00:00:5E:00:02:XX
 - 255 virtual routers are supported per switch.
 - VRRP is not supported in an MLAG environment.
 - To configure VRRP on an SVI or {{<link url="Traditional-Bridge-Mode" text="traditional mode bridge">}}, you need to edit the `etc/network/interfaces` and `/etc/frr/frr.conf` files. The NCLU commands are not supported with SVIs or traditional mode bridges.
-- In Cumulus Linux 3.7.11 and later, VRRP is supported with EVPN and on layer 3 interfaces and subinterfaces that are part of a VRF.
+- You cannot use VRRP in an EVPN configuration; use MLAG and VRR instead.
 
 {{%/notice%}}
 

@@ -7,6 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3017043</td>
+<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
+Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
+Fixed: 4.1.0+git191117-2~deb10u4</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3010291</td>
 <td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
@@ -70,18 +78,24 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 </tr>
 <tr>
+<td>2972540</td>
+<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
+<td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2972538</td>
+<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
+<td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2971344</td>
 <td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
 Vulnerable: &lt;= 2.2.6-2+deb10u1
 Fixed: 2.2.6-2+deb10u2</td>
 <td>4.0.0-4.4.2</td>
 <td>4.4.3</td>
-</tr>
-<tr>
-<td>2968515</td>
-<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2968495</td>
@@ -750,12 +764,6 @@ CVE-2021-20225: A heap out-of-bounds write vulnerability was found in the short 
 CVE-2021-20233: A heap out-of-bound write flaw was found caused by mis-calculation of space required for quoting in the menu rendering.</td>
 <td>4.0.0-4.3.0</td>
 <td>4.4.0-4.4.3</td>
-</tr>
-<tr>
-<td>2558184</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.15, 4.1.1-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2556783</td>
@@ -1619,16 +1627,10 @@ To disable scp completely, use {{/bin/chmod 0 /usr/bin/scp}} .</td>
 <td></td>
 </tr>
 <tr>
-<td>2552214</td>
+<td>2552212</td>
 <td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14, 4.1.1-4.4.3</td>
-<td>3.7.14.2-3.7.15</td>
-</tr>
-<tr>
-<td>2552213</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14.2, 4.1.1-4.4.3</td>
-<td>3.7.15</td>
+<td>3.7.11-3.7.14, 4.1.1-4.3.0</td>
+<td>3.7.14.2-3.7.15, 4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2551873</td>
@@ -3024,6 +3026,14 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3017043</td>
+<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
+Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
+Fixed: 4.1.0+git191117-2~deb10u4</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3010291</td>
 <td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
@@ -3652,12 +3662,6 @@ CVE-2021-20225: A heap out-of-bounds write vulnerability was found in the short 
 CVE-2021-20233: A heap out-of-bound write flaw was found caused by mis-calculation of space required for quoting in the menu rendering.</td>
 <td>4.0.0-4.3.0</td>
 <td>4.4.0-4.4.3</td>
-</tr>
-<tr>
-<td>2558184</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.15, 4.1.1-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2556783</td>
@@ -4421,16 +4425,10 @@ Fixed: 1.14.2-2+deb10u2</td>
 <td>4.2.1-4.4.3</td>
 </tr>
 <tr>
-<td>2552214</td>
+<td>2552212</td>
 <td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14, 4.1.1-4.4.3</td>
-<td>3.7.14.2-3.7.15</td>
-</tr>
-<tr>
-<td>2552213</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14.2, 4.1.1-4.4.3</td>
-<td>3.7.15</td>
+<td>3.7.11-3.7.14, 4.1.1-4.3.0</td>
+<td>3.7.14.2-3.7.15, 4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2552204</td>

@@ -23,4 +23,4 @@ jobs:
         user_email: ethernet.docs@nvidia.com
 
       env:
-        GITHUB_TOKEN: ${{ secrets.PLUMBIS_GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.STU_GITHUB_TOKEN }}

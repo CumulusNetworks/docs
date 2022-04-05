@@ -138,12 +138,37 @@ Selecting the unsupported device will show device statistics in the left panel i
 {{<figure src="/images/netq/partial-path-device-stats-unsupported-42.png" width="400">}}
 ## View Device Statistics
 
-You can view interface statistics, resource utilization, and alarms for each device by clicking on a device in the **Flow Graph** panel, or by clicking on the striped gray line associated with a device in the main flow analysis graph. This will change the left panel details to show statistics for that device:
+You can view latency, buffer occupancy, interface statistics, resource utilization, and WJH events for each device by clicking on a device in the **Flow Graph** panel, or by clicking on the line associated with a device in the main flow analysis graph. This will change the left panel details to show statistics for that device:
 
-{{<figure src="/images/netq/device statistics - left panel.png" width="600">}}
+{{<figure src="/images/netq/device-stats-latency-view-42.png" width="500">}}
+
+After selecting a device, you can click {{<img src="/images/netq/device-stats-expand-chart-icon-42.png" height="18" width="18">}} to expand the statistics chart:
+
+{{<figure src="/images/netq/device-stats-expand-chart-42.png" width="600">}}
+
+You can select the categories you want to view in the expanded chart:
+
+{{<figure src="/images/netq/device-stats-expanded-chart-stats-42.png" width="900">}}
 
 The **Flow Graph** panel also presents the option to bring up the topology view where you can also click the paths and devices to view statistics. Click {{<img src="/images/netq/flow-view-in-topology-410.png" height="29" width="141">}} to bring up the topology view:
 
 {{<figure src="/images/netq/flow-topology-view-410.png" width="600">}}
 
+
 ### View WJH Events
+
+Flow analysis monitors the path for WJH events and records any drops for the flow. Switches with WJH events recorded are represented in the flow analysis graph with {{<img src="/images/netq/flow-analysis-wjh-event-icon-42.png" height="18" width="9">}}. You can hover your cursor over the device to see a WJH event summary:
+
+{{<figure src="/images/netq/wjh-flow-graph-overview-42.png" width="900">}}
+
+You can also observe devices with WJH events in the flow graph panel:
+
+{{<figure src="/images/netq/wjh-flow-graph-hover-42.png" width="300">}}
+
+Click on a device with WJH events to see the statistics in the left panel. You can hover your cursor over the data to reveal the type of drops over time:
+
+{{<figure src="/images/netq/wjh-device-stats-hover-42.png" width="400">}}
+
+Select **Show all drops** to bring up a list of all WJH drops for the device:
+
+{{<figure src="/images/netq/wjh-all-drops-panel-42.png" width="600">}}

@@ -658,16 +658,6 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td></td>
 </tr>
 <tr>
-<td>2739648</td>
-<td>If you configure BGP graceful restart in the {{/etc/frr/frr.conf}} file, then apply the configuration with {{systemctl reload frr}}, the configuration fails to apply and you see the following error:
-
-Job for frr.service failed.
-See "systemctl status frr.service" and "journalctl -xe" for details.
-</td>
-<td>4.3.0-4.4.3</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>2739402</td>
 <td>The destination MAC address of ERSPAN GRE packets is set to all zeros.</td>
 <td>4.3.0-4.4.3</td>
@@ -2641,16 +2631,6 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td>2743186</td>
 <td>When you use MD5 passwords and you configure a non-default VRF configuration before the default VRF configuration in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
 <td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2739648</td>
-<td>If you configure BGP graceful restart in the {{/etc/frr/frr.conf}} file, then apply the configuration with {{systemctl reload frr}}, the configuration fails to apply and you see the following error:
-
-Job for frr.service failed.
-See "systemctl status frr.service" and "journalctl -xe" for details.
-</td>
-<td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -5017,16 +4997,6 @@ Vulnerable: 1.24.1-1
 Fixed: 1.24.1-1+deb 10u1</td>
 <td>4.0.0-4.4.1</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2739648</td>
-<td>If you configure BGP graceful restart in the {{/etc/frr/frr.conf}} file, then apply the configuration with {{systemctl reload frr}}, the configuration fails to apply and you see the following error:
-
-Job for frr.service failed.
-See "systemctl status frr.service" and "journalctl -xe" for details.
-</td>
-<td>4.3.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2739647</td>

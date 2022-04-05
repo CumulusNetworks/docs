@@ -22,15 +22,18 @@ The switch distributes egress traffic through a bond to a slave based on a packe
 The hash calculation uses packet header data to choose to which slave to transmit the packet:
 
 - For IP traffic, the switch uses IP header source and destination fields in the calculation.
-- For IP + TCP/UDP traffic, the switch  includes source and destination ports in the hash calculation.
+- For IP + TCP/UDP traffic, the switch includes source and destination ports in the hash calculation.
 
 {{%notice note%}}
 In a failover event, the switch adjusts the hash calculation to steer traffic over available slaves.
 {{%/notice%}}
 
+You can configure the fields you want to use in the bond hash calculation. See {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#bond-hashing" text="Bond Hashing">}}.
+
+<!--
 ### LAG Custom Hashing
 
-You can configure the fields you want to use in the LAG hash calculation. For example, if you do not want to use source or destination port numbers in the hash calculation, you can disable the source port and destination port fields.
+You can configure the fields you want to use in the bond hash calculation. For example, if you do not want to use source or destination port numbers in the hash calculation, you can disable the source port and destination port fields.
 
 You can configure the following fields:  
 
@@ -77,8 +80,8 @@ lag_hash_config.ip_prot = true
 {{%notice note%}}
 Cumulus Linux enables symmetric hashing by default. Make sure that the settings for the source IP (`lag_hash_config.sip`) and destination IP (`lag_hash_config.dip`) fields match, and that the settings for the source port (`lag_hash_config.sport`) and destination port (`lag_hash_config.dport`) fields match; otherwise symmetric hashing disables automatically. You can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
 {{%/notice%}}
-
-You can set a unique hash seed for each switch to avoid hash polarization. See {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP#configure-a-unique-hash-seed" text="Configure a Unique Hash Seed">}}.
+-->
+You can also set a unique hash seed for each switch to avoid hash polarization. See {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP#unique-hash-seed" text="Unique Hash Seed">}}.
 
 ## Create a Bond
 

@@ -176,12 +176,6 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td></td>
 </tr>
 <tr>
-<td>2951113</td>
-<td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
 <td>3.7.15, 4.1.1-4.4.3, 5.0.0-5.0.1</td>
@@ -191,12 +185,6 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td>2949512</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
 <td>3.7.15, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2947680</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -245,12 +233,6 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td>2935122</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
 <td>4.3.0-4.4.3</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2935121</td>
-<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
-<td>3.7.15-4.4.3</td>
 <td>5.0.0-5.0.1</td>
 </tr>
 <tr>
@@ -2125,12 +2107,6 @@ Fixed: 2.5.5-3+deb10u4</td>
 <td>4.4.3</td>
 </tr>
 <tr>
-<td>2951113</td>
-<td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
 <td>3.7.15, 4.1.1-4.4.3, 5.0.0-5.0.1</td>
@@ -2148,12 +2124,6 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>2949512</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
 <td>3.7.15, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2947680</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2202,12 +2172,6 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>2935122</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
 <td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2935121</td>
-<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
-<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4282,12 +4246,6 @@ Fixed: 2.5.5-3+deb10u4</td>
 <td>4.4.3</td>
 </tr>
 <tr>
-<td>2951113</td>
-<td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
 <td>3.7.15, 4.1.1-4.4.3, 5.0.0-5.0.1</td>
@@ -4305,12 +4263,6 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>2949512</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
 <td>3.7.15, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2947680</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4353,12 +4305,6 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>2935122</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
 <td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2935121</td>
-<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
-<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>

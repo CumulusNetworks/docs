@@ -72,12 +72,6 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td></td>
 </tr>
 <tr>
-<td>2973714</td>
-<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
-<td>3.7.15-4.4.1</td>
-<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>2972540</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
@@ -148,6 +142,12 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-4.4.3</td>
 <td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2935121</td>
+<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
+<td>3.7.15-4.4.1</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2902013</td>
@@ -3075,12 +3075,6 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td></td>
 </tr>
 <tr>
-<td>2973714</td>
-<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
-<td>3.7.15-4.4.1</td>
-<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>2971344</td>
 <td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
 Vulnerable: &lt;= 2.2.6-2+deb10u1
@@ -3127,6 +3121,12 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-4.4.3</td>
 <td>5.0.0-5.0.1</td>
+</tr>
+<tr>
+<td>2935121</td>
+<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
+<td>3.7.15-4.4.1</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2891257</td>

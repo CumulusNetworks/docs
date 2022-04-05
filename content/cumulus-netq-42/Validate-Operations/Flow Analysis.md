@@ -117,7 +117,26 @@ You can switch between paths by clicking on an alternate path in the **Flow Grap
 You can also select the desired path and view the amount of packets distributed over each path on the detail panel on the left side of the dashboard:
 
 {{<figure src="/images/netq/flow-multipath-pathselection-410.png" width="600">}}
-### View Device Statistics
+
+### Partial Path Support
+
+Some flows can still be analyzed if they traverse a network path that includes switches lacking flow analysis support. Partial path flow analysis is supported in the following conditions:
+
+- The unsupported device can not be the initial ingress or terminating egress device in the path of the analyzed flow
+- There can not be more than one consecutive transit device in the path that lacks flow analysis support
+
+An unsupported device is represented in the flow analysis graph with {{<img src="/images/netq/partial-path-unsupported-icon-42.png" height="18" width="18">}} and flow statistics will not be displayed for that device:
+
+{{<figure src="/images/netq/partial-path-overview-42.png" width="900">}}
+
+Unsupported devices are also designated in the flow graph topology view:
+
+{{<figure src="/images/netq/partial-path-flow-graph-42.png" width="200">}}
+
+Selecting the unsupported device will show device statistics in the left panel if available to NetQ, otherwise the display will indicate why the device is not supported:
+
+{{<figure src="/images/netq/partial-path-device-stats-unsupported-42.png" width="400">}}
+## View Device Statistics
 
 You can view interface statistics, resource utilization, and alarms for each device by clicking on a device in the **Flow Graph** panel, or by clicking on the striped gray line associated with a device in the main flow analysis graph. This will change the left panel details to show statistics for that device:
 
@@ -127,5 +146,4 @@ The **Flow Graph** panel also presents the option to bring up the topology view 
 
 {{<figure src="/images/netq/flow-topology-view-410.png" width="600">}}
 
-
-
+### View WJH Events

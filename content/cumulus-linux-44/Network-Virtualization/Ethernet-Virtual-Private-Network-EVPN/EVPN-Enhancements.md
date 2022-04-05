@@ -810,7 +810,7 @@ iface bridge
     bridge-ports bond1 vni10
     bridge-vids 10
     bridge-vlan-aware yes
-    post-up bridge fdb add 26:76:e6:93:32:78 dev bond1 vlan 10 master static
+    post-up bridge fdb add 26:76:e6:93:32:78 dev bond1 vlan 10 master static sticky
 ...
 ```
 

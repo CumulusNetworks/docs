@@ -148,7 +148,7 @@ You can view latency, buffer occupancy, interface statistics, resource utilizati
 
 After selecting a device, you can click {{<img src="/images/netq/device-stats-expand-chart-icon-42.png" height="18" width="18">}} to expand the statistics chart:
 
-{{<figure src="/images/netq/device-stats-expand-chart-42.png" width="600">}}
+{{<figure src="/images/netq/device-stats-expand-chart-42.png" width="500">}}
 
 You can select the categories you want to view in the expanded chart:
 

@@ -75,7 +75,7 @@ The dashboard header shows the monitored flow settings:
 
 ### Understanding the Flow Analysis Graph
 
-The flow analysis graph is color coded relative to the values measured across devices. Lower values are displayed in green, and higher values are displayed in orange. The color gradient is displayed below the graph along with the low and high values from the collected flow data. Each hop in the path is represented in the graph with a vertical grey-striped line labeled by hostname. The following example shows a single path:
+The flow analysis graph is color coded relative to the values measured across devices. Lower values are displayed in green, and higher values are displayed in orange. The color gradient is displayed below the graph along with the low and high values from the collected flow data. Each hop in the path is represented in the graph with a vertical, gray-striped line labeled by hostname. The following example shows a single path:
 
 {{<figure src="/images/netq/single-path-graph.png" width="800">}}
 
@@ -106,7 +106,7 @@ The main Flow Analysis dashboard also displays the buffer occupancy of each devi
 
 {{<figure src="/images/netq/buffer-occupancy-hover-42.png" width="400">}}
 
-The displayed percentage represents the amount of buffer space on the switch that the flow occupied during the analysis time frame.
+The percentages represent the amount of buffer space on the switch that the flow occupied while the analysis was running.
 
 ### View Multiple Paths
 
@@ -124,7 +124,7 @@ You can also select the desired path and view the amount of packets distributed 
 
 ### Partial Path Support
 
-Some flows can still be analyzed if they traverse a network path that includes switches lacking flow analysis support. Partial path flow analysis is supported in the following conditions:
+Some flows can still be analyzed if they traverse a network path that includes switches lacking flow analysis support. Partial-path flow analysis is supported in the following conditions:
 
 - The unsupported device can not be the initial ingress or terminating egress device in the path of the analyzed flow
 - There can not be more than one consecutive transit device in the path that lacks flow analysis support
@@ -137,16 +137,16 @@ Unsupported devices are also designated in the flow graph topology view:
 
 {{<figure src="/images/netq/partial-path-flow-graph-42.png" width="200">}}
 
-Selecting the unsupported device will show device statistics in the left panel if available to NetQ, otherwise the display will indicate why the device is not supported:
+Selecting the unsupported device will show device statistics in the left panel if available to NetQ. Otherwise, the display will indicate why the device is not supported:
 
 {{<figure src="/images/netq/partial-path-device-stats-unsupported-42.png" width="400">}}
 ## View Device Statistics
 
-You can view latency, buffer occupancy, interface statistics, resource utilization, and WJH events for each device by clicking on a device in the **Flow Graph** panel, or by clicking on the line associated with a device in the main flow analysis graph. This will change the left panel details to show statistics for that device:
+You can view latency, buffer occupancy, interface statistics, resource utilization, and WJH events for each device by clicking on a device in the **Flow Graph** panel, or by clicking on the line associated with a device in the main flow analysis graph. The left panel will then update to reflect statistics for the respective device.
 
 {{<figure src="/images/netq/device-stats-latency-view-42.png" width="500">}}
 
-After selecting a device, you can click {{<img src="/images/netq/device-stats-expand-chart-icon-42.png" height="18" width="18">}} to expand the statistics chart:
+After selecting a device, click {{<img src="/images/netq/device-stats-expand-chart-icon-42.png" height="18" width="18">}} to expand the statistics chart:
 
 {{<figure src="/images/netq/device-stats-expand-chart-42.png" width="500">}}
 
@@ -154,22 +154,22 @@ You can select the categories you want to view in the expanded chart:
 
 {{<figure src="/images/netq/device-stats-expanded-chart-stats-42.png" width="900">}}
 
-The **Flow Graph** panel also presents the option to bring up the topology view where you can also click the paths and devices to view statistics. Click {{<img src="/images/netq/flow-view-in-topology-410.png" height="29" width="141">}} to bring up the topology view:
+The **Flow Graph** panel allows you to access the topology view, where you can also click the paths and devices to view statistics. Click {{<img src="/images/netq/flow-view-in-topology-410.png" height="29" width="141">}} to switch to the topology view:
 
 {{<figure src="/images/netq/flow-topology-view-410.png" width="600">}}
 
 
 ### View WJH Events
 
-Flow analysis monitors the path for WJH events and records any drops for the flow. Switches with WJH events recorded are represented in the flow analysis graph with {{<img src="/images/netq/flow-analysis-wjh-event-icon-42.png" height="18" width="9">}}. You can hover your cursor over the device to see a WJH event summary:
+Flow analysis monitors the path for WJH events and records any drops for the flow. Switches with WJH events recorded are represented in the flow analysis graph with {{<img src="/images/netq/flow-analysis-wjh-event-icon-42.png" height="18" width="9">}}. Hover over the device to see a WJH event summary:
 
 {{<figure src="/images/netq/wjh-flow-graph-overview-42.png" width="900">}}
 
-You can also observe devices with WJH events in the flow graph panel:
+You can also view devices with WJH events in the flow graph panel:
 
 {{<figure src="/images/netq/wjh-flow-graph-hover-42.png" width="300">}}
 
-Click on a device with WJH events to see the statistics in the left panel. You can hover your cursor over the data to reveal the type of drops over time:
+Click on a device with WJH events to see the statistics in the left panel. Hover over the data to reveal the type of drops over time:
 
 {{<figure src="/images/netq/wjh-device-stats-hover-42.png" width="400">}}
 

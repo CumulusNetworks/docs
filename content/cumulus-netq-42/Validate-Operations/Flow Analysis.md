@@ -100,9 +100,13 @@ The left panel of the Flow Analysis dashboard also displays a timeline of measur
 {{<figure src="/images/netq/latency-left-panel.png" width="600">}}
 ### View Buffer Occupancy
 
-The main Flow Analysis dashboard also displays the buffer occupancy of each device along the path. To change the graph view to display buffer occupancy for the flow, click {{<img src="/images/netq/arrow-down-1.svg" height="18" width="18">}} next to **Avg. flow latency** and select **Avg. buffer occupancy**. You can hover over each section to see the average buffer utilization for each device:
+The main Flow Analysis dashboard also displays the buffer occupancy of each device along the path. To change the graph view to display buffer occupancy for the flow, click {{<img src="/images/netq/arrow-down-1.svg" height="18" width="18">}} next to **Avg. flow latency** and select **Avg. buffer occupancy**. You can view an overview graph of buffer occupancy or select each device to see the buffer occupancy for the analyzed flow:
 
-{{<figure src="/images/netq/buffer-occupancy-main2.png" width="1000">}}
+{{<figure src="/images/netq/buffer-occupancy-main-42.png" width="900">}}
+
+{{<figure src="/images/netq/buffer-occupancy-hover-42.png" width="400">}}
+
+The displayed percentage represents the amount of buffer space on the switch that the flow occupied during the analysis time frame.
 
 ### View Multiple Paths
 

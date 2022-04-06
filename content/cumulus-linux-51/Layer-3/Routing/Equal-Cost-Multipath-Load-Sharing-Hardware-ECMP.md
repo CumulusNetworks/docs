@@ -8,13 +8,24 @@ Cumulus Linux enables hardware [ECMP](## "Equal Cost Multi Path") by default. Lo
 
 ## How Does ECMP Work?
 
-ECMP operates only on equal cost routes in the Linux routing table. In the following example, the 10.1.1.0/24 route has two possible next hops installed in the routing table:
+ECMP operates only on equal cost routes in the Linux routing table. In the following example, the 10.10.10.3/32 route has four possible next hops installed in the routing table:
 
 ```
-cumulus@switch:~$ ip route show 10.1.1.0/24
-10.1.1.0/24  proto zebra  metric 20
-  nexthop via 192.168.1.1 dev swp1 weight 1 onlink
-  nexthop via 192.168.2.1 dev swp2 weight 1 onlink
+cumulus@leaf01:mgmt:~$ net show route 10.10.10.3/32
+RIB entry for 10.10.10.3/32
+===========================
+Routing entry for 10.10.10.3/32
+  Known via "bgp", distance 20, metric 0, best
+  Last update 00:57:26 ago
+  * fe80::4638:39ff:fe00:1, via swp51, weight 1
+  * fe80::4638:39ff:fe00:3, via swp52, weight 1
+  * fe80::4638:39ff:fe00:5, via swp53, weight 1
+  * fe80::4638:39ff:fe00:7, via swp54, weight 1
+
+
+FIB entry for 10.10.10.3/32
+===========================
+10.10.10.3 nhid 150 proto bgp metric 20
 ```
 
 For Cumulus Linux to consider routes equal, they must:
@@ -22,34 +33,18 @@ For Cumulus Linux to consider routes equal, they must:
 - Originate from the same routing protocol. Routes from different sources are not considered equal. For example, a static route and an OSPF route are not considered for ECMP load sharing.
 - Have equal cost. If two routes from the same protocol are unequal, only the best route installs in the routing table.
 
+When multiple routes are in the routing table, a hash determines through which path a packet follows. To prevent out of order packets, ECMP hashes on a per-flow basis; all packets with the same source and destination IP addresses and the same source and destination ports always hash to the same next hop. ECMP hashing does not keep a record of packets that hash to each next hop and does not guarantee that traffic to each next hop is equal.
+
 {{%notice note%}}
 Cumulus Linux enables the BGP `maximum-paths` setting by default and installs multiple routes. Refer to {{<link url="Optional-BGP-Configuration#ecmp" text="BGP and ECMP">}}.
 {{%/notice%}}
-
-When multiple routes are in the routing table, a hash determines through which path a packet follows. Cumulus Linux hashes on the following fields:
-- IP protocol
-- Ingress interface
-- Source IPv4 or IPv6 address
-- Destination IPv4 or IPv6 address
-- Source or destination MAC address
-- Ethertype
-- VLAN ID
-- [TEID](## "Tunnel Endpoint Identifier")
-
-For TCP and UDP frames, Cumulus Linux also hashes on the source port or destination port.
-
-<!--{{< img src = "/images/cumulus-linux/ecmp-packet-hash.png" >}}-->
-
-To prevent out of order packets, ECMP hashes on a per-flow basis; all packets with the same source and destination IP addresses and the same source and destination ports always hash to the same next hop. ECMP hashing does not keep a record of flow states.
-
-ECMP hashing does not keep a record of packets that hash to each next hop and does not guarantee that traffic to each next hop is equal.
 <!-- vale off -->
 
 ## Custom Hashing
 
 You can configure custom hashing to specify what to include in the hash calculation during load balancing between:
 - Multiple next hops of a layer 3 route (ECMP hashing).
-- Multiple interfaces that are members of the same bond (bond hashing).
+- Multiple interfaces that are members of the same bond (bond or LAG hashing). For bond hashing, see {{<link url="Bonding-Link-Aggregation/#load-balancing" text="Bonding - Link Aggregation" >}}.
 
 ### ECMP Hashing
 
@@ -78,8 +73,8 @@ The following example commands omit the source port and destination port from th
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set system forwarding ecmp-hash source-port
-cumulus@switch:~$ nv set system forwarding ecmp-hash destination-port
+cumulus@switch:~$ nv unset system forwarding ecmp-hash source-port
+cumulus@switch:~$ nv unset system forwarding ecmp-hash destination-port
 cumulus@switch:~$ nv config apply
 ```
 
@@ -123,91 +118,17 @@ hash_config.dport = false
 {{< /tab >}}
 {{< /tabs >}}
 
-### Bond Hashing
-
-For ECMP load balancing between multiple interfaces that are members of the same bond, you can hash on these fields:
-
-|  Field  | Default Setting | NVUE Command | `/etc/cumulus/datapath/traffic.conf` Parameter|
-| ------- | --------------- | ------------ | --------------------------------------------- |
-| IP protocol | on |`nv set system forwarding lag-hash ip-protocol`|`lag_hash_config.ip_prot`|
-| Source MAC address| on |`nv set system forwarding lag-hash source-mac`|`lag_hash_config.smac`|
-| Destination MAC address| on | `nv set system forwarding lag-hash destination-mac`|`lag_hash_config.dmac`|
-| Source IP address | on | `nv set system forwarding lag-hash source-ip`|`lag_hash_config.sip` |
-| Destination IP address| on | `nv set system forwarding lag-hash destination-ip`| `lag_hash_config.dip` |
-| Source port | on | `nv set system forwarding lag-hash source-port`|`lag_hash_config.sport` |
-| Destination port | on | `nv set system forwarding lag-hash destination-port`| `lag_hash_config.dport` |
-| Ethertype| on | `nv set system forwarding lag-hash ether-type`|`lag_hash_config.ether_type` |
-| VLAN ID| on | `nv set system forwarding lag-hash vlan`|`lag_hash_config.vlan_id` |
-| TEID (see {{<link url="#gtp-hashing" text="GTP Hashing" >}})| off | `nv set system forwarding lag-hash gtp-teid`| `lag_hash_config.gtp_teid`|
-
-The following example commands omit the source MAC address and destination MAC address from the hash calculation:
-
-{{< tabs "TabID149 ">}}
-{{< tab "NVUE Commands">}}
-
-```
-cumulus@switch:~$ nv set system forwarding lag-hash source-mac
-cumulus@switch:~$ nv set system forwarding lag-hash destination-mac
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-1. Edit the `/etc/cumulus/datapath/traffic.conf` file:
-   - Uncomment the `lag_hash_config.enable` option.
-   - Set the `lag_hash_config.smac` and `lag_hash_config.dmac` options to `false`.
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
-...
-#LAG HASH config
-#HASH config for LACP to enable custom fields
-#Fields will be applicable for LAG hash
-#calculation
-#Uncomment to enable custom fields configured below
-#lag_hash_config.enable = true
-
-lag_hash_config.smac = false
-lag_hash_config.dmac = false
-lag_hash_config.sip  = true
-lag_hash_config.dip  = true
-lag_hash_config.ether_type = true
-lag_hash_config.vlan_id = true
-lag_hash_config.sport = true
-lag_hash_config.dport = true
-lag_hash_config.ip_prot = true
-#GTP-U teid
-lag_hash_config.gtp_teid = false
-...
-```
-
-2. Run the `echo 1 > /cumulus/switchd/ctrl/hash_config_reload` command. This command does not cause any traffic interruptions.
-
-   ```
-   cumulus@switch:~$ echo 1 > /cumulus/switchd/ctrl/hash_config_reload
-   ```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-<!-- vale off -->
-
-{{%notice note%}}
-Cumulus Linux enables symmetric hashing by default. Make sure that the settings for the source IP and destination IP fields match, and that the settings for the source port and destination port fields match; otherwise Cumulus Linux disables symmetric hashing automatically. If necessary, you can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
-{{%/notice%}}
-
 ### GTP Hashing
-<!-- vale on -->
+
 [GTP](## "GPRS Tunneling Protocol") carries mobile data within the core of the mobile operator’s network. Traffic in the 5G Mobility core cluster, from cell sites to compute nodes, have the same source and destination IP address. The only way to identify individual flows is with the GTP [TEID](## "Tunnel Endpoint Identifier"). Enabling GTP hashing adds the TEID as a hash parameter and helps the Cumulus Linux switches in the network to distribute mobile data traffic evenly across ECMP routes.
 
 Cumulus Linux supports TEID-based *ECMP hashing* for:
-- [GTP-U](## "GPRS Tunnelling Protocol User") packets ingressing physical ports or bonds.
+- [GTP-U](## "GPRS Tunnelling Protocol User") packets ingressing physical ports.
 - VXLAN encapsulated GTP-U packets terminating on egress [VTEPs](## "Virtual Tunnel End Points").
 
-Cumulus Linux supports TEID-based *load balancing* for traffic egressing a bond.
+For TEID-based load balancing for traffic on a bond, see {{<link url="Bonding-Link-Aggregation/#GTP Hashing" text="Bonding - Link Aggregation" >}}.
 
-GTP TEID-based ECMP hashing and load balancing is only applicable if the outer header egressing the port is GTP encapsulated and if the ingress packet is either a GTP-U packet or a VXLAN encapsulated GTP-U packet.
+GTP TEID-based ECMP hashing is only applicable if the outer header egressing the port is GTP encapsulated and if the ingress packet is either a GTP-U packet or a VXLAN encapsulated GTP-U packet.
 
 {{%notice note%}}
 - Cumulus Linux supports GTP Hashing on NVIDIA Spectrum-2 and later.
@@ -245,46 +166,6 @@ To disable TEID-based ECMP hashing, run the `nv set system forwarding ecmp-hash 
    ```
 
 To disable TEID-based ECMP hashing, set the `hash_config.gtp_teid` parameter to `false`, then reload the configuration.
-
-{{< /tab >}}
-{{< /tabs >}}
-
-To enable TEID-based load balancing:
-
-{{< tabs "TabID256 ">}}
-{{< tab "NVUE Commands">}}
-
-```
-cumulus@switch:~$ nv set system forwarding lag-hash gtp-teid
-cumulus@switch:~$ nv config apply
-```
-
-To disable TEID-based load balancing, run the `nv set system forwarding lag-hash gtp-teid` command.
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-1. Edit the `/etc/cumulus/datapath/traffic.conf` file:
-   - Uncomment the `hash_config.enable = true` line.
-   - Change the `lag_hash_config.gtp_teid` parameter to `true`.
-
-   ```
-   cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
-   ...
-   # Uncomment to enable custom fields configured below
-   hash_config.enable = true
-   ...
-   #GTP-U teid
-   lag_hash_config.gtp_teid = true
-   ```
-
-2. Run the `echo 1 > /cumulus/switchd/ctrl/hash_config_reload` command. This command does not cause any traffic interruptions.
-
-   ```
-   cumulus@switch:~$ echo 1 > /cumulus/switchd/ctrl/hash_config_reload
-   ```
-
-To disable TEID-based load balancing, set the `lag_hash_config.gtp_teid` parameter to `false`, then reload the configuration.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -388,7 +269,7 @@ To enable resilient hashing:
 {{< tabs "TabID384 ">}}
 {{< tab "NVUE Commands ">}}
 
-There are no NVUE commands for resilient hashing.
+Cumulus Linux does not provide NVUE commands for this setting.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

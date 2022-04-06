@@ -7,6 +7,21 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3031235</td>
+<td>Static VXLAN configuration prevents NCLU from working.</td>
+<td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3021746</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3021693</td>
 <td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>

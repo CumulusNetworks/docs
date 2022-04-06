@@ -28,7 +28,7 @@ FIB entry for 10.10.10.3/32
 10.10.10.3 nhid 150 proto bgp metric 20
 ```
 
-For Cumulus Linux to consider routes equal, they must:
+For Cumulus Linux to consider routes equal, the routes must:
 
 - Originate from the same routing protocol. Routes from different sources are not considered equal. For example, a static route and an OSPF route are not considered for ECMP load sharing.
 - Have equal cost. If two routes from the same protocol are unequal, only the best route installs in the routing table.
@@ -50,22 +50,22 @@ You can configure custom hashing to specify what to include in the hash calculat
 
 For ECMP load balancing between multiple next-hops of a layer 3 route, you can hash on these fields:
 
-|  Field   | Default Setting | NVUE Command | `/etc/cumulus/datapath/traffic.conf` Parameter|
+|   <div style="width:190px">Field   | Default Setting | NVUE Command | `traffic.conf`|
 | -------- | --------------- | ------------ | --------------------------------------------- |
-| IP protocol | on | `nv set system forwarding ecmp-hash ip-protocol`|`hash_config.ip_prot`|
-| Source IP address| on | `nv set system forwarding ecmp-hash source-ip`|`hash_config.sip`|
-| Destination IP address| on | `nv set system forwarding ecmp-hash destination-ip`|`hash_config.dip`|
-| Source port | on | `nv set system forwarding ecmp-hash source-port`|`hash_config.sport` |
-| Destination port| on | `nv set system forwarding ecmp-hash destination-port`| `hash_config.dport` |
-| IPv6 flow label | on | `nv set system forwarding ecmp-hash ipv6-label`|`hash_config.ip6_label` |
-| Ingress interface | off | `nv set system forwarding ecmp-hash ingress-interface`| `hash_config.ing_intf` |
-| TEID (see {{<link url="#gtp-hashing" text="GTP Hashing" >}}) | off | `nv set system forwarding ecmp-hash gtp-teid`| `hash_config.gtp_teid`|
-| Inner IP protocol| off | `nv set system forwarding ecmp-hash inner-ip-protocol `|`hash_config.inner_ip_prot` |
-| Inner source IP address| off | `nv set system forwarding ecmp-hash inner-source-ip`|`hash_config.inner_sip` |
-| Inner destination IP address| off | `nv set system forwarding ecmp-hash inner-destination-ip`|`hash_config.inner_dip` |
-| Inner source port| off | `nv set system forwarding ecmp-hash inner-source-port`| `hash_config.inner-sport` |
-| Inner destination port| off | `nv set system forwarding ecmp-hash inner-destination-port`| `hash_config.inner_dport` |
-| Inner IPv6 flow label | off | `nv set system forwarding ecmp-hash inner-ipv6-label`|`hash_config.inner_ip6_label` |
+| IP protocol | on | `nv set system forwarding ecmp-hash ip-protocol`<br><br>`nv unset system forwarding ecmp-hash ip-protocol`|`hash_config.ip_prot`|
+| Source IP address| on | `nv set system forwarding ecmp-hash source-ip`<br><br>`nv unset system forwarding ecmp-hash source-ip`|`hash_config.sip`|
+| Destination IP address| on | `nv set system forwarding ecmp-hash destination-ip`<br><br>`nv unset system forwarding ecmp-hash destination-ip`|`hash_config.dip`|
+| Source port | on | `nv set system forwarding ecmp-hash source-port`<br><br>`nv unset system forwarding ecmp-hash source-port`|`hash_config.sport` |
+| Destination port| on | `nv set system forwarding ecmp-hash destination-port`<br><br>`nv unset system forwarding ecmp-hash destination-port`| `hash_config.dport` |
+| IPv6 flow label | on | `nv set system forwarding ecmp-hash ipv6-label`<br><br>`nv unset system forwarding ecmp-hash ipv6-label`|`hash_config.ip6_label` |
+| Ingress interface | off | `nv set system forwarding ecmp-hash ingress-interface`<br><br>`nv unset system forwarding ecmp-hash ingress-interface`| `hash_config.ing_intf` |
+| TEID (see {{<link url="#gtp-hashing" text="GTP Hashing" >}}) | off | `nv set system forwarding ecmp-hash gtp-teid`<br><br>`nv unset system forwarding ecmp-hash gtp-teid`| `hash_config.gtp_teid`|
+| Inner IP protocol| off | `nv set system forwarding ecmp-hash inner-ip-protocol`<br><br>`nv unset system forwarding ecmp-hash inner-ip-protocol`|`hash_config.inner_ip_prot` |
+| Inner source IP address| off | `nv set system forwarding ecmp-hash inner-source-ip`<br><br>`nv unset system forwarding ecmp-hash inner-source-ip`|`hash_config.inner_sip` |
+| Inner destination IP address| off | `nv set system forwarding ecmp-hash inner-destination-ip`<br><br>`nv unset system forwarding ecmp-hash inner-destination-ip`|`hash_config.inner_dip` |
+| Inner source port| off | `nv set system forwarding ecmp-hash inner-source-port`<br><br>`nv unset system forwarding ecmp-hash inner-source-port`| `hash_config.inner-sport` |
+| Inner destination port| off | `nv set system forwarding ecmp-hash inner-destination-port`<br><br>`nv unset system forwarding ecmp-hash inner-destination-port`| `hash_config.inner_dport` |
+| Inner IPv6 flow label | off | `nv set system forwarding ecmp-hash inner-ipv6-label`<br><br>`nv unset system forwarding ecmp-hash inner-ipv6-label`|`hash_config.inner_ip6_label` |
 
 The following example commands omit the source port and destination port from the hash calculation:
 
@@ -145,7 +145,7 @@ cumulus@switch:~$ nv set system forwarding ecmp-hash gtp-teid
 cumulus@switch:~$ nv config apply
 ```
 
-To disable TEID-based ECMP hashing, run the `nv set system forwarding ecmp-hash gtp-teid` command.
+To disable TEID-based ECMP hashing, run the `nv unset system forwarding ecmp-hash gtp-teid` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

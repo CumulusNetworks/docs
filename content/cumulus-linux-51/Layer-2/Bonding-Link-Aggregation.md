@@ -418,7 +418,7 @@ To disable TEID-based load balancing, set the `lag_hash_config.gtp_teid` paramet
 To show information for a bond, run the NVUE `nv show interface <bond> bond` command:
 
 ```
-cumulus@switch:~$ nv show interface bond1 bond
+cumulus@switch:~$ nv show interface bond01 bond
                   operational  applied  description
 ----------------  -----------  -------  ------------------------------------------------------
 down-delay        0            0        bond down delay
@@ -430,7 +430,7 @@ up-delay          0            0        bond up delay
 mlag
   enable                       on       Turn the feature 'on' or 'off'.  The default is 'off'.
   id              1            1        MLAG id
-  peer-interface  bond1                 Peer interface
+  peer-interface  bond01                 Peer interface
   status          dual                  Mlag Interface status
 ```
 
@@ -490,10 +490,10 @@ details partner lacp pdu:
 To show specific bond information, use the `nv show interface <bond> <option>` commands:
 
 ```
-cumulus@switch:~$ nv show interface bond1 TAB
+cumulus@switch:~$ nv show interface bond01 TAB
 acl        bridge     ip         lldp       ptp        router     
 bond       evpn       link       pluggable  qos
-cumulus@switch:~$ nv show interface bond1 lldp
+cumulus@switch:~$ nv show interface bond01 lldp
 ```
 
 ## Related Information

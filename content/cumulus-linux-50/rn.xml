@@ -7,6 +7,36 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3032960</td>
+<td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
+<td>4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3025901</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: 1.2.11.dfsg-1
+Fixed: 1.2.11.dfsg-1+deb10u1</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3025900</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: 1.2.11.dfsg-1
+Fixed: 1.2.11.dfsg-1+deb10u1</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3025899</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: 1.2.11.dfsg-1
+Fixed: 1.2.11.dfsg-1+deb10u1</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3021897</td>
 <td>After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the {{protodown}} flag ON.</td>
 <td>4.4.3, 5.0.0-5.0.1</td>
@@ -19,9 +49,21 @@
 <td></td>
 </tr>
 <tr>
+<td>3021877</td>
+<td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3021698</td>
 <td>After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3021696</td>
+<td>On the NVIDIA SN4600C switch, when you run the {{/usr/share/snmp/resq_pp.py}} script used by SNMP, you see the following log message in syslog regardless of the forwarding table profile set in the {{/etc/cumulus/datapath/traffic.conf}} file.</td>
+<td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -202,12 +244,6 @@ Unrecoverable internal error
 <td></td>
 </tr>
 <tr>
-<td>2951113</td>
-<td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
 <td>3.7.15, 4.1.1-4.4.3, 5.0.0-5.0.1</td>
@@ -217,12 +253,6 @@ Unrecoverable internal error
 <td>2949123</td>
 <td>The NVUE command {{nv show service ntp mgmt server}} does not show any configured servers.</td>
 <td>5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2947680</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -365,6 +395,12 @@ To work around this issue, restart {{switchd}} with {{sudo systemctl restart swi
 <td></td>
 </tr>
 <tr>
+<td>2861989</td>
+<td>Incomplete or unnecessary configuration in FRR results in FRR restarting instead of rejecting the configuration with an error.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2860323</td>
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
@@ -455,6 +491,36 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3032960</td>
+<td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
+<td>4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3025901</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: 1.2.11.dfsg-1
+Fixed: 1.2.11.dfsg-1+deb10u1</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3025900</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: 1.2.11.dfsg-1
+Fixed: 1.2.11.dfsg-1+deb10u1</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3025899</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: 1.2.11.dfsg-1
+Fixed: 1.2.11.dfsg-1+deb10u1</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3021897</td>
 <td>After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the {{protodown}} flag ON.</td>
 <td>4.4.3, 5.0.0-5.0.1</td>
@@ -467,9 +533,21 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <td></td>
 </tr>
 <tr>
+<td>3021877</td>
+<td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3021698</td>
 <td>After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3021696</td>
+<td>On the NVIDIA SN4600C switch, when you run the {{/usr/share/snmp/resq_pp.py}} script used by SNMP, you see the following log message in syslog regardless of the forwarding table profile set in the {{/etc/cumulus/datapath/traffic.conf}} file.</td>
+<td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -618,12 +696,6 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td></td>
 </tr>
 <tr>
-<td>2951113</td>
-<td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
 <td>3.7.15, 4.1.1-4.4.3, 5.0.0-5.0.1</td>
@@ -633,12 +705,6 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td>2949123</td>
 <td>The NVUE command {{nv show service ntp mgmt server}} does not show any configured servers.</td>
 <td>5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2947680</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -778,6 +844,12 @@ To work around this issue, restart {{switchd}} with {{sudo systemctl restart swi
 <tr>
 <td>2867248</td>
 <td>The {{validate-ports -d}} command does not return the correct speeds for ports. Use the speeds specified in the {{/etc/cumulus/ports.conf}} file.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2861989</td>
+<td>Incomplete or unnecessary configuration in FRR results in FRR restarting instead of rejecting the configuration with an error.</td>
 <td>5.0.0-5.0.1</td>
 <td></td>
 </tr>

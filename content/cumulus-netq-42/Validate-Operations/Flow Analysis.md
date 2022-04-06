@@ -106,7 +106,7 @@ The main Flow Analysis dashboard also displays the buffer occupancy of each devi
 
 {{<figure src="/images/netq/buffer-occupancy-hover-42.png" width="400">}}
 
-The percentages represent the amount of buffer space on the switch that the flow occupied while the analysis was running.
+The percentages represent the amount of buffer space on the switch that the analyzed flow occupied while the analysis was running.
 
 ### View Multiple Paths
 

@@ -56,7 +56,7 @@ cumulus@switch:~$ ifreload -a
 {{< /tabs >}}
 
 {{%notice note%}}
-- By default, the bond uses IEEE 802.3ad link aggregation mode. To configure the bond in balance-xor mode, see {{<link url="#configure-bond-options" text="Configuration Parameters">}} below.
+- By default, the bond uses IEEE 802.3ad link aggregation mode. To configure the bond in balance-xor mode, see {{<link url="#optional-configuration" text="Optional Configuration">}} below.
 - If the bond is *not* going to be part of a bridge, you must specify an IP address.
 - Make sure the name of the bond adheres to Linux interface naming conventions and is unique within the switch.
 - Cumulus Linux does not support bond members at 200G or greater.
@@ -294,16 +294,16 @@ For load balancing between multiple interfaces that are members of the same bond
 
 |  Field  | Default Setting | NVUE Command | `/etc/cumulus/datapath/traffic.conf` Parameter|
 | ------- | --------------- | ------------ | --------------------------------------------- |
-| IP protocol | on |`nv set system forwarding lag-hash ip-protocol`|`lag_hash_config.ip_prot`|
-| Source MAC address| on |`nv set system forwarding lag-hash source-mac`|`lag_hash_config.smac`|
-| Destination MAC address| on | `nv set system forwarding lag-hash destination-mac`|`lag_hash_config.dmac`|
-| Source IP address | on | `nv set system forwarding lag-hash source-ip`|`lag_hash_config.sip` |
-| Destination IP address| on | `nv set system forwarding lag-hash destination-ip`| `lag_hash_config.dip` |
-| Source port | on | `nv set system forwarding lag-hash source-port`|`lag_hash_config.sport` |
-| Destination port | on | `nv set system forwarding lag-hash destination-port`| `lag_hash_config.dport` |
-| Ethertype| on | `nv set system forwarding lag-hash ether-type`|`lag_hash_config.ether_type` |
-| VLAN ID| on | `nv set system forwarding lag-hash vlan`|`lag_hash_config.vlan_id` |
-| TEID (see {{<link url="#gtp-hashing" text="GTP Hashing" >}})| off | `nv set system forwarding lag-hash gtp-teid`| `lag_hash_config.gtp_teid`|
+| IP protocol | on |`nv set system forwarding lag-hash ip-protocol`<br><br>`nv unset system forwarding lag-hash ip-protocol`|`lag_hash_config.ip_prot`|
+| Source MAC address| on |`nv set system forwarding lag-hash source-mac`<br><br>`nv unset system forwarding lag-hash source-mac`|`lag_hash_config.smac`|
+| Destination MAC address| on | `nv set system forwarding lag-hash destination-mac`<br><br>`nv unset system forwarding lag-hash destination-mac`|`lag_hash_config.dmac`|
+| Source IP address | on | `nv set system forwarding lag-hash source-ip`<br><br>`nv unset system forwarding lag-hash source-ip`|`lag_hash_config.sip` |
+| Destination IP address| on | `nv set system forwarding lag-hash destination-ip`<br><br>`nv unset system forwarding lag-hash destination-ip`| `lag_hash_config.dip` |
+| Source port | on | `nv set system forwarding lag-hash source-port`<br><br>`nv unset system forwarding lag-hash source-port`|`lag_hash_config.sport` |
+| Destination port | on | `nv set system forwarding lag-hash destination-port`<br><br>`nv unset system forwarding lag-hash destination-port`| `lag_hash_config.dport` |
+| Ethertype| on | `nv set system forwarding lag-hash ether-type`<br><br>`nv unset system forwarding lag-hash ether-type`|`lag_hash_config.ether_type` |
+| VLAN ID| on | `nv set system forwarding lag-hash vlan`<br><br>`nv unset system forwarding lag-hash vlan`|`lag_hash_config.vlan_id` |
+| TEID (see {{<link url="#gtp-hashing" text="GTP Hashing" >}})| off | `nv set system forwarding lag-hash gtp-teid`<br><br>`nv unset system forwarding lag-hash gtp-teid`| `lag_hash_config.gtp_teid`|
 
 The following example commands omit the source MAC address and destination MAC address from the hash calculation:
 
@@ -418,7 +418,7 @@ To disable TEID-based load balancing, set the `lag_hash_config.gtp_teid` paramet
 To show information for a bond, run the NVUE `nv show interface <bond> bond` command:
 
 ```
-cumulus@switch:~$ nv show interface bond1 bond
+cumulus@switch:~$ nv show interface bond01 bond
                   operational  applied  description
 ----------------  -----------  -------  ------------------------------------------------------
 down-delay        0            0        bond down delay
@@ -430,7 +430,7 @@ up-delay          0            0        bond up delay
 mlag
   enable                       on       Turn the feature 'on' or 'off'.  The default is 'off'.
   id              1            1        MLAG id
-  peer-interface  bond1                 Peer interface
+  peer-interface  bond01                 Peer interface
   status          dual                  Mlag Interface status
 ```
 
@@ -490,10 +490,10 @@ details partner lacp pdu:
 To show specific bond information, use the `nv show interface <bond> <option>` commands:
 
 ```
-cumulus@switch:~$ nv show interface bond1 TAB
+cumulus@switch:~$ nv show interface bond01 TAB
 acl        bridge     ip         lldp       ptp        router     
 bond       evpn       link       pluggable  qos
-cumulus@switch:~$ nv show interface bond1 lldp
+cumulus@switch:~$ nv show interface bond01 lldp
 ```
 
 ## Related Information

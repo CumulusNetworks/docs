@@ -258,12 +258,6 @@ When you use `ip route get` to return information about a single route, the comm
 cumulus@switch:~$ ip route get <ip-address>
 ```
 
-You can also run this command:
-
-```
-cumulus@switch:~$ sudo cl-rctl ip route show <ip-address>
-```
-
 To get the route for any VRF, run the `ip route get <ip-address> oif <vrf-name>` command. For example, to show the route for the management VRF, run:
 
 ```

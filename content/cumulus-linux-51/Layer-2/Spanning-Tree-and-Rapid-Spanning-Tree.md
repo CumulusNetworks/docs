@@ -300,10 +300,10 @@ To show the reason for the port protodown, run the `ip -p -j link show <interfac
 cumulus@switch:~$ ip -p -j link show swp5
 ```
 
-To recover from the `protodown` state, remove the protodown reason and protodown from the interface with the `ip link set dev <interface> protodown_reason bpduguard off` command.
+To recover from the `protodown` state, remove the protodown reason and protodown from the interface with the `mstpctl clearbpduguardviolation <bridge> <interface>` command.
 
 ```
-cumulus@switch:~$ sudo ip link set dev swp5 protodown_reason bpduguard off
+cumulus@switch:~$ mstpctl clearbpduguardviolation bridge swp5
 ```
 
 {{%notice note%}}

@@ -7,10 +7,14 @@ product: NVIDIA Air
 
 Check out some of the latest features added to the {{<exlink url="https://air.nvidia.com" text="NVIDIA Air Infrastructure Simulation Platform">}}.
 
+## April 2022
+<!-- Air:WhatsNew -->
+### 82.2022.0306
+- Fixed a bug that caused incorrect validation of updates to a simulation's sleep timer
+- Fixed API filtering for interfaces in a simulation
+<!-- Air:WhatsNew -->
+
 ## March 2022
-<!-- Air:WhatsNew -->
-<!-- Air:WhatsNew -->
-<<<<<<< HEAD
 ### 82.2022.0309
 - Resolved an error that occurred when logging in to Air via https://www.nvidia.com/en-us/networking/network-simulation/
 ### 82.2022.0314-010

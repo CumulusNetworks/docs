@@ -155,3 +155,8 @@ If you see the error `Failed to load BPF prog: ‘Operation not permitted’`, i
 {{%/notice%}}
 
 Be mindful of the types of applications you want to run in containers on a Cumulus Linux switch. Depending on the configuration of the container, DHCP servers, custom scripts, and other lightweight services run well. However, VPN, NAT and encryption-type services are CPU-intensive and lead to undesirable effects on critical applications.
+<!--
+{{%notice note%}}
+By default, when Docker starts, it creates a bridge called `docker0`. However, for compatibility reasons, Cumulus Linux 5.1 and later disables the `docker0` bridge in the `/etc/docker/daemon.json` file with the attribute `"bridge: none"`.
+{{%/notice%}}
+-->

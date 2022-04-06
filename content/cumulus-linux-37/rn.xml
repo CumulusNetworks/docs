@@ -7,6 +7,31 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3031451</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
+Fixed: 1.2.8.dfsg-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3025471</td>
+<td>CVE-2016-9427: libgc, a conservative garbage collector, is vulnerable to integer overflows in multiple places. In some cases, when asked to allocate a huge quantity of memory, instead of failing the request, it will return a pointer to a small amount of memory possibly tricking the application into a buffer overwrite.
+Vulnerable: 7.2d-6.4
+Fixed: 7.2d-6.4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3021746</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3021693</td>
 <td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
@@ -3063,6 +3088,31 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3031451</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
+Fixed: 1.2.8.dfsg-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3025471</td>
+<td>CVE-2016-9427: libgc, a conservative garbage collector, is vulnerable to integer overflows in multiple places. In some cases, when asked to allocate a huge quantity of memory, instead of failing the request, it will return a pointer to a small amount of memory possibly tricking the application into a buffer overwrite.
+Vulnerable: 7.2d-6.4
+Fixed: 7.2d-6.4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3021746</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3017190</td>
 <td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
 To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
@@ -5873,6 +5923,31 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3031451</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
+Fixed: 1.2.8.dfsg-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3025471</td>
+<td>CVE-2016-9427: libgc, a conservative garbage collector, is vulnerable to integer overflows in multiple places. In some cases, when asked to allocate a huge quantity of memory, instead of failing the request, it will return a pointer to a small amount of memory possibly tricking the application into a buffer overwrite.
+Vulnerable: 7.2d-6.4
+Fixed: 7.2d-6.4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3021746</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>3017190</td>
@@ -9200,6 +9275,31 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3031451</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
+Fixed: 1.2.8.dfsg-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3025471</td>
+<td>CVE-2016-9427: libgc, a conservative garbage collector, is vulnerable to integer overflows in multiple places. In some cases, when asked to allocate a huge quantity of memory, instead of failing the request, it will return a pointer to a small amount of memory possibly tricking the application into a buffer overwrite.
+Vulnerable: 7.2d-6.4
+Fixed: 7.2d-6.4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3021746</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>3017190</td>
@@ -12736,6 +12836,31 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3031451</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
+Fixed: 1.2.8.dfsg-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3025471</td>
+<td>CVE-2016-9427: libgc, a conservative garbage collector, is vulnerable to integer overflows in multiple places. In some cases, when asked to allocate a huge quantity of memory, instead of failing the request, it will return a pointer to a small amount of memory possibly tricking the application into a buffer overwrite.
+Vulnerable: 7.2d-6.4
+Fixed: 7.2d-6.4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3021746</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3017190</td>
 <td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
 To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
@@ -16127,6 +16252,31 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3031451</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
+Fixed: 1.2.8.dfsg-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3025471</td>
+<td>CVE-2016-9427: libgc, a conservative garbage collector, is vulnerable to integer overflows in multiple places. In some cases, when asked to allocate a huge quantity of memory, instead of failing the request, it will return a pointer to a small amount of memory possibly tricking the application into a buffer overwrite.
+Vulnerable: 7.2d-6.4
+Fixed: 7.2d-6.4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3021746</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3017190</td>
 <td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
 To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
@@ -19061,6 +19211,31 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3031451</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
+Fixed: 1.2.8.dfsg-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3025471</td>
+<td>CVE-2016-9427: libgc, a conservative garbage collector, is vulnerable to integer overflows in multiple places. In some cases, when asked to allocate a huge quantity of memory, instead of failing the request, it will return a pointer to a small amount of memory possibly tricking the application into a buffer overwrite.
+Vulnerable: 7.2d-6.4
+Fixed: 7.2d-6.4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3021746</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3017190</td>
 <td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
 To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
@@ -21442,6 +21617,31 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3031451</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
+Fixed: 1.2.8.dfsg-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3025471</td>
+<td>CVE-2016-9427: libgc, a conservative garbage collector, is vulnerable to integer overflows in multiple places. In some cases, when asked to allocate a huge quantity of memory, instead of failing the request, it will return a pointer to a small amount of memory possibly tricking the application into a buffer overwrite.
+Vulnerable: 7.2d-6.4
+Fixed: 7.2d-6.4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3021746</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>3014447</td>
@@ -24122,6 +24322,31 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3031451</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
+Fixed: 1.2.8.dfsg-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3025471</td>
+<td>CVE-2016-9427: libgc, a conservative garbage collector, is vulnerable to integer overflows in multiple places. In some cases, when asked to allocate a huge quantity of memory, instead of failing the request, it will return a pointer to a small amount of memory possibly tricking the application into a buffer overwrite.
+Vulnerable: 7.2d-6.4
+Fixed: 7.2d-6.4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3021746</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3014447</td>
 <td>CVE-2022-22719 CVE-2022-22720 CVE-2022-22721 CVE-2022-23943: Several vulnerabilities have been discovered in the Apache HTTP server, which could result in denial of service, request smuggling or buffer overflows.
 Vulnerable: &lt;= 2.4.10-10+deb8u21
@@ -26199,6 +26424,31 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3031451</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
+Fixed: 1.2.8.dfsg-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3025471</td>
+<td>CVE-2016-9427: libgc, a conservative garbage collector, is vulnerable to integer overflows in multiple places. In some cases, when asked to allocate a huge quantity of memory, instead of failing the request, it will return a pointer to a small amount of memory possibly tricking the application into a buffer overwrite.
+Vulnerable: 7.2d-6.4
+Fixed: 7.2d-6.4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3021746</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>3014447</td>
@@ -28615,6 +28865,31 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3031451</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
+Fixed: 1.2.8.dfsg-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3025471</td>
+<td>CVE-2016-9427: libgc, a conservative garbage collector, is vulnerable to integer overflows in multiple places. In some cases, when asked to allocate a huge quantity of memory, instead of failing the request, it will return a pointer to a small amount of memory possibly tricking the application into a buffer overwrite.
+Vulnerable: 7.2d-6.4
+Fixed: 7.2d-6.4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3021746</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3014447</td>
 <td>CVE-2022-22719 CVE-2022-22720 CVE-2022-22721 CVE-2022-23943: Several vulnerabilities have been discovered in the Apache HTTP server, which could result in denial of service, request smuggling or buffer overflows.
 Vulnerable: &lt;= 2.4.10-10+deb8u21
@@ -30774,6 +31049,22 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3031451</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
+Fixed: 1.2.8.dfsg-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3025471</td>
+<td>CVE-2016-9427: libgc, a conservative garbage collector, is vulnerable to integer overflows in multiple places. In some cases, when asked to allocate a huge quantity of memory, instead of failing the request, it will return a pointer to a small amount of memory possibly tricking the application into a buffer overwrite.
+Vulnerable: 7.2d-6.4
+Fixed: 7.2d-6.4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>3014447</td>
 <td>CVE-2022-22719 CVE-2022-22720 CVE-2022-22721 CVE-2022-23943: Several vulnerabilities have been discovered in the Apache HTTP server, which could result in denial of service, request smuggling or buffer overflows.
 Vulnerable: &lt;= 2.4.10-10+deb8u21
@@ -32576,6 +32867,22 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3031451</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
+Fixed: 1.2.8.dfsg-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3025471</td>
+<td>CVE-2016-9427: libgc, a conservative garbage collector, is vulnerable to integer overflows in multiple places. In some cases, when asked to allocate a huge quantity of memory, instead of failing the request, it will return a pointer to a small amount of memory possibly tricking the application into a buffer overwrite.
+Vulnerable: 7.2d-6.4
+Fixed: 7.2d-6.4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>3014447</td>
@@ -34407,6 +34714,22 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3031451</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
+Fixed: 1.2.8.dfsg-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3025471</td>
+<td>CVE-2016-9427: libgc, a conservative garbage collector, is vulnerable to integer overflows in multiple places. In some cases, when asked to allocate a huge quantity of memory, instead of failing the request, it will return a pointer to a small amount of memory possibly tricking the application into a buffer overwrite.
+Vulnerable: 7.2d-6.4
+Fixed: 7.2d-6.4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>3014447</td>
@@ -36344,6 +36667,22 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3031451</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
+Fixed: 1.2.8.dfsg-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3025471</td>
+<td>CVE-2016-9427: libgc, a conservative garbage collector, is vulnerable to integer overflows in multiple places. In some cases, when asked to allocate a huge quantity of memory, instead of failing the request, it will return a pointer to a small amount of memory possibly tricking the application into a buffer overwrite.
+Vulnerable: 7.2d-6.4
+Fixed: 7.2d-6.4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>3014447</td>
@@ -38327,6 +38666,22 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3031451</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
+Fixed: 1.2.8.dfsg-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3025471</td>
+<td>CVE-2016-9427: libgc, a conservative garbage collector, is vulnerable to integer overflows in multiple places. In some cases, when asked to allocate a huge quantity of memory, instead of failing the request, it will return a pointer to a small amount of memory possibly tricking the application into a buffer overwrite.
+Vulnerable: 7.2d-6.4
+Fixed: 7.2d-6.4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>3014447</td>
 <td>CVE-2022-22719 CVE-2022-22720 CVE-2022-22721 CVE-2022-23943: Several vulnerabilities have been discovered in the Apache HTTP server, which could result in denial of service, request smuggling or buffer overflows.
 Vulnerable: &lt;= 2.4.10-10+deb8u21
@@ -39612,6 +39967,22 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3031451</td>
+<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
+Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
+Fixed: 1.2.8.dfsg-2+deb8u2</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3025471</td>
+<td>CVE-2016-9427: libgc, a conservative garbage collector, is vulnerable to integer overflows in multiple places. In some cases, when asked to allocate a huge quantity of memory, instead of failing the request, it will return a pointer to a small amount of memory possibly tricking the application into a buffer overwrite.
+Vulnerable: 7.2d-6.4
+Fixed: 7.2d-6.4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>3014447</td>

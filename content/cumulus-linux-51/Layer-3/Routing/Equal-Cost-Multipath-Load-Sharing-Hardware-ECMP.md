@@ -247,14 +247,9 @@ As a result, some flows hash to new next hops, which can impact anycast deployme
 
 Cumulus Linux does *not* enable resilient hashing by default. When you enable resilient hashing, all ECMP groups share 65,536 buckets. An ECMP group is a list of unique next hops that multiple ECMP routes reference.
 
-An ECMP route counts as a single route with multiple next hops:
-
-```
-cumulus@switch:~$ ip route show 10.1.1.0/24
-10.1.1.0/24  proto zebra  metric 20
-  nexthop via 192.168.1.1 dev swp1 weight 1 onlink
-  nexthop via 192.168.2.1 dev swp2 weight 1 onlink
-```
+{{%notice note%}}
+An ECMP route counts as a single route with multiple next hops.
+{{%/notice%}}
 
 All ECMP routes must use the same number of buckets (you cannot configure the number of buckets per ECMP route).
 

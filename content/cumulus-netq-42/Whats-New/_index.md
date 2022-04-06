@@ -14,16 +14,18 @@ This page summarizes new feature and improvements for the {{<product>}} {{<versi
 
 NetQ 4.2.0 includes the following new features and improvements:
 
-- Improved Event Management
-- Flow Analysis Enhancements
-  - Queue Occupancy
-  - Partial Path Support
-  - WJH Data
+- Improved event management
+- {{<link title="Flow Analysis" text="Flow Analysis Enhancements">}}
+  - {{<link title="Flow Analysis#partial-path-support" text="Partial path support">}}
+  - {{<link title="Flow Analysis#view-wjh-events" text="WJH event support">}}
 - {{<link title="Validation Checks#roce-validation-tests" text="RoCE Validation">}}
 - {{<link title="gNMI Streaming" text="New gNMI Object Models">}}
   - openconfig-plaftorm
   - openconfig-lldp
-- Early Access OPTA Functionality in NetQ Agent
+- Simplified install process
+- Network health UI improvements with validation status
+- {{<link title="Validation Checks##addresses-validation-tests" text="GUI support for Duplicate Address Detection">}}
+- Early Access OPTA functionality in NetQ Agent
 - Early Access support for DPU Monitoring
 ## Upgrade Paths
 

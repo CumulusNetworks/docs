@@ -43,7 +43,6 @@ Check out some of the latest features added to the {{<exlink url="https://air.nv
 - NVIDIA Cumulus Linux 4.4.3 is now available for use in custom topologies
 ### 82.2022.0228-008
 - Fixed incorrect sorting of simulations
-=======
 - Updated the visual design of the header and navigation panels [82.2022.0317-014]
 - Fixed a bug that prevented VMs from being `Reset` after the guest OS is shutdown [82.2022.0317-014]
 - Fixed a bug that prevented NVIDIA Air from creating NetQ accounts for some simulations [82.2022.0317-014]
@@ -60,7 +59,6 @@ Check out some of the latest features added to the {{<exlink url="https://air.nv
 - Improved UI transitions for "Try It" documentation examples [82.2022.0208-009]
 - Fixed a bug that caused new simulations to appear as sleeping while they were loading [82.2022.0204-013]
 - Fixed a bug that might prevent an error from displaying when resource budgets exceed the maximum [82.2022.0204-013]
->>>>>>> origin/stage
 
 ## January 2022
 ### 82.2022.0112

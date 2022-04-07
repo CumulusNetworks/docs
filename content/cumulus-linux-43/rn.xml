@@ -578,6 +578,13 @@ MemoryError
 <td>5.0.0-5.0.1</td>
 </tr>
 <tr>
+<td>2786264</td>
+<td>When the {{switchd}} service restarts, any dropped traffic registered by WJH change to unregistered and WJH stops reporting all dropped traffic. This occurs because the  WJH service does not restart automatically when the {{switchd}} service restarts.
+To work around this issue, manually restart WJH with the {{sudo systemctl restart what-just-happened.service}} command every time  the {{switchd}} service restarts.</td>
+<td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>2783611</td>
 <td>If you remove ports from a bridge and add IP addresses in one {{ifreload}}, connected routes are bound to the wrong routing information field.</td>
 <td>4.3.0-4.4.1</td>

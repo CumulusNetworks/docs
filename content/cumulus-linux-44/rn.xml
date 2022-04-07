@@ -94,12 +94,6 @@ Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
 <td></td>
 </tr>
 <tr>
-<td>3008388</td>
-<td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
-<td>4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3007605</td>
 <td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
 Vulnerable: &lt;= 1.1.1d-0+deb10u7
@@ -604,6 +598,13 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td>2788780</td>
 <td>When you enable ARP and ND suppression and the switch forwards ARP and ND packets to the kernel, RX_DRP counters might increment but the packets are processed as normal.</td>
 <td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2786264</td>
+<td>When the {{switchd}} service restarts, any dropped traffic registered by WJH change to unregistered and WJH stops reporting all dropped traffic. This occurs because the  WJH service does not restart automatically when the {{switchd}} service restarts.
+To work around this issue, manually restart WJH with the {{sudo systemctl restart what-just-happened.service}} command every time  the {{switchd}} service restarts.</td>
+<td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2595,6 +2596,13 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td>2788780</td>
 <td>When you enable ARP and ND suppression and the switch forwards ARP and ND packets to the kernel, RX_DRP counters might increment but the packets are processed as normal.</td>
 <td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2786264</td>
+<td>When the {{switchd}} service restarts, any dropped traffic registered by WJH change to unregistered and WJH stops reporting all dropped traffic. This occurs because the  WJH service does not restart automatically when the {{switchd}} service restarts.
+To work around this issue, manually restart WJH with the {{sudo systemctl restart what-just-happened.service}} command every time  the {{switchd}} service restarts.</td>
+<td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4894,6 +4902,13 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td>2788780</td>
 <td>When you enable ARP and ND suppression and the switch forwards ARP and ND packets to the kernel, RX_DRP counters might increment but the packets are processed as normal.</td>
 <td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2786264</td>
+<td>When the {{switchd}} service restarts, any dropped traffic registered by WJH change to unregistered and WJH stops reporting all dropped traffic. This occurs because the  WJH service does not restart automatically when the {{switchd}} service restarts.
+To work around this issue, manually restart WJH with the {{sudo systemctl restart what-just-happened.service}} command every time  the {{switchd}} service restarts.</td>
+<td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>

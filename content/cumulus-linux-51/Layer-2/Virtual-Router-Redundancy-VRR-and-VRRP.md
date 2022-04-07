@@ -964,7 +964,7 @@ IPv6 Addresses                       1
 <!-- vale off -->
 ## Fabric-wide MAC Address
 <!-- vale on -->
-To ensure consistency across layer 2 VNIs, SVIs, and VRR devices, set a global, fabric-wide MAC address on the switch. You can either:
+To ensure consistency across layer 2 VNIs, SVIs, and VRR devices in a mutli-fabric deployment, set a global, fabric-wide MAC address on the switch. You can either:
 - Set a global MAC address from the reserved range 00:00:5E:00:01:00 to 00:00:5E:00:01:FF.
 - Set a fabric ID, from which Cumulus Linux derives the global MAC address. You can specify a number between 1 and 225. Cumulus Linux adds the number to the MAC address 00:00:5E:00:01:00 in hex. For example, if you specify 225, cumulus Linux uses the global MAC address 00:00:5E:00:01:FF.
 

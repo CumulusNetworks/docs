@@ -3091,13 +3091,13 @@ To see a description for a command, type the command with `-h` at the end:
 ```
 cumulus@cumulus:mgmt:~$ nv set mlag backup -h
 Usage:
-  nv set mlag backup [options] <backup-id> ...
+  nv set mlag backup [options] <backup-ip> ...
 
 Description:
   Set of MLAG backups
 
 Identifiers:
-  <backup-id>  Backup IP for peer to reach us
+  <backup-ip>  Backup IP for peer to reach us
 
 General Options:
   -h, --help   Show help.

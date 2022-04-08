@@ -42,9 +42,9 @@ Each peer switch periodically makes a list of the LACP partner MAC addresses for
 
 MLAG has these requirements:
 
-- There must be a direct connection between the two peer switches configured with MLAG. This is typically a bond for increased reliability and bandwidth.
+- The two peer switches with MLAG must be directly connected. This is typically a bond for increased reliability and bandwidth.
 - There must be only two peer switches in one MLAG configuration, but you can have multiple configurations in a network for *switch-to-switch MLAG*.
-- Both switches in the MLAG pair must be running the same release of Cumulus Linux. See {{<link url="Upgrading-Cumulus-Linux#upgrade-switches-in-an-mlag-pair" text="Upgrading Cumulus Linux">}}.
+- Both switches in the MLAG pair must run the same release of Cumulus Linux. See {{<link url="Upgrading-Cumulus-Linux#upgrade-switches-in-an-mlag-pair" text="Upgrading Cumulus Linux">}}.
 
 {{%notice note%}}
 - MLAG is *not* supported in a multiple VLAN-aware bridge configuration.
@@ -53,11 +53,7 @@ MLAG has these requirements:
 
 ## Basic Configuration
 
-To configure MLAG, you need to create a bond that uses LACP on the dual-connected devices and configure the interfaces (including bonds, VLANs, bridges, and peer links) on each peer switch.
-
-### Configure MLAG Interfaces
-
-Follow these steps on each peer switch in the MLAG pair:
+To configure MLAG, you need to create a bond that uses LACP on the dual-connected devices and configure the interfaces (including bonds, VLANs, bridges, and peer links) on each peer switch. Follow these steps on each peer switch in the MLAG pair:
 
 1. On the dual-connected device, such as a host or server that sends traffic to and from the switch, create a bond that uses LACP. The method you use varies with the type of device you are configuring.
 
@@ -345,29 +341,6 @@ MLAG synchronizes the dynamic state between the two peer switches but it does no
 - Static address entries, such as static FDB entries and static IGMP entries.
 - QoS configuration, such as ACL entries.
 
-### Verify Configuration
-
-To verify MLAG configuration, run the `net show mlag` command or the `clagctl` command:
-
-```
-cumulus@leaf01:mgmt:~$ net show clag
-The peer is alive
-     Our Priority, ID, and Role: 32768 44:38:39:00:00:11 primary
-    Peer Priority, ID, and Role: 32768 44:38:39:00:00:12 secondary
-          Peer Interface and IP: peerlink.4094 fe80::4638:39ff:fe00:12 (linklocal)
-                      Backup IP: 10.10.10.2 (active)
-                     System MAC: 44:38:39:be:ef:aa
-
-CLAG Interfaces
-Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
-----------------   ----------------   -------   --------------------   -----------------
-           bond1   bond1              1         -                      -
-           bond2   bond2              2         -                      -
-           bond3   bond3              3         -                      -
-```
-
-See additional verification commands in {{<link url="#troubleshooting" text="Troubleshooting">}} below.
-
 ## Optional Configuration
 
 This section describes optional configuration procedures.
@@ -484,7 +457,7 @@ cumulus@leaf01:~$ sudo ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-### Configure MLAG with a Traditional Mode Bridge
+### Configure MLAG with a Traditional Bridge
 
 To configure MLAG with a traditional mode bridge instead of a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode bridge">}}, you must configure the peer link and all dual-connected links as {{<link url="Traditional-Bridge-Mode" text="untagged (native)">}} ports on a bridge (note the absence of any VLANs in the `bridge-ports` line and the lack of the `bridge-vlan-aware` parameter below):
 
@@ -706,15 +679,39 @@ Use the following troubleshooting tips to check MLAG configuration.
 
 ### Check MLAG Status
 
-To check the status of your MLAG configuration:
+To verify MLAG configuration, run the `nv show mlag` command:
 
 ```
-cumulus@leaf01:~$ clagctl
+cumulus@leaf01:mgmt:~$ nv show mlag
+                operational              applied            description
+--------------  -----------------------  -----------------  ------------------------------------------------------
+enable                                   on                 Turn the feature 'on' or 'off'.  The default is 'off'.
+debug                                    off                Enable MLAG debugging
+init-delay                               100                The delay, in seconds, before bonds are brought up.
+mac-address     44:38:39:be:ef:aa        44:38:39:BE:EF:AA  Override anycast-mac and anycast-id
+peer-ip         fe80::4638:39ff:fe00:5a  linklocal          Peer Ip Address
+priority        32768                    32768              Mlag Priority
+[backup]        10.10.10.2               10.10.10.2         Set of MLAG backups
+backup-active   False                                       Mlag Backup Status
+backup-reason                                               Mlag Backup Reason
+local-id        44:38:39:00:00:59                           Mlag Local Unique Id
+local-role      primary                                     Mlag Local Role
+peer-alive      True                                        Mlag Peer Alive Status
+peer-id         44:38:39:00:00:5a                           Mlag Peer Unique Id
+peer-interface  peerlink.4094                               Mlag Peerlink Interface
+peer-priority   32768                                       Mlag Peer Priority
+peer-role       secondary                                   Mlag Peer Role
+```
+
+Run the `net show mlag` command or the `clagctl` command to show the MLAG interface information:
+
+```
+cumulus@leaf01:mgmt:~$ net show clag
 The peer is alive
      Our Priority, ID, and Role: 32768 44:38:39:00:00:11 primary
     Peer Priority, ID, and Role: 32768 44:38:39:00:00:12 secondary
           Peer Interface and IP: peerlink.4094 fe80::4638:39ff:fe00:12 (linklocal)
-                      Backup IP: 10.10.10.2 (inactive)
+                      Backup IP: 10.10.10.2 (active)
                      System MAC: 44:38:39:be:ef:aa
 
 CLAG Interfaces
@@ -756,30 +753,6 @@ peerTimeout = 20
 initDelay = 100
 sendTimeout = 30
 ...
-```
-
-The NVUE `nv show mlag` command shows the current MLAG configuration settings:
-
-```
-cumulus@leaf01:mgmt:~$ nv show mlag
-                operational              applied            description
---------------  -----------------------  -----------------  ------------------------------------------------------
-enable                                   on                 Turn the feature 'on' or 'off'.  The default is 'off'.
-debug                                    off                Enable MLAG debugging
-init-delay                               100                The delay, in seconds, before bonds are brought up.
-mac-address     44:38:39:be:ef:aa        44:38:39:BE:EF:AA  Override anycast-mac and anycast-id
-peer-ip         fe80::4638:39ff:fe00:12  linklocal          Peer Ip Address
-priority        32768                    32768              Mlag Priority
-[backup]        10.10.10.2               10.10.10.2         Set of MLAG backups
-backup-active   False                                       Mlag Backup Status
-backup-reason                                               Mlag Backup Reason
-local-id        44:38:39:00:00:11                           Mlag Local Unique Id
-local-role      primary                                     Mlag Local Role
-peer-alive      True                                        Mlag Peer Alive Status
-peer-id         44:38:39:00:00:12                           Mlag Peer Unique Id
-peer-interface  peerlink.4094                               Mlag Peerlink Interface
-peer-priority   32768                                       Mlag Peer Priority
-peer-role       secondary                                   Mlag Peer Role
 ```
 
 ### View the MLAG Log File
@@ -1091,9 +1064,9 @@ cumulus@leaf01:mgmt:~$ ip link show
 
 Cumulus Linux puts interfaces in a protodown state under the following conditions:
 
-- When there is an LACP partner MAC address mismatch. For example if a bond comes up with a `clag-id` and the peer is using a bond with the same `clag-id` but a different LACP partner MAC address. The `clagctl` command output shows the protodown reason as a `partner-mac-mismatch`.
+- When there is an LACP partner MAC address mismatch. For example if a bond comes up with a `clag-id` and the peer is using a bond with the same `clag-id` but a different LACP partner MAC address. The NVUE `nv show mlag lacp-conflict` or the Linux `clagctl` command output shows the protodown reason as a `partner-mac-mismatch`.
 
-- When there is a duplicate LACP partner MAC address. For example, when there are multiple LACP bonds between the same two LACP endpoints. The `clagctl` command output shows the protodown reason as a `duplicate-partner-mac`.
+- When there is a duplicate LACP partner MAC address. For example, when there are multiple LACP bonds between the same two LACP endpoints. The NVUE `nv show mlag lacp-conflict` or the Linux `clagctl` command output shows the protodown reason as a `duplicate-partner-mac`.
 
   To prevent a bond from coming up when an MLAG bond with an LACP partner MAC address already in use comes up, use the `--clag-args --allowPartnerMacDup False` option. This option puts the slaves of that bond interface in a protodown state and the `clagctl` output shows the protodown reason as a `duplicate-partner-mac`.
 

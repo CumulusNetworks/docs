@@ -4,12 +4,12 @@ author: NVIDIA
 weight: 480
 toc: 3
 ---
-Linux bonding provides a method for aggregating multiple network interfaces (*slaves*) into a single logical bonded interface (*bond*). Link aggregation is useful for linear scaling of bandwidth, load balancing, and failover protection.
+Linux bonding provides a way to aggregate multiple network interfaces (*slaves*) into a single logical bonded interface (*bond*). Link aggregation is useful for linear scaling of bandwidth, load balancing, and failover protection.
 
 Cumulus Linux supports two bonding modes:
 
-- IEEE 802.3ad link aggregation mode that allows you to combine one or more links to form a *link aggregation group* (LAG) so that a media access control (MAC) client can treat the group as a single link. IEEE 802.3ad link aggregation is the default mode.
-- Balance-xor mode, where the bonding of slave interfaces is static and all slave interfaces are active for load balancing and fault tolerance. This is useful for {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} deployments.
+- IEEE 802.3ad link aggregation mode combines one or more links to form a *link aggregation group* (LAG) so that a media access control (MAC) client can treat the group as a single link. IEEE 802.3ad link aggregation is the default mode.
+- Balance-xor mode balances outgoing traffic across active ports according to the hashed protocol header information and accepts incoming traffic from any active port. All slave interfaces are active for load balancing and fault tolerance. This is useful for {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} deployments.
 
 Cumulus Linux uses version 1 of the LAG control protocol (LACP).
 
@@ -22,15 +22,15 @@ Cumulus Linux uses version 1 of the LAG control protocol (LACP).
 
 ## Create a Bond
 
-To create a bond, specify the bond members. In the example below, the front panel port interfaces swp1 thru swp4 are members of bond0 but swp5 and swp6 are not part of bond0.
+To create a bond, specify the bond members. In the example below, the front panel port interfaces swp1 thru swp4 are members of bond1 but swp5 and swp6 are not part of bond1.
 
-{{< figure src = "/images/cumulus-linux/bonding-example.png" >}}
+{{< figure src = "/images/cumulus-linux/bonding-example1.png" >}}
 
 {{< tabs "TabID91 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface bond0 bond member swp1-4
+cumulus@switch:~$ nv set interface bond1 bond member swp1-4
 cumulus@switch:~$ nv config apply
 ```
 
@@ -42,8 +42,8 @@ Edit the `/etc/network/interfaces` file to add a stanza for the bond, then run t
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto bond0
-iface bond0
+auto bond1
+iface bond1
     bond-slaves swp1 swp2 swp3 swp4
 ...
 ```
@@ -64,27 +64,27 @@ cumulus@switch:~$ ifreload -a
 
 {{%/notice%}}
 
-When you start networking, the switch creates bond0 as MASTER and interfaces swp1 thru swp4 come up in SLAVE mode:
+When you start networking, the switch creates bond1 as MASTER and interfaces swp1 thru swp4 come up in SLAVE mode:
 
 ```
 cumulus@switch:~$ ip link show
 ...
 
-3: swp1: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond0 state UP mode DEFAULT qlen 500
+3: swp1: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond1 state UP mode DEFAULT qlen 500
     link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
-4: swp2: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond0 state UP mode DEFAULT qlen 500
+4: swp2: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond1 state UP mode DEFAULT qlen 500
     link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
-5: swp3: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond0 state UP mode DEFAULT qlen 500
+5: swp3: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond1 state UP mode DEFAULT qlen 500
     link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
-6: swp4: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond0 state UP mode DEFAULT qlen 500
+6: swp4: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond1 state UP mode DEFAULT qlen 500
     link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
 ...
 
-55: bond0: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT
+55: bond1: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT
     link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
 ```
 
-All slave interfaces within a bond have the same MAC address as the bond. Typically, the first slave you add to the bond donates its MAC address as the bond MAC address, whereas the MAC addresses of the other slaves are the bond MAC address. The bond MAC address is the source MAC address for all traffic leaving the bond and provides a single destination MAC address to address traffic to the bond.
+All slave interfaces within a bond have the same MAC address as the bond. Typically, the first slave you add to the bond donates its MAC address as the bond MAC address. The bond MAC address is the source MAC address for all traffic leaving the bond and provides a single destination MAC address to address traffic to the bond.
 
 Removing a bond slave interface from which a bond derives its MAC address affects traffic when the bond interface flaps to update the MAC address.
 
@@ -95,27 +95,27 @@ You can set these configuration options for a bond.
 | <div style="width:200px">Option  | Description |
 |---------|------------ |
 |Link aggregation mode |Cumulus Linux supports IEEE 802.3ad link aggregation mode (802.3ad) and balance-xor mode. The default mode is 802.3ad. <br>Set balance-xor mode only if you cannot use LACP; LACP can detect mismatched link attributes between bond members and can even detect misconnections.{{%notice note%}}When you use balance-xor mode to dual-connect host-facing bonds in an MLAG environment, you must configure the MLAG ID with the same value on both MLAG switches. Otherwise, the MLAG switch pair treats the bonds as single-connected.{{%/notice%}} |
-|MII link monitoring frequency|Set how often (in milliseconds) to inspect the link state of each slave for failures. <br>You can specify a value between 0 and 255. The default value is 100. |
-|miimon link status mode| Set the miimon link status mode to either netif_carrier_ok(), or MII or ethtool ioctls. The default setting is netif_carrier_ok(). |
+|MII link monitoring frequency|How often (in milliseconds) you want to inspect the link state of each slave for failures. <br>You can specify a value between 0 and 255. The default value is 100. |
+|miimon link status mode| The miimon link status mode. You can set the mode to either netif_carrier_ok(), or MII or ethtool ioctls. The default setting is netif_carrier_ok(). |
 |LACP bypass| Set LACP bypass on a bond in 802.3ad mode so that it becomes active and forwards traffic even when there is no LACP partner. You can specify on or off. The default setting is off. See {{<link url="LACP-Bypass" text="LACP Bypass">}}.|
-|Transmit rate| Set the rate at which the link partner transmits LACP control packets to slow or fast. The default setting is fast.|
-|Minimum number of links| Set the minimum number of links that must be active before the bond goes into service. You can set a value between 0 and 255. The default value is 1, which indicates that the bond must have at least one active member.<br><br>Use a value greater than 1 if you need higher level services to ensure a minimum aggregate bandwidth level before activating a bond.<br><br>If the number of active members drops below this setting, the bond appears to upper-level protocols as link-down. When the number of active links returns to greater than or equal to this value, the bond becomes link-up.|
+|Transmit rate| The rate at which the link partner transmits LACP control packets. You can specify slow or fast. The default setting is fast.|
+|Minimum number of links| The minimum number of links that must be active before the bond goes into service. You can set a value between 0 and 255. The default value is 1, which indicates that the bond must have at least one active member.<br><br>Use a value greater than 1 if you need higher level services to ensure a minimum aggregate bandwidth level before activating a bond.<br><br>If the number of active members drops below this setting, the bond appears to upper-level protocols as link-down. When the number of active links returns to greater than or equal to this value, the bond becomes link-up.|
 
 {{%notice note%}}
 Cumulus Linux sets the bond configuration options to the recommended values by default; use caution when changing settings.
 {{%/notice%}}
 
-To set the link aggregation mode on bond01 to balance-xor mode:
+To set the link aggregation mode on bond1 to balance-xor mode:
 
 {{< tabs "TabID107 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface bond01 bond mode static 
+cumulus@switch:~$ nv set interface bond1 bond mode static 
 cumulus@switch:~$ nv config apply
 ```
 
-To reset the link aggregation mode for bond01 to the default value of 802.3ad, run the `nv set interface bond01 bond mode lacp` command.
+To reset the link aggregation mode for bond1 to the default value of 802.3ad, run the `nv set interface bond1 bond mode lacp` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -125,8 +125,8 @@ Edit the `/etc/network/interfaces` file and add the `balance-xor` parameter to t
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto bond01
-iface bond01
+auto bond1
+iface bond1
     bond-mode balance-xor
     bond-slaves swp1 swp2 swp3 swp4
 ...
@@ -136,13 +136,13 @@ iface bond01
 cumulus@switch:~$ ifreload -a
 ```
 
-To reset the bond mode for bond01 to the default value of 802.3ad, use the `bond-mode 802.3ad` parameter:
+To reset the bond mode for bond1 to the default value of 802.3ad, use the `bond-mode 802.3ad` parameter:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto bond01
-iface bond01
+auto bond1
+iface bond1
     bond-mode 802.3ad
     bond-slaves swp1 swp2 swp3 swp4
 ...
@@ -157,7 +157,7 @@ To enable LACP bypass:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface bond01 bond lacp-bypass on 
+cumulus@switch:~$ nv set interface bond1 bond lacp-bypass on 
 cumulus@switch:~$ nv config apply
 ```
 
@@ -169,8 +169,8 @@ Edit the `/etc/network/interfaces` file and add the `bond-lacp-bypass-allow` par
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto bond01
-iface bond01
+auto bond1
+iface bond1
     bond-lacp-bypass-allow
     bond-slaves swp1 swp2 swp3 swp4
 ...
@@ -198,8 +198,8 @@ Edit the `/etc/network/interfaces` file and add the `bond-use-carrier no` parame
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto bond01
-iface bond01
+auto bond1
+iface bond1
     bond-use-carrier no
     bond-slaves swp1 swp2 swp3 swp4
 ...
@@ -220,11 +220,11 @@ To set the rate at which the link partner transmits LACP control packets to slow
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface bond01 bond lacp-rate slow
+cumulus@switch:~$ nv set interface bond1 bond lacp-rate slow
 cumulus@switch:~$ nv config apply
 ```
 
-To reset the rate to the default value of fast, run the `nv set interface bond01 bond lacp-rate fast` command.
+To reset the rate to the default value of fast, run the `nv set interface bond1 bond lacp-rate fast` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -234,8 +234,8 @@ Edit the `/etc/network/interfaces` file and add the `bond-lacp-rate slow` parame
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto bond01
-iface bond01
+auto bond1
+iface bond1
     bond-lacp-rate slow
     bond-slaves swp1 swp2 swp3 swp4
 ...
@@ -265,8 +265,8 @@ Edit the `/etc/network/interfaces` file and add the `bond-min-links 50` paramete
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto bond01
-iface bond01
+auto bond1
+iface bond1
     bond-min-links 50
     bond-slaves swp1 swp2 swp3 swp4
 ...
@@ -292,7 +292,7 @@ The hash calculation uses packet header data to choose to which slave to transmi
 
 For load balancing between multiple interfaces that are members of the same bond, you can hash on these fields:
 
-|  Field  | Default Setting | NVUE Command | `/etc/cumulus/datapath/traffic.conf` Parameter|
+| <div style="width:200px">Field  | Default Setting | NVUE Command | `traffic.conf`|
 | ------- | --------------- | ------------ | --------------------------------------------- |
 | IP protocol | on |`nv set system forwarding lag-hash ip-protocol`<br><br>`nv unset system forwarding lag-hash ip-protocol`|`lag_hash_config.ip_prot`|
 | Source MAC address| on |`nv set system forwarding lag-hash source-mac`<br><br>`nv unset system forwarding lag-hash source-mac`|`lag_hash_config.smac`|
@@ -418,26 +418,25 @@ To disable TEID-based load balancing, set the `lag_hash_config.gtp_teid` paramet
 To show information for a bond, run the NVUE `nv show interface <bond> bond` command:
 
 ```
-cumulus@switch:~$ nv show interface bond01 bond
-                  operational  applied  description
-----------------  -----------  -------  ------------------------------------------------------
-down-delay        0            0        bond down delay
-lacp-bypass                    off      lacp bypass
-lacp-rate         fast         fast     lacp rate
-mode                           lacp     bond mode
-up-delay          0            0        bond up delay
-[member]          swp1         swp1     Set of bond members
+cumulus@leaf01:mgmt:~$ nv show interface bond1 bond
+             operational  applied  description
+-----------  -----------  -------  ------------------------------------------------------
+down-delay   0            0        bond down delay
+lacp-bypass  on           on       lacp bypass
+lacp-rate    fast         fast     lacp rate
+mode                      lacp     bond mode
+up-delay     0            0        bond up delay
+[member]     swp1         swp1     Set of bond members
 mlag
-  enable                       on       Turn the feature 'on' or 'off'.  The default is 'off'.
-  id              1            1        MLAG id
-  peer-interface  bond01                 Peer interface
-  status          dual                  Mlag Interface status
+  enable                  on       Turn the feature 'on' or 'off'.  The default is 'off'.
+  id         1            1        MLAG id
+  status     single                Mlag Interface status
 ```
 
 You can also run the Linux `sudo cat /proc/net/bonding/<bond>` command:
 
 ```
-cumulus@switch:~$ sudo cat /proc/net/bonding/bond01
+cumulus@leaf01:mgmt:~$ sudo cat /proc/net/bonding/bond1
 ...
 Bonding Mode: IEEE 802.3ad Dynamic link aggregation
 Transmit Hash Policy: layer3+4 (1)
@@ -456,44 +455,53 @@ Active Aggregator Info:
 	Aggregator ID: 1
 	Number of ports: 1
 	Actor Key: 9
-	Partner Key: 9
-	Partner Mac Address: 44:38:39:00:00:12
+	Partner Key: 1
+	Partner Mac Address: 00:00:00:00:00:00
 
 Slave Interface: swp1
 MII Status: up
 Speed: 1000 Mbps
 Duplex: full
 Link Failure Count: 0
-Permanent HW addr: 44:38:39:00:00:11
+Permanent HW addr: 44:38:39:00:00:37
 Slave queue ID: 0
 Aggregator ID: 1
 Actor Churn State: none
-Partner Churn State: none
+Partner Churn State: churned
 Actor Churned Count: 1
 Partner Churned Count: 2
-details actor lacp pdu:
-    system priority: 65535
-    system mac address: 44:38:39:be:ef:aa
-    port key: 9
-    port priority: 255
-    port number: 1
-    port state: 63
-details partner lacp pdu:
-    system priority: 65535
-    system mac address: 44:38:39:00:00:12
-    oper key: 9
-    port priority: 255
-    port number: 1
-    port state: 63
+...
 ```
 
 To show specific bond information, use the `nv show interface <bond> <option>` commands:
 
 ```
-cumulus@switch:~$ nv show interface bond01 TAB
+cumulus@switch:~$ nv show interface bond1 TAB
 acl        bridge     ip         lldp       ptp        router     
 bond       evpn       link       pluggable  qos
-cumulus@switch:~$ nv show interface bond01 lldp
+cumulus@leaf02:mgmt:~$ nv show interface bond1 link
+                       operational        applied  description
+---------------------  -----------------  -------  ----------------------------------------------------------------------
+auto-negotiate         off                on       Link speed and characteristic auto negotiation
+duplex                 full               full     Link duplex
+fec                                       auto     Link forward error correction mechanism
+mtu                    9000               9000     interface mtu
+speed                  1G                 auto     Link speed
+dot1x
+  mab                                     off      bypass MAC authentication
+  parking-vlan                            off      VLAN for unauthorized MAC addresses
+state                  up                 up       The state of the interface
+stats
+  carrier-transitions  1                           Number of times the interface state has transitioned between up and...
+  in-bytes             0 Bytes                     total number of bytes received on the interface
+  in-drops             0                           number of received packets dropped
+  in-errors            0                           number of received packets with errors
+  in-pkts              0                           total number of packets received on the interface
+  out-bytes            3.65 MB                     total number of bytes transmitted out of the interface
+  out-drops            0                           The number of outbound packets that were chosen to be discarded eve...
+  out-errors           0                           The number of outbound packets that could not be transmitted becaus...
+  out-pkts             51949                       total number of packets transmitted out of the interface
+mac                    44:38:39:00:00:37           MAC Address on an interface
 ```
 
 ## Related Information

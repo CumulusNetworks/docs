@@ -1963,6 +1963,10 @@ This simulation starts with the example PIM configuration. To simplify the examp
 
 To further validate the configuration, run the PIM show commands listed in the troubleshooting section above.
 
+{{%notice note%}}
+This simulation runs on Cumulus Linux 5.0. Cumulus Linux 5.1 configuration is coming soon.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< /tabs >}}
 <!-- vale on -->

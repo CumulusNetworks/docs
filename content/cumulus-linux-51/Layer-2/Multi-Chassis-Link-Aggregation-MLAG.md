@@ -42,9 +42,9 @@ Each peer switch periodically makes a list of the LACP partner MAC addresses for
 
 MLAG has these requirements:
 
-- There must be a direct connection between the two peer switches configured with MLAG. This is typically a bond for increased reliability and bandwidth.
+- The two peer switches with MLAG must be directly connected. This is typically a bond for increased reliability and bandwidth.
 - There must be only two peer switches in one MLAG configuration, but you can have multiple configurations in a network for *switch-to-switch MLAG*.
-- Both switches in the MLAG pair must be running the same release of Cumulus Linux. See {{<link url="Upgrading-Cumulus-Linux#upgrade-switches-in-an-mlag-pair" text="Upgrading Cumulus Linux">}}.
+- Both switches in the MLAG pair must run the same release of Cumulus Linux. See {{<link url="Upgrading-Cumulus-Linux#upgrade-switches-in-an-mlag-pair" text="Upgrading Cumulus Linux">}}.
 
 {{%notice note%}}
 - MLAG is *not* supported in a multiple VLAN-aware bridge configuration.
@@ -53,11 +53,7 @@ MLAG has these requirements:
 
 ## Basic Configuration
 
-To configure MLAG, you need to create a bond that uses LACP on the dual-connected devices and configure the interfaces (including bonds, VLANs, bridges, and peer links) on each peer switch.
-
-### Configure MLAG Interfaces
-
-Follow these steps on each peer switch in the MLAG pair:
+To configure MLAG, you need to create a bond that uses LACP on the dual-connected devices and configure the interfaces (including bonds, VLANs, bridges, and peer links) on each peer switch. Follow these steps on each peer switch in the MLAG pair:
 
 1. On the dual-connected device, such as a host or server that sends traffic to and from the switch, create a bond that uses LACP. The method you use varies with the type of device you are configuring.
 
@@ -461,7 +457,7 @@ cumulus@leaf01:~$ sudo ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-### Configure MLAG with a Traditional Mode Bridge
+### Configure MLAG with a Traditional Bridge
 
 To configure MLAG with a traditional mode bridge instead of a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode bridge">}}, you must configure the peer link and all dual-connected links as {{<link url="Traditional-Bridge-Mode" text="untagged (native)">}} ports on a bridge (note the absence of any VLANs in the `bridge-ports` line and the lack of the `bridge-vlan-aware` parameter below):
 

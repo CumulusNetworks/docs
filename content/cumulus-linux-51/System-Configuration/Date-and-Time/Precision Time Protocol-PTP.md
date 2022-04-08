@@ -58,10 +58,6 @@ The basic configuration shown below uses the *default* PTP settings:
 
 To configure optional settings, such as the PTP domain, priority, and DSCP, the PTP interface transport mode and timers, and PTP monitoring, see the Optional Configuration sections below.
 
-{{%notice note%}}
-You can configure PTP with NVUE or by manually editing `/etc/cumulus/switchd.conf` file.
-{{%/notice%}}
-
 {{< tabs "TabID65 ">}}
 {{< tab "NVUE Commands ">}}
 

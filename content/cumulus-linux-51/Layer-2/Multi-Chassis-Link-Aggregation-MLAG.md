@@ -1605,6 +1605,10 @@ This simulation starts with the example MLAG configuration. The demo is pre-conf
 
 To validate the configuration, run the commands listed in the troubleshooting section above.
 
+{{%notice note%}}
+This simulation runs on Cumulus Linux 5.0. Cumulus Linux 5.1 configuration is coming soon.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< /tabs >}}
 

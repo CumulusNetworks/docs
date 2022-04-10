@@ -46,7 +46,9 @@ To work around this issue, run the {{sudo poectl -a | grep disabled}} command to
 </tr>
 <tr>
 <td>3015881</td>
-<td>Traffic flows fail because the remote VTEP IP address is missing in the layer 3 neighbor table on the switch.</td>
+<td>Traffic flows fail because the remote VTEP IP address is missing in the layer 3 neighbor table in hardware on the switch.  This happens when there is a neighbor entry for the same /32 that we have also received a type-5 route for.  When the route is learned after the neighbor entry there is a timing condition that can be hit that will cause the neighbor entry to get removed from hardware when the route is installed in hardware.
+
+This condition has been seen when customers re-use the VTEP IP on an interface inside of a vrf.  The neigh entry for the TEP IP is installed when a symmetric route is learned via that VTEP.  The Type-5 route for the TEP IP is learned in the VRF if the customer has redistributed it or advertised it within BGP in the VRF.</td>
 <td>3.7.15</td>
 <td></td>
 </tr>

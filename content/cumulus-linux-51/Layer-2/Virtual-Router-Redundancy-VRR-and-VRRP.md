@@ -85,6 +85,66 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
+<!-- vale off-->
+### Fabric-wide MAC Address
+<!-- vale on -->
+To ensure consistency across layer 2 VNIs, SVIs, and VRR devices, you can set a global, fabric-wide MAC address on the switch.
+
+{{%notice note%}}
+In an EVPN multi-fabric environment, you must set a fabric-wide MAC address so that Cumulus Linux can derive the global Mac address correctly.
+{{%/notice%}}
+
+You can either:
+- Set a global MAC address from the reserved range 00:00:5E:00:01:00 to 00:00:5E:00:01:FF.
+- Set a fabric ID, from which Cumulus Linux derives the global MAC address. You can specify a number between 1 and 225. Cumulus Linux adds the number to the MAC address 00:00:5E:00:01:00 in hex. For example, if you specify 225, cumulus Linux uses the global MAC address 00:00:5E:00:01:FF.
+
+To set a global MAC address:
+
+```
+cumulus@leaf01:mgmt:~$ nv set system global fabric-mac 00:00:5E:00:00:01
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+To set a fabric ID:
+
+```
+cumulus@leaf01:mgmt:~$ nv set system global fabric-id 255
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+To configure a fabric-wide MAC address with Linux commands, edit the `/etc/network/interfaces` file and add the same VRR MAC address for all SVIs in the fabric. The following example shows vlan10, vlan20, and vlan30:
+
+```
+cumulus@leaf01:mgmt:~$ sudo nano /etc/network/interfaces
+...
+auto vlan10
+iface vlan10
+    address 10.1.10.5/24
+    address-virtual 00:00:5E:00:00:01 10.1.10.1/24
+    hwaddress 44:38:39:22:01:c1
+    vrf RED
+    vlan-raw-device br_default
+    vlan-id 10
+
+auto vlan20
+iface vlan20
+    address 10.1.20.5/24
+    address-virtual 00:00:5E:00:00:01 10.1.20.1/24
+    hwaddress 44:38:39:22:01:c1
+    vrf RED
+    vlan-raw-device br_default
+    vlan-id 20
+
+auto vlan30
+iface vlan30
+    address 10.1.30.5/24
+    address-virtual 00:00:5E:00:00:01 10.1.30.1/24
+    hwaddress 44:38:39:22:01:c1
+    vrf BLUE
+    vlan-raw-device br_default
+    vlan-id 30
+...
+```
 
 ### Configure the Servers
 
@@ -743,6 +803,10 @@ mac-id                          none               Override anycast-id
 [address]    10.1.10.1/24       10.1.10.1/24       Virtual addresses with prefixes
 state        up                 up                 The state of the interface
 ```
+
+{{%notice note%}}
+This simulation runs on Cumulus Linux 5.0. Cumulus Linux 5.1 configuration is coming soon.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}

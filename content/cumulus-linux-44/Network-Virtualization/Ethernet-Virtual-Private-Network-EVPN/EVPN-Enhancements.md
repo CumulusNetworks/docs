@@ -810,7 +810,7 @@ iface bridge
     bridge-ports bond1 vni10
     bridge-vids 10
     bridge-vlan-aware yes
-    post-up bridge fdb add 26:76:e6:93:32:78 dev bond1 vlan 10 master static
+    post-up bridge fdb add 26:76:e6:93:32:78 dev bond1 vlan 10 master static sticky
 ...
 ```
 
@@ -825,7 +825,7 @@ cumulus@leaf01:~$ sudo nano /etc/network/interfaces
 auto br10
 iface br10
     bridge-ports swp1.10 vni10
-    post-up bridge fdb add 26:76:e6:93:32:78 dev swp1.10 master static
+    post-up bridge fdb add 26:76:e6:93:32:78 dev swp1.10 master static sticky
 ...
 ```
 

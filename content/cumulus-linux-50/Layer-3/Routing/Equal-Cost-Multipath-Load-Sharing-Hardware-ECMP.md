@@ -10,13 +10,24 @@ Cumulus Linux enables hardware [ECMP](## "Equal Cost Multi Path") by default. Lo
 
 ECMP operates only on equal cost routes in the Linux routing table.
 
-In this example, the 10.1.1.0/24 route has two possible next hops installed in the routing table:
+In this example, the 10.10.10.3/32 route has four possible next hops installed in the routing table:
 
 ```
-cumulus@switch:~$ ip route show 10.1.1.0/24
-10.1.1.0/24  proto zebra  metric 20
-  nexthop via 192.168.1.1 dev swp1 weight 1 onlink
-  nexthop via 192.168.2.1 dev swp2 weight 1 onlink
+cumulus@leaf01:mgmt:~$ net show route 10.10.10.3/32
+RIB entry for 10.10.10.3/32
+===========================
+Routing entry for 10.10.10.3/32
+  Known via "bgp", distance 20, metric 0, best
+  Last update 00:57:26 ago
+  * fe80::4638:39ff:fe00:1, via swp51, weight 1
+  * fe80::4638:39ff:fe00:3, via swp52, weight 1
+  * fe80::4638:39ff:fe00:5, via swp53, weight 1
+  * fe80::4638:39ff:fe00:7, via swp54, weight 1
+
+
+FIB entry for 10.10.10.3/32
+===========================
+10.10.10.3 nhid 150 proto bgp metric 20
 ```
 
 For Cumulus Linux to consider routes equal, they must:
@@ -260,14 +271,7 @@ As a result, some flows hash to new next hops, which can impact anycast deployme
 Cumulus Linux does *not* enable resilient hashing by default. When you enable resilient hashing, all ECMP groups share 65,536 buckets. An ECMP group is a list of unique next hops that multiple ECMP routes reference.
 
 {{%notice info%}}
-An ECMP route counts as a single route with multiple next hops:
-
-```
-cumulus@switch:~$ ip route show 10.1.1.0/24
-10.1.1.0/24  proto zebra  metric 20
-  nexthop via 192.168.1.1 dev swp1 weight 1 onlink
-  nexthop via 192.168.2.1 dev swp2 weight 1 onlink
-```
+An ECMP route counts as a single route with multiple next hops.
 {{%/notice%}}
 
 All ECMP routes must use the same number of buckets (you cannot configure the number of buckets per ECMP route).

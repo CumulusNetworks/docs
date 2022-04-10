@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3032960</td>
+<td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
+<td>4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3031235</td>
+<td>Static VXLAN configuration prevents NCLU from working.</td>
+<td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3023256</td>
 <td>After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the {{protodown}} flag ON.</td>
 <td>4.4.3</td>
@@ -25,9 +37,30 @@
 <td></td>
 </tr>
 <tr>
+<td>3021877</td>
+<td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3021746</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3021698</td>
 <td>After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3021696</td>
+<td>On the NVIDIA SN4600C switch, when you run the {{/usr/share/snmp/resq_pp.py}} script used by SNMP, you see the following log message in syslog regardless of the forwarding table profile set in the {{/etc/cumulus/datapath/traffic.conf}} file.</td>
+<td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -58,12 +91,6 @@ Fixed: 4.1.0+git191117-2~deb10u4</td>
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
 <td>4.0.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>3008388</td>
-<td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
-<td>4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -176,12 +203,6 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td></td>
 </tr>
 <tr>
-<td>2951113</td>
-<td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
 <td>3.7.15, 4.1.1-4.4.3, 5.0.0-5.0.1</td>
@@ -191,12 +212,6 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td>2949512</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
 <td>3.7.15, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2947680</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -245,12 +260,6 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td>2935122</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
 <td>4.3.0-4.4.3</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2935121</td>
-<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
-<td>3.7.15-4.4.3</td>
 <td>5.0.0-5.0.1</td>
 </tr>
 <tr>
@@ -589,6 +598,13 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td>2788780</td>
 <td>When you enable ARP and ND suppression and the switch forwards ARP and ND packets to the kernel, RX_DRP counters might increment but the packets are processed as normal.</td>
 <td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2786264</td>
+<td>When the {{switchd}} service restarts, any dropped traffic registered by WJH change to unregistered and WJH stops reporting all dropped traffic. This occurs because the  WJH service does not restart automatically when the {{switchd}} service restarts.
+To work around this issue, manually restart WJH with the {{sudo systemctl restart what-just-happened.service}} command every time  the {{switchd}} service restarts.</td>
+<td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1938,15 +1954,42 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3031235</td>
+<td>Static VXLAN configuration prevents NCLU from working.</td>
+<td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3021887</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
 <td>4.4.2-4.4.3</td>
 <td></td>
 </tr>
 <tr>
+<td>3021877</td>
+<td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3021746</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3021698</td>
 <td>After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3021696</td>
+<td>On the NVIDIA SN4600C switch, when you run the {{/usr/share/snmp/resq_pp.py}} script used by SNMP, you see the following log message in syslog regardless of the forwarding table profile set in the {{/etc/cumulus/datapath/traffic.conf}} file.</td>
+<td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2125,12 +2168,6 @@ Fixed: 2.5.5-3+deb10u4</td>
 <td>4.4.3</td>
 </tr>
 <tr>
-<td>2951113</td>
-<td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
 <td>3.7.15, 4.1.1-4.4.3, 5.0.0-5.0.1</td>
@@ -2148,12 +2185,6 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>2949512</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
 <td>3.7.15, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2947680</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2202,12 +2233,6 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>2935122</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
 <td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2935121</td>
-<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
-<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2571,6 +2596,13 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td>2788780</td>
 <td>When you enable ARP and ND suppression and the switch forwards ARP and ND packets to the kernel, RX_DRP counters might increment but the packets are processed as normal.</td>
 <td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2786264</td>
+<td>When the {{switchd}} service restarts, any dropped traffic registered by WJH change to unregistered and WJH stops reporting all dropped traffic. This occurs because the  WJH service does not restart automatically when the {{switchd}} service restarts.
+To work around this issue, manually restart WJH with the {{sudo systemctl restart what-just-happened.service}} command every time  the {{switchd}} service restarts.</td>
+<td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4104,6 +4136,27 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3031235</td>
+<td>Static VXLAN configuration prevents NCLU from working.</td>
+<td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3021746</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3021696</td>
+<td>On the NVIDIA SN4600C switch, when you run the {{/usr/share/snmp/resq_pp.py}} script used by SNMP, you see the following log message in syslog regardless of the forwarding table profile set in the {{/etc/cumulus/datapath/traffic.conf}} file.</td>
+<td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3021693</td>
 <td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
@@ -4282,12 +4335,6 @@ Fixed: 2.5.5-3+deb10u4</td>
 <td>4.4.3</td>
 </tr>
 <tr>
-<td>2951113</td>
-<td>On the Edgecore  AS7712 switch, noisy console serial ports can cause a reboot.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
 <td>3.7.15, 4.1.1-4.4.3, 5.0.0-5.0.1</td>
@@ -4305,12 +4352,6 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>2949512</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
 <td>3.7.15, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2947680</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4353,12 +4394,6 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>2935122</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
 <td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2935121</td>
-<td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
-<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4867,6 +4902,13 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td>2788780</td>
 <td>When you enable ARP and ND suppression and the switch forwards ARP and ND packets to the kernel, RX_DRP counters might increment but the packets are processed as normal.</td>
 <td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2786264</td>
+<td>When the {{switchd}} service restarts, any dropped traffic registered by WJH change to unregistered and WJH stops reporting all dropped traffic. This occurs because the  WJH service does not restart automatically when the {{switchd}} service restarts.
+To work around this issue, manually restart WJH with the {{sudo systemctl restart what-just-happened.service}} command every time  the {{switchd}} service restarts.</td>
+<td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>

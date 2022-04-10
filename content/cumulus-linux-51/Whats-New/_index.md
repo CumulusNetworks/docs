@@ -17,15 +17,15 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
 ### Platforms
 
 - NVIDIA SN4800 (100G Spectrum-3) available for early access
-<!--
-- NVIDIA SN2201 (100G Spectrum-1)
--->
+- NVIDIA SN4410 (100G and 400G Spectrum-3) now generally available
+- NVIDIA SN4600 (200G Spectrum-3) now generally available
+
 ### New Features and Enhancements
 
 - {{<link url="GRE-Tunneling" text="GRE tunneling">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Adaptive routing with RoCE">}}
 - {{<link url="Link-Layer-Discovery-Protocol/#lldp-dcbx-tlvs" text="LLDP DCBX TLVs">}}
-- {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#gtp-hashing" text="GTP hashing">}}
+- {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#gtp-hashing" text="TEID-based ECMP hashing">}} and {{<link url="Bonding-Link-Aggregation/#gtp-hashing" text="TEID-based bond hashing">}}
 - {{<link url="In-Service-System-Upgrade-ISSU" text="Warmboot on bonds">}}
 - {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#peer-link-consistency-check" text="MLAG peer link consistency check">}}
 - {{<link url="Precision-Time-Protocol-PTP" text="PTP on bonds">}}
@@ -34,14 +34,19 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
   - {{<link url="Neighbor-Discovery-ND" text="IPv6 ND configuration options">}}
   - {{<link url="NVUE-Snippets/#flexible-snippets" text="Flexible snippets">}}
   - {{<link url="VXLAN-Devices/#automatic-vlan-to-vni-mapping" text="Automatic VLAN to VNI mapping">}}
-  - New NVUE commands
+  - {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP/#fabric-wide-mac-address" text="Fabric-wide MAC address configuration">}}
+  - {{< expand "New NVUE commands" >}}
+```
+LIST OF NEW COMMANDS IN 5.1 HERE
+```
+{{< /expand >}}
 
 {{%notice note%}}
-Cumulus Linux 5.1 includes the NVUE object model. After you upgrade to Cumulus Linux 5.1, running NVUE configuration commands replaces the configuration in the applicable configuration files and removes any configuration you add manually or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
+Cumulus Linux 5.1 includes the NVUE object model. After you upgrade to Cumulus Linux 5.1, running NVUE configuration commands replaces the configuration in files such as `/etc/network/interfaces` and `/etc/frr/frr.conf` and removes any configuration you add manually or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
 
 - Update your automation tools to use NVUE.
 - {{<link url="NVIDIA-User-Experience-NVUE/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
-- Use Linux and FRR (vtysh) commands instead of NVUE for all switch configuration.
+- Use Linux and FRR (vtysh) commands instead of NVUE for **all** switch configuration.
 
-Cumulus Linux 3.7, 4.3, and 4.4 releases continue to support NCLU. For more information, contact your NVIDIA Spectrum platform sales representative.
+Cumulus Linux 3.7, 4.3, and 4.4 continue to support NCLU. For more information, contact your NVIDIA Spectrum platform sales representative.
 {{%/notice%}}

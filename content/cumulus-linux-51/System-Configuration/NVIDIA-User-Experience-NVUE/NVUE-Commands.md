@@ -3135,20 +3135,42 @@ nv config history [<revision>]
 To see a description for a command, type the command with `-h` at the end:
 
 ```
-cumulus@cumulus:mgmt:~$ nv set mlag backup -h
+cumulus@leaf01:mgmt:~$ nv set mlag backup -h
 Usage:
-  nv set mlag backup [options] <backup-ip> ...
+  nv set mlag backup [options] <backup-id> ...
 
 Description:
   Set of MLAG backups
 
 Identifiers:
-  <backup-ip>  Backup IP for peer to reach us
+  <backup-id>  Backup IP for peer to reach us
 
 General Options:
   -h, --help   Show help.
 ```
 
-{{%notice note%}}
-When you use `-h`, replace any variables in the command with a value. For example, for the `nv set vrf <vrf-id> router pim` command, type `nv set vrf default router pim -h`.
-{{%/notice%}}
+When you use `-h`, replace any variables in the command with a value. For example, for the `nv set vrf <vrf-id> router pim` command, type `nv set vrf default router pim -h`:
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router pim -h
+Usage:
+  nv set vrf <vrf-id> router pim [options] [<attribute> ...]
+
+Description:
+  PIM VRF configuration.
+
+Identifiers:
+  <vrf-id>         VRF
+
+Attributes:
+  timers           Timers
+  ecmp             Choose all available ECMP paths for a particular RPF. If
+                   'off', the first nexthop found will be used. This is the
+                   default.
+  msdp-mesh-group  To connect multiple PIM-SM multicast domains using RPs.
+  address-family   Address family specific configuration
+  enable           Turn the feature 'on' or 'off'. The default is 'off'.
+
+General Options:
+  -h, --help       Show help.
+```

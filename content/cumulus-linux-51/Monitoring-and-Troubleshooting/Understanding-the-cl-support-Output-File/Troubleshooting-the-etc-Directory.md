@@ -56,7 +56,6 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | e2fsck.conf |
 | emacs |
 | environment |
-| .etckeeper |
 | etckeeper |
 | ethertypes |
 | fonts |
@@ -64,8 +63,6 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | frr |
 | fstab |
 | gai.conf |
-| .git|
-| .gitignore |
 | groff |
 | group |
 | group- |
@@ -159,20 +156,11 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | protocols |
 | ptm.d |
 | ptp4l.conf |
-| .pwd.lock |
 | python |
 | python2.7 |
 | python3 |
 | python3.7 |
 | ras |
-| rc0.d |
-| rc1.d |
-| rc2.d |
-| rc3.d |
-| rc4.d |
-| rc5.d |
-| rc6.d |
-| rcS.d |
 | rdnbrd.conf |
 | resolv.conf |
 | resolvconf |

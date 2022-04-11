@@ -50,7 +50,7 @@ To configure the public cloud-facing switch:
 {{< tabs "TabID51 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for this configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -104,7 +104,7 @@ To configure the customer-facing switch:
 {{< tabs "TabID118 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for this configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

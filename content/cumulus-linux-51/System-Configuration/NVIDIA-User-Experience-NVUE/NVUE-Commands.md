@@ -93,6 +93,7 @@ nv show router pim timers
 nv show router igmp
 nv show router vrrp
 nv show router vrr
+nv show router adaptive-routing
 nv show platform
 nv show platform capabilities
 nv show platform hardware
@@ -138,6 +139,7 @@ nv show bridge domain <domain-id> mac-table
 nv show bridge domain <domain-id> mdb
 nv show bridge domain <domain-id> router-port
 nv show mlag
+nv show mlag lacp-conflict
 nv show mlag consistency-checker
 nv show mlag consistency-checker global
 nv show mlag backup
@@ -202,10 +204,12 @@ nv show interface <interface-id> router pim bfd
 nv show interface <interface-id> router pim address-family
 nv show interface <interface-id> router pim address-family ipv4-unicast
 nv show interface <interface-id> router pim address-family ipv4-unicast allow-rp
+nv show interface <interface-id> router adaptive-routing
 nv show interface <interface-id> bond
 nv show interface <interface-id> bond member
 nv show interface <interface-id> bond member <member-id>
 nv show interface <interface-id> bond mlag
+nv show interface <interface-id> bond mlag lacp-conflict
 nv show interface <interface-id> bond mlag consistency-checker
 nv show interface <interface-id> bridge
 nv show interface <interface-id> bridge domain
@@ -392,6 +396,9 @@ nv show system ztp status
 nv show system reboot
 nv show system reboot reason
 nv show system reboot history
+nv show system forwarding
+nv show system forwarding lag-hash
+nv show system forwarding ecmp-hash
 nv show system port-mirror
 nv show system port-mirror session
 nv show system port-mirror session <session-id>
@@ -437,6 +444,7 @@ nv show vrf <vrf-id> router rib <afi> route <route-id> protocol <protocol-id> en
 nv show vrf <vrf-id> router rib <afi> route <route-id> protocol <protocol-id> entry-index <entry-index> via
 nv show vrf <vrf-id> router rib <afi> route <route-id> protocol <protocol-id> entry-index <entry-index> via <via-id>
 nv show vrf <vrf-id> router rib <afi> route <route-id> protocol <protocol-id> entry-index <entry-index> via <via-id> flags
+nv show vrf <vrf-id> router rib <afi> route <route-id> protocol <protocol-id> entry-index <entry-index> via <via-id> label
 nv show vrf <vrf-id> router rib <afi> route <route-id> protocol <protocol-id> entry-index <entry-index> via <via-id> resolved-via
 nv show vrf <vrf-id> router rib <afi> route <route-id> protocol <protocol-id> entry-index <entry-index> via <via-id> resolved-via <resolved-via-id>
 nv show vrf <vrf-id> router bgp
@@ -771,6 +779,7 @@ nv set router policy route-map <route-map-id> rule <rule-id> set origin (egp|igp
 nv set router policy route-map <route-map-id> rule <rule-id> set tag 1-4294967295
 nv set router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-global <ipv6>
 nv set router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-local <ipv6>
+nv set router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-prefer-global (on|off)
 nv set router policy route-map <route-map-id> rule <rule-id> set ip-nexthop (unchanged|peer-addr|<ipv4>|<ipv6>)
 nv set router policy route-map <route-map-id> rule <rule-id> set source-ip (<ipv4>|<ipv6>)
 nv set router policy route-map <route-map-id> rule <rule-id> set community-delete-list (<instance-name>|<integer>)
@@ -825,6 +834,8 @@ nv set router vrrp preempt (on|off)
 nv set router vrrp advertisement-interval 10-40950
 nv set router vrr
 nv set router vrr enable (on|off)
+nv set router adaptive-routing
+nv set router adaptive-routing enable (on|off)
 nv set platform
 nv set platform hardware
 nv set platform hardware component <component-id>
@@ -859,7 +870,9 @@ nv set bridge domain <domain-id> type vlan-aware
 nv set bridge domain <domain-id> untagged (1-4094|none)
 nv set bridge domain <domain-id> encap 802.1Q
 nv set bridge domain <domain-id> mac-address (auto|<mac>)
+nv set bridge domain <domain-id> vlan-vni-offset 0-16773118
 nv set mlag
+nv set mlag lacp-conflict
 nv set mlag backup <backup-id>
 nv set mlag backup <backup-id> vrf <vrf-name>
 nv set mlag enable (on|off)
@@ -951,9 +964,13 @@ nv set interface <interface-id> router pim address-family ipv4-unicast use-sourc
 nv set interface <interface-id> router pim enable (on|off)
 nv set interface <interface-id> router pim dr-priority 1-4294967295
 nv set interface <interface-id> router pim active-active (on|off)
+nv set interface <interface-id> router adaptive-routing
+nv set interface <interface-id> router adaptive-routing enable (on|off)
+nv set interface <interface-id> router adaptive-routing link-utilization-threshold 1-100
 nv set interface <interface-id> bond
 nv set interface <interface-id> bond member <member-id>
 nv set interface <interface-id> bond mlag
+nv set interface <interface-id> bond mlag lacp-conflict
 nv set interface <interface-id> bond mlag enable (on|off)
 nv set interface <interface-id> bond mlag id (1-65535|auto)
 nv set interface <interface-id> bond down-delay 0-65535
@@ -1197,6 +1214,12 @@ nv set system global reserved vlan l3-vni-vlan end 2-4093
 nv set system global system-mac (auto|<mac>)
 nv set system global anycast-mac (none|<mac>)
 nv set system global anycast-id (1-65535|none)
+nv set system global fabric-mac (none|<mac>)
+nv set system global fabric-id (1-255|none)
+nv set system forwarding
+nv set system forwarding lag-hash (ip-protocol|source-mac|destination-mac|source-ip|destination-ip|source-port|destination-port|ether-type|vlan|gtp-teid)
+nv set system forwarding ecmp-hash (ip-protocol|source-ip|destination-ip|source-port|destination-port|ipv6-label|ingress-interface|gtp-teid|inner-ip-protocol|inner-source-ip|inner-destination-ip|inner-source-port|inner-destination-port|inner-ipv6-label)
+nv set system forwarding hash-seed 0-4294967295
 nv set system port-mirror
 nv set system port-mirror session <session-id>
 nv set system port-mirror session <session-id> span
@@ -1353,6 +1376,7 @@ nv set vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security enable (o
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security hops 1-254
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities extended-nexthop (on|off|auto)
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities source-address (<interface-name>|<ipv4>|<ipv6>)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as enable (on|off)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as asn 1-4294967295
@@ -1385,7 +1409,7 @@ nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-un
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound maximum (0-4294967295|none)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound warning-threshold 1-100
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound warning-only (on|off)
-nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound reestablish-wait (1-4294967295|auto)
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound reestablish-wait 1-4294967295
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination enable (on|off)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination policy (none|<instance-name>)
@@ -1434,7 +1458,7 @@ nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-un
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound maximum (0-4294967295|none)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound warning-threshold 1-100
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound warning-only (on|off)
-nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound reestablish-wait (1-4294967295|auto)
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound reestablish-wait 1-4294967295
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast default-route-origination
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast default-route-origination enable (on|off)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast default-route-origination policy (none|<instance-name>)
@@ -1487,6 +1511,7 @@ nv set vrf <vrf-id> router bgp peer-group <peer-group-id> enforce-first-as (on|o
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> passive-mode (on|off)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> nexthop-connected-check (on|off)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> multihop-ttl (1-255|auto)
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> description none
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> remote-as (1-4294967295|internal|external)
 nv set vrf <vrf-id> router bgp route-export
 nv set vrf <vrf-id> router bgp route-export to-evpn
@@ -1511,6 +1536,7 @@ nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-rx-interval 50-600
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-tx-interval 50-60000
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities extended-nexthop (on|off|auto)
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities source-address (<interface-name>|<ipv4>|<ipv6>)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> local-as
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> local-as enable (on|off)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> local-as asn 1-4294967295
@@ -1547,7 +1573,7 @@ nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicas
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound maximum (0-4294967295|none)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound warning-threshold 1-100
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound warning-only (on|off)
-nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound reestablish-wait (1-4294967295|auto)
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound reestablish-wait 1-4294967295
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast default-route-origination
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast default-route-origination enable (on|off)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast default-route-origination policy (none|<instance-name>)
@@ -1584,7 +1610,7 @@ nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicas
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound maximum (0-4294967295|none)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound warning-threshold 1-100
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound warning-only (on|off)
-nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound reestablish-wait (1-4294967295|auto)
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound reestablish-wait 1-4294967295
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast default-route-origination
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast default-route-origination enable (on|off)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast default-route-origination policy (none|<instance-name>)
@@ -1648,6 +1674,7 @@ nv set vrf <vrf-id> router bgp neighbor <neighbor-id> enforce-first-as (on|off)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> passive-mode (on|off)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> nexthop-connected-check (on|off)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> multihop-ttl (1-255|auto)
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> description none
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> enable (on|off)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> type (numbered|unnumbered)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> peer-group (none|<instance-name>)
@@ -1930,6 +1957,7 @@ nv unset router policy route-map <route-map-id> rule <rule-id> set origin
 nv unset router policy route-map <route-map-id> rule <rule-id> set tag
 nv unset router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-global
 nv unset router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-local
+nv unset router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-prefer-global
 nv unset router policy route-map <route-map-id> rule <rule-id> set ip-nexthop
 nv unset router policy route-map <route-map-id> rule <rule-id> set source-ip
 nv unset router policy route-map <route-map-id> rule <rule-id> set community-delete-list
@@ -1984,6 +2012,8 @@ nv unset router vrrp preempt
 nv unset router vrrp advertisement-interval
 nv unset router vrr
 nv unset router vrr enable
+nv unset router adaptive-routing
+nv unset router adaptive-routing enable
 nv unset platform
 nv unset platform hardware
 nv unset platform hardware component
@@ -2023,7 +2053,9 @@ nv unset bridge domain <domain-id> type
 nv unset bridge domain <domain-id> untagged
 nv unset bridge domain <domain-id> encap
 nv unset bridge domain <domain-id> mac-address
+nv unset bridge domain <domain-id> vlan-vni-offset
 nv unset mlag
+nv unset mlag lacp-conflict
 nv unset mlag backup
 nv unset mlag backup <backup-id>
 nv unset mlag backup <backup-id> vrf
@@ -2122,10 +2154,14 @@ nv unset interface <interface-id> router pim address-family ipv4-unicast use-sou
 nv unset interface <interface-id> router pim enable
 nv unset interface <interface-id> router pim dr-priority
 nv unset interface <interface-id> router pim active-active
+nv unset interface <interface-id> router adaptive-routing
+nv unset interface <interface-id> router adaptive-routing enable
+nv unset interface <interface-id> router adaptive-routing link-utilization-threshold
 nv unset interface <interface-id> bond
 nv unset interface <interface-id> bond member
 nv unset interface <interface-id> bond member <member-id>
 nv unset interface <interface-id> bond mlag
+nv unset interface <interface-id> bond mlag lacp-conflict
 nv unset interface <interface-id> bond mlag enable
 nv unset interface <interface-id> bond mlag id
 nv unset interface <interface-id> bond down-delay
@@ -2418,6 +2454,12 @@ nv unset system global reserved vlan l3-vni-vlan end
 nv unset system global system-mac
 nv unset system global anycast-mac
 nv unset system global anycast-id
+nv unset system global fabric-mac
+nv unset system global fabric-id
+nv unset system forwarding
+nv unset system forwarding lag-hash
+nv unset system forwarding ecmp-hash
+nv unset system forwarding hash-seed
 nv unset system port-mirror
 nv unset system port-mirror session
 nv unset system port-mirror session <session-id>
@@ -2590,6 +2632,7 @@ nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security enable
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security hops
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities extended-nexthop
+nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities source-address
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> local-as
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> local-as enable
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> local-as asn
@@ -2724,6 +2767,7 @@ nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> enforce-first-as
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> passive-mode
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> nexthop-connected-check
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> multihop-ttl
+nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> description
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> remote-as
 nv unset vrf <vrf-id> router bgp route-export
 nv unset vrf <vrf-id> router bgp route-export to-evpn
@@ -2751,6 +2795,7 @@ nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-rx-interval
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-tx-interval
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities extended-nexthop
+nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities source-address
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> local-as
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> local-as enable
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> local-as asn
@@ -2888,6 +2933,7 @@ nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> enforce-first-as
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> passive-mode
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> nexthop-connected-check
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> multihop-ttl
+nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> description
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> enable
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> type
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> peer-group
@@ -3089,20 +3135,42 @@ nv config history [<revision>]
 To see a description for a command, type the command with `-h` at the end:
 
 ```
-cumulus@cumulus:mgmt:~$ nv set mlag backup -h
+cumulus@leaf01:mgmt:~$ nv set mlag backup -h
 Usage:
-  nv set mlag backup [options] <backup-ip> ...
+  nv set mlag backup [options] <backup-id> ...
 
 Description:
   Set of MLAG backups
 
 Identifiers:
-  <backup-ip>  Backup IP for peer to reach us
+  <backup-id>  Backup IP for peer to reach us
 
 General Options:
   -h, --help   Show help.
 ```
 
-{{%notice note%}}
-When you use `-h`, replace any variables in the command with a value. For example, for the `nv set vrf <vrf-id> router pim` command, type `nv set vrf default router pim -h`.
-{{%/notice%}}
+When you use `-h`, replace any variables in the command with a value. For example, for the `nv set vrf <vrf-id> router pim` command, type `nv set vrf default router pim -h`:
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router pim -h
+Usage:
+  nv set vrf <vrf-id> router pim [options] [<attribute> ...]
+
+Description:
+  PIM VRF configuration.
+
+Identifiers:
+  <vrf-id>         VRF
+
+Attributes:
+  timers           Timers
+  ecmp             Choose all available ECMP paths for a particular RPF. If
+                   'off', the first nexthop found will be used. This is the
+                   default.
+  msdp-mesh-group  To connect multiple PIM-SM multicast domains using RPs.
+  address-family   Address family specific configuration
+  enable           Turn the feature 'on' or 'off'. The default is 'off'.
+
+General Options:
+  -h, --help       Show help.
+```

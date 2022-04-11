@@ -71,7 +71,7 @@ You can configure multiple IP addresses and bind to a particular IP address with
 {{< tabs "Listening IP" >}}
 {{< tab "NVUE Commands" >}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for SNMP configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
@@ -96,7 +96,7 @@ Cumulus Linux provides a listening address for VRFs along with trap and inform s
 {{< tabs "SNMP and VRFs" >}}
 {{< tab "NVUE Commands" >}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for SNMP configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
@@ -133,7 +133,7 @@ You can authenticate the user in the following ways:
 {{< tabs "username" >}}
 {{< tab "NVUE Commands" >}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for SNMP configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
@@ -236,7 +236,7 @@ By default, the `snmpd.conf` file contains many views within the `systemonly` vi
 {{< tabs "366 " >}}
 {{< tab "NVUE Commands" >}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for SNMP configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
@@ -270,7 +270,7 @@ You can also specify a view to restrict the subset of the OID tree.
 {{< tabs "community-string" >}}
 {{< tab "NVUE Commands" >}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for SNMP configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
@@ -320,7 +320,7 @@ You can configure system settings for the SNMPv2 MIB. The example commands here 
 {{< tabs "sys-settings" >}}
 {{< tab "NVUE Commands" >}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for SNMP configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
@@ -475,7 +475,7 @@ You can find a working example configuration on the {{<exlink url="https://gitla
 {{< tabs "example-config" >}}
 {{< tab "NVUE Commands" >}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for SNMP configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}

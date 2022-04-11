@@ -77,7 +77,7 @@ The following example commands create the peer group SPINE and configure BGP pee
 {{< tabs "96 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for this configuration.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}

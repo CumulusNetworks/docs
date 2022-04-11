@@ -18,7 +18,7 @@ The following example commands configure a traditional mode bridge called `my_br
 {{< tabs "TabID24 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for traditional bridge mode.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -114,7 +114,7 @@ To create the above example:
 {{< tabs "TabID128 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for traditional bridge mode.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

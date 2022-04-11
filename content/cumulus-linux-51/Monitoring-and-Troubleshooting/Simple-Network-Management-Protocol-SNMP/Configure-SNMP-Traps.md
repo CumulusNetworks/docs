@@ -44,7 +44,7 @@ The following configuration defines the trap receiver IP address for SNMPv1 and 
 {{< tabs "trap-destination" >}}
 {{< tab "NVUE Commands" >}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for SNMP configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
@@ -80,7 +80,7 @@ The SNMP trap receiving daemon must have usernames, authentication passwords, an
 {{< tabs "traps-informs" >}}
 {{< tab "NVUE Commands" >}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for SNMP configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
@@ -212,7 +212,7 @@ The default frequency for checking link up and link down is 60 seconds. To chang
 {{< tabs "traps-linkupdown" >}}
 {{< tab "NVUE Commands" >}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for SNMP configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
@@ -266,7 +266,7 @@ To enable a trap when the CPU load average exceeds a configured threshold, run t
 {{< tabs "traps-cpuload" >}}
 {{< tab "NVUE Commands" >}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for SNMP configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
@@ -316,7 +316,7 @@ To send SNMP trap notifications for every SNMP authentication failure, run the f
 {{< tabs "traps-authfailurre" >}}
 {{< tab "NVUE Commands" >}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for SNMP configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}

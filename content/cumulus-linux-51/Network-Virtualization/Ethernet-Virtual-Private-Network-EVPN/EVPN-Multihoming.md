@@ -403,7 +403,7 @@ You can add debug statements to the `/etc/frr/frr.conf` file to debug the Ethern
 {{<tabs "debug">}}
 {{<tab "NVUE Commands">}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for FRR Debugging.
 
 {{</tab>}}
 {{<tab "vtysh Commands">}}

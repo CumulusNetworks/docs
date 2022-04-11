@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 780
 toc: 3
 ---
-To take advantage of the various event messages generated and processed by NetQ, you must integrate with third-party event notification applications. You can integrate NetQ with <!-- vale off -->Syslog<!-- vale on -->, PagerDuty, Slack, and Email. A generic webhook channel also exists to send notifications to other third party applications. You can integrate with one or more of these applications simultaneously.
+To take advantage of the various event messages generated and processed by NetQ, you must integrate with third-party event notification applications. You can integrate NetQ with <!-- vale off -->Syslog<!-- vale on -->, PagerDuty, Slack, and email. A generic webhook channel also exists to send notifications to other third party applications. You can integrate with one or more of these applications simultaneously.
 
 In an on-premises deployment, the NetQ On-premises Appliance or VM receives the raw data stream from the NetQ Agents, processes the data, stores, and delivers events to the Notification function. Notification then filters and sends messages to any configured notification applications. In a cloud deployment, the NetQ Cloud Appliance or VM passes the raw data stream on to the NetQ Cloud service for processing and delivery.
 

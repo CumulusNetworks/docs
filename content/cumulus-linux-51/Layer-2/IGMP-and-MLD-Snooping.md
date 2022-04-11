@@ -123,7 +123,7 @@ When you enable OMF, you can configure a bridge port as an mrouter port to forwa
 {{< tabs "TabID127 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for this setting.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

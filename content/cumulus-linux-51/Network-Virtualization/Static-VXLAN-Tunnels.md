@@ -33,7 +33,7 @@ The following traditional VXLAN device configuration:
 {{< tabs "TabID122 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE commands are not supported.
+
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

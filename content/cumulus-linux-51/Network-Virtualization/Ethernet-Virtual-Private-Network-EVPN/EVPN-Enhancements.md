@@ -582,7 +582,7 @@ You can configure a MAC address that you intend to pin to a particular VTEP on t
 {{< tabs "TabID641 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for this configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

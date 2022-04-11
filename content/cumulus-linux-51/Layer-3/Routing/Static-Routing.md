@@ -165,7 +165,7 @@ You can also create a static route by adding the route to a switch port configur
 {{< tabs "TabID187 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for this configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

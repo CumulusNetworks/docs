@@ -14,7 +14,7 @@ To configure bridge layer 2 protocol tunneling for all protocols:
 {{< tabs "TabID14 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE Commands are not supported.
+Cumulus Linux does not provide NVUE commands for this setting.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -56,7 +56,7 @@ To configure bridge layer 2 protocol tunneling for a **specific** protocol, such
 {{< tabs "TabID68 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE Commands are not supported.
+Cumulus Linux does not provide NVUE commands for this configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

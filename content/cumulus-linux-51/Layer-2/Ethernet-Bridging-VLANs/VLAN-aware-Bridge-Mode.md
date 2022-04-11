@@ -511,7 +511,7 @@ To disable automatic address generation for a regular IPv6 address on a VLAN, ru
 {{< tabs "TabID248 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for this setting.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -541,7 +541,7 @@ To reenable automatic link-local address generation for a VLAN:
 {{< tabs "TabID287 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for this setting.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

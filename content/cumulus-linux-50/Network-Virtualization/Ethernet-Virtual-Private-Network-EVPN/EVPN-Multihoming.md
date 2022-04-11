@@ -112,7 +112,18 @@ When you enable EVPN-MH, all SVI MAC addresses advertise as type-2 routes. You d
 cumulus@leaf01:~$ nv set evpn multihoming enable on
 cumulus@leaf01:~$ nv config apply
 ```
+Set the `evpn.multihoming.enable` variable in the `/etc/cumulus/switchd.conf` file to `TRUE`, then restart the `switchd` service. Cumulus Linux disables this variable by default.
 
+```
+cumulus@leaf01:~$ sudo nano /etc/cumulus/switchd.conf
+...
+evpn.multihoming.enable = TRUE
+...
+```
+
+```
+cumulus@leaf01:~$ sudo systemctl restart switchd.service
+```
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 

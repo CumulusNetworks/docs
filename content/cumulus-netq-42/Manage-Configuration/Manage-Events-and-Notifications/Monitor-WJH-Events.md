@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 810
 toc: 4
 ---
-The *What Just Happened* (WJH) feature, available on NVIDIA switches, streams detailed and contextual telemetry data for analysis. This provides real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems. You must have Cumulus Linux 4.0.0 or later, SONiC 202012 or later, and NetQ 2.4.0 or later to take advantage of this feature.
+The *What Just Happened* (WJH) feature, available on NVIDIA switches, streams detailed and contextual telemetry data for analysis. This provides real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems. You must have Cumulus Linux 4.0.0 or later, SONiC 202012 or later, and NetQ 2.4.0 or later to use this feature.
 
 For a list of supported WJH events, refer to the {{<link title="WJH Event Messages Reference">}}.
 
@@ -17,10 +17,10 @@ WJH is only supported on NVIDIA Spectrum switches.
 
 {{</notice>}}
 
-When you combine WJH capabilities with NetQ, you have the ability to home in on losses, anywhere in the fabric, from a single management console. You can:
+Using WJH in combination with NetQ helps you identify losses anywhere in the fabric. From a single management console you can:
 
 - View any current or historic drop information, including the reason for the drop
-- Identify problematic flows or endpoints, and pin-point exactly where communication is failing in the network
+- Identify problematic flows or endpoints, and pinpoint where communication is failing in the network
 
 {{%notice info%}}
 
@@ -185,21 +185,21 @@ View the **What Just Happened** card on your workbench:
 
    {{<figure src="/images/netq/WJH-default-card.png" width="200">}}
 
-The WJH card can be expanded to see a larger summary of WJH data:
+You can expand the card to see a detailed summary of WJH data:
 
    {{<figure src="/images/netq/WJH-expand.png" width="200">}}
 
    {{<figure src="/images/netq/WJH-expanded-card.png" width="600">}}
 
-Expanding the card to it's fullest setting will open the advanced WJH dashboard. You can also access this dashboard by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu) and selecting **What Just Happened** under the **Network** column:
+Expanding the card to its largest size will open the advanced WJH dashboard. You can also access this dashboard by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu) and selecting **What Just Happened** under the **Network** column:
 
    {{<figure src="/images/netq/WJH-advanced-view.png" width="800">}}
 
-Hovering over the color-coded chart allows one to view and expand individual WJH event categories:
+Hover over the color-coded chart to view and expand individual WJH event categories:
 
    {{<figure src="/images/netq/WJH-adv-highlight-reason.png" width="200">}}
 
-Clicking on a category in the chart will expand the details for that category in the dashboard:
+Click on a category in the chart for a detailed view:
 
    {{<figure src="/images/netq/WJH-adv-reason-filtered.png" width="800">}}
 

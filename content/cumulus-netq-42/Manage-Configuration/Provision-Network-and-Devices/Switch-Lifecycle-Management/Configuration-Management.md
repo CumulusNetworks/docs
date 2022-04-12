@@ -7,7 +7,7 @@ toc: 4
 
 {{<notice warning>}}
 
-NVIDIA is no longer supporting switch configuration management and will remove this feature in the NetQ 4.3.0 release. {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="Contact your NVIDIA">}} sales team if you have any questions. 
+Monitoring and troubleshooting are NetQ's main utilities. That is why NVIDIA is no longer supporting switch configuration management and will remove this feature in the NetQ 4.3.0 release. {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="Contact your NVIDIA sales team">}} if you have any questions. 
 
 {{</notice>}}
 

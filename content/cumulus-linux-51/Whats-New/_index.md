@@ -34,7 +34,7 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
   - {{<link url="Neighbor-Discovery-ND" text="IPv6 ND configuration options">}}
   - {{<link url="NVUE-Snippets/#flexible-snippets" text="Flexible snippets">}}
   - {{<link url="VXLAN-Devices/#automatic-vlan-to-vni-mapping" text="Automatic VLAN to VNI mapping">}}
-  - {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP/#fabric-wide-mac-address" text="Fabric-wide MAC address configuration">}}
+  - {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP/#vrr-mac-address" text="Fabric-wide MAC address configuration">}}
   - {{< expand "New NVUE commands" >}}
 ```
 LIST OF NEW COMMANDS IN 5.1 HERE

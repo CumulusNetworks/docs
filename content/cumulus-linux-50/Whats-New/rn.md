@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3035855"></a> [3035855](#3035855) <a name="3035855"></a> <br /> | When you configure ACLs on the switch, you might see a <code>switchd</code> segmentation fault. | 5.0.1 | |
 | <a name="3032960"></a> [3032960](#3032960) <a name="3032960"></a> <br /> | When you set <code>vlan-bridge-binding on</code> for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.   | 4.4.3, 5.0.0-5.0.1 | |
 | <a name="3032234"></a> [3032234](#3032234) <a name="3032234"></a> <br /> | In a BGP unnumbered, when you try to remove an interface from the underlay default VRF with the NVUE <code>nv unset vrf default router bgp neighbor <interface></code> command, the command fails to apply. | 5.0.1 | |
 | <a name="3030238"></a> [3030238](#3030238) <a name="3030238"></a> <br /> | On the NVIDIA SN3700C switch, when you change the time with NTP, the MLAG service stops. | 5.0.1 | |

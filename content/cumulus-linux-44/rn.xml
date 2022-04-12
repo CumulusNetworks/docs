@@ -416,6 +416,15 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td></td>
 </tr>
 <tr>
+<td>2854787</td>
+<td>An unexpected software system shutdown can occur due to a thermal zones issue in the {{hw-management}} package. The following message might appear in {{/var/log/syslog}} before the shutdown:
+
+thermal thermal_zoneX: critical temperature reached (33 C), shutting down
+</td>
+<td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>2853630</td>
 <td>In an MLAG and VXLAN Active Active configuration, when you add a new VNI on the primary MLAG switch only, you see packet loss over the old VNI. </td>
 <td>4.3.0-4.4.3</td>
@@ -2407,6 +2416,15 @@ To work around this issue, load the port configuration in a staggered manner (gr
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2854787</td>
+<td>An unexpected software system shutdown can occur due to a thermal zones issue in the {{hw-management}} package. The following message might appear in {{/var/log/syslog}} before the shutdown:
+
+thermal thermal_zoneX: critical temperature reached (33 C), shutting down
+</td>
+<td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4659,8 +4677,8 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 
 thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 </td>
-<td>4.3.0-4.4.1</td>
-<td>4.4.2-4.4.3</td>
+<td>4.3.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2854785</td>

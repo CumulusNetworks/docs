@@ -29,7 +29,7 @@ You need to enable {{<link title="Manage Switches through Their Lifecycle" text=
 
 The Flow Analysis wizard will prompt you to enter the source IP address, destination IP address, source port, VRF, destination port, and protocol of the flow you wish to analyze. The only optional parameter is the source port, for when the ephemeral source port of a flow may be unknown:
 
-{{<figure src="/images/netq/flow-analysis-app-params.png" width="600">}}
+{{<figure src="/images/netq/flow-analysis-create-dialog-42.png" width="600">}}
 
 ### Flow Monitor Settings
 

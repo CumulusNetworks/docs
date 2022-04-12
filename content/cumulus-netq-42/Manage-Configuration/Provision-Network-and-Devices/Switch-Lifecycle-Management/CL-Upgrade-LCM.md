@@ -17,7 +17,7 @@ You can upgrade Cumulus Linux from between the following releases:
 
 {{<notice warning>}}
 
-When upgrading to Cumulus Linux 5.y, LCM backs up and restores flat file configurations in Cumulus Linux. After you upgrade to Cumulus Linux 5.0, running NVUE configuration commands replaces the configuration in the applicable configuration files and removes any configuration restored by NetQ LCM. See {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/" text="Upgrading Cumulus Linux">}} for additional information.
+When upgrading to Cumulus Linux 5.y, LCM backs up and restores flat file configurations in Cumulus Linux. After you upgrade to Cumulus Linux 5.y, running NVUE configuration commands replaces the configuration in the applicable configuration files and removes any configuration restored by NetQ LCM. See {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/" text="Upgrading Cumulus Linux">}} for additional information.
 
 {{</notice>}}
 

@@ -25,7 +25,7 @@ The NetQ UI provides the Inventory|Devices card for monitoring networkwide inven
 
 Access these card from the NetQ Workbench, or add them to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory|Devices card or Inventory|Switches card > **Open Cards**.
 
-{{<img src="/images/netq/inventory-devices-medium-240.png" width="200">}}&nbsp;&nbsp;&nbsp;&nbsp;{{<img src="/images/netq/inventory-switch-medium-320.png" width="200">}}
+{{<img src="/images/netq/inventory-devices-l2-42.png" width="200">}}&nbsp;&nbsp;&nbsp;&nbsp;{{<img src="/images/netq/inventory-switches-os-l2-42.png" width="200">}}
 
 The NetQ CLI provides detailed network inventory information through its `netq show inventory` command.
 
@@ -41,10 +41,10 @@ You can view all devices in your network from either the NetQ UI or NetQ CLI.
 
 You can view the number of switches and hosts deployed in your network. As you grow your network this can be useful for validating the addition of devices as scheduled.
 
-To view the quantity of devices in your network, locate or open the small or medium Inventory|Devices card. The medium-sized card provide operating system distribution across the network in addition to the device count.
+To view the quantity of devices in your network, locate or open the small or medium Inventory|Devices card. The medium-sized card provide operating system distribution across the network in addition to the device count. Hover over items in the outer circle in the chart to view operating system distribution, and hover over items in the inner circle of the chart to view device counts.
 
-{{<figure src="/images/netq/inventory-devices-small-240.png" width="200">}}
-{{<figure src="/images/netq/inventory-devices-medium-230.png" width="200">}}
+{{<figure src="/images/netq/inventory-devices-l1-42.png" width="200">}}
+{{<figure src="/images/netq/inventory-devices-l2-42.png" width="200">}}
 
 ### View All Switches
 

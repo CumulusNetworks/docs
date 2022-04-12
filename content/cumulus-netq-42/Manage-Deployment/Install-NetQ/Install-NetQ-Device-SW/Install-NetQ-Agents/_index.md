@@ -677,6 +677,6 @@ sudo netq config add agent server 192.168.1.254 port 7379
 sudo netq config restart agent
 ```
 
-### Configure the NetQ Agent OPTA
+### Configure the on-switch OPTA
 
-NetQ Agent OPTA functionality is an Early Access feature. On-switch OPTA is intended for use in small NetQ cloud deployments where a dedicated OPTA might not be necessary. If you need help assessing the correct OPTA configuration for your deployment, {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="contact your NVIDIA">}} sales team.
+NetQ Agent OPTA functionality is an Early Access feature. The on-switch OPTA does not support Flow Analysis or LCM features. On-switch OPTA is intended for use in small NetQ cloud deployments where a dedicated OPTA might not be necessary. If you need help assessing the correct OPTA configuration for your deployment, {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="contact your NVIDIA">}} sales team.

@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 121
 toc: 2
 ---
-This section shows you how to see a list of all the NVUE commands and how to see command descriptions.
+This section shows you how to list all the NVUE commands and see command descriptions.
 
 ## List All Commands
 

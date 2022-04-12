@@ -22,7 +22,7 @@ To monitor networkwide inventory, refer to {{<link title="Monitor Networkwide In
 
 The NetQ UI provides the Inventory | Switches card for monitoring the hardware and software component inventory on switches running NetQ in your network. Access this card from the NetQ Workbench, or add it to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory|Switches card > **Open Cards**.
 
-{{<figure src="/images/netq/inventory-switch-medium-320.png" width="200">}}
+{{<figure src="/images/netq/inventory-switches-disk-l2-42.png" width="200">}}
 
 The CLI provides detailed switch inventory information through its `netq <hostname> show inventory` command.
 
@@ -48,7 +48,7 @@ To view this count for all of the components on the switch:
 
 1. Open the medium Switch Inventory card.
 
-    {{<figure src="/images/netq/inventory-switch-medium-320.png" width="200">}}
+    {{<figure src="/images/netq/inventory-switches-os-l2-42.png" width="200">}}
 
 2. Note the number in the **Unique** column for each component.
 
@@ -66,11 +66,11 @@ To view the distribution:
 
 1. Locate the Inventory|Switches card on your workbench.
 
-2. From the medium or large card, view the distribution of hardware and software components across the network.
+2. From the medium or large card, view the distribution of hardware and software components across the network. On the medium card, drop down the selection menu to select the desired component.
 
-    {{<figure src="/images/netq/inventory-switch-medium-230.png" width="200">}}
+    {{<figure src="/images/netq/inventory-switches-disk-l2-42.png" width="200">}}
 
-    {{<figure src="/images/netq/inventory-switch-large-summary-tab-230.png" width="500">}}
+    {{<figure src="/images/netq/inventory-switches-l3-42.png" width="500">}}
 
 3. Hover over any of the segments in the distribution chart to highlight a specific component. Scroll down to view additional components.
 
@@ -84,11 +84,11 @@ To view the distribution:
 
 4. Choose *Rotten Switches* from the dropdown to see which, if any, switches are currently not communicating with NetQ.
 
-    {{<figure src="/images/netq/switch-status-dropdown-320.png" width="180">}}
+    {{<figure src="/images/netq/inventory-switches-fresh-dropdown-42.png" width="500">}}
 
 5. Return to your fresh switches, then hover over the card header and change to the small size card using the size picker.
 
-    {{<figure src="/images/netq/inventory-switch-small-230.png" width="150">}}
+    {{<figure src="/images/netq/inventory-switches-small-l1-42.png" width="150">}}
 
 <div style="padding-left: 18px;">Here you can see the total switch count and the distribution of those that are communicating well with the NetQ appliance or VM and those that are not. In this example, there are a total of 13 switches and they are all fresh (communicating well).</div>
 

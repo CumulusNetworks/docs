@@ -25,18 +25,18 @@ NetQ 4.2.0 includes the following new features and improvements:
 - Simplified install process
 - Network health UI improvements with validation status
 - {{<link title="Validation Checks##addresses-validation-tests" text="GUI support for Duplicate Address Detection">}}
-- Early Access OPTA functionality in NetQ Agent
+- Early Access on-switch OPTA support for NetQ cloud deployments
 - Early Access support for {{<link title="Monitor DPU Inventory" text="DPU Monitoring">}}
 ## Upgrade Paths
 
-You can upgrade NetQ versions 4.1.0 and later directly to version 4.2.0. Upgrades from NetQ versions earlier than 4.1.0 require a fresh installation.
+You can upgrade NetQ versions 4.1.0 and later directly to version 4.2.0. Upgrades from NetQ versions earlier than 4.1.0 require a fresh installation or an incremental upgrade to version 4.1.0 first.
 ## Compatible Agent Versions
 
 NetQ 4.2.0 is compatible with NetQ Agent version 4.1.0 and above. 
 
 You can install NetQ Agents on switches and servers running
 
-- Cumulus Linux 3.7.z, 4.0.0, and later
+- Cumulus Linux 3.7.12 and later
 - SONiC 202012 and later
 - CentOS 7
 - RHEL 7.1

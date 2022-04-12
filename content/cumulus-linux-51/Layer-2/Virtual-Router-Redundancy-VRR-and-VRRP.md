@@ -27,9 +27,7 @@ The diagram below illustrates a basic VRR-enabled network configuration.
 The network includes three servers and two Cumulus Linux switches. The switches use {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="multi-chassis link aggregation">}} (MLAG).
 - As the bridges in each of the redundant switches connect, they each receive and reply to ARP requests for the virtual router IP address.
 - Each ARP request by a server receives replies from each switch; these replies are identical, and the server receiving the replies either ignores replies after the first, or accepts them and overwrites the previous identical reply.
-- VRR reserves a range of MAC addresses to prevent MAC address conflicts with other interfaces in the same bridged network. The reserved range is `00:00:5E:00:01:00` to `00:00:5E:00:01:ff`.
-
-   Use MAC addresses from the reserved range when configuring VRR. The reserved MAC address range is the same for VRR and VRRP.
+- VRR uses the default fabric-wide MAC address 00:00:5E:00:01:01. You can {{<link url="#vrr-mac-address" text="change the VRR MAC address">}} if necessary. Be sure to use a VRR MAC access in the reserved range between `00:00:5E:00:01:00` and `00:00:5E:00:01:ff` to prevent MAC address conflicts with other interfaces in the same bridged network. The reserved MAC address range is the same for VRR and VRRP.
 
 ### Configure the Switches
 

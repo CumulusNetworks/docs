@@ -60,7 +60,8 @@ To ease the transition from Onyx to NVUE, you can upload the running configurati
 
 <!--
 
-## Advanced Uninstallation Procedure (update the doc if needed)
+
+## Advanced Uninstallation Procedure
 
 Another method of Onyx NOS uninstallation is by re-installing ONIE using the *ONIE: Rescue* or *ONIE: Embed ONIE* mode.
 
@@ -70,18 +71,17 @@ Make sure to involve NVIDIA support or professional services for assistance to p
 
 {{%/notice%}}
 
-Follow steps 1-3 showen above.
-4. Select `ONIE: Rescue` or `ONIE: Embed ONIE`.
+Follow steps 1-3 showen above. 
+
+4. Select `ONIE: Rescue` or `ONIE: Embed ONIE`. These two options will allow you to re-install ONIE on the switch using the onie-updater file. 
 
 {{< img src = "/images/knowledge-base/uninstall-onyx/4_onyx_ONIE_rescue.png" >}}
 
 {{< img src = "/images/knowledge-base/uninstall-onyx/4_onyx_ONIE_embed.png" >}}
 
-These two options will allow you to re-install ONIE on the switch using the onie-updater file. 
+{{%notice note%}}
 
-{{%notice notice%}}
-
-Make sure the switch have access to the onie-updater file, either use a local HTTP/FTP/TFTP server or place it on the switch.
+Place the onie-updater file on a local HTTP/FTP/TFTP server or on the switch itself.
 
 {{%/notice%}}
 
@@ -94,9 +94,10 @@ e.g.
 ONIE:/ # onie-self-update -e http://10.1.0.250/onie-updater-x86
 ONIE:/ # onie-self-update -e /tmp/onie-updater
 ```
-Once ONIE re-installed and the switch rebooted, follow steps 6-8 above.
+Once ONIE re-installed and the switch rebooted, continue with steps 6-8 showen above.
 
 -->
+
 
 
 

@@ -7,6 +7,19 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3040080</td>
+<td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3037541</td>
+<td>The NVUE {{nv set evpn multihoming enable on}} command does not enable EVPN multihoming. 
+To work around this issue, set the {{evpn.multihoming.enable}} variable in the {{/etc/cumulus/switchd.conf}} file to TRUE, then restart the {{switchd}} service.</td>
+<td>5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3035855</td>
 <td>When you configure ACLs on the switch, you might see a {{switchd}} segmentation fault.</td>
 <td>5.0.1</td>
@@ -20,7 +33,7 @@
 </tr>
 <tr>
 <td>3032234</td>
-<td>In a BGP unnumbered, when you try to remove an interface from the underlay default VRF with the NVUE {{nv unset vrf default router bgp neighbor &lt;interface&gt;}} command, the command fails to apply.</td>
+<td>In BGP unnumbered, when you try to remove an interface from the underlay default VRF with the NVUE {{nv unset vrf default router bgp neighbor &lt;interface&gt;}} command, the command fails to apply.</td>
 <td>5.0.1</td>
 <td></td>
 </tr>
@@ -62,7 +75,7 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 </tr>
 <tr>
 <td>3021888</td>
-<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down and up ({{ifdown}} and {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
+<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down ({{ifdown}} and up {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
 <td>5.0.0-5.0.1</td>
 <td></td>
 </tr>
@@ -128,6 +141,14 @@ Fixed: 1.1.1d-0+deb10u8</td>
 <td></td>
 </tr>
 <tr>
+<td>3003167</td>
+<td>Updating an existing tunnel configuration with NVUE or directly in the {{/etc/network/interfaces}} file causes traffic loss. The original tunnel is destroyed and then recreated (with a new ifindex).
+
+The new behavior will make sure to apply the configuration delta without disrupting any traffic as much as possible. Note that a tunnel mode change can't be applied without causing traffic loss. </td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2999342</td>
 <td>CVE-2020-36311, CVE-2021-3609, CVE-2021-33909, CVE-2021-34693
 Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.
@@ -168,6 +189,12 @@ Fixed:</td>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2991501</td>
+<td>The {{snmpd}} process using the Zabbix template "Template Net Mellanox SNMP"  causes a slow memory leak.</td>
+<td>4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -325,6 +352,13 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td></td>
 </tr>
 <tr>
+<td>2903374</td>
+<td>The {{nv show interfaces}} command returns a 500 error and syslog shows a python error, triggered by third party devices (non CL) missing LLDP fields.
+To work around this issue, disable LLDP on a single interface.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2898044</td>
 <td>NVUE commands including the {{nv config apply}} command might fail with the following error because the {{/etc/resolv.conf}} file is missing.
 
@@ -461,7 +495,7 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 </tr>
 <tr>
 <td>2743186</td>
-<td>When you use MD5 passwords and you configure a non-default VRF configuration before the default VRF configuration in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
+<td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
 <td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
@@ -495,6 +529,12 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3040080</td>
+<td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3032960</td>
@@ -534,7 +574,7 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 </tr>
 <tr>
 <td>3021888</td>
-<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down and up ({{ifdown}} and {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
+<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down ({{ifdown}} and up {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
 <td>5.0.0-5.0.1</td>
 <td></td>
 </tr>
@@ -585,6 +625,14 @@ Fixed: 1.1.1d-0+deb10u8</td>
 <td></td>
 </tr>
 <tr>
+<td>3003167</td>
+<td>Updating an existing tunnel configuration with NVUE or directly in the {{/etc/network/interfaces}} file causes traffic loss. The original tunnel is destroyed and then recreated (with a new ifindex).
+
+The new behavior will make sure to apply the configuration delta without disrupting any traffic as much as possible. Note that a tunnel mode change can't be applied without causing traffic loss. </td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2999342</td>
 <td>CVE-2020-36311, CVE-2021-3609, CVE-2021-33909, CVE-2021-34693
 Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.
@@ -625,6 +673,12 @@ Fixed:</td>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2991501</td>
+<td>The {{snmpd}} process using the Zabbix template "Template Net Mellanox SNMP"  causes a slow memory leak.</td>
+<td>4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -772,6 +826,13 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <td>5.0.1</td>
 </tr>
 <tr>
+<td>2903374</td>
+<td>The {{nv show interfaces}} command returns a 500 error and syslog shows a python error, triggered by third party devices (non CL) missing LLDP fields.
+To work around this issue, disable LLDP on a single interface.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2898044</td>
 <td>NVUE commands including the {{nv config apply}} command might fail with the following error because the {{/etc/resolv.conf}} file is missing.
 
@@ -908,7 +969,7 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 </tr>
 <tr>
 <td>2743186</td>
-<td>When you use MD5 passwords and you configure a non-default VRF configuration before the default VRF configuration in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
+<td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
 <td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
@@ -1169,7 +1230,7 @@ Device is not ready: absent
 </tr>
 <tr>
 <td>2734119</td>
-<td>The ESI line of {{show bgp l2vpn evpn route}} command always shows VNI: 0. This is a cosmetic software issue.</td>
+<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
 <td>4.3.0-4.4.3</td>
 </tr>
 <tr>

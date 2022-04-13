@@ -869,7 +869,7 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <tr>
 <td>2663119</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>4.3.0-4.4.3</td>
+<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2900,7 +2900,7 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <tr>
 <td>2663119</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>4.3.0-4.4.3</td>
+<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -5341,7 +5341,7 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <tr>
 <td>2663119</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>4.3.0-4.4.3</td>
+<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>

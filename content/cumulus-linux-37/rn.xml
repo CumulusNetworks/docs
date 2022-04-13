@@ -1163,6 +1163,12 @@ Fixed: 1.6.2-3+deb8u5</td>
 <td></td>
 </tr>
 <tr>
+<td>2663119</td>
+<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
+<td>3.7.15, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>2660693</td>
 <td>CVE-2021-22876: libcurl, an URL transfer library, does not strip off user credentials from the URL when automatically populating the Referer HTTP request header field in outgoing HTTP requests. Sensitive authentication data may leak to the server that is the target of the second HTTP request.
 Vulnerable: 7.38.0-4+deb8u19

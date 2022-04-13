@@ -13,7 +13,7 @@ This uninstallation method is intensive to the disk and should not be undertaken
 
 {{%/notice%}}
 
-## Uninstallation Procedure 
+Follow this procedure:
 
 1. Log in to the Onyx switch, then run the `reload` command to reboot the switch.
 

@@ -7,6 +7,21 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3040080</td>
+<td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3032960</td>
 <td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
 <td>4.4.3, 5.0.0-5.0.1</td>
@@ -31,24 +46,15 @@
 <td></td>
 </tr>
 <tr>
-<td>3021887</td>
-<td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
-<td>4.4.2-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3021877</td>
 <td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
-<td>3021746</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td>3021838</td>
+<td>PBR rules that you apply to interfaces in the default VRF install in the kernel with the action {{lookup local}}. As a result, packets that match this rule only perform a route lookup in the local table (which contains special routes for local IP addresses and broadcast addresses) but not in the main table (which contains unicast routes).  As a result, policy routing might be applied to traffic incorrectly.</td>
+<td>4.4.2-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -148,6 +154,12 @@ Fixed:</td>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2991501</td>
+<td>The {{snmpd}} process using the Zabbix template "Template Net Mellanox SNMP"  causes a slow memory leak.</td>
+<td>4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -367,7 +379,7 @@ To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 </tr>
 <tr>
 <td>2873185</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
+<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when you add new VLANS or bridges. </td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
@@ -648,7 +660,7 @@ To work around this issue, manually restart WJH with the {{sudo systemctl restar
 </tr>
 <tr>
 <td>2763819</td>
-<td>When  you enable LACP bypass on a bond, traffic destined to static MAC addresses configured on the bond might not work when LACP bypass is enforced.</td>
+<td>When  you enable LACP bypass on a bond, traffic to static MAC addresses configured on the bond might not work when LACP bypass is enforced.</td>
 <td>4.4.0-4.4.3</td>
 <td></td>
 </tr>
@@ -678,7 +690,7 @@ To work around this issue, manually restart WJH with the {{sudo systemctl restar
 </tr>
 <tr>
 <td>2743186</td>
-<td>When you use MD5 passwords and you configure a non-default VRF configuration before the default VRF configuration in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
+<td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
 <td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
@@ -703,7 +715,7 @@ To work around this issue, manually restart WJH with the {{sudo systemctl restar
 </tr>
 <tr>
 <td>2734119</td>
-<td>The ESI line of {{show bgp l2vpn evpn route}} command always shows VNI: 0. This is a cosmetic software issue.</td>
+<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
 <td>4.3.0-4.4.3</td>
 <td>5.0.0-5.0.1</td>
 </tr>
@@ -830,7 +842,7 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </tr>
 <tr>
 <td>2685036</td>
-<td>In a PIM configuration where the RP configuration includes an anycast IP address, if the route to that anycast IP address changes while joined to a multicast stream, you might receive the multicast stream from both the old and the new anycast source.</td>
+<td>When the PIM RP configuration includes an anycast IP address and the route to that anycast IP address changes while joined to a multicast stream, you might receive the multicast stream from both the old and the new anycast source.</td>
 <td>4.4.0-4.4.3</td>
 <td></td>
 </tr>
@@ -941,7 +953,7 @@ To work around this issue, disable OSPF debugs from global configuration mode.</
 </tr>
 <tr>
 <td>2555981</td>
-<td>To enable an address family on a peer, you have to enable the address family  globally.</td>
+<td>In BGP, to enable an address family on a peer, you have to enable the address family  globally.</td>
 <td>4.4.0-4.4.3</td>
 <td></td>
 </tr>
@@ -1969,15 +1981,24 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3031235</td>
-<td>Static VXLAN configuration prevents NCLU from working.</td>
-<td>4.3.0-4.4.3</td>
+<td>3040080</td>
+<td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
-<td>3021887</td>
-<td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
-<td>4.4.2-4.4.3</td>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3031235</td>
+<td>Static VXLAN configuration prevents NCLU from working.</td>
+<td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1987,12 +2008,9 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <td></td>
 </tr>
 <tr>
-<td>3021746</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td>3021838</td>
+<td>PBR rules that you apply to interfaces in the default VRF install in the kernel with the action {{lookup local}}. As a result, packets that match this rule only perform a route lookup in the local table (which contains special routes for local IP addresses and broadcast addresses) but not in the main table (which contains unicast routes).  As a result, policy routing might be applied to traffic incorrectly.</td>
+<td>4.4.2-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2092,6 +2110,12 @@ Fixed:</td>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2991501</td>
+<td>The {{snmpd}} process using the Zabbix template "Template Net Mellanox SNMP"  causes a slow memory leak.</td>
+<td>4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2370,7 +2394,7 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 </tr>
 <tr>
 <td>2873185</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
+<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when you add new VLANS or bridges. </td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
@@ -2655,7 +2679,7 @@ To work around this issue, manually restart WJH with the {{sudo systemctl restar
 </tr>
 <tr>
 <td>2763819</td>
-<td>When  you enable LACP bypass on a bond, traffic destined to static MAC addresses configured on the bond might not work when LACP bypass is enforced.</td>
+<td>When  you enable LACP bypass on a bond, traffic to static MAC addresses configured on the bond might not work when LACP bypass is enforced.</td>
 <td>4.4.0-4.4.3</td>
 <td></td>
 </tr>
@@ -2685,7 +2709,7 @@ To work around this issue, manually restart WJH with the {{sudo systemctl restar
 </tr>
 <tr>
 <td>2743186</td>
-<td>When you use MD5 passwords and you configure a non-default VRF configuration before the default VRF configuration in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
+<td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
 <td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
@@ -2710,7 +2734,7 @@ To work around this issue, manually restart WJH with the {{sudo systemctl restar
 </tr>
 <tr>
 <td>2734119</td>
-<td>The ESI line of {{show bgp l2vpn evpn route}} command always shows VNI: 0. This is a cosmetic software issue.</td>
+<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
 <td>4.3.0-4.4.3</td>
 <td>5.0.0-5.0.1</td>
 </tr>
@@ -2849,7 +2873,7 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </tr>
 <tr>
 <td>2685036</td>
-<td>In a PIM configuration where the RP configuration includes an anycast IP address, if the route to that anycast IP address changes while joined to a multicast stream, you might receive the multicast stream from both the old and the new anycast source.</td>
+<td>When the PIM RP configuration includes an anycast IP address and the route to that anycast IP address changes while joined to a multicast stream, you might receive the multicast stream from both the old and the new anycast source.</td>
 <td>4.4.0-4.4.3</td>
 <td></td>
 </tr>
@@ -2961,7 +2985,7 @@ To work around this issue, disable OSPF debugs from global configuration mode.</
 </tr>
 <tr>
 <td>2555981</td>
-<td>To enable an address family on a peer, you have to enable the address family  globally.</td>
+<td>In BGP, to enable an address family on a peer, you have to enable the address family  globally.</td>
 <td>4.4.0-4.4.3</td>
 <td></td>
 </tr>
@@ -4166,18 +4190,18 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3031235</td>
-<td>Static VXLAN configuration prevents NCLU from working.</td>
-<td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>3021746</td>
+<td>3040075</td>
 <td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
 
 2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
 </td>
 <td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3031235</td>
+<td>Static VXLAN configuration prevents NCLU from working.</td>
+<td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4280,6 +4304,12 @@ Fixed:</td>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2991501</td>
+<td>The {{snmpd}} process using the Zabbix template "Template Net Mellanox SNMP"  causes a slow memory leak.</td>
+<td>4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4594,7 +4624,7 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 </tr>
 <tr>
 <td>2873185</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
+<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when you add new VLANS or bridges. </td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
@@ -4992,7 +5022,7 @@ This affects failed neighbor entries on routed interfaces that are not SVIs.</td
 </tr>
 <tr>
 <td>2763819</td>
-<td>When  you enable LACP bypass on a bond, traffic destined to static MAC addresses configured on the bond might not work when LACP bypass is enforced.</td>
+<td>When  you enable LACP bypass on a bond, traffic to static MAC addresses configured on the bond might not work when LACP bypass is enforced.</td>
 <td>4.4.0-4.4.3</td>
 <td></td>
 </tr>
@@ -5058,7 +5088,7 @@ Fixed: 1.0.28-6+deb10u1</td>
 </tr>
 <tr>
 <td>2743186</td>
-<td>When you use MD5 passwords and you configure a non-default VRF configuration before the default VRF configuration in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
+<td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
 <td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
@@ -5114,7 +5144,7 @@ Fixed: 241-7~deb10u8</td>
 </tr>
 <tr>
 <td>2734119</td>
-<td>The ESI line of {{show bgp l2vpn evpn route}} command always shows VNI: 0. This is a cosmetic software issue.</td>
+<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
 <td>4.3.0-4.4.3</td>
 <td>5.0.0-5.0.1</td>
 </tr>
@@ -5284,7 +5314,7 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </tr>
 <tr>
 <td>2685036</td>
-<td>In a PIM configuration where the RP configuration includes an anycast IP address, if the route to that anycast IP address changes while joined to a multicast stream, you might receive the multicast stream from both the old and the new anycast source.</td>
+<td>When the PIM RP configuration includes an anycast IP address and the route to that anycast IP address changes while joined to a multicast stream, you might receive the multicast stream from both the old and the new anycast source.</td>
 <td>4.4.0-4.4.3</td>
 <td></td>
 </tr>
@@ -5396,7 +5426,7 @@ To work around this issue, disable OSPF debugs from global configuration mode.</
 </tr>
 <tr>
 <td>2555981</td>
-<td>To enable an address family on a peer, you have to enable the address family  globally.</td>
+<td>In BGP, to enable an address family on a peer, you have to enable the address family  globally.</td>
 <td>4.4.0-4.4.3</td>
 <td></td>
 </tr>

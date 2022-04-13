@@ -24,10 +24,10 @@ The diagram below illustrates a basic VRR-enabled network configuration.
 
 {{< img src = "/images/cumulus-linux/mlag-dual-connect.png" >}}
 
-The network includes three servers and two Cumulus Linux switches. The switches use {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="multi-chassis link aggregation">}} (MLAG).
+The network includes three servers and two Cumulus Linux switches. The switches use {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}.
 - As the bridges in each of the redundant switches connect, they each receive and reply to ARP requests for the virtual router IP address.
 - Each ARP request by a server receives replies from each switch; these replies are identical, and the server receiving the replies either ignores replies after the first, or accepts them and overwrites the previous identical reply.
-- VRR uses the default fabric-wide MAC address 00:00:5E:00:01:01. You can {{<link url="#change-the-vrr-mac-address" text="change the VRR MAC address">}} if necessary. Be sure to use a VRR MAC access in the reserved range between `00:00:5E:00:01:00` and `00:00:5E:00:01:ff` to prevent MAC address conflicts with other interfaces in the same bridged network. The reserved MAC address range is the same for VRR and VRRP.
+- VRR uses the default fabric-wide MAC address 00:00:5E:00:01:01. If necessary, you can {{<link url="#change-the-vrr-mac-address" text="change the VRR MAC address">}}.
 
 ### Configure the Switches
 
@@ -40,14 +40,13 @@ The switches implement the layer 2 network interconnecting the servers and the r
 Cumulus Linux only supports VRR on an [SVI](## "Switched Virtual Interface"). You cannot configure VRR on a physical interface or virtual subinterface.
 {{%/notice%}}
 
-The example commands below create a VLAN-aware bridge interface for a VRR-enabled network. The example assumes you have already configured a VLAN-aware bridge with VLAN 10 and that VLAN 10 has an IP address:
+The example commands below create a VLAN-aware bridge interface for a VRR-enabled network. The example assumes you have already configured a VLAN-aware bridge with VLAN 10 and that VLAN 10 has an IP address and uses the default fabric-wide VRR MAC address 00:00:5e:00:01:01.
 
 {{< tabs "TabID53 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@switch:~$ nv set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
 cumulus@switch:~$ nv set interface vlan10 ip vrr state up
 cumulus@switch:~$ nv config apply
 ```
@@ -56,7 +55,6 @@ Use the same commands for IPV6 addresses; for example:
 
 ```
 cumulus@switch:~$ nv set interface vlan10 ip vrr address 2001:db8::1/32
-cumulus@switch:~$ nv set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
 cumulus@switch:~$ nv set interface vlan10 ip vrr state up
 ```
 
@@ -71,7 +69,7 @@ cumulus@switch:~$ sudo nano /etc/network/interfaces
 auto vlan10
 iface vlan10
     address 10.1.10.2/24
-    address-virtual 00:00:5e:00:01:00 10.1.10.1/24
+    address-virtual 00:00:5e:00:01:01 10.1.10.1/24
     vlan-raw-device br_default
     vlan-id 10
 ...
@@ -87,29 +85,36 @@ cumulus@switch:~$ sudo ifreload -a
 ### Change the VRR MAC Address
 <!-- vale on -->
 
-Cumulus Linux sets a fabric-wide MAC address to ensure consistency across VRR switches, which is especially useful in an EVPN multi-fabric environment.
+Cumulus Linux sets a fabric-wide MAC address to ensure consistency across VRR switches, which is especially useful in an EVPN multi-fabric environment. If you prefer, you can change the VRR MAC address globally with one NVUE command. You can also override the global setting for a specific VLAN.
 
-If you prefer, you can change the VRR MAC address. You can either:
-
-- Set the VRR MAC address to a value in the reserved range between 00:00:5E:00:01:00 and 00:00:5E:00:01:FF.
+To set the VRR MAC address globally with one NVUE command, either:
+- Set the fabric-wide VRR MAC address to a value in the reserved range between 00:00:5E:00:01:00 and 00:00:5E:00:01:FF. Be sure to use an address in this reserved range to prevent MAC address conflicts with other interfaces in the same bridged network. 
 - Set a fabric ID, from which Cumulus Linux derives the MAC address. You can specify a number between 1 and 225. Cumulus Linux adds the number to the MAC address 00:00:5E:00:01:00 in hex. For example, if you specify 225, the VRR MAC address is 00:00:5E:00:01:FF.
 
 The default VRR MAC address is 00:00:5E:00:01:01, which the switch derives from a fabric ID setting of 1.
 
-To set a VRR MAC address on each switch in the fabric:
-
-{{< tabs "TabID103 ">}}
-{{< tab "NVUE Commands ">}}
+To change a VRR MAC address globally on the switch, run the `nv set system global fabric-mac <mac-address>` command:
 
 ```
 cumulus@switch:mgmt:~$ nv set system global fabric-mac 00:00:5E:00:01:FF
 cumulus@switch:mgmt:~$ nv config apply
 ```
 
-{{< /tab >}}
-{{< tab "Linux Commands">}}
+To set a fabric ID, run the `nv set system global fabric-id <number>` command:
 
-Edit the `/etc/network/interfaces` file and add the same MAC address to the `address-virtual` line for all VLANs in the fabric.
+```
+cumulus@switch:mgmt:~$ nv set system global fabric-id 255
+cumulus@switch:mgmt:~$ nv config apply
+```
+
+To override the global setting for a specific VLAN, run the `nv set interface <vlan> ip vrr mac-address <mac-address>` command:
+
+```
+cumulus@switch:mgmt:~$ nv set interface vlan10 ip vrr mac-address 00:00:5E:00:01:00
+cumulus@switch:mgmt:~$ nv config apply
+```
+
+To change the VRR MAC address manually, edit the `/etc/network/interfaces` file and update the MAC address in the `address-virtual` line for each VLAN. Cumulus Linux does not provide a fabric ID option in the `/etc/network/interfaces` file.
 
 The following example shows vlan10, vlan20, and vlan30:
 
@@ -145,26 +150,9 @@ iface vlan30
 ...
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-To set a fabric ID:
-
-{{< tabs "TabID121 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:mgmt:~$ nv set system global fabric-id 255
-cumulus@switch:mgmt:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands">}}
-
-Cumulus Linux does not provide manual commands for the fabric ID.
-
-{{< /tab >}}
-{{< /tabs >}}
+{{%notice note%}}
+Make sure to set the same VRR MAC address on both MLAG peers.
+{{%/notice%}}
 
 ### Configure the Servers
 
@@ -237,15 +225,12 @@ cumulus@leaf01:mgmt:~$ nv set mlag peer-ip linklocal
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10,20,30
 cumulus@leaf01:mgmt:~$ nv set interface vlan10 ip address 10.1.10.2/24
 cumulus@leaf01:mgmt:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf01:mgmt:~$ nv set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
 cumulus@leaf01:mgmt:~$ nv set interface vlan10 ip vrr state up
 cumulus@leaf01:mgmt:~$ nv set interface vlan20 ip address 10.1.20.2/24
 cumulus@leaf01:mgmt:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf01:mgmt:~$ nv set interface vlan20 ip vrr mac-address 00:00:5e:00:01:00
 cumulus@leaf01:mgmt:~$ nv set interface vlan20 ip vrr state up
 cumulus@leaf01:mgmt:~$ nv set interface vlan30 ip address 10.1.30.2/24
 cumulus@leaf01:mgmt:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf01:mgmt:~$ nv set interface vlan30 ip vrr mac-address 00:00:5e:00:01:00
 cumulus@leaf01:mgmt:~$ nv set interface vlan30 ip vrr state up
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
@@ -270,15 +255,12 @@ cumulus@leaf02:mgmt:~$ nv set mlag peer-ip linklocal
 cumulus@leaf02:mgmt:~$ nv set bridge domain br_default vlan 10,20,30
 cumulus@leaf02:mgmt:~$ nv set interface vlan10 ip address 10.1.10.3/24
 cumulus@leaf02:mgmt:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf02:mgmt:~$ nv set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
 cumulus@leaf02:mgmt:~$ nv set interface vlan10 ip vrr state up
 cumulus@leaf02:mgmt:~$ nv set interface vlan20 ip address 10.1.20.3/24
 cumulus@leaf02:mgmt:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf02:mgmt:~$ nv set interface vlan20 ip vrr mac-address 00:00:5e:00:01:00
 cumulus@leaf02:mgmt:~$ nv set interface vlan20 ip vrr state up
 cumulus@leaf02:mgmt:~$ nv set interface vlan30 ip address 10.1.30.2/24
 cumulus@leaf02:mgmt:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf02:mgmt:~$ nv set interface vlan30 ip vrr mac-address 00:00:5e:00:01:00
 cumulus@leaf02:mgmt:~$ nv set interface vlan30 ip vrr state up
 cumulus@leaf02:mgmt:~$ nv config apply
 ```
@@ -371,7 +353,6 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             address:
               10.1.10.1/24: {}
             enable: on
-            mac-address: 00:00:5e:00:01:00
             state:
               up: {}
         type: svi
@@ -384,7 +365,6 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             address:
               10.1.20.1/24: {}
             enable: on
-            mac-address: 00:00:5e:00:01:00
             state:
               up: {}
         type: svi
@@ -397,7 +377,6 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             address:
               10.1.30.1/24: {}
             enable: on
-            mac-address: 00:00:5e:00:01:00
             state:
               up: {}
         type: svi
@@ -407,7 +386,6 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
         10.10.10.2: {}
       enable: on
       init-delay: 100
-      mac-address: 44:38:39:BE:EF:AA
       peer-ip: linklocal
     router:
       vrr:
@@ -498,7 +476,6 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             address:
               10.1.10.1/24: {}
             enable: on
-            mac-address: 00:00:5e:00:01:00
             state:
               up: {}
         type: svi
@@ -511,7 +488,6 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             address:
               10.1.20.1/24: {}
             enable: on
-            mac-address: 00:00:5e:00:01:00
             state:
               up: {}
         type: svi
@@ -524,7 +500,6 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             address:
               10.1.30.1/24: {}
             enable: on
-            mac-address: 00:00:5e:00:01:00
             state:
               up: {}
         type: svi
@@ -534,7 +509,6 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
         10.10.10.1: {}
       enable: on
       init-delay: 100
-      mac-address: 44:38:39:BE:EF:AA
       peer-ip: linklocal
     router:
       vrr:

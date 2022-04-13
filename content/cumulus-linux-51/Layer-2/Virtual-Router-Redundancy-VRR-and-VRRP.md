@@ -198,10 +198,6 @@ UP     vlan10-v0      N/A  9216   Interface/L3                           IP: 10.
 
 The following example creates an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} configuration that incorporates VRR.
 
-{{%notice note%}}
-The examples use a single virtual MAC address for VLANs. You can add a unique MAC address for each VLAN, but this is not necessary.
-{{%/notice%}}
-
 {{< tabs "TabID200 ">}}
 {{< tab "NVUE Commands ">}}
 

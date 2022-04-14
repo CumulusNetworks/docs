@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3041307</td>
+<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3041306</td>
+<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3040075</td>
 <td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
 
@@ -951,6 +963,12 @@ To work around this issue, start the MST service with the {{sudo mst start}} com
 <td></td>
 </tr>
 <tr>
+<td>2668483</td>
+<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
+<td>3.7.14-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2666839</td>
 <td>CVE-2021-31535: missing length validation in various functions provided by libx11, the X11 client-side library, allow to inject X11 protocol commands on X clients, leading to authentication bypass, denial of service or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.6.7-1+deb10u1
@@ -969,7 +987,7 @@ Fixed: 1.8.3-1+deb10u1</td>
 <tr>
 <td>2663119</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0-4.4.3</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>

@@ -4,24 +4,21 @@ author: NVIDIA
 weight: 150
 toc: 4
 ---
-Each user can customize the NetQ application display, change his account password, and manage his workbenches.
+Each user can customize the NetQ application display, change their account password, and manage their workbenches.
 
 ## Configure Display Settings
 
-The Display card contains the options for setting the application theme, language, time zone, and date formats. Two themes are available: a *light* theme and a *dark* theme, which is the default. The screen captures in this user guide are all displayed with the dark theme. English is the only language available for this release. You can choose to view data in the time zone where you or your data center resides. You can also select the date and time format, choosing words or number format and a 12- or 24-hour clock. All changes take effect immediately.
+The Display card contains the options for setting the application theme, language, time zone, and date formats. There are two themes: a light theme and a dark theme, which is the default. You can choose to view data in the time zone where you or your data center resides. You can also select the date and time format, choosing words or number format and a 12- or 24-hour clock. All changes take effect immediately.
 
 To configure the display settings:
 
 1. Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> in the application header to open the **User Settings** options.
-
-    {{<figure src="/images/netq/user-settings-profile-prefs-selected-222.png" width="150">}}
-
 2. Click **Profile & Preferences**.
 3. Locate the Display card.
 
     {{<figure src="/images/netq/user-settings-profile-prefs-display-card-222.png" width="200">}}
 
-4. In the **Theme** field, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/> to select your choice of theme. This figure shows the light theme. Switch back and forth as desired.
+4. In the **Theme** field, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/> to select either dark or light theme. The following figure shows the light theme.
 
     {{<figure src="/images/netq/user-settings-profile-prefs-light-theme-400.png" width="700">}}
 
@@ -73,30 +70,23 @@ You can also change the time zone from the header display.
 
     {{<figure src="/images/netq/user-settings-profile-prefs-date-format-222.png" width="200">}}
 
-    The four options include the date displayed in words or abbreviated with numbers, and either a 12- or 24-hour time representation. The default is the third option.
-
 ## Change Your Password
 
-You can change your account password at any time should you suspect someone has hacked your account or your administrator requests you to do so.
+You can change your account password at any time.
 
 To change your password:
 
 1. Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> in the application header to open the **User Settings** options.
-
-    {{<figure src="/images/netq/user-settings-profile-prefs-selected-222.png" width="150">}}
-
 2. Click **Profile & Preferences**.
-3. Locate the Basic Account Info card.
+3. In the Basic Account Info card, select **Change Password**.
 
     {{<figure src="/images/netq/user-settings-profile-prefs-basic-acct-info-card-222.png" width="200">}}
 
-4. Click **Change Password**.
-5. Enter your current password.
-6. Enter and confirm a new password.
+4. Enter your current password, followed by your new password.
 
     {{<figure src="/images/netq/change-passwd-modal-222.png" width="200">}}
 
-7. Click **Save** to change to the new password.
+5. Click **Save** to change to the new password.
 
 ## Manage Your Workbenches
 
@@ -117,7 +107,7 @@ To manage your workbenches:
 
     {{<figure src="/images/netq/user-settings-profile-prefs-wbs-card-222.png" width="500">}}
 
-4. To specify a home workbench, click to the left of the desired workbench name. <img src="https://icons.cumulusnetworks.com/49-Building-Construction/01-Houses/house-heart.svg" height="18" width="18"/> is placed there to indicate its status as your favorite workbench.
+4. To specify a home workbench, click to the left of the desired workbench name. <img src="https://icons.cumulusnetworks.com/49-Building-Construction/01-Houses/house-heart.svg" height="18" width="18"/> indicates your favorite workbench.
 5. To search the workbench list by name, access type, and cards present on the workbench, click the relevant header and begin typing your search criteria.
 6. To sort the workbench list, click the relevant header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg" height="18" width="18"/>.
 7. To delete a workbench, hover over the workbench name to view the **Delete** button. As an administrator, you can delete both private and public workbenches.

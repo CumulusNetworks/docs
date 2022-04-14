@@ -4,12 +4,12 @@ author: NVIDIA
 weight: 90
 toc: 3
 ---
-The NetQ graphical user interface (UI) enables you to access NetQ capabilities through a web browser as opposed to through a terminal window using the Command Line Interface (CLI). Visual representations of the health of the network, inventory, and system events make it easy to both find faults and misconfigurations, and to fix them.
+The NetQ user interface (UI) lets you access NetQ through a web browser instead of a terminal window with a command line interface (CLI). With the UI, you can visualize network health, inventory, and system events, making it easy to find errors and misconfigurations, and to fix them.
 
-You can access the UI from both on-premises and cloud deployments. Supported browsers include Google Chrome and Mozilla Firefox. You can use other popular browsers, NVIDIA has not tested them and they might have some presentation issues.
+You can access the UI from both the on-premises and cloud deployments. NetQ supports Google Chrome and Mozilla Firefox. Other browsers may have problems loading NetQ.
 
 {{<notice tip>}}
 
-Before you get started, you should refer to the {{<link title="NVIDIA Cumulus NetQ 4.1 Release Notes" text="release notes">}} for this version.
+Before you get started, refer to the {{<link title="NVIDIA Cumulus NetQ 4.1 Release Notes" text="release notes">}} for this version.
 
 {{</notice>}}

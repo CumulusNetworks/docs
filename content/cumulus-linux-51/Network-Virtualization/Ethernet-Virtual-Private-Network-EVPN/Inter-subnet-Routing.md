@@ -402,6 +402,8 @@ To prevent sub-optimal routing, the switch handles the next hop IP address of th
 - For host type-2 routes, the anycast IP address is the next hop IP address and the anycast MAC address (system MAC address) is the router MAC address.
 - For type-5 routes, the system IP address (the primary IP address of the VTEP) is the next hop IP address and the anycast MAC address of the VTEP is the router MAC address.
 
+#### Set the Anycast MAC Address
+
 You set the anycast MAC address on both switches in the MLAG pair.
 
 NVUE provides two commands to set the anycast MAC address globally. You can either:

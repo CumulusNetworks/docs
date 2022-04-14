@@ -7,6 +7,43 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3041307</td>
+<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3041306</td>
+<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3038398</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
+Vulnerable: 5.1.1alpha+20120614-2
+Fixed: 5.1.1alpha+20120614-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3038396</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in gzip, which provides GNU compression utilities.
+Vulnerable: 1.6-4
+Fixed: 1.6-4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>3031451</td>
 <td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
 Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
@@ -20,15 +57,6 @@ Fixed: 1.2.8.dfsg-2+deb8u2</td>
 Vulnerable: 7.2d-6.4
 Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>3021746</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -46,7 +74,9 @@ To work around this issue, run the {{sudo poectl -a | grep disabled}} command to
 </tr>
 <tr>
 <td>3015881</td>
-<td>Traffic flows fail because the remote VTEP IP address is missing in the layer 3 neighbor table on the switch.</td>
+<td>Traffic flows fail because the remote VTEP IP address is missing in the layer 3 neighbor table in hardware on the switch.  This happens when there is a neighbor entry for the same /32 that we have also received a type-5 route for.  When the route is learned after the neighbor entry there is a timing condition that can be hit that will cause the neighbor entry to get removed from hardware when the route is installed in hardware.
+
+This condition has been seen when customers re-use the VTEP IP on an interface inside of a vrf.  The neigh entry for the TEP IP is installed when a symmetric route is learned via that VTEP.  The Type-5 route for the TEP IP is learned in the VRF if the customer has redistributed it or advertised it within BGP in the VRF.</td>
 <td>3.7.15</td>
 <td></td>
 </tr>
@@ -524,7 +554,7 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 </tr>
 <tr>
 <td>2873185</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
+<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when you add new VLANS or bridges. </td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
@@ -1133,7 +1163,7 @@ username cumulus nopassword
 <tr>
 <td>2668483</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.14-3.7.15</td>
+<td>3.7.14-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1142,6 +1172,12 @@ username cumulus nopassword
 Vulnerable: &lt;= 1.6.2-3+deb8u4
 Fixed: 1.6.2-3+deb8u5</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2663119</td>
+<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3088,6 +3124,31 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3038398</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
+Vulnerable: 5.1.1alpha+20120614-2
+Fixed: 5.1.1alpha+20120614-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3038396</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in gzip, which provides GNU compression utilities.
+Vulnerable: 1.6-4
+Fixed: 1.6-4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>3031451</td>
 <td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
 Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
@@ -3101,15 +3162,6 @@ Fixed: 1.2.8.dfsg-2+deb8u2</td>
 Vulnerable: 7.2d-6.4
 Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>3021746</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -3464,7 +3516,7 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 </tr>
 <tr>
 <td>2873185</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
+<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when you add new VLANS or bridges. </td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
@@ -3935,7 +3987,7 @@ username cumulus nopassword
 <tr>
 <td>2668483</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.14-3.7.15</td>
+<td>3.7.14-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -5925,6 +5977,31 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3038398</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
+Vulnerable: 5.1.1alpha+20120614-2
+Fixed: 5.1.1alpha+20120614-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3038396</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in gzip, which provides GNU compression utilities.
+Vulnerable: 1.6-4
+Fixed: 1.6-4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>3031451</td>
 <td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
 Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
@@ -5938,15 +6015,6 @@ Fixed: 1.2.8.dfsg-2+deb8u2</td>
 Vulnerable: 7.2d-6.4
 Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>3021746</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -6693,7 +6761,7 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <tr>
 <td>2668483</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.14-3.7.15</td>
+<td>3.7.14-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -9277,6 +9345,31 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3038398</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
+Vulnerable: 5.1.1alpha+20120614-2
+Fixed: 5.1.1alpha+20120614-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3038396</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in gzip, which provides GNU compression utilities.
+Vulnerable: 1.6-4
+Fixed: 1.6-4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>3031451</td>
 <td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
 Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
@@ -9290,15 +9383,6 @@ Fixed: 1.2.8.dfsg-2+deb8u2</td>
 Vulnerable: 7.2d-6.4
 Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>3021746</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -12836,6 +12920,31 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3038398</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
+Vulnerable: 5.1.1alpha+20120614-2
+Fixed: 5.1.1alpha+20120614-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3038396</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in gzip, which provides GNU compression utilities.
+Vulnerable: 1.6-4
+Fixed: 1.6-4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>3031451</td>
 <td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
 Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
@@ -12849,15 +12958,6 @@ Fixed: 1.2.8.dfsg-2+deb8u2</td>
 Vulnerable: 7.2d-6.4
 Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>3021746</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -16252,6 +16352,31 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3038398</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
+Vulnerable: 5.1.1alpha+20120614-2
+Fixed: 5.1.1alpha+20120614-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3038396</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in gzip, which provides GNU compression utilities.
+Vulnerable: 1.6-4
+Fixed: 1.6-4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>3031451</td>
 <td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
 Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
@@ -16265,15 +16390,6 @@ Fixed: 1.2.8.dfsg-2+deb8u2</td>
 Vulnerable: 7.2d-6.4
 Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>3021746</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -19211,6 +19327,31 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3038398</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
+Vulnerable: 5.1.1alpha+20120614-2
+Fixed: 5.1.1alpha+20120614-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3038396</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in gzip, which provides GNU compression utilities.
+Vulnerable: 1.6-4
+Fixed: 1.6-4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>3031451</td>
 <td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
 Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
@@ -19224,15 +19365,6 @@ Fixed: 1.2.8.dfsg-2+deb8u2</td>
 Vulnerable: 7.2d-6.4
 Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>3021746</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -21619,6 +21751,31 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3038398</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
+Vulnerable: 5.1.1alpha+20120614-2
+Fixed: 5.1.1alpha+20120614-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3038396</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in gzip, which provides GNU compression utilities.
+Vulnerable: 1.6-4
+Fixed: 1.6-4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>3031451</td>
 <td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
 Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
@@ -21632,15 +21789,6 @@ Fixed: 1.2.8.dfsg-2+deb8u2</td>
 Vulnerable: 7.2d-6.4
 Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>3021746</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -24322,6 +24470,31 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3038398</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
+Vulnerable: 5.1.1alpha+20120614-2
+Fixed: 5.1.1alpha+20120614-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3038396</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in gzip, which provides GNU compression utilities.
+Vulnerable: 1.6-4
+Fixed: 1.6-4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>3031451</td>
 <td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
 Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
@@ -24335,15 +24508,6 @@ Fixed: 1.2.8.dfsg-2+deb8u2</td>
 Vulnerable: 7.2d-6.4
 Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>3021746</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -26426,6 +26590,31 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3038398</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
+Vulnerable: 5.1.1alpha+20120614-2
+Fixed: 5.1.1alpha+20120614-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3038396</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in gzip, which provides GNU compression utilities.
+Vulnerable: 1.6-4
+Fixed: 1.6-4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>3031451</td>
 <td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
 Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
@@ -26439,15 +26628,6 @@ Fixed: 1.2.8.dfsg-2+deb8u2</td>
 Vulnerable: 7.2d-6.4
 Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>3021746</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -28865,6 +29045,31 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3038398</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
+Vulnerable: 5.1.1alpha+20120614-2
+Fixed: 5.1.1alpha+20120614-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3038396</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in gzip, which provides GNU compression utilities.
+Vulnerable: 1.6-4
+Fixed: 1.6-4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>3031451</td>
 <td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
 Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
@@ -28878,15 +29083,6 @@ Fixed: 1.2.8.dfsg-2+deb8u2</td>
 Vulnerable: 7.2d-6.4
 Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>3021746</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.15, 4.2.1-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -31049,6 +31245,22 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3038398</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
+Vulnerable: 5.1.1alpha+20120614-2
+Fixed: 5.1.1alpha+20120614-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3038396</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in gzip, which provides GNU compression utilities.
+Vulnerable: 1.6-4
+Fixed: 1.6-4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>3031451</td>
 <td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
 Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
@@ -32867,6 +33079,22 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3038398</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
+Vulnerable: 5.1.1alpha+20120614-2
+Fixed: 5.1.1alpha+20120614-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3038396</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in gzip, which provides GNU compression utilities.
+Vulnerable: 1.6-4
+Fixed: 1.6-4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>3031451</td>
@@ -34714,6 +34942,22 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3038398</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
+Vulnerable: 5.1.1alpha+20120614-2
+Fixed: 5.1.1alpha+20120614-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3038396</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in gzip, which provides GNU compression utilities.
+Vulnerable: 1.6-4
+Fixed: 1.6-4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>3031451</td>
@@ -36667,6 +36911,22 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3038398</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
+Vulnerable: 5.1.1alpha+20120614-2
+Fixed: 5.1.1alpha+20120614-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3038396</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in gzip, which provides GNU compression utilities.
+Vulnerable: 1.6-4
+Fixed: 1.6-4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>3031451</td>
@@ -38666,6 +38926,22 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3038398</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
+Vulnerable: 5.1.1alpha+20120614-2
+Fixed: 5.1.1alpha+20120614-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3038396</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in gzip, which provides GNU compression utilities.
+Vulnerable: 1.6-4
+Fixed: 1.6-4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>3031451</td>
 <td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
 Vulnerable: &lt;= 1.2.8.dfsg-2+deb8u1
@@ -39967,6 +40243,22 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3038398</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
+Vulnerable: 5.1.1alpha+20120614-2
+Fixed: 5.1.1alpha+20120614-2+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>3038396</td>
+<td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in gzip, which provides GNU compression utilities.
+Vulnerable: 1.6-4
+Fixed: 1.6-4+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>3031451</td>

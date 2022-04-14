@@ -9,10 +9,12 @@ Check out some of the latest features added to the {{<exlink url="https://air.nv
 
 ## April 2022
 <!-- Air:WhatsNew -->
-### 82.2022.0306
+### 82.2022.0412-015
+- Removed unecessary `reboot` from ZTP script template for custom topologies
+<!-- Air:WhatsNew -->
+### 82.2022.0406
 - Fixed a bug that caused incorrect validation of updates to a simulation's sleep timer
 - Fixed API filtering for interfaces in a simulation
-<!-- Air:WhatsNew -->
 
 ## March 2022
 ### 82.2022.0309

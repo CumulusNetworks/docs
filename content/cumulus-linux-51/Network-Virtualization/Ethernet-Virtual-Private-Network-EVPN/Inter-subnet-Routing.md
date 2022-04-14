@@ -402,17 +402,29 @@ To prevent sub-optimal routing, the switch handles the next hop IP address of th
 - For host type-2 routes, the anycast IP address is the next hop IP address and the anycast MAC address is the router MAC address.
 - For type-5 routes, the system IP address (the primary IP address of the VTEP) is the next hop IP address and the system MAC address of the VTEP is the router MAC address.
 
-See {{<link url="Basic-Configuration#evpn-and-vxlan-active-active-mode" text="EVPN and VXLAN Active-Active mode">}} for information about EVPN and VXLAN active-active mode.
+You set the anycast MAC address under the SVI on both switches in the MLAG pair.
 
-#### Configure Advertise Primary IP Address
+NVUE provides two commands. You can either:
 
-Set the `address-virtual <anycast-mac>` under the SVI, where `<anycast-mac>` is the MLAG system MAC address ({{<link url="Multi-Chassis-Link-Aggregation-MLAG#reserved-mac-address-range" text="clagd-sys-mac">}}). Run these commands on both switches in the MLAG pair.
+- Set the anycast MAC address to a value in the reserved range between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff. Be sure to use an address in this reserved range to prevent MAC address conflicts with other interfaces in the same bridged network.
+- Set an anycast MAC ID, from which Cumulus Linux derives the MAC address. You can specify a number between 1 and 65535. Cumulus Linux adds the number to the MAC address 44:38:39:ff:00:00 in hex. For example, if you specify 225, the anycast MAC address is 44:38:39:ff:00:FF.
+
+If you use Linux commands to configure the switch instead of NVUE, add the `address-virtual <anycast-mac>` option under the SVI in the` /etc/network/interfaces` file. Cumulus Linux does not provide an anycast ID option in the `/etc/network/interfaces` file.
 
 {{< tabs "TabID472 ">}}
 {{< tab "NVUE Commands ">}}
 
+To set the anycast MAC address:
+
 ```
-cumulus@leaf01:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set system global anycast-mac 44:38:39:ff:00:ff
+cumulus@leaf01:~$ nv config apply
+```
+
+To set the anycast MAC ID:
+
+```
+cumulus@leaf01:~$ nv set system global anycast-id 255
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -433,13 +445,16 @@ iface vlan4001
 ...
 ```
 
-{{%notice note%}}
-- Cumulus Linux 3.7 and earlier uses the `hwaddress` command instead of the `address-virtual` command. If you upgrade from Cumulus Linux 3.7 to 4.0 or later and have a previous symmetric routing with VXLAN active-active configuration, you must change `hwaddress` to `address-virtual`.
-- When configuring third party networking devices using MLAG and EVPN for interoperability, you must configure and announce a single shared router MAC value for each advertised next hop IP address.
-{{%/notice%}}
-
 {{< /tab >}}
 {{< /tabs >}}
+
+The anycast MAC address is different from the {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP/#change-the-vrr-mac-address" text="fabric-wide VRR MAC address">}}, which distributes the same VRR gateway on VLAN interfaces across switches fabric-wide. The following diagram shows the relationship between the anycast MAC address, which is unique for each active-active pair, and the fabric MAC address or ID, which is consistent across the entire fabric.
+
+{{< img src = "/images/cumulus-linux/anycast-fabric-address.png" >}}
+
+{{%notice note%}}
+When configuring third party networking devices using MLAG and EVPN for interoperability, you must configure and announce a single shared router MAC value for each advertised next hop IP address.
+{{%/notice%}}
 
 #### Optional Configuration
 

@@ -7,6 +7,31 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3041425</td>
+<td>When you add or remove PortAutoEdge on a bond with the NVUE {{nv set interface &lt;bond&gt; bridge domain br_default stp auto-edge}} command, the command fails with the following error and then attempts to enable or disable PortAutoEdge on any interface also fail.
+
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp auto-edge off
+cumulus@switch:~$ nv config apply
+Unable to reload-or-restart services (switchd,ifreload-nvue.service):
+[sudo] password for nvue: Job for ifreload-nvue.service failed because the control process exited with error code.
+Failure during apply. Ignore? [y/N]
+</td>
+<td>5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3041307</td>
+<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3041306</td>
+<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3040080</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
@@ -39,7 +64,7 @@ To work around this issue, set the {{evpn.multihoming.enable}} variable in the {
 </tr>
 <tr>
 <td>3030238</td>
-<td>On the NVIDIA SN3700C switch, when you change the time with NTP, the MLAG service stops.</td>
+<td>When you change the time with NTP, the clagd service stops.</td>
 <td>5.0.1</td>
 <td></td>
 </tr>
@@ -509,6 +534,18 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>4.0.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
+<tr>
+<td>2668483</td>
+<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
+<td>3.7.14-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2663119</td>
+<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
 </table>
 <table name="Fixed Issues in 5.0.1">
 <tr>
@@ -529,6 +566,18 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3041307</td>
+<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3041306</td>
+<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3040080</td>
@@ -981,6 +1030,18 @@ To work around this issue, configure the loopback interface in the desired OSPF 
 cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </td>
 <td>4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2668483</td>
+<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
+<td>3.7.14-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2663119</td>
+<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 </table>

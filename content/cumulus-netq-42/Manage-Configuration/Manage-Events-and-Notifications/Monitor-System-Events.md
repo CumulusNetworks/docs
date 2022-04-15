@@ -24,7 +24,7 @@ You can monitor all system and TCA events across the network with the NetQ UI an
 
     You can filter the list by any column data (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}}) and export a page of events at a time (click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" width="18" height="18">}}).
 
-    {{<figure src="/images/netq/main-menu-ntwk-events-320.png" width="700" caption="All system and TCA events across the network">}}
+    {{<figure src="/images/netq/events-card-l4-42.png" width="700" caption="All system and TCA events across the network">}}
 
 {{</tab>}}
 

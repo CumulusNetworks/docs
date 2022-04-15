@@ -56,20 +56,3 @@ Cards present information about your network for monitoring and troubleshooting.
 ## User Settings
 
 Each user can customize the NetQ application display, time zone and date format; change their account password; and manage their workbenches. This is all performed from User Settings <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> > **Profile & Preferences**. For details, refer to {{<link title="Set User Preferences">}}.
-
-## Format Cues
-
-Color is used to indicate links, options, and status within the UI.
-
-| Item | Color |
-| ----- | ------ |
-| Hover on item | Green, gray or blue |
-| Clickable item  | Black |
-| Selected item | Green |
-| Highlighted item | Green |
-| Link | Green or white |
-| Good/Successful results | Green |
-| Result with critical severity event | Pink |
-| Result with high severity event | Red |
-| Result with medium severity event | Orange |
-| Result with low severity event | Yellow |

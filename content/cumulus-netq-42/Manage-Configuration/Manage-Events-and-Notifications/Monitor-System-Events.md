@@ -293,7 +293,6 @@ You can enter a severity using the <code>level</code> option to further narrow t
 You can view system and TCA events by their severity on a networkwide basis with the NetQ UI and the NetQ CLI using the:
 
 - Events list: with events of all severities at on time or filter by severity
-- Events|Alarms card: view events with critical severity
 - Events|Info card: view events with info, error, and warning severities
 - `netq show events level` command
 
@@ -320,106 +319,6 @@ You can enter additional filters for message type and time range to further narr
 5. Click **Apply**.
 
     {{<figure src="/images/netq/main-menu-ntwk-events-filterbyseverity-320.png" width="700" caption="All system and TCA events with info severity">}}
-
-{{</tab>}}
-
-{{<tab "Event|Alarms Card" >}}
-
-### View Alarm Status Summary
-
-A summary of the critical alarms in the network includes the number of alarms, a trend indicator, a performance indicator, and a distribution of those alarms.
-
-To view the summary, open the small Alarms card.
-
-{{< figure src="/images/netq/events-alarms-small-231.png" width="200" >}}
-
-In this example, there are a small number of alarms (2), the number of alarms is decreasing (down arrow), and there are fewer alarms right now than the average number of alarms during this time period. This would indicate no further investigation is needed. Note that with such a small number of alarms, the rating might be a bit skewed.
-
-### View the Distribution of Alarms
-
-It is helpful to know where and when alarms are occurring in your network. The Alarms card workflow enables you to see the distribution of alarms based on its source: network services, interfaces, system services, and threshold-based events.
-
-To view the alarm distribution, open the medium Alarms card. Scroll down to view all of the charts.
-
-{{< figure src="/images/netq/events-alarms-medium-222.png" width="200" >}}
-
-### Monitor Alarm Details
-
-The Alarms card workflow enables users to easily view and track critical severity alarms occurring anywhere in your network. You can sort alarms based on their occurrence or view devices with the most network services alarms.
-
-To view critical alarms, open the large Alarms card.
-
-{{<figure src="/images/netq/events-alarms-large-summary-tab-300.png" width="500" >}}
-
-From this card, you can view the distribution of alarms for each of the categories over time. The charts are sorted by total alarm count, with the highest number of alarms in a category listed at the top. Scroll down to view any hidden charts. A list of the associated alarms is also displayed. By default, the list of the most recent alarms is displayed when viewing the large card.
-
-#### View Devices with the Most Alarms
-
-You can filter instead for the devices that have the most alarms.
-
-To view devices with the most alarms, open the large Alarms card, and then select **Devices by event count** from the dropdown.
-
-{{<figure src="/images/netq/events-alarms-large-by-event-count-300.png" width="500" >}}
-
-{{<notice tip>}}
-You can open the switch card for any of the listed devices by clicking on the device name.
-{{</notice>}}
-
-#### Filter Alarms by Category
-
-You can focus your view to include alarms for one or more selected alarm categories.
-
-To filter for selected categories:
-
-1. Click the checkbox to the left of one or more charts to remove that set of alarms from the table on the right.
-
-2. Select the **Devices by event count** to view the devices with the most alarms for the selected categories.
-
-3. Switch back to most recent events by selecting **Events by most recent**.
-
-4. Click the checkbox again to return a category's data to the table.
-
-In this example, we removed the Services from the event listing.
-
-{{<figure src="/images/netq/events-alarms-large-filtered-222.png" width="500" >}}
-
-#### Compare Alarms with a Prior Time
-
-You can change the time period for the data to compare with a prior time. If the same devices are consistently indicating the most alarms, you might want to look more carefully at those devices using the Switches card workflow.
-
-To compare two time periods:
-
-1. Open a second Alarm Events card. Remember it goes to the bottom of the workbench.
-
-2. Switch to the large size card.
-
-3. Move the card to be next to the original Alarm Events card. Note that moving large cards can take a few extra seconds since they contain a large amount of data.
-
-4. Hover over the card and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/>.
-
-    {{<figure src="/images/netq/time-picker-popup-narrow-222.png" width="175" >}}
-
-5. Select a different time period.  
-
-    {{<figure src="/images/netq/events-alarms-large-by-event-count-300.png" width="500">}}
-    
-    {{<figure src="/images/netq/events-alarms-large-by-event-count-1w-300.png" width="500">}}
-
-6. Compare the two cards with the **Devices by event count** filter applied.
-
-    In this example, the total alarm count and the devices with the most alarms in each time period have changed for the better overall. You could go back further in time  or investigate the current status of the largest offenders.
-
-### View All Alarm Events
-
-You can view all events in the network either by clicking the **Show All Events** link under the table on the large Alarm Events card, or by opening the full screen Alarm Events card.
-
-{{< figure src="/images/netq/events-alarms-large-show-all-events-link-222.png" width="200" >}}
-
-OR
-
-{{< figure src="/images/netq/events-alarms-fullscr-allevents-tab-300.png" width="700" >}}
-
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{</tab>}}
 
@@ -530,7 +429,6 @@ You can use the <code>type</code> and <code>between</code> options to further na
 You can view system and TCA events by their severity on a given device with the NetQ UI and the NetQ CLI using the:
 
 - Events list: view events of all severities at on time or by one severity filtered by device
-- Events|Alarms card: view events with critical severity filtered by device
 - Events|Info card: view events with info, error, and warning severities filtered by device
 - Switch card: view all events with critical severity on the given device
 - `netq <hostname> show events level` command
@@ -560,42 +458,6 @@ You can enter additional filters for message type and time range to further narr
 5. Click **Apply**.
 
     {{<figure src="/images/netq/main-menu-ntwk-events-filterbyseverity-device-320.png" width="700" caption="All critical severity events on the spine01 switch">}}
-
-{{</tab>}}
-
-{{<tab "Events|Alarms Card">}}
-
-The Events|Alarms card shows critical severity events. You can view the devices that have the most alarms or you can view all alarms on a device.
-
-To view devices with the most alarms:
-
-1. Locate or open the Events|Alarms card on your workbench.
-
-2. Change to the large size card using the size picker.
-
-3. Select **Devices by event count** from the dropdown above the table.
-
-    {{<figure src="/images/netq/events-alarms-large-by-event-count-300.png" width="500" >}}
-
-    {{<notice tip>}}
-You can open the switch card for any of the listed devices by clicking on the device name.
-    {{</notice>}}
-
-To view all alarms on a given device:
-
-1. Click the **Show All Events** link under the table on the large Events|Alarms card, or open the full screen Events|Alarms card.
-
-    {{< figure src="/images/netq/events-alarms-large-show-all-events-link-222.png" width="200" >}}
-
-<div style="padding-left: 18px;">OR</div>
-
-    {{< figure src="/images/netq/events-alarms-fullscr-allevents-tab-300.png" width="700" >}}
-
-2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}} and enter a hostname for the device of interest.
-
-3. Click **Apply**.
-
-4. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{</tab>}}
 
@@ -702,7 +564,6 @@ You can use the <code>type</code> or <code>between</code> options to further nar
 You can monitor all system and TCA events across the network currently or for a time in the past with the NetQ UI and the NetQ CLI.
 
 - Events list: view events for a time range in the past 24 hours
-- Events|Alarms card: view critical events for 6 hours, 12 hours, 24 hours, a week, a month, or a quarter in the past
 - Events|Info card: view non-critical events for 6 hours, 12 hours, 24 hours, a week, a month, or a quarter in the past
 - `netq show events between` command: view events for a time range in the past
 
@@ -723,62 +584,6 @@ You can monitor all system and TCA events across the network currently or for a 
 5. Click **Apply**.
 
     {{<figure src="/images/netq/main-menu-ntwk-events-bytime-320.png" width="700" caption="All system and TCA events across the network between midnight and 11:30am">}}
-
-{{</tab>}}
-
-{{<tab "Events|Alarms card" >}}
-
-All cards have a default time period for the data shown on the card, typically the last 24 hours. You can change the time period to view the data during a different time range to aid analysis of previous or existing issues. You can also compare the current events with a prior time. If the same devices are consistently indicating the most alarms, you might want to look more carefully at those devices using the Switches card workflow.
-
-To view critical events for a time in the past using the small, medium, or large Events|Alarms card:
-
-1. Locate or open the Events|Alarms card on your workbench.
-
-2. Hover over the card, and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/> in the header.
-
-3. Select a time period from the dropdown list.
-
-    {{<figure src="/images/netq/time-picker-popup-narrow-222.png" width="175" caption="Small, medium, and large card">}}
-
-    {{<figure src="/images/netq/events-alarms-medium-pastweek-320.png" width="200">}}
-
-To view critical events for a time in the past using the full-screen Events|Alarms card:
-
-1. Locate or open the Events|Alarms card on your workbench.
-
-2. Hover over the card, and change to the full-screen card.
-
-3. Select a time period from the dropdown list.
-
-    {{<figure src="/images/netq/time-picker-popup-fullscr-320.png" width="175" caption="Full-screen card">}}
-
-    {{<figure src="/images/netq/events-alarms-fullscr-pastweek-320.png" width="700">}}
-
-{{<notice tip>}}
-Changing the time period in this manner only changes the time period for this card. No other cards are impacted.
-{{</notice>}}
-
-To compare the event data for two time periods:
-
-1. Open a second Events|Alarms card. Remember the card is placed at the bottom of the workbench.
-
-2. Change to the medium or large size card.
-
-3. Move the card to be next to the original Alarm Events card. Note that moving large cards can take a few extra seconds since they contain a large amount of data.
-
-4. Hover over the card and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/>.
-
-    {{<figure src="/images/netq/time-picker-popup-narrow-222.png" width="175" >}}
-
-5. Select a different time period.  
-
-    {{<figure src="/images/netq/events-alarms-large-by-event-count-300.png" width="500">}}
-
-    {{<figure src="/images/netq/events-alarms-large-by-event-count-1w-300.png" width="500">}}
-
-6. Compare the two cards with the **Devices by event count** filter applied.
-
-    In this example, the total alarm count and the devices with the most alarms in each time period have changed for the better overall. You could go back further in time  or investigate the current status of the largest offenders.
 
 {{</tab>}}
 
@@ -932,7 +737,6 @@ leaf02            btrfsinfo                critical         data storage efficie
 You can monitor all system and TCA events on a device currently or for a time in the past with the NetQ UI and the NetQ CLI.
 
 - Events list: view events for a device at a time range in the past 24 hours
-- Events|Alarms card: view critical events for 6 hours, 12 hours, 24 hours, a week, a month, or a quarter in the past
 - Events|Info card: view non-critical events for 6 hours, 12 hours, 24 hours, a week, a month, or a quarter in the past
 - Switch card: view critical events on a switch for a time range in the past
 - `netq <hostname> show events between` command: view events for a time range in the past
@@ -958,36 +762,6 @@ You can monitor all system and TCA events on a device currently or for a time in
     {{<figure src="/images/netq/main-menu-ntwk-events-bytime-device-320.png" width="700" caption="All system and TCA events on the leaf02 switch between midnight and 11:30am">}}
 
 7. Return to your workbench. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
-
-{{</tab>}}
-
-{{<tab "Events|Alarms card" >}}
-
-All cards have a default time period for the data shown on the card, typically the last 24 hours. You can change the time period to view the data during a different time range to aid analysis of previous or existing issues.
-
-To view critical events for a device at a time in the past:
-
-1. Locate or open the Events|Alarms card on your workbench.
-
-2. Hover over the card, and change to the full-screen card.
-
-3. Select a time period from the dropdown list.
-
-    {{<figure src="/images/netq/time-picker-popup-fullscr-320.png" width="175" caption="Full-screen card">}}
-
-    {{<figure src="/images/netq/events-alarms-fullscr-pastweek-320.png" width="700">}}
-
-    {{<notice tip>}}
-Changing the time period in this manner only changes the time period for this card. No other cards are impacted.
-    {{</notice>}}
-
-4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}}.
-
-5. Enter a hostname into the **Hostname** field, and click **Apply**.
-
-    {{<figure src="/images/netq/events-alarms-fullscr-bytime-device-320.png" width="700" caption="All system and TCA events on the leaf02 switch in the past week">}}
-
-6. Return to your workbench. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{</tab>}}
 

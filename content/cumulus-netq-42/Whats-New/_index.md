@@ -23,7 +23,7 @@ NetQ 4.2.0 includes the following new features and improvements:
   - openconfig-plaftorm
   - openconfig-lldp
 - Simplified install process
-- Network health UI improvements with validation status
+- {{<link title="Validate Overall Network Health" text="Improved Network Health UI with Validation Summary">}}
 - {{<link title="Validation Checks##addresses-validation-tests" text="GUI support for Duplicate Address Detection">}}
 - Early Access on-switch OPTA support for NetQ cloud deployments
 - Early Access support for {{<link title="Monitor DPU Inventory" text="DPU Monitoring">}}

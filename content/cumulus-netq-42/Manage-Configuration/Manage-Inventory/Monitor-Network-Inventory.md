@@ -17,7 +17,7 @@ The commands and cards available to obtain this type of information help you to 
 - What software is installed on my switches?
 <!-- vale on -->
 
-To monitor the inventory of a given switch, refer to {{<link title="Monitor Switch Inventory">}}.
+To monitor the inventory of a given switch or DPU, refer to {{<link title="Monitor Switch Inventory">}} or {{<link title="Monitor DPU Inventory">}}.
 
 ## Access Networkwide Inventory Data
 

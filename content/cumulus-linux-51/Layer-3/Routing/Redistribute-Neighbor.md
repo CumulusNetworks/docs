@@ -59,7 +59,7 @@ The following example configuration uses the following topology.
 {{< tabs "TabID59 ">}}
 {{< tab "NVUE Commands ">}}
 
-NUE Commands are not supported.
+Cumulus Linux does not provide NVUE commands redistribute neighbor configuration.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}

@@ -367,6 +367,32 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td></td>
 </tr>
 <tr>
+<td>2866084</td>
+<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
+To work around this issue:
+
+1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
+
+2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
+
+$ cat /etc/network/ifupdown2/policy.d/vxlan.json
+
+   {
+        "vxlan": {
+            "module_globals": { "vxlan-purge-remotes": "no" },
+            "defaults": {
+                "vxlan-ageing": "1800",
+                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
+                "vxlan-learning": "off" &lt;= This line needs to be added
+             }
+        }
+   }
+
+3. Reboot the affected switches.</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>2866080</td>
 <td>On the Maverick S4148T switch with MLAG, Cumulus Linux drops LACP, ARP, LLDP and BGP traffic.</td>
 <td>4.3.0-4.4.3</td>

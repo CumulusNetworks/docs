@@ -19,7 +19,7 @@ cumulus@switch:~$ sudo systemctl start what-just-happened
 -->
 ## Run WJH Commands
 
-After you start the WJH service, you can run the following commands from the command line.
+You can run the following commands from the command line.
 
 | <div style="width:450px">Command  | Description |
 | -------  | ----------- |

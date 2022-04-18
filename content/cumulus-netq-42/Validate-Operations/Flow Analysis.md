@@ -89,7 +89,7 @@ The latency measured by the flow analysis is the total transit time of the sampl
 
 {{<figure src="/images/netq/per-device-latency-summary.png" width="600">}}
 
-The average latency for packets in the flow is displayed under the hostname of each device, along with the minimum and maximum latencies observed during the analysis lifetime. The 95th percentile (P95) latency value for sampled packets is also displayed. The P95 calculation represents the latency value that 95 percent of the sampled packets is lower than for the analysed flow.
+The average latency for packets in the flow is displayed under the hostname of each device, along with the minimum and maximum latencies observed during the analysis lifetime. The 95th percentile (P95) latency value for sampled packets is also displayed. The P95 calculation means that 95% of the sampled packets have a latency value less than or equal to the calculation.
 
 You can also use your cursor to hover over sections of the main analysis graph to view average latency values for each device in a path:
 

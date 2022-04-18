@@ -19,11 +19,10 @@ To view this summary:
 
     {{<figure src="/images/netq/validation-summary-l1-42.png" width="200">}}
 
-    In this example, all validation checks are successful. Refer to the next section for viewing individual categories of validation checks.
-
+    In this example, all validation checks are successful.
 ## View Key Metrics of Network Health
 
-Overall network health in the NetQ UI is a calculated average of several key health metrics: Interface, System, and Network Services health.
+Overall network health in the NetQ UI is a calculated average of several key health metrics: interface, system, and network services health.
 
 To view these key metrics:
 
@@ -47,7 +46,7 @@ Network health is divided into three categories:
 
 System health represents the NetQ Agent and sensor health validations. In all cases, validation is performed on the agents. If you are monitoring platform sensors, the validation checks include these as well.
 
-Network services health represents the individual network protocol and services validations. In all cases, validation is performed on NTP. If you are running BGP, EVPN, MLAG, OSPF, or VXLAN protocols the validation checks include these as well. You can view the overall health of network services from the medium Validation Summary card and information about individual services from the Network Service Health tab on the large Validation Summary card.
+Network services health represents the individual network protocol and services validations. In all cases, validation is performed on NTP. If you are running BGP, EVPN, MLAG, OSPF, or VXLAN protocols the validation checks include these as well. You can view the overall health of network services from the medium Validation Summary card and information about individual services from the **Network service health** tab on the large Validation Summary card.
 
 Interface health represents the interfaces, VLAN, and link MTU validations. You can view the overall health of interfaces from the medium Validation Summary card and information about each component from the Interface Health tab on the large Validation Summary card.
 
@@ -95,21 +94,19 @@ To view details about your network's health:
 
 It is useful to know which devices are experiencing the most issues with their system services, network services, or interfaces in general, as this can help focus troubleshooting efforts toward selected devices versus the service itself.
 
-To view devices with the most issues, select **Most Failures** from the filter above the table on the right.
+To view devices with the most issues, select **Most failures** from the filter above the table on the right.
 
 {{<figure src="/images/netq/validation-summary-most-failures-42.png" width="300">}}
 
-Devices with the highest number of issues are listed at the top. Scroll down to view those with fewer issues. To further investigate the critical devices, click on the hostname to open the device card, or use the Events card and filter on the indicated switches.
+Devices with the most issues are listed at the top. Scroll down to view those with fewer issues. To further investigate critical devices, click on the hostname to open the device card, or use the Events card and filter on the indicated switches.
 
 ### View Devices with Recent Issues
 
-It is useful to know which devices are experiencing the most issues with their with their system services, network services, or interfaces right now, as this can help focus troubleshooting efforts toward devices current issues.
-
-To view devices with recent issues, select **Recent Failures** from the filter above the table on the right. Devices with the highest number of issues are listed at the top. Scroll down to view those with fewer issues. To further investigate the critical devices, click on the hostname to open the device card, or use the Events card and filter on the indicated switches.
+To view devices with recent issues, select **Recent failures** from the filter above the table on the right. The devices with the most-recent failures are listed at the top. To further investigate critical devices, click on the hostname to open the device card, or use the Events card and filter on the indicated switches.
 
 ### Filter Results by Service
 
-You can focus the data in the table on the right, by unselecting one or more services. Click the *checkbox* next to the service you want to remove from the data. In this example, we have unchecked MTU.
+You can focus the data in the table on the right by unselecting one or more services. Click the checkbox next to the service you want to remove from the data. In this example, we have unchecked MTU.
 
 {{<figure src="/images/netq/validation-summary-l3-int-health-uncheck-mtu-42.png" width="500">}}
 

@@ -14,8 +14,15 @@ When using a VM, the following system resources must be allocated:
 <tbody>
 <tr class="even">
 <td>Processor</td>
+{{- if eq (.Get "version") "4.2.0" -}}
+{{- if eq (.Get "deployment") "onprem" -}}
+<td>Sixteen (16) virtual CPUs</td>
+{{ end }}
+{{ end }}
+{{- if ne (.Get "version") "4.2.0" -}}
 {{- if eq (.Get "deployment") "onprem" -}}
 <td>Eight (8) virtual CPUs</td>
+{{ end }}
 {{ end }}
 {{- if eq (.Get "deployment") "cloud" -}}
 <td>Four (4) virtual CPUs</td>
@@ -32,8 +39,15 @@ When using a VM, the following system resources must be allocated:
 </tr>
 <tr class="even">
 <td>Local disk storage</td>
+{{- if eq (.Get "version") "4.2.0" -}}
+{{- if eq (.Get "deployment") "onprem" -}}
+<td>500 GB (2 TB max) SSD with minimum disk IOPS of 1000 for a standard 4kb block size<br>(<strong>Note</strong>: This <em>must</em> be an SSD; use of other storage options can lead to system instability and are not supported.)</td>
+{{ end }}
+{{ end }}
+{{- if ne (.Get "version") "4.2.0" -}}
 {{- if eq (.Get "deployment") "onprem" -}}
 <td>256 GB (2 TB max) SSD with minimum disk IOPS of 1000 for a standard 4kb block size<br>(<strong>Note</strong>: This <em>must</em> be an SSD; use of other storage options can lead to system instability and are not supported.)</td>
+{{ end }}
 {{ end }}
 {{- if eq (.Get "deployment") "cloud" -}}
 <td>For NetQ 3.2.x and later: 64 GB (2 TB max)<br>For NetQ 3.1 and earlier: 32 GB (2 TB max)</td>

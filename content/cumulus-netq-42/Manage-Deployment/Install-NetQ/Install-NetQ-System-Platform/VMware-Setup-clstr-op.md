@@ -11,7 +11,7 @@ Follow these steps to setup and configure your VM cluster for an on-premises dep
 
 1. Verify that your master node meets the VM requirements.
 
-    {{<netq-install/vm-reqs deployment="onprem" hypervisor="vmware">}}
+    {{<netq-install/vm-reqs deployment="onprem" hypervisor="vmware" version="4.2.0">}}
 
 2. Confirm that the needed ports are open for communications.
 

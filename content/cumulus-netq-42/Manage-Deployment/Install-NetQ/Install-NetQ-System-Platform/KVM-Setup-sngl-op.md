@@ -9,7 +9,7 @@ Follow these steps to setup and configure your VM on a single server in an on-pr
 
 1. Verify that your system meets the VM requirements.
 
-    {{<netq-install/vm-reqs deployment="onprem" hypervisor="kvm">}}
+    {{<netq-install/vm-reqs deployment="onprem" hypervisor="kvm" version="4.2.0">}}
 
 2. Confirm that the needed ports are open for communications.
 

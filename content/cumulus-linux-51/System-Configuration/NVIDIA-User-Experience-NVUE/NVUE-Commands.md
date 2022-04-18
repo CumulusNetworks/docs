@@ -143,7 +143,7 @@ nv show mlag lacp-conflict
 nv show mlag consistency-checker
 nv show mlag consistency-checker global
 nv show mlag backup
-nv show mlag backup <backup-id>
+nv show mlag backup <backup-ip>
 nv show mlag fdb
 nv show mlag fdb local
 nv show mlag fdb peer
@@ -434,6 +434,8 @@ nv show vrf <vrf-id> evpn vni <vni-id>
 nv show vrf <vrf-id> router
 nv show vrf <vrf-id> router rib
 nv show vrf <vrf-id> router rib <afi>
+nv show vrf <vrf-id> router rib <afi> protocol
+nv show vrf <vrf-id> router rib <afi> protocol <import-protocol-id>
 nv show vrf <vrf-id> router rib <afi> route
 nv show vrf <vrf-id> router rib <afi> route <route-id>
 nv show vrf <vrf-id> router rib <afi> route <route-id> protocol
@@ -523,6 +525,7 @@ nv show vrf <vrf-id> router bgp peer-group <peer-group-id>
 nv show vrf <vrf-id> router bgp peer-group <peer-group-id> bfd
 nv show vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security
 nv show vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities
+nv show vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart
 nv show vrf <vrf-id> router bgp peer-group <peer-group-id> local-as
 nv show vrf <vrf-id> router bgp peer-group <peer-group-id> timers
 nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family
@@ -573,6 +576,7 @@ nv show vrf <vrf-id> router bgp neighbor <neighbor-id>
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> bfd
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> local-as
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> graceful-restart
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> nexthop
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> message-stats
@@ -870,11 +874,11 @@ nv set bridge domain <domain-id> type vlan-aware
 nv set bridge domain <domain-id> untagged (1-4094|none)
 nv set bridge domain <domain-id> encap 802.1Q
 nv set bridge domain <domain-id> mac-address (auto|<mac>)
-nv set bridge domain <domain-id> vlan-vni-offset 0-16773118
+nv set bridge domain <domain-id> vlan-vni-offset 0-16773120
 nv set mlag
 nv set mlag lacp-conflict
-nv set mlag backup <backup-id>
-nv set mlag backup <backup-id> vrf <vrf-name>
+nv set mlag backup <backup-ip>
+nv set mlag backup <backup-ip> vrf <vrf-name>
 nv set mlag enable (on|off)
 nv set mlag mac-address (auto|<mac>)
 nv set mlag peer-ip (linklocal|<ipv4>|<ipv6>)
@@ -1215,7 +1219,7 @@ nv set system global system-mac (auto|<mac>)
 nv set system global anycast-mac (none|<mac>)
 nv set system global anycast-id (1-65535|none)
 nv set system global fabric-mac (none|<mac>)
-nv set system global fabric-id (1-255|none)
+nv set system global fabric-id 1-255
 nv set system forwarding
 nv set system forwarding lag-hash (ip-protocol|source-mac|destination-mac|source-ip|destination-ip|source-port|destination-port|ether-type|vlan|gtp-teid)
 nv set system forwarding ecmp-hash (ip-protocol|source-ip|destination-ip|source-port|destination-port|ipv6-label|ingress-interface|gtp-teid|inner-ip-protocol|inner-source-ip|inner-destination-ip|inner-source-port|inner-destination-port|inner-ipv6-label)
@@ -1245,7 +1249,7 @@ nv set system config apply
 nv set system config apply ignore <ignore-id>
 nv set system config apply overwrite (all|controlled)
 nv set system hostname <idn-hostname>
-nv set system timezone (Africa/Abidjan|Africa/Accra|Africa/Addis_Ababa|Africa/Algiers|Africa/Asmara|Africa/Bamako|Africa/Bangui|Africa/Banjul|Africa/Bissau|Africa/Blantyre|Africa/Brazzaville|Africa/Bujumbura|Africa/Cairo|Africa/Casablanca|Africa/Ceuta|Africa/Conakry|Africa/Dakar|Africa/Dar_es_Salaam|Africa/Djibouti|Africa/Douala|Africa/El_Aaiun|Africa/Freetown|Africa/Gaborone|Africa/Harare|Africa/Johannesburg|Africa/Juba|Africa/Kampala|Africa/Khartoum|Africa/Kigali|Africa/Kinshasa|Africa/Lagos|Africa/Libreville|Africa/Lome|Africa/Luanda|Africa/Lubumbashi|Africa/Lusaka|Africa/Malabo|Africa/Maputo|Africa/Maseru|Africa/Mbabane|Africa/Mogadishu|Africa/Monrovia|Africa/Nairobi|Africa/Ndjamena|Africa/Niamey|Africa/Nouakchott|Africa/Ouagadougou|Africa/Porto-Novo|Africa/Sao_Tome|Africa/Timbuktu|Africa/Tripoli|Africa/Tunis|Africa/Windhoek|America/Adak|America/Anchorage|America/Anguilla|America/Antigua|America/Araguaina|America/Argentina/Buenos_Aires|America/Argentina/Catamarca|America/Argentina/ComodRivadavia|America/Argentina/Cordoba|America/Argentina/Jujuy|America/Argentina/La_Rioja|America/Argentina/Mendoza|America/Argentina/Rio_Gallegos|America/Argentina/Salta|America/Argentina/San_Juan|America/Argentina/San_Luis|America/Argentina/Tucuman|America/Argentina/Ushuaia|America/Aruba|America/Asuncion|America/Atikokan|America/Atka|America/Bahia|America/Bahia_Banderas|America/Barbados|America/Belem|America/Belize|America/Blanc-Sablon|America/Boa_Vista|America/Bogota|America/Boise|America/Buenos_Aires|America/Cambridge_Bay|America/Campo_Grande|America/Cancun|America/Caracas|America/Catamarca|America/Cayenne|America/Cayman|America/Chicago|America/Chihuahua|America/Coral_Harbour|America/Cordoba|America/Costa_Rica|America/Creston|America/Cuiaba|America/Curacao|America/Danmarkshavn|America/Dawson|America/Dawson_Creek|America/Denver|America/Detroit|America/Dominica|America/Edmonton|America/Eirunepe|America/El_Salvador|America/Ensenada|America/Fort_Nelson|America/Fort_Wayne|America/Fortaleza|America/Glace_Bay|America/Godthab|America/Goose_Bay|America/Grand_Turk|America/Grenada|America/Guadeloupe|America/Guatemala|America/Guayaquil|America/Guyana|America/Halifax|America/Havana|America/Hermosillo|America/Indiana/Indianapolis|America/Indiana/Knox|America/Indiana/Marengo|America/Indiana/Petersburg|America/Indiana/Tell_City|America/Indiana/Vevay|America/Indiana/Vincennes|America/Indiana/Winamac|America/Indianapolis|America/Inuvik|America/Iqaluit|America/Jamaica|America/Jujuy|America/Juneau|America/Kentucky/Louisville|America/Kentucky/Monticello|America/Knox_IN|America/Kralendijk|America/La_Paz|America/Lima|America/Los_Angeles|America/Louisville|America/Lower_Princes|America/Maceio|America/Managua|America/Manaus|America/Marigot|America/Martinique|America/Matamoros|America/Mazatlan|America/Mendoza|America/Menominee|America/Merida|America/Metlakatla|America/Mexico_City|America/Miquelon|America/Moncton|America/Monterrey|America/Montevideo|America/Montreal|America/Montserrat|America/Nassau|America/New_York|America/Nipigon|America/Nome|America/Noronha|America/North_Dakota/Beulah|America/North_Dakota/Center|America/North_Dakota/New_Salem|America/Ojinaga|America/Panama|America/Pangnirtung|America/Paramaribo|America/Phoenix|America/Port-au-Prince|America/Port_of_Spain|America/Porto_Acre|America/Porto_Velho|America/Puerto_Rico|America/Rainy_River|America/Rankin_Inlet|America/Recife|America/Regina|America/Resolute|America/Rio_Branco|America/Rosario|America/Santa_Isabel|America/Santarem|America/Santiago|America/Santo_Domingo|America/Sao_Paulo|America/Scoresbysund|America/Shiprock|America/Sitka|America/St_Barthelemy|America/St_Johns|America/St_Kitts|America/St_Lucia|America/St_Thomas|America/St_Vincent|America/Swift_Current|America/Tegucigalpa|America/Thule|America/Thunder_Bay|America/Tijuana|America/Toronto|America/Tortola|America/Vancouver|America/Virgin|America/Whitehorse|America/Winnipeg|America/Yakutat|America/Yellowknife|Antarctica/Casey|Antarctica/Davis|Antarctica/DumontDUrville|Antarctica/Macquarie|Antarctica/Mawson|Antarctica/McMurdo|Antarctica/Palmer|Antarctica/Rothera|Antarctica/South_Pole|Antarctica/Syowa|Antarctica/Troll|Antarctica/Vostok|Arctic/Longyearbyen|Asia/Aden|Asia/Almaty|Asia/Amman|Asia/Anadyr|Asia/Aqtau|Asia/Aqtobe|Asia/Ashgabat|Asia/Ashkhabad|Asia/Atyrau|Asia/Baghdad|Asia/Bahrain|Asia/Baku|Asia/Bangkok|Asia/Barnaul|Asia/Beirut|Asia/Bishkek|Asia/Brunei|Asia/Calcutta|Asia/Chita|Asia/Choibalsan|Asia/Chongqing|Asia/Chungking|Asia/Colombo|Asia/Dacca|Asia/Damascus|Asia/Dhaka|Asia/Dili|Asia/Dubai|Asia/Dushanbe|Asia/Famagusta|Asia/Gaza|Asia/Harbin|Asia/Hebron|Asia/Ho_Chi_Minh|Asia/Hong_Kong|Asia/Hovd|Asia/Irkutsk|Asia/Istanbul|Asia/Jakarta|Asia/Jayapura|Asia/Jerusalem|Asia/Kabul|Asia/Kamchatka|Asia/Karachi|Asia/Kashgar|Asia/Kathmandu|Asia/Katmandu|Asia/Khandyga|Asia/Kolkata|Asia/Krasnoyarsk|Asia/Kuala_Lumpur|Asia/Kuching|Asia/Kuwait|Asia/Macao|Asia/Macau|Asia/Magadan|Asia/Makassar|Asia/Manila|Asia/Muscat|Asia/Nicosia|Asia/Novokuznetsk|Asia/Novosibirsk|Asia/Omsk|Asia/Oral|Asia/Phnom_Penh|Asia/Pontianak|Asia/Pyongyang|Asia/Qatar|Asia/Qyzylorda|Asia/Rangoon|Asia/Riyadh|Asia/Saigon|Asia/Sakhalin|Asia/Samarkand|Asia/Seoul|Asia/Shanghai|Asia/Singapore|Asia/Srednekolymsk|Asia/Taipei|Asia/Tashkent|Asia/Tbilisi|Asia/Tehran|Asia/Tel_Aviv|Asia/Thimbu|Asia/Thimphu|Asia/Tokyo|Asia/Tomsk|Asia/Ujung_Pandang|Asia/Ulaanbaatar|Asia/Ulan_Bator|Asia/Urumqi|Asia/Ust-Nera|Asia/Vientiane|Asia/Vladivostok|Asia/Yakutsk|Asia/Yangon|Asia/Yekaterinburg|Asia/Yerevan|Atlantic/Azores|Atlantic/Bermuda|Atlantic/Canary|Atlantic/Cape_Verde|Atlantic/Faeroe|Atlantic/Faroe|Atlantic/Jan_Mayen|Atlantic/Madeira|Atlantic/Reykjavik|Atlantic/South_Georgia|Atlantic/St_Helena|Atlantic/Stanley|Australia/ACT|Australia/Adelaide|Australia/Brisbane|Australia/Broken_Hill|Australia/Canberra|Australia/Currie|Australia/Darwin|Australia/Eucla|Australia/Hobart|Australia/LHI|Australia/Lindeman|Australia/Lord_Howe|Australia/Melbourne|Australia/NSW|Australia/North|Australia/Perth|Australia/Queensland|Australia/South|Australia/Sydney|Australia/Tasmania|Australia/Victoria|Australia/West|Australia/Yancowinna|Brazil/Acre|Brazil/DeNoronha|Brazil/East|Brazil/West|Canada/Atlantic|Canada/Central|Canada/East-Saskatchewan|Canada/Eastern|Canada/Mountain|Canada/Newfoundland|Canada/Pacific|Canada/Saskatchewan|Canada/Yukon|Chile/Continental|Chile/EasterIsland|Etc/GMT|Etc/GMT0|Etc/GMT+0|Etc/GMT+1|Etc/GMT+2|Etc/GMT+3|Etc/GMT+4|Etc/GMT+5|Etc/GMT+6|Etc/GMT+7|Etc/GMT+8|Etc/GMT+9|Etc/GMT+10|Etc/GMT+11|Etc/GMT+12|Etc/GMT-0|Etc/GMT-1|Etc/GMT-2|Etc/GMT-3|Etc/GMT-4|Etc/GMT-5|Etc/GMT-6|Etc/GMT-7|Etc/GMT-8|Etc/GMT-9|Etc/GMT-10|Etc/GMT-11|Etc/GMT-12|Etc/GMT-13|Etc/GMT-14|Etc/Greenwich|Etc/UTC|Etc/Universal|Etc/Zulu|Europe/Amsterdam|Europe/Andorra|Europe/Astrakhan|Europe/Athens|Europe/Belfast|Europe/Belgrade|Europe/Berlin|Europe/Bratislava|Europe/Brussels|Europe/Bucharest|Europe/Budapest|Europe/Busingen|Europe/Chisinau|Europe/Copenhagen|Europe/Dublin|Europe/Gibraltar|Europe/Guernsey|Europe/Helsinki|Europe/Isle_of_Man|Europe/Istanbul|Europe/Jersey|Europe/Kaliningrad|Europe/Kiev|Europe/Kirov|Europe/Lisbon|Europe/Ljubljana|Europe/London|Europe/Luxembourg|Europe/Madrid|Europe/Malta|Europe/Mariehamn|Europe/Minsk|Europe/Monaco|Europe/Moscow|Europe/Nicosia|Europe/Oslo|Europe/Paris|Europe/Podgorica|Europe/Prague|Europe/Riga|Europe/Rome|Europe/Samara|Europe/San_Marino|Europe/Sarajevo|Europe/Saratov|Europe/Simferopol|Europe/Skopje|Europe/Sofia|Europe/Stockholm|Europe/Tallinn|Europe/Tirane|Europe/Tiraspol|Europe/Ulyanovsk|Europe/Uzhgorod|Europe/Vaduz|Europe/Vatican|Europe/Vienna|Europe/Vilnius|Europe/Volgograd|Europe/Warsaw|Europe/Zagreb|Europe/Zaporozhye|Europe/Zurich|Indian/Antananarivo|Indian/Chagos|Indian/Christmas|Indian/Cocos|Indian/Comoro|Indian/Kerguelen|Indian/Mahe|Indian/Maldives|Indian/Mauritius|Indian/Mayotte|Indian/Reunion|Mexico/BajaNorte|Mexico/BajaSur|Mexico/General|Pacific/Apia|Pacific/Auckland|Pacific/Bougainville|Pacific/Chatham|Pacific/Chuuk|Pacific/Easter|Pacific/Efate|Pacific/Enderbury|Pacific/Fakaofo|Pacific/Fiji|Pacific/Funafuti|Pacific/Galapagos|Pacific/Gambier|Pacific/Guadalcanal|Pacific/Guam|Pacific/Honolulu|Pacific/Johnston|Pacific/Kiritimati|Pacific/Kosrae|Pacific/Kwajalein|Pacific/Majuro|Pacific/Marquesas|Pacific/Midway|Pacific/Nauru|Pacific/Niue|Pacific/Norfolk|Pacific/Noumea|Pacific/Pago_Pago|Pacific/Palau|Pacific/Pitcairn|Pacific/Pohnpei|Pacific/Ponape|Pacific/Port_Moresby|Pacific/Rarotonga|Pacific/Saipan|Pacific/Samoa|Pacific/Tahiti|Pacific/Tarawa|Pacific/Tongatapu|Pacific/Truk|Pacific/Wake|Pacific/Wallis|Pacific/Yap|US/Alaska|US/Aleutian|US/Arizona|US/Central|US/East-Indiana|US/Eastern|US/Hawaii|US/Indiana-Starke|US/Michigan|US/Mountain|US/Pacific|US/Pacific-New|US/Samoa)
+nv set system timezone 
 nv set vrf <vrf-id>
 nv set vrf <vrf-id> loopback
 nv set vrf <vrf-id> loopback ip
@@ -1256,6 +1260,9 @@ nv set vrf <vrf-id> evpn vni <vni-id> prefix-routes-only (on|off)
 nv set vrf <vrf-id> evpn enable (on|off)
 nv set vrf <vrf-id> evpn vlan (1-4094|auto)
 nv set vrf <vrf-id> router
+nv set vrf <vrf-id> router rib <afi>
+nv set vrf <vrf-id> router rib <afi> protocol <import-protocol-id>
+nv set vrf <vrf-id> router rib <afi> protocol <import-protocol-id> fib-filter (none|<instance-name>)
 nv set vrf <vrf-id> router bgp
 nv set vrf <vrf-id> router bgp address-family
 nv set vrf <vrf-id> router bgp address-family ipv4-unicast
@@ -1377,6 +1384,8 @@ nv set vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security hops 1-25
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities extended-nexthop (on|off|auto)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities source-address (<interface-name>|<ipv4>|<ipv6>)
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart mode (auto|off|helper-only|full)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as enable (on|off)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as asn 1-4294967295
@@ -1542,6 +1551,8 @@ nv set vrf <vrf-id> router bgp neighbor <neighbor-id> local-as enable (on|off)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> local-as asn 1-4294967295
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> local-as prepend (on|off)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> local-as replace (on|off)
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> graceful-restart
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> graceful-restart mode (auto|off|helper-only|full)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security enable (on|off)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security hops 1-254
@@ -1683,6 +1694,7 @@ nv set vrf <vrf-id> router bgp enable (on|off)
 nv set vrf <vrf-id> router bgp autonomous-system (1-4294967295|auto|leaf|spine)
 nv set vrf <vrf-id> router bgp router-id (auto|<ipv4>)
 nv set vrf <vrf-id> router bgp rd (none|<route-distinguisher>)
+nv set vrf <vrf-id> router bgp dynamic-peer-limit 1-5000
 nv set vrf <vrf-id> router static <route-id>
 nv set vrf <vrf-id> router static <route-id> distance <distance-id>
 nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id>
@@ -2057,8 +2069,8 @@ nv unset bridge domain <domain-id> vlan-vni-offset
 nv unset mlag
 nv unset mlag lacp-conflict
 nv unset mlag backup
-nv unset mlag backup <backup-id>
-nv unset mlag backup <backup-id> vrf
+nv unset mlag backup <backup-ip>
+nv unset mlag backup <backup-ip> vrf
 nv unset mlag enable
 nv unset mlag mac-address
 nv unset mlag peer-ip
@@ -2506,6 +2518,11 @@ nv unset vrf <vrf-id> evpn vni <vni-id> prefix-routes-only
 nv unset vrf <vrf-id> evpn enable
 nv unset vrf <vrf-id> evpn vlan
 nv unset vrf <vrf-id> router
+nv unset vrf <vrf-id> router rib
+nv unset vrf <vrf-id> router rib <afi>
+nv unset vrf <vrf-id> router rib <afi> protocol
+nv unset vrf <vrf-id> router rib <afi> protocol <import-protocol-id>
+nv unset vrf <vrf-id> router rib <afi> protocol <import-protocol-id> fib-filter
 nv unset vrf <vrf-id> router bgp
 nv unset vrf <vrf-id> router bgp address-family
 nv unset vrf <vrf-id> router bgp address-family ipv4-unicast
@@ -2633,6 +2650,8 @@ nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security hops
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities extended-nexthop
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities source-address
+nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart
+nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart mode
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> local-as
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> local-as enable
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> local-as asn
@@ -2801,6 +2820,8 @@ nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> local-as enable
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> local-as asn
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> local-as prepend
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> local-as replace
+nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> graceful-restart
+nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> graceful-restart mode
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security enable
 nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security hops
@@ -2942,6 +2963,7 @@ nv unset vrf <vrf-id> router bgp enable
 nv unset vrf <vrf-id> router bgp autonomous-system
 nv unset vrf <vrf-id> router bgp router-id
 nv unset vrf <vrf-id> router bgp rd
+nv unset vrf <vrf-id> router bgp dynamic-peer-limit
 nv unset vrf <vrf-id> router static
 nv unset vrf <vrf-id> router static <route-id>
 nv unset vrf <vrf-id> router static <route-id> distance
@@ -3137,13 +3159,13 @@ To see a description for a command, type the command with `-h` at the end:
 ```
 cumulus@leaf01:mgmt:~$ nv set mlag backup -h
 Usage:
-  nv set mlag backup [options] <backup-id> ...
+  nv set mlag backup [options] <backup-ip> ...
 
 Description:
   Set of MLAG backups
 
 Identifiers:
-  <backup-id>  Backup IP for peer to reach us
+  <backup-ip>  Backup IP of MLAG peer
 
 General Options:
   -h, --help   Show help.

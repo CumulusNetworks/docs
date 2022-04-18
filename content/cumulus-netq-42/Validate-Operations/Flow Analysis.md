@@ -126,10 +126,10 @@ You can also select the desired path and view the amount of packets distributed 
 
 Some flows can still be analyzed if they traverse a network path that includes switches lacking flow analysis support. Partial-path flow analysis is supported in the following conditions:
 
-- The unsupported device can not be the initial ingress or terminating egress device in the path of the analyzed flow
-- There can not be more than one consecutive transit device in the path that lacks flow analysis support
+- The unsupported device cannot be the initial ingress or terminating egress device in the path of the analyzed flow
+- There cannot be more than one consecutive transit device in the path that lacks flow analysis support
 
-An unsupported device is represented in the flow analysis graph with {{<img src="/images/netq/partial-path-unsupported-icon-42.png" height="18" width="18">}} and flow statistics will not be displayed for that device:
+An unsupported device is represented in the flow analysis graph as a black bar lined with red x's  {{<img src="/images/netq/partial-path-unsupported-icon-42.png" height="18" width="18">}} and flow statistics will not be displayed for that device:
 
 {{<figure src="/images/netq/partial-path-overview-42.png" width="900">}}
 
@@ -161,7 +161,7 @@ The **Flow Graph** panel allows you to access the topology view, where you can a
 
 ### View WJH Events
 
-Flow analysis monitors the path for WJH events and records any drops for the flow. Switches with WJH events recorded are represented in the flow analysis graph with {{<img src="/images/netq/flow-analysis-wjh-event-icon-42.png" height="18" width="9">}}. Hover over the device to see a WJH event summary:
+Flow analysis monitors the path for WJH events and records any drops for the flow. Switches with WJH events recorded are represented in the flow analysis graph as a red bar with white stripes {{<img src="/images/netq/flow-analysis-wjh-event-icon-42.png" height="18" width="9">}}. Hover over the device to see a WJH event summary:
 
 {{<figure src="/images/netq/wjh-flow-graph-overview-42.png" width="900">}}
 
@@ -173,6 +173,6 @@ Click on a device with WJH events to see the statistics in the left panel. Hover
 
 {{<figure src="/images/netq/wjh-device-stats-hover-42.png" width="400">}}
 
-Select **Show all drops** to bring up a list of all WJH drops for the device:
+Select **Show all drops** to display a list of all WJH drops for the device:
 
 {{<figure src="/images/netq/wjh-all-drops-panel-42.png" width="600">}}

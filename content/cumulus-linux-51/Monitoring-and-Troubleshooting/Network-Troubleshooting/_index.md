@@ -33,7 +33,7 @@ When troubleshooting intermittent connectivity issues, it is helpful to send con
 
 ## Print Route Trace with traceroute
 
-`traceroute` tracks the route that packets take from an IP network on their way to a given host. See `man traceroute` for details.
+Use `traceroute` to track the route that packets take from an IP network on their way to a given host. See `man traceroute` for details.
 
 To track the route to an IPv4 host:
 
@@ -98,7 +98,7 @@ The VRF context for `ping` and `traceroute` commands move automatically to the d
 
 ## Manipulate the System ARP Cache
 
-`arp` manipulates or displays the kernel's IPv4 network neighbor cache. See `man arp` for details.
+The `arp` command manipulates or displays the kernel's IPv4 network neighbor cache. See `man arp` for details.
 
 To display the ARP cache:
 

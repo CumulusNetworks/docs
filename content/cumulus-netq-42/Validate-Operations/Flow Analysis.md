@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1006
 toc: 4
 ---
-Use the Flow Analysis tool to sample data from TCP and UDP flows in your environment and to review latency and buffer utilization statistics across network paths.
+Use the flow analysis tool to sample data from TCP and UDP flows in your environment and to review latency and buffer utilization statistics across network paths.
 
 <!-- vale off -->
 {{<notice info>}}
@@ -21,13 +21,13 @@ To start a new flow analysis, click the **Flow Analysis** menu and select **Crea
 
 {{<notice note>}}
 
-You need to enable {{<link title="Manage Switches through Their Lifecycle" text="Lifecycle Management">}} (LCM) to use the Flow Analysis tool. If LCM is disabled, you will not see the Flow Analysis menu in the UI. LCM is enabled for on-premises deployments by default and disabled for cloud deployments by default. Contact your local NVIDIA sales representative or submit a support ticket to activate LCM on cloud deployments.
+You need to enable {{<link title="Manage Switches through Their Lifecycle" text="Lifecycle Management">}} (LCM) to use the flow analysis tool. If LCM is disabled, you will not see the flow analysis menu in the UI. LCM is enabled for on-premises deployments by default and disabled for cloud deployments by default. Contact your local NVIDIA sales representative or submit a support ticket to activate LCM on cloud deployments.
 
 {{</notice>}}
 
 ### Flow Analysis Settings
 
-The Flow Analysis wizard will prompt you to enter the source IP address, destination IP address, source port, VRF, destination port, and protocol of the flow you wish to analyze. The only optional parameter is the source port, for when the ephemeral source port of a flow may be unknown:
+The flow analysis wizard will prompt you to enter the source IP address, destination IP address, source port, VRF, destination port, and protocol of the flow you wish to analyze. The only optional parameter is the source port, for when the ephemeral source port of a flow may be unknown:
 
 {{<figure src="/images/netq/flow-analysis-create-dialog-42.png" width="600">}}
 
@@ -79,13 +79,13 @@ The flow analysis graph is color coded relative to the values measured across de
 
 {{<figure src="/images/netq/single-path-graph.png" width="800">}}
 
-The Flow Graph panel on the right side of the dashboard displays the devices along the selected path:
+The flow graph panel on the right side of the dashboard displays the devices along the selected path:
 
 {{<figure src="/images/netq/flow-graph-single-path.png" width="200">}}
 
 ### View Flow Latency
 
-The latency measured by the flow analysis is the total transit time of the sampled packets through individual devices. A summary of measured latency for each device is displayed above the main Flow Analysis graph:
+The latency measured by the flow analysis is the total transit time of the sampled packets through individual devices. A summary of measured latency for each device is displayed above the main flow analysis graph:
 
 {{<figure src="/images/netq/per-device-latency-summary.png" width="600">}}
 
@@ -95,12 +95,12 @@ You can also use your cursor to hover over sections of the main analysis graph t
 
 {{<figure src="/images/netq/latency-hover-1.png" width="800">}}
 
-The left panel of the Flow Analysis dashboard also displays a timeline of measured latency for each device on that path. You can use your cursor to hover over the plotted data points on the timeline for each device to view the latency measured at each time interval:
+The left panel of the flow analysis dashboard also displays a timeline of measured latency for each device on that path. You can use your cursor to hover over the plotted data points on the timeline for each device to view the latency measured at each time interval:
 
 {{<figure src="/images/netq/latency-left-panel.png" width="600">}}
 ### View Buffer Occupancy
 
-The main Flow Analysis dashboard also displays the buffer occupancy of each device along the path. To change the graph view to display buffer occupancy for the flow, click {{<img src="/images/netq/arrow-down-1.svg" height="18" width="18">}} next to **Avg. flow latency** and select **Avg. buffer occupancy**. You can view an overview graph of buffer occupancy or select each device to see the buffer occupancy for the analyzed flow:
+The main flow analysis dashboard also displays the buffer occupancy of each device along the path. To change the graph view to display buffer occupancy for the flow, click {{<img src="/images/netq/arrow-down-1.svg" height="18" width="18">}} next to **Avg. flow latency** and select **Avg. buffer occupancy**. You can view an overview graph of buffer occupancy or select each device to see the buffer occupancy for the analyzed flow:
 
 {{<figure src="/images/netq/buffer-occupancy-main-42.png" width="900">}}
 

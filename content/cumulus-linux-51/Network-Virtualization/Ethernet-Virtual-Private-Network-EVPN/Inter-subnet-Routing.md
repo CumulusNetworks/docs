@@ -395,12 +395,10 @@ leaf01# write memory
 <!-- vale off -->
 ### Advertise Primary IP address (VXLAN Active-Active Mode)
 <!-- vale on -->
-In EVPN symmetric routing configurations with VXLAN active-active ([MLAG](## "Multi-chassis Link Aggregation")), all EVPN routes advertise with the anycast IP address ({{<link url="VXLAN-Active-active-Mode#terminology" text="clagd-vxlan-anycast-ip">}}) as the next hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, the switch can forward traffic to a leaf switch that does not have the destination routes. Traffic has to traverse the peer link (with additional BGP sessions per VRF).
+In EVPN symmetric routing configurations with VXLAN active-active ([MLAG](## "Multi-chassis Link Aggregation")), all EVPN routes advertise with the anycast IP address ({{<link url="VXLAN-Active-active-Mode#terminology" text="clagd-vxlan-anycast-ip">}}) as the next hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, the switch might forward traffic to a leaf switch that does not have the destination routes. To prevent dropped trafiic in this failure scenario, Cumulus Linux enables the Advertise Primary IP address feature by default so that the switch handles the next hop IP address of the VTEP conditionally depending on the route type: host type-2 (MAC/IP advertisement) or type-5 (IP prefix route).
 
-To prevent sub-optimal routing, the switch handles the next hop IP address of the VTEP conditionally depending on the route type: host type-2 (MAC/IP advertisement) or type-5 (IP prefix route).
-
-- For host type-2 routes, the anycast IP address is the next hop IP address and the anycast MAC address (system MAC address) is the router MAC address.
-- For type-5 routes, the system IP address (the primary IP address of the VTEP) is the next hop IP address and the anycast MAC address of the VTEP is the router MAC address.
+- For host type-2 routes, the anycast IP address is the next hop IP address and the anycast MAC address is the router MAC address.
+- For type-5 routes, the system IP address (the unique primary loopback IP address of the VTEP) is the next hop IP address and the unique router MAC address of the VTEP is the router MAC address.
 
 #### Set the Anycast MAC Address
 
@@ -458,37 +456,6 @@ The anycast MAC address is different from the {{<link url="Virtual-Router-Redund
 When configuring third party networking devices using MLAG and EVPN for interoperability, you must configure and announce a single shared router MAC value for each advertised next hop IP address.
 {{%/notice%}}
 
-#### Optional Configuration
-
-To advertise type-5 routes and host type-2 routes using the system IP address and system MAC address:
-
-{{< tabs "TabID520 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@leaf01:~$ nv set evpn route-advertise nexthop-setting system-ip-mac
-cumulus@leaf01:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@leaf01:~$ sudo vtysh
-
-leaf01# configure terminal
-leaf01(config)# router bgp 65101 vrf RED
-leaf01(config)# address-family l2vpn evpn
-leaf01(config)# advertise-pip ip 10.10.10.1 mac 44:38:39:be:ef:aa
-leaf01(config-router-af)# end
-leaf01# write memory
-leaf01# exit
-cumulus@leaf01:~$
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
 #### Disable Advertise Primary IP Address
 
 Each switch in the MLAG pair advertises type-5 routes with its own system IP, which creates an additional next hop at the remote VTEPs. In a large multi-tenancy EVPN deployment, where additional resources are a concern, you can disable this feature.
@@ -503,6 +470,8 @@ cumulus@leaf01:~$ nv set evpn route-advertise nexthop-setting shared-ip-mac
 cumulus@leaf01:~$ nv config apply
 ```
 
+To reenable Advertise Primary IP Address, run the `nv set evpn route-advertise nexthop-setting system-ip-mac` command.
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
@@ -512,6 +481,21 @@ leaf01# configure terminal
 leaf01(config)# router bgp 65101 vrf RED
 leaf01(config)# address-family l2vpn evpn
 leaf01(config)# no advertise-pip
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+To reenable Advertise Primary IP Address:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+
+leaf01# configure terminal
+leaf01(config)# router bgp 65101 vrf RED
+leaf01(config)# address-family l2vpn evpn
+leaf01(config)# advertise-pip
 leaf01(config-router-af)# end
 leaf01# write memory
 leaf01# exit

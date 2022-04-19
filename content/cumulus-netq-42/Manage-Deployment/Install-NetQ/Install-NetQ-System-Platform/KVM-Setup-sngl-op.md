@@ -17,11 +17,11 @@ Follow these steps to setup and configure your VM on a single server in an on-pr
 
 3. Download the NetQ Platform image.
 
-    {{<netq-install/kvm-platform-image deployment="onprem" version="4.0">}}
+    {{<netq-install/kvm-platform-image deployment="onprem" version="4.2">}}
 
 4. Setup and configure your VM.
 
-    {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem" version="4.0">}}
+    {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem" version="4.2">}}
 
 5. Log in to the VM and change the password.
 
@@ -35,17 +35,16 @@ Follow these steps to setup and configure your VM on a single server in an on-pr
 
     {{<netq-install/set-hostname>}}
 
-8. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
+The final step is to install and activate the NetQ software. You can do this using the the CLI or the Admin UI:
 
-    {{<netq-install/bootstrap version="4.0" server="single" platform="vm" deployment="onprem">}}
+- {{<link title="Install NetQ Using the CLI" text="Use the CLI">}} (recommended)
 
-9. Consider the following for container environments, and make adjustments as needed.
+If you want to {{<link title="Install NetQ Using the Admin UI" text="use the Admin UI">}} to complete the installation, first run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
-    {{<netq-install/container version="4.0">}}
+{{<netq-install/bootstrap version="4.2" server="single" platform="vm" deployment="onprem">}}
 
-The final step is to install and activate the NetQ software. You can do this using the Admin UI or the CLI.
+Consider the following for container environments, and make adjustments as needed.
 
-Click the installation and activation method you want to use to complete installation:
+{{<netq-install/container version="4.2">}}
 
-- {{<link title="Install NetQ Using the Admin UI" text="Use the Admin UI">}} (recommended)
-- {{<link title="Install NetQ Using the CLI" text="Use the CLI">}}
+- {{<link title="Install NetQ Using the Admin UI" text="Use the Admin UI">}} 

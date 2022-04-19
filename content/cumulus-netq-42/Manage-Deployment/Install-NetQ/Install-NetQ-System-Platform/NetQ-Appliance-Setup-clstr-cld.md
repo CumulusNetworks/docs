@@ -128,21 +128,20 @@ Make a note of the private IP addresses you assign to the master and worker node
 
 9. Verify that the needed files are present and of the correct release.
 
-    {{<netq-install/verify-image deployment="cloud" version="4.1">}}
+    {{<netq-install/verify-image deployment="cloud" version="4.2">}}
 
 10. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     {{<netq-install/verify-cmd deployment="cloud">}}
 
-11. Run the Bootstrap CLI on the worker node.
+11. Repeat Steps 5-10 for each additional worker NetQ Cloud Appliance.
 
-    {{<netq-install/bootstrap server="cluster" version="4.1" deployment="cloud" platform="appliance">}}
+The final step is to install and activate the NetQ software. You can do this using the the CLI or the Admin UI:
 
-12. Repeat Steps 5-10 for each additional worker NetQ Cloud Appliance.
+- {{<link title="Install NetQ Using the CLI" text="Use the CLI">}} (recommended)
 
-The final step is to install and activate the NetQ software on each appliance in your cluster. You can do this using the Admin UI or the CLI.
+If you want to {{<link title="Install NetQ Using the Admin UI" text="use the Admin UI">}}  to complete the installation, first run the Bootstrap CLI on the worker nodes in your cluster.
 
-Click the installation and activation method you want to use to complete installation:
+{{<netq-install/bootstrap server="cluster" version="4.2" deployment="cloud" platform="appliance">}}
 
-- {{<link title="Install NetQ Using the Admin UI" text="Use the Admin UI">}} (recommended)
-- {{<link title="Install NetQ Using the CLI" text="Use the CLI">}}
+- {{<link title="Install NetQ Using the Admin UI" text="Use the Admin UI">}}

@@ -19,7 +19,7 @@ Follow these steps to setup and configure your VM cluster for an on-premises dep
 
 3. Download the NetQ Platform image.
 
-    {{<netq-install/vmw-platform-image deployment="onprem" version="4.0">}}
+    {{<netq-install/vmw-platform-image deployment="onprem" version="4.2">}}
 
 4. Setup and configure your VM.
 
@@ -59,15 +59,14 @@ Make a note of the private IP address you assign to the worker node. You need it
 
     {{<netq-install/verify-cmd deployment="cloud">}}
 
-14. Run the Bootstrap CLI on the worker node.
+14. Repeat Steps 10 through 13 for each additional worker node you want in your cluster.
 
-    {{<netq-install/bootstrap server="cluster" version="4.0" platform="vm" deployment="onprem">}}
+The final step is to install and activate the NetQ software. You can do this using the the CLI or the Admin UI:
 
-15. Repeat Steps 10 through 14 for each additional worker node you want in your cluster.
+- {{<link title="Install NetQ Using the CLI" text="Use the CLI">}} (recommended)
 
-The final step is to install and activate the NetQ software. You can do this using the Admin UI or the CLI.
+If you want to {{<link title="Install NetQ Using the Admin UI" text="use the Admin UI">}}  to complete the installation, first run the Bootstrap CLI on the worker nodes in your cluster.
 
-Click the installation and activation method you want to use to complete installation:
+{{<netq-install/bootstrap server="cluster" version="4.2" platform="vm" deployment="onprem">}}
 
-- {{<link title="Install NetQ Using the Admin UI" text="Use the Admin UI">}} (recommended)
-- {{<link title="Install NetQ Using the CLI" text="Use the CLI">}}
+- {{<link title="Install NetQ Using the Admin UI" text="Use the Admin UI">}} 

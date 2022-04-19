@@ -7,3 +7,7 @@
 <p>Use the following command:</p>
 
 <pre>cumulus@hostname:~$ sudo hostnamectl set-hostname NEW_HOSTNAME</pre>
+
+<p>Add the same NEW_HOSTNAME value to <b>/etc/hosts</b> on your VM for the localhost entry. Example:</p>
+    
+<pre>127.0.0.1 localhost NEW_HOSTNAME</pre>

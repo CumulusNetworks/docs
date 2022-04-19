@@ -1,5 +1,5 @@
 ---
-title: Prepare Your Existing NetQ Appliances for a NetQ 4.1 Deployment
+title: Prepare Your Existing NetQ Appliances for a NetQ 4.2 Deployment
 author: NVIDIA
 weight: 235
 toc: 5
@@ -175,7 +175,7 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
     5. Click **All downloads** next to **NVIDIA NetQ**.
 
-    6. Select *4.1.0* from the **NetQ Version** dropdown.
+    6. Select *4.2.0* from the **NetQ Version** dropdown.
 
     7. Select *KVM* from the **Hypervisor** dropdown.
 
@@ -185,7 +185,7 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
     9. Verify this is the correct image, then click **Download**.
 
-    10. Copy these two files, *netq-bootstrap-4.1.0.tgz* and either *NetQ-4.1.0.tgz* (on-premises) or *NetQ-4.1.0-opta.tgz* (cloud), to the */mnt/installables/* directory on the appliance.
+    10. Copy either *NetQ-4.2.0.tgz* (on-premises) or *NetQ-4.2.0-opta.tgz* (cloud), to the */mnt/installables/* directory on the appliance.
 
     11. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-4.1.0-opta.tgz* instead of *NetQ-4.1.0.tgz*.
 
@@ -196,7 +196,7 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
         cumulus@<hostname>:~$ cd /mnt/installables/
         cumulus@<hostname>:/mnt/installables$ ls
-        NetQ-4.1.0.tgz  netq-bootstrap-4.1.0.tgz
+        NetQ-4.1.0.tgz
         ```
 
     12. Run the following commands.
@@ -208,14 +208,14 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
         sudo systemctl stop motd-news.{service,timer}
         ```
 
-9. Run the Bootstrap CLI.
+9. If you plan to use the {{<link title="Install NetQ Using the Admin UI" text="Admin UI">}}  to install NetQ, run the Bootstrap CLI before continuing.
 
     Run the bootstrap CLI on your appliance. Be sure to replace the *eth0* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="single" version="3.3.1">}}
+    {{<netq-install/bootstrap server="single" version="4.2" platform="appliance" deployment="onprem">}}
 
 {{<notice note>}}
 If you are creating a server cluster, you need to prepare each of those appliances as well. Repeat these steps if you are using a previously deployed appliance or refer to {{<link title="Install the NetQ System">}} for a new appliance.
 {{</notice>}}
 
-You are now ready to install the NetQ Software. Refer to {{<link title="Install NetQ Using the Admin UI">}} (recommended) or {{<link title="Install NetQ Using the CLI">}}.
+You are now ready to install the NetQ Software. Refer to {{<link title="Install NetQ Using the CLI">}} (recommended) or {{<link title="Install NetQ Using the Admin UI">}}.

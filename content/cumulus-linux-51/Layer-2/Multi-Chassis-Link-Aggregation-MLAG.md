@@ -617,9 +617,8 @@ When you use MLAG with VRR, set up a routed adjacency across the peerlink.4094 i
 To set up the adjacency, configure a {{<link url="Border-Gateway-Protocol-BGP#bgp-unnumbered" text="BGP">}} or {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} unnumbered peering, as appropriate for your network.
 
 {{%notice note%}}
-The {{<link url="#large-packet-drops-on-the-peer-link-interface" text="MLAG loop avoidance mechanism">}} also drops routed traffic that arrives on an MLAG peer link interface and routes to a dual-connected VNI.
-
-If you need to route unencapsulated traffic to an MLAG peer switch for VXLAN forwarding to accommodate uplink failures or other design needs, configure a routing adjacency across a separate routed interface that is not the MLAG `peerlink`.
+- For switches with the Spectrum ASIC, the {{<link url="#large-packet-drops-on-the-peer-link-interface" text="MLAG loop avoidance mechanism">}} also drops routed traffic that arrives on an MLAG peer link interface and routes to a dual-connected VNI. If you need to route unencapsulated traffic to an MLAG peer switch for VXLAN forwarding to accommodate uplink failures or other design needs, configure a routing adjacency across a separate routed interface that is not the MLAG `peerlink`.
+- Switches with the Spectrum-2 ASIC and later allow packets arriving on the peer link to route to a VNI for VXLAN encapsulation.
 {{%/notice%}}
 
 For BGP, use a configuration like this:

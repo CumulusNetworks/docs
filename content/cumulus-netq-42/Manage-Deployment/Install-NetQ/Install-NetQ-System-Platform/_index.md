@@ -4,6 +4,10 @@ author: NVIDIA
 weight: 200
 toc: 4
 ---
+{{<notice note>}}
+The installation process has been simplified to use a single installer tarball. If you are familiar with installing previous versions of NetQ, review the instructions for your deployment type. The legacy bootstrap process is now only applicable for an installation using the Admin UI, which is deprecated and will be removed in future versions of NetQ.
+{{</notice>}}
+
 This topic walks you through the NetQ System installation decisions and then provides installation steps based on those choices. If you are already comfortable with your installation choices, you can use the matrix in {{<link title="Install NetQ Quick Start">}} to go directly to the installation steps.
 
 To install NetQ {{<version>}}, you must first decide whether you want to install the NetQ System in an on-premises or remote deployment. Both deployment options provide secure access to data and features useful for monitoring and troubleshooting your network, and each has its benefits.

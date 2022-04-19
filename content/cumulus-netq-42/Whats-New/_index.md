@@ -22,7 +22,7 @@ NetQ 4.2.0 includes the following new features and improvements:
 - {{<link title="gNMI Streaming" text="New gNMI Object Models">}}
   - openconfig-plaftorm
   - openconfig-lldp
-- Simplified install process
+- {{<link title="Install the NetQ System" text="Simplified install process">}}
 - {{<link title="Validate Overall Network Health" text="Improved Network Health UI with Validation Summary">}}
 - {{<link title="Validation Checks##addresses-validation-tests" text="GUI support for Duplicate Address Detection">}}
 - Early Access on-switch OPTA support for NetQ cloud deployments

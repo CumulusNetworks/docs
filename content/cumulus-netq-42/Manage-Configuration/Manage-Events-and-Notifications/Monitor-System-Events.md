@@ -20,7 +20,7 @@ You can monitor all system and TCA events across the network with the NetQ UI an
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
 
-2. Click **Events** under the **Network** column.
+2. In the side navigation under **Network**, click **Events**.
 
     You can filter events with the controls at the top of the screen.
 
@@ -116,19 +116,11 @@ You can monitor all system and TCA events on a given device with the NetQ UI and
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
 
-2. Click **Events** under the **Network** column.
+2. In the side navigation under **Network**, click **Events**.
 
-3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}}.
+3. At the top of the screen, click the **Hostname** field and select a device.
 
-4. Enter a hostname or IP address in the **Hostname** field.
-
-<div style="padding-left: 18px;">{{<notice tip>}}
-You can enter additional filters for message type, severity, and time range to further narrow the output.
-{{</notice>}}</div>
-
-5. Click **Apply**.
-
-    {{<figure src="/images/netq/main-menu-ntwk-events-filterbyhost-320.png" width="700" caption="All system and TCA events on spine01 switch">}}
+4. Click **Apply**.
 
 {{</tab>}}
 
@@ -177,19 +169,11 @@ You can view all system  and TCA events of a given type on a networkwide basis u
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
 
-2. Click **Events** under the **Network** column.
+2. In the side navigation under **Network**, click **Events**.
 
-3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}}.
-<!-- vale off -->
-4. Enter the name of network protocol or service (*agent*, *bgp*, *link*, *tca_dom*, and so on) in the **Message Type** field.
-<!-- vale on -->
-<div style="padding-left: 18px;">{{<notice tip>}}
-You can enter additional filters for severity and time range to further narrow the output.
-{{</notice>}}</div>
+3. At the top of the screen, click the **Type** field and select a network protocol or service.
 
-5. Click **Apply**.
-
-    {{<figure src="/images/netq/main-menu-ntwk-events-filterbymsgtype-320.png" width="700" caption="All LLDP events">}}
+4. Click **Apply**.
 
 {{</tab>}}
 
@@ -240,21 +224,13 @@ You can view all system and TCA events of a given type on a given device using t
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
 
-2. Click **Events** under the **Network** column.
+2. In the side navigation under **Network**, click **Events**.
 
-3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}}.
+3. At the top of the screen, click the **Hostname** field and select a device.
 
-4. Enter the hostname of the device for which you want to see events in the **Hostname** field.
+4. In the same row, click the **Type** field and select a network protocol or service.
 
-5. Enter the name of a network protocol or service in the **Message Type** field.
-
-<div style="padding-left: 18px;">{{<notice tip>}}
-You can enter additional filters for severity and time range to further narrow the output.
-{{</notice>}}</div>
-
-6. Click **Apply**.
-
-    {{<figure src="/images/netq/main-menu-ntwk-events-filterbymsgtype-device-320.png" width="700" caption="All agent events on the spine01 switch">}}
+5. Click **Apply**.
 
 {{</tab>}}
 
@@ -292,7 +268,7 @@ You can enter a severity using the <code>level</code> option to further narrow t
 
 You can view system and TCA events by their severity on a networkwide basis with the NetQ UI and the NetQ CLI using the:
 
-- Events list: with events of all severities at on time or filter by severity
+- Events list
 - `netq show events level` command
 
 {{<notice tip>}}
@@ -305,19 +281,11 @@ System event severities include info, error, warning, critical or debug. TCA eve
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
 
-2. Click **Events** under the **Network** column.
+2. In the side navigation under **Network**, click **Events**.
 
-3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}}.
+3. At the top of the screen, click the **Severity** field and select a level.
 
-4. Enter a severity in the **Severity** field. Default is Info.
-
-<div style="padding-left: 18px;">{{<notice tip>}}
-You can enter additional filters for message type and time range to further narrow the output.
-{{</notice>}}</div>
-
-5. Click **Apply**.
-
-    {{<figure src="/images/netq/main-menu-ntwk-events-filterbyseverity-320.png" width="700" caption="All system and TCA events with info severity">}}
+4. Click **Apply**.
 
 {{</tab>}}
 
@@ -365,7 +333,7 @@ You can use the <code>type</code> and <code>between</code> options to further na
 
 You can view system and TCA events by their severity on a given device with the NetQ UI and the NetQ CLI using the:
 
-- Events list: view events of all severities at on time or by one severity filtered by device
+- Events list
 - Switch card: view all events with critical severity on the given device
 - `netq <hostname> show events level` command
 

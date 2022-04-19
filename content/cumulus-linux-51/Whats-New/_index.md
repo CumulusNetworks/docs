@@ -226,7 +226,7 @@ nv unset vrf <vrf-id> router bgp dynamic-peer-limit
 ```
 {{< /expand >}}
 
-{{%notice note%}}
+{{%notice info%}}
 Cumulus Linux 5.1 includes the NVUE object model. After you upgrade to Cumulus Linux 5.1, running NVUE configuration commands replaces the configuration in files such as `/etc/network/interfaces` and `/etc/frr/frr.conf` and removes any configuration you add manually or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
 
 - Update your automation tools to use NVUE.

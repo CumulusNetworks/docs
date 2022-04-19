@@ -346,21 +346,13 @@ System event severities include info, error, warning, critical or debug severity
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
 
-2. Click **Events** under the **Network** column.
+2. In the side navigation under **Network**, click **Events**.
 
-3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}}.
+3. At the top of the screen, click the **Hostname** field and select a device.
 
-4. Enter the hostname for the device of interest in the **Hostname** field.
-
-5. Enter a severity in the **Severity** field. Default is Info.
-
-<div style="padding-left: 18px;">{{<notice tip>}}
-You can enter additional filters for message type and time range to further narrow the output.
-{{</notice>}}</div>
+4. In the same row, click the **Severity** field and select a level.
 
 5. Click **Apply**.
-
-    {{<figure src="/images/netq/main-menu-ntwk-events-filterbyseverity-device-320.png" width="700" caption="All critical severity events on the spine01 switch">}}
 
 {{</tab>}}
 
@@ -400,7 +392,7 @@ You can use the <code>type</code> or <code>between</code> options to further nar
 
 You can monitor all system and TCA events across the network currently or for a time in the past with the NetQ UI and the NetQ CLI.
 
-- Events list: view events for a time range in the past 24 hours
+- Events list
 - `netq show events between` command: view events for a time range in the past
 
 {{<tabs "TabID706" >}}
@@ -409,17 +401,11 @@ You can monitor all system and TCA events across the network currently or for a 
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
 
-2. Click **Events** under the **Network** column.
+2. In the side navigation under **Network**, click **Events**.
 
-3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}}.
+3. At the top of the screen, use the first two fields to filter either over a time range or by recent events. 
 
-4. Click in the **Timestamp** fields to enter a start and end date for a time range in the past 24 hours.
-
-    This allows you to view only the most recent events or events within a particular hour or few hours over the last day.
-
-5. Click **Apply**.
-
-    {{<figure src="/images/netq/main-menu-ntwk-events-bytime-320.png" width="700" caption="All system and TCA events across the network between midnight and 11:30am">}}
+4. Click **Apply**.
 
 {{</tab>}}
 {{<tab "netq show events" >}}
@@ -504,124 +490,6 @@ leaf01            btrfsinfo                critical         data storage efficie
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
 leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  9 14:33:21 2020
-                                                            t after allocation greater than chu
-                                                            nk size 0.57 GB
-...
-```
-
-{{</tab>}}
-
-{{</tabs>}}
-
-## Monitor System and TCA Events on a Device by Time
-
-You can monitor all system and TCA events on a device currently or for a time in the past with the NetQ UI and the NetQ CLI.
-
-- Events list: view events for a device at a time range in the past 24 hours
-- Switch card: view critical events on a switch for a time range in the past
-- `netq <hostname> show events between` command: view events for a time range in the past
-
-{{<tabs "TabID941" >}}
-
-{{<tab "Events List" >}}
-
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
-
-2. Click **Events** under the **Network** column.
-
-3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}}.
-
-4. Enter a hostname into the **Hostname** field.
-
-5. Click in the **Timestamp** fields to enter a start and end date for a time range in the past 24 hours.
-
-    This allows you to view only the most recent events or events within a particular hour or few hours over the last day.
-
-6. Click **Apply**.
-
-    {{<figure src="/images/netq/main-menu-ntwk-events-bytime-device-320.png" width="700" caption="All system and TCA events on the leaf02 switch between midnight and 11:30am">}}
-
-7. Return to your workbench. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
-
-{{</tab>}}
-{{<tab "Switch card" >}}
-
-The Switch card displays the alarms (events of critical severity) for the switch.
-
-1. Open the Switch card for the switch of interest.
-
-    1. Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" width="18" height="18">}}.
-
-    2. Click **Open a switch card**.
-
-    3. Enter the switch hostname.
-
-    4. Click **Add**.
-
-2. Change to the full screen card using the size picker.
-
-3. Enter start and end dates in the **Timestamp** fields.
-
-4. Click **Apply**.
-
-    {{<figure src="/images/netq/dev-switch-fullscr-bytime-device-320.png" width="700" caption="All system and TCA events on the leaf02 switch between September 7 at midnight and September 10 and 3:15 pm">}}
-
-5. Return to your workbench. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
-
-{{</tab>}}
-
-{{<tab "netq show events" >}}
-
-The NetQ CLI uses a displays data collected within the last hour unless otherwise specified. To view all system and all TCA events on a given device for a time beyond an hour in the past, run:
-
-```
-netq <hostname> show events [between <text-time> and <text-endtime>] [json]
-```
-
-This example shows all system and TCA events on the *leaf02* switch between now and 24 hours ago.
-
-```
-netq leaf02 show events between now and 24hr
-cumulus@switch:~$ netq show events between now and 24hr
-Matching events records:
-Hostname          Message Type             Severity         Message                             Timestamp
------------------ ------------------------ ---------------- ----------------------------------- -------------------------
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 19:55:26 2020
-                                                            t after allocation greater than chu
-                                                            nk size 0.57 GB
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 19:25:24 2020
-                                                            t after allocation greater than chu
-                                                            nk size 0.57 GB
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 18:55:17 2020
-                                                            t after allocation greater than chu
-                                                            nk size 0.57 GB
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 18:25:16 2020
-                                                            t after allocation greater than chu
-                                                            nk size 0.57 GB
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 17:55:15 2020
-                                                            t after allocation greater than chu
-                                                            nk size 0.57 GB
-...
-```
-
-This example shows all system and TCA events on the *leaf01* switch between one and three days ago.
-
-```
-cumulus@switch:~$ netq leaf01 show events between 1d and 3d
-
-Matching events records:
-Hostname          Message Type             Severity         Message                             Timestamp
------------------ ------------------------ ---------------- ----------------------------------- -------------------------
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  9 16:14:37 2020
-                                                            t after allocation greater than chu
-                                                            nk size 0.57 GB
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  9 15:44:36 2020
-                                                            t after allocation greater than chu
-                                                            nk size 0.57 GB
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  9 15:14:35 2020
-                                                            t after allocation greater than chu
-                                                            nk size 0.57 GB
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  9 14:44:34 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
 ...

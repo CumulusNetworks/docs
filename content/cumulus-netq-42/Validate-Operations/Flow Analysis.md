@@ -27,7 +27,7 @@ You need to enable {{<link title="Manage Switches through Their Lifecycle" text=
 
 ### Flow Analysis Settings
 
-The flow analysis wizard will prompt you to enter the source IP address, destination IP address, source port, VRF, destination port, and protocol of the flow you wish to analyze. The only optional parameter is the source port, for when the ephemeral source port of a flow may be unknown:
+The flow analysis wizard will prompt you to enter the source IP address, destination IP address, source port, and destination port of the flow you wish to analyze. Drop down the menu selection to choose the protocol and VRF for the flow. The only optional parameter is the source port, for when the ephemeral source port of a flow may be unknown:
 
 {{<figure src="/images/netq/flow-analysis-create-dialog-42.png" width="600">}}
 
@@ -112,7 +112,7 @@ The percentages represent the amount of buffer space on the switch that the anal
 
 When packets matching the flow settings traverse multiple paths in the topology, the flow graph will display latency and buffer occupancy for each path:
 
-{{<figure src="/images/netq/flow-multipath-demo-410.png" width="800">}}
+{{<figure src="/images/netq/flow-analysis-multipath-example-42.png" width="800">}}
 
 You can switch between paths by clicking on an alternate path in the **Flow Graph** panel, or by clicking on an unselected path on the main analysis graph:
 
@@ -120,14 +120,14 @@ You can switch between paths by clicking on an alternate path in the **Flow Grap
 
 You can also select the desired path and view the amount of packets distributed over each path on the detail panel on the left side of the dashboard:
 
-{{<figure src="/images/netq/flow-multipath-pathselection-410.png" width="600">}}
+{{<figure src="/images/netq/flow-analysis-select-path-42.png" width="600">}}
 
 ### Partial Path Support
 
 Some flows can still be analyzed if they traverse a network path that includes switches lacking flow analysis support. Partial-path flow analysis is supported in the following conditions:
 
 - The unsupported device cannot be the initial ingress or terminating egress device in the path of the analyzed flow
-- There cannot be more than one consecutive transit device in the path that lacks flow analysis support
+- If there is more than one consecutive transit device in the path that lacks flow analysis support, the analysis will terminate at that point in the topology and flow data will only be available from devices preceding the unsupported switches in the topology. 
 
 An unsupported device is represented in the flow analysis graph as a black bar lined with red x's  {{<img src="/images/netq/partial-path-unsupported-icon-42.png" height="18" width="18">}} and flow statistics will not be displayed for that device:
 
@@ -172,6 +172,10 @@ You can also view devices with WJH events in the flow graph panel:
 Click on a device with WJH events to see the statistics in the left panel. Hover over the data to reveal the type of drops over time:
 
 {{<figure src="/images/netq/wjh-device-stats-hover-42.png" width="400">}}
+
+WJH drops can also be viewed from the expanded device chart by selecting the WJH category:
+
+{{<figure src="/images/netq/wjh-larger-chart-hover-42.png" width="600">}}
 
 Select **Show all drops** to display a list of all WJH drops for the device:
 

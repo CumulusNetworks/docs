@@ -17,4 +17,4 @@ You can track events in the NetQ UI with the Events and WJH cards:
 - **Events card**: tracks all warning, info, error, debug, and TCA events for a given timeframe
 - **What Just Happened card**: tracks network hardware events on NVIDIA Spectrum&trade; switches
 
-The NetQ CLI provides the `netq show events` command to view system and TCA events for a given timeframe. The `netq show wjh-drop` command lists all WJH events or those with a selected drop type.
+The NetQ CLI provides the `netq show events` command to view system and TCA events for a given time frame. The `netq show wjh-drop` command lists all WJH events or those with a selected drop type.

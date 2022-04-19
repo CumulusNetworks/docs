@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3044596</td>
+<td>In the non-default VRF, BFD goes down after port flap.</td>
+<td>5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3042778</td>
 <td>When you change the MLAG backup IP address with the NVUE {{nv set mlag backup &lt;address&lt;}} command, the change does not take effect when you apply the configuration.
 To work around this issue, manually restart the MLAG process with the {{sudo systemctl restart clagd}} command.</td>

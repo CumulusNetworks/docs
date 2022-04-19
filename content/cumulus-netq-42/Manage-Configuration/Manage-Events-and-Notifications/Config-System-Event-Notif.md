@@ -316,7 +316,7 @@ This example shows the creation of a *syslog-netq-events* channel and verifies t
 
 {{<tab "Email" >}}
 
-You can use the NetQ UI or the NetQ CLI to create an Email channel.
+You can use the NetQ UI or the NetQ CLI to create an email channel.
 
 {{<tabs "TabID328" >}}
 
@@ -345,7 +345,7 @@ You can use the NetQ UI or the NetQ CLI to create an Email channel.
 
     Enter the emails separated by commas, and no spaces. For example: `user1@domain.com,user2@domain.com,user3@domain.com`.
 
-6. The first time you configure an Email channel, you must also specify the SMTP server information:
+6. The first time you configure an email channel, you must also specify the SMTP server information:
 
     - **Host**: hostname or IP address of the SMTP server
     - **Port**: port of the SMTP server; typically 587
@@ -370,7 +370,7 @@ You can use the NetQ UI or the NetQ CLI to create an Email channel.
 
 {{<tab "NetQ CLI" >}}
 
-To create and verify the specification of an Email channel, run:
+To create and verify the specification of an email channel, run:
 
 ```
 netq add notification channel email <text-channel-name> to <text-email-toids> [smtpserver <text-email-hostname>] [smtpport <text-email-port>] [login <text-email-id>] [password <text-email-password>] [severity info | severity warning | severity error | severity debug]
@@ -662,7 +662,7 @@ proxy4:80          yes                        yes
 
 ### Create Channels
 
-Create one or more PagerDuty, Slack, syslog, Email, or generic channels to receive the notifications.
+Create one or more PagerDuty, Slack, syslog, rmail, or generic channels to receive notifications.
 
 {{<tabs "TabID566" >}}
 
@@ -882,7 +882,7 @@ The configuration is different depending on whether you are using the on-premise
 
 {{<tab "On-premises" >}}
 
-To create an Email notification channel for an on-premises deployment, run:
+To create an email notification channel for an on-premises deployment, run:
 
 ```
 netq add notification channel email <text-channel-name> to <text-email-toids> [smtpserver <text-email-hostname>] [smtpport <text-email-port>] [login <text-email-id>] [password <text-email-password>] [severity info | severity warning | severity error | severity debug]
@@ -926,7 +926,7 @@ This example creates an email channel named *onprem-email* that uses the *smtpse
 
 In cloud deployments as the NetQ cloud service uses the NetQ SMTP server to push email notifications.
 
-To create an Email notification channel for a cloud deployment, run:
+To create an email notification channel for a cloud deployment, run:
 
 ```
 netq add notification channel email <text-channel-name> to <text-email-toids> [severity info | severity warning | severity error | severity debug]

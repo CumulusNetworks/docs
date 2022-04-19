@@ -334,7 +334,6 @@ You can use the <code>type</code> and <code>between</code> options to further na
 You can view system and TCA events by their severity on a given device with the NetQ UI and the NetQ CLI using the:
 
 - Events list
-- Switch card: view all events with critical severity on the given device
 - `netq <hostname> show events level` command
 
 {{<notice tip>}}
@@ -362,34 +361,6 @@ You can enter additional filters for message type and time range to further narr
 5. Click **Apply**.
 
     {{<figure src="/images/netq/main-menu-ntwk-events-filterbyseverity-device-320.png" width="700" caption="All critical severity events on the spine01 switch">}}
-
-{{</tab>}}
-
-{{<tab "Switch Card">}}
-
-The Switch card displays the alarms (events of critical severity) for the switch.
-
-1. Open the Switch card for the switch of interest.
-
-    1. Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" width="18" height="18">}}.
-
-    2. Click **Open a switch card**.
-
-    3. Enter the switch hostname.
-
-    4. Click **Add**.
-
-2. Change to the full screen card using the size picker.
-
-3. Enter a severity in the **Severity** field. Default is Info.
-
-    {{<notice tip>}}
-You can enter additional filters for message type and time range to further narrow the output.
-    {{</notice>}}
-
-4. Click **Apply**.
-
-5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{</tab>}}
 

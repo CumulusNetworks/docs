@@ -930,10 +930,7 @@ cumulus@switch:~$ net commit
 
 {{< tab "CUE Commands ">}}
 
-```
-cumulus@switch:~$ cl set vrf default router bgp NEED COMMAND
-cumulus@switch:~$ cl config apply
-```
+CUE commands are not provided.
 
 {{< /tab >}}
 
@@ -973,10 +970,7 @@ cumulus@switch:~$
 
 {{< tab "CUE Commands ">}}
 
-```
-cumulus@switch:~$ cl set vrf default router bgp NEED COMMAND
-cumulus@switch:~$ cl config apply
-```
+CUE commands are not provided.
 
 {{< /tab >}}
 
@@ -1378,9 +1372,7 @@ cumulus@switch:~$
 
 {{< tab "CUE Commands ">}}
 
-```
-cumulus@switch:~$ cl set vrf default router bgp NEED COMMAND
-```
+CUE commands are not provided.
 
 {{< /tab >}}
 
@@ -1536,10 +1528,7 @@ cumulus@spine01:~$
 {{< /tab >}}
 {{< tab "CUE Commands ">}}
 
-```
-cumulus@spine01:~$ cl set vrf default router bgp NEED COMMAND
-cumulus@spine01:~$ cl config apply
-```
+CUE commands are not provided.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1935,10 +1924,7 @@ cumulus@leaf01:~$
 
 {{< tab "CUE Commands ">}}
 
-```
-cumulus@leaf01:~$ cl set vrf default router bgp NEED COMMAND
-cumulus@leaf01:~$ cl config apply$
-```
+CUE commands are not provided.
 
 {{< /tab >}}
 

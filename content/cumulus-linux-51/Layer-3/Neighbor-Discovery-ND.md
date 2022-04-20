@@ -6,7 +6,7 @@ toc: 3
 ---
 [ND](## "Neighbor Discovery") allows different devices on the same link to advertise their existence to their neighbors and to learn about the existence of their neighbors. ND is the IPv6 equivalent of IPv4 ARP for layer 2 address resolution.
 
-ND is on by default. Cumulus Linux provides a set of configuration options to support IPv6 networks and adjust your security settings.
+Cumulus Linux provides a set of configuration options to support IPv6 networks and adjust your security settings.
 
 ## ND Configuration Options
 

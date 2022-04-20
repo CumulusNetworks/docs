@@ -1585,13 +1585,11 @@ To minimize the negative effects that occur when BGP restarts, you can enable th
 
 When BGP establishes a session, BGP peers use the BGP OPEN message to negotiate a graceful restart. If the BGP peer also supports graceful restart, it activates for that neighbor session. If the BGP session stops, the BGP peer (the restart helper) flags all routes associated with the device as stale but continues to forward packets to these routes for a certain period of time. The restarting device also continues to forward packets during the graceful restart. After the device comes back up and establishes BGP sessions again with its peers (restart helpers), it waits to learn all routes that these peers announce before selecting a cumulative path; after which, it updates its forwarding tables and re-announces the appropriate routes to its peers. These procedures ensure that if there are any routing changes while the BGP speaker is restarting, the network converges.
 
-{{%notice note%}}
-Cumulus Linux supports BGP graceful restart for both IPv4 and IPv6.
-{{%/notice%}}
+Cumulus Linux supports BGP graceful restart full and helper-only mode for Pv4 and IPv6. In full mode, the switch is in both a helper and restarter role. In helper-only mode, the switch is in a helper role only, where routes originated and advertised from a BGP peer are not deleted.
 
 You can enable BGP graceful restart in one of two ways:
 - Globally, where all BGP peers inherit the graceful restart capability.
-- Per BGP peer or peer group, which can be useful for misbehaving peers or when working with third party devices. You can also configure a peer or peer group to run in helper mode only, where routes originated and advertised from a BGP peer are not deleted.
+- Per BGP peer or peer group, which can be useful for misbehaving peers or when working with third party devices.
 
 You must enable BGP graceful restart to achieve a switch restart or switch software upgrade with minimal traffic loss in a BGP configuration. Refer to {{<link url="In-Service-System-Upgrade-ISSU" text="ISSU">}} for more information.
 
@@ -1599,13 +1597,13 @@ You must enable BGP graceful restart to achieve a switch restart or switch softw
 BGP goes through a graceful restart (as a restarting router) with a planned switch restart event that ISSU initiates. Any other time BGP restarts, such as when the BGP daemon restarts due to a software exception or you restart the FRR service, BGP goes through a regular restart where the BGP session with peers terminates and Cumulus Linux removes the learned routes from the forwarding plane.
 {{%/notice%}}
 
-The following example commands enable graceful BGP restart globally on the switch:
+The following example commands enable graceful BGP restart helper-only mode globally on the switch:
 
 {{< tabs "TabID1442 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set router bgp graceful-restart
+cumulus@leaf01:~$ nv set router bgp graceful-restart mode helper-only
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1626,34 +1624,7 @@ leaf01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example commands enable BGP graceful restart on the BGP peer connected to swp51.
-
-{{< tabs "TabID1474 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 graceful-restart
-cumulus@leaf01:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@leaf01:~$ sudo vtysh
-...
-leaf01# configure terminal
-leaf01(config)# router bgp 65101
-leaf01(config-router)# neighbor swp51 graceful-restart
-leaf01(config-router)# end
-leaf01# write memory
-leaf01# exit
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-The following example commands enable helper-only mode for the BGP peer connected on swp51. Routes that the peer originates and advertises are not deleted.
+The following example commands enable helper-only mode for the BGP peer connected on swp51:
 
 {{< tabs "TabID1506 ">}}
 {{< tab "NVUE Commands ">}}

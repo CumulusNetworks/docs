@@ -46,7 +46,66 @@ You can configure custom hashing to specify what to include in the hash calculat
 - Multiple next hops of a layer 3 route (ECMP hashing).
 - Multiple interfaces that are members of the same bond (bond or LAG hashing). For bond hashing, see {{<link url="Bonding-Link-Aggregation/#load-balancing" text="Bonding - Link Aggregation" >}}.
 
-### ECMP Hashing
+For ECMP load balancing between multiple next-hops of a layer 3 route, you can hash on these fields:
+
+|   <div style="width:190px">Field   | Default Setting | `traffic.conf`|
+| -------- | --------------- | ------------ |
+| IP protocol | on |`hash_config.ip_prot`|
+| Source IP address| on |`hash_config.sip`|
+| Destination IP address| on |`hash_config.dip`|
+| Source port | on |`hash_config.sport` |
+| Destination port| on | `hash_config.dport` |
+| IPv6 flow label | on | `hash_config.ip6_label` |
+| Ingress interface | off | `hash_config.ing_intf` |
+| Inner IP protocol| off |`hash_config.inner_ip_prot` |
+| Inner source IP address| off |`hash_config.inner_sip` |
+| Inner destination IP address| off |`hash_config.inner_dip` |
+| Inner source port| off | `hash_config.inner-sport` |
+| Inner destination port| off | `hash_config.inner_dport` |
+| Inner IPv6 flow label | off |`hash_config.inner_ip6_label` |
+
+To set the hash fields:
+
+1. Edit the `/etc/cumulus/datapath/traffic.conf` file:
+   - Uncomment the `hash_config.enable = true` option.
+   - Set the hash field to `true` to include it in the hash calculation or `false` to omit it from the hash calculation.
+2. Run the `echo 1 > /cumulus/switchd/ctrl/hash_config_reload` command to reload the configuration. This command does not cause any traffic interruptions.
+
+The following example commands omit the source port and destination port from the hash calculation:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
+...
+# HASH config for  ECMP to enable custom fields
+# Fields will be applicable for ECMP hash
+# calculation
+#Note : Currently supported only for MLX platform
+# Uncomment to enable custom fields configured below
+hash_config.enable = true
+
+#hash Fields available ( assign true to enable)
+#ip protocol
+hash_config.ip_prot = true
+#source ip
+hash_config.sip = true
+#destination ip
+hash_config.dip = true
+#source port
+hash_config.sport = false
+#destination port
+hash_config.dport = false
+...
+```
+
+```
+cumulus@switch:~$ echo 1 > /cumulus/switchd/ctrl/hash_config_reload
+```
+
+{{%notice note%}}
+Cumulus Linux enables symmetric hashing by default. Make sure that the settings for the source IP and destination IP fields match, and that the settings for the source port and destination port fields match; otherwise Cumulus Linux disables symmetric hashing automatically. If necessary, you can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
+{{%/notice%}}
+
+<!-- ### ECMP Hashing
 
 For ECMP load balancing between multiple next-hops of a layer 3 route, you can hash on these fields:
 
@@ -169,6 +228,7 @@ To disable TEID-based ECMP hashing, set the `hash_config.gtp_teid` parameter to 
 
 {{< /tab >}}
 {{< /tabs >}}
+-->
 
 ## Unique Hash Seed
 

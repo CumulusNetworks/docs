@@ -1589,7 +1589,7 @@ When BGP establishes a session, BGP peers use the BGP OPEN message to negotiate 
 Cumulus Linux supports BGP graceful restart for both IPv4 and IPv6.
 {{%/notice%}}
 
-You can enable BGP graceful restart (restarting router mode) in one of two ways:
+You can enable BGP graceful restart in one of two ways:
 - Globally, where all BGP peers inherit the graceful restart capability.
 - Per BGP peer or peer group, which can be useful for misbehaving peers or when working with third party devices. You can also configure a peer or peer group to run in helper mode only, where routes originated and advertised from a BGP peer are not deleted.
 
@@ -1632,7 +1632,7 @@ The following example commands enable BGP graceful restart on the BGP peer conne
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 graceful-restart mode
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 graceful-restart
 cumulus@leaf01:~$ nv config apply
 ```
 

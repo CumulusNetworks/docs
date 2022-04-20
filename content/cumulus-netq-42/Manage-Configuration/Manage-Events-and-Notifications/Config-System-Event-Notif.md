@@ -1670,7 +1670,7 @@ newFEC          7          info             slk-netq-events  fecSupport
 
 ### Suppress Events
 
-NetQ can generate many network events. You can configure whether to suppress any events from appearing in NetQ output. By default, all events get delivered.
+NetQ can generate many network events. You can create rules to suppress events so that they do not appear using either the Events card or the CLI. Suppressing events is particularly useful for reducing the number of event notifications attributable to known issues or false alarms.
 
 You can suppress an event until a certain period of time; otherwise, the event gets suppressed for 2 years. Providing an end time eliminates the generation of messages for a short period of time, which is useful when you are testing a new network configuration and the switch might be generating many messages.
 
@@ -1690,7 +1690,14 @@ You can suppress events for the following types of messages:
 - services: Service-related information, including whether a service is active or inactive
 - ssdutil: Messages related to the storage on the switch
 
-#### Add an Event Suppression Configuration
+#### Add an Event Suppression Configuration with the UI
+
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+2. In the side navigation under **Network**, click **Events**.
+3. In the table, navigate to the column labeled **Suppress Events**.
+4. Hover over the row and select the **Suppress events** button to create parameters for the suppression rule. You can configure individual suppression rules or you can create a group rule that suppresses events for all message types.
+5. Enter the suppression rule parameters and click **Create**. You can view suppression rules by selecting **Show suppression rules** at the top of the page.
+#### Add an Event Suppression Configuration with the CLI
 
 When you add a new configuration, you can specify a scope, which limits the suppression in the following order:
 

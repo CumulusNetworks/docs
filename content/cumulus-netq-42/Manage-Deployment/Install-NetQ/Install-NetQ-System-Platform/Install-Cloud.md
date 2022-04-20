@@ -13,3 +13,5 @@ Click the server arrangement you want to use to continue with installation:
 
 - {{<link title="Choose a Remote System Platform" text="Use a Single Server Arrangement">}}
 - {{<link title="Choose a Remote System Platform for Your Cluster" text="Use a Server Cluster Arrangement">}}
+
+To use the on-switch OPTA functionality to connect to the NetQ Cloud instead of using a dedicated server, see {{<link title="Install NetQ Agents#configure-the-on-switch-opta" text="Configure the On-switch OPTA.">}}

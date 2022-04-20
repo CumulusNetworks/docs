@@ -76,7 +76,7 @@ To install the OPTA server, choose the tab for the type of deployment:
 {{<tab "Cloud, Single Server Deployment" >}}
 
 <!-- vale off -->
-Run the following command on your NetQ Cloud Appliance with the `config-key` sent by NVIDIA in an email titled *"A new site has been added to your NVIDIA Cumulus NetQ account."*
+Run the following command on your NetQ Cloud Appliance with the `config-key` obtained during first login to the NetQ Cloud and premise activation. For more information, see {{<link title="Access the NetQ UI#log-in-to-netq" text="First Time Log In - NetQ Cloud">}}.
 <!-- vale on -->
 
 ```
@@ -88,7 +88,7 @@ cumulus@<hostname>:~$ netq install opta standalone full interface eth0 bundle /m
 {{<tab "Cloud, Server Cluster Deployment" >}}
 
 <!-- vale off -->
-Run the following commands on your *master* NetQ Cloud Appliance with the `config-key` sent by NVIDIA in an email titled *"A new site has been added to your NVIDIA Cumulus NetQ account."*
+Run the following command on your NetQ Cloud Appliance with the `config-key` obtained during first login to the NetQ Cloud and premise activation. For more information, see {{<link title="Access the NetQ UI#log-in-to-netq" text="First Time Log In - NetQ Cloud">}}.
 <!-- vale on -->
 
 ```

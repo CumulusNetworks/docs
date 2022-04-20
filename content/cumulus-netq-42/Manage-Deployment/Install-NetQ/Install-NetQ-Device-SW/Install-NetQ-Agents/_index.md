@@ -677,6 +677,41 @@ sudo netq config add agent server 192.168.1.254 port 7379
 sudo netq config restart agent
 ```
 
-### Configure the on-switch OPTA
+## Configure the On-switch OPTA
 
-NetQ Agent OPTA functionality is an Early Access feature. The on-switch OPTA does not support Flow Analysis or LCM features. On-switch OPTA is intended for use in small NetQ cloud deployments where a dedicated OPTA might not be necessary. If you need help assessing the correct OPTA configuration for your deployment, {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="contact your NVIDIA">}} sales team.
+{{<notice note>}}
+On-switch OPTA functionality is an Early Access feature, and it does not support Flow Analysis or LCM. 
+{{</notice>}}
+
+On-switch OPTA is intended for use in small NetQ Cloud deployments where a dedicated OPTA might not be necessary. If you need help assessing the correct OPTA configuration for your deployment, {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="contact your NVIDIA">}} sales team.
+
+Instead of installing a {{<link title="Install NetQ as a Remote Deployment" text="dedicated OPTA appliance">}}, you can enable the OPTA service on every switch in your environment that will send data to the NetQ Cloud. To configure a switch for OPTA functionality, install the `netq-opta` package.
+
+```
+sudo apt-get update
+sudo apt-get install netq-opta
+```
+
+Once the `netq-opta` package is installed, add your OPTA configuration key. Run the following command with the `config-key` obtained during first login to the NetQ Cloud and premise activation. For more information, see {{<link title="Access the NetQ UI#log-in-to-netq" text="First Time Log In - NetQ Cloud">}}.
+
+```
+netq config add opta config-key <config_key> [vrf <vrf_name>] [proxy-host <text-proxy-host> proxy-port <text-proxy-port>] 
+```
+
+The VRF name should be the VRF used to communicate with the NetQ Cloud. Specifying a proxy host and port is optional. For example:
+
+```
+netq config add opta config-key tHkSI2d3LmRldjMubmV0cWRldi5jdW11bHVasdf29ya3MuY29tGLsDIiwzeUpNc3BwK1IyUjVXY2p2dDdPL3JHS3ZrZ1dDUkpFY2JkMVlQOGJZUW84PTIEZGV2MzoHbmV0cWRldr vrf mgmt
+```
+
+You can also add a proxy host separately with the following command:
+
+```
+netq config add opta proxy-host <text-proxy-host> proxy-port <text-proxy-port>
+```
+
+The final steps is configuring the local NetQ agent on the switch to connect to the local OPTA service. Configure the agent on the switch to connect to `localhost` with the following command:
+
+```
+netq config add agent server localhost vrf mgmt
+```

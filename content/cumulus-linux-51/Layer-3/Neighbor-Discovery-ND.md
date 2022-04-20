@@ -436,8 +436,6 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery enable off
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-The NVUE `nv set interface <interface> ip neighbor-discovery enable off` command removes any ND configuration from the `/etc/frr/frr.conf` file.
-
 ## Troubleshooting
 
 To show the ND settings for an interface, run the NVUE `nv show interface <interface-id> ip neighbor-discovery` command:

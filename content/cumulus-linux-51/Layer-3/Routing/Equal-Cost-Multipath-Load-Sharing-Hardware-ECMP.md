@@ -48,7 +48,7 @@ You can configure custom hashing to specify what to include in the hash calculat
 
 For ECMP load balancing between multiple next-hops of a layer 3 route, you can hash on these fields:
 
-|   <div style="width:190px">Field   | Default Setting | `traffic.conf`|
+|   <div style="width:190px">Field   | Default Setting | `/etc/network/traffic.conf` File Parameter|
 | -------- | --------------- | ------------ |
 | IP protocol | on |`hash_config.ip_prot`|
 | Source IP address| on |`hash_config.sip`|

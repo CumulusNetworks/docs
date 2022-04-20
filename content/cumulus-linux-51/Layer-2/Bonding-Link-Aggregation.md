@@ -290,7 +290,7 @@ The hash calculation uses packet header data to choose to which slave to transmi
 
 For load balancing between multiple interfaces that are members of the same bond, you can hash on these fields:
 
-| <div style="width:200px">Field  | Default Setting | `traffic.conf`|
+| <div style="width:200px">Field  | Default Setting | `/etc/network/traffic.conf` File Parameter |
 | ------- | --------------- | ------------ |
 | IP protocol | on |`lag_hash_config.ip_prot`|
 | Source MAC address| on |`lag_hash_config.smac`|

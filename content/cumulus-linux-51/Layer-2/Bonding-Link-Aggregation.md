@@ -288,7 +288,63 @@ The hash calculation uses packet header data to choose to which slave to transmi
 - For IP traffic, the switch uses IP header source and destination fields in the calculation.
 - For IP and TCP or UDP traffic, the switch includes source and destination ports in the hash calculation.
 
-### Custom Hashing
+For load balancing between multiple interfaces that are members of the same bond, you can hash on these fields:
+
+| <div style="width:200px">Field  | Default Setting | `/etc/cumulus/datapath/traffic.conf` File Parameter |
+| ------- | --------------- | ------------ |
+| IP protocol | on |`lag_hash_config.ip_prot`|
+| Source MAC address| on |`lag_hash_config.smac`|
+| Destination MAC address| on |`lag_hash_config.dmac`|
+| Source IP address | on |
+| Destination IP address| on | `lag_hash_config.dip` |
+| Source port | on |`lag_hash_config.sport` |
+| Destination port | on | `lag_hash_config.dport` |
+| Ethertype| on | `lag_hash_config.ether_type` |
+| VLAN ID| on |`lag_hash_config.vlan_id` |
+
+To set the hash fields:
+
+1. Edit the `/etc/cumulus/datapath/traffic.conf` file:
+   - Uncomment the `lag_hash_config.enable` option.
+   - Set the hash field to `true` to include it in the hash calculation or `false` to omit it from the hash calculation.
+
+2. Run the `echo 1 > /cumulus/switchd/ctrl/hash_config_reload` command to reload the configuration. This command does not cause any traffic interruptions.
+
+The following example commands omit the source MAC address and destination MAC address from the hash calculation:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
+...
+#LAG HASH config
+#HASH config for LACP to enable custom fields
+#Fields will be applicable for LAG hash
+#calculation
+#Uncomment to enable custom fields configured below
+lag_hash_config.enable = true
+
+lag_hash_config.smac = false
+lag_hash_config.dmac = false
+lag_hash_config.sip  = true
+lag_hash_config.dip  = true
+lag_hash_config.ether_type = true
+lag_hash_config.vlan_id = true
+lag_hash_config.sport = true
+lag_hash_config.dport = true
+lag_hash_config.ip_prot = true
+...
+```
+
+```
+cumulus@switch:~$ echo 1 > /cumulus/switchd/ctrl/hash_config_reload
+```
+
+{{%notice note%}}
+Cumulus Linux enables symmetric hashing by default. Make sure that the settings for the source IP and destination IP fields match, and that the settings for the source port and destination port fields match; otherwise Cumulus Linux disables symmetric hashing automatically. If necessary, you can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
+{{%/notice%}}
+
+You can also set a unique hash seed for each switch to avoid hash polarization. See {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP#unique-hash-seed" text="Unique Hash Seed">}}.
+
+<!--### Custom Hashing
 
 For load balancing between multiple interfaces that are members of the same bond, you can hash on these fields:
 
@@ -411,7 +467,7 @@ To disable TEID-based load balancing, run the `nv unset system forwarding lag-ha
 To disable TEID-based load balancing, set the `lag_hash_config.gtp_teid` parameter to `false`, then reload the configuration.
 
 {{< /tab >}}
-{{< /tabs >}}
+{{< /tabs >}}-->
 
 ## Troubleshooting
 

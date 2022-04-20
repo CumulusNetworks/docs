@@ -6,7 +6,7 @@ toc: 3
 ---
 [ND](## "Neighbor Discovery") allows different devices on the same link to advertise their existence to their neighbors and to learn about the existence of their neighbors. ND is the IPv6 equivalent of IPv4 ARP for layer 2 address resolution.
 
-Cumulus Linux provides a set of configuration options to support IPv6 networks and adjust your security settings.
+ND is on by default. Cumulus Linux provides a set of configuration options to support IPv6 networks and adjust your security settings.
 
 ## ND Configuration Options
 
@@ -429,14 +429,14 @@ interface swp1
 
 ## Disable ND
 
-To disable ND, run the NVUE `nv set interface <interface> ip neighbor-discovery enable on` command:
+To disable ND, run the NVUE `nv set interface <interface> ip neighbor-discovery enable off` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery enable on
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery enable off
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-The NVUE `nv set interface <interface> ip neighbor-discovery enable on` command removes any ND configuration from the `/etc/frr/frr.conf` file.
+The NVUE `nv set interface <interface> ip neighbor-discovery enable off` command removes any ND configuration from the `/etc/frr/frr.conf` file.
 
 ## Troubleshooting
 

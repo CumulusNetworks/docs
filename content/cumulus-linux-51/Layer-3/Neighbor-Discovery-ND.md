@@ -24,7 +24,7 @@ Router Advertisment is on by default. You can configure these optional settings:
 
 - Allow consecutive Router Advertisement packets to transmit more frequently than every three seconds (fast retransmit). You can set this parameter to `on` or `off`. The default setting is `on`.
 - Set the hop limit value advertised in a Router Advertisement message. You can set a value between 0 and 255. The default value is 64.
-- Set the interval between unsolicited multicast router advertisements from the interface. You can set a value between 70 and 180000 miliseconds. The default value is 600000 miliseconds.
+- Set the interval between unsolicited multicast router advertisements from the interface. You can set a value between 70 and 1800000 miliseconds. The default value is 600000 miliseconds.
 - Set the maximum amount of time that Router Advertisement messages can exist on the route. You can set a value between 0 and 9000 seconds. The default value is 1800.
 - Allow a dynamic host to use a managed protocol, such as DHCPv6 to configure IP addresses automatically (managed configuration). Set this parameter to `on` or `off`. By default, this parameter is not set.
 - Allow a dynamic host to use a managed protocol to configure additional information through DHCPv6. Set this parameter to `on` or `off`. By default, this parameter is not set.

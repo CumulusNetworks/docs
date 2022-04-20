@@ -15,7 +15,7 @@ This page summarizes new feature and improvements for the {{<product>}} {{<versi
 NetQ 4.2.0 includes the following new features and improvements:
 
 - Improved event management
-- {{<link title="Flow Analysis" text="Flow Analysis Enhancements">}}
+- {{<link title="Flow Analysis" text="Flow analysis enhancements">}}
   - {{<link title="Flow Analysis#partial-path-support" text="Partial path support">}}
   - {{<link title="Flow Analysis#view-wjh-events" text="WJH event support">}}
 - {{<link title="Validation Checks#roce-validation-tests" text="RoCE Validation">}}

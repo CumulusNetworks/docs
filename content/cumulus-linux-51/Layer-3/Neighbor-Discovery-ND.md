@@ -429,14 +429,14 @@ interface swp1
 
 ## Disable ND
 
-To disable ND, run the NVUE `nv set interface <interface> ip neighbor-discovery enable off` command:
+To disable ND, run the NVUE `nv set interface <interface> ip neighbor-discovery enable on` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery enable off
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery enable on
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-The NVUE `nv set interface <interface> ip neighbor-discovery enable off` command removes any ND configuration from the `/etc/frr/frr.conf` file.
+The NVUE `nv set interface <interface> ip neighbor-discovery enable on` command removes any ND configuration from the `/etc/frr/frr.conf` file.
 
 ## Troubleshooting
 

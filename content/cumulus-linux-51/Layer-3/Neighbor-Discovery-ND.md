@@ -158,10 +158,10 @@ leaf01(config-if)# no ipv6 nd suppress-ra
 
 To configure IPv6 prefixes, you must specify the IPv6 prefixes you want to include in router advertisements. In addition, you can configure these optional settings:
 - Set the amount of time that the prefix is valid for on-link determination. You can set a value between 0 and 4294967295 seconds. The default value is 2592000.
-- Set the amount of time that addresses generated from a prefix remain preferred. You can set a value between 0 and 42949672955 seconds. The default value is 604800.
-- Enable adverisement to make no statement about prefix on-link or off-link properties.
-- Enable the specified prefix to use IPv6 autoconfiguration.
-- Indicate to hosts on the local link that the specified prefix contains a complete IP address by setting the R flag.
+- Set the amount of time that addresses generated from a prefix remain preferred. You can set a value between 0 and 4294967295 seconds. The default value is 604800.
+- Enable adverisement to make no statement about prefix on-link or off-link properties. By default, this setting is off.
+- Enable the specified prefix to use IPv6 autoconfiguration. By default, this setting is on.
+- Indicate to hosts on the local link that the specified prefix contains a complete IP address by setting the R flag. By default, this setting is off.
 
 The following example commands set the IPv6 prefix to 2001:db8:1::100/32, the amount of time that the prefix is valid for on-link determination to 2000000000, and the amount of time that addresses generated from a prefix remain preferred to 1000000000.
 

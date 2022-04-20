@@ -20,7 +20,31 @@ Cumulus Linux provides options to configure:
 
 ### Router Advertisement
 
-Router Advertisment is on by default. You can configure these optional settings:
+Router Advertisement is disabled by default. To enable Router Advertisment for an interface:
+
+{{< tabs "TabID135 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement enable off
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:mgmt:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# interface swp1
+leaf01(config-if)# no ipv6 nd suppress-ra
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+You can configure these optional settings:
 
 - Allow consecutive Router Advertisement packets to transmit more frequently than every three seconds (fast retransmit). You can set this parameter to `on` or `off`. The default setting is `on`.
 - Set the hop limit value advertised in a Router Advertisement message. You can set a value between 0 and 255. The default value is 64.
@@ -125,30 +149,6 @@ cumulus@leaf01:mgmt:~$ sudo cat etc/frr/frr.conf
 interface swp1
  ipv6 nd ra-fast-retrans
  ipv6 nd managed-config-flag
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-To disable Router Advertisment:
-
-{{< tabs "TabID135 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement enable off 
-cumulus@leaf01:mgmt:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@leaf01:mgmt:~$ sudo vtysh
-...
-leaf01# configure terminal
-leaf01(config)# interface swp1
-leaf01(config-if)# no ipv6 nd suppress-ra
 ```
 
 {{< /tab >}}

@@ -7,6 +7,19 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3044596</td>
+<td>In the non-default VRF, BFD goes down after port flap.</td>
+<td>5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3042778</td>
+<td>When you change the MLAG backup IP address with the NVUE {{nv set mlag backup &lt;address&lt;}} command, the change does not take effect when you apply the configuration.
+To work around this issue, manually restart the MLAG process with the {{sudo systemctl restart clagd}} command.</td>
+<td>5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3041425</td>
 <td>When you add or remove PortAutoEdge on a bond with the NVUE {{nv set interface &lt;bond&gt; bridge domain br_default stp auto-edge}} command, the command fails with the following error and then attempts to enable or disable PortAutoEdge on any interface also fail.
 
@@ -141,12 +154,14 @@ Fixed: 4.1.0+git191117-2~deb10u4</td>
 <td>When you power-cycle a newly installed switch and apply the default configuration, the underlying NVUE repository becomes corrupted. Even if you correct the corruption, NVUE cannot run.
 To recover, uninstall NVUE and delete the {{/var/lib/nvue}} directory:
 
+
 cumulus@leaf01:~$ sudo apt remove python3-nvue
 cumulus@leaf01:~$ rm -r /var/lib/nvue
 cumulus@leaf01:~$ sudo apt update
 cumulus@leaf01:~$ sudo apt install python3-nvue
 cumulus@leaf01:~$ sudo systemctl enable nvued
 cumulus@leaf01:~$ sudo systemctl start nvued
+
 </td>
 <td>5.0.1</td>
 <td></td>

@@ -23,7 +23,7 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
 ### New Features and Enhancements
 
 - {{<link url="GRE-Tunneling" text="GRE tunneling">}}
-- {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Adaptive routing with RoCE">}}
+- {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Adaptive routing with RoCEv2">}}
 - {{<link url="Link-Layer-Discovery-Protocol/#lldp-dcbx-tlvs" text="LLDP DCBX TLVs">}}
 - {{<link url="In-Service-System-Upgrade-ISSU" text="Warmboot on bonds">}}
 - {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#peer-link-consistency-check" text="MLAG peer link consistency check">}}

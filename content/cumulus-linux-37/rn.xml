@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3041307</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3041306</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
@@ -351,32 +345,6 @@ Fixed: 3.26-1+debu8u16</td>
 Vulnerable: &lt;= 9.26a~dfsg-0+deb8u7
 Fixed: 9.26a~dfsg-0+deb8u</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2940067</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
-
-You can work around this issue with the following steps:
-
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switch(es)</td>
-<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -948,8 +916,14 @@ Fixed: 1.0.25-9.1+deb8u6</td>
 <tr>
 <td>2736265</td>
 <td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.4.0-4.4.3</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2736260</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2736247</td>
@@ -1203,7 +1177,7 @@ username cumulus nopassword
 <tr>
 <td>2668483</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1212,12 +1186,6 @@ username cumulus nopassword
 Vulnerable: &lt;= 1.6.2-3+deb8u4
 Fixed: 1.6.2-3+deb8u5</td>
 <td>3.7.0-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2663119</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1327,6 +1295,12 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <td>When you delete a static route using NCLU, the configuration is not deleted from the running configuration or from the {{/etc/frr/frr.conf}} file. </td>
 <td>3.7.13-3.7.15</td>
 <td></td>
+</tr>
+<tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2607965</td>
@@ -3407,32 +3381,6 @@ Fixed: 9.26a~dfsg-0+deb8u</td>
 <td></td>
 </tr>
 <tr>
-<td>2940067</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
-
-You can work around this issue with the following steps:
-
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switch(es)</td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2934940</td>
 <td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
 This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
@@ -3833,8 +3781,14 @@ Fixed: 1.0.25-9.1+deb8u6</td>
 <tr>
 <td>2736265</td>
 <td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.4.0-4.4.3</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2736260</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2736247</td>
@@ -4065,12 +4019,6 @@ username cumulus nopassword
 <td></td>
 </tr>
 <tr>
-<td>2668483</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2668477</td>
 <td>CVE-2021-31535: libX11, the X11 protocol client library, was vulnerable to protocol command injection due to insufficient validation of arguments to some functions.
 Vulnerable: &lt;= 1.6.2-3+deb8u4
@@ -4182,6 +4130,12 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
+</tr>
+<tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2628515</td>
@@ -6293,32 +6247,6 @@ Fixed: 9.26a~dfsg-0+deb8u</td>
 <td></td>
 </tr>
 <tr>
-<td>2940067</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
-
-You can work around this issue with the following steps:
-
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switch(es)</td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2934940</td>
 <td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
 This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
@@ -6683,8 +6611,14 @@ Fixed: 1.0.25-9.1+deb8u6</td>
 <tr>
 <td>2736265</td>
 <td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.4.0-4.4.3</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2736260</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2736247</td>
@@ -6891,12 +6825,6 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <td></td>
 </tr>
 <tr>
-<td>2668483</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2668477</td>
 <td>CVE-2021-31535: libX11, the X11 protocol client library, was vulnerable to protocol command injection due to insufficient validation of arguments to some functions.
 Vulnerable: &lt;= 1.6.2-3+deb8u4
@@ -7008,6 +6936,12 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
+</tr>
+<tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2628515</td>
@@ -9713,32 +9647,6 @@ Fixed: 9.26a~dfsg-0+deb8u</td>
 <td></td>
 </tr>
 <tr>
-<td>2940067</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
-
-You can work around this issue with the following steps:
-
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switch(es)</td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2934940</td>
 <td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
 This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
@@ -10103,8 +10011,14 @@ Fixed: 1.0.25-9.1+deb8u6</td>
 <tr>
 <td>2736265</td>
 <td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.4.0-4.4.3</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2736260</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2736247</td>
@@ -10409,6 +10323,12 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
+</tr>
+<tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2617009</td>
@@ -13340,32 +13260,6 @@ Fixed: 9.26a~dfsg-0+deb8u</td>
 <td></td>
 </tr>
 <tr>
-<td>2940067</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel fdb table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries will be installed against the rebooted VTEP IP in the kernel fdb and the correct VTEP IP will be present in the EVPN MAC VNI table.
-
-You can work around this issue with the following steps:
-
-1. Clear all corrupted mac entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command
-2. Add {{"vxlan-learning": "off"}} under {{/etc/network/ifupdown2/policy.d/vxlan.json}}.
-
-$ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
-   {
-        "vxlan": {
-            "module_globals": { "vxlan-purge-remotes": "no" },
-            "defaults": {
-                "vxlan-ageing": "1800",
-                "vxlan-port": "4789", &lt;==== This comma needs to be added at the end of this line
-                "vxlan-learning": "off" &lt;= This line needs to be added
-             }
-        }
-   }
-
-3. Reboot the affected switch(es)</td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2934939</td>
 <td>When you configure BGP {{aggregate-address summary-only}} and any component route within the summary updates, all component routes within the summary update in the RIB on the device advertising the summary. This condition might result in increased CPU usage.
 
@@ -13723,8 +13617,14 @@ Fixed: 1.0.25-9.1+deb8u6</td>
 <tr>
 <td>2736265</td>
 <td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.4.0-4.4.3</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2736260</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2736247</td>
@@ -14023,6 +13923,12 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
+</tr>
+<tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2617009</td>

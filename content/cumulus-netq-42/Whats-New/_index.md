@@ -14,9 +14,9 @@ This page summarizes new feature and improvements for the {{<product>}} {{<versi
 
 NetQ 4.2.0 includes the following new features and improvements:
 
-- Simplified event management
-  - ability to acknowledge or suppress events in the UI from the Events card
-  - validation check results integrated into the Events card
+-  {{<link title="Monitor System and TCA Events" text= "Simplified events management">}}
+    -  ability to acknowledge or suppress events in the UI from the Events card
+    - validation check results integrated into the Events card
 - {{<link title="Flow Analysis" text="Flow analysis enhancements">}}
   - {{<link title="Flow Analysis#partial-path-support" text="Partial path support">}}
   - {{<link title="Flow Analysis#view-wjh-events" text="WJH event support">}}

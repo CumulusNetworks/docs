@@ -361,18 +361,19 @@ Adaptive routing is a load balancing mechanism that improves network utilization
 
 Cumulus Linux only supports adaptive routing with:
 - Switches on Spectrum-2 and later
-- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE" >}}
-- Unicast traffic
-- Physical uplink (layer 3) ports; you *cannot* configure adaptive routing on subinterfaces or on ports that are part of a bond
+- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCEv2" >}} unicast traffic
+- Physical uplink (layer 3) ports; you *cannot* configure adaptive routing on subinterfaces, SVIs, bonds, or ports that are part of a bond.
 - Interfaces in the default VRF
 
 {{%notice note%}}
 Adaptive routing does not make use of resilient hashing.
 {{%/notice%}}
 
-Adaptive Routing is in Sticky Free mode, which uses a periodic grades-based egress port selection process.
-- The grade on each port, which is a value between 0 and 4, depends on buffer usage and link utilization. A higher grade, such as 4, indicates that the port is more congested or that the port is down. Each packet routes to the less loaded path to best utilize the fabric resources and avoid congestion. The adaptive routing engine always selects the least congested port (with the lowest grade). If there are multiple ports with the same grade, the engine randomly selects between them.
-- The change decision for port selection is set to one microsecond; you cannot change it.
+Adaptive Routing is in Sticky Free mode, where packets route to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion for the specific time duration. This mode is more time effective and restricts the port selection change decision to a predefined time.
+
+The change decision for port selection is set to one microsecond; you cannot change it.
+<!--Adaptive Routing is in Sticky Free mode, which uses a periodic grades-based egress port selection process.
+- The grade on each port, which is a value between 0 and 4, depends on buffer usage and link utilization. A higher grade, such as 4, indicates that the port is more congested or that the port is down. Each packet routes to the less loaded path to best utilize the fabric resources and avoid congestion. The adaptive routing engine always selects the least congested port (with the lowest grade). If there are multiple ports with the same grade, the engine randomly selects between them.-->
 
 {{%notice note%}}
 You must configure adaptive routing on *all* ports that are part of the same ECMP route. Make sure the ports are physical uplink ports.
@@ -393,7 +394,7 @@ cumulus@switch:~$ nv config apply
 When you run the above command, NVUE:
 - Enables the adaptive routing feature.
 - Sets adaptive routing on the specified port.
-- Sets the link utilization threshold percentage to the default value of 70.
+- Sets the link utilization threshold percentage to the default value of 70. Adaptive routing considers the port congested based on the link utilization threshold.
 
 To change the link utilization threshold percentage, run the `nv set interface <interface> router adaptive-routing link-utilization-threshold` command. You can set a value between 1 and 100.
 
@@ -410,7 +411,7 @@ To disable adaptive routing globally, run the `nv set router adaptive-routing en
 1. Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file:
    - Set the global `adaptive_routing.enable` parameter to `TRUE`.
    - For each port on which you want to enable adaptive routing, set the `interface.<port>.adaptive_routing.enable` parameter to `TRUE`.
-   - For each port on which you want to enable adaptive routing, set the `interface.<port>.adaptive_routing.link_util_thresh` parameter to configure the link utilization threshold percentage (optional). You can set a value between 1 and 100. The default value is 70.
+   - For each port on which you want to enable adaptive routing, set the `interface.<port>.adaptive_routing.link_util_thresh` parameter to configure the link utilization threshold percentage (optional). Adaptive routing considers the port congested based on the link utilization threshold. You can set a value between 1 and 100. The default value is 70.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf

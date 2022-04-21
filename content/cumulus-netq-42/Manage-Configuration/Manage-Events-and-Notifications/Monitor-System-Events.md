@@ -22,9 +22,13 @@ You can monitor all system and TCA events across the network with the NetQ UI an
 
 2. In the side navigation under **Network**, click **Events**.
 
-    You can filter events with the controls at the top of the screen.
+    The dashboard presents a timeline of events alongside the devices that are causing the most events. You can filter events by type, including interface, network services, system, and threshold crossing events. The filter controls are located at the top of the screen.
 
     {{<figure src="/images/netq/events-card-l4-42.png" width="700" alt="Events dashboard with networkwide error and info events.">}}
+
+  If you are receiving too many event notifications, you can acknowledge events or create rules to suppress events from the dashboard. Refer to {{<link title="Config-System-Event-Notif#suppress-events" text="for information about event suppression.">}}   
+
+
 
 {{</tab>}}
 

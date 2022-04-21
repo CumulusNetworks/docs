@@ -26,7 +26,7 @@ You can monitor all system and TCA events across the network with the NetQ UI an
 
     {{<figure src="/images/netq/events-card-l4-42.png" width="700" alt="Events dashboard with networkwide error and info events.">}}
 
-  If you are receiving too many event notifications, you can acknowledge events or create rules to suppress events from the dashboard. Refer to {{<link title="Config-System-Event-Notif#suppress-events" text="for information about event suppression.">}}   
+  If you are receiving too many event notifications, you can acknowledge events or create rules to suppress events from the dashboard. Refer to {{<link title="Configure System Event Notifications#suppress-events" text="Configure System Event Notifications">}} for information about event suppression.
 
 
 

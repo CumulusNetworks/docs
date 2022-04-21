@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3041307</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3041306</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
@@ -738,8 +732,14 @@ Fixed: 1.17-3+deb10u2</td>
 <tr>
 <td>2736265</td>
 <td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.4.0-4.4.3</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2736260</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2734126</td>
@@ -986,12 +986,6 @@ To work around this issue, start the MST service with the {{sudo mst start}} com
 <td>2668543</td>
 <td>SVIs do not inherit the pinned MAC address of the bridge.</td>
 <td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2668483</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>

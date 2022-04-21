@@ -14,14 +14,14 @@ This page summarizes new feature and improvements for the {{<product>}} {{<versi
 
 NetQ 4.2.0 includes the following new features and improvements:
 
--  {{<link title="Monitor System and TCA Events" text= "Simplified events management">}}
-    -  ability to acknowledge or suppress events in the UI from the Events card
-    - validation check results integrated into the Events card
+-  {{<link title="Monitor System and TCA Events" text= "Events management enhancements">}}, including:
+    - a simplified Events card design with integrated validation checks
+    - event acknowledgement and suppression options
 - {{<link title="Flow Analysis" text="Flow analysis enhancements">}}
   - {{<link title="Flow Analysis#partial-path-support" text="Partial path support">}}
   - {{<link title="Flow Analysis#view-wjh-events" text="WJH event support">}}
-- {{<link title="Validation Checks#roce-validation-tests" text="RoCE Validation">}}
-- {{<link title="gNMI Streaming" text="New gNMI Object Models">}}
+- {{<link title="Validation Checks#roce-validation-tests" text="RoCE validation">}}
+- {{<link title="gNMI Streaming" text="New gNMI object models">}}
   - openconfig-plaftorm
   - openconfig-lldp
 - {{<link title="Install the NetQ System" text="Simplified installation process">}}

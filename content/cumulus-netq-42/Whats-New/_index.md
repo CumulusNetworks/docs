@@ -14,7 +14,9 @@ This page summarizes new feature and improvements for the {{<product>}} {{<versi
 
 NetQ 4.2.0 includes the following new features and improvements:
 
-- Improved event management
+- Simplified event management
+  - ability to acknowledge or suppress events in the UI from the Events card
+  - validation check results integrated into the Events card
 - {{<link title="Flow Analysis" text="Flow analysis enhancements">}}
   - {{<link title="Flow Analysis#partial-path-support" text="Partial path support">}}
   - {{<link title="Flow Analysis#view-wjh-events" text="WJH event support">}}
@@ -22,11 +24,11 @@ NetQ 4.2.0 includes the following new features and improvements:
 - {{<link title="gNMI Streaming" text="New gNMI Object Models">}}
   - openconfig-plaftorm
   - openconfig-lldp
-- {{<link title="Install the NetQ System" text="Simplified install process">}}
-- {{<link title="Validate Overall Network Health" text="Improved Network Health UI with Validation Summary">}}
-- {{<link title="Validation Checks##addresses-validation-tests" text="GUI support for Duplicate Address Detection">}}
+- {{<link title="Install the NetQ System" text="Simplified installation process">}}
+- {{<link title="Validate Overall Network Health" text="Improved network health UI with validation summary">}}
+- {{<link title="Validation Checks##addresses-validation-tests" text="GUI support for duplicate address detection">}}
 - Early Access {{<link title="Install NetQ Agents#configure-the-on-switch-opta" text="on-switch OPTA support for NetQ cloud deployments.">}}
-- Early Access support for {{<link title="Monitor DPU Inventory" text="DPU Monitoring">}}
+- Early Access support for {{<link title="Monitor DPU Inventory" text="DPU monitoring">}}
 ## Upgrade Paths
 
 You can upgrade NetQ versions 4.1.0 and later directly to version 4.2.0. Upgrades from NetQ versions earlier than 4.1.0 require a fresh installation or an incremental upgrade to version 4.1.0 first.

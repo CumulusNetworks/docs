@@ -19,9 +19,9 @@ Cumulus Linux provides options to configure:
 - MTU for neighbor discovery messages
 
 ### Router Advertisement
-
+<!-- vale off -->
 Router Advertisement is disabled by default. To enable Router Advertisment for an interface:
-
+<!-- vale on -->
 {{< tabs "TabID135 ">}}
 {{< tab "NVUE Commands ">}}
 

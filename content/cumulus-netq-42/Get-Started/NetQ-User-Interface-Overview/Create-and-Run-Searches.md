@@ -4,11 +4,11 @@ author: NVIDIA
 weight: 120
 toc: 4
 ---
-The Global Search field in the UI header enables you to search for devices or cards. You can create new searches or run existing searches.
+The Global Search field in the UI header lets you search for devices or cards. You can create new searches or run existing searches.
 
 ## Create a Search
 
-As with most search fields, you begin by entering the criteria in the search field. As you type, items that match the search criteria appear in the search history dropdown along with the last time the search ran. Wildcards are not allowed, but this predictive matching eliminates the need for them. By default, the most recent searches appear. If you perform more searches, you can access them. This provides a quicker search by reducing entry specifics and suggesting recent searches. Selecting a suggested search from the list provides a preview of the search results to the right.
+As with most search fields, you begin by entering the criteria in the search field. As you type, items that match the search criteria appear in the search history dropdown along with the last time the search ran. Wildcards are not allowed, but this predictive matching eliminates the need for them. By default, the most recent searches appear. Selecting a suggested search from the list provides a preview of the search results to the right.
 
 To create a new search:
 

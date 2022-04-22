@@ -9,11 +9,11 @@ This quick start provides the basics so that you can get started with the NVIDIA
 
 ## Login
 
-NVIDIA Air uses the same credentials as the NVIDIA developer forums for account access. When the login page opens, enter your email address (the one you already use for the forums or the one you intend to use to sign up) in the entry field and click **GET STARTED**:
+NVIDIA Air uses the same credentials as the NVIDIA developer forums for account access. When the login page opens, enter your email address (the one you use for the forums or the one you intend to use to sign up) in the entry field and click **GET STARTED**:
 
 {{<img src="/images/guides/nvidia-air/Login.png" width="800px">}}
 
-The page redirects you to the NVIDIA forums login page. Click the **Create account** link to sign up or enter your password to log in with an existing account:
+The page redirects you to the NVIDIA forums login page. Either click the **Create account** link to sign up or enter your password to log in with an existing account:
 
 {{<img src="/images/guides/nvidia-air/LoginForums.png" width="800px">}}
 
@@ -25,7 +25,7 @@ After you log in, the NVIDIA Air landing page opens:
 
 The landing page provides the following options:
 
-- **Filter Organizations**: If you belong to multiple organizations, you can filter your list of simulations to a specific organization.
+- **Filter Organizations**: If you belong to multiple organizations, you can filter your list of simulations based on organization.
 
   {{<img src="/images/guides/nvidia-air/OrganizationDropdown.png" width="250px">}}
 
@@ -41,7 +41,7 @@ The landing page provides the following options:
 
   {{<img src="/images/guides/nvidia-air/Catalog.png" width="800px">}}
 
-- **Sidebar**: The sidebar to the left has a **Create a Simulation** link to create new simulations, provides links to documentation, and shows other helpful options.
+- **Sidebar**: The sidebar to the left provides a **Create a Simulation** link to create new simulations, links to documentation, and other helpful options.
 
 {{<img src="/images/guides/nvidia-air/SideBar.png">}}
 
@@ -96,16 +96,16 @@ The Create Service dialog opens:
 1. Click **Submit** to create the service.
 
 <!-- vale off -->
-The example below shows the creation of a service for TCP port 1022. The external port is 24886, so connecting to this service requires connecting to worker06.air.nvidia.com on TCP port 24886, which forwards and redirects to the oob-mgmt-server on TCP port 1022.
+The example below shows the creation of a service for TCP port 1022. The external port is 24886. Connecting to this service requires connecting to worker06.air.nvidia.com on TCP port 24886, which forwards and redirects to the oob-mgmt-server on TCP port 1022.
 <!-- vale on -->
 
 {{<img src="/images/guides/nvidia-air/ServicesCreated.png" width="400px">}}
 
 <!-- vale off -->
-The **Enable SSH** button populates the Services panel with an SSH session, providing a shortcut to enable inbound SSH to the oob-mgmt-server so that you can leverage your preferred local SSH client. SSH password authentication is disabled on the oob-mgmt-server by default; to use this feature, you must upload SSH keys to your user profile. For more information about uploading SSH keys to the user profile, see {{<link url="#user-settings" text="User Settings">}} below.
+The **ENABLE SSH** button populates the Services panel with an SSH session, providing a shortcut to enable inbound SSH to the oob-mgmt-server so that you can leverage your preferred local SSH client. SSH password authentication is disabled on the oob-mgmt-server by default; to use this feature, you must upload SSH keys to your user profile. For more information, see {{<link url="#user-settings" text="User Settings">}} below.
 <!-- vale on -->
 
-## Logging into Virtual Machines
+## Log into Virtual Machines
 
 Use the operating system default credentials to log into your virtual machines. Some operating systems require you to change your password after the first successful login.
 
@@ -136,14 +136,14 @@ Use the operating system default credentials to log into your virtual machines. 
 From the NVIDIA Air landing page, you can manage simulations. There are three options for each public simulation:
 
 - **Power On/Off**: Wakes the simulation up or puts it to sleep.
-- **Rebuild**: Resets the simulation to its initial configuration. This is useful if the simulation ends up in an undesireable state after you make changes.
+- **Rebuild**: Resets the simulation to its initial configuration. This is useful if the simulation is in an undesireable state after you make changes.
 - **Delete**: Deletes the simulation.
 
 {{<img src="/images/guides/nvidia-air/ManagingSim.png" width="800px">}}
 
 ## User Settings
 
-The `Settings` section of the sidebar allows you to:
+The **SETTINGS** dropdown in the sidebar provides options to:
 
 - Generate API tokens
 - Upload SSH keys
@@ -154,7 +154,7 @@ You can use API tokens to execute authenticated activities using the NVIDIA Air 
 
 {{<img src="/images/guides/nvidia-air/UserAPITokenTab.png" width="200px">}}
 
-To generate a token, enter the required information in the field and click **Create**.
+To generate a token, enter the required information in the fields and click **Create**.
 
 {{<img src="/images/guides/nvidia-air/UserAPITokenCreate.png" width="300px">}}
 

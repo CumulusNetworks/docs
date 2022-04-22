@@ -65,7 +65,7 @@ To log in to the UI:
 
     {{<figure src="/images/netq/activate-premise.png" width="400">}}
 
-7. Click through the activation wizard and follow the instructions to obtain the activation key used during installation through the {{<link title="Install NetQ Using the Admin UI#install-netq" text="Admin UI.">}}
+7. Click through the activation wizard and follow the instructions to obtain the activation key used during installation.
 
 {{<figure src="/images/netq/activation-wizard-admin-login.png" width="1000">}}
 

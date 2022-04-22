@@ -157,7 +157,7 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
     root@ubuntu:~# apt-get install netq-agent netq-apps
     ```
 
-8. Download the bootstrap and NetQ installation tarballs.
+8. Download NetQ installation tarball.
 
     1. On the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page, log in to your account. If needed create a new account and then log in.
 
@@ -187,7 +187,7 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
     10. Copy either *NetQ-4.2.0.tgz* (on-premises) or *NetQ-4.2.0-opta.tgz* (cloud), to the */mnt/installables/* directory on the appliance.
 
-    11. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-4.1.0-opta.tgz* instead of *NetQ-4.1.0.tgz*.
+    11. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-4.2.0-opta.tgz* instead of *NetQ-4.2.0.tgz*.
 
         ```
         cumulus@<hostname>:~$ dpkg -l | grep netq
@@ -208,14 +208,4 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
         sudo systemctl stop motd-news.{service,timer}
         ```
 
-9. If you plan to use the {{<link title="Install NetQ Using the Admin UI" text="Admin UI">}}  to install NetQ, run the Bootstrap CLI before continuing.
-
-    Run the bootstrap CLI on your appliance. Be sure to replace the *eth0* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
-
-    {{<netq-install/bootstrap server="single" version="4.2" platform="appliance" deployment="onprem">}}
-
-{{<notice note>}}
-If you are creating a server cluster, you need to prepare each of those appliances as well. Repeat these steps if you are using a previously deployed appliance or refer to {{<link title="Install the NetQ System">}} for a new appliance.
-{{</notice>}}
-
-You are now ready to install the NetQ Software. Refer to {{<link title="Install NetQ Using the CLI">}} (recommended) or {{<link title="Install NetQ Using the Admin UI">}}.
+9. You are now ready to install the NetQ Software. Refer to {{<link title="Install NetQ Using the CLI">}}.

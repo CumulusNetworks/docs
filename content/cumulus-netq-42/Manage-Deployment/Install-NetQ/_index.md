@@ -59,7 +59,7 @@ NetQ also monitors {{<link title="Monitor Container Environments Using Kubernete
 
 You need a load balancer for high availability for the NetQ API and the NetQ UI.
 
-However, you need to be mindful of where you {{<link title="Post Installation Configuration Options#install-a-custom-signed-certificate" text="install the certificates">}} for the admin UI (port 8443) and the NetQ UI (port 443); otherwise, you cannot access the NetQ UI. 
+However, you need to be mindful of where you {{<link title="Post Installation Configuration Options#install-a-custom-signed-certificate" text="install the certificates">}} for the NetQ UI (port 443); otherwise, you cannot access the NetQ UI. 
 
 If you are using a load balancer in your deployment, we recommend you install the certificates directly on the load balancer for SSL offloading. However, if you install the certificates on the master node, then configure the load balancer to allow for SSL passthrough.
 

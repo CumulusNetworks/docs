@@ -35,16 +35,6 @@ Follow these steps to setup and configure your VM for a remote deployment:
 
     {{<netq-install/set-hostname>}}
 
-The final step is to install and activate the NetQ software. You can do this using the the CLI or the Admin UI:
+The final step is to install and activate the NetQ software using the the CLI:
 
-- {{<link title="Install NetQ Using the CLI" text="Use the CLI">}} (recommended)
-
-If you want to {{<link title="Install NetQ Using the Admin UI" text="use the Admin UI">}} to complete the installation, first run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
-
-{{<netq-install/bootstrap server="single" version="4.2" deployment="cloud" platform="vm">}}
-
-Consider the following for container environments, and make adjustments as needed.
-
-{{<netq-install/container version="4.2">}}
-
-- {{<link title="Install NetQ Using the Admin UI" text="Use the Admin UI">}} 
+- {{<link title="Install NetQ Using the CLI" text="Use the CLI">}}

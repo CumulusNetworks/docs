@@ -52,13 +52,6 @@ Make a note of the private IP address you assign to the worker node. You need it
 
 12. Repeat Steps 8 through 11 for each additional worker node you want in your cluster.
 
-The final step is to install and activate the NetQ software. You can do this using the the CLI or the Admin UI:
+The final step is to install and activate the NetQ software using the the CLI:
 
-- {{<link title="Install NetQ Using the CLI" text="Use the CLI">}} (recommended)
-
-If you want to {{<link title="Install NetQ Using the Admin UI" text="use the Admin UI">}}  to complete the installation, first run the Bootstrap CLI on the worker nodes in your cluster.
-
-{{<netq-install/bootstrap version="4.2" server="cluster" platform="vm" deployment="onprem">}}
-
-- {{<link title="Install NetQ Using the Admin UI" text="Use the Admin UI">}} 
-
+- {{<link title="Install NetQ Using the CLI" text="Use the CLI">}}

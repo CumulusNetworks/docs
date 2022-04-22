@@ -22,25 +22,9 @@ You need the following items to perform the certificate installation:
 
   You can verify this by running the `netq show opta-health` command.
 
-You can install a certificate using the Admin UI or the NetQ CLI.
+You can install a certificate using the NetQ CLI.
 
 {{<tabs "Install Cert">}}
-
-{{<tab "NetQ UI">}}
-
-1. Enter *https://\<hostname-or-ipaddr-of-netq-appliance-or-vm\>:8443* in your browser address bar to open the Admin UI.
-
-2. From the Health page, click **Settings**.
-
-    {{<figure src="/images/netq/adminui-settings-tab-cert-400.png" width="600">}}
-
-3. Click **Edit**.
-
-4. Enter the hostname, certificate and certificate key in the relevant fields.
-
-5. Click **Lock**.
-
-{{</tab>}}
 
 {{<tab "NetQ CLI">}}
 
@@ -123,25 +107,9 @@ You use the cloud activation key (called the *config-key*) to access the cloud s
 
 On occasion, you might want to update your cloud service activation key. For example, if you mistyped the key during installation and now your existing key does not work, or you received a new key for your premises from NVIDIA.
 
-Update the activation key using the Admin UI or NetQ CLI:
+Update the activation key using the NetQ CLI:
 
 {{<tabs "Cloud Key">}}
-
-{{<tab "Admin UI">}}
-
-1. Open the Admin UI by entering *https://\<master-hostname-or-ipaddress\>:8443* in your browser address field.
-
-2. Click **Settings**.
-
-3. Click **Activation**.
-
-4. Click **Edit**.
-
-5. Enter your new configuration key in the designated entry field.
-
-6. Click **Apply**.
-
-{{</tab>}}
 
 {{<tab "NetQ CLI">}}
 
@@ -156,42 +124,6 @@ cumulus@<hostname>:~$ netq install standalone activate-job config-key <text-opta
 {{</tabs>}}
 
 ## Add More Nodes to Your Server Cluster
-
-### Add More Nodes Using the Admin UI
-
-Installation of NetQ with a server cluster sets up the master and two worker nodes. To expand your cluster to include up to a total of 10 nodes, use the Admin UI.
-
-{{<notice note>}}
-Adding additional worker nodes increases availability, but does not increase scalability currently. NetQ supports a maximum of 5000 nodes regardless of the number of worker nodes in your cluster.
-{{</notice>}}
-
-To add more worker nodes:
-
-1. Prepare the nodes. Refer to the relevant server cluster instructions in {{<link title="Install the NetQ System">}}.
-
-2. Open the Admin UI by entering *https://\<master-hostname-or-ipaddress\>:8443* in your browser address field.
-
-    This opens the Health dashboard for NetQ.
-
-3. Click **Cluster** to view your current configuration.
-
-    {{<figure src="/images/netq/adminui-cluster-tab-400.png" width="700" caption="On-premises deployment">}}
-
-    This opens the Cluster dashboard, with the details about each node in the cluster.
-
-4. Click **Add Worker Node**.
-
-5. Enter the *private* IP address of the node you want to add.
-
-6. Click **Add**.
-
-    Monitor the progress of the three jobs by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-circle-down.svg" height="18" width="18"/> next to the jobs.
-
-    On completion, a card for the new node is added to the Cluster dashboard.
-
-    If the addition fails for any reason, download the log file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" height="18" width="18"/>, run `netq bootstrap reset` on this new worker node, and then try again.
-
-7. Repeat this process to add more worker nodes as needed.
 
 ### Add More Nodes Using the CLI
 

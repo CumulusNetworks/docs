@@ -1,5 +1,5 @@
 ---
-title: Monitor System and TCA Events
+title: Monitor Events
 author: NVIDIA
 weight: 800
 toc: 4

@@ -58,106 +58,61 @@ The various sizes of cards enable you to view your content at just the right lev
 
 ### Small Cards
 
-Small cards are most effective at providing a quick view of the performance or statistical value of a given aspect of your network. They commonly comprise an icon to identify the aspect <!-- vale off -->being monitored<!-- vale on -->, summary performance or statistics in the form of a graph and/or counts, and often an indication of any related events. Other content items might be present. Some examples include a Devices Inventory card, a Switch Inventory card, an Alarm Events card, an Info Events card, and a Network Health card, as shown here:
+Small cards provide an overview of the performance or statistical value of a given aspect of your network. They commonly comprise an icon to identify the aspect being monitored, summary performance or statistics in the form of a graph or counts, and often an indication of any related events.
 
 {{<figure src="/images/netq/access-data-small-group-230.png" width="700">}}
 
 ### Medium Cards
 
-Medium cards are most effective at providing the key measurements for a given aspect of your network. They are commonly comprised of an icon to identify the aspect being monitored, one or more key measurements that make up the overall performance. Often additional information is also included, such as related events or components. Some examples include a Devices Inventory card, a Switch Inventory card, an Alarm Events card, an Info Events card, and a Network Health card, as shown here. Compare these with their related small- and large-sized cards.
+Medium cards provide the key measurements for a given aspect of your network. They include the same content as the small cards with additional, relevant information, such as related events or components.
 
 {{<figure src="/images/netq/access-data-medium-group-230.png" width="700">}}
 
 ### Large Cards
 
-Large cards are most effective at providing the detailed information for monitoring specific components or functions of a given aspect of your network. These can aid in isolating and resolving existing issues or preventing potential issues. They are commonly comprised of detailed statistics and graphics. Some large cards also have tabs for additional detail about a given statistic or other related information. Some examples include a Devices Inventory card, an Alarm Events card, and a Network Health card, as shown here. Compare these with their related small- and medium-sized cards.
+Large cards provide detailed information for monitoring specific components or functions of a given aspect of your network. This granular view can aid in isolating and resolving existing issues or preventing potential issues. These cards frequently display statistics or graphs that help visualize data.
 
 {{<figure src="/images/netq/card-inventory-switches-lg-400.png" width="600">}}
-
-{{<figure src="/images/netq/card-alarm-events-lg-400.png" width="600">}}
 
 {{<figure src="/images/netq/card-network-health-lg-400.png" width="600">}}
 
 ### Full-Screen Cards
 
-Full-screen cards are most effective for viewing all available data about an aspect of your network all in one place. When you cannot find what you need in the small, medium, or large cards, it is likely on the full-screen card. Most full-screen cards display data in a grid, or table; however, some contain visualizations. Some examples include All Events card and All Switches card, as shown here.
+Full-screen cards show all available data about an aspect of your network. They typically display data in a tabular view that can be filtered and sorted. When relevant, they also display visualizations of that data.
 
 {{<figure src="/images/netq/card-all-events-fs-400.png" width="700">}}
 
 {{<figure src="/images/netq/card-inventory-switch-fs-400.png" width="700">}}
 
-## Card Workflows
+## Types of Cards
 
-The UI provides a number of card workflows. Card workflows focus on a particular aspect of your network and are a linked set of each size card &mdash; a small card, a medium card, one or more large cards, and one or more full screen cards. The following card workflows are available:
+Each card focuses on a particular aspect of your network. They include:
 
-- **Network Health**: networkwide view of network health
-- **Devices|Switches**: health of a given switch
+- **Validation summary**: networkwide view of network health
+- **Events**: information about all error and info events in the system
+- **What Just Happened**: information about network issues and packet drops 
+- **Device groups**: information about the distribution of device components
 - **Inventory|Devices**: information about all switches and hosts in the network
 - **Inventory|Switches**: information about the components on a given switch
-- **Events|Alarms**: information about all critical severity events in the system
-- **Events|Info**: information about all warning, info, and debug events in the system
-- **Network Services**: information about the network services and sessions
-- **Validation Request** (and Results): networkwide validation of network protocols and services
-- **Trace Request** (and Results): find available paths between two devices in the network fabric
-- **Network Snapshot**: view and compare the network state at various times
+- **Inventory|DPU**: information about data processing units
+- **Inventory|Hosts**: information about hosts
+- **Trace request**: find available paths between two devices in the network fabric
 
-### Access a Card Workflow
-
-You can access a card workflow in multiple ways:
-
-- For workbenches available from the main menu, open the workbench that contains the card flow
-- Open a prior search
-- Add it to a workbench
-- Search for it
-
-{{<notice tip>}}
-If you have multiple cards open on your workbench already, you might need to scroll down to see the card you have just added.
-{{</notice>}}
-
-To open the card workflow through an existing workbench:
-
-1. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/> in the workbench task bar.
-
-2. Select the relevant workbench.
-
-    {{<figure src="/images/netq/wb-select-from-hdr-400.png" width="200">}}
-
-    The workbench opens, hiding your previous workbench.
-
-To open the card workflow from Recent Actions:
-
-1. Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-clock.svg" height="18" width="18"/> in the application header.
-2. Look for an "Add: \<card name\>" item.
-3. If it is still available, click the item.
-
-    The card appears on the current workbench, at the bottom.
-
-To access the card workflow by adding the card:
-
-1. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> in the workbench task bar.
-2. Follow the instructions in {{<link url="#add-cards-to-your-workbench" text="Add Cards to Your Workbench">}} or {{<link url="#add-switch-cards-to-your-workbench" text="Add Switch Cards to Your Workbench">}}.
-
-    The card appears on the current workbench, at the bottom.
-
-To access the card workflow by searching for the card:
-
-1. Click in the **Global Search** field.
-2. Begin typing the name of the card.
-3. Select it from the list.
-
-    {{< figure src="/images/netq/add-card-thru-search-300.png" width="350" >}}
-
-    The card appears on a current workbench, at the bottom.
+There are five additional cards for session monitoring, including **BGP**, **MLAG**, **EVPN**, **OSPF**, and **LLDP**.
 
 ## Card Interactions
 
-Every card contains a standard set of interactions, including the ability to switch between card sizes, and change the time period of the presented data. Most cards also have additional actions that can be taken, in the form of links to other cards, scrolling, and so forth. The four sizes of cards for a particular aspect of the network are connected into a flow; however, you can have duplicate cards displayed at the different sizes. Cards with tabular data provide filtering, sorting, and export of data. The medium and large cards have descriptive text on the back of the cards.
+Every card contains a standard set of interactions, including the ability to switch between card sizes, and change the time period of the presented data. Most cards also have additional actions that can be taken, in the form of links to other cards, scrolling, and so forth. The four sizes of cards for a particular aspect of the network are connected into a flow; however, you can have duplicate cards displayed at the different sizes.
 
 To access the time period, card size, and additional actions, hover over the card. These options appear, covering the card header, enabling you to select the desired option.
 
 ### Add Cards to Your Workbench
 
-You can add one or more cards to a workbench at any time. To add Devices|Switches cards, refer to {{<link url="#add-switch-cards-to-your-workbench" text="Add Switch Cards to Your Workbench">}}. For all other cards, follow the steps in this section.
+You can add one or more cards to a workbench at any time. To add individual switch cards, refer to {{<link url="#add-switch-cards-to-your-workbench" text="Add Switch Cards to Your Workbench">}}. For all other cards, follow the steps in this section.
+
+{{<notice tip>}}
+If you have multiple cards open on your workbench already, you might need to scroll down to see the card you have just added.
+{{</notice>}}
 
 To add one or more cards:
 

@@ -85,8 +85,8 @@ Fixed: 2.4.10-10+deb8u22</td>
 <tr>
 <td>3014441</td>
 <td>CVE-2021-25220: bind9, an internet domain name server, was vulnerable to cache poisoning. When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u23
-Fixed: </td>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u25
+Fixed: 9.9.5.dfsg-9+deb8u27</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -916,14 +916,8 @@ Fixed: 1.0.25-9.1+deb8u6</td>
 <tr>
 <td>2736265</td>
 <td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2736260</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
-<td></td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2736247</td>
@@ -1295,12 +1289,6 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <td>When you delete a static route using NCLU, the configuration is not deleted from the running configuration or from the {{/etc/frr/frr.conf}} file. </td>
 <td>3.7.13-3.7.15</td>
 <td></td>
-</tr>
-<tr>
-<td>2628693</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2607965</td>
@@ -3190,8 +3178,8 @@ Fixed: 2.4.10-10+deb8u22</td>
 <tr>
 <td>3014441</td>
 <td>CVE-2021-25220: bind9, an internet domain name server, was vulnerable to cache poisoning. When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u23
-Fixed: </td>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u25
+Fixed: 9.9.5.dfsg-9+deb8u27</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -3781,14 +3769,8 @@ Fixed: 1.0.25-9.1+deb8u6</td>
 <tr>
 <td>2736265</td>
 <td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2736260</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
-<td></td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2736247</td>
@@ -4130,12 +4112,6 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2628693</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2628515</td>
@@ -6069,8 +6045,8 @@ Fixed: 2.4.10-10+deb8u22</td>
 <tr>
 <td>3014441</td>
 <td>CVE-2021-25220: bind9, an internet domain name server, was vulnerable to cache poisoning. When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u23
-Fixed: </td>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u25
+Fixed: 9.9.5.dfsg-9+deb8u27</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -6611,14 +6587,8 @@ Fixed: 1.0.25-9.1+deb8u6</td>
 <tr>
 <td>2736265</td>
 <td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2736260</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
-<td></td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2736247</td>
@@ -6936,12 +6906,6 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2628693</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2628515</td>
@@ -9469,8 +9433,8 @@ Fixed: 2.4.10-10+deb8u22</td>
 <tr>
 <td>3014441</td>
 <td>CVE-2021-25220: bind9, an internet domain name server, was vulnerable to cache poisoning. When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u23
-Fixed: </td>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u25
+Fixed: 9.9.5.dfsg-9+deb8u27</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -10011,14 +9975,8 @@ Fixed: 1.0.25-9.1+deb8u6</td>
 <tr>
 <td>2736265</td>
 <td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2736260</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
-<td></td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2736247</td>
@@ -10323,12 +10281,6 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2628693</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2617009</td>
@@ -13082,8 +13034,8 @@ Fixed: 2.4.10-10+deb8u22</td>
 <tr>
 <td>3014441</td>
 <td>CVE-2021-25220: bind9, an internet domain name server, was vulnerable to cache poisoning. When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u23
-Fixed: </td>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u25
+Fixed: 9.9.5.dfsg-9+deb8u27</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -13617,14 +13569,8 @@ Fixed: 1.0.25-9.1+deb8u6</td>
 <tr>
 <td>2736265</td>
 <td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2736260</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
-<td></td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2736247</td>
@@ -13923,12 +13869,6 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2628693</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2617009</td>
@@ -16552,8 +16492,8 @@ Fixed: 2.4.10-10+deb8u22</td>
 <tr>
 <td>3014441</td>
 <td>CVE-2021-25220: bind9, an internet domain name server, was vulnerable to cache poisoning. When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u23
-Fixed: </td>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u25
+Fixed: 9.9.5.dfsg-9+deb8u27</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -19527,8 +19467,8 @@ Fixed: 2.4.10-10+deb8u22</td>
 <tr>
 <td>3014441</td>
 <td>CVE-2021-25220: bind9, an internet domain name server, was vulnerable to cache poisoning. When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u23
-Fixed: </td>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u25
+Fixed: 9.9.5.dfsg-9+deb8u27</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -21944,8 +21884,8 @@ Fixed: 2.4.10-10+deb8u22</td>
 <tr>
 <td>3014441</td>
 <td>CVE-2021-25220: bind9, an internet domain name server, was vulnerable to cache poisoning. When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u23
-Fixed: </td>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u25
+Fixed: 9.9.5.dfsg-9+deb8u27</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -24663,8 +24603,8 @@ Fixed: 2.4.10-10+deb8u22</td>
 <tr>
 <td>3014441</td>
 <td>CVE-2021-25220: bind9, an internet domain name server, was vulnerable to cache poisoning. When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u23
-Fixed: </td>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u25
+Fixed: 9.9.5.dfsg-9+deb8u27</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -26783,8 +26723,8 @@ Fixed: 2.4.10-10+deb8u22</td>
 <tr>
 <td>3014441</td>
 <td>CVE-2021-25220: bind9, an internet domain name server, was vulnerable to cache poisoning. When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u23
-Fixed: </td>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u25
+Fixed: 9.9.5.dfsg-9+deb8u27</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -29238,8 +29178,8 @@ Fixed: 2.4.10-10+deb8u22</td>
 <tr>
 <td>3014441</td>
 <td>CVE-2021-25220: bind9, an internet domain name server, was vulnerable to cache poisoning. When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u23
-Fixed: </td>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u25
+Fixed: 9.9.5.dfsg-9+deb8u27</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -31429,8 +31369,8 @@ Fixed: 2.4.10-10+deb8u22</td>
 <tr>
 <td>3014441</td>
 <td>CVE-2021-25220: bind9, an internet domain name server, was vulnerable to cache poisoning. When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u23
-Fixed: </td>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u25
+Fixed: 9.9.5.dfsg-9+deb8u27</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -33265,8 +33205,8 @@ Fixed: 2.4.10-10+deb8u22</td>
 <tr>
 <td>3014441</td>
 <td>CVE-2021-25220: bind9, an internet domain name server, was vulnerable to cache poisoning. When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u23
-Fixed: </td>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u25
+Fixed: 9.9.5.dfsg-9+deb8u27</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -35128,8 +35068,8 @@ Fixed: 2.4.10-10+deb8u22</td>
 <tr>
 <td>3014441</td>
 <td>CVE-2021-25220: bind9, an internet domain name server, was vulnerable to cache poisoning. When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u23
-Fixed: </td>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u25
+Fixed: 9.9.5.dfsg-9+deb8u27</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -37097,8 +37037,8 @@ Fixed: 2.4.10-10+deb8u22</td>
 <tr>
 <td>3014441</td>
 <td>CVE-2021-25220: bind9, an internet domain name server, was vulnerable to cache poisoning. When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u23
-Fixed: </td>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u25
+Fixed: 9.9.5.dfsg-9+deb8u27</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -39110,8 +39050,8 @@ Fixed: 2.4.10-10+deb8u22</td>
 <tr>
 <td>3014441</td>
 <td>CVE-2021-25220: bind9, an internet domain name server, was vulnerable to cache poisoning. When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u23
-Fixed: </td>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u25
+Fixed: 9.9.5.dfsg-9+deb8u27</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
@@ -40429,8 +40369,8 @@ Fixed: 2.4.10-10+deb8u22</td>
 <tr>
 <td>3014441</td>
 <td>CVE-2021-25220: bind9, an internet domain name server, was vulnerable to cache poisoning. When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u23
-Fixed: </td>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u25
+Fixed: 9.9.5.dfsg-9+deb8u27</td>
 <td>3.7.0-3.7.15</td>
 <td></td>
 </tr>

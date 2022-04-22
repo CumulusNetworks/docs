@@ -98,41 +98,18 @@ Each card focuses on a particular aspect of your network. They include:
 - **Inventory|Hosts**: information about hosts
 - **Trace request**: find available paths between two devices in the network fabric
 
-There are five additional cards for session monitoring, including **BGP**, **MLAG**, **EVPN**, **OSPF**, and **LLDP**.
-
-## Card Interactions
-
-Every card contains a standard set of interactions, including the ability to switch between card sizes, and change the time period of the presented data. Most cards also have additional actions that can be taken, in the form of links to other cards, scrolling, and so forth. The four sizes of cards for a particular aspect of the network are connected into a flow; however, you can have duplicate cards displayed at the different sizes.
-
-To access the time period, card size, and additional actions, hover over the card. These options appear, covering the card header, enabling you to select the desired option.
-
+There are five additional network services cards for session monitoring, including **BGP**, **MLAG**, **EVPN**, **OSPF**, and **LLDP**.
 ### Add Cards to Your Workbench
 
-You can add one or more cards to a workbench at any time. To add individual switch cards, refer to {{<link url="#add-switch-cards-to-your-workbench" text="Add Switch Cards to Your Workbench">}}. For all other cards, follow the steps in this section.
-
-{{<notice tip>}}
-If you have multiple cards open on your workbench already, you might need to scroll down to see the card you have just added.
-{{</notice>}}
+Follow the steps in this section to add cards to your workbench. To add individual switch cards, refer to {{<link url="#add-switch-cards-to-your-workbench" text="Add Switch Cards to Your Workbench">}}.
 
 To add one or more cards:
 
-1. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to open the **Cards** modal.
+1. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> in the header.
 
-    {{< figure src="/images/netq/add-card-modal-all-cards-300.png" width="700" >}}
+2. Locate the card you want to add to your workbench. Use the categories in the side navigation or **Search** to help narrow down your options.
 
-2. Scroll down until you find the card you want to add, select the category of cards, or use **Search** to find the card you want to add.
-
-    This example uses the category tab to narrow the search for a card.
-
-    {{< figure src="/images/netq/add-card-modal-ntwk-svcs-300.png" width="700" >}}
-
-3. Click on each card you want to add.
-
-    As you select each card, it is grayed out and a <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> appears on top of it. If you have selected one or more cards using the category option, you can selected another category without losing your current selection. Note that the total number of cards selected for addition to your workbench is noted at the bottom.
-
-    {{< figure src="/images/netq/add-card-2-selected-300.png" width="700" >}}
-
-    Also note that if you change your mind and do not want to add a particular card you have selected, simply click on it again to remove it from the cards to be added. Note the total number of cards selected decreases with each card you remove.
+3. Click on each card you want to add to your workbench.
 
 4. When you have selected all of the cards you want to add to your workbench, you can confirm which cards have been selected by clicking the **Cards Selected** link. Modify your selection as needed.
 
@@ -140,7 +117,7 @@ To add one or more cards:
 
 5. Click **Open Cards** to add the selected cards, or **Cancel** to return to your workbench without adding any cards.
 
-The cards are placed at the end of the set of cards currently on the workbench. You might need to scroll down to see them. By default, the medium size of the card is added to your workbench for all except the Validation and Trace cards. These are added in the large size by default. You can rearrange the cards as described in {{<link url="#reposition-a-card-on-your-workbench" text="Reposition a Card on Your Workbench">}}.
+The cards are placed at the end of the set of cards currently on the workbench. You might need to scroll down to see them. You can drag and drop the cards on the workbench to rearrange them.
 
 ### Add Switch Cards to Your Workbench
 

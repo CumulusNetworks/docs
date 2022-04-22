@@ -12,4 +12,4 @@ To complete the upgrade for either an on-premises or a cloud deployment:
 
 - Start with {{<link title="Upgrade NetQ Appliances and Virtual Machines">}}
 - Then go to {{<link title="Upgrade NetQ Agents">}}
-- Optionally, go to {{<link title="Upgrade NetQ CLI">}}
+- Then go to {{<link title="Upgrade NetQ CLI">}}

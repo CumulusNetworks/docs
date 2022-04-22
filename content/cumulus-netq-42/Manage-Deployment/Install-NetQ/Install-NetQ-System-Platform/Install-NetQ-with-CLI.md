@@ -28,6 +28,16 @@ cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/inst
 
 {{<notice note>}}
 You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address&gt;</code> in place of <code>interface &lt;ifname&gt;</code> above.
+
+If you have changed the IP address or hostname of the NetQ On-premises VM after this step, you need to re-register this address with NetQ as follows:
+
+Reset the VM, indicating whether you want to purge any NetQ DB data or keep it.
+
+<pre>cumulus@hostname:~$ netq bootstrap reset [purge-db|keep-db]</pre>
+
+Re-run the install CLI on the appliance. This example uses interface eno1. Replace this with your updated IP address, hostname or interface using the interface or ip-addr option.
+<pre>cumulus@hostname:~$ netq install standalone full interface eno1 bundle /mnt/installables/NetQ-4.2.0.tgz</pre>
+
 {{</notice>}}
 
 {{<notice tip>}}
@@ -55,7 +65,17 @@ cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/insta
 ```
 
 {{<notice note>}}
-You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address&gt;</code> in place of <code>interface &lt;ifname&gt;</code> above.
+You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address&gt;</code> in place of <code>interface &lt;ifname&gt;</code> above.<br>
+
+If you have changed the IP address or hostname of the NetQ On-premises VM after this step, you need to re-register this address with NetQ as follows:
+
+Reset the VM, indicating whether you want to purge any NetQ DB data or keep it.
+
+<pre>cumulus@hostname:~$ netq bootstrap reset [purge-db|keep-db]</pre>
+
+Re-run the install CLI on the appliance. This example uses interface eno1. Replace this with your updated IP address, hostname or interface using the interface or ip-addr option.
+<pre>cumulus@hostname:~$ netq install standalone full interface eno1 bundle /mnt/installables/NetQ-4.2.0.tgz</pre>
+
 {{</notice>}}
 
 {{<notice tip>}}
@@ -84,11 +104,24 @@ cumulus@<hostname>:~$ netq install opta standalone full interface eth0 bundle /m
 
 {{<notice note>}}
 You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address&gt;</code> in place of <code>interface &lt;ifname&gt;</code> above.
+
+If you have changed the IP address or hostname of the NetQ OPTA after this step, you need to re-register this address with NetQ as follows:
+
+Reset the VM:
+
+<pre>cumulus@hostname:~$ netq bootstrap reset</pre>
+
+Re-run the install CLI on the appliance. This example uses interface eno1. Replace this with your updated IP address, hostname or interface using the interface or ip-addr option.
+<pre>cumulus@hostname:~$ netq install opta standalone full interface eno1 bundle /mnt/installables/NetQ-4.2.0-opta.tgz config-key <your-config-key> proxy-host <proxy-hostname> proxy-port <proxy-port></pre>
 {{</notice>}}
 
 {{<notice tip>}}
 If this step fails for any reason, you can run <code>netq bootstrap reset</code> and then try again.
 {{</notice>}}
+
+Consider the following for container environments, and make adjustments as needed.
+
+{{<netq-install/container version="4.2">}}
 
 {{</tab>}}
 
@@ -114,11 +147,25 @@ cumulus@<hostname>:~$ netq install opta cluster full interface eth0 bundle /mnt/
 
 {{<notice note>}}
 You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address&gt;</code> in place of <code>interface &lt;ifname&gt;</code> above.
+
+If you have changed the IP address or hostname of the NetQ OPTA after this step, you need to re-register this address with NetQ as follows:
+
+Reset the VM:
+
+<pre>cumulus@hostname:~$ netq bootstrap reset</pre>
+
+Re-run the install CLI on the appliance. This example uses interface eno1. Replace this with your updated IP address, hostname or interface using the interface or ip-addr option.
+<pre>cumulus@hostname:~$ netq install opta standalone full interface eno1 bundle /mnt/installables/NetQ-4.2.0-opta.tgz config-key <your-config-key> proxy-host <proxy-hostname> proxy-port <proxy-port></pre>
 {{</notice>}}
 
 {{<notice tip>}}
 If this step fails for any reason, you can run <code>netq bootstrap reset</code> and then try again.
 {{</notice>}}
+
+Consider the following for container environments, and make adjustments as needed.
+
+{{<netq-install/container version="4.2">}}
+
 {{</tab>}}
 
 {{</tabs>}}

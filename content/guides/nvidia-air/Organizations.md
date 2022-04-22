@@ -17,7 +17,7 @@ In the simulation list, the **Organizations** column shows the organization in w
 
 <div style="margin-top: 20px;"></div>
 
-To assign a simulation to an organization, use the **Organization** dropdown menu from the **Edit Simulation** window.
+To assign a simulation to an organization, use the **ORGANIZATION** dropdown menu from the **EDIT SIMULATION** window.
 
 {{<img src="/images/guides/nvidia-air/EditSim.png">}}
 
@@ -29,7 +29,7 @@ As an Organization Administrator, the organization details page show a list of c
 
 <div style="margin-top: 20px;"></div>
 
-To add a new member, click the **Add Members** button and enter the email address of each new member.
+To add a new member, click the **Add Member** button and enter the email address of each new member.
 
 {{<img src="/images/guides/nvidia-air/AddOrgMember.png">}}
 

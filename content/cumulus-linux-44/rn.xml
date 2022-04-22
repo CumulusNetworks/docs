@@ -739,12 +739,6 @@ To work around this issue, manually restart WJH with the {{sudo systemctl restar
 <td>5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2736265</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2736244</td>
 <td>When you run the vtysh command to enable BGP graceful restart on a peer multiple times, the command fails with the following error:
 % The Graceful Restart command used is not valid at this moment.</td>
@@ -2800,18 +2794,6 @@ To work around this issue, manually restart WJH with the {{sudo systemctl restar
 <td>The destination MAC address of ERSPAN GRE packets is set to all zeros.</td>
 <td>4.3.0-4.4.3</td>
 <td>5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2736265</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2736260</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2736244</td>
@@ -5245,18 +5227,6 @@ Fixed: 1.17-3+deb10u2</td>
 <td>The destination MAC address of ERSPAN GRE packets is set to all zeros.</td>
 <td>4.3.0-4.4.3</td>
 <td>5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2736265</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2736260</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2736244</td>

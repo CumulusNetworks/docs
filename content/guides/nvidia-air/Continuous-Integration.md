@@ -51,7 +51,7 @@ Log in by creating a new account.
 
 ## Add a NetCI Workflow
 
-After the first login, click **GET STARTED** to launch the configuration wizard:
+After the first login, click **GET STARTED** to start the configuration wizard:
 
 {{<img src="/images/guides/nvidia-air/NetCI-GetStarted.png" width="800px">}}
 
@@ -65,7 +65,7 @@ You must link to your `git` repository and allow the NVIDIA Air NetCI platform a
 
        https://gitlab.com/cumulus-consulting/goldenturtle/cumulus_ansible_modules
 
-1. Enter the **Access Token**. The repository generates the access token, which you can get through the UI. The following steps show how to generate the token from GitLab.
+1. Enter the **Access Token**. The repository generates the access token, which you can obtain through the UI. The following steps show how to generate the token from GitLab.
 
    1. Log in to GitLab, then select **Preferences**.
 
@@ -119,7 +119,7 @@ To see all test results, click and expand the desired network in the **Networks*
 
 {{<img src="/images/guides/nvidia-air/NetCI-ManualTest.png" width="300px">}}
 
-You can click and expand each stage to see more details of the results of each stage.
+You can click and expand each stage to see more details of the results.
 
 ## Repositories
 

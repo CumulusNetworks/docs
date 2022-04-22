@@ -4,8 +4,8 @@ author: NVIDIA
 weight: 20
 product: NVIDIA Air
 ---
-
-Check out some of the latest features added to the {{<exlink url="https://air.nvidia.com" text="NVIDIA Air Infrastructure Simulation Platform">}}.
+<!-- vale off -->
+Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
 ## April 2022
 ### 82.2022.0406
@@ -99,3 +99,4 @@ Check out some of the latest features added to the {{<exlink url="https://air.nv
 ```
 "server" [function="server" os="generic/ubuntu1804" boot="network"]
 ```
+<!-- vale on -->

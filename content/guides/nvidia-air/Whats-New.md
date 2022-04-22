@@ -4,17 +4,26 @@ author: NVIDIA
 weight: 20
 product: NVIDIA Air
 ---
-
-Check out some of the latest features added to the {{<exlink url="https://air.nvidia.com" text="NVIDIA Air Infrastructure Simulation Platform">}}.
+<!-- vale off -->
+Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
 ## April 2022
-<!-- Air:WhatsNew -->
-### 82.2022.0412-015
-- Removed unecessary `reboot` from ZTP script template for custom topologies
-<!-- Air:WhatsNew -->
 ### 82.2022.0406
 - Fixed a bug that caused incorrect validation of updates to a simulation's sleep timer
 - Fixed API filtering for interfaces in a simulation
+### 82.2022.0412-015
+- Removed unecessary `reboot` from ZTP script template for custom topologies
+### 82.2022.0419-007
+- Fixed a scenario where changing the name of a simulation caused an error to be shown
+- Fixed a cosmetic issue where cards in the Demo Marketplace may have been displayed incorrectly
+### 82.2022.0421-008
+- Added a link to launch the NetQ UI in the sidebar
+- Fixed a bug where organization admins might not have seen all users who have permissions to a simulation
+- Fixed a bug that caused the header dropdown menu to not be visible on some pages
+<!-- Air:WhatsNew -->
+### 82.2022.0422-007
+- Fixed a bug that prevented CPU and memory values from being set correctly in some custom topologies
+<!-- Air:WhatsNew -->
 
 ## March 2022
 ### 82.2022.0309
@@ -90,3 +99,4 @@ Check out some of the latest features added to the {{<exlink url="https://air.nv
 ```
 "server" [function="server" os="generic/ubuntu1804" boot="network"]
 ```
+<!-- vale on -->

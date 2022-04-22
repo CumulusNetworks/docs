@@ -14,7 +14,7 @@ This page summarizes new feature and improvements for the {{<product>}} {{<versi
 
 NetQ 4.2.0 includes the following new features and improvements:
 
--  {{<link title="Monitor System and TCA Events" text= "Events management enhancements">}}, including:
+-  {{<link title="Monitor Events" text= "Events management enhancements">}}, including:
     - a simplified Events card design with integrated validation checks
     - event acknowledgement and suppression options
 - {{<link title="Flow Analysis" text="Flow analysis enhancements">}}

@@ -418,10 +418,6 @@ In this deployment model, the data is stored and can be viewed only from the Net
 
 10. Repeat steps 6-11 to add more secondary premises.
 
-11. Follow the steps in the {{<link title="Install NetQ Using the Admin UI" text="Admin UI" >}} to install and complete the configuration of these secondary premises, using these keys to activate and connect these premises to the primary NetQ premises.
-
-    {{<figure src="/images/netq/adminui-install-cloud-basic-330.png" width="700">}}
-
 {{</tab>}}
 
 {{</tabs>}}

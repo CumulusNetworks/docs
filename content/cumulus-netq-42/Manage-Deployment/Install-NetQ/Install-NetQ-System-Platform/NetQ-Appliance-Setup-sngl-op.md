@@ -101,16 +101,6 @@ Now that the appliance is up and running, verify that the software is available 
 
     {{<netq-install/verify-cmd deployment="onprem">}}
 
-The final step is to install and activate the NetQ software. You can do this using the the CLI or the Admin UI:
+The final step is to install and activate the NetQ software using the the CLI:
 
-- {{<link title="Install NetQ Using the CLI" text="Use the CLI">}} (recommended)
-
-If you want to {{<link title="Install NetQ Using the Admin UI" text="use the Admin UI">}}  to complete the installation, first run the Bootstrap CLI. Be sure to replace the *eno1* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
-
-   {{<netq-install/bootstrap server="single" version="4.2" platform="appliance" deployment="onprem">}}
-
-Consider the following for container environments, and make adjustments as needed.
-
-   {{<netq-install/container version="4.2">}}
-
-- {{<link title="Install NetQ Using the Admin UI" text="Use the Admin UI">}}
+- {{<link title="Install NetQ Using the CLI" text="Use the CLI">}}

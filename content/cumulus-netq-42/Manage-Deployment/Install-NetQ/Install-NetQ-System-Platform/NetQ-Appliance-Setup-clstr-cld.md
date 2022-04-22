@@ -136,12 +136,6 @@ Make a note of the private IP addresses you assign to the master and worker node
 
 11. Repeat Steps 5-10 for each additional worker NetQ Cloud Appliance.
 
-The final step is to install and activate the NetQ software. You can do this using the the CLI or the Admin UI:
+The final step is to install and activate the NetQ software using the the CLI:
 
-- {{<link title="Install NetQ Using the CLI" text="Use the CLI">}} (recommended)
-
-If you want to {{<link title="Install NetQ Using the Admin UI" text="use the Admin UI">}}  to complete the installation, first run the Bootstrap CLI on the worker nodes in your cluster.
-
-{{<netq-install/bootstrap server="cluster" version="4.2" deployment="cloud" platform="appliance">}}
-
-- {{<link title="Install NetQ Using the Admin UI" text="Use the Admin UI">}}
+- {{<link title="Install NetQ Using the CLI" text="Use the CLI">}}

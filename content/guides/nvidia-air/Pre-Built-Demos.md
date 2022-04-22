@@ -5,14 +5,14 @@ weight: 30
 product: NVIDIA Air
 ---
 
-Three demos are available in the NVIDIA Air simulation:
+NVIDIA Air provides three pre-built demos:
 - Cumulus in the Cloud
 - Cumulus and SONiC in the Cloud
 - SONiC in the Cloud
 
 All three demos use the NVIDIA Cumulus Linux [reference topology](https://gitlab.com/cumulus-consulting/goldenturtle/cldemo2).
 
-The reference topology provides a common and consistent pre-configured spine and leaf-based network topology, which serves as the basis for all supported NVIDIA demos and golden standards. The reference topology is a blank slate with minimal configuration to prepare the simulation to receive additional deployment and provisioning that demonstrates a feature or represents a fully operational production network.
+The reference topology provides a common and consistent pre-configured spine and leaf-based network topology, which serves as the basis for all supported NVIDIA demos and golden standards. The reference topology is a blank slate with minimal configuration, and prepares the simulation to receive additional deployment and provisioning that demonstrates a feature or represents a fully operational production network.
 
 The reference topology provides a complete two-tier spine and leaf topology. It also includes a complete out-of-band management network. The devices include:
 - Four Cumulus Linux spines
@@ -48,6 +48,6 @@ In the SONiC In The Cloud demo, all nodes in the reference topology use SONiC as
 
 ## Guided Tour
 
-Every demo has a Guided Tour that provides step-by-step instructions on how to run the demo infrastructure through user interaction with the console session.
+Every demo has a Guided Tour that provides step-by-step instructions on how to run the demo infrastructure in a console session.
 
 {{<img src="/images/guides/nvidia-air/GuidedTour.png" width="800px">}}

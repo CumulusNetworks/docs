@@ -1,5 +1,5 @@
 ---
-title: What's New in NVIDIA Air
+title: What's New
 author: NVIDIA
 weight: 20
 product: NVIDIA Air

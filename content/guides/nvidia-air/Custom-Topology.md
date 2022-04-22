@@ -23,7 +23,7 @@ The custom topology landing page is a blank canvas that you can use to design an
 
 ### Canvas Overview
 
-The left panel on custom topology landing page lists the nodes you can use to create the custom topology:
+The left panel lists the nodes you can use to create the custom topology:
 
 - Cumulus VX switches
 - Ubuntu servers
@@ -68,7 +68,7 @@ After you add a node, you can edit it as needed. Click the node to select it and
 
   {{<img src="/images/guides/nvidia-air/CustomTopology_Role.png" width="800px">}}
 
-- **Hardware Model**: Pre-populate the ports based on a specific hardware model of switch selected. This does not affect the simulation, it acts as a macro to pre-populate the number of ports per switch model.
+- **Hardware Model**: Pre-populate the ports based on a specific hardware model of the switch selected. This does not affect the simulation, it acts as a macro to pre-populate the number of ports per switch model.
 
 {{<img src="/images/guides/nvidia-air/CustomTopology_HardwareModel.png" width="800px">}}
 
@@ -76,7 +76,7 @@ After you add a node, you can edit it as needed. Click the node to select it and
 
 {{<img src="/images/guides/nvidia-air/CustomTopology_Ports.png" width="800px">}}
 
-Press the breakout button to simulate breaking out a port into a group of 4.
+Press the breakout button to simulate breaking out a port into a group of four.
 
 {{<img src="/images/guides/nvidia-air/CustomTopology_PortsBreakout.png" width="800px">}}
 
@@ -94,7 +94,7 @@ To upload a ZTP script, click the **ZTP** button in the top right of the canvas:
 
 {{<img src="/images/guides/nvidia-air/ZTP.png" width="400px">}}
 
-A popup window opens where you can paste the contents of the ZTP script. The popup window contains a default script. The default script is a guide to implement common ZTP features on Cumulus Linux; for example, you can:
+A popup window opens where you can paste the contents of the ZTP script. The popup window contains a default script. The default script is a guide to implement common ZTP features on Cumulus Linux, such as:
 
 - Disable password expiry
 - Make the `cumulus` user passwordless for `sudo`
@@ -121,7 +121,7 @@ To start a simulation directly from the topology builder, click the **START SIMU
 
 ### Export a Custom Topology
 
-To export a custom topology, download the required files. Click `Export` in the top right button to export two files for download:
+To export a custom topology, click the **EXPORT** button to download two files:
 - `topology.dot` is the network definition in Graphviz format.
 - `topology.svg` is the network diagram in Scalable Vector Graphics format.
 

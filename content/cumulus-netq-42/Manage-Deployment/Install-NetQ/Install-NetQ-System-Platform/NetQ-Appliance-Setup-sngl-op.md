@@ -9,7 +9,7 @@ This topic describes how to prepare your single, NetQ On-premises Appliance for 
 
 Each system shipped to you contains:
 
-- Your NVIDIA Cumulus NetQ On-premises Appliance (a Supermicro 6019P-WTR server)
+- Your NVIDIA NetQ On-premises Appliance (a Supermicro 6019P-WTR server)
 - Hardware accessories, such as power cables and rack mounting gear (note that network cables and optics ship separately)
 - Information regarding your order
 

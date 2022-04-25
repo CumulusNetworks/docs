@@ -1,5 +1,5 @@
 ---
-title: Cumulus NetQ 4.2 Open Source Packages
+title: NetQ 4.2 Open Source Packages
 author: Cumulus Networks
 weight: -30
 product: Cumulus NetQ

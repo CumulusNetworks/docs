@@ -342,7 +342,7 @@ cumulus@<hostname>:~$ netq install cluster install-job bundle /mnt/installables/
 <!-- vale off -->
 ## netq install opta activate-job
 
-Activates the NetQ Collector software after you configure and install an initial server or server cluster (master and two worker nodes). Activation requires a configuration key that you can obtain from an email titled *A new site has been added to your NVIDIA Cumulus NetQ account* (sent to your NetQ administrator).
+Activates the NetQ Collector software after you configure and install an initial server or server cluster (master and two worker nodes). Activation requires a configuration key that you can obtain from an email titled *A new site has been added to your NVIDIA NetQ account* (sent to your NetQ administrator).
 <!-- vale on -->
 
 ### Syntax
@@ -394,7 +394,7 @@ Obtain the software release bundle from the {{<exlink url="http://support.mellan
 Obtain the config-key as follows:
 
 <!-- vale off -->
-- Cloud: Locate and retrieve key from email titled *A new site has been added to your NVIDIA Cumulus NetQ account* (sent to your NetQ administrator)
+- Cloud: Locate and retrieve key from email titled *A new site has been added to your NVIDIA NetQ account* (sent to your NetQ administrator)
 - Remote: Follow the instructions in {{<link title="Manage the NetQ UI/#configure-multiple-premises" text="Configure Multiple Premises">}}
 <!-- vale on -->
 
@@ -458,7 +458,7 @@ Installs the NetQ Collector software on a single cloud server (NetQ Cloud Applia
 Obtain the software release bundle from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
 
 <!-- vale off -->
-Obtain the config-key from the email sent to your NetQ administrator titled *A new site has been added to your NVIDIA Cumulus NetQ account*.
+Obtain the config-key from the email sent to your NetQ administrator titled *A new site has been added to your NVIDIA NetQ account*.
 <!-- vale on -->
 
 ### Syntax

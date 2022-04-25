@@ -10,7 +10,7 @@ This topic describes how to prepare your cluster of NetQ Cloud Appliances for in
 
 Each system shipped to you contains:
 
-- Your NVIDIA Cumulus NetQ Cloud Appliance (a Supermicro SuperServer E300-9D)
+- Your NVIDIA NetQ Cloud Appliance (a Supermicro SuperServer E300-9D)
 - Hardware accessories, such as power cables and rack mounting gear (note that network cables and optics ship separately)
 - Information regarding your order
 

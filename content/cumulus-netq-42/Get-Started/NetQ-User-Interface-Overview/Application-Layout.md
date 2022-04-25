@@ -18,15 +18,6 @@ Found in the application header, click <img src="https://icons.cumulusnetworks.c
 | Header | Menu |
 | ------ | ---- |
 | <ul><li><strong>Search</strong>: a search bar to quickly find an item on the main menu</li><li><strong>Favorites</strong>: contains link to the user-defined favorite workbenches; <em>Home</em> points to the NetQ Workbench until reset by a user</li><li><strong>Workbenches</strong>: contains links to all workbenches</li><li><strong>Network</strong>: contains links to tabular data about various network elements and the What Just Happened feature</li><li><strong>Notifications</strong>: contains link to threshold-based event rules and notification channel specifications</li><li><strong>Admin</strong>: contains links to application management and lifecycle management features (only visible to users with Admin access role)</li></ul> | {{<figure src="/images/netq/main-menu-admin-400.png" width="300">}} |
-
-## Recent Actions
-
-Found in the header, Recent Actions keeps track of every action you take on your workbench and then saves each action with a timestamp. This enables you to go back to a previous state or repeat an action.
-
-To open Recent Actions, click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-clock.svg" height="18" width="18"/>. Click on any of the actions to perform that action again.
-
-{{<figure src="/images/netq/recent-actions-400.png" width="250" >}}
-
 ## Search
 
 The Global Search field in the UI header enables you to search for devices and cards. It behaves like most searches and can help you quickly find device information. For more detail on creating and running searches, refer to {{<link title="Create and Run Searches">}}.
@@ -35,11 +26,9 @@ The Global Search field in the UI header enables you to search for devices and c
 
 Clicking the NVIDIA logo takes you to your favorite workbench. For details about specifying your favorite workbench, refer to {{<link title="Set User Preferences">}}.
 
-## Quick Network Health View
+## Validation Summary View
 
-Found in the header, the graph and performance rating provide a view into the health of your network at a glance.
-
-{{< figure src="/images/netq/quick-ntwk-health-header-400.png" width="200" >}}
+Found in the header, the chart provides a view into the health of your network at a glance.
 
 {{<notice note>}}
 On initial start up of the application, it can take up to an hour to reach an accurate health indication as some processes only run every 30 minutes.
@@ -47,7 +36,7 @@ On initial start up of the application, it can take up to an hour to reach an ac
 
 ## Workbenches
 
-A workbench is comprised of a given set of cards. A pre-configured default workbench, NetQ Workbench, is available to get you started. It contains Device Inventory, Switch Inventory, Alarm and Info Events, and Network Health cards. On initial login, this workbench opens. You can create your own workbenches and add or remove cards to meet your particular needs. For more detail about managing your data using workbenches, refer to {{<link title="Focus Your Monitoring Using Workbenches">}}.
+A workbench comprises a given set of cards. A pre-configured default workbench, NetQ Workbench, is available to get you started. You can create your own workbenches and add or remove cards to meet your particular needs. For more detail about managing your data using workbenches, refer to {{<link title="Focus Your Monitoring Using Workbenches">}}.
 
 ## Cards
 

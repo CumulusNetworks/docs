@@ -56,10 +56,6 @@ For example:
 
 You can integrate notification channels using the NetQ UI or the NetQ CLI.
 
-- Channels card: specify channels
-- Threshold Crossing Rules card: specify rules and filters, assign existing channels
--`netq notification (channel|rule|filter)` command: specify channels, rules, and filters
-
 To set up the integrations, you must configure NetQ with at least one channel, one rule, and one filter. To refine what messages you want to view and where to send them, you can add additional rules and filters and set thresholds on supported event types. You can also configure a proxy server to receive, process, and forward the messages. This is accomplished using the NetQ UI and NetQ CLI in the following order:
 
 {{<figure src="/images/netq/notif-config-wkflow.png">}}

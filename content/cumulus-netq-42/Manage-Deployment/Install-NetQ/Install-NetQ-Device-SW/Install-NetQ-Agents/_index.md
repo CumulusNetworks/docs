@@ -75,7 +75,7 @@ Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
 
 {{<tabs "Get Agent Package" >}}
 
-{{<tab "Cumulus Linux 3.x" >}}
+{{<tab "Cumulus Linux 3.7" >}}
 
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
@@ -90,9 +90,9 @@ You  can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLi
 
 {{</tab>}}
 
-{{<tab "Cumulus Linux 4.x and above">}}
+{{<tab "Cumulus Linux 4.0 and later">}}
 
-Cumulus Linux 4.4 and above includes the `netq-agent` package by default.
+Cumulus Linux 4.4 and later includes the `netq-agent` package by default.
 
 To add the repository, uncomment or add the following line in `/etc/apt/sources.list`:
 

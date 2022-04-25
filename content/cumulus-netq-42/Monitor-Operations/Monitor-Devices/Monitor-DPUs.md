@@ -39,7 +39,7 @@ Attributes are displayed as the default tab on the large DPU card. You can view 
 
 {{<figure src="/images/netq/dev-dpu-large-attributes-tab-42.png" width="500">}}
 
-To view a larger display of hardware resource utilization, select {{<img src="/images/netq/devices.svg" height="18" width="18">}} (Utilization).
+To view a larger display of hardware resource utilization, select {{<img src="/images/netq/analytics-bars.svg" height="18" width="18">}} (Utilization).
 
 {{<figure src="/images/netq/dev-dpu-large-utilization-42.png" width="500">}}
 ## View Installed Packages

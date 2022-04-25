@@ -5,7 +5,7 @@ weight: 670
 toc: 4
 ---
 
-The lifecycle management (LCM) feature enables you to upgrade to NetQ 4.1.0 on switches with an existing NetQ Agent 2.4.x-3.2.1 release using the NetQ UI. You can upgrade only the NetQ Agent or upgrade both the NetQ Agent and the NetQ CLI at the same time. You can run up to five jobs simultaneously; however, a given switch can only appear in one running job at a time.
+The lifecycle management (LCM) feature enables you to upgrade to NetQ 4.2.0 on switches with an existing NetQ Agent using the NetQ UI. You can upgrade only the NetQ Agent or upgrade both the NetQ Agent and the NetQ CLI at the same time. You can run up to five jobs simultaneously; however, a given switch can only appear in one running job at a time.
 
 The upgrade workflow includes the following steps:
 

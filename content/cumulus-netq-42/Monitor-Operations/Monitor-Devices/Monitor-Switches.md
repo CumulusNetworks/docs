@@ -26,7 +26,7 @@ When you want to view an overview of the current or past health of a particular 
 
 To view the summary:
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18">}} (Switches), then click **Open a switch card**.
+1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} (Devices), then click **Open a device card**.
 
     {{<figure src="/images/netq/add-switch-card-modal-310.png" width="250">}}
 
@@ -56,7 +56,7 @@ To view the key metrics, use the NetQ UI to open the medium Switch card. The car
 
 Locate or open the relevant Switch card:
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18">}} (Switches), then click **Open a switch card**.
+1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} (Devices), then click **Open a device card**.
 
 2. Begin typing the hostname of the device you are interested in. Select it from the suggested matches when it appears.
 
@@ -76,7 +76,7 @@ Locate or open the relevant Switch card:
 
 OR
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18">}} (Switches), then click **Open a switch card**.
+1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} (Devices), then click **Open a devices card**.
 
 2. Begin typing the hostname of the device you are interested in. Select it from the suggested matches when it appears.
 
@@ -1169,7 +1169,7 @@ This output indicates that this drive is in a good state overall with 80% of its
 
 ### View Disk Storage After BTRFS Allocation
 
-Customers running Cumulus Linux 3.x which uses the BTRFS (b-tree file system) might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, NVIDIA recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when they should rebalance.
+Customers running Cumulus Linux 3 which uses the BTRFS (b-tree file system) might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, NVIDIA recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when they should rebalance.
 
 For details about when to perform a recommended rebalance, refer to [When to Rebalance BTRFS Partitions]({{<ref "/knowledge-base/Configuration-and-Usage/Storage/When-to-Rebalance-BTRFS-Partitions">}}).
 

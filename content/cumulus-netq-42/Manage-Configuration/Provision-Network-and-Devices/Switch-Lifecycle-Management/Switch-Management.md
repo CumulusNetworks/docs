@@ -5,7 +5,7 @@ weight: 650
 toc: 4
 ---
 
-On initial installation, the lifecycle management feature provides an inventory of switches that have been automatically discovered by NetQ and are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.6 or later, SONiC 202012 or later, and NetQ Agent 2.4 or later in your network. You assign network roles to switches and select switches for software installation and upgrade from this inventory listing.
+On initial installation, the lifecycle management feature provides an inventory of switches that have been automatically discovered by NetQ and are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.7.12 or later, SONiC 202012 or later, and NetQ Agent 4.1.0 or later in your network. You assign network roles to switches and select switches for software installation and upgrade from this inventory listing.
 
 ## View the LCM Switch Inventory
 
@@ -83,7 +83,7 @@ This listing is the starting point for network OS upgrades or NetQ installations
 
 - Work with the list you have and add them later
 - Verify the missing switches are reachable using `ping`
-- Verify the NetQ Agent is fresh and version 2.4.0 or later for switches that already have the agent installed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click **Agents** or run `netq show agents`)
+- Verify the NetQ Agent is fresh and version 4.1.0 or later for switches that already have the agent installed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click **Agents** or run `netq show agents`)
 - Install NetQ on the switch (refer to {{<link url="#use-switch-discovery-to-install-and-upgrade-netq" text="Install NetQ">}})
 - Upgrade any NetQ Agents if needed (refer to {{<link title="Upgrade NetQ Agents">}} for instructions)
 

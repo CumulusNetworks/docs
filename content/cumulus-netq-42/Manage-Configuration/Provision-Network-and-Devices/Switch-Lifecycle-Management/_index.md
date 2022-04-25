@@ -21,9 +21,8 @@ Using the NetQ UI or CLI, lifecycle management enables you to:
 - Create snapshots of the network state at various times
 - Create Cumulus Linux switch configurations, with or without network templates
 - Create NetQ configuration profiles
-- Upgrade NetQ (Agents and CLI) on Cumulus Linux switches with NetQ Agents version 2.4.x or later
-- Install or upgrade NetQ (Agents and CLI) on Cumulus Linux switches with or without NetQ Agents; all in a single job
-- Upgrade Cumulus Linux 3.x to later 3.x or 4.x on switches with NetQ Agents version 2.4.x or later (includes upgrade of NetQ to 3.x)
+- Upgrade NetQ (Agents and CLI) on Cumulus Linux switches running NetQ Agents
+- Install or upgrade NetQ (Agents and CLI) on Cumulus Linux switches
 - View a result history of upgrade attempts
 
 {{<notice note>}}
@@ -38,7 +37,7 @@ To manage the various lifecycle management features using the NetQ UI, open the 
 
 - Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18">}}, then select **Manage Switches**
 - Click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" width="18" height="18">}} in a workbench header
-- Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18">}} (Switches) in a workbench header, then select **Manage switches**
+- Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} (Devices) in a workbench header, then select **Manage switches**
 
 The Manage Switch Assets view provides access to switch management, image management, and configuration management features as well as job history. Each tab provides cards that let the administrator manage the relevant aspect of switch assets.
 

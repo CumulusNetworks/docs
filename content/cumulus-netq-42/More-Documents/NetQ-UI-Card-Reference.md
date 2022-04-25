@@ -4385,7 +4385,7 @@ and all events.
 
 Viewing detail about a particular switch is essential when troubleshooting performance issues. With NetQ you can view the overall performance and drill down to view attributes of the switch, interface performance and the events associated with a switch. This is accomplished through the Switches card.
 
-Switch cards can be added to user-created workbenches. Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18">}} to open a switch card.
+Switch cards can be added to user-created workbenches. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} to open a device card.
 
 The small Switch card displays:
 
@@ -4821,7 +4821,7 @@ The full screen Switch card provides multiple tabs.
 </tr>
 <tr class="even">
 <td>BTRFS Utilization</td>
-<td>Displays disk utilization information for devices running Cumulus Linux 3.x and the b-tree file system (BTRFS):
+<td>Displays disk utilization information for devices running Cumulus Linux 3 and the b-tree file system (BTRFS):
 <ul>
 <li><strong>Device Allocated</strong>: Percentage of the disk space allocated by BTRFS</li>
 <li><strong>Hostname</strong>: Hostname of the given device</li>

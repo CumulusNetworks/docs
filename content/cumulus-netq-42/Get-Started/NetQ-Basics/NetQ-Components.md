@@ -46,7 +46,7 @@ for the following protocols:
   - Routing protocols: BGP, OSPF
   - Network virtualization: EVPN, VXLAN
 
-The NetQ Agent is supported on Cumulus Linux 3.3.2 and later and SONiC 202012 and later.
+The NetQ Agent is supported on Cumulus Linux 3.7.12 and later and SONiC 202012 and later.
 
 ### Host Agents
 

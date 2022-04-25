@@ -20,9 +20,11 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 - Added a link to launch the NetQ UI in the sidebar
 - Fixed a bug where organization admins might not have seen all users who have permissions to a simulation
 - Fixed a bug that caused the header dropdown menu to not be visible on some pages
-<!-- Air:WhatsNew -->
 ### 82.2022.0422-007
 - Fixed a bug that prevented CPU and memory values from being set correctly in some custom topologies
+<!-- Air:WhatsNew -->
+### 82.2022.0425-009
+- Fixed a cosmetic issue with displaying some VM memory values
 <!-- Air:WhatsNew -->
 
 ## March 2022

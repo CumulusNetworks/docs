@@ -104,37 +104,29 @@ Now that the appliances are up and running, verify that the software is availabl
 
     {{<netq-install/verify-cmd deployment="cloud">}}
 
-4. Run the Bootstrap CLI. Be sure to replace the *eno1* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
-
-    {{<netq-install/bootstrap server="single" version="4.1" platform="appliance" deployment="cloud">}}
-
-5. Consider the following for container environments, and make adjustments as needed.
-
-    {{<netq-install/container version="4.1">}}
-
-6. On one of your worker NetQ Cloud Appliances, verify that the needed packages are present and of the correct release, version {{<version>}} and update 34.
+4. On one of your worker NetQ Cloud Appliances, verify that the needed packages are present and of the correct release, version {{<version>}} and update 34.
 
     {{<netq-install/verify-pkgs version="4.1" platform="appliance">}}
 
-7. Configure the IP address, hostname, and password using the same steps as for the master node. Refer to {{<link url="#configure-the-password-hostname-and-ip-address" text="Configure the Password, Hostname, and IP Address">}}.
+5. Configure the IP address, hostname, and password using the same steps as for the master node. Refer to {{<link url="#configure-the-password-hostname-and-ip-address" text="Configure the Password, Hostname, and IP Address">}}.
 
     {{<notice note>}}
 Make a note of the private IP addresses you assign to the master and worker nodes. You need them for later installation steps.
     {{</notice>}}
 
-8. Verify that the needed packages are present and of the correct release, version {{<version>}}.
+6. Verify that the needed packages are present and of the correct release, version {{<version>}}.
 
     {{<netq-install/verify-pkgs version="4.1" platform="appliance">}}
 
-9. Verify that the needed files are present and of the correct release.
+7. Verify that the needed files are present and of the correct release.
 
     {{<netq-install/verify-image deployment="cloud" version="4.2">}}
 
-10. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
+8. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     {{<netq-install/verify-cmd deployment="cloud">}}
 
-11. Repeat Steps 5-10 for each additional worker NetQ Cloud Appliance.
+9. Repeat Steps 4-8 for each additional worker NetQ Cloud Appliance.
 
 The final step is to install and activate the NetQ software using the the CLI:
 

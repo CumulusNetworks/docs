@@ -5,7 +5,7 @@ weight: 20
 product: NVIDIA Air
 ---
 
-This quick start provides the basics so that you can get started with the NVIDIA Air simulation platform.
+This quick start provides the basics so that you can get started with the NVIDIA Air network simulation platform.
 
 ## Login
 
@@ -21,7 +21,7 @@ The page redirects you to the NVIDIA forums login page. Either click the **Creat
 
 After you log in, the NVIDIA Air landing page opens:
 
-{{<img src="/images/guides/nvidia-air/LandingPage.png" width="800px">}}
+{{<img src="/images/guides/nvidia-air/LandingPagewithCallouts.png" width="800px">}}
 
 The landing page provides the following options:
 

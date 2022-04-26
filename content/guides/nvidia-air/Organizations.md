@@ -7,7 +7,7 @@ product: NVIDIA Air
 <!-- vale off -->
 NVIDIA Air supports collaboration so that you can share simulations with your colleagues in an organization. To join an organization, contact your Organization Administrator or your NVIDIA sales team. If you do not know who your Organization Administrator is, reach out to citc-support@nvidia.com.
 <!-- vale on -->
-## Assign Organizations
+## Assign an Organization to Your Simulation
 
 You can assign each simulation to an organization in which you are a member. All members of the organization can view all assigned simulations.
 
@@ -17,30 +17,48 @@ In the simulation list, the **ORGANIZATION** column shows the organization to wh
 
 <div style="margin-top: 20px;"></div>
 
-To assign a simulation to an organization, click the Edit icon to open the **EDIT SIMULATION** window. Select the organization from the **ORGANIZATION** dropdown menu.
+To assign a simulation to an organization, click the Edit icon to open the **EDIT SIMULATION** dialog. Select the organization from the **ORGANIZATIONS** dropdown menu.
 
-{{<img src="/images/guides/nvidia-air/EditSim.png">}}
+{{<img src="/images/guides/nvidia-air/EditSim.png" width="400px">}}
 
 ## Manage Organizations
 
-As an Organization Administrator, you can view details about each organization, such the list of current members, their roles, and the resource utilization for all simulations in the organization.
+If you are an Organization Administrator, you can create and manage organizations, and view details about each organization, such as the list of current members and their roles. You can also view the resource utilization for all simulations in the organization.
 
-{{<img src="/images/guides/nvidia-air/OrgDetails.png">}}
+To see the list of current organizations, click **Organization List** from the **ORGANIZATION** dropdown in the left pane.
+
+{{<img src="/images/guides/nvidia-air/OrgList.png">}}
 
 <div style="margin-top: 20px;"></div>
 
-To add a new member, click the **Add Member** button and enter the email address of each new member.
+On the Organizations page, you can create new organizations, and drill down to see details and manage a specifc organization.
 
-{{<img src="/images/guides/nvidia-air/AddOrgMember.png">}}
+### Create an Organization
 
-To remove a member, select **Remove Member** from the actions menu. Removing a member from an organization also moves all their simulations out of the organization.
+To create an organization, click the **Create Organization** button to open the Create Organization dialog.
 
-## Delete Organizations
+{{<img src="/images/guides/nvidia-air/AddOrg.png">}}
 
-To delete an organization, choose the **Delete** option from the actions menu.
+Provide a name for the organization and the email address of each member you want to add. If you want a member to to be an administrator, click **Organization Admin** so that the button turns green.
+
+### Delete an Organization
+
+To delete an organization, select the **Delete** option from the actions menu.
 
 {{<img src="/images/guides/nvidia-air/DeleteOrg.png">}}
 
 {{%notice info%}}
 Deleting an organization also deletes all the simulations and resources assigned to it.
 {{%/notice%}}
+
+### View Details and Manage Members
+
+To view details about each organization and to manage members, click the organization link in the Organization column to open the organization details page.
+
+{{<img src="/images/guides/nvidia-air/OrgDetails.png">}}
+
+<div style="margin-top: 20px;"></div>
+
+- To add a new member, click the **Members** link, then click the **Add Member** button. In the Add Members dialog, provide the email address of the member you want to add. If you want the member to to be an administrator, click **Organization Admin** so that the button turns green.
+- To edit resource limits for a member such as CPU, memory, and storage and the number of simulations allowed, select **Edit Membership** from the actions menu.
+- To remove a member, select **Remove Member** from the actions menu. Removing a member from an organization also moves all their simulations out of the organization.

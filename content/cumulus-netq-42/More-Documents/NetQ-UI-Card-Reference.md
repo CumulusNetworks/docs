@@ -165,7 +165,7 @@ The following table reflects the information in the full-screen Events card.
 <tbody>
 <tr class="odd">
 <td>Title</td>
-<td>Events | Alarms</td>
+<td>Events</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
@@ -196,8 +196,8 @@ The following table reflects the information in the full-screen Events card.
 </ul></td>
 </tr>
 <tr class="even">
-<td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
+<td>Table</td>
+<td>Displays events matching the filter parameters. From here, you can select, sort, and export events. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>

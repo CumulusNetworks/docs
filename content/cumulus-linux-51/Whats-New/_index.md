@@ -35,6 +35,7 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
   - {{<link url="NVUE-Snippets/#flexible-snippets" text="Flexible snippets">}}
   - {{<link url="VXLAN-Devices/#automatic-vlan-to-vni-mapping" text="Automatic VLAN to VNI mapping">}}
   - {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP/#change-the-vrr-mac-address" text="Fabric-wide MAC address configuration">}}
+  - {{<link url="Route-Filtering-and-Redistribution/#apply-a-route-map" text="FIB filter configuration">}}
   - {{< expand "New NVUE commands" >}}
 ```
 nv show router pbr map <pbr-map-id> rule <rule-id> action nexthop-group

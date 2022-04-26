@@ -14,7 +14,7 @@ Cards opened on the default NetQ Workbench are not saved. Create a new workbench
 
 ## Events Card
 
-The Events card appears on the default NetQ Workbench. You can also add it to user-created workbenches. Use this card to monitor info and error events across your network. You can determine the number of events for the various systems, interfaces, devices, and network protocols and services components in the network.
+The Events card appears on the default NetQ Workbench. You can also add it to user-created workbenches. Use this card to monitor events across your network. You can determine the number of events for the various systems, interfaces, devices, and network protocols and services components in the network.
 
 The following table reflects the information in the small Events card.
 
@@ -32,7 +32,7 @@ The following table reflects the information in the small Events card.
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></td>
-<td>Indicates data is for all critical severity events in the network.</td>
+<td>Indicates data is for all events in the network.</td>
 </tr>
 <tr class="even">
 <td>Alarm trend</td>
@@ -44,8 +44,8 @@ The following table reflects the information in the small Events card.
 </ul></td>
 </tr>
 <tr class="odd">
-<td>Alarm score</td>
-<td>Current count of alarms during the designated time period.</td>
+<td>Event type</td>
+<td>Number of events, categorized by severity.</td>
 </tr>
 <tr class="even">
 <td>Alarm rating</td>
@@ -86,19 +86,19 @@ The following table reflects the information in the medium Events card.
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></td>
-<td>Indicates data is for all critical events in the network.</td>
+<td>Indicates data is for all events in the network.</td>
 </tr>
 <tr class="odd">
 <td>Count</td>
-<td>Total number of alarms received during the designated time period.</td>
+<td>Total number of events received during the designated time period.</td>
 </tr>
 <tr class="even">
-<td>Alarm score</td>
-<td>Current count of alarms received from each category (overall, system, interface, and network services) during the designated time period.</td>
+<td>Event type</td>
+<td>Number of events, categorized by severity.</td>
 </tr>
 <tr class="odd">
 <td>Chart</td>
-<td>Distribution of all alarms received from each category during the designated time period.</td>
+<td>Distribution of all events received from each category during the designated time period.</td>
 </tr>
 </tbody>
 </table>
@@ -124,27 +124,27 @@ The following table reflects the information in the large Events card.
 <!-- vale on -->
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-clock.svg", height="18", width="18"/></td>
-<td>Indicates data is for all system, trace and interface critical events in the network.</td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></td>
+<td>Indicates data is for all events in the network.</td>
 </tr>
 <tr class="odd">
-<td>Alarm Distribution</td>
-<td><p><strong>Chart</strong>: Distribution of all alarms received from each category during the designated time period:
+<td>Event distribution</td>
+<td><p><strong>Chart</strong>: Distribution of all events received from each category during the designated time period:
 <ul><li>NetQ Agent</li><li>BTRFS Information</li><li>CL Support</li><li>Config Diff</li><li>Installed Packages</li><li>Link</li><li>LLDP</li><li>MTU</li><li>Node</li><li>Port</li><li>Resource</li><li>Running Config Diff</li><li>Sensor</li><li>Services</li><li>SSD Utilization</li><li>TCA Interface Stats</li><li>TCA Resource Utilization</li><li>TCA Sensors</li></ul>  
-The categories sort in descending order based on total count of alarms, with the largest number of alarms appearing at the top, followed by the next most, down to the chart with the fewest alarms.</p>
-<p><strong>Count</strong>: Total number of alarms received from each category during the designated time period.</p></td>
+The categories sort in descending order based on total count of events, with the largest number of events appearing at the top.</p>
+<p><strong>Count</strong>: Total number of events received from each category during the designated time period.</p></td>
 </tr>
 <tr class="even">
 <td>Table</td>
 <td>Listing of items that match the filter selection for the selected alarm categories:
 <ul>
-<li><strong>Events by Most Recent</strong>: Most recent event appear at the top</li>
+<li><strong>Events by Most Recent</strong>: Most-recent events appear at the top</li>
 <li><strong>Devices by Event Count</strong>: Devices with the most events appear at the top</li>
 </ul></td>
 </tr>
 <tr class="odd">
-<td>Show All Events</td>
-<td>Opens full screen Events | Alarms card with a listing of all events.</td>
+<td>View all</td>
+<td>Opens full-screen Events card with a listing of all events.</td>
 </tr>
 </tbody>
 </table>

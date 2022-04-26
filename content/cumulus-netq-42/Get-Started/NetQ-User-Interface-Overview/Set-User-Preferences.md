@@ -90,24 +90,4 @@ To change your password:
 
 ## Manage Your Workbenches
 
-You can view all of your workbenches in a list form, making it possible to manage various aspects of them. There are public and private workbenches. Public workbenches are visible by all users. Private workbenches are visible only by the user who created the workbench. From the Workbenches card, you can:
-
-- **Specify a home workbench**: This tells NetQ to open with that workbench when you log in instead of the default NetQ Workbench.
-- **Search for a workbench**: If you have a large number of workbenches, you can search for a particular workbench by name, or sort workbenches by their access type or cards that reside on them.
-- **Delete a workbench:** Perhaps there is one that you no longer use. You can remove workbenches that you have created (private workbenches). An administrative role is required to remove workbenches that are common to all users (public workbenches).
-
-To manage your workbenches:
-
-1. Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> in the application header to open the **User Settings** options.
-
-    {{<figure src="/images/netq/user-settings-profile-prefs-selected-222.png" width="150">}}
-
-2. Click **Profile & Preferences**.
-3. Locate the Workbenches card.
-
-    {{<figure src="/images/netq/user-settings-profile-prefs-wbs-card-222.png" width="500">}}
-
-4. To specify a home workbench, click to the left of the desired workbench name. <img src="https://icons.cumulusnetworks.com/49-Building-Construction/01-Houses/house-heart.svg" height="18" width="18"/> indicates your favorite workbench.
-5. To search the workbench list by name, access type, and cards present on the workbench, click the relevant header and begin typing your search criteria.
-6. To sort the workbench list, click the relevant header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg" height="18" width="18"/>.
-7. To delete a workbench, hover over the workbench name to view the **Delete** button. As an administrator, you can delete both private and public workbenches.
+Workbenches are an integral structure of the NetQ UI. They are where you collect and view the data that is important to you. For a detailed overview of workbenches, see {{<link title="Focus Your Monitoring Using Workbenches" text="Focus Your Monitoring Using Workbenches.">}}

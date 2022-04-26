@@ -57,7 +57,7 @@ You can see the ports with the following command:
 
 *\*Has a dynamically assigned port.*
 
-## Cumulus NetQ Ports
+## NetQ Ports
 
 The following ports must be open to use the NetQ 2.4 and later software:
 

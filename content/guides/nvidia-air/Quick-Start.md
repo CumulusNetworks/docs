@@ -70,7 +70,7 @@ The nodes list in the advanced view shows the status, number of CPUs, and amount
 
 #### Services
 
-Use the Services pane in the advanced view to create an external connection into the simulation if you prefer to access the simulation environment using your local preferred SSH client, run Grafana on the [oob-mgmt-server](## "Out-of-band Management Server") and access the Grafana GUI externally, or set up SNMP polling from your local laptop into the simulation environment.
+Use the Services pane in the advanced view to create an external connection into the simulation. You can access the simulation environment using your local preferred SSH client, run Grafana on the [oob-mgmt-server](## "Out-of-band Management Server") and access the Grafana GUI externally, or set up SNMP polling from your local laptop into the simulation environment.
 
 To set up a service:
 1. Click the **+ Add Service** button to open the Service dialog:

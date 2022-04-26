@@ -18,11 +18,11 @@ To monitor networkwide inventory, refer to {{<link title="Monitor Networkwide In
 
 ## Access DPU Inventory Data
 
-The Inventory | DPU card monitors the hardware- and software-component inventory on switches running NetQ in your network. Access this card from the NetQ Workbench, or add it to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory | DPU card > **Open Cards**.
+The Inventory | DPU card monitors the hardware- and software-component inventory on DPUs in your network. Access this card from the NetQ Workbench, or add it to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory | DPU card > **Open Cards**.
 
 ### View DPU Components
 
-NetQ displays DPU components on the Inventory | DPU card as a donut chart. You can view data for the following DPU components:
+NetQ displays DPU status and components on the Inventory | DPU card as a donut chart. The number fresh and rotten DPUs will be displayed in the card. Additionally, you can view data for the following DPU components:
 
 - Disk
 - Operating system

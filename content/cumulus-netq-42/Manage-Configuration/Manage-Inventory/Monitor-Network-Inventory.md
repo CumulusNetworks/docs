@@ -165,6 +165,50 @@ It can be useful to know the quantity and ratio of many components deployed in y
 
 {{</tab>}}
 
+{{<tab "Inventory|Hosts">}}
+
+1. Locate the Inventory|Hosts card on your workbench.
+
+2. Select a specific component from the dropdown menu.
+
+    {{<img src="/images/netq/inventory-hosts-l2-42.png" width="200">}}
+
+3. Hover over any of the segments in the distribution chart to highlight a specific component.
+
+   When you <em>hover</em>, a tooltip appears displaying:
+
+   - Name or value of the component type, such as the version number or status
+   - Total number of switches with that type of component deployed compared to the total number of switches
+   - Percentage of this type with respect to all component types
+
+4. Change to the large size card. The same information is shown separated by hardware and software, and sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in blue here).
+
+   {{<figure src="/images/netq/inventory-hosts-l3-42.png" width="600">}}
+
+{{</tab>}}
+
+{{<tab "Inventory|DPUs">}}
+
+1. Locate the Inventory|Switches card on your workbench.
+
+2. Select a specific component from the dropdown menu.
+
+    {{<figure src="/images/netq/dpu-inventory-platform-l2-42.png" width="200">}}
+
+3. Hover over any of the segments in the distribution chart to highlight a specific component.
+
+   When you <em>hover</em>, a tooltip appears displaying:
+
+   - Name or value of the component type, such as the version number or status
+   - Total number of switches with that type of component deployed compared to the total number of switches
+   - Percentage of this type with respect to all component types
+
+4. Change to the large size card. The same information is shown separated by hardware and software, and sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in blue here).
+
+   {{<figure src="/images/netq/dpu-inventory-l3-42.png" width="600">}}
+
+{{</tab>}}
+
 {{<tab "netq show inventory">}}
 
 To view switch components, run:

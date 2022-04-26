@@ -169,10 +169,10 @@ The following table reflects the information in the full-screen Events card.
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench.</td>
+<td>Closes full-screen card and returns to workbench.</td>
 </tr>
 <tr class="odd">
-<td>Default Time</td>
+<td>Default time</td>
 <!-- vale off -->
 <td>Range of time in which the displayed data was collected.</td>
 <!-- vale on -->
@@ -182,22 +182,17 @@ The following table reflects the information in the full-screen Events card.
 <td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
 </tr>
 <tr class="even">
-<td>Results</td>
-<td>Number of results found for the selected tab.</td>
+<td>Filters</td>
+<td>Restrict the number of results displayed in the charts and table by time, device, or severity.</td>
 </tr>
 <tr class="odd">
-<td>All Alarms</td>
-<td>Displays all alarms received in the time period. By default, the requests list sorts by the date and time that the event occurred (<strong>Time</strong>). This tab provides the following additional data about each request:
-<ul>
-<li><strong>Source</strong>: Hostname of the given event</li>
-<li><strong>Message</strong>: Text describing the alarm or info event that occurred</li>
-<li><strong>Type</strong>: Name of network protocol and/or service that triggered the given event</li>
-<li><strong>Severity</strong>: Importance of the event-critical, warning, info, or debug</li>
-</ul></td>
+<td>Event visualizations</td>
+<td>Displays events in charts and graphs that reflect the filter parameters. Select the tabs to either limit or expand the types of events reflected in the charts and graphs.
+</td>
 </tr>
 <tr class="even">
 <td>Table</td>
-<td>Displays events matching the filter parameters. From here, you can select, sort, and export events. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
+<td>Displays events matching the filter parameters. From here, you can select, sort, and export events. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}. You can also acknowledge events or create rules to suppress events.</td>
 </tr>
 </tbody>
 </table>

@@ -29,9 +29,6 @@ The left panel lists the nodes you can use to create the custom topology:
 - Ubuntu servers
 - SONiC switches
 - Generic nodes
-
-{{<img src="/images/guides/nvidia-air/CustomTopology_LeftPanel.png" width="150px">}}
-
 <!-- vale off -->
 The toolbar at the top of the custom topology landing page manages the topology. Click the default name **My Topology Project** for additional management options.
 <!-- vale on -->
@@ -54,31 +51,16 @@ To add a node, drag and drop it from the left panel.
 ### Edit Nodes
 
 After you add a node, you can edit it as needed. Click the node to select it and configure it using the options in the right panel.
-
-{{<img src="/images/guides/nvidia-air/CustomTopology_EditingNodes.png" width="800px">}}
-
+<!--{{<img src="/images/guides/nvidia-air/CustomTopology_EditingNodes.png" width="400px">}}-->
 - **Name**: The hostname of the node.
 - **OS**: The operating system version on the node. The supported operating system versions are in a dropdown list.
-
-  {{<img src="/images/guides/nvidia-air/CustomTopology_NodeOS.png" width="800px">}}
-
 - **Memory**: The amount of RAM on the node. The default is 1GB.
 - **CPU**: The number of CPUs allocated to the node. The default is 1 CPU.
 - **Role**: This is an advanced feature to define the role of the node to affect boot order. You typically do not have to assign a role.
-
-  {{<img src="/images/guides/nvidia-air/CustomTopology_Role.png" width="800px">}}
-
 - **Hardware Model**: Pre-populate the ports based on a specific hardware model of the switch selected. This does not affect the simulation, it acts as a macro to pre-populate the number of ports per switch model.
+- **Ports**: Add, rename, and edit port location and information for the diagram. Press the breakout button to simulate breaking out a port into a group of four.
 
-{{<img src="/images/guides/nvidia-air/CustomTopology_HardwareModel.png" width="800px">}}
-
-- **Ports**: Add, rename, and edit port location and information for the diagram.
-
-{{<img src="/images/guides/nvidia-air/CustomTopology_Ports.png" width="800px">}}
-
-Press the breakout button to simulate breaking out a port into a group of four.
-
-{{<img src="/images/guides/nvidia-air/CustomTopology_PortsBreakout.png" width="800px">}}
+   {{<img src="/images/guides/nvidia-air/CustomTopology_PortsBreakout.png" width="800px">}}
 
 ### Connect Nodes
 

@@ -214,6 +214,15 @@ switch# exit
 cumulus@switch:~$
 ```
 
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
+...
+address-family ipv4 unicast
+table-map routemap1
+```
+
 {{< /tab >}}
 {{< /tabs >}}
 

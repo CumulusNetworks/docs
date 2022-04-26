@@ -64,6 +64,8 @@ For ECMP load balancing between multiple next-hops of a layer 3 route, you can h
 | Inner destination port| off | `hash_config.inner_dport` |
 | Inner IPv6 flow label | off |`hash_config.inner_ip6_label` |
 
+Cumulus Linux does not provide NVUE commands to configure custom hashing.
+
 To set the hash fields:
 
 1. Edit the `/etc/cumulus/datapath/traffic.conf` file:
@@ -104,6 +106,44 @@ cumulus@switch:~$ echo 1 > /cumulus/switchd/ctrl/hash_config_reload
 {{%notice note%}}
 Cumulus Linux enables symmetric hashing by default. Make sure that the settings for the source IP and destination IP fields match, and that the settings for the source port and destination port fields match; otherwise Cumulus Linux disables symmetric hashing automatically. If necessary, you can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
 {{%/notice%}}
+
+## GTP Hashing
+
+[GTP](## "GPRS Tunneling Protocol") carries mobile data within the core of the mobile operator’s network. Traffic in the 5G Mobility core cluster, from cell sites to compute nodes, have the same source and destination IP address. The only way to identify individual flows is with the GTP [TEID](## "Tunnel Endpoint Identifier"). Enabling GTP hashing adds the TEID as a hash parameter and helps the Cumulus Linux switches in the network to distribute mobile data traffic evenly across ECMP routes.
+
+Cumulus Linux supports TEID-based ECMP hashing for:
+- [GTP-U](## "GPRS Tunnelling Protocol User") packets ingressing physical ports.
+- VXLAN encapsulated GTP-U packets terminating on egress [VTEPs](## "Virtual Tunnel End Points").
+
+For TEID-based load balancing for traffic on a bond, see {{<link url="Bonding-Link-Aggregation/#GTP Hashing" text="Bonding - Link Aggregation" >}}.
+
+GTP TEID-based ECMP hashing is only applicable if the outer header egressing the port is GTP encapsulated and if the ingress packet is either a GTP-U packet or a VXLAN encapsulated GTP-U packet.
+
+{{%notice note%}}
+- GTP Hashing is an early access feature.
+- Cumulus Linux supports GTP Hashing on NVIDIA Spectrum-2 and later.
+- [GTP-C](## "GPRS Tunnelling Protocol Control") packets are not part of GTP hashing.
+- Cumulus Linux does not provide NVUE commands to configure GTP hashing.
+{{%/notice%}}
+
+To enable TEID-based ECMP hashing:
+
+1. Edit the `/etc/cumulus/datapath/traffic.conf` file and change the `lag_hash_config.gtp_teid` parameter to `true`:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
+   ...
+   #GTP-U teid
+   hash_config.gtp_teid = true
+   ```
+
+2. Run the `echo 1 > /cumulus/switchd/ctrl/hash_config_reload` command. This command does not cause any traffic interruptions.
+
+   ```
+   cumulus@switch:~$ echo 1 > /cumulus/switchd/ctrl/hash_config_reload
+   ```
+
+To disable TEID-based ECMP hashing, set the `hash_config.gtp_teid` parameter to `false`, then reload the configuration.
 
 <!-- ### ECMP Hashing
 

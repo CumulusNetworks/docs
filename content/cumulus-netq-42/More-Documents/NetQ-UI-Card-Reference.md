@@ -12,21 +12,11 @@ This reference describes the cards available with the NetQ {{<version>}} graphic
 
 Cards opened on the default NetQ Workbench are not saved. Create a new workbench and open cards there to save and view the cards at a later time.
 
-<!-- vale off -->
-Cards are listed in alphabetical order by name.
-<!-- vale on -->
+## Events Card
 
-## Event Cards
+The Events card appears on the default NetQ Workbench. You can also add it to user-created workbenches. Use this card to monitor info and error events across your network. You can determine the number of events for the various systems, interfaces, devices, and network protocols and services components in the network.
 
-The event cards appear on the default NetQ Workbench. You can also add them to user-created workbenches.
-
-### Events|Alarms Card
-
-You can easily monitor critical events occurring across your network using the Alarms card. You can determine the number of events for the various system, interface, and network protocols and services components in the network.
-
-The small Alarms card displays:
-
-{{< figure src="/images/netq/events-alarms-small-231.png" width="200" >}}
+The following table reflects the information in the small Events card.
 
 <table>
 <colgroup>
@@ -74,9 +64,7 @@ The small Alarms card displays:
 </tbody>
 </table>
 
-The medium Alarms card displays:
-
-{{< figure src="/images/netq/events-alarms-medium-222.png" width="200" >}}
+The following table reflects the information in the medium Events card.
 
 <table>
 <colgroup>
@@ -115,11 +103,7 @@ The medium Alarms card displays:
 </tbody>
 </table>
 
-The large Alarms card has one tab.
-
-The *Alarm Summary* tab displays:
-
-{{< figure src="/images/netq/events-alarms-large-summ-tab-231.png" width="500" >}}
+The following table reflects the information in the large Events card.
 
 <table>
 <colgroup>
@@ -165,9 +149,7 @@ The categories sort in descending order based on total count of alarms, with the
 </tbody>
 </table>
 
-The full screen Alarms card provides tabs for all events.
-
-{{< figure src="/images/netq/events-alarms-fullscr-allevents-tab-300.png" width="700" >}}
+The following table reflects the information in the full-screen Events card.
 
 <table>
 <colgroup>
@@ -214,197 +196,6 @@ The full screen Alarms card provides tabs for all events.
 </ul></td>
 </tr>
 <tr class="even">
-<td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
-</tr>
-</tbody>
-</table>
-
-### Events|Info Card
-
-You can easily monitor warning, info, and debug severity events occurring across your network using the Info card. You can determine the number of events for the various system, interface, and network protocols and services components in the network.
-
-The small Info card displays:
-
-{{<figure src="/images/netq/events-info-small-222.png" width="200">}}
-
-<table>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-plain-1.svg" height="18" width="18"/></td>
-<td>Indicates data is for all warning, info, and debug severity events in the network</td>
-</tr>
-<tr class="even">
-<td>Info count</td>
-<td>Number of info events received during the designated time period</td>
-</tr>
-<tr class="odd">
-<td>Alarm count</td>
-<td>Number of alarm events received during the designated time period</td>
-</tr>
-<tr class="even">
-<td>Chart</td>
-<td>Distribution of all info events and alarms received during the designated time period</td>
-</tr>
-</tbody>
-</table>
-
-The medium Info card displays:
-
-{{<figure src="/images/netq/events-info-medium-222.png" width="200">}}
-
-<table>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-1.svg" height="18" width="18"/></td>
-<td>Indicates data is for all warning, info, and debug severity events in the network.</td>
-</tr>
-<tr class="odd">
-<td>Types of Info</td>
-<td>Chart which displays the services that have triggered events during the designated time period. Hover over chart to view a count for each type.</td>
-</tr>
-<tr class="even">
-<td>Distribution of Info</td>
-<td>Info Status
-<ul>
-<li><strong>Count</strong>: Number of info events received during the designated time period.</li>
-<li><strong>Chart</strong>: Distribution of all info events received during the designated time period.</li>
-</ul>
-Alarms Status
-<ul>
-<li><strong>Count</strong>: Number of alarm events received during the designated time period.</li>
-<li><strong>Chart</strong>: Distribution of all alarm events received during the designated time period.</li>
-</ul></td>
-</tr>
-</tbody>
-</table>
-
-The large Info card displays:
-
-{{<figure src="/images/netq/events-info-large-222.png" width="500">}}
-
-<table>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-1.svg" height="18" width="18"/></td>
-<td>Indicates data is for all warning, info, and debug severity events in the network.</td>
-</tr>
-<tr class="odd">
-<td>Types of Info</td>
-<td>Chart which displays the services that have triggered events during the designated time period. Hover over chart to view a count for each type.</td>
-</tr>
-<tr class="even">
-<td>Distribution of Info</td>
-<td>Info Status
-<ul>
-<li><strong>Count</strong>: Current number of info events received during the designated time period.</li>
-<li><strong>Chart</strong>: Distribution of all info events received during the designated time period.</li>
-</ul>
-Alarms Status
-<ul>
-<li><strong>Count</strong>: Current number of alarm events received during the designated time period.</li>
-<li><strong>Chart</strong>: Distribution of all alarm events received during the designated time period.</li>
-</ul></td>
-</tr>
-<tr class="odd">
-<td>Table</td>
-<td>Listing of items that match the filter selection:
-<ul>
-<li><strong>Events by Most Recent</strong>: Most recent event are listed at the top.</li>
-<li><strong>Devices by Event Count</strong>: Devices with the most events are listed at the top.</li>
-</ul></td>
-</tr>
-<tr class="even">
-<td>Show All Events</td>
-<td>Opens full screen Events | Info card with a listing of all events.</td>
-</tr>
-</tbody>
-</table>
-
-The full screen Info card provides tabs for all events.
-
-{{<figure src="/images/netq/events-info-fullscr-300.png" width="700">}}
-
-<table>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Title</td>
-<td>Events | Info</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench.</td>
-</tr>
-<tr class="odd">
-<td>Default Time</td>
-<td><!-- vale off -->Range of time in which the displayed data was collected.<!-- vale on --></td>
-</tr>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
-<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
-</tr>
-<tr class="even">
-<td>Results</td>
-<td>Number of results found for the selected tab.</td>
-</tr>
-<tr class="odd">
-<td>All Events</td>
-<td>Displays all events (both alarms and info) received in the time period. By default, the requests list is sorted by the date and time that the event occurred (<strong>Time</strong>). This tab provides the following additional data about each request:
-<ul>
-<li><strong>Source</strong>: Hostname of the given event</li>
-<li><strong>Message</strong>: Text describing the alarm or info event that occurred</li>
-<li><strong>Type</strong>: Name of network protocol and/or service that triggered the given event</li>
-<li><strong>Severity</strong>: Importance of the event-critical, warning, info, or debug</li>
-</ul></td>
-</tr>
 <td>Table Actions</td>
 <td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>

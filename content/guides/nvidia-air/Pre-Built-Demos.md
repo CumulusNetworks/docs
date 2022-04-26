@@ -10,9 +10,7 @@ NVIDIA Air provides three pre-built demos:
 - Cumulus and SONiC in the Cloud
 - SONiC in the Cloud
 
-All three demos use the NVIDIA Cumulus Linux [reference topology](https://gitlab.com/cumulus-consulting/goldenturtle/cldemo2).
-
-The reference topology provides a common and consistent pre-configured spine and leaf-based network topology, which serves as the basis for all supported NVIDIA demos and golden standards. The reference topology is a blank slate with minimal configuration, and prepares the simulation to receive additional deployment and provisioning that demonstrates a feature or represents a fully operational production network.
+All three demos use the NVIDIA Cumulus Linux [reference topology](https://gitlab.com/cumulus-consulting/goldenturtle/cldemo2-air-builder/), which provides a common and consistent pre-configured spine and leaf-based network topology and serves as the basis for all supported NVIDIA demos and golden standards. The reference topology is a blank slate with minimal configuration, and prepares the simulation to receive additional deployment and provisioning that demonstrates a feature or represents a fully operational production network.
 
 The reference topology provides a complete two-tier spine and leaf topology. It also includes a complete out-of-band management network. The devices include:
 - Four Cumulus Linux spines
@@ -24,8 +22,7 @@ The reference topology provides a complete two-tier spine and leaf topology. It 
 - One Cumulus Linux out-of-band management switch (*oob-switch*)
 - One NVIDIA NetQ Cloud virtual appliance (*netq-ts*)
 
-{{<img src="/images/guides/cldemo2-diagram.png" >}}
-
+<!--{{<img src="/images/guides/cldemo2-diagram.png" >}}-->
 When you start the reference topology simulation environment, all interfaces (except for the out-of-band management network) are not configured and are administratively down. The golden standard configurations and demos provide interface and routing protocol configurations that you can apply to this simulation topology.
 
 ## Cumulus In The Cloud

@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 480
 toc: 3
 ---
-Linux bonding provides a way to aggregate multiple network interfaces (*slaves*) into a single logical bonded interface (*bond*). Link aggregation is useful for linear scaling of bandwidth, load balancing, and failover protection.
+Linux bonding provides a way to aggregate multiple network interfaces (*slaves*) into a single logical bonded interface (bond). Link aggregation is useful for linear scaling of bandwidth, load balancing, and failover protection.
 
 Cumulus Linux supports two bonding modes:
 
@@ -302,6 +302,8 @@ For load balancing between multiple interfaces that are members of the same bond
 | Ethertype| on | `lag_hash_config.ether_type` |
 | VLAN ID| on |`lag_hash_config.vlan_id` |
 
+Cumulus Linux does not provide NVUE commands to configure load balancing.
+
 To set the hash fields:
 
 1. Edit the `/etc/cumulus/datapath/traffic.conf` file:
@@ -343,6 +345,43 @@ Cumulus Linux enables symmetric hashing by default. Make sure that the settings 
 {{%/notice%}}
 
 You can also set a unique hash seed for each switch to avoid hash polarization. See {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP#unique-hash-seed" text="Unique Hash Seed">}}.
+
+## GTP Hashing
+
+[GTP](## "GPRS Tunneling Protocol") carries mobile data within the core of the mobile operator’s network. Traffic in the 5G Mobility core cluster, from cell sites to compute nodes, have the same source and destination IP address. The only way to identify individual flows is with the GTP [TEID](## "Tunnel Endpoint Identifier"). Enabling GTP hashing adds the TEID as a hash parameter and helps the Cumulus Linux switches in the network to distribute mobile data traffic evenly across ECMP routes.
+
+Cumulus Linux supports TEID-based load balancing for traffic egressing a bond and is only applicable if the outer header egressing the port is GTP encapsulated and if the ingress packet is either a GTP-U packet or a VXLAN encapsulated GTP-U packet.
+
+{{%notice note%}}
+- GTP Hashing is an early access feature.
+- Cumulus Linux supports GTP Hashing on NVIDIA Spectrum-2 and later.
+- [GTP-C](## "GPRS Tunnelling Protocol Control") packets are not part of GTP hashing.
+- Cumulus Linux does not provide NVUE commands to configure GTP hashing.
+{{%/notice%}}
+
+To enable TEID-based load balancing:
+
+1. Edit the `/etc/cumulus/datapath/traffic.conf` file:
+   - Uncomment the `hash_config.enable = true` line.
+   - Change the `lag_hash_config.gtp_teid` parameter to `true`.
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
+   ...
+   # Uncomment to enable custom fields configured below
+   hash_config.enable = true
+   ...
+   #GTP-U teid
+   lag_hash_config.gtp_teid = true
+   ```
+
+2. Run the `echo 1 > /cumulus/switchd/ctrl/hash_config_reload` command. This command does not cause any traffic interruptions.
+
+   ```
+   cumulus@switch:~$ echo 1 > /cumulus/switchd/ctrl/hash_config_reload
+   ```
+
+To disable TEID-based load balancing, set the `lag_hash_config.gtp_teid` parameter to `false`, then reload the configuration.
 
 <!--### Custom Hashing
 

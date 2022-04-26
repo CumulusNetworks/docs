@@ -5,9 +5,9 @@ weight: 980
 toc: 4
 ---
 
-*RDMA over Converged Ethernet* ({{<exlink url="http://www.roceinitiative.org/roce-introduction/" text="RoCE">}}) provides the ability to write to compute or storage elements using remote direct memory access (RDMA) over an Ethernet network instead of using host CPUs. RoCE relies on congestion control and lossless Ethernet to operate. Cumulus Linux and SONiC both support features that can enable lossless Ethernet for RoCE environments.
+*RDMA over Converged Ethernet* ({{<exlink url="http://www.roceinitiative.org/roce-introduction/" text="RoCE">}})  is a network protocol that writes to compute or storage elements using remote direct memory access (RDMA) over an Ethernet network instead of using host CPUs. RoCE relies on congestion control and lossless Ethernet to operate. Cumulus Linux and SONiC both support features that can enable lossless Ethernet for RoCE environments.
 
-RoCE helps you obtain a converged network, where all services run over the Ethernet infrastructure, including Infiniband apps.
+RoCE helps you obtain a converged network, where all services run over the Ethernet infrastructure, including InfiniBand apps.
 
 You monitor RoCE in your network with the UI and with the following CLI commands:
 

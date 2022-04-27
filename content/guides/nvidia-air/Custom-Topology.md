@@ -101,7 +101,7 @@ To export a custom topology, click the **EXPORT** button to download two files:
 - `topology.dot` is the network definition in Graphviz format.
 - `topology.svg` is the network diagram in Scalable Vector Graphics format.
 
-You can upload both files file to NVIDIA Air with the `Create Simulation` workflow. First, click the **Upload a topology file** card:
+You can upload both files to NVIDIA Air with the `Create Simulation` workflow. First, click the **Upload a topology file** card:
 
 {{<img src="/images/guides/nvidia-air/UploadTopology1.png" width="400px">}}
 
@@ -111,11 +111,11 @@ Then, upload the `topology.dot` and `topology.svg` filesD. Drag the `topology.do
 
 ## NetQ Integration
 
-To include NetQ with any simulation, make sure the NetQ toggle switch is on, which is the default behavior.
+To include NetQ with any simulation, make sure the NetQ toggle switch is on (green); this is the default setting.
 
 {{<img src="/images/guides/nvidia-air/NetQSlider.png" width="240px">}}
 
-To disable NetQ, click the toggle switch to disable it.
+To disable NetQ, click the toggle switch to disable it. The toggle changes color from green to grey.
 
 ## Create a Custom Topology from the Production Network
 

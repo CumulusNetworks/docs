@@ -45,9 +45,7 @@ Provide a name for the organization and the email address of each member you wan
 
 ### Delete an Organization
 
-To delete an organization, select the **Delete** option from the actions menu.
-
-{{<img src="/images/guides/nvidia-air/DeleteOrg.png" width="600px">}}
+To delete an organization, select **Delete** from the actions menu. NVIDIA AIR prompts you to enter the name of the organization to confirm the deletion.
 
 {{%notice info%}}
 Deleting an organization also deletes all the simulations and resources assigned to it.

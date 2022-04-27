@@ -183,7 +183,7 @@ The **SETTINGS** dropdown in the sidebar provides options to generate API tokens
 
 Click **API Tokens** in the **SETTINGS** dropdown to generate an authentication token, which enables you to execute authenticated activities using the NVIDIA Air API or SDK.
 
-In the API Tokens dialog, provide a name and expiration date (optional) for the token, then click **CREATE**.
+In the API Tokens window, provide a name and expiration date (optional) for the token, then click **CREATE**.
 
 {{<img src="/images/guides/nvidia-air/UserAPITokenCreate.png" width="300px">}}
 
@@ -197,7 +197,7 @@ This generates a token that you can use to access the API and SDK.
 
 Click **SSH Keys** in the **SETTINGS** dropdown to upload your public SSH key. Creating a simulation and enabling SSH allows for passwordless authentication.
 
-In the SSH keys dialog, provide a name and enter your public SSH key, then click **ADD**.
+In the SSH keys window, provide a name and enter your public SSH key, then click **ADD**.
 
 {{<img src="/images/guides/nvidia-air/UserSSHKeys.png" width="800px">}}
 

@@ -5,7 +5,7 @@
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script type="text/javascript" id="sim-script-{{ $simName }}">
     let button = document.getElementById("button");
-    btn.addEventListener('click', event => { 
+    button.addEventListener('click', event => { 
       const sim = new Simulation('{{ $simName }}', '{{ $autoLoad }}');
       sim.initHandler(document.getElementById('sim-script-{{ $simName }}').parentElement.previousElementSibling);
     });

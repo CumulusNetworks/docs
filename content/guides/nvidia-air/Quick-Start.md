@@ -23,6 +23,8 @@ After you log in, the NVIDIA Air landing page opens:
 
 {{<img src="/images/guides/nvidia-air/LandingPagewithCallouts.png" width="800px">}}
 
+<div style="margin-top: 20px;"></div>
+
 The landing page provides the following options:
 - **Sidebar**: Provides links to create simulations, configure organizations and settings, and view documentation.
 <!--{{<img src="/images/guides/nvidia-air/SideBar.png">}}-->
@@ -46,9 +48,11 @@ The basic view of the simulation provides a graphical view of the topology.
 
 {{<img src="/images/guides/nvidia-air/BasicView.png" width="800px">}}
 
+<div style="margin-top: 20px;"></div>
+
 Click a node in the topology to open a console and connect to that node:
 
-{{<img src="/images/guides/nvidia-air/Console.png" width="800px">}}
+{{<img src="/images/guides/nvidia-air/Console.png" width="500px">}}
 
 ### Advanced View
 
@@ -70,7 +74,7 @@ The nodes list in the advanced view shows the status, number of CPUs, and amount
 
 #### Services
 
-Use the Services pane in the advanced view to create an external connection into the simulation if you prefer to access the simulation environment using your local preferred SSH client, run Grafana on the [oob-mgmt-server](## "Out-of-band Management Server") and access the Grafana GUI externally, or set up SNMP polling from your local laptop into the simulation environment.
+Use the Services pane in the advanced view to create an external connection into the simulation. You can access the simulation environment using your local preferred SSH client, run Grafana on the [oob-mgmt-server](## "Out-of-band Management Server") and access the Grafana GUI externally, or set up SNMP polling from your local laptop into the simulation environment.
 
 To set up a service:
 1. Click the **+ Add Service** button to open the Service dialog:
@@ -87,6 +91,8 @@ The example below shows the creation of a service for TCP port 1022. The externa
 <!-- vale on -->
 
 {{<img src="/images/guides/nvidia-air/ServicesCreated.png" width="400px">}}
+
+<div style="margin-top: 20px;"></div>
 
 <!-- vale off -->
 The **ENABLE SSH** button populates the Services panel with an SSH session, which provides a shortcut to enable inbound SSH to the oob-mgmt-server. Use this shortcut to leverage your preferred local SSH client. SSH password authentication is disabled on the oob-mgmt-server by default. To use SSH password authentication, you must upload SSH keys to your user profile; see {{<link url="#user-settings" text="User Settings">}} below.
@@ -160,9 +166,11 @@ From the NVIDIA Air landing page, you can manage your simulations.
 
 {{<img src="/images/guides/nvidia-air/ManagingSimwithCallouts.png" width="800px">}}
 
+<div style="margin-top: 20px;"></div>
+
  Each public simulation has three options:
 - **Power On or Off** wakes the simulation up or puts it to sleep.
-- **Edit** lets you change the simulation name and organization, and set the simulation to never expire or sleep.
+- **Edit** lets you change the simulation name and organization.
 - **Delete** removes the simulation.
 
 ## User Settings
@@ -178,9 +186,13 @@ You can use API tokens to execute authenticated activities using the NVIDIA Air 
 
 {{<img src="/images/guides/nvidia-air/UserAPITokenTab.png" width="200px">}}
 
+<div style="margin-top: 20px;"></div>
+
 To generate a token, enter the required information in the fields and click **Create**.
 
 {{<img src="/images/guides/nvidia-air/UserAPITokenCreate.png" width="300px">}}
+
+<div style="margin-top: 20px;"></div>
 
 This generates a token that you can use to access the API and SDK.
 
@@ -191,6 +203,8 @@ This generates a token that you can use to access the API and SDK.
 The **SSH Keys** tab is where you can upload your public SSH key.
 
 {{<img src="/images/guides/nvidia-air/UserSSHKeysTab.png" width="200px">}}
+
+<div style="margin-top: 20px;"></div>
 
 The SSH keys upload automatically to the oob-mgmt-server. Creating a simulation and enabling SSH allows for passwordless authentication.
 

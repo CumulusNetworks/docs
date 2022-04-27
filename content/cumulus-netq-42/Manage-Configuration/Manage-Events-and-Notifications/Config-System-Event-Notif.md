@@ -4,9 +4,9 @@ author: NVIDIA
 weight: 780
 toc: 3
 ---
-To take advantage of the various event messages generated and processed by NetQ, you must integrate with third-party event notification applications. You can integrate NetQ with <!-- vale off -->Syslog<!-- vale on -->, PagerDuty, Slack, and email. A generic webhook channel also exists to send notifications to other third party applications. You can integrate with one or more of these applications simultaneously.
+To receive the event messages generated and processed by NetQ, you must integrate a third-party event notification application into your workflow. You can integrate NetQ with <!-- vale off -->Syslog<!-- vale on -->, PagerDuty, Slack, and/or email. Alternately, you can send notifications to other third-party applications via a generic webhook channel.
 
-In an on-premises deployment, the NetQ On-premises Appliance or VM receives the raw data stream from the NetQ Agents, processes the data, stores, and delivers events to the Notification function. Notification then filters and sends messages to any configured notification applications. In a cloud deployment, the NetQ Cloud Appliance or VM passes the raw data stream on to the NetQ Cloud service for processing and delivery.
+In an on-premises deployment, the NetQ On-premises Appliance or VM receives the raw data stream from the NetQ Agents, processes the data, then stores and delivers events to the Notification function. The Notification function filters and sends messages to any configured notification applications. In a cloud deployment, the NetQ Cloud Appliance or VM passes the raw data stream to the NetQ Cloud service for processing and delivery.
 
 {{<figure src="/images/netq/event-notif-arch-onprem-330.png">}}
 
@@ -14,7 +14,7 @@ In an on-premises deployment, the NetQ On-premises Appliance or VM receives the 
 
 {{<notice note>}}
 
-You can implement a proxy server (that sits between the NetQ Appliance or VM and the integration channels) that receives, processes and distributes the notifications rather than having them sent directly to the integration channel. If you use such a proxy, you must configure NetQ with the proxy information.
+You can implement a proxy server (that sits between the NetQ Appliance or VM and the integration channels) that receives, processes, and distributes the notifications rather than having them sent directly to the integration channel. If you use such a proxy, you must configure NetQ with the proxy information.
 
 {{</notice>}}
 
@@ -22,9 +22,9 @@ Notifications are generated for the following types of events:
 
 | Category | Events |
 | --- | --- | 
-| Network Protocol Validations | <ul><li>BGP status and session state</li><li>MLAG (CLAG) status and session state</li><li>EVPN status and session state</li><li>LLDP status</li><li>OSPF status and session state </li><li>VLAN status and session state \*</li><li>VXLAN status and session state \*</li></ul> |
+| Network Protocol Validations | <ul><li>BGP status and session state</li><li>MLAG (CLAG) status and session state</li><li>EVPN status and session state</li><li>LLDP status</li><li>OSPF status and session state </li><li>VLAN status and session state </li><li>VXLAN status and session state </li></ul> |
 | Interfaces | <ul><li>Link status</li><li>Ports and cables status</li><li>MTU status</li></ul> |
-| Services | <ul><li>NetQ Agent status</li><li>PTM\*</li><li>SSH \*</li><li>NTP status\*</li></ul> |
+| Services | <ul><li>NetQ Agent status</li><li>PTM</li><li>SSH \*</li><li>NTP status</li></ul> |
 | Traces | <ul><li>On-demand trace status</li><li>Scheduled trace status</li></ul> |
 | Sensors | <ul><li>Fan status</li><li>PSU (power supply unit) status</li><li>Temperature status</li></ul> |
 | System Software | <ul><li>Configuration File changes</li><li>Running Configuration File changes</li><li>Cumulus Linux Support status</li><li>Software Package status</li><li>Operating System version</li><li>Lifecycle Management status</li></ul> |
@@ -32,9 +32,7 @@ Notifications are generated for the following types of events:
 
 *\* This type of event can only be viewed in the CLI with this release.*
 
-Event filters are based on rules you create. You must have at least one rule per filter. A select set of events can be triggered by a user-configured threshold.
-
-Refer to the {{<link title="System Event Messages Reference">}} for descriptions and examples of these events.
+Event filters are based on rules you create. You must have at least one rule per filter. A select set of events can be triggered by a user-configured threshold. Refer to the {{<link title="System Event Messages Reference">}} for descriptions and examples of these events.
 
 ## Event Message Format
 
@@ -67,12 +65,12 @@ The simplest configuration you can create is one that sends all events generated
 A notification configuration must contain one channel, one rule, and one filter. Creation of the configuration follows this same path:
 
 1. Add a channel.
-2. Add a rule that accepts a selected set events.
+2. Add a rule that accepts a selected set of events.
 3. Add a filter that associates this rule with the newly created channel.
 
 ### Create a Channel
 
-The first step is to create a PagerDuty, Slack, syslog, or Email channel to receive the notifications.
+The first step is to create a PagerDuty, Slack, syslog, or email channel to receive the notifications.
 
 {{<tabs "TabID81" >}}
 
@@ -322,8 +320,6 @@ You can use the NetQ UI or the NetQ CLI to create an email channel.
 
     {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
 
-    {{<figure src="/images/netq/main-menu-channels-selected-320.png" width="600">}}
-
 2. Click **Email**.
 
     {{<figure src="/images/netq/channels-noemail-created-320.png" width="700">}}
@@ -337,9 +333,9 @@ You can use the NetQ UI or the NetQ CLI to create an email channel.
 
     {{<figure src="/images/netq/channels-add-email-320.png" width="250">}}
 
-5. Enter a list of emails for the persons who you want to receive the notifications from this channel.
+5. Enter a list of emails for the people who you want to receive notifications from this channel.
 
-    Enter the emails separated by commas, and no spaces. For example: `user1@domain.com,user2@domain.com,user3@domain.com`.
+    Enter the emails separated by commas, and no spaces. For example: `user1@domain.com,user2@domain.com,user3@domain.com`
 
 6. The first time you configure an email channel, you must also specify the SMTP server information:
 
@@ -360,7 +356,7 @@ You can use the NetQ UI or the NetQ CLI to create an email channel.
 
     {{<figure src="/images/netq/channels-email-created-320.png" width="700">}}
 
-9. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
+9. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}}.
 
 {{</tab>}}
 
@@ -1531,7 +1527,7 @@ Create an interface rule based on port:
     cumulus@switch:~$ netq add notification rule swp52 key port value swp52
     Successfully added/updated rule swp52 
 
-#### View the Rule Configurations
+#### View Rule Configurations
 
 Use the `netq show notification` command to view the rules on your
 platform.

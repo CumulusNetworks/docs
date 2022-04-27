@@ -25,16 +25,15 @@ After you log in, the NVIDIA Air landing page opens:
 
 <div style="margin-top: 20px;"></div>
 
-The landing page provides the following options:
-- **Sidebar**: Provides links to create simulations, configure organizations and settings, and view documentation.
+- The **Sidebar** provides links to create simulations, configure organizations and settings, and view documentation.
 <!--{{<img src="/images/guides/nvidia-air/SideBar.png">}}-->
-- **Filter Organizations**: If you belong to multiple organizations, you can filter your list of simulations based on organization.
+- The **Filter Organizations** funnel lets you filter your list of simulations based on organization, if you belong to multiple organizations.
 <!--{{<img src="/images/guides/nvidia-air/OrganizationDropdown.png" width="250px">}}-->
-- **Search Simulations**: If you have more than one simulation, you can filter your simulations based on a text match.
+- The **Search Simulations** box lets filter your simulations based on a text match, if you have more than one simulation.
 <!--{{<img src="/images/guides/nvidia-air/SearchSimulation.png">}}-->
-- **Build a Simulation**: If you have no simulations, click the **BUILD A SIMULATION** button. NVIDIA Air provides {{<link title="Pre-built Demos">}} to help you get started.<!--{{<img src="/images/guides/nvidia-air/BuildSim.png" width="300px">}}-->
+- The **Build a Simulation** button lets you build a new simulation. This button appears only if you have no simulations. NVIDIA Air provides {{<link title="Pre-built Demos">}} to help you get started.<!--{{<img src="/images/guides/nvidia-air/BuildSim.png" width="300px">}}-->
 
-   A new window opens so that you can choose from different ways to build a simulation.
+   When you click the **Build a Simulation** button, a new window opens so that you can choose from different ways to build a simulation.
 
    {{<img src="/images/guides/nvidia-air/Catalog.png" width="800px">}}
 
@@ -100,7 +99,7 @@ The **ENABLE SSH** button populates the Services panel with an SSH session, whic
 
 ## Log into Virtual Machines
 
-Use the operating system default credentials to log into your virtual machines. Some operating systems require you to change your password after the first successful login.
+To log into your virtual machines, use the operating system default credentials. Some operating systems require you to change your password after the first successful login.
 
 {{< tabs "TabID112 ">}}
 {{< tab "oob-mgmt-server ">}}
@@ -197,7 +196,7 @@ This generates a token that you can use to access the API and SDK.
 
 Click **SSH Keys** in the **SETTINGS** dropdown to upload your public SSH key. Creating a simulation and enabling SSH allows for passwordless authentication.
 
-In the SSH keys window, provide a name and enter your public SSH key, then click **ADD**.
+In the SSH keys window, provide a name and enter your public key, then click **ADD**.
 
 {{<img src="/images/guides/nvidia-air/UserSSHKeys.png" width="800px">}}
 

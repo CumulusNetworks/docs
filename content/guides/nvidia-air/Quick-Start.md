@@ -175,20 +175,15 @@ From the NVIDIA Air landing page, you can manage your simulations.
 
 ## User Settings
 
-The **SETTINGS** dropdown in the sidebar provides options to:
+The **SETTINGS** dropdown in the sidebar provides options to generate API tokens and upload SSH keys.
 
-- Generate API tokens
-- Upload SSH keys
+{{<img src="/images/guides/nvidia-air/UserAPITokenTab.png" width="200px">}}
 
 ### API Tokens
 
 Click **API Tokens** in the **SETTINGS** dropdown to generate an authentication token, which enables you to execute authenticated activities using the NVIDIA Air API or SDK.
 
-{{<img src="/images/guides/nvidia-air/UserAPITokenTab.png" width="200px">}}
-
-<div style="margin-top: 20px;"></div>
-
-In the API Tokens dialog, provide a name and expiration date (optional) for the token and click **Create**.
+In the API Tokens dialog, provide a name and expiration date (optional) for the token, then click **CREATE**.
 
 {{<img src="/images/guides/nvidia-air/UserAPITokenCreate.png" width="300px">}}
 
@@ -200,12 +195,12 @@ This generates a token that you can use to access the API and SDK.
 
 ### SSH Keys
 
-Click **SSH Keys** in the **SETTINGS** dropdown to upload your public SSH key.
+Click **SSH Keys** in the **SETTINGS** dropdown to upload your public SSH key. Creating a simulation and enabling SSH allows for passwordless authentication.
 
-{{<img src="/images/guides/nvidia-air/UserSSHKeysTab.png" width="200px">}}
+In the SSH keys dialog, provide a name and enter your public SSH key, then click **ADD**.
+
+{{<img src="/images/guides/nvidia-air/UserSSHKeys.png" width="800px">}}
 
 <div style="margin-top: 20px;"></div>
 
-The SSH keys upload automatically to the oob-mgmt-server. Creating a simulation and enabling SSH allows for passwordless authentication.
-
-{{<img src="/images/guides/nvidia-air/UserSSHKeys.png" width="800px">}}
+The SSH keys upload automatically to the oob-mgmt-server.

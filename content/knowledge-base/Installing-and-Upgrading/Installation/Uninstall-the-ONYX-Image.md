@@ -51,8 +51,7 @@ If you need to stop the process, press `Enter` and run the `onie-discovery-stop`
 
 {{%notice info%}}
 
-If the switch ships with Onyx from the factory, the platform identifier (PSID) code restricts the switch to Onyx and the switch only supports NVIDIA optics. When migrating from Onyx to Cumulus Linux, you must change the PSID to remove this lock and enable all non-NVIDIA optics. Moreover, outdated PSID causes physical interfaces not to come up in Cumulus Linux. Also, if the PSID was incorrectly updated, the switch could not be operational at all and will not work without advanced support or even RMA. </br>
-Future releases plan to change the PSID automatically. For more information, contact NVIDIA support.
+If the switch ships with Onyx from the factory, the platform identifier (PSID) code restricts the switch to Onyx and the switch only supports NVIDIA optics. When migrating from Onyx with version lower than 3.9.2400 to Cumulus Linux, you must change the PSID to remove this lock and enable all non-NVIDIA optics. Moreover, outdated PSID causes physical interfaces not to come up in Cumulus Linux. Also, if the PSID was incorrectly updated, the switch could not be operational at all and will not work without advanced support or even RMA. For more information, contact NVIDIA support.
 
 {{%/notice%}}
 

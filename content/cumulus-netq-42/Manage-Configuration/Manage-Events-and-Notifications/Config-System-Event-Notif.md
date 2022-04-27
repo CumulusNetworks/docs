@@ -47,7 +47,7 @@ Messages have the following structure:
 | timestamp    | Date and time event occurred  |
 | opid         | Identifier of the service or process that generated the event |
 | hostname     | Hostname of network device where event occurred |
-| severity     | Severity level in which the given event is classified; *debug*, *error*, *info*, *warning,* or *critical* |
+| severity     | Severity level in which the given event is classified; *debug*, *error*, *info*, or *warning* |
 | message      | Text description of event  |
 
 For example:
@@ -658,7 +658,7 @@ proxy4:80          yes                        yes
 
 ### Create Channels
 
-Create one or more PagerDuty, Slack, syslog, rmail, or generic channels to receive notifications.
+Create one or more PagerDuty, Slack, syslog, email, or generic channels to receive notifications.
 
 {{<tabs "TabID566" >}}
 
@@ -1490,43 +1490,43 @@ PSU: up, down</td>
 
 {{<notice note>}}
 
-Rule names are case sensitive, and you cannot use wildcards. Rule names can contain spaces, but you must enclose them with single quotes in commands. It is easier to use dashes in place of spaces or mixed case for better readability. For example, use *bgpSessionChanges* or *BGP-session-changes* or *BGPsessions*, instead of *BGP Session Changes*. Use Tab completion to view the command options syntax.
+Rule names are case sensitive, and you cannot use wildcards. Rule names can contain spaces, but you must enclose them with single quotes in commands. It is easier to use dashes in place of spaces or mixed case for better readability. For example, use *bgpSessionChanges* or *BGP-session-changes* or *BGPsessions*, instead of *BGP Session Changes*. Use tab completion to view the command options syntax.
 
 {{</notice>}}
 
 #### Example Rules
 
-Create a BGP Rule Based on Hostname:
+Create a BGP rule based on hostname:
 
     cumulus@switch:~$ netq add notification rule bgpHostname key hostname value spine-01
     Successfully added/updated rule bgpHostname 
 
-Create a Rule Based on a Configuration File State Change:
+Create a rule based on a configuration file state change:
 
     cumulus@switch:~$ netq add notification rule sysconf key configdiff value updated
     Successfully added/updated rule sysconf
 
-Create an EVPN Rule Based on a VNI:
+Create an EVPN rule based on a VNI:
 
     cumulus@switch:~$ netq add notification rule evpnVni key vni value 42
     Successfully added/updated rule evpnVni
 
-Create an Interface Rule Based on FEC Support:
+Create an interface rule based on FEC support:
 
     cumulus@switch:~$ netq add notification rule fecSupport key new_supported_fec value supported
     Successfully added/updated rule fecSupport
 
-Create a Service Rule Based on a Status Change:
+Create a service rule based on a status change:
 
     cumulus@switch:~$ netq add notification rule svcStatus key new_status value down
     Successfully added/updated rule svcStatus
 
-Create a Sensor Rule Based on a Threshold:
+Create a sensor rule based on a threshold:
 
     cumulus@switch:~$ netq add notification rule overTemp key new_s_crit value 24
     Successfully added/updated rule overTemp
 
-Create an Interface Rule Based on Port:
+Create an interface rule based on port:
 
     cumulus@switch:~$ netq add notification rule swp52 key port value swp52
     Successfully added/updated rule swp52 
@@ -1552,9 +1552,9 @@ platform.
 
 ### Create Filters
 
-You can limit or direct event messages using filters. Filters get created based on rules you define, like those in the previous section. Each filter contains one or more rules. When a message matches the rule, it gets sent to the indicated destination. Before you can create filters, you need to have already defined the rules and configured channels (as described earlier).
+You can limit or direct event messages using filters. Filters are created based on rules you define, like those in the previous section. Each filter contains one or more rules. When a message matches the rule, it is sent to the indicated destination. Before you can create filters, you need to have already defined the rules and configured channels (as described earlier).
 
-As you create filters, they get added to the bottom of a filter list. By default, NetQ processes filters in the order they appear in this list (from top to bottom) until it finds a match. This means that NetQ first evaluates each event message by the first filter listed, and if it matches then NetQ it, ignoring all other filters, and the system moves on to the next event message received. If the event does not match the first filter, NetQ tests it against the second filter, and if it matches then NetQ processes it and the system moves on to the next event received, and so forth. NetQ ignores events that do not match any filter.
+As you create filters, they are added to the bottom of a filter list. By default, NetQ processes filters in the order they appear in this list (from top to bottom) until it finds a match. This means that NetQ first evaluates each event message by the first filter listed, and if it matches then NetQ it, ignoring all other filters, and the system moves on to the next event message received. If the event does not match the first filter, NetQ tests it against the second filter, and if it matches then NetQ processes it and the system moves on to the next event received, and so forth. NetQ ignores events that do not match any filter.
 
 You mght have to change the order of filters in the list to ensure you capture the events you want and drop the events you do not want. This is possible using the *before* or *after* keywords to ensure one rule gets processed before or after another.
 

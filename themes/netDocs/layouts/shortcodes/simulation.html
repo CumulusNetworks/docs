@@ -5,10 +5,10 @@
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script type="text/javascript" id="sim-script-{{ $simName }}">
     let button = document.getElementById("button");
-    button.addEventListener('click', event => { 
+    button.addEventListener("click", launchSim() {;
       const sim = new Simulation('{{ $simName }}', '{{ $autoLoad }}');
       sim.initHandler(document.getElementById('sim-script-{{ $simName }}').parentElement.previousElementSibling);
-    });
+    })
     </script>
     <script type="text/javascript">
       function recaptcha_callback(){

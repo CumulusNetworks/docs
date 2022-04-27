@@ -52,7 +52,7 @@ The basic view of the simulation provides a graphical view of the topology.
 
 Click a node in the topology to open a console and connect to that node:
 
-{{<img src="/images/guides/nvidia-air/Console.png" width="800px">}}
+{{<img src="/images/guides/nvidia-air/Console.png" width="500px">}}
 
 ### Advanced View
 

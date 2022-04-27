@@ -62,4 +62,8 @@ To view details about each organization and to manage members, click the organiz
 - To view usage statistics for an organization, click the **Usage** link. You can see how many simulations are in the organization and how much CPU, memory, and disk storage the organization uses.
 - To add a new member, click the **Members** link, then click the **Add Member** button. In the Add Members dialog, provide the email address of the member you want to add. If you want the member to be an administrator, click **ORGANIZATION ADMIN** so that the button turns green.
 - To edit resource limits for a member such as CPU, memory, and storage and the number of simulations allowed, select **Edit Membership** from the actions menu.
-- To remove a member, select **Remove Member** from the actions menu. Removing a member from an organization also moves all their simulations out of the organization.
+- To remove a member, select **Remove Member** from the actions menu.
+
+   {{%notice note%}}
+Removing a member from an organization also moves all their simulations out of the organization.
+{{%/notice%}}

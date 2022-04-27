@@ -27,7 +27,7 @@ If you are an Organization Administrator, you can create and manage organization
 
 To see the list of current organizations, click **Organization List** from the **ORGANIZATIONS** dropdown in the left pane.
 
-{{<img src="/images/guides/nvidia-air/OrgList.png">}}
+{{<img src="/images/guides/nvidia-air/OrgList.png" width="800px">}}
 
 <div style="margin-top: 20px;"></div>
 

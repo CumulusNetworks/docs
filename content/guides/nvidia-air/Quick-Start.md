@@ -162,7 +162,7 @@ From the NVIDIA Air landing page, you can manage your simulations.
 
  Each public simulation has three options:
 - **Power On or Off** wakes the simulation up or puts it to sleep.
-- **Edit** lets you change the simulation name and organization, and set the simulation to never expire or sleep.
+- **Edit** lets you change the simulation name and organization.
 - **Delete** removes the simulation.
 
 ## User Settings

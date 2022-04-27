@@ -8,7 +8,7 @@
     button.addEventListener("click", launchSim() {
       const sim = new Simulation('{{ $simName }}', '{{ $autoLoad }}');
       sim.initHandler(document.getElementById('sim-script-{{ $simName }}').parentElement.previousElementSibling);
-    })
+    });
     </script>
     <script type="text/javascript">
       function recaptcha_callback(){

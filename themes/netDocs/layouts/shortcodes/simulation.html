@@ -1,11 +1,32 @@
 {{ if .Parent }}
   {{ $simName := .Get "name" }}
   {{ $autoLoad := default "all" (.Get "showNodes") }}
+<body>
+<div class="g-recaptcha" id="rcaptcha" style="margin-left: 90px;" data-sitekey="6LerLacfAAAAAKg8VWyDZrhsBK3tIkO41fswN2k_"></div>
+<span id="captcha" style="margin-left:100px;color:red" />
+<script type="text/javascript">
+function get_action(form) 
+{
+    var v = grecaptcha.getResponse();
+    if(v.length == 0)
+    {
+        document.getElementById('captcha').innerHTML="You can't leave Captcha Code empty";
+        return false;
+    }
+    else
+    {
+        document.getElementById('captcha').innerHTML="Captcha completed";
+        return true; 
+    }
+}
+{% if v == 'true' %}<div>
   <iframe name="loading-container-{{ $simName }}" class="terminal-iframe loading-container"></iframe>
   <iframe name="console-container-{{ $simName }}" class="terminal-iframe terminal-hidden"></iframe>
   <script type="text/javascript" id="sim-script-{{ $simName }}">
     const sim = new Simulation('{{ $simName }}', '{{ $autoLoad }}');
     sim.initHandler(document.getElementById('sim-script-{{ $simName }}').parentElement.previousElementSibling);
   </script>
+</div>{% endif %}
+</script>
+</body>
 {{ end }}
-

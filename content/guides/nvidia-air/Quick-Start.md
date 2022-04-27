@@ -164,7 +164,7 @@ Password: `nvidia`
 
 From the NVIDIA Air landing page, you can manage your simulations.
 
-{{<img src="/images/guides/nvidia-air/ManagingSimwithCallouts.png" width="800px">}}
+{{<img src="/images/guides/nvidia-air/ManagingSimwithCallouts.png" width="900px">}}
 
 <div style="margin-top: 20px;"></div>
 

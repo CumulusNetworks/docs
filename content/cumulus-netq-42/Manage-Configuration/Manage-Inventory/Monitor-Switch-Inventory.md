@@ -740,7 +740,7 @@ The CLI syntax for viewing the status of services is:
 ```
 netq [<hostname>] show services [<service-name>] [vrf <vrf>] [active|monitored] [around <text-time>] [json]
 netq [<hostname>] show services [<service-name>] [vrf <vrf>] status (ok|warning|error|fail) [around <text-time>] [json]
-netq [<hostname>] show events [level info | level error | level warning | level critical | level debug] type services [between <text-time> and <text-endtime>] [json]
+netq [<hostname>] show events [level info | level error | level warning | level debug] type services [between <text-time> and <text-endtime>] [json]
 ```
 
 ### View All Services on All Devices

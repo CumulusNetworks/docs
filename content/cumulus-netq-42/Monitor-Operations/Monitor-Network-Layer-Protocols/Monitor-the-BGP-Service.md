@@ -561,7 +561,7 @@ To return to your workbench, click <img src="https://icons.cumulusnetworks.com/0
 To view all BGP alarms, run:
 
 ```
-netq show events [level info | level error | level warning | level critical | level debug] type bgp [between <text-time> and <text-endtime>] [json]
+netq show events [level info | level error | level warning | level debug] type bgp [between <text-time> and <text-endtime>] [json]
 ```
 
 Use the `level` option to set the severity of the events to show. Use the `between` option to show events within a given time range.

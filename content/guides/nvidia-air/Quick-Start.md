@@ -67,25 +67,25 @@ The advanced view has four different panes:
 
 #### Nodes
 
-The nodes list in the advanced view shows the status, number of CPUs, and amount of memory for each node. Click the **Actions** dropdown for a node and select:
+Use the **Nodes** pane in the advanced view to see the status, number of CPUs, and amount of memory for each node. Click the **Actions** dropdown for a node and select:
   - **Rebuild** to restore the node to its default configuration.
   - **Reset** to issue a hard reset to the node.
   - **View Console** to connect to the node from a console.
 
 #### Services
 
-Use the Services pane in the advanced view to create an external connection into the simulation. You can access the simulation environment using your local preferred SSH client, run Grafana on the [oob-mgmt-server](## "Out-of-band Management Server") and access the Grafana GUI externally, or set up SNMP polling from your local laptop into the simulation environment.
+Use the **Services** pane in the advanced view to create an external connection into the simulation. You can access the simulation environment using your local preferred SSH client, run Grafana on the [oob-mgmt-server](## "Out-of-band Management Server") and access the Grafana GUI externally, or set up SNMP polling from your local laptop into the simulation environment.
 
 To set up a service:
 1. Click the **+ Add Service** button to open the Service dialog:
 
   {{<img src="/images/guides/nvidia-air/ServicesCreate.png" width="400px">}}
 
-2. In the **Service Name** field, enter the name of the service. This is a free form text field.
-3. In the **Interface** dropdown, select the name of the interface in the simulation where the connection terminates. This is typically the eth0interface on the oob-mgmt-server.
-4. In the **Service Type** dropdown, select the type of service you want to create. If you select *SSH*, *HTTP* or *HTTPS*, NVIDIA Air creates a hyperlink to the URL automatically in the Services panel. If you select *Other*, you can select any port, but there is no hyperlink. The hyperlink provides a quick way to copy and paste the service.
-5. In the **Service Port** field, specify the internal port where the service terminates.
-6. Click **Submit** to create the service.
+2. In the **SERVIDE NAME** field, enter the name of the service.
+3. In the **INTERFACE** dropdown, select the name of the interface in the simulation where the connection terminates. This is typically the eth0interface on the oob-mgmt-server.
+4. In the **SERVICE TYPE** dropdown, select the type of service you want to create. If you select *SSH*, *HTTP* or *HTTPS*, NVIDIA Air creates a hyperlink to the URL automatically in the Services panel. If you select *Other*, you can select any port, but there is no hyperlink. The hyperlink provides a quick way to copy and paste the service.
+5. In the **SERVICE PORT** field, specify the internal port where the service terminates.
+6. Click **SUBMIT** to create the service.
 <!-- vale off -->
 The example below shows the creation of a service for TCP port 1022. The external port is 24886. Connecting to this service requires connecting to worker06.air.nvidia.com on TCP port 24886, which forwards and redirects to the oob-mgmt-server on TCP port 1022.
 <!-- vale on -->
@@ -182,13 +182,13 @@ The **SETTINGS** dropdown in the sidebar provides options to:
 
 ### API Tokens
 
-You can use API tokens to execute authenticated activities using the NVIDIA Air API or SDK.
+Click **API Tokens** in the **SETTINGS** dropdown to generate an authentication token, which enables you to execute authenticated activities using the NVIDIA Air API or SDK.
 
 {{<img src="/images/guides/nvidia-air/UserAPITokenTab.png" width="200px">}}
 
 <div style="margin-top: 20px;"></div>
 
-To generate a token, enter the required information in the fields and click **Create**.
+In the API Tokens dialog, provide a name and expiration date (optional) for the token and click **Create**.
 
 {{<img src="/images/guides/nvidia-air/UserAPITokenCreate.png" width="300px">}}
 
@@ -200,7 +200,7 @@ This generates a token that you can use to access the API and SDK.
 
 ### SSH Keys
 
-The **SSH Keys** tab is where you can upload your public SSH key.
+Click **SSH Keys** in the **SETTINGS** dropdown to upload your public SSH key.
 
 {{<img src="/images/guides/nvidia-air/UserSSHKeysTab.png" width="200px">}}
 

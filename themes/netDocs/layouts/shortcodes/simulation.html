@@ -2,16 +2,22 @@
   {{ $simName := .Get "name" }}
   {{ $autoLoad := default "all" (.Get "showNodes") }}
   <head>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
     <script type="text/javascript" id="sim-script-{{ $simName }}">
       const sim = new Simulation('{{ $simName }}', '{{ $autoLoad }}');
       sim.initHandler(document.getElementById('sim-script-{{ $simName }}').parentElement.previousElementSibling);
     </script>
+    <script type="text/javascript">
+      function recaptcha_callback(){
+        alert("callback working");
+        $('.button').prop("disabled", false);
+      }
+  </script>
   </head>
 <body>
-
+  <div class="g-recaptcha" data-callback="recaptcha_callback" data-sitekey="6LerLacfAAAAAKg8VWyDZrhsBK3tIkO41fswN2k_"></div>
   <form id="myform" action="?">
-   <button class="g-recaptcha" data-sitekey="6LerLacfAAAAAKg8VWyDZrhsBK3tIkO41fswN2k_" data-callback='sim-script-{{ $simName }}'>Launch Simulation</button>
+    <input type="submit" value="Launch Simulation" name="Launch Simulation" class="button" disabled>
    <br/>
   </form>
 

@@ -1705,48 +1705,48 @@ Matching config_events records:
 Message Name             Filter Condition Name                      Filter Condition Hierarchy                           Filter Condition Description
 ------------------------ ------------------------------------------ ---------------------------------------------------- --------------------------------------------------------
 evpn                     vni                                        3                                                    Target VNI
-evpn                     severity                                   2                                                    Severity critical/info
+evpn                     severity                                   2                                                    Severity error/info
 evpn                     hostname                                   1                                                    Target Hostname
 clsupport                fileAbsName                                3                                                    Target File Absolute Name
-clsupport                severity                                   2                                                    Severity critical/info
+clsupport                severity                                   2                                                    Severity error/info
 clsupport                hostname                                   1                                                    Target Hostname
 link                     new_state                                  4                                                    up / down
 link                     ifname                                     3                                                    Target Ifname
-link                     severity                                   2                                                    Severity critical/info
+link                     severity                                   2                                                    Severity error/info
 link                     hostname                                   1                                                    Target Hostname
 ospf                     ifname                                     3                                                    Target Ifname
-ospf                     severity                                   2                                                    Severity critical/info
+ospf                     severity                                   2                                                    Severity error/info
 ospf                     hostname                                   1                                                    Target Hostname
 sensor                   new_s_state                                4                                                    New Sensor State Eg. ok
 sensor                   sensor                                     3                                                    Target Sensor Name Eg. Fan, Temp
-sensor                   severity                                   2                                                    Severity critical/info
+sensor                   severity                                   2                                                    Severity error/info
 sensor                   hostname                                   1                                                    Target Hostname
 configdiff               old_state                                  5                                                    Old State
 configdiff               new_state                                  4                                                    New State
 configdiff               type                                       3                                                    File Name
-configdiff               severity                                   2                                                    Severity critical/info
+configdiff               severity                                   2                                                    Severity error/info
 configdiff               hostname                                   1                                                    Target Hostname
 ssdutil                  info                                       3                                                    low health / significant health drop
-ssdutil                  severity                                   2                                                    Severity critical/info
+ssdutil                  severity                                   2                                                    Severity error/info
 ssdutil                  hostname                                   1                                                    Target Hostname
 agent                    db_state                                   3                                                    Database State
-agent                    severity                                   2                                                    Severity critical/info
+agent                    severity                                   2                                                    Severity error/info
 agent                    hostname                                   1                                                    Target Hostname
 ntp                      new_state                                  3                                                    yes / no
-ntp                      severity                                   2                                                    Severity critical/info
+ntp                      severity                                   2                                                    Severity error/info
 ntp                      hostname                                   1                                                    Target Hostname
 bgp                      vrf                                        4                                                    Target VRF
 bgp                      peer                                       3                                                    Target Peer
-bgp                      severity                                   2                                                    Severity critical/info
+bgp                      severity                                   2                                                    Severity error/info
 bgp                      hostname                                   1                                                    Target Hostname
 services                 new_status                                 4                                                    active / inactive
 services                 name                                       3                                                    Target Service Name Eg.netqd, mstpd, zebra
-services                 severity                                   2                                                    Severity critical/info
+services                 severity                                   2                                                    Severity error/info
 services                 hostname                                   1                                                    Target Hostname
 btrfsinfo                info                                       3                                                    high btrfs allocation space / data storage efficiency
-btrfsinfo                severity                                   2                                                    Severity critical/info
+btrfsinfo                severity                                   2                                                    Severity error/info
 btrfsinfo                hostname                                   1                                                    Target Hostname
-clag                     severity                                   2                                                    Severity critical/info
+clag                     severity                                   2                                                    Severity error/info
 clag                     hostname                                   1                                                    Target Hostname
 ```
 
@@ -1879,7 +1879,7 @@ Matching config_events records:
 Message Name             Filter Condition Name                      Filter Condition Hierarchy                           Filter Condition Description
 ------------------------ ------------------------------------------ ---------------------------------------------------- --------------------------------------------------------
 evpn                     vni                                        3                                                    Target VNI
-evpn                     severity                                   2                                                    Severity critical/info
+evpn                     severity                                   2                                                    Severity error/info
 evpn                     hostname                                   1                                                    Target Hostname
 ```
 
@@ -2029,7 +2029,7 @@ This example creates a notification integration with a Slack channel called *slk
                                                                  e
     vni42           2          warning          pd-netq-events   evpnVni
     configChange    3          info             slk-netq-events  sysconf
-    svcDown         4          critical         slk-netq-events  svcStatus
+    svcDown         4          error            slk-netq-events  svcStatus
 
 ### Create a Filter to Drop Notifications from a Given Interface
 
@@ -2072,7 +2072,7 @@ This example creates a notification integration with a Slack channel called *slk
                                                                  e
     vni42           3          warning          pd-netq-events   evpnVni
     configChange    4          info             slk-netq-events  sysconf
-    svcDown         5          critical         slk-netq-events  svcStatus
+    svcDown         5          error            slk-netq-events  svcStatus
 
 ### Create a Notification for a Given Device that Has a Tendency to Overheat (Using Multiple Rules)
 
@@ -2256,7 +2256,7 @@ To remove notification channels:
 
     {{<figure src="/images/netq/channels-slack-created-300.png" width="700">}}
 
-2. Click the tab for the type of channel you want to remove.
+2. Click the tab for the type of channel you want to remove (Slack, PagerDuty, Syslog, Email).
 
 3. Select one or more channels.
 

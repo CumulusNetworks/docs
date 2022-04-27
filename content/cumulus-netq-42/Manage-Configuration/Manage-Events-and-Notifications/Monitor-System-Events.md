@@ -48,16 +48,16 @@ cumulus@switch:~$ netq show events
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp
 ----------------- ------------------------ ---------------- ----------------------------------- -------------------------
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 20:04:30 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 20:04:30 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 19:55:26 2020
+leaf02            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 19:55:26 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 19:34:29 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 19:34:29 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 19:25:24 2020
+leaf02            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 19:25:24 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
 ```
@@ -70,37 +70,37 @@ cumulus@switch:~$ netq show events between now and 24hr
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp
 ----------------- ------------------------ ---------------- ----------------------------------- -------------------------
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 20:04:30 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 20:04:30 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 19:55:26 2020
+leaf02            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 19:55:26 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 19:34:29 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 19:34:29 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 19:25:24 2020
+leaf02            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 19:25:24 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 19:04:22 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 19:04:22 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 18:55:17 2020
+leaf02            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 18:55:17 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 18:34:21 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 18:34:21 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 18:25:16 2020
+leaf02            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 18:25:16 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 18:04:19 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 18:04:19 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 17:55:15 2020
+leaf02            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 17:55:15 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 17:34:18 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 17:34:18 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
 ...
@@ -144,10 +144,10 @@ cumulus@switch:~$ netq leaf01 show events
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp
 ----------------- ------------------------ ---------------- ----------------------------------- -------------------------
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 20:34:31 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 20:34:31 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 20:04:30 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 20:04:30 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
 ```
@@ -196,11 +196,11 @@ cumulus@switch:~$ netq show events type services between now and 30d
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp
 ----------------- ------------------------ ---------------- ----------------------------------- -------------------------
-spine03           services                 critical         Service netqd status changed from a Mon Aug 10 19:55:52 2020
+spine03           services                 error            Service netqd status changed from a Mon Aug 10 19:55:52 2020
                                                             ctive to inactive
-spine04           services                 critical         Service netqd status changed from a Mon Aug 10 19:55:51 2020
+spine04           services                 error            Service netqd status changed from a Mon Aug 10 19:55:51 2020
                                                             ctive to inactive
-spine02           services                 critical         Service netqd status changed from a Mon Aug 10 19:55:50 2020
+spine02           services                 error            Service netqd status changed from a Mon Aug 10 19:55:50 2020
                                                             ctive to inactive
 spine03           services                 info             Service netqd status changed from i Mon Aug 10 19:55:38 2020
                                                             nactive to active
@@ -254,7 +254,7 @@ cumulus@switch:~$ netq spine03 show events type services between now and 30d
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp
 ----------------- ------------------------ ---------------- ----------------------------------- -------------------------
-spine03           services                 critical         Service netqd status changed from a Mon Aug 10 19:55:52 2020
+spine03           services                 error            Service netqd status changed from a Mon Aug 10 19:55:52 2020
                                                             ctive to inactive
 spine03           services                 info             Service netqd status changed from i Mon Aug 10 19:55:38 2020
                                                             nactive to active
@@ -276,7 +276,7 @@ You can view system and TCA events by their severity on a networkwide basis with
 - `netq show events level` command
 
 {{<notice tip>}}
-System event severities include info, error, warning, critical or debug. TCA event severities include info or critical.
+System event severities include info, error, warning, or debug. TCA event severities include info or error.
 {{</notice>}}
 
 {{<tabs "TabID312" >}}
@@ -298,29 +298,29 @@ System event severities include info, error, warning, critical or debug. TCA eve
 To view all system events of a given severity, run:
 
 ```
-netq show events (level info | level error | level warning | level critical | level debug) [between <text-time> and <text-endtime>] [json]
+netq show events (level info | level error | level warning | level debug) [between <text-time> and <text-endtime>] [json]
 ```
 
-This example shows all events with critical severity between now and 24 hours ago.
+This example shows all events with error severity between now and 24 hours ago.
 
 ```
-cumulus@switch:~$ netq show events level critical
+cumulus@switch:~$ netq show events level error
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp
 ----------------- ------------------------ ---------------- ----------------------------------- -------------------------
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp
 ----------------- ------------------------ ---------------- ----------------------------------- -------------------------
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Tue Sep  8 21:32:32 2020
+leaf02            btrfsinfo                error         data storage efficiency : space lef Tue Sep  8 21:32:32 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Tue Sep  8 21:13:28 2020
+leaf01            btrfsinfo                error         data storage efficiency : space lef Tue Sep  8 21:13:28 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Tue Sep  8 21:02:31 2020
+leaf02            btrfsinfo                error         data storage efficiency : space lef Tue Sep  8 21:02:31 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Tue Sep  8 20:43:27 2020
+leaf01            btrfsinfo                error         data storage efficiency : space lef Tue Sep  8 20:43:27 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
 ```
@@ -341,7 +341,7 @@ You can view system and TCA events by their severity on a given device with the 
 - `netq <hostname> show events level` command
 
 {{<notice tip>}}
-System event severities include info, error, warning, critical or debug severity. TCA event severities include info or critical.
+System event severities include info, error, warning, or debug severity. TCA event severities include info or error.
 {{</notice>}}
 
 {{<tabs "TabID545" >}}
@@ -365,20 +365,20 @@ System event severities include info, error, warning, critical or debug severity
 To view all system events for a given severity on a device, run:
 
 ```
-netq <hostname> show events (level info | level error | level warning | level critical | level debug)  [between <text-time> and <text-endtime>] [json]
+netq <hostname> show events (level info | level error | level warning | level debug)  [between <text-time> and <text-endtime>] [json]
 ```
 
-This example shows all *critical* severity events on the *leaf01* switch between now and 24 hours ago.
+This example shows all *error* severity events on the *leaf01* switch between now and 24 hours ago.
 
 ```
-cumulus@switch:~$ netq leaf01 show events level critical
+cumulus@switch:~$ netq leaf01 show events level error
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp
 ----------------- ------------------------ ---------------- ----------------------------------- -------------------------
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  9 18:44:49 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  9 18:44:49 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  9 18:14:48 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  9 18:14:48 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
 
@@ -428,37 +428,37 @@ cumulus@switch:~$ netq show events between now and 24hr
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp
 ----------------- ------------------------ ---------------- ----------------------------------- -------------------------
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 20:04:30 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 20:04:30 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 19:55:26 2020
+leaf02            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 19:55:26 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 19:34:29 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 19:34:29 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 19:25:24 2020
+leaf02            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 19:25:24 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 19:04:22 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 19:04:22 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 18:55:17 2020
+leaf02            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 18:55:17 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 18:34:21 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 18:34:21 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 18:25:16 2020
+leaf02            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 18:25:16 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 18:04:19 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 18:04:19 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 17:55:15 2020
+leaf02            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 17:55:15 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 17:34:18 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 17:34:18 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
 ...
@@ -472,28 +472,28 @@ cumulus@switch:~$ netq show events between 1d and 3d
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp
 ----------------- ------------------------ ---------------- ----------------------------------- -------------------------
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  9 16:14:37 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  9 16:14:37 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  9 16:03:31 2020
+leaf02            btrfsinfo                error            data storage efficiency : space lef Wed Sep  9 16:03:31 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  9 15:44:36 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  9 15:44:36 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  9 15:33:30 2020
+leaf02            btrfsinfo                error            data storage efficiency : space lef Wed Sep  9 15:33:30 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  9 15:14:35 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  9 15:14:35 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  9 15:03:28 2020
+leaf02            btrfsinfo                error            data storage efficiency : space lef Wed Sep  9 15:03:28 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  9 14:44:34 2020
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  9 14:44:34 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  9 14:33:21 2020
+leaf02            btrfsinfo                error            data storage efficiency : space lef Wed Sep  9 14:33:21 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
 ...

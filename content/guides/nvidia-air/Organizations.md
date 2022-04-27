@@ -17,7 +17,7 @@ In the simulation list, the **ORGANIZATION** column shows the organization to wh
 
 <div style="margin-top: 20px;"></div>
 
-To assign a simulation to an organization, click the **Edit** icon to open the **EDIT SIMULATION** dialog. Select the organization from the **ORGANIZATIONS** dropdown menu.
+To assign a simulation to an organization, click the **Edit** icon to open the **EDIT SIMULATION** dialog. Select the organization from the **ORGANIZATION** dropdown menu.
 
 {{<img src="/images/guides/nvidia-air/EditSim.png" width="400px">}}
 

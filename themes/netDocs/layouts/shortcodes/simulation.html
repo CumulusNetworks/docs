@@ -1,32 +1,31 @@
 {{ if .Parent }}
   {{ $simName := .Get "name" }}
   {{ $autoLoad := default "all" (.Get "showNodes") }}
-<head>
-  <script type="text/javascript">
+  <head>
+    <script type="text/javascript" id="sim-script-{{ $simName }}">
     function launchSim() {
       const sim = new Simulation('{{ $simName }}', '{{ $autoLoad }}');
       sim.initHandler(document.getElementById('sim-script-{{ $simName }}').parentElement.previousElementSibling);
     }
-  </script>
-
-  <script type="text/javascript">
-    var onloadCallback = function() {
-      grecaptcha.render('air_launcher', {
-        'sitekey' : '6LerLacfAAAAAKg8VWyDZrhsBK3tIkO41fswN2k_'
-      });
-    };
-  </script> 
-
+    </script>
+    <script type="text/javascript">
+      var onloadCallback = function() {
+        grecaptcha.render('air_launcher', {
+          'sitekey' : '6LerLacfAAAAAKg8VWyDZrhsBK3tIkO41fswN2k_'
+        });
+      };
+    </script>
+  </head>
 <body>
-   <form name="myform" action="javascript:launchSim()">
-     <div id="air_launcher"></div>
-     <input name="Submit"  type="submit" value="Launch Simulation"/>
-   </form>
-<iframe name="loading-container-{{ $simName }}" class="terminal-iframe loading-container"></iframe>
-<iframe name="console-container-{{ $simName }}" class="terminal-iframe terminal-hidden"></iframe>
-   <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-       async defer>
-   </script>
+  
+   <button onclick="javascript:launchSim()">
+    <div id="air_launcher"></div>
+    Launch Simulation
+  </button>
+  <iframe name="loading-container-{{ $simName }}" class="terminal-iframe loading-container"></iframe>
+  <iframe name="console-container-{{ $simName }}" class="terminal-iframe terminal-hidden"></iframe>
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
+  </script>
 </body>
-</head>
+
 {{ end }}

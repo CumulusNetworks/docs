@@ -4,22 +4,21 @@
   <head>
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script type="text/javascript" id="sim-script-{{ $simName }}">
+    let button = document.getElementById("button");
+    btn.addEventListener('click', event => { 
       const sim = new Simulation('{{ $simName }}', '{{ $autoLoad }}');
       sim.initHandler(document.getElementById('sim-script-{{ $simName }}').parentElement.previousElementSibling);
+    });
     </script>
     <script type="text/javascript">
       function recaptcha_callback(){
-        alert("callback working");
         $('.button').prop("disabled", false);
       }
   </script>
   </head>
 <body>
   <div class="g-recaptcha" data-callback="recaptcha_callback" data-sitekey="6LerLacfAAAAAKg8VWyDZrhsBK3tIkO41fswN2k_"></div>
-  <form id="myform" action="?">
-    <input type="submit" value="Launch Simulation" name="Launch Simulation" class="button" disabled>
-   <br/>
-  </form>
+  <button id="button" class="button" disabled>Launch Simulation</button>
 
   <iframe name="loading-container-{{ $simName }}" class="terminal-iframe loading-container"></iframe>
   <iframe name="console-container-{{ $simName }}" class="terminal-iframe terminal-hidden"></iframe>

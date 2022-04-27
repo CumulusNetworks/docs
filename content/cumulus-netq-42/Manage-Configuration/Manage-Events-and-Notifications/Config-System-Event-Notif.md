@@ -1010,9 +1010,9 @@ where:
 
 ### Create Rules
 
-A single key-value pair comprises each rule. The key-value pair indicates what messages to include or drop from event information sent to a notification channel. You can create more than one rule for a single filter. Creating multiple rules for a given filter can provide a very defined filter. For example, you can specify rules around hostnames or interface names, enabling you to filter messages specific to those hosts or interfaces. You should have already defined channels (as described earlier).
+A single key-value pair comprises each rule. The key-value pair indicates what messages to include or drop from event information sent to a notification channel. You can create more than one rule for a single filter. Creating multiple rules for a given filter can provide a very defined filter. For example, you can specify rules around hostnames or interface names, enabling you to filter messages specific to those hosts or interfaces. You can only create rules after you have set up your notification channels.
 
-NetQ includes a predefined fixed set of valid rule keys. You enter values as regular expressions, which *vary according to your deployment*.
+NetQ includes a predefined fixed set of valid rule keys. You enter values as regular expressions, which vary according to your deployment.
 
 #### Rule Keys and Values
 
@@ -1548,11 +1548,11 @@ platform.
 
 ### Create Filters
 
-You can limit or direct event messages using filters. Filters are created based on rules you define, like those in the previous section. Each filter contains one or more rules. When a message matches the rule, it is sent to the indicated destination. Before you can create filters, you need to have already defined the rules and configured channels (as described earlier).
+You can limit or direct event messages using filters. Filters are created based on rules you define and each filter contains one or more rules. When a message matches the rule, it is sent to the indicated destination. Before you can create filters, you need to have already defined rules and configured channels.
 
-As you create filters, they are added to the bottom of a filter list. By default, NetQ processes filters in the order they appear in this list (from top to bottom) until it finds a match. This means that NetQ first evaluates each event message by the first filter listed, and if it matches then NetQ it, ignoring all other filters, and the system moves on to the next event message received. If the event does not match the first filter, NetQ tests it against the second filter, and if it matches then NetQ processes it and the system moves on to the next event received, and so forth. NetQ ignores events that do not match any filter.
+As you create filters, they are added to the bottom of a list of filters. By default, NetQ processes event messages against filters starting at the top of the filter list and works its way down until it finds a match. NetQ applies the first filter that matches an event message, ignoring the other filters. Then it moves to the next event message and reruns the process, starting at the top of the list of filters. NetQ ignores events that do not match any filter.
 
-You mght have to change the order of filters in the list to ensure you capture the events you want and drop the events you do not want. This is possible using the *before* or *after* keywords to ensure one rule gets processed before or after another.
+You mght have to change the order of filters in the list to ensure you capture the events you want and drop the events you do not want. This is possible using the `before` or `after` keywords to ensure one rule is processed before or after another.
 
 This diagram shows an example with four defined filters with sample output results.
 
@@ -1566,40 +1566,40 @@ Filter names can contain spaces, but <em>must</em> be enclosed with single quote
 
 #### Example Filters
 
-Create a filter for BGP Events on a Particular Device:
+Create a filter for BGP events on a particular device:
 
     cumulus@switch:~$ netq add notification filter bgpSpine rule bgpHostname channel pd-netq-events
     Successfully added/updated filter bgpSpine
 
-Create a Filter for a Given VNI in Your EVPN Overlay:
+Create a filter for a given VNI in your EVPN overlay:
 
     cumulus@switch:~$ netq add notification filter vni42 severity warning rule evpnVni channel pd-netq-events
     Successfully added/updated filter vni42
 
-Create a Filter for when a Configuration File gets Updated:
+Create a filter for when a configuration file is updated:
 
     cumulus@switch:~$ netq add notification filter configChange severity info rule sysconf channel slk-netq-events
     Successfully added/updated filter configChange
 
-Create a Filter to Monitor Ports with FEC Support:
+Create a filter to monitor ports with FEC support:
 
     cumulus@switch:~$ netq add notification filter newFEC rule fecSupport channel slk-netq-events
     Successfully added/updated filter newFEC
 
-Create a Filter to Monitor for Services that Change to a Down State:
+Create a filter to monitor for services that change to a down state:
 
     cumulus@switch:~$ netq add notification filter svcDown severity error rule svcStatus channel slk-netq-events
     Successfully added/updated filter svcDown
 
-Create a Filter to Monitor Overheating Platforms:
+Create a filter to monitor overheating platforms:
 
     cumulus@switch:~$ netq add notification filter critTemp severity error rule overTemp channel onprem-email
     Successfully added/updated filter critTemp
 
-Create a Filter to Drop Messages from a Given Interface, and match
-against this filter before any other filters. To create a drop style
-filter, do not specify a channel. To put the filter first, use the
-*before* option.
+Create a filter to drop messages from a given interface, and match
+against this filter before any other filters. To create a drop-style
+filter, do not specify a channel. To list the filter first, use the
+`before` option.
 
     cumulus@switch:~$ netq add notification filter swp52Drop severity error rule swp52 before bgpSpine
     Successfully added/updated filter swp52Drop
@@ -1625,9 +1625,9 @@ platform.
 
 #### Reorder Filters
 
-When you look at the results of the `netq show notification filter` command above, you might notice that although you have the drop-based filter first (no point in looking at something you are going to drop anyway, so that is good), but the critical severity events get last, per the current definitions. If you wanted to process those before lesser severity events, you can reorder the list using the `before` and `after` options.
+In the `netq show notification filter` command above, the drop-based filter is listed first and the critical events filters are listed last. Because NetQ processes notifications based on the filters’ order, reordering the events so that the critical events appear higher up in the list makes sense. To reorder the critical events filters, use the `before` and `after` options.
 
-For example, to put the two critical severity event filters just below the drop filter:
+For example, to put the two critical event filters just below the drop filter:
 
 ```
 cumulus@switch:~$ netq add notification filter critTemp after swp52Drop
@@ -1664,7 +1664,7 @@ newFEC          7          info             slk-netq-events  fecSupport
 
 NetQ can generate many network events. You can create rules to suppress events so that they do not appear using either the Events card or the CLI. Suppressing events is particularly useful for reducing the number of event notifications attributable to known issues or false alarms.
 
-You can suppress an event until a certain period of time; otherwise, the event gets suppressed for 2 years. Providing an end time eliminates the generation of messages for a short period of time, which is useful when you are testing a new network configuration and the switch might be generating many messages.
+You can set time parameters to suppress events in a given time period. If you do not configure time parameters, the event is suppressed for two years. If you are testing a new network configuration, a switch may generate many messages. Creating a suppression rule that applies over a short time frame can be useful for silencing messages and thereby limiting distractions.
 
 You can suppress events for the following types of messages:
 
@@ -1687,7 +1687,7 @@ You can suppress events for the following types of messages:
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
 2. In the side navigation under **Network**, click **Events**.
 3. In the table, navigate to the column labeled **Suppress Events**.
-4. Hover over the row and select the **Suppress events** button to create parameters for the suppression rule. You can configure individual suppression rules or you can create a group rule that suppresses events for all message types.
+4. Hover over the row and select **Suppress events** to create parameters for the suppression rule. You can configure individual suppression rules or you can create a group rule that suppresses events for all message types.
 5. Enter the suppression rule parameters and click **Create**. You can view suppression rules by selecting **Show suppression rules** at the top of the page.
 #### Add an Event Suppression Configuration with the CLI
 
@@ -1885,11 +1885,11 @@ evpn                     hostname                                   1           
 
 ## Examples of Advanced Notification Configurations
 
-By putting all these channel, rule, and filter definitions together, you create a complete notification configuration. Using the three-step process outlined above, you can configure notifications like the following examples.
+The following section lists examples of advanced notification configurations. 
 
 ### Create a Notification for BGP Events from a Selected Switch
 
-This example creates a notification integration with a PagerDuty channel called *pd-netq-events*. It then creates a rule *bgpHostname* and a filter called *4bgpSpine* for any notifications from *spine-01*. The result is that any info severity event messages from Spine-01 get filtered to the *pd-netq-events* channel.
+This example creates a notification integration with a PagerDuty channel called *pd-netq-events*. It then creates a rule *bgpHostname* and a filter called *4bgpSpine* for any notifications from *spine-01*. The result is that any info severity event messages from Spine-01 is filtered to the *pd-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
     Successfully added/updated channel pd-netq-events
@@ -1920,7 +1920,7 @@ This example creates a notification integration with a PagerDuty channel called 
 
 ### Create a Notification for Warnings on a Given EVPN VNI
 
-This example creates a notification integration with a PagerDuty channel called *pd-netq-events*. It then creates a rule *evpnVni* and a filter called *3vni42* for any warnings messages from VNI 42 on the EVPN overlay network. The result is that any warning severity event messages from VNI 42 get filtered to the *pd-netq-events* channel.
+This example creates a notification integration with a PagerDuty channel called *pd-netq-events*. It then creates a rule *evpnVni* and a filter called *3vni42* for any warning messages from VNI 42 on the EVPN overlay network. The result is that any event messages from VNI 42 with a severity level of 'warning' are filtered to the *pd-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
     Successfully added/updated channel pd-netq-events
@@ -1955,7 +1955,7 @@ This example creates a notification integration with a PagerDuty channel called 
 
 ### Create a Notification for Configuration File Changes
 
-This example creates a notification integration with a Slack channel called *slk-netq-events*. It then creates a rule *sysconf* and a filter called *configChange* for any configuration file update messages. The result is that any configuration update messages get filtered to the *slk-netq-events* channel.
+This example creates a notification integration with a Slack channel called *slk-netq-events*. It then creates a rule *sysconf* and a filter called *configChange* for any configuration file update messages. The result is that any configuration update messages are filtered to the *slk-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
@@ -1993,7 +1993,7 @@ This example creates a notification integration with a Slack channel called *slk
 
 ### Create a Notification for When a Service Goes Down
 
-This example creates a notification integration with a Slack channel called *slk-netq-events*. It then creates a rule *svcStatus* and a filter called *svcDown* for any services state messages indicating a service is no longer operational. The result is that any service down messages get filtered to the *slk-netq-events* channel.
+This example creates a notification integration with a Slack channel called *slk-netq-events*. It then creates a rule *svcStatus* and a filter called *svcDown* for any services state messages indicating a service is no longer operational. The result is that any service down messages are filtered to the *slk-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
@@ -2248,15 +2248,15 @@ If you retire selected channels from a given notification application, you might
 
 To remove notification channels:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Notification Channels** in the **Notifications** section.
 
-    {{<figure src="/images/netq/main-menu-channels-selected-300.png" width="600">}}
+    {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
 
 <div style="padding-left: 18px;">This opens the Channels view.</div>
 
     {{<figure src="/images/netq/channels-slack-created-300.png" width="700">}}
 
-2. Click the tab for the type of channel you want to remove (Slack, PagerDuty, `syslog`, Email).
+2. Click the tab for the type of channel you want to remove.
 
 3. Select one or more channels.
 

@@ -25,6 +25,8 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 <!-- Air:WhatsNew -->
 ### 82.2022.0425-009
 - Fixed a cosmetic issue with displaying some VM memory values
+### 82.2022.0427-008
+- Fixed Demo Marketplace cards to display more than one line of description
 <!-- Air:WhatsNew -->
 
 ## March 2022

@@ -1682,20 +1682,31 @@ You can suppress events for the following types of messages:
 - services: Service-related information, including whether a service is active or inactive
 - ssdutil: Messages related to the storage on the switch
 
-#### Add an Event Suppression Configuration with the UI
+#### Add an Event Suppression Configuration
+
+You can suppress events using the NetQ UI or NetQ CLI.
+
+{{<tabs "TabID1689" >}}
+
+{{<tab "NetQ UI" >}}
+
+To suppress events using the NetQ UI:
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
 2. In the side navigation under **Network**, click **Events**.
 3. In the table, navigate to the column labeled **Suppress Events**.
 4. Hover over the row and select **Suppress events** to create parameters for the suppression rule. You can configure individual suppression rules or you can create a group rule that suppresses events for all message types.
-5. Enter the suppression rule parameters and click **Create**. You can view suppression rules by selecting **Show suppression rules** at the top of the page.
-#### Add an Event Suppression Configuration with the CLI
+5. Enter the suppression rule parameters and click **Create**.
 
-When you add a new configuration, you can specify a scope, which limits the suppression in the following order:
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
+
+When you add a new configuration using the CLI, you can specify a scope, which limits the suppression in the following order:
 
 1. Hostname.
-1. Severity.
-1. Message type-specific filters. For example, the target VNI for EVPN messages, or the interface name for a link message.
+2. Severity.
+3. Message type-specific filters. For example, the target VNI for EVPN messages, or the interface name for a link message.
 
 NetQ has a predefined set of filter conditions. To see these conditions, run `netq show events-config show-filter-conditions`:
 
@@ -1755,8 +1766,27 @@ For example, to create a configuration called `mybtrfs` that suppresses OSPF-rel
 ```
 netq add events-config events_config_name mybtrfs message_type ospf scope '[{"scope_name":"hostname","scope_value":"leaf01"},{"scope_name":"severity","scope_value":"*"}]' suppress_until 600
 ```
+{{</tab>}}
 
+{{</tabs>}}
 #### Remove an Event Suppression Configuration
+
+You can remove event suppression configurations using the NetQ UI or NetQ CLI.
+
+{{<tabs "TabID1776" >}}
+
+{{<tab "NetQ UI" >}}
+
+To remove suppressed event configurations:
+
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+2. In the side navigation under **Network**, click **Events**.
+3. Select **Show suppression rules** at the top of the page.
+4. Navigate to the rule you would like to delete. Click the three-dot menu and select **Delete**. If you'd like to pause the rule instead of deleting it, click **Disable**.
+
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
 
 To remove an event suppression configuration, run `netq del events-config events_config_id <text-events-config-id-anchor>`.
 
@@ -1764,8 +1794,26 @@ To remove an event suppression configuration, run `netq del events-config events
 cumulus@switch:~$ netq del events-config events_config_id eventsconfig_10
 Successfully deleted Events Config eventsconfig_10
 ```
+{{</tab>}}
 
+{{</tabs>}}
 #### Show Event Suppression Configurations
+
+You can view suppressed events using the NetQ UI or NetQ CLI.
+
+{{<tabs "TabID1804" >}}
+
+{{<tab "NetQ UI" >}}
+
+To view suppressed events:
+
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+2. In the side navigation under **Network**, click **Events**.
+3. Select **Show suppression rules** at the top of the page.
+
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
 
 You can view all event suppression configurations, or you can filter by a specific configuration or message type.
 
@@ -1882,7 +1930,9 @@ evpn                     vni                                        3           
 evpn                     severity                                   2                                                    Severity error/info
 evpn                     hostname                                   1                                                    Target Hostname
 ```
+{{</tab>}}
 
+{{</tabs>}}
 ## Examples of Advanced Notification Configurations
 
 The following section lists examples of advanced notification configurations. 

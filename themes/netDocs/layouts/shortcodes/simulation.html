@@ -4,11 +4,11 @@
   <head>
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script type="text/javascript" id="sim-script-{{ $simName }}">
-    const sim = new Simulation('{{ $simName }}', '{{ $autoLoad }}');
-    let btn = document.getElementById("button");
-    btn.addEventListener('click', event => { 
-      alert("click registered");
-    });
+    function launchSim() {
+      const sim = new Simulation('{{ $simName }}', '{{ $autoLoad }}');
+      sim.initHandler(document.getElementById('sim-script-{{ $simName }}').parentElement.previousElementSibling);
+      alert("functionlaunched");
+    }
     </script>
     <script type="text/javascript">
       function recaptcha_callback(){
@@ -18,7 +18,7 @@
   </head>
 <body>
   <div class="g-recaptcha" data-callback="recaptcha_callback" data-sitekey="6LerLacfAAAAAKg8VWyDZrhsBK3tIkO41fswN2k_"></div>
-  <button id="button" class="button" disabled>Launch Simulation</button>
+  <button id="button" class="button" onclick="launchSim()" disabled>Launch Simulation</button>
 
   <iframe name="loading-container-{{ $simName }}" class="terminal-iframe loading-container"></iframe>
   <iframe name="console-container-{{ $simName }}" class="terminal-iframe terminal-hidden"></iframe>

@@ -714,15 +714,15 @@ Where to go next depends on what data you see, but a few options include:
 To view all EVPN alarms, run:
 
 ```
-netq show events [level info | level error | level warning | level critical | level debug] type evpn [between <text-time> and <text-endtime>] [json]
+netq show events [level info | level error | level warning | level debug] type evpn [between <text-time> and <text-endtime>] [json]
 ```
 
 Use the level option to set the severity of the events to show. Use the `between` option to show events within a given time range.
 
-This example shows critical EVPN events in the past three days.
+This example shows error EVPN events in the past three days.
 
 ```
-cumulus@switch:~$ netq show events level critical type evpn between now and 3d
+cumulus@switch:~$ netq show events level error type evpn between now and 3d
 ```
 
 {{</tab>}}

@@ -1321,7 +1321,7 @@ The full screen BGP Service card provides tabs for all switches, all sessions, a
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
 <li><strong>Message</strong>: Text description of a BGP-related event. Example: BGP session with peer tor-1 swp7 vrf default state changed from failed to Established.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>bgp</em> in this card workflow.</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include error, warning, info, and debug.</li>
 </ul></td>
 </tr>
 <tr class="even">
@@ -1634,7 +1634,7 @@ The full screen BGP Session card provides tabs for all BGP sessions and all even
 <ul>
 <li><strong>Message</strong>: Text description of a BGP-related event. Example: BGP session with peer tor-1 swp7 vrf default state changed from failed to Established.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include error, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of bgp in this card workflow.</li>
 </ul></td>
 </tr>
@@ -1964,7 +1964,7 @@ The full screen EVPN Service card provides tabs for all switches, all sessions, 
 <ul>
 <li><strong>Message</strong>: Text description of a EVPN-related event. Example: VNI 3 kernel state changed from down to up.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include error, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>evpn</em> in this card workflow.</li>
 </ul></td>
 </tr>
@@ -2220,7 +2220,7 @@ and all events.
 <ul>
 <li><strong>Message</strong>: Text description of a EVPN-related event. Example: VNI 3 kernel state changed from down to up.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include error, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>evpn</em> in this card workflow.</li>
 </ul></td>
 </tr>
@@ -2552,7 +2552,7 @@ The full screen LLDP Service card provides tabs for all switches, all sessions, 
 <ul>
 <li><strong>Message</strong>: Text description of a LLDP-related event. Example: LLDP Session with host leaf02 swp6 modified fields leaf06 swp21.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include error, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>lldp</em> in this card workflow.</li>
 </ul></td>
 </tr>
@@ -2840,7 +2840,7 @@ The full screen LLDP Session card provides tabs for all LLDP sessions and all ev
 <ul>
 <li><strong>Message</strong>: Text description of an event. Example: LLDP Session with host leaf02 swp6 modified fields leaf06 swp21.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include error, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>lldp</em> in this card workflow.</li>
 </ul></td>
 </tr>
@@ -3183,7 +3183,7 @@ sessions, and all alarms.
 <ul>
 <li><strong>Message</strong>: Text description of a MLAG-related event. Example: Clag conflicted bond changed from swp7 swp8 to swp9 swp10.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include error, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>clag</em> in this card workflow.</li>
 </ul></td>
 </tr>
@@ -3498,7 +3498,7 @@ and all events.
 <ul>
 <li><strong>Message</strong>: Text description of an event. Example: Clag conflicted bond changed from swp7 swp8 to swp9 swp10.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include error, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>clag</em> in this card workflow.</li>
 </ul></td>
 </tr>
@@ -3825,7 +3825,7 @@ The full screen OSPF Service card provides tabs for all switches, all sessions, 
 <ul>
 <li><strong>Message</strong>: Text description of a OSPF-related event. Example: swp4 area ID mismatch with peer leaf02</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include error, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>OSPF</em> in this card workflow.</li>
 </ul></td>
 </tr>
@@ -4156,7 +4156,7 @@ and all events.
 <ul>
 <li><strong>Message</strong>: Text description of a OSPF-related event. Example: OSPF session with peer tor-1 swp7 vrf default state changed from failed to Established.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include error, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of OSPF in this card workflow.</li>
 </ul></td>
 </tr>
@@ -4534,7 +4534,7 @@ The full screen Switch card provides multiple tabs.
 <td>MAC Addresses</td>
 <td>Displays all known MAC addresses for the switch. This tab provides the following additional data about each MAC address:
 <ul>
-<li><strong>Egress Port</strong>: Importance of the event-critical, warning, info, or debug</li>
+<li><strong>Egress Port</strong>: Importance of the event-error, warning, info, or debug</li>
 <li><strong>Hostname</strong>: User-defined name of the switch</li>
 <li><strong>Last Changed</strong>: Data and time that the address was last updated or deleted</li>
 <li><strong>MAC Address</strong>: MAC address of switch</li>

@@ -732,7 +732,7 @@ Where to go next depends on what data you see, but a few options include:
 To view all LLDP alarms, run:
 
 ```
-netq show events [level info | level error | level warning | level critical | level debug] type lldp [between <text-time> and <text-endtime>] [json]
+netq show events [level info | level error | level warning | level debug] type lldp [between <text-time> and <text-endtime>] [json]
 ```
 
 Use the `level` option to set the severity of the events to show. Use the `between` option to show events within a given time range.

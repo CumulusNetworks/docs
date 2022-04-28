@@ -193,8 +193,8 @@ swp52Drop       1          error            NetqDefaultChann swp52
                                             el
 vni42           2          warning          pd-netq-events   evpnVni
 configChange    3          info             slk-netq-events  sysconf
-svcDown         4          critical         slk-netq-events  svcStatus
-critTemp        5          critical         pd-netq-events   switchLeaf
+svcDown         4          error            slk-netq-events  svcStatus
+critTemp        5          error            pd-netq-events   switchLeaf
                                                             04
                                                             overTemp
 ```

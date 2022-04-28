@@ -697,7 +697,7 @@ where:
 </tr>
 <tr>
 <td>severity &lt;level&gt;</td>
-<td>(Optional) The log level to set, which can be one of <em>info</em>, <em>warning</em>, <em>error</em>, <em>critical</em> or <em>debug</em>. The severity defaults to <em>info</em> if unspecified.</td>
+<td>(Optional) The log level to set, which can be one of <em>info</em>, <em>warning</em>, <em>error</em>, or <em>debug</em>. The severity defaults to <em>info</em> if unspecified.</td>
 </tr>
 </tbody>
 </table>

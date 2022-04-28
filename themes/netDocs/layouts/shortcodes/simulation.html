@@ -4,10 +4,10 @@
   <head>
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script type="text/javascript" id="sim-script-{{ $simName }}">
-    const sim = new Simulation('{{ $simName }}', '{{ $autoLoad }}');
     let button = document.getElementById("button");
-    button.addEventListener('click', sim.initHandler(document.getElementById('sim-script-{{ $simName }}').parentElement.previousElementSibling)
-    );
+    button.addEventListener('click', const sim = new Simulation('{{ $simName }}', '{{ $autoLoad }}');
+    button.addEventListener('click', sim.initHandler(document.getElementById('sim-script-{{ $simName }}').parentElement.previousElementSibling));
+    button.addEventListener('click', alert("click registered");
     </script>
     <script type="text/javascript">
       function recaptcha_callback(){

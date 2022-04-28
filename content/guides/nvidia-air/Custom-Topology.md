@@ -101,7 +101,7 @@ To export a custom topology, click the **EXPORT** button to download two files:
 - `topology.dot` is the network definition in Graphviz format.
 - `topology.svg` is the network diagram in Scalable Vector Graphics format.
 
-To upload the the `topology.dot` and `topology.svg` files:
+To upload the `topology.dot` and `topology.svg` files:
 1. In the sidebar, click **Create a Simulation** to open the Create a Simulation window.
 2. Click **Build Your Own**, then click **Upload a topology file**.
 

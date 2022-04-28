@@ -6,7 +6,7 @@
     <script type="text/javascript" id="sim-script-{{ $simName }}">
     function launchSim() {
       const sim = new Simulation('{{ $simName }}', '{{ $autoLoad }}');
-      sim.initHandler(document.getElementById('sim-script-{{ $simName }}').parentElement.previousElementSibling);
+      sim.initHandler(document.getElementById('aircontainers').parentElement.previousElementSibling);
       $('.button').prop("disabled", true);
     }
     </script>

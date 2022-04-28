@@ -348,16 +348,6 @@ Fixed: 9.26a~dfsg-0+deb8u</td>
 <td></td>
 </tr>
 <tr>
-<td>2940076</td>
-<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
-1) high VNI scale
-2) {{switchd}} is busy processing updates
-3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
-The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2940052</td>
 <td>When you configure the switch with the minimum reserved VLAN of 150 and the internal VLANs are exhausted, the MLAG peer does not  forward the VLAN.</td>
 <td>3.7.15, 4.2.1-4.4.3</td>
@@ -653,6 +643,13 @@ Fixed: 1:9.9.5.dfsg-9+deb8u23</td>
 <td></td>
 </tr>
 <tr>
+<td>2848219</td>
+<td>On Dell S3048 switches configured for 802.1x auth, you might see file descriptor exhaustion with Hostapd messages indicating that Cumulus Linux is unable to open {{/dev/urandom}} or write out the transient ACL files.
+To work around this issue, reboot the switch.</td>
+<td>3.7.15, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>2845540</td>
 <td>CVE-2020-10001: In CUPS, an input validation issue was addressed with improved memory handling.
 Vulnerable: &lt;= 1.7.5-11+deb8u8
@@ -775,7 +772,7 @@ MemoryError
 <td>5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2815646</td>
+<td>2815592</td>
 <td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
@@ -1038,6 +1035,16 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>2700767</td>
 <td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2699464</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -3369,16 +3376,6 @@ Fixed: 9.26a~dfsg-0+deb8u</td>
 <td></td>
 </tr>
 <tr>
-<td>2940076</td>
-<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
-1) high VNI scale
-2) {{switchd}} is busy processing updates
-3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
-The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2934940</td>
 <td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
 This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
@@ -3640,7 +3637,7 @@ Fixed: 7.38.0-4+deb8u22</td>
 <td></td>
 </tr>
 <tr>
-<td>2815646</td>
+<td>2815592</td>
 <td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
@@ -3881,6 +3878,16 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>2700767</td>
 <td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2699464</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -6223,16 +6230,6 @@ Fixed: 9.26a~dfsg-0+deb8u</td>
 <td></td>
 </tr>
 <tr>
-<td>2940076</td>
-<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
-1) high VNI scale
-2) {{switchd}} is busy processing updates
-3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
-The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2934940</td>
 <td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
 This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
@@ -6476,7 +6473,7 @@ Fixed: 7.38.0-4+deb8u22</td>
 <td></td>
 </tr>
 <tr>
-<td>2815646</td>
+<td>2815592</td>
 <td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
@@ -6686,6 +6683,16 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>2700767</td>
 <td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2699464</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -9611,16 +9618,6 @@ Fixed: 9.26a~dfsg-0+deb8u</td>
 <td></td>
 </tr>
 <tr>
-<td>2940076</td>
-<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
-1) high VNI scale
-2) {{switchd}} is busy processing updates
-3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
-The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2934940</td>
 <td>When you change the SVI {{vlan-id}} value in the {{/etc/network/interfaces}} file, then run {{ifreload -a}}, the 802.1Q ID for the SVI in the kernel does not change.
 This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
@@ -9864,7 +9861,7 @@ Fixed: 7.38.0-4+deb8u22</td>
 <td></td>
 </tr>
 <tr>
-<td>2815646</td>
+<td>2815592</td>
 <td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
@@ -10074,6 +10071,16 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>2700767</td>
 <td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2699464</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -13212,16 +13219,6 @@ Fixed: 9.26a~dfsg-0+deb8u</td>
 <td></td>
 </tr>
 <tr>
-<td>2940076</td>
-<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
-1) high VNI scale
-2) {{switchd}} is busy processing updates
-3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
-The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2934939</td>
 <td>When you configure BGP {{aggregate-address summary-only}} and any component route within the summary updates, all component routes within the summary update in the RIB on the device advertising the summary. This condition might result in increased CPU usage.
 
@@ -13458,7 +13455,7 @@ Fixed: 7.38.0-4+deb8u22</td>
 <td></td>
 </tr>
 <tr>
-<td>2815646</td>
+<td>2815592</td>
 <td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
 <td></td>
@@ -13668,6 +13665,16 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>2700767</td>
 <td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2699464</td>
+<td>In a VXLAN fabric with ToR switches configured in a MLAG pair, BUM traffic received on a VXLAN tunnel is decapsulated and forwarded on the peer link bond. The BUM traffic is then encapsulated by the peer switch and sent back to the fabric. The issue has been seen in environments where the following conditions exist at the same time:
+1) high VNI scale
+2) {{switchd}} is busy processing updates
+3) {{clagd}} is in a transition state, such as Up, then Down, then Up. For example, when {{clagd}} restarts, the switch reboots, and so on.
+The problem is seen on the switch that experiences the {{clagd}} state transition.</td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>

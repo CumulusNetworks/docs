@@ -499,7 +499,7 @@ To work around this issue, use the {{chrony}} implementation of NTP instead of {
 <td>2848219</td>
 <td>On Dell S3048 switches configured for 802.1x auth, you might see file descriptor exhaustion with Hostapd messages indicating that Cumulus Linux is unable to open {{/dev/urandom}} or write out the transient ACL files.
 To work around this issue, reboot the switch.</td>
-<td>4.3.0-4.4.3</td>
+<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -908,6 +908,12 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <td>2663119</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2654804</td>
+<td>On the NVIDIA SN4700a1 and SN4410 switches, splitting the cable to 2x100G does not work on the 200G DAC. 200G split as NRZ or PAM4 is not supported.</td>
+<td>4.4.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2552,7 +2558,7 @@ To work around this issue, use the {{chrony}} implementation of NTP instead of {
 <td>2848219</td>
 <td>On Dell S3048 switches configured for 802.1x auth, you might see file descriptor exhaustion with Hostapd messages indicating that Cumulus Linux is unable to open {{/dev/urandom}} or write out the transient ACL files.
 To work around this issue, reboot the switch.</td>
-<td>4.3.0-4.4.3</td>
+<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2971,6 +2977,12 @@ Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
 <td>3.7.14-3.7.15, 4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2654804</td>
+<td>On the NVIDIA SN4700a1 and SN4410 switches, splitting the cable to 2x100G does not work on the 200G DAC. 200G split as NRZ or PAM4 is not supported.</td>
+<td>4.4.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4855,7 +4867,7 @@ To work around this issue, use the {{chrony}} implementation of NTP instead of {
 <td>2848219</td>
 <td>On Dell S3048 switches configured for 802.1x auth, you might see file descriptor exhaustion with Hostapd messages indicating that Cumulus Linux is unable to open {{/dev/urandom}} or write out the transient ACL files.
 To work around this issue, reboot the switch.</td>
-<td>4.3.0-4.4.3</td>
+<td>3.7.15, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -5444,6 +5456,12 @@ Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
 <td>3.7.14-3.7.15, 4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2654804</td>
+<td>On the NVIDIA SN4700a1 and SN4410 switches, splitting the cable to 2x100G does not work on the 200G DAC. 200G split as NRZ or PAM4 is not supported.</td>
+<td>4.4.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>

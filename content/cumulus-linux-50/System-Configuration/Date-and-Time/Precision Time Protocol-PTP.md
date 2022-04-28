@@ -205,7 +205,7 @@ delay_mechanism         E2E
 network_transport       UDPv4
 ```
 
-For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP adress of the VLAN interface:
+For a trunk port, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to match the IP adress of the VLAN interface:
 
 ```
 [swp1]
@@ -219,11 +219,10 @@ announceReceiptTimeout  3
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
-network_transport       UDPv4
-For a switch VLAN, add
+network_transport       RAWUDPv4
 ```
 
-For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP adress of the VLAN interface:
+For an access port, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and `src_ip` to match the IP adress of the VLAN interface:
 
 ```
 [swp2]
@@ -237,7 +236,7 @@ announceReceiptTimeout  3
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
-network_transport       UDPv4
+network_transport       RAWUDPv4
 ```
 
 4. Restart the `ptp4l` service:

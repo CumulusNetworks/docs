@@ -7,17 +7,19 @@
     function launchSim() {
       const sim = new Simulation('{{ $simName }}', '{{ $autoLoad }}');
       sim.initHandler(document.getElementById('sim-script-{{ $simName }}').parentElement.previousElementSibling);
-      alert("functionlaunched");
+      $('.button').prop("disabled", true);
     }
     </script>
     <script type="text/javascript">
       function recaptcha_callback(){
         $('.button').prop("disabled", false);
+        const captchadiv = document.getElementById('captcha');
+        captchadiv.remove();
       }
   </script>
   </head>
 <body>
-  <div class="g-recaptcha" data-callback="recaptcha_callback" data-sitekey="6LerLacfAAAAAKg8VWyDZrhsBK3tIkO41fswN2k_"></div>
+  <div id="captcha" class="g-recaptcha" data-callback="recaptcha_callback" data-sitekey="6LerLacfAAAAAKg8VWyDZrhsBK3tIkO41fswN2k_"></div>
   <button id="button" class="button" onclick="launchSim()" disabled>Launch Simulation</button>
 
   <iframe name="loading-container-{{ $simName }}" class="terminal-iframe loading-container"></iframe>

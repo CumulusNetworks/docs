@@ -6,7 +6,7 @@
     <script type="text/javascript" id="sim-script-{{ $simName }}">
     function launchSim() {
       const sim = new Simulation('{{ $simName }}', '{{ $autoLoad }}');
-      sim.initHandler(document.getElementById('sim-script-{{ $simName }}').getElementsByClassName("terminal-iframe loading-container").getElementsByClassName("terminal-iframe terminal-hidden"));
+      sim.initHandler(document.getElementById('sim-script-{{ $simName }}').document.getElementsByClassName("terminal-iframe loading-container").document.getElementsByClassName("terminal-iframe terminal-hidden"));
       $('.button').prop("disabled", true);
     }
     </script>

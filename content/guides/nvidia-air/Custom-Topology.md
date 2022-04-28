@@ -101,13 +101,13 @@ To export a custom topology, click the **EXPORT** button to download two files:
 - `topology.dot` is the network definition in Graphviz format.
 - `topology.svg` is the network diagram in Scalable Vector Graphics format.
 
-You can upload both files file to NVIDIA Air with the `Create Simulation` workflow. First, click the **Upload a topology file** card:
+To upload the the `topology.dot` and `topology.svg` files:
+1. In the sidebar, click **Create a Simulation** to open the Create a Simulation window.
+2. Click **Build Your Own**, then click **Upload a topology file**.
 
-{{<img src="/images/guides/nvidia-air/UploadTopology1.png" width="400px">}}
+   {{<img src="/images/guides/nvidia-air/UploadTopology1.png" width="300px">}}
 
-Then, upload the `topology.dot` and `topology.svg` files. Drag the `topology.dot` file onto the **Drop a topology file here** card and the `topology.svg` file onto the **Drop a diagram file here** card:
-
-{{<img src="/images/guides/nvidia-air/UploadTopology2.png" width="400px">}}
+3. Drag the `topology.dot` file onto the **Drop a topology file here** card and the `topology.svg` file onto the **Drop a diagram file here** card.
 
 ## NetQ Integration
 

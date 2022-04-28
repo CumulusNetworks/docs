@@ -27,6 +27,8 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 - Fixed a cosmetic issue with displaying some VM memory values
 ### 82.2022.0427-008
 - Fixed Demo Marketplace cards to display more than one line of description
+### 82.2022.0428
+- Fixed a race condition that could cause deleted simulations to show a "Loaded" status
 <!-- Air:WhatsNew -->
 
 ## March 2022

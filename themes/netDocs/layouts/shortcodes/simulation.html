@@ -6,7 +6,7 @@
     <script type="text/javascript" id="sim-script-{{ $simName }}">
     function launchSim() {
       const sim = new Simulation('{{ $simName }}', '{{ $autoLoad }}');
-      sim.initHandler(document.getElementById('aircontainers').parentElement.previousElementSibling);
+      sim.initHandler(document.getElementById('aircontainers'));
       $('.button').prop("disabled", true);
     }
     </script>
@@ -22,9 +22,9 @@
 <body>
   <div id="captcha" class="g-recaptcha" data-callback="recaptcha_callback" data-sitekey="6LerLacfAAAAAKg8VWyDZrhsBK3tIkO41fswN2k_"></div>
   <button id="button" class="button" onclick="launchSim()" disabled>Launch Simulation</button>
-  
+  <div id="aircontainers"></div>
   <iframe name="loading-container-{{ $simName }}" class="terminal-iframe loading-container"></iframe>
   <iframe name="console-container-{{ $simName }}" class="terminal-iframe terminal-hidden"></iframe>
-  <div id="aircontainers"></div>
+  
 </body>
 {{ end }}

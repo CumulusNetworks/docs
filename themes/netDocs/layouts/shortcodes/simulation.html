@@ -5,9 +5,13 @@
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script type="text/javascript" id="sim-script-{{ $simName }}">
     const sim = new Simulation('{{ $simName }}', '{{ $autoLoad }}');
-    let button = document.getElementById("button");
-    button.addEventListener('click', sim.initHandler(document.getElementById('sim-script-{{ $simName }}').parentElement.previousElementSibling));
-    button.addEventListener('click', alert("click registered"));
+    let btn = document.getElementById("button");
+    btn.addEventListener('click', event => {
+      sim.initHandler(document.getElementById('sim-script-{{ $simName }}').parentElement.previousElementSibling);
+    });
+    btn.addEventListener('click', event => { 
+      alert("click registered");
+    });
     </script>
     <script type="text/javascript">
       function recaptcha_callback(){

@@ -80,7 +80,7 @@ To set up a service:
 
   {{<img src="/images/guides/nvidia-air/ServicesCreate.png" width="400px">}}
 
-2. In the **SERVIDE NAME** field, enter the name of the service.
+2. In the **SERVICE NAME** field, enter the name of the service.
 3. In the **INTERFACE** dropdown, select the name of the interface in the simulation where the connection terminates. This is typically the eth0interface on the oob-mgmt-server.
 4. In the **SERVICE TYPE** dropdown, select the type of service you want to create. If you select *SSH*, *HTTP* or *HTTPS*, NVIDIA Air creates a hyperlink to the URL automatically in the Services panel. If you select *Other*, you can select any port, but there is no hyperlink. The hyperlink provides a quick way to copy and paste the service.
 5. In the **SERVICE PORT** field, specify the internal port where the service terminates.

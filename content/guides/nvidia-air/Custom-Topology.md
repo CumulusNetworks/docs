@@ -105,7 +105,7 @@ You can upload both files to NVIDIA Air with the `Create Simulation` workflow. F
 
 {{<img src="/images/guides/nvidia-air/UploadTopology1.png" width="400px">}}
 
-Then, upload the `topology.dot` and `topology.svg` filesD. Drag the `topology.dot` file onto the **Drop a topology file here** card and the `topology.svg` file onto the **Drop a diagram file here** card):
+Then, upload the `topology.dot` and `topology.svg` files. Drag the `topology.dot` file onto the **Drop a topology file here** card and the `topology.svg` file onto the **Drop a diagram file here** card:
 
 {{<img src="/images/guides/nvidia-air/UploadTopology2.png" width="400px">}}
 

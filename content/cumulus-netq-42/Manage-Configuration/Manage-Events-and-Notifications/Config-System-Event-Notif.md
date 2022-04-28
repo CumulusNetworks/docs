@@ -1664,7 +1664,7 @@ newFEC          7          info             slk-netq-events  fecSupport
 
 NetQ can generate many network events. You can create rules to suppress events so that they do not appear using either the Events card or the CLI. Suppressing events is particularly useful for reducing the number of event notifications attributable to known issues or false alarms.
 
-You can set time parameters to suppress events in a given time period. If you do not configure time parameters, the event is suppressed for two years. If you are testing a new network configuration, a switch may generate many messages. Creating a suppression rule that applies over a short time frame can be useful for silencing messages and thereby limiting distractions.
+You can set time parameters to suppress events in a given time period. If you do not configure time parameters, the event is suppressed for two years. If you are testing a new network configuration, a switch may generate many messages. Creating a suppression rule that applies over a short time frame can be useful for silencing messages to limit distractions.
 
 You can suppress events for the following types of messages:
 

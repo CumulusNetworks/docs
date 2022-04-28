@@ -41,7 +41,7 @@ To create an organization, click the **Create Organization** button to open the 
 
 <div style="margin-top: 20px;"></div>
 
-Provide a name for the organization and the email address of each member you want to add. If you want a member to be an administrator, click **ORGANIZATION ADMIN** so that the toggle turns green.
+Provide a name for the organization and the email address of each member you want to add. If you want a member to be an administrator, click **ORGANIZATION ADMIN** so that the toggle switch turns green.
 
 ### Delete an Organization
 
@@ -60,7 +60,7 @@ To view details about each organization and to manage members, click the organiz
 <div style="margin-top: 20px;"></div>
 
 - To view usage statistics for an organization, click the **Usage** link. You can see how many simulations are in the organization and how much CPU, memory, and disk storage the organization uses.
-- To add a new member, click the **Members** link, then click the **Add Member** button. In the Add Members dialog, provide the email address of the member you want to add. If you want the member to be an administrator, click **ORGANIZATION ADMIN** so that the toggle turns green.
+- To add a new member, click the **Members** link, then click the **Add Member** button. In the Add Members dialog, provide the email address of the member you want to add. If you want the member to be an administrator, click **ORGANIZATION ADMIN** so that the toggle switch turns green.
 - To edit resource limits for a member such as CPU, memory, and storage and the number of simulations allowed, select **Edit Membership** from the actions menu.
 - To remove a member, select **Remove Member** from the actions menu.
 

@@ -68,7 +68,7 @@ To connect two nodes together, click a port on one node and drag it to the port 
 
 You can include a custom ZTP script as part of the network design. When you create the simulation, NVIDIA Air copies the ZTP script, exactly as pasted into the text field, onto the oob-mgmt-server. Any network node making a ZTP request on the OOB management network has access to this ZTP script through a DHCP server and web server running on the oob-mgmt-server.
 
-To upload a ZTP script, click the **ZTP** button in the top right of the canvas:
+To upload a ZTP script, click **ZTP** in the top right of the canvas:
 
 {{<img src="/images/guides/nvidia-air/ZTP.png" width="400px">}}
 
@@ -79,7 +79,7 @@ A popup window opens where you can paste the contents of the ZTP script. The pop
 
 {{<img src="/images/guides/nvidia-air/ZTPPopup.png" width="800px">}}
 
-After you apply the ZTP script, the ZTP button changes color from grey to green, indicating that ZTP is now active on your oob-mgmt-server.
+After you apply the ZTP script, ZTP in the top right of the canvas changes color from grey to green, indicating that ZTP is now active on your oob-mgmt-server.
 
 {{<img src="/images/guides/nvidia-air/ZTPActive.png" width="400px">}}
 
@@ -107,7 +107,7 @@ To upload the `topology.dot` and `topology.svg` files:
 
    {{<img src="/images/guides/nvidia-air/UploadTopology1.png" width="300px">}}
 
-3. Drag the `topology.dot` file onto the **Drop a topology file here** card and the `topology.svg` file onto the **Drop a diagram file here** card.
+3. Drag the `topology.dot` file onto the **Drop a topology file here** card and the `topology.svg` file onto the **Drop a diagram file here** card, then click **SUBMIT**.
 
 ## NetQ Integration
 

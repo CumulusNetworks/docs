@@ -17,7 +17,7 @@ In the simulation list, the **ORGANIZATION** column shows the organization to wh
 
 <div style="margin-top: 20px;"></div>
 
-To assign a simulation to an organization, click the **Edit** icon to open the **EDIT SIMULATION** dialog. Select the organization from the **ORGANIZATION** dropdown menu.
+To assign a simulation to an organization, click the **Edit** icon to open the **EDIT SIMULATION** dialog. Select the organization from the **ORGANIZATION** dropdown menu, then click **Submit**.
 
 {{<img src="/images/guides/nvidia-air/EditSim.png" width="400px">}}
 
@@ -25,7 +25,7 @@ To assign a simulation to an organization, click the **Edit** icon to open the *
 
 If you are an Organization Administrator, you can create and manage organizations, and view details about each organization, such as the list of current members and their roles. You can also view resource utilization for all simulations in the organization.
 
-To see the list of current organizations, click **Organization List** from the **ORGANIZATIONS** dropdown in the left pane.
+To see the list of current organizations, click **Organization List** from the **ORGANIZATIONS** dropdown in the sidebar.
 
 {{<img src="/images/guides/nvidia-air/OrgList.png" width="800px">}}
 
@@ -53,17 +53,22 @@ Deleting an organization also deletes all the simulations and resources assigned
 
 ### View Details and Manage Members
 
-To view details about each organization and to manage members, click the organization link in the **Organization** column to open the organization details page.
+To view details about each organization and to manage members, click the organization link in the **Organization** column on the Organizations page.
+
+The organization details page provides several options.
 
 {{<img src="/images/guides/nvidia-air/OrgDetails.png">}}
 
 <div style="margin-top: 20px;"></div>
 
 - To view usage statistics for an organization, click the **Usage** link. You can see how many simulations are in the organization and how much CPU, memory, and disk storage the organization uses.
-- To add a new member, click the **Members** link, then click the **Add Member** button. In the Add Members dialog, provide the email address of the member you want to add. If you want the member to be an administrator, click **ORGANIZATION ADMIN** so that the toggle switch turns green.
-- To edit resource limits for a member such as CPU, memory, and storage and the number of simulations allowed, select **Edit Membership** from the actions menu.
-- To remove a member, select **Remove Member** from the actions menu.
+- To manage members click the **Members** link.
+  - To add a new member, click the **Add Member** button. In the Add Members dialog, provide the email address of the member you want to add. If you want the member to be an administrator, click **ORGANIZATION ADMIN** so that the toggle switch turns green.
+  - To edit resource limits for a member such as CPU, memory, and storage and the number of simulations allowed, select **Edit Membership** from the actions menu.
+  - To remove a member, select **Remove Member** from the actions menu.
 
-   {{%notice note%}}
+    {{%notice note%}}
 Removing a member from an organization also moves all their simulations out of the organization.
 {{%/notice%}}
+
+- To view information about a simulation image for an organization, such as the image size, when the image was created and who uploaded the image, click the **Images** link. To delete an image, select **Delete** from the actions menu.

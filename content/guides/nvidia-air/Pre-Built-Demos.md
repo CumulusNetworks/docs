@@ -23,7 +23,7 @@ The reference topology provides a complete two-tier spine and leaf topology. It 
 - One NVIDIA NetQ Cloud virtual appliance (*netq-ts*)
 
 <!--{{<img src="/images/guides/cldemo2-diagram.png" >}}-->
-When you start the reference topology simulation environment, all interfaces (except for the out-of-band management network) are not configured and are administratively down. The golden standard configurations and demos provide interface and routing protocol configurations that you can apply to this simulation topology.
+When you start the reference topology simulation environment, none of the interfaces are configured (except for the out-of-band management network) and all interfaces are administratively down. The golden standard configurations and demos provide interface and routing protocol configurations that you can apply to this simulation topology.
 
 ## Cumulus In The Cloud
 

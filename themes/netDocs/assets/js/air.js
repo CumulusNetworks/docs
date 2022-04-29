@@ -1,11 +1,11 @@
 class Air {
   constructor() {
-    this.air_url = 'https://air-stage.nvidia.com';
+    this.air_url = 'https://air.nvidia.com';
     this.api_url = `${this.air_url}/api/v1`;
   }
 
   async _request(method, uri) {
-    const res = await fetch(`${this.api_url}${uri}`, { method, credentials: 'include', referrerPolicy: 'origin' });
+    const res = await fetch(`${this.api_url}${uri}`, { method, credentials: 'include' });
     if (res.status > 399) {
       throw new Error(res.statusText);
     }

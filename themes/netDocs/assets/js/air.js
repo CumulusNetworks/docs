@@ -1,6 +1,6 @@
 class Air {
   constructor() {
-    this.air_url = 'https://air.nvidia.com';
+    this.air_url = 'https://air-stage.nvidia.com';
     this.api_url = `${this.air_url}/api/v1`;
   }
 
@@ -86,7 +86,7 @@ class Simulation {
       }
     });
   };
-  launch() {
+  async launch() {
     if (!this.id) {
       this.id = await this.air.autoprovision(this);
       if (this.id) {

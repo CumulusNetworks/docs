@@ -29,7 +29,7 @@ After you log in, the NVIDIA Air landing page opens:
 <!--{{<img src="/images/guides/nvidia-air/SideBar.png">}}-->
 - The **Filter organizations** funnel lets you filter your list of simulations based on organization, if you belong to multiple organizations.
 <!--{{<img src="/images/guides/nvidia-air/OrganizationDropdown.png" width="250px">}}-->
-- The **Search simulations** box lets filter your simulations based on a text match, if you have more than one simulation.
+- The **Search simulations** box lets you filter your simulations based on a text match, if you have more than one simulation.
 <!--{{<img src="/images/guides/nvidia-air/SearchSimulation.png">}}-->
 - The **BUILD A SIMULATION** button lets you build a new simulation. This button appears only if you have no simulations. NVIDIA Air provides {{<link title="Pre-built Demos">}} to help you get started.<!--{{<img src="/images/guides/nvidia-air/BuildSim.png" width="300px">}}-->
 
@@ -83,7 +83,7 @@ Use the **SERVICES** pane in the advanced view to create an external connection 
   {{<img src="/images/guides/nvidia-air/ServicesCreate.png" width="400px">}}
 
   1. In the **SERVICE NAME** field, enter the name of the service.
-  2. In the **INTERFACE** dropdown, select the name of the interface in the simulation where the connection terminates. This is typically the eth0interface on the oob-mgmt-server.
+  2. In the **INTERFACE** dropdown, select the name of the interface in the simulation where the connection terminates. This is typically the eth0 interface on the oob-mgmt-server.
   3. In the **SERVICE TYPE** dropdown, select the type of service you want to create. If you select *SSH*, *HTTP* or *HTTPS*, NVIDIA Air creates a hyperlink to the URL automatically in the Services panel. If you select *Other*, you can select any port, but there is no hyperlink. The hyperlink provides a quick way to copy and paste the service.
   4. In the **SERVICE PORT** field, specify the internal port where the service terminates.
   5. Click **SUBMIT** to create the service.
@@ -187,7 +187,7 @@ In the API Tokens window, provide a name and expiration date (optional) for the 
 
 <div style="margin-top: 20px;"></div>
 
-This generates a token that you can use to access the API and SDK.
+NVIDIA Air generates a token that you can use to access the API and SDK.
 
 {{<img src="/images/guides/nvidia-air/UserAPITokenGenerated.png" width="600px">}}
 

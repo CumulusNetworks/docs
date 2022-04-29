@@ -5,7 +5,7 @@ class Air {
   }
 
   async _request(method, uri) {
-    const res = await fetch(`${this.api_url}${uri}`, { method, credentials: 'include' });
+    const res = await fetch(`${this.api_url}${uri}`, { method, credentials: 'include', referrerPolicy: 'origin' });
     if (res.status > 399) {
       throw new Error(res.statusText);
     }

@@ -8,8 +8,6 @@ NetQ offers multiple ways to view your event status. The NetQ UI provides a grap
 
 Refer to {{<link title="Configure System Event Notifications">}} and {{<link title="Configure Threshold-Based Event Notifications">}} for information about configuring and managing these events.
 
-Refer to the {{<link title="NetQ UI Card Reference">}} for details of the cards used with the following procedures.
-
 ## Monitor All System and TCA Events Networkwide
 
 You can monitor all system and TCA events across the network with the NetQ UI and the NetQ CLI.
@@ -270,10 +268,7 @@ You can enter a severity using the <code>level</code> option to further narrow t
 
 ## Monitor System and TCA Events Networkwide by Severity
 
-You can view system and TCA events by their severity on a networkwide basis with the NetQ UI and the NetQ CLI using the:
-
-- Events list
-- `netq show events level` command
+You can view system and TCA events by their severity on a networkwide basis with the NetQ UI and the NetQ CLI.
 
 {{<notice tip>}}
 System event severities include info, error, warning, or debug. TCA event severities include info or error.
@@ -281,7 +276,7 @@ System event severities include info, error, warning, or debug. TCA event severi
 
 {{<tabs "TabID312" >}}
 
-{{<tab "Events List" >}}
+{{<tab "NetQ UI" >}}
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
 
@@ -293,7 +288,7 @@ System event severities include info, error, warning, or debug. TCA event severi
 
 {{</tab>}}
 
-{{<tab "netq show events" >}}
+{{<tab "NetQ CLI" >}}
 
 To view all system events of a given severity, run:
 
@@ -335,18 +330,11 @@ You can use the <code>type</code> and <code>between</code> options to further na
 
 ## Monitor System and TCA Events on a Device by Severity
 
-You can view system and TCA events by their severity on a given device with the NetQ UI and the NetQ CLI using the:
-
-- Events list
-- `netq <hostname> show events level` command
-
-{{<notice tip>}}
-System event severities include info, error, warning, or debug severity. TCA event severities include info or error.
-{{</notice>}}
+You can view system and TCA events by their severity on a given device with the NetQ UI and the NetQ CLI.
 
 {{<tabs "TabID545" >}}
 
-{{<tab "Events List" >}}
+{{<tab "NetQ UI" >}}
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
 
@@ -360,7 +348,7 @@ System event severities include info, error, warning, or debug severity. TCA eve
 
 {{</tab>}}
 
-{{<tab "netq show events" >}}
+{{<tab "NetQ CLI" >}}
 
 To view all system events for a given severity on a device, run:
 
@@ -396,12 +384,9 @@ You can use the <code>type</code> or <code>between</code> options to further nar
 
 You can monitor all system and TCA events across the network currently or for a time in the past with the NetQ UI and the NetQ CLI.
 
-- Events list
-- `netq show events between` command: view events for a time range in the past
-
 {{<tabs "TabID706" >}}
 
-{{<tab "Events List" >}}
+{{<tab "NetQ UI" >}}
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
 
@@ -412,7 +397,7 @@ You can monitor all system and TCA events across the network currently or for a 
 4. Click **Apply**.
 
 {{</tab>}}
-{{<tab "netq show events" >}}
+{{<tab "NetQ CLI" >}}
 
 The NetQ CLI uses a default of one hour unless otherwise specified. To view all system and all TCA events for a time beyond an hour in the past, run:
 

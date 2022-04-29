@@ -907,7 +907,7 @@ Each time a change is made to the configuration file for the LLDP service, NetQ 
 
 To view the configuration file changes:
 
-1. Open or add the full-scren Network Services|All LLDP Sessions card.
+1. Open or add the full-screen Network Services|All LLDP Sessions card.
 
 3. Click **All Sessions**.
 

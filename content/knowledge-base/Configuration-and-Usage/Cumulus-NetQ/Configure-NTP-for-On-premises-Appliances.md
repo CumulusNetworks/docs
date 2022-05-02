@@ -7,13 +7,13 @@ toc: 4
 
 ## Issue
 
-Cumulus NetQ uses `{{<exlink url="https://chrony.tuxfamily.org/" text="chrony">}}` to synchronize time on Cumulus NetQ appliances. `chrony` syncs with NTP to keep the system clock correct in the appliance, as having the correct system clock is necessary for NetQ to function.
+NVIDIA NetQ uses `{{<exlink url="https://chrony.tuxfamily.org/" text="chrony">}}` to synchronize time on NetQ appliances. `chrony` syncs with NTP to keep the system clock correct in the appliance, as having the correct system clock is necessary for NetQ to function.
 
-By default, Cumulus NetQ configures `chrony` with public NTP pool servers. However, this does not work for air gapped on-premises environments, as they block egress traffic to NTP pool servers on the internet. If you are using the Cumulus NetQ On-premises Appliance, you need to verify NTP points to internal NTP pool servers and not to external public servers.
+By default, NetQ configures `chrony` with public NTP pool servers. However, this does not work for air gapped on-premises environments, as they block egress traffic to NTP pool servers on the internet. If you are using the NetQ On-premises Appliance, you need to verify NTP points to internal NTP pool servers and not to external public servers.
 
 ##  Environment
 
-- Cumulus NetQ 3.2.0 and later
+- NetQ 3.2.0 and later
 
 ## Resolution
 

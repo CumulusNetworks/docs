@@ -11,22 +11,22 @@ When I try to connect to the NetQ UI to configure my on-premises setup, I get a 
 <!-- vale on -->
 ## Environment
 
-- Cumulus NetQ 3.0.0 - 3.1.0
+- NetQ 3.0.0 - 3.1.0
 
 ## Resolution
 
-The Cumulus NetQ UI ships with a self-signed certificate, which is why your browser issues a warning. You can avoid seeing this issue by installing your own signed certificate.
+The NetQ UI ships with a self-signed certificate, which is why your browser issues a warning. You can avoid seeing this issue by installing your own signed certificate.
 
 To use a custom certificate, you need the following:
 
 - A valid X509 certificate.
 - A private key file for the certificate.
 - A DNS record name configured to access the NetQ UI. The FQDN should match the common name of the certificate. If you use a wild card in the common name &mdash; for example, if the common name of the certificate is _*.example.com_ &mdash; then the NetQ telemetry server should reside on a subdomain of that domain, accessible via a URL like _netq.example.com_.
-- You must install and run Cumulus NetQ. You can verify this by running the `netq show opta-health` command.
+- You must install and run NetQ. You can verify this by running the `netq show opta-health` command.
 
 To install a custom certificate:
 
-1. Log in to the Cumulus NetQ telemetry server via SSH and copy your certificate and key file there.
+1. Log in to the NetQ telemetry server via SSH and copy your certificate and key file there.
 1. Generate a Kubernetes secret called `netq-gui-ingress-tls` using following command:
 
        cumulus@netq-ts:~$ kubectl create secret tls netq-gui-ingress-tls \

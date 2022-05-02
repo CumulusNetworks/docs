@@ -4,7 +4,7 @@
 
 <p>The address range is 10.244.0.0/16. NetQ overrides the original Flannel default, which is 10.1.0.0/16.</p>
 
-<p>To change the default address range, use the bootstrap CLI with the <code>pod-ip-range</code> option. For example:</p>
+<p>To change the default address range, use the CLI with the <code>pod-ip-range</code> option. For example:</p>
 
 {{- if eq (.Get "version") "3.2.1" -}}
 
@@ -38,6 +38,17 @@
 {{- if eq (.Get "version") "4.1" -}}
 
 <pre>cumulus@hostname:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-4.1.0.tgz pod-ip-range 10.255.0.0/16</pre>
+
+{{ end }}
+
+<em>Docker Default Bridge Interface</em>
+
+<p>The default Docker bridge interface is disabled in NetQ. If you need to reenable the interface, contact <a href="https://support.mellanox.com/s/" target="_blank">support</a>.</p>
+
+
+{{- if eq (.Get "version") "4.2" -}}
+
+<pre>cumulus@hostname:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.2.0-opta.tgz config-key <your-config-key> pod-ip-range 10.255.0.0/16</pre>
 
 {{ end }}
 

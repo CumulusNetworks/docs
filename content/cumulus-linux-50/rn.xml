@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3058604</td>
+<td>When you change the time with NTP or manually, the clagd service stops.</td>
+<td>4.4.3, 5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3054869</td>
+<td>When you run NVUE commands as part of ZTP scripts, the commands fail with many  errors.
+To work around this issue, before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root). Also, you must export the {{HOME}} variable so it is available globally for NVUE to use.
+
+# Manually set HOME var for root user
+HOME=/root
+export HOME
+</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3045304</td>
 <td>CVE-2022-1271: incorrect handling of filenames by xzgrep in xz-utils, the XZ-format compression utilities, can result in overwrite of arbitrary files or execution of arbitrary code if a file with a specially crafted filename is processed.
 Vulnerable: 5.2.4-1
@@ -43,25 +61,18 @@ Failure during apply. Ignore? [y/N]
 <td>3041307</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
+<td>3.7.16</td>
 </tr>
 <tr>
 <td>3041306</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3040080</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3037541</td>
-<td>The NVUE {{nv set evpn multihoming enable on}} command does not enable EVPN multihoming. 
-To work around this issue, set the {{evpn.multihoming.enable}} variable in the {{/etc/cumulus/switchd.conf}} file to TRUE, then restart the {{switchd}} service.</td>
-<td>5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -84,8 +95,8 @@ To work around this issue, set the {{evpn.multihoming.enable}} variable in the {
 </tr>
 <tr>
 <td>3030238</td>
-<td>When you change the time with NTP, the clagd service stops.</td>
-<td>5.0.1</td>
+<td>When you change the time with NTP or manually, the clagd service stops.</td>
+<td>4.4.3, 5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -145,7 +156,7 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 <tr>
 <td>3021693</td>
 <td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -184,7 +195,7 @@ Fixed: 1.1.1d-0+deb10u8</td>
 <tr>
 <td>3007564</td>
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -230,13 +241,13 @@ by reading too much data on the heap.
 Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
 Fixed:</td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
+<td>3.7.16</td>
 </tr>
 <tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
+<td>3.7.16</td>
 </tr>
 <tr>
 <td>2991501</td>
@@ -284,13 +295,13 @@ Unrecoverable internal error
 <tr>
 <td>2972540</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.15-3.7.16, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2972538</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.15-3.7.16, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -298,6 +309,12 @@ Unrecoverable internal error
 <td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
 <td>4.2.1-4.4.2, 5.0.0-5.0.1</td>
 <td>4.4.3</td>
+</tr>
+<tr>
+<td>2964279</td>
+<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
+<td>3.7.15, 4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.16</td>
 </tr>
 <tr>
 <td>2961216</td>
@@ -326,7 +343,7 @@ Unrecoverable internal error
 <tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
-<td>3.7.15, 4.1.1-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.15-3.7.16, 4.1.1-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -338,14 +355,14 @@ Unrecoverable internal error
 <tr>
 <td>2947679</td>
 <td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2943443</td>
 <td>Cumulus Linux lets you add more than one VXLAN interface to same VLAN on the same bridge. This is an invalid configuration as certain Cumulus Linux components, such as {{switchd}}, expect a single VNI for a given bridge or VLAN.</td>
 <td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
+<td>3.7.16</td>
 </tr>
 <tr>
 <td>2943080</td>
@@ -376,7 +393,7 @@ To work around this issue, create a snippet in yaml format and add the configura
 <td>2923737</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
+<td>3.7.16</td>
 </tr>
 <tr>
 <td>2914835</td>
@@ -420,14 +437,14 @@ Unrecoverable internal error
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2896672</td>
 <td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
+<td>3.7.16</td>
 </tr>
 <tr>
 <td>2895333</td>
@@ -467,7 +484,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>2879645</td>
 <td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
+<td>3.7.16</td>
 </tr>
 <tr>
 <td>2872277</td>
@@ -507,7 +524,7 @@ warning: vni10: possible mis-configuration detected: l2-vni configured with brid
 <td>2855908</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -561,7 +578,7 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>2663119</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
+<td>3.7.16</td>
 </tr>
 </table>
 <table name="Fixed Issues in 5.0.1">
@@ -585,6 +602,18 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3054869</td>
+<td>When you run NVUE commands as part of ZTP scripts, the commands fail with many  errors.
+To work around this issue, before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root). Also, you must export the {{HOME}} variable so it is available globally for NVUE to use.
+
+# Manually set HOME var for root user
+HOME=/root
+export HOME
+</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3045304</td>
 <td>CVE-2022-1271: incorrect handling of filenames by xzgrep in xz-utils, the XZ-format compression utilities, can result in overwrite of arbitrary files or execution of arbitrary code if a file with a specially crafted filename is processed.
 Vulnerable: 5.2.4-1
@@ -602,12 +631,12 @@ Fixed: 5.2.4-1+deb10u1</td>
 <td>3041307</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
+<td>3.7.16</td>
 </tr>
 <tr>
 <td>3041306</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -679,7 +708,7 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 <tr>
 <td>3021693</td>
 <td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -701,7 +730,7 @@ Fixed: 1.1.1d-0+deb10u8</td>
 <tr>
 <td>3007564</td>
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -747,12 +776,12 @@ by reading too much data on the heap.
 Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
 Fixed:</td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
+<td>3.7.16</td>
 </tr>
 <tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -790,13 +819,13 @@ Fixed: 2.2.6-2+deb10u3</td>
 <tr>
 <td>2972540</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.15-3.7.16, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2972538</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.15-3.7.16, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -804,6 +833,12 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
 <td>4.2.1-4.4.2, 5.0.0-5.0.1</td>
 <td>4.4.3</td>
+</tr>
+<tr>
+<td>2964279</td>
+<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
+<td>3.7.15, 4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.16</td>
 </tr>
 <tr>
 <td>2961216</td>
@@ -832,7 +867,7 @@ Fixed: 2.2.6-2+deb10u3</td>
 <tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
-<td>3.7.15, 4.1.1-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.15-3.7.16, 4.1.1-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -844,14 +879,14 @@ Fixed: 2.2.6-2+deb10u3</td>
 <tr>
 <td>2947679</td>
 <td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2943443</td>
 <td>Cumulus Linux lets you add more than one VXLAN interface to same VLAN on the same bridge. This is an invalid configuration as certain Cumulus Linux components, such as {{switchd}}, expect a single VNI for a given bridge or VLAN.</td>
 <td>3.7.15, 4.2.1-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
+<td>3.7.16</td>
 </tr>
 <tr>
 <td>2943080</td>
@@ -876,7 +911,7 @@ To work around this issue, create a snippet in yaml format and add the configura
 <td>2923737</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
+<td>3.7.16</td>
 </tr>
 <tr>
 <td>2914835</td>
@@ -927,13 +962,13 @@ Unrecoverable internal error
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2896672</td>
 <td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -974,7 +1009,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>2879645</td>
 <td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
+<td>3.7.16</td>
 </tr>
 <tr>
 <td>2872277</td>
@@ -1014,7 +1049,7 @@ warning: vni10: possible mis-configuration detected: l2-vni configured with brid
 <td>2855908</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1086,13 +1121,13 @@ Fixed: 3.42.1-1+deb10u4</td>
 <tr>
 <td>2873186</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
-<td>3.7.14.2-4.4.3</td>
+<td>3.7.14.2-3.7.15, 4.3.0-4.4.3</td>
 </tr>
 <tr>
 <td>2862211</td>
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
 To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
-<td>3.7.12-4.4.3</td>
+<td>3.7.12-3.7.15, 4.3.0-4.4.3</td>
 </tr>
 <tr>
 <td>2845647</td>
@@ -1144,7 +1179,7 @@ To work around this issue, configure an anycast IP address under the loopback in
 <tr>
 <td>2826121</td>
 <td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
-<td>3.7.15-4.4.1</td>
+<td>3.7.15, 4.3.0-4.4.1</td>
 </tr>
 <tr>
 <td>2821869</td>
@@ -1350,7 +1385,7 @@ Fixed: 1.24.1-1+deb 10u1</td>
 <tr>
 <td>2556811</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-4.4.3</td>
+<td>3.7.12-3.7.15, 4.1.1-4.4.3</td>
 </tr>
 <tr>
 <td>2554783</td>

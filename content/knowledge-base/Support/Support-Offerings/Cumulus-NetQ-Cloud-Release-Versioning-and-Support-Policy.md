@@ -31,7 +31,7 @@ NetQ software installation file names include a version number, in the form of x
 
 This number corresponds to the release version of the software. NetQ requires two Debian packages per release. This example shows the first minor release of the third major release, for the Ubuntu OS and x86\_64 CPU architecture:
 
-- netq-agent\_4.1.0-cl4u36~1639165028.2c18daee\_amd64.de
+- netq-agent\_4.1.0-cl4u36~1639165028.2c18daee\_amd64.deb
 - netq-apps\_4.1.0-cl4u36~1639165028.2c18daee\_amd64.deb
 
 ## Release, Support Lifecycle and Support Policy

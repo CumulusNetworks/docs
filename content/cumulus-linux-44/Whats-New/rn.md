@@ -14,12 +14,14 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3058604"></a> [3058604](#3058604) <a name="3058604"></a> <br /> | When you change the time with NTP or manually, the clagd service stops. | 4.4.3, 5.0.1 | |
 | <a name="3041307"></a> [3041307](#3041307) <a name="3041307"></a> <br /> | If you update the MAC address of an SVI using <code>ifreload</code> and <code>hwaddress</code>, the kernel maintains a stale permanent fdb entry for the old MAC address. | 3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1 | 3.7.16|
 | <a name="3041306"></a> [3041306](#3041306) <a name="3041306"></a> <br /> | If you update the MAC address of an SVI using <code>ifreload</code> and <code>hwaddress</code>, the kernel maintains a stale permanent fdb entry for the old MAC address. | 3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1 | |
 | <a name="3040080"></a> [3040080](#3040080) <a name="3040080"></a> <br /> | On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic. | 4.4.2-4.4.3, 5.0.0-5.0.1 | |
 | <a name="3040075"></a> [3040075](#3040075) <a name="3040075"></a> <br /> | On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. <code>syslog</code> reports an error similar to:<pre>2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd&#91;1&#93;: clagd.service: Failed with result 'watchdog'<br /></pre> | 3.7.6-3.7.16, 4.2.1-4.4.3 | |
 | <a name="3032960"></a> [3032960](#3032960) <a name="3032960"></a> <br /> | When you set <code>vlan-bridge-binding on</code> for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.   | 4.4.3, 5.0.0-5.0.1 | |
 | <a name="3031235"></a> [3031235](#3031235) <a name="3031235"></a> <br /> | Static VXLAN configuration prevents NCLU from working. | 4.3.0-4.4.3 | |
+| <a name="3030238"></a> [3030238](#3030238) <a name="3030238"></a> <br /> | When you change the time with NTP or manually, the clagd service stops. | 4.4.3, 5.0.1 | |
 | <a name="3023256"></a> [3023256](#3023256) <a name="3023256"></a> <br /> | After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the <code>protodown</code> flag ON. | 4.4.3 | |
 | <a name="3021897"></a> [3021897](#3021897) <a name="3021897"></a> <br /> | After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the <code>protodown</code> flag ON. | 4.4.3, 5.0.0-5.0.1 | |
 | <a name="3021877"></a> [3021877](#3021877) <a name="3021877"></a> <br /> | After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface. | 4.4.2-4.4.3, 5.0.0-5.0.1 | |

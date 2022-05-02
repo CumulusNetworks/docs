@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3058604</td>
+<td>When you change the time with NTP or manually, the clagd service stops.</td>
+<td>4.4.3, 5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3054869</td>
+<td>When you run NVUE commands as part of ZTP scripts, the commands fail with many  errors.
+To work around this issue, before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root). Also, you must export the {{HOME}} variable so it is available globally for NVUE to use.
+
+# Manually set HOME var for root user
+HOME=/root
+export HOME
+</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3045304</td>
 <td>CVE-2022-1271: incorrect handling of filenames by xzgrep in xz-utils, the XZ-format compression utilities, can result in overwrite of arbitrary files or execution of arbitrary code if a file with a specially crafted filename is processed.
 Vulnerable: 5.2.4-1
@@ -77,8 +95,8 @@ Failure during apply. Ignore? [y/N]
 </tr>
 <tr>
 <td>3030238</td>
-<td>When you change the time with NTP, the clagd service stops.</td>
-<td>5.0.1</td>
+<td>When you change the time with NTP or manually, the clagd service stops.</td>
+<td>4.4.3, 5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -582,6 +600,18 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3054869</td>
+<td>When you run NVUE commands as part of ZTP scripts, the commands fail with many  errors.
+To work around this issue, before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root). Also, you must export the {{HOME}} variable so it is available globally for NVUE to use.
+
+# Manually set HOME var for root user
+HOME=/root
+export HOME
+</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3045304</td>

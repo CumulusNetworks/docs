@@ -5,11 +5,11 @@ weight: 342
 toc: 4
 ---
 
-Cumulus NetQ provides the information you need to monitor the health of your network fabric, devices, and interfaces. You are able to easily validate the operation and view the configuration across the entire network from switches to hosts to containers.
+NVIDIA NetQ provides the information you need to monitor the health of your network fabric, devices, and interfaces. You are able to easily validate the operation and view the configuration across the entire network from switches to hosts to containers.
 
 ## Environment
 
-- Cumulus NetQ 2.0 - 2.3
+- NetQ 2.0 - 2.3
 
 ## Issue
 

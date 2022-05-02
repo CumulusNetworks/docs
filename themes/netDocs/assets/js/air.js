@@ -86,4 +86,14 @@ class Simulation {
       }
     });
   };
+  async launch() {
+    if (!this.id) {
+      this.id = await this.air.autoprovision(this);
+      if (this.id) {
+        this.loadConsoles();
+      } else {
+        this.showError();
+      }
+    }
+  };
 }

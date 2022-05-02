@@ -386,7 +386,7 @@ Two forms of the command are available; one that uses the `event_id` argument us
 netq add tca event_id
     <text-event-id-anchor>
     scope <text-scope-anchor>
-    [severity info | severity critical]
+    [severity info | severity error]
     [is_active true | is_active false]
     [suppress_until <text-suppress-ts>]
     [threshold_type user_set | threshold_type vendor_set]
@@ -396,7 +396,7 @@ netq add tca event_id
 netq add tca tca_id
     <text-tca-id-anchor>
     [scope <text-scope-anchor>]
-    [severity info | severity critical]
+    [severity info | severity error]
     [is_active true | is_active false]
     [suppress_until <text-suppress-ts>]
     [threshold_type user_set | threshold_type vendor_set]
@@ -418,7 +418,7 @@ netq add tca tca_id
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| severity | info, critical | Only include events with this severity |
+| severity | info, error | Only include events with this severity |
 | is_active | true, false | Activate or deactivate the TCA event rule |
 | suppress_until | \<text-suppress-ts\>| Suppress this event rule until the specified time; formatted as seconds from now |
 | threshold_type | user_set, vendor_set | Apply threshold specified in `threshold` option or the default specified by the vendor for this attribute |

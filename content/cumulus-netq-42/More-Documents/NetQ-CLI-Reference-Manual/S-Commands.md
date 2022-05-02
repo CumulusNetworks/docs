@@ -1057,7 +1057,7 @@ cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50 tx extended json
 Display system events that have occurred in the last 24 hours. Optionally, view events for a time in the past. You can filter the output by event severity and event type. The output provides the following information for each device:
 
 - Message type
-- Event severity (info, error, warning, critical, debug)
+- Event severity (info, error, warning, debug)
 - Descriptive event message
 - When the event occurred
 
@@ -1065,7 +1065,7 @@ Display system events that have occurred in the last 24 hours. Optionally, view 
 
 ```
 netq [<hostname>] show events
-    [level info | level error | level warning | level critical | level debug]
+    [level info | level error | level warning | level debug]
     [type agents|bgp|btrfsinfo|clag|clsupport|configdiff|evpn|interfaces|interfaces-physical|lcm|lldp|macs|mtu|ntp|os|ospf|roceconfig|sensors|services|tca_roce|trace|vlan|vxlan]
     [between <text-time> and <text-endtime>]
     [json]
@@ -1080,7 +1080,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
-| level | info, error, warning, critical, or debug | Only display events with this severity level |
+| level | info, error, warning, or debug | Only display events with this severity level |
 | type | agents, bgp, btrfsinfo, clag, clsupport, configdiff, evpn, interfaces, interfaces-physical, lcm, lldp, macs, mtu, ntp, os, ospf, roceconfig, sensors, services, tca_roce, trace, vlan or vxlan | Display events for the type with this name |
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
@@ -1105,30 +1105,30 @@ cumulus@switch:~$ netq show events between now and 3d
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp
 ----------------- ------------------------ ---------------- ----------------------------------- -------------------------
-leaf02            evpn                     critical         VNI 4002 state changed from up to d Thu Dec 10 22:00:36 2020
+leaf02            evpn                     error            VNI 4002 state changed from up to d Thu Dec 10 22:00:36 2020
                                                             own
-leaf02            evpn                     critical         VNI 4001 state changed from up to d Thu Dec 10 22:00:36 2020
+leaf02            evpn                     error            VNI 4001 state changed from up to d Thu Dec 10 22:00:36 2020
                                                             own
-leaf02            evpn                     critical         VNI 10 state changed from up to dow Thu Dec 10 22:00:36 2020
+leaf02            evpn                     error            VNI 10 state changed from up to dow Thu Dec 10 22:00:36 2020
                                                             n
-leaf02            evpn                     critical         VNI 30 state changed from up to dow Thu Dec 10 22:00:36 2020
+leaf02            evpn                     error            VNI 30 state changed from up to dow Thu Dec 10 22:00:36 2020
                                                             n
-leaf02            evpn                     critical         VNI 20 state changed from up to dow Thu Dec 10 22:00:36 2020
+leaf02            evpn                     error            VNI 20 state changed from up to dow Thu Dec 10 22:00:36 2020
                                                             n
-leaf02            evpn                     critical         VNI 4002 state changed from up to d Thu Dec 10 20:42:39 2020
+leaf02            evpn                     error            VNI 4002 state changed from up to d Thu Dec 10 20:42:39 2020
                                                             own
-leaf02            evpn                     critical         VNI 4001 state changed from up to d Thu Dec 10 20:42:39 2020
+leaf02            evpn                     error            VNI 4001 state changed from up to d Thu Dec 10 20:42:39 2020
                                                             own
 ...
-border02          evpn                     critical         VNI 4002 state changed from up to d Thu Dec 10 03:24:10 2020
+border02          evpn                     error            VNI 4002 state changed from up to d Thu Dec 10 03:24:10 2020
                                                             own
-border02          evpn                     critical         VNI 4001 state changed from up to d Thu Dec 10 03:24:10 2020
+border02          evpn                     error            VNI 4001 state changed from up to d Thu Dec 10 03:24:10 2020
                                                             own
-border02          evpn                     critical         VNI 4002 state changed from up to d Thu Dec 10 02:58:20 2020
+border02          evpn                     error            VNI 4002 state changed from up to d Thu Dec 10 02:58:20 2020
                                                             own
-border02          evpn                     critical         VNI 4001 state changed from up to d Thu Dec 10 02:58:20 2020
+border02          evpn                     error            VNI 4001 state changed from up to d Thu Dec 10 02:58:20 2020
                                                             own
-border02          evpn                     critical         VNI 4002 state changed from up to d Thu Dec 10 02:32:16 2020
+border02          evpn                     error            VNI 4002 state changed from up to d Thu Dec 10 02:32:16 2020
                                                             own
 ...
 leaf02            services                 info             Service netqd status changed from i Thu Dec 10 06:49:15 2020
@@ -1144,25 +1144,25 @@ leaf02            services                 info             Service netqd status
 ...
 ```
 
-Show critical events for a particular service
+Show error events for a particular service
 
 ```
-cumulus@switch:~$ netq show events level critical type clag between now and 3d
+cumulus@switch:~$ netq show events level error type clag between now and 3d
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp
 ----------------- ------------------------ ---------------- ----------------------------------- -------------------------
-leaf01            clag                     critical         Peer state changed to down          Thu Dec 10 18:53:44 2020
-leaf02            clag                     critical         Peer state changed to down          Thu Dec 10 18:39:00 2020
-border01          clag                     critical         Peer state changed to down          Thu Dec 10 02:21:59 2020
-border01          clag                     critical         Peer state changed to down          Thu Dec 10 02:19:55 2020
-border01          clag                     critical         Peer state changed to down          Thu Dec 10 02:16:50 2020
-border01          clag                     critical         Peer state changed to down          Thu Dec 10 02:14:47 2020
-border01          clag                     critical         Peer state changed to down          Wed Dec  9 23:02:34 2020
-border01          clag                     critical         Peer state changed to down          Wed Dec  9 22:56:25 2020
-border02          clag                     critical         Peer state changed to down          Wed Dec  9 22:53:27 2020
-border01          clag                     critical         Peer state changed to down          Wed Dec  9 22:53:20 2020
-border01          clag                     critical         Peer state changed to down          Wed Dec  9 22:47:10 2020
-border02          clag                     critical         Peer state changed to down          Wed Dec  9 22:25:32 2020
+leaf01            clag                     error            Peer state changed to down          Thu Dec 10 18:53:44 2020
+leaf02            clag                     error            Peer state changed to down          Thu Dec 10 18:39:00 2020
+border01          clag                     error            Peer state changed to down          Thu Dec 10 02:21:59 2020
+border01          clag                     error            Peer state changed to down          Thu Dec 10 02:19:55 2020
+border01          clag                     error            Peer state changed to down          Thu Dec 10 02:16:50 2020
+border01          clag                     error            Peer state changed to down          Thu Dec 10 02:14:47 2020
+border01          clag                     error            Peer state changed to down          Wed Dec  9 23:02:34 2020
+border01          clag                     error            Peer state changed to down          Wed Dec  9 22:56:25 2020
+border02          clag                     error            Peer state changed to down          Wed Dec  9 22:53:27 2020
+border01          clag                     error            Peer state changed to down          Wed Dec  9 22:53:20 2020
+border01          clag                     error            Peer state changed to down          Wed Dec  9 22:47:10 2020
+border02          clag                     error            Peer state changed to down          Wed Dec  9 22:25:32 2020
 ```
 
 ### Related Commands
@@ -1332,7 +1332,7 @@ Matching config_events records:
 Message Name             Filter Condition Name                      Filter Condition Hierarchy                           Filter Condition Description
 ------------------------ ------------------------------------------ ---------------------------------------------------- --------------------------------------------------------
 evpn                     vni                                        3                                                    Target VNI
-evpn                     severity                                   2                                                    Severity critical/info
+evpn                     severity                                   2                                                    Severity error/info
 evpn                     hostname                                   1                                                    Target Hostname
 ```
 <!-- vale off -->
@@ -4181,15 +4181,15 @@ TCA Name                     Event Name           Scope                      Sev
 ---------------------------- -------------------- -------------------------- -------- ------------------ ------ ------------------ -------- -------------- ----------------------------
 TCA_CPU_UTILIZATION_UPPER_1  TCA_CPU_UTILIZATION_ {"hostname":"leaf01"}      info     pd-netq-events,slk True   87                 %        user_set       Fri Oct  9 15:39:35 2020
                              UPPER                                                    -netq-events
-TCA_CPU_UTILIZATION_UPPER_2  TCA_CPU_UTILIZATION_ {"hostname":"*"}           critical slk-netq-events    True   93                 %        user_set       Fri Oct  9 15:39:56 2020
+TCA_CPU_UTILIZATION_UPPER_2  TCA_CPU_UTILIZATION_ {"hostname":"*"}           error    slk-netq-events    True   93                 %        user_set       Fri Oct  9 15:39:56 2020
                              UPPER
-TCA_DOM_BIAS_CURRENT_ALARM_U TCA_DOM_BIAS_CURRENT {"hostname":"leaf*","ifnam critical slk-netq-events    True   0                  mA       vendor_set     Fri Oct  9 16:02:37 2020
+TCA_DOM_BIAS_CURRENT_ALARM_U TCA_DOM_BIAS_CURRENT {"hostname":"leaf*","ifnam error    slk-netq-events    True   0                  mA       vendor_set     Fri Oct  9 16:02:37 2020
 PPER_1                       _ALARM_UPPER         e":"*"}
 TCA_DOM_RX_POWER_ALARM_UPPER TCA_DOM_RX_POWER_ALA {"hostname":"*","ifname":" info     slk-netq-events    True   0                  mW       vendor_set     Fri Oct  9 15:25:26 2020
 _1                           RM_UPPER             *"}
-TCA_SENSOR_TEMPERATURE_UPPER TCA_SENSOR_TEMPERATU {"hostname":"leaf","s_name critical slk-netq-events    True   32                 degreeC  user_set       Fri Oct  9 15:40:18 2020
+TCA_SENSOR_TEMPERATURE_UPPER TCA_SENSOR_TEMPERATU {"hostname":"leaf","s_name error    slk-netq-events    True   32                 degreeC  user_set       Fri Oct  9 15:40:18 2020
 _1                           RE_UPPER             ":"temp1"}
-TCA_TCAM_IPV4_ROUTE_UPPER_1  TCA_TCAM_IPV4_ROUTE_ {"hostname":"*"}           critical pd-netq-events     True   20000              %        user_set       Fri Oct  9 16:13:39 2020
+TCA_TCAM_IPV4_ROUTE_UPPER_1  TCA_TCAM_IPV4_ROUTE_ {"hostname":"*"}           error    pd-netq-events     True   20000              %        user_set       Fri Oct  9 16:13:39 2020
                              UPPER
 ```
 

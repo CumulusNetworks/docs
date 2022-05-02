@@ -4,9 +4,9 @@ author: NVIDIA
 weight: 780
 toc: 3
 ---
-To take advantage of the various event messages generated and processed by NetQ, you must integrate with third-party event notification applications. You can integrate NetQ with <!-- vale off -->Syslog<!-- vale on -->, PagerDuty, Slack, and email. A generic webhook channel also exists to send notifications to other third party applications. You can integrate with one or more of these applications simultaneously.
+To receive the event messages generated and processed by NetQ, you must integrate a third-party event notification application into your workflow. You can integrate NetQ with <!-- vale off -->Syslog<!-- vale on -->, PagerDuty, Slack, and/or email. Alternately, you can send notifications to other third-party applications via a generic webhook channel.
 
-In an on-premises deployment, the NetQ On-premises Appliance or VM receives the raw data stream from the NetQ Agents, processes the data, stores, and delivers events to the Notification function. Notification then filters and sends messages to any configured notification applications. In a cloud deployment, the NetQ Cloud Appliance or VM passes the raw data stream on to the NetQ Cloud service for processing and delivery.
+In an on-premises deployment, the NetQ On-premises Appliance or VM receives the raw data stream from the NetQ Agents, processes the data, then stores and delivers events to the Notification function. The Notification function filters and sends messages to any configured notification applications. In a cloud deployment, the NetQ Cloud Appliance or VM passes the raw data stream to the NetQ Cloud service for processing and delivery.
 
 {{<figure src="/images/netq/event-notif-arch-onprem-330.png">}}
 
@@ -14,7 +14,7 @@ In an on-premises deployment, the NetQ On-premises Appliance or VM receives the 
 
 {{<notice note>}}
 
-You can implement a proxy server (that sits between the NetQ Appliance or VM and the integration channels) that receives, processes and distributes the notifications rather than having them sent directly to the integration channel. If you use such a proxy, you must configure NetQ with the proxy information.
+You can implement a proxy server (that sits between the NetQ Appliance or VM and the integration channels) that receives, processes, and distributes the notifications rather than having them sent directly to the integration channel. If you use such a proxy, you must configure NetQ with the proxy information.
 
 {{</notice>}}
 
@@ -22,9 +22,9 @@ Notifications are generated for the following types of events:
 
 | Category | Events |
 | --- | --- | 
-| Network Protocol Validations | <ul><li>BGP status and session state</li><li>MLAG (CLAG) status and session state</li><li>EVPN status and session state</li><li>LLDP status</li><li>OSPF status and session state </li><li>VLAN status and session state \*</li><li>VXLAN status and session state \*</li></ul> |
+| Network Protocol Validations | <ul><li>BGP status and session state</li><li>MLAG (CLAG) status and session state</li><li>EVPN status and session state</li><li>LLDP status</li><li>OSPF status and session state </li><li>VLAN status and session state </li><li>VXLAN status and session state </li></ul> |
 | Interfaces | <ul><li>Link status</li><li>Ports and cables status</li><li>MTU status</li></ul> |
-| Services | <ul><li>NetQ Agent status</li><li>PTM\*</li><li>SSH \*</li><li>NTP status\*</li></ul> |
+| Services | <ul><li>NetQ Agent status</li><li>PTM</li><li>SSH \*</li><li>NTP status</li></ul> |
 | Traces | <ul><li>On-demand trace status</li><li>Scheduled trace status</li></ul> |
 | Sensors | <ul><li>Fan status</li><li>PSU (power supply unit) status</li><li>Temperature status</li></ul> |
 | System Software | <ul><li>Configuration File changes</li><li>Running Configuration File changes</li><li>Cumulus Linux Support status</li><li>Software Package status</li><li>Operating System version</li><li>Lifecycle Management status</li></ul> |
@@ -32,9 +32,7 @@ Notifications are generated for the following types of events:
 
 *\* This type of event can only be viewed in the CLI with this release.*
 
-Event filters are based on rules you create. You must have at least one rule per filter. A select set of events can be triggered by a user-configured threshold.
-
-Refer to the {{<link title="System Event Messages Reference">}} for descriptions and examples of these events.
+Event filters are based on rules you create. You must have at least one rule per filter. A select set of events can be triggered by a user-configured threshold. Refer to the {{<link title="System Event Messages Reference">}} for descriptions and examples of these events.
 
 ## Event Message Format
 
@@ -47,7 +45,7 @@ Messages have the following structure:
 | timestamp    | Date and time event occurred  |
 | opid         | Identifier of the service or process that generated the event |
 | hostname     | Hostname of network device where event occurred |
-| severity     | Severity level in which the given event is classified; *debug*, *error*, *info*, *warning,* or *critical* |
+| severity     | Severity level in which the given event is classified; *debug*, *error*, *info*, or *warning* |
 | message      | Text description of event  |
 
 For example:
@@ -67,12 +65,12 @@ The simplest configuration you can create is one that sends all events generated
 A notification configuration must contain one channel, one rule, and one filter. Creation of the configuration follows this same path:
 
 1. Add a channel.
-2. Add a rule that accepts a selected set events.
+2. Add a rule that accepts a selected set of events.
 3. Add a filter that associates this rule with the newly created channel.
 
 ### Create a Channel
 
-The first step is to create a PagerDuty, Slack, syslog, or Email channel to receive the notifications.
+The first step is to create a PagerDuty, Slack, syslog, or email channel to receive the notifications.
 
 {{<tabs "TabID81" >}}
 
@@ -322,8 +320,6 @@ You can use the NetQ UI or the NetQ CLI to create an email channel.
 
     {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
 
-    {{<figure src="/images/netq/main-menu-channels-selected-320.png" width="600">}}
-
 2. Click **Email**.
 
     {{<figure src="/images/netq/channels-noemail-created-320.png" width="700">}}
@@ -337,9 +333,9 @@ You can use the NetQ UI or the NetQ CLI to create an email channel.
 
     {{<figure src="/images/netq/channels-add-email-320.png" width="250">}}
 
-5. Enter a list of emails for the persons who you want to receive the notifications from this channel.
+5. Enter a list of emails for the people who you want to receive notifications from this channel.
 
-    Enter the emails separated by commas, and no spaces. For example: `user1@domain.com,user2@domain.com,user3@domain.com`.
+    Enter the emails separated by commas, and no spaces. For example: `user1@domain.com,user2@domain.com,user3@domain.com`
 
 6. The first time you configure an email channel, you must also specify the SMTP server information:
 
@@ -360,7 +356,7 @@ You can use the NetQ UI or the NetQ CLI to create an email channel.
 
     {{<figure src="/images/netq/channels-email-created-320.png" width="700">}}
 
-9. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
+9. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}}.
 
 {{</tab>}}
 
@@ -658,7 +654,7 @@ proxy4:80          yes                        yes
 
 ### Create Channels
 
-Create one or more PagerDuty, Slack, syslog, rmail, or generic channels to receive notifications.
+Create one or more PagerDuty, Slack, syslog, email, or generic channels to receive notifications.
 
 {{<tabs "TabID566" >}}
 
@@ -701,7 +697,7 @@ where:
 </tr>
 <tr>
 <td>severity &lt;level&gt;</td>
-<td>(Optional) The log level to set, which can be one of <em>info</em>, <em>warning</em>, <em>error</em>, <em>critical</em> or <em>debug</em>. The severity defaults to <em>info</em> if unspecified.</td>
+<td>(Optional) The log level to set, which can be one of <em>info</em>, <em>warning</em>, <em>error</em>, or <em>debug</em>. The severity defaults to <em>info</em> if unspecified.</td>
 </tr>
 </tbody>
 </table>
@@ -1014,9 +1010,9 @@ where:
 
 ### Create Rules
 
-A single key-value pair comprises each rule. The key-value pair indicates what messages to include or drop from event information sent to a notification channel. You can create more than one rule for a single filter. Creating multiple rules for a given filter can provide a very defined filter. For example, you can specify rules around hostnames or interface names, enabling you to filter messages specific to those hosts or interfaces. You should have already defined channels (as described earlier).
+A single key-value pair comprises each rule. The key-value pair indicates what messages to include or drop from event information sent to a notification channel. You can create more than one rule for a single filter. Creating multiple rules for a given filter can provide a very defined filter. For example, you can specify rules around hostnames or interface names, enabling you to filter messages specific to those hosts or interfaces. You can only create rules after you have set up your notification channels.
 
-NetQ includes a predefined fixed set of valid rule keys. You enter values as regular expressions, which *vary according to your deployment*.
+NetQ includes a predefined fixed set of valid rule keys. You enter values as regular expressions, which vary according to your deployment.
 
 #### Rule Keys and Values
 
@@ -1490,48 +1486,48 @@ PSU: up, down</td>
 
 {{<notice note>}}
 
-Rule names are case sensitive, and you cannot use wildcards. Rule names can contain spaces, but you must enclose them with single quotes in commands. It is easier to use dashes in place of spaces or mixed case for better readability. For example, use *bgpSessionChanges* or *BGP-session-changes* or *BGPsessions*, instead of *BGP Session Changes*. Use Tab completion to view the command options syntax.
+Rule names are case sensitive, and you cannot use wildcards. Rule names can contain spaces, but you must enclose them with single quotes in commands. It is easier to use dashes in place of spaces or mixed case for better readability. For example, use *bgpSessionChanges* or *BGP-session-changes* or *BGPsessions*, instead of *BGP Session Changes*. Use tab completion to view the command options syntax.
 
 {{</notice>}}
 
 #### Example Rules
 
-Create a BGP Rule Based on Hostname:
+Create a BGP rule based on hostname:
 
     cumulus@switch:~$ netq add notification rule bgpHostname key hostname value spine-01
     Successfully added/updated rule bgpHostname 
 
-Create a Rule Based on a Configuration File State Change:
+Create a rule based on a configuration file state change:
 
     cumulus@switch:~$ netq add notification rule sysconf key configdiff value updated
     Successfully added/updated rule sysconf
 
-Create an EVPN Rule Based on a VNI:
+Create an EVPN rule based on a VNI:
 
     cumulus@switch:~$ netq add notification rule evpnVni key vni value 42
     Successfully added/updated rule evpnVni
 
-Create an Interface Rule Based on FEC Support:
+Create an interface rule based on FEC support:
 
     cumulus@switch:~$ netq add notification rule fecSupport key new_supported_fec value supported
     Successfully added/updated rule fecSupport
 
-Create a Service Rule Based on a Status Change:
+Create a service rule based on a status change:
 
     cumulus@switch:~$ netq add notification rule svcStatus key new_status value down
     Successfully added/updated rule svcStatus
 
-Create a Sensor Rule Based on a Threshold:
+Create a sensor rule based on a threshold:
 
     cumulus@switch:~$ netq add notification rule overTemp key new_s_crit value 24
     Successfully added/updated rule overTemp
 
-Create an Interface Rule Based on Port:
+Create an interface rule based on port:
 
     cumulus@switch:~$ netq add notification rule swp52 key port value swp52
     Successfully added/updated rule swp52 
 
-#### View the Rule Configurations
+#### View Rule Configurations
 
 Use the `netq show notification` command to view the rules on your
 platform.
@@ -1552,11 +1548,11 @@ platform.
 
 ### Create Filters
 
-You can limit or direct event messages using filters. Filters get created based on rules you define, like those in the previous section. Each filter contains one or more rules. When a message matches the rule, it gets sent to the indicated destination. Before you can create filters, you need to have already defined the rules and configured channels (as described earlier).
+You can limit or direct event messages using filters. Filters are created based on rules you define and each filter contains one or more rules. When a message matches the rule, it is sent to the indicated destination. Before you can create filters, you need to have already defined rules and configured channels.
 
-As you create filters, they get added to the bottom of a filter list. By default, NetQ processes filters in the order they appear in this list (from top to bottom) until it finds a match. This means that NetQ first evaluates each event message by the first filter listed, and if it matches then NetQ it, ignoring all other filters, and the system moves on to the next event message received. If the event does not match the first filter, NetQ tests it against the second filter, and if it matches then NetQ processes it and the system moves on to the next event received, and so forth. NetQ ignores events that do not match any filter.
+As you create filters, they are added to the bottom of a list of filters. By default, NetQ processes event messages against filters starting at the top of the filter list and works its way down until it finds a match. NetQ applies the first filter that matches an event message, ignoring the other filters. Then it moves to the next event message and reruns the process, starting at the top of the list of filters. NetQ ignores events that do not match any filter.
 
-You mght have to change the order of filters in the list to ensure you capture the events you want and drop the events you do not want. This is possible using the *before* or *after* keywords to ensure one rule gets processed before or after another.
+You mght have to change the order of filters in the list to ensure you capture the events you want and drop the events you do not want. This is possible using the `before` or `after` keywords to ensure one rule is processed before or after another.
 
 This diagram shows an example with four defined filters with sample output results.
 
@@ -1570,40 +1566,40 @@ Filter names can contain spaces, but <em>must</em> be enclosed with single quote
 
 #### Example Filters
 
-Create a filter for BGP Events on a Particular Device:
+Create a filter for BGP events on a particular device:
 
     cumulus@switch:~$ netq add notification filter bgpSpine rule bgpHostname channel pd-netq-events
     Successfully added/updated filter bgpSpine
 
-Create a Filter for a Given VNI in Your EVPN Overlay:
+Create a filter for a given VNI in your EVPN overlay:
 
     cumulus@switch:~$ netq add notification filter vni42 severity warning rule evpnVni channel pd-netq-events
     Successfully added/updated filter vni42
 
-Create a Filter for when a Configuration File gets Updated:
+Create a filter for when a configuration file is updated:
 
     cumulus@switch:~$ netq add notification filter configChange severity info rule sysconf channel slk-netq-events
     Successfully added/updated filter configChange
 
-Create a Filter to Monitor Ports with FEC Support:
+Create a filter to monitor ports with FEC support:
 
     cumulus@switch:~$ netq add notification filter newFEC rule fecSupport channel slk-netq-events
     Successfully added/updated filter newFEC
 
-Create a Filter to Monitor for Services that Change to a Down State:
+Create a filter to monitor for services that change to a down state:
 
     cumulus@switch:~$ netq add notification filter svcDown severity error rule svcStatus channel slk-netq-events
     Successfully added/updated filter svcDown
 
-Create a Filter to Monitor Overheating Platforms:
+Create a filter to monitor overheating platforms:
 
     cumulus@switch:~$ netq add notification filter critTemp severity error rule overTemp channel onprem-email
     Successfully added/updated filter critTemp
 
-Create a Filter to Drop Messages from a Given Interface, and match
-against this filter before any other filters. To create a drop style
-filter, do not specify a channel. To put the filter first, use the
-*before* option.
+Create a filter to drop messages from a given interface, and match
+against this filter before any other filters. To create a drop-style
+filter, do not specify a channel. To list the filter first, use the
+`before` option.
 
     cumulus@switch:~$ netq add notification filter swp52Drop severity error rule swp52 before bgpSpine
     Successfully added/updated filter swp52Drop
@@ -1629,9 +1625,9 @@ platform.
 
 #### Reorder Filters
 
-When you look at the results of the `netq show notification filter` command above, you might notice that although you have the drop-based filter first (no point in looking at something you are going to drop anyway, so that is good), but the critical severity events get last, per the current definitions. If you wanted to process those before lesser severity events, you can reorder the list using the `before` and `after` options.
+In the `netq show notification filter` command above, the drop-based filter is listed first and the critical events filters are listed last. Because NetQ processes notifications based on the filters’ order, reordering the events so that the critical events appear higher up in the list makes sense. To reorder the critical events filters, use the `before` and `after` options.
 
-For example, to put the two critical severity event filters just below the drop filter:
+For example, to put the two critical event filters just below the drop filter:
 
 ```
 cumulus@switch:~$ netq add notification filter critTemp after swp52Drop
@@ -1668,7 +1664,7 @@ newFEC          7          info             slk-netq-events  fecSupport
 
 NetQ can generate many network events. You can create rules to suppress events so that they do not appear using either the Events card or the CLI. Suppressing events is particularly useful for reducing the number of event notifications attributable to known issues or false alarms.
 
-You can suppress an event until a certain period of time; otherwise, the event gets suppressed for 2 years. Providing an end time eliminates the generation of messages for a short period of time, which is useful when you are testing a new network configuration and the switch might be generating many messages.
+You can set time parameters to suppress events in a given time period. If you do not configure time parameters, the event is suppressed for two years. If you are testing a new network configuration, a switch may generate many messages. Creating a suppression rule that applies over a short time frame can be useful for silencing messages to limit distractions.
 
 You can suppress events for the following types of messages:
 
@@ -1686,20 +1682,31 @@ You can suppress events for the following types of messages:
 - services: Service-related information, including whether a service is active or inactive
 - ssdutil: Messages related to the storage on the switch
 
-#### Add an Event Suppression Configuration with the UI
+#### Add an Event Suppression Configuration
+
+You can suppress events using the NetQ UI or NetQ CLI.
+
+{{<tabs "TabID1689" >}}
+
+{{<tab "NetQ UI" >}}
+
+To suppress events using the NetQ UI:
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
 2. In the side navigation under **Network**, click **Events**.
 3. In the table, navigate to the column labeled **Suppress Events**.
-4. Hover over the row and select the **Suppress events** button to create parameters for the suppression rule. You can configure individual suppression rules or you can create a group rule that suppresses events for all message types.
-5. Enter the suppression rule parameters and click **Create**. You can view suppression rules by selecting **Show suppression rules** at the top of the page.
-#### Add an Event Suppression Configuration with the CLI
+4. Hover over the row and select **Suppress events** to create parameters for the suppression rule. You can configure individual suppression rules or you can create a group rule that suppresses events for all message types.
+5. Enter the suppression rule parameters and click **Create**.
 
-When you add a new configuration, you can specify a scope, which limits the suppression in the following order:
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
+
+When you add a new configuration using the CLI, you can specify a scope, which limits the suppression in the following order:
 
 1. Hostname.
-1. Severity.
-1. Message type-specific filters. For example, the target VNI for EVPN messages, or the interface name for a link message.
+2. Severity.
+3. Message type-specific filters. For example, the target VNI for EVPN messages, or the interface name for a link message.
 
 NetQ has a predefined set of filter conditions. To see these conditions, run `netq show events-config show-filter-conditions`:
 
@@ -1709,48 +1716,48 @@ Matching config_events records:
 Message Name             Filter Condition Name                      Filter Condition Hierarchy                           Filter Condition Description
 ------------------------ ------------------------------------------ ---------------------------------------------------- --------------------------------------------------------
 evpn                     vni                                        3                                                    Target VNI
-evpn                     severity                                   2                                                    Severity critical/info
+evpn                     severity                                   2                                                    Severity error/info
 evpn                     hostname                                   1                                                    Target Hostname
 clsupport                fileAbsName                                3                                                    Target File Absolute Name
-clsupport                severity                                   2                                                    Severity critical/info
+clsupport                severity                                   2                                                    Severity error/info
 clsupport                hostname                                   1                                                    Target Hostname
 link                     new_state                                  4                                                    up / down
 link                     ifname                                     3                                                    Target Ifname
-link                     severity                                   2                                                    Severity critical/info
+link                     severity                                   2                                                    Severity error/info
 link                     hostname                                   1                                                    Target Hostname
 ospf                     ifname                                     3                                                    Target Ifname
-ospf                     severity                                   2                                                    Severity critical/info
+ospf                     severity                                   2                                                    Severity error/info
 ospf                     hostname                                   1                                                    Target Hostname
 sensor                   new_s_state                                4                                                    New Sensor State Eg. ok
 sensor                   sensor                                     3                                                    Target Sensor Name Eg. Fan, Temp
-sensor                   severity                                   2                                                    Severity critical/info
+sensor                   severity                                   2                                                    Severity error/info
 sensor                   hostname                                   1                                                    Target Hostname
 configdiff               old_state                                  5                                                    Old State
 configdiff               new_state                                  4                                                    New State
 configdiff               type                                       3                                                    File Name
-configdiff               severity                                   2                                                    Severity critical/info
+configdiff               severity                                   2                                                    Severity error/info
 configdiff               hostname                                   1                                                    Target Hostname
 ssdutil                  info                                       3                                                    low health / significant health drop
-ssdutil                  severity                                   2                                                    Severity critical/info
+ssdutil                  severity                                   2                                                    Severity error/info
 ssdutil                  hostname                                   1                                                    Target Hostname
 agent                    db_state                                   3                                                    Database State
-agent                    severity                                   2                                                    Severity critical/info
+agent                    severity                                   2                                                    Severity error/info
 agent                    hostname                                   1                                                    Target Hostname
 ntp                      new_state                                  3                                                    yes / no
-ntp                      severity                                   2                                                    Severity critical/info
+ntp                      severity                                   2                                                    Severity error/info
 ntp                      hostname                                   1                                                    Target Hostname
 bgp                      vrf                                        4                                                    Target VRF
 bgp                      peer                                       3                                                    Target Peer
-bgp                      severity                                   2                                                    Severity critical/info
+bgp                      severity                                   2                                                    Severity error/info
 bgp                      hostname                                   1                                                    Target Hostname
 services                 new_status                                 4                                                    active / inactive
 services                 name                                       3                                                    Target Service Name Eg.netqd, mstpd, zebra
-services                 severity                                   2                                                    Severity critical/info
+services                 severity                                   2                                                    Severity error/info
 services                 hostname                                   1                                                    Target Hostname
 btrfsinfo                info                                       3                                                    high btrfs allocation space / data storage efficiency
-btrfsinfo                severity                                   2                                                    Severity critical/info
+btrfsinfo                severity                                   2                                                    Severity error/info
 btrfsinfo                hostname                                   1                                                    Target Hostname
-clag                     severity                                   2                                                    Severity critical/info
+clag                     severity                                   2                                                    Severity error/info
 clag                     hostname                                   1                                                    Target Hostname
 ```
 
@@ -1759,8 +1766,27 @@ For example, to create a configuration called `mybtrfs` that suppresses OSPF-rel
 ```
 netq add events-config events_config_name mybtrfs message_type ospf scope '[{"scope_name":"hostname","scope_value":"leaf01"},{"scope_name":"severity","scope_value":"*"}]' suppress_until 600
 ```
+{{</tab>}}
 
+{{</tabs>}}
 #### Remove an Event Suppression Configuration
+
+You can remove event suppression configurations using the NetQ UI or NetQ CLI.
+
+{{<tabs "TabID1776" >}}
+
+{{<tab "NetQ UI" >}}
+
+To remove suppressed event configurations:
+
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+2. In the side navigation under **Network**, click **Events**.
+3. Select **Show suppression rules** at the top of the page.
+4. Navigate to the rule you would like to delete. Click the three-dot menu and select **Delete**. If you'd like to pause the rule instead of deleting it, click **Disable**.
+
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
 
 To remove an event suppression configuration, run `netq del events-config events_config_id <text-events-config-id-anchor>`.
 
@@ -1768,8 +1794,26 @@ To remove an event suppression configuration, run `netq del events-config events
 cumulus@switch:~$ netq del events-config events_config_id eventsconfig_10
 Successfully deleted Events Config eventsconfig_10
 ```
+{{</tab>}}
 
+{{</tabs>}}
 #### Show Event Suppression Configurations
+
+You can view suppressed events using the NetQ UI or NetQ CLI.
+
+{{<tabs "TabID1804" >}}
+
+{{<tab "NetQ UI" >}}
+
+To view suppressed events:
+
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+2. In the side navigation under **Network**, click **Events**.
+3. Select **Show suppression rules** at the top of the page.
+
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
 
 You can view all event suppression configurations, or you can filter by a specific configuration or message type.
 
@@ -1883,17 +1927,19 @@ Matching config_events records:
 Message Name             Filter Condition Name                      Filter Condition Hierarchy                           Filter Condition Description
 ------------------------ ------------------------------------------ ---------------------------------------------------- --------------------------------------------------------
 evpn                     vni                                        3                                                    Target VNI
-evpn                     severity                                   2                                                    Severity critical/info
+evpn                     severity                                   2                                                    Severity error/info
 evpn                     hostname                                   1                                                    Target Hostname
 ```
+{{</tab>}}
 
+{{</tabs>}}
 ## Examples of Advanced Notification Configurations
 
-By putting all these channel, rule, and filter definitions together, you create a complete notification configuration. Using the three-step process outlined above, you can configure notifications like the following examples.
+The following section lists examples of advanced notification configurations. 
 
 ### Create a Notification for BGP Events from a Selected Switch
 
-This example creates a notification integration with a PagerDuty channel called *pd-netq-events*. It then creates a rule *bgpHostname* and a filter called *4bgpSpine* for any notifications from *spine-01*. The result is that any info severity event messages from Spine-01 get filtered to the *pd-netq-events* channel.
+This example creates a notification integration with a PagerDuty channel called *pd-netq-events*. It then creates a rule *bgpHostname* and a filter called *4bgpSpine* for any notifications from *spine-01*. The result is that any info severity event messages from Spine-01 is filtered to the *pd-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
     Successfully added/updated channel pd-netq-events
@@ -1924,7 +1970,7 @@ This example creates a notification integration with a PagerDuty channel called 
 
 ### Create a Notification for Warnings on a Given EVPN VNI
 
-This example creates a notification integration with a PagerDuty channel called *pd-netq-events*. It then creates a rule *evpnVni* and a filter called *3vni42* for any warnings messages from VNI 42 on the EVPN overlay network. The result is that any warning severity event messages from VNI 42 get filtered to the *pd-netq-events* channel.
+This example creates a notification integration with a PagerDuty channel called *pd-netq-events*. It then creates a rule *evpnVni* and a filter called *3vni42* for any warning messages from VNI 42 on the EVPN overlay network. The result is that any event messages from VNI 42 with a severity level of 'warning' are filtered to the *pd-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
     Successfully added/updated channel pd-netq-events
@@ -1959,7 +2005,7 @@ This example creates a notification integration with a PagerDuty channel called 
 
 ### Create a Notification for Configuration File Changes
 
-This example creates a notification integration with a Slack channel called *slk-netq-events*. It then creates a rule *sysconf* and a filter called *configChange* for any configuration file update messages. The result is that any configuration update messages get filtered to the *slk-netq-events* channel.
+This example creates a notification integration with a Slack channel called *slk-netq-events*. It then creates a rule *sysconf* and a filter called *configChange* for any configuration file update messages. The result is that any configuration update messages are filtered to the *slk-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
@@ -1997,7 +2043,7 @@ This example creates a notification integration with a Slack channel called *slk
 
 ### Create a Notification for When a Service Goes Down
 
-This example creates a notification integration with a Slack channel called *slk-netq-events*. It then creates a rule *svcStatus* and a filter called *svcDown* for any services state messages indicating a service is no longer operational. The result is that any service down messages get filtered to the *slk-netq-events* channel.
+This example creates a notification integration with a Slack channel called *slk-netq-events*. It then creates a rule *svcStatus* and a filter called *svcDown* for any services state messages indicating a service is no longer operational. The result is that any service down messages are filtered to the *slk-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
@@ -2033,7 +2079,7 @@ This example creates a notification integration with a Slack channel called *slk
                                                                  e
     vni42           2          warning          pd-netq-events   evpnVni
     configChange    3          info             slk-netq-events  sysconf
-    svcDown         4          critical         slk-netq-events  svcStatus
+    svcDown         4          error            slk-netq-events  svcStatus
 
 ### Create a Filter to Drop Notifications from a Given Interface
 
@@ -2076,7 +2122,7 @@ This example creates a notification integration with a Slack channel called *slk
                                                                  e
     vni42           3          warning          pd-netq-events   evpnVni
     configChange    4          info             slk-netq-events  sysconf
-    svcDown         5          critical         slk-netq-events  svcStatus
+    svcDown         5          error            slk-netq-events  svcStatus
 
 ### Create a Notification for a Given Device that Has a Tendency to Overheat (Using Multiple Rules)
 
@@ -2252,15 +2298,15 @@ If you retire selected channels from a given notification application, you might
 
 To remove notification channels:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Notification Channels** in the **Notifications** section.
 
-    {{<figure src="/images/netq/main-menu-channels-selected-300.png" width="600">}}
+    {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
 
 <div style="padding-left: 18px;">This opens the Channels view.</div>
 
     {{<figure src="/images/netq/channels-slack-created-300.png" width="700">}}
 
-2. Click the tab for the type of channel you want to remove (Slack, PagerDuty, `syslog`, Email).
+2. Click the tab for the type of channel you want to remove (Slack, PagerDuty, Syslog, Email).
 
 3. Select one or more channels.
 

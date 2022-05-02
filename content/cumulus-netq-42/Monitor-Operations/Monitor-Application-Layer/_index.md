@@ -12,7 +12,7 @@ The syntax for the show commands is:
 
 ```
 netq [<hostname>] show ntp [out-of-sync|in-sync] [around <text-time>] [json]
-netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] type ntp [between <text-time> and <text-endtime>] [json]
+netq [<hostname>] show events [level info|level error|level warning|level debug] type ntp [between <text-time> and <text-endtime>] [json]
 ```
 
 ## View Current Time Synchronization Status
@@ -126,7 +126,7 @@ cumulus@switch:~$ netq show event type ntp
 No matching event records found
 ```
 
-This example shows there have been no critical NTP events in the last seven days.
+This example shows there have been no error NTP events in the last seven days.
 
 ```
 cumulus@switch:~$ netq show events type ntp between now and 7d

@@ -12,21 +12,11 @@ This reference describes the cards available with the NetQ {{<version>}} graphic
 
 Cards opened on the default NetQ Workbench are not saved. Create a new workbench and open cards there to save and view the cards at a later time.
 
-<!-- vale off -->
-Cards are listed in alphabetical order by name.
-<!-- vale on -->
+## Events Card
 
-## Event Cards
+The Events card appears on the default NetQ Workbench. You can also add it to user-created workbenches. Use this card to monitor events across your network. You can determine the number of events for the various systems, interfaces, devices, and network protocols and services components in the network.
 
-The event cards appear on the default NetQ Workbench. You can also add them to user-created workbenches.
-
-### Events|Alarms Card
-
-You can easily monitor critical events occurring across your network using the Alarms card. You can determine the number of events for the various system, interface, and network protocols and services components in the network.
-
-The small Alarms card displays:
-
-{{< figure src="/images/netq/events-alarms-small-231.png" width="200" >}}
+The following table reflects the information in the small Events card.
 
 <table>
 <colgroup>
@@ -42,7 +32,7 @@ The small Alarms card displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></td>
-<td>Indicates data is for all critical severity events in the network.</td>
+<td>Indicates data is for all events in the network.</td>
 </tr>
 <tr class="even">
 <td>Alarm trend</td>
@@ -54,8 +44,8 @@ The small Alarms card displays:
 </ul></td>
 </tr>
 <tr class="odd">
-<td>Alarm score</td>
-<td>Current count of alarms during the designated time period.</td>
+<td>Event type</td>
+<td>Number of events, categorized by severity.</td>
 </tr>
 <tr class="even">
 <td>Alarm rating</td>
@@ -74,9 +64,7 @@ The small Alarms card displays:
 </tbody>
 </table>
 
-The medium Alarms card displays:
-
-{{< figure src="/images/netq/events-alarms-medium-222.png" width="200" >}}
+The following table reflects the information in the medium Events card.
 
 <table>
 <colgroup>
@@ -98,28 +86,24 @@ The medium Alarms card displays:
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></td>
-<td>Indicates data is for all critical events in the network.</td>
+<td>Indicates data is for all events in the network.</td>
 </tr>
 <tr class="odd">
 <td>Count</td>
-<td>Total number of alarms received during the designated time period.</td>
+<td>Total number of events received during the designated time period.</td>
 </tr>
 <tr class="even">
-<td>Alarm score</td>
-<td>Current count of alarms received from each category (overall, system, interface, and network services) during the designated time period.</td>
+<td>Event type</td>
+<td>Number of events, categorized by severity.</td>
 </tr>
 <tr class="odd">
 <td>Chart</td>
-<td>Distribution of all alarms received from each category during the designated time period.</td>
+<td>Distribution of all events received from each category during the designated time period.</td>
 </tr>
 </tbody>
 </table>
 
-The large Alarms card has one tab.
-
-The *Alarm Summary* tab displays:
-
-{{< figure src="/images/netq/events-alarms-large-summ-tab-231.png" width="500" >}}
+The following table reflects the information in the large Events card.
 
 <table>
 <colgroup>
@@ -140,34 +124,32 @@ The *Alarm Summary* tab displays:
 <!-- vale on -->
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-clock.svg", height="18", width="18"/></td>
-<td>Indicates data is for all system, trace and interface critical events in the network.</td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></td>
+<td>Indicates data is for all events in the network.</td>
 </tr>
 <tr class="odd">
-<td>Alarm Distribution</td>
-<td><p><strong>Chart</strong>: Distribution of all alarms received from each category during the designated time period:
+<td>Event distribution</td>
+<td><p><strong>Chart</strong>: Distribution of all events received from each category during the designated time period:
 <ul><li>NetQ Agent</li><li>BTRFS Information</li><li>CL Support</li><li>Config Diff</li><li>Installed Packages</li><li>Link</li><li>LLDP</li><li>MTU</li><li>Node</li><li>Port</li><li>Resource</li><li>Running Config Diff</li><li>Sensor</li><li>Services</li><li>SSD Utilization</li><li>TCA Interface Stats</li><li>TCA Resource Utilization</li><li>TCA Sensors</li></ul>  
-The categories sort in descending order based on total count of alarms, with the largest number of alarms appearing at the top, followed by the next most, down to the chart with the fewest alarms.</p>
-<p><strong>Count</strong>: Total number of alarms received from each category during the designated time period.</p></td>
+The categories sort in descending order based on total count of events, with the largest number of events appearing at the top.</p>
+<p><strong>Count</strong>: Total number of events received from each category during the designated time period.</p></td>
 </tr>
 <tr class="even">
 <td>Table</td>
 <td>Listing of items that match the filter selection for the selected alarm categories:
 <ul>
-<li><strong>Events by Most Recent</strong>: Most recent event appear at the top</li>
+<li><strong>Events by Most Recent</strong>: Most-recent events appear at the top</li>
 <li><strong>Devices by Event Count</strong>: Devices with the most events appear at the top</li>
 </ul></td>
 </tr>
 <tr class="odd">
-<td>Show All Events</td>
-<td>Opens full screen Events | Alarms card with a listing of all events.</td>
+<td>View all</td>
+<td>Opens full-screen Events card with a listing of all events.</td>
 </tr>
 </tbody>
 </table>
 
-The full screen Alarms card provides tabs for all events.
-
-{{< figure src="/images/netq/events-alarms-fullscr-allevents-tab-300.png" width="700" >}}
+The following table reflects the information in the full-screen Events card.
 
 <table>
 <colgroup>
@@ -183,14 +165,14 @@ The full screen Alarms card provides tabs for all events.
 <tbody>
 <tr class="odd">
 <td>Title</td>
-<td>Events | Alarms</td>
+<td>Events</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench.</td>
+<td>Closes full-screen card and returns to workbench.</td>
 </tr>
 <tr class="odd">
-<td>Default Time</td>
+<td>Default time</td>
 <!-- vale off -->
 <td>Range of time in which the displayed data was collected.</td>
 <!-- vale on -->
@@ -200,213 +182,17 @@ The full screen Alarms card provides tabs for all events.
 <td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
 </tr>
 <tr class="even">
-<td>Results</td>
-<td>Number of results found for the selected tab.</td>
+<td>Filters</td>
+<td>Restrict the number of results displayed in the charts and table by time, device, or severity.</td>
 </tr>
 <tr class="odd">
-<td>All Alarms</td>
-<td>Displays all alarms received in the time period. By default, the requests list sorts by the date and time that the event occurred (<strong>Time</strong>). This tab provides the following additional data about each request:
-<ul>
-<li><strong>Source</strong>: Hostname of the given event</li>
-<li><strong>Message</strong>: Text describing the alarm or info event that occurred</li>
-<li><strong>Type</strong>: Name of network protocol and/or service that triggered the given event</li>
-<li><strong>Severity</strong>: Importance of the event-critical, warning, info, or debug</li>
-</ul></td>
+<td>Event visualizations</td>
+<td>Displays events in charts and graphs that reflect the filter parameters. Select the tabs to either limit or expand the types of events reflected in the charts and graphs.
+</td>
 </tr>
 <tr class="even">
-<td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
-</tr>
-</tbody>
-</table>
-
-### Events|Info Card
-
-You can easily monitor warning, info, and debug severity events occurring across your network using the Info card. You can determine the number of events for the various system, interface, and network protocols and services components in the network.
-
-The small Info card displays:
-
-{{<figure src="/images/netq/events-info-small-222.png" width="200">}}
-
-<table>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-plain-1.svg" height="18" width="18"/></td>
-<td>Indicates data is for all warning, info, and debug severity events in the network</td>
-</tr>
-<tr class="even">
-<td>Info count</td>
-<td>Number of info events received during the designated time period</td>
-</tr>
-<tr class="odd">
-<td>Alarm count</td>
-<td>Number of alarm events received during the designated time period</td>
-</tr>
-<tr class="even">
-<td>Chart</td>
-<td>Distribution of all info events and alarms received during the designated time period</td>
-</tr>
-</tbody>
-</table>
-
-The medium Info card displays:
-
-{{<figure src="/images/netq/events-info-medium-222.png" width="200">}}
-
-<table>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-1.svg" height="18" width="18"/></td>
-<td>Indicates data is for all warning, info, and debug severity events in the network.</td>
-</tr>
-<tr class="odd">
-<td>Types of Info</td>
-<td>Chart which displays the services that have triggered events during the designated time period. Hover over chart to view a count for each type.</td>
-</tr>
-<tr class="even">
-<td>Distribution of Info</td>
-<td>Info Status
-<ul>
-<li><strong>Count</strong>: Number of info events received during the designated time period.</li>
-<li><strong>Chart</strong>: Distribution of all info events received during the designated time period.</li>
-</ul>
-Alarms Status
-<ul>
-<li><strong>Count</strong>: Number of alarm events received during the designated time period.</li>
-<li><strong>Chart</strong>: Distribution of all alarm events received during the designated time period.</li>
-</ul></td>
-</tr>
-</tbody>
-</table>
-
-The large Info card displays:
-
-{{<figure src="/images/netq/events-info-large-222.png" width="500">}}
-
-<table>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-1.svg" height="18" width="18"/></td>
-<td>Indicates data is for all warning, info, and debug severity events in the network.</td>
-</tr>
-<tr class="odd">
-<td>Types of Info</td>
-<td>Chart which displays the services that have triggered events during the designated time period. Hover over chart to view a count for each type.</td>
-</tr>
-<tr class="even">
-<td>Distribution of Info</td>
-<td>Info Status
-<ul>
-<li><strong>Count</strong>: Current number of info events received during the designated time period.</li>
-<li><strong>Chart</strong>: Distribution of all info events received during the designated time period.</li>
-</ul>
-Alarms Status
-<ul>
-<li><strong>Count</strong>: Current number of alarm events received during the designated time period.</li>
-<li><strong>Chart</strong>: Distribution of all alarm events received during the designated time period.</li>
-</ul></td>
-</tr>
-<tr class="odd">
 <td>Table</td>
-<td>Listing of items that match the filter selection:
-<ul>
-<li><strong>Events by Most Recent</strong>: Most recent event are listed at the top.</li>
-<li><strong>Devices by Event Count</strong>: Devices with the most events are listed at the top.</li>
-</ul></td>
-</tr>
-<tr class="even">
-<td>Show All Events</td>
-<td>Opens full screen Events | Info card with a listing of all events.</td>
-</tr>
-</tbody>
-</table>
-
-The full screen Info card provides tabs for all events.
-
-{{<figure src="/images/netq/events-info-fullscr-300.png" width="700">}}
-
-<table>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Title</td>
-<td>Events | Info</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench.</td>
-</tr>
-<tr class="odd">
-<td>Default Time</td>
-<td><!-- vale off -->Range of time in which the displayed data was collected.<!-- vale on --></td>
-</tr>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
-<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
-</tr>
-<tr class="even">
-<td>Results</td>
-<td>Number of results found for the selected tab.</td>
-</tr>
-<tr class="odd">
-<td>All Events</td>
-<td>Displays all events (both alarms and info) received in the time period. By default, the requests list is sorted by the date and time that the event occurred (<strong>Time</strong>). This tab provides the following additional data about each request:
-<ul>
-<li><strong>Source</strong>: Hostname of the given event</li>
-<li><strong>Message</strong>: Text describing the alarm or info event that occurred</li>
-<li><strong>Type</strong>: Name of network protocol and/or service that triggered the given event</li>
-<li><strong>Severity</strong>: Importance of the event-critical, warning, info, or debug</li>
-</ul></td>
-</tr>
-<td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
+<td>Displays events matching the filter parameters. From here, you can select, sort, and export events. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}. You can also acknowledge events or create rules to suppress events.</td>
 </tr>
 </tbody>
 </table>
@@ -1535,7 +1321,7 @@ The full screen BGP Service card provides tabs for all switches, all sessions, a
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
 <li><strong>Message</strong>: Text description of a BGP-related event. Example: BGP session with peer tor-1 swp7 vrf default state changed from failed to Established.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>bgp</em> in this card workflow.</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include error, warning, info, and debug.</li>
 </ul></td>
 </tr>
 <tr class="even">
@@ -1848,7 +1634,7 @@ The full screen BGP Session card provides tabs for all BGP sessions and all even
 <ul>
 <li><strong>Message</strong>: Text description of a BGP-related event. Example: BGP session with peer tor-1 swp7 vrf default state changed from failed to Established.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include error, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of bgp in this card workflow.</li>
 </ul></td>
 </tr>
@@ -2178,7 +1964,7 @@ The full screen EVPN Service card provides tabs for all switches, all sessions, 
 <ul>
 <li><strong>Message</strong>: Text description of a EVPN-related event. Example: VNI 3 kernel state changed from down to up.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include error, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>evpn</em> in this card workflow.</li>
 </ul></td>
 </tr>
@@ -2434,7 +2220,7 @@ and all events.
 <ul>
 <li><strong>Message</strong>: Text description of a EVPN-related event. Example: VNI 3 kernel state changed from down to up.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include error, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>evpn</em> in this card workflow.</li>
 </ul></td>
 </tr>
@@ -2766,7 +2552,7 @@ The full screen LLDP Service card provides tabs for all switches, all sessions, 
 <ul>
 <li><strong>Message</strong>: Text description of a LLDP-related event. Example: LLDP Session with host leaf02 swp6 modified fields leaf06 swp21.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include error, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>lldp</em> in this card workflow.</li>
 </ul></td>
 </tr>
@@ -3054,7 +2840,7 @@ The full screen LLDP Session card provides tabs for all LLDP sessions and all ev
 <ul>
 <li><strong>Message</strong>: Text description of an event. Example: LLDP Session with host leaf02 swp6 modified fields leaf06 swp21.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include error, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>lldp</em> in this card workflow.</li>
 </ul></td>
 </tr>
@@ -3397,7 +3183,7 @@ sessions, and all alarms.
 <ul>
 <li><strong>Message</strong>: Text description of a MLAG-related event. Example: Clag conflicted bond changed from swp7 swp8 to swp9 swp10.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include error, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>clag</em> in this card workflow.</li>
 </ul></td>
 </tr>
@@ -3712,7 +3498,7 @@ and all events.
 <ul>
 <li><strong>Message</strong>: Text description of an event. Example: Clag conflicted bond changed from swp7 swp8 to swp9 swp10.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include error, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>clag</em> in this card workflow.</li>
 </ul></td>
 </tr>
@@ -4039,7 +3825,7 @@ The full screen OSPF Service card provides tabs for all switches, all sessions, 
 <ul>
 <li><strong>Message</strong>: Text description of a OSPF-related event. Example: swp4 area ID mismatch with peer leaf02</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include error, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>OSPF</em> in this card workflow.</li>
 </ul></td>
 </tr>
@@ -4370,7 +4156,7 @@ and all events.
 <ul>
 <li><strong>Message</strong>: Text description of a OSPF-related event. Example: OSPF session with peer tor-1 swp7 vrf default state changed from failed to Established.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include error, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of OSPF in this card workflow.</li>
 </ul></td>
 </tr>
@@ -4748,7 +4534,7 @@ The full screen Switch card provides multiple tabs.
 <td>MAC Addresses</td>
 <td>Displays all known MAC addresses for the switch. This tab provides the following additional data about each MAC address:
 <ul>
-<li><strong>Egress Port</strong>: Importance of the event-critical, warning, info, or debug</li>
+<li><strong>Egress Port</strong>: Importance of the event-error, warning, info, or debug</li>
 <li><strong>Hostname</strong>: User-defined name of the switch</li>
 <li><strong>Last Changed</strong>: Data and time that the address was last updated or deleted</li>
 <li><strong>MAC Address</strong>: MAC address of switch</li>

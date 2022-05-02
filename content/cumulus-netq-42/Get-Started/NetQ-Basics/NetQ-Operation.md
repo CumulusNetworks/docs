@@ -19,11 +19,11 @@ The NetQ Agent polls the user space applications for information about the perfo
 
 For hosts, the NetQ Agent also polls for performance of containers managed with Kubernetes. All of this information is used to provide the current health of the network and verify it is configured and operating correctly.
 
-For example, if the NetQ Agent learns that an interface has gone down, a new BGP neighbor has been configured, or a container has moved, it provides that information to the NetQ Platform. That information can then be used to notify users of the operational state change through various channels. By default, data is logged in the database, but you can use the CLI (`netq show events`) or configure the Event Service in NetQ to send the information to a third-party notification application as well. NetQ supports PagerDuty and Slack integrations.
+For example, if the NetQ Agent learns that an interface has gone down, a new BGP neighbor has been configured, or a container has moved, it provides that information to the NetQ Platform. That information can then be used to notify users of the operational state change through various channels. By default, data is logged in the database, but you can use the CLI (`netq show events`) or configure the Event Service in NetQ to send the information to a third-party notification application as well.
 
-The NetQ Agent interacts with the Netlink communications between the Linux kernel and the user space, listening for changes to the network state, configurations, routes and MAC addresses. NetQ uses this information to enable notifications about these changes so that network operators and administrators can respond quickly when changes are not expected or favorable.
+The NetQ Agent interacts with the Netlink communications between the Linux kernel and the user space, listening for changes to the network state, configurations, routes, and MAC addresses. NetQ uses this information to enable notifications about these changes so that network operators and administrators can respond quickly when changes are not expected or favorable.
 
-For example, if a new route is added or a MAC address removed, NetQ Agent records these changes and sends that information to the NetQ Platform. Based on the configuration of the Event Service, these changes can be sent to a variety of locations for end user response.
+For example, if a new route is added or a MAC address removed, the NetQ Agent records these changes and sends that information to the NetQ Platform. Based on the configuration of the Event Service, these changes can be sent to a variety of locations for end user response.
 
 The NetQ Agent also interacts with the hardware platform to obtain performance information about various physical components, such as fans and power supplies, on the switch. Operational states and temperatures are measured and reported, along with cabling information to enable management of the hardware and cabling, and proactive maintenance.
 
@@ -525,7 +525,5 @@ To aid in troubleshooting issues with NetQ, the following configuration and log 
 | `/var/log/netq-agent.log` | The NetQ Agent log file. This log file appears only if you installed the NetQ Agent on the system. |
 
 ## Firewall and Port Requirements
-
-The following ports must be open on your NetQ Platform:
 
 {{<netq-install/port-reqs server="single">}}

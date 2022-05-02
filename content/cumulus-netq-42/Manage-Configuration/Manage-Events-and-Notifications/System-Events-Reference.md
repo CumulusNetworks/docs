@@ -29,21 +29,21 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>agent</td>
 <td>NetQ Agent state changed to Rotten (not heard from in over 15 seconds)</td>
-<td>Critical</td>
+<td>Error</td>
 <td>Agent state changed to rotten</td>
 <td>Agent state changed to rotten</td>
 </tr>
 <tr>
 <td>agent</td>
 <td>NetQ Agent rebooted</td>
-<td>Critical</td>
+<td>Error</td>
 <td>Netq-agent rebooted at (@last_boot)</td>
 <td>Netq-agent rebooted at 1573166417</td>
 </tr>
 <tr>
 <td>agent</td>
 <td>Node running NetQ Agent rebooted</td>
-<td>Critical</td>
+<td>Error</td>
 <td>Switch rebooted at (@sys_uptime)</td>
 <td>Switch rebooted at 1573166131</td>
 </tr>
@@ -96,7 +96,7 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>bgp</td>
 <td>BGP Session state changed</td>
-<td>Critical</td>
+<td>Error</td>
 <td>BGP session with peer @peer @neighbor vrf @vrf state changed from @old_state to @new_state</td>
 <td>BGP session with peer leaf03 leaf04 vrf mgmt state changed from Established to Failed</td>
 </tr>
@@ -148,14 +148,14 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>btrfsinfo</td>
 <td>Disk space available after BTRFS allocation is less than 80% of partition size or only 2 GB remain.</td>
-<td>Critical</td>
+<td>Error</td>
 <td>@info : @details</td>
 <td>high btrfs allocation space : greater than 80% of partition size, 61708420</td>
 </tr>
 <tr>
 <td>btrfsinfo</td>
 <td>Indicates if a rebalance operation can free up space on the disk</td>
-<td>Critical</td>
+<td>Error</td>
 <td>@info : @details</td>
 <td>data storage efficiency : space left after allocation greater than chunk size 6170849.2","</td>
 </tr>
@@ -185,7 +185,7 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>cable</td>
 <td>Link speed is not the same on both ends of the link</td>
-<td>Critical</td>
+<td>Error</td>
 <td>@ifname speed @speed, mismatched with peer @peer @peer_if speed @peer_speed</td>
 <td>swp2 speed 10, mismatched with peer server02 swp8 speed 40</td>
 </tr>
@@ -272,14 +272,14 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>clag</td>
 <td>CLAG remote peer state changed from up to down</td>
-<td>Critical</td>
+<td>Error</td>
 <td>Peer state changed to down</td>
 <td>Peer state changed to down</td>
 </tr>
 <tr>
 <td>clag</td>
 <td>Local CLAG host MTU does not match its remote peer MTU</td>
-<td>Critical</td>
+<td>Error</td>
 <td>SVI @svi1 on vlan @vlan mtu @mtu1 mismatched with peer mtu @mtu2</td>
 <td>SVI svi7 on vlan 4 mtu 1592 mistmatched with peer mtu 1680</td>
 </tr>
@@ -354,7 +354,7 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>clsupport</td>
 <td>A new CL Support file has been created for the given node</td>
-<td>Critical</td>
+<td>Error</td>
 <td>HostName @hostname has new CL SUPPORT file</td>
 <td>HostName leaf01 has new CL SUPPORT file</td>
 </tr>
@@ -386,7 +386,7 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>configdiff</td>
 <td>Configuration file deleted on a device</td>
-<td>Critical</td>
+<td>Error</td>
 <td>@hostname config file @type was deleted</td>
 <td>spine03 config file /etc/frr/frr.conf was deleted</td>
 </tr>
@@ -432,7 +432,7 @@ The following table lists all system event messages organized by type. You can v
 <!-- vale off -->
 <td>evpn</td>
 <td>A VNI was configured and moved from the up state to the down state</td>
-<td>Critical</td>
+<td>Error</td>
 <td>VNI @vni state changed from up to down</td>
 <td>VNI 36 state changed from up to down</td>
 </tr>
@@ -499,14 +499,14 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>lcm</td>
 <td>Cumulus Linux backup failed for a switch or host</td>
-<td>Critical</td>
+<td>Error</td>
 <td>CL configuration backup failed for hostname @hostname</td>
 <td>CL configuration backup failed for hostname spine01</td>
 </tr>
 <tr>
 <td>lcm</td>
 <td>Cumulus Linux upgrade from one version to a newer version has started for a switch or host</td>
-<td>Critical</td>
+<td>Error</td>
 <td>CL Image upgrade from version @old_cl_version to version @new_cl_version started for hostname @hostname</td>
 <td>CL Image upgrade from version 4.1.0 to version 4.2.1 started for hostname server01</td>
 </tr>
@@ -520,7 +520,7 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>lcm</td>
 <td>Cumulus Linux upgrade from one version to a newer version has failed for a switch or host</td>
-<td>Critical</td>
+<td>Error</td>
 <td>CL Image upgrade from version @old_cl_version to version @new_cl_version failed for hostname @hostname</td>
 <td>CL Image upgrade from version 4.1.0 to version 4.2.1 failed for hostname server01</td>
 </tr>
@@ -541,14 +541,14 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>lcm</td>
 <td>Restoration of a Cumulus Linux configuration failed for a switch or host</td>
-<td>Critical</td>
+<td>Error</td>
 <td>CL configuration restore failed for hostname @hostname</td>
 <td>CL configuration restore failed for hostname leaf01</td>
 </tr>
 <tr>
 <td>lcm</td>
 <td>Rollback of a Cumulus Linux image has started for a switch or host</td>
-<td>Critical</td>
+<td>Error</td>
 <td>CL Image rollback from version @old_cl_version to version @new_cl_version started for hostname @hostname</td>
 <td>CL Image rollback from version 4.2.1 to version 4.1.0 started for hostname leaf01</td>
 </tr>
@@ -562,7 +562,7 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>lcm</td>
 <td>Rollback of a Cumulus Linux image has failed for a switch or host</td>
-<td>Critical</td>
+<td>Error</td>
 <td>CL Image rollback from version @old_cl_version to version @new_cl_version failed for hostname @hostname</td>
 <td>CL Image rollback from version 4.2.1 to version 4.1.0 failed for hostname leaf01</td>
 </tr>
@@ -583,7 +583,7 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>lcm</td>
 <td>Installation of a NetQ image has failed for a switch or host</td>
-<td>Critical</td>
+<td>Error</td>
 <td>NetQ Image version @netq_version installation failed for hostname @hostname</td>
 <td>NetQ Image version 3.2.0 installation failed for hostname spine02</td>
 </tr>
@@ -604,7 +604,7 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>lcm</td>
 <td>Upgrade of a NetQ image has failed for a switch or host</td>
-<td>Critical</td>
+<td>Error</td>
 <td>NetQ Image upgrade from version @old_netq_version to version @netq_version failed for hostname @hostname</td>
 <td>NetQ Image upgrade from version 3.1.0 to version 3.2.0 failed for hostname spine02</td>
 </tr>
@@ -635,7 +635,7 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>link</td>
 <td>Link operational state changed from up to down</td>
-<td>Critical</td>
+<td>Error</td>
 <td>HostName @hostname changed state from @old_state to @new_state Interface:@ifname</td>
 <td>HostName leaf01 changed state from up to down Interface:swp34</td>
 </tr>
@@ -753,7 +753,7 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>ntp</td>
 <td>NTP sync state changed from in sync to not in sync</td>
-<td>Critical</td>
+<td>Error</td>
 <td>Sync state changed from @old_state to @new_state for @hostname</td>
 <td>Sync state changed from in sync to not sync for leaf06</td>
 </tr>
@@ -790,7 +790,7 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>ospf</td>
 <td>OSPF session state on a given interface changed from Full to a down state</td>
-<td>Critical</td>
+<td>Error</td>
 <td>OSPF session @ifname with @peer_address changed from Full to @down_state</td>
 <td><p>OSPF session swp7 with 27.0.0.18 state changed from Full to Fail</p>
 <p>OSPF session swp7 with 27.0.0.18 state changed from Full to ExStart</p></td>
@@ -829,7 +829,7 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>packageinfo</td>
 <td>Package version on device does not match the version identified in the existing manifest</td>
-<td>Critical</td>
+<td>Error</td>
 <td>@package_name manifest version mismatch</td>
 <td>netq-apps manifest version mismatch</td>
 </tr>
@@ -859,14 +859,14 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>ptm</td>
 <td>Physical interface cabling does not match configuration specified in <em>topology.dot</em> file</td>
-<td>Critical</td>
+<td>Error</td>
 <td>PTM cable status failed</td>
 <td>PTM cable status failed</td>
 </tr>
 <tr>
 <td>ptm</td>
 <td>Physical interface cabling matches configuration specified in <em>topology.dot</em> file</td>
-<td>Critical</td>
+<td>Error</td>
 <td>PTM cable status passed</td>
 <td>PTM cable status passed</td>
 </tr>
@@ -897,14 +897,14 @@ The following table lists all system event messages organized by type. You can v
 <!-- vale off -->
 <td>resource</td>
 <td>A physical resource has been deleted from a device</td>
-<td>Critical</td>
+<td>Error</td>
 <td>Resource Utils deleted for @hostname</td>
 <td>Resource Utils deleted for spine02</td>
 </tr>
 <tr>
 <td>resource</td>
 <td>Root file system access on a device has changed from Read/Write to Read Only</td>
-<td>Critical</td>
+<td>Error</td>
 <td>@hostname root file system access mode set to Read Only</td>
 <td>server03 root file system access mode set to Read Only</td>
 </tr>
@@ -981,21 +981,21 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>sensor</td>
 <td>A fan or power supply unit sensor has changed state</td>
-<td>Critical</td>
+<td>Error</td>
 <td>Sensor @sensor state changed from @old_s_state to @new_s_state</td>
 <td>Sensor fan state changed from up to down</td>
 </tr>
 <tr>
 <td>sensor</td>
 <td>A temperature sensor has crossed the maximum threshold for that sensor</td>
-<td>Critical</td>
+<td>Error</td>
 <td>Sensor @sensor max value @new_s_max exceeds threshold @new_s_crit</td>
 <td>Sensor temp max value 110 exceeds the threshold 95</td>
 </tr>
 <tr>
 <td>sensor</td>
 <td>A temperature sensor has crossed the minimum threshold for that sensor</td>
-<td>Critical</td>
+<td>Error</td>
 <td>Sensor @sensor min value @new_s_lcrit fall behind threshold @new_s_min</td>
 <td>Sensor psu min value 10 fell below threshold 25</td>
 </tr>
@@ -1004,7 +1004,7 @@ The following table lists all system event messages organized by type. You can v
 <td>A temperature, fan, or power supply sensor state changed</td>
 <td>Info</td>
 <td>Sensor @sensor state changed from @old_state to @new_state</td>
-<td><p>Sensor temperature state changed from critical to ok</p>
+<td><p>Sensor temperature state changed from Error to ok</p>
 <p>Sensor fan state changed from absent to ok</p>
 <p>Sensor psu state changed from bad to ok</p></td>
 </tr>
@@ -1042,14 +1042,14 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>services</td>
 <td>A service status changed from down to up</td>
-<td>Critical</td>
+<td>Error</td>
 <td>Service @name status changed from @old_status to @new_status</td>
 <td>Service bgp status changed from down to up</td>
 </tr>
 <tr>
 <td>services</td>
 <td>A service status changed from up to down</td>
-<td>Critical</td>
+<td>Error</td>
 <td>Service @name status changed from @old_status to @new_status</td>
 <td>Service lldp status changed from up to down</td>
 </tr>
@@ -1087,14 +1087,14 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>ssdutil</td>
 <td>3ME3 disk health has dropped below 10%</td>
-<td>Critical</td>
+<td>Error</td>
 <td>@info: @details</td>
 <td>low health : 5.0%</td>
 </tr>
 <tr>
 <td>ssdutil</td>
 <td>A dip in 3ME3 disk health of more than 2% has occured within the last 24 hours</td>
-<td>Critical</td>
+<td>Error</td>
 <td>@info: @details</td>
 <td>significant health drop : 3.0%</td>
 </tr>
@@ -1125,21 +1125,21 @@ The following table lists all system event messages organized by type. You can v
 <!-- vale off -->
 <td>version</td>
 <td>An unknown version of the operating system was detected</td>
-<td>Critical</td>
+<td>Error</td>
 <td>unexpected os version @my_ver</td>
 <td>unexpected os version cl3.2</td>
 </tr>
 <tr>
 <td>version</td>
 <td>Desired version of the operating system is not available</td>
-<td>Critical</td>
+<td>Error</td>
 <td>os version @ver</td>
 <td>os version cl3.7.9</td>
 </tr>
 <tr>
 <td>version</td>
 <td>An unknown version of a software package was detected</td>
-<td>Critical</td>
+<td>Error</td>
 <td>expected release version @ver</td>
 <td>expected release version cl3.6.2</td>
 <!-- vale on -->
@@ -1147,7 +1147,7 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>version</td>
 <td>Desired version of a software package is not available</td>
-<td>Critical</td>
+<td>Error</td>
 <td>different from version @ver</td>
 <td>different from version cl4.0</td>
 </tr>
@@ -1177,7 +1177,7 @@ The following table lists all system event messages organized by type. You can v
 <tr>
 <td>vxlan</td>
 <td>Replication list is contains an inconsistent set of nodes<></td>
-<td>Critical<></td>
+<td>Error<></td>
 <td>VNI @vni replication list inconsistent with @conflicts diff:@diff<></td>
 <!-- vale off -->
 <td>VNI 14 replication list inconsistent with ["leaf03","leaf04"] diff:+:["leaf03","leaf04"] -:["leaf07","leaf08"]</td>

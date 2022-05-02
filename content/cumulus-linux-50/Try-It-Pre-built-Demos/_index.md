@@ -20,7 +20,7 @@ The following Try It demos are available:
 
 ## Access a Try It Demo
 
-To access a demo, click the **Try It** tab in a Configuration Example section of the documentation:
+To access a demo, click the **Try It** tab in a Configuration Example section of the documentation. Acknowledge the captcha and select the Launch Simulation button:
 
 {{< img src = "/images/cumulus-linux/try-it.png" >}}
 

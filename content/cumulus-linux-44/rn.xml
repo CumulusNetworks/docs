@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3058604</td>
+<td>When you change the time with NTP or manually, the clagd service stops.</td>
+<td>4.4.3, 5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3041307</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
@@ -43,6 +49,12 @@
 <td>3031235</td>
 <td>Static VXLAN configuration prevents NCLU from working.</td>
 <td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3030238</td>
+<td>When you change the time with NTP or manually, the clagd service stops.</td>
+<td>4.4.3, 5.0.1</td>
 <td></td>
 </tr>
 <tr>

@@ -132,7 +132,7 @@ The following example commands enable proxy ARP on swp1.
 {{< tabs "TabID137 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for this setting.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -160,7 +160,7 @@ If you are running two interfaces in the same broadcast domain (typically seen w
 {{< tabs "TabID174 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for this setting.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -194,7 +194,7 @@ If you are running proxy ARP on a VRR interface, add a post-up line to the VRR i
 {{< tabs "TabID217 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for this setting.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

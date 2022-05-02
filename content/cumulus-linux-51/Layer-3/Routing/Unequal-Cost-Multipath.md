@@ -48,7 +48,7 @@ The BGP link bandwidth extended community uses bytes-per-second. To convert the 
 Cumulus Linux accepts the bandwidth extended community by default. You do not need to configure transit devices where UCMP routes are not originated.
 
 {{%notice note%}}
-- NVUE commands are not supported.
+- Cumulus Linux does not provide NVUE commands for UCMP configuration.
 - The bandwidth used in the extended community has no impact on or relation to port bandwidth.
 - You can only apply the route weight information on the outbound direction to a peer; you cannot apply route weight information on the inbound direction from peers advertising routes to the switch.
 {{%/notice%}}

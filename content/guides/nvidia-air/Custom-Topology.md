@@ -7,13 +7,11 @@ product: NVIDIA Air
 
 NVIDIA Air fully supports the creation of custom topologies. This feature augments the pre-built demo infrastructure.
 
-To access the custom topologies, do one of the following:
-
-- Click the **Build Your Own** card on the Create a Simulation page:
+To access custom topologies, click the **Build Your Own** card on the Create a Simulation page:
 
   {{<img src="/images/guides/nvidia-air/Catalog.png" width="800px">}}
 
-- Go directly by following this link: {{<exlink url="https://air.nvidia.com/build" text="air.nvidia.com/build">}}
+You can also click the {{<exlink url="https://air.nvidia.com/build" text="air.nvidia.com/build">}} link.
 
 ## Custom Topology Landing Page
 
@@ -23,27 +21,23 @@ The custom topology landing page is a blank canvas that you can use to design an
 
 ### Canvas Overview
 
-The left panel for custom topologies contains the supported nodes used for creating the custom topology:
-
+The left panel lists the nodes you can use to create the custom topology:
 - Cumulus VX switches
 - Ubuntu servers
 - SONiC switches
 - Generic nodes
-
-{{<img src="/images/guides/nvidia-air/CustomTopology_LeftPanel.png" width="150px">}}
-
 <!-- vale off -->
-The toolbar at the top manages the topology. Clicking the default name **My Topology Project** provides additional management options.
+The toolbar at the top of the custom topology landing page manages the topology. Click the default name **My Topology Project** for additional management options.
 <!-- vale on -->
 
 {{<img src="/images/guides/nvidia-air/CustomTopology_Management.png" width="500px">}}
 
-- **Open Build**: Uploads a JSON-structured custom topology build. This is not the same as importing a `topology.dot` Graphviz format document. The JSON format structure is unique to the custom topology builder tool.
-- **Save Build**: Exports a JSON-structured custom topology that represents the canvas. While you can open and edit it in a text editor, only the custom topology builder application should read and interpret this JSON file.
-- **Export Build**: Exports the topology as a Graphviz format `topology.dot` file. You can import this file into the Air simulation platform to launch a custom topology.
-- **Download SVG**: Downloads an image in SVG format that defines your topology.
-- **Rename Project**: Renames the project.
-- **New Project**: Creates a new project.
+- **Open Build** uploads a JSON-structured custom topology build. This is not the same as importing a `topology.dot` Graphviz format document. The JSON format structure is unique to the custom topology builder tool.
+- **Save Build** exports a JSON-structured custom topology that represents the canvas. Only use the custom topology builder application to read and interpret this JSON file; do not open and edit the file in a text editor.
+- **Export Build** exports the topology as a Graphviz format `topology.dot` file. You can import this file into the NVIDIA Air simulation platform to launch a custom topology.
+- **Download SVG** downloads an image in SVG format that defines your topology.
+- **Rename Project** renames the project.
+- **New Project** creates a new project.
 
 ### Add Nodes
 
@@ -54,31 +48,15 @@ To add a node, drag and drop it from the left panel.
 ### Edit Nodes
 
 After you add a node, you can edit it as needed. Click the node to select it and configure it using the options in the right panel.
+- **Name** is the hostname of the node.
+- **OS** is the operating system version on the node. The supported operating system versions are in a dropdown list.
+- **Memory** is the amount of RAM on the node. The default is 1GB.
+- **CPU** is the number of CPUs allocated to the node. The default is 1 CPU.
+- **Role** is an advanced feature that defines the role of the node to affect boot order. You typically do not have to assign a role.
+- **Hardware Model** pre-populates the ports based on a specific hardware model of the switch you select. This does not affect the simulation but acts as a macro to pre-populate the number of ports per switch model.
+- **Ports** adds, renames, and edits port location and information for the diagram. Press the breakout button (<-||->) to simulate breaking out a port into a group of four.
 
-{{<img src="/images/guides/nvidia-air/CustomTopology_EditingNodes.png" width="800px">}}
-
-- **Name**: The hostname of the node.
-- **OS**: The operating system version on the node. The supported OS versions are in a dropdown list.
-
-  {{<img src="/images/guides/nvidia-air/CustomTopology_NodeOS.png" width="800px">}}
-
-- **Memory**: The amount of RAM on the node. The default is 1GB.
-- **CPU**: The number of CPUs allocated to the node. The default is 1 CPU.
-- **Role**: This is an advanced feature to define the role of the node to affect boot order. You typically do not have to assign a role.
-
-  {{<img src="/images/guides/nvidia-air/CustomTopology_Role.png" width="800px">}}
-
-- **Hardware Model**: Pre-populate the ports based on a specific hardware model of switch selected. This does not affect the simulation, it acts as a macro to pre-populate the number of ports per switch model.
-
-{{<img src="/images/guides/nvidia-air/CustomTopology_HardwareModel.png" width="800px">}}
-
-- **Ports**: Add, rename, and edit port location and information for the diagram.
-
-{{<img src="/images/guides/nvidia-air/CustomTopology_Ports.png" width="800px">}}
-
-Press the breakout button to simulate breaking out a port into a group of 4.
-
-{{<img src="/images/guides/nvidia-air/CustomTopology_PortsBreakout.png" width="800px">}}
+   {{<img src="/images/guides/nvidia-air/CustomTopology_PortsBreakout.png" width="800px">}}
 
 ### Connect Nodes
 
@@ -88,57 +66,52 @@ To connect two nodes together, click a port on one node and drag it to the port 
 
 ### ZTP Script
 
-You can include a custom ZTP script as part of the network design. When you create the simulation, the ZTP script is copied, exactly as pasted into the text field, onto the oob-mgmt-server. Any network node making a ZTP request on the OOB management network has access to this ZTP script through a DHCP server and web server running on the oob-mgmt-server.
+You can include a custom ZTP script as part of the network design. When you create the simulation, NVIDIA Air copies the ZTP script, exactly as pasted into the text field, onto the oob-mgmt-server. Any network node making a ZTP request on the OOB management network has access to this ZTP script through a DHCP server and web server running on the oob-mgmt-server.
 
-To upload a ZTP script, click the ZTP script button in the top right of the canvas:
+To upload a ZTP script, click **ZTP** in the top right of the canvas:
 
 {{<img src="/images/guides/nvidia-air/ZTP.png" width="400px">}}
 
-A popup window opens where you can paste the contents of the ZTP script. The popup window is already populated with a default script. The default script is a guide to implement common ZTP features on Cumulus Linux, including:
-
-- Disabling password expiry
-- Making the `cumulus` user passwordless for `sudo`
-- Downloading SSH keys for key based SSH
+A popup window opens where you can paste the contents of the ZTP script. The popup window contains a default script. The default script is a guide to implement common ZTP features on Cumulus Linux, such as:
+- Disable password expiry
+- Make the `cumulus` user passwordless for `sudo`
+- Download SSH keys for key based SSH
 
 {{<img src="/images/guides/nvidia-air/ZTPPopup.png" width="800px">}}
 
-After you apply the ZTP script, the ZTP button changes color from grey to green, indicating that ZTP is now active on your oob-mgmt-server.
+After you apply the ZTP script, ZTP in the top right of the canvas changes color from grey to green, indicating that ZTP is now active on your oob-mgmt-server.
 
 {{<img src="/images/guides/nvidia-air/ZTPActive.png" width="400px">}}
 
 ## Build a Custom Topology
 
 To build a custom topology, you can either:
-
-- Start a simulation directly from the topology builder
-- Export the topology files and upload them directly into Air
+- Start a simulation directly from the topology builder.
+- Export the topology files and upload them directly into NVIDIA Air.
 
 {{<img src="/images/guides/nvidia-air/StartSimulation.png" width="400px">}}
 
 ### Start a Simulation Directly
 
-To start a simulation directly from the topology builder, click the `Start Simulation` button. This automatically launches the simulation and redirects to the Air landing page. The topology and the diagram automatically link to your simulation.
+To start a simulation directly from the topology builder, click the **START SIMULATION** button. The simulation starts and redirects you to the NVIDIA Air landing page. The topology and the diagram link automatically to your simulation.
 
 ### Export a Custom Topology
 
-To export a custom topology, download the required files. Click `Export` in the top right button.
+To export a custom topology, click the **EXPORT** button to download two files:
+- `topology.dot` is the network definition in Graphviz format.
+- `topology.svg` is the network diagram in Scalable Vector Graphics format.
 
-This exports two files for download:
+To upload the `topology.dot` and `topology.svg` files:
+1. In the sidebar, click **Create a Simulation** to open the Create a Simulation window.
+2. Click **Build Your Own**, then click **Upload a topology file**.
 
-- `topology.dot` is the network definition in Graphviz format
-- `topology.svg` is the network diagram in Scalable Vector Graphics format
+   {{<img src="/images/guides/nvidia-air/UploadTopology1.png" width="300px">}}
 
-You can upload both files file into Air with the `Create Simulation` workflow. First, click the `Upload Topology` card:
-
-{{<img src="/images/guides/nvidia-air/UploadTopology1.png" width="400px">}}
-
-Then upload the `topology.dot` and `topology.svg` files to the correct locations (drag the `topology.dot` file onto the **Drop a topology file here** card and the `topology.svg` file onto the **Drop a diagram here** card):
-
-{{<img src="/images/guides/nvidia-air/UploadTopology2.png" width="400px">}}
+3. Drag the `topology.dot` file onto the **Drop a topology file here** card and the `topology.svg` file onto the **Drop a diagram file here** card, then click **SUBMIT**.
 
 ## NetQ Integration
 
-You can include NetQ with any simulation. Make sure the NetQ toggle switch is enabled, which is the default behavior.
+To include NetQ with any simulation, make sure the NetQ toggle switch is on, which is the default behavior.
 
 {{<img src="/images/guides/nvidia-air/NetQSlider.png" width="240px">}}
 
@@ -152,17 +125,13 @@ This section describes how to create a simulation based on an existing productio
 ### Gather cl-support from the Production Network
 <!-- vale on -->
 
-Use {{<exlink url="https://gitlab.com/cumulus-consulting/features/cl_support_ansible" text="these playbooks">}} to gather the `cl-support` script output.
-
-The `ReadMe` in the repository provides instructions on how to run the playbook to gather the `cl-support` output.
+Use {{<exlink url="https://gitlab.com/cumulus-consulting/features/cl_support_ansible" text="these playbooks">}} to gather the `cl-support` script output. The `ReadMe` in the repository provides instructions on how to run the playbook to gather the `cl-support` output.
 
 <!-- vale off -->
 ### Create topology.dot from the Production Network
 <!-- vale on -->
 
-After you obtain the `cl-support` output, you can create a `topology.dot` file with {{<exlink url="https://gitlab.com/cumulus-consulting/features/cl_support_lldp_parser" text="this script">}}.
-
-You can run the script using `python3`. Here is some sample output:
+After you obtain the `cl-support` output, you can create a `topology.dot` file with {{<exlink url="https://gitlab.com/cumulus-consulting/features/cl_support_lldp_parser" text="this script">}}. You can run the script using `python3`. Here is sample output:
 
 ```
 $ python3 cl_support_lldp_parser.py
@@ -193,9 +162,7 @@ spine01
 DOTFILE: cl_support_lldp_parser.dot
 ```
 
-The command writes the output to `cl_support_lldp_parser.dot`. You need to manually edit this file to define the node versions and clean up any superfluous configurations.
-
-Here is more example output:
+The command writes the output to `cl_support_lldp_parser.dot`. You need to manually edit this file to define the node versions and clean up any superfluous configurations:
 
 ```
 $ cat cl_support_lldp_parser.dot
@@ -223,4 +190,4 @@ After you create the simulation, you can restore the configuration files.
 
 This {{<exlink url="https://gitlab.com/cumulus-consulting/features/cl_support_file_extractor" text="python script">}} pulls out all the relevant files and collates them into folders so you can use them to restore configuration from inside the simulation.
 
-You can also use the {{<exlink url="https://gitlab.com/cumulus-consulting/features/simple-iac" text="infrastructure as code">}} Ansible playbook to restore configurations appropriately.
+You can also use the {{<exlink url="https://gitlab.com/cumulus-consulting/features/simple-iac" text="infrastructure as code">}} Ansible playbook to restore configurations.

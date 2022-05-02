@@ -1728,5 +1728,9 @@ This simulation starts with the example OSPF configuration. The demo is pre-conf
 
 To validate the configuration, run the commands listed in the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-3/OSPF/Open-Shortest-Path-First-v2-OSPFv2/#troubleshooting" text="Troubleshooting">}} section.
 
+{{%notice note%}}
+This simulation runs on Cumulus Linux 5.0. Cumulus Linux 5.1 configuration is coming soon.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< /tabs >}}

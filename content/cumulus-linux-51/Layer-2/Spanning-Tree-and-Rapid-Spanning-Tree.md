@@ -300,10 +300,10 @@ To show the reason for the port protodown, run the `ip -p -j link show <interfac
 cumulus@switch:~$ ip -p -j link show swp5
 ```
 
-To recover from the `protodown` state, remove the protodown reason and protodown from the interface with the `ip link set dev <interface> protodown_reason bpduguard off` command.
+To recover from the `protodown` state, remove the protodown reason and protodown from the interface with the `mstpctl clearbpduguardviolation <bridge> <interface>` command.
 
 ```
-cumulus@switch:~$ sudo ip link set dev swp5 protodown_reason bpduguard off
+cumulus@switch:~$ mstpctl clearbpduguardviolation bridge swp5
 ```
 
 {{%notice note%}}
@@ -455,7 +455,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 ## Additional STP Parameters
 
-The table below describes additional STP configuration parameters available in Cumulus Linux. You can set these optional parameters manually by editing the `/etc/network/interfaces` file. NVUE commands are not supported.
+The table below describes additional STP configuration parameters available in Cumulus Linux. You can set these optional parameters manually by editing the `/etc/network/interfaces` file. Cumulus Linux does not provide NVUE commands for these parameters.
 
 The IEEE {{<exlink url="https://standards.ieee.org/standard/802_1D-2004.html" text="802.1D">}} and {{<exlink url="https://standards.ieee.org/standard/802_1Q-2018.html" text="802.1Q">}} specifications describe STP parameters. For a comparison of STP parameter configuration between `mstpctl` and other vendors, [read this knowledge base article]({{<ref "/knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-vs-Cisco-IOS-Spanning-Tree-Protocol" >}}).
 

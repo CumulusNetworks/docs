@@ -153,40 +153,6 @@ route-map routemap1 permit 10
 
 To apply the route map, you specify the routing protocol and the route map name.
 
-The following example filters routes from Zebra into the Linux kernel. The commands apply the route map called routemap1 to BGP:
-
-{{< tabs "TabID152 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast rib-filter routemap1
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# ip protocol bgp route-map routemap1
-switch(config)# exit
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-cumulus@switch:~$ sudo cat /etc/frr/frr.conf
-...
-ip protocol bgp route-map routemap1
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
 For [BGP](## "Border Gateway Protocol"), you can also apply a route map on route updates from BGP to Zebra. You can match on prefix, next hop, communities, and so on. You can set the metric and next hop only. Route maps do not affect the BGP internal RIB. You can use both IPv4 and IPv6 address families. Route maps work on multi-paths; however, BGP bases the metric setting on the best path only.
 
 To apply a route map to filter route updates from BGP into Zebra, run the following command:

@@ -28,7 +28,7 @@ Cumulus Linux supports:
 - PTP on layer 3 interfaces, trunk ports, bonds, and switch ports belonging to a VLAN.
 - Multicast and mixed message mode. Cumulus Linux does *not* support PTP unicast only message mode.
 - End-to-End delay mechanism (not Peer-to-Peer).
-- Two-step clock correction mode, where PTP notes time when the packet goes out of the port and sends the time in a separate (follow-up) message. Cumulus Linux does not support one-step mode.
+- Two-step clock correction mode, where PTP notes the time when the packet goes out of the port and sends the time in a separate (follow-up) message. Cumulus Linux does not support one-step mode.
 - Hardware time stamping for PTP packets. This allows PTP to avoid inaccuracies caused by message transfer delays and improves the accuracy of time synchronization.
 
 {{%notice note%}}
@@ -58,14 +58,10 @@ The basic configuration shown below uses the *default* PTP settings:
 
 To configure optional settings, such as the PTP domain, priority, and DSCP, the PTP interface transport mode and timers, and PTP monitoring, see the Optional Configuration sections below.
 
-{{%notice note%}}
-You can configure PTP with NVUE or by manually editing `/etc/cumulus/switchd.conf` file.
-{{%/notice%}}
-
 {{< tabs "TabID65 ">}}
 {{< tab "NVUE Commands ">}}
 
-The NVUE `nv set service PTP` commands require an instance number (1 in the example command below) for management purposes.
+The NVUE `nv set service ptp` commands require an instance number (1 in the example command below) for management purposes.
 
 {{< tabs "TabID68 ">}}
 {{< tab "Layer 3 Routed Port ">}}
@@ -736,6 +732,61 @@ udp_ttl                 20
 masterOnly              1
 delay_mechanism         E2E
 network_transport       UDPv4
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Delay Mechanism
+
+For PTP nodes to synchronize the time of day, each slave has to learn the delay between iteself and the master. There are two delay mehanism modes:
+- Peer-to-peer, where each network device measures the delay between its input port and the device attached to the other end of the input port. This is the default mode. 
+- End-to-end, where the slave measures the delay between itself and the master. The master and slave send delay request and delay response messages between each other to measure the delay.
+
+To set the delay mechanism to end-to-end:
+
+{{< tabs "TabID753 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 ptp delay-mechanism end-to-end
+cumulus@switch:~$ nv config apply
+```
+
+To reset the delay mechanism to peer-to-peer, run the `unset interface <interface> ptp delay-mechanism end-to-end` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `Default interface options` section of the `/etc/ptp4l.conf` file and set the `end-to-end` option to 1 for the interface, then restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+# Default interface options
+#
+time_stamping           hardware
+
+# Interfaces in which ptp should be enabled
+# these interfaces should be routed ports
+# if an interface does not have an ip address
+# the ptp4l will not work as expected.
+
+[swp1]
+logAnnounceInterval     0
+logSyncInterval         -3
+logMinDelayReqInterval  -3
+announceReceiptTimeout  3
+udp_ttl                 20
+masterOnly              1
+delay_mechanism         E2E
+network_transport       UDPv4
+end-to-end              1
 ...
 ```
 

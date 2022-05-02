@@ -6,9 +6,9 @@ toc: 4
 ---
 *What Just Happened* (WJH) provides real time visibility into network problems and has two components:
 - The WJH agent enables you to stream detailed and contextual telemetry for off-switch analysis with tools, such as [NVIDIA NetQ]({{<ref "/cumulus-netq-41" >}}).
-- The WJH service enables you to diagnose network problems by looking at dropped packets. WJH monitors forwarding (layer 2, layer 3, and tunnel) related issues.
+- The WJH service (`what-just-happened`) enables you to diagnose network problems by looking at dropped packets. WJH monitors forwarding (layer 2, layer 3, and tunnel) related issues. Cumulus Linux enables the WJH service by default.
 
-## Enable the WJH Service
+<!--## Enable the WJH Service
 
 Cumulus Linux does not enable the WJH service by default. To enable the WJH service:
 
@@ -16,10 +16,10 @@ Cumulus Linux does not enable the WJH service by default. To enable the WJH serv
 cumulus@switch:~$ sudo systemctl enable what-just-happened
 cumulus@switch:~$ sudo systemctl start what-just-happened
 ```
-
+-->
 ## Run WJH Commands
 
-After you start the WJH service, you can run the following commands from the command line.
+You can run the following commands from the command line.
 
 | <div style="width:450px">Command  | Description |
 | -------  | ----------- |
@@ -72,3 +72,7 @@ PCAP file path : /var/log/mellanox/wjh/wjh_user_2021_06_16_12_03_15.pcap
 3    21/06/16 12:03:12.745  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
 4    21/06/16 12:03:12.745  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
 ```
+
+## Considerations
+
+WJH runs in a Docker container. By default, when Docker starts, it creates a bridge called `docker0`. However, for compatibility reasons Cumulus Linux disables the `docker0` bridge in the `/etc/docker/daemon.json` file with the attribute `"bridge: none"`.

@@ -1589,17 +1589,13 @@ When BGP establishes a session, BGP peers use the BGP OPEN message to negotiate 
 Cumulus Linux supports BGP graceful restart for both IPv4 and IPv6.
 {{%/notice%}}
 
-Cumulus Linux enables BGP graceful restart helper mode by default. You can enable restarting router mode in one of two ways:
-- Globally, where all BGP peers inherit the graceful restart capability.
-- Per BGP peer or peer group, which can be useful for misbehaving peers or when working with third party devices. You can also configure a peer or peer group to run in helper mode only, where routes originated and advertised from a BGP peer are not deleted.
-
-You must enable BGP graceful restart (restarting router mode) as described above to achieve a switch restart or switch software upgrade with minimal traffic loss in a BGP configuration. Refer to {{<link url="Smart-System-Manager" text="Smart System Manager">}} for more information.
+You must enable BGP graceful restart (restarting router mode) to achieve a switch restart or switch software upgrade with minimal traffic loss in a BGP configuration. Refer to {{<link url="Smart-System-Manager" text="Smart System Manager">}} for more information.
 
 {{%notice note%}}
 BGP goes through a graceful restart (as a restarting router) with a planned switch restart event that the Smart System Manager initiates. Any other time BGP restarts, such as when the BGP daemon restarts due to a software exception or you restart the FRR service, BGP goes through a regular restart where the BGP session with peers terminates and Cumulus Linux removes the learned routes from the forwarding plane.
 {{%/notice%}}
 
-The following example commands enable global graceful BGP restart:
+To enable graceful restart globally on the switch:
 
 {{< tabs "TabID1442 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1631,10 +1627,7 @@ The following example commands enable BGP graceful restart on the BGP peer conne
 {{< tabs "TabID1474 ">}}
 {{< tab "NVUE Commands ">}}
 
-```
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 graceful-restart-mode full
-cumulus@leaf01:~$ nv config apply
-```
+Cumulus Linux does not provide NVUE commands for graceful restart on an interface.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1653,13 +1646,13 @@ leaf01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example commands enable helper mode only for the BGP peer connected on swp51. Routes that the peer originates and advertises are not deleted.
+Cumulus Linux supports graceful restart full mode and helper-only mode. To enable graceful restart helper-only mode:
 
 {{< tabs "TabID1506 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 graceful-restart-mode helper-only
+cumulus@leaf01:~$ nv set router bgp graceful-restart mode helper-only
 cumulus@leaf01:~$ nv config apply
 ```
 

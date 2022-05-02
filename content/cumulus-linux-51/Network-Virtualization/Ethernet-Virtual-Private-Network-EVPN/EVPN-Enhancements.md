@@ -582,7 +582,7 @@ You can configure a MAC address that you intend to pin to a particular VTEP on t
 {{< tabs "TabID641 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for this configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -597,7 +597,7 @@ iface bridge
     bridge-ports bond1 vni10
     bridge-vids 10
     bridge-vlan-aware yes
-    post-up bridge fdb add 26:76:e6:93:32:78 dev bond1 vlan 10 master static
+    post-up bridge fdb add 26:76:e6:93:32:78 dev bond1 vlan 10 master static sticky
 ...
 ```
 
@@ -612,7 +612,7 @@ cumulus@leaf01:~$ sudo nano /etc/network/interfaces
 auto br10
 iface br10
     bridge-ports swp1.10 vni10
-    post-up bridge fdb add 26:76:e6:93:32:78 dev swp1.10 master static
+    post-up bridge fdb add 26:76:e6:93:32:78 dev swp1.10 master static sticky
 ...
 ```
 
@@ -864,7 +864,11 @@ Run the vtysh `show bgp l2vpn evpn route type multicast` command or the `net sho
 
 Cumulus Linux supports scenarios where the IP to MAC binding for a host or virtual machine changes across the move. In addition to the simple mobility scenario where a host or virtual machine with a binding of `IP1`, `MAC1` moves from one rack to another, Cumulus Linux supports additional scenarios where a host or virtual machine with a binding of `IP1`, `MAC1` moves and takes on a new binding of `IP2`, `MAC1` or `IP1`, `MAC2`. The EVPN protocol mechanism to handle extended mobility continues to use the MAC mobility extended community and is the same as the standard mobility procedures. Extended mobility defines how to compute the sequence number in this attribute when binding changes occur.
 
-Extended mobility not only supports virtual machine *moves*, but also where one virtual machine shuts down and you provision another on a different rack that uses the IP address or the MAC address of the previous virtual machine. For example, in an EVPN deployment with OpenStack, where virtual machines for a tenant are provision and shut down dynamically, a new virtual machine can use the same IP address as an earlier virtual machine but with a different MAC address.
+Extended mobility not only supports virtual machine *moves*, but also where one virtual machine shuts down and you provision another on a different rack that uses the IP address or the MAC address of the previous virtual machine. For example, in an EVPN deployment with OpenStack, where virtual machines for a tenant provision and shut down dynamically, a new virtual machine can use the same IP address as an earlier virtual machine but with a different MAC address.
+
+{{%notice note%}}
+To reuse the same distributed gateway on VLANs fabric wide, you can set the fabric-wide MAC address; see {{<link url="/Virtual-Router-Redundancy-VRR-and-VRRP/#change-the-vrr-mac-address" text="Change the VRR MAC address">}}.
+{{%/notice%}}
 
 Cumulus Linux enables extended mobility by default.
 

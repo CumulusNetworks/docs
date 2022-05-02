@@ -33,7 +33,7 @@ The following traditional VXLAN device configuration:
 {{< tabs "TabID122 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for traditional VXLAN device configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -486,8 +486,42 @@ This simulation starts with the example static VXLAN configuration. The demo is 
 
 To validate the configuration, run the verification commands shown below.
 
+{{%notice note%}}
+This simulation runs on Cumulus Linux 5.0. Cumulus Linux 5.1 configuration is coming soon.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< /tabs >}}
+
+{{%notice note%}}
+The above NVUE commands specify a different flooding list for each VNI. If you want to set the same flooding list for all VNIs, you can use the `nv set nve vxlan flooding head-end-replication` command; for example:
+
+```
+cumulus@leaf01:~$ nv set interface lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20
+cumulus@leaf01:~$ nv set nve vxlan mac-learning on
+cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.1
+cumulus@leaf01:~$ nv set nve vxlan flooding head-end-replication 10.10.10.2
+cumulus@leaf01:~$ nv set nve vxlan flooding head-end-replication 10.10.10.3
+cumulus@leaf01:~$ nv set nve vxlan flooding head-end-replication 10.10.10.4
+cumulus@leaf01:~$ nv set interface swp1 bridge domain br_default access 10
+cumulus@leaf01:~$ nv set interface swp2 bridge domain br_default access 20
+cumulus@leaf01:~$ nv config apply
+```
+
+The above commands create this configuration in the `/etc/network/interfaces` file:
+
+```
+...
+auto vxlan48
+iface vxlan48
+    vxlan-remoteip-map 10=10.10.10.2 10=10.10.10.3 10=10.10.10.4 20=10.10.10.2 20=10.10.10.3 20=10.10.10.4
+    bridge-vlan-vni-map 10=10 20=20
+    bridge-learning on
+...
+```
+{{%/notice%}}
 
 ## Verify the Configuration
 

@@ -78,8 +78,8 @@
 	cumulus@netq-401-cloud:~$ df -hm /
 	Filesystem     1M-blocks  Used Available Use% Mounted on
 	/dev/vda1          63341  1193     62132   2% /</td>
-<td>4.0.1</td>
-<td>4.1.0</td>
+<td>4.0.1-4.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2711101</td>

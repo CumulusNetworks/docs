@@ -403,7 +403,7 @@ You can add debug statements to the `/etc/frr/frr.conf` file to debug the Ethern
 {{<tabs "debug">}}
 {{<tab "NVUE Commands">}}
 
-NVUE commands are not supported.
+Cumulus Linux does not provide NVUE commands for FRR Debugging.
 
 {{</tab>}}
 {{<tab "vtysh Commands">}}
@@ -3253,6 +3253,10 @@ This simulation starts with the EVPN-MH with Head End Replication configuration.
 - Run the vtysh `show bgp l2vpn evpn route type ead` command to show the type-1 EAD routes.
 
 To further validate the configuration, run the commands shown in the troublshooting section below.
+
+{{%notice note%}}
+This simulation runs on Cumulus Linux 5.0. Cumulus Linux 5.1 configuration is coming soon.
+{{%/notice%}}
 
 {{</tab>}}
 {{</tabs>}}

@@ -14,7 +14,7 @@ Cumulus Linux applies policy-based routing to incoming packets. All packets rece
 - You can create a *maximum* of 255 PBR match rules and 256 next hop groups (this is the ECMP limit).
 - You can apply only one PBR policy per input interface.
 - You can match on *source* and *destination* IP address, or match on Differentiated Services Code Point (DSCP) or Explicit Congestion Notification (ECN) values within a packet.
-- PBR is not supported for GRE or VXLAN tunneling.
+- PBR is not supported for VXLAN tunneling.
 - PBR is not supported on management interfaces, such as eth0.
 - A PBR rule cannot contain both IPv4 and IPv6 addresses.
 {{%/notice%}}

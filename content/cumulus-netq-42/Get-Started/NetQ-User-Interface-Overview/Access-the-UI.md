@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 100
 toc: 4
 ---
-The NetQ UI is a web-based application. Logging in and logging out are simple and quick. Users working with a cloud deployment of NetQ can reset forgotten passwords.
+This page describes how to sign in and out of NetQ, and how to reset your password.
 
 ## Log In to NetQ
 
@@ -16,18 +16,18 @@ To log in to the UI:
     - NetQ On-premises Appliance or VM: *https://\<hostname-or-ipaddress\>:443*  
     - NetQ Cloud Appliance or VM: *https://netq.cumulusnetworks.com*
 
-    {{< figure src="/images/netq/access-ui-login-screen-400.png" width="700" >}}
+    {{< figure src="/images/netq/access-ui-login-screen-400.png" alt="NetQ login screen" width="700" >}}
 
 3. Sign in.
 
-    Default usernames and passwords for UI access:  
+    The following are the default usernames and passwords for UI access:  
     - NetQ On-premises: *admin, admin*
-    - NetQ Cloud: Use credentials created during setup. You should receive an email from NVIDIA titled *NetQ Access Link.*
+    - NetQ Cloud: Use the credentials you created during setup. You should receive an email from NVIDIA titled *NetQ Access Link.*
 <!-- vale on -->
 
 {{<tabs "login">}}
 
-{{<tab "First Time Log In - On Premises">}}
+{{<tab "First Time Log In—On Premises">}}
 
 1. Enter your username.
 
@@ -41,33 +41,29 @@ To log in to the UI:
 
     The default NetQ Workbench opens, with your username shown in the upper right corner of the application.
 
-    {{<figure src="/images/netq/access-ui-cumulus-wb-400.png" width="700">}}
+    {{<figure src="/images/netq/access-ui-cumulus-wb-400.png" alt="" width="700">}}
 
 {{</tab>}}
 
-{{<tab "First Time Log In - NetQ Cloud">}}
+{{<tab "First Time Log In—NetQ Cloud">}}
 
-1. Select **Create Password** from the email received from NVIDIA titled *NetQ Access Link."
+1. Locate the email you received from NVIDIA titled *NetQ Access Link*. Select **Create Password**.
 
-2. Enter a new password.
+2. Enter a new password. Then enter it again to confirm it.
 
-3. Enter the new password again to confirm it.
+4. Log in using your email address and new password.
 
-4. Log in using your email address and created password.
-
-5. Click to agree and accept the Terms of Use after reading them.
+5. Accept the Terms of Use after reading them.
 
     The default NetQ Workbench opens, with your username and premise shown in the upper right corner of the application.
 
-    {{<figure src="/images/netq/new-premise-username.png" width="300">}}
+    {{<figure src="/images/netq/new-premise-username.png" alt="username and premises information in the UI header" width="300">}}
 
-6. Click on the premise and select **Activate Wizard**
+6. Click on the premise and select **Activation wizard**.
 
-    {{<figure src="/images/netq/activate-premise.png" width="400">}}
+    {{<figure src="/images/netq/activate-premise.png" alt="premises dropdown menu with the name of the premise and link to begin the activation wizard." width="400">}}
 
-7. Click through the activation wizard and follow the instructions to obtain the activation key used during installation.
-
-{{<figure src="/images/netq/activation-wizard-admin-login.png" width="1000">}}
+7. Follow the steps in the wizard to obtain the activation key used during installation.
 
 {{<figure src="/images/netq/activation-wizard-key.png" width="1000">}}
 
@@ -91,39 +87,13 @@ Any workbench can be set as the home workbench. Click <img src="https://icons.cu
 
 ## Reset a Forgotten Password
 
-For cloud deployments, you can reset your password if it has been forgotten.
-
-To reset a password:
+To reset a password for cloud deployments:
 
 1. Enter *https://netq.cumulusnetworks.com* in your browser to open the login page.
 
-    {{<figure src="/images/netq/access-ui-cld-login-320.png" width="250">}} <!-- UPDATE ME! -->
+2. Click **Forgot Password?** and enter an email address. Look for a message with the subject *NetQ Password Reset Link* from *netq-sre@cumulusnetworks.com*.  
 
-2. Click **Forgot Password?**
-
-3. Enter an email address where you want instructions to be sent for resetting the password.
-
-4. Click **Send Reset Email**, or click **Cancel** to return to login page.
-
-    {{<figure src="/images/netq/access-ui-reset-email-sent-320.png" width="250">}}
-
-5. Log in to the email account where you sent the reset message. Look for a message with a subject of *NetQ Password Reset Link* from *netq-sre@cumulusnetworks.com*.
-
-6. Click on the link provided to open the Reset Password dialog.
-
-    {{<figure src="/images/netq/access-ui-reset-forgotten-pswd-320.png" width="250">}}
-
-7. Enter a new password.
-
-8. Enter the new password again to confirm it.
-
-9. Click **Reset**.
-
-    A confirmation message is shown on successful reset.
-
-    {{<figure src="/images/netq/access-ui-reset-pswd-success-320.png" width="250">}}
-
-10. Click **Login** to access NetQ with your username and new password.
+3. Click on the link in the email and follow the instructions to create a new password. 
 
 ## Log Out of NetQ
 

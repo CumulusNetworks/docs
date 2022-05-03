@@ -259,6 +259,7 @@ To upgrade the switch using package upgrade:
     - To see the differences between the currently installed version and the new version, type `D`.
     - To keep the currently installed version, type `N`. The new package version installs with the suffix `.dpkg-dist` (for example, `/etc/frr/daemons.dpkg-dist`). When the upgrade completes and **before** you reboot, merge your changes with the changes from the newly installed file.
     - To install the new version, type `I`. Your currently installed version has the suffix `.dpkg-old`.
+    - Cumulus Linux includes `/etc/apt/sources.list` in the `cumulus-archive-keyring` package. During upgrade, you must select if you want the new version from the package or the existing file.
 
     When the upgrade is complete, you can search for the files with the `sudo find / -mount -type f -name '*.dpkg-*'` command.
 

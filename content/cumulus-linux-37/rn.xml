@@ -14,12 +14,6 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td></td>
 </tr>
 <tr>
-<td>3049868</td>
-<td>Sometimes, Cumulus Linux does not exchange LLDP 802.1Q TLVs  within one minute of an event or interruption.</td>
-<td>3.7.16</td>
-<td></td>
-</tr>
-<tr>
 <td>3041306</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>

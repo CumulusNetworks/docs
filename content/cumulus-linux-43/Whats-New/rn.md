@@ -248,6 +248,9 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3055125"></a> [3055125](#3055125) <a name="3055125"></a> <br /> | <code>cl-resource-query</code> shows an incorrect ECMP next hop value. The <code>% of maximum value</code> counter exceeds 100%. | 4.2.1-4.4.3 | |
+| <a name="3053197"></a> [3053197](#3053197) <a name="3053197"></a> <br /> | The <code>cl-resource-query</code> command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the <code>switchd.log</code> file contains ECMP resource errors with routes and next hops failing to install. | 4.2.1-4.4.3 | |
+| <a name="3046023"></a> [3046023](#3046023) <a name="3046023"></a> <br /> | The <code>cl-resource-query</code> command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the <code>switchd.log</code> file contains ECMP resource errors with routes and next hops failing to install. | 4.2.1-4.4.3, 5.0.0-5.0.1 | |
 | <a name="3041306"></a> [3041306](#3041306) <a name="3041306"></a> <br /> | If you update the MAC address of an SVI using <code>ifreload</code> and <code>hwaddress</code>, the kernel maintains a stale permanent fdb entry for the old MAC address. | 3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1 | |
 | <a name="3040075"></a> [3040075](#3040075) <a name="3040075"></a> <br /> | On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. <code>syslog</code> reports an error similar to:<pre>2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd&#91;1&#93;: clagd.service: Failed with result 'watchdog'<br /></pre> | 3.7.6-3.7.16, 4.2.1-4.4.3 | |
 | <a name="3031235"></a> [3031235](#3031235) <a name="3031235"></a> <br /> | Static VXLAN configuration prevents NCLU from working. | 4.3.0-4.4.3 | |

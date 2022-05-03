@@ -5,7 +5,7 @@ weight: 60
 toc: 4
 ---
 
-{{<product>}} contains the following applications and key components:
+NetQ contains the following applications and key components:
 
 - Telemetry data collection and aggregation via
   - NetQ switch agents
@@ -15,19 +15,15 @@ toc: 4
 - Network services
 - User interfaces
 
-While these functions apply to both the on-premises and in-cloud solutions, they are configured differently, as shown in the following diagrams.
+While these functions apply to both the on-premises and cloud solutions, they are configured differently, as shown in the following diagrams.
 
-{{<figure src="/images/netq/netq-comps-onpremises-230.png" width="700">}}
+{{<figure src="/images/netq/netq-comps-onpremises-230.png" alt="diagram of NetQ on-premises configuration" width="700">}}
 
-{{<figure src="/images/netq/netq-comps-cloud-230.png" width="450">}}
-
-NetQ can also integrate with event notification applications and third-party analytics tools.
-
-The following section describes the NetQ components which gather, store, and process network data. 
+{{<figure src="/images/netq/netq-comps-cloud-230.png" alt="diagram of NetQ cloud configuration" width="450">}}
 
 ## NetQ Agents
 
-NetQ Agents are installed via software and run on every monitored *node* in the network&mdash;including Cumulus® Linux® switches, Linux bare metal hosts, and virtual machines. The NetQ Agents push network data regularly and event information immediately to the NetQ Platform.
+NetQ Agents are installed via software and run on every monitored node in the network&mdash;including Cumulus® Linux® switches, Linux bare metal hosts, and virtual machines. The NetQ Agents push network data regularly and event information immediately to the NetQ Platform.
 
 ### Switch Agents
 
@@ -61,15 +57,15 @@ The NetQ Agent is supported on hosts running Ubuntu 16.04, Red Hat® Enterprise 
 
 ## NetQ Core
 
-The NetQ core performs the data collection, storage, and processing for delivery to various user interfaces. It is composed of a collection of scalable components running entirely within a single server. The NetQ software queries this server, rather than individual devices, enabling greater system scalability. Each of these components is described briefly below.
+The NetQ core performs the data collection, storage, and processing for delivery to various user interfaces. It consists of a collection of scalable components running entirely within a single server. The NetQ software queries this server, rather than individual devices, enabling greater system scalability. Each of these components is described briefly below.
 
 ### Data Aggregation
 
-The data aggregation component collects data coming from all of the NetQ Agents. It then filters, compresses, and forwards the data to the streaming component. The server monitors for missing messages and also monitors the NetQ Agents themselves, providing alarms when appropriate. In addition to the telemetry data collected from the NetQ Agents, the aggregation component collects information from the switches and hosts, such as vendor, model, version, and basic operational state.
+The data aggregation component collects data coming from all of the NetQ Agents. It then filters, compresses, and forwards the data to the streaming component. The server monitors for missing messages and also monitors the NetQ Agents themselves, sending notifications about events when appropriate. In addition to the telemetry data collected from the NetQ Agents, the aggregation component collects information from the switches and hosts, such as vendor, model, version, and basic operational state.
 
 ### Data Stores
 
-Two types of data stores are used in the NetQ product. The first stores the raw data, data aggregations, and discrete events needed for quick response to data requests. The second stores data based on correlations, transformations and processing of the raw data.
+NetQ uses two types of data stores. The first stores the raw data, data aggregations, and discrete events needed for quick response to data requests. The second stores data based on correlations, transformations, and raw-data processing.
 
 <!-- vale off -->
 ### Real-time Streaming
@@ -83,10 +79,10 @@ The network services component monitors protocols and services operation individ
 
 ### User Interfaces
 
-NetQ data is available through several user interfaces:
+NetQ data is available through several interfaces:
 
   - NetQ CLI (command line interface)
   - NetQ UI (graphical user interface)
   - NetQ RESTful API (representational state transfer application programming interface)
 
-The CLI and UI query the RESTful API for the data to present. Standard integrations can be configured to integrate with third-party notification tools.
+The CLI and UI query the RESTful API to present data. NetQ can integrate with event notification applications and third-party analytics tools.

@@ -22,13 +22,15 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 - Fixed a bug that caused the header dropdown menu to not be visible on some pages
 ### 82.2022.0422-007
 - Fixed a bug that prevented CPU and memory values from being set correctly in some custom topologies
-<!-- Air:WhatsNew -->
 ### 82.2022.0425-009
 - Fixed a cosmetic issue with displaying some VM memory values
 ### 82.2022.0427-008
 - Fixed Demo Marketplace cards to display more than one line of description
 ### 82.2022.0428
 - Fixed a race condition that could cause deleted simulations to show a "Loaded" status
+<!-- Air:WhatsNew -->
+### 82.2022.0429
+- Added Cumulus Linux 3.7.16
 <!-- Air:WhatsNew -->
 
 ## March 2022

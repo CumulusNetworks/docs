@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 320
 toc: 3
 ---
-Hardware datapath configuration manages packet buffering, queueing and scheduling in hardware. To configre priority groups, and assign the scheduling alogorithm and weights, you edit the `/etc/cumulus/datapath/traffic.conf`.
+Hardware datapath configuration manages packet buffering, queueing and scheduling in hardware. To configure priority groups, and assign the scheduling alogorithm and weights, you edit the `/etc/cumulus/datapath/traffic.conf`.
 
 {{%notice note%}}
 

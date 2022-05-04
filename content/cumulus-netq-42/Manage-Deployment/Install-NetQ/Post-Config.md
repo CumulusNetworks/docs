@@ -101,6 +101,10 @@ You can install a certificate using the NetQ CLI.
 
 Your custom certificate should now be working. Verify this by opening the NetQ UI at `https://<your-hostname-or-ipaddr>` in your browser.
 
+{{%notice note%}}
+If you already have a certificate installed and want to change or update it, run the `kubectl delete secret netq-gui-ingress-tls [name] --namespace default` command.
+{{%/notice%}}
+
 ## Update Your Cloud Activation Key
 
 You use the cloud activation key (called the *config-key*) to access the cloud services, not the authorization keys you use for configuring the CLI. NVIDIA provides the key when you set up your premises.

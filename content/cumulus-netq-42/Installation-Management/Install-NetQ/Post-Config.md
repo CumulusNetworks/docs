@@ -1,5 +1,5 @@
 ---
-title: Post Installation Configuration Options
+title: Post-installation Configuration Options
 author: NVIDIA
 weight: 395
 toc: 3

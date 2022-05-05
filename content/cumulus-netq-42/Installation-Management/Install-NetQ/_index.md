@@ -1,5 +1,5 @@
 ---
-title: Install NetQ
+title: Pre Installation Configuration Information
 author: NVIDIA
 weight: 190
 toc: 3
@@ -8,8 +8,8 @@ toc: 3
 The NetQ software contains several components that you must install, including the NetQ applications, the database, and the NetQ Agents. You can deploy NetQ in one of two ways:
 
 <!-- vale off -->
-- **Hosted on premises**: Use this deployment model to host all single NetQ components---including the NetQ Platform software, hardware, and database---entirely on your premises. The NetQ applications and database are installed as a single entity, called the *NetQ Platform*, and are run on the *NetQ On-premises Appliance* or *NetQ On-premises virtual machine (VM)*. Note that you are responsible for installing, configuring, and maintaining all NetQ components. This deployment is suitable for organizations with data residency requirements like GDPR.
-- **Hosted remotely**: Use this deployment model when you want to either set up multiple NetQ premises or use the NetQ Cloud service. In this implementation the NetQ aggregation and forwarding application software, called the *NetQ Collector*, is installed and run on the *NetQ Cloud Appliance* or *NetQ Cloud VM* on premises with a common database and all other applications installed in a single NetQ site or in the NetQ Cloud. In the multi-site implementation, you are responsible for all software, hardware, and the database. In the cloud service implementation, you are responsible for the on-premises NetQ Collector and NVIDIA is responsible for the data storage in the NetQ Cloud.
+- **Hosted on premises**: It is common to select an on-premises deployment model if you want to host all required hardware and software at your location, and you have the in-house skill set to install, configure, and maintain it---including performing data backups, acquiring and maintaining hardware and software, and integration management. This model is also a good choice if you want very limited or no access to the internet from switches and hosts in your network or you have data residency requirements like GDPR. Some companies only want complete control of the their network, and no outside impact.
+- **Hosted remotely**: If you find that you want to host a multi-site on-premises deployment or use the NetQ Cloud service, you should select the remote deployment model. In the multi-site deployment, you host multiple small servers at each site and a large server and database at another site. In the cloud service deployment, you host only a small local server on your premises that connects to the NetQ Cloud service over selected ports or through a proxy server. The cloud service supports only data aggregation and forwarding locally, and the majority of the NetQ applications use a hosted deployment strategy, storing data in the cloud. NVIDIA handles the backups and maintenance of the application and storage. This remote cloud service model is often chosen when it is untenable to support deployment in-house or if you need the flexibility to scale quickly, while also reducing capital expenses.
 <!-- vale on -->
 
 With either deployment model, the NetQ Agents reside on the switches and hosts they monitor in your network.

@@ -12,6 +12,8 @@ cascade:
     siteSlug: cumulus-netq
 ---
 
-NVIDIA® NetQ™ is a highly scalable, modern network operations tool set that utilizes telemetry for deep troubleshooting, visibility, and automated workflows from a single GUI interface, reducing maintenance and network downtime. It combines the ability to easily upgrade, configure and deploy network elements with a full suite of operations capabilities, such as visibility, troubleshooting, validation, trace and comparative look-back functionality.
+NVIDIA® NetQ™ is a scalable, modern network operations toolset, which provides network visibility, troubleshooting, and lifecycle management, in real time. NetQ delivers actionable insights and operational intelligence about the health of your data center and campus networks—from the container or host, all the way to the switch and port, enabling a NetDevOps approach. NetQ uses telemetry for troubleshooting, visibility, and automated workflows from a graphical user interface (GUI), reducing maintenance and network downtimes.
 
-This guide <!-- vale off -->is intended<!-- vale on --> for network administrators who are responsible for deploying, configuring, monitoring and troubleshooting the network in their data center or campus environment. NetQ {{<version>}} offers the ability to easily monitor and manage your network infrastructure and operational health. This guide provides instructions and information about monitoring individual components of the network, the network as a whole, and the NetQ software applications using the NetQ command line interface (NetQ CLI), and NetQ (graphical) user interface (NetQ UI).
+This user guide provides in-depth documentation for network administrators who are responsible for deploying, configuring, monitoring, and troubleshooting the network in their data center or campus environment.
+
+For a list of the new features in this release, see {{<link title="What's New" text="What's New">}}. For bug fixes and known issues present in this release, refer to the {{<link title="NVIDIA NetQ 4.2 Release Notes" text="release notes">}}. 

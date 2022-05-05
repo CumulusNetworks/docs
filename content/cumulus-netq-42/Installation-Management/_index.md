@@ -1,5 +1,5 @@
 ---
-title: Manage Deployment
+title: Installation Management
 author: NVIDIA
 weight: 170
 toc: 2

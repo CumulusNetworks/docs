@@ -4,7 +4,11 @@ author: NVIDIA
 weight: 260
 toc: 5
 ---
-The following table lists the various ways to install NetQ. If you are unsure which option is best for your network, refer to the {{<link title="Pre-installation Configuration Information" text="pre-installation guide">}}.
+If you know how you would answer the key installation questions, you can go directly to the instructions for those choices using the table here.
+
+{{<notice warning>}}
+Do not skip the normal installation flow until you have performed this process multiple times and are fully familiar with it.
+{{</notice>}}
 
 | Deployment Type | Server Arrangement | System | Hypervisor | Installation Instructions |
 | --- | --- | --- | --- | :---: |

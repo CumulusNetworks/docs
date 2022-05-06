@@ -1,5 +1,5 @@
 ---
-title: Pre-installation Configuration Information
+title: Pre Installation Configuration Information
 author: NVIDIA
 weight: 190
 toc: 3

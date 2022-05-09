@@ -26,7 +26,7 @@ In Cumulus Linux 3.7.12, the default password for the cumulus user account has c
 
 ## Zero Touch Provisioning Using a Local File
 
-ZTP only looks once for a ZTP script on the local file system when the switch boots. ZTP searches for an install script that matches an {{<exlink url="http://onie.org" text="ONIE">}}-style waterfall in `/var/lib/cumulus/ztp`, looking for the most specific name first, and ending at the most generic:
+ZTP only looks once for a ZTP script on the local file system when the switch boots. ZTP searches for an install script that matches an {{<exlink url="https://opencomputeproject.github.io/onie/" text="ONIE">}}-style waterfall in `/var/lib/cumulus/ztp`, looking for the most specific name first, and ending at the most generic:
 
 - `'cumulus-ztp-' + architecture + '-' + vendor + '_' + model + '-r' + revision`
 - `'cumulus-ztp-' + architecture + '-' + vendor + '_' + model`

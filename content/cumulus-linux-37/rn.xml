@@ -35,6 +35,18 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td></td>
 </tr>
 <tr>
+<td>3021692</td>
+<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3020254</td>
+<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3017190</td>
 <td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
 To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
@@ -96,7 +108,7 @@ Fixed: 14.0.2-3+deb8u4</td>
 <tr>
 <td>2959067</td>
 <td>ECMP produces errors indicating {{No More Resources}} and {{switchd}} crashes even when ECMP utilization is low.</td>
-<td>3.7.14.2-3.7.16</td>
+<td>3.7.14.2-3.7.16, 4.0.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2548,6 +2560,18 @@ Fixed: 7.2d-6.4+deb8u1</td>
 <td></td>
 </tr>
 <tr>
+<td>3021692</td>
+<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3020254</td>
+<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3017190</td>
 <td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
 To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
@@ -2763,7 +2787,7 @@ Fixed: 4.2-3+deb8u5</td>
 <tr>
 <td>2959067</td>
 <td>ECMP produces errors indicating {{No More Resources}} and {{switchd}} crashes even when ECMP utilization is low.</td>
-<td>3.7.14.2-3.7.16</td>
+<td>3.7.14.2-3.7.16, 4.0.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -5815,7 +5839,7 @@ Fixed: 4.2-3+deb8u5</td>
 <tr>
 <td>2959067</td>
 <td>ECMP produces errors indicating {{No More Resources}} and {{switchd}} crashes even when ECMP utilization is low.</td>
-<td>3.7.14.2-3.7.16</td>
+<td>3.7.14.2-3.7.16, 4.0.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>

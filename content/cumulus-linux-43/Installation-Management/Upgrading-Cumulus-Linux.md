@@ -130,7 +130,7 @@ Be aware of the following when installing the Cumulus Linux image:
 - Installing a Cumulus Linux image is destructive; any configuration files on the switch are not saved; copy them to a different server before you start the Cumulus Linux image install.
 - You must move configuration data to the new OS using ZTP or automation while the OS is first booted, or soon afterwards using out-of-band management.
 - Moving a configuration file might cause issues;
-- Identifying all the locations of configuration data is not always an easy task. See [Before You Upgrade Cumulus Linux](#before-you-upgrade-cumulus-linux) above.
+- Identifying all the locations of configuration data is not always an easy task. See [Before You Upgrade Cumulus Linux](#before-you-upgrade) above.
 - Merge conflicts with configuration file changes in the new release might go undetected.
 - If configuration files are not restored correctly, you might be unable to ssh to the switch from in-band management. Out-of-band connectivity (eth0 or console) is recommended.
 - You *must* reinstall and reconfigure third-party applications after upgrade.

@@ -10,7 +10,7 @@ In Cumulus Linux 4.2.0, the default password for the *cumulus* user account has 
 
 {{%/notice%}}
 
-You can install a new Cumulus Linux image using {{<exlink url="https://opencomputeproject.github.io/onie/">}}, an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on bare metal switches.
+You can install a new Cumulus Linux image using {{<exlink url="https://opencomputeproject.github.io/onie/" text="ONIE">}}, an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on bare metal switches.
 
 Before you install Cumulus Linux, the switch can be in two different states:
 

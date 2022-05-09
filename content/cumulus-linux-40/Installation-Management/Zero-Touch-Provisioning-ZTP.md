@@ -21,7 +21,7 @@ Each method is discussed in greater detail below.
 
 ## Use a Local File
 
-ZTP only looks once for a ZTP script on the local file system when the switch boots. ZTP searches for an install script that matches an {{<exlink url="https://opencomputeproject.github.io/onie/">}}-style waterfall in `/var/lib/cumulus/ztp`, looking for the most specific name first, and ending at the most generic:
+ZTP only looks once for a ZTP script on the local file system when the switch boots. ZTP searches for an install script that matches an {{<exlink url="https://opencomputeproject.github.io/onie/" text="ONIE">}}-style waterfall in `/var/lib/cumulus/ztp`, looking for the most specific name first, and ending at the most generic:
 
 - `'cumulus-ztp-' + architecture + '-' + vendor + '_' + model + '-r' + revision`
 - `'cumulus-ztp-' + architecture + '-' + vendor + '_' + model`

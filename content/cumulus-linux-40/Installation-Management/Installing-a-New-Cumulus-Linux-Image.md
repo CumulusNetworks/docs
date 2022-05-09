@@ -5,7 +5,7 @@ weight: 40
 toc: 3
 ---
 
-You can install a new Cumulus Linux disk image using {{<exlink url="http://www.onie.org/" text="ONIE">}}, an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on bare metal switches.
+You can install a new Cumulus Linux disk image using {{<exlink url="https://opencomputeproject.github.io/onie/">}}, an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on bare metal switches.
 
 Before you install Cumulus Linux, the switch can be in two different states:
 

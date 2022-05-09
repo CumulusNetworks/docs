@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3055125</td>
-<td>{{cl-resource-query}} shows an incorrect ECMP next hop value. The {{% of maximum value}} counter exceeds 100%.</td>
-<td>4.2.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3053197</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
 <td>4.2.1-4.4.3</td>
@@ -143,6 +137,12 @@ Fixed: 2.5.5-3+deb10u4</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15-4.4.2, 5.0.0-5.0.1</td>
 <td>4.4.3</td>
+</tr>
+<tr>
+<td>2959067</td>
+<td>ECMP produces errors indicating {{No More Resources}} and {{switchd}} crashes even when ECMP utilization is low.</td>
+<td>3.7.14.2-3.7.16, 4.0.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2951110</td>
@@ -428,14 +428,6 @@ Fixed: 241-7~deb10u8</td>
 <td>4.4.2-4.4.3</td>
 </tr>
 <tr>
-<td>2728138</td>
-<td>CVE-2020-36221, CVE-2020-36222, CVE-2020-36223, CVE-2020-36224, CVE-2020-36225, CVE-2020-36226, CVE-2020-36227, CVE-2020-36228, CVE-2020-36229, CVE-2020-36230:  Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.
-Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u4
-Fixed: 2.4.47+dfsg-3+deb10u5</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0-4.4.3</td>
-</tr>
-<tr>
 <td>2711533</td>
 <td>On the AS7326-56X switch, the link lights for 25G ports configured to work at 1G do not illuminate.</td>
 <td>4.2.1-4.4.3</td>
@@ -520,18 +512,12 @@ To work around this issue, add the MAC access list configuration to the end of t
 <td>4.4.0-4.4.3</td>
 </tr>
 <tr>
-<td>2679950</td>
+<td>2679949</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
 <td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
 <td>3.7.16, 4.4.0-4.4.3</td>
-</tr>
-<tr>
-<td>2677049</td>
-<td>CVE-2020-25681 CVE-2020-25682 CVE-2020-25683 CVE-2020-25684 CVE-2020-25685 CVE-2020-25686 CVE-2020-25687: Several vulnerabilities in dnsmasq, a small caching DNS proxy and DHCP/TFTP server, could result in denial of service, cache poisoning or the execution of arbitrary code.</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2671668</td>
@@ -717,7 +703,7 @@ Fixed: 2.3.1+dfsg-1+deb10u1</td>
 <td>4.4.0-4.4.3</td>
 </tr>
 <tr>
-<td>2578870</td>
+<td>2578869</td>
 <td>CVE-2020-35523 CVE-2020-35524: Two vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service or the execution of arbitrary code if malformed image files are processed.
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u1
 Fixed: 4.1.0+git191117-2~deb10u2</td>
@@ -732,7 +718,7 @@ To work around this issue, either use the {{vtysh}} commands or edit the {{/etc/
 <td>4.4.0-4.4.3</td>
 </tr>
 <tr>
-<td>2566880</td>
+<td>2566879</td>
 <td>CVE-2021-27803: A vulnerability was discovered in how p2p/p2p_pd.c in wpa_supplicant before 2.10 processes P2P (Wi-Fi Direct) provision discovery requests. It could result in denial of service or other impact (potentially execution of arbitrary code), for an attacker within radio range.</td>
 <td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.3</td>
@@ -841,10 +827,24 @@ Fixed: 1.3.8+dfsg-3+deb10u1</td>
 <td>4.4.0-4.4.3</td>
 </tr>
 <tr>
+<td>2556474</td>
+<td>CVE-2020-25681 CVE-2020-25682 CVE-2020-25683 CVE-2020-25684 CVE-2020-25685 CVE-2020-25686 CVE-2020-25687: Several vulnerabilities in dnsmasq, a small caching DNS proxy and DHCP/TFTP server, could result in denial of service, cache poisoning or the execution of arbitrary code.</td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.3</td>
+</tr>
+<tr>
 <td>2556462</td>
 <td> When you remove a fan tray, {{smonctl}} and {{sensors}} display different information about the removed fans.</td>
 <td>4.2.1-4.4.3</td>
 <td></td>
+</tr>
+<tr>
+<td>2556456</td>
+<td>CVE-2020-36221, CVE-2020-36222, CVE-2020-36223, CVE-2020-36224, CVE-2020-36225, CVE-2020-36226, CVE-2020-36227, CVE-2020-36228, CVE-2020-36229, CVE-2020-36230:  Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.
+Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u4
+Fixed: 2.4.47+dfsg-3+deb10u5</td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2556369</td>
@@ -3082,6 +3082,12 @@ Fixed: 2.5.5-3+deb10u4</td>
 <td>4.4.3</td>
 </tr>
 <tr>
+<td>2959067</td>
+<td>ECMP produces errors indicating {{No More Resources}} and {{switchd}} crashes even when ECMP utilization is low.</td>
+<td>3.7.14.2-3.7.16, 4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.3, 5.0.0-5.0.1</td>
@@ -3304,14 +3310,6 @@ Fixed: 241-7~deb10u8</td>
 <td>4.4.2-4.4.3</td>
 </tr>
 <tr>
-<td>2728138</td>
-<td>CVE-2020-36221, CVE-2020-36222, CVE-2020-36223, CVE-2020-36224, CVE-2020-36225, CVE-2020-36226, CVE-2020-36227, CVE-2020-36228, CVE-2020-36229, CVE-2020-36230:  Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.
-Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u4
-Fixed: 2.4.47+dfsg-3+deb10u5</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0-4.4.3</td>
-</tr>
-<tr>
 <td>2699399</td>
 <td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
 
@@ -3378,18 +3376,12 @@ To work around this issue, add the MAC access list configuration to the end of t
 <td>4.4.0-4.4.3</td>
 </tr>
 <tr>
-<td>2679950</td>
+<td>2679949</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
 <td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
 <td>3.7.16, 4.4.0-4.4.3</td>
-</tr>
-<tr>
-<td>2677049</td>
-<td>CVE-2020-25681 CVE-2020-25682 CVE-2020-25683 CVE-2020-25684 CVE-2020-25685 CVE-2020-25686 CVE-2020-25687: Several vulnerabilities in dnsmasq, a small caching DNS proxy and DHCP/TFTP server, could result in denial of service, cache poisoning or the execution of arbitrary code.</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2671668</td>
@@ -3561,7 +3553,7 @@ Fixed: 2.3.1+dfsg-1+deb10u1</td>
 <td>4.4.0-4.4.3</td>
 </tr>
 <tr>
-<td>2578870</td>
+<td>2578869</td>
 <td>CVE-2020-35523 CVE-2020-35524: Two vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service or the execution of arbitrary code if malformed image files are processed.
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u1
 Fixed: 4.1.0+git191117-2~deb10u2</td>
@@ -3576,7 +3568,7 @@ To work around this issue, either use the {{vtysh}} commands or edit the {{/etc/
 <td>4.4.0-4.4.3</td>
 </tr>
 <tr>
-<td>2566880</td>
+<td>2566879</td>
 <td>CVE-2021-27803: A vulnerability was discovered in how p2p/p2p_pd.c in wpa_supplicant before 2.10 processes P2P (Wi-Fi Direct) provision discovery requests. It could result in denial of service or other impact (potentially execution of arbitrary code), for an attacker within radio range.</td>
 <td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.3</td>
@@ -3670,6 +3662,20 @@ Fixed: 1.3.8+dfsg-3+deb10u1</td>
 <tr>
 <td>2556500</td>
 <td>Cumulus Linux does not support bond members at 200G or greater.</td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.3</td>
+</tr>
+<tr>
+<td>2556474</td>
+<td>CVE-2020-25681 CVE-2020-25682 CVE-2020-25683 CVE-2020-25684 CVE-2020-25685 CVE-2020-25686 CVE-2020-25687: Several vulnerabilities in dnsmasq, a small caching DNS proxy and DHCP/TFTP server, could result in denial of service, cache poisoning or the execution of arbitrary code.</td>
+<td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.3</td>
+</tr>
+<tr>
+<td>2556456</td>
+<td>CVE-2020-36221, CVE-2020-36222, CVE-2020-36223, CVE-2020-36224, CVE-2020-36225, CVE-2020-36226, CVE-2020-36227, CVE-2020-36228, CVE-2020-36229, CVE-2020-36230:  Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.
+Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u4
+Fixed: 2.4.47+dfsg-3+deb10u5</td>
 <td>4.0.0-4.3.0</td>
 <td>4.4.0-4.4.3</td>
 </tr>

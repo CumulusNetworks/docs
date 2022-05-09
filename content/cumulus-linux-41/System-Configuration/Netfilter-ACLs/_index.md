@@ -376,10 +376,6 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-{{%notice note%}}
-The `net add control-plane` command applies the rule to all data plane ports (swps). To apply the rule to all ports including eth0, run the `net add control-plane-all` command.
-{{%/notice%}}
-
 To remove a rule, use `net del acl ipv4|ipv6|mac RULENAME`:
 
 ```

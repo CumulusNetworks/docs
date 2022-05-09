@@ -208,12 +208,12 @@ For example, to set traffic leaving interface `swp5` to COS value `4`:
 You must use `iptables` (for IPv4 traffic) or `ip6tables` (for IPv6 traffic) to match and mark layer 3 traffic.
 
 You can match traffic with any supported iptable or ip6tables rule.
-To set the new COS or DSCP value when traffic is matches, use `-A FORWARD -o <interface> -j setqos [--set-dscp <value> | --set-cos <value> | --set-dscp-class <name>]`.
+To set the new COS or DSCP value when traffic is matches, use `-A FORWARD -o <interface> -j SETQOS [--set-dscp <value> | --set-cos <value> | --set-dscp-class <name>]`.
 
 The configured action always has the following conditions:
 - The rule is always configured as part of the `FORWARD` chain.
 - The interface (`<interface>`) is a physical swp port.
-- The *jump* action is always `setqos` (lowercase).
+- The *jump* action is always `SETQOS` (uppercase).
 
 You can configure COS markings with `--set-cos` and a value between 0 and 7 (inclusive).
 
@@ -228,13 +228,13 @@ You can specify either `--set-dscp` or `--set-dscp-class`, but not both.
 For example, to set traffic leaving interface swp5 to DSCP value `32`:
 
 ```
--A FORWARD -o swp5 -j setqos --set-dscp 32
+-A FORWARD -o swp5 -j SETQOS --set-dscp 32
 ```
 
 To set traffic leaving interface swp11 to DSCP class value `CS6`:
 
 ```
--A FORWARD -o swp11 -j setqos --set-dscp-class cs6
+-A FORWARD -o swp11 -j SETQOS --set-dscp-class cs6
 ```
 
 <!--

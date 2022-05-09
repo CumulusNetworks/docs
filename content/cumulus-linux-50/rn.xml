@@ -7,9 +7,31 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3060399</td>
+<td>When you add an interface to a layer 3 bond, traffic does not forward and you see errors similar to the following:
+
+2022-05-02T13:14:40.118597+00:00 cumulus sx_sdk: ROUTER: Failed to delete router interface(27) ref count isn’t 0, err= Resource is in use.
+</td>
+<td>4.4.2-4.4.3, 5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3059380</td>
+<td>When you configure VRF leaking from the default VRF to a non-default VRF, SSH sessions originating from the switch CLI in the default VRF do not connect to devices in the non-default VRF.</td>
+<td>5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3058604</td>
 <td>When you change the time with NTP or manually, the clagd service stops.</td>
 <td>4.4.3, 5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3057106</td>
+<td>Under certain conditions, the {{switchd}} process might have a slow memory leak.
+</td>
+<td>5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -31,7 +53,7 @@ export HOME
 <td></td>
 </tr>
 <tr>
-<td>3045304</td>
+<td>3045302</td>
 <td>CVE-2022-1271: incorrect handling of filenames by xzgrep in xz-utils, the XZ-format compression utilities, can result in overwrite of arbitrary files or execution of arbitrary code if a file with a specially crafted filename is processed.
 Vulnerable: 5.2.4-1
 Fixed: 5.2.4-1+deb10u1</td>
@@ -39,7 +61,7 @@ Fixed: 5.2.4-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>3045301</td>
+<td>3045299</td>
 <td>CVE-2022-1271: incorrect handling of filenames by zgrep in gzip, the GNU compression utilities, can result in overwrite of arbitrary files or execution of arbitrary code if a file with a specially crafted filename is processed.</td>
 <td>5.0.0-5.0.1</td>
 <td></td>
@@ -88,12 +110,6 @@ Failure during apply. Ignore? [y/N]
 <td></td>
 </tr>
 <tr>
-<td>3032960</td>
-<td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
-<td>4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3032234</td>
 <td>In BGP unnumbered, when you try to remove an interface from the underlay default VRF with the NVUE {{nv unset vrf default router bgp neighbor &lt;interface&gt;}} command, the command fails to apply.</td>
 <td>5.0.1</td>
@@ -136,20 +152,14 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>3021888</td>
+<td>3021886</td>
 <td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down ({{ifdown}} and up {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
-<td>5.0.0-5.0.1</td>
+<td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3021877</td>
 <td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3021698</td>
-<td>After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
@@ -163,6 +173,24 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 <td>3021693</td>
 <td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3021692</td>
+<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3020254</td>
+<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3017127</td>
+<td>After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards.</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -191,6 +219,12 @@ cumulus@leaf01:~$ sudo systemctl start nvued
 <td></td>
 </tr>
 <tr>
+<td>3008388</td>
+<td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
+<td>4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3007603</td>
 <td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
 Vulnerable: &lt;= 1.1.1d-0+deb10u7
@@ -202,6 +236,12 @@ Fixed: 1.1.1d-0+deb10u8</td>
 <td>3007564</td>
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3007020</td>
+<td>The {{sudo smonctl}} command output shows an error for the ASIC temperature sensor (temp6).</td>
+<td>5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -241,19 +281,10 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td></td>
 </tr>
 <tr>
-<td>2993960</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
-<td>3.7.16</td>
-</tr>
-<tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td>3.7.16</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2991501</td>
@@ -266,6 +297,15 @@ Fixed:</td>
 <td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
 <td>5.0.0-5.0.1</td>
 <td></td>
+</tr>
+<tr>
+<td>2984205</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.16</td>
 </tr>
 <tr>
 <td>2982537</td>
@@ -327,12 +367,6 @@ Unrecoverable internal error
 <td>When there is a peer link failure followed by a power failure or a crash on the primary switch,  the MLAG secondary switch takes up to 24 seconds to change roles to the Primary.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
-</tr>
-<tr>
-<td>2961008</td>
-<td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
-<td>3.7.15-4.4.2, 5.0.0-5.0.1</td>
-<td>4.4.3</td>
 </tr>
 <tr>
 <td>2959550</td>
@@ -422,6 +456,12 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td></td>
 </tr>
 <tr>
+<td>2910017</td>
+<td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
+<td>3.7.15-4.4.2, 5.0.0-5.0.1</td>
+<td>4.4.3</td>
+</tr>
+<tr>
 <td>2903374</td>
 <td>The {{nv show interfaces}} command returns a 500 error and syslog shows a python error, triggered by third party devices (non CL) missing LLDP fields.
 To work around this issue, disable LLDP on a single interface.</td>
@@ -449,8 +489,8 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <tr>
 <td>2896672</td>
 <td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td>3.7.16</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2895333</td>
@@ -493,9 +533,8 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>2872277</td>
-<td>The NVUE {{nv set router bgp wait-for-install on}} command fails to enable BGP suppress route advertisement.
-To work around this issue, restart {{switchd}} with {{sudo systemctl restart switchd.service}} after you run the NVUE command. </td>
+<td>2873053</td>
+<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin admin down ({{ifdown}} and up {{ifup}}),  the VTEP might not program the local MAC addresses in hardware.</td>
 <td>5.0.0-5.0.1</td>
 <td></td>
 </tr>
@@ -580,12 +619,6 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>4.0.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
-<tr>
-<td>2663119</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
-<td>3.7.16</td>
-</tr>
 </table>
 <table name="Fixed Issues in 5.0.1">
 <tr>
@@ -626,7 +659,7 @@ export HOME
 <td></td>
 </tr>
 <tr>
-<td>3045304</td>
+<td>3045302</td>
 <td>CVE-2022-1271: incorrect handling of filenames by xzgrep in xz-utils, the XZ-format compression utilities, can result in overwrite of arbitrary files or execution of arbitrary code if a file with a specially crafted filename is processed.
 Vulnerable: 5.2.4-1
 Fixed: 5.2.4-1+deb10u1</td>
@@ -634,7 +667,7 @@ Fixed: 5.2.4-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>3045301</td>
+<td>3045299</td>
 <td>CVE-2022-1271: incorrect handling of filenames by zgrep in gzip, the GNU compression utilities, can result in overwrite of arbitrary files or execution of arbitrary code if a file with a specially crafted filename is processed.</td>
 <td>5.0.0-5.0.1</td>
 <td></td>
@@ -655,12 +688,6 @@ Fixed: 5.2.4-1+deb10u1</td>
 <td>3040080</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3032960</td>
-<td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
-<td>4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -694,20 +721,14 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>3021888</td>
+<td>3021886</td>
 <td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down ({{ifdown}} and up {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
-<td>5.0.0-5.0.1</td>
+<td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3021877</td>
 <td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3021698</td>
-<td>After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
@@ -724,11 +745,35 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>3021692</td>
+<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3020254</td>
+<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3017127</td>
+<td>After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards.</td>
+<td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3017042</td>
 <td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
 Fixed: 4.1.0+git191117-2~deb10u4</td>
 <td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3008388</td>
+<td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
+<td>4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -743,6 +788,12 @@ Fixed: 1.1.1d-0+deb10u8</td>
 <td>3007564</td>
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3007020</td>
+<td>The {{sudo smonctl}} command output shows an error for the ASIC temperature sensor (temp6).</td>
+<td>5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -782,15 +833,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td></td>
 </tr>
 <tr>
-<td>2993960</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
-<td>3.7.16</td>
-</tr>
-<tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
@@ -807,6 +849,15 @@ Fixed:</td>
 <td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
 <td>5.0.0-5.0.1</td>
 <td></td>
+</tr>
+<tr>
+<td>2984205</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.16</td>
 </tr>
 <tr>
 <td>2982537</td>
@@ -857,12 +908,6 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td>When there is a peer link failure followed by a power failure or a crash on the primary switch,  the MLAG secondary switch takes up to 24 seconds to change roles to the Primary.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
-</tr>
-<tr>
-<td>2961008</td>
-<td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
-<td>3.7.15-4.4.2, 5.0.0-5.0.1</td>
-<td>4.4.3</td>
 </tr>
 <tr>
 <td>2959550</td>
@@ -946,6 +991,12 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td></td>
 </tr>
 <tr>
+<td>2910017</td>
+<td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
+<td>3.7.15-4.4.2, 5.0.0-5.0.1</td>
+<td>4.4.3</td>
+</tr>
+<tr>
 <td>2908541</td>
 <td>Running {{apt dist-upgrade}} causes {{switchd}} to stop and never start again.  Do not use {{apt dist-upgrade}}; use {{apt upgrade}} instead. Cumulus Linux does not support {{apt dist-upgrade}}.
 To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no longer works, run the {{apt install sx-sdk-eth-dev}} command (and run the command for any other removed package) or reinstall the Cumulus Linux image.</td>
@@ -1024,9 +1075,8 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>2872277</td>
-<td>The NVUE {{nv set router bgp wait-for-install on}} command fails to enable BGP suppress route advertisement.
-To work around this issue, restart {{switchd}} with {{sudo systemctl restart switchd.service}} after you run the NVUE command. </td>
+<td>2873053</td>
+<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin admin down ({{ifdown}} and up {{ifup}}),  the VTEP might not program the local MAC addresses in hardware.</td>
 <td>5.0.0-5.0.1</td>
 <td></td>
 </tr>

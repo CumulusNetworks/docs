@@ -95,7 +95,7 @@ To install the OPTA server, choose the tab for the type of deployment:
 {{<tab "Cloud, Single Server Deployment" >}}
 
 <!-- vale off -->
-Run the following command on your NetQ Cloud Appliance with the `config-key` obtained during first login to the NetQ Cloud and premise activation. For more information, see {{<link title="Access the NetQ UI#log-in-to-netq" text="First Time Log In - NetQ Cloud">}}.
+Run the following command on your NetQ Cloud Appliance with the `config-key` obtained from the email you received from NVIDIA titled _NetQ Access Link_. You can also obtain the configuration key through the NetQ UI in the premise management configuration. For more information, see {{<link title="Access the NetQ UI#log-in-to-netq" text="First Time Log In - NetQ Cloud">}}.
 <!-- vale on -->
 
 ```
@@ -138,7 +138,7 @@ netq install cluster worker-init c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUF
 Run the `netq install cluster worker-init <ssh-key>` on each of your worker nodes.
 
 <!-- vale off -->
-Run the following command on your NetQ Cloud Appliance with the `config-key` obtained during first login to the NetQ Cloud and premise activation. For more information, see {{<link title="Access the NetQ UI#log-in-to-netq" text="First Time Log In - NetQ Cloud">}}.
+Run the following command on your NetQ Cloud Appliance with the `config-key` obtained from the email you received from NVIDIA titled _NetQ Access Link_. You can also obtain the configuration key through the NetQ UI in the premise management configuration. For more information, see {{<link title="Access the NetQ UI#log-in-to-netq" text="First Time Log In - NetQ Cloud">}}.
 <!-- vale on -->
 
 ```

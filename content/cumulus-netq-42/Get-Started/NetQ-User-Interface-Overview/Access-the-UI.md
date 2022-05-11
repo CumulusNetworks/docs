@@ -59,8 +59,7 @@ To log in to the UI:
 
     {{<figure src="/images/netq/new-premise-username.png" alt="username and premises information in the UI header" width="300">}}
 
-{{<figure src="/images/netq/activation-wizard-key.png" width="1000">}}
-
+    You can view your configuration key used during OPTA installation by selecting the premise and choosing **Manage Premises**.
 {{</tab>}}
 
 {{<tab "Log In After First Time">}}

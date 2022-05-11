@@ -7,9 +7,28 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3066798</td>
+<td>After a switch reboot, the hardware redirect for EVPN-MH does not work if the EVPN-MH bond is down.</td>
+<td>4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3066704</td>
+<td>The {{hostapd}} service stops working if an 802.1X interface goes up and down many times over a long period of time.
+To work around this issue, restart the {{hostapd}} service with the {{systemctl restart hostapd}} command.</td>
+<td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3066664</td>
+<td>In an EVPN-MH configuration, the switch fails to redirect tagged frames with the CoS bits set.</td>
+<td>4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3060400</td>
 <td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
-To resolve this issue, restart FRR with the {{sudo sysctl restart frr}} command.</td>
+To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
@@ -2033,9 +2052,16 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3066704</td>
+<td>The {{hostapd}} service stops working if an 802.1X interface goes up and down many times over a long period of time.
+To work around this issue, restart the {{hostapd}} service with the {{systemctl restart hostapd}} command.</td>
+<td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3060400</td>
 <td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
-To resolve this issue, restart FRR with the {{sudo sysctl restart frr}} command.</td>
+To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
@@ -4305,9 +4331,16 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3066704</td>
+<td>The {{hostapd}} service stops working if an 802.1X interface goes up and down many times over a long period of time.
+To work around this issue, restart the {{hostapd}} service with the {{systemctl restart hostapd}} command.</td>
+<td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3060400</td>
 <td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
-To resolve this issue, restart FRR with the {{sudo sysctl restart frr}} command.</td>
+To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>4.3.0-4.4.3</td>
 <td></td>
 </tr>

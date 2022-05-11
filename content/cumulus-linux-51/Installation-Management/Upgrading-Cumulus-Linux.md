@@ -35,7 +35,7 @@ Understanding the location of configuration data is important for successful upg
 | `/etc/hosts`  | Configuration file for the hostname of the switch | {{<link title="Quick Start Guide">}} | {{<exlink url="https://wiki.debian.org/HowTo/ChangeHostname">}} |
 | `/etc/cumulus/acl/*` | Netfilter configuration | {{<link title="Netfilter - ACLs">}} |N/A |
 | `/etc/cumulus/control-plane/policers.conf` | Configuration for control plane policers | {{<link title="Netfilter - ACLs#control-plane-policers">}} | N/A |
-| `/etc/cumulus/datapath/qos/qos_features.conf` | QoS configuration | {{<link title="Quality of Service">}} | N/A |
+| `/etc/cumulus/datapath/qos/qos_features.conf` | QoS configuration <br><br><b>Note:</b> In Cumulus Linux 5.0 and later, default ECN configuration parameters start with `default_ecn_red_conf` instead of `default_ecn_conf`. | {{<link title="Quality of Service">}} | N/A |
 | `/etc/mlx/datapath/qos/qos_infra.conf` | QoS configuration | {{<link title="Quality of Service">}} | N/A |
 | `/etc/mlx/datapath/tcam_profile.conf` | Configuration for the forwarding table profiles| {{<link title="Supported Route Table Entries#tcam-resource-profiles-for-spectrum-switches">}} | N/A |
 | `/etc/cumulus/datapath/traffic.conf` | Configuration for the forwarding table profiles| {{<link title="Supported Route Table Entries">}} | N/A |

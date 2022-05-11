@@ -1761,9 +1761,16 @@ Fixed: 2.9.4+dfsg1-7+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3066704</td>
+<td>The {{hostapd}} service stops working if an 802.1X interface goes up and down many times over a long period of time.
+To work around this issue, restart the {{hostapd}} service with the {{systemctl restart hostapd}} command.</td>
+<td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3060400</td>
 <td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
-To resolve this issue, restart FRR with the {{sudo sysctl restart frr}} command.</td>
+To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
@@ -1786,15 +1793,6 @@ To resolve this issue, restart FRR with the {{sudo sysctl restart frr}} command.
 <td></td>
 </tr>
 <tr>
-<td>3040075</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.16, 4.2.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3031235</td>
 <td>Static VXLAN configuration prevents NCLU from working.</td>
 <td>4.3.0-4.4.3</td>
@@ -1802,7 +1800,7 @@ To resolve this issue, restart FRR with the {{sudo sysctl restart frr}} command.
 </tr>
 <tr>
 <td>3021693</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
+<td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
@@ -1823,6 +1821,14 @@ To resolve this issue, restart FRR with the {{sudo sysctl restart frr}} command.
 <td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
 Fixed: 4.1.0+git191117-2~deb10u4</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3010292</td>
+<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
+Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
+Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
 <td>4.0.0-4.4.3</td>
 <td></td>
 </tr>

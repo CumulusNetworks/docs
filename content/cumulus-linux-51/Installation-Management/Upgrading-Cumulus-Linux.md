@@ -171,7 +171,7 @@ Be aware of the following when installing the Cumulus Linux image:
 - Moving a configuration file can cause issues.
 - Identifying all the locations of configuration data is not always an easy task. See [Before You Upgrade Cumulus Linux](#before-you-upgrade) above.
 - Merge conflicts with configuration file changes in the new release sometimes go undetected.
-- If configuration files do not restore correctly, you are be unable to ssh to the switch from in-band management. Use out-of-band connectivity (eth0 or console).
+- If configuration files do not restore correctly, you cannot ssh to the switch from in-band management. Use out-of-band connectivity (eth0 or console).
 - You *must* reinstall and reconfigure third-party applications after upgrade.
 
 Run **package upgrade** if you are upgrading from Cumulus Linux 5.1.0 to a later 5.1 release, or if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install).
@@ -285,7 +285,7 @@ To upgrade the switch using package upgrade:
 Because Cumulus Linux is a collection of different Debian Linux packages, be aware of the following:
 
 - The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you run `sudo -E apt-get upgrade` and the latest Cumulus Linux release on the repository is 5.0.1, these two files display the release as 5.0.1 after the upgrade.
-- The `/etc/image-release` file update **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.0.0, followed by a package upgrade to 5.0.1 using `sudo -E apt-get upgrade`, the `/etc/image-release` file continues to display Cumulus Linux 5.0.0, which is the originally installed base image.
+- The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.0.0, followed by a package upgrade to 5.0.1 using `sudo -E apt-get upgrade`, the `/etc/image-release` file continues to display Cumulus Linux 5.0.0, which is the originally installed base image.
 
 ## Upgrade Switches in an MLAG Pair
 

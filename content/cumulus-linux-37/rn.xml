@@ -20,17 +20,8 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td></td>
 </tr>
 <tr>
-<td>3040075</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.16, 4.2.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3021693</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
+<td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
@@ -2513,15 +2504,6 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td></td>
 </tr>
 <tr>
-<td>3040075</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.16, 4.2.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -2555,7 +2537,7 @@ Fixed: 7.2d-6.4+deb8u1</td>
 </tr>
 <tr>
 <td>3021693</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
+<td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
@@ -5645,15 +5627,6 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3040075</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.16, 4.2.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -8510,15 +8483,6 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
-</tr>
-<tr>
-<td>3040075</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.16, 4.2.1-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>3038398</td>
@@ -11898,15 +11862,6 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
-</tr>
-<tr>
-<td>3040075</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.16, 4.2.1-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>3038398</td>
@@ -15501,15 +15456,6 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3040075</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.16, 4.2.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -18704,6 +18650,13 @@ To work around this issue, correct the bridge VIDs and restart {{switchd}} or de
 <th> Affects </th>
 </tr>
 <tr>
+<td>3061439</td>
+<td>CVE-2016-9840: inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.
+Vulnerable: 1.2.8.dfsg-2
+Fixed: 1.2.8.dfsg-2+deb8u1</td>
+<td>3.7.0-3.7.11</td>
+</tr>
+<tr>
 <td>2547877</td>
 <td>The following vulnerability has been found in the {{libgcrypt20}} cryptographic library.
 CVE-2019-13627: there was a ECDSA timing attack.
@@ -18959,13 +18912,12 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3040075</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.16, 4.2.1-4.4.3</td>
-<td></td>
+<td>3061439</td>
+<td>CVE-2016-9840: inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.
+Vulnerable: 1.2.8.dfsg-2
+Fixed: 1.2.8.dfsg-2+deb8u1</td>
+<td>3.7.0-3.7.11</td>
+<td>3.7.12-3.7.16</td>
 </tr>
 <tr>
 <td>3038398</td>
@@ -21362,6 +21314,13 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <th> Affects </th>
 </tr>
 <tr>
+<td>3061437</td>
+<td>CVE-2019-18197: In xsltCopyText in transform.c in libxslt 1.1.33, a pointer variable isn't reset under certain circumstances. If the relevant memory area happened to be freed and reused in a certain way, a bounds check could fail and memory outside a buffer could be written to, or uninitialized data could be disclosed.
+Vulnerable: &lt;= 1.1.28-2+deb8u5
+Fixed: 1.1.28-2+deb8u6</td>
+<td>3.7.0-3.7.10</td>
+</tr>
+<tr>
 <td>2547912</td>
 <td>The following vulnerabilities were discovered in cURL, an URL transfer library.
 CVE-2019-5436: A heap buffer overflow in the TFTP receiving code was discovered, which could allow DoS or arbitrary code execution.
@@ -21934,13 +21893,20 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3040075</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.16, 4.2.1-4.4.3</td>
-<td></td>
+<td>3061439</td>
+<td>CVE-2016-9840: inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.
+Vulnerable: 1.2.8.dfsg-2
+Fixed: 1.2.8.dfsg-2+deb8u1</td>
+<td>3.7.0-3.7.11</td>
+<td>3.7.12-3.7.16</td>
+</tr>
+<tr>
+<td>3061437</td>
+<td>CVE-2019-18197: In xsltCopyText in transform.c in libxslt 1.1.33, a pointer variable isn't reset under certain circumstances. If the relevant memory area happened to be freed and reused in a certain way, a bounds check could fail and memory outside a buffer could be written to, or uninitialized data could be disclosed.
+Vulnerable: &lt;= 1.1.28-2+deb8u5
+Fixed: 1.1.28-2+deb8u6</td>
+<td>3.7.0-3.7.10</td>
+<td>3.7.11-3.7.16</td>
 </tr>
 <tr>
 <td>3038398</td>
@@ -24358,13 +24324,20 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3040075</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.16, 4.2.1-4.4.3</td>
-<td></td>
+<td>3061439</td>
+<td>CVE-2016-9840: inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.
+Vulnerable: 1.2.8.dfsg-2
+Fixed: 1.2.8.dfsg-2+deb8u1</td>
+<td>3.7.0-3.7.11</td>
+<td>3.7.12-3.7.16</td>
+</tr>
+<tr>
+<td>3061437</td>
+<td>CVE-2019-18197: In xsltCopyText in transform.c in libxslt 1.1.33, a pointer variable isn't reset under certain circumstances. If the relevant memory area happened to be freed and reused in a certain way, a bounds check could fail and memory outside a buffer could be written to, or uninitialized data could be disclosed.
+Vulnerable: &lt;= 1.1.28-2+deb8u5
+Fixed: 1.1.28-2+deb8u6</td>
+<td>3.7.0-3.7.10</td>
+<td>3.7.11-3.7.16</td>
 </tr>
 <tr>
 <td>3038398</td>
@@ -27077,13 +27050,20 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3040075</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.16, 4.2.1-4.4.3</td>
-<td></td>
+<td>3061439</td>
+<td>CVE-2016-9840: inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.
+Vulnerable: 1.2.8.dfsg-2
+Fixed: 1.2.8.dfsg-2+deb8u1</td>
+<td>3.7.0-3.7.11</td>
+<td>3.7.12-3.7.16</td>
+</tr>
+<tr>
+<td>3061437</td>
+<td>CVE-2019-18197: In xsltCopyText in transform.c in libxslt 1.1.33, a pointer variable isn't reset under certain circumstances. If the relevant memory area happened to be freed and reused in a certain way, a bounds check could fail and memory outside a buffer could be written to, or uninitialized data could be disclosed.
+Vulnerable: &lt;= 1.1.28-2+deb8u5
+Fixed: 1.1.28-2+deb8u6</td>
+<td>3.7.0-3.7.10</td>
+<td>3.7.11-3.7.16</td>
 </tr>
 <tr>
 <td>3038398</td>
@@ -29197,13 +29177,20 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3040075</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.16, 4.2.1-4.4.3</td>
-<td></td>
+<td>3061439</td>
+<td>CVE-2016-9840: inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.
+Vulnerable: 1.2.8.dfsg-2
+Fixed: 1.2.8.dfsg-2+deb8u1</td>
+<td>3.7.0-3.7.11</td>
+<td>3.7.12-3.7.16</td>
+</tr>
+<tr>
+<td>3061437</td>
+<td>CVE-2019-18197: In xsltCopyText in transform.c in libxslt 1.1.33, a pointer variable isn't reset under certain circumstances. If the relevant memory area happened to be freed and reused in a certain way, a bounds check could fail and memory outside a buffer could be written to, or uninitialized data could be disclosed.
+Vulnerable: &lt;= 1.1.28-2+deb8u5
+Fixed: 1.1.28-2+deb8u6</td>
+<td>3.7.0-3.7.10</td>
+<td>3.7.11-3.7.16</td>
 </tr>
 <tr>
 <td>3038398</td>
@@ -31652,13 +31639,20 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3040075</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.16, 4.2.1-4.4.3</td>
-<td></td>
+<td>3061439</td>
+<td>CVE-2016-9840: inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.
+Vulnerable: 1.2.8.dfsg-2
+Fixed: 1.2.8.dfsg-2+deb8u1</td>
+<td>3.7.0-3.7.11</td>
+<td>3.7.12-3.7.16</td>
+</tr>
+<tr>
+<td>3061437</td>
+<td>CVE-2019-18197: In xsltCopyText in transform.c in libxslt 1.1.33, a pointer variable isn't reset under certain circumstances. If the relevant memory area happened to be freed and reused in a certain way, a bounds check could fail and memory outside a buffer could be written to, or uninitialized data could be disclosed.
+Vulnerable: &lt;= 1.1.28-2+deb8u5
+Fixed: 1.1.28-2+deb8u6</td>
+<td>3.7.0-3.7.10</td>
+<td>3.7.11-3.7.16</td>
 </tr>
 <tr>
 <td>3038398</td>
@@ -33852,6 +33846,22 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3061439</td>
+<td>CVE-2016-9840: inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.
+Vulnerable: 1.2.8.dfsg-2
+Fixed: 1.2.8.dfsg-2+deb8u1</td>
+<td>3.7.0-3.7.11</td>
+<td>3.7.12-3.7.16</td>
+</tr>
+<tr>
+<td>3061437</td>
+<td>CVE-2019-18197: In xsltCopyText in transform.c in libxslt 1.1.33, a pointer variable isn't reset under certain circumstances. If the relevant memory area happened to be freed and reused in a certain way, a bounds check could fail and memory outside a buffer could be written to, or uninitialized data could be disclosed.
+Vulnerable: &lt;= 1.1.28-2+deb8u5
+Fixed: 1.1.28-2+deb8u6</td>
+<td>3.7.0-3.7.10</td>
+<td>3.7.11-3.7.16</td>
+</tr>
+<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -35686,6 +35696,22 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3061439</td>
+<td>CVE-2016-9840: inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.
+Vulnerable: 1.2.8.dfsg-2
+Fixed: 1.2.8.dfsg-2+deb8u1</td>
+<td>3.7.0-3.7.11</td>
+<td>3.7.12-3.7.16</td>
+</tr>
+<tr>
+<td>3061437</td>
+<td>CVE-2019-18197: In xsltCopyText in transform.c in libxslt 1.1.33, a pointer variable isn't reset under certain circumstances. If the relevant memory area happened to be freed and reused in a certain way, a bounds check could fail and memory outside a buffer could be written to, or uninitialized data could be disclosed.
+Vulnerable: &lt;= 1.1.28-2+deb8u5
+Fixed: 1.1.28-2+deb8u6</td>
+<td>3.7.0-3.7.10</td>
+<td>3.7.11-3.7.16</td>
 </tr>
 <tr>
 <td>3038398</td>
@@ -37549,6 +37575,22 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3061439</td>
+<td>CVE-2016-9840: inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.
+Vulnerable: 1.2.8.dfsg-2
+Fixed: 1.2.8.dfsg-2+deb8u1</td>
+<td>3.7.0-3.7.11</td>
+<td>3.7.12-3.7.16</td>
+</tr>
+<tr>
+<td>3061437</td>
+<td>CVE-2019-18197: In xsltCopyText in transform.c in libxslt 1.1.33, a pointer variable isn't reset under certain circumstances. If the relevant memory area happened to be freed and reused in a certain way, a bounds check could fail and memory outside a buffer could be written to, or uninitialized data could be disclosed.
+Vulnerable: &lt;= 1.1.28-2+deb8u5
+Fixed: 1.1.28-2+deb8u6</td>
+<td>3.7.0-3.7.10</td>
+<td>3.7.11-3.7.16</td>
 </tr>
 <tr>
 <td>3038398</td>
@@ -39518,6 +39560,22 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3061439</td>
+<td>CVE-2016-9840: inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.
+Vulnerable: 1.2.8.dfsg-2
+Fixed: 1.2.8.dfsg-2+deb8u1</td>
+<td>3.7.0-3.7.11</td>
+<td>3.7.12-3.7.16</td>
+</tr>
+<tr>
+<td>3061437</td>
+<td>CVE-2019-18197: In xsltCopyText in transform.c in libxslt 1.1.33, a pointer variable isn't reset under certain circumstances. If the relevant memory area happened to be freed and reused in a certain way, a bounds check could fail and memory outside a buffer could be written to, or uninitialized data could be disclosed.
+Vulnerable: &lt;= 1.1.28-2+deb8u5
+Fixed: 1.1.28-2+deb8u6</td>
+<td>3.7.0-3.7.10</td>
+<td>3.7.11-3.7.16</td>
 </tr>
 <tr>
 <td>3038398</td>
@@ -41533,6 +41591,22 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3061439</td>
+<td>CVE-2016-9840: inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.
+Vulnerable: 1.2.8.dfsg-2
+Fixed: 1.2.8.dfsg-2+deb8u1</td>
+<td>3.7.0-3.7.11</td>
+<td>3.7.12-3.7.16</td>
+</tr>
+<tr>
+<td>3061437</td>
+<td>CVE-2019-18197: In xsltCopyText in transform.c in libxslt 1.1.33, a pointer variable isn't reset under certain circumstances. If the relevant memory area happened to be freed and reused in a certain way, a bounds check could fail and memory outside a buffer could be written to, or uninitialized data could be disclosed.
+Vulnerable: &lt;= 1.1.28-2+deb8u5
+Fixed: 1.1.28-2+deb8u6</td>
+<td>3.7.0-3.7.10</td>
+<td>3.7.11-3.7.16</td>
+</tr>
+<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -42850,6 +42924,22 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3061439</td>
+<td>CVE-2016-9840: inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.
+Vulnerable: 1.2.8.dfsg-2
+Fixed: 1.2.8.dfsg-2+deb8u1</td>
+<td>3.7.0-3.7.11</td>
+<td>3.7.12-3.7.16</td>
+</tr>
+<tr>
+<td>3061437</td>
+<td>CVE-2019-18197: In xsltCopyText in transform.c in libxslt 1.1.33, a pointer variable isn't reset under certain circumstances. If the relevant memory area happened to be freed and reused in a certain way, a bounds check could fail and memory outside a buffer could be written to, or uninitialized data could be disclosed.
+Vulnerable: &lt;= 1.1.28-2+deb8u5
+Fixed: 1.1.28-2+deb8u6</td>
+<td>3.7.0-3.7.10</td>
+<td>3.7.11-3.7.16</td>
 </tr>
 <tr>
 <td>3038398</td>

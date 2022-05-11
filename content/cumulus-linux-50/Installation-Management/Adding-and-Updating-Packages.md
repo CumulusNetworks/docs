@@ -132,12 +132,13 @@ The `apt-cache` command shows information about all the packages available in th
 
 ```
 cumulus@switch:~$ nv show platform software installed
-                                       description                                                                                                                   package                                version
--------------------------------------  ----------------------------------------------------------------------------------------------------------------------------  -------------------------------------  ----------------------------------------------
-acpi                                   displays information on ACPI devices                                                                                          acpi                                   1.7-1.1
-acpi-support-base                      scripts for handling base ACPI events such as the power button                                                                acpi-support-base                      0.142-8
-acpid                                  Advanced Configuration and Power Interface event daemon                                                                       acpid                                  1:2.0.31-1
-...
+                          description                                                       package              version
+------------------------- ----------------------------------------------------------------  -----------          ---------
+acpi                      displays information on ACPI devices                              acpi                 1.7-1.1
+acpi-support-base         scripts for handling base ACPI events such as the power button    cpi-support-base0    142-8
+acpid                     Advanced Configuration and Power Interface event daemon           cpid                 1:2.0.31-1
+adduser                   add and remove users and groups                                   dduser               3.118
+apt                       commandline package manager                                       pt                   1.8.2.3
 ```
 
 {{< /tab >}}
@@ -178,7 +179,7 @@ cumulus@switch:~$ nv show platform software installed vrf
 -----------  -------------------  -------  -------  -----------
 description  Linux tools for VRF                    Description
 package      vrf                                    Package
-version      1.0-cl4.4.0u0                         Version
+version      1.0-cl5.0.1+u2                         Version
 ```
 
 {{< /tab >}}
@@ -191,9 +192,9 @@ cumulus@switch:~$ dpkg -l vrf
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
 |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
-||/ Name       Version      Architecture Description
-+++-==========-============-============-=================================
-ii  vrf        1.0-cl4.4.0u0    amd64        Linux tools for VRF
+||/ Name       Version          Architecture Description
++++-==========-================-============-=================================
+ii  vrf        1.0-cl5.0.1+u2   amd64        Linux tools for VRF
 ```
 
 {{< /tab >}}
@@ -261,10 +262,9 @@ NVIDIA does not test and Cumulus Linux Technical Support does not support packag
 
 Installing packages outside of the Cumulus Linux repository requires the use of `sudo -E apt-get`; however, depending on the package, you can use `easy-install` and other commands.
 
-To install a new package, complete the following steps:
+To install a new package:
 
-1. Run the `dpkg` command to ensure that the package is not already
-    installed on the system:
+1. Run the `dpkg` command to ensure that the package is not already on the system:
 
     ```
     cumulus@switch:~$ dpkg -l | grep <name of package>

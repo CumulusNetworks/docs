@@ -479,26 +479,31 @@ ECN operates by having a transit switch mark packets between two end-hosts.
 This is the default ECN configuration:
 
 ```
-default_ecn_conf.egress_queue_list = [0]
-default_ecn_conf.ecn_enable = true
-default_ecn_conf.min_threshold_bytes = 150000
-default_ecn_conf.max_threshold_bytes = 1500000
-default_ecn_conf.probability = 100
+default_ecn_red_conf.egress_queue_list = [0]
+default_ecn_red_conf.ecn_enable = true
+default_ecn_red_conf.red_enable = false
+default_ecn_red_conf.min_threshold_bytes = 150000
+default_ecn_red_conf.max_threshold_bytes = 1500000
+default_ecn_red_conf.probability = 100
 ```
 
 {{<cl/qos-switchd>}}
+
+{{% notice note %}}
+In Cumulus Linux 5.0 and later, default ECN configuration parameters start with `default_ecn_red_conf` instead of `default_ecn_conf`.
+{{% /notice %}}
 
 <details>
 <summary>All ECN configuration options</summary>
 
 |Configuration   |Example  |Explanation  |
 |-------------   |-------  |-----------  |
-|`default_ecn_conf.egress_queue_list`  |`default_ecn_conf.egress_queue_list` = [0] | The list of ECN enabled queues. By default a single queue exists. |
-|`default_ecn_conf.ecn_enable` |`default_ecn_conf.ecn_enable` = true  |Enable (`true`) or disable (`false`) ECN bit mmarking. |
-|`default_ecn_conf.min_threshold_bytes`|`default_ecn_conf.min_threshold_bytes` = 150000 |The minimum threshold of the buffer in bytes. Random ECN marking starts when buffer congestion crosses this threshold. The `default_ecn_conf.probability` value determines if ECN marking occurs. |
-|`default_ecn_conf.max_threshold_bytes`|`default_ecn_conf.max_threshold_bytes` = 1500000|The maximum threshold of the buffer in bytes. Cumulus Linux marks all ECN-capable packets when buffer congestion crosses this threshold.  |
-|`default_ecn_conf.probability` |`default_ecn_conf.probability` = 100  | The probability, in percent, that Cumulus Linux marks an ECN-capable packet when buffer congestion is between the `default_ecn_conf.min_threshold_bytes` and `default_ecn_conf.max_threshold_bytes`. The default is 100 (marks all ECN-capable packets).|
-|`default_ecn_conf.red_enable`  |`default_ecn_conf.red_enable` = false  | Enable or disable Random Early Detection. The default value is false. |
+|`default_ecn_red_conf.egress_queue_list`  |`default_ecn_red_conf.egress_queue_list` = [0] | The list of ECN enabled queues. By default a single queue exists. |
+|`default_ecn_red_conf.ecn_enable` |`default_ecn_red_conf.ecn_enable` = true  |Enable (`true`) or disable (`false`) ECN bit mmarking. |
+|`default_ecn_red_conf.red_enable`  |`default_ecn_red_conf.red_enable` = false  | Enable or disable Random Early Detection. The default value is false. |
+|`default_ecn_red_conf.min_threshold_bytes`|`default_ecn_red_conf.min_threshold_bytes` = 150000 |The minimum threshold of the buffer in bytes. Random ECN marking starts when buffer congestion crosses this threshold. The `default_ecn_red_conf.probability` value determines if ECN marking occurs. |
+|`default_ecn_red_conf.max_threshold_bytes`|`default_ecn_red_conf.max_threshold_bytes` = 1500000|The maximum threshold of the buffer in bytes. Cumulus Linux marks all ECN-capable packets when buffer congestion crosses this threshold.  |
+|`default_ecn_red_conf.probability` |`default_ecn_red_conf.probability` = 100  | The probability, in percent, that Cumulus Linux marks an ECN-capable packet when buffer congestion is between the `default_ecn_red_conf.min_threshold_bytes` and `default_ecn_red_conf.max_threshold_bytes`. The default is 100 (marks all ECN-capable packets).|
 </details>
 
 ### Random Early Detection (RED)
@@ -507,9 +512,9 @@ ECN prevents packet drops in the network due to congestion by signaling hosts to
 
 You can configure Random Early Detection (RED) to drop packets that are in the queue randomly instead of always dropping the last arriving packet. This might improve overall performance of TCP based flows.
 
-To configure RED, change the value of `default_ecn_conf.red_enable` to `true`.
+To configure RED, change the value of `default_ecn_red_conf.red_enable` to `true`.
 
- `default_ecn_conf.red_enable = true`
+ `default_ecn_red_conf.red_enable = true`
 
 {{<cl/qos-switchd>}}
 
@@ -1000,12 +1005,12 @@ traffic.packet_priority_remark_set = []
 #ecn_red.ecn_red_port_group.probability = 100
 
 #Default ECN configuration on TC0
-default_ecn_conf.egress_queue_list = [0]
-default_ecn_conf.ecn_enable = true
-default_ecn_conf.red_enable = false
-default_ecn_conf.min_threshold_bytes = 150000
-default_ecn_conf.max_threshold_bytes = 1500000
-default_ecn_conf.probability = 100
+default_ecn_red_conf.egress_queue_list = [0]
+default_ecn_red_conf.ecn_enable = true
+default_ecn_red_conf.red_enable = false
+default_ecn_red_conf.min_threshold_bytes = 150000
+default_ecn_red_conf.max_threshold_bytes = 1500000
+default_ecn_red_conf.probability = 100
 
 # Hierarchical traffic shaping
 # to configure shaping at 2 levels:

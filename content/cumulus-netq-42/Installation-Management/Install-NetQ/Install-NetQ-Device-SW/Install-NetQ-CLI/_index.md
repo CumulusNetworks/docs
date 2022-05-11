@@ -324,7 +324,7 @@ Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
 
 *Note that NetQ has a separate repository from Cumulus Linux.*
 
-{{<tabs "TabID0" >}}
+{{<tabs "TabID327" >}}
 
 {{<tab "Cumulus Linux 3.7" >}}
 

@@ -195,7 +195,7 @@ cumulus@leaf03:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
-To delete a GRE tunnel, remove the tunnel interface, and remove the routes configured with the tunnel interface. Either run the NVU `nv unset` commands or remove the tunnel configuration from the `/etc/network/interfaces` file and run the `ifreload -a` command.
+To delete a GRE tunnel, remove the tunnel interface, and remove the routes configured with the tunnel interface. Either run the NVUE `nv unset` commands or remove the tunnel configuration from the `/etc/network/interfaces` file and run the `ifreload -a` command.
 
 ## Troubleshooting
 

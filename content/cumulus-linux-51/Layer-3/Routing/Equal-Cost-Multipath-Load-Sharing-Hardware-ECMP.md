@@ -399,14 +399,22 @@ Cumulus Linux does not provide NVUE commands for this setting.
 
 Adaptive routing is a load balancing mechanism that improves network utilization by selecting routes dynamically based on the immediate network state, such as switch queue length and port utilization.
 
+The benefits of using adaptive routing include:
+- The switch can forward RoCE traffic over all the available ECMP member ports to maximize the total traffic throughput.
+- For leaf to spine traffic flows, the switch distributes incoming traffic equally between the available spines, which helps to minimize latency and congestion on network resources.
+- If the cumulative rate of one or more RoCE traffic streams exceeds the link bandwidth of the individual uplink port, adaptive routing can distribute the traffic dynamically between multiple uplink ports; the available bandwidth for RoCE traffic is not limited to the link bandwidth of the individual uplink port.
+- If the link bandwidth of the individual uplink ports is lower than that of the ingress port, RoCE traffic can flow through; the switch distributes the traffic between the available ECMP member ports without affecting the existing traffic.
+
 Cumulus Linux only supports adaptive routing with:
 - Switches on Spectrum-2 and later
-- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCEv2" >}} unicast traffic
+- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RDMA with lossless RoCEv2" >}} unicast traffic
 - Physical uplink (layer 3) ports; you *cannot* configure adaptive routing on subinterfaces, SVIs, bonds, or ports that are part of a bond.
 - Interfaces in the default VRF
 
 {{%notice note%}}
-Adaptive routing does not make use of resilient hashing.
+- Adaptive routing does not make use of resilient hashing.
+- You cannot use adaptive routing with EVPN or VXLAN.
+- NVIDIA has tested adaptive routing on a maxumum of 16 ports.
 {{%/notice%}}
 
 Adaptive Routing is in Sticky Free mode, where packets route to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion for the specific time duration. This mode is more time effective and restricts the port selection change decision to a predefined time.

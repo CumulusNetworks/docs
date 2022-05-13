@@ -218,18 +218,19 @@ cumulus@switch:~$ sudo delgroup radius_users
 
 - If two or more RADIUS users log in simultaneously, a UID lookup only returns the user that logs in first. Any process that either user runs applies to both, and all files that either user creates apply to the first name matched. This process is similar to adding two local users to the password file with the same UID and GID, and is an inherent limitation of using the UID for the fixed user from the password file. The current algorithm returns the first name matching the UID from the mapping file, which is either the first or second user that logs in.
 - When you install both the TACACS+ and the RADIUS AAA client, Cumulus Linux does not attempt the RADIUS login. As a workaround, do not install both the TACACS+ and the RADIUS AAA client on the same switch.
--When the RADIUS server is reachable outside of the management VRF, such as in the default VRF, you may see the following error message when attempting to execute sudo:
+- When the RADIUS server is reachable outside of the management VRF, such as in the default VRF, you might see the following error message when you try to run `sudo`:
 
-```
-2008-10-31T07:06:36.191359+00:00 SW01 sudo: pam_radius_auth(sudo:auth): Bind for server 10.1.1.25 failed: Cannot assign requested address
-2008-10-31T07:06:36.192307+00:00 sw01 sudo: pam_radius_auth(sudo:auth): No valid server found in configuration file /etc/pam_radius_auth.conf
-```
-This is due to the sudo execution attempting to authenticate to the RADIUS server via the management VRF. It is required to first set the shell to the correct VRF before executing sudo:
+  ```
+  2008-10-31T07:06:36.191359+00:00 SW01 sudo: pam_radius_auth(sudo:auth): Bind for server 10.1.1.25 failed: Cannot assign requested address
+  2008-10-31T07:06:36.192307+00:00 sw01 sudo: pam_radius_auth(sudo:auth): No valid server found in configuration file /etc/pam_radius_auth.conf
+  ```
 
-```
-cumulus@switch:~$ vrf exec default bash
-cumulus@switch:~$ sudo 
-```    
+   The error occurs because `sudo` tries to authenticate to the RADIUS server through the management VRF. Before you run `sudo`, you must set the shell to the correct VRF:
+
+   ```
+   cumulus@switch:~$ vrf exec default bash
+   cumulus@switch:~$ sudo 
+   ```
 
 ## Related Information
 

@@ -241,6 +241,7 @@ This example uses the {{<link url="Reference-Topology" text="reference topology"
 ```
 cumulus@leaf01:~$ nv set interface lo ip address 10.10.10.1/32
 cumulus@leaf01:~$ nv set interface swp1 ip address 10.2.1.1/24
+cumulus@leaf01:~$ nv set interface swp1,51-52
 cumulus@leaf01:~$ nv set interface tunnelR2 ip address 10.1.100.1/30
 cumulus@leaf01:~$ nv set interface tunnelR2 tunnel mode gre
 cumulus@leaf01:~$ nv set interface tunnelR2 tunnel dest-ip 10.10.10.3
@@ -314,6 +315,7 @@ cumulus@spine02:~$ nv config apply
 {{< tab "leaf01 ">}}
 
 ```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 - set:
     interface:
       lo:
@@ -376,6 +378,7 @@ cumulus@spine02:~$ nv config apply
 {{< tab "leaf03 ">}}
 
 ```
+cumulus@leaf03:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 - set:
     interface:
       lo:
@@ -438,6 +441,7 @@ cumulus@spine02:~$ nv config apply
 {{< tab "spine01 ">}}
 
 ```
+cumulus@spine01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 - set:
     interface:
       lo:
@@ -479,6 +483,7 @@ cumulus@spine02:~$ nv config apply
 {{< tab "spine02 ">}}
 
 ```
+cumulus@spine02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 - set:
     interface:
       lo:
@@ -526,26 +531,27 @@ cumulus@spine02:~$ nv config apply
 {{< tab "leaf01 ">}}
 
 ```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.1/32
-
 auto mgmt
 iface mgmt
     address 127.0.0.1/8
     address ::1/128
     vrf-table auto
-
 auto eth0
 iface eth0 inet dhcp
     ip-forward off
     ip6-forward off
     vrf mgmt
-
 auto swp1
 iface swp1
     address 10.2.1.1/24
-
+auto swp51
+iface swp51
+auto swp52
+iface swp52
 auto tunnelR2
 iface tunnelR2
     address 10.1.100.1/30
@@ -553,38 +559,33 @@ iface tunnelR2
     tunnel-local 10.10.10.1
     tunnel-endpoint 10.10.10.3
     tunnel-ttl 255
-
-auto swp51
-iface swp51
-
-auto swp52
-iface swp52
 ```
 
 {{< /tab >}}
 {{< tab "leaf03 ">}}
 
 ```
+cumulus@leaf03:mgmt:~$ sudo cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.3/32
-
 auto mgmt
 iface mgmt
     address 127.0.0.1/8
     address ::1/128
     vrf-table auto
-
 auto eth0
 iface eth0 inet dhcp
     ip-forward off
     ip6-forward off
     vrf mgmt
-
 auto swp1
 iface swp1
     address 10.1.1.1/24
-
+auto swp51
+iface swp51
+auto swp52
+iface swp52
 auto tunnelR1
 iface tunnelR1
     address 10.1.100.2/30
@@ -592,37 +593,28 @@ iface tunnelR1
     tunnel-local 10.10.10.3
     tunnel-endpoint 10.10.10.1
     tunnel-ttl 255
-
-auto swp51
-iface swp51
-
-auto swp52
-iface swp52
 ```
 
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
 ```
+cumulus@spine01:mgmt:~$ sudo cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.101/32
-
 auto mgmt
 iface mgmt
     address 127.0.0.1/8
     address ::1/128
     vrf-table auto
-
 auto eth0
 iface eth0 inet dhcp
     ip-forward off
     ip6-forward off
     vrf mgmt
-
 auto swp1
 iface swp1
-
 auto swp3
 iface swp3
 ```
@@ -631,25 +623,22 @@ iface swp3
 {{< tab "spine02 ">}}
 
 ```
+cumulus@spine02:mgmt:~$ sudo cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.102/32
-
 auto mgmt
 iface mgmt
     address 127.0.0.1/8
     address ::1/128
     vrf-table auto
-
 auto eth0
 iface eth0 inet dhcp
     ip-forward off
     ip6-forward off
     vrf mgmt
-
 auto swp1
 iface swp1
-
 auto swp3
 iface swp3
 ```
@@ -658,10 +647,10 @@ iface swp3
 {{< tab "server01 ">}}
 
 ```
+cumulus@server01:mgmt:~$ sudo cat /etc/network/interfaces
 auto eth0
 iface eth0 inet dhcp
   post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
-
 auto eth1
 iface eth1
  address 10.2.1.2/24
@@ -672,10 +661,10 @@ iface eth1
 {{< tab "server04 ">}}
 
 ```
+cumulus@server04:mgmt:~$ sudo cat /etc/network/interfaces
 auto eth0
 iface eth0 inet dhcp
   post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
-
 auto eth1
 iface eth1
  address 10.1.1.2/24
@@ -692,6 +681,8 @@ iface eth1
 {{< tab "leaf01 ">}}
 
 ```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
 vrf default
 ip route 10.1.1.0/24 tunnelR2
 exit-vrf
@@ -728,6 +719,8 @@ exit-address-family
 {{< tab "leaf03 ">}}
 
 ```
+cumulus@leaf03:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
 vrf default
 ip route 10.2.1.0/24 tunnelR1
 exit-vrf
@@ -764,6 +757,8 @@ exit-address-family
 {{< tab "spine01 ">}}
 
 ```
+cumulus@spine01:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
 vrf default
 exit-vrf
 vrf mgmt
@@ -799,6 +794,8 @@ exit-address-family
 {{< tab "spine02 ">}}
 
 ```
+cumulus@spine02:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
 vrf default
 exit-vrf
 vrf mgmt

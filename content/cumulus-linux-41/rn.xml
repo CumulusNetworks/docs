@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3067803</td>
+<td>A change to the BFD timer does not apply to the existing session in PTM.</td>
+<td>4.1.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3017043</td>
 <td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3

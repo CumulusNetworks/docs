@@ -17,15 +17,15 @@ If You are entering into this Agreement on behalf of a company or other legal en
 
 Subject to the terms of this Agreement and timely payment of any fee (if applicable), NVIDIA grants You a limited, non-exclusive, non-transferable, non-sublicensable license, while You remain in compliance with these terms, to: 
 
-access and use NETQ as a cloud service for your internal business use during the Term of the Agreement, and  
+(a) access and use NETQ as a cloud service for your internal business use during the Term of the Agreement, and  
 
-provision/monitor switches, DPUs and other networking products up to the number of licenses You purchased.    
+(b) provision/monitor switches, DPUs and other networking products up to the number of licenses You purchased.    
 
  
 
 ## AUTHORIZED USERS.   
 
-You may allow employees and contractors of Your entity (“Authorized Users”) to access and use NETQ from Your devices, provided that they use NETQ to support Your business and they agree to the terms and conditions set forth in this Agreement and that You are solely responsible for the use of NETQ and the ￼￼￼￼￼￼￼￼￼￼compliance with the terms of this Agreement by Your Authorized Users. If You are an academic institution You may allow users enrolled or employed by the academic institution to access and use NETQ from Your devices. If You become aware that Your Authorized Users do not follow the terms of this Agreement You agree to take all steps to immediately resolve the non-compliance and prevent new occurrences. 
+You may allow employees and contractors of Your entity (“Authorized Users”) to access and use NETQ from Your devices, provided that they use NETQ to support Your business and they agree to the terms and conditions set forth in this Agreement and that You are solely responsible for the use of NETQ and the compliance with the terms of this Agreement by Your Authorized Users. If You are an academic institution You may allow users enrolled or employed by the academic institution to access and use NETQ from Your devices. If You become aware that Your Authorized Users do not follow the terms of this Agreement You agree to take all steps to immediately resolve the non-compliance and prevent new occurrences. 
 
  
 
@@ -35,7 +35,7 @@ A number of factors may affect Your use of NETQ or may impede or interfere with 
 
  
 
-## LIMITATIONS￼.        
+## LIMITATIONS.   
 
 You may not reverse engineer, decompile or disassemble or remove copyright or other proprietary notices from any portion of NETQ.   
 
@@ -43,7 +43,7 @@ Except as expressly provided in this Agreement, You may not copy, sell, rent, su
 
 You may not misuse, disrupt or exploit NETQ for any unauthorized or illegal use, or try to circumvent any technical limitations or access areas or download software or materials not intended for users (including using NETQ in any unauthorized way to access third-party information or sites), or disturb the use and enjoyment of NETQ by other users.  
 
-You may use NETQ only for authorized and legal purposes, consistent with applicable ￼laws, regulations and ￼the rights of others, including ￼but not limited to, export control laws, data privacy and security rules and regulations. 
+You may use NETQ only for authorized and legal purposes, consistent with applicable laws, regulations and the rights of others, including but not limited to, export control laws, data privacy and security rules and regulations. 
 
 You may not disclose the results of any limitations, testing or benchmarking of NETQ to any third party. 
 
@@ -133,7 +133,7 @@ Usage data collected through cookies for assisting and guiding You how to use an
 
   
 
-You should review the NVIDIA Privacy Policy, located at https://www.nvidia.com/en-us/about-nvidia/privacy-policy/, which explains NVIDIA’s policy for collecting and using personal data, as well as visit the NVIDIA Privacy Center, located at https://www.nvidia.com/en-us/privacy-center/  . 
+You should review the NVIDIA Privacy Policy, located at https://www.nvidia.com/en-us/about-nvidia/privacy-policy/, which explains NVIDIA’s policy for collecting and using personal data, as well as visit the NVIDIA Privacy Center, located at https://www.nvidia.com/en-us/privacy-center/. 
 
   
 

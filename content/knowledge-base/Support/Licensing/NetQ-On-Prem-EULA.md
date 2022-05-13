@@ -25,17 +25,17 @@ provision/monitor switches, DPUs and other networking products up to the number 
 
 ## AUTHORIZED USERS.   
 
-You may allow employees and contractors of Your entity (“Authorized Users”) to access and use NETQ Software from Your devices, provided that they use NETQ Software to support Your business and they agree to the terms and conditions set forth in this Agreement and that You are solely responsible for the use of NETQ Software and the ￼￼￼￼￼￼￼￼￼￼compliance with the terms of this Agreement by Your Authorized Users. If You are an academic institution You may allow users enrolled or employed by the academic institution to access and use NETQ Software from Your devices. If You become aware that Your Authorized Users do not follow the terms of this Agreement You agree to immediately take all steps to resolve the non-compliance and prevent new occurrences. 
+You may allow employees and contractors of Your entity (“Authorized Users”) to access and use NETQ Software from Your devices, provided that they use NETQ Software to support Your business and they agree to the terms and conditions set forth in this Agreement and that You are solely responsible for the use of NETQ Software and the compliance with the terms of this Agreement by Your Authorized Users. If You are an academic institution You may allow users enrolled or employed by the academic institution to access and use NETQ Software from Your devices. If You become aware that Your Authorized Users do not follow the terms of this Agreement You agree to immediately take all steps to resolve the non-compliance and prevent new occurrences. 
 
  
 
 ## PERFORMANCE.  
 
-A number of factors may affect Your use of NETQ Software, or may impede or interfere with Your ability to start or continue using NETQ SOFTWARE, and You understand that NVIDIA is not responsible for: (a) any factors or circumstances outside of NVIDIA’s reasonable control, including issues with Your device, telecommunications, firewall, Your service providers, or the public internet; (b) the type of servers and connectivity You have, the available bandwidth or the speed of Your internet connection￼; or (c) other reasonable technical reasons, errors, or bandwidth constraints.  
+A number of factors may affect Your use of NETQ Software, or may impede or interfere with Your ability to start or continue using NETQ SOFTWARE, and You understand that NVIDIA is not responsible for: (a) any factors or circumstances outside of NVIDIA’s reasonable control, including issues with Your device, telecommunications, firewall, Your service providers, or the public internet; (b) the type of servers and connectivity You have, the available bandwidth or the speed of Your internet connection; or (c) other reasonable technical reasons, errors, or bandwidth constraints.  
 
  
 
-## LIMITATIONS￼.        
+## LIMITATIONS.        
 
 You may not reverse engineer, decompile, disassemble or remove copyright or other proprietary notices from any portion of NETQ Software.   
 

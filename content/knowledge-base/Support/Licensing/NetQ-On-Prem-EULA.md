@@ -17,9 +17,9 @@ If You are entering into this Agreement on behalf of a company or other legal en
 
 Subject to the terms of this Agreement and timely payment of the fee (if applicable), NVIDIA grants You a limited,  non-exclusive, non-transferable, non-sublicensable license, while You remain in compliance with these terms, to: 
 
-access and use the NETQ Software for your internal business use during the term of the Agreement, and  
+(a) access and use the NETQ Software for your internal business use during the term of the Agreement, and  
 
-provision/monitor switches, DPUs and other networking products up to the number of licenses you purchased.    
+(b) provision/monitor switches, DPUs and other networking products up to the number of licenses you purchased.    
 
  
 

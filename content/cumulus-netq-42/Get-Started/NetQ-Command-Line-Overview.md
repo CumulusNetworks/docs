@@ -2,7 +2,7 @@
 title: NetQ Command Line Overview
 author: NVIDIA
 weight: 160
-toc: 3
+toc: 4
 ---
 
 The NetQ CLI provides access to all network state and event information collected by the NetQ Agents. It behaves the same way most CLIs behave, with groups of commands used to display related information, the ability to use TAB completion when entering commands, and to get help for given commands and options. There are four categories of commands: check, show, config, and trace.

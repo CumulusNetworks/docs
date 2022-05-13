@@ -43,7 +43,7 @@ Except as expressly provided in this Agreement, You may not copy, sell, rent, su
 
 You may not misuse, disrupt or exploit NETQ Software for any unauthorized or illegal use or try to circumvent any technical limitations or access areas or download software or materials not intended for users (including using NETQ Software in any unauthorized way to access third-party information or sites) or disturb the use and enjoyment of NETQ Software by other users.  
 
-You shall use NETQ Software exclusive for authorized and legal purposes consistent with applicable ￼laws, regulations and ￼the rights of others, including, but not limited to, export control laws, data privacy and security rules and regulations. 
+You shall use NETQ Software exclusive for authorized and legal purposes consistent with applicable laws, regulations and the rights of others, including, but not limited to, export control laws, data privacy and security rules and regulations. 
 
 You may not disclose the results of any limitations, testing or benchmarking of NETQ Software to any third party. 
 
@@ -77,7 +77,7 @@ NVIDIA may change, discontinue, or deprecate any part or all of NETQ Software, c
 
  
 
-## AUTHORIZED ￼ USE.  
+## AUTHORIZED USE.  
 
 You are responsible for maintaining Your login information secured for Your use only, and for the activities under Your account. You agree to immediately notify NVIDIA at: NETQSecurity@nvidia.com  of any known or suspected security incidents and/or unauthorized use of Your account. 
 
@@ -85,7 +85,7 @@ You are responsible for maintaining Your login information secured for Your use 
 
 ## THIRD-PARTY SOFTWARE.  
 
-NETQ Software may come bundled with, or otherwise include or be distributed with, third- party software licensed by NVIDIA supplier and/or open source software provided under open source license.  Use of third-party software is subject to the third-party license terms, or else you may use the third-party software provided under this Agreement as-is with NETQ. Copyright to third party software is held by the copyright holders indicated in the third-party license terms. If and to the extent there is a conflict between the terms in this Agreement and the third-party license terms, the third-party terms control only to the extent necessary to resolve the conflict. 
+NETQ Software may come bundled with, or otherwise include or be distributed with, third-party software licensed by NVIDIA supplier and/or open source software provided under open source license.  Use of third-party software is subject to the third-party license terms, or else you may use the third-party software provided under this Agreement as-is with NETQ. Copyright to third party software is held by the copyright holders indicated in the third-party license terms. If and to the extent there is a conflict between the terms in this Agreement and the third-party license terms, the third-party terms control only to the extent necessary to resolve the conflict. 
 
  
 
@@ -131,7 +131,7 @@ If You select to use our services, NVIDIA may collect metrics, logs, settings, t
 
  
 
-You should review the NVIDIA Privacy Policy, located at https://www.nvidia.com/en-us/about-nvidia/privacy-policy/, which explains NVIDIA’s policy for collecting and using personal data, as well as visit the NVIDIA Privacy Center, located at https://www.nvidia.com/en-us/privacy-center/  . 
+You should review the NVIDIA Privacy Policy, located at {{<exlink url="https://www.nvidia.com/en-us/about-nvidia/privacy-policy/" text="https://www.nvidia.com/en-us/about-nvidia/privacy-policy/">}}, which explains NVIDIA’s policy for collecting and using personal data, as well as visit the NVIDIA Privacy Center, located at {{<exlink url="https://www.nvidia.com/en-us/privacy-center/" text="https://www.nvidia.com/en-us/privacy-center/">}}. 
 
   
 

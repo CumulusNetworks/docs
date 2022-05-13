@@ -89,7 +89,7 @@ You are responsible for maintaining Your login information secured for Your use 
 
 ##  THIRD-PARTY SOFTWARE.  
 
-NETQ may come bundled with or otherwise include or be distributed with, third- party software licensed by NVIDIA supplier and/or open source software provided under open source license.  Use of third-party software is subject to the third-party license terms, or else you may use the third-party software provided under this Agreement as-is with NETQ. Copyright to third party software is held by the copyright holders indicated in the third-party license terms. If and to the extent there is a conflict between the terms in this Agreement and the third-party license terms, the third-party terms control only to the extent necessary to resolve the conflict. 
+NETQ may come bundled with or otherwise include or be distributed with, third-party software licensed by NVIDIA supplier and/or open source software provided under open source license.  Use of third-party software is subject to the third-party license terms, or else you may use the third-party software provided under this Agreement as-is with NETQ. Copyright to third party software is held by the copyright holders indicated in the third-party license terms. If and to the extent there is a conflict between the terms in this Agreement and the third-party license terms, the third-party terms control only to the extent necessary to resolve the conflict. 
 
  
 
@@ -133,7 +133,7 @@ Usage data collected through cookies for assisting and guiding You how to use an
 
   
 
-You should review the NVIDIA Privacy Policy, located at https://www.nvidia.com/en-us/about-nvidia/privacy-policy/, which explains NVIDIA’s policy for collecting and using personal data, as well as visit the NVIDIA Privacy Center, located at https://www.nvidia.com/en-us/privacy-center/. 
+You should review the NVIDIA Privacy Policy, located at {{<exlink url="https://www.nvidia.com/en-us/about-nvidia/privacy-policy/" text="https://www.nvidia.com/en-us/about-nvidia/privacy-policy/">}}, which explains NVIDIA’s policy for collecting and using personal data, as well as visit the NVIDIA Privacy Center, located at {{<exlink url="https://www.nvidia.com/en-us/privacy-center/" text="https://www.nvidia.com/en-us/privacy-center/">}}.
 
   
 

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3067803</td>
+<td>A change to the BFD timer does not apply to the existing session in PTM.</td>
+<td>4.1.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3053197</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
 <td>4.2.1-4.4.3</td>
@@ -3008,6 +3014,12 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3067803</td>
+<td>A change to the BFD timer does not apply to the existing session in PTM.</td>
+<td>4.1.1-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>3017043</td>

@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3067803"></a> [3067803](#3067803) <a name="3067803"></a> <br /> | A change to the BFD timer does not apply to the existing session in PTM. | 4.1.1-4.4.3 | |
 | <a name="3066798"></a> [3066798](#3066798) <a name="3066798"></a> <br /> | After a switch reboot, the hardware redirect for EVPN-MH does not work if the EVPN-MH bond is down. | 4.4.3 | |
 | <a name="3066704"></a> [3066704](#3066704) <a name="3066704"></a> <br /> | The <code>hostapd</code> service stops working if an 802.1X interface goes up and down many times over a long period of time<br />To work around this issue, restart the <code>hostapd</code> service with the <code>systemctl restart hostapd</code> command. | 4.3.0-4.4.3 | |
 | <a name="3066664"></a> [3066664](#3066664) <a name="3066664"></a> <br /> | In an EVPN-MH configuration, the switch fails to redirect tagged frames with the CoS bits set. | 4.4.3 | |
@@ -304,6 +305,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3067803"></a> [3067803](#3067803) <a name="3067803"></a> <br /> | A change to the BFD timer does not apply to the existing session in PTM. | 4.1.1-4.4.3 | |
 | <a name="3066704"></a> [3066704](#3066704) <a name="3066704"></a> <br /> | The <code>hostapd</code> service stops working if an 802.1X interface goes up and down many times over a long period of time<br />To work around this issue, restart the <code>hostapd</code> service with the <code>systemctl restart hostapd</code> command. | 4.3.0-4.4.3 | |
 | <a name="3060400"></a> [3060400](#3060400) <a name="3060400"></a> <br /> | In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route<br />To resolve this issue, restart FRR with the <code>sudo systemctl restart frr</code> command. | 4.3.0-4.4.3 | |
 | <a name="3053197"></a> [3053197](#3053197) <a name="3053197"></a> <br /> | The <code>cl-resource-query</code> command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the <code>switchd.log</code> file contains ECMP resource errors with routes and next hops failing to install. | 4.2.1-4.4.3 | |
@@ -622,6 +624,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3067803"></a> [3067803](#3067803) <a name="3067803"></a> <br /> | A change to the BFD timer does not apply to the existing session in PTM. | 4.1.1-4.4.3 | |
 | <a name="3066704"></a> [3066704](#3066704) <a name="3066704"></a> <br /> | The <code>hostapd</code> service stops working if an 802.1X interface goes up and down many times over a long period of time<br />To work around this issue, restart the <code>hostapd</code> service with the <code>systemctl restart hostapd</code> command. | 4.3.0-4.4.3 | |
 | <a name="3060400"></a> [3060400](#3060400) <a name="3060400"></a> <br /> | In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route<br />To resolve this issue, restart FRR with the <code>sudo systemctl restart frr</code> command. | 4.3.0-4.4.3 | |
 | <a name="3053197"></a> [3053197](#3053197) <a name="3053197"></a> <br /> | The <code>cl-resource-query</code> command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the <code>switchd.log</code> file contains ECMP resource errors with routes and next hops failing to install. | 4.2.1-4.4.3 | |

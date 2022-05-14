@@ -227,3 +227,605 @@ iface tunnelR2                                                      [pass]
         tunnel-ttl 255                                              [pass]
         address 10.1.100.1/30                                       [pass]
 ```
+
+## Configuration Example
+
+This example uses the {{<link url="Reference-Topology" text="reference topology">}}, and uses spine01 and spine02 to represent the transit IPv4 network to connect the GRE endpoints.
+
+{{< tabs "TabID233 ">}}
+{{< tab "NVUE ">}}
+
+{{< tabs "TabID236 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ nv set interface lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ nv set interface swp1 ip address 10.2.1.1/24
+cumulus@leaf01:~$ nv set interface swp1,51-52
+cumulus@leaf01:~$ nv set interface tunnelR2 ip address 10.1.100.1/30
+cumulus@leaf01:~$ nv set interface tunnelR2 tunnel mode gre
+cumulus@leaf01:~$ nv set interface tunnelR2 tunnel dest-ip 10.10.10.3
+cumulus@leaf01:~$ nv set interface tunnelR2 tunnel source-ip 10.10.10.1
+cumulus@leaf01:~$ nv set interface tunnelR2 tunnel ttl 255
+cumulus@leaf01:~$ nv set vrf default router static 10.1.1.0/24 via tunnelR2
+cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
+cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 remote-as external
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ nv set interface lo ip address 10.10.10.3/32
+cumulus@leaf03:~$ nv set interface swp1 ip address 10.1.1.1/24
+cumulus@leaf03:~$ nv set interface swp1,51-52
+cumulus@leaf03:~$ nv set interface tunnelR1 ip address 10.1.100.2/30
+cumulus@leaf01:~$ nv set interface tunnelR1 tunnel mode gre
+cumulus@leaf03:~$ nv set interface tunnelR1 tunnel dest-ip 10.10.10.1
+cumulus@leaf03:~$ nv set interface tunnelR1 tunnel source-ip 10.10.10.3
+cumulus@leaf03:~$ nv set interface tunnelR1 tunnel ttl 255
+cumulus@leaf03:~$ nv set vrf default router static 10.2.1.0/24 via tunnelR1
+cumulus@leaf03:~$ nv set router bgp autonomous-system 65103
+cumulus@leaf03:~$ nv set router bgp router-id 10.10.10.3
+cumulus@leaf03:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.3/32
+cumulus@leaf03:~$ nv set vrf default router bgp neighbor swp51 remote-as external
+cumulus@leaf03:~$ nv set vrf default router bgp neighbor swp52 remote-as external
+cumulus@leaf03:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ nv set interface lo ip address 10.10.10.101/32
+cumulus@spine01:~$ nv set interface swp1,3
+cumulus@spine01:~$ nv set router bgp autonomous-system 65199
+cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.101/32
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 remote-as external
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp3 remote-as external
+cumulus@spine01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "spine02 ">}}
+
+```
+cumulus@spine02:~$ nv set interface lo ip address 10.10.10.102/32
+cumulus@spine02:~$ nv set interface swp1,3
+cumulus@spine02:~$ nv set router bgp autonomous-system 65199
+cumulus@spine02:~$ nv set router bgp router-id 10.10.10.102
+cumulus@spine02:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.102/32
+cumulus@spine02:~$ nv set vrf default router bgp neighbor swp1 remote-as external
+cumulus@spine02:~$ nv set vrf default router bgp neighbor swp3 remote-as external
+cumulus@spine02:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "/etc/nvue.d/startup.yaml ">}}
+
+{{< tabs "TabID257 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.1/32: {}
+        type: loopback
+      swp1:
+        ip:
+          address:
+            10.2.1.1/24: {}
+        type: swp
+      swp51:
+        type: swp
+      swp52:
+        type: swp
+      tunnelR2:
+        ip:
+          address:
+            10.1.100.1/30: {}
+        tunnel:
+          dest-ip: 10.10.10.3
+          mode: gre
+          source-ip: 10.10.10.1
+          ttl: 255
+        type: tunnel
+    router:
+      bgp:
+        autonomous-system: 65101
+        enable: on
+        router-id: 10.10.10.1
+    system:
+      hostname: leaf01
+    vrf:
+      default:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                network:
+                  10.10.10.1/32: {}
+            enable: on
+            neighbor:
+              swp51:
+                remote-as: external
+                type: unnumbered
+              swp52:
+                remote-as: external
+                type: unnumbered
+          static:
+            10.1.1.0/24:
+              address-family: ipv4-unicast
+              via:
+                tunnelR2:
+                  type: interface
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.3/32: {}
+        type: loopback
+      swp1:
+        ip:
+          address:
+            10.1.1.1/24: {}
+        type: swp
+      swp51:
+        type: swp
+      swp52:
+        type: swp
+      tunnelR1:
+        ip:
+          address:
+            10.1.100.2/30: {}
+        tunnel:
+          dest-ip: 10.10.10.1
+          mode: gre
+          source-ip: 10.10.10.3
+          ttl: 255
+        type: tunnel
+    router:
+      bgp:
+        autonomous-system: 65103
+        enable: on
+        router-id: 10.10.10.3
+    system:
+      hostname: leaf03
+    vrf:
+      default:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                network:
+                  10.10.10.3/32: {}
+            enable: on
+            neighbor:
+              swp51:
+                remote-as: external
+                type: unnumbered
+              swp52:
+                remote-as: external
+                type: unnumbered
+          static:
+            10.2.1.0/24:
+              address-family: ipv4-unicast
+              via:
+                tunnelR1:
+                  type: interface
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.101/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp3:
+        type: swp
+    router:
+      bgp:
+        autonomous-system: 65199
+        enable: on
+        router-id: 10.10.10.101
+    system:
+      hostname: spine01
+    vrf:
+      default:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                network:
+                  10.10.10.101/32: {}
+            enable: on
+            neighbor:
+              swp1:
+                remote-as: external
+                type: unnumbered
+              swp3:
+                remote-as: external
+                type: unnumbered
+```
+
+{{< /tab >}}
+{{< tab "spine02 ">}}
+
+```
+cumulus@spine02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.102/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp3:
+        type: swp
+    router:
+      bgp:
+        autonomous-system: 65199
+        enable: on
+        router-id: 10.10.10.102
+    system:
+      hostname: spine02
+    vrf:
+      default:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                network:
+                  10.10.10.102/32: {}
+            enable: on
+            neighbor:
+              swp1:
+                remote-as: external
+                type: unnumbered
+              swp3:
+                remote-as: external
+                type: unnumbered
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "/etc/network/interfaces">}}
+
+{{< tabs "TabID523 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/network/interfaces
+auto lo
+iface lo inet loopback
+    address 10.10.10.1/32
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
+auto swp1
+iface swp1
+    address 10.2.1.1/24
+auto swp51
+iface swp51
+auto swp52
+iface swp52
+auto tunnelR2
+iface tunnelR2
+    address 10.1.100.1/30
+    tunnel-mode gre
+    tunnel-local 10.10.10.1
+    tunnel-endpoint 10.10.10.3
+    tunnel-ttl 255
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:mgmt:~$ sudo cat /etc/network/interfaces
+auto lo
+iface lo inet loopback
+    address 10.10.10.3/32
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
+auto swp1
+iface swp1
+    address 10.1.1.1/24
+auto swp51
+iface swp51
+auto swp52
+iface swp52
+auto tunnelR1
+iface tunnelR1
+    address 10.1.100.2/30
+    tunnel-mode gre
+    tunnel-local 10.10.10.3
+    tunnel-endpoint 10.10.10.1
+    tunnel-ttl 255
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:mgmt:~$ sudo cat /etc/network/interfaces
+auto lo
+iface lo inet loopback
+    address 10.10.10.101/32
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
+auto swp1
+iface swp1
+auto swp3
+iface swp3
+```
+
+{{< /tab >}}
+{{< tab "spine02 ">}}
+
+```
+cumulus@spine02:mgmt:~$ sudo cat /etc/network/interfaces
+auto lo
+iface lo inet loopback
+    address 10.10.10.102/32
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
+auto swp1
+iface swp1
+auto swp3
+iface swp3
+```
+
+{{< /tab >}}
+{{< tab "server01 ">}}
+
+```
+cumulus@server01:mgmt:~$ sudo cat /etc/network/interfaces
+auto eth0
+iface eth0 inet dhcp
+  post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
+auto eth1
+iface eth1
+ address 10.2.1.2/24
+ post-up ip route add 10.0.0.0/8 via 10.2.1.1
+```
+
+{{< /tab >}}
+{{< tab "server04 ">}}
+
+```
+cumulus@server04:mgmt:~$ sudo cat /etc/network/interfaces
+auto eth0
+iface eth0 inet dhcp
+  post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
+auto eth1
+iface eth1
+ address 10.1.1.2/24
+ post-up ip route add 10.0.0.0/8 via 10.1.1.1
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "/etc/frr/frr.conf">}}
+
+{{< tabs "TabID689 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
+vrf default
+ip route 10.1.1.0/24 tunnelR2
+exit-vrf
+vrf mgmt
+exit-vrf
+router bgp 65101 vrf default
+bgp router-id 10.10.10.1
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor swp51 interface remote-as external
+neighbor swp51 timers 3 9
+neighbor swp51 timers connect 10
+neighbor swp51 advertisement-interval 0
+neighbor swp51 capability extended-nexthop
+neighbor swp52 interface remote-as external
+neighbor swp52 timers 3 9
+neighbor swp52 timers connect 10
+neighbor swp52 advertisement-interval 0
+neighbor swp52 capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+network 10.10.10.1/32
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor swp51 activate
+neighbor swp52 activate
+exit-address-family
+! end of router bgp 65101 vrf default
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
+vrf default
+ip route 10.2.1.0/24 tunnelR1
+exit-vrf
+vrf mgmt
+exit-vrf
+router bgp 65103 vrf default
+bgp router-id 10.10.10.3
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor swp51 interface remote-as external
+neighbor swp51 timers 3 9
+neighbor swp51 timers connect 10
+neighbor swp51 advertisement-interval 0
+neighbor swp51 capability extended-nexthop
+neighbor swp52 interface remote-as external
+neighbor swp52 timers 3 9
+neighbor swp52 timers connect 10
+neighbor swp52 advertisement-interval 0
+neighbor swp52 capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+network 10.10.10.3/32
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor swp51 activate
+neighbor swp52 activate
+exit-address-family
+! end of router bgp 65103 vrf default
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
+vrf default
+exit-vrf
+vrf mgmt
+exit-vrf
+router bgp 65199 vrf default
+bgp router-id 10.10.10.101
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor swp1 interface remote-as external
+neighbor swp1 timers 3 9
+neighbor swp1 timers connect 10
+neighbor swp1 advertisement-interval 0
+neighbor swp1 capability extended-nexthop
+neighbor swp3 interface remote-as external
+neighbor swp3 timers 3 9
+neighbor swp3 timers connect 10
+neighbor swp3 advertisement-interval 0
+neighbor swp3 capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+network 10.10.10.101/32
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor swp1 activate
+neighbor swp3 activate
+exit-address-family
+! end of router bgp 65199 vrf default
+```
+
+{{< /tab >}}
+{{< tab "spine02 ">}}
+
+```
+cumulus@spine02:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
+vrf default
+exit-vrf
+vrf mgmt
+exit-vrf
+router bgp 65199 vrf default
+bgp router-id 10.10.10.102
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor swp1 interface remote-as external
+neighbor swp1 timers 3 9
+neighbor swp1 timers connect 10
+neighbor swp1 advertisement-interval 0
+neighbor swp1 capability extended-nexthop
+neighbor swp3 interface remote-as external
+neighbor swp3 timers 3 9
+neighbor swp3 timers connect 10
+neighbor swp3 advertisement-interval 0
+neighbor swp3 capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+network 10.10.10.102/32
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor swp1 activate
+neighbor swp3 activate
+exit-address-family
+! end of router bgp 65199 vrf default
+```
+
+{{< /tab >}}
+{{< /tabs >}}

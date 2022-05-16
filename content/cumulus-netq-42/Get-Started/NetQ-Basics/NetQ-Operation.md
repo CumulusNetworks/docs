@@ -5,7 +5,7 @@ weight: 80
 toc: 4
 ---
 
-In either in-band or out-of-band deployments, NetQ offers networkwide configuration and device management, proactive monitoring capabilities, and performance diagnostics for complete management of your network. Each component of the solution provides a critical element to make this possible.
+In either in-band or out-of-band deployments, NetQ offers networkwide configuration and device management, proactive monitoring capabilities, and performance diagnostics for complete management of your network.
 
 ## The NetQ Agent
 

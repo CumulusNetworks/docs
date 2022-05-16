@@ -6,12 +6,12 @@ toc: 4
 ---
 
 <!-- vale off -->
-Cards present information about your network for monitoring and troubleshooting. This is where you can expect to spend most of your time. Each card describes a particular aspect of the network. Cards are available in multiple sizes, from small to full screen. The level of the content on a card varies with the size of the card, with the highest level of information on the smallest card to the most detailed information on the full-screen card. Cards are collected onto a {{<link title="Focus Your Monitoring Using Workbenches" text="workbench">}} where you see all the data relevant to a task or set of tasks. You can add and remove cards from a workbench, move between cards and card sizes, change the time period of the data shown on a card, and make copies of cards to show different levels of data at the same time.
+Cards present information about your network for monitoring and troubleshooting; each card describes a particular aspect of the network. Cards are collected onto a {{<link title="Focus Your Monitoring Using Workbenches" text="workbench">}} where all data relevant to a task or set of tasks is visible. You can add and remove cards from a workbench, increase or decrease their sizes, change the time period of the data shown on a card, and make copies of cards to show different levels of data at the same time.
 <!-- vale on -->
 
 ## Card Sizes
 
-The various sizes of cards enable you to view your content at just the right level. For each aspect that you are monitoring there is typically a single card that presents increasing amounts of data over its four sizes. For example, a snapshot of your total inventory might be sufficient, but to monitor the distribution of hardware vendors might require a bit more space.
+Cards are available in multiple sizes, from small to full screen. The level of the content on a card varies with the size of the card, with the highest level of information on the smallest card to the most detailed information on the full-screen card.
 
 ### Card Size Summary
 
@@ -58,31 +58,27 @@ The various sizes of cards enable you to view your content at just the right lev
 
 ### Small Cards
 
-Small cards provide an overview of the performance or statistical value of a given aspect of your network. They commonly comprise an icon to identify the aspect being monitored, summary performance or statistics in the form of a graph or counts, and often an indication of any related events.
+Small cards provide an overview of the performance or statistical value of a given aspect of your network. They typically include an icon to identify the aspect being monitored, summary performance or statistics in the form of a graph or counts, and an indication of any related events.
 
-{{<figure src="/images/netq/access-data-small-group-230.png" width="700">}}
+{{<figure src="/images/netq/access-data-small-group-230.png" alt="a row of small cards" width="700">}}
 
 ### Medium Cards
 
 Medium cards provide the key measurements for a given aspect of your network. They include the same content as the small cards with additional, relevant information, such as related events or components.
 
-{{<figure src="/images/netq/access-data-medium-group-230.png" width="700">}}
+{{<figure src="/images/netq/access-data-medium-group-230.png" alt="a row of medium cards" width="700">}}
 
 ### Large Cards
 
 Large cards provide detailed information for monitoring specific components or functions of a given aspect of your network. This granular view can aid in isolating and resolving existing issues or preventing potential issues. These cards frequently display statistics or graphs that help visualize data.
 
-{{<figure src="/images/netq/card-inventory-switches-lg-400.png" width="600">}}
-
-{{<figure src="/images/netq/card-network-health-lg-400.png" width="600">}}
+{{<figure src="/images/netq/card-inventory-switches-lg-400.png" alt="a large inventory card displaying information about switches" width="600">}}
 
 ### Full-Screen Cards
 
 Full-screen cards show all available data about an aspect of your network. They typically display data in a tabular view that can be filtered and sorted. When relevant, they also display visualizations of that data.
 
-{{<figure src="/images/netq/card-all-events-fs-400.png" width="700">}}
-
-{{<figure src="/images/netq/card-inventory-switch-fs-400.png" width="700">}}
+{{<figure src="/images/netq/card-inventory-switch-fs-400.png" alt="a full-screen inventory card displaying detailed information about switches in a table." width="700">}}
 
 ## Card Interactions
 
@@ -113,7 +109,7 @@ To add one or more cards:
 
 4. When you have selected all of the cards you want to add to your workbench, you can confirm which cards have been selected by clicking the **Cards Selected** link. Modify your selection as needed.
 
-      {{<figure src="/images/netq/add-card-confirm-selection-300.png" width="700">}}
+      {{<figure src="/images/netq/add-card-confirm-selection-300.png" alt="three selected card to be added to a workbench" width="700">}}
 
 5. Click **Open Cards** to add the selected cards, or **Cancel** to return to your workbench without adding any cards.
 
@@ -126,8 +122,6 @@ You can add switch cards to a workbench through the Switches icon on the header 
 To add a switch card using the icon:
 
 1.  Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/>, then select **Open a device card**.
-
-    {{<figure src="/images/netq/open-switch-card-400.png" width="250">}}
 
 2. Begin entering the hostname of the switch you want to monitor.
 
@@ -159,7 +153,7 @@ To remove all the cards from your workbench, click the Clear icon in the header.
 2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg" height="18" width="18"/> (*More Actions* menu).
 3. Click **Remove**.
 
-    {{<figure src="/images/netq/remove-card-222.png" width="100">}}
+    {{<figure src="/images/netq/remove-card-222.png" alt="" width="100">}}
 
 The card is removed from the workbench, but not from the application.
 
@@ -173,7 +167,7 @@ To change the time period for a card:
 
 3. Select a time period from the dropdown list.
 
-    {{<figure src="/images/netq/time-picker-popup-222.png" width="200">}}
+    {{<figure src="/images/netq/time-picker-popup-222.png" alt="" width="200">}}
 
 {{<notice tip>}}
 Changing the time period in this manner only changes the time period for the given card.
@@ -186,7 +180,7 @@ To change the card size:
 1. Hover over the card.
 2. Hover over the size picker and move the cursor to the right or left until the desired size option is highlighted.
 
-    {{< figure src="/images/netq/card-size-picker-222.png" width="200" >}}
+    {{<figure src="/images/netq/card-size-picker-222.png" alt="" width="200" >}}
 
     One-quarter width opens a small card. One-half width opens a medium card. Three-quarters width opens a large card. Full width opens a full-screen card.
 

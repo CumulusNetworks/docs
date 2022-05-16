@@ -5,8 +5,6 @@ weight: 20
 toc: 4
 ---
 
-Many commands have changed in this release to accommodate the addition of new options or to simplify their syntax. Additionally, NVIDIA added new commands while removing others. This topic provides a summary of those changes.
-
 ## New Commands
 
 The following table summarizes the new commands available with this release.

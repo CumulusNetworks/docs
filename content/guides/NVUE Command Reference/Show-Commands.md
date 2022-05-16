@@ -6,13 +6,16 @@ product: Cumulus Linux
 ---
 ## nv show router
 
-Usage:
+### Usage
+
   nv show router [options] [<attribute> ...]
 
-Description:
+### Description
+
   A router
 
-Attributes:
+### Atrributes
+
   nexthop-group         Nexthops
   pbr                   PBR global configuration.
   policy                A router
@@ -24,438 +27,196 @@ Attributes:
   vrr                   VRR global configuration.
   adaptive-routing      Adaptive routing global configuration.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 ## nv show router nexthop-group
 
-Usage:
+### Usage
+
   nv show router nexthop-group [options] [<nexthop-group-id> ...]
 
-Description:
+### Description
+
   Nexthops
 
-Identifiers:
+### Identifiers
+
   <nexthop-group-id>    Nexthop group ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
 
 ## nv show router nexthop-group <nexthop-group-id>
 
-Usage:
+### Usage
+
   nv show router nexthop-group <nexthop-group-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   A nexthop-group
 
-Identifiers:
+### Identifiers
+
   <nexthop-group-id>    Nexthop group ID
 
-Attributes:
+### Atrributes
+
   via                   Nexthops
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
 
 ## nv show router nexthop-group <nexthop-group-id> via
 
-Usage:
+### Usage
+
   nv show router nexthop-group <nexthop-group-id> via [options] [<via-id> ...]
 
-Description:
+### Description
+
   Nexthops
 
-Identifiers:
+### Identifiers
+
   <nexthop-group-id>    Nexthop group ID
   <via-id>              IP address
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router nexthop-group <nexthop-group-id> via <via-id>
 
+### Usage
 
-Usage:
   nv show router nexthop-group <nexthop-group-id> via <via-id> [options]
 
-Description:
+### Description
+
   A nexthop
 
-Identifiers:
+### Identifiers
+
   <nexthop-group-id>    Nexthop group ID
   <via-id>              IP address
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show router pbr
 
+### Usage
 
-Usage:
   nv show router pbr [options] [<attribute> ...]
 
-Description:
+### Description
+
   PBR global configuration.
 
-Attributes:
+### Atrributes
+
   map                   Collection of PBR Maps
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router pbr map
 
+### Usage
 
-Usage:
   nv show router pbr map [options] [<pbr-map-id> ...]
 
-Description:
+### Description
+
   Collection of PBR Maps
 
-Identifiers:
+### Identifiers
+
   <pbr-map-id>          Route Map ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router pbr map <pbr-map-id>
 
+### Usage
 
-Usage:
   nv show router pbr map <pbr-map-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   A pbr map is used for policy configuration.
 
-Identifiers:
+### Identifiers
+
   <pbr-map-id>          Route Map ID
 
-Attributes:
+### Atrributes
+
   rule                  PBR Map rule
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router pbr map <pbr-map-id> rule <rule-id>
 
+### Usage
 
-Usage:
   nv show router pbr map <pbr-map-id> rule <rule-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   Route Map Matching/setting criteria and action rule
 
-Identifiers:
+### Identifiers
+
   <pbr-map-id>          Route Map ID
   <rule-id>             PBR rule number
 
-Attributes:
+### Atrributes
+
   match                 PBR match
   action                PBR set
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show router pbr map <pbr-map-id> rule <rule-id> match
 
+### Usage
 
-Usage:
   nv show router pbr map <pbr-map-id> rule <rule-id> match [options]
 
-Description:
+### Description
+
   Route map rule match
 
-Identifiers:
+### Identifiers
+
   <pbr-map-id>          Route Map ID
   <rule-id>             PBR rule number
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router pbr map <pbr-map-id> rule <rule-id> action
 
+### Usage
 
-Usage:
   nv show router pbr map <pbr-map-id> rule <rule-id> action [options] [<attribute> ...]
 
-Description:
+### Description
+
   PBR map rule action
 
-Identifiers:
+### Identifiers
+
   <pbr-map-id>          Route Map ID
   <rule-id>             PBR rule number
 
-Attributes:
+### Atrributes
+
   nexthop-group         Route with nexthop-group
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id>
 
+### Usage
 
-Usage:
   nv show router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id> [options]
 
-Description:
+### Description
+
   A nexthop-group
 
-Identifiers:
+### Identifiers
+
   <pbr-map-id>          Route Map ID
   <rule-id>             PBR rule number
   <nexthop-group-id>    Nexthop group ID
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show router policy
 
+### Usage
 
-Usage:
   nv show router policy [options] [<attribute> ...]
 
-Description:
+### Description
+
   A router
 
-Attributes:
+### Atrributes
+
   community-list        Community lists
   as-path-list          AS Path lists
   ext-community-list    Extended Community lists
@@ -463,2897 +224,1226 @@ Attributes:
   prefix-list           Prefix list rules
   route-map             Collection of Route Maps
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show router policy community-list
 
+### Usage
 
-Usage:
   nv show router policy community-list [options] [<list-id> ...]
 
-Description:
+### Description
+
   Community lists
 
-Identifiers:
+### Identifiers
+
   <list-id>             Community List ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy community-list <list-id>
 
+### Usage
 
-Usage:
   nv show router policy community-list <list-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   A community list is used for matching BGP community policies.
 
-Identifiers:
+### Identifiers
+
   <list-id>             Community List ID
 
-Attributes:
+### Atrributes
+
   rule                  Community List rule
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy community-list <list-id> rule
 
+### Usage
 
-Usage:
   nv show router policy community-list <list-id> rule [options] [<rule-id> ...]
 
-Description:
+### Description
+
   Community list rules
 
-Identifiers:
+### Identifiers
+
   <list-id>             Community List ID
   <rule-id>             Prefix List rule number
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy community-list <list-id> rule <rule-id>
 
+### Usage
 
-Usage:
   nv show router policy community-list <list-id> rule <rule-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   Community list Matching criteria and action rule
 
-Identifiers:
+### Identifiers
+
   <list-id>             Community List ID
   <rule-id>             Prefix List rule number
 
-Attributes:
+### Atrributes
+
   community             Community expression
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy community-list <list-id> rule <rule-id> community
 
+### Usage
 
-Usage:
   nv show router policy community-list <list-id> rule <rule-id> community [options] [<community-id> ...]
 
-Description:
+### Description
+
   Set of community names for community-list
 
-Identifiers:
+### Identifiers
+
   <list-id>             Community List ID
   <rule-id>             Prefix List rule number
   <community-id>        Community number in AA:NN format or well known name
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy community-list <list-id> rule <rule-id> community <community-id>
 
+### Usage
 
-Usage:
   nv show router policy community-list <list-id> rule <rule-id> community <community-id> [options]
 
-Description:
+### Description
+
   A community name
 
-Identifiers:
+### Identifiers
+
   <list-id>             Community List ID
   <rule-id>             Prefix List rule number
   <community-id>        Community number in AA:NN format or well known name
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show router policy as-path-list
 
+### Usage
 
-Usage:
   nv show router policy as-path-list [options] [<list-id> ...]
 
-Description:
+### Description
+
   AS Path lists
 
-Identifiers:
+### Identifiers
+
   <list-id>             AS Path List ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy as-path-list <list-id>
 
+### Usage
 
-Usage:
   nv show router policy as-path-list <list-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   An AS Path list is used for matching BGP AS Path
 
-Identifiers:
+### Identifiers
+
   <list-id>             AS Path List ID
 
-Attributes:
+### Atrributes
+
   rule                  AS Path List rule
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy as-path-list <list-id> rule <rule-id>
 
+### Usage
 
-Usage:
   nv show router policy as-path-list <list-id> rule <rule-id> [options]
 
-Description:
+### Description
+
   AS Path list Matching criteria and action rule
 
-Identifiers:
+### Identifiers
+
   <list-id>             AS Path List ID
   <rule-id>             Prefix List rule number
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show router policy ext-community-list
 
+### Usage
 
-Usage:
   nv show router policy ext-community-list [options] [<list-id> ...]
 
-Description:
+### Description
+
   Extended Community lists
 
-Identifiers:
+### Identifiers
+
   <list-id>             Community List ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy ext-community-list <list-id>
 
+### Usage
 
-Usage:
   nv show router policy ext-community-list <list-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   A Extended Community list used for matching BGP communities
 
-Identifiers:
+### Identifiers
+
   <list-id>             Community List ID
 
-Attributes:
+### Atrributes
+
   rule                  Extended Community List rule
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy ext-community-list <list-id> rule
 
+### Usage
 
-Usage:
   nv show router policy ext-community-list <list-id> rule [options] [<rule-id> ...]
 
-Description:
+### Description
+
   Extended Community list rules
 
-Identifiers:
+### Identifiers
+
   <list-id>             Community List ID
   <rule-id>             Prefix List rule number
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy ext-community-list <list-id> rule <rule-id>
 
+### Usage
 
-Usage:
   nv show router policy ext-community-list <list-id> rule <rule-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   Extended Community list Matching criteria and action rule
 
-Identifiers:
+### Identifiers
+
   <list-id>             Community List ID
   <rule-id>             Prefix List rule number
 
-Attributes:
+### Atrributes
+
   ext-community         Extended Community expression
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy ext-community-list <list-id> rule <rule-id> ext-community
 
+### Usage
 
-Usage:
   nv show router policy ext-community-list <list-id> rule <rule-id> ext-community [options] [<attribute> ...]
 
-Description:
+### Description
+
   A Extended community name
 
-Identifiers:
+### Identifiers
+
   <list-id>             Community List ID
   <rule-id>             Prefix List rule number
 
-Attributes:
+### Atrributes
+
   rt                    Route Target Extended Community
   soo                   Site of Origin Extended Community
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show router policy ext-community-list <list-id> rule <rule-id> ext-community rt
 
+### Usage
 
-Usage:
   nv show router policy ext-community-list <list-id> rule <rule-id> ext-community rt [options] [<ext-community-id> ...]
 
-Description:
+### Description
+
   Set of extended communities
 
-Identifiers:
+### Identifiers
+
   <list-id>             Community List ID
   <rule-id>             Prefix List rule number
   <ext-community-id>    Community number in AA:NN or IP:NN format
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy ext-community-list <list-id> rule <rule-id> ext-community rt <ext-community-id>
 
+### Usage
 
-Usage:
   nv show router policy ext-community-list <list-id> rule <rule-id> ext-community rt <ext-community-id> [options]
 
-Description:
+### Description
+
   A extended community name
 
-Identifiers:
+### Identifiers
+
   <list-id>             Community List ID
   <rule-id>             Prefix List rule number
   <ext-community-id>    Community number in AA:NN or IP:NN format
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
+## nv show router policy ext-community-list <list-id> rule <rule-id> ext-community
 
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
+### Usage
 
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
-## nv show router policy ext-community-list <list-id> rule <rule-id> ext-community soo
-
-
-Usage:
   nv show router policy ext-community-list <list-id> rule <rule-id> ext-community soo [options] [<ext-community-id> ...]
 
-Description:
+### Description
+
   Set of extended communities
 
-Identifiers:
+### Identifiers
+
   <list-id>             Community List ID
   <rule-id>             Prefix List rule number
   <ext-community-id>    Community number in AA:NN or IP:NN format
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id>
 
+### Usage
 
-Usage:
   nv show router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id> [options]
 
-Description:
+### Description
+
   A extended community name
 
-Identifiers:
+### Identifiers
+
   <list-id>             Community List ID
   <rule-id>             Prefix List rule number
   <ext-community-id>    Community number in AA:NN or IP:NN format
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show router policy large-community-list
 
+### Usage
 
-Usage:
   nv show router policy large-community-list [options] [<list-id> ...]
 
-Description:
+### Description
+
   Large Community lists
 
-Identifiers:
+### Identifiers
+
   <list-id>             Community List ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy large-community-list <list-id>
 
+### Usage
 
-Usage:
   nv show router policy large-community-list <list-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   A Large Community list used for matching community based BGP policies
 
-Identifiers:
+### Identifiers
+
   <list-id>             Community List ID
 
-Attributes:
+### Atrributes
+
   rule                  Large Community List rules
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy large-community-list <list-id> rule
 
+### Usage
 
-Usage:
   nv show router policy large-community-list <list-id> rule [options] [<rule-id> ...]
 
-Description:
+### Description
+
   Large Community list rules
 
-Identifiers:
+### Identifiers
+
   <list-id>             Community List ID
   <rule-id>             Prefix List rule number
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy large-community-list <list-id> rule <rule-id>
 
+### Usage
 
-Usage:
   nv show router policy large-community-list <list-id> rule <rule-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   Large Community list Matching criteria and action rule
 
-Identifiers:
+### Identifiers
+
   <list-id>             Community List ID
   <rule-id>             Prefix List rule number
 
-Attributes:
+### Atrributes
+
   large-community       Large Community expression
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy large-community-list <list-id> rule <rule-id> large-community
 
+### Usage
 
-Usage:
   nv show router policy large-community-list <list-id> rule <rule-id> large-community [options] [<large-community-id> ...]
 
-Description:
+### Description
+
   Set of community names for large community list
 
-Identifiers:
+### Identifiers
+
   <list-id>             Community List ID
   <rule-id>             Prefix List rule number
   <large-community-id>  Community number in AA:BB:CC format
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id>
 
+### Usage
 
-Usage:
   nv show router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id> [options]
 
-Description:
+### Description
+
   Set of community names for large community list
 
-Identifiers:
+### Identifiers
+
   <list-id>             Community List ID
   <rule-id>             Prefix List rule number
   <large-community-id>  Community number in AA:BB:CC format
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show router policy prefix-list
 
+### Usage
 
-Usage:
   nv show router policy prefix-list [options] [<prefix-list-id> ...]
 
-Description:
+### Description
+
   Prefix list rules
 
-Identifiers:
+### Identifiers
+
   <prefix-list-id>      Prefix List ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy prefix-list <prefix-list-id>
 
+### Usage
 
-Usage:
   nv show router policy prefix-list <prefix-list-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   A prefix list is used for matching IPv4 and IPv6 address prefixes.
 
-Identifiers:
+### Identifiers
+
   <prefix-list-id>      Prefix List ID
 
-Attributes:
+### Atrributes
+
   rule                  Prefix List rule
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy prefix-list <prefix-list-id> rule <rule-id>
 
+### Usage
 
-Usage:
   nv show router policy prefix-list <prefix-list-id> rule <rule-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   Prefix list Matching criteria and action rule
 
-Identifiers:
+### Identifiers
+
   <prefix-list-id>      Prefix List ID
   <rule-id>             Prefix List rule number
 
-Attributes:
+### Atrributes
+
   match                 Prefix List rule
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id>
 
+### Usage
 
-Usage:
   nv show router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> [options]
 
-Description:
+### Description
+
   A prefix match
 
-Identifiers:
+### Identifiers
+
   <prefix-list-id>      Prefix List ID
   <rule-id>             Prefix List rule number
   <match-id>            ip v4/v6 prefix, or any
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show router policy route-map
 
+### Usage
 
-Usage:
   nv show router policy route-map [options] [<route-map-id> ...]
 
-Description:
+### Description
+
   Collection of Route Maps
 
-Identifiers:
+### Identifiers
+
   <route-map-id>        Route Map ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy route-map <route-map-id>
 
+### Usage
 
-Usage:
   nv show router policy route-map <route-map-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   A route map is used for policy configuration.
 
-Identifiers:
+### Identifiers
+
   <route-map-id>        Route Map ID
 
-Attributes:
+### Atrributes
+
   rule                  Route Map rule
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy route-map <route-map-id> rule <rule-id>
 
+### Usage
 
-Usage:
   nv show router policy route-map <route-map-id> rule <rule-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   Route Map Matching/setting criteria and action rule
 
-Identifiers:
+### Identifiers
+
   <route-map-id>        Route Map ID
   <rule-id>             Sequence to insert or delete from the route-map
 
-Attributes:
+### Atrributes
+
   match                 Route Map match
   set                   Route Map set
   action                Route Map set
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show router policy route-map <route-map-id> rule <rule-id> match
 
+### Usage
 
-Usage:
   nv show router policy route-map <route-map-id> rule <rule-id> match [options]
 
-Description:
+### Description
+
   Route map rule match
 
-Identifiers:
+### Identifiers
+
   <route-map-id>        Route Map ID
   <rule-id>             Sequence to insert or delete from the route-map
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> set
 
+### Usage
 
-Usage:
   nv show router policy route-map <route-map-id> rule <rule-id> set [options] [<attribute> ...]
 
-Description:
+### Description
+
   Route map rule set
 
-Identifiers:
+### Identifiers
+
   <route-map-id>        Route Map ID
   <rule-id>             Sequence to insert or delete from the route-map
 
-Attributes:
+### Atrributes
+
   as-path-prepend       AS Path prepend
   community             Collection of BGP communities
   large-community       Collection of large BGP communities
   aggregator-as         Collection of aggregator AS
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show router policy route-map <route-map-id> rule <rule-id> set as-path-prepend
 
+### Usage
 
-Usage:
   nv show router policy route-map <route-map-id> rule <rule-id> set as-path-prepend [options]
 
-Description:
+### Description
+
   AS Path prepend
 
-Identifiers:
+### Identifiers
+
   <route-map-id>        Route Map ID
   <rule-id>             Sequence to insert or delete from the route-map
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show router policy route-map <route-map-id> rule <rule-id> set community <community-id>
 
+### Usage
 
-Usage:
   nv show router policy route-map <route-map-id> rule <rule-id> set community <community-id> [options]
 
-Description:
+### Description
+
   BGP Community
 
-Identifiers:
+### Identifiers
+
   <route-map-id>        Route Map ID
   <rule-id>             Sequence to insert or delete from the route-map
   <community-id>        Community number
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id>
 
+### Usage
 
-Usage:
   nv show router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id> [options]
 
-Description:
+### Description
+
   Large BGP Community
 
-Identifiers:
+### Identifiers
+
   <route-map-id>        Route Map ID
   <rule-id>             Sequence to insert or delete from the route-map
   <large-community-id>  Large Community number
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id>
 
+### Usage
 
-Usage:
   nv show router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   Aggregator AS Number
 
-Identifiers:
+### Identifiers
+
   <route-map-id>        Route Map ID
   <rule-id>             Sequence to insert or delete from the route-map
   <asn-id>              Autonomous number
 
-Attributes:
+### Atrributes
+
   address               Set of IPv4 addresses
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address <ipv4-address-id>
 
+### Usage
 
-Usage:
   nv show router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address <ipv4-address-id> [options]
 
-Description:
+### Description
+
   An IPv4 address
 
-Identifiers:
+### Identifiers
+
   <route-map-id>        Route Map ID
   <rule-id>             Sequence to insert or delete from the route-map
   <asn-id>              Autonomous number
   <ipv4-address-id>     IPv4 address
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show router policy route-map <route-map-id> rule <rule-id> action
 
+### Usage
 
-Usage:
   nv show router policy route-map <route-map-id> rule <rule-id> action [options] [<attribute> ...]
 
-Description:
+### Description
+
   Route map rule action
 
-Identifiers:
+### Identifiers
+
   <route-map-id>        Route Map ID
   <rule-id>             Sequence to insert or delete from the route-map
 
-Attributes:
+### Atrributes
+
   deny                  Deny action
   permit                Permit action
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show router policy route-map <route-map-id> rule <rule-id> action deny
 
+### Usage
 
-Usage:
   nv show router policy route-map <route-map-id> rule <rule-id> action deny [options]
 
-Description:
+### Description
+
   State details
 
-Identifiers:
+### Identifiers
+
   <route-map-id>        Route Map ID
   <rule-id>             Sequence to insert or delete from the route-map
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> action permit
 
+### Usage
 
-Usage:
   nv show router policy route-map <route-map-id> rule <rule-id> action permit [options] [<attribute> ...]
 
-Description:
+### Description
+
   permit action
 
-Identifiers:
+### Identifiers
+
   <route-map-id>        Route Map ID
   <rule-id>             Sequence to insert or delete from the route-map
 
-Attributes:
+### Atrributes
+
   exit-policy           Permit action exit policy
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> action permit exit-policy
 
+### Usage
 
-Usage:
   nv show router policy route-map <route-map-id> rule <rule-id> action permit exit-policy [options]
 
-Description:
+### Description
+
   Permit action exit policy
 
-Identifiers:
+### Identifiers
+
   <route-map-id>        Route Map ID
   <rule-id>             Sequence to insert or delete from the route-map
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show router bgp
 
+### Usage
 
-Usage:
   nv show router bgp [options] [<attribute> ...]
 
-Description:
+### Description
+
   BGP global configuration.
 
-Attributes:
+### Atrributes
+
   graceful-restart      BGP Graceful restart global configuration.
   convergence-wait      BGP Graceful restart global configuration.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show router bgp graceful-restart
 
+### Usage
 
-Usage:
   nv show router bgp graceful-restart [options]
 
-Description:
+### Description
+
   BGP Graceful restart global configuration.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router bgp convergence-wait
 
+### Usage
 
-Usage:
   nv show router bgp convergence-wait [options]
 
-Description:
+### Description
+
   BGP Graceful restart global configuration.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router ospf
 
+### Usage
 
-Usage:
   nv show router ospf [options] [<attribute> ...]
 
-Description:
+### Description
+
   OSPF global configuration.
 
-Attributes:
+### Atrributes
+
   timers                Timers
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router ospf timers
 
+### Usage
 
-Usage:
   nv show router ospf timers [options] [<attribute> ...]
 
-Description:
+### Description
+
   Timers
 
-Attributes:
+### Atrributes
+
   lsa                   LSA timers
   spf                   SPF timers
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show router ospf timers lsa
 
+### Usage
 
-Usage:
   nv show router ospf timers lsa [options]
 
-Description:
+### Description
+
   LSA timers
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router ospf timers spf
 
+### Usage
 
-Usage:
   nv show router ospf timers spf [options]
 
-Description:
+### Description
+
   SPF timers
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router pim
 
+### Usage
 
-Usage:
   nv show router pim [options] [<attribute> ...]
 
-Description:
+### Description
+
   PIM global configuration.
 
-Attributes:
+### Atrributes
+
   timers                Timers
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router pim timers
 
+### Usage
 
-Usage:
   nv show router pim timers [options]
 
-Description:
+### Description
+
   Timers
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router igmp
 
+### Usage
 
-Usage:
   nv show router igmp [options]
 
-Description:
+### Description
+
   IGMP global configuration.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router vrrp
 
+### Usage
 
-Usage:
   nv show router vrrp [options]
 
-Description:
+### Description
+
   VRRP global configuration.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router vrr
 
+### Usage
 
-Usage:
   nv show router vrr [options]
 
-Description:
+### Description
+
   VRR global configuration.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show router adaptive-routing
 
+### Usage
 
-Usage:
   nv show router adaptive-routing [options]
 
-Description:
+### Description
+
   Adaptive routing global configuration.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show platform
 
+### Usage
 
-Usage:
   nv show platform [options] [<attribute> ...]
 
-Description:
+### Description
+
   Top-level container for the components in the system. This node represents a system component inventory, which includes hardware and software elements.
 
-Attributes:
+### Atrributes
+
   capabilities          Capabilities of this platform
   hardware              The platform's hardware
   environment           Platform environment information
   software              The platform's software
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show platform capabilities
 
+### Usage
 
-Usage:
   nv show platform capabilities [options]
 
-Description:
+### Description
+
   Capabilities of this platform
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show platform hardware
 
+### Usage
 
-Usage:
   nv show platform hardware [options] [<attribute> ...]
 
-Description:
+### Description
+
   The platform's hardware
 
-Attributes:
+### Atrributes
+
   component             Set of components making up the platform.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show platform hardware component
 
+### Usage
 
-Usage:
   nv show platform hardware component [options] [<component-id> ...]
 
-Description:
+### Description
+
   Set of components making up the platform.
 
-Identifiers:
+### Identifiers
+
   <component-id>        Component identifier
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show platform hardware component <component-id>
 
+### Usage
 
-Usage:
   nv show platform hardware component <component-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   A component in the platform.
 
-Identifiers:
+### Identifiers
+
   <component-id>        Component identifier
 
-Attributes:
+### Atrributes
+
   linecard              Properties of a linecard component
   port                  Set of physical ports on this component
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show platform hardware component <component-id> linecard
 
+### Usage
 
-Usage:
   nv show platform hardware component <component-id> linecard [options]
 
-Description:
+### Description
+
   Properties of a linecard component
 
-Identifiers:
+### Identifiers
+
   <component-id>        Component identifier
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show platform hardware component <component-id> port
 
+### Usage
 
-Usage:
   nv show platform hardware component <component-id> port [options] [<port-id> ...]
 
-Description:
+### Description
+
   Set of physical ports on this component
 
-Identifiers:
+### Identifiers
+
   <component-id>        Component identifier
   <port-id>             Physical port identifier
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show platform hardware component <component-id> port <port-id>
 
+### Usage
 
-Usage:
   nv show platform hardware component <component-id> port <port-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   A physical port on the component.
 
-Identifiers:
+### Identifiers
+
   <component-id>        Component identifier
   <port-id>             Physical port identifier
 
-Attributes:
+### Atrributes
+
   breakout-mode         Set of breakout modes supported by this port
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show platform hardware component <component-id> port <port-id> breakout-mode
 
+### Usage
 
-Usage:
   nv show platform hardware component <component-id> port <port-id> breakout-mode [options] [<mode-id> ...]
 
-Description:
+### Description
+
   Set of breakout modes
 
-Identifiers:
+### Identifiers
+
   <component-id>        Component identifier
   <port-id>             Physical port identifier
   <mode-id>             Breakout mode identifier
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show platform hardware component <component-id> port <port-id> breakout-mode <mode-id>
 
+### Usage
 
-Usage:
   nv show platform hardware component <component-id> port <port-id> breakout-mode <mode-id> [options]
 
-Description:
+### Description
+
   A breakout mode
 
-Identifiers:
+### Identifiers
+
   <component-id>        Component identifier
   <port-id>             Physical port identifier
   <mode-id>             Breakout mode identifier
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show platform environment
 
+### Usage
 
-Usage:
   nv show platform environment [options] [<attribute> ...]
 
-Description:
+### Description
+
   Platform environment information
 
-Attributes:
+### Atrributes
+
   fan                   The fans on the switch.
   sensor                The sensors on the switch.
   psu                   The PSUs on the switch.
   led                   The LEDs on the switch.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show platform environment fan
 
+### Usage
 
-Usage:
   nv show platform environment fan [options] [<fan-id> ...]
 
-Description:
+### Description
+
   The fans on the switch.
 
-Identifiers:
+### Identifiers
+
   <fan-id>              Physical fan identifier
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show platform environment fan <fan-id>
 
+### Usage
 
-Usage:
   nv show platform environment fan <fan-id> [options]
 
-Description:
+### Description
+
   A physical fan on the component.
 
-Identifiers:
+### Identifiers
+
   <fan-id>              Physical fan identifier
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show platform environment sensor
 
+### Usage
 
-Usage:
   nv show platform environment sensor [options] [<sensor-id> ...]
 
-Description:
+### Description
+
   The sensors on the switch.
 
-Identifiers:
+### Identifiers
+
   <sensor-id>           Physical sensor identifier
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show platform environment sensor <sensor-id>
 
+### Usage
 
-Usage:
   nv show platform environment sensor <sensor-id> [options]
 
-Description:
+### Description
+
   A physical sensor on the component.
 
-Identifiers:
+### Identifiers
+
   <sensor-id>           Physical sensor identifier
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show platform environment psu
 
+### Usage
 
-Usage:
   nv show platform environment psu [options] [<psu-id> ...]
 
-Description:
+### Description
+
   The PSUs on the switch.
 
-Identifiers:
+### Identifiers
+
   <psu-id>              Physical PSU identifier
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show platform environment psu <psu-id>
 
+### Usage
 
-Usage:
   nv show platform environment psu <psu-id> [options]
 
-Description:
+### Description
+
   A PSU
 
-Identifiers:
+### Identifiers
+
   <psu-id>              Physical PSU identifier
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show platform environment led
 
+### Usage
 
-Usage:
   nv show platform environment led [options] [<led-id> ...]
 
-Description:
+### Description
+
   The LEDs on the switch.
 
-Identifiers:
+### Identifiers
+
   <led-id>              Physical LED identifier
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show platform environment led <led-id>
 
+### Usage
 
-Usage:
   nv show platform environment led <led-id> [options]
 
-Description:
+### Description
+
   A LED
 
-Identifiers:
+### Identifiers
+
   <led-id>              Physical LED identifier
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show platform software
 
+### Usage
 
-Usage:
   nv show platform software [options] [<attribute> ...]
 
-Description:
+### Description
+
   The platform's software
 
-Attributes:
+### Atrributes
+
   installed             List of installed software
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show platform software installed
 
+### Usage
 
-Usage:
   nv show platform software installed [options] [<installed-id> ...]
 
-Description:
+### Description
+
   List of installed software
 
-Identifiers:
+### Identifiers
+
   <installed-id>        Package name
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show platform software installed <installed-id>
 
+### Usage
 
-Usage:
   nv show platform software installed <installed-id> [options]
 
-Description:
+### Description
+
   An installed package
 
-Identifiers:
+### Identifiers
+
   <installed-id>        Package name
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show bridge
 
+### Usage
 
-Usage:
   nv show bridge [options] [<attribute> ...]
 
-Description:
+### Description
+
   Properties associated with an instance of a bridge.
 
-Attributes:
+### Atrributes
+
   domain                Bridge domains
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show bridge domain
 
+### Usage
 
-Usage:
   nv show bridge domain [options] [<domain-id> ...]
 
-Description:
+### Description
+
   Bridge domains
 
-Identifiers:
+### Identifiers
+
   <domain-id>           Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show bridge domain <domain-id>
 
+### Usage
 
-Usage:
   nv show bridge domain <domain-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   Bridge domain
 
-Identifiers:
+### Identifiers
+
   <domain-id>           Domain
 
-Attributes:
+### Atrributes
+
   stp                   attributes related to global stp
   multicast             Configure multicast on the bridge
   vlan                  Set of vlans in the bridge domain. Only applicable
@@ -3362,639 +1452,290 @@ Attributes:
   mdb                   Set of mdb entries in the bridge domain
   router-port           Set of multicast router ports
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show bridge domain <domain-id> stp
 
+### Usage
 
-Usage:
   nv show bridge domain <domain-id> stp [options] [<attribute> ...]
 
-Description:
+### Description
+
   attributes related to global stp
 
-Identifiers:
+### Identifiers
+
   <domain-id>           Domain
 
-Attributes:
+### Atrributes
+
   state                 The state of STP on the bridge
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show bridge domain <domain-id> stp state
 
+### Usage
 
-Usage:
   nv show bridge domain <domain-id> stp state [options]
 
-Description:
+### Description
+
   The state of STP on the bridge
 
-Identifiers:
+### Identifiers
+
   <domain-id>           Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show bridge domain <domain-id> multicast
 
+### Usage
 
-Usage:
   nv show bridge domain <domain-id> multicast [options] [<attribute> ...]
 
-Description:
+### Description
+
   Configure multicast on the bridge
 
-Identifiers:
+### Identifiers
+
   <domain-id>           Domain
 
-Attributes:
+### Atrributes
+
   snooping              IGMP/MLD snooping configuration
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show bridge domain <domain-id> multicast snooping
 
+### Usage
 
-Usage:
   nv show bridge domain <domain-id> multicast snooping [options] [<attribute> ...]
 
-Description:
+### Description
+
   IGMP/MLD snooping configuration
 
-Identifiers:
+### Identifiers
+
   <domain-id>           Domain
 
-Attributes:
+### Atrributes
+
   querier               IGMP/MLD querier configuration
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show bridge domain <domain-id> multicast snooping querier
 
+### Usage
 
-Usage:
   nv show bridge domain <domain-id> multicast snooping querier [options]
 
-Description:
+### Description
+
   IGMP/MLD querier configuration
 
-Identifiers:
+### Identifiers
+
   <domain-id>           Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show bridge domain <domain-id> vlan <vid>
 
+### Usage
 
-Usage:
   nv show bridge domain <domain-id> vlan <vid> [options] [<attribute> ...]
 
-Description:
+### Description
+
   A VLAN tag identifier
 
-Identifiers:
+### Identifiers
+
   <domain-id>           Domain
   <vid>                 VLAN ID
 
-Attributes:
+### Atrributes
+
   vni                   L2 VNI
   ptp                   VLAN PTP configuration. Inherited by interfaces in
                         this VLAN.
   multicast             Configure multicast on the vlan
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show bridge domain <domain-id> vlan <vid> vni <vni-id>
 
+### Usage
 
-Usage:
   nv show bridge domain <domain-id> vlan <vid> vni <vni-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   VNI
 
-Identifiers:
+### Identifiers
+
   <domain-id>           Domain
   <vid>                 VLAN ID
   <vni-id>              VxLAN ID
 
-Attributes:
+### Atrributes
+
   flooding              Handling of BUM traffic
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding
 
+### Usage
 
-Usage:
   nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding [options] [<attribute> ...]
 
-Description:
+### Description
+
   Handling of BUM traffic
 
-Identifiers:
+### Identifiers
+
   <domain-id>           Domain
   <vid>                 VLAN ID
   <vni-id>              VxLAN ID
 
-Attributes:
+### Atrributes
+
   head-end-replication  BUM traffic is replicated and individual copies sent
                         to remote destinations.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id>
 
+### Usage
 
-Usage:
   nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id> [options]
 
-Description:
+### Description
+
   Set of IPv4 unicast addresses or "evpn".
 
-Identifiers:
+### Identifiers
+
   <domain-id>           Domain
   <vid>                 VLAN ID
   <vni-id>              VxLAN ID
   <hrep-id>             IPv4 unicast addresses or "evpn"
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show bridge domain <domain-id> vlan <vid> ptp
 
+### Usage
 
-Usage:
   nv show bridge domain <domain-id> vlan <vid> ptp [options]
 
-Description:
+### Description
+
   VLAN PTP configuration.  Inherited by interfaces in this VLAN.
 
-Identifiers:
+### Identifiers
+
   <domain-id>           Domain
   <vid>                 VLAN ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show bridge domain <domain-id> vlan <vid> multicast
 
+### Usage
 
-Usage:
   nv show bridge domain <domain-id> vlan <vid> multicast [options] [<attribute> ...]
 
-Description:
+### Description
+
   Configure multicast on the vlan
 
-Identifiers:
+### Identifiers
+
   <domain-id>           Domain
   <vid>                 VLAN ID
 
-Attributes:
+### Atrributes
+
   snooping              IGMP/MLD snooping configuration
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show bridge domain <domain-id> vlan <vid> multicast snooping
 
+### Usage
 
-Usage:
   nv show bridge domain <domain-id> vlan <vid> multicast snooping [options] [<attribute> ...]
 
-Description:
+### Description
+
   IGMP/MLD snooping configuration
 
-Identifiers:
+### Identifiers
+
   <domain-id>           Domain
   <vid>                 VLAN ID
 
-Attributes:
+### Atrributes
+
   querier               IGMP/MLD querier configuration
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show bridge domain <domain-id> vlan <vid> multicast snooping querier
 
+### Usage
 
-Usage:
   nv show bridge domain <domain-id> vlan <vid> multicast snooping querier [options]
 
-Description:
+### Description
+
   IGMP/MLD querier configuration
 
-Identifiers:
+### Identifiers
+
   <domain-id>           Domain
   <vid>                 VLAN ID
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show bridge domain <domain-id> mac-table
 
+### Usage
 
-Usage:
   nv show bridge domain <domain-id> mac-table [options]
 
-Description:
+### Description
+
   L2 FDB
 
-Identifiers:
+### Identifiers
+
   <domain-id>           Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show bridge domain <domain-id> mdb
 
+### Usage
 
-Usage:
   nv show bridge domain <domain-id> mdb [options]
 
-Description:
+### Description
+
   Set of mdb entries in the bridge domain
 
-Identifiers:
+### Identifiers
+
   <domain-id>           Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show bridge domain <domain-id> router-port
 
+### Usage
 
-Usage:
   nv show bridge domain <domain-id> router-port [options]
 
-Description:
+### Description
+
   Set of multicast router ports
 
-Identifiers:
+### Identifiers
+
   <domain-id>           Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show mlag
 
+### Usage
 
-Usage:
   nv show mlag [options] [<attribute> ...]
 
-Description:
+### Description
+
   Global Multi-chassis Link Aggregation properties
 
-Attributes:
+### Atrributes
+
   lacp-conflict         Configure the mlag lacp-conflict parameters
   consistency-checker   Consistency-checker parameters for mlag nodes
   backup                Set of MLAG backups
@@ -4006,1722 +1747,652 @@ Attributes:
   lacpdb                Mlag Local Lacp Info
   neighbor              Local/peer Neighbour Entries
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show mlag lacp-conflict
 
+### Usage
 
-Usage:
   nv show mlag lacp-conflict [options]
 
-Description:
+### Description
+
   Configure the mlag lacp-conflict parameters
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show mlag consistency-checker
 
+### Usage
 
-Usage:
   nv show mlag consistency-checker [options] [<attribute> ...]
 
-Description:
+### Description
+
   Show the mlag consistency-checker parameters
 
-Attributes:
+### Atrributes
+
   global                mlag global consistency-checker
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show mlag consistency-checker global
 
+### Usage
 
-Usage:
   nv show mlag consistency-checker global [options]
 
-Description:
+### Description
+
   Global Consistency-checker
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show mlag backup
 
+### Usage
 
-Usage:
   nv show mlag backup [options] [<backup-ip> ...]
 
-Description:
+### Description
+
   Set of MLAG backups
 
-Identifiers:
+### Identifiers
+
   <backup-ip>           Backup IP of MLAG peer
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show mlag backup <backup-ip>
 
+### Usage
 
-Usage:
   nv show mlag backup <backup-ip> [options]
 
-Description:
+### Description
+
   alternative ip address or interface for peer to reach us
 
-Identifiers:
+### Identifiers
+
   <backup-ip>           Backup IP of MLAG peer
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show mlag fdb
 
+### Usage
 
-Usage:
   nv show mlag fdb [options] [<attribute> ...]
 
-Description:
+### Description
+
   Set of all mlag macs
 
-Attributes:
+### Atrributes
+
   local                 Locally learnt macs
   peer                  Peer Synced Macs
   permanent             Permanent Macs installed on local/peer
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show mlag fdb local
 
+### Usage
 
-Usage:
   nv show mlag fdb local [options]
 
-Description:
+### Description
+
   Set of MLAG Macs learnt/sync between mlag peers
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show mlag fdb peer
 
+### Usage
 
-Usage:
   nv show mlag fdb peer [options]
 
-Description:
+### Description
+
   Set of MLAG Macs learnt/sync between mlag peers
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show mlag fdb permanent
 
+### Usage
 
-Usage:
   nv show mlag fdb permanent [options]
 
-Description:
+### Description
+
   Permanent Mac Entry
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show mlag mdb
 
+### Usage
 
-Usage:
   nv show mlag mdb [options] [<attribute> ...]
 
-Description:
+### Description
+
   Set of Mlag Multicast Database Entries
 
-Attributes:
+### Atrributes
+
   local                 Local Multicast Database
   peer                  Peer Multicast Database
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show mlag mdb local
 
+### Usage
 
-Usage:
   nv show mlag mdb local [options]
 
-Description:
+### Description
+
   Multicast Groups Info
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show mlag mdb peer
 
+### Usage
 
-Usage:
   nv show mlag mdb peer [options]
 
-Description:
+### Description
+
   Multicast Groups Info
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show mlag multicast-router-port
 
+### Usage
 
-Usage:
   nv show mlag multicast-router-port [options] [<attribute> ...]
 
-Description:
+### Description
+
   Set of all Mlag Multicast Router Ports
 
-Attributes:
+### Atrributes
+
   local                 Local Multicast Router Ports
   peer                  Peer Multicast Router Ports
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show mlag multicast-router-port local
 
+### Usage
 
-Usage:
   nv show mlag multicast-router-port local [options]
 
-Description:
+### Description
+
   Multicast Router Ports
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show mlag multicast-router-port peer
 
+### Usage
 
-Usage:
   nv show mlag multicast-router-port peer [options]
 
-Description:
+### Description
+
   Multicast Router Ports
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show mlag vni
 
+### Usage
 
-Usage:
   nv show mlag vni [options] [<attribute> ...]
 
-Description:
+### Description
+
   Set of all vnis
 
-Attributes:
+### Atrributes
+
   local                 Local Vnis
   peer                  Peer Vnis
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show mlag vni local
 
+### Usage
 
-Usage:
   nv show mlag vni local [options]
 
-Description:
+### Description
+
   Set of VNIs configured
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show mlag vni peer
 
+### Usage
 
-Usage:
   nv show mlag vni peer [options]
 
-Description:
+### Description
+
   Set of VNIs configured
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show mlag lacpdb
 
+### Usage
 
-Usage:
   nv show mlag lacpdb [options] [<attribute> ...]
 
-Description:
+### Description
+
   Set of all mlag local/peer lacpdb
 
-Attributes:
+### Atrributes
+
   local                 Local Lacp Database
   peer                  Peer Lacp Database
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show mlag lacpdb local
 
+### Usage
 
-Usage:
   nv show mlag lacpdb local [options]
 
-Description:
+### Description
+
   Lacp DB
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show mlag lacpdb peer
 
+### Usage
 
-Usage:
   nv show mlag lacpdb peer [options]
 
-Description:
+### Description
+
   Lacp DB
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show mlag neighbor
 
+### Usage
 
-Usage:
   nv show mlag neighbor [options] [<attribute> ...]
 
-Description:
+### Description
+
   Set of all mlag neigh entries
 
-Attributes:
+### Atrributes
+
   dynamic               Dynamic Neighbor
   permanent             Permanent Neighbor
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show mlag neighbor dynamic
 
+### Usage
 
-Usage:
   nv show mlag neighbor dynamic [options]
 
-Description:
+### Description
+
   Neighs
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show mlag neighbor permanent
 
+### Usage
 
-Usage:
   nv show mlag neighbor permanent [options]
 
-Description:
+### Description
+
   Permanent Neighbors
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show evpn
 
+### Usage
 
-Usage:
   nv show evpn [options] [<attribute> ...]
 
-Description:
+### Description
+
   Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
 
-Attributes:
+### Atrributes
+
   route-advertise       Route advertising
   dad                   Advertise
   evi                   EVI
   multihoming           Multihoming global configuration parameters
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show evpn route-advertise
 
+### Usage
 
-Usage:
   nv show evpn route-advertise [options]
 
-Description:
+### Description
+
   Route dvertising
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show evpn dad
 
+### Usage
 
-Usage:
   nv show evpn dad [options] [<attribute> ...]
 
-Description:
+### Description
+
   Duplicate address detection
 
-Attributes:
+### Atrributes
+
   duplicate-action      Action to take when a MAC is flagged as a possible
                         duplicate. If 'warning-only', generates a log message.
                         If 'freeze', further move events for the MAC will not
                         be acted upon.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show evpn dad duplicate-action
 
+### Usage
 
-Usage:
   nv show evpn dad duplicate-action [options] [<attribute> ...]
 
-Description:
+### Description
+
   Handling of BUM traffic
 
-Attributes:
+### Atrributes
+
   freeze                Further move events for the MAC will not be acted
                         upon.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show evpn dad duplicate-action freeze
 
+### Usage
 
-Usage:
   nv show evpn dad duplicate-action freeze [options]
 
-Description:
+### Description
+
   Advertise
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show evpn evi
 
+### Usage
 
-Usage:
   nv show evpn evi [options] [<evi-id> ...]
 
-Description:
+### Description
+
   EVIs
 
-Identifiers:
+### Identifiers
+
   <evi-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show evpn evi <evi-id>
 
+### Usage
 
-Usage:
   nv show evpn evi <evi-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
 
-Identifiers:
+### Identifiers
+
   <evi-id>              VRF
 
-Attributes:
+### Atrributes
+
   route-advertise       Route advertise
   route-target          Route targets
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show evpn evi <evi-id> route-advertise
 
+### Usage
 
-Usage:
   nv show evpn evi <evi-id> route-advertise [options]
 
-Description:
+### Description
+
   Route advertise
 
-Identifiers:
+### Identifiers
+
   <evi-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show evpn evi <evi-id> route-target
 
+### Usage
 
-Usage:
   nv show evpn evi <evi-id> route-target [options] [<attribute> ...]
 
-Description:
+### Description
+
   EVPN control plane config and info for VRF
 
-Identifiers:
+### Identifiers
+
   <evi-id>              VRF
 
-Attributes:
+### Atrributes
+
   export                Route targets to export
   import                Route targets to import
   both                  Route targets to import and export
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show evpn evi <evi-id> route-target export
 
+### Usage
 
-Usage:
   nv show evpn evi <evi-id> route-target export [options] [<rt-id> ...]
 
-Description:
+### Description
+
   Set of route target identifiers
 
-Identifiers:
+### Identifiers
+
   <evi-id>              VRF
   <rt-id>               Route target ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show evpn evi <evi-id> route-target export <rt-id>
 
+### Usage
 
-Usage:
   nv show evpn evi <evi-id> route-target export <rt-id> [options]
 
-Description:
+### Description
+
   A route target identifier
 
-Identifiers:
+### Identifiers
+
   <evi-id>              VRF
   <rt-id>               Route target ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show evpn evi <evi-id> route-target import
 
+### Usage
 
-Usage:
   nv show evpn evi <evi-id> route-target import [options] [<rt-id> ...]
 
-Description:
+### Description
+
   Set of route target identifiers
 
-Identifiers:
+### Identifiers
+
   <evi-id>              VRF
   <rt-id>               Route target ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show evpn evi <evi-id> route-target import <rt-id>
 
+### Usage
 
-Usage:
   nv show evpn evi <evi-id> route-target import <rt-id> [options]
 
-Description:
+### Description
+
   A route target identifier
 
-Identifiers:
+### Identifiers
+
   <evi-id>              VRF
   <rt-id>               Route target ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show evpn evi <evi-id> route-target both
 
+### Usage
 
-Usage:
   nv show evpn evi <evi-id> route-target both [options] [<rt-id> ...]
 
-Description:
+### Description
+
   Set of route target identifiers
 
-Identifiers:
+### Identifiers
+
   <evi-id>              VRF
   <rt-id>               Route target ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show evpn evi <evi-id> route-target both <rt-id>
 
+### Usage
 
-Usage:
   nv show evpn evi <evi-id> route-target both <rt-id> [options]
 
-Description:
+### Description
+
   A route target identifier
 
-Identifiers:
+### Identifiers
+
   <evi-id>              VRF
   <rt-id>               Route target ID
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show evpn multihoming
 
+### Usage
 
-Usage:
   nv show evpn multihoming [options] [<attribute> ...]
 
-Description:
+### Description
+
   Multihoming global configuration parameters
 
-Attributes:
+### Atrributes
+
   ead-evi-route         Ethernet Auto-discovery per EVPN instance routes
   segment               Multihoming interface segment
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show evpn multihoming ead-evi-route
 
+### Usage
 
-Usage:
   nv show evpn multihoming ead-evi-route [options]
 
-Description:
+### Description
+
   Ethernet Auto-discovery per EVPN instance routes
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show evpn multihoming segment
 
+### Usage
 
-Usage:
   nv show evpn multihoming segment [options]
 
-Description:
+### Description
+
   Multihoming interface segment
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show qos
 
+### Usage
 
-Usage:
   nv show qos [options] [<attribute> ...]
 
-Description:
+### Description
+
   QOS
 
-Attributes:
+### Atrributes
+
   roce                  Properties associated with the RDMA over Converged
                         Ethernet (RoCE) feature.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show qos roce
 
+### Usage
 
-Usage:
   nv show qos roce [options] [<attribute> ...]
 
-Description:
+### Description
+
   Properties associated with the RDMA over Converged Ethernet (RoCE) feature.
 
-Attributes:
+### Atrributes
+
   prio-map              RoCE PCP/DSCP->SP mapping configurations
   tc-map                RoCE SP->TC mapping and ETS configurations
   pool-map              System Roce pool config
   pool                  System Roce pools
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show qos roce prio-map
 
+### Usage
 
-Usage:
   nv show qos roce prio-map [options]
 
-Description:
+### Description
+
   RoCE PCP/DSCP->SP mapping configurations
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show qos roce tc-map
 
+### Usage
 
-Usage:
   nv show qos roce tc-map [options]
 
-Description:
+### Description
+
   RoCE SP->TC mapping and ETS configurations
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show qos roce pool-map
 
+### Usage
 
-Usage:
   nv show qos roce pool-map [options]
 
-Description:
+### Description
+
   System Roce pool config
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show qos roce pool
 
+### Usage
 
-Usage:
   nv show qos roce pool [options]
 
-Description:
+### Description
+
   System Roce pools
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface
 
+### Usage
 
-Usage:
   nv show interface [options] [<interface-id> ...]
 
-Description:
+### Description
+
   Interfaces
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id>
 
+### Usage
 
-Usage:
   nv show interface <interface-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   An interface
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   pluggable             An interface sfp details
   router                interface router
   bond                  The state of the interface
@@ -5735,931 +2406,417 @@ Attributes:
   ptp                   Interface Specific PTP configuration.
   tunnel                The state of the interface
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> pluggable
 
+### Usage
 
-Usage:
   nv show interface <interface-id> pluggable [options]
 
-Description:
+### Description
+
   An interface sfp details
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> router
 
+### Usage
 
-Usage:
   nv show interface <interface-id> router [options] [<attribute> ...]
 
-Description:
+### Description
+
   interface router
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   pbr                   PBR interface configuration.
   ospf                  OSPF interface configuration.
   pim                   PIM interface configuration.
   adaptive-routing      Adaptive routing interface configuration.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> router pbr
 
+### Usage
 
-Usage:
   nv show interface <interface-id> router pbr [options] [<attribute> ...]
 
-Description:
+### Description
+
   PBR interface configuration.
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   map                   PBR map to use on this interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> router pbr map <pbr-map-id>
 
+### Usage
 
-Usage:
   nv show interface <interface-id> router pbr map <pbr-map-id> [options]
 
-Description:
+### Description
+
   Interface Pbr map
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <pbr-map-id>          Route Map ID
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> router ospf
 
+### Usage
 
-Usage:
   nv show interface <interface-id> router ospf [options] [<attribute> ...]
 
-Description:
+### Description
+
   OSPF interface configuration.
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   timers                Timers configuration
   authentication        md5 authentication configuration
   bfd                   BFD configuration
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> router ospf timers
 
+### Usage
 
-Usage:
   nv show interface <interface-id> router ospf timers [options]
 
-Description:
+### Description
+
   Timers configuration
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> router ospf authentication
 
+### Usage
 
-Usage:
   nv show interface <interface-id> router ospf authentication [options]
 
-Description:
+### Description
+
   md5 authentication configuration
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> router ospf bfd
 
+### Usage
 
-Usage:
   nv show interface <interface-id> router ospf bfd [options]
 
-Description:
+### Description
+
   BFD configuration
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> router pim
 
+### Usage
 
-Usage:
   nv show interface <interface-id> router pim [options] [<attribute> ...]
 
-Description:
+### Description
+
   PIM interface configuration.
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   timers                Timers
   bfd                   BFD configuration
   address-family        Address family specific configuration
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> router pim timers
 
+### Usage
 
-Usage:
   nv show interface <interface-id> router pim timers [options]
 
-Description:
+### Description
+
   Timers
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> router pim bfd
 
+### Usage
 
-Usage:
   nv show interface <interface-id> router pim bfd [options]
 
-Description:
+### Description
+
   BFD configuration
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> router pim address-family
 
+### Usage
 
-Usage:
   nv show interface <interface-id> router pim address-family [options] [<attribute> ...]
 
-Description:
+### Description
+
   Address family specific configuration
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   ipv4-unicast          IPv4 unicast address family
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> router pim address-family ipv4-unicast
 
+### Usage
 
-Usage:
   nv show interface <interface-id> router pim address-family ipv4-unicast [options] [<attribute> ...]
 
-Description:
+### Description
+
   IPv4 unicast address family
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   allow-rp              Allow RP feature, which allows RP address to be
                         accepts for the received
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> router pim address-family ipv4-unicast allow-rp
 
+### Usage
 
-Usage:
   nv show interface <interface-id> router pim address-family ipv4-unicast allow-rp [options]
 
-Description:
+### Description
+
   Allow RP feature, which allows RP address to be accepts for the received
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> router adaptive-routing
 
+### Usage
 
-Usage:
   nv show interface <interface-id> router adaptive-routing [options]
 
-Description:
+### Description
+
   Adaptive routing interface configuration.
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> bond
 
+### Usage
 
-Usage:
   nv show interface <interface-id> bond [options] [<attribute> ...]
 
-Description:
+### Description
+
   The state of the interface
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   member                Set of bond members
   mlag                  MLAG configuration on the bond interface
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> bond member <member-id>
 
+### Usage
 
-Usage:
   nv show interface <interface-id> bond member <member-id> [options]
 
-Description:
+### Description
+
   A bond member
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <member-id>           Bond memer interface
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> bond mlag
 
+### Usage
 
-Usage:
   nv show interface <interface-id> bond mlag [options] [<attribute> ...]
 
-Description:
+### Description
+
   MLAG configuration on the bond interface
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   lacp-conflict         Configure the mlag lacp-conflict parameters
   consistency-checker   Consistency-checker parameters for mlag interfaces
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> bond mlag lacp-conflict
 
+### Usage
 
-Usage:
   nv show interface <interface-id> bond mlag lacp-conflict [options]
 
-Description:
+### Description
+
   Configure the mlag lacp-conflict parameters
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> bond mlag consistency-checker
 
+### Usage
 
-Usage:
   nv show interface <interface-id> bond mlag consistency-checker [options]
 
-Description:
+### Description
+
   Interface MLAG Consistency-checker
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> bridge
 
+### Usage
 
-Usage:
   nv show interface <interface-id> bridge [options] [<attribute> ...]
 
-Description:
+### Description
+
   attributed related to a bridged interface
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   domain                Bridge domains on this interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> bridge domain <domain-id>
 
+### Usage
 
-Usage:
   nv show interface <interface-id> bridge domain <domain-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   Bridge domain on this interface
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <domain-id>           Domain
 
-Attributes:
+### Atrributes
+
   stp                   attributed related to a stpd interface
   vlan                  Set of allowed vlans for this bridge domain on this
                         interface. If "all", inherit all vlans from the bridge
                         domain, if appropriate. This is the default.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> bridge domain <domain-id> stp
 
+### Usage
 
-Usage:
   nv show interface <interface-id> bridge domain <domain-id> stp [options]
 
-Description:
+### Description
+
   attributed related to a stpd interface
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <domain-id>           Domain
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> bridge domain <domain-id> vlan <vid>
 
+### Usage
 
-Usage:
   nv show interface <interface-id> bridge domain <domain-id> vlan <vid> [options]
 
-Description:
+### Description
+
   A VLAN tag identifier
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <domain-id>           Domain
   <vid>                 VLAN ID, or all
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> ip
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip [options] [<attribute> ...]
 
-Description:
+### Description
+
   IP configuration for an interface
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   address               ipv4 and ipv6 address
   neighbor              IP neighbors
   vrr                   Configuration for VRR
@@ -6670,593 +2827,263 @@ Attributes:
   vrrp                  Configuration for VRRP
   neighbor-discovery    Neighbor discovery configuration for an interface
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> ip address <ip-prefix-id>
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip address <ip-prefix-id> [options]
 
-Description:
+### Description
+
   An IP address with prefix
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <ip-prefix-id>        IPv4 or IPv6 address and route prefix in CIDR notation
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> ip neighbor
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip neighbor [options] [<attribute> ...]
 
-Description:
+### Description
+
   IP neighbors
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   ipv4                  IPv4 neighbors
   ipv6                  IPv6 neighbors
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> ip neighbor ipv4 <neighbor-id>
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip neighbor ipv4 <neighbor-id> [options]
 
-Description:
+### Description
+
   A neighbor
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <neighbor-id>         The IPv4 address of the neighbor node.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> ip neighbor ipv6 <neighbor-id>
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip neighbor ipv6 <neighbor-id> [options]
 
-Description:
+### Description
+
   A neighbor
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <neighbor-id>         The IPv6 address of the neighbor node.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> ip vrr
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip vrr [options] [<attribute> ...]
 
-Description:
+### Description
+
   Configuration for VRR
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   address               Virtual addresses with prefixes
   state                 The state of the interface
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> ip vrr address <ip-prefix-id>
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip vrr address <ip-prefix-id> [options]
 
-Description:
+### Description
+
   An IP address with prefix
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <ip-prefix-id>        IPv4 or IPv6 address and route prefix in CIDR notation
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> ip vrr state
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip vrr state [options]
 
-Description:
+### Description
+
   The state of the interface
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> ip gateway <ip-address-id>
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip gateway <ip-address-id> [options]
 
-Description:
+### Description
+
   An IP address
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <ip-address-id>       IPv4 or IPv6 address
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> ip ipv4
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip ipv4 [options]
 
-Description:
+### Description
+
   IPv4 configuration for an interface
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> ip ipv6
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip ipv6 [options]
 
-Description:
+### Description
+
   IPv6 configuration for an interface
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> ip igmp
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip igmp [options] [<attribute> ...]
 
-Description:
+### Description
+
   Configuration for IGMP
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   static-group          IGMP static mutlicast mroutes
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> ip igmp static-group <static-group-id>
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip igmp static-group <static-group-id> [options]
 
-Description:
+### Description
+
   IGMP static multicast mroute
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <static-group-id>     IGMP static multicast mroute destination
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> ip vrrp
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip vrrp [options] [<attribute> ...]
 
-Description:
+### Description
+
   Configuration for VRRP
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   virtual-router        Group of virtual gateways implemented with VRRP
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id>
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   A virtual gateway implemented with VRRP
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <virtual-router-id>   Virtual Router IDentifier (VRID)
 
-Attributes:
+### Atrributes
+
   address               A set of virtual addresses for VRRPv3
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id> address <ip-address-id>
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id> address <ip-address-id> [options]
 
-Description:
+### Description
+
   An IP address
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <virtual-router-id>   Virtual Router IDentifier (VRID)
   <ip-address-id>       IPv4 or IPv6 address
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> ip neighbor-discovery
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip neighbor-discovery [options] [<attribute> ...]
 
-Description:
+### Description
+
   Neighbor discovery configuration for an interface
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   rdnss                 Recursive DNS server addresses to be advertised using
                         type 25 option RFC8016
   prefix                IPv6 prefix configuration
@@ -7264,1543 +3091,674 @@ Attributes:
   router-advertisement  Router advertisement
   home-agent            Home agent configuration
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id>
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id> [options]
 
-Description:
+### Description
+
   A recursive DNS server
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <ipv6-address-id>     IPv6 address
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id>
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> [options]
 
-Description:
+### Description
+
   A IPv6 prefix
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <ipv6-prefix-id>      IPv6 address and route prefix in CIDR notation
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> ip neighbor-discovery dnssl <domain-name-id>
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip neighbor-discovery dnssl <domain-name-id> [options]
 
-Description:
+### Description
+
   A DNS search list
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <domain-name-id>      The domain portion of a hostname (RFC 1123) or an
                         internationalized hostname (RFC 5890).
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> ip neighbor-discovery router-advertisement
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip neighbor-discovery router-advertisement [options]
 
-Description:
+### Description
+
   Router advertisement configuration for an interface
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> ip neighbor-discovery home-agent
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ip neighbor-discovery home-agent [options]
 
-Description:
+### Description
+
   Indicates to neighbors that this router acts as a Home Agent and includes a Home Agent Option. Not defined by default
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> lldp
 
+### Usage
 
-Usage:
   nv show interface <interface-id> lldp [options] [<attribute> ...]
 
-Description:
+### Description
+
   LLDP on for an interface
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   neighbor              LLDP neighbors
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> lldp neighbor <neighbor-id>
 
+### Usage
 
-Usage:
   nv show interface <interface-id> lldp neighbor <neighbor-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   LLDP on an interface
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <neighbor-id>         System generated identifier for the neighbor on the
                         interface
 
-Attributes:
+### Atrributes
+
   bridge                Bridge properties, such as VLANs, of the neighbor
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> lldp neighbor <neighbor-id> bridge
 
+### Usage
 
-Usage:
   nv show interface <interface-id> lldp neighbor <neighbor-id> bridge [options] [<attribute> ...]
 
-Description:
+### Description
+
   An LLDP bridge
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <neighbor-id>         System generated identifier for the neighbor on the
                         interface
 
-Attributes:
+### Atrributes
+
   vlan                  Set of vlans understood by this neighbor.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> lldp neighbor <neighbor-id> bridge vlan <vid>
 
+### Usage
 
-Usage:
   nv show interface <interface-id> lldp neighbor <neighbor-id> bridge vlan <vid> [options]
 
-Description:
+### Description
+
   A VLAN tag identifier
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <neighbor-id>         System generated identifier for the neighbor on the
                         interface
   <vid>                 VLAN ID, or all
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> link
 
+### Usage
 
-Usage:
   nv show interface <interface-id> link [options] [<attribute> ...]
 
-Description:
+### Description
+
   An physical interface
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   state                 The state of the interface
   dot1x                 An physical interface
   stats                 Interface stats
   traffic-engineering   Traffic engineering stats
   flag                  link flags
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> link state
 
+### Usage
 
-Usage:
   nv show interface <interface-id> link state [options]
 
-Description:
+### Description
+
   The state of the interface
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> link dot1x
 
+### Usage
 
-Usage:
   nv show interface <interface-id> link dot1x [options]
 
-Description:
+### Description
+
   An physical interface
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> link stats
 
+### Usage
 
-Usage:
   nv show interface <interface-id> link stats [options]
 
-Description:
+### Description
+
   Interface stats
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> link traffic-engineering
 
+### Usage
 
-Usage:
   nv show interface <interface-id> link traffic-engineering [options]
 
-Description:
+### Description
+
   Traffic engineering stats
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> link flag
 
+### Usage
 
-Usage:
   nv show interface <interface-id> link flag [options]
 
-Description:
+### Description
+
   link flags
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> qos
 
+### Usage
 
-Usage:
   nv show interface <interface-id> qos [options] [<attribute> ...]
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   counters
   roce
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> qos counters
 
+### Usage
 
-Usage:
   nv show interface <interface-id> qos counters [options] [<attribute> ...]
 
-Description:
+### Description
+
   Interface QoS counters
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   port-stats            QoS Statistics for Interface
   egress-queue-stats    Egress queue statistics per egress traffic-class
   ingress-buffer-stats  Ingress Buffer statistics per priority-group
   pfc-stats             PFC statistics per internal switch-priority
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> qos counters port-stats
 
+### Usage
 
-Usage:
   nv show interface <interface-id> qos counters port-stats [options] [<attribute> ...]
 
-Description:
+### Description
+
   QoS Statistics for Interface
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   rx-stats              QoS Rx Statistics for Interface
   tx-stats              QoS Tx Statistics for Interface
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> qos counters port-stats rx-stats
 
+### Usage
 
-Usage:
   nv show interface <interface-id> qos counters port-stats rx-stats [options]
 
-Description:
+### Description
+
   QoS Rx Statistics for Interface
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> qos counters port-stats tx-stats
 
+### Usage
 
-Usage:
   nv show interface <interface-id> qos counters port-stats tx-stats [options]
 
-Description:
+### Description
+
   QoS Tx Statistics for Interface
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> qos counters egress-queue-stats
 
+### Usage
 
-Usage:
   nv show interface <interface-id> qos counters egress-queue-stats [options]
 
-Description:
+### Description
+
   Egress queue statistics per egress traffic-class
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> qos counters ingress-buffer-stats
 
+### Usage
 
-Usage:
   nv show interface <interface-id> qos counters ingress-buffer-stats [options]
 
-Description:
+### Description
+
   Ingress Buffer statistics per priority-group
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> qos counters pfc-stats
 
+### Usage
 
-Usage:
   nv show interface <interface-id> qos counters pfc-stats [options]
 
-Description:
+### Description
+
   PFC statistics per internal switch-priority
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> qos roce
 
+### Usage
 
-Usage:
   nv show interface <interface-id> qos roce [options] [<attribute> ...]
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   counters
   status
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> qos roce counters
 
+### Usage
 
-Usage:
   nv show interface <interface-id> qos roce counters [options]
 
-Description:
+### Description
+
   Interface roce counters
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> qos roce status
 
+### Usage
 
-Usage:
   nv show interface <interface-id> qos roce status [options] [<attribute> ...]
 
-Description:
+### Description
+
   Interface status
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   pool-map              Interface Roce pools
   prio-map              RoCE PCP/DSCP->SP mapping configurations
   tc-map                RoCE SP->TC mapping and ETS configurations
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> qos roce status pool-map
 
+### Usage
 
-Usage:
   nv show interface <interface-id> qos roce status pool-map [options]
 
-Description:
+### Description
+
   Interface Roce pools
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> qos roce status prio-map
 
+### Usage
 
-Usage:
   nv show interface <interface-id> qos roce status prio-map [options]
 
-Description:
+### Description
+
   RoCE PCP/DSCP->SP mapping configurations
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> qos roce status tc-map
 
+### Usage
 
-Usage:
   nv show interface <interface-id> qos roce status tc-map [options]
 
-Description:
+### Description
+
   RoCE SP->TC mapping and ETS configurations
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> evpn
 
+### Usage
 
-Usage:
   nv show interface <interface-id> evpn [options] [<attribute> ...]
 
-Description:
+### Description
+
   EVPN control plane config and info for VRF
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   multihoming           Multihoming interface configuration parameters
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> evpn multihoming
 
+### Usage
 
-Usage:
   nv show interface <interface-id> evpn multihoming [options] [<attribute> ...]
 
-Description:
+### Description
+
   Multihoming interface configuration parameters
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   segment               Multihoming interface segment
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> evpn multihoming segment
 
+### Usage
 
-Usage:
   nv show interface <interface-id> evpn multihoming segment [options]
 
-Description:
+### Description
+
   Multihoming interface segment
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> acl <acl-id>
 
+### Usage
 
-Usage:
   nv show interface <interface-id> acl <acl-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   An ACL is used for matching packets and take actions
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <acl-id>              ACL ID
 
-Attributes:
+### Atrributes
+
   inbound               ACL applied for inbound direction
   outbound              ACL applied for outbound direction
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> acl <acl-id> inbound
 
+### Usage
 
-Usage:
   nv show interface <interface-id> acl <acl-id> inbound [options] [<attribute> ...]
 
-Description:
+### Description
+
   inbound direction
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <acl-id>              ACL ID
 
-Attributes:
+### Atrributes
+
   control-plane         ACL applied for control plane
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> acl <acl-id> inbound control-plane
 
+### Usage
 
-Usage:
   nv show interface <interface-id> acl <acl-id> inbound control-plane [options]
 
-Description:
+### Description
+
   State details
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <acl-id>              ACL ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> acl <acl-id> outbound
 
+### Usage
 
-Usage:
   nv show interface <interface-id> acl <acl-id> outbound [options] [<attribute> ...]
 
-Description:
+### Description
+
   State details
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <acl-id>              ACL ID
 
-Attributes:
+### Atrributes
+
   control-plane
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> acl <acl-id> outbound control-plane
 
+### Usage
 
-Usage:
   nv show interface <interface-id> acl <acl-id> outbound control-plane [options]
 
-Description:
+### Description
+
   State details
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
   <acl-id>              ACL ID
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> ptp
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ptp [options] [<attribute> ...]
 
-Description:
+### Description
+
   Interface Specific PTP configuration.
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
 
-Attributes:
+### Atrributes
+
   timers                Interface PTP timerss
   counters              Interface PTP counters
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show interface <interface-id> ptp timers
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ptp timers [options]
 
-Description:
+### Description
+
   Interface PTP timerss
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> ptp counters
 
+### Usage
 
-Usage:
   nv show interface <interface-id> ptp counters [options]
 
-Description:
+### Description
+
   Interface PTP counters
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show interface <interface-id> tunnel
 
+### Usage
 
-Usage:
   nv show interface <interface-id> tunnel [options]
 
-Description:
+### Description
+
   The state of the interface
 
-Identifiers:
+### Identifiers
+
   <interface-id>        Interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service
 
+### Usage
 
-Usage:
   nv show service [options] [<attribute> ...]
 
-Description:
+### Description
+
   A service
 
-Attributes:
+### Atrributes
+
   dns                   collection of DNS
   syslog                collection of syslog
   ntp                   NTPs
@@ -8811,811 +3769,356 @@ Attributes:
   dhcp-server6          DHCP-servers6
   lldp                  Global LLDP
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dns
 
+### Usage
 
-Usage:
   nv show service dns [options] [<vrf-id> ...]
 
-Description:
+### Description
+
   collection of DNS
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service dns <vrf-id>
 
+### Usage
 
-Usage:
   nv show service dns <vrf-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   Domain Name Service
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   server                Remote DNS servers
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service dns <vrf-id> server <dns-server-id>
 
+### Usage
 
-Usage:
   nv show service dns <vrf-id> server <dns-server-id> [options]
 
-Description:
+### Description
+
   A remote DNS server
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <dns-server-id>       IPv4 or IPv6 address of a DNS server
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service syslog
 
+### Usage
 
-Usage:
   nv show service syslog [options] [<vrf-id> ...]
 
-Description:
+### Description
+
   collection of syslog
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service syslog <vrf-id>
 
+### Usage
 
-Usage:
   nv show service syslog <vrf-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   Domain Name Service
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   server                Remote DNS servers
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service syslog <vrf-id> server <server-id>
 
+### Usage
 
-Usage:
   nv show service syslog <vrf-id> server <server-id> [options]
 
-Description:
+### Description
+
   A remote DNS server
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <server-id>           Hostname or IP address of a syslog server
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service ntp
 
+### Usage
 
-Usage:
   nv show service ntp [options] [<vrf-id> ...]
 
-Description:
+### Description
+
   NTPs
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service ntp <vrf-id>
 
+### Usage
 
-Usage:
   nv show service ntp <vrf-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   Network Time Protocol
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   server                Remote NTP Servers
   pool                  Remote NTP Servers
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service ntp <vrf-id> server <server-id>
 
+### Usage
 
-Usage:
   nv show service ntp <vrf-id> server <server-id> [options]
 
-Description:
+### Description
+
   A remote NTP Server
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <server-id>           Hostname or IP address of the NTP server
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service ntp <vrf-id> pool <server-id>
 
+### Usage
 
-Usage:
   nv show service ntp <vrf-id> pool <server-id> [options]
 
-Description:
+### Description
+
   A remote NTP Server
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <server-id>           Hostname or IP address of the NTP server
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-relay
 
+### Usage
 
-Usage:
   nv show service dhcp-relay [options] [<vrf-id> ...]
 
-Description:
+### Description
+
   DHCP-relays
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service dhcp-relay <vrf-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-relay <vrf-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   DHCP relay
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   server                DHCP servers
   interface             Set of interfaces on which to handle DHCP relay
                         traffic
   giaddress-interface   Configures DHCP relay giaddress on the interfaes.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-relay <vrf-id> server <server-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-relay <vrf-id> server <server-id> [options]
 
-Description:
+### Description
+
   A DHCP server
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <server-id>           DHCP server
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-relay <vrf-id> interface <interface-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-relay <vrf-id> interface <interface-id> [options]
 
-Description:
+### Description
+
   An interface on which DHCP relay is configured.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <interface-id>        DHCP relay interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service dhcp-relay <vrf-id> giaddress-interface <interface-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-relay <vrf-id> giaddress-interface <interface-id> [options]
 
-Description:
+### Description
+
   An interface on which DHCP relay giaddress is configured.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <interface-id>        DHCP relay giaddress interface
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-relay6
 
+### Usage
 
-Usage:
   nv show service dhcp-relay6 [options] [<vrf-id> ...]
 
-Description:
+### Description
+
   DHCP-relays
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service dhcp-relay6 <vrf-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-relay6 <vrf-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   DHCP relay
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   interface             DHCP relay interfaces
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service dhcp-relay6 <vrf-id> interface
 
+### Usage
 
-Usage:
   nv show service dhcp-relay6 <vrf-id> interface [options] [<attribute> ...]
 
-Description:
+### Description
+
   DHCP relay interfaces
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   upstream              Configures DHCP relay on the interfaes.
   downstream            Configures DHCP relay on the interfaes.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-relay6 <vrf-id> interface upstream <interface-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-relay6 <vrf-id> interface upstream <interface-id> [options]
 
-Description:
+### Description
+
   An interface on which DPCH relay is configured.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <interface-id>        DHCP relay interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service dhcp-relay6 <vrf-id> interface downstream <interface-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-relay6 <vrf-id> interface downstream <interface-id> [options]
 
-Description:
+### Description
+
   An interface on which DPCH relay is configured.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <interface-id>        DHCP relay interface
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service ptp
 
+### Usage
 
-Usage:
   nv show service ptp [options] [<instance-id> ...]
 
-Description:
+### Description
+
   Collection of PTP instances
 
-Identifiers:
+### Identifiers
+
   <instance-id>         PTP instance number. It is used for management
                         purpose.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service ptp <instance-id>
 
+### Usage
 
-Usage:
   nv show service ptp <instance-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   Global PTP configuration.
 
-Identifiers:
+### Identifiers
+
   <instance-id>         PTP instance number. It is used for management
                         purpose.
 
-Attributes:
+### Atrributes
+
   acceptable-master     Collection of acceptable masters
   monitor               PTP monitor configuration
   current               Local states learned from the exchange of PTP messages
@@ -9623,673 +4126,300 @@ Attributes:
   parent                Local states learned from the exchange of PTP messages
   time-properties       Time attributes of the clock
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service ptp <instance-id> acceptable-master
 
+### Usage
 
-Usage:
   nv show service ptp <instance-id> acceptable-master [options] [<clock-id> ...]
 
-Description:
+### Description
+
   Collection of acceptable masters
 
-Identifiers:
+### Identifiers
+
   <instance-id>         PTP instance number. It is used for management
                         purpose.
   <clock-id>            Clock ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service ptp <instance-id> acceptable-master <clock-id>
 
+### Usage
 
-Usage:
   nv show service ptp <instance-id> acceptable-master <clock-id> [options]
 
-Description:
+### Description
+
   List of clocks that the local clock can accept as master clock
 
-Identifiers:
+### Identifiers
+
   <instance-id>         PTP instance number. It is used for management
                         purpose.
   <clock-id>            Clock ID
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service ptp <instance-id> monitor
 
+### Usage
 
-Usage:
   nv show service ptp <instance-id> monitor [options] [<attribute> ...]
 
-Description:
+### Description
+
   PTP monitor configuration
 
-Identifiers:
+### Identifiers
+
   <instance-id>         PTP instance number. It is used for management
                         purpose.
 
-Attributes:
+### Atrributes
+
   timestamp-log         Collection of violations logs
   violations            PTP violations
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service ptp <instance-id> monitor timestamp-log
 
+### Usage
 
-Usage:
   nv show service ptp <instance-id> monitor timestamp-log [options]
 
-Description:
+### Description
+
   Collection of violations logs
 
-Identifiers:
+### Identifiers
+
   <instance-id>         PTP instance number. It is used for management
                         purpose.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service ptp <instance-id> monitor violations
 
+### Usage
 
-Usage:
   nv show service ptp <instance-id> monitor violations [options] [<attribute> ...]
 
-Description:
+### Description
+
   PTP violations
 
-Identifiers:
+### Identifiers
+
   <instance-id>         PTP instance number. It is used for management
                         purpose.
 
-Attributes:
+### Atrributes
+
   log                   PTP violations log
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service ptp <instance-id> monitor violations log
 
+### Usage
 
-Usage:
   nv show service ptp <instance-id> monitor violations log [options] [<attribute> ...]
 
-Description:
+### Description
+
   PTP violations log
 
-Identifiers:
+### Identifiers
+
   <instance-id>         PTP instance number. It is used for management
                         purpose.
 
-Attributes:
+### Atrributes
+
   acceptable-master     Collection of master violations
   forced-master         Collection of master violations
   max-offset            Collection of violations logs
   min-offset            Collection of violations logs
   path-delay            Collection of violations logs
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service ptp <instance-id> monitor violations log acceptable-master
 
+### Usage
 
-Usage:
   nv show service ptp <instance-id> monitor violations log acceptable-master [options]
 
-Description:
+### Description
+
   Collection of master violations
 
-Identifiers:
+### Identifiers
+
   <instance-id>         PTP instance number. It is used for management
                         purpose.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service ptp <instance-id> monitor violations log forced-master
 
+### Usage
 
-Usage:
   nv show service ptp <instance-id> monitor violations log forced-master [options]
 
-Description:
+### Description
+
   Collection of master violations
 
-Identifiers:
+### Identifiers
+
   <instance-id>         PTP instance number. It is used for management
                         purpose.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service ptp <instance-id> monitor violations log max-offset
 
+### Usage
 
-Usage:
   nv show service ptp <instance-id> monitor violations log max-offset [options]
 
-Description:
+### Description
+
   Collection of violations logs
 
-Identifiers:
+### Identifiers
+
   <instance-id>         PTP instance number. It is used for management
                         purpose.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service ptp <instance-id> monitor violations log min-offset
 
+### Usage
 
-Usage:
   nv show service ptp <instance-id> monitor violations log min-offset [options]
 
-Description:
+### Description
+
   Collection of violations logs
 
-Identifiers:
+### Identifiers
+
   <instance-id>         PTP instance number. It is used for management
                         purpose.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service ptp <instance-id> monitor violations log path-delay
 
+### Usage
 
-Usage:
   nv show service ptp <instance-id> monitor violations log path-delay [options]
 
-Description:
+### Description
+
   Collection of violations logs
 
-Identifiers:
+### Identifiers
+
   <instance-id>         PTP instance number. It is used for management
                         purpose.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service ptp <instance-id> current
 
+### Usage
 
-Usage:
   nv show service ptp <instance-id> current [options]
 
-Description:
+### Description
+
   Local states learned from the exchange of PTP messages
 
-Identifiers:
+### Identifiers
+
   <instance-id>         PTP instance number. It is used for management
                         purpose.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service ptp <instance-id> clock-quality
 
+### Usage
 
-Usage:
   nv show service ptp <instance-id> clock-quality [options]
 
-Description:
+### Description
+
   Clock Quality Status
 
-Identifiers:
+### Identifiers
+
   <instance-id>         PTP instance number. It is used for management
                         purpose.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service ptp <instance-id> parent
 
+### Usage
 
-Usage:
   nv show service ptp <instance-id> parent [options] [<attribute> ...]
 
-Description:
+### Description
+
   Local states learned from the exchange of PTP messages
 
-Identifiers:
+### Identifiers
+
   <instance-id>         PTP instance number. It is used for management
                         purpose.
 
-Attributes:
+### Atrributes
+
   grandmaster-clock-quality
                         Clock Quality Status
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service ptp <instance-id> parent grandmaster-clock-quality
 
+### Usage
 
-Usage:
   nv show service ptp <instance-id> parent grandmaster-clock-quality [options]
 
-Description:
+### Description
+
   Clock Quality Status
 
-Identifiers:
+### Identifiers
+
   <instance-id>         PTP instance number. It is used for management
                         purpose.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service ptp <instance-id> time-properties
 
+### Usage
 
-Usage:
   nv show service ptp <instance-id> time-properties [options]
 
-Description:
+### Description
+
   Time attributes of the clock
 
-Identifiers:
+### Identifiers
+
   <instance-id>         PTP instance number. It is used for management
                         purpose.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-server
 
+### Usage
 
-Usage:
   nv show service dhcp-server [options] [<vrf-id> ...]
 
-Description:
+### Description
+
   DHCP-servers
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service dhcp-server <vrf-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-server <vrf-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   Dynamic Host Configuration Protocol Server
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   interface             Assign DHCP options to clients directly attached to
                         these interfaes.
   pool                  DHCP Pools
@@ -10297,411 +4427,182 @@ Attributes:
   domain-name-server    DHCP domain name servers
   static                DHCP clients with fixed IP address assignments
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-server <vrf-id> interface <interface-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-server <vrf-id> interface <interface-id> [options]
 
-Description:
+### Description
+
   An interface on which DPCH clients are attached.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <interface-id>        DHCP client interface
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-server <vrf-id> pool <pool-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-server <vrf-id> pool <pool-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   DHCP Pool
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <pool-id>             DHCP pool subnet.
 
-Attributes:
+### Atrributes
+
   domain-name-server    DHCP domain name servers
   domain-name           DHCP domain names
   gateway               DHCP gateway
   range                 IP Address range assignments
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id> [options]
 
-Description:
+### Description
+
   A remote DNS server
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <pool-id>             DHCP pool subnet.
   <server-id>           DNS server
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> [options]
 
-Description:
+### Description
+
   TBD
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <pool-id>             DHCP pool subnet.
   <domain-name-id>      DHCP domain name
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id> [options]
 
-Description:
+### Description
+
   A remote DNS server
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <pool-id>             DHCP pool subnet.
   <gateway-id>          Gateway
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-server <vrf-id> pool <pool-id> range <range-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-server <vrf-id> pool <pool-id> range <range-id> [options]
 
-Description:
+### Description
+
   DHCP Pool range
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <pool-id>             DHCP pool subnet.
   <range-id>            DHCP client interface
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-server <vrf-id> domain-name <domain-name-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-server <vrf-id> domain-name <domain-name-id> [options]
 
-Description:
+### Description
+
   TBD
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <domain-name-id>      DHCP domain name
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-server <vrf-id> domain-name-server <server-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-server <vrf-id> domain-name-server <server-id> [options]
 
-Description:
+### Description
+
   A remote DNS server
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <server-id>           DNS server
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-server <vrf-id> static <static-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-server <vrf-id> static <static-id> [options]
 
-Description:
+### Description
+
   static entry
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <static-id>           static mapping nane
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-server6
 
+### Usage
 
-Usage:
   nv show service dhcp-server6 [options] [<vrf-id> ...]
 
-Description:
+### Description
+
   DHCP-servers6
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show service dhcp-server6 <vrf-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-server6 <vrf-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   Dynamic Host Configuration Protocol IPv6 Server
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   interface             Assign DHCP options to clients directly attached to
                         these interfaes.
   pool                  DHCP IP Pools
@@ -10709,367 +4610,157 @@ Attributes:
   domain-name-server    DHCP domain name servers
   static                DHCP clients with fixed IP address assignments
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-server6 <vrf-id> interface <interface-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-server6 <vrf-id> interface <interface-id> [options]
 
-Description:
+### Description
+
   An interface on which DPCH clients are attached.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <interface-id>        DHCP client interface
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-server6 <vrf-id> pool <pool-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-server6 <vrf-id> pool <pool-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   DHCP Pool
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <pool-id>             DHCP6 pool subnet.
 
-Attributes:
+### Atrributes
+
   domain-name-server    DHCP domain name servers
   domain-name           DHCP domain names
   range                 IP Address range assignments
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id> [options]
 
-Description:
+### Description
+
   A remote DNS server
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <pool-id>             DHCP6 pool subnet.
   <server-id>           DNS server
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id> [options]
 
-Description:
+### Description
+
   TBD
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <pool-id>             DHCP6 pool subnet.
   <domain-name-id>      DHCP domain name
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-server6 <vrf-id> pool <pool-id> range <range-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> [options]
 
-Description:
+### Description
+
   DHCP Pool range
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <pool-id>             DHCP6 pool subnet.
   <range-id>            DHCP client interface
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-server6 <vrf-id> domain-name <domain-name-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-server6 <vrf-id> domain-name <domain-name-id> [options]
 
-Description:
+### Description
+
   TBD
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <domain-name-id>      DHCP domain name
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-server6 <vrf-id> domain-name-server <server-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-server6 <vrf-id> domain-name-server <server-id> [options]
 
-Description:
+### Description
+
   A remote DNS server
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <server-id>           DNS server
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service dhcp-server6 <vrf-id> static <static-id>
 
+### Usage
 
-Usage:
   nv show service dhcp-server6 <vrf-id> static <static-id> [options]
 
-Description:
+### Description
+
   static entry
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <static-id>           static mapping nane
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show service lldp
 
+### Usage
 
-Usage:
   nv show service lldp [options]
 
-Description:
+### Description
+
   Global LLDP
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system
 
+### Usage
 
-Usage:
   nv show system [options] [<attribute> ...]
 
-Description:
+### Description
+
   Top-level node which contains system-wide properties.
 
-Attributes:
+### Atrributes
+
   control-plane         Control Plane specific configurations
   message               System pre-login and post-login messages
   global                global system configuration
@@ -11078,1276 +4769,518 @@ Attributes:
   port-mirror           Port mirror
   config                Affect how config operations are performed.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show system control-plane
 
+### Usage
 
-Usage:
   nv show system control-plane [options] [<attribute> ...]
 
-Description:
+### Description
+
   Control Plane specific configurations
 
-Attributes:
+### Atrributes
+
   trap                  Traps
   policer               Policers
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show system control-plane trap <trap-id>
 
+### Usage
 
-Usage:
   nv show system control-plane trap <trap-id> [options]
 
-Description:
+### Description
+
   Trap
 
-Identifiers:
+### Identifiers
+
   <trap-id>             TRAP ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system control-plane policer <policer-id>
 
+### Usage
 
-Usage:
   nv show system control-plane policer <policer-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   Policer
 
-Identifiers:
+### Identifiers
+
   <policer-id>          Policer ID
 
-Attributes:
+### Atrributes
+
   statistics            Policer Statistics
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system control-plane policer <policer-id> statistics
 
+### Usage
 
-Usage:
   nv show system control-plane policer <policer-id> statistics [options]
 
-Description:
+### Description
+
   Policer Statistics
 
-Identifiers:
+### Identifiers
+
   <policer-id>          Policer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system message
 
+### Usage
 
-Usage:
   nv show system message [options]
 
-Description:
+### Description
+
   System pre-login and post-login messages
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system global
 
+### Usage
 
-Usage:
   nv show system global [options] [<attribute> ...]
 
-Description:
+### Description
+
   global system configuration
 
-Attributes:
+### Atrributes
+
   reserved              reserved ranges
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system global reserved
 
+### Usage
 
-Usage:
   nv show system global reserved [options] [<attribute> ...]
 
-Description:
+### Description
+
   reserved ranges
 
-Attributes:
+### Atrributes
+
   routing-table         reserved routing table ranges
   vlan                  reserved vlan ranges
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show system global reserved routing-table
 
+### Usage
 
-Usage:
   nv show system global reserved routing-table [options] [<attribute> ...]
 
-Description:
+### Description
+
   reserved routing table ranges
 
-Attributes:
+### Atrributes
+
   pbr                   reserved routing table ranges for PBR
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system global reserved routing-table pbr
 
+### Usage
 
-Usage:
   nv show system global reserved routing-table pbr [options]
 
-Description:
+### Description
+
   reserved routing table ranges for PBR
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system global reserved vlan
 
+### Usage
 
-Usage:
   nv show system global reserved vlan [options] [<attribute> ...]
 
-Description:
+### Description
+
   reserved vlan ranges
 
-Attributes:
+### Atrributes
+
   l3-vni-vlan           Reserved vlans to be used with l3vni
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system global reserved vlan l3-vni-vlan
 
+### Usage
 
-Usage:
   nv show system global reserved vlan l3-vni-vlan [options]
 
-Description:
+### Description
+
   Reserved vlans to be used with l3vni
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system ztp
 
+### Usage
 
-Usage:
   nv show system ztp [options] [<attribute> ...]
 
-Description:
+### Description
+
   System Zero Touch Provisioning
 
-Attributes:
+### Atrributes
+
   script                Zero Touch Provisioning Script
   status                Zero Touch Provisioning Last Status
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show system ztp script
 
+### Usage
 
-Usage:
   nv show system ztp script [options]
 
-Description:
+### Description
+
   Zero Touch Provisioning Script
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system ztp status
 
+### Usage
 
-Usage:
   nv show system ztp status [options]
 
-Description:
+### Description
+
   Zero Touch Provisioning Last Status
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system reboot
 
+### Usage
 
-Usage:
   nv show system reboot [options] [<attribute> ...]
 
-Description:
+### Description
+
   Platform reboot info
 
-Attributes:
+### Atrributes
+
   reason                Platform reboot reason
   history               Platform reboot history
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show system reboot reason
 
+### Usage
 
-Usage:
   nv show system reboot reason [options]
 
-Description:
+### Description
+
   Platform reboot reason
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system reboot history
 
+### Usage
 
-Usage:
   nv show system reboot history [options]
 
-Description:
+### Description
+
   Platform reboot history
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system port-mirror
 
+### Usage
 
-Usage:
   nv show system port-mirror [options] [<attribute> ...]
 
-Description:
+### Description
+
   Port mirror
 
-Attributes:
+### Atrributes
+
   session               sessions
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system port-mirror session
 
+### Usage
 
-Usage:
   nv show system port-mirror session [options] [<session-id> ...]
 
-Description:
+### Description
+
   sessions
 
-Identifiers:
+### Identifiers
+
   <session-id>          port mirror session number
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system port-mirror session <session-id>
 
+### Usage
 
-Usage:
   nv show system port-mirror session <session-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   port mirror session number
 
-Identifiers:
+### Identifiers
+
   <session-id>          port mirror session number
 
-Attributes:
+### Atrributes
+
   span                  Switched Port Analyzer
   erspan                Encapsulated Remote Switched Port Analyzer.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show system port-mirror session <session-id> span
 
+### Usage
 
-Usage:
   nv show system port-mirror session <session-id> span [options] [<attribute> ...]
 
-Description:
+### Description
+
   Switched Port Analyzer
 
-Identifiers:
+### Identifiers
+
   <session-id>          port mirror session number
 
-Attributes:
+### Atrributes
+
   source-port           Set of source ports.
   destination           The SPAN destination port.
   truncate              TBD
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show system port-mirror session <session-id> span source-port
 
+### Usage
 
-Usage:
   nv show system port-mirror session <session-id> span source-port [options] [<port-id> ...]
 
-Description:
+### Description
+
   Set of source ports.
 
-Identifiers:
+### Identifiers
+
   <session-id>          port mirror session number
   <port-id>             Port interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system port-mirror session <session-id> span source-port <port-id>
 
+### Usage
 
-Usage:
   nv show system port-mirror session <session-id> span source-port <port-id> [options]
 
-Description:
+### Description
+
   A port-mirror source port (swps or bonds only)
 
-Identifiers:
+### Identifiers
+
   <session-id>          port mirror session number
   <port-id>             Port interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system port-mirror session <session-id> span destination
 
+### Usage
 
-Usage:
   nv show system port-mirror session <session-id> span destination [options] [<port-id> ...]
 
-Description:
+### Description
+
   The SPAN destination port.
 
-Identifiers:
+### Identifiers
+
   <session-id>          port mirror session number
   <port-id>             Port interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system port-mirror session <session-id> span destination <port-id>
 
+### Usage
 
-Usage:
   nv show system port-mirror session <session-id> span destination <port-id> [options]
 
-Description:
+### Description
+
   The SPAN destination port.
 
-Identifiers:
+### Identifiers
+
   <session-id>          port mirror session number
   <port-id>             Port interface
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show system port-mirror session <session-id> span truncate
 
+### Usage
 
-Usage:
   nv show system port-mirror session <session-id> span truncate [options]
 
-Description:
+### Description
+
   TBD
 
-Identifiers:
+### Identifiers
+
   <session-id>          port mirror session number
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system port-mirror session <session-id> erspan
 
+### Usage
 
-Usage:
   nv show system port-mirror session <session-id> erspan [options] [<attribute> ...]
 
-Description:
+### Description
+
   Encapsulated Remote Switched Port Analyzer.
 
-Identifiers:
+### Identifiers
+
   <session-id>          port mirror session number
 
-Attributes:
+### Atrributes
+
   source-port           Set of source ports.
   destination           erspan destination
   truncate              TBD
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show system port-mirror session <session-id> erspan source-port
 
+### Usage
 
-Usage:
   nv show system port-mirror session <session-id> erspan source-port [options] [<port-id> ...]
 
-Description:
+### Description
+
   Set of source ports.
 
-Identifiers:
+### Identifiers
+
   <session-id>          port mirror session number
   <port-id>             Port interface
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system port-mirror session <session-id> erspan source-port <port-id>
 
+### Usage
 
-Usage:
   nv show system port-mirror session <session-id> erspan source-port <port-id> [options]
 
-Description:
+### Description
+
   A port-mirror source port (swps or bonds only)
 
-Identifiers:
+### Identifiers
+
   <session-id>          port mirror session number
   <port-id>             Port interface
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show system port-mirror session <session-id> erspan destination
 
+### Usage
 
-Usage:
   nv show system port-mirror session <session-id> erspan destination [options] [<attribute> ...]
 
-Description:
+### Description
+
   erspan destination
 
-Identifiers:
+### Identifiers
+
   <session-id>          port mirror session number
 
-Attributes:
+### Atrributes
+
   source-ip             TBD
   dest-ip               TBD
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show system port-mirror session <session-id> erspan destination source-ip
 
+### Usage
 
-Usage:
   nv show system port-mirror session <session-id> erspan destination source-ip [options] [<source-ip> ...]
 
-Description:
+### Description
+
   Set of IPv4 addresses
 
-Identifiers:
+### Identifiers
+
   <session-id>          port mirror session number
   <source-ip>           IPv4 address
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show system port-mirror session <session-id> erspan destination source-ip <source-ip>
 
+### Usage
 
-Usage:
   nv show system port-mirror session <session-id> erspan destination source-ip <source-ip> [options]
 
-Description:
+### Description
+
   An IPv4 address
 
-Identifiers:
+### Identifiers
+
   <session-id>          port mirror session number
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system port-mirror session <session-id> erspan destination dest-ip
 
+### Usage
 
-Usage:
   nv show system port-mirror session <session-id> erspan destination dest-ip [options] [<dest-ip> ...]
 
-Description:
+### Description
+
   Set of IPv4 addresses
 
-Identifiers:
+### Identifiers
+
   <session-id>          port mirror session number
   <dest-ip>             IPv4 address
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show system port-mirror session <session-id> erspan destination dest-ip <dest-ip>
 
+### Usage
 
-Usage:
   nv show system port-mirror session <session-id> erspan destination dest-ip <dest-ip> [options]
 
-Description:
+### Description
+
   An IPv4 address
 
-Identifiers:
+### Identifiers
+
   <session-id>          port mirror session number
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system port-mirror session <session-id> erspan truncate
 
+### Usage
 
-Usage:
   nv show system port-mirror session <session-id> erspan truncate [options]
 
-Description:
+### Description
+
   TBD
 
-Identifiers:
+### Identifiers
+
   <session-id>          port mirror session number
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system config
 
+### Usage
 
-Usage:
   nv show system config [options] [<attribute> ...]
 
-Description:
+### Description
+
   Affect how config operations are performed.
 
-Attributes:
+### Atrributes
+
   apply                 Affect how config apply operations are performed.
   snippet               Configuration file snippets that will be loaded as
                         written into the appropriate configuration file during
@@ -12355,646 +5288,297 @@ Attributes:
                         copy-paste operation to handle gaps in the current CUE
                         OM.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show system config apply
 
+### Usage
 
-Usage:
   nv show system config apply [options] [<attribute> ...]
 
-Description:
+### Description
+
   Affect how config apply operations are performed.
 
-Attributes:
+### Atrributes
+
   ignore                Set of files to ignore during config apply operations.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system config apply ignore
 
+### Usage
 
-Usage:
   nv show system config apply ignore [options] [<ignore-id> ...]
 
-Description:
+### Description
+
   Set of files to ignore during config apply operations.
 
-Identifiers:
+### Identifiers
+
   <ignore-id>           Ignored file
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system config apply ignore <ignore-id>
 
+### Usage
 
-Usage:
   nv show system config apply ignore <ignore-id> [options]
 
-Description:
+### Description
+
   File to ignore during config apply operations.
 
-Identifiers:
+### Identifiers
+
   <ignore-id>           Ignored file
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show system config snippet
 
+### Usage
 
-Usage:
   nv show system config snippet [options]
 
-Description:
+### Description
+
   Configuration file snippets that will be loaded as written into the
   appropriate configuration file during a foundation unit's
   lifecycle.  This is essentially a copy-paste operation to handle
   gaps in the current CUE OM.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf
 
+### Usage
 
-Usage:
   nv show vrf [options] [<vrf-id> ...]
 
-Description:
+### Description
+
   VRFs
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   A VRF
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   loopback              The loopback IP interface associated with this VRF.
   evpn                  EVPN control plane config and info for VRF
   router                A VRF
   ptp                   VRF PTP configuration. Inherited by interfaces in this
                         VRF.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> loopback
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> loopback [options] [<attribute> ...]
 
-Description:
+### Description
+
   The loopback IP interface associated with this VRF.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   ip                    Properties associated with the loopback IP address on
                         this VRF.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> loopback ip
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> loopback ip [options] [<attribute> ...]
 
-Description:
+### Description
+
   IP addresses associated with the VRF's loopback interface.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   address               static IPv4 or IPv6 address
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> loopback ip address <ip-prefix-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> loopback ip address <ip-prefix-id> [options]
 
-Description:
+### Description
+
   An IP address with prefix
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <ip-prefix-id>        IPv4 or IPv6 address and route prefix in CIDR notation
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> evpn
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> evpn [options] [<attribute> ...]
 
-Description:
+### Description
+
   EVPN control plane config and info for VRF
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   vni                   L3 VNI
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> evpn vni <vni-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> evpn vni <vni-id> [options]
 
-Description:
+### Description
+
   VNI
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <vni-id>              VxLAN ID
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router [options] [<attribute> ...]
 
-Description:
+### Description
+
   A VRF
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   rib                   RIB Routes
   bgp                   BGP VRF configuration.
   static                Routes
   pim                   PIM VRF configuration.
   ospf                  OSPF VRF configuration.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router rib <afi>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router rib <afi> [options] [<attribute> ...]
 
-Description:
+### Description
+
   Vrf aware Routing-table per address-family
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <afi>                 Route address family.
 
-Attributes:
+### Atrributes
+
   protocol              Import protocols from RIB to FIB
   route                 RIB Routes with info.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router rib <afi> protocol <import-protocol-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router rib <afi> protocol <import-protocol-id> [options]
 
-Description:
+### Description
+
   Import Protocols from where routes are known
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <afi>                 Route address family.
   <import-protocol-id>  Import protocol list.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router rib <afi> route <route-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router rib <afi> route <route-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   A route
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <afi>                 Route address family.
   <route-id>            IP prefix
 
-Attributes:
+### Atrributes
+
   protocol              Route entries
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router rib <afi> route <route-id> protocol <protocol-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router rib <afi> route <route-id> protocol <protocol-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   Protocol types from where routes are known
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <afi>                 Route address family.
   <route-id>            IP prefix
   <protocol-id>         Route entry list keys.
 
-Attributes:
+### Atrributes
+
   entry-index           Route entries
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp [options] [<attribute> ...]
 
-Description:
+### Description
+
   BGP VRF configuration.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   address-family        Address family specific configuration
   path-selection        BGP path-selection configuration.
   route-reflection      BGP route-reflection configuration.
@@ -13007,82 +5591,42 @@ Attributes:
   confederation         BGP Confederation options.
   neighbor              Peers
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp address-family
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family [options] [<attribute> ...]
 
-Description:
+### Description
+
   Address family specific configuration
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   ipv4-unicast          IPv4 unicast address family
   l2vpn-evpn            BGP VRF configuration. L2VPN EVPN address family
   ipv6-unicast          IPv6 unicast address family
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast [options] [<attribute> ...]
 
-Description:
+### Description
+
   IPv4 unicast address family
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   redistribute          Route redistribute
   aggregate-route       IPv4 aggregate routes
   network               IPv4 static networks.
@@ -13092,631 +5636,281 @@ Attributes:
   route-export          Route export
   loc-rib               IPv4 local RIB
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute [options] [<attribute> ...]
 
-Description:
+### Description
+
   Route redistribute
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   static                Route redistribution of ipv4 static routes
   connected             Route redistribution of ipv4 connected routes
   kernel                Route redistribution of ipv4 kernel routes
   ospf                  Route redistribution of ipv4 ospf routes
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static [options]
 
-Description:
+### Description
+
   Source route type.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected [options]
 
-Description:
+### Description
+
   Source route type.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel [options]
 
-Description:
+### Description
+
   Source route type.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf [options]
 
-Description:
+### Description
+
   Source route type.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> [options]
 
-Description:
+### Description
+
   An IPv4 aggregate route
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <aggregate-route-id>  IPv4 address and route prefix in CIDR notation
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id> [options]
 
-Description:
+### Description
+
   An IPv4 static network.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <static-network-id>   IPv4 address and route prefix in CIDR notation
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import [options] [<attribute> ...]
 
-Description:
+### Description
+
   Route import
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   from-vrf              Controls for VRF to VRF route leaking for this
                         address-family
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf [options] [<attribute> ...]
 
-Description:
+### Description
+
   Controls for VRF to VRF route leaking for this address-family
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   list                  List of VRFs the routes can be imported from
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id> [options]
 
-Description:
+### Description
+
   A VRF
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <leak-vrf-id>         VRF
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast multipaths
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast multipaths [options]
 
-Description:
+### Description
+
   Multipaths
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance [options]
 
-Description:
+### Description
+
   Admin distances.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-export
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-export [options] [<attribute> ...]
 
-Description:
+### Description
+
   Route export
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   to-evpn               Controls for exporting routes from this VRF for this
                         address-family into EVPN (as type-5 routes)
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn [options]
 
-Description:
+### Description
+
   Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib [options] [<attribute> ...]
 
-Description:
+### Description
+
   IPv4 local RIB
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   route                 IPv6 routes
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   An IPv4/IPv6 route
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IPv4 address and route prefix in CIDR notation
 
-Attributes:
+### Atrributes
+
   path                  IP route paths
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   An IPv4/IPv6 route
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IPv4 address and route prefix in CIDR notation
   <path-id>             Path Id
 
-Attributes:
+### Atrributes
+
   nexthop               Route nexthops
   peer                  Nexthop peer information
   flags                 Route flags
@@ -13726,374 +5920,165 @@ Attributes:
   large-community       Set of community names for large community list
   ext-community         extended communities
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> nexthop <nexthop-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> nexthop <nexthop-id> [options]
 
-Description:
+### Description
+
   An IPv4/IPv6 route
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IPv4 address and route prefix in CIDR notation
   <path-id>             Path Id
   <nexthop-id>          Nexthop Id
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> peer
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> peer [options]
 
-Description:
+### Description
+
   Nexthop peer information
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IPv4 address and route prefix in CIDR notation
   <path-id>             Path Id
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> flags
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> flags [options]
 
-Description:
+### Description
+
   Route flags
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IPv4 address and route prefix in CIDR notation
   <path-id>             Path Id
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> bestpath
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> bestpath [options]
 
-Description:
+### Description
+
   A bestpath information
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IPv4 address and route prefix in CIDR notation
   <path-id>             Path Id
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> aspath
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> aspath [options]
 
-Description:
+### Description
+
   AS paths
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IPv4 address and route prefix in CIDR notation
   <path-id>             Path Id
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> community
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> community [options]
 
-Description:
+### Description
+
   Set of community names for community-list
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IPv4 address and route prefix in CIDR notation
   <path-id>             Path Id
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> large-community
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> large-community [options]
 
-Description:
+### Description
+
   Set of community names for large community list
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IPv4 address and route prefix in CIDR notation
   <path-id>             Path Id
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> ext-community
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> ext-community [options]
 
-Description:
+### Description
+
   extended communities
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IPv4 address and route prefix in CIDR notation
   <path-id>             Path Id
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp address-family l2vpn-evpn
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family l2vpn-evpn [options]
 
-Description:
+### Description
+
   BGP VRF configuration. L2VPN EVPN address family
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast [options] [<attribute> ...]
 
-Description:
+### Description
+
   IPv6 unicast address family
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   aggregate-route       IPv6 aggregate routes
   network               IPv6 static networks.
   route-import          Route import
@@ -14103,630 +6088,280 @@ Attributes:
   redistribute          Route redistribute
   loc-rib               IPv6 local RIB
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> [options]
 
-Description:
+### Description
+
   An IPv6 aggregate route
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <aggregate-route-id>  IPv6 address and route prefix in CIDR notation
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id> [options]
 
-Description:
+### Description
+
   An IPv6 static network.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <static-network-id>   IPv6 address and route prefix in CIDR notation
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import [options] [<attribute> ...]
 
-Description:
+### Description
+
   Route import
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   from-vrf              Controls for VRF to VRF route leaking for this
                         address-family
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf [options] [<attribute> ...]
 
-Description:
+### Description
+
   Controls for VRF to VRF route leaking for this address-family
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   list                  List of VRFs the routes can be imported from
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf list
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf list [options]
 
-Description:
+### Description
+
   Set of VRFs
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast multipaths
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast multipaths [options]
 
-Description:
+### Description
+
   Multipaths
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance [options]
 
-Description:
+### Description
+
   Admin distances.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-export
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-export [options] [<attribute> ...]
 
-Description:
+### Description
+
   Route export
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   to-evpn               Controls for exporting routes from this VRF for this
                         address-family into EVPN (as type-5 routes)
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn [options]
 
-Description:
+### Description
+
   Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute [options] [<attribute> ...]
 
-Description:
+### Description
+
   Route redistribute
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   static                Route redistribution of ipv4 static routes
   connected             Route redistribution of ipv4 connected routes
   kernel                Route redistribution of ipv4 kernel routes
   ospf6                 Route redistribution of ipv6 ospf routes
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static [options]
 
-Description:
+### Description
+
   Source route type.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected [options]
 
-Description:
+### Description
+
   Source route type.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel [options]
 
-Description:
+### Description
+
   Source route type.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6 [options]
 
-Description:
+### Description
+
   Source route type.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib [options] [<attribute> ...]
 
-Description:
+### Description
+
   IPv6 local RIB
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   route                 IPv6 routes
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   An IPv4/IPv6 route
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IPv6 address and route prefix in CIDR notation
 
-Attributes:
+### Atrributes
+
   path                  IP route paths
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   An IPv4/IPv6 route
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IPv6 address and route prefix in CIDR notation
   <path-id>             Path Id
 
-Attributes:
+### Atrributes
+
   nexthop               Route nexthops
   peer                  Nexthop peer information
   flags                 Route flags
@@ -14736,339 +6371,151 @@ Attributes:
   large-community       Set of community names for large community list
   ext-community         extended communities
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> nexthop <nexthop-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> nexthop <nexthop-id> [options]
 
-Description:
+### Description
+
   An IPv4/IPv6 route
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IPv6 address and route prefix in CIDR notation
   <path-id>             Path Id
   <nexthop-id>          Nexthop Id
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> peer
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> peer [options]
 
-Description:
+### Description
+
   Nexthop peer information
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IPv6 address and route prefix in CIDR notation
   <path-id>             Path Id
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> flags
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> flags [options]
 
-Description:
+### Description
+
   Route flags
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IPv6 address and route prefix in CIDR notation
   <path-id>             Path Id
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> bestpath
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> bestpath [options]
 
-Description:
+### Description
+
   A bestpath information
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IPv6 address and route prefix in CIDR notation
   <path-id>             Path Id
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> aspath
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> aspath [options]
 
-Description:
+### Description
+
   AS paths
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IPv6 address and route prefix in CIDR notation
   <path-id>             Path Id
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> community
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> community [options]
 
-Description:
+### Description
+
   Set of community names for community-list
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IPv6 address and route prefix in CIDR notation
   <path-id>             Path Id
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> large-community
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> large-community [options]
 
-Description:
+### Description
+
   Set of community names for large community list
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IPv6 address and route prefix in CIDR notation
   <path-id>             Path Id
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> ext-community
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> ext-community [options]
 
-Description:
+### Description
+
   extended communities
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IPv6 address and route prefix in CIDR notation
   <path-id>             Path Id
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp path-selection
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp path-selection [options] [<attribute> ...]
 
-Description:
+### Description
+
   BGP path-selection configuration.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   aspath                BGP aspath path-selection config, applicable to this
                         BGP instance
   med                   BGP med path-selection config, applicable to this BGP
@@ -15076,183 +6523,79 @@ Attributes:
   multipath             BGP multipath path-selection config, applicable to
                         this BGP instance
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp path-selection aspath
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp path-selection aspath [options]
 
-Description:
+### Description
+
   BGP aspath path-selection config, applicable to this BGP instance
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp path-selection med
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp path-selection med [options]
 
-Description:
+### Description
+
   BGP med path-selection config, applicable to this BGP instance
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp path-selection multipath
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp path-selection multipath [options]
 
-Description:
+### Description
+
   BGP multipath path-selection config, applicable to this BGP instance
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp route-reflection
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp route-reflection [options]
 
-Description:
+### Description
+
   BGP route-reflection configuration.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   BGP global configuration.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-Attributes:
+### Atrributes
+
   bfd                   Specifies whether to track BGP peering sessions using
                         this configuration via BFD.
   ttl-security          RFC 5082
@@ -15262,301 +6605,135 @@ Attributes:
   timers                Peer peer-timerss
   address-family        Address family specific configuration
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> bfd
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> bfd [options]
 
-Description:
+### Description
+
   Specifies whether to track BGP peering sessions using this configuration via BFD.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security [options]
 
-Description:
+### Description
+
   RFC 5082
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities [options]
 
-Description:
+### Description
+
   Capabilities
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart [options]
 
-Description:
+### Description
+
   BGP Graceful restart per neighbor configuration
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> local-as
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> local-as [options]
 
-Description:
+### Description
+
   Local AS feature
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> timers
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> timers [options]
 
-Description:
+### Description
+
   Peer peer-timerss
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family [options] [<attribute> ...]
 
-Description:
+### Description
+
   Address family specific configuration
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-Attributes:
+### Atrributes
+
   ipv4-unicast          Peer IPv4 unicast address family. Always on, unless
                         disabled globaly.
   ipv6-unicast          Peer IPv6 unicast address family.
   l2vpn-evpn            Peer l2vpn EVPN address family.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast [options] [<attribute> ...]
 
-Description:
+### Description
+
   Peer IPv4 unicast address family.  Always on, unless disabled globaly.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-Attributes:
+### Atrributes
+
   community-advertise   Community advertise for address family.
   attribute-mod         Attribute mod for address family.
   aspath                Options for handling AS_PATH for prefixes from/to peer
@@ -15567,452 +6744,204 @@ Attributes:
   policy                Policies for ipv4 unicast
   conditional-advertise
                         Conditional advertise for address family.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise [options]
 
-Description:
+### Description
+
   Community advertise for address family.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod [options]
 
-Description:
+### Description
+
   Attribute mod for address family.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath [options] [<attribute> ...]
 
-Description:
+### Description
+
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-Attributes:
+### Atrributes
+
   allow-my-asn          If enabled, it is acceptable for a received AS_PATH to
                         contain the ASN of the local system
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn [options]
 
-Description:
+### Description
+
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits [options] [<attribute> ...]
 
-Description:
+### Description
+
   Limits on prefix from the peer for this address-family
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-Attributes:
+### Atrributes
+
   inbound               Limits on inbound prefix from the peer for this
                         address-family
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound [options]
 
-Description:
+### Description
+
   Limits on inbound prefix from the peer for this address-family
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination [options]
 
-Description:
+### Description
+
   Default route origination
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy [options] [<attribute> ...]
 
-Description:
+### Description
+
   Policies for ipv4 unicast
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-Attributes:
+### Atrributes
+
   inbound               Outbound unicast policy
   outbound              Outbound unicast policy
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound [options]
 
-Description:
+### Description
+
   Outbound unicast policy
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound [options]
 
-Description:
+### Description
+
   Outbound unicast policy
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise [options]
 
-Description:
+### Description
+
   Conditional advertise for address family.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast [options] [<attribute> ...]
 
-Description:
+### Description
+
   Peer IPv6 unicast address family.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-Attributes:
+### Atrributes
+
   policy                Policies for ipv4 unicast
   aspath                Options for handling AS_PATH for prefixes from/to peer
                         for the specified address family
@@ -16024,1055 +6953,479 @@ Attributes:
   conditional-advertise
                         Conditional advertise for address family.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy [options] [<attribute> ...]
 
-Description:
+### Description
+
   Policies for ipv6 unicast
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-Attributes:
+### Atrributes
+
   inbound               Outbound unicast policy
   outbound              Outbound unicast policy
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound [options]
 
-Description:
+### Description
+
   Outbound unicast policy
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound [options]
 
-Description:
+### Description
+
   Outbound unicast policy
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath [options] [<attribute> ...]
 
-Description:
+### Description
+
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-Attributes:
+### Atrributes
+
   allow-my-asn          If enabled, it is acceptable for a received AS_PATH to
                         contain the ASN of the local system
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn [options]
 
-Description:
+### Description
+
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits [options] [<attribute> ...]
 
-Description:
+### Description
+
   Limits on prefix from the peer for this address-family
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-Attributes:
+### Atrributes
+
   inbound               Limits on inbound prefix from the peer for this
                         address-family
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound [options]
 
-Description:
+### Description
+
   Limits on inbound prefix from the peer for this address-family
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast default-route-origination
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast default-route-origination [options]
 
-Description:
+### Description
+
   Default route origination
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast community-advertise
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast community-advertise [options]
 
-Description:
+### Description
+
   Community advertise for address family.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast attribute-mod
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast attribute-mod [options]
 
-Description:
+### Description
+
   Attribute mod for address family.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise [options]
 
-Description:
+### Description
+
   Conditional advertise for address family.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn [options] [<attribute> ...]
 
-Description:
+### Description
+
   Peer l2vpn EVPN address family.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-Attributes:
+### Atrributes
+
   attribute-mod         Attribute mod for address family.
   aspath                Options for handling AS_PATH for prefixes from/to peer
                         for the specified address family
   policy                Policies for l2vpn evpn
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn attribute-mod
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn attribute-mod [options]
 
-Description:
+### Description
+
   Attribute mod for address family.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath [options] [<attribute> ...]
 
-Description:
+### Description
+
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-Attributes:
+### Atrributes
+
   allow-my-asn          If enabled, it is acceptable for a received AS_PATH to
                         contain the ASN of the local system
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn [options]
 
-Description:
+### Description
+
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy [options] [<attribute> ...]
 
-Description:
+### Description
+
   Policies for l2vpn evpn
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-Attributes:
+### Atrributes
+
   inbound               Inbound l2vpn-evpn policy
   outbound              Outbound l2vpn-evpn policy
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy inbound
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy inbound [options]
 
-Description:
+### Description
+
   Inbound l2vpn-evpn policy
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy outbound
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy outbound [options]
 
-Description:
+### Description
+
   Outbound l2vpn-evpn policy
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp route-export
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp route-export [options] [<attribute> ...]
 
-Description:
+### Description
+
   Controls for exporting ipv4 and ipv6 routes from this VRF
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   to-evpn               Controls for exporting routes from this VRF into EVPN
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp route-export to-evpn
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp route-export to-evpn [options] [<attribute> ...]
 
-Description:
+### Description
+
   Controls for exporting routes from this VRF into EVPN
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   route-target          List the RTs to attach to host or prefix routes when
                         exporting them into EVPN or "auto". If "auto", the RT
                         will be derived. This is the default.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp route-export to-evpn route-target <rt-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp route-export to-evpn route-target <rt-id> [options]
 
-Description:
+### Description
+
   A route target identifier
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <rt-id>               Route targets or "auto"
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp route-import
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp route-import [options] [<attribute> ...]
 
-Description:
+### Description
+
   Controls for importing of ipv4 and ipv6 routes from this VRF
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   from-evpn             Controls for importing EVPN type-2 and type-5 routes
                         into this VRF
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp route-import from-evpn
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp route-import from-evpn [options] [<attribute> ...]
 
-Description:
+### Description
+
   Controls for importing EVPN type-2 and type-5 routes into this VRF
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   route-target          List the RTs to attach to host or prefix routes when
                         importing them into VRF or "auto". If "auto", the RT
                         will be derived. This is the default.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp route-import from-evpn route-target <rt-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp route-import from-evpn route-target <rt-id> [options]
 
-Description:
+### Description
+
   A route target identifier
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <rt-id>               Route targets or "auto"
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp timers
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp timers [options]
 
-Description:
+### Description
+
   timer values for all peers in this VRF
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp confederation
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp confederation [options] [<attribute> ...]
 
-Description:
+### Description
+
   BGP Confederation options.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   member-as             Confederation ASNs of the peers, maps to BGP
                         confederation peers
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp confederation member-as
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp confederation member-as [options]
 
-Description:
+### Description
+
   Set of autonomous numbers
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   BGP global configuration.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-Attributes:
+### Atrributes
+
   bfd                   Specifies whether to track BGP peering sessions using
                         this configuration via BFD.
   capabilities          Capabilities
@@ -17085,373 +7438,165 @@ Attributes:
   address-family        Address family specific configuration
   timers                Peer peer-timerss
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> bfd
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> bfd [options]
 
-Description:
+### Description
+
   Specifies whether to track BGP peering sessions using this configuration via BFD.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities [options]
 
-Description:
+### Description
+
   Capabilities
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> local-as
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> local-as [options]
 
-Description:
+### Description
+
   Local AS feature
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> graceful-restart
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> graceful-restart [options]
 
-Description:
+### Description
+
   BGP Graceful restart per neighbor configuration
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security [options]
 
-Description:
+### Description
+
   RFC 5082
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> nexthop
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> nexthop [options]
 
-Description:
+### Description
+
   Nexthop
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> message-stats
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> message-stats [options]
 
-Description:
+### Description
+
   Message statistics
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> ebgp-policy
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> ebgp-policy [options]
 
-Description:
+### Description
+
   EBGP Policy RFC8212
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family [options] [<attribute> ...]
 
-Description:
+### Description
+
   Address family specific configuration
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-Attributes:
+### Atrributes
+
   ipv4-unicast          Peer IPv4 unicast address family. Always on, unless
                         disabled globaly.
   ipv6-unicast          Peer IPv6 unicast address family.
   l2vpn-evpn            Peer l2vpn EVPN address family.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast [options] [<attribute> ...]
 
-Description:
+### Description
+
   Peer IPv4 unicast address family.  Always on, unless disabled globaly.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-Attributes:
+### Atrributes
+
   attribute-mod         Attribute mod for address family.
   aspath                Options for handling AS_PATH for prefixes from/to peer
                         for the specified address family
@@ -17464,524 +7609,234 @@ Attributes:
                         Conditional advertise for address family.
   capabilities          AF capabilities advertised and received
   graceful-restart      graceful restart information
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast attribute-mod
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast attribute-mod [options]
 
-Description:
+### Description
+
   Attribute mod for address family.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath [options] [<attribute> ...]
 
-Description:
+### Description
+
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-Attributes:
+### Atrributes
+
   allow-my-asn          If enabled, it is acceptable for a received AS_PATH to
                         contain the ASN of the local system
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn [options]
 
-Description:
+### Description
+
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy [options] [<attribute> ...]
 
-Description:
+### Description
+
   Policies for ipv4 unicast
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-Attributes:
+### Atrributes
+
   inbound               Outbound unicast policy
   outbound              Outbound unicast policy
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound [options]
 
-Description:
+### Description
+
   Outbound unicast policy
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound [options]
 
-Description:
+### Description
+
   Outbound unicast policy
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits [options] [<attribute> ...]
 
-Description:
+### Description
+
   Limits on prefix from the peer for this address-family
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-Attributes:
+### Atrributes
+
   inbound               Limits on inbound prefix from the peer for this
                         address-family
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound [options]
 
-Description:
+### Description
+
   Limits on inbound prefix from the peer for this address-family
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast default-route-origination
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast default-route-origination [options]
 
-Description:
+### Description
+
   Default route origination
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast community-advertise
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast community-advertise [options]
 
-Description:
+### Description
+
   Community advertise for address family.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise [options]
 
-Description:
+### Description
+
   Conditional advertise for address family.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast capabilities
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast capabilities [options]
 
-Description:
+### Description
+
   AF capabilities advertised and received
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast graceful-restart
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast graceful-restart [options]
 
-Description:
+### Description
+
   graceful restart information
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast [options] [<attribute> ...]
 
-Description:
+### Description
+
   Peer IPv6 unicast address family.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-Attributes:
+### Atrributes
+
   attribute-mod         Attribute mod for address family.
   aspath                Options for handling AS_PATH for prefixes from/to peer
                         for the specified address family
@@ -17995,523 +7850,233 @@ Attributes:
   capabilities          AF capabilities advertised and received
   graceful-restart      graceful restart information
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast attribute-mod
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast attribute-mod [options]
 
-Description:
+### Description
+
   Attribute mod for address family.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath [options] [<attribute> ...]
 
-Description:
+### Description
+
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-Attributes:
+### Atrributes
+
   allow-my-asn          If enabled, it is acceptable for a received AS_PATH to
                         contain the ASN of the local system
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn [options]
 
-Description:
+### Description
+
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits [options] [<attribute> ...]
 
-Description:
+### Description
+
   Limits on prefix from the peer for this address-family
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-Attributes:
+### Atrributes
+
   inbound               Limits on inbound prefix from the peer for this
                         address-family
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound [options]
 
-Description:
+### Description
+
   Limits on inbound prefix from the peer for this address-family
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast default-route-origination
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast default-route-origination [options]
 
-Description:
+### Description
+
   Default route origination
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy [options] [<attribute> ...]
 
-Description:
+### Description
+
   Policies for ipv6 unicast
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-Attributes:
+### Atrributes
+
   inbound               Outbound unicast policy
   outbound              Outbound unicast policy
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound [options]
 
-Description:
+### Description
+
   Outbound unicast policy
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound [options]
 
-Description:
+### Description
+
   Outbound unicast policy
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast community-advertise
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast community-advertise [options]
 
-Description:
+### Description
+
   Community advertise for address family.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise [options]
 
-Description:
+### Description
+
   Conditional advertise for address family.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast capabilities
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast capabilities [options]
 
-Description:
+### Description
+
   AF capabilities advertised and received
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast graceful-restart
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast graceful-restart [options]
 
-Description:
+### Description
+
   graceful restart information
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn
 
+## Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn [options] [<attribute> ...]
 
-Description:
+### Description
+
   Peer l2vpn EVPN address family.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-Attributes:
+### Atrributes
+
   attribute-mod         Attribute mod for address family.
   aspath                Options for handling AS_PATH for prefixes from/to peer
                         for the specified address family
@@ -18519,610 +8084,281 @@ Attributes:
   capabilities          AF capabilities advertised and received
   graceful-restart      graceful restart information
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn attribute-mod
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn attribute-mod [options]
 
-Description:
+### Description
+
   Attribute mod for address family.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath [options] [<attribute> ...]
 
-Description:
+### Description
+
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-Attributes:
+### Atrributes
+
   allow-my-asn          If enabled, it is acceptable for a received AS_PATH to
                         contain the ASN of the local system
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn [options]
 
-Description:
+### Description
+
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy [options] [<attribute> ...]
 
-Description:
+### Description
+
   Policies for l2vpn evpn
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-Attributes:
+### Atrributes
+
   inbound               Inbound l2vpn-evpn policy
   outbound              Outbound l2vpn-evpn policy
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy inbound
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy inbound [options]
 
-Description:
+### Description
+
   Inbound l2vpn-evpn policy
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy outbound
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy outbound [options]
 
-Description:
+### Description
+
   Outbound l2vpn-evpn policy
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn capabilities
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn capabilities [options]
 
-Description:
+### Description
+
   AF capabilities advertised and received
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn graceful-restart
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn graceful-restart [options]
 
-Description:
+### Description
+
   graceful restart information
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> timers
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> timers [options]
 
-Description:
+### Description
+
   Peer peer-timerss
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router static <route-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router static <route-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   A route
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IP prefix
 
-Attributes:
+### Atrributes
+
   distance              Paths
   via                   Nexthops
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router static <route-id> distance <distance-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router static <route-id> distance <distance-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   A path
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IP prefix
   <distance-id>         A path distance
 
-Attributes:
+### Atrributes
+
   via                   Nexthops
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   A via
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IP prefix
   <distance-id>         A path distance
   <via-id>              IP address, interface, or "blackhole".
 
-Attributes:
+### Atrributes
+
   flag                  Nexthop flags
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> flag
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> flag [options]
 
-Description:
+### Description
+
   Nexthop flags
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IP prefix
   <distance-id>         A path distance
   <via-id>              IP address, interface, or "blackhole".
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router static <route-id> via <via-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router static <route-id> via <via-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   A via
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IP prefix
   <via-id>              IP address, interface, or "blackhole".
 
-Attributes:
+### Atrributes
+
   flag                  Nexthop flags
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router static <route-id> via <via-id> flag
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router static <route-id> via <via-id> flag [options]
 
-Description:
+### Description
+
   Nexthop flags
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <route-id>            IP prefix
   <via-id>              IP address, interface, or "blackhole".
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router pim
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router pim [options] [<attribute> ...]
 
-Description:
+### Description
+
   PIM VRF configuration.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   timers                Timers
   ecmp                  Choose all available ECMP paths for a particular RPF.
                         If 'off', the first nexthop found will be used. This
@@ -19131,376 +8367,171 @@ Attributes:
                         RPs.
   address-family        Address family specific configuration
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router pim timers
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router pim timers [options]
 
-Description:
+### Description
+
   Timers
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router pim ecmp
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router pim ecmp [options]
 
-Description:
+### Description
+
   Choose all available ECMP paths for a particular RPF.  If 'off', the first nexthop found will be used.  This is the default.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   MSDP mesh-group
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <msdp-mesh-group-id>  MSDP mesh group name
 
-Attributes:
+### Atrributes
+
   member-address        Set of member-address
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> member-address <mesh-member-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> member-address <mesh-member-id> [options]
 
-Description:
+### Description
+
   A MSDP mesh member
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <msdp-mesh-group-id>  MSDP mesh group name
   <mesh-member-id>      MSDP mesh-group member IP address
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router pim address-family
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router pim address-family [options] [<attribute> ...]
 
-Description:
+### Description
+
   Address family specific configuration
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   ipv4-unicast          IPv4 unicast address family
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router pim address-family ipv4-unicast
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router pim address-family ipv4-unicast [options] [<attribute> ...]
 
-Description:
+### Description
+
   IPv4 unicast address family
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   spt-switchover        Build shortest path tree towards source.
   rp                    RP address and associated group range.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover [options]
 
-Description:
+### Description
+
   Build shortest path tree towards source.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   RP
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <rp-id>               RP IP address
 
-Attributes:
+### Atrributes
+
   group-range           Set of group range assocaited to RP.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range <group-range-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range <group-range-id> [options]
 
-Description:
+### Description
+
   A group range
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <rp-id>               RP IP address
   <group-range-id>      Group range associated to RP.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router ospf
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router ospf [options] [<attribute> ...]
 
-Description:
+### Description
+
   OSPF VRF configuration.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   area                  OSPF areas
   default-originate     Advertise a default route as external lsa
   distance              Administrative distance for installation into the rib
@@ -19510,690 +8541,294 @@ Attributes:
   redistribute          Route redistribute
   timers                Timers
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router ospf area <area-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router ospf area <area-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   An OSPF area
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <area-id>             Area
 
-Attributes:
+### Atrributes
+
   filter-list           Filters networks between OSPF areas
   range                 Area ranges
   network               Area networks
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router ospf area <area-id> filter-list
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router ospf area <area-id> filter-list [options]
 
-Description:
+### Description
+
   Filters networks between OSPF areas
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <area-id>             Area
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router ospf area <area-id> range <range-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router ospf area <area-id> range <range-id> [options]
 
-Description:
+### Description
+
   Filters out components of the prefix
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <area-id>             Area
   <range-id>            Range
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router ospf area <area-id> network <network-id>
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router ospf area <area-id> network <network-id> [options]
 
-Description:
+### Description
+
   Filters out components of the prefix
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
   <area-id>             Area
   <network-id>          Network
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router ospf default-originate
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router ospf default-originate [options]
 
-Description:
+### Description
+
   Advertise a default route as external lsa
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router ospf distance
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router ospf distance [options]
 
-Description:
+### Description
+
   Administrative distance for installation into the rib
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router ospf max-metric
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router ospf max-metric [options]
 
-Description:
+### Description
+
   Set maximum metric value in router lsa to make stub router
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router ospf log
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router ospf log [options]
 
-Description:
+### Description
+
   Log configuration
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router ospf redistribute
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router ospf redistribute [options] [<attribute> ...]
 
-Description:
+### Description
+
   Route redistribute
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   static                Route redistribute of static routes
   connected             Route redistribute of connected routes
   kernel                Route redistribute of kernel routes
   bgp                   Route redistribute of bgp routes
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router ospf redistribute static
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router ospf redistribute static [options]
 
-Description:
+### Description
+
   Source route type.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router ospf redistribute connected
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router ospf redistribute connected [options]
 
-Description:
+### Description
+
   Source route type.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router ospf redistribute kernel
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router ospf redistribute kernel [options]
 
-Description:
+### Description
+
   Source route type.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router ospf redistribute bgp
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router ospf redistribute bgp [options]
 
-Description:
+### Description
+
   Source route type.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router ospf timers
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router ospf timers [options] [<attribute> ...]
 
-Description:
+### Description
+
   Timers
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
 
-Attributes:
+### Atrributes
+
   lsa                   LSA timers
   spf                   SPF timers
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show vrf <vrf-id> router ospf timers lsa
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router ospf timers lsa [options]
 
-Description:
+### Description
+
   LSA timers
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> router ospf timers spf
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> router ospf timers spf [options]
 
-Description:
+### Description
+
   SPF timers
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show vrf <vrf-id> ptp
 
+### Usage
 
-Usage:
   nv show vrf <vrf-id> ptp [options]
 
-Description:
+### Description
+
   VRF PTP configuration.  Inherited by interfaces in this VRF.
 
-Identifiers:
+### Identifiers
+
   <vrf-id>              VRF
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show nve
 
+### Usage
 
-Usage:
   nv show nve [options] [<attribute> ...]
 
-Description:
+### Description
+
   Network Virtualization configuration and operational info
 
-Attributes:
+### Atrributes
+
   vxlan                 Global VxLAN configuration and operational properties.
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show nve vxlan
 
+### Usage
 
-Usage:
   nv show nve vxlan [options] [<attribute> ...]
 
-Description:
+### Description
+
   VxLAN
 
-Attributes:
+### Atrributes
+
   mlag                  VxLAN specific MLAG address
   source                Source address
   flooding              Configuration to specify how BUM traffic in the
@@ -20201,742 +8836,327 @@ Attributes:
                         (VNIs), but can be overridden by VNI-specific
                         configuration.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show nve vxlan mlag
 
+### Usage
 
-Usage:
   nv show nve vxlan mlag [options]
 
-Description:
+### Description
+
   VxLAN specfic MLAG configuration
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show nve vxlan source
 
+### Usage
 
-Usage:
   nv show nve vxlan source [options]
 
-Description:
+### Description
+
   Source address
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show nve vxlan flooding
 
+### Usage
 
-Usage:
   nv show nve vxlan flooding [options] [<attribute> ...]
 
-Description:
+### Description
+
   Handling of BUM traffic
 
-Attributes:
+### Atrributes
+
   head-end-replication  BUM traffic is replicated and individual copies sent
                         to remote destinations.
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show nve vxlan flooding head-end-replication
 
+### Usage
 
-Usage:
   nv show nve vxlan flooding head-end-replication [options] [<hrep-id> ...]
 
-Description:
+### Description
+
   Set of IPv4 unicast addresses or "evpn".
 
-Identifiers:
+### Identifiers
+
   <hrep-id>             IPv4 unicast addresses or "evpn"
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show nve vxlan flooding head-end-replication <hrep-id>
 
+### Usage
 
-Usage:
   nv show nve vxlan flooding head-end-replication <hrep-id> [options]
 
-Description:
+### Description
+
   Set of IPv4 unicast addresses or "evpn".
 
-Identifiers:
+### Identifiers
+
   <hrep-id>             IPv4 unicast addresses or "evpn"
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show acl
 
+### Usage
 
-Usage:
   nv show acl [options] [<acl-id> ...]
 
-Description:
+### Description
+
   ACL rules
 
-Identifiers:
+### Identifiers
+
   <acl-id>              ACL ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show acl <acl-id>
 
+### Usage
 
-Usage:
   nv show acl <acl-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   An ACL is used for matching packets and take actions
 
-Identifiers:
+### Identifiers
+
   <acl-id>              ACL ID
 
-Attributes:
+### Atrributes
+
   rule                  acl rule
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show acl <acl-id> rule <rule-id>
 
+### Usage
 
-Usage:
   nv show acl <acl-id> rule <rule-id> [options] [<attribute> ...]
 
-Description:
+### Description
+
   ACL Matching criteria and action rule
 
-Identifiers:
+### Identifiers
+
   <acl-id>              ACL ID
   <rule-id>             ACL rule number
 
-Attributes:
+### Atrributes
+
   match                 ACL match criteria
   action                ACL action
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show acl <acl-id> rule <rule-id> match
 
+### Usage
 
-Usage:
   nv show acl <acl-id> rule <rule-id> match [options] [<attribute> ...]
 
-Description:
+### Description
+
   An ACL match
 
-Identifiers:
+### Identifiers
+
   <acl-id>              ACL ID
   <rule-id>             ACL rule number
 
-Attributes:
+### Atrributes
+
   ip                    IPv4 and IPv6 match
   mac                   MAC match
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show acl <acl-id> rule <rule-id> match ip
 
+### Usage
 
-Usage:
   nv show acl <acl-id> rule <rule-id> match ip [options] [<attribute> ...]
 
-Description:
+### Description
+
   An ACL IPv4/IPv6 match
 
-Identifiers:
+### Identifiers
+
   <acl-id>              ACL ID
   <rule-id>             ACL rule number
 
-Attributes:
+### Atrributes
+
   source-port           source port
   dest-port             destination port
   fragment              Fragment packets
   ecn                   ECN protocol packet match
   tcp                   TCP protocol packet match
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show acl <acl-id> rule <rule-id> match ip source-port <ip-port-id>
 
+### Usage
 
-Usage:
   nv show acl <acl-id> rule <rule-id> match ip source-port <ip-port-id> [options]
 
-Description:
+### Description
+
   L4 port
 
-Identifiers:
+### Identifiers
+
   <acl-id>              ACL ID
   <rule-id>             ACL rule number
   <ip-port-id>          IP port ID
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show acl <acl-id> rule <rule-id> match ip dest-port <ip-port-id>
 
+### Usage
 
-Usage:
   nv show acl <acl-id> rule <rule-id> match ip dest-port <ip-port-id> [options]
 
-Description:
+### Description
+
   L4 port
 
-Identifiers:
+### Identifiers
+
   <acl-id>              ACL ID
   <rule-id>             ACL rule number
   <ip-port-id>          IP port ID
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show acl <acl-id> rule <rule-id> match ip fragment
 
+### Usage
 
-Usage:
   nv show acl <acl-id> rule <rule-id> match ip fragment [options]
 
-Description:
+### Description
+
   State details
 
-Identifiers:
+### Identifiers
+
   <acl-id>              ACL ID
   <rule-id>             ACL rule number
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show acl <acl-id> rule <rule-id> match ip ecn
 
+### Usage
 
-Usage:
   nv show acl <acl-id> rule <rule-id> match ip ecn [options] [<attribute> ...]
 
-Description:
+### Description
+
   ECN
 
-Identifiers:
+### Identifiers
+
   <acl-id>              ACL ID
   <rule-id>             ACL rule number
 
-Attributes:
+### Atrributes
+
   flags                 ECN protocol flags
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show acl <acl-id> rule <rule-id> match ip ecn flags
 
+### Usage
 
-Usage:
   nv show acl <acl-id> rule <rule-id> match ip ecn flags [options]
 
-Description:
+### Description
+
   ECN flags
 
-Identifiers:
+### Identifiers
+
   <acl-id>              ACL ID
   <rule-id>             ACL rule number
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show acl <acl-id> rule <rule-id> match ip tcp
 
+### Usage
 
-Usage:
   nv show acl <acl-id> rule <rule-id> match ip tcp [options] [<attribute> ...]
 
-Description:
+### Description
+
   L4 port
 
-Identifiers:
+### Identifiers
+
   <acl-id>              ACL ID
   <rule-id>             ACL rule number
 
-Attributes:
+### Atrributes
+
   flags                 TCP protocol flags
   mask                  TCP protocol flag mask
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show acl <acl-id> rule <rule-id> match ip tcp flags
 
+### Usage
 
-Usage:
   nv show acl <acl-id> rule <rule-id> match ip tcp flags [options]
 
-Description:
+### Description
+
   TCP flags
 
-Identifiers:
+### Identifiers
+
   <acl-id>              ACL ID
   <rule-id>             ACL rule number
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show acl <acl-id> rule <rule-id> match ip tcp mask
 
+### Usage
 
-Usage:
   nv show acl <acl-id> rule <rule-id> match ip tcp mask [options]
 
-Description:
+### Description
+
   TCP flags
 
-Identifiers:
+### Identifiers
+
   <acl-id>              ACL ID
   <rule-id>             ACL rule number
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show acl <acl-id> rule <rule-id> match mac
 
+### Usage
 
-Usage:
   nv show acl <acl-id> rule <rule-id> match mac [options]
 
-Description:
+### Description
+
   An ACL MAC match
 
-Identifiers:
+### Identifiers
+
   <acl-id>              ACL ID
   <rule-id>             ACL rule number
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show acl <acl-id> rule <rule-id> action
 
+### Usage
 
-Usage:
   nv show acl <acl-id> rule <rule-id> action [options] [<attribute> ...]
 
-Description:
+### Description
+
   ACL rule action
 
-Identifiers:
+### Identifiers
+
   <acl-id>              ACL ID
   <rule-id>             ACL rule number
 
-Attributes:
+### Atrributes
+
   permit                Permit action
   deny                  Deny action
   log                   Provides ACL logging facility
@@ -20944,240 +9164,92 @@ Attributes:
   erspan                ERSPAN session
   police                policing of packets/bytes
 
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
-
 ## nv show acl <acl-id> rule <rule-id> action permit
 
+### Usage
 
-Usage:
   nv show acl <acl-id> rule <rule-id> action permit [options]
 
-Description:
+### Description
+
   Permit packets
 
-Identifiers:
+### Identifiers
+
   <acl-id>              ACL ID
   <rule-id>             ACL rule number
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show acl <acl-id> rule <rule-id> action deny
 
+### Usage
 
-Usage:
   nv show acl <acl-id> rule <rule-id> action deny [options]
 
-Description:
+### Description
+
   deny packets
 
-Identifiers:
+### Identifiers
+
   <acl-id>              ACL ID
   <rule-id>             ACL rule number
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show acl <acl-id> rule <rule-id> action log
 
+### Usage
 
-Usage:
   nv show acl <acl-id> rule <rule-id> action log [options]
 
-Description:
+### Description
+
   log packets
 
-Identifiers:
+### Identifiers
+
   <acl-id>              ACL ID
   <rule-id>             ACL rule number
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show acl <acl-id> rule <rule-id> action set
 
+### Usage
 
-Usage:
   nv show acl <acl-id> rule <rule-id> action set [options]
 
-Description:
+### Description
+
   Set action for packets
 
-Identifiers:
+### Identifiers
+
   <acl-id>              ACL ID
   <rule-id>             ACL rule number
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show acl <acl-id> rule <rule-id> action erspan
 
+### Usage
 
-Usage:
   nv show acl <acl-id> rule <rule-id> action erspan [options]
 
-Description:
+### Description
+
   ERSPAN session
 
-Identifiers:
+### Identifiers
+
   <acl-id>              ACL ID
   <rule-id>             ACL rule number
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.
-
 
 ## nv show acl <acl-id> rule <rule-id> action police
 
+### Usage
 
-Usage:
   nv show acl <acl-id> rule <rule-id> action police [options]
 
-Description:
+### Description
+
   Policing of matched packets/bytes
 
-Identifiers:
+### Identifiers
+
   <acl-id>              ACL ID
   <rule-id>             ACL rule number
-
-Revision Options:
-  --rev <revision>      The revision id to operate on
-  --pending             Alias of '--rev=pending'
-  --applied             Alias of '--rev=applied'
-  --startup             Alias of '--rev=startup'
-  --operational         Alias of '--rev=operational'
-
-Show Options:
-  --view <view>, -w <view>
-                        Show a subset of the data.
-
-Output Options:
-  --output <format>, -o <format>
-                        Supported formats: json, yaml, auto (default: auto)
-  --color (on|off|auto)
-                        Toggle coloring of output (default: auto)
-  --paginate (on|off|auto)
-                        Whether to send output to a pager (default: off)
-
-General Options:
-  -h, --help            Show help.

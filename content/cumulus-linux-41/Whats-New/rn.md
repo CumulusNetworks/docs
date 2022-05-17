@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3067803"></a> [3067803](#3067803) <a name="3067803"></a> <br /> | A change to the BFD timer does not apply to the existing session in PTM. | 4.1.1-4.4.3 | |
 | <a name="3017043"></a> [3017043](#3017043) <a name="3017043"></a> <br /> | CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed<br />Vulnerable: <= 4.1.0+git191117-2~deb10u3Fixed: 4.1.0+git191117-2~deb10u4 | 4.0.0-4.4.3 | |
 | <a name="3010292"></a> [3010292](#3010292) <a name="3010292"></a> <br /> | CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers<br />Vulnerable: <= 9.11.5.P4+dfsg-5.1+deb10u6Fixed: 9.11.5.P4+dfsg-5.1+deb10u7 | 4.0.0-4.4.3 | |
 | <a name="3010291"></a> [3010291](#3010291) <a name="3010291"></a> <br /> | CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers<br />Vulnerable: <= 9.11.5.P4+dfsg-5.1+deb10u6Fixed: 9.11.5.P4+dfsg-5.1+deb10u7 | 4.0.0-4.4.3 | |

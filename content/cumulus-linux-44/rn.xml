@@ -35,7 +35,7 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 <td>3060400</td>
 <td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
 To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
-<td>4.3.0-4.4.3</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -155,23 +155,7 @@ Fixed: 4.1.0+git191117-2~deb10u4</td>
 <td></td>
 </tr>
 <tr>
-<td>3017043</td>
-<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
-Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
-Fixed: 4.1.0+git191117-2~deb10u4</td>
-<td>4.0.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3010292</td>
-<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
-Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
-<td>4.0.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>3010291</td>
 <td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
@@ -184,14 +168,6 @@ Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
 Vulnerable: &lt;= 1.1.1d-0+deb10u7
 Fixed: 1.1.1d-0+deb10u8</td>
 <td>4.4.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>3007604</td>
-<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
-Vulnerable: &lt;= 1.1.1d-0+deb10u7
-Fixed: 1.1.1d-0+deb10u8</td>
-<td>4.0.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -245,22 +221,6 @@ Fixed:</td>
 <td>2989100</td>
 <td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
 <td>4.4.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2989099</td>
-<td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
-<td>4.0.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2982536</td>
-<td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
-library, which could result in denial of service or potentially the
-execution of arbitrary code, if a malformed XML file is processed.
-Vulnerable: &lt;= 2.2.6-2+deb10u2
-Fixed: 2.2.6-2+deb10u3</td>
-<td>4.0.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -446,7 +406,7 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <tr>
 <td>2875338</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.3</td>
+<td>4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td>3.7.16</td>
 </tr>
 <tr>
@@ -465,7 +425,7 @@ To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <tr>
 <td>2875279</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.3</td>
+<td>4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td>3.7.16</td>
 </tr>
 <tr>
@@ -2074,7 +2034,7 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 <td>3060400</td>
 <td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
 To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
-<td>4.3.0-4.4.3</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2170,23 +2130,7 @@ Fixed: 4.1.0+git191117-2~deb10u4</td>
 <td></td>
 </tr>
 <tr>
-<td>3017043</td>
-<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
-Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
-Fixed: 4.1.0+git191117-2~deb10u4</td>
-<td>4.0.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3010292</td>
-<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
-Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
-<td>4.0.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>3010291</td>
 <td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
@@ -2199,14 +2143,6 @@ Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
 Vulnerable: &lt;= 1.1.1d-0+deb10u7
 Fixed: 1.1.1d-0+deb10u8</td>
 <td>4.4.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>3007604</td>
-<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
-Vulnerable: &lt;= 1.1.1d-0+deb10u7
-Fixed: 1.1.1d-0+deb10u8</td>
-<td>4.0.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2260,22 +2196,6 @@ Fixed:</td>
 <td>2989100</td>
 <td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
 <td>4.4.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2989099</td>
-<td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
-<td>4.0.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2982536</td>
-<td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
-library, which could result in denial of service or potentially the
-execution of arbitrary code, if a malformed XML file is processed.
-Vulnerable: &lt;= 2.2.6-2+deb10u2
-Fixed: 2.2.6-2+deb10u3</td>
-<td>4.0.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2513,7 +2433,7 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <tr>
 <td>2875338</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.3</td>
+<td>4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2539,7 +2459,7 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <tr>
 <td>2875279</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.3</td>
+<td>4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td>3.7.16</td>
 </tr>
 <tr>
@@ -4359,7 +4279,7 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 <td>3060400</td>
 <td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
 To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
-<td>4.3.0-4.4.3</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4431,23 +4351,7 @@ Fixed: 4.1.0+git191117-2~deb10u4</td>
 <td></td>
 </tr>
 <tr>
-<td>3017043</td>
-<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
-Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
-Fixed: 4.1.0+git191117-2~deb10u4</td>
-<td>4.0.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3010292</td>
-<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
-Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
-<td>4.0.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>3010291</td>
 <td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
@@ -4460,14 +4364,6 @@ Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
 Vulnerable: &lt;= 1.1.1d-0+deb10u7
 Fixed: 1.1.1d-0+deb10u8</td>
 <td>4.4.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>3007604</td>
-<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
-Vulnerable: &lt;= 1.1.1d-0+deb10u7
-Fixed: 1.1.1d-0+deb10u8</td>
-<td>4.0.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4530,22 +4426,6 @@ Fixed:</td>
 <td>2989100</td>
 <td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
 <td>4.4.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2989099</td>
-<td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
-<td>4.0.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2982536</td>
-<td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
-library, which could result in denial of service or potentially the
-execution of arbitrary code, if a malformed XML file is processed.
-Vulnerable: &lt;= 2.2.6-2+deb10u2
-Fixed: 2.2.6-2+deb10u3</td>
-<td>4.0.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4807,7 +4687,7 @@ Fixed: 3.42.1-1+deb10u4</td>
 <tr>
 <td>2875338</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.3</td>
+<td>4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4833,7 +4713,7 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <tr>
 <td>2875279</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.3</td>
+<td>4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td>3.7.16</td>
 </tr>
 <tr>

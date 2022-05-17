@@ -18,6 +18,13 @@ cumulus@switch:~$ nv config apply
 <td></td>
 </tr>
 <tr>
+<td>3060400</td>
+<td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
+To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3059380</td>
 <td>When you configure VRF leaking from the default VRF to a non-default VRF, SSH sessions originating from the switch CLI in the default VRF do not connect to devices in the non-default VRF.</td>
 <td>5.0.1</td>
@@ -118,22 +125,6 @@ Failure during apply. Ignore? [y/N]
 <td></td>
 </tr>
 <tr>
-<td>3025901</td>
-<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
-Vulnerable: 1.2.11.dfsg-1
-Fixed: 1.2.11.dfsg-1+deb10u1</td>
-<td>5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3025900</td>
-<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
-Vulnerable: 1.2.11.dfsg-1
-Fixed: 1.2.11.dfsg-1+deb10u1</td>
-<td>5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3025899</td>
 <td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
 Vulnerable: 1.2.11.dfsg-1
@@ -190,14 +181,6 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>3017042</td>
-<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
-Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
-Fixed: 4.1.0+git191117-2~deb10u4</td>
-<td>5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3016882</td>
 <td>When you power-cycle a newly installed switch and apply the default configuration, the underlying NVUE repository becomes corrupted. Even if you correct the corruption, NVUE cannot run.
 To recover, uninstall NVUE and delete the {{/var/lib/nvue}} directory:
@@ -215,25 +198,9 @@ cumulus@leaf01:~$ sudo systemctl start nvued
 <td></td>
 </tr>
 <tr>
-<td>3010290</td>
-<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
-Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
-<td>5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3008388</td>
 <td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
 <td>4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3007603</td>
-<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
-Vulnerable: &lt;= 1.1.1d-0+deb10u7
-Fixed: 1.1.1d-0+deb10u8</td>
-<td>5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -297,12 +264,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td></td>
 </tr>
 <tr>
-<td>2989098</td>
-<td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
-<td>5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2984205</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
@@ -310,16 +271,6 @@ Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4
 Fixed:</td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2982537</td>
-<td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
-library, which could result in denial of service or potentially the
-execution of arbitrary code, if a malformed XML file is processed.
-Vulnerable: &lt;= 2.2.6-2+deb10u2
-Fixed: 2.2.6-2+deb10u3</td>
-<td>5.0.0-5.0.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2982534</td>
@@ -537,6 +488,18 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>3.7.16</td>
 </tr>
 <tr>
+<td>2875338</td>
+<td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
+<td>4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2875279</td>
+<td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
+<td>4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.16</td>
+</tr>
+<tr>
 <td>2873053</td>
 <td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin admin down ({{ifdown}} and up {{ifup}}),  the VTEP might not program the local MAC addresses in hardware.</td>
 <td>5.0.0-5.0.1</td>
@@ -645,6 +608,13 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3060400</td>
+<td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
+To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3054869</td>
 <td>When you run NVUE commands as part of ZTP scripts, the commands fail with many  errors.
 To work around this issue, before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root). Also, you must export the {{HOME}} variable so it is available globally for NVUE to use.
@@ -692,22 +662,6 @@ Fixed: 5.2.4-1+deb10u1</td>
 <td>3040080</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3025901</td>
-<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
-Vulnerable: 1.2.11.dfsg-1
-Fixed: 1.2.11.dfsg-1+deb10u1</td>
-<td>5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3025900</td>
-<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
-Vulnerable: 1.2.11.dfsg-1
-Fixed: 1.2.11.dfsg-1+deb10u1</td>
-<td>5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -767,33 +721,9 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>3017042</td>
-<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
-Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
-Fixed: 4.1.0+git191117-2~deb10u4</td>
-<td>5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3010290</td>
-<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
-Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
-<td>5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3008388</td>
 <td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
 <td>4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3007603</td>
-<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
-Vulnerable: &lt;= 1.1.1d-0+deb10u7
-Fixed: 1.1.1d-0+deb10u8</td>
-<td>5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -857,12 +787,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td></td>
 </tr>
 <tr>
-<td>2989098</td>
-<td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
-<td>5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2984205</td>
 <td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
 by reading too much data on the heap.
@@ -870,16 +794,6 @@ Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4
 Fixed:</td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2982537</td>
-<td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
-library, which could result in denial of service or potentially the
-execution of arbitrary code, if a malformed XML file is processed.
-Vulnerable: &lt;= 2.2.6-2+deb10u2
-Fixed: 2.2.6-2+deb10u3</td>
-<td>5.0.0-5.0.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2982534</td>
@@ -1084,6 +998,18 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>2879645</td>
 <td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.16</td>
+</tr>
+<tr>
+<td>2875338</td>
+<td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
+<td>4.2.1-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2875279</td>
+<td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
+<td>4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td>3.7.16</td>
 </tr>
 <tr>

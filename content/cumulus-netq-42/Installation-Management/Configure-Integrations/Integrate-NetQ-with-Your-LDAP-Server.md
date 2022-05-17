@@ -6,12 +6,10 @@ toc: 3
 ---
 
 <!-- vale off -->
-With this release and an administrator role, you can integrate the NetQ role-based access control (RBAC) with your lightweight directory access protocol (LDAP) server in on-premises deployments. NetQ maintains control over role-based permissions for the NetQ application. Currently there are two roles, *admin* and *user*. With the RBAC integration, LDAP handles user authentication and your directory service, such as Microsoft Active Directory, Kerberos, OpenLDAP, and Red Hat Directory Service. A copy of each user from LDAP is stored in the local NetQ database.
+As an administrator, you can integrate the NetQ role-based access control (RBAC) with your lightweight directory access protocol (LDAP) server in on-premises deployments. NetQ maintains control over role-based permissions for the NetQ application. Currently there are two roles, *admin* and *user*. With the RBAC integration, LDAP handles user authentication and your directory service, such as Microsoft Active Directory, Kerberos, OpenLDAP, and Red Hat Directory Service. A copy of each user from LDAP is stored in the local NetQ database.
 <!-- vale on -->
 
 Integrating with an LDAP server does not prevent you from configuring local users (stored and managed in the NetQ database) as well.
-
-Read Get Started to become familiar with LDAP configuration parameters, or skip to {{<link title="#Create an LDAP Configuration" text="Create an LDAP Configuration">}} if you are already an LDAP expert.
 
 ## Get Started
 
@@ -68,7 +66,7 @@ Now that you are familiar with the various LDAP configuration parameters, you ca
 
 ## Create an LDAP Configuration
 
-You can configure one LDAP server per bind DN (distinguished name). After you configure LDAP, you can validate the connectivity (and configuration) and save the configuration.
+You can configure one LDAP server per bind DN (distinguished name). After you configure LDAP, you can validate the connectivity and save the configuration.
 
 To create an LDAP configuration:
 

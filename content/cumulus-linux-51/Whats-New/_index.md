@@ -29,7 +29,7 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#peer-link-consistency-check" text="MLAG peer link consistency check">}}
 - {{<link url="Precision-Time-Protocol-PTP" text="PTP on bonds">}}
 - {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#bpdu-guard" text="BPDU guard protodown state and reason">}}
-- {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#gtp-hashing" text="TEID-based ECMP hashing">}} and {{<link url="Bonding-Link-Aggregation/#gtp-hashing" text="TEID-based bond hashing">}} available for early access.
+- {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#gtp-hashing" text="TEID-based ECMP hashing">}} and {{<link url="Bonding-Link-Aggregation/#gtp-hashing" text="TEID-based bond hashing">}} available for early access (Linux commands only).
 - The {{<link title="What Just Happened (WJH)" text="WJH service">}} is now enabled by default.
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="Neighbor-Discovery-ND" text="IPv6 ND configuration options">}}

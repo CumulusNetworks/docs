@@ -3,7 +3,7 @@ title: NX-OS to NVUE Common Commands
 weight: 300
 ---
 
-Cumulus Linux version 4.4 introduces a new CLI called {{<kb_link latest="cl" url="System-Configuration/NVIDIA-User-Experience-NVUE.md" text="NVUE">}}. NVUE is a complete object model for Cumulus Linux, which makes translating configurations from one vendor to another much more reliable the first time you use Cumulus Linux and across Cumulus Linux versions.
+Cumulus Linux version 4.4 introduces a new CLI called {{<kb_link latest="cl" url="system-Configuration/NVIDIA-User-Experience-NVUE/NVUE-CLI.md" text="NVUE">}}. NVUE is a complete object model for Cumulus Linux, which makes translating configurations from one vendor to another much more reliable the first time you use Cumulus Linux and across Cumulus Linux versions.
 
 This KB article describes how to translate common NX-OS configurations to NVUE commands.
 

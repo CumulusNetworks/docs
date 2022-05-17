@@ -25,34 +25,10 @@
 <td></td>
 </tr>
 <tr>
-<td>3017043</td>
-<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
-Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
-Fixed: 4.1.0+git191117-2~deb10u4</td>
-<td>4.0.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>3010292</td>
-<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
-Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
-<td>4.0.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3010291</td>
 <td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
-<td>4.0.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>3007604</td>
-<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
-Vulnerable: &lt;= 1.1.1d-0+deb10u7
-Fixed: 1.1.1d-0+deb10u8</td>
 <td>4.0.0-4.4.3</td>
 <td></td>
 </tr>
@@ -85,22 +61,6 @@ Fixed:</td>
 <td>2991501</td>
 <td>The {{snmpd}} process using the Zabbix template "Template Net Mellanox SNMP"  causes a slow memory leak.</td>
 <td>4.2.1-4.4.3, 5.0.0-5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2989099</td>
-<td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
-<td>4.0.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2982536</td>
-<td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
-library, which could result in denial of service or potentially the
-execution of arbitrary code, if a malformed XML file is processed.
-Vulnerable: &lt;= 2.2.6-2+deb10u2
-Fixed: 2.2.6-2+deb10u3</td>
-<td>4.0.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -208,7 +168,7 @@ Fixed: 3.42.1-1+deb10u4</td>
 <tr>
 <td>2875338</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.3</td>
+<td>4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td></td>
 </tr>
 <tr>
@@ -227,7 +187,7 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <tr>
 <td>2875279</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.3</td>
+<td>4.2.1-4.4.3, 5.0.0-5.0.1</td>
 <td>3.7.16</td>
 </tr>
 <tr>
@@ -3022,34 +2982,10 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <td></td>
 </tr>
 <tr>
-<td>3017043</td>
-<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
-Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
-Fixed: 4.1.0+git191117-2~deb10u4</td>
-<td>4.0.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>3010292</td>
-<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
-Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
-<td>4.0.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3010291</td>
 <td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
-<td>4.0.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>3007604</td>
-<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
-Vulnerable: &lt;= 1.1.1d-0+deb10u7
-Fixed: 1.1.1d-0+deb10u8</td>
 <td>4.0.0-4.4.3</td>
 <td></td>
 </tr>
@@ -3061,22 +2997,6 @@ Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4
 Fixed:</td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.3, 5.0.0-5.0.1</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2989099</td>
-<td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
-<td>4.0.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2982536</td>
-<td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
-library, which could result in denial of service or potentially the
-execution of arbitrary code, if a malformed XML file is processed.
-Vulnerable: &lt;= 2.2.6-2+deb10u2
-Fixed: 2.2.6-2+deb10u3</td>
-<td>4.0.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2971344</td>

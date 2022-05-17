@@ -5,6 +5,7 @@ weight: 30
 product: Cumulus Linux
 ---
 ## nv set router
+
 ### Usage
 
   nv set router [options] [<attribute> ...]
@@ -25,7 +26,9 @@ product: Cumulus Linux
   vrrp              VRRP global configuration.
   vrr               VRR global configuration.
   adaptive-routing  Adaptive routing global configuration.
+
 ## nv set router nexthop-group <nexthop-group-id>
+
 ### Usage
 
   nv set router nexthop-group <nexthop-group-id> [options] [<attribute> ...]

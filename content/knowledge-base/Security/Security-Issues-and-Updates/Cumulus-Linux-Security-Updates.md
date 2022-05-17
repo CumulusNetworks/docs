@@ -5,7 +5,7 @@ weight: 450
 toc: 4
 ---
 
-The NVIDIA {{<exlink url="http://apt.cumulusnetworks.com/repo" text="code repository">}} gets updated with the latest security advisories from the {{<exlink url="https://lists.debian.org/debian-security-announce/" text="debian-security-announce">}} mailing list.
+NVIDIA updates the {{<exlink url="http://apt.cumulusnetworks.com/repo" text="code repository">}} with the latest security advisories from the {{<exlink url="https://lists.debian.org/debian-security-announce/" text="debian-security-announce">}} mailing list.
 <!-- NVIDIA publishes the Cumulus Linux-related advisories {{<link url="Security-Issues-and-Announcements" text="here">}}.-->
 
 To learn the NVIDIA support policy regarding security updates and instructions to apply the latest security upgrades, read {{<link url="Security-Responses-and-Updates" text="this article">}}.

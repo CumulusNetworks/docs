@@ -17,7 +17,7 @@ Every Cumulus Linux release includes all applicable security patches available b
 
 ## Upgrading Cumulus Linux for Security Updates
 
-When {{<exlink url="https://lists.debian.org/debian-security-announce/" text="Debian.org">}} issue a critical security update, NVIDIA updates Cumulus Linux and describes the nature of the update in {{<link url="Security" text="an article in the Security section of the knowledge base">}}. NVIDIA adds other security fixes to the Cumulus Linux repositories (Debian announces all security updates).
+When {{<exlink url="https://lists.debian.org/debian-security-announce/" text="Debian.org">}} issue a critical security update, NVIDIA updates Cumulus Linux. NVIDIA adds other security fixes to the Cumulus Linux repositories (Debian announces all security updates).
 
 If the article **does not specify a procedure for upgrading Cumulus Linux**, follow these steps instead:
 

@@ -27,6 +27,7 @@ product: Cumulus Linux
   adaptive-routing  Adaptive routing global configuration.
 
 ## nv unset router nexthop-group
+
 ### Usage
 
   nv unset router nexthop-group [options] [<nexthop-group-id> ...]
@@ -38,9 +39,6 @@ product: Cumulus Linux
 ### Identifiers
 
   <nexthop-group-id>  Nexthop group ID
-
-
-
 
 ## nv unset router nexthop-group <nexthop-group-id>
 
@@ -60,9 +58,6 @@ product: Cumulus Linux
 
   via                 Nexthops
 
-
-
-
 ## nv unset router nexthop-group <nexthop-group-id> via
 
 ### Usage
@@ -79,6 +74,7 @@ product: Cumulus Linux
   <via-id>            IP address
 
 ## nv unset router nexthop-group <nexthop-group-id> via <via-id>
+
 ### Usage
 
   nv unset router nexthop-group <nexthop-group-id> via <via-id> [options] [<attribute> ...]
@@ -102,6 +98,7 @@ product: Cumulus Linux
                       ipv4-address or ipv6-address.
 
 ## nv unset router nexthop-group <nexthop-group-id> via <via-id> interface
+
 ### Usage
 
   nv unset router nexthop-group <nexthop-group-id> via <via-id> interface [options]
@@ -116,6 +113,7 @@ product: Cumulus Linux
   <via-id>            IP address
 
 ## nv unset router nexthop-group <nexthop-group-id> via <via-id> vrf
+
 ### Usage
 
   nv unset router nexthop-group <nexthop-group-id> via <via-id> vrf [options]
@@ -130,6 +128,7 @@ product: Cumulus Linux
   <via-id>            IP address
 
 ## nv unset router pbr
+
 ### Usage
 
   nv unset router pbr [options] [<attribute> ...]
@@ -144,6 +143,7 @@ product: Cumulus Linux
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
 ## nv unset router pbr map
+
 ### Usage
 
   nv unset router pbr map [options] [<pbr-map-id> ...]
@@ -157,6 +157,7 @@ product: Cumulus Linux
   <pbr-map-id>  Route Map ID
 
 ## nv unset router pbr map <pbr-map-id>
+
 ### Usage
 
   nv unset router pbr map <pbr-map-id> [options] [<attribute> ...]
@@ -174,6 +175,7 @@ product: Cumulus Linux
   rule          PBR Map rule
 
 ## nv unset router pbr map <pbr-map-id> rule <rule-id>
+
 ### Usage
 
   nv unset router pbr map <pbr-map-id> rule <rule-id> [options] [<attribute> ...]
@@ -193,6 +195,7 @@ product: Cumulus Linux
   action        PBR set
 
 ## nv unset router pbr map <pbr-map-id> rule <rule-id> match
+
 ### Usage
 
   nv unset router pbr map <pbr-map-id> rule <rule-id> match [options] [<attribute> ...]
@@ -213,6 +216,7 @@ product: Cumulus Linux
   ecn             ECN
   source-ip       Source IP prefix
 ## nv unset router pbr map <pbr-map-id> rule <rule-id> match source-ip
+
 ### Usage
 
   nv unset router pbr map <pbr-map-id> rule <rule-id> match source-ip [options]
@@ -227,6 +231,7 @@ product: Cumulus Linux
   <rule-id>     PBR rule number
 
 ## nv unset router pbr map <pbr-map-id> rule <rule-id> match destination-ip
+
 ### Usage
 
   nv unset router pbr map <pbr-map-id> rule <rule-id> match destination-ip [options]
@@ -241,6 +246,7 @@ product: Cumulus Linux
   <rule-id>     PBR rule number
 
 ## nv unset router pbr map <pbr-map-id> rule <rule-id> match dscp
+
 ### Usage
 
   nv unset router pbr map <pbr-map-id> rule <rule-id> match dscp [options]
@@ -255,6 +261,7 @@ product: Cumulus Linux
   <rule-id>     PBR rule number
 
 ## nv unset router pbr map <pbr-map-id> rule <rule-id> match ecn
+
 ### Usage
 
   nv unset router pbr map <pbr-map-id> rule <rule-id> match ecn [options]
@@ -269,6 +276,7 @@ product: Cumulus Linux
   <rule-id>     PBR rule number
 
 ## nv unset router pbr map <pbr-map-id> rule <rule-id> action
+
 ### Usage
 
   nv unset router pbr map <pbr-map-id> rule <rule-id> action [options] [<attribute> ...]
@@ -288,6 +296,7 @@ product: Cumulus Linux
   vrf            Route through VRF
 
 ## nv unset router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id>
+
 ### Usage
 
   nv unset router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id> [options]
@@ -303,6 +312,7 @@ product: Cumulus Linux
   <nexthop-group-id>  Nexthop group ID
 
 ## nv unset router pbr map <pbr-map-id> rule <rule-id> action vrf
+
 ### Usage
 
   nv unset router pbr map <pbr-map-id> rule <rule-id> action vrf [options]
@@ -325,8 +335,6 @@ product: Cumulus Linux
 ### Description
 
   Turn the feature 'on' or 'off'.  The default is 'off'.
-
-
 
 ## nv unset router policy
 
@@ -361,8 +369,6 @@ product: Cumulus Linux
 
   <list-id>   Community List ID
 
-
-
 ## nv unset router policy community-list <list-id>
 
 ### Usage
@@ -381,8 +387,6 @@ product: Cumulus Linux
 
   rule        Community List rule
 
-
-
 ## nv unset router policy community-list <list-id> rule
 
 ### Usage
@@ -397,8 +401,6 @@ product: Cumulus Linux
 
   <list-id>   Community List ID
   <rule-id>   Prefix List rule number
-
-
 
 ## nv unset router policy community-list <list-id> rule <rule-id>
 
@@ -419,8 +421,6 @@ product: Cumulus Linux
 
   community   Community expression
   action      Action to be taken for community list match
-
-
 
 ## nv unset router policy community-list <list-id> rule <rule-id> community
 
@@ -469,8 +469,6 @@ product: Cumulus Linux
   <list-id>   Community List ID
   <rule-id>   Prefix List rule number
 
-
-
 ## nv unset router policy as-path-list
 
 ### Usage
@@ -484,8 +482,6 @@ product: Cumulus Linux
 ### Identifiers
 
   <list-id>   AS Path List ID
-
-
 
 ## nv unset router policy as-path-list <list-id>
 
@@ -504,8 +500,6 @@ product: Cumulus Linux
 ### Atrributes
 
   rule        AS Path List rule
-
-
 
 ## nv unset router policy as-path-list <list-id> rule <rule-id>
 
@@ -527,8 +521,6 @@ product: Cumulus Linux
   action      Action to be taken for AS path list match
   aspath-exp  Regular expression to match BGP AS Paths
 
-
-
 ## nv unset router policy as-path-list <list-id> rule <rule-id> action
 
 ### Usage
@@ -543,8 +535,6 @@ product: Cumulus Linux
 
   <list-id>   AS Path List ID
   <rule-id>   Prefix List rule number
-
-
 
 ## nv unset router policy as-path-list <list-id> rule <rule-id> aspath-exp
 
@@ -561,8 +551,6 @@ product: Cumulus Linux
   <list-id>   AS Path List ID
   <rule-id>   Prefix List rule number
 
-
-
 ## nv unset router policy ext-community-list
 
 ### Usage
@@ -576,8 +564,6 @@ product: Cumulus Linux
 ### Identifiers
 
   <list-id>   Community List ID
-
-
 
 ## nv unset router policy ext-community-list <list-id>
 
@@ -597,8 +583,6 @@ product: Cumulus Linux
 
   rule        Extended Community List rule
 
-
-
 ## nv unset router policy ext-community-list <list-id> rule
 
 ### Usage
@@ -613,8 +597,6 @@ product: Cumulus Linux
 
   <list-id>   Community List ID
   <rule-id>   Prefix List rule number
-
-
 
 ## nv unset router policy ext-community-list <list-id> rule <rule-id>
 
@@ -656,8 +638,6 @@ product: Cumulus Linux
   rt          Route Target Extended Community
   soo         Site of Origin Extended Community
 
-
-
 ## nv unset router policy ext-community-list <list-id> rule <rule-id> ext-community rt
 
 ### Usage
@@ -673,9 +653,6 @@ product: Cumulus Linux
   <list-id>           Community List ID
   <rule-id>           Prefix List rule number
   <ext-community-id>  Community number in AA:NN or IP:NN format
-
-
-
 
 ## nv unset router policy ext-community-list <list-id> rule <rule-id> ext-community rt <ext-community-id>
 
@@ -693,9 +670,6 @@ product: Cumulus Linux
   <rule-id>           Prefix List rule number
   <ext-community-id>  Community number in AA:NN or IP:NN format
 
-
-
-
 ## nv unset router policy ext-community-list <list-id> rule <rule-id> ext-community soo
 
 ### Usage
@@ -711,9 +685,6 @@ product: Cumulus Linux
   <list-id>           Community List ID
   <rule-id>           Prefix List rule number
   <ext-community-id>  Community number in AA:NN or IP:NN format
-
-
-
 
 ## nv unset router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id>
 
@@ -731,9 +702,6 @@ product: Cumulus Linux
   <rule-id>           Prefix List rule number
   <ext-community-id>  Community number in AA:NN or IP:NN format
 
-
-
-
 ## nv unset router policy ext-community-list <list-id> rule <rule-id> action
 
 ### Usage
@@ -749,8 +717,6 @@ product: Cumulus Linux
   <list-id>   Community List ID
   <rule-id>   Prefix List rule number
 
-
-
 ## nv unset router policy large-community-list
 
 ### Usage
@@ -764,8 +730,6 @@ product: Cumulus Linux
 ### Identifiers
 
   <list-id>   Community List ID
-
-
 
 ## nv unset router policy large-community-list <list-id>
 
@@ -785,8 +749,6 @@ product: Cumulus Linux
 
   rule        Large Community List rules
 
-
-
 ## nv unset router policy large-community-list <list-id> rule
 
 ### Usage
@@ -801,8 +763,6 @@ product: Cumulus Linux
 
   <list-id>   Community List ID
   <rule-id>   Prefix List rule number
-
-
 
 ## nv unset router policy large-community-list <list-id> rule <rule-id>
 
@@ -870,8 +830,6 @@ product: Cumulus Linux
 
   <list-id>   Community List ID
   <rule-id>   Prefix List rule number
-
-
 
 ## nv unset router policy prefix-list
 
@@ -2234,6 +2192,7 @@ product: Cumulus Linux
   max-holdtime  Maximum hold time (msec) between consecutive SPF calculations.
 
 ## nv unset router ospf timers spf delay
+
 ### Usage
 
   nv unset router ospf timers spf delay [options]
@@ -2243,6 +2202,7 @@ product: Cumulus Linux
   Delay (msec) from first change received till SPF calculation.
 
 ## nv unset router ospf timers spf holdtime
+
 ### Usage
 
   nv unset router ospf timers spf holdtime [options]
@@ -2252,6 +2212,7 @@ product: Cumulus Linux
   Initial hold time (msec) between consecutive SPF calculations.
 
 ## nv unset router ospf timers spf max-holdtime
+
 ### Usage
 
   nv unset router ospf timers spf max-holdtime [options]
@@ -2261,6 +2222,7 @@ product: Cumulus Linux
   Maximum hold time (msec) between consecutive SPF calculations.
 
 ## nv unset router ospf timers refresh
+
 ### Usage
 
   nv unset router ospf timers refresh [options]
@@ -2270,6 +2232,7 @@ product: Cumulus Linux
   defines interval (sec) to re-send lsas to keep from aging out.
 
 ## nv unset router ospf enable
+
 ### Usage
 
   nv unset router ospf enable [options]
@@ -2279,6 +2242,7 @@ product: Cumulus Linux
   Turn the feature 'on' or 'off'.  The default is 'off'.
 
 ## nv unset router ospf router-id
+
 ### Usage
 
   nv unset router ospf router-id [options]
@@ -2288,6 +2252,7 @@ product: Cumulus Linux
   OSPF router-id for all VRFs, if a common one is used.  If "none", then router-id must be set for every VRF.  This is the default.
 
 ## nv unset router pim
+
 ### Usage
 
   nv unset router pim [options] [<attribute> ...]
@@ -2303,6 +2268,7 @@ product: Cumulus Linux
   packets     Number of incoming packet processing from neighbor.
 
 ## nv unset router pim timers
+
 ### Usage
 
   nv unset router pim timers [options] [<attribute> ...]
@@ -2323,6 +2289,7 @@ product: Cumulus Linux
   rp-keep-alive        RP's timeout value, in seconds
 
 ## nv unset router pim timers hello-interval
+
 ### Usage
 
   nv unset router pim timers hello-interval [options]
@@ -2332,6 +2299,7 @@ product: Cumulus Linux
   PIM Hello packets periodic interval. Holdtime is 3.5 times the hello-interval, the amount of time neighbor must kept in reachable state.
 
 ## nv unset router pim timers register-suppress
+
 ### Usage
 
   nv unset router pim timers register-suppress [options]
@@ -2341,6 +2309,7 @@ product: Cumulus Linux
   FHR supresses the register msg transmit to RP, in seconds
 
 ## nv unset router pim timers join-prune-interval
+
 ### Usage
 
   nv unset router pim timers join-prune-interval [options]
@@ -2350,6 +2319,7 @@ product: Cumulus Linux
   Periodic multicast Join/Prune msg, in seconds
 
 ## nv unset router pim timers keep-alive
+
 ### Usage
 
   nv unset router pim timers keep-alive [options]
@@ -2359,6 +2329,7 @@ product: Cumulus Linux
   Timeout value for S,G stream, in seconds
 
 ## nv unset router pim timers rp-keep-alive
+
 ### Usage
 
   nv unset router pim timers rp-keep-alive [options]
@@ -2368,6 +2339,7 @@ product: Cumulus Linux
   RP's timeout value, in seconds
 
 ## nv unset router pim enable
+
 ### Usage
 
   nv unset router pim enable [options]
@@ -2377,6 +2349,7 @@ product: Cumulus Linux
   Turn the feature 'on' or 'off'.  The default is 'off'.
 
 ## nv unset router pim packets
+
 ### Usage
 
   nv unset router pim packets [options]
@@ -2386,6 +2359,7 @@ product: Cumulus Linux
   Number of incoming packet processing from neighbor.
 
 ## nv unset router igmp
+
 ### Usage
 
   nv unset router igmp [options] [<attribute> ...]
@@ -2409,6 +2383,7 @@ product: Cumulus Linux
   Turn the feature 'on' or 'off'.  The default is 'off'.
 
 ## nv unset router vrrp
+
 ### Usage
 
   nv unset router vrrp [options] [<attribute> ...]
@@ -2434,6 +2409,7 @@ product: Cumulus Linux
                         priority
 
 ## nv unset router vrrp enable
+
 ### Usage
 
   nv unset router vrrp enable [options]
@@ -2443,6 +2419,7 @@ product: Cumulus Linux
   Turn the feature 'on' or 'off'.  The default is 'off'.
 
 ## nv unset router vrrp priority
+
 ### Usage
 
   nv unset router vrrp priority [options]
@@ -2452,6 +2429,7 @@ product: Cumulus Linux
   Specifies the sending VRRP interface's priority for the virtual router. Higher values equal higher priority
 
 ## nv unset router vrrp preempt
+
 ### Usage
 
   nv unset router vrrp preempt [options]
@@ -2461,6 +2439,7 @@ product: Cumulus Linux
   When set to true, enables preemption by a higher priority backup router of a lower priority master router
 
 ## nv unset router vrrp advertisement-interval
+
 ### Usage
 
   nv unset router vrrp advertisement-interval [options]
@@ -2470,6 +2449,7 @@ product: Cumulus Linux
   Sets the interval between successive VRRP advertisements -- RFC 5798 defines this as a 12-bit value expressed as 0.1 seconds, with default 1000 milliseconds, i.e., 1 second. Represented in units of milliseconds
 
 ## nv unset router vrr
+
 ### Usage
 
   nv unset router vrr [options] [<attribute> ...]
@@ -2483,6 +2463,7 @@ product: Cumulus Linux
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
 ## nv unset router vrr enable
+
 ### Usage
 
   nv unset router vrr enable [options]
@@ -2492,6 +2473,7 @@ product: Cumulus Linux
   Turn the feature 'on' or 'off'.  The default is 'off'.
 
 ## nv unset router adaptive-routing
+
 ### Usage
 
   nv unset router adaptive-routing [options] [<attribute> ...]
@@ -2505,6 +2487,7 @@ product: Cumulus Linux
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
 ## nv unset router adaptive-routing enable
+
 ### Usage
 
   nv unset router adaptive-routing enable [options]
@@ -2514,6 +2497,7 @@ product: Cumulus Linux
   Turn the feature 'on' or 'off'.  The default is 'off'.
 
 ## nv unset platform
+
 ### Usage
 
   nv unset platform [options] [<attribute> ...]
@@ -2527,6 +2511,7 @@ product: Cumulus Linux
   hardware    The platform's hardware
 
 ## nv unset platform hardware
+
 ### Usage
 
   nv unset platform hardware [options] [<attribute> ...]
@@ -2540,6 +2525,7 @@ product: Cumulus Linux
   component   A component in the platform.
 
 ## nv unset platform hardware component
+
 ### Usage
 
   nv unset platform hardware component [options] [<component-id> ...]
@@ -2573,6 +2559,7 @@ product: Cumulus Linux
   type            The type of this component
 
 ## nv unset platform hardware component <component-id> linecard
+
 ### Usage
 
   nv unset platform hardware component <component-id> linecard [options] [<attribute> ...]
@@ -2590,6 +2577,7 @@ product: Cumulus Linux
   provision       Provision linecard types
 
 ## nv unset platform hardware component <component-id> linecard provision
+
 ### Usage
 
   nv unset platform hardware component <component-id> linecard provision [options]
@@ -2603,6 +2591,7 @@ product: Cumulus Linux
   <component-id>  Component identifier
 
 ## nv unset platform hardware component <component-id> type
+
 ### Usage
 
   nv unset platform hardware component <component-id> type [options]
@@ -2616,6 +2605,7 @@ product: Cumulus Linux
   <component-id>  Component identifier
 
 ## nv unset platform hardware component <component-id> admin-state
+
 ### Usage
 
   nv unset platform hardware component <component-id> admin-state [options]
@@ -2629,6 +2619,7 @@ product: Cumulus Linux
   <component-id>  Component identifier
 
 ## nv unset bridge
+
 ### Usage
 
   nv unset bridge [options] [<attribute> ...]
@@ -2642,6 +2633,7 @@ product: Cumulus Linux
   domain      Bridge domains
 
 ## nv unset bridge domain
+
 ### Usage
 
   nv unset bridge domain [options] [<domain-id> ...]
@@ -2705,6 +2697,7 @@ product: Cumulus Linux
                and 32768 and a multiple of 4096.
 
 ## nv unset bridge domain <domain-id> stp state
+
 ### Usage
 
   nv unset bridge domain <domain-id> stp state [options]
@@ -2718,6 +2711,7 @@ product: Cumulus Linux
   <domain-id>  Domain
 
 ## nv unset bridge domain <domain-id> stp priority
+
 ### Usage
 
   nv unset bridge domain <domain-id> stp priority [options]
@@ -2731,6 +2725,7 @@ product: Cumulus Linux
   <domain-id>  Domain
 
 ## nv unset bridge domain <domain-id> multicast
+
 ### Usage
 
   nv unset bridge domain <domain-id> multicast [options] [<attribute> ...]
@@ -2767,6 +2762,7 @@ product: Cumulus Linux
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
 
 ## nv unset bridge domain <domain-id> multicast snooping querier
+
 ### Usage
 
   nv unset bridge domain <domain-id> multicast snooping querier [options] [<attribute> ...]
@@ -2784,6 +2780,7 @@ product: Cumulus Linux
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
 
 ## nv unset bridge domain <domain-id> multicast snooping querier enable
+
 ### Usage
 
   nv unset bridge domain <domain-id> multicast snooping querier enable [options]
@@ -2811,6 +2808,7 @@ product: Cumulus Linux
   <domain-id>  Domain
 
 ## nv unset bridge domain <domain-id> vlan <vid>
+
 ### Usage
 
   nv unset bridge domain <domain-id> vlan <vid> [options] [<attribute> ...]
@@ -2831,6 +2829,7 @@ product: Cumulus Linux
   multicast    Configure multicast on the vlan
 
 ## nv unset bridge domain <domain-id> vlan <vid> vni <vni-id>
+
 ### Usage
 
   nv unset bridge domain <domain-id> vlan <vid> vni <vni-id> [options] [<attribute> ...]
@@ -2853,6 +2852,7 @@ product: Cumulus Linux
                 be overridden by VNI-specific configuration.
 
 ## nv unset bridge domain <domain-id> vlan <vid> vni <vni-id> flooding
+
 ### Usage
 
   nv unset bridge domain <domain-id> vlan <vid> vni <vni-id> flooding [options] [<attribute> ...]
@@ -2879,6 +2879,7 @@ product: Cumulus Linux
                         in the network.
 
 ## nv unset bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id>
+
 ### Usage
 
   nv unset bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id> [options]
@@ -2911,6 +2912,7 @@ product: Cumulus Linux
   <vni-id>     VxLAN ID
 
 ## nv unset bridge domain <domain-id> vlan <vid> vni <vni-id> flooding multicast-group
+
 ### Usage
 
   nv unset bridge domain <domain-id> vlan <vid> vni <vni-id> flooding multicast-group [options]
@@ -2926,6 +2928,7 @@ product: Cumulus Linux
   <vni-id>     VxLAN ID
 
 ## nv unset bridge domain <domain-id> vlan <vid> vni <vni-id> mac-learning
+
 ### Usage
 
   nv unset bridge domain <domain-id> vlan <vid> vni <vni-id> mac-learning [options]
@@ -2941,6 +2944,7 @@ product: Cumulus Linux
   <vni-id>     VxLAN ID
 
 ## nv unset bridge domain <domain-id> vlan <vid> ptp
+
 ### Usage
 
   nv unset bridge domain <domain-id> vlan <vid> ptp [options] [<attribute> ...]
@@ -2959,6 +2963,7 @@ product: Cumulus Linux
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
 
 ## nv unset bridge domain <domain-id> vlan <vid> ptp enable
+
 ### Usage
 
   nv unset bridge domain <domain-id> vlan <vid> ptp enable [options]
@@ -2973,6 +2978,7 @@ product: Cumulus Linux
   <vid>        VLAN ID
 
 ## nv unset bridge domain <domain-id> vlan <vid> multicast
+
 ### Usage
 
   nv unset bridge domain <domain-id> vlan <vid> multicast [options] [<attribute> ...]
@@ -2991,6 +2997,7 @@ product: Cumulus Linux
   snooping     IGMP/MLD snooping configuration
 
 ## nv unset bridge domain <domain-id> vlan <vid> multicast snooping
+
 ### Usage
 
   nv unset bridge domain <domain-id> vlan <vid> multicast snooping [options] [<attribute> ...]
@@ -3057,6 +3064,7 @@ product: Cumulus Linux
   <domain-id>  Domain
 
 ## nv unset bridge domain <domain-id> untagged
+
 ### Usage
 
   nv unset bridge domain <domain-id> untagged [options]
@@ -3083,6 +3091,7 @@ product: Cumulus Linux
   <domain-id>  Domain
 
 ## nv unset bridge domain <domain-id> mac-address
+
 ### Usage
 
   nv unset bridge domain <domain-id> mac-address [options]
@@ -3096,6 +3105,7 @@ product: Cumulus Linux
   <domain-id>  Domain
 
 ## nv unset bridge domain <domain-id> vlan-vni-offset
+
 ### Usage
 
   nv unset bridge domain <domain-id> vlan-vni-offset [options]
@@ -3109,6 +3119,7 @@ product: Cumulus Linux
   <domain-id>  Domain
 
 ## nv unset mlag
+
 ### Usage
 
   nv unset mlag [options] [<attribute> ...]
@@ -3137,8 +3148,6 @@ product: Cumulus Linux
 ### Description
 
   Configure the mlag lacp-conflict parameters
-
-
 
 ## nv unset mlag backup
 
@@ -3196,8 +3205,6 @@ product: Cumulus Linux
 
   Turn the feature 'on' or 'off'.  The default is 'off'.
 
-
-
 ## nv unset mlag mac-address
 
 ### Usage
@@ -3207,8 +3214,6 @@ product: Cumulus Linux
 ### Description
 
   Override anycast-mac and anycast-id
-
-
 
 ## nv unset mlag peer-ip
 
@@ -3220,8 +3225,6 @@ product: Cumulus Linux
 
   Peer Ip Address
 
-
-
 ## nv unset mlag priority
 
 ### Usage
@@ -3231,8 +3234,6 @@ product: Cumulus Linux
 ### Description
 
   Mlag Priority
-
-
 
 ## nv unset mlag init-delay
 
@@ -3244,8 +3245,6 @@ product: Cumulus Linux
 
   The delay, in seconds, before bonds are brought up.
 
-
-
 ## nv unset mlag debug
 
 ### Usage
@@ -3255,8 +3254,6 @@ product: Cumulus Linux
 ### Description
 
   Enable MLAG debugging
-
-
 
 ## nv unset evpn
 
@@ -3325,8 +3322,6 @@ product: Cumulus Linux
 
   If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes.  This configuration should not be enabled if SVI IPs are reused in the network.
 
-
-
 ## nv unset evpn route-advertise default-gateway
 
 ### Usage
@@ -3336,8 +3331,6 @@ product: Cumulus Linux
 ### Description
 
   This configuration should be turned 'on' only in a centralized-routing deployment and only on the centralized GW router(s).  If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes with the gateway extended community. The purpose is for remote L2-only VTEPs to do ARP suppression and for hosts to learn of the gateway's IP to MAC binding.
-
-
 
 ## nv unset evpn dad
 
@@ -3360,9 +3353,6 @@ product: Cumulus Linux
                       is flagged as a possible duplicate.
   move-window         Time window during which the move threshold applies
 
-
-
-
 ## nv unset evpn dad duplicate-action
 
 ### Usage
@@ -3376,8 +3366,6 @@ product: Cumulus Linux
 ### Atrributes
 
   freeze      Further move events for the MAC will not be acted upon.
-
-
 
 ## nv unset evpn dad duplicate-action freeze
 
@@ -3394,8 +3382,6 @@ product: Cumulus Linux
   duration    Freeze the MAC for the specified duration or, if 'permanent'
               until the operator intervenes.
 
-
-
 ## nv unset evpn dad duplicate-action freeze duration
 
 ### Usage
@@ -3405,8 +3391,6 @@ product: Cumulus Linux
 ### Description
 
   Freeze the MAC for the specified duration or, if 'permanent' until the operator intervenes.
-
-
 
 ## nv unset evpn dad enable
 
@@ -3418,8 +3402,6 @@ product: Cumulus Linux
 
   Turn the feature 'on' or 'off'.  The default is 'off'.
 
-
-
 ## nv unset evpn dad mac-move-threshold
 
 ### Usage
@@ -3430,8 +3412,6 @@ product: Cumulus Linux
 
   Number of MAC moves within a time window before the MAC is flagged as a possible duplicate.
 
-
-
 ## nv unset evpn dad move-window
 
 ### Usage
@@ -3441,8 +3421,6 @@ product: Cumulus Linux
 ### Description
 
   Time window during which the move threshold applies
-
-
 
 ## nv unset evpn evi
 
@@ -3457,8 +3435,6 @@ product: Cumulus Linux
 ### Identifiers
 
   <evi-id>    VRF
-
-
 
 ## nv unset evpn evi <evi-id>
 
@@ -3524,8 +3500,6 @@ product: Cumulus Linux
 
   <evi-id>    VRF
 
-
-
 ## nv unset evpn evi <evi-id> route-advertise default-gateway
 
 ### Usage
@@ -3539,8 +3513,6 @@ product: Cumulus Linux
 ### Identifiers
 
   <evi-id>    VRF
-
-
 
 ## nv unset evpn evi <evi-id> route-target
 
@@ -3562,8 +3534,6 @@ product: Cumulus Linux
   import      Route targets to import
   both        Route targets to import and export
 
-
-
 ## nv unset evpn evi <evi-id> route-target export
 
 ### Usage
@@ -3578,8 +3548,6 @@ product: Cumulus Linux
 
   <evi-id>    VRF
   <rt-id>     Route target ID
-
-
 
 ## nv unset evpn evi <evi-id> route-target export <rt-id>
 
@@ -3596,8 +3564,6 @@ product: Cumulus Linux
   <evi-id>    VRF
   <rt-id>     Route target ID
 
-
-
 ## nv unset evpn evi <evi-id> route-target import
 
 ### Usage
@@ -3612,8 +3578,6 @@ product: Cumulus Linux
 
   <evi-id>    VRF
   <rt-id>     Route target ID
-
-
 
 ## nv unset evpn evi <evi-id> route-target import <rt-id>
 
@@ -3630,8 +3594,6 @@ product: Cumulus Linux
   <evi-id>    VRF
   <rt-id>     Route target ID
 
-
-
 ## nv unset evpn evi <evi-id> route-target both
 
 ### Usage
@@ -3646,8 +3608,6 @@ product: Cumulus Linux
 
   <evi-id>    VRF
   <rt-id>     Route target ID
-
-
 
 ## nv unset evpn evi <evi-id> route-target both <rt-id>
 
@@ -3664,8 +3624,6 @@ product: Cumulus Linux
   <evi-id>    VRF
   <rt-id>     Route target ID
 
-
-
 ## nv unset evpn evi <evi-id> rd
 
 ### Usage
@@ -3679,8 +3637,6 @@ product: Cumulus Linux
 ### Identifiers
 
   <evi-id>    VRF
-
-
 
 ## nv unset evpn multihoming
 
@@ -3722,8 +3678,6 @@ product: Cumulus Linux
   rx          Disable EAD-per-EVI at receiving end.
   tx          Suppress advertisement of EAD-per-EVI routes.
 
-
-
 ## nv unset evpn multihoming ead-evi-route rx
 
 ### Usage
@@ -3734,8 +3688,6 @@ product: Cumulus Linux
 
   Disable EAD-per-EVI at receiving end.
 
-
-
 ## nv unset evpn multihoming ead-evi-route tx
 
 ### Usage
@@ -3745,8 +3697,6 @@ product: Cumulus Linux
 ### Description
 
   Suppress advertisement of EAD-per-EVI routes.
-
-
 
 ## nv unset evpn multihoming segment
 
@@ -3764,6 +3714,7 @@ product: Cumulus Linux
   mac-address    MAC address per ethernet segment. Required.
 
 ## nv unset evpn multihoming segment mac-address
+
 ### Usage
 
   nv unset evpn multihoming segment mac-address [options]
@@ -3773,6 +3724,7 @@ product: Cumulus Linux
   MAC address per ethernet segment.  Required.
 
 ## nv unset evpn multihoming segment df-preference
+
 ### Usage
 
   nv unset evpn multihoming segment df-preference [options]
@@ -3782,6 +3734,7 @@ product: Cumulus Linux
   Designated forwarder preference value.
 
 ## nv unset evpn multihoming enable
+
 ### Usage
 
   nv unset evpn multihoming enable [options]
@@ -3791,6 +3744,7 @@ product: Cumulus Linux
   Turn the feature 'on' or 'off'.  The default is 'off'.
 
 ## nv unset evpn multihoming mac-holdtime
+
 ### Usage
 
   nv unset evpn multihoming mac-holdtime [options]
@@ -3800,6 +3754,7 @@ product: Cumulus Linux
   During this interval, the switch attempts to independently establish reachability of the MAC on the local ethernet segment. If 'none', there is no holdtime.
 
 ## nv unset evpn multihoming neighbor-holdtime
+
 ### Usage
 
   nv unset evpn multihoming neighbor-holdtime [options]
@@ -3809,6 +3764,7 @@ product: Cumulus Linux
   During this interval, the switch attempts to independently establish reachability of the host on the local ethernet segment.
 
 ## nv unset evpn multihoming startup-delay
+
 ### Usage
 
   nv unset evpn multihoming startup-delay [options]
@@ -3818,6 +3774,7 @@ product: Cumulus Linux
   The duration for which a switch holds the Ethernet segment-bond in a protodown state after a reboot or process restart.
 
 ## nv unset evpn enable
+
 ### Usage
 
   nv unset evpn enable [options]
@@ -3827,6 +3784,7 @@ product: Cumulus Linux
   Turn the feature 'on' or 'off'.  The default is 'off'.
 
 ## nv unset qos
+
 ### Usage
 
   nv unset qos [options] [<attribute> ...]
@@ -3841,6 +3799,7 @@ product: Cumulus Linux
               (RoCE) feature.
 
 ## nv unset qos roce
+
 ### Usage
 
   nv unset qos roce [options] [<attribute> ...]
@@ -3856,6 +3815,7 @@ product: Cumulus Linux
   cable-length  Cable Length(in meters) for Roce Lossless Config
 
 ## nv unset qos roce enable
+
 ### Usage
 
   nv unset qos roce enable [options]
@@ -3865,6 +3825,7 @@ product: Cumulus Linux
   Turn the feature 'on' or 'off'.  The default is 'off'.
 
 ## nv unset qos roce mode
+
 ### Usage
 
   nv unset qos roce mode [options]
@@ -3874,6 +3835,7 @@ product: Cumulus Linux
   Roce Mode
 
 ## nv unset qos roce cable-length
+
 ### Usage
 
   nv unset qos roce cable-length [options]
@@ -3883,6 +3845,7 @@ product: Cumulus Linux
   Cable Length(in meters) for Roce Lossless Config
 
 ## nv unset interface
+
 ### Usage
 
   nv unset interface [options] [<interface-id> ...]
@@ -3896,6 +3859,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset interface <interface-id>
+
 ### Usage
 
   nv unset interface <interface-id> [options] [<attribute> ...]
@@ -3926,6 +3890,7 @@ product: Cumulus Linux
   vlan            VLAN ID
 
 ## nv unset interface <interface-id> router
+
 ### Usage
 
   nv unset interface <interface-id> router [options] [<attribute> ...]
@@ -4123,9 +4088,6 @@ product: Cumulus Linux
   enable              Turn the feature 'on' or 'off'. The default is 'off'.
   md5-key             md5 key
   message-digest-key  Message digest key
-
-
-
 
 ## nv unset interface <interface-id> router ospf authentication enable
 
@@ -6572,6 +6534,7 @@ product: Cumulus Linux
                      it gets dropped.
 
 ## nv unset interface <interface-id> ptp timers
+
 ### Usage
 
   nv unset interface <interface-id> ptp timers [options] [<attribute> ...]
@@ -6598,6 +6561,7 @@ product: Cumulus Linux
                       specified as a power of two in seconds.
 
 ## nv unset interface <interface-id> ptp timers announce-interval
+
 ### Usage
 
   nv unset interface <interface-id> ptp timers announce-interval [options]
@@ -6611,6 +6575,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset interface <interface-id> ptp timers sync-interval
+
 ### Usage
 
   nv unset interface <interface-id> ptp timers sync-interval [options]
@@ -6624,6 +6589,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset interface <interface-id> ptp timers delay-req-interval
+
 ### Usage
 
   nv unset interface <interface-id> ptp timers delay-req-interval [options]
@@ -6637,6 +6603,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset interface <interface-id> ptp timers announce-timeout
+
 ### Usage
 
   nv unset interface <interface-id> ptp timers announce-timeout [options]
@@ -6650,6 +6617,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset interface <interface-id> ptp enable
+
 ### Usage
 
   nv unset interface <interface-id> ptp enable [options]
@@ -6663,6 +6631,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset interface <interface-id> ptp instance
+
 ### Usage
 
   nv unset interface <interface-id> ptp instance [options]
@@ -6676,6 +6645,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset interface <interface-id> ptp forced-master
+
 ### Usage
 
   nv unset interface <interface-id> ptp forced-master [options]
@@ -6689,6 +6659,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset interface <interface-id> ptp acceptable-master
+
 ### Usage
 
   nv unset interface <interface-id> ptp acceptable-master [options]
@@ -6702,6 +6673,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset interface <interface-id> ptp delay-mechanism
+
 ### Usage
 
   nv unset interface <interface-id> ptp delay-mechanism [options]
@@ -6715,6 +6687,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset interface <interface-id> ptp transport
+
 ### Usage
 
   nv unset interface <interface-id> ptp transport [options]
@@ -6728,6 +6701,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset interface <interface-id> ptp ttl
+
 ### Usage
 
   nv unset interface <interface-id> ptp ttl [options]
@@ -6741,6 +6715,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset interface <interface-id> ptp message-mode
+
 ### Usage
 
   nv unset interface <interface-id> ptp message-mode [options]
@@ -6754,6 +6729,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset interface <interface-id> tunnel
+
 ### Usage
 
   nv unset interface <interface-id> tunnel [options] [<attribute> ...]
@@ -6775,6 +6751,7 @@ product: Cumulus Linux
   ttl             time to live
 
 ## nv unset interface <interface-id> tunnel source-ip
+
 ### Usage
 
   nv unset interface <interface-id> tunnel source-ip [options]
@@ -6788,6 +6765,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset interface <interface-id> tunnel dest-ip
+
 ### Usage
 
   nv unset interface <interface-id> tunnel dest-ip [options]
@@ -6801,6 +6779,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset interface <interface-id> tunnel ttl
+
 ### Usage
 
   nv unset interface <interface-id> tunnel ttl [options]
@@ -6814,6 +6793,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset interface <interface-id> tunnel mode
+
 ### Usage
 
   nv unset interface <interface-id> tunnel mode [options]
@@ -6827,6 +6807,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset interface <interface-id> tunnel interface
+
 ### Usage
 
   nv unset interface <interface-id> tunnel interface [options]
@@ -6840,6 +6821,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset interface <interface-id> description
+
 ### Usage
 
   nv unset interface <interface-id> description [options]
@@ -6853,6 +6835,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset interface <interface-id> type
+
 ### Usage
 
   nv unset interface <interface-id> type [options]
@@ -6866,6 +6849,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset interface <interface-id> base-interface
+
 ### Usage
 
   nv unset interface <interface-id> base-interface [options]
@@ -6879,6 +6863,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset interface <interface-id> vlan
+
 ### Usage
 
   nv unset interface <interface-id> vlan [options]
@@ -6892,6 +6877,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv unset service
+
 ### Usage
 
   nv unset service [options] [<attribute> ...]
@@ -6913,6 +6899,7 @@ product: Cumulus Linux
   lldp          Global LLDP
 
 ## nv unset service dns
+
 ### Usage
 
   nv unset service dns [options] [<vrf-id> ...]
@@ -6924,6 +6911,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset service dns <vrf-id>
+
 ### Usage
 
   nv unset service dns <vrf-id> [options] [<attribute> ...]
@@ -6939,6 +6927,7 @@ product: Cumulus Linux
   server      Remote DNS servers
 
 ## nv unset service dns <vrf-id> server <dns-server-id>
+
 ### Usage
 
   nv unset service dns <vrf-id> server <dns-server-id> [options]
@@ -6953,6 +6942,7 @@ product: Cumulus Linux
   <dns-server-id>  IPv4 or IPv6 address of a DNS server
 
 ## nv unset service syslog
+
 ### Usage
 
   nv unset service syslog [options] [<vrf-id> ...]
@@ -7297,8 +7287,6 @@ product: Cumulus Linux
 
   interface   DHCP relay interfaces
 
-
-
 ## nv unset service dhcp-relay6 <vrf-id> interface
 
 ### Usage
@@ -7315,8 +7303,6 @@ product: Cumulus Linux
 
   upstream    Configures DHCP relay on the interfaes.
   downstream  Configures DHCP relay on the interfaes.
-
-
 
 ## nv unset service dhcp-relay6 <vrf-id> interface upstream <interface-id>
 
@@ -7723,9 +7709,6 @@ product: Cumulus Linux
   domain-name-server  DHCP domain name servers
   static              DHCP clients with fixed IP address assignments
 
-
-
-
 ## nv unset service dhcp-server <vrf-id> interface <interface-id>
 
 ### Usage
@@ -7858,8 +7841,6 @@ product: Cumulus Linux
 
   to          End of the range.
 
-
-
 ## nv unset service dhcp-server <vrf-id> pool <pool-id> range <range-id> to
 
 ### Usage
@@ -7876,8 +7857,6 @@ product: Cumulus Linux
   <pool-id>   DHCP pool subnet.
   <range-id>  DHCP client interface
 
-
-
 ## nv unset service dhcp-server <vrf-id> pool <pool-id> pool-name
 
 ### Usage
@@ -7892,8 +7871,6 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
-
-
 
 ## nv unset service dhcp-server <vrf-id> pool <pool-id> lease-time
 
@@ -7910,8 +7887,6 @@ product: Cumulus Linux
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
 
-
-
 ## nv unset service dhcp-server <vrf-id> pool <pool-id> ping-check
 
 ### Usage
@@ -7926,8 +7901,6 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
-
-
 
 ## nv unset service dhcp-server <vrf-id> pool <pool-id> default-url
 
@@ -7944,8 +7917,6 @@ product: Cumulus Linux
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
 
-
-
 ## nv unset service dhcp-server <vrf-id> pool <pool-id> cumulus-provision-url
 
 ### Usage
@@ -7960,8 +7931,6 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
-
-
 
 ## nv unset service dhcp-server <vrf-id> domain-name <domain-name-id>
 
@@ -8116,9 +8085,6 @@ product: Cumulus Linux
   domain-name-server  DHCP domain name servers
   static              DHCP clients with fixed IP address assignments
 
-
-
-
 ## nv unset service dhcp-server6 <vrf-id> interface <interface-id>
 
 ### Usage
@@ -8234,8 +8200,6 @@ product: Cumulus Linux
 
   to          End of the range.
 
-
-
 ## nv unset service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> to
 
 ### Usage
@@ -8252,8 +8216,6 @@ product: Cumulus Linux
   <pool-id>   DHCP6 pool subnet.
   <range-id>  DHCP client interface
 
-
-
 ## nv unset service dhcp-server6 <vrf-id> pool <pool-id> pool-name
 
 ### Usage
@@ -8268,8 +8230,6 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
   <pool-id>   DHCP6 pool subnet.
-
-
 
 ## nv unset service dhcp-server6 <vrf-id> pool <pool-id> lease-time
 
@@ -8286,8 +8246,6 @@ product: Cumulus Linux
   <vrf-id>    VRF
   <pool-id>   DHCP6 pool subnet.
 
-
-
 ## nv unset service dhcp-server6 <vrf-id> pool <pool-id> ping-check
 
 ### Usage
@@ -8302,8 +8260,6 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
   <pool-id>   DHCP6 pool subnet.
-
-
 
 ## nv unset service dhcp-server6 <vrf-id> pool <pool-id> default-url
 
@@ -8336,8 +8292,6 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
   <pool-id>   DHCP6 pool subnet.
-
-
 
 ## nv unset service dhcp-server6 <vrf-id> domain-name <domain-name-id>
 
@@ -8472,9 +8426,6 @@ product: Cumulus Linux
                       multiplying the tx-interval by the given factor
   tx-interval         change transmit delay
 
-
-
-
 ## nv unset service lldp tx-interval
 
 ### Usage
@@ -8485,8 +8436,6 @@ product: Cumulus Linux
 
   change transmit delay
 
-
-
 ## nv unset service lldp tx-hold-multiplier
 
 ### Usage
@@ -8495,9 +8444,7 @@ product: Cumulus Linux
 
 ### Description
 
-  < TTL of transmitted packets is calculated by multiplying the tx-interval by the given factor
-
-
+  TTL of transmitted packets is calculated by multiplying the tx-interval by the given factor
 
 ## nv unset service lldp dot1-tlv
 
@@ -8508,8 +8455,6 @@ product: Cumulus Linux
 ### Description
 
   Enable dot1 TLV advertisements on enabled ports
-
-
 
 ## nv unset system
 
@@ -8546,8 +8491,6 @@ product: Cumulus Linux
   trap        Traps
   policer     Policers
 
-
-
 ## nv unset system control-plane trap <trap-id>
 
 ### Usage
@@ -8581,8 +8524,6 @@ product: Cumulus Linux
 ### Identifiers
 
   <trap-id>   TRAP ID
-
-
 
 ## nv unset system control-plane policer <policer-id>
 
@@ -8661,8 +8602,6 @@ product: Cumulus Linux
   post-login  configure post-login message of the day
   pre-login   configure pre-login banner
 
-
-
 ## nv unset system message pre-login
 
 ### Usage
@@ -8673,8 +8612,6 @@ product: Cumulus Linux
 
   configure pre-login banner
 
-
-
 ## nv unset system message post-login
 
 ### Usage
@@ -8684,8 +8621,6 @@ product: Cumulus Linux
 ### Description
 
   configure post-login message of the day
-
-
 
 ## nv unset system global
 
@@ -8737,8 +8672,6 @@ product: Cumulus Linux
 
   pbr         reserved routing table ranges for PBR
 
-
-
 ## nv unset system global reserved routing-table pbr
 
 ### Usage
@@ -8754,8 +8687,6 @@ product: Cumulus Linux
   begin       Beginning of reserved routing table range for PBR
   end         End of reserved routing table range for PBR
 
-
-
 ## nv unset system global reserved routing-table pbr begin
 
 ### Usage
@@ -8766,8 +8697,6 @@ product: Cumulus Linux
 
   Beginning of reserved routing table range for PBR
 
-
-
 ## nv unset system global reserved routing-table pbr end
 
 ### Usage
@@ -8777,8 +8706,6 @@ product: Cumulus Linux
 ### Description
 
   End of reserved routing table range for PBR
-
-
 
 ## nv unset system global reserved vlan
 
@@ -8809,8 +8736,6 @@ product: Cumulus Linux
   begin       Beginning of reserved vlan range for L3 VNI
   end         End of reserved vlan range for L3 VNI
 
-
-
 ## nv unset system global reserved vlan l3-vni-vlan begin
 
 ### Usage
@@ -8820,8 +8745,6 @@ product: Cumulus Linux
 ### Description
 
   Beginning of reserved vlan range for L3 VNI
-
-
 
 ## nv unset system global reserved vlan l3-vni-vlan end
 
@@ -8833,8 +8756,6 @@ product: Cumulus Linux
 
   End of reserved vlan range for L3 VNI
 
-
-
 ## nv unset system global system-mac
 
 ### Usage
@@ -8844,8 +8765,6 @@ product: Cumulus Linux
 ### Description
 
   full MAC address.
-
-
 
 ## nv unset system global anycast-mac
 
@@ -8857,8 +8776,6 @@ product: Cumulus Linux
 
   MAC address shared by the rack.
 
-
-
 ## nv unset system global anycast-id
 
 ### Usage
@@ -8868,8 +8785,6 @@ product: Cumulus Linux
 ### Description
 
   An integer (1-65535) to select rack MAC address in range 44:38:39:ff:00:00 to 44:38:39:ff:ff:ff
-
-
 
 ## nv unset system global fabric-mac
 
@@ -8881,8 +8796,6 @@ product: Cumulus Linux
 
   First hop router MAC address
 
-
-
 ## nv unset system global fabric-id
 
 ### Usage
@@ -8892,8 +8805,6 @@ product: Cumulus Linux
 ### Description
 
   An integer (1-255) to select first hop router MAC adress in range 00:00:5E:00:01:01 to 00:00:5E:00:01:ff
-
-
 
 ## nv unset system port-mirror
 
@@ -8908,8 +8819,6 @@ product: Cumulus Linux
 ### Atrributes
 
   session     sessions
-
-
 
 ## nv unset system port-mirror session
 
@@ -9324,7 +9233,6 @@ product: Cumulus Linux
   apply       Affect how config apply operations are performed.
 
 
-
 ## nv unset system config apply
 
 ### Usage
@@ -9346,7 +9254,6 @@ product: Cumulus Linux
               "controlled", then only files that were most recently written by
               CUE can be overwritten. If the file was locally modified, a
               warning will be issued, but the file will not be overwritten.
-
 
 
 ## nv unset system config apply ignore
@@ -9398,7 +9305,6 @@ product: Cumulus Linux
   overwritten.
 
 
-
 ## nv unset system hostname
 
 ### Usage
@@ -9409,8 +9315,6 @@ product: Cumulus Linux
 
   Static hostname for the switch
 
-
-
 ## nv unset system timezone
 
 ### Usage
@@ -9420,8 +9324,6 @@ product: Cumulus Linux
 ### Description
 
   system time zone
-
-
 
 ## nv unset vrf
 
@@ -9458,8 +9360,6 @@ product: Cumulus Linux
   table       The routing table number, between 1001-1255, used by the named
               VRF. If auto, the default, it will be auto generated.
 
-
-
 ## nv unset vrf <vrf-id> loopback
 
 ### Usage
@@ -9477,7 +9377,6 @@ product: Cumulus Linux
   ip          Properties associated with the loopback IP address on this VRF.
 
 
-
 ## nv unset vrf <vrf-id> loopback ip
 
 ### Usage
@@ -9493,8 +9392,6 @@ product: Cumulus Linux
   <vrf-id>    VRF### Atrributes
 
   address     static IPv4 or IPv6 address
-
-
 
 ## nv unset vrf <vrf-id> loopback ip address <ip-prefix-id>
 
@@ -9529,8 +9426,6 @@ product: Cumulus Linux
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
   vlan        VLAN ID
 
-
-
 ## nv unset vrf <vrf-id> evpn vni <vni-id>
 
 ### Usage
@@ -9551,9 +9446,6 @@ product: Cumulus Linux
   prefix-routes-only  Associated L3 VNI and corresponding route targets only
                       with EVPN type-5 routes, not with EVPN type-2 routes.
 
-
-
-
 ## nv unset vrf <vrf-id> evpn vni <vni-id> prefix-routes-only
 
 ### Usage
@@ -9568,8 +9460,6 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
   <vni-id>    VxLAN ID
-
-
 
 ## nv unset vrf <vrf-id> evpn enable
 
@@ -9619,8 +9509,6 @@ product: Cumulus Linux
   pim         PIM VRF configuration.
   ospf        OSPF VRF configuration.
 
-
-
 ## nv unset vrf <vrf-id> router rib <afi>
 
 ### Usage
@@ -9639,8 +9527,6 @@ product: Cumulus Linux
 ### Atrributes
 
   protocol    Import protocols from RIB to FIB
-
-
 
 ## nv unset vrf <vrf-id> router rib <afi> protocol <import-protocol-id>
 
@@ -9767,6 +9653,7 @@ product: Cumulus Linux
   enable           Turn the feature 'on' or 'off'. The default is 'on'.
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute [options] [<attribute> ...]
@@ -9785,6 +9672,7 @@ product: Cumulus Linux
   ospf        Route redistribution of ipv4 ospf routes
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static [options] [<attribute> ...]
@@ -9804,6 +9692,7 @@ product: Cumulus Linux
   route-map   Route map to apply to the redistributed route.
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static enable
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static enable [options]
@@ -9826,6 +9715,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static route-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static route-map [options]
@@ -9837,6 +9727,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected [options] [<attribute> ...]
@@ -9856,6 +9747,7 @@ product: Cumulus Linux
   route-map   Route map to apply to the redistributed route.
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected enable
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected enable [options]
@@ -9867,6 +9759,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected metric
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected metric [options]
@@ -9878,6 +9771,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected route-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected route-map [options]
@@ -9889,6 +9783,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel [options] [<attribute> ...]
@@ -9908,6 +9803,7 @@ product: Cumulus Linux
   route-map   Route map to apply to the redistributed route.
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel enable
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel enable [options]
@@ -9919,6 +9815,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel metric
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel metric [options]
@@ -9930,6 +9827,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel route-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel route-map [options]
@@ -9941,6 +9839,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf [options] [<attribute> ...]
@@ -9960,6 +9859,7 @@ product: Cumulus Linux
   route-map   Route map to apply to the redistributed route.
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf enable
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf enable [options]
@@ -9971,6 +9871,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf metric
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf metric [options]
@@ -9982,6 +9883,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf route-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf route-map [options]
@@ -9993,6 +9895,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id>
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> [options] [<attribute> ...]
@@ -10013,6 +9916,7 @@ product: Cumulus Linux
   summary-only          If 'on', suppress more-specific routes.
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> summary-only
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> summary-only [options]
@@ -10027,6 +9931,7 @@ product: Cumulus Linux
   <aggregate-route-id>  IPv4 address and route prefix in CIDR notation
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> as-set
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> as-set [options]
@@ -10041,6 +9946,7 @@ product: Cumulus Linux
   <aggregate-route-id>  IPv4 address and route prefix in CIDR notation
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> route-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> route-map [options]
@@ -10055,6 +9961,7 @@ product: Cumulus Linux
   <aggregate-route-id>  IPv4 address and route prefix in CIDR notation
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id>
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id> [options] [<attribute> ...]
@@ -10088,6 +9995,7 @@ product: Cumulus Linux
   <static-network-id>  IPv4 address and route prefix in CIDR notation
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-import
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-import [options] [<attribute> ...]
@@ -10103,6 +10011,7 @@ product: Cumulus Linux
   from-vrf    Controls for VRF to VRF route leaking for this address-family
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf [options] [<attribute> ...]
@@ -10120,6 +10029,7 @@ product: Cumulus Linux
   route-map   Route-map to control the import of routes into EVPN
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id>
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id> [options]
@@ -10134,6 +10044,7 @@ product: Cumulus Linux
   <leak-vrf-id>  VRF
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf enable
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf enable [options]
@@ -10145,6 +10056,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf route-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf route-map [options]
@@ -10156,6 +10068,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast multipaths
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast multipaths [options] [<attribute> ...]
@@ -10177,6 +10090,7 @@ product: Cumulus Linux
   ibgp                  IBGP multipath
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast multipaths ebgp
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast multipaths ebgp [options]
@@ -10188,6 +10102,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast multipaths ibgp
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast multipaths ibgp [options]
@@ -10199,6 +10114,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast multipaths compare-cluster-length
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast multipaths compare-cluster-length [options]
@@ -10229,6 +10145,7 @@ product: Cumulus Linux
               the RIB
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance external
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance external [options]
@@ -10252,6 +10169,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-export
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-export [options] [<attribute> ...]
@@ -10268,6 +10186,7 @@ product: Cumulus Linux
               family into EVPN (as type-5 routes)
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn [options] [<attribute> ...]
@@ -10288,6 +10207,7 @@ product: Cumulus Linux
   route-map             Route-map to control the export of routes into EVPN
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn enable
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn enable [options]
@@ -10299,6 +10219,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn route-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn route-map [options]
@@ -10310,6 +10231,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn default-route-origination
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn default-route-origination [options]
@@ -10321,6 +10243,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv4-unicast rib-filter
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv4-unicast rib-filter [options]
@@ -10397,6 +10320,7 @@ product: Cumulus Linux
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id>
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> [options] [<attribute> ...]
@@ -10417,6 +10341,7 @@ product: Cumulus Linux
   summary-only          If 'on', suppress more-specific routes.
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> summary-only
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> summary-only [options]
@@ -10431,6 +10356,7 @@ product: Cumulus Linux
   <aggregate-route-id>  IPv6 address and route prefix in CIDR notation
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> as-set
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> as-set [options]
@@ -10445,6 +10371,7 @@ product: Cumulus Linux
   <aggregate-route-id>  IPv6 address and route prefix in CIDR notation
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> route-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> route-map [options]
@@ -10459,6 +10386,7 @@ product: Cumulus Linux
   <aggregate-route-id>  IPv6 address and route prefix in CIDR notation
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id>
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id> [options] [<attribute> ...]
@@ -10477,6 +10405,7 @@ product: Cumulus Linux
   route-map            Optional policy to modify attributes
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id> route-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id> route-map [options]
@@ -10491,6 +10420,7 @@ product: Cumulus Linux
   <static-network-id>  IPv6 address and route prefix in CIDR notation
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast route-import
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast route-import [options] [<attribute> ...]
@@ -10506,6 +10436,7 @@ product: Cumulus Linux
   from-vrf    Controls for VRF to VRF route leaking for this address-family
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf [options] [<attribute> ...]
@@ -10523,6 +10454,7 @@ product: Cumulus Linux
   route-map   Route-map to control the import of routes into EVPN
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf list
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf list [options]
@@ -10534,6 +10466,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf enable
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf enable [options]
@@ -10545,6 +10478,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf route-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf route-map [options]
@@ -10556,6 +10490,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast multipaths
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast multipaths [options] [<attribute> ...]
@@ -10577,6 +10512,7 @@ product: Cumulus Linux
   ibgp                  IBGP multipath
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast multipaths ebgp
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast multipaths ebgp [options]
@@ -10588,6 +10524,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast multipaths ibgp
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast multipaths ibgp [options]
@@ -10599,6 +10536,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast multipaths compare-cluster-length
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast multipaths compare-cluster-length [options]
@@ -10610,6 +10548,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance [options] [<attribute> ...]
@@ -10628,6 +10567,7 @@ product: Cumulus Linux
               the RIB
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance external
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance external [options]
@@ -10639,6 +10579,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance internal
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance internal [options]
@@ -10650,6 +10591,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast route-export
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast route-export [options] [<attribute> ...]
@@ -10666,6 +10608,7 @@ product: Cumulus Linux
               family into EVPN (as type-5 routes)
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn [options] [<attribute> ...]
@@ -10698,6 +10641,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn route-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn route-map [options]
@@ -10709,6 +10653,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn default-route-origination
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn default-route-origination [options]
@@ -10720,6 +10665,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute [options] [<attribute> ...]
@@ -10738,6 +10684,7 @@ product: Cumulus Linux
   ospf6       Route redistribution of ipv6 ospf routes
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static [options] [<attribute> ...]
@@ -10757,6 +10704,7 @@ product: Cumulus Linux
   route-map   Route map to apply to the redistributed route.
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static enable
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static enable [options]
@@ -10768,6 +10716,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static metric
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static metric [options]
@@ -10779,6 +10728,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static route-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static route-map [options]
@@ -10790,6 +10740,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected [options] [<attribute> ...]
@@ -10809,6 +10760,7 @@ product: Cumulus Linux
   route-map   Route map to apply to the redistributed route.
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected enable
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected enable [options]
@@ -10820,6 +10772,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected metric
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected metric [options]
@@ -10831,6 +10784,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected route-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected route-map [options]
@@ -10842,6 +10796,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel [options] [<attribute> ...]
@@ -10861,6 +10816,7 @@ product: Cumulus Linux
   route-map   Route map to apply to the redistributed route.
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel enable
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel enable [options]
@@ -10872,6 +10828,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel metric
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel metric [options]
@@ -10883,6 +10840,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel route-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel route-map [options]
@@ -10894,6 +10852,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6 [options] [<attribute> ...]
@@ -10913,6 +10872,7 @@ product: Cumulus Linux
   route-map   Route map to apply to the redistributed route.
 
 ## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6 enable
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6 enable [options]
@@ -10924,6 +10884,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6 metric
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6 metric [options]
@@ -10935,6 +10896,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6 route-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6 route-map [options]
@@ -10946,6 +10908,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast rib-filter
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast rib-filter [options]
@@ -10957,6 +10920,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp address-family ipv6-unicast enable
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp address-family ipv6-unicast enable [options]
@@ -10968,6 +10932,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp path-selection
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp path-selection [options] [<attribute> ...]
@@ -10991,6 +10956,7 @@ product: Cumulus Linux
   routerid-compare  Path selection based on Router ID comparison.
 
 ## nv unset vrf <vrf-id> router bgp path-selection aspath
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp path-selection aspath [options] [<attribute> ...]
@@ -11009,6 +10975,7 @@ product: Cumulus Linux
   compare-lengths  Select AS based on path length.
 
 ## nv unset vrf <vrf-id> router bgp path-selection aspath compare-lengths
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp path-selection aspath compare-lengths [options]
@@ -11020,6 +10987,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp path-selection aspath compare-confed
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp path-selection aspath compare-confed [options]
@@ -11031,6 +10999,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp path-selection med
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp path-selection med [options] [<attribute> ...]
@@ -11055,6 +11024,7 @@ product: Cumulus Linux
   missing-as-max        missing-as-max
 
 ## nv unset vrf <vrf-id> router bgp path-selection med compare-always
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp path-selection med compare-always [options]
@@ -11066,6 +11036,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp path-selection med compare-deterministic
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp path-selection med compare-deterministic [options]
@@ -11077,6 +11048,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp path-selection med compare-confed
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp path-selection med compare-confed [options]
@@ -11088,6 +11060,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp path-selection med missing-as-max
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp path-selection med missing-as-max [options]
@@ -11099,6 +11072,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp path-selection multipath
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp path-selection multipath [options] [<attribute> ...]
@@ -11118,6 +11092,7 @@ product: Cumulus Linux
   generate-asset  Requires aspath-ignore to be on
 
 ## nv unset vrf <vrf-id> router bgp path-selection multipath aspath-ignore
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp path-selection multipath aspath-ignore [options]
@@ -11129,6 +11104,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp path-selection multipath generate-asset
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp path-selection multipath generate-asset [options]
@@ -11140,6 +11116,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp path-selection multipath bandwidth
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp path-selection multipath bandwidth [options]
@@ -11151,6 +11128,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp path-selection routerid-compare
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp path-selection routerid-compare [options]
@@ -11162,6 +11140,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp route-reflection
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp route-reflection [options] [<attribute> ...]
@@ -11189,6 +11168,7 @@ product: Cumulus Linux
                         expected to be fully meshed.
 
 ## nv unset vrf <vrf-id> router bgp route-reflection enable
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp route-reflection enable [options]
@@ -11200,6 +11180,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp route-reflection cluster-id
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp route-reflection cluster-id [options]
@@ -11211,6 +11192,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp route-reflection reflect-between-clients
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp route-reflection reflect-between-clients [options]
@@ -11222,6 +11204,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp route-reflection outbound-policy
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp route-reflection outbound-policy [options]
@@ -11233,6 +11216,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id>
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> [options] [<attribute> ...]
@@ -11277,6 +11261,7 @@ product: Cumulus Linux
                         configuration.
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> bfd
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> bfd [options] [<attribute> ...]
@@ -11299,6 +11284,7 @@ product: Cumulus Linux
                      smaller of this or what the peer expects.
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> bfd enable
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> bfd enable [options]
@@ -11313,6 +11299,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> bfd detect-multiplier
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> bfd detect-multiplier [options]
@@ -11327,6 +11314,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-rx-interval
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-rx-interval [options]
@@ -11341,6 +11329,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-tx-interval
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-tx-interval [options]
@@ -11355,6 +11344,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security [options] [<attribute> ...]
@@ -11388,6 +11378,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security hops
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security hops [options]
@@ -11402,6 +11393,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities [options] [<attribute> ...]
@@ -11425,6 +11417,7 @@ product: Cumulus Linux
                     used as the BGP next hop for Updates
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities extended-nexthop
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities extended-nexthop [options]
@@ -11439,6 +11432,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities source-address
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities source-address [options]
@@ -11453,6 +11447,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart [options] [<attribute> ...]
@@ -11479,6 +11474,7 @@ product: Cumulus Linux
                    is also supported.
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart mode
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart mode [options]
@@ -11493,6 +11489,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> local-as
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> local-as [options] [<attribute> ...]
@@ -11523,6 +11520,7 @@ product: Cumulus Linux
                    local-as.
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> local-as enable
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> local-as enable [options]
@@ -11537,6 +11535,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> local-as asn
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> local-as asn [options]
@@ -11551,6 +11550,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> local-as prepend
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> local-as prepend [options]
@@ -11565,6 +11565,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> local-as replace
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> local-as replace [options]
@@ -11579,6 +11580,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> timers
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> timers [options] [<attribute> ...]
@@ -11609,6 +11611,7 @@ product: Cumulus Linux
                        is the default.
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> timers keepalive
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> timers keepalive [options]
@@ -11623,6 +11626,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> timers hold
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> timers hold [options]
@@ -11637,6 +11641,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> timers connection-retry
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> timers connection-retry [options]
@@ -11651,6 +11656,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> timers route-advertisement
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> timers route-advertisement [options]
@@ -11665,6 +11671,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family [options] [<attribute> ...]
@@ -11686,6 +11693,7 @@ product: Cumulus Linux
   l2vpn-evpn       Peer l2vpn EVPN address family.
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast [options] [<attribute> ...]
@@ -11733,6 +11741,7 @@ product: Cumulus Linux
                         used in the BGP route selection algorithm
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise [options] [<attribute> ...]
@@ -11756,6 +11765,7 @@ product: Cumulus Linux
                    to this peer, otherwise we cannot.
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise regular
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise regular [options]
@@ -11770,6 +11780,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise extended
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise extended [options]
@@ -11784,6 +11795,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise large
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise large [options]
@@ -11798,6 +11810,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod [options] [<attribute> ...]
@@ -11827,6 +11840,7 @@ product: Cumulus Linux
                    this peer.
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod aspath
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod aspath [options]
@@ -11841,6 +11855,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod med
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod med [options]
@@ -11855,6 +11870,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod nexthop
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod nexthop [options]
@@ -11869,6 +11885,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath [options] [<attribute> ...]
@@ -11896,6 +11913,7 @@ product: Cumulus Linux
 
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn [options] [<attribute> ...]
@@ -11918,6 +11936,7 @@ product: Cumulus Linux
                    system is allowed, but only if it is the originating AS
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn enable
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn enable [options]
@@ -11932,6 +11951,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn origin
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn origin [options]
@@ -11946,6 +11966,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn occurrences
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn occurrences [options]
@@ -11960,6 +11981,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath replace-peer-as
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath replace-peer-as [options]
@@ -11974,6 +11996,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath private-as
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath private-as [options]
@@ -11988,6 +12011,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits [options] [<attribute> ...]
@@ -12007,6 +12031,7 @@ product: Cumulus Linux
                    family
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound [options] [<attribute> ...]
@@ -12036,6 +12061,7 @@ product: Cumulus Linux
                      generated.
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound maximum
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound maximum [options]
@@ -12050,6 +12076,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound warning-threshold
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound warning-threshold [options]
@@ -12064,6 +12091,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound warning-only
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound warning-only [options]
@@ -12092,6 +12120,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination [options] [<attribute> ...]
@@ -12112,6 +12141,7 @@ product: Cumulus Linux
                    which the default route is originated.
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination enable
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination enable [options]
@@ -12126,6 +12156,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination policy
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination policy [options]
@@ -12140,6 +12171,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy [options] [<attribute> ...]
@@ -12159,6 +12191,7 @@ product: Cumulus Linux
   outbound         Outbound unicast policy
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound [options] [<attribute> ...]
@@ -12180,6 +12213,7 @@ product: Cumulus Linux
   prefix-list      Prefix list to apply to Updates received from this peer
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound route-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound route-map [options]
@@ -12194,6 +12228,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound prefix-list
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound prefix-list [options]
@@ -12208,6 +12243,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound aspath-list
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound aspath-list [options]
@@ -12222,6 +12258,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound [options] [<attribute> ...]
@@ -12245,6 +12282,7 @@ product: Cumulus Linux
   prefix-list      Prefix list to apply to Updates to be sent to this peer
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound route-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound route-map [options]
@@ -12259,6 +12297,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound unsuppress-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound unsuppress-map [options]
@@ -12288,6 +12327,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound aspath-list
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound aspath-list [options]
@@ -12302,6 +12342,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise [options] [<attribute> ...]
@@ -12326,6 +12367,7 @@ product: Cumulus Linux
                    in prefix-list.
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise enable
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise enable [options]
@@ -12340,6 +12382,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise advertise-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise advertise-map [options]
@@ -12354,6 +12397,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise exist-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise exist-map [options]
@@ -12368,6 +12412,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise non-exist-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise non-exist-map [options]
@@ -12382,6 +12427,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast enable
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast enable [options]
@@ -12396,6 +12442,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast route-reflector-client
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast route-reflector-client [options]
@@ -12425,6 +12472,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast soft-reconfiguration
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast soft-reconfiguration [options]
@@ -12439,6 +12487,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast nexthop-setting
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast nexthop-setting [options]
@@ -12453,6 +12502,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast add-path-tx
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast add-path-tx [options]
@@ -12467,6 +12517,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast weight
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast weight [options]
@@ -12529,6 +12580,7 @@ product: Cumulus Linux
                         used in the BGP route selection algorithm
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy [options] [<attribute> ...]
@@ -12548,6 +12600,7 @@ product: Cumulus Linux
   outbound         Outbound unicast policy
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound [options] [<attribute> ...]
@@ -12569,6 +12622,7 @@ product: Cumulus Linux
   prefix-list      Prefix list to apply to Updates received from this peer
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound route-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound route-map [options]
@@ -12583,6 +12637,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound prefix-list
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound prefix-list [options]
@@ -12597,6 +12652,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound aspath-list
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound aspath-list [options]
@@ -12611,6 +12667,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound [options] [<attribute> ...]
@@ -12634,6 +12691,7 @@ product: Cumulus Linux
   prefix-list      Prefix list to apply to Updates to be sent to this peer
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound route-map
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound route-map [options]
@@ -12663,6 +12721,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound prefix-list
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound prefix-list [options]
@@ -12677,6 +12736,7 @@ product: Cumulus Linux
   <peer-group-id>  Domain
 
 ## nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound aspath-list
+
 ### Usage
 
   nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound aspath-list [options]
@@ -14071,8 +14131,6 @@ product: Cumulus Linux
 
   member-as   Confederation ASNs of the peers, maps to BGP confederation peers
   id          Confederation ASN, maps to BGP confederation id
-
-
 
 ## nv unset vrf <vrf-id> router bgp confederation member-as
 

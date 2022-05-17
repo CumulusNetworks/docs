@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3073668</td>
+<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3072613</td>
+<td>When  you delete a bond interface with NCLU, BGP peer group configuration is removed.</td>
+<td>3.7.15-3.7.16, 4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3072612</td>
+<td>On the NVIDIA SN2410 switch, you might see intermittent low speed and descriptor read/64, error -32 USB device messages.</td>
+<td>3.7.12-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3053067</td>
 <td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
 To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
@@ -364,6 +382,12 @@ https://security-tracker.debian.org/tracker/linux</td>
 <td>2638137</td>
 <td>When you delete a static route using NCLU, the configuration is not deleted from the running configuration or from the {{/etc/frr/frr.conf}} file. </td>
 <td>3.7.13-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>2633245</td>
+<td>On the Dell N3048EP-ON switch, the SPF+ ports remain down after a power cycle.</td>
+<td>3.7.10-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2491,6 +2515,24 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3073668</td>
+<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3072613</td>
+<td>When  you delete a bond interface with NCLU, BGP peer group configuration is removed.</td>
+<td>3.7.15-3.7.16, 4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3072612</td>
+<td>On the NVIDIA SN2410 switch, you might see intermittent low speed and descriptor read/64, error -32 USB device messages.</td>
+<td>3.7.12-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3053067</td>
 <td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
 To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
@@ -3795,6 +3837,12 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <td>2638137</td>
 <td>When you delete a static route using NCLU, the configuration is not deleted from the running configuration or from the {{/etc/frr/frr.conf}} file. </td>
 <td>3.7.13-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>2633245</td>
+<td>On the Dell N3048EP-ON switch, the SPF+ ports remain down after a power cycle.</td>
+<td>3.7.10-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -5627,6 +5675,18 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3073668</td>
+<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3072612</td>
+<td>On the NVIDIA SN2410 switch, you might see intermittent low speed and descriptor read/64, error -32 USB device messages.</td>
+<td>3.7.12-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -6610,6 +6670,12 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15-3.7.16</td>
+</tr>
+<tr>
+<td>2633245</td>
+<td>On the Dell N3048EP-ON switch, the SPF+ ports remain down after a power cycle.</td>
+<td>3.7.10-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2628515</td>
@@ -8485,6 +8551,18 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3073668</td>
+<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3072612</td>
+<td>On the NVIDIA SN2410 switch, you might see intermittent low speed and descriptor read/64, error -32 USB device messages.</td>
+<td>3.7.12-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -9395,6 +9473,12 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15-3.7.16</td>
+</tr>
+<tr>
+<td>2633245</td>
+<td>On the Dell N3048EP-ON switch, the SPF+ ports remain down after a power cycle.</td>
+<td>3.7.10-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2628515</td>
@@ -11864,6 +11948,18 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3073668</td>
+<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3072612</td>
+<td>On the NVIDIA SN2410 switch, you might see intermittent low speed and descriptor read/64, error -32 USB device messages.</td>
+<td>3.7.12-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -12761,6 +12857,12 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15-3.7.16</td>
+</tr>
+<tr>
+<td>2633245</td>
+<td>On the Dell N3048EP-ON switch, the SPF+ ports remain down after a power cycle.</td>
+<td>3.7.10-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2617009</td>
@@ -15456,6 +15558,18 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3073668</td>
+<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3072612</td>
+<td>On the NVIDIA SN2410 switch, you might see intermittent low speed and descriptor read/64, error -32 USB device messages.</td>
+<td>3.7.12-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -16340,6 +16454,12 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15-3.7.16</td>
+</tr>
+<tr>
+<td>2633245</td>
+<td>On the Dell N3048EP-ON switch, the SPF+ ports remain down after a power cycle.</td>
+<td>3.7.10-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2617009</td>
@@ -19603,6 +19723,12 @@ Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.15-3.7.16</td>
 </tr>
 <tr>
+<td>2633245</td>
+<td>On the Dell N3048EP-ON switch, the SPF+ ports remain down after a power cycle.</td>
+<td>3.7.10-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>2617009</td>
 <td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
 Vulnerable: 1.7.0~dfsg-1
@@ -22590,6 +22716,12 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15-3.7.16</td>
+</tr>
+<tr>
+<td>2633245</td>
+<td>On the Dell N3048EP-ON switch, the SPF+ ports remain down after a power cycle.</td>
+<td>3.7.10-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2617009</td>

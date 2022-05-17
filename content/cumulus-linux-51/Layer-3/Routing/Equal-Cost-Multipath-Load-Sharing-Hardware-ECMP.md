@@ -276,8 +276,25 @@ You can configure a unique hash seed for each switch to prevent *hash polarizati
 
 You can set a hash seed value between 0 and 4294967295. If you do not specify a value, `switchd` creates a randomly generated seed.
 
-The following example commands configure the hash seed to 50.
+To configure the hash seed:
 
+Edit `/etc/cumulus/datapath/traffic.conf` file to change the `ecmp_hash_seed` parameter, then restart `switchd`.
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
+...
+#Specify the hash seed for Equal cost multipath entries
+# and for custom ecmp and lag hash
+# Default value: random
+# Value Range: {0..4294967295}
+ecmp_hash_seed = 50
+...
+```
+<!-- vale off -->
+{{<cl/restart-switchd>}}
+<!-- vale on -->
+
+<!--
 {{< tabs "TabID125 ">}}
 {{< tab "NVUE Commands">}}
 
@@ -301,12 +318,11 @@ cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
 ecmp_hash_seed = 50
 ...
 ```
-<!-- vale off -->
+
 {{<cl/restart-switchd>}}
-<!-- vale on -->
 
 {{< /tab >}}
-{{< /tabs >}}
+{{< /tabs >}} -->
 
 ## Resilient Hashing
 

@@ -2030,7 +2030,7 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <tr>
 <td>2875279</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.3</td>
+<td>4.2.1-4.4.3, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2866111</td>

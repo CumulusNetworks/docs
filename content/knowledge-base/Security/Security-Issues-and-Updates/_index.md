@@ -1,5 +1,5 @@
 ---
-title: Security Issues and Announcements
+title: Security Issues and Updates
 author: Cumulus Networks
 weight: 45
 toc: 3

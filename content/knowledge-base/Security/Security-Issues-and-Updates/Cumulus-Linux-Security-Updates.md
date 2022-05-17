@@ -1,5 +1,5 @@
 ---
-title: Cumulus Linux Security Announcements
+title: Cumulus Linux Security Updates
 author: Cumulus Networks
 weight: 450
 toc: 4
@@ -18,4 +18,3 @@ Regarding previous security upgrades for Cumulus Linux:
 
 <!-- ## Staying Informed
 Subscribe to the {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-security-announce" text="security announcements">}} mailing list so you can receive notification from NVIDIA whenever we discover a security issue.-->
-

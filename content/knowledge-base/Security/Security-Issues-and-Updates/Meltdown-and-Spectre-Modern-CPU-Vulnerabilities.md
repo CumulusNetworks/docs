@@ -8,7 +8,7 @@ toc: 4
 {{%notice info%}}
 Cumulus Networks released patches that fix these vulnerabilities. For information on how to apply the patches, read {{<link url="Spectre-and-Meltdown-Vulnerability-Fixes" text="this article">}}.
 {{%/notice%}}
-<!-->
+<!--
 {{%notice note%}}
 This issue was announced on the Cumulus Networks {{<exlink url="https://lists.cumulusnetworks.com/pipermail/cumulus-security-announce/2018-January/000011.html" text="security announcement mailing list">}}
 on January 4, 2018.
@@ -29,6 +29,6 @@ The Common Vulnerabilities and Exposures formally associated with Meltdown and S
 
 To exploit these vulnerabilities in Cumulus Linux, an attacker needs to have local access to the system.
 
-NVIDIA is evaluating, porting, and testing patches to Cumulus Linux. NVIDIA can release software updates as soon as they become available. The extent of the performance impact of the fixes depends on your operating system, the nature of the fix and the workload of the system.
+The extent of the performance impact of the fixes depends on your operating system, the nature of the fix and the workload of the system.
 
 <!--NVIDIA is evaluating, porting, and testing patches to Cumulus Linux. NVIDIA can release software updates as soon as they become available, and is going to announce any updates on the {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-security-announce" text="cumulus-security-announce">}} mailing list. At this point, the performance impact of the fixes is unclear; the extent of the impact depends on the operating system, the nature of the fix and the workload of the system.-->

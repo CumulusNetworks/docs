@@ -4,8 +4,9 @@ author: Cumulus Networks
 weight: 60
 product: Cumulus Linux
 ---
+All NVUE commands have `-h` and `--help` options that provide command description and usage. This reference guide is based on the command `-h` output.
 
-The NVUE `nv show` commands have these common parameters.
+The NVUE `nv show` commands have these common options.
 
 ## Revision Options
 

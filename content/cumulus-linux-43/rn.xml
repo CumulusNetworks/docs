@@ -1761,6 +1761,18 @@ Fixed: 2.9.4+dfsg1-7+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3073668</td>
+<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3069065</td>
+<td>When you run Ansible playbooks with NCLU commands, Ansible bypasses TACACS Command Authorization.</td>
+<td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3067803</td>
 <td>A change to the BFD timer does not apply to the existing session in PTM.</td>
 <td>4.1.1-4.4.3</td>
@@ -2818,6 +2830,12 @@ See /var/log/netd.log for more details.</td>
 <td>The NCLU {{net show route vrf &lt;vrf&gt; summary}} and vtysh {{show ip route vrf &lt;vrf&gt; summary}} commands don't return any output.</td>
 <td>4.3.0</td>
 <td>4.4.0-4.4.3</td>
+</tr>
+<tr>
+<td>2633245</td>
+<td>On the Dell N3048EP-ON switch, the SPF+ ports remain down after a power cycle.</td>
+<td>3.7.10-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2633062</td>

@@ -7,6 +7,42 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3073668</td>
+<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3073649</td>
+<td>In an EVPN-MH configuration, the switch fails to redirect tagged frames with the CoS bits set.</td>
+<td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3072614</td>
+<td>When you use NVUE to configure a BGP peer group that contains a hyphen (-) in its name, the command fails when you apply the change with the error {{&lt;peer-group&gt; is not a 'instance-name'}}.</td>
+<td>4.4.3, 5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3072613</td>
+<td>When  you delete a bond interface with NCLU, BGP peer group configuration is removed.</td>
+<td>3.7.15-3.7.16, 4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3070672</td>
+<td>TACACS Command Authorization results in the a {{Command not authorized}} error.</td>
+<td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3069065</td>
+<td>When you run Ansible playbooks with NCLU commands, Ansible bypasses TACACS Command Authorization.</td>
+<td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3067803</td>
 <td>A change to the BFD timer does not apply to the existing session in PTM.</td>
 <td>4.1.1-4.4.3</td>
@@ -23,12 +59,6 @@
 <td>The {{hostapd}} service stops working if an 802.1X interface goes up and down many times over a long period of time.
 To work around this issue, restart the {{hostapd}} service with the {{systemctl restart hostapd}} command.</td>
 <td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>3066664</td>
-<td>In an EVPN-MH configuration, the switch fails to redirect tagged frames with the CoS bits set.</td>
-<td>4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -921,6 +951,12 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 ERROR: 'NoneType' object has no attribute 'conf_key_value_multiple_values'
 See /var/log/netd.log for more details.</td>
 <td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2633245</td>
+<td>On the Dell N3048EP-ON switch, the SPF+ ports remain down after a power cycle.</td>
+<td>3.7.10-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2018,6 +2054,30 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3073668</td>
+<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3073649</td>
+<td>In an EVPN-MH configuration, the switch fails to redirect tagged frames with the CoS bits set.</td>
+<td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3070672</td>
+<td>TACACS Command Authorization results in the a {{Command not authorized}} error.</td>
+<td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3069065</td>
+<td>When you run Ansible playbooks with NCLU commands, Ansible bypasses TACACS Command Authorization.</td>
+<td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3067803</td>
 <td>A change to the BFD timer does not apply to the existing session in PTM.</td>
 <td>4.1.1-4.4.3</td>
@@ -2995,6 +3055,12 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 ERROR: 'NoneType' object has no attribute 'conf_key_value_multiple_values'
 See /var/log/netd.log for more details.</td>
 <td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2633245</td>
+<td>On the Dell N3048EP-ON switch, the SPF+ ports remain down after a power cycle.</td>
+<td>3.7.10-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4263,6 +4329,30 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3073668</td>
+<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3073649</td>
+<td>In an EVPN-MH configuration, the switch fails to redirect tagged frames with the CoS bits set.</td>
+<td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3070672</td>
+<td>TACACS Command Authorization results in the a {{Command not authorized}} error.</td>
+<td>4.4.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3069065</td>
+<td>When you run Ansible playbooks with NCLU commands, Ansible bypasses TACACS Command Authorization.</td>
+<td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3067803</td>
 <td>A change to the BFD timer does not apply to the existing session in PTM.</td>
 <td>4.1.1-4.4.3</td>
@@ -5466,6 +5556,12 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 ERROR: 'NoneType' object has no attribute 'conf_key_value_multiple_values'
 See /var/log/netd.log for more details.</td>
 <td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2633245</td>
+<td>On the Dell N3048EP-ON switch, the SPF+ ports remain down after a power cycle.</td>
+<td>3.7.10-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>

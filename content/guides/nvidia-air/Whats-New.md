@@ -7,6 +7,12 @@ product: NVIDIA Air
 <!-- vale off -->
 Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
+## May 2022
+### 82.2022.0518
+<!-- Air:WhatsNew -->
+- Added Cumulus Linux 5.1.0
+<!-- Air:WhatsNew -->
+
 ## April 2022
 ### 82.2022.0406
 - Fixed a bug that caused incorrect validation of updates to a simulation's sleep timer

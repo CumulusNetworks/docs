@@ -6,21 +6,21 @@ toc: 3
 ---
 
 <!-- vale off -->
-NetQ provides the information you need to validate the health of your network fabric, devices, and interfaces. Whether you use the NetQ UI or the NetQ CLI to create and run validations, the underlying checks are the same. The number of checks and the type of checks are tailored to the particular protocol or element being validated.
+NetQ collects data that validates the health of your network fabric, devices, and interfaces. You can create and run validations with either the NetQ UI or the NetQ CLI. The number of checks and the type of checks are tailored to the particular protocol or element being validated.
 <!-- vale on -->
 
-Use the value in the Test Number column in the tables below with the NetQ CLI when you want to include or exclude specific tests with the `netq check` command. You can get the test numbers when you run the `netq show unit-tests` command.
+Use the value in the Test Number column in the tables below with the NetQ CLI when you want to include or exclude specific tests with the `netq check` command. You can get the test numbers by running the `netq show unit-tests` command.
 
 ## NetQ Agent Validation Tests
 
-NetQ Agent validation looks for an agent status of Rotten for each node in the network. A *Fresh* status indicates the Agent is running as expected. The Agent sends a heartbeat every 30 seconds, and if it does not send three consecutive heartbeats, its status changes to *Rotten*. You can accomplish this with the following test:
+NetQ Agent validation looks for an agent status of Rotten for each node in the network. A *Fresh* status indicates the Agent is running as expected. The Agent sends a heartbeat every 30 seconds, and if it does not send three consecutive heartbeats, its status changes to *Rotten*.
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
 | 0 | Agent Health | Checks for nodes that have failed or lost communication |
 ## Addresses Validation Tests
 
-The duplicate address detection validation tests look for duplicate IPv4 and IPv6 addresses assigned to interfaces across devices in the inventory, and check for duplicate /32 host routes in each VRF. You can accomplish this with the following tests:
+The duplicate address detection validation tests look for duplicate IPv4 and IPv6 addresses assigned to interfaces across devices in the inventory, and check for duplicate /32 host routes in each VRF.
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -28,7 +28,7 @@ The duplicate address detection validation tests look for duplicate IPv4 and IPv
 | 1 | IPv6 Duplicate Addresses | Checks for duplicate IPv6 addresses |
 ## BGP Validation Tests
 
-The BGP validation tests look for indications of the session sanity (status and configuration). You can accomplish this with the following tests:
+The BGP validation tests look for indications of the session sanity (status and configuration).
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -43,16 +43,14 @@ The BGP validation tests look for indications of the session sanity (status and 
 
 ## Cumulus Linux Version Tests
 
-The Cumulus Linux version tests looks for version consistency. You can accomplish this with the following tests:
-
+The Cumulus Linux version tests looks for version consistency.
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
 | 0 | Cumulus Linux Image Version | Checks the following: <ul><li>No version specified, checks that all switches in the network have consistent version</li><li><em>match-version</em> specified, checks that a switch's OS version is equals the specified version</li><li><em>min-version</em> specified, checks that a switch's OS version is equal to or greater than the specified version</li></ul> |
 
 ## EVPN Validation Tests
 
-The EVPN validation tests look for indications of the session sanity and configuration consistency. You can accomplish this with the following tests:
-
+The EVPN validation tests look for indications of the session sanity and configuration consistency.
 <!-- vale off -->
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -68,7 +66,7 @@ The EVPN validation tests look for indications of the session sanity and configu
 
 ## Interface Validation Tests
 
-The interface validation tests look for consistent configuration between two nodes. You can accomplish this with the following tests:
+The interface validation tests look for consistent configuration between two nodes.
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -79,7 +77,7 @@ The interface validation tests look for consistent configuration between two nod
 
 ## Link MTU Validation Tests
 
-The link MTU validation tests look for consistency across an interface and appropriate size MTU for VLAN and bridge interfaces. You can accomplish this with the following tests:
+The link MTU validation tests look for consistency across an interface and appropriate size MTU for VLAN and bridge interfaces.
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -89,7 +87,7 @@ The link MTU validation tests look for consistency across an interface and appro
 
 ## MLAG Validation Tests
 
-The MLAG validation tests look for misconfigurations, peering status, and bond error states. You can accomplish this with the following tests:
+The MLAG validation tests look for misconfigurations, peering status, and bond error states.
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -107,15 +105,14 @@ The MLAG validation tests look for misconfigurations, peering status, and bond e
 
 ## NTP Validation Tests
 
-The NTP validation test looks for poor operational status of the NTP service. You can accomplish this with the following test:
-
+The NTP validation test looks for poor operational status of the NTP service.
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
 | 0 | NTP Sync | Checks if the NTP service is running and in sync state |
 
 ## OSPF Validation Tests
 
-The OSPF validation tests look for indications of the service health and configuration consistency. You can accomplish this with the following tests:
+The OSPF validation tests look for indications of the service health and configuration consistency.
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -129,7 +126,7 @@ The OSPF validation tests look for indications of the service health and configu
 
 ## RoCE Validation Tests
 
-The RoCE validation tests look for consistent RoCE and QoS configurations across nodes. You can accomplish this with the following tests:
+The RoCE validation tests look for consistent RoCE and QoS configurations across nodes.
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -140,7 +137,7 @@ The RoCE validation tests look for consistent RoCE and QoS configurations across
 | 4 | ETS | Checks for consistency of Enhanced Transmission Selection settings |
 ## Sensor Validation Tests
 
-The sensor validation tests looks for chassis power supply, fan, and temperature sensors that are in a bad state. You can accomplish this with the following tests:
+The sensor validation tests looks for chassis power supply, fan, and temperature sensors that are in a bad state.
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -150,7 +147,7 @@ The sensor validation tests looks for chassis power supply, fan, and temperature
 
 ## VLAN Validation Tests
 
-The VLAN validation tests look for configuration consistency between two nodes. You can accomplish this with the following tests:
+The VLAN validation tests look for configuration consistency between two nodes.
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -159,7 +156,7 @@ The VLAN validation tests look for configuration consistency between two nodes. 
 
 ## VXLAN Validation Tests
 
-The VXLAN validation tests look for configuration consistency across all VTEPs. You can accomplish this with the following tests:
+The VXLAN validation tests look for configuration consistency across all VTEPs.
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -170,11 +167,11 @@ The VXLAN validation tests look for configuration consistency across all VTEPs. 
 
 You can disable validation checks to suppress known events from affecting the reported network health. You can disable one or more validation checks from the validation dashboard:
 
-1. Open the validation dashboard by selecting **Validations** and **Show all scheduled validations:**
+1. Open the validation dashboard by selecting **Validation** and **Show all scheduled validations**
 
-{{<figure src="/images/netq/validation-show-all.png" width="300">}}
+{{<figure src="/images/netq/validation-show-all.png" alt="" width="300">}}
 
-2. Select the {{<img src="/images/netq/navigation-menu-horizontal.svg" height="18" width="18">}} icon on the card for the desired validation and select disable. Validation checks can be enabled from the same menu:
+2. Select the {{<img src="/images/netq/navigation-menu-horizontal.svg" height="18" width="18">}} icon on the card for the desired validation and select **Disable validation**. Validation checks can be enabled from the same menu:
 
-{{<figure src="/images/netq/validation-disable-check.png" width="250">}}
+{{<figure src="/images/netq/validation-disable-check.png" alt="validation card presenting option to disable validation" width="250">}}
 

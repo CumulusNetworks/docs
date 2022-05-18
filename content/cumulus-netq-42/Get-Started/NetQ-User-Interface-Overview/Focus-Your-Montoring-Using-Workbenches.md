@@ -4,22 +4,22 @@ author: NVIDIA
 weight: 130
 toc: 4
 ---
-Workbenches are an integral structure of the NetQ UI. They are where you collect and view the data that is important to you.
+Workbenches are where you collect and view the data that is important to you.
 
 Two types of workbenches are available:
 
 <!-- vale off -->
-- **Default**: Provided by NVIDIA for use as they exist; you *cannot* save changes you make to these workbenches
-- **Custom**: Created by users when default workbenches need some adjustments to better meet your needs or you want a completely different collection of cards; changes made to these workbenches are saved automatically
+- **Default**: Provided by NVIDIA; you *cannot* save changes you make to these workbenches
+- **Custom**: Created by the user; changes made to these workbenches are saved automatically
 <!-- vale on -->
 
-Both types of workbenches display a set of cards. Default workbenches are public (available for viewing by all users), whereas custom workbenches are private (only viewable by the user who created them).
+Both types of workbenches display a set of cards. Default workbenches are public (accessible to all users), whereas custom workbenches are private (viewing is restricted to the user who created them).
 
 ## Default Workbenches
 
-In this release, only one default workbench &mdash; the *NetQ Workbench* &mdash; is available to get you started. It contains Device Inventory, Switch Inventory, Alarm and Info Events, and Network Health cards, giving you a high-level view of how your network is operating.
+The default workbench contains Device Inventory, Switch Inventory, Events, and Network Health cards, giving you a high-level view of how your network is operating.
 
-{{<figure src="/images/netq/access-ui-cumulus-wb-400.png" width="700">}}
+{{<figure src="/images/netq/access-ui-cumulus-wb-400.png" alt="default netq workbench" width="700">}}
 
 On initial login, the NetQ Workbench opens. On subsequent logins, the last workbench you used opens.
 
@@ -30,7 +30,7 @@ Users with either administrative or user roles can create and save as many custo
 - Shows all of the selected cards for the past week and one that shows all of the selected cards for the past 24 hours
 - Only has data about your virtual overlays; EVPN plus events cards
 - Has selected switches that you are troubleshooting
-- Focused on application or user account management
+- Is focused on application or user account management
 
 And so forth.
 

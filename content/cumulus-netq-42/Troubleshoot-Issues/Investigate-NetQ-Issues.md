@@ -17,7 +17,7 @@ This topic describes some of the tools and commands you can use to troubleshoot 
 - {{<link url="#use-netq-as-a-time-machine" text="Investigating events from the past">}}
 - {{<link url="#trace-paths-in-a-vrf" text="Running a trace">}}.
 
-Try looking at the specific protocol or service, or particular devices as well. If none of these produce a resolution, you can {{<link url="#generate-a-support-file" text="capture a log">}} to use in discussion with the Cumulus Networks support team.
+Try looking at the specific protocol or service, or particular devices as well. If none of these produce a resolution, you can {{<link url="#generate-a-support-file" text="capture a log">}} to use in discussion with the NVIDIA support team.
 
 ## Browse Configuration and Log Files
 
@@ -100,14 +100,12 @@ Refer to {{<link title="Validate Operations">}} for more information.
 
 ## Diagnose an Event after It Occurs
 
-NetQ provides users with the ability to go back in time to replay the network state, see fabric-wide event change logs and root cause state deviations. The NetQ Telemetry Server maintains data collected by NetQ agents in a time-series database, making fabric-wide events available for analysis. This enables you to replay and analyze networkwide events for better visibility and to correlate patterns. This allows for root-cause analysis and optimization of network configs for the future.
-
-NetQ provides many commands and cards for diagnosing past events.
+NetQ lets users go back in time to replay the network state, see fabric-wide event change logs and root cause state deviations. The NetQ Telemetry Server maintains data collected by NetQ agents in a time-series database, making fabric-wide events available for analysis. This lets you replay and analyze networkwide events for better visibility and to correlate patterns, which aids in root-cause analysis and network configuration optimization.
 
 NetQ records network events and stores them in its database. You can:
 
 - View the events through a third-party notification application (syslog, PagerDuty, Slack, or email)
-- View the events using the Events|Alarms and Events|Info cards in the NetQ UI, then use the Trace Request card to track the connection between nodes
+- View the events using the Events card in the NetQ UI, then use the Trace Request card to track the connection between nodes
 - Use `netq show events` command to look for any changes made to the runtime configuration that could have triggered the alert, then use `netq trace` to track the connection between the nodes
 
 The `netq trace` command traces the route of an IP or MAC address from one endpoint to another. It works across bridged, routed and VXLAN connections, computing the path using available data instead of sending real traffic &mdash; this way, you can run it from anywhere. It performs MTU and VLAN consistency checks for every link along the path.

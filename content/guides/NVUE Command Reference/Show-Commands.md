@@ -72,6 +72,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <nexthop-group-id>    Nexthop group ID
+
   <via-id>              IP address
 
 ## nv show router nexthop-group <nexthop-group-id> via <via-id>
@@ -87,6 +88,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <nexthop-group-id>    Nexthop group ID
+
   <via-id>              IP address
 
 ## nv show router pbr
@@ -148,11 +150,13 @@ product: Cumulus Linux
 ### Identifiers
 
   <pbr-map-id>          Route Map ID
+
   <rule-id>             PBR rule number
 
 ### Attributes
 
   match                 PBR match
+
   action                PBR set
 
 ## nv show router pbr map <pbr-map-id> rule <rule-id> match
@@ -168,6 +172,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <pbr-map-id>          Route Map ID
+
   <rule-id>             PBR rule number
 
 ## nv show router pbr map <pbr-map-id> rule <rule-id> action
@@ -183,6 +188,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <pbr-map-id>          Route Map ID
+
   <rule-id>             PBR rule number
 
 ### Attributes
@@ -202,7 +208,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <pbr-map-id>          Route Map ID
+
   <rule-id>             PBR rule number
+
   <nexthop-group-id>    Nexthop group ID
 
 ## nv show router policy
@@ -218,10 +226,15 @@ product: Cumulus Linux
 ### Attributes
 
   community-list        Community lists
+
   as-path-list          AS Path lists
+
   ext-community-list    Extended Community lists
+
   large-community-list  Large Community lists
+
   prefix-list           Prefix list rules
+
   route-map             Collection of Route Maps
 
 ## nv show router policy community-list
@@ -269,6 +282,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <list-id>             Community List ID
+
   <rule-id>             Prefix List rule number
 
 ## nv show router policy community-list <list-id> rule <rule-id>
@@ -284,6 +298,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <list-id>             Community List ID
+
   <rule-id>             Prefix List rule number
 
 ### Attributes
@@ -303,7 +318,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <list-id>             Community List ID
+
   <rule-id>             Prefix List rule number
+
   <community-id>        Community number in AA:NN format or well known name
 
 ## nv show router policy community-list <list-id> rule <rule-id> community <community-id>
@@ -319,7 +336,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <list-id>             Community List ID
+
   <rule-id>             Prefix List rule number
+
   <community-id>        Community number in AA:NN format or well known name
 
 ## nv show router policy as-path-list
@@ -367,6 +386,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <list-id>             AS Path List ID
+
   <rule-id>             Prefix List rule number
 
 ## nv show router policy ext-community-list
@@ -414,6 +434,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <list-id>             Community List ID
+
   <rule-id>             Prefix List rule number
 
 ## nv show router policy ext-community-list <list-id> rule <rule-id>
@@ -429,6 +450,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <list-id>             Community List ID
+
   <rule-id>             Prefix List rule number
 
 ### Attributes
@@ -448,11 +470,13 @@ product: Cumulus Linux
 ### Identifiers
 
   <list-id>             Community List ID
+
   <rule-id>             Prefix List rule number
 
 ### Attributes
 
   rt                    Route Target Extended Community
+
   soo                   Site of Origin Extended Community
 
 ## nv show router policy ext-community-list <list-id> rule <rule-id> ext-community rt
@@ -468,7 +492,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <list-id>             Community List ID
+
   <rule-id>             Prefix List rule number
+
   <ext-community-id>    Community number in AA:NN or IP:NN format
 
 ## nv show router policy ext-community-list <list-id> rule <rule-id> ext-community rt <ext-community-id>
@@ -484,7 +510,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <list-id>             Community List ID
+
   <rule-id>             Prefix List rule number
+
   <ext-community-id>    Community number in AA:NN or IP:NN format
 
 ## nv show router policy ext-community-list <list-id> rule <rule-id> ext-community
@@ -500,7 +528,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <list-id>             Community List ID
+
   <rule-id>             Prefix List rule number
+
   <ext-community-id>    Community number in AA:NN or IP:NN format
 
 ## nv show router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id>
@@ -516,7 +546,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <list-id>             Community List ID
+
   <rule-id>             Prefix List rule number
+
   <ext-community-id>    Community number in AA:NN or IP:NN format
 
 ## nv show router policy large-community-list
@@ -564,6 +596,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <list-id>             Community List ID
+
   <rule-id>             Prefix List rule number
 
 ## nv show router policy large-community-list <list-id> rule <rule-id>
@@ -579,6 +612,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <list-id>             Community List ID
+
   <rule-id>             Prefix List rule number
 
 ### Attributes
@@ -598,7 +632,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <list-id>             Community List ID
+
   <rule-id>             Prefix List rule number
+
   <large-community-id>  Community number in AA:BB:CC format
 
 ## nv show router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id>
@@ -614,7 +650,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <list-id>             Community List ID
+
   <rule-id>             Prefix List rule number
+
   <large-community-id>  Community number in AA:BB:CC format
 
 ## nv show router policy prefix-list
@@ -662,6 +700,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <prefix-list-id>      Prefix List ID
+
   <rule-id>             Prefix List rule number
 
 ### Attributes
@@ -681,7 +720,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <prefix-list-id>      Prefix List ID
+
   <rule-id>             Prefix List rule number
+
   <match-id>            ip v4/v6 prefix, or any
 
 ## nv show router policy route-map
@@ -729,12 +770,15 @@ product: Cumulus Linux
 ### Identifiers
 
   <route-map-id>        Route Map ID
+
   <rule-id>             Sequence to insert or delete from the route-map
 
 ### Attributes
 
   match                 Route Map match
+
   set                   Route Map set
+
   action                Route Map set
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> match
@@ -750,6 +794,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <route-map-id>        Route Map ID
+
   <rule-id>             Sequence to insert or delete from the route-map
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> set
@@ -765,13 +810,17 @@ product: Cumulus Linux
 ### Identifiers
 
   <route-map-id>        Route Map ID
+
   <rule-id>             Sequence to insert or delete from the route-map
 
 ### Attributes
 
   as-path-prepend       AS Path prepend
+
   community             Collection of BGP communities
+
   large-community       Collection of large BGP communities
+
   aggregator-as         Collection of aggregator AS
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> set as-path-prepend
@@ -787,6 +836,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <route-map-id>        Route Map ID
+
   <rule-id>             Sequence to insert or delete from the route-map
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> set community <community-id>
@@ -802,7 +852,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <route-map-id>        Route Map ID
+
   <rule-id>             Sequence to insert or delete from the route-map
+
   <community-id>        Community number
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id>
@@ -818,7 +870,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <route-map-id>        Route Map ID
+
   <rule-id>             Sequence to insert or delete from the route-map
+
   <large-community-id>  Large Community number
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id>
@@ -834,7 +888,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <route-map-id>        Route Map ID
+
   <rule-id>             Sequence to insert or delete from the route-map
+
   <asn-id>              Autonomous number
 
 ### Attributes
@@ -854,8 +910,11 @@ product: Cumulus Linux
 ### Identifiers
 
   <route-map-id>        Route Map ID
+
   <rule-id>             Sequence to insert or delete from the route-map
+
   <asn-id>              Autonomous number
+
   <ipv4-address-id>     IPv4 address
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> action
@@ -871,11 +930,13 @@ product: Cumulus Linux
 ### Identifiers
 
   <route-map-id>        Route Map ID
+
   <rule-id>             Sequence to insert or delete from the route-map
 
 ### Attributes
 
   deny                  Deny action
+
   permit                Permit action
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> action deny
@@ -891,6 +952,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <route-map-id>        Route Map ID
+
   <rule-id>             Sequence to insert or delete from the route-map
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> action permit
@@ -906,6 +968,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <route-map-id>        Route Map ID
+
   <rule-id>             Sequence to insert or delete from the route-map
 
 ### Attributes
@@ -925,6 +988,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <route-map-id>        Route Map ID
+
   <rule-id>             Sequence to insert or delete from the route-map
 
 ## nv show router bgp
@@ -940,6 +1004,7 @@ product: Cumulus Linux
 ### Attributes
 
   graceful-restart      BGP Graceful restart global configuration.
+
   convergence-wait      BGP Graceful restart global configuration.
 
 ## nv show router bgp graceful-restart
@@ -989,6 +1054,7 @@ product: Cumulus Linux
 ### Attributes
 
   lsa                   LSA timers
+
   spf                   SPF timers
 
 ## nv show router ospf timers lsa
@@ -1088,8 +1154,11 @@ product: Cumulus Linux
 ### Attributes
 
   capabilities          Capabilities of this platform
+
   hardware              The platform's hardware
+
   environment           Platform environment information
+
   software              The platform's software
 
 ## nv show platform capabilities
@@ -1147,6 +1216,7 @@ product: Cumulus Linux
 ### Attributes
 
   linecard              Properties of a linecard component
+
   port                  Set of physical ports on this component
 
 ## nv show platform hardware component <component-id> linecard
@@ -1176,6 +1246,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <component-id>        Component identifier
+
   <port-id>             Physical port identifier
 
 ## nv show platform hardware component <component-id> port <port-id>
@@ -1191,6 +1262,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <component-id>        Component identifier
+
   <port-id>             Physical port identifier
 
 ### Attributes
@@ -1210,7 +1282,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <component-id>        Component identifier
+
   <port-id>             Physical port identifier
+
   <mode-id>             Breakout mode identifier
 
 ## nv show platform hardware component <component-id> port <port-id> breakout-mode <mode-id>
@@ -1226,7 +1300,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <component-id>        Component identifier
+
   <port-id>             Physical port identifier
+
   <mode-id>             Breakout mode identifier
 
 ## nv show platform environment
@@ -1242,8 +1318,11 @@ product: Cumulus Linux
 ### Attributes
 
   fan                   The fans on the switch.
+
   sensor                The sensors on the switch.
+
   psu                   The PSUs on the switch.
+
   led                   The LEDs on the switch.
 
 ## nv show platform environment fan
@@ -1445,11 +1524,15 @@ product: Cumulus Linux
 ### Attributes
 
   stp                   attributes related to global stp
+
   multicast             Configure multicast on the bridge
-  vlan                  Set of vlans in the bridge domain. Only applicable
-                        when the domain type is "vlan-aware".
+
+  vlan                  Set of vlans in the bridge domain. Only applicable when the domain type is "vlan-aware".
+
   mac-table             L2 FDB
+
   mdb                   Set of mdb entries in the bridge domain
+
   router-port           Set of multicast router ports
 
 ## nv show bridge domain <domain-id> stp
@@ -1547,13 +1630,15 @@ product: Cumulus Linux
 ### Identifiers
 
   <domain-id>           Domain
+
   <vid>                 VLAN ID
 
 ### Attributes
 
   vni                   L2 VNI
-  ptp                   VLAN PTP configuration. Inherited by interfaces in
-                        this VLAN.
+
+  ptp                   VLAN PTP configuration. Inherited by interfaces in this VLAN.
+
   multicast             Configure multicast on the vlan
 
 ## nv show bridge domain <domain-id> vlan <vid> vni <vni-id>
@@ -1569,7 +1654,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <domain-id>           Domain
+
   <vid>                 VLAN ID
+
   <vni-id>              VxLAN ID
 
 ### Attributes
@@ -1589,13 +1676,14 @@ product: Cumulus Linux
 ### Identifiers
 
   <domain-id>           Domain
+
   <vid>                 VLAN ID
+
   <vni-id>              VxLAN ID
 
 ### Attributes
 
-  head-end-replication  BUM traffic is replicated and individual copies sent
-                        to remote destinations.
+  head-end-replication  BUM traffic is replicated and individual copies sent to remote destinations.
 
 ## nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id>
 
@@ -1610,8 +1698,11 @@ product: Cumulus Linux
 ### Identifiers
 
   <domain-id>           Domain
+
   <vid>                 VLAN ID
+
   <vni-id>              VxLAN ID
+
   <hrep-id>             IPv4 unicast addresses or "evpn"
 
 ## nv show bridge domain <domain-id> vlan <vid> ptp
@@ -1627,6 +1718,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <domain-id>           Domain
+
   <vid>                 VLAN ID
 
 ## nv show bridge domain <domain-id> vlan <vid> multicast
@@ -1642,6 +1734,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <domain-id>           Domain
+
   <vid>                 VLAN ID
 
 ### Attributes
@@ -1661,6 +1754,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <domain-id>           Domain
+
   <vid>                 VLAN ID
 
 ### Attributes
@@ -1680,6 +1774,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <domain-id>           Domain
+
   <vid>                 VLAN ID
 
 ## nv show bridge domain <domain-id> mac-table
@@ -1737,14 +1832,21 @@ product: Cumulus Linux
 ### Attributes
 
   lacp-conflict         Configure the mlag lacp-conflict parameters
+
   consistency-checker   Consistency-checker parameters for mlag nodes
+
   backup                Set of MLAG backups
+
   fdb                   Macs owned by local/peer mlag switch
+
   mdb                   Mdb owned by local/peer switch
-  multicast-router-port
-                        Multicast Router Ports owned by local/peer mlag switch
+
+  multicast-router-port   Multicast Router Ports owned by local/peer mlag switch
+
   vni                   Local VNIs
+
   lacpdb                Mlag Local Lacp Info
+
   neighbor              Local/peer Neighbour Entries
 
 ## nv show mlag lacp-conflict
@@ -1822,7 +1924,9 @@ product: Cumulus Linux
 ### Attributes
 
   local                 Locally learnt macs
+
   peer                  Peer Synced Macs
+
   permanent             Permanent Macs installed on local/peer
 
 ## nv show mlag fdb local
@@ -1868,6 +1972,7 @@ product: Cumulus Linux
 ### Attributes
 
   local                 Local Multicast Database
+
   peer                  Peer Multicast Database
 
 ## nv show mlag mdb local
@@ -1903,6 +2008,7 @@ product: Cumulus Linux
 ### Attributes
 
   local                 Local Multicast Router Ports
+
   peer                  Peer Multicast Router Ports
 
 ## nv show mlag multicast-router-port local
@@ -1938,6 +2044,7 @@ product: Cumulus Linux
 ### Attributes
 
   local                 Local Vnis
+
   peer                  Peer Vnis
 
 ## nv show mlag vni local
@@ -1973,6 +2080,7 @@ product: Cumulus Linux
 ### Attributes
 
   local                 Local Lacp Database
+
   peer                  Peer Lacp Database
 
 ## nv show mlag lacpdb local
@@ -2008,6 +2116,7 @@ product: Cumulus Linux
 ### Attributes
 
   dynamic               Dynamic Neighbor
+
   permanent             Permanent Neighbor
 
 ## nv show mlag neighbor dynamic
@@ -2043,8 +2152,11 @@ product: Cumulus Linux
 ### Attributes
 
   route-advertise       Route advertising
+
   dad                   Advertise
+
   evi                   EVI
+
   multihoming           Multihoming global configuration parameters
 
 ## nv show evpn route-advertise
@@ -2069,10 +2181,7 @@ product: Cumulus Linux
 
 ### Attributes
 
-  duplicate-action      Action to take when a MAC is flagged as a possible
-                        duplicate. If 'warning-only', generates a log message.
-                        If 'freeze', further move events for the MAC will not
-                        be acted upon.
+  duplicate-action    Action to take when a MAC is flagged as a possible duplicate. If 'warning-only', generates a log message. If 'freeze', further move events for the MAC will not be acted upon.
 
 ## nv show evpn dad duplicate-action
 
@@ -2086,8 +2195,7 @@ product: Cumulus Linux
 
 ### Attributes
 
-  freeze                Further move events for the MAC will not be acted
-                        upon.
+  freeze                Further move events for the MAC will not be acted upon.
 
 ## nv show evpn dad duplicate-action freeze
 
@@ -2130,6 +2238,7 @@ product: Cumulus Linux
 ### Attributes
 
   route-advertise       Route advertise
+
   route-target          Route targets
 
 ## nv show evpn evi <evi-id> route-advertise
@@ -2163,7 +2272,9 @@ product: Cumulus Linux
 ### Attributes
 
   export                Route targets to export
+
   import                Route targets to import
+
   both                  Route targets to import and export
 
 ## nv show evpn evi <evi-id> route-target export
@@ -2179,6 +2290,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <evi-id>              VRF
+
   <rt-id>               Route target ID
 
 ## nv show evpn evi <evi-id> route-target export <rt-id>
@@ -2194,6 +2306,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <evi-id>              VRF
+
   <rt-id>               Route target ID
 
 ## nv show evpn evi <evi-id> route-target import
@@ -2209,6 +2322,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <evi-id>              VRF
+
   <rt-id>               Route target ID
 
 ## nv show evpn evi <evi-id> route-target import <rt-id>
@@ -2224,6 +2338,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <evi-id>              VRF
+
   <rt-id>               Route target ID
 
 ## nv show evpn evi <evi-id> route-target both
@@ -2239,6 +2354,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <evi-id>              VRF
+
   <rt-id>               Route target ID
 
 ## nv show evpn evi <evi-id> route-target both <rt-id>
@@ -2254,6 +2370,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <evi-id>              VRF
+
   <rt-id>               Route target ID
 
 ## nv show evpn multihoming
@@ -2269,6 +2386,7 @@ product: Cumulus Linux
 ### Attributes
 
   ead-evi-route         Ethernet Auto-discovery per EVPN instance routes
+
   segment               Multihoming interface segment
 
 ## nv show evpn multihoming ead-evi-route
@@ -2304,6 +2422,7 @@ product: Cumulus Linux
 ### Attributes
 
   roce                  Properties associated with the RDMA over Converged
+
                         Ethernet (RoCE) feature.
 
 ## nv show qos roce
@@ -2319,8 +2438,11 @@ product: Cumulus Linux
 ### Attributes
 
   prio-map              RoCE PCP/DSCP->SP mapping configurations
+
   tc-map                RoCE SP->TC mapping and ETS configurations
+
   pool-map              System Roce pool config
+
   pool                  System Roce pools
 
 ## nv show qos roce prio-map
@@ -2394,16 +2516,27 @@ product: Cumulus Linux
 ### Attributes
 
   pluggable             An interface sfp details
+
   router                interface router
+
   bond                  The state of the interface
+
   bridge                attributed related to a bridged interface
+
   ip                    IP configuration for an interface
+
   lldp                  LLDP on for an interface
+
   link                  An physical interface
+
   qos                   QOS
+
   evpn                  EVPN control plane config and info for VRF
+
   acl                   Interface ACL rules
+
   ptp                   Interface Specific PTP configuration.
+
   tunnel                The state of the interface
 
 ## nv show interface <interface-id> pluggable
@@ -2437,8 +2570,11 @@ product: Cumulus Linux
 ### Attributes
 
   pbr                   PBR interface configuration.
+
   ospf                  OSPF interface configuration.
+
   pim                   PIM interface configuration.
+
   adaptive-routing      Adaptive routing interface configuration.
 
 ## nv show interface <interface-id> router pbr
@@ -2472,6 +2608,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
+
   <pbr-map-id>          Route Map ID
 
 ## nv show interface <interface-id> router ospf
@@ -2491,7 +2628,9 @@ product: Cumulus Linux
 ### Attributes
 
   timers                Timers configuration
+
   authentication        md5 authentication configuration
+
   bfd                   BFD configuration
 
 ## nv show interface <interface-id> router ospf timers
@@ -2553,7 +2692,9 @@ product: Cumulus Linux
 ### Attributes
 
   timers                Timers
+
   bfd                   BFD configuration
+
   address-family        Address family specific configuration
 
 ## nv show interface <interface-id> router pim timers
@@ -2618,8 +2759,7 @@ product: Cumulus Linux
 
 ### Attributes
 
-  allow-rp              Allow RP feature, which allows RP address to be
-                        accepts for the received
+  allow-rp              Allow RP feature, which allows RP address to be accepts for the received
 
 ## nv show interface <interface-id> router pim address-family ipv4-unicast allow-rp
 
@@ -2666,6 +2806,7 @@ product: Cumulus Linux
 ### Attributes
 
   member                Set of bond members
+
   mlag                  MLAG configuration on the bond interface
 
 ## nv show interface <interface-id> bond member <member-id>
@@ -2681,6 +2822,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
+
   <member-id>           Bond memer interface
 
 ## nv show interface <interface-id> bond mlag
@@ -2700,6 +2842,7 @@ product: Cumulus Linux
 ### Attributes
 
   lacp-conflict         Configure the mlag lacp-conflict parameters
+
   consistency-checker   Consistency-checker parameters for mlag interfaces
 
 ## nv show interface <interface-id> bond mlag lacp-conflict
@@ -2766,9 +2909,7 @@ product: Cumulus Linux
 ### Attributes
 
   stp                   attributed related to a stpd interface
-  vlan                  Set of allowed vlans for this bridge domain on this
-                        interface. If "all", inherit all vlans from the bridge
-                        domain, if appropriate. This is the default.
+  vlan                  Set of allowed vlans for this bridge domain on this  interface. If "all", inherit all vlans from the bridge domain, if appropriate. This is the default.
 
 ## nv show interface <interface-id> bridge domain <domain-id> stp
 
@@ -2783,6 +2924,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
+
   <domain-id>           Domain
 
 ## nv show interface <interface-id> bridge domain <domain-id> vlan <vid>
@@ -2798,7 +2940,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
+
   <domain-id>           Domain
+
   <vid>                 VLAN ID, or all
 
 ## nv show interface <interface-id> ip
@@ -2818,13 +2962,21 @@ product: Cumulus Linux
 ### Attributes
 
   address               ipv4 and ipv6 address
+
   neighbor              IP neighbors
+
   vrr                   Configuration for VRR
+
   gateway               default ipv4 and ipv6 gateways
+
   ipv4                  IPv4 configuration for an interface
+
   ipv6                  IPv6 configuration for an interface
+
   igmp                  Configuration for IGMP
+
   vrrp                  Configuration for VRRP
+
   neighbor-discovery    Neighbor discovery configuration for an interface
 
 ## nv show interface <interface-id> ip address <ip-prefix-id>
@@ -2840,6 +2992,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
+
   <ip-prefix-id>        IPv4 or IPv6 address and route prefix in CIDR notation
 
 ## nv show interface <interface-id> ip neighbor
@@ -2859,6 +3012,7 @@ product: Cumulus Linux
 ### Attributes
 
   ipv4                  IPv4 neighbors
+
   ipv6                  IPv6 neighbors
 
 ## nv show interface <interface-id> ip neighbor ipv4 <neighbor-id>
@@ -2874,6 +3028,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
+
   <neighbor-id>         The IPv4 address of the neighbor node.
 
 ## nv show interface <interface-id> ip neighbor ipv6 <neighbor-id>
@@ -2889,6 +3044,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
+
   <neighbor-id>         The IPv6 address of the neighbor node.
 
 ## nv show interface <interface-id> ip vrr
@@ -2908,6 +3064,7 @@ product: Cumulus Linux
 ### Attributes
 
   address               Virtual addresses with prefixes
+
   state                 The state of the interface
 
 ## nv show interface <interface-id> ip vrr address <ip-prefix-id>
@@ -2923,6 +3080,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
+
   <ip-prefix-id>        IPv4 or IPv6 address and route prefix in CIDR notation
 
 ## nv show interface <interface-id> ip vrr state
@@ -2952,6 +3110,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
+
   <ip-address-id>       IPv4 or IPv6 address
 
 ## nv show interface <interface-id> ip ipv4
@@ -3013,6 +3172,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
+
   <static-group-id>     IGMP static multicast mroute destination
 
 ## nv show interface <interface-id> ip vrrp
@@ -3046,6 +3206,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
+
   <virtual-router-id>   Virtual Router IDentifier (VRID)
 
 ### Attributes
@@ -3065,7 +3226,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
+
   <virtual-router-id>   Virtual Router IDentifier (VRID)
+
   <ip-address-id>       IPv4 or IPv6 address
 
 ## nv show interface <interface-id> ip neighbor-discovery
@@ -3084,11 +3247,14 @@ product: Cumulus Linux
 
 ### Attributes
 
-  rdnss                 Recursive DNS server addresses to be advertised using
-                        type 25 option RFC8016
+  rdnss                 Recursive DNS server addresses to be advertised using type 25 option RFC8016
+
   prefix                IPv6 prefix configuration
+
   dnssl                 Advertise DNS search list using type 31 option RFC8106
+
   router-advertisement  Router advertisement
+
   home-agent            Home agent configuration
 
 ## nv show interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id>
@@ -3104,6 +3270,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
+
   <ipv6-address-id>     IPv6 address
 
 ## nv show interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id>
@@ -3119,6 +3286,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
+
   <ipv6-prefix-id>      IPv6 address and route prefix in CIDR notation
 
 ## nv show interface <interface-id> ip neighbor-discovery dnssl <domain-name-id>
@@ -3134,8 +3302,8 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
-  <domain-name-id>      The domain portion of a hostname (RFC 1123) or an
-                        internationalized hostname (RFC 5890).
+
+  <domain-name-id>      The domain portion of a hostname (RFC 1123) or an internationalized hostname (RFC 5890).
 
 ## nv show interface <interface-id> ip neighbor-discovery router-advertisement
 
@@ -3196,8 +3364,8 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
-  <neighbor-id>         System generated identifier for the neighbor on the
-                        interface
+
+  <neighbor-id>         System generated identifier for the neighbor on the interface
 
 ### Attributes
 
@@ -3216,8 +3384,8 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
-  <neighbor-id>         System generated identifier for the neighbor on the
-                        interface
+
+  <neighbor-id>         System generated identifier for the neighbor on the interface
 
 ### Attributes
 
@@ -3236,8 +3404,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
-  <neighbor-id>         System generated identifier for the neighbor on the
-                        interface
+
+  <neighbor-id>         System generated identifier for the neighbor on the interface
+
   <vid>                 VLAN ID, or all
 
 ## nv show interface <interface-id> link
@@ -3257,9 +3426,13 @@ product: Cumulus Linux
 ### Attributes
 
   state                 The state of the interface
+
   dot1x                 An physical interface
+
   stats                 Interface stats
+
   traffic-engineering   Traffic engineering stats
+
   flag                  link flags
 
 ## nv show interface <interface-id> link state
@@ -3364,8 +3537,11 @@ product: Cumulus Linux
 ### Attributes
 
   port-stats            QoS Statistics for Interface
+
   egress-queue-stats    Egress queue statistics per egress traffic-class
+
   ingress-buffer-stats  Ingress Buffer statistics per priority-group
+
   pfc-stats             PFC statistics per internal switch-priority
 
 ## nv show interface <interface-id> qos counters port-stats
@@ -3385,6 +3561,7 @@ product: Cumulus Linux
 ### Attributes
 
   rx-stats              QoS Rx Statistics for Interface
+
   tx-stats              QoS Tx Statistics for Interface
 
 ## nv show interface <interface-id> qos counters port-stats rx-stats
@@ -3503,7 +3680,9 @@ product: Cumulus Linux
 ### Attributes
 
   pool-map              Interface Roce pools
+
   prio-map              RoCE PCP/DSCP->SP mapping configurations
+
   tc-map                RoCE SP->TC mapping and ETS configurations
 
 ## nv show interface <interface-id> qos roce status pool-map
@@ -3611,11 +3790,13 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
+
   <acl-id>              ACL ID
 
 ### Attributes
 
   inbound               ACL applied for inbound direction
+
   outbound              ACL applied for outbound direction
 
 ## nv show interface <interface-id> acl <acl-id> inbound
@@ -3631,6 +3812,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
+
   <acl-id>              ACL ID
 
 ### Attributes
@@ -3650,6 +3832,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
+
   <acl-id>              ACL ID
 
 ## nv show interface <interface-id> acl <acl-id> outbound
@@ -3665,6 +3848,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
+
   <acl-id>              ACL ID
 
 ### Attributes
@@ -3684,6 +3868,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <interface-id>        Interface
+
   <acl-id>              ACL ID
 
 ## nv show interface <interface-id> ptp
@@ -3702,7 +3887,8 @@ product: Cumulus Linux
 
 ### Attributes
 
-  timers                Interface PTP timerss
+  timers                Interface PTP timers
+
   counters              Interface PTP counters
 
 ## nv show interface <interface-id> ptp timers
@@ -3760,13 +3946,21 @@ product: Cumulus Linux
 ### Attributes
 
   dns                   collection of DNS
+
   syslog                collection of syslog
+
   ntp                   NTPs
+
   dhcp-relay            DHCP-relays
+
   dhcp-relay6           DHCP-relays
+
   ptp                   Collection of PTP instances
+
   dhcp-server           DHCP-servers
+
   dhcp-server6          DHCP-servers6
+
   lldp                  Global LLDP
 
 ## nv show service dns
@@ -3814,6 +4008,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <dns-server-id>       IPv4 or IPv6 address of a DNS server
 
 ## nv show service syslog
@@ -3861,6 +4056,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <server-id>           Hostname or IP address of a syslog server
 
 ## nv show service ntp
@@ -3894,6 +4090,7 @@ product: Cumulus Linux
 ### Attributes
 
   server                Remote NTP Servers
+
   pool                  Remote NTP Servers
 
 ## nv show service ntp <vrf-id> server <server-id>
@@ -3909,6 +4106,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <server-id>           Hostname or IP address of the NTP server
 
 ## nv show service ntp <vrf-id> pool <server-id>
@@ -3924,6 +4122,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <server-id>           Hostname or IP address of the NTP server
 
 ## nv show service dhcp-relay
@@ -3957,8 +4156,9 @@ product: Cumulus Linux
 ### Attributes
 
   server                DHCP servers
-  interface             Set of interfaces on which to handle DHCP relay
-                        traffic
+
+  interface             Set of interfaces on which to handle DHCP relay traffic
+
   giaddress-interface   Configures DHCP relay giaddress on the interfaes.
 
 ## nv show service dhcp-relay <vrf-id> server <server-id>
@@ -3974,6 +4174,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <server-id>           DHCP server
 
 ## nv show service dhcp-relay <vrf-id> interface <interface-id>
@@ -3989,6 +4190,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <interface-id>        DHCP relay interface
 
 ## nv show service dhcp-relay <vrf-id> giaddress-interface <interface-id>
@@ -4004,6 +4206,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <interface-id>        DHCP relay giaddress interface
 
 ## nv show service dhcp-relay6
@@ -4055,6 +4258,7 @@ product: Cumulus Linux
 ### Attributes
 
   upstream              Configures DHCP relay on the interfaes.
+
   downstream            Configures DHCP relay on the interfaes.
 
 ## nv show service dhcp-relay6 <vrf-id> interface upstream <interface-id>
@@ -4070,6 +4274,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <interface-id>        DHCP relay interface
 
 ## nv show service dhcp-relay6 <vrf-id> interface downstream <interface-id>
@@ -4085,6 +4290,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <interface-id>        DHCP relay interface
 
 ## nv show service ptp
@@ -4099,8 +4305,7 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <instance-id>         PTP instance number. It is used for management
-                        purpose.
+  <instance-id>         PTP instance number. It is used for management purpose.
 
 ## nv show service ptp <instance-id>
 
@@ -4114,16 +4319,20 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <instance-id>         PTP instance number. It is used for management
-                        purpose.
+  <instance-id>         PTP instance number. It is used for management purpose.
 
 ### Attributes
 
   acceptable-master     Collection of acceptable masters
+
   monitor               PTP monitor configuration
+
   current               Local states learned from the exchange of PTP messages
+
   clock-quality         Clock Quality Status
+
   parent                Local states learned from the exchange of PTP messages
+
   time-properties       Time attributes of the clock
 
 ## nv show service ptp <instance-id> acceptable-master
@@ -4138,8 +4347,8 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <instance-id>         PTP instance number. It is used for management
-                        purpose.
+  <instance-id>         PTP instance number. It is used for management purpose.
+
   <clock-id>            Clock ID
 
 ## nv show service ptp <instance-id> acceptable-master <clock-id>
@@ -4154,8 +4363,8 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <instance-id>         PTP instance number. It is used for management
-                        purpose.
+  <instance-id>         PTP instance number. It is used for management purpose.
+
   <clock-id>            Clock ID
 
 ## nv show service ptp <instance-id> monitor
@@ -4170,8 +4379,7 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <instance-id>         PTP instance number. It is used for management
-                        purpose.
+  <instance-id>         PTP instance number. It is used for management purpose.
 
 ### Attributes
 
@@ -4190,8 +4398,7 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <instance-id>         PTP instance number. It is used for management
-                        purpose.
+  <instance-id>         PTP instance number. It is used for management purpose.
 
 ## nv show service ptp <instance-id> monitor violations
 
@@ -4205,8 +4412,7 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <instance-id>         PTP instance number. It is used for management
-                        purpose.
+  <instance-id>         PTP instance number. It is used for management purpose.
 
 ### Attributes
 
@@ -4224,15 +4430,18 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <instance-id>         PTP instance number. It is used for management
-                        purpose.
+  <instance-id>         PTP instance number. It is used for management purpose.
 
 ### Attributes
 
   acceptable-master     Collection of master violations
+
   forced-master         Collection of master violations
+
   max-offset            Collection of violations logs
+
   min-offset            Collection of violations logs
+
   path-delay            Collection of violations logs
 
 ## nv show service ptp <instance-id> monitor violations log acceptable-master
@@ -4247,8 +4456,7 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <instance-id>         PTP instance number. It is used for management
-                        purpose.
+  <instance-id>         PTP instance number. It is used for management purpose.
 
 ## nv show service ptp <instance-id> monitor violations log forced-master
 
@@ -4262,8 +4470,7 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <instance-id>         PTP instance number. It is used for management
-                        purpose.
+  <instance-id>         PTP instance number. It is used for management purpose.
 
 ## nv show service ptp <instance-id> monitor violations log max-offset
 
@@ -4277,8 +4484,7 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <instance-id>         PTP instance number. It is used for management
-                        purpose.
+  <instance-id>         PTP instance number. It is used for management purpose.
 
 ## nv show service ptp <instance-id> monitor violations log min-offset
 
@@ -4292,8 +4498,7 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <instance-id>         PTP instance number. It is used for management
-                        purpose.
+  <instance-id>         PTP instance number. It is used for management purpose.
 
 ## nv show service ptp <instance-id> monitor violations log path-delay
 
@@ -4307,8 +4512,7 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <instance-id>         PTP instance number. It is used for management
-                        purpose.
+  <instance-id>         PTP instance number. It is used for management purpose.
 
 ## nv show service ptp <instance-id> current
 
@@ -4322,8 +4526,7 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <instance-id>         PTP instance number. It is used for management
-                        purpose.
+  <instance-id>         PTP instance number. It is used for management purpose.
 
 ## nv show service ptp <instance-id> clock-quality
 
@@ -4337,8 +4540,7 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <instance-id>         PTP instance number. It is used for management
-                        purpose.
+  <instance-id>         PTP instance number. It is used for management purpose.
 
 ## nv show service ptp <instance-id> parent
 
@@ -4352,8 +4554,7 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <instance-id>         PTP instance number. It is used for management
-                        purpose.
+  <instance-id>         PTP instance number. It is used for management purpose.
 
 ### Attributes
 
@@ -4372,8 +4573,7 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <instance-id>         PTP instance number. It is used for management
-                        purpose.
+  <instance-id>         PTP instance number. It is used for management purpose.
 
 ## nv show service ptp <instance-id> time-properties
 
@@ -4387,8 +4587,7 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <instance-id>         PTP instance number. It is used for management
-                        purpose.
+  <instance-id>         PTP instance number. It is used for management  purpose.
 
 ## nv show service dhcp-server
 
@@ -4420,11 +4619,14 @@ product: Cumulus Linux
 
 ### Attributes
 
-  interface             Assign DHCP options to clients directly attached to
-                        these interfaes.
+  interface             Assign DHCP options to clients directly attached to these interfaes.
+
   pool                  DHCP Pools
+
   domain-name           DHCP domain names
+
   domain-name-server    DHCP domain name servers
+
   static                DHCP clients with fixed IP address assignments
 
 ## nv show service dhcp-server <vrf-id> interface <interface-id>
@@ -4440,6 +4642,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <interface-id>        DHCP client interface
 
 ## nv show service dhcp-server <vrf-id> pool <pool-id>
@@ -4455,13 +4658,17 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <pool-id>             DHCP pool subnet.
 
 ### Attributes
 
   domain-name-server    DHCP domain name servers
+
   domain-name           DHCP domain names
+
   gateway               DHCP gateway
+
   range                 IP Address range assignments
 
 ## nv show service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id>
@@ -4477,7 +4684,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <pool-id>             DHCP pool subnet.
+
   <server-id>           DNS server
 
 ## nv show service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id>
@@ -4493,7 +4702,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <pool-id>             DHCP pool subnet.
+
   <domain-name-id>      DHCP domain name
 
 ## nv show service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id>
@@ -4509,7 +4720,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <pool-id>             DHCP pool subnet.
+
   <gateway-id>          Gateway
 
 ## nv show service dhcp-server <vrf-id> pool <pool-id> range <range-id>
@@ -4525,7 +4738,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <pool-id>             DHCP pool subnet.
+
   <range-id>            DHCP client interface
 
 ## nv show service dhcp-server <vrf-id> domain-name <domain-name-id>
@@ -4541,6 +4756,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <domain-name-id>      DHCP domain name
 
 ## nv show service dhcp-server <vrf-id> domain-name-server <server-id>
@@ -4556,6 +4772,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <server-id>           DNS server
 
 ## nv show service dhcp-server <vrf-id> static <static-id>
@@ -4571,6 +4788,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <static-id>           static mapping nane
 
 ## nv show service dhcp-server6
@@ -4603,11 +4821,14 @@ product: Cumulus Linux
 
 ### Attributes
 
-  interface             Assign DHCP options to clients directly attached to
-                        these interfaes.
+  interface             Assign DHCP options to clients directly attached to these interfaes.
+
   pool                  DHCP IP Pools
+
   domain-name           DHCP domain names
+
   domain-name-server    DHCP domain name servers
+
   static                DHCP clients with fixed IP address assignments
 
 ## nv show service dhcp-server6 <vrf-id> interface <interface-id>
@@ -4623,6 +4844,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <interface-id>        DHCP client interface
 
 ## nv show service dhcp-server6 <vrf-id> pool <pool-id>
@@ -4638,12 +4860,15 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <pool-id>             DHCP6 pool subnet.
 
 ### Attributes
 
   domain-name-server    DHCP domain name servers
+
   domain-name           DHCP domain names
+
   range                 IP Address range assignments
 
 ## nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id>
@@ -4659,7 +4884,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <pool-id>             DHCP6 pool subnet.
+
   <server-id>           DNS server
 
 ## nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id>
@@ -4675,7 +4902,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <pool-id>             DHCP6 pool subnet.
+
   <domain-name-id>      DHCP domain name
 
 ## nv show service dhcp-server6 <vrf-id> pool <pool-id> range <range-id>
@@ -4691,7 +4920,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <pool-id>             DHCP6 pool subnet.
+
   <range-id>            DHCP client interface
 
 ## nv show service dhcp-server6 <vrf-id> domain-name <domain-name-id>
@@ -4707,6 +4938,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <domain-name-id>      DHCP domain name
 
 ## nv show service dhcp-server6 <vrf-id> domain-name-server <server-id>
@@ -4722,6 +4954,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <server-id>           DNS server
 
 ## nv show service dhcp-server6 <vrf-id> static <static-id>
@@ -4737,6 +4970,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <static-id>           static mapping nane
 
 ## nv show service lldp
@@ -4762,11 +4996,17 @@ product: Cumulus Linux
 ### Attributes
 
   control-plane         Control Plane specific configurations
+
   message               System pre-login and post-login messages
+
   global                global system configuration
+
   ztp                   System Zero Touch Provisioning
+
   reboot                Platform reboot info
+
   port-mirror           Port mirror
+
   config                Affect how config operations are performed.
 
 ## nv show system control-plane
@@ -4782,6 +5022,7 @@ product: Cumulus Linux
 ### Attributes
 
   trap                  Traps
+
   policer               Policers
 
 ## nv show system control-plane trap <trap-id>
@@ -4867,6 +5108,7 @@ product: Cumulus Linux
 ### Attributes
 
   routing-table         reserved routing table ranges
+
   vlan                  reserved vlan ranges
 
 ## nv show system global reserved routing-table
@@ -4930,6 +5172,7 @@ product: Cumulus Linux
 ### Attributes
 
   script                Zero Touch Provisioning Script
+
   status                Zero Touch Provisioning Last Status
 
 ## nv show system ztp script
@@ -4965,6 +5208,7 @@ product: Cumulus Linux
 ### Attributes
 
   reason                Platform reboot reason
+
   history               Platform reboot history
 
 ## nv show system reboot reason
@@ -5032,6 +5276,7 @@ product: Cumulus Linux
 ### Attributes
 
   span                  Switched Port Analyzer
+
   erspan                Encapsulated Remote Switched Port Analyzer.
 
 ## nv show system port-mirror session <session-id> span
@@ -5051,6 +5296,7 @@ product: Cumulus Linux
 ### Attributes
 
   source-port           Set of source ports.
+
   destination           The SPAN destination port.
   truncate              TBD
 
@@ -5067,6 +5313,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <session-id>          port mirror session number
+
   <port-id>             Port interface
 
 ## nv show system port-mirror session <session-id> span source-port <port-id>
@@ -5082,6 +5329,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <session-id>          port mirror session number
+
   <port-id>             Port interface
 
 ## nv show system port-mirror session <session-id> span destination
@@ -5097,6 +5345,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <session-id>          port mirror session number
+
   <port-id>             Port interface
 
 ## nv show system port-mirror session <session-id> span destination <port-id>
@@ -5112,6 +5361,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <session-id>          port mirror session number
+
   <port-id>             Port interface
 
 ## nv show system port-mirror session <session-id> span truncate
@@ -5145,7 +5395,9 @@ product: Cumulus Linux
 ### Attributes
 
   source-port           Set of source ports.
+
   destination           erspan destination
+
   truncate              TBD
 
 ## nv show system port-mirror session <session-id> erspan source-port
@@ -5161,6 +5413,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <session-id>          port mirror session number
+
   <port-id>             Port interface
 
 ## nv show system port-mirror session <session-id> erspan source-port <port-id>
@@ -5176,6 +5429,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <session-id>          port mirror session number
+
   <port-id>             Port interface
 
 ## nv show system port-mirror session <session-id> erspan destination
@@ -5195,6 +5449,7 @@ product: Cumulus Linux
 ### Attributes
 
   source-ip             TBD
+
   dest-ip               TBD
 
 ## nv show system port-mirror session <session-id> erspan destination source-ip
@@ -5210,6 +5465,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <session-id>          port mirror session number
+
   <source-ip>           IPv4 address
 
 ## nv show system port-mirror session <session-id> erspan destination source-ip <source-ip>
@@ -5239,6 +5495,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <session-id>          port mirror session number
+
   <dest-ip>             IPv4 address
 
 ## nv show system port-mirror session <session-id> erspan destination dest-ip <dest-ip>
@@ -5282,10 +5539,8 @@ product: Cumulus Linux
 ### Attributes
 
   apply                 Affect how config apply operations are performed.
-  snippet               Configuration file snippets that will be loaded as
-                        written into the appropriate configuration file during
-                        a foundation unit's lifecycle. This is essentially a
-                        copy-paste operation to handle gaps in the current CUE
+
+  snippet               Configuration file snippets that will be loaded as written into the appropriate configuration file during a foundation unit's lifecycle. This is essentially a copy-paste operation to handle gaps in the current CUE
                         OM.
 
 ## nv show system config apply
@@ -5338,10 +5593,8 @@ product: Cumulus Linux
 
 ### Description
 
-  Configuration file snippets that will be loaded as written into the
-  appropriate configuration file during a foundation unit's
-  lifecycle.  This is essentially a copy-paste operation to handle
-  gaps in the current CUE OM.
+  Configuration file snippets that will be loaded as written into the appropriate configuration file during a foundation unit's
+  lifecycle.  This is essentially a copy-paste operation to handle gaps in the current CUE OM.
 
 ## nv show vrf
 
@@ -5374,10 +5627,12 @@ product: Cumulus Linux
 ### Attributes
 
   loopback              The loopback IP interface associated with this VRF.
+
   evpn                  EVPN control plane config and info for VRF
+
   router                A VRF
-  ptp                   VRF PTP configuration. Inherited by interfaces in this
-                        VRF.
+
+  ptp                   VRF PTP configuration. Inherited by interfaces in this VRF.
 
 ## nv show vrf <vrf-id> loopback
 
@@ -5395,8 +5650,7 @@ product: Cumulus Linux
 
 ### Attributes
 
-  ip                    Properties associated with the loopback IP address on
-                        this VRF.
+  ip                    Properties associated with the loopback IP address on this VRF.
 
 ## nv show vrf <vrf-id> loopback ip
 
@@ -5429,6 +5683,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <ip-prefix-id>        IPv4 or IPv6 address and route prefix in CIDR notation
 
 ## nv show vrf <vrf-id> evpn
@@ -5462,6 +5717,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <vni-id>              VxLAN ID
 
 ## nv show vrf <vrf-id> router
@@ -5481,9 +5737,13 @@ product: Cumulus Linux
 ### Attributes
 
   rib                   RIB Routes
+
   bgp                   BGP VRF configuration.
+
   static                Routes
+
   pim                   PIM VRF configuration.
+
   ospf                  OSPF VRF configuration.
 
 ## nv show vrf <vrf-id> router rib <afi>
@@ -5499,11 +5759,13 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <afi>                 Route address family.
 
 ### Attributes
 
   protocol              Import protocols from RIB to FIB
+
   route                 RIB Routes with info.
 
 ## nv show vrf <vrf-id> router rib <afi> protocol <import-protocol-id>
@@ -5519,7 +5781,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <afi>                 Route address family.
+
   <import-protocol-id>  Import protocol list.
 
 ## nv show vrf <vrf-id> router rib <afi> route <route-id>
@@ -5535,7 +5799,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <afi>                 Route address family.
+
   <route-id>            IP prefix
 
 ### Attributes
@@ -5555,8 +5821,11 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <afi>                 Route address family.
+
   <route-id>            IP prefix
+
   <protocol-id>         Route entry list keys.
 
 ### Attributes
@@ -5580,15 +5849,21 @@ product: Cumulus Linux
 ### Attributes
 
   address-family        Address family specific configuration
+
   path-selection        BGP path-selection configuration.
+
   route-reflection      BGP route-reflection configuration.
+
   peer-group            Peers
-  route-export          Controls for exporting ipv4 and ipv6 routes from this
-                        VRF
-  route-import          Controls for importing of ipv4 and ipv6 routes from
-                        this VRF
+
+  route-export          Controls for exporting ipv4 and ipv6 routes from this VRF
+
+  route-import          Controls for importing of ipv4 and ipv6 routes from this VRF
+
   timers                timer values for all peers in this VRF
+
   confederation         BGP Confederation options.
+
   neighbor              Peers
 
 ## nv show vrf <vrf-id> router bgp address-family
@@ -5608,7 +5883,9 @@ product: Cumulus Linux
 ### Attributes
 
   ipv4-unicast          IPv4 unicast address family
+
   l2vpn-evpn            BGP VRF configuration. L2VPN EVPN address family
+
   ipv6-unicast          IPv6 unicast address family
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast
@@ -5628,12 +5905,19 @@ product: Cumulus Linux
 ### Attributes
 
   redistribute          Route redistribute
+
   aggregate-route       IPv4 aggregate routes
+
   network               IPv4 static networks.
+
   route-import          Route import
+
   multipaths            Multipaths
+
   admin-distance        Admin distances.
+
   route-export          Route export
+
   loc-rib               IPv4 local RIB
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute
@@ -5653,8 +5937,11 @@ product: Cumulus Linux
 ### Attributes
 
   static                Route redistribution of ipv4 static routes
+
   connected             Route redistribution of ipv4 connected routes
+
   kernel                Route redistribution of ipv4 kernel routes
+
   ospf                  Route redistribution of ipv4 ospf routes
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static
@@ -5726,6 +6013,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <aggregate-route-id>  IPv4 address and route prefix in CIDR notation
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id>
@@ -5741,6 +6029,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <static-network-id>   IPv4 address and route prefix in CIDR notation
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import
@@ -5759,8 +6048,7 @@ product: Cumulus Linux
 
 ### Attributes
 
-  from-vrf              Controls for VRF to VRF route leaking for this
-                        address-family
+  from-vrf              Controls for VRF to VRF route leaking for this address-family
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf
 
@@ -5793,6 +6081,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <leak-vrf-id>         VRF
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast multipaths
@@ -5839,8 +6128,7 @@ product: Cumulus Linux
 
 ### Attributes
 
-  to-evpn               Controls for exporting routes from this VRF for this
-                        address-family into EVPN (as type-5 routes)
+  to-evpn               Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn
 
@@ -5887,6 +6175,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IPv4 address and route prefix in CIDR notation
 
 ### Attributes
@@ -5906,18 +6195,27 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IPv4 address and route prefix in CIDR notation
+
   <path-id>             Path Id
 
 ### Attributes
 
   nexthop               Route nexthops
+
   peer                  Nexthop peer information
+
   flags                 Route flags
+
   bestpath              A bestpath information
+
   aspath                AS paths
+
   community             Set of community names for community-list
+
   large-community       Set of community names for large community list
+
   ext-community         extended communities
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> nexthop <nexthop-id>
@@ -5933,8 +6231,11 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IPv4 address and route prefix in CIDR notation
+
   <path-id>             Path Id
+
   <nexthop-id>          Nexthop Id
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> peer
@@ -5950,7 +6251,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IPv4 address and route prefix in CIDR notation
+
   <path-id>             Path Id
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> flags
@@ -5966,7 +6269,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IPv4 address and route prefix in CIDR notation
+
   <path-id>             Path Id
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> bestpath
@@ -5982,7 +6287,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IPv4 address and route prefix in CIDR notation
+
   <path-id>             Path Id
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> aspath
@@ -5998,7 +6305,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IPv4 address and route prefix in CIDR notation
+
   <path-id>             Path Id
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> community
@@ -6014,7 +6323,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IPv4 address and route prefix in CIDR notation
+
   <path-id>             Path Id
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> large-community
@@ -6030,7 +6341,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IPv4 address and route prefix in CIDR notation
+
   <path-id>             Path Id
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> ext-community
@@ -6046,7 +6359,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IPv4 address and route prefix in CIDR notation
+
   <path-id>             Path Id
 
 ## nv show vrf <vrf-id> router bgp address-family l2vpn-evpn
@@ -6080,12 +6395,19 @@ product: Cumulus Linux
 ### Attributes
 
   aggregate-route       IPv6 aggregate routes
+
   network               IPv6 static networks.
+
   route-import          Route import
+
   multipaths            Multipaths
+
   admin-distance        Admin distances.
+
   route-export          Route export
+
   redistribute          Route redistribute
+
   loc-rib               IPv6 local RIB
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id>
@@ -6101,6 +6423,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <aggregate-route-id>  IPv6 address and route prefix in CIDR notation
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id>
@@ -6116,6 +6439,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <static-network-id>   IPv6 address and route prefix in CIDR notation
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import
@@ -6134,8 +6458,7 @@ product: Cumulus Linux
 
 ### Attributes
 
-  from-vrf              Controls for VRF to VRF route leaking for this
-                        address-family
+  from-vrf              Controls for VRF to VRF route leaking for this address-family
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf
 
@@ -6213,8 +6536,7 @@ product: Cumulus Linux
 
 ### Attributes
 
-  to-evpn               Controls for exporting routes from this VRF for this
-                        address-family into EVPN (as type-5 routes)
+  to-evpn               Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn
 
@@ -6247,8 +6569,11 @@ product: Cumulus Linux
 ### Attributes
 
   static                Route redistribution of ipv4 static routes
+
   connected             Route redistribution of ipv4 connected routes
+
   kernel                Route redistribution of ipv4 kernel routes
+
   ospf6                 Route redistribution of ipv6 ospf routes
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static
@@ -6338,6 +6663,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IPv6 address and route prefix in CIDR notation
 
 ### Attributes
@@ -6357,18 +6683,27 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IPv6 address and route prefix in CIDR notation
+
   <path-id>             Path Id
 
 ### Attributes
 
   nexthop               Route nexthops
+
   peer                  Nexthop peer information
+
   flags                 Route flags
+
   bestpath              A bestpath information
+
   aspath                AS paths
+
   community             Set of community names for community-list
+
   large-community       Set of community names for large community list
+
   ext-community         extended communities
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> nexthop <nexthop-id>
@@ -6384,9 +6719,13 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IPv6 address and route prefix in CIDR notation
+
   <path-id>             Path Id
+
   <nexthop-id>          Nexthop Id
+
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> peer
 
@@ -6401,7 +6740,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IPv6 address and route prefix in CIDR notation
+
   <path-id>             Path Id
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> flags
@@ -6417,7 +6758,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IPv6 address and route prefix in CIDR notation
+
   <path-id>             Path Id
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> bestpath
@@ -6433,7 +6776,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IPv6 address and route prefix in CIDR notation
+
   <path-id>             Path Id
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> aspath
@@ -6449,7 +6794,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IPv6 address and route prefix in CIDR notation
+
   <path-id>             Path Id
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> community
@@ -6465,7 +6812,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IPv6 address and route prefix in CIDR notation
+
   <path-id>             Path Id
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> large-community
@@ -6481,7 +6830,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IPv6 address and route prefix in CIDR notation
+
   <path-id>             Path Id
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> ext-community
@@ -6497,7 +6848,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IPv6 address and route prefix in CIDR notation
+
   <path-id>             Path Id
 
 ## nv show vrf <vrf-id> router bgp path-selection
@@ -6516,12 +6869,11 @@ product: Cumulus Linux
 
 ### Attributes
 
-  aspath                BGP aspath path-selection config, applicable to this
-                        BGP instance
-  med                   BGP med path-selection config, applicable to this BGP
-                        instance
-  multipath             BGP multipath path-selection config, applicable to
-                        this BGP instance
+  aspath                BGP aspath path-selection config, applicable to this BGP instance
+
+  med                   BGP med path-selection config, applicable to this BGP instance
+
+  multipath             BGP multipath path-selection config, applicable to this BGP instance
 
 ## nv show vrf <vrf-id> router bgp path-selection aspath
 
@@ -6596,13 +6948,18 @@ product: Cumulus Linux
 
 ### Attributes
 
-  bfd                   Specifies whether to track BGP peering sessions using
-                        this configuration via BFD.
+  bfd                   Specifies whether to track BGP peering sessions using this configuration via BFD.
+
   ttl-security          RFC 5082
+
   capabilities          Capabilities
+
   graceful-restart      Graceful restart
+
   local-as              Local AS feature
+
   timers                Peer peer-timerss
+
   address-family        Address family specific configuration
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> bfd
@@ -6618,6 +6975,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security
@@ -6633,6 +6991,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities
@@ -6648,6 +7007,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart
@@ -6663,6 +7023,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> local-as
@@ -6678,6 +7039,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> timers
@@ -6693,6 +7055,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family
@@ -6708,13 +7071,15 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ### Attributes
 
-  ipv4-unicast          Peer IPv4 unicast address family. Always on, unless
-                        disabled globaly.
+  ipv4-unicast          Peer IPv4 unicast address family. Always on, unless disabled globaly.
+
   ipv6-unicast          Peer IPv6 unicast address family.
+
   l2vpn-evpn            Peer l2vpn EVPN address family.
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast
@@ -6730,20 +7095,24 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ### Attributes
 
   community-advertise   Community advertise for address family.
+
   attribute-mod         Attribute mod for address family.
-  aspath                Options for handling AS_PATH for prefixes from/to peer
-                        for the specified address family
+
+  aspath                Options for handling AS_PATH for prefixes from/to peer for the specified address family
+
   prefix-limits         Limits on prefix from the peer for this address-family
-  default-route-origination
-                        Default route origination
+
+  default-route-origination Default route origination
+
   policy                Policies for ipv4 unicast
-  conditional-advertise
-                        Conditional advertise for address family.
+
+  conditional-advertise Conditional advertise for address family.
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise
 
@@ -6758,6 +7127,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod
@@ -6773,6 +7143,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath
@@ -6788,12 +7159,12 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ### Attributes
 
-  allow-my-asn          If enabled, it is acceptable for a received AS_PATH to
-                        contain the ASN of the local system
+  allow-my-asn          If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn
 
@@ -6808,6 +7179,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits
@@ -6823,12 +7195,12 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ### Attributes
 
-  inbound               Limits on inbound prefix from the peer for this
-                        address-family
+  inbound               Limits on inbound prefix from the peer for this address-family
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound
 
@@ -6843,6 +7215,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination
@@ -6858,6 +7231,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy
@@ -6873,11 +7247,13 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ### Attributes
 
   inbound               Outbound unicast policy
+
   outbound              Outbound unicast policy
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound
@@ -6893,6 +7269,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound
@@ -6908,6 +7285,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise
@@ -6923,6 +7301,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast
@@ -6938,20 +7317,24 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ### Attributes
 
   policy                Policies for ipv4 unicast
-  aspath                Options for handling AS_PATH for prefixes from/to peer
-                        for the specified address family
+
+  aspath                Options for handling AS_PATH for prefixes from/to peer for the specified address family
+
   prefix-limits         Limits on prefix from the peer for this address-family
-  default-route-origination
-                        Default route origination
+
+  default-route-origination Default route origination
+
   community-advertise   Community advertise for address family.
+
   attribute-mod         Attribute mod for address family.
-  conditional-advertise
-                        Conditional advertise for address family.
+
+  conditional-advertise Conditional advertise for address family.
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy
 
@@ -6966,11 +7349,13 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ### Attributes
 
   inbound               Outbound unicast policy
+
   outbound              Outbound unicast policy
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound
@@ -6986,6 +7371,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound
@@ -7001,6 +7387,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath
@@ -7016,12 +7403,12 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ### Attributes
 
-  allow-my-asn          If enabled, it is acceptable for a received AS_PATH to
-                        contain the ASN of the local system
+  allow-my-asn          If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn
 
@@ -7036,6 +7423,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits
@@ -7051,12 +7439,12 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ### Attributes
 
-  inbound               Limits on inbound prefix from the peer for this
-                        address-family
+  inbound               Limits on inbound prefix from the peer for this address-family
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound
 
@@ -7071,6 +7459,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast default-route-origination
@@ -7086,6 +7475,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast community-advertise
@@ -7101,6 +7491,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast attribute-mod
@@ -7116,6 +7507,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise
@@ -7131,6 +7523,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn
@@ -7146,13 +7539,15 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ### Attributes
 
   attribute-mod         Attribute mod for address family.
-  aspath                Options for handling AS_PATH for prefixes from/to peer
-                        for the specified address family
+
+  aspath                Options for handling AS_PATH for prefixes from/to peer for the specified address family
+
   policy                Policies for l2vpn evpn
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn attribute-mod
@@ -7168,6 +7563,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath
@@ -7183,12 +7579,12 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ### Attributes
 
-  allow-my-asn          If enabled, it is acceptable for a received AS_PATH to
-                        contain the ASN of the local system
+  allow-my-asn          If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn
 
@@ -7203,6 +7599,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy
@@ -7218,11 +7615,13 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ### Attributes
 
   inbound               Inbound l2vpn-evpn policy
+
   outbound              Outbound l2vpn-evpn policy
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy inbound
@@ -7238,6 +7637,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy outbound
@@ -7253,6 +7653,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <peer-group-id>       Domain
 
 ## nv show vrf <vrf-id> router bgp route-export
@@ -7289,9 +7690,7 @@ product: Cumulus Linux
 
 ### Attributes
 
-  route-target          List the RTs to attach to host or prefix routes when
-                        exporting them into EVPN or "auto". If "auto", the RT
-                        will be derived. This is the default.
+  route-target          List the RTs to attach to host or prefix routes when exporting them into EVPN or "auto". If "auto", the RT  will be derived. This is the default.
 
 ## nv show vrf <vrf-id> router bgp route-export to-evpn route-target <rt-id>
 
@@ -7306,6 +7705,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <rt-id>               Route targets or "auto"
 
 ## nv show vrf <vrf-id> router bgp route-import
@@ -7324,8 +7724,7 @@ product: Cumulus Linux
 
 ### Attributes
 
-  from-evpn             Controls for importing EVPN type-2 and type-5 routes
-                        into this VRF
+  from-evpn             Controls for importing EVPN type-2 and type-5 routes into this VRF
 
 ## nv show vrf <vrf-id> router bgp route-import from-evpn
 
@@ -7343,9 +7742,7 @@ product: Cumulus Linux
 
 ### Attributes
 
-  route-target          List the RTs to attach to host or prefix routes when
-                        importing them into VRF or "auto". If "auto", the RT
-                        will be derived. This is the default.
+  route-target          List the RTs to attach to host or prefix routes when importing them into VRF or "auto". If "auto", the RT will be derived. This is the default.
 
 ## nv show vrf <vrf-id> router bgp route-import from-evpn route-target <rt-id>
 
@@ -7360,6 +7757,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <rt-id>               Route targets or "auto"
 
 ## nv show vrf <vrf-id> router bgp timers
@@ -7392,8 +7790,7 @@ product: Cumulus Linux
 
 ### Attributes
 
-  member-as             Confederation ASNs of the peers, maps to BGP
-                        confederation peers
+  member-as             Confederation ASNs of the peers, maps to BGP  confederation peers
 
 ## nv show vrf <vrf-id> router bgp confederation member-as
 
@@ -7422,20 +7819,29 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ### Attributes
 
-  bfd                   Specifies whether to track BGP peering sessions using
-                        this configuration via BFD.
+  bfd                   Specifies whether to track BGP peering sessions using this configuration via BFD.
+
   capabilities          Capabilities
+
   local-as              Local AS feature
+
   graceful-restart      BGP Graceful restart per neighbor configuration
+
   ttl-security          RFC 5082
+
   nexthop               Nexthop
+
   message-stats         Message statistics
+
   ebgp-policy           EBGP Policy RFC8212
+
   address-family        Address family specific configuration
+
   timers                Peer peer-timerss
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> bfd
@@ -7451,6 +7857,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities
@@ -7466,6 +7873,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> local-as
@@ -7481,6 +7889,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> graceful-restart
@@ -7496,6 +7905,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security
@@ -7511,6 +7921,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> nexthop
@@ -7526,6 +7937,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> message-stats
@@ -7541,6 +7953,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> ebgp-policy
@@ -7556,6 +7969,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family
@@ -7571,13 +7985,15 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ### Attributes
 
-  ipv4-unicast          Peer IPv4 unicast address family. Always on, unless
-                        disabled globaly.
+  ipv4-unicast          Peer IPv4 unicast address family. Always on, unless disabled globaly.
+
   ipv6-unicast          Peer IPv6 unicast address family.
+
   l2vpn-evpn            Peer l2vpn EVPN address family.
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast
@@ -7593,21 +8009,26 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ### Attributes
 
   attribute-mod         Attribute mod for address family.
-  aspath                Options for handling AS_PATH for prefixes from/to peer
-                        for the specified address family
+
+  aspath                Options for handling AS_PATH for prefixes from/to peer for the specified address family
+
   policy                Policies for ipv4 unicast
+
   prefix-limits         Limits on prefix from the peer for this address-family
-  default-route-origination
-                        Default route origination
+  default-route-origination Default route origination
+
   community-advertise   Community advertise for address family.
-  conditional-advertise
-                        Conditional advertise for address family.
+
+  conditional-advertise Conditional advertise for address family.
+
   capabilities          AF capabilities advertised and received
+
   graceful-restart      graceful restart information
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast attribute-mod
@@ -7623,6 +8044,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath
@@ -7638,12 +8060,12 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ### Attributes
 
-  allow-my-asn          If enabled, it is acceptable for a received AS_PATH to
-                        contain the ASN of the local system
+  allow-my-asn          If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn
 
@@ -7658,6 +8080,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy
@@ -7673,11 +8096,13 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ### Attributes
 
   inbound               Outbound unicast policy
+
   outbound              Outbound unicast policy
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound
@@ -7693,6 +8118,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound
@@ -7708,6 +8134,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+  
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits
@@ -7723,12 +8150,12 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ### Attributes
 
-  inbound               Limits on inbound prefix from the peer for this
-                        address-family
+  inbound               Limits on inbound prefix from the peer for this address-family
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound
 
@@ -7743,6 +8170,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast default-route-origination
@@ -7758,6 +8186,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast community-advertise
@@ -7773,6 +8202,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise
@@ -7788,6 +8218,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast capabilities
@@ -7803,6 +8234,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast graceful-restart
@@ -7818,6 +8250,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast
@@ -7833,21 +8266,27 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ### Attributes
 
   attribute-mod         Attribute mod for address family.
-  aspath                Options for handling AS_PATH for prefixes from/to peer
-                        for the specified address family
+
+  aspath                Options for handling AS_PATH for prefixes from/to peer for the specified address family
+
   prefix-limits         Limits on prefix from the peer for this address-family
-  default-route-origination
-                        Default route origination
+
+  default-route-origination Default route origination
+
   policy                Policies for ipv4 unicast
+
   community-advertise   Community advertise for address family.
-  conditional-advertise
-                        Conditional advertise for address family.
+
+  conditional-advertise  Conditional advertise for address family.
+
   capabilities          AF capabilities advertised and received
+
   graceful-restart      graceful restart information
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast attribute-mod
@@ -7863,6 +8302,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath
@@ -7878,12 +8318,12 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ### Attributes
 
-  allow-my-asn          If enabled, it is acceptable for a received AS_PATH to
-                        contain the ASN of the local system
+  allow-my-asn          If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn
 
@@ -7898,6 +8338,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits
@@ -7913,12 +8354,12 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ### Attributes
 
-  inbound               Limits on inbound prefix from the peer for this
-                        address-family
+  inbound               Limits on inbound prefix from the peer for this  address-family
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound
 
@@ -7933,6 +8374,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast default-route-origination
@@ -7948,6 +8390,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy
@@ -7963,11 +8406,13 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ### Attributes
 
   inbound               Outbound unicast policy
+
   outbound              Outbound unicast policy
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound
@@ -7983,6 +8428,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound
@@ -7998,6 +8444,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast community-advertise
@@ -8013,6 +8460,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise
@@ -8028,6 +8476,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast capabilities
@@ -8043,6 +8492,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast graceful-restart
@@ -8058,6 +8508,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn
@@ -8073,15 +8524,19 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ### Attributes
 
   attribute-mod         Attribute mod for address family.
-  aspath                Options for handling AS_PATH for prefixes from/to peer
-                        for the specified address family
+
+  aspath                Options for handling AS_PATH for prefixes from/to peer for the specified address family
+
   policy                Policies for l2vpn evpn
+
   capabilities          AF capabilities advertised and received
+
   graceful-restart      graceful restart information
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn attribute-mod
@@ -8097,6 +8552,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath
@@ -8112,12 +8568,12 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ### Attributes
 
-  allow-my-asn          If enabled, it is acceptable for a received AS_PATH to
-                        contain the ASN of the local system
+  allow-my-asn          If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn
 
@@ -8132,6 +8588,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy
@@ -8147,11 +8604,13 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ### Attributes
 
   inbound               Inbound l2vpn-evpn policy
+
   outbound              Outbound l2vpn-evpn policy
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy inbound
@@ -8167,6 +8626,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy outbound
@@ -8182,6 +8642,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn capabilities
@@ -8197,6 +8658,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn graceful-restart
@@ -8212,6 +8674,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> timers
@@ -8227,6 +8690,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <neighbor-id>         Peer ID
 
 ## nv show vrf <vrf-id> router static <route-id>
@@ -8242,11 +8706,13 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IP prefix
 
 ### Attributes
 
   distance              Paths
+
   via                   Nexthops
 
 ## nv show vrf <vrf-id> router static <route-id> distance <distance-id>
@@ -8262,7 +8728,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IP prefix
+
   <distance-id>         A path distance
 
 ### Attributes
@@ -8282,8 +8750,11 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IP prefix
+
   <distance-id>         A path distance
+
   <via-id>              IP address, interface, or "blackhole".
 
 ### Attributes
@@ -8303,8 +8774,11 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IP prefix
+
   <distance-id>         A path distance
+
   <via-id>              IP address, interface, or "blackhole".
 
 ## nv show vrf <vrf-id> router static <route-id> via <via-id>
@@ -8320,7 +8794,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IP prefix
+
   <via-id>              IP address, interface, or "blackhole".
 
 ### Attributes
@@ -8340,7 +8816,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <route-id>            IP prefix
+
   <via-id>              IP address, interface, or "blackhole".
 
 ## nv show vrf <vrf-id> router pim
@@ -8360,11 +8838,11 @@ product: Cumulus Linux
 ### Attributes
 
   timers                Timers
-  ecmp                  Choose all available ECMP paths for a particular RPF.
-                        If 'off', the first nexthop found will be used. This
-                        is the default.
-  msdp-mesh-group       To connect multiple PIM-SM multicast domains using
-                        RPs.
+
+  ecmp                  Choose all available ECMP paths for a particular RPF. If 'off', the first nexthop found will be used. This is the default.
+
+  msdp-mesh-group       To connect multiple PIM-SM multicast domains using RPs.
+
   address-family        Address family specific configuration
 
 ## nv show vrf <vrf-id> router pim timers
@@ -8408,6 +8886,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <msdp-mesh-group-id>  MSDP mesh group name
 
 ### Attributes
@@ -8427,7 +8906,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <msdp-mesh-group-id>  MSDP mesh group name
+
   <mesh-member-id>      MSDP mesh-group member IP address
 
 ## nv show vrf <vrf-id> router pim address-family
@@ -8465,6 +8946,7 @@ product: Cumulus Linux
 ### Attributes
 
   spt-switchover        Build shortest path tree towards source.
+
   rp                    RP address and associated group range.
 
 ## nv show vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover
@@ -8494,6 +8976,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <rp-id>               RP IP address
 
 ### Attributes
@@ -8513,7 +8996,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <rp-id>               RP IP address
+
   <group-range-id>      Group range associated to RP.
 
 ## nv show vrf <vrf-id> router ospf
@@ -8533,12 +9018,17 @@ product: Cumulus Linux
 ### Attributes
 
   area                  OSPF areas
+
   default-originate     Advertise a default route as external lsa
+
   distance              Administrative distance for installation into the rib
-  max-metric            Set maximum metric value in router lsa to make stub
-                        router
+
+  max-metric            Set maximum metric value in router lsa to make stub router
+
   log                   Log configuration
+
   redistribute          Route redistribute
+
   timers                Timers
 
 ## nv show vrf <vrf-id> router ospf area <area-id>
@@ -8554,12 +9044,15 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <area-id>             Area
 
 ### Attributes
 
   filter-list           Filters networks between OSPF areas
+
   range                 Area ranges
+
   network               Area networks
 
 ## nv show vrf <vrf-id> router ospf area <area-id> filter-list
@@ -8575,6 +9068,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <area-id>             Area
 
 ## nv show vrf <vrf-id> router ospf area <area-id> range <range-id>
@@ -8590,7 +9084,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <area-id>             Area
+
   <range-id>            Range
 
 ## nv show vrf <vrf-id> router ospf area <area-id> network <network-id>
@@ -8606,7 +9102,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <area-id>             Area
+
   <network-id>          Network
 
 ## nv show vrf <vrf-id> router ospf default-originate
@@ -8682,8 +9180,11 @@ product: Cumulus Linux
 ### Attributes
 
   static                Route redistribute of static routes
+
   connected             Route redistribute of connected routes
+
   kernel                Route redistribute of kernel routes
+
   bgp                   Route redistribute of bgp routes
 
 ## nv show vrf <vrf-id> router ospf redistribute static
@@ -8759,6 +9260,7 @@ product: Cumulus Linux
 ### Attributes
 
   lsa                   LSA timers
+
   spf                   SPF timers
 
 ## nv show vrf <vrf-id> router ospf timers lsa
@@ -8830,11 +9332,10 @@ product: Cumulus Linux
 ### Attributes
 
   mlag                  VxLAN specific MLAG address
+
   source                Source address
-  flooding              Configuration to specify how BUM traffic in the
-                        overlay is handled. This applies to all overlays
-                        (VNIs), but can be overridden by VNI-specific
-                        configuration.
+
+  flooding              Configuration to specify how BUM traffic in the overlay is handled. This applies to all overlays (VNIs), but can be overridden by VNI-specific configuration.
 
 ## nv show nve vxlan mlag
 
@@ -8868,8 +9369,7 @@ product: Cumulus Linux
 
 ### Attributes
 
-  head-end-replication  BUM traffic is replicated and individual copies sent
-                        to remote destinations.
+  head-end-replication  BUM traffic is replicated and individual copies sent to remote destinations.
 
 ## nv show nve vxlan flooding head-end-replication
 
@@ -8944,11 +9444,13 @@ product: Cumulus Linux
 ### Identifiers
 
   <acl-id>              ACL ID
+
   <rule-id>             ACL rule number
 
 ### Attributes
 
   match                 ACL match criteria
+
   action                ACL action
 
 ## nv show acl <acl-id> rule <rule-id> match
@@ -8964,11 +9466,13 @@ product: Cumulus Linux
 ### Identifiers
 
   <acl-id>              ACL ID
+
   <rule-id>             ACL rule number
 
 ### Attributes
 
   ip                    IPv4 and IPv6 match
+
   mac                   MAC match
 
 ## nv show acl <acl-id> rule <rule-id> match ip
@@ -8984,14 +9488,19 @@ product: Cumulus Linux
 ### Identifiers
 
   <acl-id>              ACL ID
+
   <rule-id>             ACL rule number
 
 ### Attributes
 
   source-port           source port
+
   dest-port             destination port
+
   fragment              Fragment packets
+
   ecn                   ECN protocol packet match
+
   tcp                   TCP protocol packet match
 
 ## nv show acl <acl-id> rule <rule-id> match ip source-port <ip-port-id>
@@ -9007,7 +9516,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <acl-id>              ACL ID
+
   <rule-id>             ACL rule number
+
   <ip-port-id>          IP port ID
 
 ## nv show acl <acl-id> rule <rule-id> match ip dest-port <ip-port-id>
@@ -9023,7 +9534,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <acl-id>              ACL ID
+
   <rule-id>             ACL rule number
+
   <ip-port-id>          IP port ID
 
 ## nv show acl <acl-id> rule <rule-id> match ip fragment
@@ -9039,6 +9552,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <acl-id>              ACL ID
+
   <rule-id>             ACL rule number
 
 ## nv show acl <acl-id> rule <rule-id> match ip ecn
@@ -9054,6 +9568,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <acl-id>              ACL ID
+
   <rule-id>             ACL rule number
 
 ### Attributes
@@ -9073,6 +9588,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <acl-id>              ACL ID
+
   <rule-id>             ACL rule number
 
 ## nv show acl <acl-id> rule <rule-id> match ip tcp
@@ -9088,6 +9604,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <acl-id>              ACL ID
+
   <rule-id>             ACL rule number
 
 ### Attributes
@@ -9108,6 +9625,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <acl-id>              ACL ID
+
   <rule-id>             ACL rule number
 
 ## nv show acl <acl-id> rule <rule-id> match ip tcp mask
@@ -9123,6 +9641,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <acl-id>              ACL ID
+
   <rule-id>             ACL rule number
 
 ## nv show acl <acl-id> rule <rule-id> match mac
@@ -9138,6 +9657,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <acl-id>              ACL ID
+
   <rule-id>             ACL rule number
 
 ## nv show acl <acl-id> rule <rule-id> action
@@ -9153,15 +9673,21 @@ product: Cumulus Linux
 ### Identifiers
 
   <acl-id>              ACL ID
+
   <rule-id>             ACL rule number
 
 ### Attributes
 
   permit                Permit action
+
   deny                  Deny action
+
   log                   Provides ACL logging facility
+
   set                   Modify the packet with appropriate values
+
   erspan                ERSPAN session
+
   police                policing of packets/bytes
 
 ## nv show acl <acl-id> rule <rule-id> action permit
@@ -9177,6 +9703,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <acl-id>              ACL ID
+
   <rule-id>             ACL rule number
 
 ## nv show acl <acl-id> rule <rule-id> action deny
@@ -9192,6 +9719,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <acl-id>              ACL ID
+
   <rule-id>             ACL rule number
 
 ## nv show acl <acl-id> rule <rule-id> action log
@@ -9207,6 +9735,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <acl-id>              ACL ID
+
   <rule-id>             ACL rule number
 
 ## nv show acl <acl-id> rule <rule-id> action set
@@ -9222,6 +9751,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <acl-id>              ACL ID
+
   <rule-id>             ACL rule number
 
 ## nv show acl <acl-id> rule <rule-id> action erspan
@@ -9237,6 +9767,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <acl-id>              ACL ID
+
   <rule-id>             ACL rule number
 
 ## nv show acl <acl-id> rule <rule-id> action police
@@ -9252,4 +9783,5 @@ product: Cumulus Linux
 ### Identifiers
 
   <acl-id>              ACL ID
+  
   <rule-id>             ACL rule number

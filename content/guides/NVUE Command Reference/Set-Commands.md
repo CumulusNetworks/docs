@@ -8,7 +8,7 @@ product: Cumulus Linux
 
 ### Usage
 
-  nv set router [options] [<attribute> ...]
+  `nv set router [options] [<attribute> ...]`
 
 ### Description
 
@@ -16,31 +16,31 @@ product: Cumulus Linux
 
 ### Attributes
 
-  nexthop-group     Nexthops
+  `nexthop-group`: Nexthops
 
-  pbr               PBR global configuration.
+  `pbr`: PBR global configuration.
 
-  policy            A router
+  `policy`: A router
 
-  bgp               BGP global configuration.
+  `bgp`: BGP global configuration.
 
-  ospf              OSPF global configuration.
+  `ospf`: OSPF global configuration.
 
-  pim               PIM global configuration.
+  `pim`: PIM global configuration.
 
-  igmp              IGMP global configuration.
+  `igmp`: IGMP global configuration.
 
-  vrrp              VRRP global configuration.
+  `vrrp`: VRRP global configuration.
 
-  vrr               VRR global configuration.
+  `vrr`: VRR global configuration.
 
-  adaptive-routing  Adaptive routing global configuration.
+  `adaptive-routing`: Adaptive routing global configuration.
 
 ## nv set router nexthop-group <nexthop-group-id>
 
 ### Usage
 
-  nv set router nexthop-group <nexthop-group-id> [options] [<attribute> ...]
+  `nv set router nexthop-group <nexthop-group-id> [options] [<attribute> ...]`
 
 ### Description
 
@@ -48,17 +48,17 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <nexthop-group-id>  Nexthop group ID
+  `<nexthop-group-id>`: Nexthop group ID
 
 ### Attributes
 
-  via                 Nexthops
+  `via`: Nexthops
 
 ## nv set router nexthop-group <nexthop-group-id> via <via-id>
 
 ### Usage
 
-  nv set router nexthop-group <nexthop-group-id> via <via-id> [options] [<attribute> ...]
+  `nv set router nexthop-group <nexthop-group-id> via <via-id> [options] [<attribute> ...]`
 
 ### Description
 
@@ -66,20 +66,20 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <nexthop-group-id>  Nexthop group ID
-  <via-id>            IP address
+  `<nexthop-group-id>`: Nexthop group ID
+  `<via-id>`: cIP address
 
 ### Attributes
 
-  interface: The interface to use for egress. If not specified, it will automatically be determined. Only valid when the via's type is ipv4-address or ipv6-address.
+  `interface`: The interface to use for egress. If not specified, it will automatically be determined. Only valid when the via's type is ipv4-address or ipv6-address.
 
-  vrf: The VRF to use for egress. If not specified, the route's VRF will be used. Only valid when the via's type is ipv4-address or ipv6-address.
+  `vrf`: The VRF to use for egress. If not specified, the route's VRF will be used. Only valid when the via's type is ipv4-address or ipv6-address.
 
 ## nv set router pbr
 
 ### Usage
 
-  nv set router pbr [options] [<attribute> ...]
+  `nv set router pbr [options] [<attribute> ...]`
 
 ### Description
 
@@ -87,9 +87,9 @@ product: Cumulus Linux
 
 ### Attributes
 
-  map         Collection of PBR Maps
+  `map`: Collection of PBR Maps
 
-  enable      Turn the feature 'on' or 'off'. The default is 'off'.
+  `enable`: Turn the feature 'on' or 'off'. The default is 'off'.
 
 ## nv set router pbr map <pbr-map-id>
 
@@ -103,11 +103,11 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <pbr-map-id>  Route Map ID
+  `<pbr-map-id>`: Route Map ID
 
 ### Attributes
 
-  rule          PBR Map rule
+  `rule`: PBR Map rule
 
 ## nv set router pbr map <pbr-map-id> rule <rule-id>
 

@@ -8,7 +8,7 @@ product: Cumulus Linux
 
 ### Usage
 
-  nv show router [options] [<attribute> ...]
+  `nv show router [options] [<attribute> ...]`
 
 ### Description
 
@@ -16,22 +16,31 @@ product: Cumulus Linux
 
 ### Attributes
 
-  nexthop-group         Nexthops
-  pbr                   PBR global configuration.
-  policy                A router
-  bgp                   BGP global configuration.
-  ospf                  OSPF global configuration.
-  pim                   PIM global configuration.
-  igmp                  IGMP global configuration.
-  vrrp                  VRRP global configuration.
-  vrr                   VRR global configuration.
-  adaptive-routing      Adaptive routing global configuration.
+  `nexthop-group`: Nexthops
+
+  `pbr`: PBR global configuration.
+
+  `policy`: A router
+
+  `bgp`: BGP global configuration.
+
+  `ospf`: OSPF global configuration.
+
+  `pim`: PIM global configuration.
+
+  `igmp`: IGMP global configuration.
+
+  `vrrp`: VRRP global configuration.
+
+  `vrr`: VRR global configuration.
+
+  `adaptive-routing`: Adaptive routing global configuration.
 
 ## nv show router nexthop-group
 
 ### Usage
 
-  nv show router nexthop-group [options] [<nexthop-group-id> ...]
+  `nv show router nexthop-group [options] [<nexthop-group-id> ...]`
 
 ### Description
 
@@ -39,13 +48,13 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <nexthop-group-id>    Nexthop group ID
+  `<nexthop-group-id>`: Nexthop group ID
 
 ## nv show router nexthop-group <nexthop-group-id>
 
 ### Usage
 
-  nv show router nexthop-group <nexthop-group-id> [options] [<attribute> ...]
+  `nv show router nexthop-group <nexthop-group-id> [options] [<attribute> ...]`
 
 ### Description
 
@@ -53,17 +62,17 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <nexthop-group-id>    Nexthop group ID
+  `<nexthop-group-id>`: Nexthop group ID
 
 ### Attributes
 
-  via                   Nexthops
+  `via`                   Nexthops
 
-## nv show router nexthop-group <nexthop-group-id> via
+## nv show router nexthop-group \<nexthop-group-id\> via
 
 ### Usage
 
-  nv show router nexthop-group <nexthop-group-id> via [options] [<via-id> ...]
+  `nv show router nexthop-group <nexthop-group-id> via [options] [<via-id> ...]`
 
 ### Description
 
@@ -71,15 +80,15 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <nexthop-group-id>    Nexthop group ID
+  `<nexthop-group-id>`: Nexthop group ID
 
-  <via-id>              IP address
+  `<via-id>`: IP address
 
 ## nv show router nexthop-group <nexthop-group-id> via <via-id>
 
 ### Usage
 
-  nv show router nexthop-group <nexthop-group-id> via <via-id> [options]
+  `nv show router nexthop-group <nexthop-group-id> via <via-id> [options]`
 
 ### Description
 
@@ -87,15 +96,15 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <nexthop-group-id>    Nexthop group ID
+  `<nexthop-group-id>`    Nexthop group ID
 
-  <via-id>              IP address
+  `<via-id>`             IP address
 
 ## nv show router pbr
 
 ### Usage
 
-  nv show router pbr [options] [<attribute> ...]
+  `nv show router pbr [options] [<attribute> ...]`
 
 ### Description
 
@@ -103,13 +112,13 @@ product: Cumulus Linux
 
 ### Attributes
 
-  map                   Collection of PBR Maps
+  `map`: Collection of PBR Maps
 
 ## nv show router pbr map
 
 ### Usage
 
-  nv show router pbr map [options] [<pbr-map-id> ...]
+  `nv show router pbr map [options] [<pbr-map-id> ...]`
 
 ### Description
 
@@ -117,13 +126,13 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <pbr-map-id>          Route Map ID
+  `<pbr-map-id>`: Route Map ID
 
 ## nv show router pbr map <pbr-map-id>
 
 ### Usage
 
-  nv show router pbr map <pbr-map-id> [options] [<attribute> ...]
+  `nv show router pbr map <pbr-map-id> [options] [<attribute> ...]`
 
 ### Description
 
@@ -131,7 +140,7 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <pbr-map-id>          Route Map ID
+  `<pbr-map-id>`          Route Map ID
 
 ### Attributes
 
@@ -141,7 +150,7 @@ product: Cumulus Linux
 
 ### Usage
 
-  nv show router pbr map <pbr-map-id> rule <rule-id> [options] [<attribute> ...]
+  `nv show router pbr map <pbr-map-id> rule <rule-id> [options] [<attribute> ...]`
 
 ### Description
 
@@ -149,9 +158,9 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <pbr-map-id>          Route Map ID
+  `<pbr-map-id>`         Route Map ID
 
-  <rule-id>             PBR rule number
+  `<rule-id>`             PBR rule number
 
 ### Attributes
 
@@ -163,7 +172,7 @@ product: Cumulus Linux
 
 ### Usage
 
-  nv show router pbr map <pbr-map-id> rule <rule-id> match [options]
+  `nv show router pbr map <pbr-map-id> rule <rule-id> match [options]`
 
 ### Description
 
@@ -171,15 +180,15 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <pbr-map-id>          Route Map ID
+  `<pbr-map-id>`          Route Map ID
 
-  <rule-id>             PBR rule number
+  `<rule-id>`             PBR rule number
 
 ## nv show router pbr map <pbr-map-id> rule <rule-id> action
 
 ### Usage
 
-  nv show router pbr map <pbr-map-id> rule <rule-id> action [options] [<attribute> ...]
+  `nv show router pbr map <pbr-map-id> rule <rule-id> action [options] [<attribute> ...]`
 
 ### Description
 
@@ -187,9 +196,9 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <pbr-map-id>          Route Map ID
+  `<pbr-map-id>`          Route Map ID
 
-  <rule-id>             PBR rule number
+  `<rule-id>`             PBR rule number
 
 ### Attributes
 
@@ -199,7 +208,7 @@ product: Cumulus Linux
 
 ### Usage
 
-  nv show router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id> [options]
+  `nv show router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id> [options]`
 
 ### Description
 
@@ -207,17 +216,17 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <pbr-map-id>          Route Map ID
+  `<pbr-map-id>`          Route Map ID
 
-  <rule-id>             PBR rule number
+  `<rule-id>`            PBR rule number
 
-  <nexthop-group-id>    Nexthop group ID
+  `<nexthop-group-id>`    Nexthop group ID
 
 ## nv show router policy
 
 ### Usage
 
-  nv show router policy [options] [<attribute> ...]
+  `nv show router policy [options] [<attribute> ...]`
 
 ### Description
 

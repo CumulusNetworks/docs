@@ -145,6 +145,10 @@ To enable TEID-based ECMP hashing:
 
 To disable TEID-based ECMP hashing, set the `hash_config.gtp_teid` parameter to `false`, then reload the configuration.
 
+{{%notice note%}}
+There are no NVUE commands available to enable TEID-based ECMP hashing.
+{{%/notice%}}
+
 <!-- ### ECMP Hashing
 
 For ECMP load balancing between multiple next-hops of a layer 3 route, you can hash on these fields:

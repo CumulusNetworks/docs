@@ -383,6 +383,10 @@ To enable TEID-based load balancing:
 
 To disable TEID-based load balancing, set the `lag_hash_config.gtp_teid` parameter to `false`, then reload the configuration.
 
+{{%notice note%}}
+There are no NVUE commands available to enable TEID-based load balancing.
+{{%/notice%}}
+
 <!--### Custom Hashing
 
 For load balancing between multiple interfaces that are members of the same bond, you can hash on these fields:

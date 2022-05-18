@@ -35,7 +35,7 @@ Understanding the location of configuration data is important for successful upg
 | `/etc/hosts`  | Configuration file for the hostname of the switch | {{<link title="Quick Start Guide">}} | {{<exlink url="https://wiki.debian.org/HowTo/ChangeHostname">}} |
 | `/etc/cumulus/acl/*` | Netfilter configuration | {{<link title="Netfilter - ACLs">}} |N/A |
 | `/etc/cumulus/control-plane/policers.conf` | Configuration for control plane policers | {{<link title="Netfilter - ACLs#control-plane-policers">}} | N/A |
-| `/etc/cumulus/datapath/qos/qos_features.conf` | QoS configuration | {{<link title="Quality of Service">}} | N/A |
+| `/etc/cumulus/datapath/qos/qos_features.conf` | QoS configuration <br><br><b>Note:</b> In Cumulus Linux 5.0 and later, default ECN configuration parameters start with `default_ecn_red_conf` instead of `default_ecn_conf`. | {{<link title="Quality of Service">}} | N/A |
 | `/etc/mlx/datapath/qos/qos_infra.conf` | QoS configuration | {{<link title="Quality of Service">}} | N/A |
 | `/etc/mlx/datapath/tcam_profile.conf` | Configuration for the forwarding table profiles| {{<link title="Supported Route Table Entries#tcam-resource-profiles-for-spectrum-switches">}} | N/A |
 | `/etc/cumulus/datapath/traffic.conf` | Configuration for the forwarding table profiles| {{<link title="Supported Route Table Entries">}} | N/A |
@@ -169,9 +169,9 @@ Be aware of the following when installing the Cumulus Linux image:
 - Installing a Cumulus Linux image is destructive; any configuration files on the switch are not saved; copy them to a different server before you start the Cumulus Linux image install.
 - You must move configuration data to the new OS using ZTP or automation while the OS is first booted, or soon afterwards using out-of-band management.
 - Moving a configuration file can cause issues.
-- Identifying all the locations of configuration data is not always an easy task. See [Before You Upgrade Cumulus Linux](#before-you-upgrade-cumulus-linux) above.
+- Identifying all the locations of configuration data is not always an easy task. See [Before You Upgrade Cumulus Linux](#before-you-upgrade) above.
 - Merge conflicts with configuration file changes in the new release sometimes go undetected.
-- If configuration files do not restore correctly, you are be unable to ssh to the switch from in-band management. Use out-of-band connectivity (eth0 or console).
+- If configuration files do not restore correctly, you cannot ssh to the switch from in-band management. Use out-of-band connectivity (eth0 or console).
 - You *must* reinstall and reconfigure third-party applications after upgrade.
 
 Run **package upgrade** if you are upgrading from Cumulus Linux 5.1.0 to a later 5.1 release, or if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install).
@@ -259,6 +259,7 @@ To upgrade the switch using package upgrade:
     - To see the differences between the currently installed version and the new version, type `D`.
     - To keep the currently installed version, type `N`. The new package version installs with the suffix `.dpkg-dist` (for example, `/etc/frr/daemons.dpkg-dist`). When the upgrade completes and **before** you reboot, merge your changes with the changes from the newly installed file.
     - To install the new version, type `I`. Your currently installed version has the suffix `.dpkg-old`.
+    - Cumulus Linux includes `/etc/apt/sources.list` in the `cumulus-archive-keyring` package. During upgrade, you must select if you want the new version from the package or the existing file.
 
     When the upgrade is complete, you can search for the files with the `sudo find / -mount -type f -name '*.dpkg-*'` command.
 
@@ -284,7 +285,7 @@ To upgrade the switch using package upgrade:
 Because Cumulus Linux is a collection of different Debian Linux packages, be aware of the following:
 
 - The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you run `sudo -E apt-get upgrade` and the latest Cumulus Linux release on the repository is 5.0.1, these two files display the release as 5.0.1 after the upgrade.
-- The `/etc/image-release` file update **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.0.0, followed by a package upgrade to 5.0.1 using `sudo -E apt-get upgrade`, the `/etc/image-release` file continues to display Cumulus Linux 5.0.0, which is the originally installed base image.
+- The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.0.0, followed by a package upgrade to 5.0.1 using `sudo -E apt-get upgrade`, the `/etc/image-release` file continues to display Cumulus Linux 5.0.0, which is the originally installed base image.
 
 ## Upgrade Switches in an MLAG Pair
 

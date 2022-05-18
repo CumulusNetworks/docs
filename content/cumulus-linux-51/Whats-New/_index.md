@@ -29,7 +29,8 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#peer-link-consistency-check" text="MLAG peer link consistency check">}}
 - {{<link url="Precision-Time-Protocol-PTP" text="PTP on bonds">}}
 - {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#bpdu-guard" text="BPDU guard protodown state and reason">}}
-- {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#gtp-hashing" text="TEID-based ECMP hashing">}} and {{<link url="Bonding-Link-Aggregation/#gtp-hashing" text="TEID-based bond hashing">}} available for early access.
+- {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#gtp-hashing" text="TEID-based ECMP hashing">}} and {{<link url="Bonding-Link-Aggregation/#gtp-hashing" text="TEID-based bond hashing">}} available for early access (Linux commands only).
+- The {{<link title="What Just Happened (WJH)" text="WJH service">}} is now enabled by default.
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="Neighbor-Discovery-ND" text="IPv6 ND configuration options">}}
   - {{<link url="NVUE-Snippets/#flexible-snippets" text="Flexible snippets">}}
@@ -37,6 +38,7 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
   - {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP/#change-the-vrr-mac-address" text="Fabric-wide MAC address configuration">}}
   - {{<link url="Route-Filtering-and-Redistribution/#apply-a-route-map" text="FIB filter configuration">}}
   - {{< expand "New NVUE commands" >}}
+  
 ```
 nv show router pbr map <pbr-map-id> rule <rule-id> action nexthop-group
 nv show router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id>
@@ -44,6 +46,7 @@ nv show router adaptive-routing
 nv show mlag lacp-conflict
 nv show mlag consistency-checker
 nv show mlag consistency-checker global
+nv show mlag backup <backup-ip>
 nv show interface <interface-id> router pbr map
 nv show interface <interface-id> router pbr map <pbr-map-id>
 nv show interface <interface-id> router adaptive-routing
@@ -64,9 +67,6 @@ nv show interface <interface-id> lldp neighbor <neighbor-id> bridge
 nv show interface <interface-id> lldp neighbor <neighbor-id> bridge vlan
 nv show interface <interface-id> lldp neighbor <neighbor-id> bridge vlan <vid>
 nv show interface <interface-id> tunnel
-nv show system forwarding
-nv show system forwarding lag-hash
-nv show system forwarding ecmp-hash
 nv show vrf <vrf-id> router rib <afi> protocol
 nv show vrf <vrf-id> router rib <afi> protocol <import-protocol-id>
 nv show vrf <vrf-id> router rib <afi> route <route-id> protocol <protocol-id> entry-index <entry-index> via <via-id> label
@@ -128,10 +128,6 @@ nv set interface <interface-id> tunnel interface <interface-name>
 nv set interface <interface-id> type (swp|eth|bond|loopback|svi|sub|peerlink|tunnel)
 nv set system global fabric-mac (none|<mac>)
 nv set system global fabric-id 1-255
-nv set system forwarding
-nv set system forwarding lag-hash (ip-protocol|source-mac|destination-mac|source-ip|destination-ip|source-port|destination-port|ether-type|vlan|gtp-teid)
-nv set system forwarding ecmp-hash (ip-protocol|source-ip|destination-ip|source-port|destination-port|ipv6-label|ingress-interface|gtp-teid|inner-ip-protocol|inner-source-ip|inner-destination-ip|inner-source-port|inner-destination-port|inner-ipv6-label)
-nv set system forwarding hash-seed 0-4294967295
 nv set vrf <vrf-id> router rib <afi>
 nv set vrf <vrf-id> router rib <afi> protocol <import-protocol-id>
 nv set vrf <vrf-id> router rib <afi> protocol <import-protocol-id> fib-filter (none|<instance-name>)
@@ -205,10 +201,6 @@ nv unset interface <interface-id> tunnel mode
 nv unset interface <interface-id> tunnel interface
 nv unset system global fabric-mac
 nv unset system global fabric-id
-nv unset system forwarding
-nv unset system forwarding lag-hash
-nv unset system forwarding ecmp-hash
-nv unset system forwarding hash-seed
 nv unset vrf <vrf-id> router rib
 nv unset vrf <vrf-id> router rib <afi>
 nv unset vrf <vrf-id> router rib <afi> protocol

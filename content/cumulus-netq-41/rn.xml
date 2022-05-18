@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3015875</td>
+<td>NetQ trace might report incomplete route information when there are multiple default routes in a VRF in the path between the source and destination.</td>
+<td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3011307</td>
 <td>NetQ Agent: The NetQ Agent fails to start in Cumulus Linux on switches with ARM CPUs. The log files show the following message:
 
@@ -54,6 +60,12 @@ systemd: netq-agent.service: Main process exited, code=exited, status=1/FAILURE
                                                          torc-21:vx-282 and torc-11:peerlink-3
    </td>
 <td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2843640</td>
+<td>In NetQ clustered environments, the network snapshot feature may fail.</td>
+<td>4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -186,6 +198,12 @@ CVE-2021-45105: Apache Log4j2 versions 2.0-alpha1 through 2.16.0 (excluding 2.12
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3015875</td>
+<td>NetQ trace might report incomplete route information when there are multiple default routes in a VRF in the path between the source and destination.</td>
+<td>4.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2896825</td>
 <td>WJH monitoring fails to start with netq-agent on Cumulus Linux 5.0. To work around this issue, reinstall the netq-agent package and configure the netq agent to start monitoring:
 
@@ -223,6 +241,12 @@ CVE-2021-45105: Apache Log4j2 versions 2.0-alpha1 through 2.16.0 (excluding 2.12
                                                          torc-21:vx-282 and torc-11:peerlink-3
    </td>
 <td>4.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2843640</td>
+<td>In NetQ clustered environments, the network snapshot feature may fail.</td>
+<td>4.0.0-4.1.0</td>
 <td></td>
 </tr>
 <tr>

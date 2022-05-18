@@ -145,6 +145,10 @@ To enable TEID-based ECMP hashing:
 
 To disable TEID-based ECMP hashing, set the `hash_config.gtp_teid` parameter to `false`, then reload the configuration.
 
+{{%notice note%}}
+There are no NVUE commands available to enable TEID-based ECMP hashing.
+{{%/notice%}}
+
 <!-- ### ECMP Hashing
 
 For ECMP load balancing between multiple next-hops of a layer 3 route, you can hash on these fields:
@@ -276,8 +280,25 @@ You can configure a unique hash seed for each switch to prevent *hash polarizati
 
 You can set a hash seed value between 0 and 4294967295. If you do not specify a value, `switchd` creates a randomly generated seed.
 
-The following example commands configure the hash seed to 50.
+To configure the hash seed:
 
+Edit `/etc/cumulus/datapath/traffic.conf` file to change the `ecmp_hash_seed` parameter, then restart `switchd`.
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
+...
+#Specify the hash seed for Equal cost multipath entries
+# and for custom ecmp and lag hash
+# Default value: random
+# Value Range: {0..4294967295}
+ecmp_hash_seed = 50
+...
+```
+<!-- vale off -->
+{{<cl/restart-switchd>}}
+<!-- vale on -->
+
+<!--
 {{< tabs "TabID125 ">}}
 {{< tab "NVUE Commands">}}
 
@@ -301,12 +322,11 @@ cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
 ecmp_hash_seed = 50
 ...
 ```
-<!-- vale off -->
+
 {{<cl/restart-switchd>}}
-<!-- vale on -->
 
 {{< /tab >}}
-{{< /tabs >}}
+{{< /tabs >}} -->
 
 ## Resilient Hashing
 
@@ -399,14 +419,22 @@ Cumulus Linux does not provide NVUE commands for this setting.
 
 Adaptive routing is a load balancing mechanism that improves network utilization by selecting routes dynamically based on the immediate network state, such as switch queue length and port utilization.
 
+The benefits of using adaptive routing include:
+- The switch can forward RoCE traffic over all the available ECMP member ports to maximize the total traffic throughput.
+- For leaf to spine traffic flows, the switch distributes incoming traffic equally between the available spines, which helps to minimize latency and congestion on network resources.
+- If the cumulative rate of one or more RoCE traffic streams exceeds the link bandwidth of the individual uplink port, adaptive routing can distribute the traffic dynamically between multiple uplink ports; the available bandwidth for RoCE traffic is not limited to the link bandwidth of the individual uplink port.
+- If the link bandwidth of the individual uplink ports is lower than that of the ingress port, RoCE traffic can flow through; the switch distributes the traffic between the available ECMP member ports without affecting the existing traffic.
+
 Cumulus Linux only supports adaptive routing with:
 - Switches on Spectrum-2 and later
-- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCEv2" >}} unicast traffic
+- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RDMA with lossless RoCEv2" >}} unicast traffic
 - Physical uplink (layer 3) ports; you *cannot* configure adaptive routing on subinterfaces, SVIs, bonds, or ports that are part of a bond.
 - Interfaces in the default VRF
 
 {{%notice note%}}
-Adaptive routing does not make use of resilient hashing.
+- Adaptive routing does not make use of resilient hashing.
+- You cannot use adaptive routing with EVPN or VXLAN.
+- NVIDIA has tested adaptive routing on a maxumum of 16 ports.
 {{%/notice%}}
 
 Adaptive Routing is in Sticky Free mode, where packets route to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion for the specific time duration. This mode is more time effective and restricts the port selection change decision to a predefined time.

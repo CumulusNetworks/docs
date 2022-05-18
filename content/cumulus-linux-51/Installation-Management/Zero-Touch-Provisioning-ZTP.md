@@ -4,13 +4,13 @@ author: NVIDIA
 weight: 90
 toc: 3
 ---
-Use [ZTP](## "Zero Touch Provisioning") to deploy network devices in large-scale environments. On first boot, Cumulus Linux invokes ZTP, which executes the provisioning automation that deploys the device for its intended role in the network.
+Use [ZTP](## "Zero Touch Provisioning") to deploy network devices in large-scale environments. On first boot, Cumulus Linux runs ZTP, which executes the provisioning automation that deploys the device for its intended role in the network.
 
 The provisioning framework allows you to execute a one-time, user-provided script. You can develop this script using a variety of automation tools and scripting languages. You can also use it to add the switch to a configuration management (CM) platform such as {{<exlink url="http://puppet.com/" text="Puppet">}}, {{<exlink url="https://www.chef.io" text="Chef">}}, {{<exlink url="https://cfengine.com" text="CFEngine">}} or a custom, proprietary tool.
 
-While developing and testing the provisioning logic, you can use the `ztp` command in Cumulus Linux to manually invoke your provisioning script on a device.
+While developing and testing the provisioning logic, you can use the `ztp` command in Cumulus Linux to run your provisioning script manually on a device.
 
-ZTP in Cumulus Linux can occur automatically in one of the following ways, in this order:
+ZTP in Cumulus Linux can run automatically in one of the following ways, in this order:
 
 1. Through a local file
 2. Using a USB drive inserted into the switch (ZTP-USB)
@@ -18,7 +18,7 @@ ZTP in Cumulus Linux can occur automatically in one of the following ways, in th
 
 ## Use a Local File
 
-ZTP only looks one time for a ZTP script on the local file system when the switch boots. ZTP searches for an install script that matches an {{<exlink url="http://onie.org" text="ONIE">}}-style waterfall in `/var/lib/cumulus/ztp`, looking for the most specific name first, and ending at the most generic:
+ZTP only looks one time for a ZTP script on the local file system when the switch boots. ZTP searches for an install script that matches an {{<exlink url="https://opencomputeproject.github.io/onie/" text="ONIE">}}-style waterfall in `/var/lib/cumulus/ztp`, looking for the most specific name first, and ending at the most generic:
 
 - `'cumulus-ztp-' + architecture + '-' + vendor + '_' + model + '-r' + revision`
 - `'cumulus-ztp-' + architecture + '-' + vendor + '_' + model`
@@ -108,7 +108,7 @@ Do not use an underscore (_) in the hostname; underscores are not permitted in h
 
 ### DHCP on Front Panel Ports
 
-In case eth0 is not operational or you prefer to use a front panel port, you can configure ZTP to bring all the front panel ports that are operational and run DHCP on any active interface. ZTP reassesses the list of active ports on every retry cycle. When it receives the DHCP lease and option 239 is present in the response, ZTP begins executing the script.
+If eth0 is not operational or you prefer to use a front panel port, you can configure ZTP to bring up all the front panel ports that are operational and run DHCP on any active interface. ZTP assesses the list of active ports on every retry cycle. When it receives the DHCP lease and option 239 is present in the response, ZTP starts to execute the script.
 
 To configure ZTP to bring up the front panel ports and run DHCP on any active interface, add the `CUMULUS-AUTOPROVISIONING-FRONT-PANEL` directive to the local ZTP script.
 
@@ -152,7 +152,7 @@ You can write the script in any language that Cumulus Linux supports, such as:
 - Ruby
 - Shell
 
-The script must return an exit code of 0 upon success, as this marks the process as complete in the autoprovisioning configuration file.
+The script must return an exit code of 0 upon success to mark the process as complete in the autoprovisioning configuration file.
 
 The following script installs Cumulus Linux from a USB drive and applies a configuration:
 
@@ -314,7 +314,7 @@ function set_hostname(){
 
 Use these commands to test and debug your ZTP scripts.
 
-You can use verbose mode to debug your script and see where your script failed. Include the `-v` option when you run ZTP:
+You can use verbose mode to debug your script and see where your script fails. Include the `-v` option when you run ZTP:
 
 ```
 cumulus@switch:~$ sudo ztp -v -r http://192.0.2.1/demo.sh

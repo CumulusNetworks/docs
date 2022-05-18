@@ -8,15 +8,15 @@ toc: 4
 - The WJH agent enables you to stream detailed and contextual telemetry for off-switch analysis with tools, such as [NVIDIA NetQ]({{<ref "/cumulus-netq-41" >}}).
 - The WJH service (`what-just-happened`) enables you to diagnose network problems by looking at dropped packets. WJH monitors forwarding (layer 2, layer 3, and tunnel) related issues. Cumulus Linux enables the WJH service by default.
 
-<!--## Enable the WJH Service
-
-Cumulus Linux does not enable the WJH service by default. To enable the WJH service:
+  {{%notice note%}}
+When you enable the NVIDIA NetQ agent on the switch, the WJH service stops and does not run. If you disable the NVIDIA NetQ service and want to use WJH, run the following commands to enable and start the WJH service:
 
 ```
 cumulus@switch:~$ sudo systemctl enable what-just-happened
 cumulus@switch:~$ sudo systemctl start what-just-happened
 ```
--->
+{{%/notice%}}
+
 ## Run WJH Commands
 
 You can run the following commands from the command line.

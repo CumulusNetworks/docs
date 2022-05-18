@@ -810,11 +810,6 @@ If you use an MLAG pair instead of a single exit/border leaf, add the same tempo
 
 In an EVPN centralized routing configuration, where the layer 2 network extends beyond VTEPs, (for example, a host with bridges), the gateway MAC address is not refreshed in the network when ARP suppression is enabled on the gateway. To work around this issue, disable ARP suppression on the centralized gateway.
 
-### Type-5 Routes and ECMP
-
-For VXLAN type-5 routes, ECMP does not work when the VTEP is directly connected to remote VTEPs.
-To work around this issue, add an additional device in the VXLAN fabric between the local and remote VTEPs, so that local and remote VTEPs are not directly connected.
-
 ### Symmetric Routing and the Same SVI IP Address Across Racks
 
 In EVPN symmetric routing, if you use the same SVI IP address across racks; for example, if the SVI IP address for a specific VLAN interface (such as vlan100) is the same on all VTEPs where this SVI is present, be aware of the following:

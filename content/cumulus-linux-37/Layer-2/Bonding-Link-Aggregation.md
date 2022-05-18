@@ -120,7 +120,8 @@ Follow the steps below to create a new bond:
 
 {{%notice note%}}
 
-The name of the bond must be compliant with Linux interface naming conventions and unique within the switch.
+- The name of the bond must be compliant with Linux interface naming conventions and unique within the switch.
+- Do not use a dash (-) in the bond name.
 
 {{%/notice%}}
 

@@ -5,11 +5,11 @@ weight: 410
 toc: 4
 ---
 
-The first step in upgrading your NetQ installation to NetQ {{<version>}} is to upgrade your NetQ appliances or VMs. This topic describes how to upgrade this for both on-premises and remote deployments.
+The first step in upgrading your NetQ installation to NetQ {{<version>}} is upgrading your NetQ appliances or VMs.
 
 ## Prepare for Upgrade
 
-You must complete the following three important steps to prepare to upgrade your NetQ Platform:
+Before you upgrade, complete the following steps:
 
 - Download the necessary software tarballs
 - Update the Debian packages on physical server and VMs

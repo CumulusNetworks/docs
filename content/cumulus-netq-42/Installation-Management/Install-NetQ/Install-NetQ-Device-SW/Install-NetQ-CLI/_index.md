@@ -324,7 +324,7 @@ Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
 
 *Note that NetQ has a separate repository from Cumulus Linux.*
 
-{{<tabs "TabID0" >}}
+{{<tabs "TabID327" >}}
 
 {{<tab "Cumulus Linux 3.7" >}}
 
@@ -491,7 +491,7 @@ To obtain the NetQ Agent package:
 Two methods are available for configuring the NetQ CLI:
 
 - Run NetQ CLI commands on the switch
-- Edit the configuration file on the switchtext="Configure CLI Using File">}}
+- Edit the configuration file on the switch
 
 By default, you do not configure the NetQ CLI during the NetQ installation. The configuration resides in the `/etc/netq/netq.yml` file.
 

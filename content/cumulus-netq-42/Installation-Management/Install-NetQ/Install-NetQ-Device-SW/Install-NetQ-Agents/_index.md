@@ -470,7 +470,7 @@ After completing the preparation steps, you can successfully install the agent o
 
 {{<tab "Cumulus Linux">}}
 
-To install the NetQ Agent (this example uses Cumulus Linux but the steps are the same for SONiC):
+Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To install the NetQ Agent on earlier versions of Cumulus Linux:
 
 1. Update the local `apt` repository, then install the NetQ software on the switch.
 
@@ -513,10 +513,6 @@ To install the NetQ Agent (this example uses Cumulus Linux but the steps are the
     ```
     admin@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
-
-    You should see version 4.0.0 and update 34 in the results. For example:
-
-    - netq-agent_<strong>4.0.0</strong>-deb10u<strong>34</strong>~1622184065.3c77d9bd_amd64.deb
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -692,7 +688,7 @@ sudo apt-get update
 sudo apt-get install netq-opta
 ```
 
-Once the `netq-opta` package is installed, add your OPTA configuration key. Run the following command with the `config-key` obtained during first login to the NetQ Cloud and premise activation. For more information, see {{<link title="Access the NetQ UI#log-in-to-netq" text="First Time Log In - NetQ Cloud">}}.
+Once the `netq-opta` package is installed, add your OPTA configuration key. Run the following command with the `config-key` obtained from the email you received from NVIDIA titled _NetQ Access Link_. You can also obtain the configuration key through the NetQ UI in the premise management configuration. For more information, see {{<link title="Access the NetQ UI#log-in-to-netq" text="First Time Log In - NetQ Cloud">}}.
 
 ```
 netq config add opta config-key <config_key> [vrf <vrf_name>] [proxy-host <text-proxy-host> proxy-port <text-proxy-port>] 

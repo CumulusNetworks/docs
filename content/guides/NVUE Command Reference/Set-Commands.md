@@ -14,17 +14,26 @@ product: Cumulus Linux
 
   A router
 
-### Atrributes
+### Attributes
 
   nexthop-group     Nexthops
+
   pbr               PBR global configuration.
+
   policy            A router
+
   bgp               BGP global configuration.
+
   ospf              OSPF global configuration.
+
   pim               PIM global configuration.
+
   igmp              IGMP global configuration.
+
   vrrp              VRRP global configuration.
+
   vrr               VRR global configuration.
+
   adaptive-routing  Adaptive routing global configuration.
 
 ## nv set router nexthop-group <nexthop-group-id>
@@ -41,10 +50,10 @@ product: Cumulus Linux
 
   <nexthop-group-id>  Nexthop group ID
 
-### Atrributes
+### Attributes
 
-  via                 Nexthops  
-  
+  via                 Nexthops
+
 ## nv set router nexthop-group <nexthop-group-id> via <via-id>
 
 ### Usage
@@ -60,14 +69,11 @@ product: Cumulus Linux
   <nexthop-group-id>  Nexthop group ID
   <via-id>            IP address
 
-### Atrributes
+### Attributes
 
-  interface           The interface to use for egress. If not specified, it
-                      will automatically be determined. Only valid when the
-                      via's type is ipv4-address or ipv6-address.
-  vrf                 The VRF to use for egress. If not specified, the route's
-                      VRF will be used. Only valid when the via's type is
-                      ipv4-address or ipv6-address.
+  interface: The interface to use for egress. If not specified, it will automatically be determined. Only valid when the via's type is ipv4-address or ipv6-address.
+
+  vrf: The VRF to use for egress. If not specified, the route's VRF will be used. Only valid when the via's type is ipv4-address or ipv6-address.
 
 ## nv set router pbr
 
@@ -79,9 +85,10 @@ product: Cumulus Linux
 
   PBR global configuration.
 
-### Atrributes
+### Attributes
 
   map         Collection of PBR Maps
+
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
 ## nv set router pbr map <pbr-map-id>
@@ -98,10 +105,10 @@ product: Cumulus Linux
 
   <pbr-map-id>  Route Map ID
 
-### Atrributes
+### Attributes
 
   rule          PBR Map rule
-  
+
 ## nv set router pbr map <pbr-map-id> rule <rule-id>
 
 ### Usage
@@ -117,11 +124,12 @@ product: Cumulus Linux
   <pbr-map-id>  Route Map ID
   <rule-id>     PBR rule number
 
-### Atrributes
+### Attributes
 
   match         PBR match
-  action        PBR set  
-  
+
+  action        PBR set
+
 ## nv set router pbr map <pbr-map-id> rule <rule-id> match
 
 ### Usage
@@ -137,11 +145,14 @@ product: Cumulus Linux
   <pbr-map-id>    Route Map ID
   <rule-id>       PBR rule number
 
-### Atrributes
+### Attributes
 
   destination-ip  Destination IP prefix
+
   dscp            DSCP
+
   ecn             ECN
+
   source-ip       Source IP prefix
 
 ## nv set router pbr map <pbr-map-id> rule <rule-id> match dscp 0-63
@@ -158,7 +169,7 @@ product: Cumulus Linux
 
   <pbr-map-id>  Route Map ID
   <rule-id>     PBR rule number
-  
+
 ## nv set router pbr map <pbr-map-id> rule <rule-id> match ecn 0-3
 
 ### Usage
@@ -189,9 +200,10 @@ product: Cumulus Linux
   <pbr-map-id>   Route Map ID
   <rule-id>      PBR rule number
 
-### Atrributes
+### Attributes
 
   nexthop-group  Route with nexthop-group
+
   vrf            Route through VRF
 
 ## nv set router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id>
@@ -209,7 +221,7 @@ product: Cumulus Linux
   <pbr-map-id>        Route Map ID
   <rule-id>           PBR rule number
   <nexthop-group-id>  Nexthop group ID
-  
+
 ## nv set router pbr map <pbr-map-id> rule <rule-id> action vrf <vrf-name>
 
 ### Usage
@@ -224,7 +236,7 @@ product: Cumulus Linux
 
   <pbr-map-id>  Route Map ID
   <rule-id>     PBR rule number
-  
+
 ## nv set router policy
 
 ### Usage
@@ -235,13 +247,18 @@ product: Cumulus Linux
 
   A router
 
-### Atrributes
+### Attributes
 
   community-list        Community lists
+
   as-path-list          AS Path lists
+
   ext-community-list    Extended Community lists
+
   large-community-list  Large Community lists
+
   prefix-list           Prefix list rules
+
   route-map             Collection of Route Maps
 
 ## nv set router policy community-list <list-id>
@@ -258,9 +275,11 @@ product: Cumulus Linux
 
   <list-id>   Community List ID
 
-### Atrributes
+### Attributes
 
-  rule        Community List rule## nv set router policy community-list <list-id> rule <rule-id>
+  rule        Community List rule
+
+## nv set router policy community-list <list-id> rule <rule-id>
 
 ### Usage
 
@@ -275,10 +294,13 @@ product: Cumulus Linux
   <list-id>   Community List ID
   <rule-id>   Prefix List rule number
 
-### Atrributes
+### Attributes
 
   community   Community expression
-  action      Action to be taken for community list match## nv set router policy community-list <list-id> rule <rule-id> community <community-id>
+
+  action      Action to be taken for community list match
+
+## nv set router policy community-list <list-id> rule <rule-id> community <community-id>
 
 ### Usage
 
@@ -308,10 +330,10 @@ product: Cumulus Linux
 
   <list-id>   AS Path List ID
 
-### Atrributes
+### Attributes
 
   rule        AS Path List rule
-  
+
 ## nv set router policy as-path-list <list-id> rule <rule-id>
 
 ### Usage
@@ -327,11 +349,12 @@ product: Cumulus Linux
   <list-id>   AS Path List ID
   <rule-id>   Prefix List rule number
 
-### Atrributes
+### Attributes
 
   action      Action to be taken for AS path list match
+
   aspath-exp  Regular expression to match BGP AS Paths
-  
+
 ## nv set router policy as-path-list <list-id> rule <rule-id> aspath-exp <bgp-regex>
 
 ### Usage
@@ -346,7 +369,7 @@ product: Cumulus Linux
 
   <list-id>   AS Path List ID
   <rule-id>   Prefix List rule number
-  
+
 ## nv set router policy ext-community-list <list-id>
 
 ### Usage
@@ -361,10 +384,10 @@ product: Cumulus Linux
 
   <list-id>   Community List ID
 
-### Atrributes
+### Attributes
 
   rule        Extended Community List rule
-  
+
 ## nv set router policy ext-community-list <list-id> rule <rule-id>
 
 ### Usage
@@ -380,11 +403,12 @@ product: Cumulus Linux
   <list-id>      Community List ID
   <rule-id>      Prefix List rule number
 
-### Atrributes
+### Attributes
 
   ext-community  Extended Community expression
+
   action         Action to be taken for extended community list match
-  
+
 ## nv set router policy ext-community-list <list-id> rule <rule-id> ext-community
 
 ### Usage
@@ -400,11 +424,12 @@ product: Cumulus Linux
   <list-id>   Community List ID
   <rule-id>   Prefix List rule number
 
-### Atrributes
+### Attributes
 
   rt          Route Target Extended Community
+
   soo         Site of Origin Extended Community
-  
+
 ## nv set router policy ext-community-list <list-id> rule <rule-id> ext-community rt <ext-community-id>
 
 ### Usage
@@ -420,7 +445,7 @@ product: Cumulus Linux
   <list-id>           Community List ID
   <rule-id>           Prefix List rule number
   <ext-community-id>  Community number in AA:NN or IP:NN format
-  
+
 ## nv set router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id>
 
 ### Usage
@@ -451,10 +476,10 @@ product: Cumulus Linux
 
   <list-id>   Community List ID
 
-### Atrributes
+### Attributes
 
   rule        Large Community List rules
-  
+
 ## nv set router policy large-community-list <list-id> rule <rule-id>
 
 ### Usage
@@ -470,11 +495,12 @@ product: Cumulus Linux
   <list-id>        Community List ID
   <rule-id>        Prefix List rule number
 
-### Atrributes
+### Attributes
 
   large-community  Large Community expression
+
   action           Action to be taken for community list match
-  
+
 ## nv set router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id>
 
 ### Usage
@@ -505,9 +531,10 @@ product: Cumulus Linux
 
   <prefix-list-id>  Prefix List ID
 
-### Atrributes
+### Attributes
 
   rule              Prefix List rule
+
   type              prefix list type
 
 ## nv set router policy prefix-list <prefix-list-id> rule <rule-id>
@@ -525,12 +552,14 @@ product: Cumulus Linux
   <prefix-list-id>  Prefix List ID
   <rule-id>         Prefix List rule number
 
-### Atrributes
+### Attributes
 
   match             Prefix List rule
+
   action            Action to be taken for prefix list match
 
 ## nv set router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id>
+
 ### Usage
 
   nv set router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> [options] [<attribute> ...]
@@ -545,12 +574,14 @@ product: Cumulus Linux
   <rule-id>         Prefix List rule number
   <match-id>        ip v4/v6 prefix, or any
 
-### Atrributes
+### Attributes
 
   max-prefix-len    Maximum prefix length to be matched
+
   min-prefix-len    Minimum prefix length to be matched
 
 ## nv set router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> min-prefix-len 0-128
+
 ### Usage
 
   nv set router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> min-prefix-len [options] 0-128
@@ -595,7 +626,7 @@ product: Cumulus Linux
 
   <route-map-id>  Route Map ID
 
-### Atrributes
+### Attributes
 
   rule            Route Map rule
 
@@ -614,10 +645,12 @@ product: Cumulus Linux
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
-### Atrributes
+### Attributes
 
   match           Route Map match
+
   set             Route Map set
+
   action          Route Map set
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> match
@@ -635,27 +668,46 @@ product: Cumulus Linux
   <route-map-id>        Route Map ID
   <rule-id>             Sequence to insert or delete from the route-map
 
-### Atrributes
+### Attributes
 
   as-path-list          BGP AS path list
+
   community-list        BGP community list
+
   evpn-route-type       EVPN route type
+
   evpn-vni              VNI ID
+
   interface             First hop interface or VRF
+
   ip-nexthop            IP nexthop address
+
   ip-nexthop-len        IP nexthop prefix length
+
   ip-nexthop-list       IP prefix list
+
   ip-nexthop-type       IP nexthop type
+
   ip-prefix-len         IP address prefix length
+
   ip-prefix-list        IP prefix list
+
   large-community-list  BGP large community list
+
   local-preference      Local preference of route
+
   metric                Metric of route
+
   origin                BGP origin
+
   peer                  BGP peer
+
   source-protocol       Protocol via which the route was learnt
+
   source-vrf            Source VRF
+
   tag                   Tag
+
   type                  match prefix type
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> match ip-prefix-list <instance-name>
@@ -734,6 +786,7 @@ product: Cumulus Linux
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> match as-path-list <instance-name>
+
 ### Usage
 
   nv set router policy route-map <route-map-id> rule <rule-id> match as-path-list [options] <instance-name>
@@ -867,32 +920,52 @@ product: Cumulus Linux
   <route-map-id>        Route Map ID
   <rule-id>             Sequence to insert or delete from the route-map
 
-### Atrributes
+### Attributes
 
   as-path-prepend       AS Path prepend
+
   community             Collection of BGP communities
+
   large-community       Collection of large BGP communities
+
   aggregator-as         Collection of aggregator AS
+
   as-path-exclude       Exclude from AS path
+
   atomic-aggregate      BGP atomic aggregate
+
   community-delete-list
+
                         Delete community list
+
   ext-community-bw      Extended community link bandwidth
+
   ext-community-rt      Route target extended community
+
   ext-community-soo     Site of origin extended community
+
   ip-nexthop            IP nexthop
+
   ipv6-nexthop-global   IPv6 nexthop global address
+
   ipv6-nexthop-local    IPv6 nexthop local address
-  ipv6-nexthop-prefer-global
-                        Prefer to use the global address as the IPV6 nexthop
-  large-community-delete-list
-                        Delete large community list
+
+  ipv6-nexthop-prefer-global Prefer to use the global address as the IPV6 nexthop
+
+  large-community-delete-list  Delete large community list
+
   local-preference      Local preference
+
   metric                Metric value for destination routing protocol
+
   metric-type           Type of metric
+
   origin                BGP origin
+
   source-ip             Source IP address
+
   tag                   Tag value for routing protocol
+
   weight                BGP weight
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend
@@ -910,9 +983,10 @@ product: Cumulus Linux
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
-### Atrributes
+### Attributes
 
   as              AS number
+
   last-as         Number of times to insert peer's AS number
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend as 1-4294967295
@@ -993,7 +1067,7 @@ product: Cumulus Linux
   <rule-id>       Sequence to insert or delete from the route-map
   <asn-id>        Autonomous number
 
-### Atrributes
+### Attributes
 
   address         Set of IPv4 addresses
 
@@ -1013,7 +1087,7 @@ product: Cumulus Linux
   <rule-id>          Sequence to insert or delete from the route-map
   <asn-id>           Autonomous number
   <ipv4-address-id>  IPv4 address
-  
+
 ## nv set router policy route-map <route-map-id> rule <rule-id> set as-path-exclude 1-4294967295
 
 ### Usage
@@ -1046,6 +1120,7 @@ product: Cumulus Linux
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-soo <route-distinguisher>
 
+
 ### Usage
 
   nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-soo [options] <route-distinguisher>
@@ -1061,6 +1136,7 @@ product: Cumulus Linux
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> set local-preference 0-4294967295
 
+
 ### Usage
 
   nv set router policy route-map <route-map-id> rule <rule-id> set local-preference [options] 0-4294967295
@@ -1075,6 +1151,7 @@ product: Cumulus Linux
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> set weight 0-4294967295
+
 
 ### Usage
 
@@ -1149,9 +1226,10 @@ product: Cumulus Linux
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
-### Atrributes
+### Attributes
 
   deny            Deny action
+
   permit          Permit action
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> action deny
@@ -1184,7 +1262,7 @@ product: Cumulus Linux
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
-### Atrributes
+### Attributes
 
   exit-policy     Permit action exit policy
 
@@ -1203,7 +1281,7 @@ product: Cumulus Linux
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
-### Atrributes
+### Attributes
 
   rule            jump to specific rule
 
@@ -1232,27 +1310,24 @@ product: Cumulus Linux
 
   BGP global configuration.
 
-### Atrributes
+### Attributes
 
   graceful-restart     BGP Graceful restart global configuration.
+
   convergence-wait     BGP Graceful restart global configuration.
+
   enable               Turn the feature 'on' or 'off'. The default is 'off'.
-  autonomous-system    ASN for all VRFs, if a single AS is in use. If "none",
-                       then ASN must be set for every VRF. This is the
-                       default.
-  graceful-shutdown    Graceful shutdown enable will initiate the GSHUT
-                       community to be announced to all EBGP peers in all
-                       instances and low LOCAL_PREF to all IBGP peers in all
-                       instances.
-  policy-update-timer  Wait time in seconds before processing updates to
-                       policies to ensure that a series of changes are
-                       processed together.
-  router-id            BGP router-id for all VRFs, if a common one is used. If
-                       "none", then router-id must be set for every VRF. This
-                       is the default.
-  wait-for-install     bgp waits for routes to be installed into kernel/asic
-                       before advertising
-                       
+
+  autonomous-system    ASN for all VRFs, if a single AS is in use. If "none", then ASN must be set for every VRF. This is the default.
+
+  graceful-shutdown    Graceful shutdown enable will initiate the GSHUT community to be announced to all EBGP peers in all instances and low LOCAL_PREF to all IBGP peers in all instances.
+
+  policy-update-timer  Wait time in seconds before processing updates to policies to ensure that a series of changes are processed together.
+
+  router-id            BGP router-id for all VRFs, if a common one is used. If "none", then router-id must be set for every VRF. This is the default.
+
+  wait-for-install     bgp waits for routes to be installed into kernel/asic before advertising
+
 ## nv set router bgp graceful-restart
 
 ### Usage
@@ -1263,20 +1338,16 @@ product: Cumulus Linux
 
   BGP Graceful restart global configuration.
 
-### Atrributes
+### Attributes
 
-  mode                  Role of router during graceful restart. helper-only,
-                        router is in helper role. full, router is in both
-                        helper and restarter role. off, GR is disabled for the
-                        router
-  path-selection-deferral-time
-                        Used by the restarter as an upper-bounds for waiting
-                        for peering establishment and end-of-RIB from peers
-                        post restart before it starts path-selection.
-  restart-time          Amount of time taken to restart by router. It is
-                        advertised to the peer
-  stale-routes-time     Specifies an upper-bounds on how long we retain routes
-                        from a restarting peer before flusing them.
+
+  mode                  Role of router during graceful restart. helper-only, router is in helper role. full, router is in both helper and restarter role. off, GR is disabled for the router
+
+  path-selection-deferral-time  Used by the restarter as an upper-bounds for waiting for peering establishment and end-of-RIB from peers post restart before it starts path-selection.
+
+  restart-time          Amount of time taken to restart by router. It is advertised to the peer
+
+  stale-routes-time     Specifies an upper-bounds on how long we retain routes from a restarting peer before flusing them.
 
 ## nv set router bgp graceful-restart restart-time 1-3600
 
@@ -1287,7 +1358,7 @@ product: Cumulus Linux
 ### Description
 
   Amount of time taken to restart by router. It is advertised to the peer
-  
+
 ## nv set router bgp graceful-restart path-selection-deferral-time 0-3600
 
 ### Usage
@@ -1297,7 +1368,7 @@ product: Cumulus Linux
 ### Description
 
   Used by the restarter as an upper-bounds for waiting for peering establishment and end-of-RIB from peers post restart before it starts path-selection.
-  
+
 ## nv set router bgp graceful-restart stale-routes-time 1-3600
 
 ### Usage
@@ -1307,7 +1378,7 @@ product: Cumulus Linux
 ### Description
 
   Specifies an upper-bounds on how long we retain routes from a restarting peer before flusing them.
-  
+
 ## nv set router bgp convergence-wait
 
 ### Usage
@@ -1318,18 +1389,26 @@ product: Cumulus Linux
 
   BGP Graceful restart global configuration.
 
-### Atrributes
+### Attributes
 
   establish-wait-time  Maximum time to wait to establish BGP sessions. Any
+
                        peers which do not come up in this time are not tracked
+
                        for the convergence-wait purposes. 0 value means there
+
                        is no max time and peers are tracked for convergence
+
                        time.
+
   time                 Time to wait for peers to send end-of-RIB before router
+
                        performs path selection, install and advertisement.
+
                        This is used during startup or when all peerings are
+
                        flapped. 0 value means wait time is not configured
-                       
+
 ## nv set router bgp convergence-wait time 0-3600
 
 ### Usage
@@ -1339,7 +1418,7 @@ product: Cumulus Linux
 ### Description
 
   Time to wait for peers to send end-of-RIB before router performs path selection, install and advertisement. This is used during startup or when all peerings are flapped. 0 value means wait time is not configured
-  
+
 ## nv set router bgp convergence-wait establish-wait-time 0-3600
 
 ### Usage
@@ -1349,7 +1428,7 @@ product: Cumulus Linux
 ### Description
 
   Maximum time to wait to establish BGP sessions. Any peers which do not come up in this time are not tracked for the convergence-wait purposes. 0 value means there is no max time and peers are tracked for convergence time.
-  
+
 ## nv set router bgp policy-update-timer 0-600
 
 ### Usage
@@ -1359,7 +1438,7 @@ product: Cumulus Linux
 ### Description
 
   Wait time in seconds before processing updates to policies to ensure that a series of changes are processed together.
-  
+
 ## nv set router ospf
 
 ### Usage
@@ -1370,13 +1449,17 @@ product: Cumulus Linux
 
   OSPF global configuration.
 
-### Atrributes
+### Attributes
+
 
   timers      Timers
+
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
+
   router-id   OSPF router-id for all VRFs, if a common one is used. If "none",
+
               then router-id must be set for every VRF. This is the default.
-              
+
 ## nv set router ospf timers
 
 ### Usage
@@ -1387,12 +1470,15 @@ product: Cumulus Linux
 
   Timers
 
-### Atrributes
+### Attributes
+
 
   lsa         LSA timers
+
   spf         SPF timers
+
   refresh     defines interval (sec) to re-send lsas to keep from aging out.
-  
+
 ## nv set router ospf timers lsa
 
 ### Usage
@@ -1403,11 +1489,13 @@ product: Cumulus Linux
 
   LSA timers
 
-### Atrributes
+### Attributes
+
 
   min-arrival  Minimum delay in receiving new version of a LSA.
+
   throttle     Delay (msec) between sending LSAs.
-  
+
 ## nv set router ospf timers lsa min-arrival 0-600000
 
 ### Usage
@@ -1417,7 +1505,7 @@ product: Cumulus Linux
 ### Description
 
   Minimum delay in receiving new version of a LSA.
-  
+
 ## nv set router ospf timers lsa throttle 0-5000
 
 ### Usage
@@ -1438,12 +1526,14 @@ product: Cumulus Linux
 
   SPF timers
 
-### Atrributes
+### Attributes
 
   delay         Delay (msec) from first change received till SPF calculation.
+
   holdtime      Initial hold time (msec) between consecutive SPF calculations.
+
   max-holdtime  Maximum hold time (msec) between consecutive SPF calculations.
-  
+
 ## nv set router ospf timers spf delay 0-600000
 
 ### Usage
@@ -1453,7 +1543,7 @@ product: Cumulus Linux
 ### Description
 
   Delay (msec) from first change received till SPF calculation.
-  
+
 ## nv set router ospf timers spf holdtime 0-600000
 
 ### Usage
@@ -1463,7 +1553,7 @@ product: Cumulus Linux
 ### Description
 
   Initial hold time (msec) between consecutive SPF calculations.
-  
+
 ## nv set router ospf timers spf max-holdtime 0-600000
 
 ### Usage
@@ -1483,7 +1573,7 @@ product: Cumulus Linux
 ### Description
 
   defines interval (sec) to re-send lsas to keep from aging out.
-  
+
 ## nv set router pim
 
 ### Usage
@@ -1494,12 +1584,14 @@ product: Cumulus Linux
 
   PIM global configuration.
 
-### Atrributes
+### Attributes
 
   timers      Timers
+
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
+
   packets     Number of incoming packet processing from neighbor.
-  
+
 ## nv set router pim timers
 
 ### Usage
@@ -1510,17 +1602,25 @@ product: Cumulus Linux
 
   Timers
 
-### Atrributes
+### Attributes
+
 
   hello-interval       PIM Hello packets periodic interval. Holdtime is 3.5
+
                        times the hello-interval, the amount of time neighbor
+
                        must kept in reachable state.
+
   join-prune-interval  Periodic multicast Join/Prune msg, in seconds
+
   keep-alive           Timeout value for S,G stream, in seconds
+
   register-suppress    FHR supresses the register msg transmit to RP, in
+
                        seconds
+
   rp-keep-alive        RP's timeout value, in seconds
-  
+
 ## nv set router pim timers hello-interval 1-180
 
 ### Usage
@@ -1530,7 +1630,7 @@ product: Cumulus Linux
 ### Description
 
   PIM Hello packets periodic interval. Holdtime is 3.5 times the hello-interval, the amount of time neighbor must kept in reachable state.
-  
+
 ## nv set router pim timers register-suppress 5-60000
 
 ### Usage
@@ -1540,7 +1640,7 @@ product: Cumulus Linux
 ### Description
 
   FHR supresses the register msg transmit to RP, in seconds
-  
+
 ## nv set router pim timers join-prune-interval 60-600
 
 ### Usage
@@ -1550,7 +1650,7 @@ product: Cumulus Linux
 ### Description
 
   Periodic multicast Join/Prune msg, in seconds
-  
+
 ## nv set router pim timers keep-alive 31-60000
 
 ### Usage
@@ -1560,7 +1660,7 @@ product: Cumulus Linux
 ### Description
 
   Timeout value for S,G stream, in seconds
-  
+
 ## nv set router pim timers rp-keep-alive 31-60000
 
 ### Usage
@@ -1570,7 +1670,7 @@ product: Cumulus Linux
 ### Description
 
   RP's timeout value, in seconds
-  
+
 ## nv set router pim packets 1-100
 
 ### Usage
@@ -1580,7 +1680,7 @@ product: Cumulus Linux
 ### Description
 
   Number of incoming packet processing from neighbor.
-  
+
 ## nv set router igmp
 
 ### Usage
@@ -1591,10 +1691,10 @@ product: Cumulus Linux
 
   IGMP global configuration.
 
-### Atrributes
+### Attributes
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
-  
+
 ## nv set router vrrp
 
 ### Usage
@@ -1605,21 +1705,15 @@ product: Cumulus Linux
 
   VRRP global configuration.
 
-### Atrributes
+### Attributes
 
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
-  advertisement-interval
-                        Sets the interval between successive VRRP
-                        advertisements -- RFC 5798 defines this as a 12-bit
-                        value expressed as 0.1 seconds, with default 1000
-                        milliseconds, i.e., 1 second. Represented in units of
-                        milliseconds
-  preempt               When set to true, enables preemption by a higher
-                        priority backup router of a lower priority master
-                        router
-  priority              Specifies the sending VRRP interface's priority for
-                        the virtual router. Higher values equal higher
-                        priority
+
+  advertisement-interval Sets the interval between successive VRRP advertisements -- RFC 5798 defines this as a 12-bit value expressed as 0.1 seconds, with default 1000 milliseconds, i.e., 1 second. Represented in units of  milliseconds
+
+  preempt               When set to true, enables preemption by a higher  priority backup router of a lower priority master router
+
+  priority              Specifies the sending VRRP interface's priority for the virtual router. Higher values equal higher priority
 
 ## nv set router vrrp priority 1-254
 
@@ -1640,7 +1734,7 @@ product: Cumulus Linux
 ### Description
 
   Sets the interval between successive VRRP advertisements -- RFC 5798 defines this as a 12-bit value expressed as 0.1 seconds, with default 1000 milliseconds, i.e., 1 second. Represented in units of milliseconds
-  
+
 ## nv set router vrr
 
 ### Usage
@@ -1651,10 +1745,10 @@ product: Cumulus Linux
 
   VRR global configuration.
 
-### Atrributes
+### Attributes
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
-  
+
 ## nv set router adaptive-routing
 
 ### Usage
@@ -1665,7 +1759,7 @@ product: Cumulus Linux
 
   Adaptive routing global configuration.
 
-### Atrributes
+### Attributes
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -1679,7 +1773,7 @@ product: Cumulus Linux
 
   Top-level container for the components in the system. This node represents a system component inventory, which includes hardware and software elements.
 
-### Atrributes
+### Attributes
 
   hardware    The platform's hardware
 
@@ -1693,7 +1787,7 @@ product: Cumulus Linux
 
   Set of components making up the platform.
 
-### Atrributes
+### Attributes
 
   component   A component in the platform.
 
@@ -1711,11 +1805,14 @@ product: Cumulus Linux
 
   <component-id>  Component identifier
 
-### Atrributes
+### Attributes
 
   linecard        Properties of a linecard component
+
   admin-state     The component's admin state
+
   type            The type of this component
+
 
 ## nv set platform hardware component <component-id> linecard
 
@@ -1731,7 +1828,7 @@ product: Cumulus Linux
 
   <component-id>  Component identifier
 
-### Atrributes
+### Attributes
 
   provision       Provision linecard types
 
@@ -1745,7 +1842,7 @@ product: Cumulus Linux
 
   Properties associated with an instance of a bridge.
 
-### Atrributes
+### Attributes
 
   domain      Bridge domains
 
@@ -1763,20 +1860,22 @@ product: Cumulus Linux
 
   <domain-id>      Domain
 
-### Atrributes
+### Attributes
 
   stp              attributes related to global stp
+
   multicast        Configure multicast on the bridge
-  vlan             Set of vlans in the bridge domain. Only applicable when the
-                   domain type is "vlan-aware".
-  encap            Interfaces added to this domain will, by default, use this
-                   encapsulation.
+
+  vlan             Set of vlans in the bridge domain. Only applicable when the domain type is "vlan-aware".
+
+  encap            Interfaces added to this domain will, by default, use this encapsulation.
+
   mac-address      Override global mac address
+
   type             Type of bridge domain.
-  untagged         Interfaces added to this domain will, by default, be trunk
-                   interfaces with a single untagged vlan. Untagged packets on
-                   domain ports will be put in this vlan. If none, then
-                   untagged packets will be dropped.
+
+  untagged         Interfaces added to this domain will, by default, be trunk interfaces with a single untagged vlan. Untagged packets on domain ports will be put in this vlan. If none, then untagged packets will be dropped.
+
   vlan-vni-offset  A VNI offset while (automatically) mapping VLANs to VNIs
 
 ## nv set bridge domain <domain-id> stp
@@ -1793,11 +1892,11 @@ product: Cumulus Linux
 
   <domain-id>  Domain
 
-### Atrributes
+### Attributes
 
   state        The state of STP on the bridge
-  priority     stp priority. The priority value must be a number between 4096
-               and 32768 and a multiple of 4096.
+
+  priority     stp priority. The priority value must be a number between 4096 and 32768 and a multiple of 4096.
 
 ## nv set bridge domain <domain-id> stp priority 4096-61440
 
@@ -1811,7 +1910,7 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <domain-id>  Domain.
+  <domain-id>  Domain
 
 ## nv set bridge domain <domain-id> multicast
 
@@ -1827,7 +1926,7 @@ product: Cumulus Linux
 
   <domain-id>  Domain
 
-### Atrributes
+### Attributes
 
   snooping     IGMP/MLD snooping configuration
 
@@ -1845,11 +1944,12 @@ product: Cumulus Linux
 
   <domain-id>  Domain
 
-### Atrributes
+### Attributes
 
   querier      IGMP/MLD querier configuration
+
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
-  
+
 ## nv set bridge domain <domain-id> multicast snooping querier
 
 ### Usage
@@ -1864,7 +1964,7 @@ product: Cumulus Linux
 
   <domain-id>  Domain
 
-### Atrributes
+### Attributes
 
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -1883,10 +1983,12 @@ product: Cumulus Linux
   <domain-id>  Domain
   <vid>        VLAN ID
 
-### Atrributes
+### Attributes
 
   vni          L2 VNI
+
   ptp          VLAN PTP configuration. Inherited by interfaces in this VLAN.
+
   multicast    Configure multicast on the vlan
 
 ## nv set bridge domain <domain-id> vlan <vid> vni <vni-id>
@@ -1905,12 +2007,12 @@ product: Cumulus Linux
   <vid>         VLAN ID
   <vni-id>      VxLAN ID
 
-### Atrributes
+### Attributes
+
 
   flooding      Handling of BUM traffic
-  mac-learning  Controls dynamic MAC learning over VXLAN tunnels based on
-                received packets. This applies to all overlays (VNIs), but can
-                be overridden by VNI-specific configuration.
+
+  mac-learning  Controls dynamic MAC learning over VXLAN tunnels based on received packets. This applies to all overlays (VNIs), but can be overridden by VNI-specific configuration.
 
 ## nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding
 
@@ -1928,16 +2030,13 @@ product: Cumulus Linux
   <vid>                 VLAN ID
   <vni-id>              VxLAN ID
 
-### Atrributes
+### Attributes
 
-  head-end-replication  BUM traffic is replicated and individual copies sent
-                        to remote destinations.
-  enable                Turn the feature 'on', 'off', or 'auto'. The default
-                        is 'auto'.
-  multicast-group       BUM traffic is sent to the specified multicast group
-                        and will be received by receivers who are interested
-                        in that group. This usually requires PIM-SM to be used
-                        in the network.
+  head-end-replication  BUM traffic is replicated and individual copies sent to remote destinations.
+
+  enable                Turn the feature 'on', 'off', or 'auto'. The default is 'auto'.
+
+  multicast-group       BUM traffic is sent to the specified multicast group and will be received by receivers who are interested in that group. This usually requires PIM-SM to be used in the network.
 
 ## nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id>
 
@@ -1987,7 +2086,7 @@ product: Cumulus Linux
   <domain-id>  Domain
   <vid>        VLAN ID
 
-### Atrributes
+### Attributes
 
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -2006,7 +2105,7 @@ product: Cumulus Linux
   <domain-id>  Domain
   <vid>        VLAN ID
 
-### Atrributes
+### Attributes
 
   snooping     IGMP/MLD snooping configuration
 
@@ -2025,9 +2124,11 @@ product: Cumulus Linux
   <domain-id>  Domain
   <vid>        VLAN ID
 
-### Atrributes
+### Attributes
 
-  querier      IGMP/MLD querier configuration## nv set bridge domain <domain-id> vlan <vid> multicast snooping querier
+  querier      IGMP/MLD querier configuration
+
+## nv set bridge domain <domain-id> vlan <vid> multicast snooping querier
 
 ### Usage
 
@@ -2042,10 +2143,10 @@ product: Cumulus Linux
   <domain-id>  Domain
   <vid>        VLAN ID
 
-### Atrributes
+### Attributes
 
   source-ip    Source IP to use when sending IGMP/MLD queries.
-  
+
 ## nv set bridge domain <domain-id> vlan <vid> multicast snooping querier source-ip <ipv4>
 
 ### Usage
@@ -2060,7 +2161,7 @@ product: Cumulus Linux
 
   <domain-id>  Domain
   <vid>        VLAN ID
-  
+
 ## nv set bridge domain <domain-id> type vlan-aware
 
 ### Usage
@@ -2073,8 +2174,8 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <domain-id>  Domai
-  
+  <domain-id>  Domain
+
 ## nv set bridge domain <domain-id> encap 802.1Q
 
 ### Usage
@@ -2088,7 +2189,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <domain-id>  Domain
-  
+
 ## nv set bridge domain <domain-id> vlan-vni-offset 0-16773120
 
 ### Usage
@@ -2102,7 +2203,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <domain-id>  Domain
-  
+
 ## nv set mlag
 
 ### Usage
@@ -2113,15 +2214,22 @@ product: Cumulus Linux
 
   Global Multi-chassis Link Aggregation properties
 
-### Atrributes
+### Attributes
 
   lacp-conflict  Configure the mlag lacp-conflict parameters
+
   backup         Set of MLAG backups
+
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
+
   debug          Enable MLAG debugging
+
   init-delay     The delay, in seconds, before bonds are brought up.
+
   mac-address    Override anycast-mac and anycast-id
+
   peer-ip        Peer Ip Address
+
   priority       Mlag Priority
 
 ## nv set mlag lacp-conflict
@@ -2133,7 +2241,7 @@ product: Cumulus Linux
 ### Description
 
   Configure the mlag lacp-conflict parameters
-  
+
 ## nv set mlag backup <backup-ip>
 
 ### Usage
@@ -2148,10 +2256,10 @@ product: Cumulus Linux
 
   <backup-ip>  Backup IP of MLAG peer
 
-### Atrributes
+### Attributes
 
   vrf          The backup IP's VRF.
-  
+
 ## nv set mlag backup <backup-ip> vrf <vrf-name>
 
 ### Usage
@@ -2165,7 +2273,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <backup-ip>  Backup IP of MLAG peer
-  
+
 ## nv set mlag priority 0-65535
 
 ### Usage
@@ -2175,7 +2283,7 @@ product: Cumulus Linux
 ### Description
 
   Mlag Priority
-  
+
 ## nv set mlag init-delay 0-900
 
 ### Usage
@@ -2184,7 +2292,9 @@ product: Cumulus Linux
 
 ### Description
 
-  The delay, in seconds, before bonds are brought up.## nv set evpn
+  The delay, in seconds, before bonds are brought up.
+
+## nv set evpn
 
 ### Usage
 
@@ -2194,14 +2304,18 @@ product: Cumulus Linux
 
   Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
 
-### Atrributes
+### Attributes
 
   route-advertise  Route advertising
+
   dad              Advertise
+
   evi              EVI
+
   multihoming      Multihoming global configuration parameters
+
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
-  
+
 ## nv set evpn route-advertise
 
 ### Usage
@@ -2212,22 +2326,13 @@ product: Cumulus Linux
 
   Route dvertising
 
-### Atrributes
+### Attributes
 
-  default-gateway  This configuration should be turned 'on' only in a
-                   centralized-routing deployment and only on the centralized
-                   GW router(s). If 'on', the IP addresses of SVIs in all EVIs
-                   are announced as type-2 routes with the gateway extended
-                   community. The purpose is for remote L2-only VTEPs to do
-                   ARP suppression and for hosts to learn of the gateway's IP
-                   to MAC binding.
-  nexthop-setting  Specifies the next hop IP and MAC (Router MAC) to use in
-                   the advertisement of type-5 routes and “self” type-2 routes
-                   (“self” = SVI IP/MAC). Relevant only in an MLAG
-                   configuration.
-  svi-ip           If 'on', the IP addresses of SVIs in all EVIs are announced
-                   as type-2 routes. This configuration should not be enabled
-                   if SVI IPs are reused in the network.
+  default-gateway  This configuration should be turned 'on' only in a centralized-routing deployment and only on the centralized GW router(s). If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes with the gateway extended community. The purpose is for remote L2-only VTEPs to do  ARP suppression and for hosts to learn of the gateway's IP to MAC binding.
+
+  nexthop-setting  Specifies the next hop IP and MAC (Router MAC) to use in the advertisement of type-5 routes and “self” type-2 routes (“self” = SVI IP/MAC). Relevant only in an MLAG configuration.
+
+  svi-ip           If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes. This configuration should not be enabled if SVI IPs are reused in the network.
 
 ## nv set evpn dad
 
@@ -2239,17 +2344,16 @@ product: Cumulus Linux
 
   Duplicate address detection
 
-### Atrributes
+### Attributes
 
-  duplicate-action    Action to take when a MAC is flagged as a possible
-                      duplicate. If 'warning-only', generates a log message.
-                      If 'freeze', further move events for the MAC will not be
-                      acted upon.
+  duplicate-action    Action to take when a MAC is flagged as a possible duplicate. If 'warning-only', generates a log message. If 'freeze', further move events for the MAC will not be acted upon.
+
   enable              Turn the feature 'on' or 'off'. The default is 'off'.
-  mac-move-threshold  Number of MAC moves within a time window before the MAC
-                      is flagged as a possible duplicate.
+
+  mac-move-threshold  Number of MAC moves within a time window before the MAC is flagged as a possible duplicate.
+
   move-window         Time window during which the move threshold applies
-  
+
 ## nv set evpn dad duplicate-action
 
 ### Usage
@@ -2260,10 +2364,10 @@ product: Cumulus Linux
 
   Handling of BUM traffic
 
-### Atrributes
+### Attributes
 
   freeze      Further move events for the MAC will not be acted upon.
-  
+
 ## nv set evpn dad duplicate-action freeze
 
 ### Usage
@@ -2274,11 +2378,12 @@ product: Cumulus Linux
 
   Advertise
 
-### Atrributes
+### Attributes
 
   duration    Freeze the MAC for the specified duration or, if 'permanent'
+
               until the operator intervenes.
-              
+
 ## nv set evpn dad mac-move-threshold 2-1000
 
 ### Usage
@@ -2288,7 +2393,7 @@ product: Cumulus Linux
 ### Description
 
   Number of MAC moves within a time window before the MAC is flagged as a possible duplicate.
-  
+
 ## nv set evpn dad move-window 2-1800
 
 ### Usage
@@ -2298,7 +2403,7 @@ product: Cumulus Linux
 ### Description
 
   Time window during which the move threshold applies
-  
+
 ## nv set evpn evi <evi-id>
 
 ### Usage
@@ -2313,13 +2418,16 @@ product: Cumulus Linux
 
   <evi-id>         VRF
 
-### Atrributes
+### Attributes
 
   route-advertise  Route advertise
+
   route-target     Route targets
+
   rd               BGP Route Distinguisher to use for EVPN type-5 routes
+
                    originated for this VRF.
-                   
+
 ## nv set evpn evi <evi-id> route-advertise
 
 ### Usage
@@ -2334,21 +2442,13 @@ product: Cumulus Linux
 
   <evi-id>         VRF
 
-### Atrributes
+### Attributes
 
-  default-gateway  If 'auto', inherit from global config. This is the default.
-                   This configuration should be turned 'on' only in a
-                   centralized-routing deployment and only on the centralized
-                   GW router(s). If 'on', the IP addresses of SVIs in all EVIs
-                   are announced as type-2 routes with the gateway extended
-                   community. The purpose is for remote L2-only VTEPs to do
-                   ARP suppression and for hosts to learn of the gateway's IP
-                   to MAC binding.
-  svi-ip           If 'auto', inherit from global config. This is the default.
-                   If 'on', the IP addresses of SVIs in all EVIs are announced
-                   as type-2 routes. This configuration should not be enabled
-                   if SVI IPs are reused in the network.
-                   
+
+  default-gateway  If 'auto', inherit from global config. This is the default. This configuration should be turned 'on' only in a centralized-routing deployment and only on the centralized GW router(s). If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes with the gateway extended community. The purpose is for remote L2-only VTEPs to do ARP suppression and for hosts to learn of the gateway's IP to MAC binding.
+
+  svi-ip           If 'auto', inherit from global config. This is the default. If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes. This configuration should not be enabled if SVI IPs are reused in the network.
+
 ## nv set evpn evi <evi-id> route-target
 
 ### Usage
@@ -2363,12 +2463,15 @@ product: Cumulus Linux
 
   <evi-id>    VRF
 
-### Atrributes
+### Attributes
+
 
   export      Route targets to export
+
   import      Route targets to import
+
   both        Route targets to import and export
-  
+
 ## nv set evpn evi <evi-id> route-target export <rt-id>
 
 ### Usage
@@ -2383,7 +2486,7 @@ product: Cumulus Linux
 
   <evi-id>    VRF
   <rt-id>     Route target ID
-  
+
 ## nv set evpn evi <evi-id> route-target import <rt-id>
 
 ### Usage
@@ -2398,7 +2501,7 @@ product: Cumulus Linux
 
   <evi-id>    VRF
   <rt-id>     Route target ID
-  
+
 ## nv set evpn evi <evi-id> route-target both <rt-id>
 
 ### Usage
@@ -2413,7 +2516,7 @@ product: Cumulus Linux
 
   <evi-id>    VRF
   <rt-id>     Route target ID
-  
+
 ## nv set evpn multihoming
 
 ### Usage
@@ -2424,21 +2527,20 @@ product: Cumulus Linux
 
   Multihoming global configuration parameters
 
-### Atrributes
+### Attributes
 
   ead-evi-route      Ethernet Auto-discovery per EVPN instance routes
+
   segment            Multihoming interface segment
+
   enable             Turn the feature 'on' or 'off'. The default is 'off'.
-  mac-holdtime       During this interval, the switch attempts to
-                     independently establish reachability of the MAC on the
-                     local ethernet segment. If 'none', there is no holdtime.
-  neighbor-holdtime  During this interval, the switch attempts to
-                     independently establish reachability of the host on the
-                     local ethernet segment.
-  startup-delay      The duration for which a switch holds the Ethernet
-                     segment-bond in a protodown state after a reboot or
-                     process restart.
-                     
+
+  mac-holdtime       During this interval, the switch attempts to independently establish reachability of the MAC on the local ethernet segment. If 'none', there is no holdtime.
+
+  neighbor-holdtime  During this interval, the switch attempts to independently establish reachability of the host on the local ethernet segment.
+
+  startup-delay      The duration for which a switch holds the Ethernet segment-bond in a protodown state after a reboot or  process restart.
+
 ## nv set evpn multihoming ead-evi-route
 
 ### Usage
@@ -2449,11 +2551,12 @@ product: Cumulus Linux
 
   Ethernet Auto-discovery per EVPN instance routes
 
-### Atrributes
+### Attributes
 
   rx          Disable EAD-per-EVI at receiving end.
+
   tx          Suppress advertisement of EAD-per-EVI routes.
-  
+
 ## nv set evpn multihoming segment
 
 ### Usage
@@ -2464,11 +2567,13 @@ product: Cumulus Linux
 
   Multihoming interface segment
 
-### Atrributes
+### Attributes
+
 
   df-preference  Designated forwarder preference value.
+
   mac-address    MAC address per ethernet segment. Required.
-  
+
 ## nv set evpn multihoming segment mac-address <mac>
 
 ### Usage
@@ -2478,7 +2583,7 @@ product: Cumulus Linux
 ### Description
 
   MAC address per ethernet segment.  Required.
-  
+
 ## nv set evpn multihoming segment df-preference 1-65535
 
 ### Usage
@@ -2488,7 +2593,7 @@ product: Cumulus Linux
 ### Description
 
   Designated forwarder preference value.
-  
+
 ## nv set evpn multihoming mac-holdtime 0-86400
 
 ### Usage
@@ -2498,7 +2603,7 @@ product: Cumulus Linux
 ### Description
 
   During this interval, the switch attempts to independently establish reachability of the MAC on the local ethernet segment. If 'none', there is no holdtime.
-  
+
 ## nv set evpn multihoming neighbor-holdtime 0-86400
 
 ### Usage
@@ -2508,7 +2613,7 @@ product: Cumulus Linux
 ### Description
 
   During this interval, the switch attempts to independently establish reachability of the host on the local ethernet segment.
-  
+
 ## nv set evpn multihoming startup-delay 0-3600
 
 ### Usage
@@ -2518,7 +2623,7 @@ product: Cumulus Linux
 ### Description
 
   The duration for which a switch holds the Ethernet segment-bond in a protodown state after a reboot or process restart.
-  
+
 ## nv set qos
 
 ### Usage
@@ -2529,11 +2634,10 @@ product: Cumulus Linux
 
   QOS
 
-### Atrributes
+### Attributes
 
-  roce        Properties associated with the RDMA over Converged Ethernet
-              (RoCE) feature.
-              
+  roce        Properties associated with the RDMA over Converged Ethernet (RoCE) feature.
+
 ## nv set qos roce
 
 ### Usage
@@ -2544,12 +2648,14 @@ product: Cumulus Linux
 
   Properties associated with the RDMA over Converged Ethernet (RoCE) feature.
 
-### Atrributes
+### Attributes
 
   enable        Turn the feature 'on' or 'off'. The default is 'off'.
+
   mode          Roce Mode
+
   cable-length  Cable Length(in meters) for Roce Lossless Config
-  
+
 ## nv set qos roce cable-length 1-100000
 
 ### Usage
@@ -2559,7 +2665,7 @@ product: Cumulus Linux
 ### Description
 
   Cable Length(in meters) for Roce Lossless Config
-  
+
 ## nv set interface <interface-id>
 
 ### Usage
@@ -2574,21 +2680,35 @@ product: Cumulus Linux
 
   <interface-id>  Interface
 
-### Atrributes
+### Attributes
+
 
   router          interface router
+
   bond            The state of the interface
+
   bridge          attributed related to a bridged interface
+
   ip              IP configuration for an interface
+
   lldp            LLDP on for an interface
+
   link            An physical interface
+
   evpn            EVPN control plane config and info for VRF
+
   acl             Interface ACL rules
+
   ptp             Interface Specific PTP configuration.
+
   tunnel          The state of the interface
+
   base-interface  The interface under this interface
+
   description     Details about the interface
+
   type            The type of interface
+
   vlan            VLAN ID
 
 ## nv set interface <interface-id> router
@@ -2605,11 +2725,14 @@ product: Cumulus Linux
 
   <interface-id>    Interface
 
-### Atrributes
+### Attributes
 
   pbr               PBR interface configuration.
+
   ospf              OSPF interface configuration.
+
   pim               PIM interface configuration.
+
   adaptive-routing  Adaptive routing interface configuration.
 
 ## nv set interface <interface-id> router pbr
@@ -2626,7 +2749,7 @@ product: Cumulus Linux
 
   <interface-id>  Interface
 
-### Atrributes
+### Attributes
 
   map             PBR map to use on this interface
 
@@ -2659,20 +2782,30 @@ product: Cumulus Linux
 
   <interface-id>  Interface
 
-### Atrributes
+### Attributes
+
 
   timers          Timers configuration
+
   authentication  md5 authentication configuration
+
   bfd             BFD configuration
+
   enable          Turn the feature 'on' or 'off'. The default is 'off'.
+
   area            Area number for enabling ospf on this interface.
+
   cost            The cost of this link the router lsa. If `auto`, determine
+
                   the cost based on link speed. This is the default.
+
   mtu-ignore      Do not test mtu matching for peering.
+
   network-type    Network type.
+
   passive         Stops the creation of peers on this interface
-  priority        Eligibility of this router to become DR on multi-access
-                  network
+
+  priority        Eligibility of this router to become DR on multi-access network
 
 ## nv set interface <interface-id> router ospf timers
 
@@ -2688,19 +2821,19 @@ product: Cumulus Linux
 
   <interface-id>       Interface
 
-### Atrributes
+### Attributes
 
-  dead-interval        Length of time, in seconds, without a hello before
-                       declaring the neighbor dead. If `minimal`, `hello-
-                       multiplier` must be set.
-  hello-interval       How often to transmit a hello packet, in seconds. Only
-                       valid if `dead-interval` is not `minimal`.
-  hello-multiplier     Required and only valid if `dead-interval` is
-                       `minimal`.
-  retransmit-interval  How often to retransmit a packet not acknowledged, in
-                       seconds
+
+  dead-interval        Length of time, in seconds, without a hello before  declaring the neighbor dead. If `minimal`, `hello-multiplier` must be set.
+
+  hello-interval       How often to transmit a hello packet, in seconds. Only valid if `dead-interval` is not `minimal`.
+
+  hello-multiplier     Required and only valid if `dead-interval` is `minimal`.
+
+  retransmit-interval  How often to retransmit a packet not acknowledged, in seconds
+
   transmit-delay       Delay before sending a new lsa, in seconds
-  
+
 ## nv set interface <interface-id> router ospf timers hello-multiplier 1-10
 
 ### Usage
@@ -2771,10 +2904,12 @@ product: Cumulus Linux
 
   <interface-id>      Interface
 
-### Atrributes
+### Attributes
 
   enable              Turn the feature 'on' or 'off'. The default is 'off'.
+
   md5-key             md5 key
+
   message-digest-key  Message digest key
 
 ## nv set interface <interface-id> router ospf authentication message-digest-key 1-255
@@ -2819,13 +2954,15 @@ product: Cumulus Linux
 
   <interface-id>        Interface
 
-### Atrributes
+### Attributes
 
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
+
   detect-multiplier     Detect multiplier value
+
   min-receive-interval  Minimum receive interval in milliseconds
-  min-transmit-interval
-                        Minimum transmit interval in milliseconds
+
+  min-transmit-interval  Minimum transmit interval in milliseconds
 
 ## nv set interface <interface-id> router ospf bfd detect-multiplier 2-255
 
@@ -2897,14 +3034,20 @@ product: Cumulus Linux
 
   <interface-id>  Interface
 
-### Atrributes
+### Attributes
 
   timers          Timers
+
   bfd             BFD configuration
+
   address-family  Address family specific configuration
+
   enable          Turn the feature 'on' or 'off'. The default is 'off'.
+
   active-active   Enable/disable active-active for PIM MLAG operation on the
+
                   interface.
+
   dr-priority     Designated Router Election priority.
 
 ## nv set interface <interface-id> router pim timers
@@ -2921,12 +3064,10 @@ product: Cumulus Linux
 
   <interface-id>  Interface
 
-### Atrributes
+### Attributes
 
-  hello-interval  PIM Hello packets periodic interval. If "auto", inherit from
-                  the VRF. This is the default. Holdtime is 3.5 times the
-                  hello-interval, the amount of time neighbor must kept in
-                  reachable state.
+
+  hello-interval  PIM Hello packets periodic interval. If "auto", inherit from the VRF. This is the default. Holdtime is 3.5 times the hello-interval, the amount of time neighbor must kept in reachable state.
 
 ## nv set interface <interface-id> router pim bfd
 
@@ -2942,13 +3083,15 @@ product: Cumulus Linux
 
   <interface-id>        Interface
 
-### Atrributes
+### Attributes
 
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
+
   detect-multiplier     Detect multiplier value
+
   min-receive-interval  Minimum receive interval in milliseconds
-  min-transmit-interval
-                        Minimum transmit interval in milliseconds
+
+  min-transmit-interval Minimum transmit interval in milliseconds
 
 ## nv set interface <interface-id> router pim bfd detect-multiplier 2-255
 
@@ -3006,7 +3149,7 @@ product: Cumulus Linux
 
   <interface-id>  Interface
 
-### Atrributes
+### Attributes
 
   ipv4-unicast    IPv4 unicast address family
 
@@ -3024,14 +3167,12 @@ product: Cumulus Linux
 
   <interface-id>        Interface
 
-### Atrributes
+### Attributes
 
-  allow-rp              Allow RP feature, which allows RP address to be
-                        accepts for the received
-  multicast-boundary-oil
-                        PIM join/prunes are accepted or dropped based upon the
-                        prefix-list filter apply on outgoing filter list on
-                        the specified interface.
+  allow-rp              Allow RP feature, which allows RP address to be accepts for the received
+
+  multicast-boundary-oil  PIM join/prunes are accepted or dropped based upon the prefix-list filter apply on outgoing filter list on  the specified interface.
+
   use-source            Use unique source address in PIM Hello source field.
 
 ## nv set interface <interface-id> router pim address-family ipv4-unicast allow-rp
@@ -3048,11 +3189,14 @@ product: Cumulus Linux
 
   <interface-id>  Interface
 
-### Atrributes
+### Attributes
 
   enable          Turn the feature 'on' or 'off'. The default is 'off'.
+
   rp-list         The prefix-list provides the list of group addresses to
+
                   accept downstream (*,G) joins and propogate towards the
+
                   allowed-rp.
 
 ## nv set interface <interface-id> router pim dr-priority 1-4294967295
@@ -3083,11 +3227,11 @@ product: Cumulus Linux
 
   <interface-id>        Interface
 
-### Atrributes
+### Attributes
 
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
-  link-utilization-threshold
-                        Link utilization threshold percentage
+
+  link-utilization-threshold  Link utilization threshold percentage
 
 ## nv set interface <interface-id> router adaptive-routing link-utilization-threshold 1-100
 
@@ -3117,14 +3261,20 @@ product: Cumulus Linux
 
   <interface-id>  Interface
 
-### Atrributes
+### Attributes
 
   member          Set of bond members
+
   mlag            MLAG configuration on the bond interface
+
   down-delay      bond down delay
+
   lacp-bypass     lacp bypass
+
   lacp-rate       lacp rate
+
   mode            bond mode
+
   up-delay        bond up delay
 
 ## nv set interface <interface-id> bond member <member-id>
@@ -3156,10 +3306,13 @@ product: Cumulus Linux
 
   <interface-id>  Interface
 
-### Atrributes
+### Attributes
+
 
   lacp-conflict   Configure the mlag lacp-conflict parameters
+
   enable          Turn the feature 'on' or 'off'. The default is 'off'.
+
   id              MLAG id
 
 ## nv set interface <interface-id> bond mlag lacp-conflict
@@ -3218,7 +3371,7 @@ product: Cumulus Linux
 
   <interface-id>  Interface
 
-### Atrributes
+### Attributes
 
   domain          Bridge domains on this interface
 
@@ -3237,21 +3390,17 @@ product: Cumulus Linux
   <interface-id>  Interface
   <domain-id>     Domain
 
-### Atrributes
+### Attributes
 
   stp             attributed related to a stpd interface
-  vlan            Set of allowed vlans for this bridge domain on this
-                  interface. If "all", inherit all vlans from the bridge
-                  domain, if appropriate. This is the default.
-  access          Untagged packets ingressing on this interface will be put in
-                  this vlan. Tagged packets will be dropped. Egress packets
-                  will be untagged. If auto, inherit from bridge domain.
-  learning        source mac address learning for this bridge domain on this
-                  interface
-  untagged        Untagged packets ingressing on the interface will be put in
-                  this vlan. Egress packets are always tagged. If none, then
-                  untagged packets will be dropped. If auto, inherit from
-                  bridge domain.
+
+  vlan            Set of allowed vlans for this bridge domain on this interface. If "all", inherit all vlans from the bridge domain, if appropriate. This is the default.
+
+  access          Untagged packets ingressing on this interface will be put in this vlan. Tagged packets will be dropped. Egress packets will be untagged. If auto, inherit from bridge domain.
+
+  learning        source mac address learning for this bridge domain on this interface
+
+  untagged        Untagged packets ingressing on the interface will be put in this vlan. Egress packets are always tagged. If none, then untagged packets will be dropped. If auto, inherit from bridge domain.
 
 ## nv set interface <interface-id> bridge domain <domain-id> stp
 
@@ -3268,15 +3417,19 @@ product: Cumulus Linux
   <interface-id>  Interface
   <domain-id>     Domain
 
-### Atrributes
+### Attributes
 
   admin-edge      Edge state of the port
+
   auto-edge       Auto transition to/from edge state of the port
+
   bpdu-filter     BPDU filter on a port
+
   bpdu-guard      Bridge Protocol Data Unit guard
+
   network         Bridge assurance capability for a port
-  restrrole       enable/disable port ability to take root role of the port
-                  (need better name)
+
+  restrrole       enable/disable port ability to take root role of the port (need better name)
 
 ## nv set interface <interface-id> bridge domain <domain-id> vlan <vid>
 
@@ -3308,18 +3461,27 @@ product: Cumulus Linux
 
   <interface-id>      Interface
 
-### Atrributes
+### Attributes
+
 
   address             ipv4 and ipv6 address
+
   vrr                 Configuration for VRR
+
   gateway             default ipv4 and ipv6 gateways
+
   ipv4                IPv4 configuration for an interface
+
   ipv6                IPv6 configuration for an interface
+
   igmp                Configuration for IGMP
+
   vrrp                Configuration for VRRP
+
   neighbor-discovery  Neighbor discovery configuration for an interface
+
   vrf                 Virtual routing and forwarding
-  
+
 ## nv set interface <interface-id> ip address <ip-prefix-id>
 
 ### Usage
@@ -3349,12 +3511,16 @@ product: Cumulus Linux
 
   <interface-id>  Interface
 
-### Atrributes
+### Attributes
 
   address         Virtual addresses with prefixes
+
   state           The state of the interface
+
   enable          Turn the feature 'on' or 'off'. The default is 'off'.
+
   mac-address     Override anycast-mac
+
   mac-id          Override fabric-id
 
 ## nv set interface <interface-id> ip vrr address <ip-prefix-id>
@@ -3386,7 +3552,7 @@ product: Cumulus Linux
 
   <interface-id>   Interface
   <ip-address-id>  IPv4 or IPv6 address
-  
+
 ## nv set interface <interface-id> ip ipv4
 
 ### Usage
@@ -3401,7 +3567,7 @@ product: Cumulus Linux
 
   <interface-id>  Interface
 
-### Atrributes
+### Attributes
 
   forward         Enable or disable forwarding.
 
@@ -3419,9 +3585,10 @@ product: Cumulus Linux
 
   <interface-id>  Interface
 
-### Atrributes
+### Attributes
 
   enable          Turn the feature 'on' or 'off'. The default is 'on'.
+
   forward         Enable or disable forwarding.
 
 ## nv set interface <interface-id> ip igmp
@@ -3438,15 +3605,18 @@ product: Cumulus Linux
 
   <interface-id>        Interface
 
-### Atrributes
+### Attributes
 
   static-group          IGMP static mutlicast mroutes
+
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
-  last-member-query-interval
-                        Last member query interval.
+
+  last-member-query-interval Last member query interval.
+
   query-interval        Query interval, in seconds.
-  query-max-response-time
-                        Max query response time, in seconds.
+
+  query-max-response-time  Max query response time, in seconds.
+
   version               Protocol version
 
 ## nv set interface <interface-id> ip igmp static-group <static-group-id>
@@ -3464,10 +3634,10 @@ product: Cumulus Linux
   <interface-id>     Interface
   <static-group-id>  IGMP static multicast mroute destination
 
-### Atrributes
+### Attributes
 
   source-address     IGMP static multicast mroute source.
-  
+
 ## nv set interface <interface-id> ip igmp static-group <static-group-id> source-address <ipv4-unicast>
 
 ### Usage
@@ -3482,7 +3652,7 @@ product: Cumulus Linux
 
   <interface-id>     Interface
   <static-group-id>  IGMP static multicast mroute destination
-  
+
 ## nv set interface <interface-id> ip igmp query-interval 1-1800
 
 ### Usage
@@ -3498,6 +3668,7 @@ product: Cumulus Linux
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ip igmp query-max-response-time 10-250
+
 
 ### Usage
 
@@ -3539,9 +3710,10 @@ product: Cumulus Linux
 
   <interface-id>  Interface
 
-### Atrributes
+### Attributes
 
   virtual-router  Group of virtual gateways implemented with VRRP
+
   enable          Turn the feature 'on' or 'off'. The default is 'off'.
 
 ## nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id>
@@ -3559,21 +3731,17 @@ product: Cumulus Linux
   <interface-id>        Interface
   <virtual-router-id>   Virtual Router IDentifier (VRID)
 
-### Atrributes
+### Attributes
+
 
   address               A set of virtual addresses for VRRPv3
-  advertisement-interval
-                        Sets the interval between successive VRRP
-                        advertisements -- RFC 5798 defines this as a 12-bit
-                        value expressed as 0.1 seconds, with default 1000
-                        milliseconds, i.e., 1 second. Represented in units of
-                        milliseconds
-  preempt               When set to true, enables preemption by a higher
-                        priority backup router of a lower priority master
-                        router
-  priority              Specifies the sending VRRP interface's priority for
-                        the virtual router. Higher values equal higher
-                        priority
+
+  advertisement-interval Sets the interval between successive VRRP advertisements -- RFC 5798 defines this as a 12-bit value expressed as 0.1 seconds, with default 1000 milliseconds, i.e., 1 second. Represented in units of milliseconds
+
+  preempt               When set to true, enables preemption by a higher priority backup router of a lower priority master router
+
+  priority              Specifies the sending VRRP interface's priority foe the virtual router. Higher values equal higher priority
+
   version               Protocol version
 
 ## nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> address <ip-address-id>
@@ -3606,15 +3774,22 @@ product: Cumulus Linux
 
   <interface-id>        Interface
 
-### Atrributes
+### Attributes
 
   rdnss                 Recursive DNS server addresses to be advertised using
+
                         type 25 option RFC8016
+
   prefix                IPv6 prefix configuration
+
   dnssl                 Advertise DNS search list using type 31 option RFC8106
+
   router-advertisement  Router advertisement
+
   home-agent            Home agent configuration
+
   enable                Turn the feature 'on' or 'off'. The default is 'on'.
+
   mtu                   MTU option for neighbor discovery messages
 
 ## nv set interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id>
@@ -3632,11 +3807,10 @@ product: Cumulus Linux
   <interface-id>     Interface
   <ipv6-address-id>  IPv6 address
 
-### Atrributes
+### Attributes
 
-  lifetime           Maximum time in seconds for which the server may be used
-                     for domain name resolution
-                     
+  lifetime           Maximum time in seconds for which the server may be used for domain name resolution
+
 ## nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id>
 
 ### Usage
@@ -3652,19 +3826,19 @@ product: Cumulus Linux
   <interface-id>      Interface
   <ipv6-prefix-id>    IPv6 address and route prefix in CIDR notation
 
-### Atrributes
+### Attributes
 
-  autoconfig          Indicates to hosts on the local link that the specified
-                      prefix can be used for v6 autoconfiguration
-  off-link            Indicates that adverisement makes no statement about on-
-                      link or off-link properties of the prefix
-  preferred-lifetime  Time in seconds that addresses generated from a prefix
-                      remain preferred
-  router-address      Indicates to hosts on the local link that the specified
-                      prefix contains a complete IP address by setting R flag
-  valid-lifetime      Time in seconds the prefix is valid for on-link
-                      determination
-                      
+
+  autoconfig          Indicates to hosts on the local link that the specified  prefix can be used for v6 autoconfiguration
+
+  off-link            Indicates that adverisement makes no statement about on-link or off-link properties of the prefix
+
+  preferred-lifetime  Time in seconds that addresses generated from a prefix remain preferred
+
+  router-address      Indicates to hosts on the local link that the specified prefix contains a complete IP address by setting R flag
+
+  valid-lifetime      Time in seconds the prefix is valid for on-link determination
+
 ## nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> valid-lifetime 0-4294967295
 
 ### Usage
@@ -3711,10 +3885,10 @@ product: Cumulus Linux
   <domain-name-id>  The domain portion of a hostname (RFC 1123) or an
                     internationalized hostname (RFC 5890).
 
-### Atrributes
+### Attributes
 
-  lifetime          Maximum time in seconds for which the domain suffix may be
-                    used for domain name resolution
+
+  lifetime          Maximum time in seconds for which the domain suffix may be used for domain name resolution
 
 ## nv set interface <interface-id> ip neighbor-discovery router-advertisement
 
@@ -3730,33 +3904,30 @@ product: Cumulus Linux
 
   <interface-id>     Interface
 
-### Atrributes
+### Attributes
 
   enable             Turn the feature 'on' or 'off'. The default is 'on'.
-  fast-retransmit    Allow consecutive RA packets more frequently than every 3
-                     seconds
-  hop-limit          Value in hop count field in IP header of the outgoing
-                     router advertisement packet
-  interval           Maximum time in milliseconds allowed between sending
-                     unsolicited multicast RA from the interface
-  interval-option    Indicates hosts that the router will use advertisement
-                     interval to send router advertisements
-  lifetime           Maximum time in seconds that the router can be treated as
-                     default gateway
-  managed-config     Knob to allow dynamic host to use managed (stateful)
-                     protocol for address autoconfiguration in addition to any
-                     addresses autoconfigured using stateless address
-                     autoconfig
-  other-config       Knob to allow dynamic host to use managed (stateful)
-                     protocol for autoconfiguration information other than
-                     addresses
-  reachable-time     Time in milliseconds that a IPv6 node is considered
-                     reachable
-  retransmit-time    Time in milliseconds between retransmission of neighbor
-                     solicitation messages
-  router-preference  Hosts use router preference in selection of the default
-                     router
-                     
+
+  fast-retransmit    Allow consecutive RA packets more frequently than every 3  seconds
+
+  hop-limit          Value in hop count field in IP header of the outgoing router advertisement packet
+
+  interval           Maximum time in milliseconds allowed between sending unsolicited multicast RA from the interface
+
+  interval-option    Indicates hosts that the router will use advertisement interval to send router advertisements
+
+  lifetime           Maximum time in seconds that the router can be treated as default gateway
+
+  managed-config     Knob to allow dynamic host to use managed (stateful) protocol for address autoconfiguration in addition to any addresses autoconfigured using stateless address autoconfig
+
+  other-config       Knob to allow dynamic host to use managed (stateful) protocol for autoconfiguration information other than  addresses
+
+  reachable-time     Time in milliseconds that a IPv6 node is considered reachable
+
+  retransmit-time    Time in milliseconds between retransmission of neighbor solicitation messages
+
+  router-preference  Hosts use router preference in selection of the default router
+
 ## nv set interface <interface-id> ip neighbor-discovery router-advertisement interval 70-1800000
 
 ### Usage
@@ -3801,6 +3972,7 @@ product: Cumulus Linux
 
 ## nv set interface <interface-id> ip neighbor-discovery router-advertisement retransmit-time 0-4294967295
 
+
 ### Usage
 
   nv set interface <interface-id> ip neighbor-discovery router-advertisement retransmit-time [options] 0-4294967295
@@ -3841,12 +4013,12 @@ product: Cumulus Linux
 
   <interface-id>  Interface
 
-### Atrributes
+### Attributes
+
 
   lifetime        Lifetime of a home agent in seconds
-  preference      Home agent's preference value that is used to order the
-                  addresses returned in the home agent address discovery
-                  reply.
+
+  preference      Home agent's preference value that is used to order the  addresses returned in the home agent address discovery reply.
 
 ## nv set interface <interface-id> ip neighbor-discovery home-agent lifetime 0-65520
 
@@ -3918,10 +4090,12 @@ product: Cumulus Linux
 
   <interface-id>       Interface
 
-### Atrributes
+### Attributes
 
   dcbx-ets-config-tlv  DCBX ETS config TLV flag
+
   dcbx-ets-recomm-tlv  DCBX ETS recommendation TLV flag
+
   dcbx-pfc-tlv         DCBX PFC TLV flag
 
 ## nv set interface <interface-id> link
@@ -3938,15 +4112,23 @@ product: Cumulus Linux
 
   <interface-id>  Interface
 
-### Atrributes
+### Attributes
+
 
   state           The state of the interface
+
   dot1x           An physical interface
+
   auto-negotiate  Link speed and characteristic auto negotiation
+
   breakout        sub-divide or disable ports (only valid on plug interfaces)
+
   duplex          Link duplex
+
   fec             Link forward error correction mechanism
+
   mtu             interface mtu
+
   speed           Link speed
 
 ## nv set interface <interface-id> link dot1x
@@ -3963,9 +4145,10 @@ product: Cumulus Linux
 
   <interface-id>  Interface
 
-### Atrributes
+### Attributes
 
   mab             bypass MAC authentication
+
   parking-vlan    VLAN for unauthorized MAC addresses
 
 ## nv set interface <interface-id> link mtu 552-9216
@@ -3996,7 +4179,7 @@ product: Cumulus Linux
 
   <interface-id>  Interface
 
-### Atrributes
+### Attributes
 
   multihoming     Multihoming interface configuration parameters
 
@@ -4014,12 +4197,11 @@ product: Cumulus Linux
 
   <interface-id>  Interface
 
-### Atrributes
+### Attributes
 
   segment         Multihoming interface segment
-  uplink          Enable evpn multihoming tracking to prevent traffic loss due
-                  to NVE connectivity loss, uplink's operational state is
-                  tracked when enabled.
+
+  uplink          Enable evpn multihoming tracking to prevent traffic loss due to NVE connectivity loss, uplink's operational state is tracked when enabled.
 
 ## nv set interface <interface-id> evpn multihoming segment
 
@@ -4035,21 +4217,18 @@ product: Cumulus Linux
 
   <interface-id>  Interface
 
-### Atrributes
+### Attributes
+
 
   enable          Turn the feature 'on' or 'off'. The default is 'off'.
-  df-preference   Designated forwarder preference value for this ethernet
-                  segment. If 'auto', the global evpn multihoming preference
-                  will be used. This is the default.
-  identifier      Ethernet segment identifier. This must be unique for each
-                  segment and match other bonds in the segment.
-  local-id        Ethernet segment local-id. If provided, it will be combined
-                  with the global multihoming `mac-address` to create the
-                  ethernet segment identifier, which must be unique for each
-                  segment and match other bonds in the segment.
-  mac-address     MAC address for this ethernet segment. If 'auto', the global
-                  evpn multihoming mac-address will be used. This is the
-                  default.
+
+  df-preference   Designated forwarder preference value for this ethernet segment. If 'auto', the global evpn multihoming preference will be used. This is the default.
+
+  identifier      Ethernet segment identifier. This must be unique for each segment and match other bonds in the segment.
+
+  local-id        Ethernet segment local-id. If provided, it will be combined with the global multihoming `mac-address` to create the ethernet segment identifier, which must be unique for each segment and match other bonds in the segment.
+
+  mac-address     MAC address for this ethernet segment. If 'auto', the global evpn multihoming mac-address will be used. This is the default.
 
 ## nv set interface <interface-id> evpn multihoming segment local-id 1-16777215
 
@@ -4094,9 +4273,10 @@ product: Cumulus Linux
   <interface-id>  Interface
   <acl-id>        ACL ID
 
-### Atrributes
+### Attributes
 
   inbound         ACL applied for inbound direction
+
   outbound        ACL applied for outbound direction
 
 ## nv set interface <interface-id> acl <acl-id> inbound
@@ -4114,7 +4294,7 @@ product: Cumulus Linux
   <interface-id>  Interface
   <acl-id>        ACL ID
 
-### Atrributes
+### Attributes
 
   control-plane   ACL applied for control plane
 
@@ -4148,7 +4328,7 @@ product: Cumulus Linux
   <interface-id>  Interface
   <acl-id>        ACL ID
 
-### Atrributes
+### Attributes
 
   control-plane
 
@@ -4181,20 +4361,26 @@ product: Cumulus Linux
 
   <interface-id>     Interface
 
-### Atrributes
+### Attributes
 
   timers             Interface PTP timerss
+
   enable             Turn the feature 'on' or 'off'. The default is 'off'.
-  acceptable-master  Determines if acceptable master check is enabled for this
-                     interface.
+
+  acceptable-master  Determines if acceptable master check is enabled for this interface.
+
   delay-mechanism    Mode in which PTP message is transmitted.
+
   forced-master      Configures PTP interfaces to forced master state.
+
   instance           PTP instance number.
+
   message-mode       Mode in which PTP delay message is transmitted.
+
   transport          Transport method for the PTP messages.
-  ttl                Maximum number of hops the PTP messages can make before
-                     it gets dropped.
-                     
+
+  ttl                Maximum number of hops the PTP messages can make before it gets dropped.
+
 ## nv set interface <interface-id> ptp timers
 
 ### Usage
@@ -4209,18 +4395,15 @@ product: Cumulus Linux
 
   <interface-id>      Interface
 
-### Atrributes
+### Attributes
 
-  announce-interval   Mean time interval between successive Announce messages.
-                      It's specified as a power of two in seconds.
-  announce-timeout    The number of announceIntervals that have to pass
-                      without receipt of an Announce message before the
-                      occurrence of the timeout event
-  delay-req-interval  The minimum permitted mean time interval between
-                      successive Delay Req messages. It's specified as a power
-                      of two in seconds.
-  sync-interval       The mean SyncInterval for multicast messages. It's
-                      specified as a power of two in seconds.
+  announce-interval   Mean time interval between successive Announce messages. It's specified as a power of two in seconds.
+
+  announce-timeout    The number of announceIntervals that have to pass without receipt of an Announce message before the  occurrence of the timeout event
+
+  delay-req-interval  The minimum permitted mean time interval between successive Delay Req messages. It's specified as a power of two in seconds.
+
+  sync-interval       The mean SyncInterval for multicast messages. It's specified as a power of two in seconds.
 
 ## nv set interface <interface-id> ptp timers announce-interval -3-4
 
@@ -4334,12 +4517,16 @@ product: Cumulus Linux
 
   <interface-id>  Interface
 
-### Atrributes
+### Attributes
 
   dest-ip         Destination underlay IP address
+
   interface       Physical underlay interface to used for Tunnel packets
+
   mode            tunnel mode
+
   source-ip       Source underlay IP address
+
   ttl             time to live
 
 ## nv set interface <interface-id> tunnel source-ip <ipv4>
@@ -4450,16 +4637,24 @@ product: Cumulus Linux
 
   A service
 
-### Atrributes
+### Attributes
 
   dns           collection of DNS
+
   syslog        collection of syslog
+
   ntp           NTPs
+
   dhcp-relay    DHCP-relays
+
   dhcp-relay6   DHCP-relays
+
   ptp           Collection of PTP instances
+
   dhcp-server   DHCP-servers
+
   dhcp-server6  DHCP-servers6
+
   lldp          Global LLDP
 
 ## nv set service dns <vrf-id>
@@ -4476,9 +4671,11 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
-  server      Remote DNS servers## nv set service dns <vrf-id> server <dns-server-id>
+  server      Remote DNS servers
+
+## nv set service dns <vrf-id> server <dns-server-id>
 
 ### Usage
 
@@ -4492,7 +4689,7 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
   <dns-server-id>  IPv4 or IPv6 address of a DNS server
-  
+
 ## nv set service syslog <vrf-id>
 
 ### Usage
@@ -4507,10 +4704,10 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   server      Remote DNS servers
-  
+
 ## nv set service syslog <vrf-id> server <server-id>
 
 ### Usage
@@ -4526,11 +4723,12 @@ product: Cumulus Linux
   <vrf-id>     VRF
   <server-id>  Hostname or IP address of a syslog server
 
-### Atrributes
+### Attributes
 
   port         Port number of the remote syslog server
+
   protocol     Protocol, udp or tcp, of the remote syslog server
-  
+
 ## nv set service syslog <vrf-id> server <server-id> port 1-32767
 
 ### Usage
@@ -4545,7 +4743,7 @@ product: Cumulus Linux
 
   <vrf-id>     VRF
   <server-id>  Hostname or IP address of a syslog server
-  
+
 ## nv set service ntp <vrf-id>
 
 ### Usage
@@ -4560,12 +4758,14 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   server      Remote NTP Servers
+
   pool        Remote NTP Servers
+
   listen      NTP interface to listen on.
-  
+
 ## nv set service ntp <vrf-id> server <server-id>
 
 ### Usage
@@ -4581,11 +4781,10 @@ product: Cumulus Linux
   <vrf-id>     VRF
   <server-id>  Hostname or IP address of the NTP server
 
-### Atrributes
+### Attributes
 
-  iburst       When the server is unreachable, send a burst of eight packets
-               instead of the usual one.
-               
+  iburst       When the server is unreachable, send a burst of eight packets instead of the usual one.
+
 ## nv set service ntp <vrf-id> pool <server-id>
 
 ### Usage
@@ -4601,11 +4800,10 @@ product: Cumulus Linux
   <vrf-id>     VRF
   <server-id>  Hostname or IP address of the NTP server
 
-### Atrributes
+### Attributes
 
-  iburst       When the server is unreachable, send a burst of eight packets
-               instead of the usual one.
-               
+  iburst       When the server is unreachable, send a burst of eight packets instead of the usual one.
+
 ## nv set service ntp <vrf-id> listen <interface-name>
 
 ### Usage
@@ -4619,7 +4817,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
+
 ## nv set service dhcp-relay <vrf-id>
 
 ### Usage
@@ -4634,16 +4832,17 @@ product: Cumulus Linux
 
   <vrf-id>             VRF
 
-### Atrributes
+### Attributes
+
 
   server               DHCP servers
+
   interface            Set of interfaces on which to handle DHCP relay traffic
+
   giaddress-interface  Configures DHCP relay giaddress on the interfaes.
-  source-ip            Source IP to use on the relayed packet. If "giaddr", it
-                       will be taken from giaddress. Otherwise, if "auto", it
-                       will be taken from an L3 interface on this switch using
-                       normal routing methods. This is the default.
-                       
+
+  source-ip            Source IP to use on the relayed packet. If "giaddr", it will be taken from giaddress. Otherwise, if "auto", it will be taken from an L3 interface on this switch using normal routing methods. This is the default.
+
 ## nv set service dhcp-relay <vrf-id> server <server-id>
 
 ### Usage
@@ -4658,7 +4857,7 @@ product: Cumulus Linux
 
   <vrf-id>     VRF
   <server-id>  DHCP server
-  
+
 ## nv set service dhcp-relay <vrf-id> interface <interface-id>
 
 ### Usage
@@ -4689,7 +4888,7 @@ product: Cumulus Linux
   <vrf-id>        VRF
   <interface-id>  DHCP relay giaddress interface
 
-### Atrributes
+### Attributes
 
   address         ipv4 address on giaddress interface
 
@@ -4707,10 +4906,10 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   interface   DHCP relay interfaces
-  
+
 ## nv set service dhcp-relay6 <vrf-id> interface
 
 ### Usage
@@ -4725,11 +4924,12 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   upstream    Configures DHCP relay on the interfaes.
+
   downstream  Configures DHCP relay on the interfaes.
-  
+
 ## nv set service dhcp-relay6 <vrf-id> interface upstream <interface-id>
 
 ### Usage
@@ -4745,7 +4945,7 @@ product: Cumulus Linux
   <vrf-id>        VRF
   <interface-id>  DHCP relay interface
 
-### Atrributes
+### Attributes
 
   address         ipv6 address on interface
 
@@ -4779,7 +4979,7 @@ product: Cumulus Linux
   <vrf-id>        VRF
   <interface-id>  DHCP relay interface
 
-### Atrributes
+### Attributes
 
   address         ipv6 address on interface
 
@@ -4812,18 +5012,26 @@ product: Cumulus Linux
 
   <instance-id>      PTP instance number. It is used for management purpose.
 
-### Atrributes
+### Attributes
 
   acceptable-master  Collection of acceptable masters
+
   monitor            PTP monitor configuration
+
   enable             Turn the feature 'on' or 'off'. The default is 'off'.
+
   domain             Domain number of the current syntonization
+
   ip-dscp            Sets the Diffserv code point for all PTP packets
+
                      originated locally.
+
   priority1          Priority1 attribute of the local clock
+
   priority2          Priority2 attribute of the local clock
+
   two-step           Determines if the Clock is a 2 step clock
-  
+
 ## nv set service ptp <instance-id> acceptable-master <clock-id>
 
 ### Usage
@@ -4839,11 +5047,12 @@ product: Cumulus Linux
   <instance-id>  PTP instance number. It is used for management purpose.
   <clock-id>     Clock ID
 
-### Atrributes
+### Attributes
 
   alt-priority   Alternate priority
-  
+
 ## nv set service ptp <instance-id> acceptable-master <clock-id> alt-priority <value>
+
 
 ### Usage
 
@@ -4870,22 +5079,23 @@ product: Cumulus Linux
 
 ### Identifiers
 
-  <instance-id>         PTP instance number. It is used for management
-                        purpose.
+  <instance-id>         PTP instance number. It is used for management purpose.
 
-### Atrributes
+### Attributes
 
   max-offset-threshold  Maximum offset threshold in nano seconds
-  max-timestamp-entries
-                        Maximum timestamp entries allowed
-  max-violation-log-entries
-                        Maximum violation log entries per set
-  max-violation-log-sets
-                        Maximum violation logs sets allowed
+
+  max-timestamp-entries Maximum timestamp entries allowed
+
+  max-violation-log-entries  Maximum violation log entries per set
+
+  max-violation-log-sets Maximum violation logs sets allowed
+
   min-offset-threshold  Minimum offset threshold in nano seconds
+
   path-delay-threshold  Path delay threshold in nano seconds
-  violation-log-interval
-                        violation log intervals in seconds
+
+  violation-log-interval violation log intervals in seconds
 
 ## nv set service ptp <instance-id> monitor min-offset-threshold <value>
 
@@ -4998,7 +5208,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <instance-id>  PTP instance number. It is used for management purpose.
-  
+
 ## nv set service ptp <instance-id> priority2 <value>
 
 ### Usage
@@ -5012,7 +5222,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <instance-id>  PTP instance number. It is used for management purpose.
-  
+
 ## nv set service ptp <instance-id> domain 0-127
 
 ### Usage
@@ -5040,7 +5250,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <instance-id>  PTP instance number. It is used for management purpose.
-  
+
 ## nv set service dhcp-server <vrf-id>
 
 ### Usage
@@ -5055,13 +5265,18 @@ product: Cumulus Linux
 
   <vrf-id>            VRF
 
-### Atrributes
+### Attributes
 
   interface           Assign DHCP options to clients directly attached to
+
                       these interfaes.
+
   pool                DHCP Pools
+
   domain-name         DHCP domain names
+
   domain-name-server  DHCP domain name servers
+
   static              DHCP clients with fixed IP address assignments
 
 ## nv set service dhcp-server <vrf-id> interface <interface-id>
@@ -5094,18 +5309,24 @@ product: Cumulus Linux
   <vrf-id>              VRF
   <pool-id>             DHCP pool subnet.
 
-### Atrributes
+### Attributes
 
   domain-name-server    DHCP domain name servers
+
   domain-name           DHCP domain names
+
   gateway               DHCP gateway
+
   range                 IP Address range assignments
-  cumulus-provision-url
-                        Cumulus specific URL for provisioning script
+
+  cumulus-provision-url  Cumulus specific URL for provisioning script
+
   default-url           TBD
-  lease-time            Network address lease time in seconds assigned to DHCP
-                        clients.
+
+  lease-time            Network address lease time in seconds assigned to DHCP clients.
+
   ping-check            TBD
+
   pool-name             Name
 
 ## nv set service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id>
@@ -5123,7 +5344,7 @@ product: Cumulus Linux
   <vrf-id>     VRF
   <pool-id>    DHCP pool subnet.
   <server-id>  DNS server
-  
+
 ## nv set service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id>
 
 ### Usage
@@ -5140,7 +5361,7 @@ product: Cumulus Linux
   <pool-id>         DHCP pool subnet.
   <domain-name-id>  DHCP domain name
 
-### Atrributes
+### Attributes
 
   domain-name       DHCP domain name
 
@@ -5175,7 +5396,7 @@ product: Cumulus Linux
   <vrf-id>      VRF
   <pool-id>     DHCP pool subnet.
   <gateway-id>  Gateway
-  
+
 ## nv set service dhcp-server <vrf-id> pool <pool-id> range <range-id>
 
 ### Usage
@@ -5192,10 +5413,10 @@ product: Cumulus Linux
   <pool-id>   DHCP pool subnet.
   <range-id>  DHCP client interface
 
-### Atrributes
+### Attributes
 
   to          End of the range.
-  
+
 ## nv set service dhcp-server <vrf-id> pool <pool-id> range <range-id> to <ipv4>
 
 ### Usage
@@ -5211,7 +5432,7 @@ product: Cumulus Linux
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
   <range-id>  DHCP client interface
-  
+
 ## nv set service dhcp-server <vrf-id> pool <pool-id> pool-name <value>
 
 ### Usage
@@ -5226,7 +5447,7 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
-  
+
 ## nv set service dhcp-server <vrf-id> pool <pool-id> lease-time 180-31536000
 
 ### Usage
@@ -5241,7 +5462,7 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
-  
+
 ## nv set service dhcp-server <vrf-id> pool <pool-id> default-url <value>
 
 ### Usage
@@ -5256,7 +5477,7 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
-  
+
 ## nv set service dhcp-server <vrf-id> pool <pool-id> cumulus-provision-url <value>
 
 ### Usage
@@ -5271,7 +5492,7 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
-  
+
 ## nv set service dhcp-server <vrf-id> domain-name <domain-name-id>
 
 ### Usage
@@ -5287,7 +5508,7 @@ product: Cumulus Linux
   <vrf-id>          VRF
   <domain-name-id>  DHCP domain name
 
-### Atrributes
+### Attributes
 
   domain-name       DHCP domain name
 
@@ -5320,7 +5541,7 @@ product: Cumulus Linux
 
   <vrf-id>     VRF
   <server-id>  DNS server
-  
+
 ## nv set service dhcp-server <vrf-id> static <static-id>
 
 ### Usage
@@ -5336,11 +5557,12 @@ product: Cumulus Linux
   <vrf-id>              VRF
   <static-id>           static mapping nane
 
-### Atrributes
+### Attributes
 
-  cumulus-provision-url
-                        Cumulus specific URL for provisioning script
+  cumulus-provision-url Cumulus specific URL for provisioning script
+
   ip-address            IP address
+
   mac-address           MAC (hardware) address
 
 ## nv set service dhcp-server <vrf-id> static <static-id> mac-address <mac>
@@ -5357,8 +5579,9 @@ product: Cumulus Linux
 
   <vrf-id>     VRF
   <static-id>  static mapping nane
-  
+
 ## nv set service dhcp-server <vrf-id> static <static-id> ip-address <ipv4>
+
 
 ### Usage
 
@@ -5372,7 +5595,7 @@ product: Cumulus Linux
 
   <vrf-id>     VRF
   <static-id>  static mapping nane
-  
+
 ## nv set service dhcp-server <vrf-id> static <static-id> cumulus-provision-url <value>
 
 ### Usage
@@ -5387,7 +5610,7 @@ product: Cumulus Linux
 
   <vrf-id>     VRF
   <static-id>  static mapping nane
-  
+
 ## nv set service dhcp-server6 <vrf-id>
 
 ### Usage
@@ -5402,15 +5625,20 @@ product: Cumulus Linux
 
   <vrf-id>            VRF
 
-### Atrributes
+### Attributes
 
   interface           Assign DHCP options to clients directly attached to
+
                       these interfaes.
+
   pool                DHCP IP Pools
+
   domain-name         DHCP domain names
+
   domain-name-server  DHCP domain name servers
+
   static              DHCP clients with fixed IP address assignments
-  
+
 ## nv set service dhcp-server6 <vrf-id> interface <interface-id>
 
 ### Usage
@@ -5441,17 +5669,22 @@ product: Cumulus Linux
   <vrf-id>              VRF
   <pool-id>             DHCP6 pool subnet.
 
-### Atrributes
+### Attributes
 
   domain-name-server    DHCP domain name servers
+
   domain-name           DHCP domain names
+
   range                 IP Address range assignments
-  cumulus-provision-url
-                        Cumulus specific URL for provisioning script
+
+  cumulus-provision-url  Cumulus specific URL for provisioning script
+
   default-url           TBD
-  lease-time            Network address lease time in seconds assigned to DHCP
-                        clients.
+
+  lease-time            Network address lease time in seconds assigned to DHCP clients.
+
   ping-check            TBD
+
   pool-name             Name
 
 ## nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id>
@@ -5469,7 +5702,7 @@ product: Cumulus Linux
   <vrf-id>     VRF
   <pool-id>    DHCP6 pool subnet.
   <server-id>  DNS server
-  
+
 ## nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id>
 
 ### Usage
@@ -5486,7 +5719,7 @@ product: Cumulus Linux
   <pool-id>         DHCP6 pool subnet.
   <domain-name-id>  DHCP domain name
 
-### Atrributes
+### Attributes
 
   domain-name       DHCP domain name
 
@@ -5522,10 +5755,10 @@ product: Cumulus Linux
   <pool-id>   DHCP6 pool subnet.
   <range-id>  DHCP client interface
 
-### Atrributes
+### Attributes
 
   to          End of the range.
-  
+
 ## nv set service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> to <ipv6>
 
 ### Usage
@@ -5541,8 +5774,9 @@ product: Cumulus Linux
   <vrf-id>    VRF
   <pool-id>   DHCP6 pool subnet.
   <range-id>  DHCP client interface
-  
+
 ## nv set service dhcp-server6 <vrf-id> pool <pool-id> pool-name <value>
+
 
 ### Usage
 
@@ -5556,8 +5790,9 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
   <pool-id>   DHCP6 pool subnet.
-  
+
 ## nv set service dhcp-server6 <vrf-id> pool <pool-id> lease-time 180-31536000
+
 
 ### Usage
 
@@ -5571,7 +5806,7 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
   <pool-id>   DHCP6 pool subnet.
-  
+
 ## nv set service dhcp-server6 <vrf-id> pool <pool-id> default-url <value>
 
 ### Usage
@@ -5586,7 +5821,7 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
   <pool-id>   DHCP6 pool subnet.
-  
+
 ## nv set service dhcp-server6 <vrf-id> pool <pool-id> cumulus-provision-url <value>
 
 ### Usage
@@ -5601,7 +5836,7 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
   <pool-id>   DHCP6 pool subnet.
-  
+
 ## nv set service dhcp-server6 <vrf-id> domain-name <domain-name-id>
 
 ### Usage
@@ -5617,7 +5852,7 @@ product: Cumulus Linux
   <vrf-id>          VRF
   <domain-name-id>  DHCP domain name
 
-### Atrributes
+### Attributes
 
   domain-name       DHCP domain name
 
@@ -5650,7 +5885,7 @@ product: Cumulus Linux
 
   <vrf-id>     VRF
   <server-id>  DNS server
-  
+
 ## nv set service dhcp-server6 <vrf-id> static <static-id>
 
 ### Usage
@@ -5666,11 +5901,12 @@ product: Cumulus Linux
   <vrf-id>              VRF
   <static-id>           static mapping nane
 
-### Atrributes
+### Attributes
 
-  cumulus-provision-url
-                        Cumulus specific URL for provisioning script
+  cumulus-provision-url  Cumulus specific URL for provisioning script
+
   ip-address            IP address
+
   mac-address           MAC (hardware) address
 
 ## nv set service dhcp-server6 <vrf-id> static <static-id> mac-address <mac>
@@ -5687,7 +5923,7 @@ product: Cumulus Linux
 
   <vrf-id>     VRF
   <static-id>  static mapping nane
-  
+
 ## nv set service dhcp-server6 <vrf-id> static <static-id> ip-address <ipv6>
 
 ### Usage
@@ -5702,7 +5938,7 @@ product: Cumulus Linux
 
   <vrf-id>     VRF
   <static-id>  static mapping nane
-  
+
 ## nv set service dhcp-server6 <vrf-id> static <static-id> cumulus-provision-url <value>
 
 ### Usage
@@ -5717,7 +5953,7 @@ product: Cumulus Linux
 
   <vrf-id>     VRF
   <static-id>  static mapping nane
-  
+
 ## nv set service lldp
 
 ### Usage
@@ -5728,13 +5964,14 @@ product: Cumulus Linux
 
   Global LLDP
 
-### Atrributes
+### Attributes
 
   dot1-tlv            Enable dot1 TLV advertisements on enabled ports
-  tx-hold-multiplier  < TTL of transmitted packets is calculated by
-                      multiplying the tx-interval by the given factor
+
+  tx-hold-multiplier  < TTL of transmitted packets is calculated by multiplying the tx-interval by the given factor
+
   tx-interval         change transmit delay
-  
+
 ## nv set service lldp tx-interval 10-300
 
 ### Usage
@@ -5744,7 +5981,7 @@ product: Cumulus Linux
 ### Description
 
   change transmit delay
-  
+
 ## nv set service lldp tx-hold-multiplier 1-10
 
 ### Usage
@@ -5754,7 +5991,7 @@ product: Cumulus Linux
 ### Description
 
   < TTL of transmitted packets is calculated by multiplying the tx-interval by the given factor
-  
+
 ## nv set system
 
 ### Usage
@@ -5765,14 +6002,21 @@ product: Cumulus Linux
 
   Top-level node which contains system-wide properties.
 
-### Atrributes
+### Attributes
+
 
   control-plane  Control Plane specific configurations
+
   message        System pre-login and post-login messages
+
   global         global system configuration
+
   port-mirror    Port mirror
+
   config         Affect how config operations are performed.
+
   hostname       Static hostname for the switch
+
   timezone       system time zone
 
 ## nv set system control-plane
@@ -5785,11 +6029,12 @@ product: Cumulus Linux
 
   Control Plane specific configurations
 
-### Atrributes
+### Attributes
 
   trap        Traps
+
   policer     Policers
-  
+
 ## nv set system control-plane trap <trap-id>
 
 ### Usage
@@ -5804,10 +6049,10 @@ product: Cumulus Linux
 
   <trap-id>   TRAP ID
 
-### Atrributes
+### Attributes
 
   state       trap state
-  
+
 ## nv set system control-plane policer <policer-id>
 
 ### Usage
@@ -5822,12 +6067,14 @@ product: Cumulus Linux
 
   <policer-id>  Policer ID
 
-### Atrributes
+### Attributes
 
   burst         policer burst value
+
   rate          policer rate value
+
   state         policer state
-  
+
 ## nv set system control-plane policer <policer-id> burst 10-10000
 
 ### Usage
@@ -5855,7 +6102,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <policer-id>  Policer ID
-  
+
 ## nv set system message
 
 ### Usage
@@ -5866,11 +6113,12 @@ product: Cumulus Linux
 
   System pre-login and post-login messages
 
-### Atrributes
+### Attributes
 
   post-login  configure post-login message of the day
+
   pre-login   configure pre-login banner
-  
+
 ## nv set system message pre-login <value>
 
 ### Usage
@@ -5880,7 +6128,7 @@ product: Cumulus Linux
 ### Description
 
   configure pre-login banner
-  
+
 ## nv set system message post-login <value>
 
 ### Usage
@@ -5890,7 +6138,7 @@ product: Cumulus Linux
 ### Description
 
   configure post-login message of the day
-  
+
 ## nv set system global
 
 ### Usage
@@ -5901,17 +6149,20 @@ product: Cumulus Linux
 
   global system configuration
 
-### Atrributes
+### Attributes
 
   reserved     reserved ranges
-  anycast-id   An integer (1-65535) to select rack MAC address in range
-               44:38:39:ff:00:00 to 44:38:39:ff:ff:ff
+
+  anycast-id   An integer (1-65535) to select rack MAC address in range 44:38:39:ff:00:00 to 44:38:39:ff:ff:ff
+
   anycast-mac  MAC address shared by the rack.
-  fabric-id    An integer (1-255) to select first hop router MAC adress in
-               range 00:00:5E:00:01:01 to 00:00:5E:00:01:ff
+
+  fabric-id    An integer (1-255) to select first hop router MAC adress in range 00:00:5E:00:01:01 to 00:00:5E:00:01:ff
+
   fabric-mac   First hop router MAC address
+
   system-mac   full MAC address.
-  
+
 ## nv set system global reserved
 
 ### Usage
@@ -5922,9 +6173,10 @@ product: Cumulus Linux
 
   reserved ranges
 
-### Atrributes
+### Attributes
 
   routing-table  reserved routing table ranges
+
   vlan           reserved vlan ranges
 
 ## nv set system global reserved routing-table
@@ -5937,10 +6189,10 @@ product: Cumulus Linux
 
   reserved routing table ranges
 
-### Atrributes
+### Attributes
 
   pbr         reserved routing table ranges for PBR
-  
+
 ## nv set system global reserved routing-table pbr
 
 ### Usage
@@ -5951,11 +6203,12 @@ product: Cumulus Linux
 
   reserved routing table ranges for PBR
 
-### Atrributes
+### Attributes
 
   begin       Beginning of reserved routing table range for PBR
+
   end         End of reserved routing table range for PBR
-  
+
 ## nv set system global reserved routing-table pbr begin 10000-4294966272
 
 ### Usage
@@ -5965,7 +6218,7 @@ product: Cumulus Linux
 ### Description
 
   Beginning of reserved routing table range for PBR
-  
+
 ## nv set system global reserved routing-table pbr end 10000-4294966272
 
 ### Usage
@@ -5975,7 +6228,7 @@ product: Cumulus Linux
 ### Description
 
   End of reserved routing table range for PBR
-  
+
 ## nv set system global reserved vlan
 
 ### Usage
@@ -5986,10 +6239,10 @@ product: Cumulus Linux
 
   reserved vlan ranges
 
-### Atrributes
+### Attributes
 
   l3-vni-vlan  Reserved vlans to be used with l3vni
-  
+
 ## nv set system global reserved vlan l3-vni-vlan
 
 ### Usage
@@ -6000,11 +6253,12 @@ product: Cumulus Linux
 
   Reserved vlans to be used with l3vni
 
-### Atrributes
+### Attributes
 
   begin       Beginning of reserved vlan range for L3 VNI
+
   end         End of reserved vlan range for L3 VNI
-  
+
 ## nv set system global reserved vlan l3-vni-vlan begin 1-4093
 
 ### Usage
@@ -6014,7 +6268,7 @@ product: Cumulus Linux
 ### Description
 
   Beginning of reserved vlan range for L3 VNI
-  
+
 ## nv set system global reserved vlan l3-vni-vlan end 2-4093
 
 ### Usage
@@ -6024,7 +6278,7 @@ product: Cumulus Linux
 ### Description
 
   End of reserved vlan range for L3 VNI
-  
+
 ## nv set system global fabric-id 1-255
 
 ### Usage
@@ -6034,7 +6288,7 @@ product: Cumulus Linux
 ### Description
 
   An integer (1-255) to select first hop router MAC adress in range 00:00:5E:00:01:01 to 00:00:5E:00:01:ff
-  
+
 ## nv set system port-mirror
 
 ### Usage
@@ -6045,10 +6299,11 @@ product: Cumulus Linux
 
   Port mirror
 
-### Atrributes
+### Attributes
 
   session     sessions
-  
+
+
 ## nv set system port-mirror session <session-id>
 
 ### Usage
@@ -6063,9 +6318,10 @@ product: Cumulus Linux
 
   <session-id>  port mirror session number
 
-### Atrributes
+### Attributes
 
   span          Switched Port Analyzer
+
   erspan        Encapsulated Remote Switched Port Analyzer.
 
 ## nv set system port-mirror session <session-id> span
@@ -6082,14 +6338,18 @@ product: Cumulus Linux
 
   <session-id>  port mirror session number
 
-### Atrributes
+### Attributes
 
   source-port   Set of source ports.
+
   destination   The SPAN destination port.
+
   truncate      TBD
+
   enable        Turn the feature 'on' or 'off'. The default is 'off'.
+
   direction     The direction of traffic through source-port to mirror.
-  
+
 ## nv set system port-mirror session <session-id> span source-port <port-id>
 
 ### Usage
@@ -6103,8 +6363,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <session-id>  port mirror session number
+
   <port-id>     Port interface
-  
+
 ## nv set system port-mirror session <session-id> span destination <port-id>
 
 ### Usage
@@ -6118,8 +6379,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <session-id>  port mirror session number
+
   <port-id>     Port interface
-  
+
 ## nv set system port-mirror session <session-id> span truncate
 
 ### Usage
@@ -6134,13 +6396,12 @@ product: Cumulus Linux
 
   <session-id>  port mirror session number
 
-### Atrributes
+### Attributes
 
   enable        Turn the feature 'on' or 'off'. The default is 'off'.
-  size          Truncates the mirrored frames at specified number of bytes.
-                Truncate size must be between 4 and 4088 bytes and a multiple
-                of 4 
-                
+
+  size          Truncates the mirrored frames at specified number of bytes. Truncate size must be between 4 and 4088 bytes and a multiple of 4
+
 ## nv set system port-mirror session <session-id> erspan
 
 ### Usage
@@ -6155,14 +6416,18 @@ product: Cumulus Linux
 
   <session-id>  port mirror session number
 
-### Atrributes
+### Attributes
 
   source-port   Set of source ports.
+
   destination   erspan destination
+
   truncate      TBD
+
   enable        Turn the feature 'on' or 'off'. The default is 'off'.
+
   direction     The direction of traffic through source-port to mirror.
-  
+
 ## nv set system port-mirror session <session-id> erspan source-port <port-id>
 
 ### Usage
@@ -6176,8 +6441,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <session-id>  port mirror session number
+
   <port-id>     Port interface
-  
+
 ## nv set system port-mirror session <session-id> erspan destination
 
 ### Usage
@@ -6192,11 +6458,12 @@ product: Cumulus Linux
 
   <session-id>  port mirror session number
 
-### Atrributes
+### Attributes
 
   source-ip     TBD
+
   dest-ip       TBD
-  
+
 ## nv set system port-mirror session <session-id> erspan destination source-ip <source-ip>
 
 ### Usage
@@ -6210,7 +6477,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <session-id>  port mirror session number
-  
+
 ## nv set system port-mirror session <session-id> erspan destination dest-ip <dest-ip>
 
 ### Usage
@@ -6224,7 +6491,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <session-id>  port mirror session number
-  
+
 ## nv set system port-mirror session <session-id> erspan truncate
 
 ### Usage
@@ -6239,13 +6506,13 @@ product: Cumulus Linux
 
   <session-id>  port mirror session number
 
-### Atrributes
+### Attributes
+
 
   enable        Turn the feature 'on' or 'off'. The default is 'off'.
-  size          Truncates the mirrored frames at specified number of bytes.
-                Truncate size must be between 4 and 4088 bytes and a multiple
-                of 4
-                
+
+  size          Truncates the mirrored frames at specified number of bytes. Truncate size must be between 4 and 4088 bytes and a multiple of 4
+
 ## nv set system config
 
 ### Usage
@@ -6256,10 +6523,10 @@ product: Cumulus Linux
 
   Affect how config operations are performed.
 
-### Atrributes
+### Attributes
 
   apply       Affect how config apply operations are performed.
-  
+
 ## nv set system config apply
 
 ### Usage
@@ -6270,18 +6537,12 @@ product: Cumulus Linux
 
   Affect how config apply operations are performed.
 
-### Atrributes
+### Attributes
 
   ignore      Set of files to ignore during config apply operations.
-  overwrite   Determine which files can be overwritten during an apply. When
-              "all", then all files can be overwritten. If the file was
-              locally modified, then a warning will be issued and the client
-              will have an opportunity to abort the apply before the local
-              modifications are overwritten. This is the default. When
-              "controlled", then only files that were most recently written by
-              CUE can be overwritten. If the file was locally modified, a
-              warning will be issued, but the file will not be overwritten.
-              
+
+  overwrite   Determine which files can be overwritten during an apply. When "all", then all files can be overwritten. If the file was locally modified, then a warning will be issued and the client will have an opportunity to abort the apply before the local modifications are overwritten. This is the default. When "controlled", then only files that were most recently written by CUE can be overwritten. If the file was locally modified, a warning will be issued, but the file will not be overwritten.
+
 ## nv set system config apply ignore <ignore-id>
 
 ### Usage
@@ -6295,7 +6556,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <ignore-id>  Ignored file
-  
+
 ## nv set system hostname <idn-hostname>
 
 ### Usage
@@ -6305,7 +6566,7 @@ product: Cumulus Linux
 ### Description
 
   Static hostname for the switch
-  
+
 ## nv set vrf <vrf-id>
 
 ### Usage
@@ -6320,15 +6581,19 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
+
 
   loopback    The loopback IP interface associated with this VRF.
+
   evpn        EVPN control plane config and info for VRF
+
   router      A VRF
+
   ptp         VRF PTP configuration. Inherited by interfaces in this VRF.
-  table       The routing table number, between 1001-1255, used by the named
-              VRF. If auto, the default, it will be auto generated.
-              
+
+  table       The routing table number, between 1001-1255, used by the named VRF. If auto, the default, it will be auto generated.
+
 ## nv set vrf <vrf-id> loopback
 
 ### Usage
@@ -6343,10 +6608,10 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   ip          Properties associated with the loopback IP address on this VRF.
-  
+
 ## nv set vrf <vrf-id> loopback ip
 
 ### Usage
@@ -6361,10 +6626,10 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   address     static IPv4 or IPv6 address
-  
+
 ## nv set vrf <vrf-id> loopback ip address <ip-prefix-id>
 
 ### Usage
@@ -6378,6 +6643,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>        VRF
+
   <ip-prefix-id>  IPv4 or IPv6 address and route prefix in CIDR notation
 
 ## nv set vrf <vrf-id> evpn
@@ -6394,12 +6660,14 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   vni         L3 VNI
+
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
+
   vlan        VLAN ID
-  
+
 ## nv set vrf <vrf-id> evpn vni <vni-id>
 
 ### Usage
@@ -6413,12 +6681,12 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>            VRF
+
   <vni-id>            VxLAN ID
 
-### Atrributes
+### Attributes
 
-  prefix-routes-only  Associated L3 VNI and corresponding route targets only
-                      with EVPN type-5 routes, not with EVPN type-2 routes.
+  prefix-routes-only  Associated L3 VNI and corresponding route targets only with EVPN type-5 routes, not with EVPN type-2 routes.
 
 ## nv set vrf <vrf-id> router
 
@@ -6434,14 +6702,18 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   rib         RIB Routes
+
   bgp         BGP VRF configuration.
+
   static      Routes
+
   pim         PIM VRF configuration.
+
   ospf        OSPF VRF configuration.
-  
+
 ## nv set vrf <vrf-id> router rib <afi>
 
 ### Usage
@@ -6455,12 +6727,13 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
+
   <afi>       Route address family.
 
-### Atrributes
+### Attributes
 
   protocol    Import protocols from RIB to FIB
-  
+
 ## nv set vrf <vrf-id> router rib <afi> protocol <import-protocol-id>
 
 ### Usage
@@ -6474,10 +6747,12 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <afi>                 Route address family.
+
   <import-protocol-id>  Import protocol list.
 
-### Atrributes
+### Attributes
 
   fib-filter            Route map to apply on the import prootcol's routes.
 
@@ -6495,30 +6770,37 @@ product: Cumulus Linux
 
   <vrf-id>            VRF
 
-### Atrributes
+### Attributes
+
 
   address-family      Address family specific configuration
+
   path-selection      BGP path-selection configuration.
+
   route-reflection    BGP route-reflection configuration.
+
   peer-group          Peers
-  route-export        Controls for exporting ipv4 and ipv6 routes from this
-                      VRF
-  route-import        Controls for importing of ipv4 and ipv6 routes from this
-                      VRF
+
+  route-export        Controls for exporting ipv4 and ipv6 routes from this VRF
+
+  route-import        Controls for importing of ipv4 and ipv6 routes from this VRF
+
   timers              timer values for all peers in this VRF
+
   confederation       BGP Confederation options.
+
   neighbor            Peers
+
   enable              Turn the feature 'on' or 'off'. The default is 'off'.
-  autonomous-system   ASN for this VRF. If "auto", inherit from the global
-                      config. This is the default.
-  dynamic-peer-limit  Maximum number of dynamic neighbors from whom we can
-                      accept a connection. Applicable only if 'dynamic-
-                      peering' subnet ranges are configured
-  rd                  BGP Route Distinguisher to use when this VRF routes have
-                      to be exported.
-  router-id           BGP router-id for this VRF. If "auto", inherit from the
-                      global config. This is the default.
-                      
+
+  autonomous-system   ASN for this VRF. If "auto", inherit from the global config. This is the default.
+
+  dynamic-peer-limit  Maximum number of dynamic neighbors from whom we can accept a connection. Applicable only if 'dynamic- peering' subnet ranges are configured
+
+  rd                  BGP Route Distinguisher to use when this VRF routes have to be exported.
+
+  router-id           BGP router-id for this VRF. If "auto", inherit from the global config. This is the default.
+
 ## nv set vrf <vrf-id> router bgp address-family
 
 ### Usage
@@ -6533,10 +6815,12 @@ product: Cumulus Linux
 
   <vrf-id>      VRF
 
-### Atrributes
+### Attributes
 
   ipv4-unicast  IPv4 unicast address family
+
   l2vpn-evpn    BGP VRF configuration. L2VPN EVPN address family
+
   ipv6-unicast  IPv6 unicast address family
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast
@@ -6553,17 +6837,24 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
 
-### Atrributes
+### Attributes
 
   redistribute     Route redistribute
+
   aggregate-route  IPv4 aggregate routes
+
   network          IPv4 static networks.
+
   route-import     Route import
+
   multipaths       Multipaths
+
   admin-distance   Admin distances.
+
   route-export     Route export
-  rib-filter       Specifies filtering policies to apply prior to route
-                   install into the zebra RIB
+
+  rib-filter       Specifies filtering policies to apply prior to route install into the zebra RIB
+
   enable           Turn the feature 'on' or 'off'. The default is 'on'.
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute
@@ -6580,13 +6871,17 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
+
 
   static      Route redistribution of ipv4 static routes
+
   connected   Route redistribution of ipv4 connected routes
+
   kernel      Route redistribution of ipv4 kernel routes
+
   ospf        Route redistribution of ipv4 ospf routes
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static
 
 ### Usage
@@ -6601,14 +6896,14 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
-  metric      Metric to use for the redistributed route. If "auto", an
-              appropriate value will be chosen based on the type of route.
-              This is the default.
+
+  metric      Metric to use for the redistributed route. If "auto", an appropriate value will be chosen based on the type of route. This is the default.
+
   route-map   Route map to apply to the redistributed route.
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected
 
 ### Usage
@@ -6623,14 +6918,14 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
-  metric      Metric to use for the redistributed route. If "auto", an
-              appropriate value will be chosen based on the type of route.
-              This is the default.
+
+  metric      Metric to use for the redistributed route. If "auto", an appropriate value will be chosen based on the type of route.  This is the default.
+
   route-map   Route map to apply to the redistributed route.
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel
 
 ### Usage
@@ -6645,14 +6940,14 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
-  metric      Metric to use for the redistributed route. If "auto", an
-              appropriate value will be chosen based on the type of route.
-              This is the default.
+
+  metric      Metric to use for the redistributed route. If "auto", an appropriate value will be chosen based on the type of route.  This is the default.
+
   route-map   Route map to apply to the redistributed route.
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf
 
 ### Usage
@@ -6667,14 +6962,14 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
-  metric      Metric to use for the redistributed route. If "auto", an
-              appropriate value will be chosen based on the type of route.
-              This is the default.
+
+  metric      Metric to use for the redistributed route. If "auto", an appropriate value will be chosen based on the type of route. This is the default.
+
   route-map   Route map to apply to the redistributed route.
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id>
 
 ### Usage
@@ -6688,12 +6983,15 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>              VRF
+
   <aggregate-route-id>  IPv4 address and route prefix in CIDR notation
 
-### Atrributes
+### Attributes
 
   as-set                If 'on', an AS_SET is generated for the aggregate.
+
   route-map             Optional policy to modify attributes
+
   summary-only          If 'on', suppress more-specific routes.
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id>
@@ -6711,10 +7009,10 @@ product: Cumulus Linux
   <vrf-id>             VRF
   <static-network-id>  IPv4 address and route prefix in CIDR notation
 
-### Atrributes
+### Attributes
 
   route-map            Optional policy to modify attributes
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import
 
 ### Usage
@@ -6729,10 +7027,10 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   from-vrf    Controls for VRF to VRF route leaking for this address-family
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf
 
 ### Usage
@@ -6747,10 +7045,12 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   list        List of VRFs the routes can be imported from
+
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
+
   route-map   Route-map to control the import of routes into EVPN
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id>
@@ -6766,6 +7066,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>       VRF
+  
   <leak-vrf-id>  VRF
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf route-map <instance-name>
@@ -6796,12 +7097,12 @@ product: Cumulus Linux
 
   <vrf-id>              VRF
 
-### Atrributes
+### Attributes
 
-  compare-cluster-length
-                        If on, if IBGP paths have a CLUSTER_LIST, their
-                        lengths must be equal to be selected as multipaths
+  compare-cluster-length If on, if IBGP paths have a CLUSTER_LIST, their lengths must be equal to be selected as multipaths
+
   ebgp                  EBGP multipath
+
   ibgp                  IBGP multipath
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths ebgp 1-128
@@ -6817,7 +7118,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths ibgp 1-128
 
 ### Usage
@@ -6831,7 +7132,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance
 
 ### Usage
@@ -6846,12 +7147,12 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
-  external    Distance to apply to routes from EBGP peers when installed into
-              the RIB
-  internal    Distance to apply to routes from IBGP peers when installed into
-              the RIB
+  external    Distance to apply to routes from EBGP peers when installed into the RIB
+
+  internal    Distance to apply to routes from IBGP peers when installed into the RIB
+
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance external 1-255
 
 ### Usage
@@ -6865,7 +7166,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance internal 1-255
 
 ### Usage
@@ -6879,7 +7180,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-export
 
 ### Usage
@@ -6894,11 +7195,10 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
-  to-evpn     Controls for exporting routes from this VRF for this address-
-              family into EVPN (as type-5 routes)
-              
+  to-evpn     Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
+
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn
 
 ### Usage
@@ -6913,11 +7213,12 @@ product: Cumulus Linux
 
   <vrf-id>              VRF
 
-### Atrributes
+### Attributes
 
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
-  default-route-origination
-                        Default route origination
+
+  default-route-origination Default route origination
+
   route-map             Route-map to control the export of routes into EVPN
 
 ## nv set vrf <vrf-id> router bgp address-family l2vpn-evpn
@@ -6934,10 +7235,10 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast
 
 ### Usage
@@ -6952,19 +7253,26 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
 
-### Atrributes
+### Attributes
 
   aggregate-route  IPv6 aggregate routes
+
   network          IPv6 static networks.
+
   route-import     Route import
+
   multipaths       Multipaths
+
   admin-distance   Admin distances.
+
   route-export     Route export
+
   redistribute     Route redistribute
-  rib-filter       Specifies filtering policies to apply prior to route
-                   install into the zebra RIB
+
+  rib-filter       Specifies filtering policies to apply prior to route install into the zebra RIB
+
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id>
 
 ### Usage
@@ -6980,10 +7288,12 @@ product: Cumulus Linux
   <vrf-id>              VRF
   <aggregate-route-id>  IPv6 address and route prefix in CIDR notation
 
-### Atrributes
+### Attributes
 
   as-set                If 'on', an AS_SET is generated for the aggregate.
+
   route-map             Optional policy to modify attributes
+
   summary-only          If 'on', suppress more-specific routes.
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id>
@@ -7001,10 +7311,10 @@ product: Cumulus Linux
   <vrf-id>             VRF
   <static-network-id>  IPv6 address and route prefix in CIDR notation
 
-### Atrributes
+### Attributes
 
   route-map            Optional policy to modify attributes
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import
 
 ### Usage
@@ -7019,10 +7329,10 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   from-vrf    Controls for VRF to VRF route leaking for this address-family
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf
 
 ### Usage
@@ -7037,12 +7347,15 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
+
 
   list        List of VRFs the routes can be imported from
+
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
+
   route-map   Route-map to control the import of routes into EVPN
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf list
 
 ### Usage
@@ -7056,7 +7369,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf route-map <instance-name>
 
 ### Usage
@@ -7070,7 +7383,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths
 
 ### Usage
@@ -7085,12 +7398,12 @@ product: Cumulus Linux
 
   <vrf-id>              VRF
 
-### Atrributes
+### Attributes
 
-  compare-cluster-length
-                        If on, if IBGP paths have a CLUSTER_LIST, their
-                        lengths must be equal to be selected as multipaths
+  compare-cluster-length If on, if IBGP paths have a CLUSTER_LIST, their lengths must be equal to be selected as multipaths
+
   ebgp                  EBGP multipath
+
   ibgp                  IBGP multipath
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths ebgp 1-128
@@ -7106,7 +7419,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths ibgp 1-128
 
 ### Usage
@@ -7120,7 +7433,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance
 
 ### Usage
@@ -7135,13 +7448,12 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
-  external    Distance to apply to routes from EBGP peers when installed into
-              the RIB
-  internal    Distance to apply to routes from IBGP peers when installed into
-              the RIB
-              
+  external    Distance to apply to routes from EBGP peers when installed into the RIB
+
+  internal    Distance to apply to routes from IBGP peers when installed into the RIB
+
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance external 1-255
 
 ### Usage
@@ -7155,7 +7467,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance internal 1-255
 
 ### Usage
@@ -7169,7 +7481,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-export
 
 ### Usage
@@ -7184,11 +7496,10 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
-  to-evpn     Controls for exporting routes from this VRF for this address-
-              family into EVPN (as type-5 routes)
-              
+  to-evpn     Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
+
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn
 
 ### Usage
@@ -7203,11 +7514,12 @@ product: Cumulus Linux
 
   <vrf-id>              VRF
 
-### Atrributes
+### Attributes
 
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
-  default-route-origination
-                        Default route origination
+
+  default-route-origination  Default route origination
+
   route-map             Route-map to control the export of routes into EVPN
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute
@@ -7224,13 +7536,16 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   static      Route redistribution of ipv4 static routes
+
   connected   Route redistribution of ipv4 connected routes
+
   kernel      Route redistribution of ipv4 kernel routes
+
   ospf6       Route redistribution of ipv6 ospf routes
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static
 
 ### Usage
@@ -7245,14 +7560,14 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
-  metric      Metric to use for the redistributed route. If "auto", an
-              appropriate value will be chosen based on the type of route.
-              This is the default.
+
+  metric      Metric to use for the redistributed route. If "auto", an appropriate value will be chosen based on the type of route. This is the default.
+
   route-map   Route map to apply to the redistributed route.
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected
 
 ### Usage
@@ -7267,14 +7582,14 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
-  metric      Metric to use for the redistributed route. If "auto", an
-              appropriate value will be chosen based on the type of route.
-              This is the default.
+
+  metric      Metric to use for the redistributed route. If "auto", an appropriate value will be chosen based on the type of route. This is the default.
+
   route-map   Route map to apply to the redistributed route.
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel
 
 ### Usage
@@ -7289,14 +7604,14 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
-  metric      Metric to use for the redistributed route. If "auto", an
-              appropriate value will be chosen based on the type of route.
-              This is the default.
+
+  metric      Metric to use for the redistributed route. If "auto", an appropriate value will be chosen based on the type of route. This is the default.
+
   route-map   Route map to apply to the redistributed route.
-  
+
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6
 
 ### Usage
@@ -7311,14 +7626,14 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
-  metric      Metric to use for the redistributed route. If "auto", an
-              appropriate value will be chosen based on the type of route.
-              This is the default.
+
+  metric      Metric to use for the redistributed route. If "auto", an appropriate value will be chosen based on the type of route. This is the default.
+
   route-map   Route map to apply to the redistributed route.
-  
+
 ## nv set vrf <vrf-id> router bgp path-selection
 
 ### Usage
@@ -7333,15 +7648,13 @@ product: Cumulus Linux
 
   <vrf-id>          VRF
 
-### Atrributes
+### Attributes
 
-  aspath            BGP aspath path-selection config, applicable to this BGP
-                    instance
-  med               BGP med path-selection config, applicable to this BGP
-                    instance
-  multipath         BGP multipath path-selection config, applicable to this
-                    BGP instance
-  routerid-compare  Path selection based on Router ID comparison.
+  aspath            BGP aspath path-selection config, applicable to this BGP instance
+
+  med               BGP med path-selection config, applicable to this BGP instance
+
+  multipath         BGP multipath path-selection config, applicable to this BGP instance routerid-compare  Path selection based on Router ID comparison.
 
 ## nv set vrf <vrf-id> router bgp path-selection aspath
 
@@ -7357,11 +7670,12 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
 
-### Atrributes
+### Attributes
 
   compare-confed   Select AS based on confederations.
+
   compare-lengths  Select AS based on path length.
-  
+
 ## nv set vrf <vrf-id> router bgp path-selection med
 
 ### Usage
@@ -7376,15 +7690,14 @@ product: Cumulus Linux
 
   <vrf-id>              VRF
 
-### Atrributes
+### Attributes
 
-  compare-always        Always compare the MED on routes, even when they were
-                        received from different neighbouring ASes.
-  compare-confed        MED configuration for route-selection based on
-                        confederations.
-  compare-deterministic
-                        Carry out route-selection in a way that produces
-                        deterministic answers locally.
+  compare-always        Always compare the MED on routes, even when they were received from different neighbouring ASes.
+
+  compare-confed        MED configuration for route-selection based on confederations.
+
+  compare-deterministic Carry out route-selection in a way that produces deterministic answers locally.
+
   missing-as-max        missing-as-max
 
 ## nv set vrf <vrf-id> router bgp path-selection multipath
@@ -7401,10 +7714,12 @@ product: Cumulus Linux
 
   <vrf-id>        VRF
 
-### Atrributes
+### Attributes
 
   aspath-ignore   Ignore AS path when determining multipath routing.
+
   bandwidth       Perform multipath route selection based on bandwidth.
+
   generate-asset  Requires aspath-ignore to be on
 
 ## nv set vrf <vrf-id> router bgp route-reflection
@@ -7421,19 +7736,15 @@ product: Cumulus Linux
 
   <vrf-id>              VRF
 
-### Atrributes
+### Attributes
 
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
-  cluster-id            Cluster ID used during route reflection. Required when
-                        route-reflection is enabled.
-  outbound-policy       Allows outbound peer policy to modify the attributes
-                        for reflected routes. Normally, reflected routes have
-                        to retain their original attributes.
-  reflect-between-clients
-                        Allows routes to be reflected between clients.
-                        Normally, routes are reflected only between clients
-                        and non-clients, with the clients of a route reflector
-                        expected to be fully meshed.
+
+  cluster-id            Cluster ID used during route reflection. Required when route-reflection is enabled.
+
+  outbound-policy       Allows outbound peer policy to modify the attributes  for reflected routes. Normally, reflected routes have to retain their original attributes.
+
+  reflect-between-clients  Allows routes to be reflected between clients.  Normally, routes are reflected only between clients and non-clients, with the clients of a route reflector expected to be fully meshed.
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id>
 
@@ -7450,35 +7761,35 @@ product: Cumulus Linux
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-### Atrributes
+### Attributes
 
-  bfd                   Specifies whether to track BGP peering sessions using
-                        this configuration via BFD.
+  bfd                   Specifies whether to track BGP peering sessions using this configuration via BFD.
+
   ttl-security          RFC 5082
+
   capabilities          Capabilities
+
   graceful-restart      Graceful restart
+
   local-as              Local AS feature
+
   timers                Peer peer-timerss
+
   address-family        Address family specific configuration
+
   description           neighbor description
-  enforce-first-as      If on, when BGP updates are received from EBGP peers
-                        with this config, check that first AS matches peer's
-                        AS
-  multihop-ttl          Maximum hops allowed. When 'auto', the type of peer
-                        will determine the appropriate value (255 for iBGP and
-                        1 for eBGP). This is the default.
-  nexthop-connected-check
-                        If 'on', it disables the check that a non-multihop
-                        EBGP peer should be directly connected and only
-                        announce connected next hops
-  passive-mode          If enabled, do not initiate the BGP connection but
-                        wait for incoming connection
+
+  enforce-first-as      If on, when BGP updates are received from EBGP peers  with this config, check that first AS matches peer's AS
+
+  multihop-ttl          Maximum hops allowed. When 'auto', the type of peer will determine the appropriate value (255 for iBGP and 1 for eBGP). This is the default.
+
+  nexthop-connected-check  If 'on', it disables the check that a non-multihop EBGP peer should be directly connected and only announce connected next hops
+
+  passive-mode          If enabled, do not initiate the BGP connection but wait for incoming connection
+
   password              Password
-  remote-as             ASN for the BGP neighbor(s) using this configuration.
-                        If specified as 'external', it means an EBGP
-                        configuration but the actual ASN is immaterial. If
-                        specified as 'internal', it means an IBGP
-                        configuration.
+
+  remote-as             ASN for the BGP neighbor(s) using this configuration. If specified as 'external', it means an EBGP  configuration but the actual ASN is immaterial. If specified as 'internal', it means an IBGP configuration.
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd
 
@@ -7495,14 +7806,16 @@ product: Cumulus Linux
   <vrf-id>           VRF
   <peer-group-id>    Domain
 
-### Atrributes
+### Attributes
 
   enable             Turn the feature 'on' or 'off'. The default is 'off'.
+
   detect-multiplier  Detect multiplier
+
   min-rx-interval    Minimum receive interval
-  min-tx-interval    Minimum transmit interval. The actual value used is the
-                     smaller of this or what the peer expects.
-                     
+
+  min-tx-interval    Minimum transmit interval. The actual value used is the smaller of this or what the peer expects.
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd detect-multiplier 2-255
 
 ### Usage
@@ -7517,7 +7830,7 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-rx-interval 50-60000
 
 ### Usage
@@ -7532,7 +7845,7 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-tx-interval 50-60000
 
 ### Usage
@@ -7563,9 +7876,10 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
+
   hops             Number of hops
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security hops 1-254
@@ -7582,7 +7896,7 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities
 
 ### Usage
@@ -7598,14 +7912,11 @@ product: Cumulus Linux
   <vrf-id>          VRF
   <peer-group-id>   Domain
 
-### Atrributes
+### Attributes
 
-  extended-nexthop  If 'on', the extended-nexthop capability defined in RFC
-                    5549 is advertised to peer(s) with this config. If 'auto',
-                    it will be 'on' for unnumbered peers and 'off' otherwise.
-                    This is the default.
-  source-address    source IP address of the TCP connection, which is often
-                    used as the BGP next hop for Updates
+  extended-nexthop  If 'on', the extended-nexthop capability defined in RFC  5549 is advertised to peer(s) with this config. If 'auto', it will be 'on' for unnumbered peers and 'off' otherwise. This is the default.
+
+  source-address    source IP address of the TCP connection, which is often  used as the BGP next hop for Updates
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart
 
@@ -7622,18 +7933,10 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
-  mode             If 'auto', inherit from global. This is the default. If set
-                   to 'off', GR capability is not negotiated with this peer.
-                   If set to 'helper-only', only the Helper role is supported
-                   for this peer. This means that the GR capability will be
-                   negotiated without any address-families with this peer. If
-                   set to 'full', both the Helper role and the Restarter role
-                   are supported with this peer; the GR capability will be
-                   negotiated with the enabled address-families for which GR
-                   is also supported.
-                   
+  mode             If 'auto', inherit from global. This is the default. If set to 'off', GR capability is not negotiated with this peer. If set to 'helper-only', only the Helper role is supported for this peer. This means that the GR capability will be negotiated without any address-families with this peer. If set to 'full', both the Helper role and the Restarter role are supported with this peer; the GR capability will be negotiated with the enabled address-families for which GR is also supported.
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as
 
 ### Usage
@@ -7649,22 +7952,16 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
-  asn              ASN to use to establish the peering if different from the
-                   ASN of the BGP instance. This configuration finds use
-                   during AS renumbering. The local-as configured is also
-                   attached to incoming and outgoing updates.
-  prepend          When set to 'off', do not prepend the configured local-as
-                   to received updates; otherwise, prepend it.
-  replace          When set to 'on', attach only the configured local-as to
-                   generated updates, effectively "replacing" the AS number
-                   configured for the BGP instance with the local-as
-                   applicable for the peering; otherwise, attach the AS number
-                   of the BGP instance and then prepend it with the configured
-                   local-as.
-                   
+
+  asn              ASN to use to establish the peering if different from the ASN of the BGP instance. This configuration finds use during AS renumbering. The local-as configured is also attached to incoming and outgoing updates.
+
+  prepend          When set to 'off', do not prepend the configured local-as to received updates; otherwise, prepend it.
+
+  replace          When set to 'on', attach only the configured local-as to generated updates, effectively "replacing" the AS number configured for the BGP instance with the local-as applicable for the peering; otherwise, attach the AS number of the BGP instance and then prepend it with the configured local-as.
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as asn 1-4294967295
 
 ### Usage
@@ -7679,7 +7976,7 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> timers
 
 ### Usage
@@ -7695,22 +7992,16 @@ product: Cumulus Linux
   <vrf-id>             VRF
   <peer-group-id>      Domain
 
-### Atrributes
+### Attributes
 
-  connection-retry     Time interval at which connection attempts are retried
-                       upon a failure. If `auto`, the global value is used.
-                       This is the default.
-  hold                 Hold timer. If `none`, keepalives from the peer are not
-                       tracked and the peering session will not experience a
-                       hold timeout. If `auto`, the global value is used. This
-                       is the default.
-  keepalive            Keepalive timer. If `none`, keepalives are not sent. If
-                       `auto`, the global value is used. This is the default.
-  route-advertisement  Time between route advertisements (BGP Updates). A non-
-                       zero value allows route advertisements to be delayed
-                       and batched. If `auto`, the global value is used. This
-                       is the default.
-                       
+  connection-retry     Time interval at which connection attempts are retried upon a failure. If `auto`, the global value is used. This is the default.
+
+  hold                 Hold timer. If `none`, keepalives from the peer are not tracked and the peering session will not experience a hold timeout. If `auto`, the global value is used. This is the default.
+
+  keepalive            Keepalive timer. If `none`, keepalives are not sent. If `auto`, the global value is used. This is the default.
+
+  route-advertisement  Time between route advertisements (BGP Updates). A non-zero value allows route advertisements to be delayed and batched. If `auto`, the global value is used. This is the default.
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family
 
 ### Usage
@@ -7726,13 +8017,14 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
-  ipv4-unicast     Peer IPv4 unicast address family. Always on, unless
-                   disabled globaly.
+  ipv4-unicast     Peer IPv4 unicast address family. Always on, unless disabled globaly.
+
   ipv6-unicast     Peer IPv6 unicast address family.
+
   l2vpn-evpn       Peer l2vpn EVPN address family.
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast
 
 ### Usage
@@ -7748,40 +8040,37 @@ product: Cumulus Linux
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-### Atrributes
+### Attributes
 
   community-advertise   Community advertise for address family.
-  attribute-mod         Attribute mod for address family.
-  aspath                Options for handling AS_PATH for prefixes from/to peer
-                        for the specified address family
-  prefix-limits         Limits on prefix from the peer for this address-family
-  default-route-origination
-                        Default route origination
-  policy                Policies for ipv4 unicast
-  conditional-advertise
-                        Conditional advertise for address family.
-  enable                Turn the feature 'on' or 'off'. The default is 'on'.
-  add-path-tx           Used to enable transmission of additional paths; by
-                        default, only the best path is announced to peers
-  nexthop-setting       Control nexthop value of advertised routes. "auto"
-                        follows regular BGP next-hop determination rules. This
-                        is the default. "self" sets the next hop to ourselves
-                        for route advertisement, except for reflected routes.
-                        "force" sets the next hop to ourselves for route
-                        advertisement including for reflected routes.
-  route-reflector-client
-                        Specifies if this peer is a client and we are its
-                        route reflector
-  route-server-client   Specifies if this peer is a client and we are its
-                        route server
-  soft-reconfiguration  If 'on', it means that received routes from this peer
-                        that are rejected by inbound policy are still stored.
-                        This allows policy changes to take effect without any
-                        exchange of BGP Updates.
-  weight                Weight applied to routes received from peer; this is
-                        used in the BGP route selection algorithm
 
-## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise
+  attribute-mod         Attribute mod for address family.
+
+  aspath                Options for handling AS_PATH for prefixes from/to peer for the specified address family
+
+  prefix-limits         Limits on prefix from the peer for this address-family
+
+  default-route-origination Default route origination
+
+  policy                Policies for ipv4 unicast
+
+  conditional-advertise Conditional advertise for address family.
+
+  enable                Turn the feature 'on' or 'off'. The default is 'on'.
+
+  add-path-tx           Used to enable transmission of additional paths; by default, only the best path is announced to peers
+
+  nexthop-setting       Control nexthop value of advertised routes. "auto" follows regular BGP next-hop determination rules. This is the default. "self" sets the next hop to ourselves for route advertisement, except for reflected routes.  "force" sets the next hop to ourselves for route advertisement including for reflected routes.
+
+  route-reflector-client Specifies if this peer is a client and we are its route reflector
+
+  route-server-client   Specifies if this peer is a client and we are its route server
+
+  soft-reconfiguration  If 'on', it means that received routes from this peer  that are rejected by inbound policy are still stored. This allows policy changes to take effect without any exchange of BGP Updates.
+
+  weight                Weight applied to routes received from peer; this is used in the BGP route selection algorithm
+
+## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise\
 
 ### Usage
 
@@ -7796,15 +8085,14 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
-  extended         If 'on', it means we can announce the EXT_COMMUNITIES
-                   attribute to this peer, otherwise we cannot.
-  large            If 'on', it means we can announce the LARGE_COMMUNITIES
-                   attribute to this peer, otherwise we cannot.
-  regular          If 'on', it means we can announce the COMMUNITIES attribute
-                   to this peer, otherwise we cannot.
-                   
+  extended         If 'on', it means we can announce the EXT_COMMUNITIES attribute to this peer, otherwise we cannot.
+
+  large            If 'on', it means we can announce the LARGE_COMMUNITIES attribute to this peer, otherwise we cannot.
+
+  regular          If 'on', it means we can announce the COMMUNITIES attribute to this peer, otherwise we cannot.
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod
 
 ### Usage
@@ -7820,21 +8108,14 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
-  aspath           If 'on', it means follow normal BGP procedures in the
-                   generation of AS_PATH attribute for this peer; if 'off' it
-                   means do not change the AS_PATH when sending an Update to
-                   this peer.
-  med              If 'on', it means follow normal BGP procedures in the
-                   generation of MED attribute for this peer; if 'off' it
-                   means do not change the MED when sending an Update to this
-                   peer.
-  nexthop          If 'on', it means follow normal BGP procedures in the
-                   generation of NEXT_HOP attribute for this peer; if 'off' it
-                   means do not change the NEXT_HOP when sending an Update to
-                   this peer.
-                   
+  aspath           If 'on', it means follow normal BGP procedures in the generation of AS_PATH attribute for this peer; if 'off' it means do not change the AS_PATH when sending an Update to this peer.
+
+  med              If 'on', it means follow normal BGP procedures in the generation of MED attribute for this peer; if 'off' it means do not change the MED when sending an Update to this peer.
+
+  nexthop          If 'on', it means follow normal BGP procedures in the generation of NEXT_HOP attribute for this peer; if 'off' it means do not change the NEXT_HOP when sending an Update to this peer.
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath
 
 ### Usage
@@ -7850,18 +8131,14 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
-  allow-my-asn     If enabled, it is acceptable for a received AS_PATH to
-                   contain the ASN of the local system
-  private-as       If 'none', no specific action is taken. This is the
-                   default. If set to 'remove', any private ASNs in the Update
-                   to the peer are removed. If set to 'replace' any private
-                   ASNs in the Update to the peer are replaced with the ASN of
-                   the local system.
-  replace-peer-as  If on, if the AS_PATH in an outgoing Update contains the
-                   peer's ASN, it is replaced with the local system's ASN
-                   
+  allow-my-asn     If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+
+  private-as       If 'none', no specific action is taken. This is the default. If set to 'remove', any private ASNs in the Update to the peer are removed. If set to 'replace' any private ASNs in the Update to the peer are replaced with the ASN of the local system.
+
+  replace-peer-as  If on, if the AS_PATH in an outgoing Update contains the  peer's ASN, it is replaced with the local system's ASN
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn
 
 ### Usage
@@ -7877,14 +8154,14 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
-  occurrences      Indicates max number of occurrences of the local system's
-                   AS number in the received AS_PATH
-  origin           If on, a received AS_PATH containing the ASN of the local
-                   system is allowed, but only if it is the originating AS
-                   
+
+  occurrences      Indicates max number of occurrences of the local system's AS number in the received AS_PATH
+
+  origin           If on, a received AS_PATH containing the ASN of the local system is allowed, but only if it is the originating AS
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn occurrences 1-10
 
 ### Usage
@@ -7915,11 +8192,10 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
-  inbound          Limits on inbound prefix from the peer for this address-
-                   family
-                   
+  inbound          Limits on inbound prefix from the peer for this address-family
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound
 
 ### Usage
@@ -7935,21 +8211,16 @@ product: Cumulus Linux
   <vrf-id>           VRF
   <peer-group-id>    Domain
 
-### Atrributes
+### Attributes
 
-  maximum            Limit on number of prefixes of specific address-family
-                     that can be received from the peer. By default, there is
-                     no limit
-  reestablish-wait   Specifes the time in seconds to wait before establishing
-                     the BGP session again with the peer. Defaults to 'auto',
-                     which will use standard BGP timers and processing. This
-                     would typically be 2-3 seconds.
-  warning-only       If 'on', it means to only generate a warning syslog if
-                     the number of received prefixes exceeds the limit, do not
-                     bring down the BGP session.
-  warning-threshold  Percentage of the maximum at which a warning syslog is
-                     generated.
-                     
+  maximum            Limit on number of prefixes of specific address-family that can be received from the peer. By default, there is no limit
+
+  reestablish-wait   Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing. This would typically be 2-3 seconds.
+
+  warning-only       If 'on', it means to only generate a warning syslog if the number of received prefixes exceeds the limit, do not bring down the BGP session.
+
+  warning-threshold  Percentage of the maximum at which a warning syslog is generated.
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound warning-threshold 1-100
 
 ### Usage
@@ -7964,7 +8235,7 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound reestablish-wait 1-4294967295
 
 ### Usage
@@ -7978,8 +8249,8 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>         VRF
-  <peer-group-id>  Domai
-  
+  <peer-group-id>  Domain
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination
 
 ### Usage
@@ -7995,12 +8266,12 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
-  policy           Optional route-map policy to control the conditions under
-                   which the default route is originated.
-                   
+
+  policy           Optional route-map policy to control the conditions under which the default route is originated.
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy
 
 ### Usage
@@ -8016,9 +8287,10 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
   inbound          Outbound unicast policy
+
   outbound         Outbound unicast policy
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound
@@ -8036,13 +8308,14 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
   route-map        Route map to apply to Updates received from this peer
-  aspath-list      AS-Path filter list to apply to Updates received from this
-                   peer
+
+  aspath-list      AS-Path filter list to apply to Updates received from this peer
+
   prefix-list      Prefix list to apply to Updates received from this peer
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound aspath-list none
 
 ### Usage
@@ -8057,7 +8330,7 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound
 
 ### Usage
@@ -8073,15 +8346,16 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
   route-map        Route map to apply to Updates to be sent to this peer
-  unsuppress-map   Route map used to unsuppress routes selectively when
-                   advertising to this peer; these are routes that have been
-                   suppressed due to aggregation configuration.
+
+  unsuppress-map   Route map used to unsuppress routes selectively when advertising to this peer; these are routes that have been suppressed due to aggregation configuration.
+
   aspath-list      AS-Path filter list to apply to Updates sent to this peer
+
   prefix-list      Prefix list to apply to Updates to be sent to this peer
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound aspath-list none
 
 ### Usage
@@ -8096,7 +8370,7 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise
 
 ### Usage
@@ -8112,16 +8386,22 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
+
   advertise-map    route-map contains prefix-list which has list of
+
                    routes/prefixes to operate on.
+
   exist-map        route-map contains the conditional routes/prefixes in
+
                    prefix-list.
+
   non-exist-map    route-map contains the negative conditional routes/prefixes
+
                    in prefix-list.
-                   
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise advertise-map <instance-name>
 
 ### Usage
@@ -8136,7 +8416,7 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise exist-map <instance-name>
 
 ### Usage
@@ -8151,7 +8431,7 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise non-exist-map <instance-name>
 
 ### Usage
@@ -8181,7 +8461,7 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast
 
 ### Usage
@@ -8197,40 +8477,38 @@ product: Cumulus Linux
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-### Atrributes
+### Attributes
 
   policy                Policies for ipv4 unicast
-  aspath                Options for handling AS_PATH for prefixes from/to peer
-                        for the specified address family
+
+  aspath                Options for handling AS_PATH for prefixes from/to peer for the specified address family
+
   prefix-limits         Limits on prefix from the peer for this address-family
-  default-route-origination
-                        Default route origination
+
+  default-route-origination  Default route origination
+
   community-advertise   Community advertise for address family.
+
   attribute-mod         Attribute mod for address family.
-  conditional-advertise
-                        Conditional advertise for address family.
+
+  conditional-advertise Conditional advertise for address family.
+
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
-  add-path-tx           Used to enable transmission of additional paths; by
-                        default, only the best path is announced to peers
-  nexthop-setting       Control nexthop value of advertised routes. "auto"
-                        follows regular BGP next-hop determination rules. This
-                        is the default. "self" sets the next hop to ourselves
-                        for route advertisement, except for reflected routes.
-                        "force" sets the next hop to ourselves for route
-                        advertisement including for reflected routes.
-  route-reflector-client
-                        Specifies if this peer is a client and we are its
-                        route reflector
-  route-server-client   Specifies if this peer is a client and we are its
-                        route server
-  soft-reconfiguration  If 'on', it means that received routes from this peer
-                        that are rejected by inbound policy are still stored.
-                        This allows policy changes to take effect without any
-                        exchange of BGP Updates.
-  weight                Weight applied to routes received from peer; this is
-                        used in the BGP route selection algorithm
+
+  add-path-tx           Used to enable transmission of additional paths; by default, only the best path is announced to peers
+
+  nexthop-setting       Control nexthop value of advertised routes. "auto" follows regular BGP next-hop determination rules. This  is the default. "self" sets the next hop to ourselves for route advertisement, except for reflected routes. "force" sets the next hop to ourselves for route  advertisement including for reflected routes.
+
+  route-reflector-client Specifies if this peer is a client and we are its route reflector
+
+  route-server-client   Specifies if this peer is a client and we are its route server
+
+  soft-reconfiguration  If 'on', it means that received routes from this peer that are rejected by inbound policy are still stored. This allows policy changes to take effect without any exchange of BGP Updates.
+
+  weight                Weight applied to routes received from peer; this is used in the BGP route selection algorithm
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy
+
 
 ### Usage
 
@@ -8245,11 +8523,12 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
   inbound          Outbound unicast policy
+
   outbound         Outbound unicast policy
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound
 
 ### Usage
@@ -8265,13 +8544,16 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
   route-map        Route map to apply to Updates received from this peer
+
   aspath-list      AS-Path filter list to apply to Updates received from this
+
                    peer
+
   prefix-list      Prefix list to apply to Updates received from this peer
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound aspath-list none
 
 ### Usage
@@ -8285,8 +8567,8 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>         VRF
-  <peer-group-id>  Domain 
-  
+  <peer-group-id>  Domain
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound
 
 ### Usage
@@ -8302,15 +8584,16 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
   route-map        Route map to apply to Updates to be sent to this peer
-  unsuppress-map   Route map used to unsuppress routes selectively when
-                   advertising to this peer; these are routes that have been
-                   suppressed due to aggregation configuration.
+
+  unsuppress-map   Route map used to unsuppress routes selectively when advertising to this peer; these are routes that have been suppressed due to aggregation configuration.
+
   aspath-list      AS-Path filter list to apply to Updates sent to this peer
+
   prefix-list      Prefix list to apply to Updates to be sent to this peer
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound aspath-list none
 
 ### Usage
@@ -8325,7 +8608,7 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath
 
 ### Usage
@@ -8341,18 +8624,14 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
-  allow-my-asn     If enabled, it is acceptable for a received AS_PATH to
-                   contain the ASN of the local system
-  private-as       If 'none', no specific action is taken. This is the
-                   default. If set to 'remove', any private ASNs in the Update
-                   to the peer are removed. If set to 'replace' any private
-                   ASNs in the Update to the peer are replaced with the ASN of
-                   the local system.
-  replace-peer-as  If on, if the AS_PATH in an outgoing Update contains the
-                   peer's ASN, it is replaced with the local system's ASN
-                   
+  allow-my-asn     If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+
+  private-as       If 'none', no specific action is taken. This is the default. If set to 'remove', any private ASNs in the Update to the peer are removed. If set to 'replace' any private ASNs in the Update to the peer are replaced with the ASN of the local system.
+
+  replace-peer-as  If on, if the AS_PATH in an outgoing Update contains the peer's ASN, it is replaced with the local system's ASN
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn
 
 ### Usage
@@ -8368,14 +8647,14 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
-  occurrences      Indicates max number of occurrences of the local system's
-                   AS number in the received AS_PATH
-  origin           If on, a received AS_PATH containing the ASN of the local
-                   system is allowed, but only if it is the originating AS
-                   
+
+  occurrences      Indicates max number of occurrences of the local system's AS number in the received AS_PATH
+
+  origin           If on, a received AS_PATH containing the ASN of the local system is allowed, but only if it is the originating AS
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn occurrences 1-10
 
 ### Usage
@@ -8390,7 +8669,7 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits
 
 ### Usage
@@ -8406,11 +8685,10 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
-  inbound          Limits on inbound prefix from the peer for this address-
-                   family
-                   
+  inbound          Limits on inbound prefix from the peer for this address-family
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound
 
 ### Usage
@@ -8426,21 +8704,16 @@ product: Cumulus Linux
   <vrf-id>           VRF
   <peer-group-id>    Domain
 
-### Atrributes
+### Attributes
 
-  maximum            Limit on number of prefixes of specific address-family
-                     that can be received from the peer. By default, there is
-                     no limit
-  reestablish-wait   Specifes the time in seconds to wait before establishing
-                     the BGP session again with the peer. Defaults to 'auto',
-                     which will use standard BGP timers and processing. This
-                     would typically be 2-3 seconds.
-  warning-only       If 'on', it means to only generate a warning syslog if
-                     the number of received prefixes exceeds the limit, do not
-                     bring down the BGP session.
-  warning-threshold  Percentage of the maximum at which a warning syslog is
-                     generated.
-                     
+  maximum            Limit on number of prefixes of specific address-family that can be received from the peer. By default, there is no limit
+
+  reestablish-wait   Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing. This would typically be 2-3 seconds.
+
+  warning-only       If 'on', it means to only generate a warning syslog if the number of received prefixes exceeds the limit, do not bring down the BGP session.
+
+  warning-threshold  Percentage of the maximum at which a warning syslog is generated.
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound warning-threshold 1-100
 
 ### Usage
@@ -8470,7 +8743,7 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast default-route-origination
 
 ### Usage
@@ -8486,12 +8759,12 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
-  policy           Optional route-map policy to control the conditions under
-                   which the default route is originated.
-                   
+
+  policy           Optional route-map policy to control the conditions under which the default route is originated.
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast community-advertise
 
 ### Usage
@@ -8507,15 +8780,14 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
-  extended         If 'on', it means we can announce the EXT_COMMUNITIES
-                   attribute to this peer, otherwise we cannot.
-  large            If 'on', it means we can announce the LARGE_COMMUNITIES
-                   attribute to this peer, otherwise we cannot.
-  regular          If 'on', it means we can announce the COMMUNITIES attribute
-                   to this peer, otherwise we cannot.
-                   
+  extended         If 'on', it means we can announce the EXT_COMMUNITIES attribute to this peer, otherwise we cannot.
+
+  large            If 'on', it means we can announce the LARGE_COMMUNITIES attribute to this peer, otherwise we cannot.
+
+  regular          If 'on', it means we can announce the COMMUNITIES attribute to this peer, otherwise we cannot.
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast attribute-mod
 
 ### Usage
@@ -8531,22 +8803,16 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
-  aspath           If 'on', it means follow normal BGP procedures in the
-                   generation of AS_PATH attribute for this peer; if 'off' it
-                   means do not change the AS_PATH when sending an Update to
-                   this peer.
-  med              If 'on', it means follow normal BGP procedures in the
-                   generation of MED attribute for this peer; if 'off' it
-                   means do not change the MED when sending an Update to this
-                   peer.
-  nexthop          If 'on', it means follow normal BGP procedures in the
-                   generation of NEXT_HOP attribute for this peer; if 'off' it
-                   means do not change the NEXT_HOP when sending an Update to
-                   this peer.
-                   
+  aspath           If 'on', it means follow normal BGP procedures in the generation of AS_PATH attribute for this peer; if 'off' it means do not change the AS_PATH when sending an Update to this peer.
+
+  med              If 'on', it means follow normal BGP procedures in the generation of MED attribute for this peer; if 'off' it means do not change the MED when sending an Update to this peer.
+
+  nexthop          If 'on', it means follow normal BGP procedures in the generation of NEXT_HOP attribute for this peer; if 'off' it means do not change the NEXT_HOP when sending an Update to this peer.
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise
+
 
 ### Usage
 
@@ -8561,16 +8827,16 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
-  advertise-map    route-map contains prefix-list which has list of
-                   routes/prefixes to operate on.
-  exist-map        route-map contains the conditional routes/prefixes in
-                   prefix-list.
-  non-exist-map    route-map contains the negative conditional routes/prefixes
-                   in prefix-list.
-                   
+
+  advertise-map    route-map contains prefix-list which has list of routes/prefixes to operate on.
+
+  exist-map        route-map contains the conditional routes/prefixes in prefix-list.
+
+  non-exist-map    route-map contains the negative conditional routes/prefixes in prefix-list.
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise advertise-map <instance-name>
 
 ### Usage
@@ -8585,8 +8851,9 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise exist-map <instance-name>
+
 
 ### Usage
 
@@ -8600,8 +8867,9 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise non-exist-map <instance-name>
+
 
 ### Usage
 
@@ -8630,7 +8898,7 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn
 
 ### Usage
@@ -8646,30 +8914,25 @@ product: Cumulus Linux
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-### Atrributes
+### Attributes
 
   attribute-mod         Attribute mod for address family.
-  aspath                Options for handling AS_PATH for prefixes from/to peer
-                        for the specified address family
+
+  aspath                Options for handling AS_PATH for prefixes from/to peer for the specified address family
+
   policy                Policies for l2vpn evpn
+
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
-  add-path-tx           Used to enable transmission of additional paths; by
-                        default, only the best path is announced to peers
-  nexthop-setting       Control nexthop value of advertised routes. "auto"
-                        follows regular BGP next-hop determination rules. This
-                        is the default. "self" sets the next hop to ourselves
-                        for route advertisement, except for reflected routes.
-                        "force" sets the next hop to ourselves for route
-                        advertisement including for reflected routes.
-  route-reflector-client
-                        Specifies if this peer is a client and we are its
-                        route reflector
-  route-server-client   Specifies if this peer is a client and we are its
-                        route server
-  soft-reconfiguration  If 'on', it means that received routes from this peer
-                        that are rejected by inbound policy are still stored.
-                        This allows policy changes to take effect without any
-                        exchange of BGP Updates.
+
+  add-path-tx           Used to enable transmission of additional paths; by default, only the best path is announced to peers
+
+  nexthop-setting       Control nexthop value of advertised routes. "auto" follows regular BGP next-hop determination rules. This is the default. "self" sets the next hop to ourselves for route advertisement, except for reflected routes. "force" sets the next hop to ourselves for route  advertisement including for reflected routes.
+
+  route-reflector-client Specifies if this peer is a client and we are it route reflector
+
+  route-server-client   Specifies if this peer is a client and we are its route server
+
+  soft-reconfiguration  If 'on', it means that received routes from this peer that are rejected by inbound policy are still stored. This allows policy changes to take effect without any exchange of BGP Updates.
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn attribute-mod
 
@@ -8686,21 +8949,14 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
-  aspath           If 'on', it means follow normal BGP procedures in the
-                   generation of AS_PATH attribute for this peer; if 'off' it
-                   means do not change the AS_PATH when sending an Update to
-                   this peer.
-  med              If 'on', it means follow normal BGP procedures in the
-                   generation of MED attribute for this peer; if 'off' it
-                   means do not change the MED when sending an Update to this
-                   peer.
-  nexthop          If 'on', it means follow normal BGP procedures in the
-                   generation of NEXT_HOP attribute for this peer; if 'off' it
-                   means do not change the NEXT_HOP when sending an Update to
-                   this peer.
-                   
+  aspath           If 'on', it means follow normal BGP procedures in the generation of AS_PATH attribute for this peer; if 'off' it means do not change the AS_PATH when sending an Update to this peer.
+
+  med              If 'on', it means follow normal BGP procedures in the generation of MED attribute for this peer; if 'off' it means do not change the MED when sending an Update to this peer.
+
+  nexthop          If 'on', it means follow normal BGP procedures in the generation of NEXT_HOP attribute for this peer; if 'off' it means do not change the NEXT_HOP when sending an Update to this peer.
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath
 
 ### Usage
@@ -8716,18 +8972,14 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
-  allow-my-asn     If enabled, it is acceptable for a received AS_PATH to
-                   contain the ASN of the local system
-  private-as       If 'none', no specific action is taken. This is the
-                   default. If set to 'remove', any private ASNs in the Update
-                   to the peer are removed. If set to 'replace' any private
-                   ASNs in the Update to the peer are replaced with the ASN of
-                   the local system.
-  replace-peer-as  If on, if the AS_PATH in an outgoing Update contains the
-                   peer's ASN, it is replaced with the local system's ASN
-                   
+  allow-my-asn     If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+
+  private-as       If 'none', no specific action is taken. This is the default. If set to 'remove', any private ASNs in the Update to the peer are removed. If set to 'replace' any private ASNs in the Update to the peer are replaced with the ASN of the local system.
+
+  replace-peer-as  If on, if the AS_PATH in an outgoing Update contains the peer's ASN, it is replaced with the local system's ASN
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn
 
 ### Usage
@@ -8743,14 +8995,14 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
-  occurrences      Indicates max number of occurrences of the local system's
-                   AS number in the received AS_PATH
-  origin           If on, a received AS_PATH containing the ASN of the local
-                   system is allowed, but only if it is the originating AS
-                   
+
+  occurrences      Indicates max number of occurrences of the local system's AS number in the received AS_PATH
+
+  origin           If on, a received AS_PATH containing the ASN of the local system is allowed, but only if it is the originating AS
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn occurrences 1-10
 
 ### Usage
@@ -8765,7 +9017,7 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
-  
+
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy
 
 ### Usage
@@ -8781,9 +9033,10 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
   inbound          Inbound l2vpn-evpn policy
+
   outbound         Outbound l2vpn-evpn policy
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy inbound
@@ -8801,7 +9054,7 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
   route-map        Route map to apply to Updates received from this peer
 
@@ -8820,14 +9073,14 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Atrributes
+### Attributes
 
   route-map        Route map to apply to Updates to be sent to this peer
-  unsuppress-map   Route map used to unsuppress routes selectively when
-                   advertising to this peer; these are routes that have been
-                   suppressed due to aggregation configuration.
+
+  unsuppress-map   Route map used to unsuppress routes selectively when advertising to this peer; these are routes that have been suppressed due to aggregation configuration.
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> password none
+
 
 ### Usage
 
@@ -8856,7 +9109,7 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
-  
+
 ## nv set vrf <vrf-id> router bgp route-export
 
 ### Usage
@@ -8871,10 +9124,10 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   to-evpn     Controls for exporting routes from this VRF into EVPN
-  
+
 ## nv set vrf <vrf-id> router bgp route-export to-evpn
 
 ### Usage
@@ -8889,12 +9142,10 @@ product: Cumulus Linux
 
   <vrf-id>      VRF
 
-### Atrributes
+### Attributes
 
-  route-target  List the RTs to attach to host or prefix routes when exporting
-                them into EVPN or "auto". If "auto", the RT will be derived.
-                This is the default.
-                
+  route-target  List the RTs to attach to host or prefix routes when exporting them into EVPN or "auto". If "auto", the RT will be derived. This is the default.
+
 ## nv set vrf <vrf-id> router bgp route-export to-evpn route-target <rt-id>
 
 ### Usage
@@ -8909,7 +9160,7 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
   <rt-id>     Route targets or "auto"
-  
+
 ## nv set vrf <vrf-id> router bgp route-import
 
 ### Usage
@@ -8924,11 +9175,10 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
-  from-evpn   Controls for importing EVPN type-2 and type-5 routes into this
-              VRF
-              
+  from-evpn   Controls for importing EVPN type-2 and type-5 routes into this VRF
+
 ## nv set vrf <vrf-id> router bgp route-import from-evpn
 
 ### Usage
@@ -8943,12 +9193,10 @@ product: Cumulus Linux
 
   <vrf-id>      VRF
 
-### Atrributes
+### Attributes
 
-  route-target  List the RTs to attach to host or prefix routes when importing
-                them into VRF or "auto". If "auto", the RT will be derived.
-                This is the default. 
-                
+  route-target  List the RTs to attach to host or prefix routes when importing them into VRF or "auto". If "auto", the RT will be derived. This is the default.\
+
 ## nv set vrf <vrf-id> router bgp route-import from-evpn route-target <rt-id>
 
 ### Usage
@@ -8963,8 +9211,9 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
   <rt-id>     Route targets or "auto"
-  
+
 ## nv set vrf <vrf-id> router bgp timers
+
 
 ### Usage
 
@@ -8978,20 +9227,19 @@ product: Cumulus Linux
 
   <vrf-id>              VRF
 
-### Atrributes
+### Attributes
 
-  conditional-advertise
-                        Time interval at which bgp table is scanned for
-                        condition is met.
-  connection-retry      Time interval at which connection attempts are retried
-                        upon a failure.
-  hold                  Hold timer. If `none`, keepalives from the peer are
-                        not tracked and the peering session will not
-                        experience a hold timeout.
+  conditional-advertise Time interval at which bgp table is scanned for condition is met.
+
+  connection-retry      Time interval at which connection attempts are retried upon a failure.
+
+  hold                  Hold timer. If `none`, keepalives from the peer are not tracked and the peering session will not experience a hold timeout.
+
   keepalive             Keepalive timer. If `none`, keepalives are not sent.
-  route-advertisement   Time between route advertisements (BGP Updates). If
-                        not `none`, route advertisements to be delayed and
-                        batched.
+
+  route-advertisement   Time between route advertisements (BGP Updates). If not `none`, route advertisements to be delayed and batched.
+
+
 
 ## nv set vrf <vrf-id> router bgp timers connection-retry 1-65535
 
@@ -9006,8 +9254,9 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
+
 ## nv set vrf <vrf-id> router bgp confederation
+
 
 ### Usage
 
@@ -9021,11 +9270,12 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   member-as   Confederation ASNs of the peers, maps to BGP confederation peers
+
   id          Confederation ASN, maps to BGP confederation id
-  
+
 ## nv set vrf <vrf-id> router bgp confederation member-as
 
 ### Usage
@@ -9039,7 +9289,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id>
 
 ### Usage
@@ -9055,38 +9305,40 @@ product: Cumulus Linux
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-### Atrributes
+### Attributes
 
-  bfd                   Specifies whether to track BGP peering sessions using
-                        this configuration via BFD.
+  bfd                   Specifies whether to track BGP peering sessions using this configuration via BFD.
+
   capabilities          Capabilities
+
   local-as              Local AS feature
+
   graceful-restart      BGP Graceful restart per neighbor configuration
+
   ttl-security          RFC 5082
+
   address-family        Address family specific configuration
+
   timers                Peer peer-timerss
+
   description           neighbor description
-  enforce-first-as      If on, when BGP updates are received from EBGP peers
-                        with this config, check that first AS matches peer's
-                        AS
-  multihop-ttl          Maximum hops allowed. When 'auto', the type of peer
-                        will determine the appropriate value (255 for iBGP and
-                        1 for eBGP). This is the default.
-  nexthop-connected-check
-                        If 'on', it disables the check that a non-multihop
-                        EBGP peer should be directly connected and only
-                        announce connected next hops
-  passive-mode          If enabled, do not initiate the BGP connection but
-                        wait for incoming connection
+
+  enforce-first-as      If on, when BGP updates are received from EBGP peers with this config, check that first AS matches peer's AS
+
+  multihop-ttl          Maximum hops allowed. When 'auto', the type of peer will determine the appropriate value (255 for iBGP and 1 for eBGP). This is the default.
+
+  nexthop-connected-check If 'on', it disables the check that a non-multihopmEBGP peer should be directly connected and only announce connected next hops
+
+  passive-mode          If enabled, do not initiate the BGP connection but wait for incoming connection
+
   password              Password
+
   enable                Turn the feature 'on' or 'off'. The default is 'on'.
-  peer-group            Optional peer-group to which the peer is attached to
-                        inherit the group's configuration.
-  remote-as             ASN for the BGP neighbor(s) using this configuration.
-                        If specified as 'external', it means an EBGP
-                        configuration but the actual ASN is immaterial. If
-                        specified as 'internal', it means an IBGP
-                        configuration.
+
+  peer-group            Optional peer-group to which the peer is attached to inherit the group's configuration.
+
+  remote-as             ASN for the BGP neighbor(s) using this configuration. If specified as 'external', it means an EBGP configuration but the actual ASN is immaterial. If specified as 'internal', it means an IBGP configuration.
+
   type                  The type of peer
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd
@@ -9104,14 +9356,16 @@ product: Cumulus Linux
   <vrf-id>           VRF
   <neighbor-id>      Peer ID
 
-### Atrributes
+### Attributes
 
   enable             Turn the feature 'on' or 'off'. The default is 'off'.
+
   detect-multiplier  Detect multiplier
+
   min-rx-interval    Minimum receive interval
-  min-tx-interval    Minimum transmit interval. The actual value used is the
-                     smaller of this or what the peer expects.
-                     
+
+  min-tx-interval    Minimum transmit interval. The actual value used is the smaller of this or what the peer expects.
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd detect-multiplier 2-255
 
 ### Usage
@@ -9126,7 +9380,7 @@ product: Cumulus Linux
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-rx-interval 50-60000
 
 ### Usage
@@ -9141,7 +9395,7 @@ product: Cumulus Linux
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-tx-interval 50-60000
 
 ### Usage
@@ -9156,7 +9410,7 @@ product: Cumulus Linux
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities
 
 ### Usage
@@ -9172,14 +9426,11 @@ product: Cumulus Linux
   <vrf-id>          VRF
   <neighbor-id>     Peer ID
 
-### Atrributes
+### Attributes
 
-  extended-nexthop  If 'on', the extended-nexthop capability defined in RFC
-                    5549 is advertised to peer(s) with this config. If 'auto',
-                    it will be 'on' for unnumbered peers and 'off' otherwise.
-                    This is the default.
-  source-address    source IP address of the TCP connection, which is often
-                    used as the BGP next hop for Updates
+  extended-nexthop  If 'on', the extended-nexthop capability defined in RFC 5549 is advertised to peer(s) with this config. If 'auto', it will be 'on' for unnumbered peers and 'off' otherwise. This is the default.
+
+  source-address    source IP address of the TCP connection, which is often used as the BGP next hop for Updates
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> local-as
 
@@ -9196,21 +9447,16 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
-  asn            ASN to use to establish the peering if different from the ASN
-                 of the BGP instance. This configuration finds use during AS
-                 renumbering. The local-as configured is also attached to
-                 incoming and outgoing updates.
-  prepend        When set to 'off', do not prepend the configured local-as to
-                 received updates; otherwise, prepend it.
-  replace        When set to 'on', attach only the configured local-as to
-                 generated updates, effectively "replacing" the AS number
-                 configured for the BGP instance with the local-as applicable
-                 for the peering; otherwise, attach the AS number of the BGP
-                 instance and then prepend it with the configured local-as.
-                 
+
+  asn            ASN to use to establish the peering if different from the ASN of the BGP instance. This configuration finds use during AS renumbering. The local-as configured is also attached to incoming and outgoing updates.
+
+  prepend        When set to 'off', do not prepend the configured local-as to received updates; otherwise, prepend it.
+
+  replace        When set to 'on', attach only the configured local-as to generated updates, effectively "replacing" the AS number configured for the BGP instance with the local-as applicable for the peering; otherwise, attach the AS number of the BGP instance and then prepend it with the configured local-as.
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> local-as asn 1-4294967295
 
 ### Usage
@@ -9225,7 +9471,7 @@ product: Cumulus Linux
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> graceful-restart
 
 ### Usage
@@ -9241,18 +9487,27 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
+
 
   mode           If 'auto', inherit from global. This is the default. If set
+
                  to 'off', GR capability is not negotiated with this peer. If
+
                  set to 'helper-only', only the Helper role is supported for
+
                  this peer. This means that the GR capability will be
+
                  negotiated without any address-families with this peer. If
+
                  set to 'full', both the Helper role and the Restarter role
+
                  are supported with this peer; the GR capability will be
+
                  negotiated with the enabled address-families for which GR is
+
                  also supported.
-                 
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security
 
 ### Usage
@@ -9268,11 +9523,12 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
+
   hops           Number of hops
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security hops 1-254
 
 ### Usage
@@ -9287,7 +9543,7 @@ product: Cumulus Linux
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family
 
 ### Usage
@@ -9303,13 +9559,14 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
-  ipv4-unicast   Peer IPv4 unicast address family. Always on, unless disabled
-                 globaly.
+  ipv4-unicast   Peer IPv4 unicast address family. Always on, unless disabled globaly.
+
   ipv6-unicast   Peer IPv6 unicast address family.
+
   l2vpn-evpn     Peer l2vpn EVPN address family.
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast
 
 ### Usage
@@ -9325,38 +9582,35 @@ product: Cumulus Linux
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-### Atrributes
+### Attributes
 
   attribute-mod         Attribute mod for address family.
-  aspath                Options for handling AS_PATH for prefixes from/to peer
-                        for the specified address family
+
+  aspath                Options for handling AS_PATH for prefixes from/to peer for the specified address family
+
   policy                Policies for ipv4 unicast
+
   prefix-limits         Limits on prefix from the peer for this address-family
-  default-route-origination
-                        Default route origination
+
+  default-route-origination  Default route origination
+
   community-advertise   Community advertise for address family.
-  conditional-advertise
-                        Conditional advertise for address family.
+
+  conditional-advertise Conditional advertise for address family.
+
   enable                Turn the feature 'on' or 'off'. The default is 'on'.
-  add-path-tx           Used to enable transmission of additional paths; by
-                        default, only the best path is announced to peers
-  nexthop-setting       Control nexthop value of advertised routes. "auto"
-                        follows regular BGP next-hop determination rules. This
-                        is the default. "self" sets the next hop to ourselves
-                        for route advertisement, except for reflected routes.
-                        "force" sets the next hop to ourselves for route
-                        advertisement including for reflected routes.
-  route-reflector-client
-                        Specifies if this peer is a client and we are its
-                        route reflector
-  route-server-client   Specifies if this peer is a client and we are its
-                        route server
-  soft-reconfiguration  If 'on', it means that received routes from this peer
-                        that are rejected by inbound policy are still stored.
-                        This allows policy changes to take effect without any
-                        exchange of BGP Updates.
-  weight                Weight applied to routes received from peer; this is
-                        used in the BGP route selection algorithm
+
+  add-path-tx           Used to enable transmission of additional paths; by default, only the best path is announced to peers
+
+  nexthop-setting       Control nexthop value of advertised routes. "auto" follows regular BGP next-hop determination rules. This is the default. "self" sets the next hop to ourselvesfor route advertisement, except for reflected routes. "force" sets the next hop to ourselves for route advertisement including for reflected routes.
+
+  route-reflector-client Specifies if this peer is a client and we are its route reflector
+
+  route-server-client   Specifies if this peer is a client and we are its route server
+
+  soft-reconfiguration  If 'on', it means that received routes from this peer that are rejected by inbound policy are still stored. This allows policy changes to take effect without any exchange of BGP Updates.
+
+  weight                Weight applied to routes received from peer; this is  used in the BGP route selection algorithm
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast attribute-mod
 
@@ -9373,20 +9627,14 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
-  aspath         If 'on', it means follow normal BGP procedures in the
-                 generation of AS_PATH attribute for this peer; if 'off' it
-                 means do not change the AS_PATH when sending an Update to
-                 this peer.
-  med            If 'on', it means follow normal BGP procedures in the
-                 generation of MED attribute for this peer; if 'off' it means
-                 do not change the MED when sending an Update to this peer.
-  nexthop        If 'on', it means follow normal BGP procedures in the
-                 generation of NEXT_HOP attribute for this peer; if 'off' it
-                 means do not change the NEXT_HOP when sending an Update to
-                 this peer.
-                 
+  aspath         If 'on', it means follow normal BGP procedures in the generation of AS_PATH attribute for this peer; if 'off' it means do not change the AS_PATH when sending an Update to this peer.
+
+  med            If 'on', it means follow normal BGP procedures in the generation of MED attribute for this peer; if 'off' it means do not change the MED when sending an Update to this peer.
+
+  nexthop        If 'on', it means follow normal BGP procedures in the generation of NEXT_HOP attribute for this peer; if 'off' it means do not change the NEXT_HOP when sending an Update to this peer.
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath
 
 ### Usage
@@ -9402,18 +9650,14 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <neighbor-id>    Peer ID
 
-### Atrributes
+### Attributes
 
-  allow-my-asn     If enabled, it is acceptable for a received AS_PATH to
-                   contain the ASN of the local system
-  private-as       If 'none', no specific action is taken. This is the
-                   default. If set to 'remove', any private ASNs in the Update
-                   to the peer are removed. If set to 'replace' any private
-                   ASNs in the Update to the peer are replaced with the ASN of
-                   the local system.
-  replace-peer-as  If on, if the AS_PATH in an outgoing Update contains the
-                   peer's ASN, it is replaced with the local system's ASN
-                   
+  allow-my-asn     If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+
+  private-as       If 'none', no specific action is taken. This is the default. If set to 'remove', any private ASNs in the Update to the peer are removed. If set to 'replace' any private ASNs in the Update to the peer are replaced with the ASN of the local system.
+
+  replace-peer-as  If on, if the AS_PATH in an outgoing Update contains the peer's ASN, it is replaced with the local system's ASN
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn
 
 ### Usage
@@ -9429,14 +9673,14 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
-  occurrences    Indicates max number of occurrences of the local system's AS
-                 number in the received AS_PATH
-  origin         If on, a received AS_PATH containing the ASN of the local
-                 system is allowed, but only if it is the originating AS 
-                 
+
+  occurrences    Indicates max number of occurrences of the local system's AS number in the received AS_PATH
+
+  origin         If on, a received AS_PATH containing the ASN of the local system is allowed, but only if it is the originating AS
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn occurrences 1-10
 
 ### Usage
@@ -9451,7 +9695,7 @@ product: Cumulus Linux
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy
 
 ### Usage
@@ -9467,9 +9711,10 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
   inbound        Outbound unicast policy
+
   outbound       Outbound unicast policy
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound
@@ -9487,13 +9732,14 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
   route-map      Route map to apply to Updates received from this peer
-  aspath-list    AS-Path filter list to apply to Updates received from this
-                 peer
+
+  aspath-list    AS-Path filter list to apply to Updates received from this peer
+
   prefix-list    Prefix list to apply to Updates received from this peer
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound aspath-list none
 
 ### Usage
@@ -9508,7 +9754,7 @@ product: Cumulus Linux
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound
 
 ### Usage
@@ -9524,13 +9770,14 @@ product: Cumulus Linux
   <vrf-id>        VRF
   <neighbor-id>   Peer ID
 
-### Atrributes
+### Attributes
 
   route-map       Route map to apply to Updates to be sent to this peer
-  unsuppress-map  Route map used to unsuppress routes selectively when
-                  advertising to this peer; these are routes that have been
-                  suppressed due to aggregation configuration.
+
+  unsuppress-map  Route map used to unsuppress routes selectively when advertising to this peer; these are routes that have been suppressed due to aggregation configuration.
+
   aspath-list     AS-Path filter list to apply to Updates sent to this peer
+
   prefix-list     Prefix list to apply to Updates to be sent to this peer
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound aspath-list none
@@ -9547,7 +9794,7 @@ product: Cumulus Linux
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits
 
 ### Usage
@@ -9563,11 +9810,10 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
-  inbound        Limits on inbound prefix from the peer for this address-
-                 family
-                 
+  inbound        Limits on inbound prefix from the peer for this address- family
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound
 
 ### Usage
@@ -9583,21 +9829,16 @@ product: Cumulus Linux
   <vrf-id>           VRF
   <neighbor-id>      Peer ID
 
-### Atrributes
+### Attributes
 
-  maximum            Limit on number of prefixes of specific address-family
-                     that can be received from the peer. By default, there is
-                     no limit
-  reestablish-wait   Specifes the time in seconds to wait before establishing
-                     the BGP session again with the peer. Defaults to 'auto',
-                     which will use standard BGP timers and processing. This
-                     would typically be 2-3 seconds.
-  warning-only       If 'on', it means to only generate a warning syslog if
-                     the number of received prefixes exceeds the limit, do not
-                     bring down the BGP session.
-  warning-threshold  Percentage of the maximum at which a warning syslog is
-                     generated
-                     
+  maximum            Limit on number of prefixes of specific address-family that can be received from the peer. By default, there is no limit
+
+  reestablish-wait   Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing. This would typically be 2-3 seconds.
+
+  warning-only       If 'on', it means to only generate a warning syslog if the number of received prefixes exceeds the limit, do not bring down the BGP session.
+
+  warning-threshold  Percentage of the maximum at which a warning syslog is generated.
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound warning-threshold 1-100
 
 ### Usage
@@ -9612,7 +9853,7 @@ product: Cumulus Linux
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound reestablish-wait 1-4294967295
 
 ### Usage
@@ -9626,8 +9867,8 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>       VRF
-  <neighbor-id>  Peer ID 
-  
+  <neighbor-id>  Peer ID
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast default-route-origination
 
 ### Usage
@@ -9643,12 +9884,12 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
-  policy         Optional route-map policy to control the conditions under
-                 which the default route is originated.
-                 
+
+  policy         Optional route-map policy to control the conditions under which the default route is originated.
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast community-advertise
 
 ### Usage
@@ -9664,15 +9905,14 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
-  extended       If 'on', it means we can announce the EXT_COMMUNITIES
-                 attribute to this peer, otherwise we cannot.
-  large          If 'on', it means we can announce the LARGE_COMMUNITIES
-                 attribute to this peer, otherwise we cannot.
-  regular        If 'on', it means we can announce the COMMUNITIES attribute
-                 to this peer, otherwise we cannot.
-                 
+  extended       If 'on', it means we can announce the EXT_COMMUNITIES attribute to this peer, otherwise we cannot.
+
+  large          If 'on', it means we can announce the LARGE_COMMUNITIES attribute to this peer, otherwise we cannot.
+
+  regular        If 'on', it means we can announce the COMMUNITIES attribute to this peer, otherwise we cannot.
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise
 
 ### Usage
@@ -9688,16 +9928,16 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
-  advertise-map  route-map contains prefix-list which has list of
-                 routes/prefixes to operate on.
-  exist-map      route-map contains the conditional routes/prefixes in prefix-
-                 list.
-  non-exist-map  route-map contains the negative conditional routes/prefixes
-                 in prefix-list.
-                 
+
+  advertise-map  route-map contains prefix-list which has list of routes/prefixes to operate on.
+
+  exist-map      route-map contains the conditional routes/prefixes in prefix- list.
+
+  non-exist-map  route-map contains the negative conditional routes/prefixes in prefix-list.
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise advertise-map <instance-name>
 
 ### Usage
@@ -9712,7 +9952,7 @@ product: Cumulus Linux
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise exist-map <instance-name>
 
 ### Usage
@@ -9727,7 +9967,7 @@ product: Cumulus Linux
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise non-exist-map <instance-name>
 
 ### Usage
@@ -9756,7 +9996,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>       VRF
-  <neighbor-id>  Peer 
+  <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast
 
@@ -9773,38 +10013,33 @@ product: Cumulus Linux
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-### Atrributes
+### Attributes
 
   attribute-mod         Attribute mod for address family.
-  aspath                Options for handling AS_PATH for prefixes from/to peer
-                        for the specified address family
+
+  aspath                Options for handling AS_PATH for prefixes from/to peer  for the specified address family
+
   prefix-limits         Limits on prefix from the peer for this address-family
-  default-route-origination
-                        Default route origination
+
+  default-route-origination Default route origination
+
   policy                Policies for ipv4 unicast
+
   community-advertise   Community advertise for address family.
-  conditional-advertise
-                        Conditional advertise for address family.
+
+  conditional-advertise Conditional advertise for address family.
+
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
-  add-path-tx           Used to enable transmission of additional paths; by
-                        default, only the best path is announced to peers
-  nexthop-setting       Control nexthop value of advertised routes. "auto"
-                        follows regular BGP next-hop determination rules. This
-                        is the default. "self" sets the next hop to ourselves
-                        for route advertisement, except for reflected routes.
-                        "force" sets the next hop to ourselves for route
-                        advertisement including for reflected routes.
-  route-reflector-client
-                        Specifies if this peer is a client and we are its
-                        route reflector
-  route-server-client   Specifies if this peer is a client and we are its
-                        route server
-  soft-reconfiguration  If 'on', it means that received routes from this peer
-                        that are rejected by inbound policy are still stored.
-                        This allows policy changes to take effect without any
-                        exchange of BGP Updates.
-  weight                Weight applied to routes received from peer; this is
-                        used in the BGP route selection algorithm
+
+  add-path-tx           Used to enable transmission of additional paths; by default, only the best path is announced to peers
+
+  nexthop-setting       Control nexthop value of advertised routes. "auto" follows regular BGP next-hop determination rules. This is the default. "self" sets the next hop to ourselves for route advertisement, except for reflected routes "force" sets the next hop to ourselves for route advertisement including for reflected routes.
+
+  route-reflector-client  Specifies if this peer is a client and we are its route reflector
+
+  route-server-client   Specifies if this peer is a client and we are its route server soft-reconfiguration  If 'on', it means that received routes from this peer that are rejected by inbound policy are still stored. This allows policy changes to take effect without any exchange of BGP Updates.
+
+  weight                Weight applied to routes received from peer; this is used in the BGP route selection algorithm
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast attribute-mod
 
@@ -9821,20 +10056,14 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
-  aspath         If 'on', it means follow normal BGP procedures in the
-                 generation of AS_PATH attribute for this peer; if 'off' it
-                 means do not change the AS_PATH when sending an Update to
-                 this peer.
-  med            If 'on', it means follow normal BGP procedures in the
-                 generation of MED attribute for this peer; if 'off' it means
-                 do not change the MED when sending an Update to this peer.
-  nexthop        If 'on', it means follow normal BGP procedures in the
-                 generation of NEXT_HOP attribute for this peer; if 'off' it
-                 means do not change the NEXT_HOP when sending an Update to
-                 this peer.
-                 
+  aspath         If 'on', it means follow normal BGP procedures in the generation of AS_PATH attribute for this peer; if 'off' it means do not change the AS_PATH when sending an Update to this peer.
+
+  med            If 'on', it means follow normal BGP procedures in the generation of MED attribute for this peer; if 'off' it means do not change the MED when sending an Update to this peer.
+
+  nexthop        If 'on', it means follow normal BGP procedures in the generation of NEXT_HOP attribute for this peer; if 'off' it means do not change the NEXT_HOP when sending an Update to this peer.
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath
 
 ### Usage
@@ -9850,17 +10079,13 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <neighbor-id>    Peer ID
 
-### Atrributes
+### Attributes
 
-  allow-my-asn     If enabled, it is acceptable for a received AS_PATH to
-                   contain the ASN of the local system
-  private-as       If 'none', no specific action is taken. This is the
-                   default. If set to 'remove', any private ASNs in the Update
-                   to the peer are removed. If set to 'replace' any private
-                   ASNs in the Update to the peer are replaced with the ASN of
-                   the local system.
-  replace-peer-as  If on, if the AS_PATH in an outgoing Update contains the
-                   peer's ASN, it is replaced with the local system's ASN
+  allow-my-asn     If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+
+  private-as       If 'none', no specific action is taken. This is the default. If set to 'remove', any private ASNs in the Update to the peer are removed. If set to 'replace' any private ASNs in the Update to the peer are replaced with the ASN of the local system.
+
+  replace-peer-as  If on, if the AS_PATH in an outgoing Update contains the peer's ASN, it is replaced with the local system's ASN
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn
 
@@ -9877,14 +10102,14 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
-  occurrences    Indicates max number of occurrences of the local system's AS
-                 number in the received AS_PATH
-  origin         If on, a received AS_PATH containing the ASN of the local
-                 system is allowed, but only if it is the originating AS
-                 
+
+  occurrences    Indicates max number of occurrences of the local system's AS number in the received AS_PATH
+
+  origin         If on, a received AS_PATH containing the ASN of the local system is allowed, but only if it is the originating AS
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn occurrences 1-10
 
 ### Usage
@@ -9899,7 +10124,7 @@ product: Cumulus Linux
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits
 
 ### Usage
@@ -9915,11 +10140,10 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
-  inbound        Limits on inbound prefix from the peer for this address-
-                 family
-                 
+  inbound        Limits on inbound prefix from the peer for this address- family
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound
 
 ### Usage
@@ -9935,21 +10159,32 @@ product: Cumulus Linux
   <vrf-id>           VRF
   <neighbor-id>      Peer ID
 
-### Atrributes
+### Attributes
 
   maximum            Limit on number of prefixes of specific address-family
+
                      that can be received from the peer. By default, there is
+
                      no limit
+
   reestablish-wait   Specifes the time in seconds to wait before establishing
+
                      the BGP session again with the peer. Defaults to 'auto',
+
                      which will use standard BGP timers and processing. This
+
                      would typically be 2-3 seconds.
+
   warning-only       If 'on', it means to only generate a warning syslog if
+
                      the number of received prefixes exceeds the limit, do not
+
                      bring down the BGP session.
+
   warning-threshold  Percentage of the maximum at which a warning syslog is
-                     generated
-                     
+
+                     generated.
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound warning-threshold 1-100
 
 ### Usage
@@ -9963,7 +10198,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>       VRF
-  <neighbor-id>  Peer ID 
+  <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound reestablish-wait 1-4294967295
 
@@ -9979,7 +10214,7 @@ product: Cumulus Linux
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast default-route-origination
 
 ### Usage
@@ -9995,12 +10230,12 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
-  policy         Optional route-map policy to control the conditions under
-                 which the default route is originated.
-                 
+
+  policy         Optional route-map policy to control the conditions under which the default route is originated.
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy
 
 ### Usage
@@ -10016,11 +10251,12 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
   inbound        Outbound unicast policy
+
   outbound       Outbound unicast policy
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound
 
 ### Usage
@@ -10036,13 +10272,14 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
   route-map      Route map to apply to Updates received from this peer
-  aspath-list    AS-Path filter list to apply to Updates received from this
-                 peer
+
+  aspath-list    AS-Path filter list to apply to Updates received from this peer
+
   prefix-list    Prefix list to apply to Updates received from this peer
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound aspath-list none
 
 ### Usage
@@ -10057,7 +10294,7 @@ product: Cumulus Linux
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound
 
 ### Usage
@@ -10073,13 +10310,14 @@ product: Cumulus Linux
   <vrf-id>        VRF
   <neighbor-id>   Peer ID
 
-### Atrributes
+### Attributes
 
   route-map       Route map to apply to Updates to be sent to this peer
-  unsuppress-map  Route map used to unsuppress routes selectively when
-                  advertising to this peer; these are routes that have been
-                  suppressed due to aggregation configuration.
+
+  unsuppress-map  Route map used to unsuppress routes selectively when advertising to this peer; these are routes that have been suppressed due to aggregation configuration.
+
   aspath-list     AS-Path filter list to apply to Updates sent to this peer
+
   prefix-list     Prefix list to apply to Updates to be sent to this peer
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound aspath-list none
@@ -10096,7 +10334,7 @@ product: Cumulus Linux
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast community-advertise
 
 ### Usage
@@ -10112,16 +10350,16 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
-  extended       If 'on', it means we can announce the EXT_COMMUNITIES
-                 attribute to this peer, otherwise we cannot.
-  large          If 'on', it means we can announce the LARGE_COMMUNITIES
-                 attribute to this peer, otherwise we cannot.
-  regular        If 'on', it means we can announce the COMMUNITIES attribute
-                 to this peer, otherwise we cannot.
-                 
+  extended       If 'on', it means we can announce the EXT_COMMUNITIES attribute to this peer, otherwise we cannot.
+
+  large          If 'on', it means we can announce the LARGE_COMMUNITIES attribute to this peer, otherwise we cannot.
+
+  regular        If 'on', it means we can announce the COMMUNITIES attribute to this peer, otherwise we cannot.
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise
+
 
 ### Usage
 
@@ -10136,16 +10374,16 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
-  advertise-map  route-map contains prefix-list which has list of
-                 routes/prefixes to operate on.
-  exist-map      route-map contains the conditional routes/prefixes in prefix-
-                 list.
-  non-exist-map  route-map contains the negative conditional routes/prefixes
-                 in prefix-list.
-                 
+
+  advertise-map  route-map contains prefix-list which has list of routes/prefixes to operate on.
+
+  exist-map      route-map contains the conditional routes/prefixes in prefix-list.
+
+  non-exist-map  route-map contains the negative conditional routes/prefixes in prefix-list.
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise advertise-map <instance-name>
 
 ### Usage
@@ -10160,7 +10398,7 @@ product: Cumulus Linux
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise exist-map <instance-name>
 
 ### Usage
@@ -10205,7 +10443,7 @@ product: Cumulus Linux
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn
 
 ### Usage
@@ -10221,30 +10459,25 @@ product: Cumulus Linux
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-### Atrributes
+### Attributes
 
   attribute-mod         Attribute mod for address family.
-  aspath                Options for handling AS_PATH for prefixes from/to peer
-                        for the specified address family
+
+  aspath                Options for handling AS_PATH for prefixes from/to peer for the specified address family
+
   policy                Policies for l2vpn evpn
+
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
-  add-path-tx           Used to enable transmission of additional paths; by
-                        default, only the best path is announced to peers
-  nexthop-setting       Control nexthop value of advertised routes. "auto"
-                        follows regular BGP next-hop determination rules. This
-                        is the default. "self" sets the next hop to ourselves
-                        for route advertisement, except for reflected routes.
-                        "force" sets the next hop to ourselves for route
-                        advertisement including for reflected routes.
-  route-reflector-client
-                        Specifies if this peer is a client and we are its
-                        route reflector
-  route-server-client   Specifies if this peer is a client and we are its
-                        route server
-  soft-reconfiguration  If 'on', it means that received routes from this peer
-                        that are rejected by inbound policy are still stored.
-                        This allows policy changes to take effect without any
-                        exchange of BGP Updates.
+
+  add-path-tx           Used to enable transmission of additional paths; by default, only the best path is announced to peers
+
+  nexthop-setting       Control nexthop value of advertised routes. "auto" follows regular BGP next-hop determination rules. This is the default. "self" sets the next hop to ourselves for route advertisement, except for reflected routes.  "force" sets the next hop to ourselves for route advertisement including for reflected routes.
+
+  route-reflector-client Specifies if this peer is a client and we are its route reflector
+
+  route-server-client   Specifies if this peer is a client and we are its  route server
+
+  soft-reconfiguration  If 'on', it means that received routes from this peer that are rejected by inbound policy are still stored. This allows policy changes to take effect without any exchange of BGP Updates.
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn attribute-mod
 
@@ -10261,20 +10494,14 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
-  aspath         If 'on', it means follow normal BGP procedures in the
-                 generation of AS_PATH attribute for this peer; if 'off' it
-                 means do not change the AS_PATH when sending an Update to
-                 this peer.
-  med            If 'on', it means follow normal BGP procedures in the
-                 generation of MED attribute for this peer; if 'off' it means
-                 do not change the MED when sending an Update to this peer.
-  nexthop        If 'on', it means follow normal BGP procedures in the
-                 generation of NEXT_HOP attribute for this peer; if 'off' it
-                 means do not change the NEXT_HOP when sending an Update to
-                 this peer.
-                 
+  aspath         If 'on', it means follow normal BGP procedures in the generation of AS_PATH attribute for this peer; if 'off' it means do not change the AS_PATH when sending an Update to this peer.
+
+  med            If 'on', it means follow normal BGP procedures in the generation of MED attribute for this peer; if 'off' it means do not change the MED when sending an Update to this peer.
+
+  nexthop        If 'on', it means follow normal BGP procedures in the generation of NEXT_HOP attribute for this peer; if 'off' it means do not change the NEXT_HOP when sending an Update to this peer.
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath
 
 ### Usage
@@ -10290,18 +10517,14 @@ product: Cumulus Linux
   <vrf-id>         VRF
   <neighbor-id>    Peer ID
 
-### Atrributes
+### Attributes
 
-  allow-my-asn     If enabled, it is acceptable for a received AS_PATH to
-                   contain the ASN of the local system
-  private-as       If 'none', no specific action is taken. This is the
-                   default. If set to 'remove', any private ASNs in the Update
-                   to the peer are removed. If set to 'replace' any private
-                   ASNs in the Update to the peer are replaced with the ASN of
-                   the local system.
-  replace-peer-as  If on, if the AS_PATH in an outgoing Update contains the
-                   peer's ASN, it is replaced with the local system's ASN
-                  
+  allow-my-asn     If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+
+  private-as       If 'none', no specific action is taken. This is the default. If set to 'remove', any private ASNs in the Update to the peer are removed. If set to 'replace' any private ASNs in the Update to the peer are replaced with the ASN of the local system.
+
+  replace-peer-as  If on, if the AS_PATH in an outgoing Update contains the peer's ASN, it is replaced with the local system's ASN
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn
 
 ### Usage
@@ -10317,14 +10540,14 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
-  occurrences    Indicates max number of occurrences of the local system's AS
-                 number in the received AS_PATH
-  origin         If on, a received AS_PATH containing the ASN of the local
-                 system is allowed, but only if it is the originating AS
-                 
+
+  occurrences    Indicates max number of occurrences of the local system's AS number in the received AS_PATH
+
+  origin         If on, a received AS_PATH containing the ASN of the local system is allowed, but only if it is the originating AS
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn occurrences 1-10
 
 ### Usage
@@ -10339,7 +10562,7 @@ product: Cumulus Linux
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy
 
 ### Usage
@@ -10355,11 +10578,12 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
   inbound        Inbound l2vpn-evpn policy
+
   outbound       Outbound l2vpn-evpn policy
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy inbound
 
 ### Usage
@@ -10375,10 +10599,10 @@ product: Cumulus Linux
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Atrributes
+### Attributes
 
   route-map      Route map to apply to Updates received from this peer
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy outbound
 
 ### Usage
@@ -10394,12 +10618,11 @@ product: Cumulus Linux
   <vrf-id>        VRF
   <neighbor-id>   Peer ID
 
-### Atrributes
+### Attributes
 
   route-map       Route map to apply to Updates to be sent to this peer
-  unsuppress-map  Route map used to unsuppress routes selectively when
-                  advertising to this peer; these are routes that have been
-                  suppressed due to aggregation configuration.
+
+  unsuppress-map  Route map used to unsuppress routes selectively when advertising to this peer; these are routes that have been suppressed due to aggregation configuration.
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> timers
 
@@ -10416,22 +10639,16 @@ product: Cumulus Linux
   <vrf-id>             VRF
   <neighbor-id>        Peer ID
 
-### Atrributes
+### Attributes
 
-  connection-retry     Time interval at which connection attempts are retried
-                       upon a failure. If `auto`, the global value is used.
-                       This is the default.
-  hold                 Hold timer. If `none`, keepalives from the peer are not
-                       tracked and the peering session will not experience a
-                       hold timeout. If `auto`, the global value is used. This
-                       is the default.
-  keepalive            Keepalive timer. If `none`, keepalives are not sent. If
-                       `auto`, the global value is used. This is the default.
-  route-advertisement  Time between route advertisements (BGP Updates). A non-
-                       zero value allows route advertisements to be delayed
-                       and batched. If `auto`, the global value is used. This
-                       is the default.
-                       
+  connection-retry     Time interval at which connection attempts are retried upon a failure. If `auto`, the global value is used.This is the default.
+
+  hold                 Hold timer. If `none`, keepalives from the peer are not tracked and the peering session will not experience a hold timeout. If `auto`, the global value is used. This is the default.
+
+  keepalive            Keepalive timer. If `none`, keepalives are not sent. If `auto`, the global value is used. This is the default.
+
+  route-advertisement  Time between route advertisements (BGP Updates). A non- zero value allows route advertisements to be delayed and batched. If `auto`, the global value is used. This is the default.
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> password none
 
 ### Usage
@@ -10446,7 +10663,7 @@ product: Cumulus Linux
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
-  
+
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> description none
 
 ### Usage
@@ -10475,7 +10692,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
+
 ## nv set vrf <vrf-id> router static <route-id>
 
 ### Usage
@@ -10491,11 +10708,14 @@ product: Cumulus Linux
   <vrf-id>        VRF
   <route-id>      IP prefix
 
-### Atrributes
+### Attributes
 
   distance        Paths
+
   via             Nexthops
+
   tag             Path tag
+
   address-family  Route address family
 
 ## nv set vrf <vrf-id> router static <route-id> distance <distance-id>
@@ -10514,9 +10734,10 @@ product: Cumulus Linux
   <route-id>     IP prefix
   <distance-id>  A path distance
 
-### Atrributes
+### Attributes
 
   via            Nexthops
+
   tag            Path tag
 
 ## nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id>
@@ -10536,17 +10757,24 @@ product: Cumulus Linux
   <distance-id>  A path distance
   <via-id>       IP address, interface, or "blackhole".
 
-### Atrributes
+### Attributes
 
   flag           Nexthop flags
+
   interface      The interface to use for egress. If not specified, it will
+
                  automatically be determined. Only valid when the via's type
+
                  is ipv4-address or ipv6-address.
+
   vrf            The VRF to use for egress. If not specified, the route's VRF
+
                  will be used. Only valid when the via's type is ipv4-address
+
                  or ipv6-address.
+
   type           The type of via
-  
+
 ## nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> flag onlink
 
 ### Usage
@@ -10563,7 +10791,7 @@ product: Cumulus Linux
   <route-id>     IP prefix
   <distance-id>  A path distance
   <via-id>       IP address, interface, or "blackhole".
-  
+
 ## nv set vrf <vrf-id> router static <route-id> via <via-id>
 
 ### Usage
@@ -10580,17 +10808,16 @@ product: Cumulus Linux
   <route-id>  IP prefix
   <via-id>    IP address, interface, or "blackhole".
 
-### Atrributes
+### Attributes
 
   flag        Nexthop flags
-  interface   The interface to use for egress. If not specified, it will
-              automatically be determined. Only valid when the via's type is
-              ipv4-address or ipv6-address.
-  vrf         The VRF to use for egress. If not specified, the route's VRF
-              will be used. Only valid when the via's type is ipv4-address or
-              ipv6-address.
+
+  interface   The interface to use for egress. If not specified, it will automatically be determined. Only valid when the via's type is ipv4-address or ipv6-address.
+
+  vrf         The VRF to use for egress. If not specified, the route's VRF will be used. Only valid when the via's type is ipv4-address or ipv6-address.
+
   type        The type of via
-  
+
 ## nv set vrf <vrf-id> router static <route-id> via <via-id> flag onlink
 
 ### Usage
@@ -10606,7 +10833,7 @@ product: Cumulus Linux
   <vrf-id>    VRF
   <route-id>  IP prefix
   <via-id>    IP address, interface, or "blackhole".
-  
+
 ## nv set vrf <vrf-id> router pim
 
 ### Usage
@@ -10621,16 +10848,18 @@ product: Cumulus Linux
 
   <vrf-id>         VRF
 
-### Atrributes
+### Attributes
 
   timers           Timers
-  ecmp             Choose all available ECMP paths for a particular RPF. If
-                   'off', the first nexthop found will be used. This is the
-                   default.
+
+  ecmp             Choose all available ECMP paths for a particular RPF. If 'off', the first nexthop found will be used. This is the default.
+
   msdp-mesh-group  To connect multiple PIM-SM multicast domains using RPs.
+
   address-family   Address family specific configuration
+
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
-  
+
 ## nv set vrf <vrf-id> router pim timers
 
 ### Usage
@@ -10645,11 +10874,12 @@ product: Cumulus Linux
 
   <vrf-id>       VRF
 
-### Atrributes
+### Attributes
 
   keep-alive     Timeout value for S,G stream, in seconds
+
   rp-keep-alive  RP's timeout value, in seconds
-  
+
 ## nv set vrf <vrf-id> router pim ecmp
 
 ### Usage
@@ -10664,13 +10894,12 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
-  rebalance   Recalculate all multicast streams in the event of path going
-              down. If 'off', only the impacted streams by path going down
-              recalculated. This is the default.
-              
+
+  rebalance   Recalculate all multicast streams in the event of path going down. If 'off', only the impacted streams by path going down recalculated. This is the default.
+
 ## nv set vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id>
 
 ### Usage
@@ -10686,9 +10915,10 @@ product: Cumulus Linux
   <vrf-id>              VRF
   <msdp-mesh-group-id>  MSDP mesh group name
 
-### Atrributes
+### Attributes
 
   member-address        Set of member-address
+
   source-address        MSDP mesh-group source IP address
 
 ## nv set vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> member-address <mesh-member-id>
@@ -10736,10 +10966,10 @@ product: Cumulus Linux
 
   <vrf-id>      VRF
 
-### Atrributes
+### Attributes
 
   ipv4-unicast  IPv4 unicast address family
-  
+
 ## nv set vrf <vrf-id> router pim address-family ipv4-unicast
 
 ### Usage
@@ -10754,16 +10984,17 @@ product: Cumulus Linux
 
   <vrf-id>              VRF
 
-### Atrributes
+### Attributes
 
   spt-switchover        Build shortest path tree towards source.
+
   rp                    RP address and associated group range.
-  register-accept-list  Prefix-list to specifiy source list to accept register
-                        message.
-  send-v6-secondary     Use IPv6 secondary address to transmit PIM Hello
-                        packets. It allows to use IPv6 nexthop in RPF lookup.
-  ssm-prefix-list       Prefix-list to specificy Source Specific Multicast
-                        Group range.
+
+  register-accept-list  Prefix-list to specifiy source list to accept register message.
+
+  send-v6-secondary     Use IPv6 secondary address to transmit PIM Hello  packets. It allows to use IPv6 nexthop in RPF lookup.
+
+  ssm-prefix-list       Prefix-list to specificy Source Specific Multicast Group range.
 
 ## nv set vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover
 
@@ -10779,11 +11010,12 @@ product: Cumulus Linux
 
   <vrf-id>     VRF
 
-### Atrributes
+### Attributes
 
   action       PIM shortest path switchover (SPT) action.
+
   prefix-list  Prefix-list to specify multicast group range.
-  
+
 ## nv set vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover prefix-list <instance-name>
 
 ### Usage
@@ -10797,7 +11029,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
+
 ## nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id>
 
 ### Usage
@@ -10813,11 +11045,12 @@ product: Cumulus Linux
   <vrf-id>     VRF
   <rp-id>      RP IP address
 
-### Atrributes
+### Attributes
 
   group-range  Set of group range assocaited to RP.
+
   prefix-list  Prefix-list to specify multicast group range.
-  
+
 ## nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range <group-range-id>
 
 ### Usage
@@ -10848,7 +11081,7 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
   <rp-id>     RP IP address
-  
+
 ## nv set vrf <vrf-id> router ospf
 
 ### Usage
@@ -10863,23 +11096,30 @@ product: Cumulus Linux
 
   <vrf-id>             VRF
 
-### Atrributes
+### Attributes
 
   area                 OSPF areas
+
   default-originate    Advertise a default route as external lsa
+
   distance             Administrative distance for installation into the rib
-  max-metric           Set maximum metric value in router lsa to make stub
-                       router
+
+  max-metric           Set maximum metric value in router lsa to make stub router
+
   log                  Log configuration
+
   redistribute         Route redistribute
+
   timers               Timers
+
   enable               Turn the feature 'on' or 'off'. The default is 'off'.
-  reference-bandwidth  Used to determine link cost/metric value relative to
-                       defined reference.
+
+  reference-bandwidth  Used to determine link cost/metric value relative to defined reference.
+
   rfc1583-compatible   RFC1583 compatible
-  router-id            BGP router-id for this VRF. If "auto", inherit from the
-                       global config. This is the default.
-                       
+
+  router-id            BGP router-id for this VRF. If "auto", inherit from the global config. This is the default.
+
 ## nv set vrf <vrf-id> router ospf area <area-id>
 
 ### Usage
@@ -10895,12 +11135,16 @@ product: Cumulus Linux
   <vrf-id>          VRF
   <area-id>         Area
 
-### Atrributes
+### Attributes
 
   filter-list       Filters networks between OSPF areas
+
   range             Area ranges
+
   network           Area networks
+
   default-lsa-cost  Default LSA cost. Only applies when type is non-normal.
+
   type              The type of area
 
 ## nv set vrf <vrf-id> router ospf area <area-id> filter-list
@@ -10918,11 +11162,12 @@ product: Cumulus Linux
   <vrf-id>    VRF
   <area-id>   Area
 
-### Atrributes
+### Attributes
 
   in          prefix-list to use as an inbound filter.
+
   out         prefix-list to use as an inbound filter.
-  
+
 ## nv set vrf <vrf-id> router ospf area <area-id> range <range-id>
 
 ### Usage
@@ -10939,13 +11184,12 @@ product: Cumulus Linux
   <area-id>   Area
   <range-id>  Range
 
-### Atrributes
+### Attributes
 
-  cost        User specified metric advertised for this summary lsa. If
-              'auto', operational default value is derived from components.
-              This is the default.
+  cost        User specified metric advertised for this summary lsa. If 'auto', operational default value is derived from components. This is the default.
+
   suppress    If on, filters out components but does not advertise prefix
-  
+
 ## nv set vrf <vrf-id> router ospf area <area-id> network <network-id>
 
 ### Usage
@@ -10961,7 +11205,7 @@ product: Cumulus Linux
   <vrf-id>      VRF
   <area-id>     Area
   <network-id>  Network
-  
+
 ## nv set vrf <vrf-id> router ospf area <area-id> default-lsa-cost 0-16777215
 
 ### Usage
@@ -10976,7 +11220,7 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
   <area-id>   Area
-  
+
 ## nv set vrf <vrf-id> router ospf default-originate
 
 ### Usage
@@ -10991,15 +11235,18 @@ product: Cumulus Linux
 
   <vrf-id>     VRF
 
-### Atrributes
+### Attributes
 
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
+
   metric       Metric value for destination routing protocol
+
   metric-type  Set OSPF External Type 1/2 metrics
+
   route-map    Optional policy to apply to this advertisement
-  always       When 'off', only advertise default route if one exists in the
-               rib. This is the default.
-               
+
+  always       When 'off', only advertise default route if one exists in the rib. This is the default.
+
 ## nv set vrf <vrf-id> router ospf default-originate metric-type 1-2
 
 ### Usage
@@ -11013,7 +11260,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
+
 ## nv set vrf <vrf-id> router ospf distance
 
 ### Usage
@@ -11028,12 +11275,14 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   external    External
+
   inter-area  Inter-area
+
   intra-area  Intra-area
-  
+
 ## nv set vrf <vrf-id> router ospf max-metric
 
 ### Usage
@@ -11048,10 +11297,12 @@ product: Cumulus Linux
 
   <vrf-id>        VRF
 
-### Atrributes
+### Attributes
 
   administrative  Administratively applied, for an indefinite period
+
   on-shutdown     Advertise stub-router prior to full shutdown of OSPF
+
   on-startup      Automatically advertise stub Router-LSA on startup of OSPF
 
 ## nv set vrf <vrf-id> router ospf log
@@ -11068,10 +11319,10 @@ product: Cumulus Linux
 
   <vrf-id>           VRF
 
-### Atrributes
+### Attributes
 
   adjacency-changes  Log adjacency changes
-  
+
 ## nv set vrf <vrf-id> router ospf redistribute
 
 ### Usage
@@ -11086,13 +11337,16 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   static      Route redistribute of static routes
+
   connected   Route redistribute of connected routes
+
   kernel      Route redistribute of kernel routes
+
   bgp         Route redistribute of bgp routes
-  
+
 ## nv set vrf <vrf-id> router ospf redistribute static
 
 ### Usage
@@ -11107,13 +11361,16 @@ product: Cumulus Linux
 
   <vrf-id>     VRF
 
-### Atrributes
+### Attributes
 
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
+
   metric       Metric value for destination routing protocol
+
   metric-type  Set OSPF External Type 1/2 metrics
+
   route-map    Optional policy to apply to this advertisement
-  
+
 ## nv set vrf <vrf-id> router ospf redistribute static metric-type 1-2
 
 ### Usage
@@ -11127,7 +11384,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
+
 ## nv set vrf <vrf-id> router ospf redistribute connected
 
 ### Usage
@@ -11142,13 +11399,16 @@ product: Cumulus Linux
 
   <vrf-id>     VRF
 
-### Atrributes
+### Attributes
 
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
+
   metric       Metric value for destination routing protocol
+
   metric-type  Set OSPF External Type 1/2 metrics
+
   route-map    Optional policy to apply to this advertisement
-  
+
 ## nv set vrf <vrf-id> router ospf redistribute connected metric-type 1-2
 
 ### Usage
@@ -11162,7 +11422,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
+
 ## nv set vrf <vrf-id> router ospf redistribute kernel
 
 ### Usage
@@ -11177,13 +11437,16 @@ product: Cumulus Linux
 
   <vrf-id>     VRF
 
-### Atrributes
+### Attributes
 
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
+
   metric       Metric value for destination routing protocol
+
   metric-type  Set OSPF External Type 1/2 metrics
+
   route-map    Optional policy to apply to this advertisement
-  
+
 ## nv set vrf <vrf-id> router ospf redistribute kernel metric-type 1-2
 
 ### Usage
@@ -11197,7 +11460,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
+
 ## nv set vrf <vrf-id> router ospf redistribute bgp
 
 ### Usage
@@ -11212,13 +11475,16 @@ product: Cumulus Linux
 
   <vrf-id>     VRF
 
-### Atrributes
+### Attributes
 
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
+
   metric       Metric value for destination routing protocol
+
   metric-type  Set OSPF External Type 1/2 metrics
+
   route-map    Optional policy to apply to this advertisement
-  
+
 ## nv set vrf <vrf-id> router ospf redistribute bgp metric-type 1-2
 
 ### Usage
@@ -11232,7 +11498,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
+
 ## nv set vrf <vrf-id> router ospf timers
 
 ### Usage
@@ -11247,14 +11513,16 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   lsa         LSA timers
+
   spf         SPF timers
-  refresh     defines interval (sec) to re-send lsas to keep from aging out.
-              If 'auto', inherited from global. This is the default.
-              
+
+  refresh     defines interval (sec) to re-send lsas to keep from aging out. If 'auto', inherited from global. This is the default.
+
 ## nv set vrf <vrf-id> router ospf timers lsa
+
 
 ### Usage
 
@@ -11268,13 +11536,12 @@ product: Cumulus Linux
 
   <vrf-id>     VRF
 
-### Atrributes
+### Attributes
 
-  min-arrival  Minimum delay in receiving new version of a LSA. If 'auto',
-               inherited from global. This is the default.
-  throttle     Delay (msec) between sending LSAs. If 'auto', inherited from
-               global. This is the default.
-               
+  min-arrival  Minimum delay in receiving new version of a LSA. If 'auto', inherited from global. This is the default.
+
+  throttle     Delay (msec) between sending LSAs. If 'auto', inherited from  global. This is the default.
+
 ## nv set vrf <vrf-id> router ospf timers spf
 
 ### Usage
@@ -11289,15 +11556,14 @@ product: Cumulus Linux
 
   <vrf-id>      VRF
 
-### Atrributes
+### Attributes
 
-  delay         Delay (msec) from first change received till SPF calculation.
-                If 'auto', inherited from global. This is the default.
-  holdtime      Initial hold time (msec) between consecutive SPF calculations.
-                If 'auto', inherited from global. This is the default.
-  max-holdtime  Maximum hold time (msec) between consecutive SPF calculations.
-                If 'auto', inherited from global. This is the default.
-                
+  delay         Delay (msec) from first change received till SPF calculation. If 'auto', inherited from global. This is the default.
+
+  holdtime      Initial hold time (msec) between consecutive SPF calculations. If 'auto', inherited from global. This is the default.
+
+  max-holdtime  Maximum hold time (msec) between consecutive SPF calculations. If 'auto', inherited from global. This is the default.
+
 ## nv set vrf <vrf-id> router ospf reference-bandwidth 1-4294967
 
 ### Usage
@@ -11311,8 +11577,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
-  
+
 ## nv set vrf <vrf-id> ptp
 
 ### Usage
@@ -11327,10 +11592,10 @@ product: Cumulus Linux
 
   <vrf-id>    VRF
 
-### Atrributes
+### Attributes
 
   enable      Turn the feature 'on' or 'off'. The default is 'on'.
-  
+
 ## nv set vrf <vrf-id> table auto
 
 ### Usage
@@ -11344,7 +11609,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <vrf-id>    VRF
-  
+
 ## nv set nve
 
 ### Usage
@@ -11355,10 +11620,10 @@ product: Cumulus Linux
 
   Network Virtualization configuration and operational info
 
-### Atrributes
+### Attributes
 
   vxlan       Global VxLAN configuration and operational properties.
-  
+
 ## nv set nve vxlan
 
 ### Usage
@@ -11369,22 +11634,24 @@ product: Cumulus Linux
 
   VxLAN
 
-### Atrributes
+### Attributes
 
   mlag             VxLAN specific MLAG address
+
   source           Source address
-  flooding         Configuration to specify how BUM traffic in the overlay is
-                   handled. This applies to all overlays (VNIs), but can be
-                   overridden by VNI-specific configuration.
+
+  flooding         Configuration to specify how BUM traffic in the overlay is handled. This applies to all overlays (VNIs), but can be overridden by VNI-specific configuration.
+
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
-  arp-nd-suppress  Controls dynamic MAC learning over VXLAN tunnels based on
-                   received packets. This applies to all overlays (VNIs).
-  mac-learning     Controls dynamic MAC learning over VXLAN tunnels based on
-                   received packets. This applies to all overlays (VNIs), but
-                   can be overridden by VNI-specific configuration.
+
+  arp-nd-suppress  Controls dynamic MAC learning over VXLAN tunnels based on received packets. This applies to all overlays (VNIs).
+
+  mac-learning     Controls dynamic MAC learning over VXLAN tunnels based on received packets. This applies to all overlays (VNIs), but can be overridden by VNI-specific configuration.
+
   mtu              interface mtu
+
   port             UDP port for VXLAN frames
-  
+
 ## nv set nve vxlan mlag
 
 ### Usage
@@ -11395,7 +11662,7 @@ product: Cumulus Linux
 
   VxLAN specfic MLAG configuration
 
-### Atrributes
+### Attributes
 
   shared-address  shared anycast address for MLAG peers
 
@@ -11409,11 +11676,10 @@ product: Cumulus Linux
 
   Source address
 
-### Atrributes
+### Attributes
 
-  address     IP addresses of this node's VTEP or 'auto'. If 'auto', use the
-              primary IP loopback (not 127.0.0.1). This is the default.
-              
+  address     IP addresses of this node's VTEP or 'auto'. If 'auto', use the primary IP loopback (not 127.0.0.1). This is the default.
+
 ## nv set nve vxlan flooding
 
 ### Usage
@@ -11424,15 +11690,13 @@ product: Cumulus Linux
 
   Handling of BUM traffic
 
-### Atrributes
+### Attributes
 
-  head-end-replication  BUM traffic is replicated and individual copies sent
-                        to remote destinations.
+  head-end-replication  BUM traffic is replicated and individual copies sent to remote destinations.
+
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
-  multicast-group       BUM traffic is sent to the specified multicast group
-                        and will be received by receivers who are interested
-                        in that group. This usually requires PIM-SM to be used
-                        in the network.
+
+  multicast-group       BUM traffic is sent to the specified multicast group and will be received by receivers who are interested in that group. This usually requires PIM-SM to be used in the network.
 
 ## nv set nve vxlan flooding head-end-replication <hrep-id>
 
@@ -11447,7 +11711,7 @@ product: Cumulus Linux
 ### Identifiers
 
   <hrep-id>   IPv4 unicast addresses or "evpn"
-  
+
 ## nv set nve vxlan flooding multicast-group <ipv4-multicast>
 
 ### Usage
@@ -11457,7 +11721,7 @@ product: Cumulus Linux
 ### Description
 
   BUM traffic is sent to the specified multicast group and will be received by receivers who are interested in that group. This usually requires PIM-SM to be used in the network.
-  
+
 ## nv set nve vxlan port 1024-65535
 
 ### Usage
@@ -11467,7 +11731,7 @@ product: Cumulus Linux
 ### Description
 
   UDP port for VXLAN frames
-  
+
 ## nv set nve vxlan mtu 552-9216
 
 ### Usage
@@ -11477,7 +11741,7 @@ product: Cumulus Linux
 ### Description
 
   interface mtu
-  
+
 ## nv set acl <acl-id>
 
 ### Usage
@@ -11492,11 +11756,12 @@ product: Cumulus Linux
 
   <acl-id>    ACL ID
 
-### Atrributes
+### Attributes
 
   rule        acl rule
+
   type        acl type
-  
+
 ## nv set acl <acl-id> rule <rule-id>
 
 ### Usage
@@ -11512,11 +11777,12 @@ product: Cumulus Linux
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
-### Atrributes
+### Attributes
 
   match       ACL match criteria
+
   action      ACL action
-  
+
 ## nv set acl <acl-id> rule <rule-id> match
 
 ### Usage
@@ -11532,11 +11798,12 @@ product: Cumulus Linux
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
-### Atrributes
+### Attributes
 
   ip          IPv4 and IPv6 match
+
   mac         MAC match
-  
+
 ## nv set acl <acl-id> rule <rule-id> match ip
 
 ### Usage
@@ -11552,20 +11819,30 @@ product: Cumulus Linux
   <acl-id>     ACL ID
   <rule-id>    ACL rule number
 
-### Atrributes
+### Attributes
 
   source-port  source port
+
   dest-port    destination port
+
   fragment     Fragment packets
+
   ecn          ECN protocol packet match
+
   tcp          TCP protocol packet match
+
   dest-ip      Destination IP address
+
   dscp         DSCP
+
   icmp-type    ICMP message type
+
   icmpv6-type  ICMPv6 message type
+
   protocol     IP protocol
+
   source-ip    Source IP address
-  
+
 ## nv set acl <acl-id> rule <rule-id> match ip source-port <ip-port-id>
 
 ### Usage
@@ -11581,7 +11858,7 @@ product: Cumulus Linux
   <acl-id>      ACL ID
   <rule-id>     ACL rule number
   <ip-port-id>  IP port ID
-  
+
 ## nv set acl <acl-id> rule <rule-id> match ip dest-port <ip-port-id>
 
 ### Usage
@@ -11612,7 +11889,7 @@ product: Cumulus Linux
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
-  
+
 ## nv set acl <acl-id> rule <rule-id> match ip ecn
 
 ### Usage
@@ -11628,11 +11905,12 @@ product: Cumulus Linux
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
-### Atrributes
+### Attributes
 
   flags       ECN protocol flags
+
   ip-ect      IP ECT
-  
+
 ## nv set acl <acl-id> rule <rule-id> match ip ecn ip-ect 0-3
 
 ### Usage
@@ -11647,7 +11925,7 @@ product: Cumulus Linux
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
-  
+
 ## nv set acl <acl-id> rule <rule-id> match ip tcp
 
 ### Usage
@@ -11663,12 +11941,14 @@ product: Cumulus Linux
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
-### Atrributes
+### Attributes
 
   flags       TCP protocol flags
+
   mask        TCP protocol flag mask
+
   state       TCP state
-  
+
 ## nv set acl <acl-id> rule <rule-id> match ip tcp state established
 
 ### Usage
@@ -11683,7 +11963,7 @@ product: Cumulus Linux
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
-  
+
 ## nv set acl <acl-id> rule <rule-id> match mac
 
 ### Usage
@@ -11699,16 +11979,22 @@ product: Cumulus Linux
   <acl-id>         ACL ID
   <rule-id>        ACL rule number
 
-### Atrributes
+### Attributes
 
   dest-mac         Destination MAC address
+
   dest-mac-mask    Destination MAC address mask
+
   protocol         MAC protocol
+
   source-mac       Source MAC address
+
   source-mac-mask  Source MAC address mask
-  vlan             VLAN ID  -h, --help
+
+  vlan             VLAN ID
 
 ## nv set acl <acl-id> rule <rule-id> match mac source-mac-mask <mac>
+
 
 ### Usage
 
@@ -11722,7 +12008,7 @@ product: Cumulus Linux
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
-  
+
 ## nv set acl <acl-id> rule <rule-id> match mac dest-mac-mask <mac>
 
 ### Usage
@@ -11737,7 +12023,7 @@ product: Cumulus Linux
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
-  
+
 ## nv set acl <acl-id> rule <rule-id> match mac vlan 1-4094
 
 ### Usage
@@ -11752,7 +12038,7 @@ product: Cumulus Linux
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
-  
+
 ## nv set acl <acl-id> rule <rule-id> action
 
 ### Usage
@@ -11768,16 +12054,23 @@ product: Cumulus Linux
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
-### Atrributes
+### Attributes
+
 
   permit      Permit action
+
   deny        Deny action
+
   log         Provides ACL logging facility
+
   set         Modify the packet with appropriate values
+
   erspan      ERSPAN session
+
   police      policing of packets/bytes
+
   span        SPAN session
-  
+
 ## nv set acl <acl-id> rule <rule-id> action permit
 
 ### Usage
@@ -11792,8 +12085,9 @@ product: Cumulus Linux
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
-  
+
 ## nv set acl <acl-id> rule <rule-id> action deny
+
 
 ### Usage
 
@@ -11807,7 +12101,7 @@ product: Cumulus Linux
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
-  
+
 ## nv set acl <acl-id> rule <rule-id> action log
 
 ### Usage
@@ -11822,7 +12116,7 @@ product: Cumulus Linux
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
-  
+
 ## nv set acl <acl-id> rule <rule-id> action set
 
 ### Usage
@@ -11838,12 +12132,14 @@ product: Cumulus Linux
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
-### Atrributes
+### Attributes
 
   class       Sets the class value for classification of the packet
+
   cos         Set the CoS value
+
   dscp        Sets/Modifies the DSCP value in the packet
-  
+
 ## nv set acl <acl-id> rule <rule-id> action set class 0-7
 
 ### Usage
@@ -11858,7 +12154,7 @@ product: Cumulus Linux
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
-  
+
 ## nv set acl <acl-id> rule <rule-id> action set cos 0-7
 
 ### Usage
@@ -11873,8 +12169,9 @@ product: Cumulus Linux
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
-  
+
 ## nv set acl <acl-id> rule <rule-id> action erspan
+
 
 ### Usage
 
@@ -11889,12 +12186,14 @@ product: Cumulus Linux
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
-### Atrributes
+### Attributes
 
   dest-ip     Destination IP address
+
   source-ip   Source IP address
+
   ttl         Time to Live
-  
+
 ## nv set acl <acl-id> rule <rule-id> action erspan ttl 1-255
 
 ### Usage
@@ -11909,7 +12208,7 @@ product: Cumulus Linux
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
-  
+
 ## nv set acl <acl-id> rule <rule-id> action police
 
 ### Usage
@@ -11925,13 +12224,16 @@ product: Cumulus Linux
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
-### Atrributes
+### Attributes
 
   burst       Policing burst value
+
   mode        Policing mode
+
   rate        Policing rate value
-  
+
 ## nv set acl <acl-id> rule <rule-id> action police burst 1-2147483647
+
 
 ### Usage
 
@@ -11945,7 +12247,7 @@ product: Cumulus Linux
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
-  
+
 ## nv set acl <acl-id> rule <rule-id> action police rate 1-2147483647
 
 ### Usage
@@ -11960,7 +12262,7 @@ product: Cumulus Linux
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
-  
+
 ## nv set acl <acl-id> rule <rule-id> action span <interface-name>
 
 ### Usage

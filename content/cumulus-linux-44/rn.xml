@@ -26,7 +26,7 @@
 </tr>
 <tr>
 <td>3070672</td>
-<td>TACACS Command Authorization results in the a {{Command not authorized}} error.</td>
+<td>TACACS Command Authorization results in a traceback error and command is not executed</td>
 <td>4.4.0-4.4.3</td>
 <td></td>
 </tr>
@@ -2070,7 +2070,7 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 </tr>
 <tr>
 <td>3070672</td>
-<td>TACACS Command Authorization results in the a {{Command not authorized}} error.</td>
+<td>TACACS Command Authorization results in a traceback error and command is not executed</td>
 <td>4.4.0-4.4.3</td>
 <td></td>
 </tr>
@@ -4354,7 +4354,7 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 </tr>
 <tr>
 <td>3070672</td>
-<td>TACACS Command Authorization results in the a {{Command not authorized}} error.</td>
+<td>TACACS Command Authorization results in a traceback error and command is not executed</td>
 <td>4.4.0-4.4.3</td>
 <td></td>
 </tr>

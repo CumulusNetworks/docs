@@ -202,7 +202,6 @@ Maximum Ports Power Support
 {{< tab "Spectrum-3">}}
 
 {{< tabs "Spectrum-3_platforms ">}}
-<!-- THIS PLATFORM IS PLANNED TO Sep21 (CL4.4.1)
 {< tab "SN4410* ">}}
 
 {<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4410.png">}}
@@ -211,8 +210,11 @@ Spectrum-3 1RU ToR
 - Switching Capacity: 8.0Tbps
 - Ports: 24x200G QSFP56-DD (48x100GbE NRZ) + 8x400GbE QSFP56-DD (PAM4)
 
+Maximum Ports Power Support 
+- QSFP56-DD Ports 1-32 up to 12.0W
+
 {< /tab >}}
--->
+
 {{< tab "SN4600C ">}}
 
 {{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4600c.png">}}
@@ -226,8 +228,6 @@ Maximum Ports Power Support
 - QSFP28 Ports 49-64 up to 5.0W
 
 {{< /tab >}}
-<!-- THIS PLATFORM IS PLANNED TO Sep21 (CL4.4.1)
-
 {< tab "SN4600 ">}}
 
 {<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4600.png">}}
@@ -240,8 +240,6 @@ Maximum Ports Power Support
 - QSFP56 Ports 1-64 up to 5.0W
 
 {< /tab >}}
--->
-
 {{< tab "SN4700 ">}}
 
 {{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4700.png">}}
@@ -254,7 +252,6 @@ Maximum Ports Power Support
 - QSFP56-DD Ports 1-32 up to 12.0W (in C2P airflow models)
 
 {{< /tab >}}
-<!-- THIS PLATFORM IS PLANNED TO NOV21 (CL5.1)
 {< tab "SN4800 ">}}
 
 {<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4800.png">}}
@@ -263,8 +260,11 @@ Spectrum-3 4RU Modular Spine/Super-Spine
 - Switching Capacity: 25.6Tbps (8.4Bpps)
 - Ports: 128x100GbE QSFP28 (NRZ) / 64x200GbE QSFP56 (PAM4) / 32x400GbE QSFP56-DD (PAM4)
 
+Maximum Ports Power Support 
+- QSFP28 Ports 2,4-12,14,16 on each card up to 3.5W
+- QSFP28 Ports 1,3,13,15 on each card up to 5.0W
+  
 {< /tab >}}
--->
 {{< /tab >}}
 
 {{< /tabs >}}
@@ -359,7 +359,6 @@ All splitted/non-splitted ports also support lower 10/25/40GbE speeds. For lower
 
 {{< /tab >}}
 
-<!-- SN4410 PLATFORM IS PLANNED TO Sep21 (CL4.4.1?)
 {< tab "SN4410">}}
 
 {<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4410_split.png">}}
@@ -373,8 +372,6 @@ All splitted/non-splitted ports also support lower 10/25/40GbE speeds. For lower
 
 {< /tab >}}
 
--->
-
 {{< tab "SN4600C">}}
 
 {{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4600c_split.png">}}
@@ -384,7 +381,6 @@ This platform has 32 or 64 QSFP28 (NRZ) splittable ports.
 Each QSFP28 (100GbE) port can be split into 4xSFP28 (4x25GbE). But, in this case, the port above or below it will be blocked. All ports are splittable into 2xQSFP28 (2x50GbE) without blocking ports.
 
 {{< /tab >}}
-<!-- SN4600 PLATFORM IS PLANNED TO Sep21 (CL4.4.1?)
 {< tab "SN4600">}}
 
 {<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4600_split.png">}}
@@ -397,7 +393,6 @@ All splitted/non-splitted ports also support lower 10/25/40GbE speeds. For lower
 
 {< /tab >}}
 
--->
 {{< tab "SN4700">}}
 
 {{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4700_split.png">}}

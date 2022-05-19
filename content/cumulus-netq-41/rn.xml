@@ -69,6 +69,12 @@ systemd: netq-agent.service: Main process exited, code=exited, status=1/FAILURE
 <td></td>
 </tr>
 <tr>
+<td>2817749</td>
+<td>If you configure an event suppression rule with {{is_active false}}, the event will no longer be displayed with the {{netq show events-config}} command.</td>
+<td>4.0.1-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2815596</td>
 <td>The NetQ Cloud VM for KVM hypervisors installer and opta-check fail because the minimum disk requirements do not meet the default image settings. To work around this issue, increase the disk space from 32GB to 64GB before you run the {{netq bootstrap}} command.
 
@@ -247,6 +253,12 @@ CVE-2021-45105: Apache Log4j2 versions 2.0-alpha1 through 2.16.0 (excluding 2.12
 <td>2843640</td>
 <td>In NetQ clustered environments, the network snapshot feature may fail.</td>
 <td>4.0.0-4.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2817749</td>
+<td>If you configure an event suppression rule with {{is_active false}}, the event will no longer be displayed with the {{netq show events-config}} command.</td>
+<td>4.0.1-4.1.0</td>
 <td></td>
 </tr>
 <tr>

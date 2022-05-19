@@ -375,7 +375,8 @@ A VLAN subinterface only receives traffic tagged for that VLAN; therefore, swp1.
 In an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} configuration, the peer link interface that connects the two switches in the MLAG pair has a VLAN subinterface named 4094. The peerlink.4094 subinterface only receives traffic tagged for VLAN 4094.
 
 {{%notice note%}}
-If you are using a VLAN subinterface, do not add that VLAN under the bridge stanza.
+- If you are using a VLAN subinterface, do not add that VLAN under the bridge stanza.
+- You cannot use NVUE commands to create a routed subinterface for VLAN 1.
 {{%/notice%}}
 
 ## Parent Interfaces

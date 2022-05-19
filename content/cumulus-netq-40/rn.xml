@@ -19,6 +19,12 @@
 <td></td>
 </tr>
 <tr>
+<td>2817749</td>
+<td>If you configure an event suppression rule with {{is_active false}}, the event will no longer be displayed with the {{netq show events-config}} command.</td>
+<td>4.0.1-4.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2815596</td>
 <td>The NetQ Cloud VM for KVM hypervisors installer and opta-check fail because the minimum disk requirements do not meet the default image settings. To work around this issue, increase the disk space from 32GB to 64GB before you run the {{netq bootstrap}} command.
 

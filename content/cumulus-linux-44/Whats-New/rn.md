@@ -17,7 +17,7 @@ pdfhidden: True
 | <a name="3073668"></a> [3073668](#3073668) <a name="3073668"></a> <br /> | On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap. | 3.7.12-3.7.16, 4.3.0-4.4.3 | |
 | <a name="3073649"></a> [3073649](#3073649) <a name="3073649"></a> <br /> | In an EVPN-MH configuration, the switch fails to redirect tagged frames with the CoS bits set. | 4.4.0-4.4.3, 5.0.0-5.1.0 | |
 | <a name="3072613"></a> [3072613](#3072613) <a name="3072613"></a> <br /> | When  you delete a bond interface with NCLU, BGP peer group configuration is removed. | 3.7.15-3.7.16, 4.3.0-4.4.3 | |
-| <a name="3070672"></a> [3070672](#3070672) <a name="3070672"></a> <br /> | TACACS Command Authorization results in the a <code>Command not authorized</code> error. | 4.4.0-4.4.3 | |
+| <a name="3070672"></a> [3070672](#3070672) <a name="3070672"></a> <br /> | TACACS Command Authorization results in a traceback error and command is not executed | 4.4.0-4.4.3 | |
 | <a name="3069065"></a> [3069065](#3069065) <a name="3069065"></a> <br /> | When you run Ansible playbooks with NCLU commands, Ansible bypasses TACACS Command Authorization. | 4.3.0-4.4.3 | |
 | <a name="3067803"></a> [3067803](#3067803) <a name="3067803"></a> <br /> | A change to the BFD timer does not apply to the existing session in PTM. | 3.7.15-3.7.16, 4.1.1-4.4.3, 5.0.0-5.1.0 | |
 | <a name="3066798"></a> [3066798](#3066798) <a name="3066798"></a> <br /> | After a switch reboot, the hardware redirect for EVPN-MH does not work if the EVPN-MH bond is down. | 4.4.3 | |
@@ -308,7 +308,7 @@ pdfhidden: True
 | <a name="3073668"></a> [3073668](#3073668) <a name="3073668"></a> <br /> | On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap. | 3.7.12-3.7.16, 4.3.0-4.4.3 | |
 | <a name="3073649"></a> [3073649](#3073649) <a name="3073649"></a> <br /> | In an EVPN-MH configuration, the switch fails to redirect tagged frames with the CoS bits set. | 4.4.0-4.4.3, 5.0.0-5.1.0 | |
 | <a name="3072613"></a> [3072613](#3072613) <a name="3072613"></a> <br /> | When  you delete a bond interface with NCLU, BGP peer group configuration is removed. | 3.7.15-3.7.16, 4.3.0-4.4.3 | |
-| <a name="3070672"></a> [3070672](#3070672) <a name="3070672"></a> <br /> | TACACS Command Authorization results in the a <code>Command not authorized</code> error. | 4.4.0-4.4.3 | |
+| <a name="3070672"></a> [3070672](#3070672) <a name="3070672"></a> <br /> | TACACS Command Authorization results in a traceback error and command is not executed | 4.4.0-4.4.3 | |
 | <a name="3069065"></a> [3069065](#3069065) <a name="3069065"></a> <br /> | When you run Ansible playbooks with NCLU commands, Ansible bypasses TACACS Command Authorization. | 4.3.0-4.4.3 | |
 | <a name="3067803"></a> [3067803](#3067803) <a name="3067803"></a> <br /> | A change to the BFD timer does not apply to the existing session in PTM. | 3.7.15-3.7.16, 4.1.1-4.4.3, 5.0.0-5.1.0 | |
 | <a name="3066704"></a> [3066704](#3066704) <a name="3066704"></a> <br /> | The <code>hostapd</code> service stops working if an 802.1X interface goes up and down many times over a long period of time<br />To work around this issue, restart the <code>hostapd</code> service with the <code>systemctl restart hostapd</code> command. | 3.7.15-3.7.16, 4.3.0-4.4.3 | |
@@ -628,7 +628,7 @@ pdfhidden: True
 | <a name="3073668"></a> [3073668](#3073668) <a name="3073668"></a> <br /> | On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap. | 3.7.12-3.7.16, 4.3.0-4.4.3 | |
 | <a name="3073649"></a> [3073649](#3073649) <a name="3073649"></a> <br /> | In an EVPN-MH configuration, the switch fails to redirect tagged frames with the CoS bits set. | 4.4.0-4.4.3, 5.0.0-5.1.0 | |
 | <a name="3072613"></a> [3072613](#3072613) <a name="3072613"></a> <br /> | When  you delete a bond interface with NCLU, BGP peer group configuration is removed. | 3.7.15-3.7.16, 4.3.0-4.4.3 | |
-| <a name="3070672"></a> [3070672](#3070672) <a name="3070672"></a> <br /> | TACACS Command Authorization results in the a <code>Command not authorized</code> error. | 4.4.0-4.4.3 | |
+| <a name="3070672"></a> [3070672](#3070672) <a name="3070672"></a> <br /> | TACACS Command Authorization results in a traceback error and command is not executed | 4.4.0-4.4.3 | |
 | <a name="3069065"></a> [3069065](#3069065) <a name="3069065"></a> <br /> | When you run Ansible playbooks with NCLU commands, Ansible bypasses TACACS Command Authorization. | 4.3.0-4.4.3 | |
 | <a name="3067803"></a> [3067803](#3067803) <a name="3067803"></a> <br /> | A change to the BFD timer does not apply to the existing session in PTM. | 3.7.15-3.7.16, 4.1.1-4.4.3, 5.0.0-5.1.0 | |
 | <a name="3066704"></a> [3066704](#3066704) <a name="3066704"></a> <br /> | The <code>hostapd</code> service stops working if an 802.1X interface goes up and down many times over a long period of time<br />To work around this issue, restart the <code>hostapd</code> service with the <code>systemctl restart hostapd</code> command. | 3.7.15-3.7.16, 4.3.0-4.4.3 | |

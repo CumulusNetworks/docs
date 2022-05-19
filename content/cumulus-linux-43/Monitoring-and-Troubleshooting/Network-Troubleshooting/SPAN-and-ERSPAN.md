@@ -15,9 +15,9 @@ ERSPAN (Encapsulated Remote SPAN) enables the mirrored packets to be sent to a m
 ```
 
 You can configure SPAN and ERSPAN in one of the following ways:
-- With NCLU commands
-- With ACL rules
-- Manually by editing the `/etc/cumulus/switchd.d/port-mirror.conf` file (for advanced users)
+- With NCLU commands (Mellanox switches only)
+- With ACL rules (Mellanox and Broadcom switches)
+- Manually by editing the `/etc/cumulus/switchd.d/port-mirror.conf` file - for advanced users (Mellanox switches only)
 
 All three methods are described below.
 

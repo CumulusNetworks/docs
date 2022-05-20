@@ -9,7 +9,7 @@ pageID: 8362938
 {{%notice note%}}
 Cumulus Linux does not support:
 - BFD demand mode
-- Dynamic BFD timer negotiation
+- Dynamic BFD timer negotiation (a change to the BFD timer does not apply to the existing session)
 {{%/notice%}}
 
 ## BFD Multihop Routed Paths

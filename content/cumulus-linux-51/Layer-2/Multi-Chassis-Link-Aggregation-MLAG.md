@@ -333,6 +333,7 @@ cumulus@leaf02:~$ sudo ifreload -a
 - Do *not* add VLAN 4094 to the bridge VLAN list; You **cannot** configure VLAN 4094 for the peer link subinterface as a bridged VLAN with bridge VIDs under the bridge.
 - Do not use 169.254.0.1 as the MLAG peer link IP address; Cumulus Linux uses this address for {{<link url="Border-Gateway-Protocol-BGP#bgp-unnumbered" text="BGP unnumbered">}} interfaces.
 - When you configure MLAG manually in the `/etc/network/interfaces` file, the changes take effect when you bring the peer link interface up with the `sudo ifreload -a` command. Do **not** use `systemctl restart clagd.service` to apply the new configuration.
+- The MLAG bond does not support layer 3 configuration.
 {{%/notice%}}
 
 MLAG synchronizes the dynamic state between the two peer switches but it does not synchronize the switch configurations. After modifying the configuration of one peer switch, you must make the same changes to the configuration on the other peer switch. This applies to all configuration changes, including:

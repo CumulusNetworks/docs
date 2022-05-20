@@ -25,12 +25,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3070672</td>
-<td>TACACS Command Authorization results in the a {{Command not authorized}} error.</td>
-<td>4.4.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3069065</td>
 <td>When you run Ansible playbooks with NCLU commands, Ansible bypasses TACACS Command Authorization.</td>
 <td>4.3.0-4.4.3</td>
@@ -75,6 +69,13 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>3053197</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
 <td>4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3053063</td>
+<td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
+To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2069,12 +2070,6 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <td></td>
 </tr>
 <tr>
-<td>3070672</td>
-<td>TACACS Command Authorization results in the a {{Command not authorized}} error.</td>
-<td>4.4.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3069065</td>
 <td>When you run Ansible playbooks with NCLU commands, Ansible bypasses TACACS Command Authorization.</td>
 <td>4.3.0-4.4.3</td>
@@ -2113,6 +2108,13 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>3053197</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
 <td>4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3053063</td>
+<td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
+To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4353,12 +4355,6 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <td></td>
 </tr>
 <tr>
-<td>3070672</td>
-<td>TACACS Command Authorization results in the a {{Command not authorized}} error.</td>
-<td>4.4.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3069065</td>
 <td>When you run Ansible playbooks with NCLU commands, Ansible bypasses TACACS Command Authorization.</td>
 <td>4.3.0-4.4.3</td>
@@ -4388,6 +4384,13 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>3053197</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
 <td>4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3053063</td>
+<td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
+To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>

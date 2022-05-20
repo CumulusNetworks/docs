@@ -45,6 +45,13 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td></td>
 </tr>
 <tr>
+<td>3053063</td>
+<td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
+To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3041306</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
@@ -66,13 +73,6 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td>3020254</td>
 <td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3017190</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
-To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
-<td>3.7.10-3.7.16</td>
 <td></td>
 </tr>
 <tr>
@@ -2566,6 +2566,13 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td></td>
 </tr>
 <tr>
+<td>3053063</td>
+<td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
+To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3041306</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
@@ -2619,13 +2626,6 @@ Fixed: 7.2d-6.4+deb8u1</td>
 <td>3020254</td>
 <td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3017190</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
-To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
-<td>3.7.10-3.7.16</td>
 <td></td>
 </tr>
 <tr>
@@ -5745,13 +5745,6 @@ Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>3017190</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
-To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
-<td>3.7.10-3.7.16</td>
-<td></td>
-</tr>
-<tr>
 <td>3014447</td>
 <td>CVE-2022-22719 CVE-2022-22720 CVE-2022-22721 CVE-2022-23943: Several vulnerabilities have been discovered in the Apache HTTP server, which could result in denial of service, request smuggling or buffer overflows.
 Vulnerable: &lt;= 2.4.10-10+deb8u21
@@ -8619,13 +8612,6 @@ Vulnerable: 7.2d-6.4
 Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>3017190</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
-To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
-<td>3.7.10-3.7.16</td>
-<td></td>
 </tr>
 <tr>
 <td>3014447</td>
@@ -12016,13 +12002,6 @@ Vulnerable: 7.2d-6.4
 Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>3017190</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
-To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
-<td>3.7.10-3.7.16</td>
-<td></td>
 </tr>
 <tr>
 <td>3014447</td>
@@ -15628,13 +15607,6 @@ Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>3017190</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
-To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
-<td>3.7.10-3.7.16</td>
-<td></td>
-</tr>
-<tr>
 <td>3014447</td>
 <td>CVE-2022-22719 CVE-2022-22720 CVE-2022-22721 CVE-2022-23943: Several vulnerabilities have been discovered in the Apache HTTP server, which could result in denial of service, request smuggling or buffer overflows.
 Vulnerable: &lt;= 2.4.10-10+deb8u21
@@ -19098,13 +19070,6 @@ Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>3017190</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
-To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
-<td>3.7.10-3.7.16</td>
-<td></td>
-</tr>
-<tr>
 <td>3014447</td>
 <td>CVE-2022-22719 CVE-2022-22720 CVE-2022-22721 CVE-2022-23943: Several vulnerabilities have been discovered in the Apache HTTP server, which could result in denial of service, request smuggling or buffer overflows.
 Vulnerable: &lt;= 2.4.10-10+deb8u21
@@ -22091,13 +22056,6 @@ Vulnerable: 7.2d-6.4
 Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>3017190</td>
-<td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
-To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
-<td>3.7.10-3.7.16</td>
-<td></td>
 </tr>
 <tr>
 <td>3014447</td>

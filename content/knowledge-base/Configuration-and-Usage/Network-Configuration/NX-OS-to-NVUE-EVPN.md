@@ -3,7 +3,7 @@ title: NX-OS to NVUE EVPN Configuration
 weight: 300
 ---
 
-Cumulus Linux version 4.4 introduces a new CLI called NVUE; a complete object model for Cumulus Linux. NVUE makes translating configurations from one vendor to another much more reliable the first time you use Cumulus Linux and across Cumulus Linux versions.
+Cumulus Linux version 4.4 introduces a new CLI called [NVUE]({{<ref "/cumulus-linux-51/System-Configuration/NVIDIA-User-Experience-NVUE/" >}}); a complete object model for Cumulus Linux. NVUE makes translating configurations from one vendor to another much more reliable the first time you use Cumulus Linux and across Cumulus Linux versions.
 
 This KB article describes how to take a basic NX-OS configuration for EVPN and translate it to NVUE. The example confiuration derives from [this Cisco Configuration Example](https://www.cisco.com/c/en/us/support/docs/ip/border-gateway-protocol-bgp/200952-Configuration-and-Verification-VXLAN-wit.html).
 

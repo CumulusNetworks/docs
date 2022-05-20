@@ -23,14 +23,13 @@ To add users, log in to the {{<exlink url="https://support.mellanox.com/s/" tex
 
 - **Standard:** Can view account information, user information, license keys, download files, and submit support tickets.
 - **Admin:** Can edit account information, add and remove users, assign user roles, activate licenses, download files, and submit support tickets.
-<!-- vale off -->
+<!--
 ## I am trying to access the support portal but it says that my account is not enabled for Zendesk. What should I do?
-<!-- vale on -->
 You need at least one active Software Update and Support contract (paid or trial) to access the support portal. Contact <webmaster@cumulusnetworks.com>:
 
 - If you do not have an active contract, or,
 - If your company has an active contract, but no one granted you support portal access permissions yet.
-<!-- vale off -->
+-->
 ## How can I reset my account password?
 <!-- vale on -->
 You can reset your password {{<exlink url="https://support.mellanox.com/s/login/" text="here">}}.

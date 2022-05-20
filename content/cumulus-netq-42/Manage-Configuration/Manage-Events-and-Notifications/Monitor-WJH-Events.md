@@ -175,13 +175,13 @@ cumulus@netq-ts:~$ netq config add agent wjh-drop-filter drop-type router drop-r
 
 ## View What Just Happened Metrics
 
-You can view the WJH metrics from the NetQ UI or the NetQ CLI.
+You can view the WJH metrics from the NetQ UI or the NetQ CLI. WJH metrics are visible on the WJH card and the Events card. To view the metrics on the Events card, open the medium-sized card and hover over most-active devices. Use a swiping motion on a touchpad to reveal WJH events. For a more detailed view, open the WJH card.
 
 {{<tabs "WJH metrics">}}
 
 {{<tab "NetQ UI">}}
 
-View the **What Just Happened** card on your workbench:
+Open the **What Just Happened** card on your workbench:
 
    {{<figure src="/images/netq/WJH-default-card.png" width="200">}}
 

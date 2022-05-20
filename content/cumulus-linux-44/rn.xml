@@ -7,6 +7,13 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3077737</td>
+<td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
+To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3073668</td>
 <td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
@@ -22,6 +29,12 @@
 <td>3072613</td>
 <td>When  you delete a bond interface with NCLU, BGP peer group configuration is removed.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3070672</td>
+<td>TACACS Command Authorization results in a traceback error and command is not executed</td>
+<td>4.4.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -91,12 +104,6 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>3041306</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3040080</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
@@ -136,12 +143,6 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td>3021886</td>
 <td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down ({{ifdown}} and up {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
 <td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3021877</td>
-<td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -924,12 +925,6 @@ Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
 <td>3.7.14-3.7.16, 4.0.0-4.4.3</td>
 <td></td>
-</tr>
-<tr>
-<td>2663119</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
 </tr>
 <tr>
 <td>2654804</td>
@@ -2052,6 +2047,13 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3077737</td>
+<td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
+To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3073668</td>
 <td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
@@ -2067,6 +2069,12 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <td>3072613</td>
 <td>When  you delete a bond interface with NCLU, BGP peer group configuration is removed.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3070672</td>
+<td>TACACS Command Authorization results in a traceback error and command is not executed</td>
+<td>4.4.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2130,12 +2138,6 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>3041306</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3040080</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
@@ -2151,12 +2153,6 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td>3021886</td>
 <td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down ({{ifdown}} and up {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
 <td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3021877</td>
-<td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4337,6 +4333,13 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3077737</td>
+<td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
+To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3073668</td>
 <td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
@@ -4352,6 +4355,12 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <td>3072613</td>
 <td>When  you delete a bond interface with NCLU, BGP peer group configuration is removed.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3070672</td>
+<td>TACACS Command Authorization results in a traceback error and command is not executed</td>
+<td>4.4.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4404,12 +4413,6 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>3041306</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3031235</td>

@@ -202,9 +202,9 @@ Maximum Ports Power Support
 {{< tab "Spectrum-3">}}
 
 {{< tabs "Spectrum-3_platforms ">}}
-{< tab "SN4410* ">}}
+{{< tab "SN4410* ">}}
 
-{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4410.png">}}
+{{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4410.png">}}
 
 Spectrum-3 1RU ToR
 - Switching Capacity: 8.0Tbps
@@ -213,7 +213,7 @@ Spectrum-3 1RU ToR
 Maximum Ports Power Support 
 - QSFP56-DD Ports 1-32 up to 12.0W
 
-{< /tab >}}
+{{< /tab >}}
 
 {{< tab "SN4600C ">}}
 
@@ -228,9 +228,9 @@ Maximum Ports Power Support
 - QSFP28 Ports 49-64 up to 5.0W
 
 {{< /tab >}}
-{< tab "SN4600 ">}}
+{{< tab "SN4600 ">}}
 
-{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4600.png">}}
+{{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4600.png">}}
 
 Spectrum-3 2RU Spine/Super-Spine
 - Switching Capacity: 25.6Tbps (8.4Bpps)
@@ -239,7 +239,7 @@ Spectrum-3 2RU Spine/Super-Spine
 Maximum Ports Power Support 
 - QSFP56 Ports 1-64 up to 5.0W
 
-{< /tab >}}
+{{< /tab >}}
 {{< tab "SN4700 ">}}
 
 {{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4700.png">}}
@@ -252,9 +252,9 @@ Maximum Ports Power Support
 - QSFP56-DD Ports 1-32 up to 12.0W (in C2P airflow models)
 
 {{< /tab >}}
-{< tab "SN4800 ">}}
+{{< tab "SN4800 ">}}
 
-{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4800.png">}}
+{{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4800.png">}}
 
 Spectrum-3 4RU Modular Spine/Super-Spine
 - Switching Capacity: 25.6Tbps (8.4Bpps)
@@ -264,7 +264,7 @@ Maximum Ports Power Support
 - QSFP28 Ports 2,4-12,14,16 on each card up to 3.5W
 - QSFP28 Ports 1,3,13,15 on each card up to 5.0W
   
-{< /tab >}}
+{{< /tab >}}
 {{< /tab >}}
 
 {{< /tabs >}}

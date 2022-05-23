@@ -58,7 +58,7 @@ Run the following command to view the NetQ Agent version.
 cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 ```
 
-{{<netq-install/agent-version version="4.1.0" opsys="cl">}}
+{{<netq-install/agent-version version="4.2.0" opsys="cl">}}
 
 {{</tab>}}
 
@@ -68,7 +68,7 @@ cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 ```
 
-{{<netq-install/agent-version version="4.1.0" opsys="ub">}}
+{{<netq-install/agent-version version="4.2.0" opsys="ub">}}
 
 {{</tab>}}
 
@@ -78,7 +78,7 @@ root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 root@rhel7:~# rpm -q -netq-agent
 ```
 
-{{<netq-install/agent-version version="4.1.0" opsys="rh">}} <!-- UPDATE ME! -->
+{{<netq-install/agent-version version="4.2.0" opsys="rh">}} <!-- UPDATE ME! -->
 
 {{</tab>}}
 

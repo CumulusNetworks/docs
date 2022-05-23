@@ -1,3 +1,34 @@
+{{- if eq (.Get "version") "4.2.0" -}}
+
+You should see version 4.2.0 and update 38 in the results.
+
+{{- if eq (.Get "opsys") "cl" -}}
+
+<ul>
+    <li>Cumulus Linux 3.7.x</li>
+        <ul>
+            <li>netq-agent_<strong>4.2.0</strong>-cl3u<strong>38</strong>~1652812115.25f4ac0_armel.deb	</li>
+            <li>netq-agent_<strong>4.2.0</strong>-cl3u<strong>38</strong>~1652817482.25f4ac0_amd64.deb</li>
+        </ul>
+    <li>Cumulus Linux 4.0.0 and later</li>
+        <ul>
+            <li>netq-agent_<strong>4.2.0</strong>-cl4u<strong>38</strong>~1652820696.25f4ac06_armel.deb</li>
+            <li>netq-agent_<strong>4.2.0</strong>-cl4u<strong>38</strong>~1652817584.25f4ac06_amd64.deb</li>
+        </ul>
+</ul>
+
+{{ end }}
+
+{{- if eq (.Get "opsys") "ub" -}}
+
+<ul>
+    <li>netq-agent_<strong>4.2.0</strong>-ub18.04u<strong>38</strong>~1652817271.25f4ac0_amd64.deb</li>    
+</ul>
+
+{{ end }}
+{{ end }}
+
+
 {{- if eq (.Get "version") "4.1.0" -}}
 
 You should see version 4.1.0 and update 36 in the results. For example:

@@ -7,8 +7,31 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3077736</td>
+<td>When you run the NVUE command to change the minimum interval between received BFD control packets or the minimum interval for sending BFD control packets, the configuration apply fails.
+
+cumulus@switch:~$ nv set vrf default router bgp neighbor 10.10.10.2 bfd min-rx-interval 400
+cumulus@switch:~$ nv config apply
+2022-05-04T21:36:10.800975+00:00 switch frrinit.sh16431: Stopped watchfrr.
+</td>
+<td>5.0.1-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3077547</td>
+<td>When you configure multiple multicast RPs with groups matched by prefix lists, Cumulus Linux selects only one of the RPs and this selection is incorrect.</td>
+<td>5.0.1-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3074978</td>
 <td>On NVIDIA Spectrum A1 switches, the datapath might break when there is a QinQ bridge flap.</td>
+<td>5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3074977</td>
+<td>On the on NVIDIA Spectrum-A1 switch, when the QinQ bridge flaps,  you see the warning {{ warning: NetlinkListener RX: RXed unsupported message RTM_SETLINK (type 19)}}.</td>
 <td>5.1.0</td>
 <td></td>
 </tr>
@@ -23,12 +46,6 @@
 <td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously.
 To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
 <td>5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3067803</td>
-<td>A change to the BFD timer does not apply to the existing session in PTM.</td>
-<td>3.7.15-3.7.16, 4.1.1-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -166,12 +183,6 @@ Failure during apply. Ignore? [y/N]
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>3041306</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3040174</td>
 <td>When you configure EVPN multihoming with NVUE on a switch with the Spectrum-a1 ASIC, you must configure the following snippet to enable EVPN multihoming in hardware. This is not required for Spectrum-2 or Spectrum-3 switches.
 
@@ -214,12 +225,6 @@ nv unset system forwarding ecmp-hash: error: unrecognized arguments: source-port
 <td>3021886</td>
 <td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down ({{ifdown}} and up {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
 <td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3021877</td>
-<td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -391,7 +396,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2873053</td>
-<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin admin down ({{ifdown}} and up {{ifup}}),  the VTEP might not program the local MAC addresses in hardware.</td>
+<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down ({{ifdown}} and up {{ifup}}),  the VTEP might not program the local MAC addresses in hardware.</td>
 <td>5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -423,6 +428,12 @@ warning: vni10: possible mis-configuration detected: l2-vni configured with brid
 <td></td>
 </tr>
 <tr>
+<td>2837378</td>
+<td>The switch duplicates DHCP packets that pass through the VTEP.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2823307</td>
 <td>Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
 <td>5.0.0-5.1.0</td>
@@ -439,12 +450,6 @@ warning: vni10: possible mis-configuration detected: l2-vni configured with brid
 <td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
 <td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2663119</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
 </tr>
 </table>
 <table name="Fixed Issues in 5.1.0">

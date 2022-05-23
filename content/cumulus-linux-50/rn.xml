@@ -7,15 +7,26 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3073649</td>
-<td>In an EVPN-MH configuration, the switch fails to redirect tagged frames with the CoS bits set.</td>
-<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td>3077736</td>
+<td>When you run the NVUE command to change the minimum interval between received BFD control packets or the minimum interval for sending BFD control packets, the configuration apply fails.
+
+cumulus@switch:~$ nv set vrf default router bgp neighbor 10.10.10.2 bfd min-rx-interval 400
+cumulus@switch:~$ nv config apply
+2022-05-04T21:36:10.800975+00:00 switch frrinit.sh16431: Stopped watchfrr.
+</td>
+<td>5.0.1-5.1.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3067803</td>
-<td>A change to the BFD timer does not apply to the existing session in PTM.</td>
-<td>3.7.15-3.7.16, 4.1.1-4.4.3, 5.0.0-5.1.0</td>
+<td>3077547</td>
+<td>When you configure multiple multicast RPs with groups matched by prefix lists, Cumulus Linux selects only one of the RPs and this selection is incorrect.</td>
+<td>5.0.1-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3073649</td>
+<td>In an EVPN-MH configuration, the switch fails to redirect tagged frames with the CoS bits set.</td>
+<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -117,12 +128,6 @@ Failure during apply. Ignore? [y/N]
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>3041306</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3040080</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
@@ -133,6 +138,12 @@ Failure during apply. Ignore? [y/N]
 <td>When you configure ACLs on the switch, you might see a {{switchd}} segmentation fault.</td>
 <td>5.0.1</td>
 <td>5.1.0</td>
+</tr>
+<tr>
+<td>3032960</td>
+<td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
+<td>4.4.3, 5.0.0-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3032234</td>
@@ -164,12 +175,6 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 <td>3021886</td>
 <td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down ({{ifdown}} and up {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
 <td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3021877</td>
-<td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -228,8 +233,8 @@ cumulus@leaf01:~$ sudo systemctl start nvued
 <tr>
 <td>3008388</td>
 <td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
-<td>4.4.3, 5.0.0-5.1.0</td>
-<td></td>
+<td>4.4.3-5.0.1</td>
+<td>5.1.0</td>
 </tr>
 <tr>
 <td>3007564</td>
@@ -543,7 +548,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2873053</td>
-<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin admin down ({{ifdown}} and up {{ifup}}),  the VTEP might not program the local MAC addresses in hardware.</td>
+<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down ({{ifdown}} and up {{ifup}}),  the VTEP might not program the local MAC addresses in hardware.</td>
 <td>5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -607,6 +612,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>2847618</td>
 <td>When you enable PIM on VLAN interfaces, multicast throughput might not achieve line rate depending on packet sizes in the multicast flow.</td>
 <td>5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2837378</td>
+<td>The switch duplicates DHCP packets that pass through the VTEP.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -681,12 +692,6 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <td></td>
 </tr>
 <tr>
-<td>3067803</td>
-<td>A change to the BFD timer does not apply to the existing session in PTM.</td>
-<td>3.7.15-3.7.16, 4.1.1-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3060400</td>
 <td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
 To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
@@ -732,15 +737,15 @@ Fixed: 5.2.4-1+deb10u1</td>
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>3041306</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3040080</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3032960</td>
+<td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
+<td>4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -767,12 +772,6 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 <td>3021886</td>
 <td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down ({{ifdown}} and up {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
 <td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3021877</td>
-<td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -814,8 +813,8 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 <tr>
 <td>3008388</td>
 <td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
-<td>4.4.3, 5.0.0-5.1.0</td>
-<td></td>
+<td>4.4.3-5.0.1</td>
+<td>5.1.0</td>
 </tr>
 <tr>
 <td>3007564</td>
@@ -1119,7 +1118,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2873053</td>
-<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin admin down ({{ifdown}} and up {{ifup}}),  the VTEP might not program the local MAC addresses in hardware.</td>
+<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down ({{ifdown}} and up {{ifup}}),  the VTEP might not program the local MAC addresses in hardware.</td>
 <td>5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -1183,6 +1182,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>2847618</td>
 <td>When you enable PIM on VLAN interfaces, multicast throughput might not achieve line rate depending on packet sizes in the multicast flow.</td>
 <td>5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2837378</td>
+<td>The switch duplicates DHCP packets that pass through the VTEP.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1509,7 +1514,8 @@ Fixed: 1.24.1-1+deb 10u1</td>
 </tr>
 <tr>
 <td>2599274</td>
-<td>On Mellanox Spectrum platforms, when there is an MSTP forwarding state change on a bonds (for example, when the state changes from blocking to forwarding), the MSTP hardware table might set some VLANs to blocking when they should be forwarding. A a result, all packets on these VLANs drop at ingress.</td>
+<td>On Mellanox Spectrum switches, when there is an MSTP forwarding state change on a bonds (for example, when the state changes from blocking to forwarding), the MSTP hardware table might set some VLANs to blocking when they should be forwarding. A a result, all packets on these VLANs drop at ingress.
+To recover from this state, flap the bond interface (not the physical swp) by running {{ifdown &lt;bond_name&gt; ; sleep 1 ; ifup &lt;bond_name&gt;}}.</td>
 <td>4.3.0-4.4.3</td>
 </tr>
 <tr>

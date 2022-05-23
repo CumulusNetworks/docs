@@ -1761,6 +1761,23 @@ Fixed: 2.9.4+dfsg1-7+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3077723</td>
+<td>CVE-2022-29155: In OpenLDAP 2.x before 2.5.12 and 2.6.x before 2.6.2, a SQL injection vulnerability exists in the experimental back-sql backend to slapd, via a SQL statement within an LDAP query. This can occur during an LDAP search operation when the search filter is processed, due to a lack of proper escaping.
+Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u6
+Fixed: 2.4.47+dfsg-3+deb10u7</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3077694</td>
+<td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to
+prevent command injection.
+Vulnerable: &lt;= 1.1.1n-0+deb10u1
+Fixed: 1.1.1n-0+deb10u2</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3073668</td>
 <td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
@@ -1776,12 +1793,6 @@ Fixed: 2.9.4+dfsg1-7+deb10u1</td>
 <td>3069065</td>
 <td>When you run Ansible playbooks with NCLU commands, Ansible bypasses TACACS Command Authorization.</td>
 <td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>3067803</td>
-<td>A change to the BFD timer does not apply to the existing session in PTM.</td>
-<td>3.7.15-3.7.16, 4.1.1-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1815,12 +1826,6 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td>3046023</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
 <td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3041306</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2024,12 +2029,6 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
-</tr>
-<tr>
-<td>2923737</td>
-<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
 </tr>
 <tr>
 <td>2902013</td>
@@ -2291,7 +2290,7 @@ Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <tr>
 <td>2837378</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
-<td>4.3.0-4.4.3</td>
+<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2946,7 +2945,8 @@ Fixed: 1.1.1d-0+deb10u6</td>
 </tr>
 <tr>
 <td>2599274</td>
-<td>On Mellanox Spectrum platforms, when there is an MSTP forwarding state change on a bonds (for example, when the state changes from blocking to forwarding), the MSTP hardware table might set some VLANs to blocking when they should be forwarding. A a result, all packets on these VLANs drop at ingress.</td>
+<td>On Mellanox Spectrum switches, when there is an MSTP forwarding state change on a bonds (for example, when the state changes from blocking to forwarding), the MSTP hardware table might set some VLANs to blocking when they should be forwarding. A a result, all packets on these VLANs drop at ingress.
+To recover from this state, flap the bond interface (not the physical swp) by running {{ifdown &lt;bond_name&gt; ; sleep 1 ; ifup &lt;bond_name&gt;}}.</td>
 <td>4.3.0-4.4.3</td>
 <td>5.0.0-5.1.0</td>
 </tr>

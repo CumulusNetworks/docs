@@ -29,10 +29,10 @@ NetQ software installation file names include a version number, in the form of x
 - **TAG** represents a timestamp for the release of the version.
 - **CPU** architecture represents architecture.
 
-This number corresponds to the release version of the software. NetQ requires two Debian packages per release. This example shows the first minor release of the third major release, for the Ubuntu OS and x86\_64 CPU architecture:
+This number corresponds to the release version of the software. NetQ requires two Debian packages per release. For example:
 
-- netq-agent\_4.1.0-cl4u36~1639165028.2c18daee\_amd64.deb
-- netq-apps\_4.1.0-cl4u36~1639165028.2c18daee\_amd64.deb
+- netq-agent\_4.2.0-cl4u38~1652817584.25f4ac06\_amd64.deb
+- netq-apps\_4.2.0-cl4u38~1652817584.25f4ac06\_amd64.deb
 
 ## Release, Support Lifecycle and Support Policy
 

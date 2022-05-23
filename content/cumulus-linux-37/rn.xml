@@ -14,6 +14,57 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td></td>
 </tr>
 <tr>
+<td>3077714</td>
+<td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
+Vulnerable: &lt;= 7.4.488-7+deb8u5
+Fixed: 7.4.488-7+deb8u6</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077712</td>
+<td>CVE-2022-1122: A flaw was found in the opj2_decompress program in openjpeg2 in the way it handles an input directory with a large number of files. When it fails to allocate a buffer to store the filenames of the input directory, it calls free() on an uninitialized pointer, leading to a segmentation fault and a denial of service.
+Vulnerable: &lt;= 2.1.0-2+deb8u13
+Fixed: 2.1.0-2+deb8u14</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077711</td>
+<td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to prevent command injection. This script is executed by update-ca-certificates, from ca-certificates, to re-hash certificates in /etc/ssl/certs/. An attacker able to place files in this directory could execute arbitrary commands with the privileges of the script.
+Vulnerable: &lt;= 1.0.1t-1+deb8u17
+Fixed: 1.0.1t-1+deb8u18</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077709</td>
+<td>CVE-2019-25059: A security vulnerability was found in Ghostscript, the GPL PostScript/PDF interpreter. It was discovered that some privileged Postscript operators remained accessible from various places. For instance a specially crafted PostScript file could use this flaw in order to have access to the file system outside of the constrains imposed by -dSAFER.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u8
+Fixed: 9.26a~dfsg-0+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077708</td>
+<td>CVE-2022-24801: The Twisted Web HTTP 1.1 server parsed several HTTP request constructs more leniently than permitted by RFC 7230. This non-conformant parsing can lead to desync if requests pass through multiple HTTP parsers, potentially resulting in HTTP request smuggling.
+Vulnerable: &lt;= 14.0.2-3+deb8u4
+Fixed: 14.0.2-3+deb8u5</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077707</td>
+<td>The following vulnerabilities have been found in libarchive:
+CVE-2021-31566 symbolic links incorrectly followed when changing modes, times, ACL and flags of a file while extracting an archive
+CVE-2021-23177 extracting a symlink with ACLs modifies ACLs of target
+CVE-2019-19221 out-of-bounds read because of an incorrect mbrtowc or mbtowc call
+Vulnerable: &lt;= 3.1.2-11+deb8u8
+Fixed: 3.1.2-11+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3073668</td>
 <td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
@@ -26,35 +77,9 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td></td>
 </tr>
 <tr>
-<td>3072612</td>
-<td>On the NVIDIA SN2410 switch, you might see intermittent low speed and descriptor read/64, error -32 USB device messages.</td>
-<td>3.7.12-3.7.16</td>
-<td></td>
-</tr>
-<tr>
-<td>3067803</td>
-<td>A change to the BFD timer does not apply to the existing session in PTM.</td>
-<td>3.7.15-3.7.16, 4.1.1-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3066704</td>
 <td>The {{hostapd}} service stops working if an 802.1X interface goes up and down many times over a long period of time.
 To work around this issue, restart the {{hostapd}} service with the {{systemctl restart hostapd}} command.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>3053067</td>
-<td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
-To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
-<td>3.7.15-3.7.16</td>
-<td></td>
-</tr>
-<tr>
-<td>3053063</td>
-<td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
-To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
@@ -2543,6 +2568,57 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td></td>
 </tr>
 <tr>
+<td>3077714</td>
+<td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
+Vulnerable: &lt;= 7.4.488-7+deb8u5
+Fixed: 7.4.488-7+deb8u6</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077712</td>
+<td>CVE-2022-1122: A flaw was found in the opj2_decompress program in openjpeg2 in the way it handles an input directory with a large number of files. When it fails to allocate a buffer to store the filenames of the input directory, it calls free() on an uninitialized pointer, leading to a segmentation fault and a denial of service.
+Vulnerable: &lt;= 2.1.0-2+deb8u13
+Fixed: 2.1.0-2+deb8u14</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077711</td>
+<td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to prevent command injection. This script is executed by update-ca-certificates, from ca-certificates, to re-hash certificates in /etc/ssl/certs/. An attacker able to place files in this directory could execute arbitrary commands with the privileges of the script.
+Vulnerable: &lt;= 1.0.1t-1+deb8u17
+Fixed: 1.0.1t-1+deb8u18</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077709</td>
+<td>CVE-2019-25059: A security vulnerability was found in Ghostscript, the GPL PostScript/PDF interpreter. It was discovered that some privileged Postscript operators remained accessible from various places. For instance a specially crafted PostScript file could use this flaw in order to have access to the file system outside of the constrains imposed by -dSAFER.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u8
+Fixed: 9.26a~dfsg-0+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077708</td>
+<td>CVE-2022-24801: The Twisted Web HTTP 1.1 server parsed several HTTP request constructs more leniently than permitted by RFC 7230. This non-conformant parsing can lead to desync if requests pass through multiple HTTP parsers, potentially resulting in HTTP request smuggling.
+Vulnerable: &lt;= 14.0.2-3+deb8u4
+Fixed: 14.0.2-3+deb8u5</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077707</td>
+<td>The following vulnerabilities have been found in libarchive:
+CVE-2021-31566 symbolic links incorrectly followed when changing modes, times, ACL and flags of a file while extracting an archive
+CVE-2021-23177 extracting a symlink with ACLs modifies ACLs of target
+CVE-2019-19221 out-of-bounds read because of an incorrect mbrtowc or mbtowc call
+Vulnerable: &lt;= 3.1.2-11+deb8u8
+Fixed: 3.1.2-11+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3073668</td>
 <td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
@@ -2555,35 +2631,9 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td></td>
 </tr>
 <tr>
-<td>3072612</td>
-<td>On the NVIDIA SN2410 switch, you might see intermittent low speed and descriptor read/64, error -32 USB device messages.</td>
-<td>3.7.12-3.7.16</td>
-<td></td>
-</tr>
-<tr>
-<td>3067803</td>
-<td>A change to the BFD timer does not apply to the existing session in PTM.</td>
-<td>3.7.15-3.7.16, 4.1.1-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3066704</td>
 <td>The {{hostapd}} service stops working if an 802.1X interface goes up and down many times over a long period of time.
 To work around this issue, restart the {{hostapd}} service with the {{systemctl restart hostapd}} command.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>3053067</td>
-<td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
-To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
-<td>3.7.15-3.7.16</td>
-<td></td>
-</tr>
-<tr>
-<td>3053063</td>
-<td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
-To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
@@ -5717,15 +5767,60 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3073668</td>
-<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td>3077714</td>
+<td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
+Vulnerable: &lt;= 7.4.488-7+deb8u5
+Fixed: 7.4.488-7+deb8u6</td>
+<td>3.7.0-3.7.16</td>
 <td></td>
 </tr>
 <tr>
-<td>3072612</td>
-<td>On the NVIDIA SN2410 switch, you might see intermittent low speed and descriptor read/64, error -32 USB device messages.</td>
-<td>3.7.12-3.7.16</td>
+<td>3077712</td>
+<td>CVE-2022-1122: A flaw was found in the opj2_decompress program in openjpeg2 in the way it handles an input directory with a large number of files. When it fails to allocate a buffer to store the filenames of the input directory, it calls free() on an uninitialized pointer, leading to a segmentation fault and a denial of service.
+Vulnerable: &lt;= 2.1.0-2+deb8u13
+Fixed: 2.1.0-2+deb8u14</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077711</td>
+<td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to prevent command injection. This script is executed by update-ca-certificates, from ca-certificates, to re-hash certificates in /etc/ssl/certs/. An attacker able to place files in this directory could execute arbitrary commands with the privileges of the script.
+Vulnerable: &lt;= 1.0.1t-1+deb8u17
+Fixed: 1.0.1t-1+deb8u18</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077709</td>
+<td>CVE-2019-25059: A security vulnerability was found in Ghostscript, the GPL PostScript/PDF interpreter. It was discovered that some privileged Postscript operators remained accessible from various places. For instance a specially crafted PostScript file could use this flaw in order to have access to the file system outside of the constrains imposed by -dSAFER.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u8
+Fixed: 9.26a~dfsg-0+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077708</td>
+<td>CVE-2022-24801: The Twisted Web HTTP 1.1 server parsed several HTTP request constructs more leniently than permitted by RFC 7230. This non-conformant parsing can lead to desync if requests pass through multiple HTTP parsers, potentially resulting in HTTP request smuggling.
+Vulnerable: &lt;= 14.0.2-3+deb8u4
+Fixed: 14.0.2-3+deb8u5</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077707</td>
+<td>The following vulnerabilities have been found in libarchive:
+CVE-2021-31566 symbolic links incorrectly followed when changing modes, times, ACL and flags of a file while extracting an archive
+CVE-2021-23177 extracting a symlink with ACLs modifies ACLs of target
+CVE-2019-19221 out-of-bounds read because of an incorrect mbrtowc or mbtowc call
+Vulnerable: &lt;= 3.1.2-11+deb8u8
+Fixed: 3.1.2-11+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3073668</td>
+<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -8593,15 +8688,60 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3073668</td>
-<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td>3077714</td>
+<td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
+Vulnerable: &lt;= 7.4.488-7+deb8u5
+Fixed: 7.4.488-7+deb8u6</td>
+<td>3.7.0-3.7.16</td>
 <td></td>
 </tr>
 <tr>
-<td>3072612</td>
-<td>On the NVIDIA SN2410 switch, you might see intermittent low speed and descriptor read/64, error -32 USB device messages.</td>
-<td>3.7.12-3.7.16</td>
+<td>3077712</td>
+<td>CVE-2022-1122: A flaw was found in the opj2_decompress program in openjpeg2 in the way it handles an input directory with a large number of files. When it fails to allocate a buffer to store the filenames of the input directory, it calls free() on an uninitialized pointer, leading to a segmentation fault and a denial of service.
+Vulnerable: &lt;= 2.1.0-2+deb8u13
+Fixed: 2.1.0-2+deb8u14</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077711</td>
+<td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to prevent command injection. This script is executed by update-ca-certificates, from ca-certificates, to re-hash certificates in /etc/ssl/certs/. An attacker able to place files in this directory could execute arbitrary commands with the privileges of the script.
+Vulnerable: &lt;= 1.0.1t-1+deb8u17
+Fixed: 1.0.1t-1+deb8u18</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077709</td>
+<td>CVE-2019-25059: A security vulnerability was found in Ghostscript, the GPL PostScript/PDF interpreter. It was discovered that some privileged Postscript operators remained accessible from various places. For instance a specially crafted PostScript file could use this flaw in order to have access to the file system outside of the constrains imposed by -dSAFER.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u8
+Fixed: 9.26a~dfsg-0+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077708</td>
+<td>CVE-2022-24801: The Twisted Web HTTP 1.1 server parsed several HTTP request constructs more leniently than permitted by RFC 7230. This non-conformant parsing can lead to desync if requests pass through multiple HTTP parsers, potentially resulting in HTTP request smuggling.
+Vulnerable: &lt;= 14.0.2-3+deb8u4
+Fixed: 14.0.2-3+deb8u5</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077707</td>
+<td>The following vulnerabilities have been found in libarchive:
+CVE-2021-31566 symbolic links incorrectly followed when changing modes, times, ACL and flags of a file while extracting an archive
+CVE-2021-23177 extracting a symlink with ACLs modifies ACLs of target
+CVE-2019-19221 out-of-bounds read because of an incorrect mbrtowc or mbtowc call
+Vulnerable: &lt;= 3.1.2-11+deb8u8
+Fixed: 3.1.2-11+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3073668</td>
+<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -11990,15 +12130,60 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3073668</td>
-<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td>3077714</td>
+<td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
+Vulnerable: &lt;= 7.4.488-7+deb8u5
+Fixed: 7.4.488-7+deb8u6</td>
+<td>3.7.0-3.7.16</td>
 <td></td>
 </tr>
 <tr>
-<td>3072612</td>
-<td>On the NVIDIA SN2410 switch, you might see intermittent low speed and descriptor read/64, error -32 USB device messages.</td>
-<td>3.7.12-3.7.16</td>
+<td>3077712</td>
+<td>CVE-2022-1122: A flaw was found in the opj2_decompress program in openjpeg2 in the way it handles an input directory with a large number of files. When it fails to allocate a buffer to store the filenames of the input directory, it calls free() on an uninitialized pointer, leading to a segmentation fault and a denial of service.
+Vulnerable: &lt;= 2.1.0-2+deb8u13
+Fixed: 2.1.0-2+deb8u14</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077711</td>
+<td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to prevent command injection. This script is executed by update-ca-certificates, from ca-certificates, to re-hash certificates in /etc/ssl/certs/. An attacker able to place files in this directory could execute arbitrary commands with the privileges of the script.
+Vulnerable: &lt;= 1.0.1t-1+deb8u17
+Fixed: 1.0.1t-1+deb8u18</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077709</td>
+<td>CVE-2019-25059: A security vulnerability was found in Ghostscript, the GPL PostScript/PDF interpreter. It was discovered that some privileged Postscript operators remained accessible from various places. For instance a specially crafted PostScript file could use this flaw in order to have access to the file system outside of the constrains imposed by -dSAFER.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u8
+Fixed: 9.26a~dfsg-0+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077708</td>
+<td>CVE-2022-24801: The Twisted Web HTTP 1.1 server parsed several HTTP request constructs more leniently than permitted by RFC 7230. This non-conformant parsing can lead to desync if requests pass through multiple HTTP parsers, potentially resulting in HTTP request smuggling.
+Vulnerable: &lt;= 14.0.2-3+deb8u4
+Fixed: 14.0.2-3+deb8u5</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077707</td>
+<td>The following vulnerabilities have been found in libarchive:
+CVE-2021-31566 symbolic links incorrectly followed when changing modes, times, ACL and flags of a file while extracting an archive
+CVE-2021-23177 extracting a symlink with ACLs modifies ACLs of target
+CVE-2019-19221 out-of-bounds read because of an incorrect mbrtowc or mbtowc call
+Vulnerable: &lt;= 3.1.2-11+deb8u8
+Fixed: 3.1.2-11+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3073668</td>
+<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -15600,15 +15785,60 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3073668</td>
-<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td>3077714</td>
+<td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
+Vulnerable: &lt;= 7.4.488-7+deb8u5
+Fixed: 7.4.488-7+deb8u6</td>
+<td>3.7.0-3.7.16</td>
 <td></td>
 </tr>
 <tr>
-<td>3072612</td>
-<td>On the NVIDIA SN2410 switch, you might see intermittent low speed and descriptor read/64, error -32 USB device messages.</td>
-<td>3.7.12-3.7.16</td>
+<td>3077712</td>
+<td>CVE-2022-1122: A flaw was found in the opj2_decompress program in openjpeg2 in the way it handles an input directory with a large number of files. When it fails to allocate a buffer to store the filenames of the input directory, it calls free() on an uninitialized pointer, leading to a segmentation fault and a denial of service.
+Vulnerable: &lt;= 2.1.0-2+deb8u13
+Fixed: 2.1.0-2+deb8u14</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077711</td>
+<td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to prevent command injection. This script is executed by update-ca-certificates, from ca-certificates, to re-hash certificates in /etc/ssl/certs/. An attacker able to place files in this directory could execute arbitrary commands with the privileges of the script.
+Vulnerable: &lt;= 1.0.1t-1+deb8u17
+Fixed: 1.0.1t-1+deb8u18</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077709</td>
+<td>CVE-2019-25059: A security vulnerability was found in Ghostscript, the GPL PostScript/PDF interpreter. It was discovered that some privileged Postscript operators remained accessible from various places. For instance a specially crafted PostScript file could use this flaw in order to have access to the file system outside of the constrains imposed by -dSAFER.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u8
+Fixed: 9.26a~dfsg-0+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077708</td>
+<td>CVE-2022-24801: The Twisted Web HTTP 1.1 server parsed several HTTP request constructs more leniently than permitted by RFC 7230. This non-conformant parsing can lead to desync if requests pass through multiple HTTP parsers, potentially resulting in HTTP request smuggling.
+Vulnerable: &lt;= 14.0.2-3+deb8u4
+Fixed: 14.0.2-3+deb8u5</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077707</td>
+<td>The following vulnerabilities have been found in libarchive:
+CVE-2021-31566 symbolic links incorrectly followed when changing modes, times, ACL and flags of a file while extracting an archive
+CVE-2021-23177 extracting a symlink with ACLs modifies ACLs of target
+CVE-2019-19221 out-of-bounds read because of an incorrect mbrtowc or mbtowc call
+Vulnerable: &lt;= 3.1.2-11+deb8u8
+Fixed: 3.1.2-11+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3073668</td>
+<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -19074,6 +19304,57 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3077714</td>
+<td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
+Vulnerable: &lt;= 7.4.488-7+deb8u5
+Fixed: 7.4.488-7+deb8u6</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077712</td>
+<td>CVE-2022-1122: A flaw was found in the opj2_decompress program in openjpeg2 in the way it handles an input directory with a large number of files. When it fails to allocate a buffer to store the filenames of the input directory, it calls free() on an uninitialized pointer, leading to a segmentation fault and a denial of service.
+Vulnerable: &lt;= 2.1.0-2+deb8u13
+Fixed: 2.1.0-2+deb8u14</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077711</td>
+<td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to prevent command injection. This script is executed by update-ca-certificates, from ca-certificates, to re-hash certificates in /etc/ssl/certs/. An attacker able to place files in this directory could execute arbitrary commands with the privileges of the script.
+Vulnerable: &lt;= 1.0.1t-1+deb8u17
+Fixed: 1.0.1t-1+deb8u18</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077709</td>
+<td>CVE-2019-25059: A security vulnerability was found in Ghostscript, the GPL PostScript/PDF interpreter. It was discovered that some privileged Postscript operators remained accessible from various places. For instance a specially crafted PostScript file could use this flaw in order to have access to the file system outside of the constrains imposed by -dSAFER.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u8
+Fixed: 9.26a~dfsg-0+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077708</td>
+<td>CVE-2022-24801: The Twisted Web HTTP 1.1 server parsed several HTTP request constructs more leniently than permitted by RFC 7230. This non-conformant parsing can lead to desync if requests pass through multiple HTTP parsers, potentially resulting in HTTP request smuggling.
+Vulnerable: &lt;= 14.0.2-3+deb8u4
+Fixed: 14.0.2-3+deb8u5</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077707</td>
+<td>The following vulnerabilities have been found in libarchive:
+CVE-2021-31566 symbolic links incorrectly followed when changing modes, times, ACL and flags of a file while extracting an archive
+CVE-2021-23177 extracting a symlink with ACLs modifies ACLs of target
+CVE-2019-19221 out-of-bounds read because of an incorrect mbrtowc or mbtowc call
+Vulnerable: &lt;= 3.1.2-11+deb8u8
+Fixed: 3.1.2-11+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3061439</td>
 <td>CVE-2016-9840: inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.
 Vulnerable: 1.2.8.dfsg-2
@@ -22061,6 +22342,57 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3077714</td>
+<td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
+Vulnerable: &lt;= 7.4.488-7+deb8u5
+Fixed: 7.4.488-7+deb8u6</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077712</td>
+<td>CVE-2022-1122: A flaw was found in the opj2_decompress program in openjpeg2 in the way it handles an input directory with a large number of files. When it fails to allocate a buffer to store the filenames of the input directory, it calls free() on an uninitialized pointer, leading to a segmentation fault and a denial of service.
+Vulnerable: &lt;= 2.1.0-2+deb8u13
+Fixed: 2.1.0-2+deb8u14</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077711</td>
+<td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to prevent command injection. This script is executed by update-ca-certificates, from ca-certificates, to re-hash certificates in /etc/ssl/certs/. An attacker able to place files in this directory could execute arbitrary commands with the privileges of the script.
+Vulnerable: &lt;= 1.0.1t-1+deb8u17
+Fixed: 1.0.1t-1+deb8u18</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077709</td>
+<td>CVE-2019-25059: A security vulnerability was found in Ghostscript, the GPL PostScript/PDF interpreter. It was discovered that some privileged Postscript operators remained accessible from various places. For instance a specially crafted PostScript file could use this flaw in order to have access to the file system outside of the constrains imposed by -dSAFER.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u8
+Fixed: 9.26a~dfsg-0+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077708</td>
+<td>CVE-2022-24801: The Twisted Web HTTP 1.1 server parsed several HTTP request constructs more leniently than permitted by RFC 7230. This non-conformant parsing can lead to desync if requests pass through multiple HTTP parsers, potentially resulting in HTTP request smuggling.
+Vulnerable: &lt;= 14.0.2-3+deb8u4
+Fixed: 14.0.2-3+deb8u5</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077707</td>
+<td>The following vulnerabilities have been found in libarchive:
+CVE-2021-31566 symbolic links incorrectly followed when changing modes, times, ACL and flags of a file while extracting an archive
+CVE-2021-23177 extracting a symlink with ACLs modifies ACLs of target
+CVE-2019-19221 out-of-bounds read because of an incorrect mbrtowc or mbtowc call
+Vulnerable: &lt;= 3.1.2-11+deb8u8
+Fixed: 3.1.2-11+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3061439</td>
 <td>CVE-2016-9840: inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.
 Vulnerable: 1.2.8.dfsg-2
@@ -24496,6 +24828,57 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3077714</td>
+<td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
+Vulnerable: &lt;= 7.4.488-7+deb8u5
+Fixed: 7.4.488-7+deb8u6</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077712</td>
+<td>CVE-2022-1122: A flaw was found in the opj2_decompress program in openjpeg2 in the way it handles an input directory with a large number of files. When it fails to allocate a buffer to store the filenames of the input directory, it calls free() on an uninitialized pointer, leading to a segmentation fault and a denial of service.
+Vulnerable: &lt;= 2.1.0-2+deb8u13
+Fixed: 2.1.0-2+deb8u14</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077711</td>
+<td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to prevent command injection. This script is executed by update-ca-certificates, from ca-certificates, to re-hash certificates in /etc/ssl/certs/. An attacker able to place files in this directory could execute arbitrary commands with the privileges of the script.
+Vulnerable: &lt;= 1.0.1t-1+deb8u17
+Fixed: 1.0.1t-1+deb8u18</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077709</td>
+<td>CVE-2019-25059: A security vulnerability was found in Ghostscript, the GPL PostScript/PDF interpreter. It was discovered that some privileged Postscript operators remained accessible from various places. For instance a specially crafted PostScript file could use this flaw in order to have access to the file system outside of the constrains imposed by -dSAFER.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u8
+Fixed: 9.26a~dfsg-0+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077708</td>
+<td>CVE-2022-24801: The Twisted Web HTTP 1.1 server parsed several HTTP request constructs more leniently than permitted by RFC 7230. This non-conformant parsing can lead to desync if requests pass through multiple HTTP parsers, potentially resulting in HTTP request smuggling.
+Vulnerable: &lt;= 14.0.2-3+deb8u4
+Fixed: 14.0.2-3+deb8u5</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077707</td>
+<td>The following vulnerabilities have been found in libarchive:
+CVE-2021-31566 symbolic links incorrectly followed when changing modes, times, ACL and flags of a file while extracting an archive
+CVE-2021-23177 extracting a symlink with ACLs modifies ACLs of target
+CVE-2019-19221 out-of-bounds read because of an incorrect mbrtowc or mbtowc call
+Vulnerable: &lt;= 3.1.2-11+deb8u8
+Fixed: 3.1.2-11+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
 </tr>
 <tr>
 <td>3061439</td>
@@ -27224,6 +27607,57 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3077714</td>
+<td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
+Vulnerable: &lt;= 7.4.488-7+deb8u5
+Fixed: 7.4.488-7+deb8u6</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077712</td>
+<td>CVE-2022-1122: A flaw was found in the opj2_decompress program in openjpeg2 in the way it handles an input directory with a large number of files. When it fails to allocate a buffer to store the filenames of the input directory, it calls free() on an uninitialized pointer, leading to a segmentation fault and a denial of service.
+Vulnerable: &lt;= 2.1.0-2+deb8u13
+Fixed: 2.1.0-2+deb8u14</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077711</td>
+<td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to prevent command injection. This script is executed by update-ca-certificates, from ca-certificates, to re-hash certificates in /etc/ssl/certs/. An attacker able to place files in this directory could execute arbitrary commands with the privileges of the script.
+Vulnerable: &lt;= 1.0.1t-1+deb8u17
+Fixed: 1.0.1t-1+deb8u18</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077709</td>
+<td>CVE-2019-25059: A security vulnerability was found in Ghostscript, the GPL PostScript/PDF interpreter. It was discovered that some privileged Postscript operators remained accessible from various places. For instance a specially crafted PostScript file could use this flaw in order to have access to the file system outside of the constrains imposed by -dSAFER.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u8
+Fixed: 9.26a~dfsg-0+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077708</td>
+<td>CVE-2022-24801: The Twisted Web HTTP 1.1 server parsed several HTTP request constructs more leniently than permitted by RFC 7230. This non-conformant parsing can lead to desync if requests pass through multiple HTTP parsers, potentially resulting in HTTP request smuggling.
+Vulnerable: &lt;= 14.0.2-3+deb8u4
+Fixed: 14.0.2-3+deb8u5</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077707</td>
+<td>The following vulnerabilities have been found in libarchive:
+CVE-2021-31566 symbolic links incorrectly followed when changing modes, times, ACL and flags of a file while extracting an archive
+CVE-2021-23177 extracting a symlink with ACLs modifies ACLs of target
+CVE-2019-19221 out-of-bounds read because of an incorrect mbrtowc or mbtowc call
+Vulnerable: &lt;= 3.1.2-11+deb8u8
+Fixed: 3.1.2-11+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3061439</td>
 <td>CVE-2016-9840: inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.
 Vulnerable: 1.2.8.dfsg-2
@@ -29349,6 +29783,57 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3077714</td>
+<td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
+Vulnerable: &lt;= 7.4.488-7+deb8u5
+Fixed: 7.4.488-7+deb8u6</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077712</td>
+<td>CVE-2022-1122: A flaw was found in the opj2_decompress program in openjpeg2 in the way it handles an input directory with a large number of files. When it fails to allocate a buffer to store the filenames of the input directory, it calls free() on an uninitialized pointer, leading to a segmentation fault and a denial of service.
+Vulnerable: &lt;= 2.1.0-2+deb8u13
+Fixed: 2.1.0-2+deb8u14</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077711</td>
+<td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to prevent command injection. This script is executed by update-ca-certificates, from ca-certificates, to re-hash certificates in /etc/ssl/certs/. An attacker able to place files in this directory could execute arbitrary commands with the privileges of the script.
+Vulnerable: &lt;= 1.0.1t-1+deb8u17
+Fixed: 1.0.1t-1+deb8u18</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077709</td>
+<td>CVE-2019-25059: A security vulnerability was found in Ghostscript, the GPL PostScript/PDF interpreter. It was discovered that some privileged Postscript operators remained accessible from various places. For instance a specially crafted PostScript file could use this flaw in order to have access to the file system outside of the constrains imposed by -dSAFER.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u8
+Fixed: 9.26a~dfsg-0+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077708</td>
+<td>CVE-2022-24801: The Twisted Web HTTP 1.1 server parsed several HTTP request constructs more leniently than permitted by RFC 7230. This non-conformant parsing can lead to desync if requests pass through multiple HTTP parsers, potentially resulting in HTTP request smuggling.
+Vulnerable: &lt;= 14.0.2-3+deb8u4
+Fixed: 14.0.2-3+deb8u5</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077707</td>
+<td>The following vulnerabilities have been found in libarchive:
+CVE-2021-31566 symbolic links incorrectly followed when changing modes, times, ACL and flags of a file while extracting an archive
+CVE-2021-23177 extracting a symlink with ACLs modifies ACLs of target
+CVE-2019-19221 out-of-bounds read because of an incorrect mbrtowc or mbtowc call
+Vulnerable: &lt;= 3.1.2-11+deb8u8
+Fixed: 3.1.2-11+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
 </tr>
 <tr>
 <td>3061439</td>
@@ -31813,6 +32298,57 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3077714</td>
+<td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
+Vulnerable: &lt;= 7.4.488-7+deb8u5
+Fixed: 7.4.488-7+deb8u6</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077712</td>
+<td>CVE-2022-1122: A flaw was found in the opj2_decompress program in openjpeg2 in the way it handles an input directory with a large number of files. When it fails to allocate a buffer to store the filenames of the input directory, it calls free() on an uninitialized pointer, leading to a segmentation fault and a denial of service.
+Vulnerable: &lt;= 2.1.0-2+deb8u13
+Fixed: 2.1.0-2+deb8u14</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077711</td>
+<td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to prevent command injection. This script is executed by update-ca-certificates, from ca-certificates, to re-hash certificates in /etc/ssl/certs/. An attacker able to place files in this directory could execute arbitrary commands with the privileges of the script.
+Vulnerable: &lt;= 1.0.1t-1+deb8u17
+Fixed: 1.0.1t-1+deb8u18</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077709</td>
+<td>CVE-2019-25059: A security vulnerability was found in Ghostscript, the GPL PostScript/PDF interpreter. It was discovered that some privileged Postscript operators remained accessible from various places. For instance a specially crafted PostScript file could use this flaw in order to have access to the file system outside of the constrains imposed by -dSAFER.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u8
+Fixed: 9.26a~dfsg-0+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077708</td>
+<td>CVE-2022-24801: The Twisted Web HTTP 1.1 server parsed several HTTP request constructs more leniently than permitted by RFC 7230. This non-conformant parsing can lead to desync if requests pass through multiple HTTP parsers, potentially resulting in HTTP request smuggling.
+Vulnerable: &lt;= 14.0.2-3+deb8u4
+Fixed: 14.0.2-3+deb8u5</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077707</td>
+<td>The following vulnerabilities have been found in libarchive:
+CVE-2021-31566 symbolic links incorrectly followed when changing modes, times, ACL and flags of a file while extracting an archive
+CVE-2021-23177 extracting a symlink with ACLs modifies ACLs of target
+CVE-2019-19221 out-of-bounds read because of an incorrect mbrtowc or mbtowc call
+Vulnerable: &lt;= 3.1.2-11+deb8u8
+Fixed: 3.1.2-11+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3061439</td>
 <td>CVE-2016-9840: inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.
 Vulnerable: 1.2.8.dfsg-2
@@ -34020,6 +34556,57 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3077714</td>
+<td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
+Vulnerable: &lt;= 7.4.488-7+deb8u5
+Fixed: 7.4.488-7+deb8u6</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077712</td>
+<td>CVE-2022-1122: A flaw was found in the opj2_decompress program in openjpeg2 in the way it handles an input directory with a large number of files. When it fails to allocate a buffer to store the filenames of the input directory, it calls free() on an uninitialized pointer, leading to a segmentation fault and a denial of service.
+Vulnerable: &lt;= 2.1.0-2+deb8u13
+Fixed: 2.1.0-2+deb8u14</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077711</td>
+<td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to prevent command injection. This script is executed by update-ca-certificates, from ca-certificates, to re-hash certificates in /etc/ssl/certs/. An attacker able to place files in this directory could execute arbitrary commands with the privileges of the script.
+Vulnerable: &lt;= 1.0.1t-1+deb8u17
+Fixed: 1.0.1t-1+deb8u18</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077709</td>
+<td>CVE-2019-25059: A security vulnerability was found in Ghostscript, the GPL PostScript/PDF interpreter. It was discovered that some privileged Postscript operators remained accessible from various places. For instance a specially crafted PostScript file could use this flaw in order to have access to the file system outside of the constrains imposed by -dSAFER.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u8
+Fixed: 9.26a~dfsg-0+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077708</td>
+<td>CVE-2022-24801: The Twisted Web HTTP 1.1 server parsed several HTTP request constructs more leniently than permitted by RFC 7230. This non-conformant parsing can lead to desync if requests pass through multiple HTTP parsers, potentially resulting in HTTP request smuggling.
+Vulnerable: &lt;= 14.0.2-3+deb8u4
+Fixed: 14.0.2-3+deb8u5</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077707</td>
+<td>The following vulnerabilities have been found in libarchive:
+CVE-2021-31566 symbolic links incorrectly followed when changing modes, times, ACL and flags of a file while extracting an archive
+CVE-2021-23177 extracting a symlink with ACLs modifies ACLs of target
+CVE-2019-19221 out-of-bounds read because of an incorrect mbrtowc or mbtowc call
+Vulnerable: &lt;= 3.1.2-11+deb8u8
+Fixed: 3.1.2-11+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3061439</td>
 <td>CVE-2016-9840: inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.
 Vulnerable: 1.2.8.dfsg-2
@@ -35870,6 +36457,57 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3077714</td>
+<td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
+Vulnerable: &lt;= 7.4.488-7+deb8u5
+Fixed: 7.4.488-7+deb8u6</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077712</td>
+<td>CVE-2022-1122: A flaw was found in the opj2_decompress program in openjpeg2 in the way it handles an input directory with a large number of files. When it fails to allocate a buffer to store the filenames of the input directory, it calls free() on an uninitialized pointer, leading to a segmentation fault and a denial of service.
+Vulnerable: &lt;= 2.1.0-2+deb8u13
+Fixed: 2.1.0-2+deb8u14</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077711</td>
+<td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to prevent command injection. This script is executed by update-ca-certificates, from ca-certificates, to re-hash certificates in /etc/ssl/certs/. An attacker able to place files in this directory could execute arbitrary commands with the privileges of the script.
+Vulnerable: &lt;= 1.0.1t-1+deb8u17
+Fixed: 1.0.1t-1+deb8u18</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077709</td>
+<td>CVE-2019-25059: A security vulnerability was found in Ghostscript, the GPL PostScript/PDF interpreter. It was discovered that some privileged Postscript operators remained accessible from various places. For instance a specially crafted PostScript file could use this flaw in order to have access to the file system outside of the constrains imposed by -dSAFER.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u8
+Fixed: 9.26a~dfsg-0+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077708</td>
+<td>CVE-2022-24801: The Twisted Web HTTP 1.1 server parsed several HTTP request constructs more leniently than permitted by RFC 7230. This non-conformant parsing can lead to desync if requests pass through multiple HTTP parsers, potentially resulting in HTTP request smuggling.
+Vulnerable: &lt;= 14.0.2-3+deb8u4
+Fixed: 14.0.2-3+deb8u5</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077707</td>
+<td>The following vulnerabilities have been found in libarchive:
+CVE-2021-31566 symbolic links incorrectly followed when changing modes, times, ACL and flags of a file while extracting an archive
+CVE-2021-23177 extracting a symlink with ACLs modifies ACLs of target
+CVE-2019-19221 out-of-bounds read because of an incorrect mbrtowc or mbtowc call
+Vulnerable: &lt;= 3.1.2-11+deb8u8
+Fixed: 3.1.2-11+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
 </tr>
 <tr>
 <td>3061439</td>
@@ -37749,6 +38387,57 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3077714</td>
+<td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
+Vulnerable: &lt;= 7.4.488-7+deb8u5
+Fixed: 7.4.488-7+deb8u6</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077712</td>
+<td>CVE-2022-1122: A flaw was found in the opj2_decompress program in openjpeg2 in the way it handles an input directory with a large number of files. When it fails to allocate a buffer to store the filenames of the input directory, it calls free() on an uninitialized pointer, leading to a segmentation fault and a denial of service.
+Vulnerable: &lt;= 2.1.0-2+deb8u13
+Fixed: 2.1.0-2+deb8u14</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077711</td>
+<td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to prevent command injection. This script is executed by update-ca-certificates, from ca-certificates, to re-hash certificates in /etc/ssl/certs/. An attacker able to place files in this directory could execute arbitrary commands with the privileges of the script.
+Vulnerable: &lt;= 1.0.1t-1+deb8u17
+Fixed: 1.0.1t-1+deb8u18</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077709</td>
+<td>CVE-2019-25059: A security vulnerability was found in Ghostscript, the GPL PostScript/PDF interpreter. It was discovered that some privileged Postscript operators remained accessible from various places. For instance a specially crafted PostScript file could use this flaw in order to have access to the file system outside of the constrains imposed by -dSAFER.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u8
+Fixed: 9.26a~dfsg-0+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077708</td>
+<td>CVE-2022-24801: The Twisted Web HTTP 1.1 server parsed several HTTP request constructs more leniently than permitted by RFC 7230. This non-conformant parsing can lead to desync if requests pass through multiple HTTP parsers, potentially resulting in HTTP request smuggling.
+Vulnerable: &lt;= 14.0.2-3+deb8u4
+Fixed: 14.0.2-3+deb8u5</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077707</td>
+<td>The following vulnerabilities have been found in libarchive:
+CVE-2021-31566 symbolic links incorrectly followed when changing modes, times, ACL and flags of a file while extracting an archive
+CVE-2021-23177 extracting a symlink with ACLs modifies ACLs of target
+CVE-2019-19221 out-of-bounds read because of an incorrect mbrtowc or mbtowc call
+Vulnerable: &lt;= 3.1.2-11+deb8u8
+Fixed: 3.1.2-11+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
 </tr>
 <tr>
 <td>3061439</td>
@@ -39734,6 +40423,57 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3077714</td>
+<td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
+Vulnerable: &lt;= 7.4.488-7+deb8u5
+Fixed: 7.4.488-7+deb8u6</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077712</td>
+<td>CVE-2022-1122: A flaw was found in the opj2_decompress program in openjpeg2 in the way it handles an input directory with a large number of files. When it fails to allocate a buffer to store the filenames of the input directory, it calls free() on an uninitialized pointer, leading to a segmentation fault and a denial of service.
+Vulnerable: &lt;= 2.1.0-2+deb8u13
+Fixed: 2.1.0-2+deb8u14</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077711</td>
+<td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to prevent command injection. This script is executed by update-ca-certificates, from ca-certificates, to re-hash certificates in /etc/ssl/certs/. An attacker able to place files in this directory could execute arbitrary commands with the privileges of the script.
+Vulnerable: &lt;= 1.0.1t-1+deb8u17
+Fixed: 1.0.1t-1+deb8u18</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077709</td>
+<td>CVE-2019-25059: A security vulnerability was found in Ghostscript, the GPL PostScript/PDF interpreter. It was discovered that some privileged Postscript operators remained accessible from various places. For instance a specially crafted PostScript file could use this flaw in order to have access to the file system outside of the constrains imposed by -dSAFER.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u8
+Fixed: 9.26a~dfsg-0+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077708</td>
+<td>CVE-2022-24801: The Twisted Web HTTP 1.1 server parsed several HTTP request constructs more leniently than permitted by RFC 7230. This non-conformant parsing can lead to desync if requests pass through multiple HTTP parsers, potentially resulting in HTTP request smuggling.
+Vulnerable: &lt;= 14.0.2-3+deb8u4
+Fixed: 14.0.2-3+deb8u5</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077707</td>
+<td>The following vulnerabilities have been found in libarchive:
+CVE-2021-31566 symbolic links incorrectly followed when changing modes, times, ACL and flags of a file while extracting an archive
+CVE-2021-23177 extracting a symlink with ACLs modifies ACLs of target
+CVE-2019-19221 out-of-bounds read because of an incorrect mbrtowc or mbtowc call
+Vulnerable: &lt;= 3.1.2-11+deb8u8
+Fixed: 3.1.2-11+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
 </tr>
 <tr>
 <td>3061439</td>
@@ -41765,6 +42505,57 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3077714</td>
+<td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
+Vulnerable: &lt;= 7.4.488-7+deb8u5
+Fixed: 7.4.488-7+deb8u6</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077712</td>
+<td>CVE-2022-1122: A flaw was found in the opj2_decompress program in openjpeg2 in the way it handles an input directory with a large number of files. When it fails to allocate a buffer to store the filenames of the input directory, it calls free() on an uninitialized pointer, leading to a segmentation fault and a denial of service.
+Vulnerable: &lt;= 2.1.0-2+deb8u13
+Fixed: 2.1.0-2+deb8u14</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077711</td>
+<td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to prevent command injection. This script is executed by update-ca-certificates, from ca-certificates, to re-hash certificates in /etc/ssl/certs/. An attacker able to place files in this directory could execute arbitrary commands with the privileges of the script.
+Vulnerable: &lt;= 1.0.1t-1+deb8u17
+Fixed: 1.0.1t-1+deb8u18</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077709</td>
+<td>CVE-2019-25059: A security vulnerability was found in Ghostscript, the GPL PostScript/PDF interpreter. It was discovered that some privileged Postscript operators remained accessible from various places. For instance a specially crafted PostScript file could use this flaw in order to have access to the file system outside of the constrains imposed by -dSAFER.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u8
+Fixed: 9.26a~dfsg-0+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077708</td>
+<td>CVE-2022-24801: The Twisted Web HTTP 1.1 server parsed several HTTP request constructs more leniently than permitted by RFC 7230. This non-conformant parsing can lead to desync if requests pass through multiple HTTP parsers, potentially resulting in HTTP request smuggling.
+Vulnerable: &lt;= 14.0.2-3+deb8u4
+Fixed: 14.0.2-3+deb8u5</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077707</td>
+<td>The following vulnerabilities have been found in libarchive:
+CVE-2021-31566 symbolic links incorrectly followed when changing modes, times, ACL and flags of a file while extracting an archive
+CVE-2021-23177 extracting a symlink with ACLs modifies ACLs of target
+CVE-2019-19221 out-of-bounds read because of an incorrect mbrtowc or mbtowc call
+Vulnerable: &lt;= 3.1.2-11+deb8u8
+Fixed: 3.1.2-11+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3061439</td>
 <td>CVE-2016-9840: inftrees.c in zlib 1.2.8 might allow context-dependent attackers to have unspecified impact by leveraging improper pointer arithmetic.
 Vulnerable: 1.2.8.dfsg-2
@@ -43098,6 +43889,57 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3077714</td>
+<td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
+Vulnerable: &lt;= 7.4.488-7+deb8u5
+Fixed: 7.4.488-7+deb8u6</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077712</td>
+<td>CVE-2022-1122: A flaw was found in the opj2_decompress program in openjpeg2 in the way it handles an input directory with a large number of files. When it fails to allocate a buffer to store the filenames of the input directory, it calls free() on an uninitialized pointer, leading to a segmentation fault and a denial of service.
+Vulnerable: &lt;= 2.1.0-2+deb8u13
+Fixed: 2.1.0-2+deb8u14</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077711</td>
+<td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to prevent command injection. This script is executed by update-ca-certificates, from ca-certificates, to re-hash certificates in /etc/ssl/certs/. An attacker able to place files in this directory could execute arbitrary commands with the privileges of the script.
+Vulnerable: &lt;= 1.0.1t-1+deb8u17
+Fixed: 1.0.1t-1+deb8u18</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077709</td>
+<td>CVE-2019-25059: A security vulnerability was found in Ghostscript, the GPL PostScript/PDF interpreter. It was discovered that some privileged Postscript operators remained accessible from various places. For instance a specially crafted PostScript file could use this flaw in order to have access to the file system outside of the constrains imposed by -dSAFER.
+Vulnerable: &lt;= 9.26a~dfsg-0+deb8u8
+Fixed: 9.26a~dfsg-0+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077708</td>
+<td>CVE-2022-24801: The Twisted Web HTTP 1.1 server parsed several HTTP request constructs more leniently than permitted by RFC 7230. This non-conformant parsing can lead to desync if requests pass through multiple HTTP parsers, potentially resulting in HTTP request smuggling.
+Vulnerable: &lt;= 14.0.2-3+deb8u4
+Fixed: 14.0.2-3+deb8u5</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3077707</td>
+<td>The following vulnerabilities have been found in libarchive:
+CVE-2021-31566 symbolic links incorrectly followed when changing modes, times, ACL and flags of a file while extracting an archive
+CVE-2021-23177 extracting a symlink with ACLs modifies ACLs of target
+CVE-2019-19221 out-of-bounds read because of an incorrect mbrtowc or mbtowc call
+Vulnerable: &lt;= 3.1.2-11+deb8u8
+Fixed: 3.1.2-11+deb8u9</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
 </tr>
 <tr>
 <td>3061439</td>

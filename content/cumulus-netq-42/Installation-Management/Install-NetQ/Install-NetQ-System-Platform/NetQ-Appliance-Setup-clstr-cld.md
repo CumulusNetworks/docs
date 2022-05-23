@@ -94,11 +94,11 @@ Now that the appliances are up and running, verify that the software is availabl
 
 1. On the master NetQ Cloud Appliance, verify that the needed packages are present and of the correct release, version {{<version>}}.
 
-    {{<netq-install/verify-pkgs version="4.1" platform="appliance">}}
+    {{<netq-install/verify-pkgs version="4.2" platform="appliance">}}
 
 2. Verify the installation images are present and of the correct release, version {{<version>}}.
 
-    {{<netq-install/verify-image deployment="cloud" version="4.1">}}
+    {{<netq-install/verify-image deployment="cloud" version="4.2">}}
 
 3. Verify the master NetQ Cloud Appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
 
@@ -106,7 +106,7 @@ Now that the appliances are up and running, verify that the software is availabl
 
 4. On one of your worker NetQ Cloud Appliances, verify that the needed packages are present and of the correct release, version {{<version>}} and update 34.
 
-    {{<netq-install/verify-pkgs version="4.1" platform="appliance">}}
+    {{<netq-install/verify-pkgs version="4.2" platform="appliance">}}
 
 5. Configure the IP address, hostname, and password using the same steps as for the master node. Refer to {{<link url="#configure-the-password-hostname-and-ip-address" text="Configure the Password, Hostname, and IP Address">}}.
 
@@ -116,7 +116,7 @@ Make a note of the private IP addresses you assign to the master and worker node
 
 6. Verify that the needed packages are present and of the correct release, version {{<version>}}.
 
-    {{<netq-install/verify-pkgs version="4.1" platform="appliance">}}
+    {{<netq-install/verify-pkgs version="4.2" platform="appliance">}}
 
 7. Verify that the needed files are present and of the correct release.
 

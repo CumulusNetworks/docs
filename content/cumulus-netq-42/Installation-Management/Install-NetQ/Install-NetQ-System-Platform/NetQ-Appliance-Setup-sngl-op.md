@@ -89,9 +89,9 @@ Change the password and specify the hostname and IP address for the appliance be
 
 Now that the appliance is up and running, verify that the software is available and the appliance is ready for installation.
 
-1. Verify that the needed packages are present and of the correct release, version {{<version>}} and update 34.
+1. Verify that the needed packages are present and of the correct release, version {{<version>}} and update 38.
 
-    {{<netq-install/verify-pkgs version="4.1" platform="appliance">}}
+    {{<netq-install/verify-pkgs version="4.2" platform="appliance">}}
 
 2. Verify the installation images are present and of the correct release, version {{<version>}}.
 

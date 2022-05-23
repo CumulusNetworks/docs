@@ -455,7 +455,7 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
 {{</tabs>}}
 
     {{<notice note>}}
-The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.1</code> &mdash; use that instead.
+The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.2</code> &mdash; use that instead.
     {{</notice>}}
 
 {{</tab>}}
@@ -485,7 +485,7 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To ins
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.1.0" opsys="cl">}}
+    {{<netq-install/agent-version version="4.2.0" opsys="cl">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -541,7 +541,7 @@ To install the NetQ Agent:
     root@rhel7:~# rpm -q -netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.1.0" opsys="rh">}}
+    {{<netq-install/agent-version version="4.2.0" opsys="rh">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -570,7 +570,7 @@ To install the NetQ Agent:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.1.0" opsys="ub">}}
+    {{<netq-install/agent-version version="4.2.0" opsys="ub">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 

@@ -168,3 +168,27 @@
 <div class="notices note"><p>Ignore the Firmware, Documentation, and More files options as these do not apply to NetQ.</p></div>
 
 {{ end }}
+
+
+{{- if eq (.Get "version") "4.2" -}}
+
+<ol>
+    <li>On the <a href="http://support.mellanox.com/s/">My Mellanox support</a> page, log in to your account. If needed create a new account and then log in.<br>
+        <img src={{"images/netq/mymellanox-login-320.png" | absURL }} width="500"><br>
+        Your username is based on your email address. For example, user1@domain.com.mlnx.</li>
+    <li>Click <strong>Download center</strong>, then click <strong>Software</strong>.</li>
+    <li>Open the <strong>Cumulus Software</strong> option.<br>
+        <img src={{"images/netq/mymellanox-cumulus-software-download-320.png" | absURL }} width="500"></li>
+    <li>Click <strong>All downloads</strong> next to <strong>Cumulus NetQ</strong>.</li>
+    <li>Select <strong>4.2.0</strong> from the <strong>NetQ Version</strong> dropdown.</li>
+    <li>Select the relevant software from the </strong>HyperVisor</strong> list:<br>
+        <p>If you are upgrading NetQ Platform software for a NetQ On-premises Appliance or VM, select <em>Appliance</em> to download the <em>NetQ-4.2.0.tgz</em> file. If you are upgrading NetQ Collector software for a NetQ Cloud Appliance or VM, select <em>Appliance (Cloud)</em> to download the <em>NetQ-4.2.0-opta.tgz</em> file.</p>
+        <!-- <p><img src={{"/images/netq/netq-33-download-options-mlnx-331.png" | absURL }} width="500"></p> --></li>
+    <li>Click <strong>Show Download</strong>.<!-- <br>
+        <img src={{ "/images/netq/mymellanox-netq-download-app-331.png" | absURL }} width="500">--></li>
+    <li>Verify the image is the correct one, then click <strong>Download</strong>.</li>
+</ol>
+
+<div class="notices note"><p>Ignore the Firmware, Documentation, and More files options as these do not apply to NetQ.</p></div>
+
+{{ end }}

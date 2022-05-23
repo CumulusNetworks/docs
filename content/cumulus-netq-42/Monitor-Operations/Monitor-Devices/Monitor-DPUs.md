@@ -50,3 +50,6 @@ Installed packages are displayed in a table. You can export the table into other
 
 {{<figure src="/images/netq/dpu-hwresources-l4-installed-packages-42.png" width="1000">}}
 
+## Related Information
+
+- {{<exlink url="https://docs.nvidia.com/doca/sdk/doca-telemetry-service/index.html" text="DOCA Telemetry Service on NVIDIA BlueField DPUs">}}

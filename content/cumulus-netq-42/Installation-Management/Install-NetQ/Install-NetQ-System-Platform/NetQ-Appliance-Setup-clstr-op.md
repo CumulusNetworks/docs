@@ -93,19 +93,19 @@ Now that the appliances are up and running, verify that the software is availabl
 
 1. On the master node, verify that the needed packages are present and of the correct release, version {{<version>}}.
 
-    {{<netq-install/verify-pkgs version="4.1" platform="appliance">}}
+    {{<netq-install/verify-pkgs version="4.2" platform="appliance">}}
 
 2. Verify the installation images are present and of the correct release, version {{<version>}}.
 
-    {{<netq-install/verify-image deployment="onprem" version="4.1">}}
+    {{<netq-install/verify-image deployment="onprem" version="4.2">}}
 
 3. Verify the master node is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     {{<netq-install/verify-cmd deployment="onprem">}}
 
-4. On one or your worker nodes, verify that the needed packages are present and of the correct release, version {{<version>}} and update 34 or later.
+4. On one or your worker nodes, verify that the needed packages are present and of the correct release, version {{<version>}} and update 38 or later.
 
-    {{<netq-install/verify-pkgs version="4.1" platform="appliance">}}
+    {{<netq-install/verify-pkgs version="4.2" platform="appliance">}}
 
 5. Configure the IP address, hostname, and password using the same steps as for the master node. Refer to {{<link title="#Configure the Password, Hostname and IP Address" text="Configure the Password, Hostname and IP Address">}}.
 
@@ -113,9 +113,9 @@ Now that the appliances are up and running, verify that the software is availabl
 Make a note of the private IP addresses you assign to the master and worker nodes. You need them for later installation steps.
     {{</notice>}}
 
-6. Verify that the needed packages are present and of the correct release, version {{<version>}} and update 34.
+6. Verify that the needed packages are present and of the correct release, version {{<version>}} and update 38.
 
-    {{<netq-install/verify-pkgs version="4.1" platform="appliance">}}
+    {{<netq-install/verify-pkgs version="4.2" platform="appliance">}}
 
 7. Verify that the needed files are present and of the correct release.
 

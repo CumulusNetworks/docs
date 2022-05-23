@@ -89,7 +89,7 @@ Now that the appliance is up and running, verify that the software is available 
 
 1. Verify that the needed packages are present and of the correct release, version {{<version>}}.
 
-    {{<netq-install/verify-pkgs version="4.1" platform="appliance">}}
+    {{<netq-install/verify-pkgs version="4.2" platform="appliance">}}
 
 2. Verify the installation images are present and of the correct release, version {{<version>}}.
 

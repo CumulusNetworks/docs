@@ -202,7 +202,7 @@ Maximum Ports Power Support
 {{< tab "Spectrum-3">}}
 
 {{< tabs "Spectrum-3_platforms ">}}
-{{< tab "SN4410* ">}}
+{{< tab "SN4410 ">}}
 
 {{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4410.png">}}
 
@@ -359,9 +359,9 @@ All splitted/non-splitted ports also support lower 10/25/40GbE speeds. For lower
 
 {{< /tab >}}
 
-{< tab "SN4410">}}
+{{< tab "SN4410">}}
 
-{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4410_split.png">}}
+{{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4410_split.png">}}
 
 This platform has 24 QSFP56-DD (NRZ) and 8 QSFP56-DD (PAM4) splittable ports.
 
@@ -370,7 +370,7 @@ The last 8 (400GbE PAM4) ports can be split into 2xQSFP56 (2x200GbE), 4xQSFP56 (
 
 All splitted/non-splitted ports also support lower 10/25/40GbE speeds. For lower speeds, PAM4 is automatically converted to NRZ encoding.
 
-{< /tab >}}
+{{< /tab >}}
 
 {{< tab "SN4600C">}}
 
@@ -381,9 +381,9 @@ This platform has 32 or 64 QSFP28 (NRZ) splittable ports.
 Each QSFP28 (100GbE) port can be split into 4xSFP28 (4x25GbE). But, in this case, the port above or below it will be blocked. All ports are splittable into 2xQSFP28 (2x50GbE) without blocking ports.
 
 {{< /tab >}}
-{< tab "SN4600">}}
+{{< tab "SN4600">}}
 
-{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4600_split.png">}}
+{{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4600_split.png">}}
 
 This platform has 32 or 64 QSFP56 (PAM4) splittable ports.
 
@@ -391,7 +391,7 @@ Each QSFP56 (200GbE) port can be split into 4xSFP28 (4x25GbE) or 4xSFP56 (4x50Gb
 
 All splitted/non-splitted ports also support lower 10/25/40GbE speeds. For lower speeds, PAM4 is automatically converted to NRZ encoding.
 
-{< /tab >}}
+{{< /tab >}}
 
 {{< tab "SN4700">}}
 

@@ -22,15 +22,15 @@ To complete the preparation:
 
 2. Download the relevant software.
 
-    {{<netq-install/upgrade-image version="4.1">}}
+    {{<netq-install/upgrade-image version="4.2">}}
 
 3. Copy the file to the `/mnt/installables/` directory on your appliance or VM.
 
-4. Update `/etc/apt/sources.list.d/cumulus-netq.list` to netq-4.1 as follows:
+4. Update `/etc/apt/sources.list.d/cumulus-netq.list` to netq-4.2 as follows:
 
     ```
     cat /etc/apt/sources.list.d/cumulus-netq.list
-    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-4.1
+    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-4.2
     ```
 
 5. Update the NetQ `debian` packages.
@@ -38,7 +38,7 @@ To complete the preparation:
     ```
     cumulus@<hostname>:~$ sudo apt-get update
     Get:1 https://apps3.cumulusnetworks.com/repos/deb bionic InRelease [13.8 kB]
-    Get:2 https://apps3.cumulusnetworks.com/repos/deb bionic/netq-4.1 amd64 Packages [758 B]
+    Get:2 https://apps3.cumulusnetworks.com/repos/deb bionic/netq-4.2 amd64 Packages [758 B]
     Hit:3 http://archive.ubuntu.com/ubuntu bionic InRelease
     Get:4 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
     Get:5 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
@@ -59,11 +59,11 @@ To complete the preparation:
     ...
     Fetched 39.8 MB in 3s (13.5 MB/s)
     ...
-    Unpacking netq-agent (4.1.0-ub18.04u33~1621860085.c5a5d7e) ...
+    Unpacking netq-agent (4.2.0-ub18.04u38~1652817271.25f4ac0) ...
     ...
-    Unpacking netq-apps (4.1.0-ub18.04u33~1621860085.c5a5d7e) ...
-    Setting up netq-apps (4.1.0-ub18.04u33~1621860085.c5a5d7e) ...
-    Setting up netq-agent (4.1.0-ub18.04u33~1621860085.c5a5d7e) ...
+    Unpacking netq-apps (4.2.0-ub18.04u38~1652817271.25f4ac0) ...
+    Setting up netq-apps (4.2.0-ub18.04u38~1652817271.25f4ac0) ...
+    Setting up netq-agent (4.2.0-ub18.04u38~1652817271.25f4ac0) ...
     Processing triggers for rsyslog (8.32.0-1ubuntu4) ...
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ```
@@ -81,7 +81,7 @@ To upgrade your NetQ software:
 {{<tab "On-premises Deployments">}}
 
 ```
-netq upgrade bundle /mnt/installables/NetQ-4.1.0.tgz
+netq upgrade bundle /mnt/installables/NetQ-4.2.0.tgz
 ```
 
 {{</tab>}}
@@ -89,7 +89,7 @@ netq upgrade bundle /mnt/installables/NetQ-4.1.0.tgz
 {{<tab "Cloud Deployments">}}
 
 ```
-netq upgrade bundle /mnt/installables/NetQ-4.1.0-opta.tgz
+netq upgrade bundle /mnt/installables/NetQ-4.2.0-opta.tgz
 ```
 
 {{</tab>}}
@@ -100,7 +100,7 @@ netq upgrade bundle /mnt/installables/NetQ-4.1.0-opta.tgz
 
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
-    BOOTSTRAP_VERSION=4.1.0
-    APPLIANCE_MANIFEST_HASH=85575c98a3
-    APPLIANCE_VERSION=4.1.0
+    BOOTSTRAP_VERSION=4.2.0
+    APPLIANCE_MANIFEST_HASH=25f4ac06
+    APPLIANCE_VERSION=4.2.0
     ```

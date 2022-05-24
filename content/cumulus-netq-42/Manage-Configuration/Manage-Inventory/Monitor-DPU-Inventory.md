@@ -50,3 +50,6 @@ To display the advanced view, use the size picker to expand the card to its larg
 
 To monitor DPU hardware resource utilization, see {{<link title="Monitor DPUs">}}.
 
+## Related Information
+
+- {{<exlink url="https://docs.nvidia.com/doca/sdk/doca-telemetry-service/index.html" text="DOCA Telemetry Service on NVIDIA BlueField DPUs">}}

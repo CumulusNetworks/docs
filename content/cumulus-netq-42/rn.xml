@@ -7,6 +7,62 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3060407</td>
+<td>The {{systemctl restart networking}} command does not restart the {{netqd}} service on Broadcom platforms with an ARM CPU when the {{netq-agent}} service is running in the management VRF and {{netqd}} is running in the default VRF.
+
+To work around this issue, restart {{netqd}} manually using the {{systemctl restart netqd}} command.</td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3053143</td>
+<td>The MLAG Session card might not show all MLAG events.</td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3053091</td>
+<td>Lifecycle management (LCM) features do not work when the NetQ Cloud Appliance uses an external proxy server.</td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3047149</td>
+<td>When you reboot the OPTA, the NetQ validation summary might show an incorrect number of validations. This condition will resolve itself within an hour of the reboot.</td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3043146</td>
+<td>After you upgrade from NetQ 4.1 to NetQ 4.2, some streaming validation checks might erroneously report failures when services are running properly. This condition will resolve itself within 24 hours of the upgrade. </td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3042876</td>
+<td>If you apply a filter to ignore an on-demand validation check, validation results for other checks might also be ignored.</td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3042840</td>
+<td>Some resolved events might continue to be displayed as Open in the Events card even after they are resolved.</td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3042476</td>
+<td>In addition to displaying routes installed on monitored devices in your network, the NetQ UI unexpectedly displays IP routes installed on the NetQ server. This issue does not affect the routes displayed on the CLI with {{netq show ip routes}} and {{netq show ipv6 routes}}.</td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3041860</td>
+<td>The Events card displays duplicate entries for VLAN interface link down events.</td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3018737</td>
 <td>The reverse path of flow analysis data might appear empty even when traffic successfully traversed the reverse path. To work around this issue, create a new flow analysis with the original source and destination IP addresses transposed to view the analysis in that direction. </td>
 <td>4.2.0</td>
@@ -29,6 +85,12 @@
                                                          torc-21:vx-282 and torc-11:peerlink-3
    </td>
 <td>4.1.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2872288</td>
+<td>When a NetQ agent sends messages with validation check data, there might be a delay of up to 120 seconds before the new data is displayed in streaming validation checks.</td>
+<td>4.2.0</td>
 <td></td>
 </tr>
 <tr>

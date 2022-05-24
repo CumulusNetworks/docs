@@ -12,20 +12,24 @@ Configures global routing settings for BGP, OSPF, PIM, IGMP, VRR, VRRP, router p
 
   `nv set router [options] [<attribute> ...]`
 
+### Default Setting
+
+N/A
+
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `nexthop-group`| Nexthops|
-| `pbr`| PBR global configuration |
-| `policy`| A router |
-| `bgp`: BGP global configuration.|
-| `ospf`: OSPF global configuration.|
-| `pim`: PIM global configuration.|
-| `igmp`: IGMP global configuration.|
-| `vrrp`: VRRP global configuration.|
-| `vrr`: VRR global configuration.|
-| `adaptive-routing`: Adaptive routing global configuration.|
+| `nexthop-group`| Next hop group configuration.|
+| `pbr`| Global PBR configuration. |
+| `policy`| Router policy configurtion.|
+| `bgp`| Global BGP configuration.|
+| `ospf`| Global OSPF configuration.|
+| `pim`| GlobalPIM configuration.|
+| `igmp`| Global IGMP configuration.|
+| `vrrp`| Global VRRP configuration.|
+| `vrr`:| Global VRR configuration.|
+| `adaptive-routing`| Adaptive routing configuration.|
 
 ### Version History
 
@@ -39,6 +43,10 @@ Sets the name of the next hop group.
 
 `nv set router nexthop-group <nexthop-group-id> [options] [<attribute> ...]`
 
+### Default Setting
+
+N/A
+
 ### Identifiers
 
 | Identifier |  Description   |
@@ -49,7 +57,7 @@ Sets the name of the next hop group.
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `via` | A next hop in the next hop group. |
+| `via` | Next hop configuration. |
 
 ### Version History
 
@@ -74,14 +82,18 @@ Sets the IP addresses of the next hops in the next hop group.
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<nexthop-group-id>` | The next hop group name. |
-| `<via-id>` | The IP addresses (or interfaces for unnumbered BGP or OSPF) of the next hop.|
+| `<via-id>` | The IP address of the next hop.|
+
+### Default Setting
+
+N/A
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-|  `interface`| The interface to use for egress. If not specified, it will automatically be determined. Only valid when the via's type is ipv4-address or ipv6-address. |
-| `vrf` | The VRF to use for egress. If not specified, the route's VRF will be used. Only valid when the via's type is ipv4-address or ipv6-address. |
+|  `interface`| The interface to use for egress. If you do not specify an interface, the switch determines it automatically. This attribute is only valid for IPv4 or IPv6 net hop addresses. |
+| `vrf` | The VRF to use for egress. If you do not specify the VRF, the switch uses the VRF that the route uses. This attribute is only valid for IPv4 or IPv6 net hop addresses. |
 
 ### Version History
 
@@ -95,21 +107,24 @@ cumulus@leaf04:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32
 
 ## nv set router pbr
 
+Configures global PBR settings.
+
 ### Usage
 
   `nv set router pbr [options] [<attribute> ...]`
 
-### Description
+### Default Setting
 
-  PBR global configuration.
+N/A
 
 ### Attributes
 
-  `map`: Collection of PBR Maps
+| Attribute |  Description   |
+| --------- | -------------- |
+|  `map`| A collection of PBR maps. |
+| `enable`| Turns the feature `on` or `off`. The default is `off`. |
 
-  `enable`: Turn the feature 'on' or 'off'. The default is 'off'.
-
-## nv set router pbr map <pbr-map-id>
+## nv set router pbr map \<pbr-map-id\>
 
 ### Usage
 

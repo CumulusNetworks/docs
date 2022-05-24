@@ -4,19 +4,21 @@ author: Cumulus Networks
 weight: 30
 product: Cumulus Linux
 ---
+This section describes all the `nv set` commands, together with their attributes and identifiers.
+
 ## nv set router
 
 Configures global routing settings for BGP, OSPF, PIM, IGMP, VRR, VRRP, router policies, next hop groups, and adaptive routing.
 
-### Usage
+**Usage**
 
   `nv set router [options] [<attribute> ...]`
 
-### Default Setting
+**Default Setting**
 
 N/A
 
-### Attributes
+**Attributes**
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -31,7 +33,7 @@ N/A
 | `vrr`:| Global VRR configuration.|
 | `adaptive-routing`| Adaptive routing configuration.|
 
-### Version History
+**Version History**
 
 Introduced in Cumulus Linux 4.4.0
 
@@ -39,31 +41,31 @@ Introduced in Cumulus Linux 4.4.0
 
 Sets the name of the next hop group.
 
-### Usage
+**Usage**
 
 `nv set router nexthop-group <nexthop-group-id> [options] [<attribute> ...]`
 
-### Default Setting
+**Default Setting**
 
 N/A
 
-### Identifiers
+**Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<nexthop-group-id>` | The next hop group name. |
 
-### Attributes
+**Attributes**
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `via` | Next hop configuration. |
+| `via` | Configures the next hop. |
 
-### Version History
+**Version History**
 
 Introduced in Cumulus Linux 4.4.0
 
-### Example
+**Example**
 
 ```
 cumulus@leaf04:mgmt:~$ nv set router nexthop-group group1
@@ -73,33 +75,33 @@ cumulus@leaf04:mgmt:~$ nv set router nexthop-group group1
 
 Sets the IP addresses of the next hops in the next hop group.
 
-### Usage
+**Usage**
 
 `nv set router nexthop-group <nexthop-group-id> via <via-id> [options] [<attribute> ...]`
 
-### Identifiers
+**Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<nexthop-group-id>` | The next hop group name. |
 | `<via-id>` | The IP address of the next hop.|
 
-### Default Setting
+**Default Setting**
 
 N/A
 
-### Attributes
+**Attributes**
 
 | Attribute |  Description   |
 | --------- | -------------- |
-|  `interface`| The interface to use for egress. If you do not specify an interface, the switch determines it automatically. This attribute is only valid for IPv4 or IPv6 net hop addresses. |
-| `vrf` | The VRF to use for egress. If you do not specify the VRF, the switch uses the VRF that the route uses. This attribute is only valid for IPv4 or IPv6 net hop addresses. |
+|  `interface`| Configures the interface to use for egress. If you do not specify an interface, the switch determines it automatically. This attribute is only valid for IPv4 or IPv6 addresses. |
+| `vrf` | Configures the VRF to use for egress. If you do not specify the VRF, the switch uses the VRF that the route uses. This attribute is only valid for IPv4 or IPv6 addresses. |
 
-### Version History
+**Version History**
 
 Introduced in Cumulus Linux 4.4.0
 
-### Example
+**Example**
 
 ```
 cumulus@leaf04:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32
@@ -109,170 +111,286 @@ cumulus@leaf04:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32
 
 Configures global PBR settings.
 
-### Usage
+**Usage**
 
-  `nv set router pbr [options] [<attribute> ...]`
+`nv set router pbr [options] [<attribute> ...]`
 
-### Default Setting
+**Default Setting**
 
 N/A
 
-### Attributes
+**Attributes**
 
 | Attribute |  Description   |
 | --------- | -------------- |
-|  `map`| A collection of PBR maps. |
-| `enable`| Turns the feature `on` or `off`. The default is `off`. |
+| `map`| Configures PBR policies.|
+| `enable`| Turns the PBR `on` or `off`. The default is `off`. |
 
 ## nv set router pbr map \<pbr-map-id\>
 
-### Usage
+Configures a PBR policy map.
 
-  nv set router pbr map <pbr-map-id> [options] [<attribute> ...]
+**Usage**
 
-### Description
+`nv set router pbr map <pbr-map-id> [options] [<attribute> ...]`
 
-  A pbr map is used for policy configuration.
+**Default Setting**
 
-### Identifiers
+N/A
 
-  `<pbr-map-id>`: Route Map ID
+**Identifiers**
 
-### Attributes
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<pbr-map-id>` | The route map name. |
 
-  `rule`: PBR Map rule
+**Attributes**
 
-## nv set router pbr map <pbr-map-id> rule <rule-id>
+| Attribute |  Description   |
+| --------- | -------------- |
+| `rule`| The PBR map rule. |
 
-### Usage
+**Version History**
 
-  nv set router pbr map <pbr-map-id> rule <rule-id> [options] [<attribute> ...]
+Introduced in Cumulus Linux 4.4.0
 
-### Description
+**Example**
 
-  Route Map Matching/setting criteria and action rule
+```
+cumulus@leaf04:mgmt:~$ nv set router pbr map map1
+```
 
-### Identifiers
+## nv set router pbr map \<pbr-map-id\> rule \<rule-id\>
 
-  <pbr-map-id>  Route Map ID
-  <rule-id>     PBR rule number
+Configures the route map match and set criteria as well as the rule action.
 
-### Attributes
+**Usage**
 
-  match         PBR match
+`nv set router pbr map <pbr-map-id> rule <rule-id> [options] [<attribute> ...]`
 
-  action        PBR set
+**Default Setting**
 
-## nv set router pbr map <pbr-map-id> rule <rule-id> match
+N/A
 
-### Usage
+**Identifiers**
 
-  nv set router pbr map <pbr-map-id> rule <rule-id> match [options] [<attribute> ...]
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<pbr-map-id>` | The route map name. |
+| `<rule-id>` | The PBR rule number. |
 
-### Description
+**Attributes**
 
-  Route map rule match
+| Attribute |  Description   |
+| --------- | -------------- |
+| match     |  Configures the PBR match criteria. |
+| action    |  Configures the PBR set criteria.|
 
-### Identifiers
+**Version History**
 
-  <pbr-map-id>    Route Map ID
-  <rule-id>       PBR rule number
+Introduced in Cumulus Linux 4.4.0
 
-### Attributes
+**Example**
 
-  destination-ip  Destination IP prefix
+```
+cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 10
+```
 
-  dscp            DSCP
+## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match
 
-  ecn             ECN
+Configures the match criteria for the route map rule.
 
-  source-ip       Source IP prefix
+**Usage**
 
-## nv set router pbr map <pbr-map-id> rule <rule-id> match dscp 0-63
+`nv set router pbr map <pbr-map-id> rule <rule-id> match [options] [<attribute> ...]`
 
-### Usage
+**Default Setting**
 
-  nv set router pbr map <pbr-map-id> rule <rule-id> match dscp [options] 0-63
+N/A
 
-### Description
+**Identifiers**
 
-  DSCP
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<pbr-map-id>` | The route map name. |
+| `<rule-id>`    | The PBR rule number. |
 
-### Identifiers
+**Attributes**
 
-  <pbr-map-id>  Route Map ID
-  <rule-id>     PBR rule number
+| Attribute |  Description   |
+| --------- | -------------- |
+| `destination-ip` |  Configures the destination IP prefix. |
+| `dscp` | Configures the switch to match packets according to the DSCP field in the IP header. The DSCP value can be an integer between 0 and 63 or the DSCP codepoint name.   |
+| `ecn`  | Configures the switch to match packets according to the ECN field in the IP header. The ECN value can be an integer between 0 and 3. |
+| `source-ip`  |  Configures the source IP prefix. |
 
-## nv set router pbr map <pbr-map-id> rule <rule-id> match ecn 0-3
+**Version History**
 
-### Usage
+Introduced in Cumulus Linux 4.4.0
 
-  nv set router pbr map <pbr-map-id> rule <rule-id> match ecn [options] 0-3
+**Example**
 
-### Description
+```
+cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 10 match destination-ip 10.1.2.0/24
+```
 
-  ECN
+## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match dscp
 
-### Identifiers
+Configures the switch to match packets according to the DSCP field in the IP header. The DSCP value can be an integer between 0 and 63 or the DSCP codepoint name.
 
-  <pbr-map-id>  Route Map ID
-  <rule-id>     PBR rule number
+**Usage**
 
-## nv set router pbr map <pbr-map-id> rule <rule-id> action
+`nv set router pbr map <pbr-map-id> rule <rule-id> match dscp [options] 0-63`
 
-### Usage
+**Default Setting**
 
-  nv set router pbr map <pbr-map-id> rule <rule-id> action [options] [<attribute> ...]
+N/A
 
-### Description
+**Identifiers**
 
-  PBR map rule action
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<pbr-map-id>` |  The route map name. |
+| `<rule-id>`   | The PBR rule number. |
 
-### Identifiers
+**Version History**
 
-  <pbr-map-id>   Route Map ID
-  <rule-id>      PBR rule number
+Introduced in Cumulus Linux 4.4.0
 
-### Attributes
+**Example**
 
-  nexthop-group  Route with nexthop-group
+```
+cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 match dscp 10
+```
 
-  vrf            Route through VRF
+## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match ecn 0-3
 
-## nv set router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id>
+Configures the switch to match packets according to the ECN field in the IP header. The ECN value can be an integer between 0 and 3.
 
-### Usage
+**Usage**
 
-  nv set router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id> [options]
+`nv set router pbr map <pbr-map-id> rule <rule-id> match ecn [options] 0-3`
 
-### Description
+**Default Setting**
 
-  A nexthop-group
+N/A
 
-### Identifiers
+**Identifiers**
 
-  <pbr-map-id>        Route Map ID
-  <rule-id>           PBR rule number
-  <nexthop-group-id>  Nexthop group ID
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<pbr-map-id>` |  The route map name. |
+| `<rule-id>` |  The PBR rule number.|
 
-## nv set router pbr map <pbr-map-id> rule <rule-id> action vrf <vrf-name>
+**Version History**
 
-### Usage
+Introduced in Cumulus Linux 4.4.0
 
-  nv set router pbr map <pbr-map-id> rule <rule-id> action vrf [options] <vrf-name>
+**Example**
 
-### Description
+```
+cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 match ecn 3
+```
 
-  Route through VRF
+## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> action
 
-### Identifiers
+PBR map rule action
 
-  <pbr-map-id>  Route Map ID
-  <rule-id>     PBR rule number
+**Usage**
+
+`nv set router pbr map <pbr-map-id> rule <rule-id> action [options] [<attribute> ...]`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<pbr-map-id>` | The route map name. |
+| `<rule-id> `  |  The PBR rule number. |
+
+**Attributes**
+
+| Attribute |  Description   |
+| --------- | -------------- |
+| `nexthop-group` | Configures the route with the nexthop-group. |
+| `vrf`     | Configures the route through a VRF. |
+
+**Version History**
+
+Introduced in Cumulus Linux 4.4.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
+```
+
+## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> action nexthop-group \<nexthop-group-id\>
+
+Configures the next hop group to apply to the policy map. You must first configure the next hop group, then apply the group to the policy map.
+
+**Usage**
+
+`nv set router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id> [options]`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<pbr-map-id>`  |  The route map name. |
+| `<rule-id>`     |  The PBR rule number. |
+| `<nexthop-group-id>`  | The nexthop group name. |
+
+**Version History**
+
+Introduced in Cumulus Linux 4.4.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action nexthop-group group1
+```
+
+## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> action vrf \<vrf-name\>
+
+Configures the VRF to apply to the policy map. If you do not set a VRF, the rule uses the VRF table the interface uses.
+
+**Usage**
+
+`nv set router pbr map <pbr-map-id> rule <rule-id> action vrf [options] <vrf-name>`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<pbr-map-id>`  |  The route map name. |
+| `<rule-id>`     |  The PBR rule number. |
+| `<vrf-name>`    |  The VRF you want tot use. |
+
+**Version History**
+
+Introduced in Cumulus Linux 4.4.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
+```
 
 ## nv set router policy
 
-### Usage
+**Usage**
 
   nv set router policy [options] [<attribute> ...]
 
@@ -280,7 +398,7 @@ N/A
 
   A router
 
-### Attributes
+**Attributes**
 
   community-list        Community lists
 
@@ -296,7 +414,7 @@ N/A
 
 ## nv set router policy community-list <list-id>
 
-### Usage
+**Usage**
 
   nv set router policy community-list <list-id> [options] [<attribute> ...]
 
@@ -304,17 +422,17 @@ N/A
 
   A community list is used for matching BGP community policies.
 
-### Identifiers
+**Identifiers**
 
   <list-id>   Community List ID
 
-### Attributes
+**Attributes**
 
   rule        Community List rule
 
 ## nv set router policy community-list <list-id> rule <rule-id>
 
-### Usage
+**Usage**
 
   nv set router policy community-list <list-id> rule <rule-id> [options] [<attribute> ...]
 
@@ -322,12 +440,12 @@ N/A
 
   Community list Matching criteria and action rule
 
-### Identifiers
+**Identifiers**
 
   <list-id>   Community List ID
   <rule-id>   Prefix List rule number
 
-### Attributes
+**Attributes**
 
   community   Community expression
 
@@ -335,7 +453,7 @@ N/A
 
 ## nv set router policy community-list <list-id> rule <rule-id> community <community-id>
 
-### Usage
+**Usage**
 
   nv set router policy community-list <list-id> rule <rule-id> community <community-id> [options]
 
@@ -343,7 +461,7 @@ N/A
 
   A community name
 
-### Identifiers
+**Identifiers**
 
   <list-id>       Community List ID
   <rule-id>       Prefix List rule number
@@ -351,7 +469,7 @@ N/A
 
 ## nv set router policy as-path-list <list-id>
 
-### Usage
+**Usage**
 
   nv set router policy as-path-list <list-id> [options] [<attribute> ...]
 
@@ -359,17 +477,17 @@ N/A
 
   An AS Path list is used for matching BGP AS Path
 
-### Identifiers
+**Identifiers**
 
   <list-id>   AS Path List ID
 
-### Attributes
+**Attributes**
 
   rule        AS Path List rule
 
 ## nv set router policy as-path-list <list-id> rule <rule-id>
 
-### Usage
+**Usage**
 
   nv set router policy as-path-list <list-id> rule <rule-id> [options] [<attribute> ...]
 
@@ -377,12 +495,12 @@ N/A
 
   AS Path list Matching criteria and action rule
 
-### Identifiers
+**Identifiers**
 
   <list-id>   AS Path List ID
   <rule-id>   Prefix List rule number
 
-### Attributes
+**Attributes**
 
   action      Action to be taken for AS path list match
 
@@ -390,7 +508,7 @@ N/A
 
 ## nv set router policy as-path-list <list-id> rule <rule-id> aspath-exp <bgp-regex>
 
-### Usage
+**Usage**
 
   nv set router policy as-path-list <list-id> rule <rule-id> aspath-exp [options] <bgp-regex>
 
@@ -398,14 +516,14 @@ N/A
 
   Regular expression to match BGP AS Paths
 
-### Identifiers
+**Identifiers**
 
   <list-id>   AS Path List ID
   <rule-id>   Prefix List rule number
 
 ## nv set router policy ext-community-list <list-id>
 
-### Usage
+**Usage**
 
   nv set router policy ext-community-list <list-id> [options] [<attribute> ...]
 
@@ -413,17 +531,17 @@ N/A
 
   A Extended Community list used for matching BGP communities
 
-### Identifiers
+**Identifiers**
 
   <list-id>   Community List ID
 
-### Attributes
+**Attributes**
 
   rule        Extended Community List rule
 
 ## nv set router policy ext-community-list <list-id> rule <rule-id>
 
-### Usage
+**Usage**
 
   nv set router policy ext-community-list <list-id> rule <rule-id> [options] [<attribute> ...]
 
@@ -431,12 +549,12 @@ N/A
 
   Extended Community list Matching criteria and action rule
 
-### Identifiers
+**Identifiers**
 
   <list-id>      Community List ID
   <rule-id>      Prefix List rule number
 
-### Attributes
+**Attributes**
 
   ext-community  Extended Community expression
 
@@ -444,7 +562,7 @@ N/A
 
 ## nv set router policy ext-community-list <list-id> rule <rule-id> ext-community
 
-### Usage
+**Usage**
 
   nv set router policy ext-community-list <list-id> rule <rule-id> ext-community [options] [<attribute> ...]
 
@@ -452,12 +570,12 @@ N/A
 
   A Extended community name
 
-### Identifiers
+**Identifiers**
 
   <list-id>   Community List ID
   <rule-id>   Prefix List rule number
 
-### Attributes
+**Attributes**
 
   rt          Route Target Extended Community
 
@@ -465,7 +583,7 @@ N/A
 
 ## nv set router policy ext-community-list <list-id> rule <rule-id> ext-community rt <ext-community-id>
 
-### Usage
+**Usage**
 
   nv set router policy ext-community-list <list-id> rule <rule-id> ext-community rt <ext-community-id> [options]
 
@@ -473,7 +591,7 @@ N/A
 
   A extended community name
 
-### Identifiers
+**Identifiers**
 
   <list-id>           Community List ID
   <rule-id>           Prefix List rule number
@@ -481,7 +599,7 @@ N/A
 
 ## nv set router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id>
 
-### Usage
+**Usage**
 
   nv set router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id> [options]
 
@@ -489,7 +607,7 @@ N/A
 
   A extended community name
 
-### Identifiers
+**Identifiers**
 
   <list-id>           Community List ID
   <rule-id>           Prefix List rule number
@@ -497,7 +615,7 @@ N/A
 
 ## nv set router policy large-community-list <list-id>
 
-### Usage
+**Usage**
 
   nv set router policy large-community-list <list-id> [options] [<attribute> ...]
 
@@ -505,17 +623,17 @@ N/A
 
   A Large Community list used for matching community based BGP policies
 
-### Identifiers
+**Identifiers**
 
   <list-id>   Community List ID
 
-### Attributes
+**Attributes**
 
   rule        Large Community List rules
 
 ## nv set router policy large-community-list <list-id> rule <rule-id>
 
-### Usage
+**Usage**
 
   nv set router policy large-community-list <list-id> rule <rule-id> [options] [<attribute> ...]
 
@@ -523,12 +641,12 @@ N/A
 
   Large Community list Matching criteria and action rule
 
-### Identifiers
+**Identifiers**
 
   <list-id>        Community List ID
   <rule-id>        Prefix List rule number
 
-### Attributes
+**Attributes**
 
   large-community  Large Community expression
 
@@ -536,7 +654,7 @@ N/A
 
 ## nv set router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id>
 
-### Usage
+**Usage**
 
   nv set router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id> [options]
 
@@ -544,7 +662,7 @@ N/A
 
   Set of community names for large community list
 
-### Identifiers
+**Identifiers**
 
   <list-id>             Community List ID
   <rule-id>             Prefix List rule number
@@ -552,7 +670,7 @@ N/A
 
 ## nv set router policy prefix-list <prefix-list-id>
 
-### Usage
+**Usage**
 
   nv set router policy prefix-list <prefix-list-id> [options] [<attribute> ...]
 
@@ -560,11 +678,11 @@ N/A
 
   A prefix list is used for matching IPv4 and IPv6 address prefixes.
 
-### Identifiers
+**Identifiers**
 
   <prefix-list-id>  Prefix List ID
 
-### Attributes
+**Attributes**
 
   rule              Prefix List rule
 
@@ -572,7 +690,7 @@ N/A
 
 ## nv set router policy prefix-list <prefix-list-id> rule <rule-id>
 
-### Usage
+**Usage**
 
   nv set router policy prefix-list <prefix-list-id> rule <rule-id> [options] [<attribute> ...]
 
@@ -580,12 +698,12 @@ N/A
 
   Prefix list Matching criteria and action rule
 
-### Identifiers
+**Identifiers**
 
   <prefix-list-id>  Prefix List ID
   <rule-id>         Prefix List rule number
 
-### Attributes
+**Attributes**
 
   match             Prefix List rule
 
@@ -593,7 +711,7 @@ N/A
 
 ## nv set router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id>
 
-### Usage
+**Usage**
 
   nv set router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> [options] [<attribute> ...]
 
@@ -601,13 +719,13 @@ N/A
 
   A prefix match
 
-### Identifiers
+**Identifiers**
 
   <prefix-list-id>  Prefix List ID
   <rule-id>         Prefix List rule number
   <match-id>        ip v4/v6 prefix, or any
 
-### Attributes
+**Attributes**
 
   max-prefix-len    Maximum prefix length to be matched
 
@@ -615,7 +733,7 @@ N/A
 
 ## nv set router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> min-prefix-len 0-128
 
-### Usage
+**Usage**
 
   nv set router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> min-prefix-len [options] 0-128
 
@@ -623,7 +741,7 @@ N/A
 
   Minimum prefix length to be matched
 
-### Identifiers
+**Identifiers**
 
   <prefix-list-id>  Prefix List ID
   <rule-id>         Prefix List rule number
@@ -631,7 +749,7 @@ N/A
 
 ## nv set router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> max-prefix-len 0-128
 
-### Usage
+**Usage**
 
   nv set router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> max-prefix-len [options] 0-128
 
@@ -639,7 +757,7 @@ N/A
 
   Maximum prefix length to be matched
 
-### Identifiers
+**Identifiers**
 
   <prefix-list-id>  Prefix List ID
   <rule-id>         Prefix List rule number
@@ -647,7 +765,7 @@ N/A
 
 ## nv set router policy route-map <route-map-id>
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> [options] [<attribute> ...]
 
@@ -655,17 +773,17 @@ N/A
 
   A route map is used for policy configuration.
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
 
-### Attributes
+**Attributes**
 
   rule            Route Map rule
 
 ## nv set router policy route-map <route-map-id> rule <rule-id>
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> [options] [<attribute> ...]
 
@@ -673,12 +791,12 @@ N/A
 
   Route Map Matching/setting criteria and action rule
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
-### Attributes
+**Attributes**
 
   match           Route Map match
 
@@ -688,7 +806,7 @@ N/A
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> match
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> match [options] [<attribute> ...]
 
@@ -696,12 +814,12 @@ N/A
 
   Route map rule match
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>        Route Map ID
   <rule-id>             Sequence to insert or delete from the route-map
 
-### Attributes
+**Attributes**
 
   as-path-list          BGP AS path list
 
@@ -745,7 +863,7 @@ N/A
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> match ip-prefix-list <instance-name>
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> match ip-prefix-list [options] <instance-name>
 
@@ -753,14 +871,14 @@ N/A
 
   IP prefix list
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> match ip-prefix-len 0-128
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> match ip-prefix-len [options] 0-128
 
@@ -768,14 +886,14 @@ N/A
 
   IP address prefix length
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> match ip-nexthop-list <instance-name>
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> match ip-nexthop-list [options] <instance-name>
 
@@ -783,14 +901,14 @@ N/A
 
   IP prefix list
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> match ip-nexthop-len 0-32
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> match ip-nexthop-len [options] 0-32
 
@@ -798,14 +916,14 @@ N/A
 
   IP nexthop prefix length
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> match ip-nexthop-type blackhole
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> match ip-nexthop-type [options] blackhole
 
@@ -813,14 +931,14 @@ N/A
 
   IP nexthop type
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> match as-path-list <instance-name>
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> match as-path-list [options] <instance-name>
 
@@ -828,14 +946,14 @@ N/A
 
   BGP AS path list
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> match community-list <instance-name>
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> match community-list [options] <instance-name>
 
@@ -843,14 +961,14 @@ N/A
 
   BGP community list
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> match large-community-list <instance-name>
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> match large-community-list [options] <instance-name>
 
@@ -858,14 +976,14 @@ N/A
 
   BGP large community list
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> match metric <value>
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> match metric [options] <value>
 
@@ -873,14 +991,14 @@ N/A
 
   Metric of route
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> match tag 1-4294967295
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> match tag [options] 1-4294967295
 
@@ -888,14 +1006,14 @@ N/A
 
   Tag
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> match local-preference 0-4294967295
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> match local-preference [options] 0-4294967295
 
@@ -903,14 +1021,14 @@ N/A
 
   Local preference of route
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> match evpn-vni <value>
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> match evpn-vni [options] <value>
 
@@ -918,14 +1036,14 @@ N/A
 
   VNI ID
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> match source-vrf <vrf-name>
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> match source-vrf [options] <vrf-name>
 
@@ -933,14 +1051,14 @@ N/A
 
   Source VRF
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> set
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> set [options] [<attribute> ...]
 
@@ -948,12 +1066,12 @@ N/A
 
   Route map rule set
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>        Route Map ID
   <rule-id>             Sequence to insert or delete from the route-map
 
-### Attributes
+**Attributes**
 
   as-path-prepend       AS Path prepend
 
@@ -1003,7 +1121,7 @@ N/A
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend [options] [<attribute> ...]
 
@@ -1011,12 +1129,12 @@ N/A
 
   AS Path prepend
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
-### Attributes
+**Attributes**
 
   as              AS number
 
@@ -1024,7 +1142,7 @@ N/A
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend as 1-4294967295
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend as [options] 1-4294967295
 
@@ -1032,14 +1150,14 @@ N/A
 
   AS number
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend last-as 1-10
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend last-as [options] 1-10
 
@@ -1047,14 +1165,14 @@ N/A
 
   Number of times to insert peer's AS number
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> set community <community-id>
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> set community <community-id> [options]
 
@@ -1062,7 +1180,7 @@ N/A
 
   BGP Community
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
@@ -1070,7 +1188,7 @@ N/A
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id>
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id> [options]
 
@@ -1078,7 +1196,7 @@ N/A
 
   Large BGP Community
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>        Route Map ID
   <rule-id>             Sequence to insert or delete from the route-map
@@ -1086,7 +1204,7 @@ N/A
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id>
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> [options] [<attribute> ...]
 
@@ -1094,19 +1212,19 @@ N/A
 
   Aggregator AS Number
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
   <asn-id>        Autonomous number
 
-### Attributes
+**Attributes**
 
   address         Set of IPv4 addresses
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address <ipv4-address-id>
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address <ipv4-address-id> [options]
 
@@ -1114,7 +1232,7 @@ N/A
 
   An IPv4 address
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>     Route Map ID
   <rule-id>          Sequence to insert or delete from the route-map
@@ -1123,7 +1241,7 @@ N/A
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> set as-path-exclude 1-4294967295
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> set as-path-exclude [options] 1-4294967295
 
@@ -1131,14 +1249,14 @@ N/A
 
   Exclude from AS path
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-rt <route-distinguisher>
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-rt [options] <route-distinguisher>
 
@@ -1146,7 +1264,7 @@ N/A
 
   Route target extended community
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
@@ -1154,7 +1272,7 @@ N/A
 ## nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-soo <route-distinguisher>
 
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-soo [options] <route-distinguisher>
 
@@ -1162,7 +1280,7 @@ N/A
 
   Site of origin extended community
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
@@ -1170,7 +1288,7 @@ N/A
 ## nv set router policy route-map <route-map-id> rule <rule-id> set local-preference 0-4294967295
 
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> set local-preference [options] 0-4294967295
 
@@ -1178,7 +1296,7 @@ N/A
 
   Local preference
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
@@ -1186,7 +1304,7 @@ N/A
 ## nv set router policy route-map <route-map-id> rule <rule-id> set weight 0-4294967295
 
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> set weight [options] 0-4294967295
 
@@ -1194,14 +1312,14 @@ N/A
 
   BGP weight
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> set tag 1-4294967295
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> set tag [options] 1-4294967295
 
@@ -1209,14 +1327,14 @@ N/A
 
   Tag value for routing protocol
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-global <ipv6>
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-global [options] <ipv6>
 
@@ -1224,14 +1342,14 @@ N/A
 
   IPv6 nexthop global address
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-local <ipv6>
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-local [options] <ipv6>
 
@@ -1239,14 +1357,14 @@ N/A
 
   IPv6 nexthop local address
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> action
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> action [options] [<attribute> ...]
 
@@ -1254,12 +1372,12 @@ N/A
 
   Route map rule action
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
-### Attributes
+**Attributes**
 
   deny            Deny action
 
@@ -1267,7 +1385,7 @@ N/A
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> action deny
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> action deny [options]
 
@@ -1275,14 +1393,14 @@ N/A
 
   State details
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> action permit
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> action permit [options] [<attribute> ...]
 
@@ -1290,18 +1408,18 @@ N/A
 
   permit action
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
-### Attributes
+**Attributes**
 
   exit-policy     Permit action exit policy
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> action permit exit-policy
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> action permit exit-policy [options] [<attribute> ...]
 
@@ -1309,18 +1427,18 @@ N/A
 
   Permit action exit policy
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
-### Attributes
+**Attributes**
 
   rule            jump to specific rule
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> action permit exit-policy rule <value>
 
-### Usage
+**Usage**
 
   nv set router policy route-map <route-map-id> rule <rule-id> action permit exit-policy rule [options] <value>
 
@@ -1328,14 +1446,14 @@ N/A
 
   jump to specific rule
 
-### Identifiers
+**Identifiers**
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 ## nv set router bgp
 
-### Usage
+**Usage**
 
   nv set router bgp [options] [<attribute> ...]
 
@@ -1343,7 +1461,7 @@ N/A
 
   BGP global configuration.
 
-### Attributes
+**Attributes**
 
   graceful-restart     BGP Graceful restart global configuration.
 
@@ -1363,7 +1481,7 @@ N/A
 
 ## nv set router bgp graceful-restart
 
-### Usage
+**Usage**
 
   nv set router bgp graceful-restart [options] [<attribute> ...]
 
@@ -1371,7 +1489,7 @@ N/A
 
   BGP Graceful restart global configuration.
 
-### Attributes
+**Attributes**
 
 
   mode                  Role of router during graceful restart. helper-only, router is in helper role. full, router is in both helper and restarter role. off, GR is disabled for the router
@@ -1384,7 +1502,7 @@ N/A
 
 ## nv set router bgp graceful-restart restart-time 1-3600
 
-### Usage
+**Usage**
 
   nv set router bgp graceful-restart restart-time [options] 1-3600
 
@@ -1394,7 +1512,7 @@ N/A
 
 ## nv set router bgp graceful-restart path-selection-deferral-time 0-3600
 
-### Usage
+**Usage**
 
   nv set router bgp graceful-restart path-selection-deferral-time [options] 0-3600
 
@@ -1404,7 +1522,7 @@ N/A
 
 ## nv set router bgp graceful-restart stale-routes-time 1-3600
 
-### Usage
+**Usage**
 
   nv set router bgp graceful-restart stale-routes-time [options] 1-3600
 
@@ -1414,7 +1532,7 @@ N/A
 
 ## nv set router bgp convergence-wait
 
-### Usage
+**Usage**
 
   nv set router bgp convergence-wait [options] [<attribute> ...]
 
@@ -1422,7 +1540,7 @@ N/A
 
   BGP Graceful restart global configuration.
 
-### Attributes
+**Attributes**
 
   establish-wait-time  Maximum time to wait to establish BGP sessions. Any
 
@@ -1444,7 +1562,7 @@ N/A
 
 ## nv set router bgp convergence-wait time 0-3600
 
-### Usage
+**Usage**
 
   nv set router bgp convergence-wait time [options] 0-3600
 
@@ -1454,7 +1572,7 @@ N/A
 
 ## nv set router bgp convergence-wait establish-wait-time 0-3600
 
-### Usage
+**Usage**
 
   nv set router bgp convergence-wait establish-wait-time [options] 0-3600
 
@@ -1464,7 +1582,7 @@ N/A
 
 ## nv set router bgp policy-update-timer 0-600
 
-### Usage
+**Usage**
 
   nv set router bgp policy-update-timer [options] 0-600
 
@@ -1474,7 +1592,7 @@ N/A
 
 ## nv set router ospf
 
-### Usage
+**Usage**
 
   nv set router ospf [options] [<attribute> ...]
 
@@ -1482,7 +1600,7 @@ N/A
 
   OSPF global configuration.
 
-### Attributes
+**Attributes**
 
 
   timers      Timers
@@ -1495,7 +1613,7 @@ N/A
 
 ## nv set router ospf timers
 
-### Usage
+**Usage**
 
   nv set router ospf timers [options] [<attribute> ...]
 
@@ -1503,7 +1621,7 @@ N/A
 
   Timers
 
-### Attributes
+**Attributes**
 
 
   lsa         LSA timers
@@ -1514,7 +1632,7 @@ N/A
 
 ## nv set router ospf timers lsa
 
-### Usage
+**Usage**
 
   nv set router ospf timers lsa [options] [<attribute> ...]
 
@@ -1522,7 +1640,7 @@ N/A
 
   LSA timers
 
-### Attributes
+**Attributes**
 
 
   min-arrival  Minimum delay in receiving new version of a LSA.
@@ -1531,7 +1649,7 @@ N/A
 
 ## nv set router ospf timers lsa min-arrival 0-600000
 
-### Usage
+**Usage**
 
   nv set router ospf timers lsa min-arrival [options] 0-600000
 
@@ -1541,7 +1659,7 @@ N/A
 
 ## nv set router ospf timers lsa throttle 0-5000
 
-### Usage
+**Usage**
 
   nv set router ospf timers lsa throttle [options] 0-5000
 
@@ -1551,7 +1669,7 @@ N/A
 
 ## nv set router ospf timers spf
 
-### Usage
+**Usage**
 
   nv set router ospf timers spf [options] [<attribute> ...]
 
@@ -1559,7 +1677,7 @@ N/A
 
   SPF timers
 
-### Attributes
+**Attributes**
 
   delay         Delay (msec) from first change received till SPF calculation.
 
@@ -1569,7 +1687,7 @@ N/A
 
 ## nv set router ospf timers spf delay 0-600000
 
-### Usage
+**Usage**
 
   nv set router ospf timers spf delay [options] 0-600000
 
@@ -1579,7 +1697,7 @@ N/A
 
 ## nv set router ospf timers spf holdtime 0-600000
 
-### Usage
+**Usage**
 
   nv set router ospf timers spf holdtime [options] 0-600000
 
@@ -1589,7 +1707,7 @@ N/A
 
 ## nv set router ospf timers spf max-holdtime 0-600000
 
-### Usage
+**Usage**
 
   nv set router ospf timers spf max-holdtime [options] 0-600000
 
@@ -1599,7 +1717,7 @@ N/A
 
 ## nv set router ospf timers refresh 10-1800
 
-### Usage
+**Usage**
 
   nv set router ospf timers refresh [options] 10-1800
 
@@ -1609,7 +1727,7 @@ N/A
 
 ## nv set router pim
 
-### Usage
+**Usage**
 
   nv set router pim [options] [<attribute> ...]
 
@@ -1617,7 +1735,7 @@ N/A
 
   PIM global configuration.
 
-### Attributes
+**Attributes**
 
   timers      Timers
 
@@ -1627,7 +1745,7 @@ N/A
 
 ## nv set router pim timers
 
-### Usage
+**Usage**
 
   nv set router pim timers [options] [<attribute> ...]
 
@@ -1635,7 +1753,7 @@ N/A
 
   Timers
 
-### Attributes
+**Attributes**
 
 
   hello-interval       PIM Hello packets periodic interval. Holdtime is 3.5
@@ -1656,7 +1774,7 @@ N/A
 
 ## nv set router pim timers hello-interval 1-180
 
-### Usage
+**Usage**
 
   nv set router pim timers hello-interval [options] 1-180
 
@@ -1666,7 +1784,7 @@ N/A
 
 ## nv set router pim timers register-suppress 5-60000
 
-### Usage
+**Usage**
 
   nv set router pim timers register-suppress [options] 5-60000
 
@@ -1676,7 +1794,7 @@ N/A
 
 ## nv set router pim timers join-prune-interval 60-600
 
-### Usage
+**Usage**
 
   nv set router pim timers join-prune-interval [options] 60-600
 
@@ -1686,7 +1804,7 @@ N/A
 
 ## nv set router pim timers keep-alive 31-60000
 
-### Usage
+**Usage**
 
   nv set router pim timers keep-alive [options] 31-60000
 
@@ -1696,7 +1814,7 @@ N/A
 
 ## nv set router pim timers rp-keep-alive 31-60000
 
-### Usage
+**Usage**
 
   nv set router pim timers rp-keep-alive [options] 31-60000
 
@@ -1706,7 +1824,7 @@ N/A
 
 ## nv set router pim packets 1-100
 
-### Usage
+**Usage**
 
   nv set router pim packets [options] 1-100
 
@@ -1716,7 +1834,7 @@ N/A
 
 ## nv set router igmp
 
-### Usage
+**Usage**
 
   nv set router igmp [options] [<attribute> ...]
 
@@ -1724,13 +1842,13 @@ N/A
 
   IGMP global configuration.
 
-### Attributes
+**Attributes**
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
 ## nv set router vrrp
 
-### Usage
+**Usage**
 
   nv set router vrrp [options] [<attribute> ...]
 
@@ -1738,7 +1856,7 @@ N/A
 
   VRRP global configuration.
 
-### Attributes
+**Attributes**
 
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -1750,7 +1868,7 @@ N/A
 
 ## nv set router vrrp priority 1-254
 
-### Usage
+**Usage**
 
   nv set router vrrp priority [options] 1-254
 
@@ -1760,7 +1878,7 @@ N/A
 
 ## nv set router vrrp advertisement-interval 10-40950
 
-### Usage
+**Usage**
 
   nv set router vrrp advertisement-interval [options] 10-40950
 
@@ -1770,7 +1888,7 @@ N/A
 
 ## nv set router vrr
 
-### Usage
+**Usage**
 
   nv set router vrr [options] [<attribute> ...]
 
@@ -1778,13 +1896,13 @@ N/A
 
   VRR global configuration.
 
-### Attributes
+**Attributes**
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
 ## nv set router adaptive-routing
 
-### Usage
+**Usage**
 
   nv set router adaptive-routing [options] [<attribute> ...]
 
@@ -1792,13 +1910,13 @@ N/A
 
   Adaptive routing global configuration.
 
-### Attributes
+**Attributes**
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
 ## nv set platform
 
-### Usage
+**Usage**
 
   nv set platform [options] [<attribute> ...]
 
@@ -1806,13 +1924,13 @@ N/A
 
   Top-level container for the components in the system. This node represents a system component inventory, which includes hardware and software elements.
 
-### Attributes
+**Attributes**
 
   hardware    The platform's hardware
 
 ## nv set platform hardware
 
-### Usage
+**Usage**
 
   nv set platform hardware [options] [<attribute> ...]
 
@@ -1820,13 +1938,13 @@ N/A
 
   Set of components making up the platform.
 
-### Attributes
+**Attributes**
 
   component   A component in the platform.
 
 ## nv set platform hardware component <component-id>
 
-### Usage
+**Usage**
 
   nv set platform hardware component <component-id> [options] [<attribute> ...]
 
@@ -1834,11 +1952,11 @@ N/A
 
   A component in the platform.
 
-### Identifiers
+**Identifiers**
 
   <component-id>  Component identifier
 
-### Attributes
+**Attributes**
 
   linecard        Properties of a linecard component
 
@@ -1849,7 +1967,7 @@ N/A
 
 ## nv set platform hardware component <component-id> linecard
 
-### Usage
+**Usage**
 
   nv set platform hardware component <component-id> linecard [options] [<attribute> ...]
 
@@ -1857,17 +1975,17 @@ N/A
 
   Properties of a linecard component
 
-### Identifiers
+**Identifiers**
 
   <component-id>  Component identifier
 
-### Attributes
+**Attributes**
 
   provision       Provision linecard types
 
 ## nv set bridge
 
-### Usage
+**Usage**
 
   nv set bridge [options] [<attribute> ...]
 
@@ -1875,13 +1993,13 @@ N/A
 
   Properties associated with an instance of a bridge.
 
-### Attributes
+**Attributes**
 
   domain      Bridge domains
 
 ## nv set bridge domain <domain-id>
 
-### Usage
+**Usage**
 
   nv set bridge domain <domain-id> [options] [<attribute> ...]
 
@@ -1889,11 +2007,11 @@ N/A
 
   Bridge domain
 
-### Identifiers
+**Identifiers**
 
   <domain-id>      Domain
 
-### Attributes
+**Attributes**
 
   stp              attributes related to global stp
 
@@ -1913,7 +2031,7 @@ N/A
 
 ## nv set bridge domain <domain-id> stp
 
-### Usage
+**Usage**
 
   nv set bridge domain <domain-id> stp [options] [<attribute> ...]
 
@@ -1921,11 +2039,11 @@ N/A
 
   attributes related to global stp
 
-### Identifiers
+**Identifiers**
 
   <domain-id>  Domain
 
-### Attributes
+**Attributes**
 
   state        The state of STP on the bridge
 
@@ -1933,7 +2051,7 @@ N/A
 
 ## nv set bridge domain <domain-id> stp priority 4096-61440
 
-### Usage
+**Usage**
 
   nv set bridge domain <domain-id> stp priority [options] 4096-61440
 
@@ -1941,13 +2059,13 @@ N/A
 
   stp priority. The priority value must be a number between 4096 and 32768 and a multiple of 4096.
 
-### Identifiers
+**Identifiers**
 
   <domain-id>  Domain
 
 ## nv set bridge domain <domain-id> multicast
 
-### Usage
+**Usage**
 
   nv set bridge domain <domain-id> multicast [options] [<attribute> ...]
 
@@ -1955,17 +2073,17 @@ N/A
 
   Configure multicast on the bridge
 
-### Identifiers
+**Identifiers**
 
   <domain-id>  Domain
 
-### Attributes
+**Attributes**
 
   snooping     IGMP/MLD snooping configuration
 
 ## nv set bridge domain <domain-id> multicast snooping
 
-### Usage
+**Usage**
 
   nv set bridge domain <domain-id> multicast snooping [options] [<attribute> ...]
 
@@ -1973,11 +2091,11 @@ N/A
 
   IGMP/MLD snooping configuration
 
-### Identifiers
+**Identifiers**
 
   <domain-id>  Domain
 
-### Attributes
+**Attributes**
 
   querier      IGMP/MLD querier configuration
 
@@ -1985,7 +2103,7 @@ N/A
 
 ## nv set bridge domain <domain-id> multicast snooping querier
 
-### Usage
+**Usage**
 
   nv set bridge domain <domain-id> multicast snooping querier [options] [<attribute> ...]
 
@@ -1993,17 +2111,17 @@ N/A
 
   IGMP/MLD querier configuration
 
-### Identifiers
+**Identifiers**
 
   <domain-id>  Domain
 
-### Attributes
+**Attributes**
 
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
 
 ## nv set bridge domain <domain-id> vlan <vid>
 
-### Usage
+**Usage**
 
   nv set bridge domain <domain-id> vlan <vid> [options] [<attribute> ...]
 
@@ -2011,12 +2129,12 @@ N/A
 
   A VLAN tag identifier
 
-### Identifiers
+**Identifiers**
 
   <domain-id>  Domain
   <vid>        VLAN ID
 
-### Attributes
+**Attributes**
 
   vni          L2 VNI
 
@@ -2026,7 +2144,7 @@ N/A
 
 ## nv set bridge domain <domain-id> vlan <vid> vni <vni-id>
 
-### Usage
+**Usage**
 
   nv set bridge domain <domain-id> vlan <vid> vni <vni-id> [options] [<attribute> ...]
 
@@ -2034,13 +2152,13 @@ N/A
 
   VNI
 
-### Identifiers
+**Identifiers**
 
   <domain-id>   Domain
   <vid>         VLAN ID
   <vni-id>      VxLAN ID
 
-### Attributes
+**Attributes**
 
 
   flooding      Handling of BUM traffic
@@ -2049,7 +2167,7 @@ N/A
 
 ## nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding
 
-### Usage
+**Usage**
 
   nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding [options] [<attribute> ...]
 
@@ -2057,13 +2175,13 @@ N/A
 
   Handling of BUM traffic
 
-### Identifiers
+**Identifiers**
 
   <domain-id>           Domain
   <vid>                 VLAN ID
   <vni-id>              VxLAN ID
 
-### Attributes
+**Attributes**
 
   head-end-replication  BUM traffic is replicated and individual copies sent to remote destinations.
 
@@ -2073,7 +2191,7 @@ N/A
 
 ## nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id>
 
-### Usage
+**Usage**
 
   nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id> [options]
 
@@ -2081,7 +2199,7 @@ N/A
 
   Set of IPv4 unicast addresses or "evpn".
 
-### Identifiers
+**Identifiers**
 
   <domain-id>  Domain
   <vid>        VLAN ID
@@ -2090,7 +2208,7 @@ N/A
 
 ## nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding multicast-group <ipv4-multicast>
 
-### Usage
+**Usage**
 
   nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding multicast-group [options] <ipv4-multicast>
 
@@ -2098,7 +2216,7 @@ N/A
 
   BUM traffic is sent to the specified multicast group and will be received by receivers who are interested in that group. This usually requires PIM-SM to be used in the network.
 
-### Identifiers
+**Identifiers**
 
   <domain-id>  Domain
   <vid>        VLAN ID
@@ -2106,7 +2224,7 @@ N/A
 
 ## nv set bridge domain <domain-id> vlan <vid> ptp
 
-### Usage
+**Usage**
 
   nv set bridge domain <domain-id> vlan <vid> ptp [options] [<attribute> ...]
 
@@ -2114,18 +2232,18 @@ N/A
 
   VLAN PTP configuration.  Inherited by interfaces in this VLAN.
 
-### Identifiers
+**Identifiers**
 
   <domain-id>  Domain
   <vid>        VLAN ID
 
-### Attributes
+**Attributes**
 
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
 
 ## nv set bridge domain <domain-id> vlan <vid> multicast
 
-### Usage
+**Usage**
 
   nv set bridge domain <domain-id> vlan <vid> multicast [options] [<attribute> ...]
 
@@ -2133,18 +2251,18 @@ N/A
 
   Configure multicast on the vlan
 
-### Identifiers
+**Identifiers**
 
   <domain-id>  Domain
   <vid>        VLAN ID
 
-### Attributes
+**Attributes**
 
   snooping     IGMP/MLD snooping configuration
 
 ## nv set bridge domain <domain-id> vlan <vid> multicast snooping
 
-### Usage
+**Usage**
 
   nv set bridge domain <domain-id> vlan <vid> multicast snooping [options] [<attribute> ...]
 
@@ -2152,18 +2270,18 @@ N/A
 
   IGMP/MLD snooping configuration
 
-### Identifiers
+**Identifiers**
 
   <domain-id>  Domain
   <vid>        VLAN ID
 
-### Attributes
+**Attributes**
 
   querier      IGMP/MLD querier configuration
 
 ## nv set bridge domain <domain-id> vlan <vid> multicast snooping querier
 
-### Usage
+**Usage**
 
   nv set bridge domain <domain-id> vlan <vid> multicast snooping querier [options] [<attribute> ...]
 
@@ -2171,18 +2289,18 @@ N/A
 
   IGMP/MLD querier configuration
 
-### Identifiers
+**Identifiers**
 
   <domain-id>  Domain
   <vid>        VLAN ID
 
-### Attributes
+**Attributes**
 
   source-ip    Source IP to use when sending IGMP/MLD queries.
 
 ## nv set bridge domain <domain-id> vlan <vid> multicast snooping querier source-ip <ipv4>
 
-### Usage
+**Usage**
 
   nv set bridge domain <domain-id> vlan <vid> multicast snooping querier source-ip [options] <ipv4>
 
@@ -2190,14 +2308,14 @@ N/A
 
   Source IP to use when sending IGMP/MLD queries.
 
-### Identifiers
+**Identifiers**
 
   <domain-id>  Domain
   <vid>        VLAN ID
 
 ## nv set bridge domain <domain-id> type vlan-aware
 
-### Usage
+**Usage**
 
   nv set bridge domain <domain-id> type [options] vlan-aware
 
@@ -2205,13 +2323,13 @@ N/A
 
   Type of bridge domain.
 
-### Identifiers
+**Identifiers**
 
   <domain-id>  Domain
 
 ## nv set bridge domain <domain-id> encap 802.1Q
 
-### Usage
+**Usage**
 
   nv set bridge domain <domain-id> encap [options] 802.1Q
 
@@ -2219,13 +2337,13 @@ N/A
 
   Interfaces added to this domain will, by default, use this encapsulation.
 
-### Identifiers
+**Identifiers**
 
   <domain-id>  Domain
 
 ## nv set bridge domain <domain-id> vlan-vni-offset 0-16773120
 
-### Usage
+**Usage**
 
   nv set bridge domain <domain-id> vlan-vni-offset [options] 0-16773120
 
@@ -2233,13 +2351,13 @@ N/A
 
   A VNI offset while (automatically) mapping VLANs to VNIs
 
-### Identifiers
+**Identifiers**
 
   <domain-id>  Domain
 
 ## nv set mlag
 
-### Usage
+**Usage**
 
   nv set mlag [options] [<attribute> ...]
 
@@ -2247,7 +2365,7 @@ N/A
 
   Global Multi-chassis Link Aggregation properties
 
-### Attributes
+**Attributes**
 
   lacp-conflict  Configure the mlag lacp-conflict parameters
 
@@ -2267,7 +2385,7 @@ N/A
 
 ## nv set mlag lacp-conflict
 
-### Usage
+**Usage**
 
   nv set mlag lacp-conflict [options]
 
@@ -2277,7 +2395,7 @@ N/A
 
 ## nv set mlag backup <backup-ip>
 
-### Usage
+**Usage**
 
   nv set mlag backup <backup-ip> [options] [<attribute> ...]
 
@@ -2285,17 +2403,17 @@ N/A
 
   alternative ip address or interface for peer to reach us
 
-### Identifiers
+**Identifiers**
 
   <backup-ip>  Backup IP of MLAG peer
 
-### Attributes
+**Attributes**
 
   vrf          The backup IP's VRF.
 
 ## nv set mlag backup <backup-ip> vrf <vrf-name>
 
-### Usage
+**Usage**
 
   nv set mlag backup <backup-ip> vrf [options] <vrf-name>
 
@@ -2303,13 +2421,13 @@ N/A
 
   The backup IP's VRF.
 
-### Identifiers
+**Identifiers**
 
   <backup-ip>  Backup IP of MLAG peer
 
 ## nv set mlag priority 0-65535
 
-### Usage
+**Usage**
 
   nv set mlag priority [options] 0-65535
 
@@ -2319,7 +2437,7 @@ N/A
 
 ## nv set mlag init-delay 0-900
 
-### Usage
+**Usage**
 
   nv set mlag init-delay [options] 0-900
 
@@ -2329,7 +2447,7 @@ N/A
 
 ## nv set evpn
 
-### Usage
+**Usage**
 
   nv set evpn [options] [<attribute> ...]
 
@@ -2337,7 +2455,7 @@ N/A
 
   Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
 
-### Attributes
+**Attributes**
 
   route-advertise  Route advertising
 
@@ -2351,7 +2469,7 @@ N/A
 
 ## nv set evpn route-advertise
 
-### Usage
+**Usage**
 
   nv set evpn route-advertise [options] [<attribute> ...]
 
@@ -2359,7 +2477,7 @@ N/A
 
   Route dvertising
 
-### Attributes
+**Attributes**
 
   default-gateway  This configuration should be turned 'on' only in a centralized-routing deployment and only on the centralized GW router(s). If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes with the gateway extended community. The purpose is for remote L2-only VTEPs to do  ARP suppression and for hosts to learn of the gateway's IP to MAC binding.
 
@@ -2369,7 +2487,7 @@ N/A
 
 ## nv set evpn dad
 
-### Usage
+**Usage**
 
   nv set evpn dad [options] [<attribute> ...]
 
@@ -2377,7 +2495,7 @@ N/A
 
   Duplicate address detection
 
-### Attributes
+**Attributes**
 
   duplicate-action    Action to take when a MAC is flagged as a possible duplicate. If 'warning-only', generates a log message. If 'freeze', further move events for the MAC will not be acted upon.
 
@@ -2389,7 +2507,7 @@ N/A
 
 ## nv set evpn dad duplicate-action
 
-### Usage
+**Usage**
 
   nv set evpn dad duplicate-action [options] [<attribute> ...]
 
@@ -2397,13 +2515,13 @@ N/A
 
   Handling of BUM traffic
 
-### Attributes
+**Attributes**
 
   freeze      Further move events for the MAC will not be acted upon.
 
 ## nv set evpn dad duplicate-action freeze
 
-### Usage
+**Usage**
 
   nv set evpn dad duplicate-action freeze [options] [<attribute> ...]
 
@@ -2411,7 +2529,7 @@ N/A
 
   Advertise
 
-### Attributes
+**Attributes**
 
   duration    Freeze the MAC for the specified duration or, if 'permanent'
 
@@ -2419,7 +2537,7 @@ N/A
 
 ## nv set evpn dad mac-move-threshold 2-1000
 
-### Usage
+**Usage**
 
   nv set evpn dad mac-move-threshold [options] 2-1000
 
@@ -2429,7 +2547,7 @@ N/A
 
 ## nv set evpn dad move-window 2-1800
 
-### Usage
+**Usage**
 
   nv set evpn dad move-window [options] 2-1800
 
@@ -2439,7 +2557,7 @@ N/A
 
 ## nv set evpn evi <evi-id>
 
-### Usage
+**Usage**
 
   nv set evpn evi <evi-id> [options] [<attribute> ...]
 
@@ -2447,11 +2565,11 @@ N/A
 
   Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
 
-### Identifiers
+**Identifiers**
 
   <evi-id>         VRF
 
-### Attributes
+**Attributes**
 
   route-advertise  Route advertise
 
@@ -2463,7 +2581,7 @@ N/A
 
 ## nv set evpn evi <evi-id> route-advertise
 
-### Usage
+**Usage**
 
   nv set evpn evi <evi-id> route-advertise [options] [<attribute> ...]
 
@@ -2471,11 +2589,11 @@ N/A
 
   Route advertise
 
-### Identifiers
+**Identifiers**
 
   <evi-id>         VRF
 
-### Attributes
+**Attributes**
 
 
   default-gateway  If 'auto', inherit from global config. This is the default. This configuration should be turned 'on' only in a centralized-routing deployment and only on the centralized GW router(s). If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes with the gateway extended community. The purpose is for remote L2-only VTEPs to do ARP suppression and for hosts to learn of the gateway's IP to MAC binding.
@@ -2484,7 +2602,7 @@ N/A
 
 ## nv set evpn evi <evi-id> route-target
 
-### Usage
+**Usage**
 
   nv set evpn evi <evi-id> route-target [options] [<attribute> ...]
 
@@ -2492,11 +2610,11 @@ N/A
 
   EVPN control plane config and info for VRF
 
-### Identifiers
+**Identifiers**
 
   <evi-id>    VRF
 
-### Attributes
+**Attributes**
 
 
   export      Route targets to export
@@ -2507,7 +2625,7 @@ N/A
 
 ## nv set evpn evi <evi-id> route-target export <rt-id>
 
-### Usage
+**Usage**
 
   nv set evpn evi <evi-id> route-target export <rt-id> [options]
 
@@ -2515,14 +2633,14 @@ N/A
 
   A route target identifier
 
-### Identifiers
+**Identifiers**
 
   <evi-id>    VRF
   <rt-id>     Route target ID
 
 ## nv set evpn evi <evi-id> route-target import <rt-id>
 
-### Usage
+**Usage**
 
   nv set evpn evi <evi-id> route-target import <rt-id> [options]
 
@@ -2530,14 +2648,14 @@ N/A
 
   A route target identifier
 
-### Identifiers
+**Identifiers**
 
   <evi-id>    VRF
   <rt-id>     Route target ID
 
 ## nv set evpn evi <evi-id> route-target both <rt-id>
 
-### Usage
+**Usage**
 
   nv set evpn evi <evi-id> route-target both <rt-id> [options]
 
@@ -2545,14 +2663,14 @@ N/A
 
   A route target identifier
 
-### Identifiers
+**Identifiers**
 
   <evi-id>    VRF
   <rt-id>     Route target ID
 
 ## nv set evpn multihoming
 
-### Usage
+**Usage**
 
   nv set evpn multihoming [options] [<attribute> ...]
 
@@ -2560,7 +2678,7 @@ N/A
 
   Multihoming global configuration parameters
 
-### Attributes
+**Attributes**
 
   ead-evi-route      Ethernet Auto-discovery per EVPN instance routes
 
@@ -2576,7 +2694,7 @@ N/A
 
 ## nv set evpn multihoming ead-evi-route
 
-### Usage
+**Usage**
 
   nv set evpn multihoming ead-evi-route [options] [<attribute> ...]
 
@@ -2584,7 +2702,7 @@ N/A
 
   Ethernet Auto-discovery per EVPN instance routes
 
-### Attributes
+**Attributes**
 
   rx          Disable EAD-per-EVI at receiving end.
 
@@ -2592,7 +2710,7 @@ N/A
 
 ## nv set evpn multihoming segment
 
-### Usage
+**Usage**
 
   nv set evpn multihoming segment [options] [<attribute> ...]
 
@@ -2600,7 +2718,7 @@ N/A
 
   Multihoming interface segment
 
-### Attributes
+**Attributes**
 
 
   df-preference  Designated forwarder preference value.
@@ -2609,7 +2727,7 @@ N/A
 
 ## nv set evpn multihoming segment mac-address <mac>
 
-### Usage
+**Usage**
 
   nv set evpn multihoming segment mac-address [options] <mac>
 
@@ -2619,7 +2737,7 @@ N/A
 
 ## nv set evpn multihoming segment df-preference 1-65535
 
-### Usage
+**Usage**
 
   nv set evpn multihoming segment df-preference [options] 1-65535
 
@@ -2629,7 +2747,7 @@ N/A
 
 ## nv set evpn multihoming mac-holdtime 0-86400
 
-### Usage
+**Usage**
 
   nv set evpn multihoming mac-holdtime [options] 0-86400
 
@@ -2639,7 +2757,7 @@ N/A
 
 ## nv set evpn multihoming neighbor-holdtime 0-86400
 
-### Usage
+**Usage**
 
   nv set evpn multihoming neighbor-holdtime [options] 0-86400
 
@@ -2649,7 +2767,7 @@ N/A
 
 ## nv set evpn multihoming startup-delay 0-3600
 
-### Usage
+**Usage**
 
   nv set evpn multihoming startup-delay [options] 0-3600
 
@@ -2659,7 +2777,7 @@ N/A
 
 ## nv set qos
 
-### Usage
+**Usage**
 
   nv set qos [options] [<attribute> ...]
 
@@ -2667,13 +2785,13 @@ N/A
 
   QOS
 
-### Attributes
+**Attributes**
 
   roce        Properties associated with the RDMA over Converged Ethernet (RoCE) feature.
 
 ## nv set qos roce
 
-### Usage
+**Usage**
 
   nv set qos roce [options] [<attribute> ...]
 
@@ -2681,7 +2799,7 @@ N/A
 
   Properties associated with the RDMA over Converged Ethernet (RoCE) feature.
 
-### Attributes
+**Attributes**
 
   enable        Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -2691,7 +2809,7 @@ N/A
 
 ## nv set qos roce cable-length 1-100000
 
-### Usage
+**Usage**
 
   nv set qos roce cable-length [options] 1-100000
 
@@ -2701,7 +2819,7 @@ N/A
 
 ## nv set interface <interface-id>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> [options] [<attribute> ...]
 
@@ -2709,11 +2827,11 @@ N/A
 
   An interface
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
-### Attributes
+**Attributes**
 
 
   router          interface router
@@ -2746,7 +2864,7 @@ N/A
 
 ## nv set interface <interface-id> router
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router [options] [<attribute> ...]
 
@@ -2754,11 +2872,11 @@ N/A
 
   interface router
 
-### Identifiers
+**Identifiers**
 
   <interface-id>    Interface
 
-### Attributes
+**Attributes**
 
   pbr               PBR interface configuration.
 
@@ -2770,7 +2888,7 @@ N/A
 
 ## nv set interface <interface-id> router pbr
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router pbr [options] [<attribute> ...]
 
@@ -2778,17 +2896,17 @@ N/A
 
   PBR interface configuration.
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
-### Attributes
+**Attributes**
 
   map             PBR map to use on this interface
 
 ## nv set interface <interface-id> router pbr map <pbr-map-id>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router pbr map <pbr-map-id> [options]
 
@@ -2796,14 +2914,14 @@ N/A
 
   Interface Pbr map
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
   <pbr-map-id>    Route Map ID
 
 ## nv set interface <interface-id> router ospf
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router ospf [options] [<attribute> ...]
 
@@ -2811,11 +2929,11 @@ N/A
 
   OSPF interface configuration.
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
-### Attributes
+**Attributes**
 
 
   timers          Timers configuration
@@ -2842,7 +2960,7 @@ N/A
 
 ## nv set interface <interface-id> router ospf timers
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router ospf timers [options] [<attribute> ...]
 
@@ -2850,11 +2968,11 @@ N/A
 
   Timers configuration
 
-### Identifiers
+**Identifiers**
 
   <interface-id>       Interface
 
-### Attributes
+**Attributes**
 
 
   dead-interval        Length of time, in seconds, without a hello before  declaring the neighbor dead. If `minimal`, `hello-multiplier` must be set.
@@ -2869,7 +2987,7 @@ N/A
 
 ## nv set interface <interface-id> router ospf timers hello-multiplier 1-10
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router ospf timers hello-multiplier [options] 1-10
 
@@ -2877,13 +2995,13 @@ N/A
 
   Required and only valid if `dead-interval` is `minimal`.
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router ospf timers hello-interval 1-65535
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router ospf timers hello-interval [options] 1-65535
 
@@ -2891,13 +3009,13 @@ N/A
 
   How often to transmit a hello packet, in seconds.  Only valid if `dead-interval` is not `minimal`.
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router ospf timers retransmit-interval 1-65535
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router ospf timers retransmit-interval [options] 1-65535
 
@@ -2905,13 +3023,13 @@ N/A
 
   How often to retransmit a packet not acknowledged, in seconds
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router ospf timers transmit-delay 1-65535
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router ospf timers transmit-delay [options] 1-65535
 
@@ -2919,13 +3037,13 @@ N/A
 
   Delay before sending a new lsa, in seconds
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router ospf authentication
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router ospf authentication [options] [<attribute> ...]
 
@@ -2933,11 +3051,11 @@ N/A
 
   md5 authentication configuration
 
-### Identifiers
+**Identifiers**
 
   <interface-id>      Interface
 
-### Attributes
+**Attributes**
 
   enable              Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -2947,7 +3065,7 @@ N/A
 
 ## nv set interface <interface-id> router ospf authentication message-digest-key 1-255
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router ospf authentication message-digest-key [options] 1-255
 
@@ -2955,13 +3073,13 @@ N/A
 
   Message digest key
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router ospf authentication md5-key <value>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router ospf authentication md5-key [options] <value>
 
@@ -2969,13 +3087,13 @@ N/A
 
   md5 key
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router ospf bfd
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router ospf bfd [options] [<attribute> ...]
 
@@ -2983,11 +3101,11 @@ N/A
 
   BFD configuration
 
-### Identifiers
+**Identifiers**
 
   <interface-id>        Interface
 
-### Attributes
+**Attributes**
 
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -2999,7 +3117,7 @@ N/A
 
 ## nv set interface <interface-id> router ospf bfd detect-multiplier 2-255
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router ospf bfd detect-multiplier [options] 2-255
 
@@ -3007,13 +3125,13 @@ N/A
 
   Detect multiplier value
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router ospf bfd min-receive-interval 50-60000
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router ospf bfd min-receive-interval [options] 50-60000
 
@@ -3021,13 +3139,13 @@ N/A
 
   Minimum receive interval in milliseconds
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router ospf bfd min-transmit-interval 50-60000
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router ospf bfd min-transmit-interval [options] 50-60000
 
@@ -3035,13 +3153,13 @@ N/A
 
   Minimum transmit interval in milliseconds
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router ospf priority 0-255
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router ospf priority [options] 0-255
 
@@ -3049,13 +3167,13 @@ N/A
 
   Eligibility of this router to become DR on multi-access network
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router pim
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router pim [options] [<attribute> ...]
 
@@ -3063,11 +3181,11 @@ N/A
 
   PIM interface configuration.
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
-### Attributes
+**Attributes**
 
   timers          Timers
 
@@ -3085,7 +3203,7 @@ N/A
 
 ## nv set interface <interface-id> router pim timers
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router pim timers [options] [<attribute> ...]
 
@@ -3093,18 +3211,18 @@ N/A
 
   Timers
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
-### Attributes
+**Attributes**
 
 
   hello-interval  PIM Hello packets periodic interval. If "auto", inherit from the VRF. This is the default. Holdtime is 3.5 times the hello-interval, the amount of time neighbor must kept in reachable state.
 
 ## nv set interface <interface-id> router pim bfd
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router pim bfd [options] [<attribute> ...]
 
@@ -3112,11 +3230,11 @@ N/A
 
   BFD configuration
 
-### Identifiers
+**Identifiers**
 
   <interface-id>        Interface
 
-### Attributes
+**Attributes**
 
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -3128,7 +3246,7 @@ N/A
 
 ## nv set interface <interface-id> router pim bfd detect-multiplier 2-255
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router pim bfd detect-multiplier [options] 2-255
 
@@ -3136,13 +3254,13 @@ N/A
 
   Detect multiplier value
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router pim bfd min-receive-interval 50-60000
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router pim bfd min-receive-interval [options] 50-60000
 
@@ -3150,13 +3268,13 @@ N/A
 
   Minimum receive interval in milliseconds
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router pim bfd min-transmit-interval 50-60000
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router pim bfd min-transmit-interval [options] 50-60000
 
@@ -3164,13 +3282,13 @@ N/A
 
   Minimum transmit interval in milliseconds
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router pim address-family
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router pim address-family [options] [<attribute> ...]
 
@@ -3178,17 +3296,17 @@ N/A
 
   Address family specific configuration
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
-### Attributes
+**Attributes**
 
   ipv4-unicast    IPv4 unicast address family
 
 ## nv set interface <interface-id> router pim address-family ipv4-unicast
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router pim address-family ipv4-unicast [options] [<attribute> ...]
 
@@ -3196,11 +3314,11 @@ N/A
 
   IPv4 unicast address family
 
-### Identifiers
+**Identifiers**
 
   <interface-id>        Interface
 
-### Attributes
+**Attributes**
 
   allow-rp              Allow RP feature, which allows RP address to be accepts for the received
 
@@ -3210,7 +3328,7 @@ N/A
 
 ## nv set interface <interface-id> router pim address-family ipv4-unicast allow-rp
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router pim address-family ipv4-unicast allow-rp [options] [<attribute> ...]
 
@@ -3218,11 +3336,11 @@ N/A
 
   Allow RP feature, which allows RP address to be accepts for the received
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
-### Attributes
+**Attributes**
 
   enable          Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -3234,7 +3352,7 @@ N/A
 
 ## nv set interface <interface-id> router pim dr-priority 1-4294967295
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router pim dr-priority [options] 1-4294967295
 
@@ -3242,13 +3360,13 @@ N/A
 
   Designated Router Election priority.
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router adaptive-routing
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router adaptive-routing [options] [<attribute> ...]
 
@@ -3256,11 +3374,11 @@ N/A
 
   Adaptive routing interface configuration.
 
-### Identifiers
+**Identifiers**
 
   <interface-id>        Interface
 
-### Attributes
+**Attributes**
 
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -3268,7 +3386,7 @@ N/A
 
 ## nv set interface <interface-id> router adaptive-routing link-utilization-threshold 1-100
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> router adaptive-routing link-utilization-threshold [options] 1-100
 
@@ -3276,13 +3394,13 @@ N/A
 
   Link utilization threshold percentage
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> bond
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> bond [options] [<attribute> ...]
 
@@ -3290,11 +3408,11 @@ N/A
 
   The state of the interface
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
-### Attributes
+**Attributes**
 
   member          Set of bond members
 
@@ -3312,7 +3430,7 @@ N/A
 
 ## nv set interface <interface-id> bond member <member-id>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> bond member <member-id> [options]
 
@@ -3320,14 +3438,14 @@ N/A
 
   A bond member
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
   <member-id>     Bond memer interface
 
 ## nv set interface <interface-id> bond mlag
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> bond mlag [options] [<attribute> ...]
 
@@ -3335,11 +3453,11 @@ N/A
 
   MLAG configuration on the bond interface
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
-### Attributes
+**Attributes**
 
 
   lacp-conflict   Configure the mlag lacp-conflict parameters
@@ -3350,7 +3468,7 @@ N/A
 
 ## nv set interface <interface-id> bond mlag lacp-conflict
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> bond mlag lacp-conflict [options]
 
@@ -3358,13 +3476,13 @@ N/A
 
   Configure the mlag lacp-conflict parameters
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> bond down-delay 0-65535
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> bond down-delay [options] 0-65535
 
@@ -3372,13 +3490,13 @@ N/A
 
   bond down delay
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> bond up-delay 0-65535
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> bond up-delay [options] 0-65535
 
@@ -3386,13 +3504,13 @@ N/A
 
   bond up delay
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> bridge
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> bridge [options] [<attribute> ...]
 
@@ -3400,17 +3518,17 @@ N/A
 
   attributed related to a bridged interface
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
-### Attributes
+**Attributes**
 
   domain          Bridge domains on this interface
 
 ## nv set interface <interface-id> bridge domain <domain-id>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> bridge domain <domain-id> [options] [<attribute> ...]
 
@@ -3418,12 +3536,12 @@ N/A
 
   Bridge domain on this interface
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
   <domain-id>     Domain
 
-### Attributes
+**Attributes**
 
   stp             attributed related to a stpd interface
 
@@ -3437,7 +3555,7 @@ N/A
 
 ## nv set interface <interface-id> bridge domain <domain-id> stp
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> bridge domain <domain-id> stp [options] [<attribute> ...]
 
@@ -3445,12 +3563,12 @@ N/A
 
   attributed related to a stpd interface
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
   <domain-id>     Domain
 
-### Attributes
+**Attributes**
 
   admin-edge      Edge state of the port
 
@@ -3466,7 +3584,7 @@ N/A
 
 ## nv set interface <interface-id> bridge domain <domain-id> vlan <vid>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> bridge domain <domain-id> vlan <vid> [options]
 
@@ -3474,7 +3592,7 @@ N/A
 
   A VLAN tag identifier
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
   <domain-id>     Domain
@@ -3482,7 +3600,7 @@ N/A
 
 ## nv set interface <interface-id> ip
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip [options] [<attribute> ...]
 
@@ -3490,11 +3608,11 @@ N/A
 
   IP configuration for an interface
 
-### Identifiers
+**Identifiers**
 
   <interface-id>      Interface
 
-### Attributes
+**Attributes**
 
 
   address             ipv4 and ipv6 address
@@ -3517,7 +3635,7 @@ N/A
 
 ## nv set interface <interface-id> ip address <ip-prefix-id>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip address <ip-prefix-id> [options]
 
@@ -3525,14 +3643,14 @@ N/A
 
   An IP address with prefix
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
   <ip-prefix-id>  IPv4 or IPv6 address and route prefix in CIDR notation
 
 ## nv set interface <interface-id> ip vrr
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip vrr [options] [<attribute> ...]
 
@@ -3540,11 +3658,11 @@ N/A
 
   Configuration for VRR
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
-### Attributes
+**Attributes**
 
   address         Virtual addresses with prefixes
 
@@ -3558,7 +3676,7 @@ N/A
 
 ## nv set interface <interface-id> ip vrr address <ip-prefix-id>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip vrr address <ip-prefix-id> [options]
 
@@ -3566,14 +3684,14 @@ N/A
 
   An IP address with prefix
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
   <ip-prefix-id>  IPv4 or IPv6 address and route prefix in CIDR notation
 
 ## nv set interface <interface-id> ip gateway <ip-address-id>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip gateway <ip-address-id> [options]
 
@@ -3581,14 +3699,14 @@ N/A
 
   An IP address
 
-### Identifiers
+**Identifiers**
 
   <interface-id>   Interface
   <ip-address-id>  IPv4 or IPv6 address
 
 ## nv set interface <interface-id> ip ipv4
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip ipv4 [options] [<attribute> ...]
 
@@ -3596,17 +3714,17 @@ N/A
 
   IPv4 configuration for an interface
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
-### Attributes
+**Attributes**
 
   forward         Enable or disable forwarding.
 
 ## nv set interface <interface-id> ip ipv6
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip ipv6 [options] [<attribute> ...]
 
@@ -3614,11 +3732,11 @@ N/A
 
   IPv6 configuration for an interface
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
-### Attributes
+**Attributes**
 
   enable          Turn the feature 'on' or 'off'. The default is 'on'.
 
@@ -3626,7 +3744,7 @@ N/A
 
 ## nv set interface <interface-id> ip igmp
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip igmp [options] [<attribute> ...]
 
@@ -3634,11 +3752,11 @@ N/A
 
   Configuration for IGMP
 
-### Identifiers
+**Identifiers**
 
   <interface-id>        Interface
 
-### Attributes
+**Attributes**
 
   static-group          IGMP static mutlicast mroutes
 
@@ -3654,7 +3772,7 @@ N/A
 
 ## nv set interface <interface-id> ip igmp static-group <static-group-id>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip igmp static-group <static-group-id> [options] [<attribute> ...]
 
@@ -3662,18 +3780,18 @@ N/A
 
   IGMP static multicast mroute
 
-### Identifiers
+**Identifiers**
 
   <interface-id>     Interface
   <static-group-id>  IGMP static multicast mroute destination
 
-### Attributes
+**Attributes**
 
   source-address     IGMP static multicast mroute source.
 
 ## nv set interface <interface-id> ip igmp static-group <static-group-id> source-address <ipv4-unicast>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip igmp static-group <static-group-id> source-address [options] <ipv4-unicast>
 
@@ -3681,14 +3799,14 @@ N/A
 
   IGMP static multicast mroute source.
 
-### Identifiers
+**Identifiers**
 
   <interface-id>     Interface
   <static-group-id>  IGMP static multicast mroute destination
 
 ## nv set interface <interface-id> ip igmp query-interval 1-1800
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip igmp query-interval [options] 1-1800
 
@@ -3696,14 +3814,14 @@ N/A
 
   Query interval, in seconds.
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ip igmp query-max-response-time 10-250
 
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip igmp query-max-response-time [options] 10-250
 
@@ -3711,13 +3829,13 @@ N/A
 
   Max query response time, in seconds.
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ip igmp last-member-query-interval 1-255
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip igmp last-member-query-interval [options] 1-255
 
@@ -3725,13 +3843,13 @@ N/A
 
   Last member query interval.
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ip vrrp
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip vrrp [options] [<attribute> ...]
 
@@ -3739,11 +3857,11 @@ N/A
 
   Configuration for VRRP
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
-### Attributes
+**Attributes**
 
   virtual-router  Group of virtual gateways implemented with VRRP
 
@@ -3751,7 +3869,7 @@ N/A
 
 ## nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> [options] [<attribute> ...]
 
@@ -3759,12 +3877,12 @@ N/A
 
   A virtual gateway implemented with VRRP
 
-### Identifiers
+**Identifiers**
 
   <interface-id>        Interface
   <virtual-router-id>   Virtual Router IDentifier (VRID)
 
-### Attributes
+**Attributes**
 
 
   address               A set of virtual addresses for VRRPv3
@@ -3779,7 +3897,7 @@ N/A
 
 ## nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> address <ip-address-id>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> address <ip-address-id> [options]
 
@@ -3787,7 +3905,7 @@ N/A
 
   An IP address
 
-### Identifiers
+**Identifiers**
 
   <interface-id>       Interface
   <virtual-router-id>  Virtual Router IDentifier (VRID)
@@ -3795,7 +3913,7 @@ N/A
 
 ## nv set interface <interface-id> ip neighbor-discovery
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip neighbor-discovery [options] [<attribute> ...]
 
@@ -3803,11 +3921,11 @@ N/A
 
   Neighbor discovery configuration for an interface
 
-### Identifiers
+**Identifiers**
 
   <interface-id>        Interface
 
-### Attributes
+**Attributes**
 
   rdnss                 Recursive DNS server addresses to be advertised using
 
@@ -3827,7 +3945,7 @@ N/A
 
 ## nv set interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id> [options] [<attribute> ...]
 
@@ -3835,18 +3953,18 @@ N/A
 
   A recursive DNS server
 
-### Identifiers
+**Identifiers**
 
   <interface-id>     Interface
   <ipv6-address-id>  IPv6 address
 
-### Attributes
+**Attributes**
 
   lifetime           Maximum time in seconds for which the server may be used for domain name resolution
 
 ## nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> [options] [<attribute> ...]
 
@@ -3854,12 +3972,12 @@ N/A
 
   A IPv6 prefix
 
-### Identifiers
+**Identifiers**
 
   <interface-id>      Interface
   <ipv6-prefix-id>    IPv6 address and route prefix in CIDR notation
 
-### Attributes
+**Attributes**
 
 
   autoconfig          Indicates to hosts on the local link that the specified  prefix can be used for v6 autoconfiguration
@@ -3874,7 +3992,7 @@ N/A
 
 ## nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> valid-lifetime 0-4294967295
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> valid-lifetime [options] 0-4294967295
 
@@ -3882,14 +4000,14 @@ N/A
 
   Time in seconds the prefix is valid for on-link determination
 
-### Identifiers
+**Identifiers**
 
   <interface-id>    Interface
   <ipv6-prefix-id>  IPv6 address and route prefix in CIDR notation
 
 ## nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> preferred-lifetime 0-4294967295
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> preferred-lifetime [options] 0-4294967295
 
@@ -3897,14 +4015,14 @@ N/A
 
   Time in seconds that addresses generated from a prefix remain preferred
 
-### Identifiers
+**Identifiers**
 
   <interface-id>    Interface
   <ipv6-prefix-id>  IPv6 address and route prefix in CIDR notation
 
 ## nv set interface <interface-id> ip neighbor-discovery dnssl <domain-name-id>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip neighbor-discovery dnssl <domain-name-id> [options] [<attribute> ...]
 
@@ -3912,20 +4030,20 @@ N/A
 
   A DNS search list
 
-### Identifiers
+**Identifiers**
 
   <interface-id>    Interface
   <domain-name-id>  The domain portion of a hostname (RFC 1123) or an
                     internationalized hostname (RFC 5890).
 
-### Attributes
+**Attributes**
 
 
   lifetime          Maximum time in seconds for which the domain suffix may be used for domain name resolution
 
 ## nv set interface <interface-id> ip neighbor-discovery router-advertisement
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip neighbor-discovery router-advertisement [options] [<attribute> ...]
 
@@ -3933,11 +4051,11 @@ N/A
 
   Router advertisement configuration for an interface
 
-### Identifiers
+**Identifiers**
 
   <interface-id>     Interface
 
-### Attributes
+**Attributes**
 
   enable             Turn the feature 'on' or 'off'. The default is 'on'.
 
@@ -3963,7 +4081,7 @@ N/A
 
 ## nv set interface <interface-id> ip neighbor-discovery router-advertisement interval 70-1800000
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip neighbor-discovery router-advertisement interval [options] 70-1800000
 
@@ -3971,13 +4089,13 @@ N/A
 
   Maximum time in milliseconds allowed between sending unsolicited multicast RA from the interface
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ip neighbor-discovery router-advertisement lifetime 0-9000
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip neighbor-discovery router-advertisement lifetime [options] 0-9000
 
@@ -3985,13 +4103,13 @@ N/A
 
   Maximum time in seconds that the router can be treated as default gateway
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ip neighbor-discovery router-advertisement reachable-time 0-3600000
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip neighbor-discovery router-advertisement reachable-time [options] 0-3600000
 
@@ -3999,14 +4117,14 @@ N/A
 
   Time in milliseconds that a IPv6 node is considered reachable
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ip neighbor-discovery router-advertisement retransmit-time 0-4294967295
 
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip neighbor-discovery router-advertisement retransmit-time [options] 0-4294967295
 
@@ -4014,13 +4132,13 @@ N/A
 
   Time in milliseconds between retransmission of neighbor solicitation messages
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ip neighbor-discovery router-advertisement hop-limit 0-255
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip neighbor-discovery router-advertisement hop-limit [options] 0-255
 
@@ -4028,13 +4146,13 @@ N/A
 
   Value in hop count field in IP header of the outgoing router advertisement packet
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ip neighbor-discovery home-agent
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip neighbor-discovery home-agent [options] [<attribute> ...]
 
@@ -4042,11 +4160,11 @@ N/A
 
   Indicates to neighbors that this router acts as a Home Agent and includes a Home Agent Option. Not defined by default
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
-### Attributes
+**Attributes**
 
 
   lifetime        Lifetime of a home agent in seconds
@@ -4055,7 +4173,7 @@ N/A
 
 ## nv set interface <interface-id> ip neighbor-discovery home-agent lifetime 0-65520
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip neighbor-discovery home-agent lifetime [options] 0-65520
 
@@ -4063,13 +4181,13 @@ N/A
 
   Lifetime of a home agent in seconds
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ip neighbor-discovery home-agent preference 0-65535
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip neighbor-discovery home-agent preference [options] 0-65535
 
@@ -4077,13 +4195,13 @@ N/A
 
   Home agent's preference value that is used to order the addresses returned in the home agent address discovery reply.
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ip neighbor-discovery mtu 1-65535
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip neighbor-discovery mtu [options] 1-65535
 
@@ -4091,13 +4209,13 @@ N/A
 
   MTU option for neighbor discovery messages
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ip vrf <vrf-name>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ip vrf [options] <vrf-name>
 
@@ -4105,13 +4223,13 @@ N/A
 
   Virtual routing and forwarding
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> lldp
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> lldp [options] [<attribute> ...]
 
@@ -4119,11 +4237,11 @@ N/A
 
   LLDP on for an interface
 
-### Identifiers
+**Identifiers**
 
   <interface-id>       Interface
 
-### Attributes
+**Attributes**
 
   dcbx-ets-config-tlv  DCBX ETS config TLV flag
 
@@ -4133,7 +4251,7 @@ N/A
 
 ## nv set interface <interface-id> link
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> link [options] [<attribute> ...]
 
@@ -4141,11 +4259,11 @@ N/A
 
   An physical interface
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
-### Attributes
+**Attributes**
 
 
   state           The state of the interface
@@ -4166,7 +4284,7 @@ N/A
 
 ## nv set interface <interface-id> link dot1x
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> link dot1x [options] [<attribute> ...]
 
@@ -4174,11 +4292,11 @@ N/A
 
   An physical interface
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
-### Attributes
+**Attributes**
 
   mab             bypass MAC authentication
 
@@ -4186,7 +4304,7 @@ N/A
 
 ## nv set interface <interface-id> link mtu 552-9216
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> link mtu [options] 552-9216
 
@@ -4194,13 +4312,13 @@ N/A
 
   interface mtu
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> evpn
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> evpn [options] [<attribute> ...]
 
@@ -4208,17 +4326,17 @@ N/A
 
   EVPN control plane config and info for VRF
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
-### Attributes
+**Attributes**
 
   multihoming     Multihoming interface configuration parameters
 
 ## nv set interface <interface-id> evpn multihoming
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> evpn multihoming [options] [<attribute> ...]
 
@@ -4226,11 +4344,11 @@ N/A
 
   Multihoming interface configuration parameters
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
-### Attributes
+**Attributes**
 
   segment         Multihoming interface segment
 
@@ -4238,7 +4356,7 @@ N/A
 
 ## nv set interface <interface-id> evpn multihoming segment
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> evpn multihoming segment [options] [<attribute> ...]
 
@@ -4246,11 +4364,11 @@ N/A
 
   Multihoming interface segment
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
-### Attributes
+**Attributes**
 
 
   enable          Turn the feature 'on' or 'off'. The default is 'off'.
@@ -4265,7 +4383,7 @@ N/A
 
 ## nv set interface <interface-id> evpn multihoming segment local-id 1-16777215
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> evpn multihoming segment local-id [options] 1-16777215
 
@@ -4273,13 +4391,13 @@ N/A
 
   Ethernet segment local-id.  If provided, it will be combined with the global multihoming `mac-address` to create the ethernet segment identifier, which must be unique for each segment and match other bonds in the segment.
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> evpn multihoming segment identifier <es-identifier>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> evpn multihoming segment identifier [options] <es-identifier>
 
@@ -4287,13 +4405,13 @@ N/A
 
   Ethernet segment identifier.  This must be unique for each segment and match other bonds in the segment.
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> acl <acl-id>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> acl <acl-id> [options] [<attribute> ...]
 
@@ -4301,12 +4419,12 @@ N/A
 
   An ACL is used for matching packets and take actions
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
   <acl-id>        ACL ID
 
-### Attributes
+**Attributes**
 
   inbound         ACL applied for inbound direction
 
@@ -4314,7 +4432,7 @@ N/A
 
 ## nv set interface <interface-id> acl <acl-id> inbound
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> acl <acl-id> inbound [options] [<attribute> ...]
 
@@ -4322,18 +4440,18 @@ N/A
 
   inbound direction
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
   <acl-id>        ACL ID
 
-### Attributes
+**Attributes**
 
   control-plane   ACL applied for control plane
 
 ## nv set interface <interface-id> acl <acl-id> inbound control-plane
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> acl <acl-id> inbound control-plane [options]
 
@@ -4341,14 +4459,14 @@ N/A
 
   State details
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
   <acl-id>        ACL ID
 
 ## nv set interface <interface-id> acl <acl-id> outbound
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> acl <acl-id> outbound [options] [<attribute> ...]
 
@@ -4356,18 +4474,18 @@ N/A
 
   State details
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
   <acl-id>        ACL ID
 
-### Attributes
+**Attributes**
 
   control-plane
 
 ## nv set interface <interface-id> acl <acl-id> outbound control-plane
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> acl <acl-id> outbound control-plane [options]
 
@@ -4375,14 +4493,14 @@ N/A
 
   State details
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
   <acl-id>        ACL ID
 
 ## nv set interface <interface-id> ptp
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ptp [options] [<attribute> ...]
 
@@ -4390,11 +4508,11 @@ N/A
 
   Interface Specific PTP configuration.
 
-### Identifiers
+**Identifiers**
 
   <interface-id>     Interface
 
-### Attributes
+**Attributes**
 
   timers             Interface PTP timerss
 
@@ -4416,7 +4534,7 @@ N/A
 
 ## nv set interface <interface-id> ptp timers
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ptp timers [options] [<attribute> ...]
 
@@ -4424,11 +4542,11 @@ N/A
 
   Interface PTP timerss
 
-### Identifiers
+**Identifiers**
 
   <interface-id>      Interface
 
-### Attributes
+**Attributes**
 
   announce-interval   Mean time interval between successive Announce messages. It's specified as a power of two in seconds.
 
@@ -4440,7 +4558,7 @@ N/A
 
 ## nv set interface <interface-id> ptp timers announce-interval -3-4
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ptp timers announce-interval [options] -3-4
 
@@ -4448,13 +4566,13 @@ N/A
 
   Mean time interval between successive Announce messages.  It's specified as a power of two in seconds.
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ptp timers sync-interval -7-1
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ptp timers sync-interval [options] -7-1
 
@@ -4462,13 +4580,13 @@ N/A
 
   The mean SyncInterval for multicast messages.  It's specified as a power of two in seconds.
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ptp timers delay-req-interval -7-6
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ptp timers delay-req-interval [options] -7-6
 
@@ -4476,13 +4594,13 @@ N/A
 
   The minimum permitted mean time interval between successive Delay Req messages.  It's specified as a power of two in seconds.
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ptp timers announce-timeout 2-10
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ptp timers announce-timeout [options] 2-10
 
@@ -4490,13 +4608,13 @@ N/A
 
   The number of announceIntervals that have to pass without receipt of an Announce message before the occurrence of the timeout event
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ptp instance <value>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ptp instance [options] <value>
 
@@ -4504,13 +4622,13 @@ N/A
 
   PTP instance number.
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ptp delay-mechanism end-to-end
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ptp delay-mechanism [options] end-to-end
 
@@ -4518,13 +4636,13 @@ N/A
 
   Mode in which PTP message is transmitted.
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ptp ttl 1-255
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> ptp ttl [options] 1-255
 
@@ -4532,13 +4650,13 @@ N/A
 
   Maximum number of hops the PTP messages can make before it gets dropped.
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> tunnel
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> tunnel [options] [<attribute> ...]
 
@@ -4546,11 +4664,11 @@ N/A
 
   The state of the interface
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
-### Attributes
+**Attributes**
 
   dest-ip         Destination underlay IP address
 
@@ -4564,7 +4682,7 @@ N/A
 
 ## nv set interface <interface-id> tunnel source-ip <ipv4>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> tunnel source-ip [options] <ipv4>
 
@@ -4572,13 +4690,13 @@ N/A
 
   Source underlay IP address
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> tunnel dest-ip <ipv4>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> tunnel dest-ip [options] <ipv4>
 
@@ -4586,13 +4704,13 @@ N/A
 
   Destination underlay IP address
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> tunnel ttl 1-255
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> tunnel ttl [options] 1-255
 
@@ -4600,13 +4718,13 @@ N/A
 
   time to live
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> tunnel mode gre
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> tunnel mode [options] gre
 
@@ -4614,13 +4732,13 @@ N/A
 
   tunnel mode
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> tunnel interface <interface-name>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> tunnel interface [options] <interface-name>
 
@@ -4628,13 +4746,13 @@ N/A
 
   Physical underlay interface to used for Tunnel packets
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> description <value>
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> description [options] <value>
 
@@ -4642,13 +4760,13 @@ N/A
 
   Details about the interface
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set interface <interface-id> vlan 1-4094
 
-### Usage
+**Usage**
 
   nv set interface <interface-id> vlan [options] 1-4094
 
@@ -4656,13 +4774,13 @@ N/A
 
   VLAN ID
 
-### Identifiers
+**Identifiers**
 
   <interface-id>  Interface
 
 ## nv set service
 
-### Usage
+**Usage**
 
   nv set service [options] [<attribute> ...]
 
@@ -4670,7 +4788,7 @@ N/A
 
   A service
 
-### Attributes
+**Attributes**
 
   dns           collection of DNS
 
@@ -4692,7 +4810,7 @@ N/A
 
 ## nv set service dns <vrf-id>
 
-### Usage
+**Usage**
 
   nv set service dns <vrf-id> [options] [<attribute> ...]
 
@@ -4700,17 +4818,17 @@ N/A
 
   Domain Name Service
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   server      Remote DNS servers
 
 ## nv set service dns <vrf-id> server <dns-server-id>
 
-### Usage
+**Usage**
 
   nv set service dns <vrf-id> server <dns-server-id> [options]
 
@@ -4718,14 +4836,14 @@ N/A
 
   A remote DNS server
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <dns-server-id>  IPv4 or IPv6 address of a DNS server
 
 ## nv set service syslog <vrf-id>
 
-### Usage
+**Usage**
 
   nv set service syslog <vrf-id> [options] [<attribute> ...]
 
@@ -4733,17 +4851,17 @@ N/A
 
   Domain Name Service
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   server      Remote DNS servers
 
 ## nv set service syslog <vrf-id> server <server-id>
 
-### Usage
+**Usage**
 
   nv set service syslog <vrf-id> server <server-id> [options] [<attribute> ...]
 
@@ -4751,12 +4869,12 @@ N/A
 
   A remote DNS server
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
   <server-id>  Hostname or IP address of a syslog server
 
-### Attributes
+**Attributes**
 
   port         Port number of the remote syslog server
 
@@ -4764,7 +4882,7 @@ N/A
 
 ## nv set service syslog <vrf-id> server <server-id> port 1-32767
 
-### Usage
+**Usage**
 
   nv set service syslog <vrf-id> server <server-id> port [options] 1-32767
 
@@ -4772,14 +4890,14 @@ N/A
 
   Port number of the remote syslog server
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
   <server-id>  Hostname or IP address of a syslog server
 
 ## nv set service ntp <vrf-id>
 
-### Usage
+**Usage**
 
   nv set service ntp <vrf-id> [options] [<attribute> ...]
 
@@ -4787,11 +4905,11 @@ N/A
 
   Network Time Protocol
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   server      Remote NTP Servers
 
@@ -4801,7 +4919,7 @@ N/A
 
 ## nv set service ntp <vrf-id> server <server-id>
 
-### Usage
+**Usage**
 
   nv set service ntp <vrf-id> server <server-id> [options] [<attribute> ...]
 
@@ -4809,18 +4927,18 @@ N/A
 
   A remote NTP Server
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
   <server-id>  Hostname or IP address of the NTP server
 
-### Attributes
+**Attributes**
 
   iburst       When the server is unreachable, send a burst of eight packets instead of the usual one.
 
 ## nv set service ntp <vrf-id> pool <server-id>
 
-### Usage
+**Usage**
 
   nv set service ntp <vrf-id> pool <server-id> [options] [<attribute> ...]
 
@@ -4828,18 +4946,18 @@ N/A
 
   A remote NTP Server
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
   <server-id>  Hostname or IP address of the NTP server
 
-### Attributes
+**Attributes**
 
   iburst       When the server is unreachable, send a burst of eight packets instead of the usual one.
 
 ## nv set service ntp <vrf-id> listen <interface-name>
 
-### Usage
+**Usage**
 
   nv set service ntp <vrf-id> listen [options] <interface-name>
 
@@ -4847,13 +4965,13 @@ N/A
 
   NTP interface to listen on.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set service dhcp-relay <vrf-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-relay <vrf-id> [options] [<attribute> ...]
 
@@ -4861,11 +4979,11 @@ N/A
 
   DHCP relay
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>             VRF
 
-### Attributes
+**Attributes**
 
 
   server               DHCP servers
@@ -4878,7 +4996,7 @@ N/A
 
 ## nv set service dhcp-relay <vrf-id> server <server-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-relay <vrf-id> server <server-id> [options]
 
@@ -4886,14 +5004,14 @@ N/A
 
   A DHCP server
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
   <server-id>  DHCP server
 
 ## nv set service dhcp-relay <vrf-id> interface <interface-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-relay <vrf-id> interface <interface-id> [options]
 
@@ -4901,14 +5019,14 @@ N/A
 
   An interface on which DHCP relay is configured.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>        VRF
   <interface-id>  DHCP relay interface
 
 ## nv set service dhcp-relay <vrf-id> giaddress-interface <interface-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-relay <vrf-id> giaddress-interface <interface-id> [options] [<attribute> ...]
 
@@ -4916,18 +5034,18 @@ N/A
 
   An interface on which DHCP relay giaddress is configured.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>        VRF
   <interface-id>  DHCP relay giaddress interface
 
-### Attributes
+**Attributes**
 
   address         ipv4 address on giaddress interface
 
 ## nv set service dhcp-relay6 <vrf-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-relay6 <vrf-id> [options] [<attribute> ...]
 
@@ -4935,17 +5053,17 @@ N/A
 
   DHCP relay
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   interface   DHCP relay interfaces
 
 ## nv set service dhcp-relay6 <vrf-id> interface
 
-### Usage
+**Usage**
 
   nv set service dhcp-relay6 <vrf-id> interface [options] [<attribute> ...]
 
@@ -4953,11 +5071,11 @@ N/A
 
   DHCP relay interfaces
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   upstream    Configures DHCP relay on the interfaes.
 
@@ -4965,7 +5083,7 @@ N/A
 
 ## nv set service dhcp-relay6 <vrf-id> interface upstream <interface-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-relay6 <vrf-id> interface upstream <interface-id> [options] [<attribute> ...]
 
@@ -4973,18 +5091,18 @@ N/A
 
   An interface on which DPCH relay is configured.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>        VRF
   <interface-id>  DHCP relay interface
 
-### Attributes
+**Attributes**
 
   address         ipv6 address on interface
 
 ## nv set service dhcp-relay6 <vrf-id> interface upstream <interface-id> address <ipv6>
 
-### Usage
+**Usage**
 
   nv set service dhcp-relay6 <vrf-id> interface upstream <interface-id> address [options] <ipv6>
 
@@ -4992,14 +5110,14 @@ N/A
 
   ipv6 address on interface
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>        VRF
   <interface-id>  DHCP relay interface
 
 ## nv set service dhcp-relay6 <vrf-id> interface downstream <interface-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-relay6 <vrf-id> interface downstream <interface-id> [options] [<attribute> ...]
 
@@ -5007,18 +5125,18 @@ N/A
 
   An interface on which DPCH relay is configured.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>        VRF
   <interface-id>  DHCP relay interface
 
-### Attributes
+**Attributes**
 
   address         ipv6 address on interface
 
 ## nv set service dhcp-relay6 <vrf-id> interface downstream <interface-id> address <ipv6>
 
-### Usage
+**Usage**
 
   nv set service dhcp-relay6 <vrf-id> interface downstream <interface-id> address [options] <ipv6>
 
@@ -5026,14 +5144,14 @@ N/A
 
   ipv6 address on interface
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>        VRF
   <interface-id>  DHCP relay interface
 
 ## nv set service ptp <instance-id>
 
-### Usage
+**Usage**
 
   nv set service ptp <instance-id> [options] [<attribute> ...]
 
@@ -5041,11 +5159,11 @@ N/A
 
   Global PTP configuration.
 
-### Identifiers
+**Identifiers**
 
   <instance-id>      PTP instance number. It is used for management purpose.
 
-### Attributes
+**Attributes**
 
   acceptable-master  Collection of acceptable masters
 
@@ -5067,7 +5185,7 @@ N/A
 
 ## nv set service ptp <instance-id> acceptable-master <clock-id>
 
-### Usage
+**Usage**
 
   nv set service ptp <instance-id> acceptable-master <clock-id> [options] [<attribute> ...]
 
@@ -5075,19 +5193,19 @@ N/A
 
   List of clocks that the local clock can accept as master clock
 
-### Identifiers
+**Identifiers**
 
   <instance-id>  PTP instance number. It is used for management purpose.
   <clock-id>     Clock ID
 
-### Attributes
+**Attributes**
 
   alt-priority   Alternate priority
 
 ## nv set service ptp <instance-id> acceptable-master <clock-id> alt-priority <value>
 
 
-### Usage
+**Usage**
 
   nv set service ptp <instance-id> acceptable-master <clock-id> alt-priority [options] <value>
 
@@ -5095,14 +5213,14 @@ N/A
 
   Alternate priority
 
-### Identifiers
+**Identifiers**
 
   <instance-id>  PTP instance number. It is used for management purpose.
   <clock-id>     Clock ID
 
 ## nv set service ptp <instance-id> monitor
 
-### Usage
+**Usage**
 
   nv set service ptp <instance-id> monitor [options] [<attribute> ...]
 
@@ -5110,11 +5228,11 @@ N/A
 
   PTP monitor configuration
 
-### Identifiers
+**Identifiers**
 
   <instance-id>         PTP instance number. It is used for management purpose.
 
-### Attributes
+**Attributes**
 
   max-offset-threshold  Maximum offset threshold in nano seconds
 
@@ -5132,7 +5250,7 @@ N/A
 
 ## nv set service ptp <instance-id> monitor min-offset-threshold <value>
 
-### Usage
+**Usage**
 
   nv set service ptp <instance-id> monitor min-offset-threshold [options] <value>
 
@@ -5140,13 +5258,13 @@ N/A
 
   Minimum offset threshold in nano seconds
 
-### Identifiers
+**Identifiers**
 
   <instance-id>  PTP instance number. It is used for management purpose.
 
 ## nv set service ptp <instance-id> monitor max-offset-threshold <value>
 
-### Usage
+**Usage**
 
   nv set service ptp <instance-id> monitor max-offset-threshold [options] <value>
 
@@ -5154,13 +5272,13 @@ N/A
 
   Maximum offset threshold in nano seconds
 
-### Identifiers
+**Identifiers**
 
   <instance-id>  PTP instance number. It is used for management purpose.
 
 ## nv set service ptp <instance-id> monitor path-delay-threshold <value>
 
-### Usage
+**Usage**
 
   nv set service ptp <instance-id> monitor path-delay-threshold [options] <value>
 
@@ -5168,13 +5286,13 @@ N/A
 
   Path delay threshold in nano seconds
 
-### Identifiers
+**Identifiers**
 
   <instance-id>  PTP instance number. It is used for management purpose.
 
 ## nv set service ptp <instance-id> monitor max-timestamp-entries 400-1000
 
-### Usage
+**Usage**
 
   nv set service ptp <instance-id> monitor max-timestamp-entries [options] 400-1000
 
@@ -5182,13 +5300,13 @@ N/A
 
   Maximum timestamp entries allowed
 
-### Identifiers
+**Identifiers**
 
   <instance-id>  PTP instance number. It is used for management purpose.
 
 ## nv set service ptp <instance-id> monitor max-violation-log-sets 8-128
 
-### Usage
+**Usage**
 
   nv set service ptp <instance-id> monitor max-violation-log-sets [options] 8-128
 
@@ -5196,13 +5314,13 @@ N/A
 
   Maximum violation logs sets allowed
 
-### Identifiers
+**Identifiers**
 
   <instance-id>  PTP instance number. It is used for management purpose.
 
 ## nv set service ptp <instance-id> monitor max-violation-log-entries 8-128
 
-### Usage
+**Usage**
 
   nv set service ptp <instance-id> monitor max-violation-log-entries [options] 8-128
 
@@ -5210,13 +5328,13 @@ N/A
 
   Maximum violation log entries per set
 
-### Identifiers
+**Identifiers**
 
   <instance-id>  PTP instance number. It is used for management purpose.
 
 ## nv set service ptp <instance-id> monitor violation-log-interval 0-259200
 
-### Usage
+**Usage**
 
   nv set service ptp <instance-id> monitor violation-log-interval [options] 0-259200
 
@@ -5224,13 +5342,13 @@ N/A
 
   violation log intervals in seconds
 
-### Identifiers
+**Identifiers**
 
   <instance-id>  PTP instance number. It is used for management purpose.
 
 ## nv set service ptp <instance-id> priority1 <value>
 
-### Usage
+**Usage**
 
   nv set service ptp <instance-id> priority1 [options] <value>
 
@@ -5238,13 +5356,13 @@ N/A
 
   Priority1 attribute of the local clock
 
-### Identifiers
+**Identifiers**
 
   <instance-id>  PTP instance number. It is used for management purpose.
 
 ## nv set service ptp <instance-id> priority2 <value>
 
-### Usage
+**Usage**
 
   nv set service ptp <instance-id> priority2 [options] <value>
 
@@ -5252,13 +5370,13 @@ N/A
 
   Priority2 attribute of the local clock
 
-### Identifiers
+**Identifiers**
 
   <instance-id>  PTP instance number. It is used for management purpose.
 
 ## nv set service ptp <instance-id> domain 0-127
 
-### Usage
+**Usage**
 
   nv set service ptp <instance-id> domain [options] 0-127
 
@@ -5266,13 +5384,13 @@ N/A
 
   Domain number of the current syntonization
 
-### Identifiers
+**Identifiers**
 
   <instance-id>  PTP instance number. It is used for management purpose.
 
 ## nv set service ptp <instance-id> ip-dscp 0-63
 
-### Usage
+**Usage**
 
   nv set service ptp <instance-id> ip-dscp [options] 0-63
 
@@ -5280,13 +5398,13 @@ N/A
 
   Sets the Diffserv code point for all PTP packets originated locally.
 
-### Identifiers
+**Identifiers**
 
   <instance-id>  PTP instance number. It is used for management purpose.
 
 ## nv set service dhcp-server <vrf-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server <vrf-id> [options] [<attribute> ...]
 
@@ -5294,11 +5412,11 @@ N/A
 
   Dynamic Host Configuration Protocol Server
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>            VRF
 
-### Attributes
+**Attributes**
 
   interface           Assign DHCP options to clients directly attached to
 
@@ -5314,7 +5432,7 @@ N/A
 
 ## nv set service dhcp-server <vrf-id> interface <interface-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server <vrf-id> interface <interface-id> [options]
 
@@ -5322,14 +5440,14 @@ N/A
 
   An interface on which DPCH clients are attached.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>        VRF
   <interface-id>  DHCP client interface
 
 ## nv set service dhcp-server <vrf-id> pool <pool-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server <vrf-id> pool <pool-id> [options] [<attribute> ...]
 
@@ -5337,12 +5455,12 @@ N/A
 
   DHCP Pool
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
   <pool-id>             DHCP pool subnet.
 
-### Attributes
+**Attributes**
 
   domain-name-server    DHCP domain name servers
 
@@ -5364,7 +5482,7 @@ N/A
 
 ## nv set service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id> [options]
 
@@ -5372,7 +5490,7 @@ N/A
 
   A remote DNS server
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
   <pool-id>    DHCP pool subnet.
@@ -5380,7 +5498,7 @@ N/A
 
 ## nv set service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> [options] [<attribute> ...]
 
@@ -5388,19 +5506,19 @@ N/A
 
   TBD
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>          VRF
   <pool-id>         DHCP pool subnet.
   <domain-name-id>  DHCP domain name
 
-### Attributes
+**Attributes**
 
   domain-name       DHCP domain name
 
 ## nv set service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> domain-name <idn-hostname>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> domain-name [options] <idn-hostname>
 
@@ -5408,7 +5526,7 @@ N/A
 
   DHCP domain name
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>          VRF
   <pool-id>         DHCP pool subnet.
@@ -5416,7 +5534,7 @@ N/A
 
 ## nv set service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id> [options]
 
@@ -5424,7 +5542,7 @@ N/A
 
   A remote DNS server
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>      VRF
   <pool-id>     DHCP pool subnet.
@@ -5432,7 +5550,7 @@ N/A
 
 ## nv set service dhcp-server <vrf-id> pool <pool-id> range <range-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server <vrf-id> pool <pool-id> range <range-id> [options] [<attribute> ...]
 
@@ -5440,19 +5558,19 @@ N/A
 
   DHCP Pool range
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
   <range-id>  DHCP client interface
 
-### Attributes
+**Attributes**
 
   to          End of the range.
 
 ## nv set service dhcp-server <vrf-id> pool <pool-id> range <range-id> to <ipv4>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server <vrf-id> pool <pool-id> range <range-id> to [options] <ipv4>
 
@@ -5460,7 +5578,7 @@ N/A
 
   End of the range.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
@@ -5468,7 +5586,7 @@ N/A
 
 ## nv set service dhcp-server <vrf-id> pool <pool-id> pool-name <value>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server <vrf-id> pool <pool-id> pool-name [options] <value>
 
@@ -5476,14 +5594,14 @@ N/A
 
   Name
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
 
 ## nv set service dhcp-server <vrf-id> pool <pool-id> lease-time 180-31536000
 
-### Usage
+**Usage**
 
   nv set service dhcp-server <vrf-id> pool <pool-id> lease-time [options] 180-31536000
 
@@ -5491,14 +5609,14 @@ N/A
 
   Network address lease time in seconds assigned to DHCP clients.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
 
 ## nv set service dhcp-server <vrf-id> pool <pool-id> default-url <value>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server <vrf-id> pool <pool-id> default-url [options] <value>
 
@@ -5506,14 +5624,14 @@ N/A
 
   TBD
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
 
 ## nv set service dhcp-server <vrf-id> pool <pool-id> cumulus-provision-url <value>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server <vrf-id> pool <pool-id> cumulus-provision-url [options] <value>
 
@@ -5521,14 +5639,14 @@ N/A
 
   Cumulus specific URL for provisioning script
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
 
 ## nv set service dhcp-server <vrf-id> domain-name <domain-name-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server <vrf-id> domain-name <domain-name-id> [options] [<attribute> ...]
 
@@ -5536,18 +5654,18 @@ N/A
 
   TBD
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>          VRF
   <domain-name-id>  DHCP domain name
 
-### Attributes
+**Attributes**
 
   domain-name       DHCP domain name
 
 ## nv set service dhcp-server <vrf-id> domain-name <domain-name-id> domain-name <idn-hostname>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server <vrf-id> domain-name <domain-name-id> domain-name [options] <idn-hostname>
 
@@ -5555,14 +5673,14 @@ N/A
 
   DHCP domain name
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>          VRF
   <domain-name-id>  DHCP domain name
 
 ## nv set service dhcp-server <vrf-id> domain-name-server <server-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server <vrf-id> domain-name-server <server-id> [options]
 
@@ -5570,14 +5688,14 @@ N/A
 
   A remote DNS server
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
   <server-id>  DNS server
 
 ## nv set service dhcp-server <vrf-id> static <static-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server <vrf-id> static <static-id> [options] [<attribute> ...]
 
@@ -5585,12 +5703,12 @@ N/A
 
   static entry
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
   <static-id>           static mapping nane
 
-### Attributes
+**Attributes**
 
   cumulus-provision-url Cumulus specific URL for provisioning script
 
@@ -5600,7 +5718,7 @@ N/A
 
 ## nv set service dhcp-server <vrf-id> static <static-id> mac-address <mac>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server <vrf-id> static <static-id> mac-address [options] <mac>
 
@@ -5608,7 +5726,7 @@ N/A
 
   MAC (hardware) address
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
   <static-id>  static mapping nane
@@ -5616,7 +5734,7 @@ N/A
 ## nv set service dhcp-server <vrf-id> static <static-id> ip-address <ipv4>
 
 
-### Usage
+**Usage**
 
   nv set service dhcp-server <vrf-id> static <static-id> ip-address [options] <ipv4>
 
@@ -5624,14 +5742,14 @@ N/A
 
   IP address
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
   <static-id>  static mapping nane
 
 ## nv set service dhcp-server <vrf-id> static <static-id> cumulus-provision-url <value>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server <vrf-id> static <static-id> cumulus-provision-url [options] <value>
 
@@ -5639,14 +5757,14 @@ N/A
 
   Cumulus specific URL for provisioning script
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
   <static-id>  static mapping nane
 
 ## nv set service dhcp-server6 <vrf-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server6 <vrf-id> [options] [<attribute> ...]
 
@@ -5654,11 +5772,11 @@ N/A
 
   Dynamic Host Configuration Protocol IPv6 Server
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>            VRF
 
-### Attributes
+**Attributes**
 
   interface           Assign DHCP options to clients directly attached to
 
@@ -5674,7 +5792,7 @@ N/A
 
 ## nv set service dhcp-server6 <vrf-id> interface <interface-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server6 <vrf-id> interface <interface-id> [options]
 
@@ -5682,14 +5800,14 @@ N/A
 
   An interface on which DPCH clients are attached.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>        VRF
   <interface-id>  DHCP client interface
 
 ## nv set service dhcp-server6 <vrf-id> pool <pool-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server6 <vrf-id> pool <pool-id> [options] [<attribute> ...]
 
@@ -5697,12 +5815,12 @@ N/A
 
   DHCP Pool
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
   <pool-id>             DHCP6 pool subnet.
 
-### Attributes
+**Attributes**
 
   domain-name-server    DHCP domain name servers
 
@@ -5722,7 +5840,7 @@ N/A
 
 ## nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id> [options]
 
@@ -5730,7 +5848,7 @@ N/A
 
   A remote DNS server
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
   <pool-id>    DHCP6 pool subnet.
@@ -5738,7 +5856,7 @@ N/A
 
 ## nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id> [options] [<attribute> ...]
 
@@ -5746,19 +5864,19 @@ N/A
 
   TBD
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>          VRF
   <pool-id>         DHCP6 pool subnet.
   <domain-name-id>  DHCP domain name
 
-### Attributes
+**Attributes**
 
   domain-name       DHCP domain name
 
 ## nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id> domain-name <idn-hostname>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id> domain-name [options] <idn-hostname>
 
@@ -5766,7 +5884,7 @@ N/A
 
   DHCP domain name
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>          VRF
   <pool-id>         DHCP6 pool subnet.
@@ -5774,7 +5892,7 @@ N/A
 
 ## nv set service dhcp-server6 <vrf-id> pool <pool-id> range <range-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> [options] [<attribute> ...]
 
@@ -5782,19 +5900,19 @@ N/A
 
   DHCP Pool range
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
   <pool-id>   DHCP6 pool subnet.
   <range-id>  DHCP client interface
 
-### Attributes
+**Attributes**
 
   to          End of the range.
 
 ## nv set service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> to <ipv6>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> to [options] <ipv6>
 
@@ -5802,7 +5920,7 @@ N/A
 
   End of the range.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
   <pool-id>   DHCP6 pool subnet.
@@ -5811,7 +5929,7 @@ N/A
 ## nv set service dhcp-server6 <vrf-id> pool <pool-id> pool-name <value>
 
 
-### Usage
+**Usage**
 
   nv set service dhcp-server6 <vrf-id> pool <pool-id> pool-name [options] <value>
 
@@ -5819,7 +5937,7 @@ N/A
 
   Name
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
   <pool-id>   DHCP6 pool subnet.
@@ -5827,7 +5945,7 @@ N/A
 ## nv set service dhcp-server6 <vrf-id> pool <pool-id> lease-time 180-31536000
 
 
-### Usage
+**Usage**
 
   nv set service dhcp-server6 <vrf-id> pool <pool-id> lease-time [options] 180-31536000
 
@@ -5835,14 +5953,14 @@ N/A
 
   Network address lease time in seconds assigned to DHCP clients.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
   <pool-id>   DHCP6 pool subnet.
 
 ## nv set service dhcp-server6 <vrf-id> pool <pool-id> default-url <value>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server6 <vrf-id> pool <pool-id> default-url [options] <value>
 
@@ -5850,14 +5968,14 @@ N/A
 
   TBD
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
   <pool-id>   DHCP6 pool subnet.
 
 ## nv set service dhcp-server6 <vrf-id> pool <pool-id> cumulus-provision-url <value>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server6 <vrf-id> pool <pool-id> cumulus-provision-url [options] <value>
 
@@ -5865,14 +5983,14 @@ N/A
 
   Cumulus specific URL for provisioning script
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
   <pool-id>   DHCP6 pool subnet.
 
 ## nv set service dhcp-server6 <vrf-id> domain-name <domain-name-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server6 <vrf-id> domain-name <domain-name-id> [options] [<attribute> ...]
 
@@ -5880,18 +5998,18 @@ N/A
 
   TBD
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>          VRF
   <domain-name-id>  DHCP domain name
 
-### Attributes
+**Attributes**
 
   domain-name       DHCP domain name
 
 ## nv set service dhcp-server6 <vrf-id> domain-name <domain-name-id> domain-name <idn-hostname>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server6 <vrf-id> domain-name <domain-name-id> domain-name [options] <idn-hostname>
 
@@ -5899,14 +6017,14 @@ N/A
 
   DHCP domain name
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>          VRF
   <domain-name-id>  DHCP domain name
 
 ## nv set service dhcp-server6 <vrf-id> domain-name-server <server-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server6 <vrf-id> domain-name-server <server-id> [options]
 
@@ -5914,14 +6032,14 @@ N/A
 
   A remote DNS server
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
   <server-id>  DNS server
 
 ## nv set service dhcp-server6 <vrf-id> static <static-id>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server6 <vrf-id> static <static-id> [options] [<attribute> ...]
 
@@ -5929,12 +6047,12 @@ N/A
 
   static entry
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
   <static-id>           static mapping nane
 
-### Attributes
+**Attributes**
 
   cumulus-provision-url  Cumulus specific URL for provisioning script
 
@@ -5944,7 +6062,7 @@ N/A
 
 ## nv set service dhcp-server6 <vrf-id> static <static-id> mac-address <mac>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server6 <vrf-id> static <static-id> mac-address [options] <mac>
 
@@ -5952,14 +6070,14 @@ N/A
 
   MAC (hardware) address
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
   <static-id>  static mapping nane
 
 ## nv set service dhcp-server6 <vrf-id> static <static-id> ip-address <ipv6>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server6 <vrf-id> static <static-id> ip-address [options] <ipv6>
 
@@ -5967,14 +6085,14 @@ N/A
 
   IP address
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
   <static-id>  static mapping nane
 
 ## nv set service dhcp-server6 <vrf-id> static <static-id> cumulus-provision-url <value>
 
-### Usage
+**Usage**
 
   nv set service dhcp-server6 <vrf-id> static <static-id> cumulus-provision-url [options] <value>
 
@@ -5982,14 +6100,14 @@ N/A
 
   Cumulus specific URL for provisioning script
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
   <static-id>  static mapping nane
 
 ## nv set service lldp
 
-### Usage
+**Usage**
 
   nv set service lldp [options] [<attribute> ...]
 
@@ -5997,7 +6115,7 @@ N/A
 
   Global LLDP
 
-### Attributes
+**Attributes**
 
   dot1-tlv            Enable dot1 TLV advertisements on enabled ports
 
@@ -6007,7 +6125,7 @@ N/A
 
 ## nv set service lldp tx-interval 10-300
 
-### Usage
+**Usage**
 
   nv set service lldp tx-interval [options] 10-300
 
@@ -6017,7 +6135,7 @@ N/A
 
 ## nv set service lldp tx-hold-multiplier 1-10
 
-### Usage
+**Usage**
 
   nv set service lldp tx-hold-multiplier [options] 1-10
 
@@ -6027,7 +6145,7 @@ N/A
 
 ## nv set system
 
-### Usage
+**Usage**
 
   nv set system [options] [<attribute> ...]
 
@@ -6035,7 +6153,7 @@ N/A
 
   Top-level node which contains system-wide properties.
 
-### Attributes
+**Attributes**
 
 
   control-plane  Control Plane specific configurations
@@ -6054,7 +6172,7 @@ N/A
 
 ## nv set system control-plane
 
-### Usage
+**Usage**
 
   nv set system control-plane [options] [<attribute> ...]
 
@@ -6062,7 +6180,7 @@ N/A
 
   Control Plane specific configurations
 
-### Attributes
+**Attributes**
 
   trap        Traps
 
@@ -6070,7 +6188,7 @@ N/A
 
 ## nv set system control-plane trap <trap-id>
 
-### Usage
+**Usage**
 
   nv set system control-plane trap <trap-id> [options] [<attribute> ...]
 
@@ -6078,17 +6196,17 @@ N/A
 
   Trap
 
-### Identifiers
+**Identifiers**
 
   <trap-id>   TRAP ID
 
-### Attributes
+**Attributes**
 
   state       trap state
 
 ## nv set system control-plane policer <policer-id>
 
-### Usage
+**Usage**
 
   nv set system control-plane policer <policer-id> [options] [<attribute> ...]
 
@@ -6096,11 +6214,11 @@ N/A
 
   Policer
 
-### Identifiers
+**Identifiers**
 
   <policer-id>  Policer ID
 
-### Attributes
+**Attributes**
 
   burst         policer burst value
 
@@ -6110,7 +6228,7 @@ N/A
 
 ## nv set system control-plane policer <policer-id> burst 10-10000
 
-### Usage
+**Usage**
 
   nv set system control-plane policer <policer-id> burst [options] 10-10000
 
@@ -6118,13 +6236,13 @@ N/A
 
   policer burst value
 
-### Identifiers
+**Identifiers**
 
   <policer-id>  Policer ID
 
 ## nv set system control-plane policer <policer-id> rate 10-10000
 
-### Usage
+**Usage**
 
   nv set system control-plane policer <policer-id> rate [options] 10-10000
 
@@ -6132,13 +6250,13 @@ N/A
 
   policer rate value
 
-### Identifiers
+**Identifiers**
 
   <policer-id>  Policer ID
 
 ## nv set system message
 
-### Usage
+**Usage**
 
   nv set system message [options] [<attribute> ...]
 
@@ -6146,7 +6264,7 @@ N/A
 
   System pre-login and post-login messages
 
-### Attributes
+**Attributes**
 
   post-login  configure post-login message of the day
 
@@ -6154,7 +6272,7 @@ N/A
 
 ## nv set system message pre-login <value>
 
-### Usage
+**Usage**
 
   nv set system message pre-login [options] <value>
 
@@ -6164,7 +6282,7 @@ N/A
 
 ## nv set system message post-login <value>
 
-### Usage
+**Usage**
 
   nv set system message post-login [options] <value>
 
@@ -6174,7 +6292,7 @@ N/A
 
 ## nv set system global
 
-### Usage
+**Usage**
 
   nv set system global [options] [<attribute> ...]
 
@@ -6182,7 +6300,7 @@ N/A
 
   global system configuration
 
-### Attributes
+**Attributes**
 
   reserved     reserved ranges
 
@@ -6198,7 +6316,7 @@ N/A
 
 ## nv set system global reserved
 
-### Usage
+**Usage**
 
   nv set system global reserved [options] [<attribute> ...]
 
@@ -6206,7 +6324,7 @@ N/A
 
   reserved ranges
 
-### Attributes
+**Attributes**
 
   routing-table  reserved routing table ranges
 
@@ -6214,7 +6332,7 @@ N/A
 
 ## nv set system global reserved routing-table
 
-### Usage
+**Usage**
 
   nv set system global reserved routing-table [options] [<attribute> ...]
 
@@ -6222,13 +6340,13 @@ N/A
 
   reserved routing table ranges
 
-### Attributes
+**Attributes**
 
   pbr         reserved routing table ranges for PBR
 
 ## nv set system global reserved routing-table pbr
 
-### Usage
+**Usage**
 
   nv set system global reserved routing-table pbr [options] [<attribute> ...]
 
@@ -6236,7 +6354,7 @@ N/A
 
   reserved routing table ranges for PBR
 
-### Attributes
+**Attributes**
 
   begin       Beginning of reserved routing table range for PBR
 
@@ -6244,7 +6362,7 @@ N/A
 
 ## nv set system global reserved routing-table pbr begin 10000-4294966272
 
-### Usage
+**Usage**
 
   nv set system global reserved routing-table pbr begin [options] 10000-4294966272
 
@@ -6254,7 +6372,7 @@ N/A
 
 ## nv set system global reserved routing-table pbr end 10000-4294966272
 
-### Usage
+**Usage**
 
   nv set system global reserved routing-table pbr end [options] 10000-4294966272
 
@@ -6264,7 +6382,7 @@ N/A
 
 ## nv set system global reserved vlan
 
-### Usage
+**Usage**
 
   nv set system global reserved vlan [options] [<attribute> ...]
 
@@ -6272,13 +6390,13 @@ N/A
 
   reserved vlan ranges
 
-### Attributes
+**Attributes**
 
   l3-vni-vlan  Reserved vlans to be used with l3vni
 
 ## nv set system global reserved vlan l3-vni-vlan
 
-### Usage
+**Usage**
 
   nv set system global reserved vlan l3-vni-vlan [options] [<attribute> ...]
 
@@ -6286,7 +6404,7 @@ N/A
 
   Reserved vlans to be used with l3vni
 
-### Attributes
+**Attributes**
 
   begin       Beginning of reserved vlan range for L3 VNI
 
@@ -6294,7 +6412,7 @@ N/A
 
 ## nv set system global reserved vlan l3-vni-vlan begin 1-4093
 
-### Usage
+**Usage**
 
   nv set system global reserved vlan l3-vni-vlan begin [options] 1-4093
 
@@ -6304,7 +6422,7 @@ N/A
 
 ## nv set system global reserved vlan l3-vni-vlan end 2-4093
 
-### Usage
+**Usage**
 
   nv set system global reserved vlan l3-vni-vlan end [options] 2-4093
 
@@ -6314,7 +6432,7 @@ N/A
 
 ## nv set system global fabric-id 1-255
 
-### Usage
+**Usage**
 
   nv set system global fabric-id [options] 1-255
 
@@ -6324,7 +6442,7 @@ N/A
 
 ## nv set system port-mirror
 
-### Usage
+**Usage**
 
   nv set system port-mirror [options] [<attribute> ...]
 
@@ -6332,14 +6450,14 @@ N/A
 
   Port mirror
 
-### Attributes
+**Attributes**
 
   session     sessions
 
 
 ## nv set system port-mirror session <session-id>
 
-### Usage
+**Usage**
 
   nv set system port-mirror session <session-id> [options] [<attribute> ...]
 
@@ -6347,11 +6465,11 @@ N/A
 
   port mirror session number
 
-### Identifiers
+**Identifiers**
 
   <session-id>  port mirror session number
 
-### Attributes
+**Attributes**
 
   span          Switched Port Analyzer
 
@@ -6359,7 +6477,7 @@ N/A
 
 ## nv set system port-mirror session <session-id> span
 
-### Usage
+**Usage**
 
   nv set system port-mirror session <session-id> span [options] [<attribute> ...]
 
@@ -6367,11 +6485,11 @@ N/A
 
   Switched Port Analyzer
 
-### Identifiers
+**Identifiers**
 
   <session-id>  port mirror session number
 
-### Attributes
+**Attributes**
 
   source-port   Set of source ports.
 
@@ -6385,7 +6503,7 @@ N/A
 
 ## nv set system port-mirror session <session-id> span source-port <port-id>
 
-### Usage
+**Usage**
 
   nv set system port-mirror session <session-id> span source-port <port-id> [options]
 
@@ -6393,7 +6511,7 @@ N/A
 
   A port-mirror source port (swps or bonds only)
 
-### Identifiers
+**Identifiers**
 
   <session-id>  port mirror session number
 
@@ -6401,7 +6519,7 @@ N/A
 
 ## nv set system port-mirror session <session-id> span destination <port-id>
 
-### Usage
+**Usage**
 
   nv set system port-mirror session <session-id> span destination <port-id> [options]
 
@@ -6409,7 +6527,7 @@ N/A
 
   The SPAN destination port.
 
-### Identifiers
+**Identifiers**
 
   <session-id>  port mirror session number
 
@@ -6417,7 +6535,7 @@ N/A
 
 ## nv set system port-mirror session <session-id> span truncate
 
-### Usage
+**Usage**
 
   nv set system port-mirror session <session-id> span truncate [options] [<attribute> ...]
 
@@ -6425,11 +6543,11 @@ N/A
 
   TBD
 
-### Identifiers
+**Identifiers**
 
   <session-id>  port mirror session number
 
-### Attributes
+**Attributes**
 
   enable        Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -6437,7 +6555,7 @@ N/A
 
 ## nv set system port-mirror session <session-id> erspan
 
-### Usage
+**Usage**
 
   nv set system port-mirror session <session-id> erspan [options] [<attribute> ...]
 
@@ -6445,11 +6563,11 @@ N/A
 
   Encapsulated Remote Switched Port Analyzer.
 
-### Identifiers
+**Identifiers**
 
   <session-id>  port mirror session number
 
-### Attributes
+**Attributes**
 
   source-port   Set of source ports.
 
@@ -6463,7 +6581,7 @@ N/A
 
 ## nv set system port-mirror session <session-id> erspan source-port <port-id>
 
-### Usage
+**Usage**
 
   nv set system port-mirror session <session-id> erspan source-port <port-id> [options]
 
@@ -6471,7 +6589,7 @@ N/A
 
   A port-mirror source port (swps or bonds only)
 
-### Identifiers
+**Identifiers**
 
   <session-id>  port mirror session number
 
@@ -6479,7 +6597,7 @@ N/A
 
 ## nv set system port-mirror session <session-id> erspan destination
 
-### Usage
+**Usage**
 
   nv set system port-mirror session <session-id> erspan destination [options] [<attribute> ...]
 
@@ -6487,11 +6605,11 @@ N/A
 
   erspan destination
 
-### Identifiers
+**Identifiers**
 
   <session-id>  port mirror session number
 
-### Attributes
+**Attributes**
 
   source-ip     TBD
 
@@ -6499,7 +6617,7 @@ N/A
 
 ## nv set system port-mirror session <session-id> erspan destination source-ip <source-ip>
 
-### Usage
+**Usage**
 
   nv set system port-mirror session <session-id> erspan destination source-ip <source-ip> [options]
 
@@ -6507,13 +6625,13 @@ N/A
 
   An IPv4 address
 
-### Identifiers
+**Identifiers**
 
   <session-id>  port mirror session number
 
 ## nv set system port-mirror session <session-id> erspan destination dest-ip <dest-ip>
 
-### Usage
+**Usage**
 
   nv set system port-mirror session <session-id> erspan destination dest-ip <dest-ip> [options]
 
@@ -6521,13 +6639,13 @@ N/A
 
   An IPv4 address
 
-### Identifiers
+**Identifiers**
 
   <session-id>  port mirror session number
 
 ## nv set system port-mirror session <session-id> erspan truncate
 
-### Usage
+**Usage**
 
   nv set system port-mirror session <session-id> erspan truncate [options] [<attribute> ...]
 
@@ -6535,11 +6653,11 @@ N/A
 
   TBD
 
-### Identifiers
+**Identifiers**
 
   <session-id>  port mirror session number
 
-### Attributes
+**Attributes**
 
 
   enable        Turn the feature 'on' or 'off'. The default is 'off'.
@@ -6548,7 +6666,7 @@ N/A
 
 ## nv set system config
 
-### Usage
+**Usage**
 
   nv set system config [options] [<attribute> ...]
 
@@ -6556,13 +6674,13 @@ N/A
 
   Affect how config operations are performed.
 
-### Attributes
+**Attributes**
 
   apply       Affect how config apply operations are performed.
 
 ## nv set system config apply
 
-### Usage
+**Usage**
 
   nv set system config apply [options] [<attribute> ...]
 
@@ -6570,7 +6688,7 @@ N/A
 
   Affect how config apply operations are performed.
 
-### Attributes
+**Attributes**
 
   ignore      Set of files to ignore during config apply operations.
 
@@ -6578,7 +6696,7 @@ N/A
 
 ## nv set system config apply ignore <ignore-id>
 
-### Usage
+**Usage**
 
   nv set system config apply ignore <ignore-id> [options]
 
@@ -6586,13 +6704,13 @@ N/A
 
   File to ignore during config apply operations.
 
-### Identifiers
+**Identifiers**
 
   <ignore-id>  Ignored file
 
 ## nv set system hostname <idn-hostname>
 
-### Usage
+**Usage**
 
   nv set system hostname [options] <idn-hostname>
 
@@ -6602,7 +6720,7 @@ N/A
 
 ## nv set vrf <vrf-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> [options] [<attribute> ...]
 
@@ -6610,11 +6728,11 @@ N/A
 
   A VRF
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
 
   loopback    The loopback IP interface associated with this VRF.
@@ -6629,7 +6747,7 @@ N/A
 
 ## nv set vrf <vrf-id> loopback
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> loopback [options] [<attribute> ...]
 
@@ -6637,17 +6755,17 @@ N/A
 
   The loopback IP interface associated with this VRF.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   ip          Properties associated with the loopback IP address on this VRF.
 
 ## nv set vrf <vrf-id> loopback ip
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> loopback ip [options] [<attribute> ...]
 
@@ -6655,17 +6773,17 @@ N/A
 
   IP addresses associated with the VRF's loopback interface.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   address     static IPv4 or IPv6 address
 
 ## nv set vrf <vrf-id> loopback ip address <ip-prefix-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> loopback ip address <ip-prefix-id> [options]
 
@@ -6673,7 +6791,7 @@ N/A
 
   An IP address with prefix
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>        VRF
 
@@ -6681,7 +6799,7 @@ N/A
 
 ## nv set vrf <vrf-id> evpn
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> evpn [options] [<attribute> ...]
 
@@ -6689,11 +6807,11 @@ N/A
 
   EVPN control plane config and info for VRF
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   vni         L3 VNI
 
@@ -6703,7 +6821,7 @@ N/A
 
 ## nv set vrf <vrf-id> evpn vni <vni-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> evpn vni <vni-id> [options] [<attribute> ...]
 
@@ -6711,19 +6829,19 @@ N/A
 
   VNI
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>            VRF
 
   <vni-id>            VxLAN ID
 
-### Attributes
+**Attributes**
 
   prefix-routes-only  Associated L3 VNI and corresponding route targets only with EVPN type-5 routes, not with EVPN type-2 routes.
 
 ## nv set vrf <vrf-id> router
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router [options] [<attribute> ...]
 
@@ -6731,11 +6849,11 @@ N/A
 
   A VRF
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   rib         RIB Routes
 
@@ -6749,7 +6867,7 @@ N/A
 
 ## nv set vrf <vrf-id> router rib <afi>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router rib <afi> [options] [<attribute> ...]
 
@@ -6757,19 +6875,19 @@ N/A
 
   Vrf aware Routing-table per address-family
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
   <afi>       Route address family.
 
-### Attributes
+**Attributes**
 
   protocol    Import protocols from RIB to FIB
 
 ## nv set vrf <vrf-id> router rib <afi> protocol <import-protocol-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router rib <afi> protocol <import-protocol-id> [options] [<attribute> ...]
 
@@ -6777,7 +6895,7 @@ N/A
 
   Import Protocols from where routes are known
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
 
@@ -6785,13 +6903,13 @@ N/A
 
   <import-protocol-id>  Import protocol list.
 
-### Attributes
+**Attributes**
 
   fib-filter            Route map to apply on the import prootcol's routes.
 
 ## nv set vrf <vrf-id> router bgp
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp [options] [<attribute> ...]
 
@@ -6799,11 +6917,11 @@ N/A
 
   BGP VRF configuration.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>            VRF
 
-### Attributes
+**Attributes**
 
 
   address-family      Address family specific configuration
@@ -6836,7 +6954,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family [options] [<attribute> ...]
 
@@ -6844,11 +6962,11 @@ N/A
 
   Address family specific configuration
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>      VRF
 
-### Attributes
+**Attributes**
 
   ipv4-unicast  IPv4 unicast address family
 
@@ -6858,7 +6976,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast [options] [<attribute> ...]
 
@@ -6866,11 +6984,11 @@ N/A
 
   IPv4 unicast address family
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
 
-### Attributes
+**Attributes**
 
   redistribute     Route redistribute
 
@@ -6892,7 +7010,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute [options] [<attribute> ...]
 
@@ -6900,11 +7018,11 @@ N/A
 
   Route redistribute
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
 
   static      Route redistribution of ipv4 static routes
@@ -6917,7 +7035,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static [options] [<attribute> ...]
 
@@ -6925,11 +7043,11 @@ N/A
 
   Source route type.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -6939,7 +7057,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected [options] [<attribute> ...]
 
@@ -6947,11 +7065,11 @@ N/A
 
   Source route type.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -6961,7 +7079,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel [options] [<attribute> ...]
 
@@ -6969,11 +7087,11 @@ N/A
 
   Source route type.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -6983,7 +7101,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf [options] [<attribute> ...]
 
@@ -6991,11 +7109,11 @@ N/A
 
   Source route type.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7005,7 +7123,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> [options] [<attribute> ...]
 
@@ -7013,13 +7131,13 @@ N/A
 
   An IPv4 aggregate route
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
 
   <aggregate-route-id>  IPv4 address and route prefix in CIDR notation
 
-### Attributes
+**Attributes**
 
   as-set                If 'on', an AS_SET is generated for the aggregate.
 
@@ -7029,7 +7147,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id> [options] [<attribute> ...]
 
@@ -7037,18 +7155,18 @@ N/A
 
   An IPv4 static network.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>             VRF
   <static-network-id>  IPv4 address and route prefix in CIDR notation
 
-### Attributes
+**Attributes**
 
   route-map            Optional policy to modify attributes
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import [options] [<attribute> ...]
 
@@ -7056,17 +7174,17 @@ N/A
 
   Route import
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   from-vrf    Controls for VRF to VRF route leaking for this address-family
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf [options] [<attribute> ...]
 
@@ -7074,11 +7192,11 @@ N/A
 
   Controls for VRF to VRF route leaking for this address-family
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   list        List of VRFs the routes can be imported from
 
@@ -7088,7 +7206,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id> [options]
 
@@ -7096,7 +7214,7 @@ N/A
 
   A VRF
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   
@@ -7104,7 +7222,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf route-map <instance-name>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf route-map [options] <instance-name>
 
@@ -7112,13 +7230,13 @@ N/A
 
   Route-map to control the import of routes into EVPN
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths [options] [<attribute> ...]
 
@@ -7126,11 +7244,11 @@ N/A
 
   Multipaths
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
 
-### Attributes
+**Attributes**
 
   compare-cluster-length If on, if IBGP paths have a CLUSTER_LIST, their lengths must be equal to be selected as multipaths
 
@@ -7140,7 +7258,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths ebgp 1-128
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths ebgp [options] 1-128
 
@@ -7148,13 +7266,13 @@ N/A
 
   EBGP multipath
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths ibgp 1-128
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths ibgp [options] 1-128
 
@@ -7162,13 +7280,13 @@ N/A
 
   IBGP multipath
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance [options] [<attribute> ...]
 
@@ -7176,11 +7294,11 @@ N/A
 
   Admin distances.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   external    Distance to apply to routes from EBGP peers when installed into the RIB
 
@@ -7188,7 +7306,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance external 1-255
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance external [options] 1-255
 
@@ -7196,13 +7314,13 @@ N/A
 
   Distance to apply to routes from EBGP peers when installed into the RIB
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance internal 1-255
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance internal [options] 1-255
 
@@ -7210,13 +7328,13 @@ N/A
 
   Distance to apply to routes from IBGP peers when installed into the RIB
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-export
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-export [options] [<attribute> ...]
 
@@ -7224,17 +7342,17 @@ N/A
 
   Route export
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   to-evpn     Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn [options] [<attribute> ...]
 
@@ -7242,11 +7360,11 @@ N/A
 
   Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
 
-### Attributes
+**Attributes**
 
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7256,7 +7374,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family l2vpn-evpn
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family l2vpn-evpn [options] [<attribute> ...]
 
@@ -7264,17 +7382,17 @@ N/A
 
   BGP VRF configuration. L2VPN EVPN address family
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast [options] [<attribute> ...]
 
@@ -7282,11 +7400,11 @@ N/A
 
   IPv6 unicast address family
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
 
-### Attributes
+**Attributes**
 
   aggregate-route  IPv6 aggregate routes
 
@@ -7308,7 +7426,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> [options] [<attribute> ...]
 
@@ -7316,12 +7434,12 @@ N/A
 
   An IPv6 aggregate route
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
   <aggregate-route-id>  IPv6 address and route prefix in CIDR notation
 
-### Attributes
+**Attributes**
 
   as-set                If 'on', an AS_SET is generated for the aggregate.
 
@@ -7331,7 +7449,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id> [options] [<attribute> ...]
 
@@ -7339,18 +7457,18 @@ N/A
 
   An IPv6 static network.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>             VRF
   <static-network-id>  IPv6 address and route prefix in CIDR notation
 
-### Attributes
+**Attributes**
 
   route-map            Optional policy to modify attributes
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import [options] [<attribute> ...]
 
@@ -7358,17 +7476,17 @@ N/A
 
   Route import
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   from-vrf    Controls for VRF to VRF route leaking for this address-family
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf [options] [<attribute> ...]
 
@@ -7376,11 +7494,11 @@ N/A
 
   Controls for VRF to VRF route leaking for this address-family
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
 
   list        List of VRFs the routes can be imported from
@@ -7391,7 +7509,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf list
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf list [options]
 
@@ -7399,13 +7517,13 @@ N/A
 
   Set of VRFs
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf route-map <instance-name>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf route-map [options] <instance-name>
 
@@ -7413,13 +7531,13 @@ N/A
 
   Route-map to control the import of routes into EVPN
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths [options] [<attribute> ...]
 
@@ -7427,11 +7545,11 @@ N/A
 
   Multipaths
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
 
-### Attributes
+**Attributes**
 
   compare-cluster-length If on, if IBGP paths have a CLUSTER_LIST, their lengths must be equal to be selected as multipaths
 
@@ -7441,7 +7559,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths ebgp 1-128
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths ebgp [options] 1-128
 
@@ -7449,13 +7567,13 @@ N/A
 
   EBGP multipath
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths ibgp 1-128
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths ibgp [options] 1-128
 
@@ -7463,13 +7581,13 @@ N/A
 
   IBGP multipath
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance [options] [<attribute> ...]
 
@@ -7477,11 +7595,11 @@ N/A
 
   Admin distances.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   external    Distance to apply to routes from EBGP peers when installed into the RIB
 
@@ -7489,7 +7607,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance external 1-255
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance external [options] 1-255
 
@@ -7497,13 +7615,13 @@ N/A
 
   Distance to apply to routes from EBGP peers when installed into the RIB
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance internal 1-255
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance internal [options] 1-255
 
@@ -7511,13 +7629,13 @@ N/A
 
   Distance to apply to routes from IBGP peers when installed into the RIB
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-export
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-export [options] [<attribute> ...]
 
@@ -7525,17 +7643,17 @@ N/A
 
   Route export
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   to-evpn     Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn [options] [<attribute> ...]
 
@@ -7543,11 +7661,11 @@ N/A
 
   Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
 
-### Attributes
+**Attributes**
 
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7557,7 +7675,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute [options] [<attribute> ...]
 
@@ -7565,11 +7683,11 @@ N/A
 
   Route redistribute
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   static      Route redistribution of ipv4 static routes
 
@@ -7581,7 +7699,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static [options] [<attribute> ...]
 
@@ -7589,11 +7707,11 @@ N/A
 
   Source route type.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7603,7 +7721,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected [options] [<attribute> ...]
 
@@ -7611,11 +7729,11 @@ N/A
 
   Source route type.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7625,7 +7743,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel [options] [<attribute> ...]
 
@@ -7633,11 +7751,11 @@ N/A
 
   Source route type.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7647,7 +7765,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6 [options] [<attribute> ...]
 
@@ -7655,11 +7773,11 @@ N/A
 
   Source route type.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7669,7 +7787,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp path-selection
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp path-selection [options] [<attribute> ...]
 
@@ -7677,11 +7795,11 @@ N/A
 
   BGP path-selection configuration.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>          VRF
 
-### Attributes
+**Attributes**
 
   aspath            BGP aspath path-selection config, applicable to this BGP instance
 
@@ -7691,7 +7809,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp path-selection aspath
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp path-selection aspath [options] [<attribute> ...]
 
@@ -7699,11 +7817,11 @@ N/A
 
   BGP aspath path-selection config, applicable to this BGP instance
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
 
-### Attributes
+**Attributes**
 
   compare-confed   Select AS based on confederations.
 
@@ -7711,7 +7829,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp path-selection med
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp path-selection med [options] [<attribute> ...]
 
@@ -7719,11 +7837,11 @@ N/A
 
   BGP med path-selection config, applicable to this BGP instance
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
 
-### Attributes
+**Attributes**
 
   compare-always        Always compare the MED on routes, even when they were received from different neighbouring ASes.
 
@@ -7735,7 +7853,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp path-selection multipath
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp path-selection multipath [options] [<attribute> ...]
 
@@ -7743,11 +7861,11 @@ N/A
 
   BGP multipath path-selection config, applicable to this BGP instance
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>        VRF
 
-### Attributes
+**Attributes**
 
   aspath-ignore   Ignore AS path when determining multipath routing.
 
@@ -7757,7 +7875,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp route-reflection
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp route-reflection [options] [<attribute> ...]
 
@@ -7765,11 +7883,11 @@ N/A
 
   BGP route-reflection configuration.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
 
-### Attributes
+**Attributes**
 
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7781,7 +7899,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> [options] [<attribute> ...]
 
@@ -7789,12 +7907,12 @@ N/A
 
   BGP global configuration.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-### Attributes
+**Attributes**
 
   bfd                   Specifies whether to track BGP peering sessions using this configuration via BFD.
 
@@ -7826,7 +7944,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd [options] [<attribute> ...]
 
@@ -7834,12 +7952,12 @@ N/A
 
   Specifies whether to track BGP peering sessions using this configuration via BFD.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>           VRF
   <peer-group-id>    Domain
 
-### Attributes
+**Attributes**
 
   enable             Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7851,7 +7969,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd detect-multiplier 2-255
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd detect-multiplier [options] 2-255
 
@@ -7859,14 +7977,14 @@ N/A
 
   Detect multiplier
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-rx-interval 50-60000
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-rx-interval [options] 50-60000
 
@@ -7874,14 +7992,14 @@ N/A
 
   Minimum receive interval
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-tx-interval 50-60000
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-tx-interval [options] 50-60000
 
@@ -7889,14 +8007,14 @@ N/A
 
   Minimum transmit interval.  The actual value used is the smaller of this or what the peer expects.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security [options] [<attribute> ...]
 
@@ -7904,12 +8022,12 @@ N/A
 
   RFC 5082
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7917,7 +8035,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security hops 1-254
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security hops [options] 1-254
 
@@ -7925,14 +8043,14 @@ N/A
 
   Number of hops
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities [options] [<attribute> ...]
 
@@ -7940,12 +8058,12 @@ N/A
 
   Capabilities
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>          VRF
   <peer-group-id>   Domain
 
-### Attributes
+**Attributes**
 
   extended-nexthop  If 'on', the extended-nexthop capability defined in RFC  5549 is advertised to peer(s) with this config. If 'auto', it will be 'on' for unnumbered peers and 'off' otherwise. This is the default.
 
@@ -7953,7 +8071,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart [options] [<attribute> ...]
 
@@ -7961,18 +8079,18 @@ N/A
 
   BGP Graceful restart per neighbor configuration
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   mode             If 'auto', inherit from global. This is the default. If set to 'off', GR capability is not negotiated with this peer. If set to 'helper-only', only the Helper role is supported for this peer. This means that the GR capability will be negotiated without any address-families with this peer. If set to 'full', both the Helper role and the Restarter role are supported with this peer; the GR capability will be negotiated with the enabled address-families for which GR is also supported.
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as [options] [<attribute> ...]
 
@@ -7980,12 +8098,12 @@ N/A
 
   Local AS feature
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7997,7 +8115,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as asn 1-4294967295
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as asn [options] 1-4294967295
 
@@ -8005,14 +8123,14 @@ N/A
 
   ASN to use to establish the peering if different from the ASN of the BGP instance.  This configuration finds use during AS renumbering.  The local-as configured is also attached to incoming and outgoing updates.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> timers
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> timers [options] [<attribute> ...]
 
@@ -8020,12 +8138,12 @@ N/A
 
   Peer peer-timerss
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>             VRF
   <peer-group-id>      Domain
 
-### Attributes
+**Attributes**
 
   connection-retry     Time interval at which connection attempts are retried upon a failure. If `auto`, the global value is used. This is the default.
 
@@ -8037,7 +8155,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family [options] [<attribute> ...]
 
@@ -8045,12 +8163,12 @@ N/A
 
   Address family specific configuration
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   ipv4-unicast     Peer IPv4 unicast address family. Always on, unless disabled globaly.
 
@@ -8060,7 +8178,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast [options] [<attribute> ...]
 
@@ -8068,12 +8186,12 @@ N/A
 
   Peer IPv4 unicast address family.  Always on, unless disabled globaly.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-### Attributes
+**Attributes**
 
   community-advertise   Community advertise for address family.
 
@@ -8105,7 +8223,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise\
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise [options] [<attribute> ...]
 
@@ -8113,12 +8231,12 @@ N/A
 
   Community advertise for address family.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   extended         If 'on', it means we can announce the EXT_COMMUNITIES attribute to this peer, otherwise we cannot.
 
@@ -8128,7 +8246,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod [options] [<attribute> ...]
 
@@ -8136,12 +8254,12 @@ N/A
 
   Attribute mod for address family.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   aspath           If 'on', it means follow normal BGP procedures in the generation of AS_PATH attribute for this peer; if 'off' it means do not change the AS_PATH when sending an Update to this peer.
 
@@ -8151,7 +8269,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath [options] [<attribute> ...]
 
@@ -8159,12 +8277,12 @@ N/A
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   allow-my-asn     If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -8174,7 +8292,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn [options] [<attribute> ...]
 
@@ -8182,12 +8300,12 @@ N/A
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -8197,7 +8315,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn occurrences 1-10
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn occurrences [options] 1-10
 
@@ -8205,14 +8323,14 @@ N/A
 
   Indicates max number of occurrences of the local system's AS number in the received AS_PATH
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits [options] [<attribute> ...]
 
@@ -8220,18 +8338,18 @@ N/A
 
   Limits on prefix from the peer for this address-family
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   inbound          Limits on inbound prefix from the peer for this address-family
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound [options] [<attribute> ...]
 
@@ -8239,12 +8357,12 @@ N/A
 
   Limits on inbound prefix from the peer for this address-family
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>           VRF
   <peer-group-id>    Domain
 
-### Attributes
+**Attributes**
 
   maximum            Limit on number of prefixes of specific address-family that can be received from the peer. By default, there is no limit
 
@@ -8256,7 +8374,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound warning-threshold 1-100
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound warning-threshold [options] 1-100
 
@@ -8264,14 +8382,14 @@ N/A
 
   Percentage of the maximum at which a warning syslog is generated.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound reestablish-wait 1-4294967295
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound reestablish-wait [options] 1-4294967295
 
@@ -8279,14 +8397,14 @@ N/A
 
   Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination [options] [<attribute> ...]
 
@@ -8294,12 +8412,12 @@ N/A
 
   Default route origination
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -8307,7 +8425,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy [options] [<attribute> ...]
 
@@ -8315,12 +8433,12 @@ N/A
 
   Policies for ipv4 unicast
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   inbound          Outbound unicast policy
 
@@ -8328,7 +8446,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound [options] [<attribute> ...]
 
@@ -8336,12 +8454,12 @@ N/A
 
   Outbound unicast policy
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   route-map        Route map to apply to Updates received from this peer
 
@@ -8351,7 +8469,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound aspath-list none
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound aspath-list [options] none
 
@@ -8359,14 +8477,14 @@ N/A
 
   AS-Path filter list to apply to Updates received from this peer
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound [options] [<attribute> ...]
 
@@ -8374,12 +8492,12 @@ N/A
 
   Outbound unicast policy
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   route-map        Route map to apply to Updates to be sent to this peer
 
@@ -8391,7 +8509,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound aspath-list none
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound aspath-list [options] none
 
@@ -8399,14 +8517,14 @@ N/A
 
   AS-Path filter list to apply to Updates sent to this peer
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise [options] [<attribute> ...]
 
@@ -8414,12 +8532,12 @@ N/A
 
   Conditional advertise for address family.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -8437,7 +8555,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise advertise-map <instance-name>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise advertise-map [options] <instance-name>
 
@@ -8445,14 +8563,14 @@ N/A
 
   route-map contains prefix-list which has list of routes/prefixes to operate on.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise exist-map <instance-name>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise exist-map [options] <instance-name>
 
@@ -8460,14 +8578,14 @@ N/A
 
   route-map contains the conditional routes/prefixes in prefix-list.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise non-exist-map <instance-name>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise non-exist-map [options] <instance-name>
 
@@ -8475,14 +8593,14 @@ N/A
 
   route-map contains the negative conditional routes/prefixes in prefix-list.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast weight 0-65535
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast weight [options] 0-65535
 
@@ -8490,14 +8608,14 @@ N/A
 
   Weight applied to routes received from peer; this is used in the BGP route selection algorithm
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast [options] [<attribute> ...]
 
@@ -8505,12 +8623,12 @@ N/A
 
   Peer IPv6 unicast address family.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-### Attributes
+**Attributes**
 
   policy                Policies for ipv4 unicast
 
@@ -8543,7 +8661,7 @@ N/A
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy
 
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy [options] [<attribute> ...]
 
@@ -8551,12 +8669,12 @@ N/A
 
   Policies for ipv6 unicast
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   inbound          Outbound unicast policy
 
@@ -8564,7 +8682,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound [options] [<attribute> ...]
 
@@ -8572,12 +8690,12 @@ N/A
 
   Outbound unicast policy
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   route-map        Route map to apply to Updates received from this peer
 
@@ -8589,7 +8707,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound aspath-list none
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound aspath-list [options] none
 
@@ -8597,14 +8715,14 @@ N/A
 
   AS-Path filter list to apply to Updates received from this peer
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound [options] [<attribute> ...]
 
@@ -8612,12 +8730,12 @@ N/A
 
   Outbound unicast policy
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   route-map        Route map to apply to Updates to be sent to this peer
 
@@ -8629,7 +8747,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound aspath-list none
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound aspath-list [options] none
 
@@ -8637,14 +8755,14 @@ N/A
 
   AS-Path filter list to apply to Updates sent to this peer
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath [options] [<attribute> ...]
 
@@ -8652,12 +8770,12 @@ N/A
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   allow-my-asn     If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -8667,7 +8785,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn [options] [<attribute> ...]
 
@@ -8675,12 +8793,12 @@ N/A
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -8690,7 +8808,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn occurrences 1-10
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn occurrences [options] 1-10
 
@@ -8698,14 +8816,14 @@ N/A
 
   Indicates max number of occurrences of the local system's AS number in the received AS_PATH
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits [options] [<attribute> ...]
 
@@ -8713,18 +8831,18 @@ N/A
 
   Limits on prefix from the peer for this address-family
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   inbound          Limits on inbound prefix from the peer for this address-family
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound [options] [<attribute> ...]
 
@@ -8732,12 +8850,12 @@ N/A
 
   Limits on inbound prefix from the peer for this address-family
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>           VRF
   <peer-group-id>    Domain
 
-### Attributes
+**Attributes**
 
   maximum            Limit on number of prefixes of specific address-family that can be received from the peer. By default, there is no limit
 
@@ -8749,7 +8867,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound warning-threshold 1-100
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound warning-threshold [options] 1-100
 
@@ -8757,14 +8875,14 @@ N/A
 
   Percentage of the maximum at which a warning syslog is generated.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound reestablish-wait 1-4294967295
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound reestablish-wait [options] 1-4294967295
 
@@ -8772,14 +8890,14 @@ N/A
 
   Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast default-route-origination
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast default-route-origination [options] [<attribute> ...]
 
@@ -8787,12 +8905,12 @@ N/A
 
   Default route origination
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -8800,7 +8918,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast community-advertise
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast community-advertise [options] [<attribute> ...]
 
@@ -8808,12 +8926,12 @@ N/A
 
   Community advertise for address family.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   extended         If 'on', it means we can announce the EXT_COMMUNITIES attribute to this peer, otherwise we cannot.
 
@@ -8823,7 +8941,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast attribute-mod
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast attribute-mod [options] [<attribute> ...]
 
@@ -8831,12 +8949,12 @@ N/A
 
   Attribute mod for address family.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   aspath           If 'on', it means follow normal BGP procedures in the generation of AS_PATH attribute for this peer; if 'off' it means do not change the AS_PATH when sending an Update to this peer.
 
@@ -8847,7 +8965,7 @@ N/A
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise
 
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise [options] [<attribute> ...]
 
@@ -8855,12 +8973,12 @@ N/A
 
   Conditional advertise for address family.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -8872,7 +8990,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise advertise-map <instance-name>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise advertise-map [options] <instance-name>
 
@@ -8880,7 +8998,7 @@ N/A
 
   route-map contains prefix-list which has list of routes/prefixes to operate on.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
@@ -8888,7 +9006,7 @@ N/A
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise exist-map <instance-name>
 
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise exist-map [options] <instance-name>
 
@@ -8896,7 +9014,7 @@ N/A
 
   route-map contains the conditional routes/prefixes in prefix-list.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
@@ -8904,7 +9022,7 @@ N/A
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise non-exist-map <instance-name>
 
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise non-exist-map [options] <instance-name>
 
@@ -8912,14 +9030,14 @@ N/A
 
   route-map contains the negative conditional routes/prefixes in prefix-list.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast weight 0-65535
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast weight [options] 0-65535
 
@@ -8927,14 +9045,14 @@ N/A
 
   Weight applied to routes received from peer; this is used in the BGP route selection algorithm
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn [options] [<attribute> ...]
 
@@ -8942,12 +9060,12 @@ N/A
 
   Peer l2vpn EVPN address family.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-### Attributes
+**Attributes**
 
   attribute-mod         Attribute mod for address family.
 
@@ -8969,7 +9087,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn attribute-mod
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn attribute-mod [options] [<attribute> ...]
 
@@ -8977,12 +9095,12 @@ N/A
 
   Attribute mod for address family.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   aspath           If 'on', it means follow normal BGP procedures in the generation of AS_PATH attribute for this peer; if 'off' it means do not change the AS_PATH when sending an Update to this peer.
 
@@ -8992,7 +9110,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath [options] [<attribute> ...]
 
@@ -9000,12 +9118,12 @@ N/A
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   allow-my-asn     If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -9015,7 +9133,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn [options] [<attribute> ...]
 
@@ -9023,12 +9141,12 @@ N/A
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -9038,7 +9156,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn occurrences 1-10
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn occurrences [options] 1-10
 
@@ -9046,14 +9164,14 @@ N/A
 
   Indicates max number of occurrences of the local system's AS number in the received AS_PATH
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy [options] [<attribute> ...]
 
@@ -9061,12 +9179,12 @@ N/A
 
   Policies for l2vpn evpn
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   inbound          Inbound l2vpn-evpn policy
 
@@ -9074,7 +9192,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy inbound
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy inbound [options] [<attribute> ...]
 
@@ -9082,18 +9200,18 @@ N/A
 
   Inbound l2vpn-evpn policy
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   route-map        Route map to apply to Updates received from this peer
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy outbound
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy outbound [options] [<attribute> ...]
 
@@ -9101,12 +9219,12 @@ N/A
 
   Outbound l2vpn-evpn policy
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
-### Attributes
+**Attributes**
 
   route-map        Route map to apply to Updates to be sent to this peer
 
@@ -9115,7 +9233,7 @@ N/A
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> password none
 
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> password [options] none
 
@@ -9123,14 +9241,14 @@ N/A
 
   Password
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> description none
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> description [options] none
 
@@ -9138,14 +9256,14 @@ N/A
 
   neighbor description
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 ## nv set vrf <vrf-id> router bgp route-export
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp route-export [options] [<attribute> ...]
 
@@ -9153,17 +9271,17 @@ N/A
 
   Controls for exporting ipv4 and ipv6 routes from this VRF
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   to-evpn     Controls for exporting routes from this VRF into EVPN
 
 ## nv set vrf <vrf-id> router bgp route-export to-evpn
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp route-export to-evpn [options] [<attribute> ...]
 
@@ -9171,17 +9289,17 @@ N/A
 
   Controls for exporting routes from this VRF into EVPN
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>      VRF
 
-### Attributes
+**Attributes**
 
   route-target  List the RTs to attach to host or prefix routes when exporting them into EVPN or "auto". If "auto", the RT will be derived. This is the default.
 
 ## nv set vrf <vrf-id> router bgp route-export to-evpn route-target <rt-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp route-export to-evpn route-target <rt-id> [options]
 
@@ -9189,14 +9307,14 @@ N/A
 
   A route target identifier
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
   <rt-id>     Route targets or "auto"
 
 ## nv set vrf <vrf-id> router bgp route-import
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp route-import [options] [<attribute> ...]
 
@@ -9204,17 +9322,17 @@ N/A
 
   Controls for importing of ipv4 and ipv6 routes from this VRF
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   from-evpn   Controls for importing EVPN type-2 and type-5 routes into this VRF
 
 ## nv set vrf <vrf-id> router bgp route-import from-evpn
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp route-import from-evpn [options] [<attribute> ...]
 
@@ -9222,17 +9340,17 @@ N/A
 
   Controls for importing EVPN type-2 and type-5 routes into this VRF
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>      VRF
 
-### Attributes
+**Attributes**
 
   route-target  List the RTs to attach to host or prefix routes when importing them into VRF or "auto". If "auto", the RT will be derived. This is the default.\
 
 ## nv set vrf <vrf-id> router bgp route-import from-evpn route-target <rt-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp route-import from-evpn route-target <rt-id> [options]
 
@@ -9240,7 +9358,7 @@ N/A
 
   A route target identifier
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
   <rt-id>     Route targets or "auto"
@@ -9248,7 +9366,7 @@ N/A
 ## nv set vrf <vrf-id> router bgp timers
 
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp timers [options] [<attribute> ...]
 
@@ -9256,11 +9374,11 @@ N/A
 
   timer values for all peers in this VRF
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
 
-### Attributes
+**Attributes**
 
   conditional-advertise Time interval at which bgp table is scanned for condition is met.
 
@@ -9276,7 +9394,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp timers connection-retry 1-65535
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp timers connection-retry [options] 1-65535
 
@@ -9284,14 +9402,14 @@ N/A
 
   Time interval at which connection attempts are retried upon a failure.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router bgp confederation
 
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp confederation [options] [<attribute> ...]
 
@@ -9299,11 +9417,11 @@ N/A
 
   BGP Confederation options.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   member-as   Confederation ASNs of the peers, maps to BGP confederation peers
 
@@ -9311,7 +9429,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp confederation member-as
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp confederation member-as [options]
 
@@ -9319,13 +9437,13 @@ N/A
 
   Set of autonomous numbers
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> [options] [<attribute> ...]
 
@@ -9333,12 +9451,12 @@ N/A
 
   BGP global configuration.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-### Attributes
+**Attributes**
 
   bfd                   Specifies whether to track BGP peering sessions using this configuration via BFD.
 
@@ -9376,7 +9494,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd [options] [<attribute> ...]
 
@@ -9384,12 +9502,12 @@ N/A
 
   Specifies whether to track BGP peering sessions using this configuration via BFD.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>           VRF
   <neighbor-id>      Peer ID
 
-### Attributes
+**Attributes**
 
   enable             Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -9401,7 +9519,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd detect-multiplier 2-255
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd detect-multiplier [options] 2-255
 
@@ -9409,14 +9527,14 @@ N/A
 
   Detect multiplier
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-rx-interval 50-60000
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-rx-interval [options] 50-60000
 
@@ -9424,14 +9542,14 @@ N/A
 
   Minimum receive interval
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-tx-interval 50-60000
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-tx-interval [options] 50-60000
 
@@ -9439,14 +9557,14 @@ N/A
 
   Minimum transmit interval.  The actual value used is the smaller of this or what the peer expects.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities [options] [<attribute> ...]
 
@@ -9454,12 +9572,12 @@ N/A
 
   Capabilities
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>          VRF
   <neighbor-id>     Peer ID
 
-### Attributes
+**Attributes**
 
   extended-nexthop  If 'on', the extended-nexthop capability defined in RFC 5549 is advertised to peer(s) with this config. If 'auto', it will be 'on' for unnumbered peers and 'off' otherwise. This is the default.
 
@@ -9467,7 +9585,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> local-as
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> local-as [options] [<attribute> ...]
 
@@ -9475,12 +9593,12 @@ N/A
 
   Local AS feature
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -9492,7 +9610,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> local-as asn 1-4294967295
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> local-as asn [options] 1-4294967295
 
@@ -9500,14 +9618,14 @@ N/A
 
   ASN to use to establish the peering if different from the ASN of the BGP instance.  This configuration finds use during AS renumbering.  The local-as configured is also attached to incoming and outgoing updates.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> graceful-restart
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> graceful-restart [options] [<attribute> ...]
 
@@ -9515,12 +9633,12 @@ N/A
 
   BGP Graceful restart per neighbor configuration
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
 
   mode           If 'auto', inherit from global. This is the default. If set
@@ -9543,7 +9661,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security [options] [<attribute> ...]
 
@@ -9551,12 +9669,12 @@ N/A
 
   RFC 5082
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -9564,7 +9682,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security hops 1-254
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security hops [options] 1-254
 
@@ -9572,14 +9690,14 @@ N/A
 
   Number of hops
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family [options] [<attribute> ...]
 
@@ -9587,12 +9705,12 @@ N/A
 
   Address family specific configuration
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   ipv4-unicast   Peer IPv4 unicast address family. Always on, unless disabled globaly.
 
@@ -9602,7 +9720,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast [options] [<attribute> ...]
 
@@ -9610,12 +9728,12 @@ N/A
 
   Peer IPv4 unicast address family.  Always on, unless disabled globaly.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-### Attributes
+**Attributes**
 
   attribute-mod         Attribute mod for address family.
 
@@ -9647,7 +9765,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast attribute-mod
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast attribute-mod [options] [<attribute> ...]
 
@@ -9655,12 +9773,12 @@ N/A
 
   Attribute mod for address family.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   aspath         If 'on', it means follow normal BGP procedures in the generation of AS_PATH attribute for this peer; if 'off' it means do not change the AS_PATH when sending an Update to this peer.
 
@@ -9670,7 +9788,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath [options] [<attribute> ...]
 
@@ -9678,12 +9796,12 @@ N/A
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <neighbor-id>    Peer ID
 
-### Attributes
+**Attributes**
 
   allow-my-asn     If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -9693,7 +9811,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn [options] [<attribute> ...]
 
@@ -9701,12 +9819,12 @@ N/A
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -9716,7 +9834,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn occurrences 1-10
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn occurrences [options] 1-10
 
@@ -9724,14 +9842,14 @@ N/A
 
   Indicates max number of occurrences of the local system's AS number in the received AS_PATH
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy [options] [<attribute> ...]
 
@@ -9739,12 +9857,12 @@ N/A
 
   Policies for ipv4 unicast
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   inbound        Outbound unicast policy
 
@@ -9752,7 +9870,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound [options] [<attribute> ...]
 
@@ -9760,12 +9878,12 @@ N/A
 
   Outbound unicast policy
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   route-map      Route map to apply to Updates received from this peer
 
@@ -9775,7 +9893,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound aspath-list none
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound aspath-list [options] none
 
@@ -9783,14 +9901,14 @@ N/A
 
   AS-Path filter list to apply to Updates received from this peer
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound [options] [<attribute> ...]
 
@@ -9798,12 +9916,12 @@ N/A
 
   Outbound unicast policy
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>        VRF
   <neighbor-id>   Peer ID
 
-### Attributes
+**Attributes**
 
   route-map       Route map to apply to Updates to be sent to this peer
 
@@ -9815,7 +9933,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound aspath-list none
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound aspath-list [options] none
 
@@ -9823,14 +9941,14 @@ N/A
 
   AS-Path filter list to apply to Updates sent to this peer
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits [options] [<attribute> ...]
 
@@ -9838,18 +9956,18 @@ N/A
 
   Limits on prefix from the peer for this address-family
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   inbound        Limits on inbound prefix from the peer for this address- family
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound [options] [<attribute> ...]
 
@@ -9857,12 +9975,12 @@ N/A
 
   Limits on inbound prefix from the peer for this address-family
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>           VRF
   <neighbor-id>      Peer ID
 
-### Attributes
+**Attributes**
 
   maximum            Limit on number of prefixes of specific address-family that can be received from the peer. By default, there is no limit
 
@@ -9874,7 +9992,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound warning-threshold 1-100
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound warning-threshold [options] 1-100
 
@@ -9882,14 +10000,14 @@ N/A
 
   Percentage of the maximum at which a warning syslog is generated.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound reestablish-wait 1-4294967295
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound reestablish-wait [options] 1-4294967295
 
@@ -9897,14 +10015,14 @@ N/A
 
   Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast default-route-origination
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast default-route-origination [options] [<attribute> ...]
 
@@ -9912,12 +10030,12 @@ N/A
 
   Default route origination
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -9925,7 +10043,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast community-advertise
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast community-advertise [options] [<attribute> ...]
 
@@ -9933,12 +10051,12 @@ N/A
 
   Community advertise for address family.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   extended       If 'on', it means we can announce the EXT_COMMUNITIES attribute to this peer, otherwise we cannot.
 
@@ -9948,7 +10066,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise [options] [<attribute> ...]
 
@@ -9956,12 +10074,12 @@ N/A
 
   Conditional advertise for address family.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -9973,7 +10091,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise advertise-map <instance-name>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise advertise-map [options] <instance-name>
 
@@ -9981,14 +10099,14 @@ N/A
 
   route-map contains prefix-list which has list of routes/prefixes to operate on.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise exist-map <instance-name>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise exist-map [options] <instance-name>
 
@@ -9996,14 +10114,14 @@ N/A
 
   route-map contains the conditional routes/prefixes in prefix-list.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise non-exist-map <instance-name>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise non-exist-map [options] <instance-name>
 
@@ -10011,14 +10129,14 @@ N/A
 
   route-map contains the negative conditional routes/prefixes in prefix-list.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast weight 0-65535
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast weight [options] 0-65535
 
@@ -10026,14 +10144,14 @@ N/A
 
   Weight applied to routes received from peer; this is used in the BGP route selection algorithm
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast [options] [<attribute> ...]
 
@@ -10041,12 +10159,12 @@ N/A
 
   Peer IPv6 unicast address family.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-### Attributes
+**Attributes**
 
   attribute-mod         Attribute mod for address family.
 
@@ -10076,7 +10194,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast attribute-mod
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast attribute-mod [options] [<attribute> ...]
 
@@ -10084,12 +10202,12 @@ N/A
 
   Attribute mod for address family.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   aspath         If 'on', it means follow normal BGP procedures in the generation of AS_PATH attribute for this peer; if 'off' it means do not change the AS_PATH when sending an Update to this peer.
 
@@ -10099,7 +10217,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath [options] [<attribute> ...]
 
@@ -10107,12 +10225,12 @@ N/A
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <neighbor-id>    Peer ID
 
-### Attributes
+**Attributes**
 
   allow-my-asn     If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -10122,7 +10240,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn [options] [<attribute> ...]
 
@@ -10130,12 +10248,12 @@ N/A
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -10145,7 +10263,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn occurrences 1-10
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn occurrences [options] 1-10
 
@@ -10153,14 +10271,14 @@ N/A
 
   Indicates max number of occurrences of the local system's AS number in the received AS_PATH
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits [options] [<attribute> ...]
 
@@ -10168,18 +10286,18 @@ N/A
 
   Limits on prefix from the peer for this address-family
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   inbound        Limits on inbound prefix from the peer for this address- family
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound [options] [<attribute> ...]
 
@@ -10187,12 +10305,12 @@ N/A
 
   Limits on inbound prefix from the peer for this address-family
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>           VRF
   <neighbor-id>      Peer ID
 
-### Attributes
+**Attributes**
 
   maximum            Limit on number of prefixes of specific address-family
 
@@ -10220,7 +10338,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound warning-threshold 1-100
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound warning-threshold [options] 1-100
 
@@ -10228,14 +10346,14 @@ N/A
 
   Percentage of the maximum at which a warning syslog is generated.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound reestablish-wait 1-4294967295
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound reestablish-wait [options] 1-4294967295
 
@@ -10243,14 +10361,14 @@ N/A
 
   Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast default-route-origination
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast default-route-origination [options] [<attribute> ...]
 
@@ -10258,12 +10376,12 @@ N/A
 
   Default route origination
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -10271,7 +10389,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy [options] [<attribute> ...]
 
@@ -10279,12 +10397,12 @@ N/A
 
   Policies for ipv6 unicast
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   inbound        Outbound unicast policy
 
@@ -10292,7 +10410,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound [options] [<attribute> ...]
 
@@ -10300,12 +10418,12 @@ N/A
 
   Outbound unicast policy
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   route-map      Route map to apply to Updates received from this peer
 
@@ -10315,7 +10433,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound aspath-list none
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound aspath-list [options] none
 
@@ -10323,14 +10441,14 @@ N/A
 
   AS-Path filter list to apply to Updates received from this peer
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound [options] [<attribute> ...]
 
@@ -10338,12 +10456,12 @@ N/A
 
   Outbound unicast policy
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>        VRF
   <neighbor-id>   Peer ID
 
-### Attributes
+**Attributes**
 
   route-map       Route map to apply to Updates to be sent to this peer
 
@@ -10355,7 +10473,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound aspath-list none
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound aspath-list [options] none
 
@@ -10363,14 +10481,14 @@ N/A
 
   AS-Path filter list to apply to Updates sent to this peer
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast community-advertise
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast community-advertise [options] [<attribute> ...]
 
@@ -10378,12 +10496,12 @@ N/A
 
   Community advertise for address family.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   extended       If 'on', it means we can announce the EXT_COMMUNITIES attribute to this peer, otherwise we cannot.
 
@@ -10394,7 +10512,7 @@ N/A
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise
 
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise [options] [<attribute> ...]
 
@@ -10402,12 +10520,12 @@ N/A
 
   Conditional advertise for address family.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -10419,7 +10537,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise advertise-map <instance-name>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise advertise-map [options] <instance-name>
 
@@ -10427,14 +10545,14 @@ N/A
 
   route-map contains prefix-list which has list of routes/prefixes to operate on.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise exist-map <instance-name>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise exist-map [options] <instance-name>
 
@@ -10442,14 +10560,14 @@ N/A
 
   route-map contains the conditional routes/prefixes in prefix-list.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise non-exist-map <instance-name>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise non-exist-map [options] <instance-name>
 
@@ -10457,14 +10575,14 @@ N/A
 
   route-map contains the negative conditional routes/prefixes in prefix-list.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast weight 0-65535
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast weight [options] 0-65535
 
@@ -10472,14 +10590,14 @@ N/A
 
   Weight applied to routes received from peer; this is used in the BGP route selection algorithm
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn [options] [<attribute> ...]
 
@@ -10487,12 +10605,12 @@ N/A
 
   Peer l2vpn EVPN address family.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
-### Attributes
+**Attributes**
 
   attribute-mod         Attribute mod for address family.
 
@@ -10514,7 +10632,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn attribute-mod
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn attribute-mod [options] [<attribute> ...]
 
@@ -10522,12 +10640,12 @@ N/A
 
   Attribute mod for address family.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   aspath         If 'on', it means follow normal BGP procedures in the generation of AS_PATH attribute for this peer; if 'off' it means do not change the AS_PATH when sending an Update to this peer.
 
@@ -10537,7 +10655,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath [options] [<attribute> ...]
 
@@ -10545,12 +10663,12 @@ N/A
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
   <neighbor-id>    Peer ID
 
-### Attributes
+**Attributes**
 
   allow-my-asn     If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -10560,7 +10678,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn [options] [<attribute> ...]
 
@@ -10568,12 +10686,12 @@ N/A
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -10583,7 +10701,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn occurrences 1-10
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn occurrences [options] 1-10
 
@@ -10591,14 +10709,14 @@ N/A
 
   Indicates max number of occurrences of the local system's AS number in the received AS_PATH
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy [options] [<attribute> ...]
 
@@ -10606,12 +10724,12 @@ N/A
 
   Policies for l2vpn evpn
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   inbound        Inbound l2vpn-evpn policy
 
@@ -10619,7 +10737,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy inbound
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy inbound [options] [<attribute> ...]
 
@@ -10627,18 +10745,18 @@ N/A
 
   Inbound l2vpn-evpn policy
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
-### Attributes
+**Attributes**
 
   route-map      Route map to apply to Updates received from this peer
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy outbound
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy outbound [options] [<attribute> ...]
 
@@ -10646,12 +10764,12 @@ N/A
 
   Outbound l2vpn-evpn policy
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>        VRF
   <neighbor-id>   Peer ID
 
-### Attributes
+**Attributes**
 
   route-map       Route map to apply to Updates to be sent to this peer
 
@@ -10659,7 +10777,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> timers
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> timers [options] [<attribute> ...]
 
@@ -10667,12 +10785,12 @@ N/A
 
   Peer peer-timerss
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>             VRF
   <neighbor-id>        Peer ID
 
-### Attributes
+**Attributes**
 
   connection-retry     Time interval at which connection attempts are retried upon a failure. If `auto`, the global value is used.This is the default.
 
@@ -10684,7 +10802,7 @@ N/A
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> password none
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> password [options] none
 
@@ -10692,14 +10810,14 @@ N/A
 
   Password
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id> description none
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> description [options] none
 
@@ -10707,14 +10825,14 @@ N/A
 
   neighbor description
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 ## nv set vrf <vrf-id> router bgp dynamic-peer-limit 1-5000
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router bgp dynamic-peer-limit [options] 1-5000
 
@@ -10722,13 +10840,13 @@ N/A
 
   Maximum number of dynamic neighbors from whom we can accept a connection. Applicable only if 'dynamic-peering' subnet ranges are configured
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router static <route-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router static <route-id> [options] [<attribute> ...]
 
@@ -10736,12 +10854,12 @@ N/A
 
   A route
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>        VRF
   <route-id>      IP prefix
 
-### Attributes
+**Attributes**
 
   distance        Paths
 
@@ -10753,7 +10871,7 @@ N/A
 
 ## nv set vrf <vrf-id> router static <route-id> distance <distance-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router static <route-id> distance <distance-id> [options] [<attribute> ...]
 
@@ -10761,13 +10879,13 @@ N/A
 
   A path
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <route-id>     IP prefix
   <distance-id>  A path distance
 
-### Attributes
+**Attributes**
 
   via            Nexthops
 
@@ -10775,7 +10893,7 @@ N/A
 
 ## nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> [options] [<attribute> ...]
 
@@ -10783,14 +10901,14 @@ N/A
 
   A via
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <route-id>     IP prefix
   <distance-id>  A path distance
   <via-id>       IP address, interface, or "blackhole".
 
-### Attributes
+**Attributes**
 
   flag           Nexthop flags
 
@@ -10810,7 +10928,7 @@ N/A
 
 ## nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> flag onlink
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> flag [options] onlink
 
@@ -10818,7 +10936,7 @@ N/A
 
   Nexthop flags
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
   <route-id>     IP prefix
@@ -10827,7 +10945,7 @@ N/A
 
 ## nv set vrf <vrf-id> router static <route-id> via <via-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router static <route-id> via <via-id> [options] [<attribute> ...]
 
@@ -10835,13 +10953,13 @@ N/A
 
   A via
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
   <route-id>  IP prefix
   <via-id>    IP address, interface, or "blackhole".
 
-### Attributes
+**Attributes**
 
   flag        Nexthop flags
 
@@ -10853,7 +10971,7 @@ N/A
 
 ## nv set vrf <vrf-id> router static <route-id> via <via-id> flag onlink
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router static <route-id> via <via-id> flag [options] onlink
 
@@ -10861,7 +10979,7 @@ N/A
 
   Nexthop flags
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
   <route-id>  IP prefix
@@ -10869,7 +10987,7 @@ N/A
 
 ## nv set vrf <vrf-id> router pim
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router pim [options] [<attribute> ...]
 
@@ -10877,11 +10995,11 @@ N/A
 
   PIM VRF configuration.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>         VRF
 
-### Attributes
+**Attributes**
 
   timers           Timers
 
@@ -10895,7 +11013,7 @@ N/A
 
 ## nv set vrf <vrf-id> router pim timers
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router pim timers [options] [<attribute> ...]
 
@@ -10903,11 +11021,11 @@ N/A
 
   Timers
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>       VRF
 
-### Attributes
+**Attributes**
 
   keep-alive     Timeout value for S,G stream, in seconds
 
@@ -10915,7 +11033,7 @@ N/A
 
 ## nv set vrf <vrf-id> router pim ecmp
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router pim ecmp [options] [<attribute> ...]
 
@@ -10923,11 +11041,11 @@ N/A
 
   Choose all available ECMP paths for a particular RPF.  If 'off', the first nexthop found will be used.  This is the default.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -10935,7 +11053,7 @@ N/A
 
 ## nv set vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> [options] [<attribute> ...]
 
@@ -10943,12 +11061,12 @@ N/A
 
   MSDP mesh-group
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
   <msdp-mesh-group-id>  MSDP mesh group name
 
-### Attributes
+**Attributes**
 
   member-address        Set of member-address
 
@@ -10956,7 +11074,7 @@ N/A
 
 ## nv set vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> member-address <mesh-member-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> member-address <mesh-member-id> [options]
 
@@ -10964,7 +11082,7 @@ N/A
 
   A MSDP mesh member
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
   <msdp-mesh-group-id>  MSDP mesh group name
@@ -10972,7 +11090,7 @@ N/A
 
 ## nv set vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> source-address <ipv4>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> source-address [options] <ipv4>
 
@@ -10980,14 +11098,14 @@ N/A
 
   MSDP mesh-group source IP address
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
   <msdp-mesh-group-id>  MSDP mesh group name
 
 ## nv set vrf <vrf-id> router pim address-family
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router pim address-family [options] [<attribute> ...]
 
@@ -10995,17 +11113,17 @@ N/A
 
   Address family specific configuration
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>      VRF
 
-### Attributes
+**Attributes**
 
   ipv4-unicast  IPv4 unicast address family
 
 ## nv set vrf <vrf-id> router pim address-family ipv4-unicast
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router pim address-family ipv4-unicast [options] [<attribute> ...]
 
@@ -11013,11 +11131,11 @@ N/A
 
   IPv4 unicast address family
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>              VRF
 
-### Attributes
+**Attributes**
 
   spt-switchover        Build shortest path tree towards source.
 
@@ -11031,7 +11149,7 @@ N/A
 
 ## nv set vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover [options] [<attribute> ...]
 
@@ -11039,11 +11157,11 @@ N/A
 
   Build shortest path tree towards source.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
 
-### Attributes
+**Attributes**
 
   action       PIM shortest path switchover (SPT) action.
 
@@ -11051,7 +11169,7 @@ N/A
 
 ## nv set vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover prefix-list <instance-name>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover prefix-list [options] <instance-name>
 
@@ -11059,13 +11177,13 @@ N/A
 
   Prefix-list to specify multicast group range.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> [options] [<attribute> ...]
 
@@ -11073,12 +11191,12 @@ N/A
 
   RP
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
   <rp-id>      RP IP address
 
-### Attributes
+**Attributes**
 
   group-range  Set of group range assocaited to RP.
 
@@ -11086,7 +11204,7 @@ N/A
 
 ## nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range <group-range-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range <group-range-id> [options]
 
@@ -11094,7 +11212,7 @@ N/A
 
   A group range
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>          VRF
   <rp-id>           RP IP address
@@ -11102,7 +11220,7 @@ N/A
 
 ## nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> prefix-list <instance-name>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> prefix-list [options] <instance-name>
 
@@ -11110,14 +11228,14 @@ N/A
 
   Prefix-list to specify multicast group range.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
   <rp-id>     RP IP address
 
 ## nv set vrf <vrf-id> router ospf
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf [options] [<attribute> ...]
 
@@ -11125,11 +11243,11 @@ N/A
 
   OSPF VRF configuration.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>             VRF
 
-### Attributes
+**Attributes**
 
   area                 OSPF areas
 
@@ -11155,7 +11273,7 @@ N/A
 
 ## nv set vrf <vrf-id> router ospf area <area-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf area <area-id> [options] [<attribute> ...]
 
@@ -11163,12 +11281,12 @@ N/A
 
   An OSPF area
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>          VRF
   <area-id>         Area
 
-### Attributes
+**Attributes**
 
   filter-list       Filters networks between OSPF areas
 
@@ -11182,7 +11300,7 @@ N/A
 
 ## nv set vrf <vrf-id> router ospf area <area-id> filter-list
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf area <area-id> filter-list [options] [<attribute> ...]
 
@@ -11190,12 +11308,12 @@ N/A
 
   Filters networks between OSPF areas
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
   <area-id>   Area
 
-### Attributes
+**Attributes**
 
   in          prefix-list to use as an inbound filter.
 
@@ -11203,7 +11321,7 @@ N/A
 
 ## nv set vrf <vrf-id> router ospf area <area-id> range <range-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf area <area-id> range <range-id> [options] [<attribute> ...]
 
@@ -11211,13 +11329,13 @@ N/A
 
   Filters out components of the prefix
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
   <area-id>   Area
   <range-id>  Range
 
-### Attributes
+**Attributes**
 
   cost        User specified metric advertised for this summary lsa. If 'auto', operational default value is derived from components. This is the default.
 
@@ -11225,7 +11343,7 @@ N/A
 
 ## nv set vrf <vrf-id> router ospf area <area-id> network <network-id>
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf area <area-id> network <network-id> [options]
 
@@ -11233,7 +11351,7 @@ N/A
 
   Filters out components of the prefix
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>      VRF
   <area-id>     Area
@@ -11241,7 +11359,7 @@ N/A
 
 ## nv set vrf <vrf-id> router ospf area <area-id> default-lsa-cost 0-16777215
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf area <area-id> default-lsa-cost [options] 0-16777215
 
@@ -11249,14 +11367,14 @@ N/A
 
   Default LSA cost.  Only applies when type is non-normal.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
   <area-id>   Area
 
 ## nv set vrf <vrf-id> router ospf default-originate
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf default-originate [options] [<attribute> ...]
 
@@ -11264,11 +11382,11 @@ N/A
 
   Advertise a default route as external lsa
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
 
-### Attributes
+**Attributes**
 
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -11282,7 +11400,7 @@ N/A
 
 ## nv set vrf <vrf-id> router ospf default-originate metric-type 1-2
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf default-originate metric-type [options] 1-2
 
@@ -11290,13 +11408,13 @@ N/A
 
   Set OSPF External Type 1/2 metrics
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router ospf distance
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf distance [options] [<attribute> ...]
 
@@ -11304,11 +11422,11 @@ N/A
 
   Administrative distance for installation into the rib
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   external    External
 
@@ -11318,7 +11436,7 @@ N/A
 
 ## nv set vrf <vrf-id> router ospf max-metric
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf max-metric [options] [<attribute> ...]
 
@@ -11326,11 +11444,11 @@ N/A
 
   Set maximum metric value in router lsa to make stub router
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>        VRF
 
-### Attributes
+**Attributes**
 
   administrative  Administratively applied, for an indefinite period
 
@@ -11340,7 +11458,7 @@ N/A
 
 ## nv set vrf <vrf-id> router ospf log
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf log [options] [<attribute> ...]
 
@@ -11348,17 +11466,17 @@ N/A
 
   Log configuration
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>           VRF
 
-### Attributes
+**Attributes**
 
   adjacency-changes  Log adjacency changes
 
 ## nv set vrf <vrf-id> router ospf redistribute
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf redistribute [options] [<attribute> ...]
 
@@ -11366,11 +11484,11 @@ N/A
 
   Route redistribute
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   static      Route redistribute of static routes
 
@@ -11382,7 +11500,7 @@ N/A
 
 ## nv set vrf <vrf-id> router ospf redistribute static
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf redistribute static [options] [<attribute> ...]
 
@@ -11390,11 +11508,11 @@ N/A
 
   Source route type.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
 
-### Attributes
+**Attributes**
 
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -11406,7 +11524,7 @@ N/A
 
 ## nv set vrf <vrf-id> router ospf redistribute static metric-type 1-2
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf redistribute static metric-type [options] 1-2
 
@@ -11414,13 +11532,13 @@ N/A
 
   Set OSPF External Type 1/2 metrics
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router ospf redistribute connected
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf redistribute connected [options] [<attribute> ...]
 
@@ -11428,11 +11546,11 @@ N/A
 
   Source route type.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
 
-### Attributes
+**Attributes**
 
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -11444,7 +11562,7 @@ N/A
 
 ## nv set vrf <vrf-id> router ospf redistribute connected metric-type 1-2
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf redistribute connected metric-type [options] 1-2
 
@@ -11452,13 +11570,13 @@ N/A
 
   Set OSPF External Type 1/2 metrics
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router ospf redistribute kernel
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf redistribute kernel [options] [<attribute> ...]
 
@@ -11466,11 +11584,11 @@ N/A
 
   Source route type.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
 
-### Attributes
+**Attributes**
 
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -11482,7 +11600,7 @@ N/A
 
 ## nv set vrf <vrf-id> router ospf redistribute kernel metric-type 1-2
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf redistribute kernel metric-type [options] 1-2
 
@@ -11490,13 +11608,13 @@ N/A
 
   Set OSPF External Type 1/2 metrics
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router ospf redistribute bgp
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf redistribute bgp [options] [<attribute> ...]
 
@@ -11504,11 +11622,11 @@ N/A
 
   Source route type.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
 
-### Attributes
+**Attributes**
 
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -11520,7 +11638,7 @@ N/A
 
 ## nv set vrf <vrf-id> router ospf redistribute bgp metric-type 1-2
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf redistribute bgp metric-type [options] 1-2
 
@@ -11528,13 +11646,13 @@ N/A
 
   Set OSPF External Type 1/2 metrics
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router ospf timers
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf timers [options] [<attribute> ...]
 
@@ -11542,11 +11660,11 @@ N/A
 
   Timers
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   lsa         LSA timers
 
@@ -11557,7 +11675,7 @@ N/A
 ## nv set vrf <vrf-id> router ospf timers lsa
 
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf timers lsa [options] [<attribute> ...]
 
@@ -11565,11 +11683,11 @@ N/A
 
   LSA timers
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>     VRF
 
-### Attributes
+**Attributes**
 
   min-arrival  Minimum delay in receiving new version of a LSA. If 'auto', inherited from global. This is the default.
 
@@ -11577,7 +11695,7 @@ N/A
 
 ## nv set vrf <vrf-id> router ospf timers spf
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf timers spf [options] [<attribute> ...]
 
@@ -11585,11 +11703,11 @@ N/A
 
   SPF timers
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>      VRF
 
-### Attributes
+**Attributes**
 
   delay         Delay (msec) from first change received till SPF calculation. If 'auto', inherited from global. This is the default.
 
@@ -11599,7 +11717,7 @@ N/A
 
 ## nv set vrf <vrf-id> router ospf reference-bandwidth 1-4294967
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> router ospf reference-bandwidth [options] 1-4294967
 
@@ -11607,13 +11725,13 @@ N/A
 
   Used to determine link cost/metric value relative to defined reference.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> ptp
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> ptp [options] [<attribute> ...]
 
@@ -11621,17 +11739,17 @@ N/A
 
   VRF PTP configuration.  Inherited by interfaces in this VRF.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
-### Attributes
+**Attributes**
 
   enable      Turn the feature 'on' or 'off'. The default is 'on'.
 
 ## nv set vrf <vrf-id> table auto
 
-### Usage
+**Usage**
 
   nv set vrf <vrf-id> table [options] auto
 
@@ -11639,13 +11757,13 @@ N/A
 
   The routing table number, between 1001-1255, used by the named VRF. If auto, the default, it will be auto generated.
 
-### Identifiers
+**Identifiers**
 
   <vrf-id>    VRF
 
 ## nv set nve
 
-### Usage
+**Usage**
 
   nv set nve [options] [<attribute> ...]
 
@@ -11653,13 +11771,13 @@ N/A
 
   Network Virtualization configuration and operational info
 
-### Attributes
+**Attributes**
 
   vxlan       Global VxLAN configuration and operational properties.
 
 ## nv set nve vxlan
 
-### Usage
+**Usage**
 
   nv set nve vxlan [options] [<attribute> ...]
 
@@ -11667,7 +11785,7 @@ N/A
 
   VxLAN
 
-### Attributes
+**Attributes**
 
   mlag             VxLAN specific MLAG address
 
@@ -11687,7 +11805,7 @@ N/A
 
 ## nv set nve vxlan mlag
 
-### Usage
+**Usage**
 
   nv set nve vxlan mlag [options] [<attribute> ...]
 
@@ -11695,13 +11813,13 @@ N/A
 
   VxLAN specfic MLAG configuration
 
-### Attributes
+**Attributes**
 
   shared-address  shared anycast address for MLAG peers
 
 ## nv set nve vxlan source
 
-### Usage
+**Usage**
 
   nv set nve vxlan source [options] [<attribute> ...]
 
@@ -11709,13 +11827,13 @@ N/A
 
   Source address
 
-### Attributes
+**Attributes**
 
   address     IP addresses of this node's VTEP or 'auto'. If 'auto', use the primary IP loopback (not 127.0.0.1). This is the default.
 
 ## nv set nve vxlan flooding
 
-### Usage
+**Usage**
 
   nv set nve vxlan flooding [options] [<attribute> ...]
 
@@ -11723,7 +11841,7 @@ N/A
 
   Handling of BUM traffic
 
-### Attributes
+**Attributes**
 
   head-end-replication  BUM traffic is replicated and individual copies sent to remote destinations.
 
@@ -11733,7 +11851,7 @@ N/A
 
 ## nv set nve vxlan flooding head-end-replication <hrep-id>
 
-### Usage
+**Usage**
 
   nv set nve vxlan flooding head-end-replication <hrep-id> [options]
 
@@ -11741,13 +11859,13 @@ N/A
 
   Set of IPv4 unicast addresses or "evpn".
 
-### Identifiers
+**Identifiers**
 
   <hrep-id>   IPv4 unicast addresses or "evpn"
 
 ## nv set nve vxlan flooding multicast-group <ipv4-multicast>
 
-### Usage
+**Usage**
 
   nv set nve vxlan flooding multicast-group [options] <ipv4-multicast>
 
@@ -11757,7 +11875,7 @@ N/A
 
 ## nv set nve vxlan port 1024-65535
 
-### Usage
+**Usage**
 
   nv set nve vxlan port [options] 1024-65535
 
@@ -11767,7 +11885,7 @@ N/A
 
 ## nv set nve vxlan mtu 552-9216
 
-### Usage
+**Usage**
 
   nv set nve vxlan mtu [options] 552-9216
 
@@ -11777,7 +11895,7 @@ N/A
 
 ## nv set acl <acl-id>
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> [options] [<attribute> ...]
 
@@ -11785,11 +11903,11 @@ N/A
 
   An ACL is used for matching packets and take actions
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
 
-### Attributes
+**Attributes**
 
   rule        acl rule
 
@@ -11797,7 +11915,7 @@ N/A
 
 ## nv set acl <acl-id> rule <rule-id>
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> [options] [<attribute> ...]
 
@@ -11805,12 +11923,12 @@ N/A
 
   ACL Matching criteria and action rule
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
-### Attributes
+**Attributes**
 
   match       ACL match criteria
 
@@ -11818,7 +11936,7 @@ N/A
 
 ## nv set acl <acl-id> rule <rule-id> match
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> match [options] [<attribute> ...]
 
@@ -11826,12 +11944,12 @@ N/A
 
   An ACL match
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
-### Attributes
+**Attributes**
 
   ip          IPv4 and IPv6 match
 
@@ -11839,7 +11957,7 @@ N/A
 
 ## nv set acl <acl-id> rule <rule-id> match ip
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> match ip [options] [<attribute> ...]
 
@@ -11847,12 +11965,12 @@ N/A
 
   An ACL IPv4/IPv6 match
 
-### Identifiers
+**Identifiers**
 
   <acl-id>     ACL ID
   <rule-id>    ACL rule number
 
-### Attributes
+**Attributes**
 
   source-port  source port
 
@@ -11878,7 +11996,7 @@ N/A
 
 ## nv set acl <acl-id> rule <rule-id> match ip source-port <ip-port-id>
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> match ip source-port <ip-port-id> [options]
 
@@ -11886,7 +12004,7 @@ N/A
 
   L4 port
 
-### Identifiers
+**Identifiers**
 
   <acl-id>      ACL ID
   <rule-id>     ACL rule number
@@ -11894,7 +12012,7 @@ N/A
 
 ## nv set acl <acl-id> rule <rule-id> match ip dest-port <ip-port-id>
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> match ip dest-port <ip-port-id> [options]
 
@@ -11902,7 +12020,7 @@ N/A
 
   L4 port
 
-### Identifiers
+**Identifiers**
 
   <acl-id>      ACL ID
   <rule-id>     ACL rule number
@@ -11910,7 +12028,7 @@ N/A
 
 ## nv set acl <acl-id> rule <rule-id> match ip fragment
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> match ip fragment [options]
 
@@ -11918,14 +12036,14 @@ N/A
 
   State details
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
 ## nv set acl <acl-id> rule <rule-id> match ip ecn
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> match ip ecn [options] [<attribute> ...]
 
@@ -11933,12 +12051,12 @@ N/A
 
   ECN
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
-### Attributes
+**Attributes**
 
   flags       ECN protocol flags
 
@@ -11946,7 +12064,7 @@ N/A
 
 ## nv set acl <acl-id> rule <rule-id> match ip ecn ip-ect 0-3
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> match ip ecn ip-ect [options] 0-3
 
@@ -11954,14 +12072,14 @@ N/A
 
   IP ECT
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
 ## nv set acl <acl-id> rule <rule-id> match ip tcp
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> match ip tcp [options] [<attribute> ...]
 
@@ -11969,12 +12087,12 @@ N/A
 
   L4 port
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
-### Attributes
+**Attributes**
 
   flags       TCP protocol flags
 
@@ -11984,7 +12102,7 @@ N/A
 
 ## nv set acl <acl-id> rule <rule-id> match ip tcp state established
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> match ip tcp state [options] established
 
@@ -11992,14 +12110,14 @@ N/A
 
   TCP state
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
 ## nv set acl <acl-id> rule <rule-id> match mac
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> match mac [options] [<attribute> ...]
 
@@ -12007,12 +12125,12 @@ N/A
 
   An ACL MAC match
 
-### Identifiers
+**Identifiers**
 
   <acl-id>         ACL ID
   <rule-id>        ACL rule number
 
-### Attributes
+**Attributes**
 
   dest-mac         Destination MAC address
 
@@ -12029,7 +12147,7 @@ N/A
 ## nv set acl <acl-id> rule <rule-id> match mac source-mac-mask <mac>
 
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> match mac source-mac-mask [options] <mac>
 
@@ -12037,14 +12155,14 @@ N/A
 
   Source MAC address mask
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
 ## nv set acl <acl-id> rule <rule-id> match mac dest-mac-mask <mac>
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> match mac dest-mac-mask [options] <mac>
 
@@ -12052,14 +12170,14 @@ N/A
 
   Destination MAC address mask
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
 ## nv set acl <acl-id> rule <rule-id> match mac vlan 1-4094
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> match mac vlan [options] 1-4094
 
@@ -12067,14 +12185,14 @@ N/A
 
   VLAN ID
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
 ## nv set acl <acl-id> rule <rule-id> action
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> action [options] [<attribute> ...]
 
@@ -12082,12 +12200,12 @@ N/A
 
   ACL rule action
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
-### Attributes
+**Attributes**
 
 
   permit      Permit action
@@ -12106,7 +12224,7 @@ N/A
 
 ## nv set acl <acl-id> rule <rule-id> action permit
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> action permit [options]
 
@@ -12114,7 +12232,7 @@ N/A
 
   Permit packets
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
@@ -12122,7 +12240,7 @@ N/A
 ## nv set acl <acl-id> rule <rule-id> action deny
 
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> action deny [options]
 
@@ -12130,14 +12248,14 @@ N/A
 
   deny packets
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
 ## nv set acl <acl-id> rule <rule-id> action log
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> action log [options]
 
@@ -12145,14 +12263,14 @@ N/A
 
   log packets
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
 ## nv set acl <acl-id> rule <rule-id> action set
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> action set [options] [<attribute> ...]
 
@@ -12160,12 +12278,12 @@ N/A
 
   Set action for packets
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
-### Attributes
+**Attributes**
 
   class       Sets the class value for classification of the packet
 
@@ -12175,7 +12293,7 @@ N/A
 
 ## nv set acl <acl-id> rule <rule-id> action set class 0-7
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> action set class [options] 0-7
 
@@ -12183,14 +12301,14 @@ N/A
 
   Sets the class value for classification of the packet
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
 ## nv set acl <acl-id> rule <rule-id> action set cos 0-7
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> action set cos [options] 0-7
 
@@ -12198,7 +12316,7 @@ N/A
 
   Set the CoS value
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
@@ -12206,7 +12324,7 @@ N/A
 ## nv set acl <acl-id> rule <rule-id> action erspan
 
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> action erspan [options] [<attribute> ...]
 
@@ -12214,12 +12332,12 @@ N/A
 
   ERSPAN session
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
-### Attributes
+**Attributes**
 
   dest-ip     Destination IP address
 
@@ -12229,7 +12347,7 @@ N/A
 
 ## nv set acl <acl-id> rule <rule-id> action erspan ttl 1-255
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> action erspan ttl [options] 1-255
 
@@ -12237,14 +12355,14 @@ N/A
 
   Time to Live
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
 ## nv set acl <acl-id> rule <rule-id> action police
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> action police [options] [<attribute> ...]
 
@@ -12252,12 +12370,12 @@ N/A
 
   Policing of matched packets/bytes
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
-### Attributes
+**Attributes**
 
   burst       Policing burst value
 
@@ -12268,7 +12386,7 @@ N/A
 ## nv set acl <acl-id> rule <rule-id> action police burst 1-2147483647
 
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> action police burst [options] 1-2147483647
 
@@ -12276,14 +12394,14 @@ N/A
 
   Policing burst value
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
 ## nv set acl <acl-id> rule <rule-id> action police rate 1-2147483647
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> action police rate [options] 1-2147483647
 
@@ -12291,14 +12409,14 @@ N/A
 
   Policing rate value
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
 ## nv set acl <acl-id> rule <rule-id> action span <interface-name>
 
-### Usage
+**Usage**
 
   nv set acl <acl-id> rule <rule-id> action span [options] <interface-name>
 
@@ -12306,7 +12424,7 @@ N/A
 
   SPAN session
 
-### Identifiers
+**Identifiers**
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number

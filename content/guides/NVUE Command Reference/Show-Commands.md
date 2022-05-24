@@ -4,259 +4,355 @@ author: Cumulus Networks
 weight: 20
 product: Cumulus Linux
 ---
+This section describes all the `nv show` commands, together with their attributes and identifiers. To see the `[options]` for all the commands, refer to {{<link url="Common-Options" text="Common Options">}}.
+
 ## nv show router
+
+Shows global routing configuration settings on the switch. You can see which routing features are on or off, such as BGP, IGMP, PIM, PBR, VRR, VRRP, and adaptive routing.
 
 ### Usage
 
 `nv show router [options] [<attribute> ...]`
 
-### Description
-
-A router
-
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-|`nexthop-group` | Nexthops|
-| `pbr` | PBR global configuration|
-|`policy`| A router|
-|`bgp` | BGP global configuration|
-|`ospf` | OSPF global configuration|
-`pim` | PIM global configuration|
-|`igmp` | IGMP global configuration|
-|`vrrp` | VRRP global configuration|
-`vrr` | VRR global configuration|
-|`adaptive-routing` | Adaptive routing global configuration|
+|`nexthop-group` | Shows the configuration settings for the next hop group you specify with the `<nexthop-group-id>` identifier.|
+| `pbr` | Shows global PBR configuration settings.|
+|`policy`| Shows global policy configuration settings.|
+|`bgp` | Shows global BGP configuration settings.|
+|`ospf` | Shows global OSPF configuration settings.|
+`pim` | Shows global PIM configuration settings.|
+|`igmp` | Shows global IGMP configuration settings.|
+|`vrrp` | Shows global VRRP configuration settings.|
+`vrr` | Shows global VRR configuration settings.|
+|`adaptive-routing` | Shows adaptive routing configuration settings.|
+
+### Version History
+
+Introduced in Cumulus Linux 4.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show router
+```
 
 ## nv show router nexthop-group
+
+Shows the configuration settings for next hop groups.
 
 ### Usage
 
 `nv show router nexthop-group [options] [<nexthop-group-id> ...]`
 
-### Description
+### Identifiers
 
-  Nexthops
-
-## Identifiers
-
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
-| `<nexthop-group-id>` | Nexthop group ID |
+| `<nexthop-group-id>` | The next hop group name.|
+
+### Version History
+
+Introduced in Cumulus Linux 4.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show router nexthop-group
+```
 
 ## nv show router nexthop-group \<nexthop-group-id\>
+
+Shows the configuration settings for the next hop group you specify.
 
 ### Usage
 
 `nv show router nexthop-group <nexthop-group-id> [options] [<attribute> ...]`
 
-### Description
+### Identifiers
 
-  A nexthop-group
+| Identifier |  Description   |
+| --------- | -------------- |
+| `<nexthop-group-id>` | The next hop group name. |
 
-## Identifiers
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `<nexthop-group-id>` | Nexthop group ID |
+| `via` |  A next hop in the next hop group.|
 
-## Attributes
+### Version History
 
-| Attribute |  Description   |
-| --------- | -------------- |
-| `via` | Nexthops |
+Introduced in Cumulus Linux 4.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show router nexthop-group group1
+```
 
 ## nv show router nexthop-group \<nexthop-group-id\> via
+
+Shows the IP addresses of the next hops in the next hop group.
 
 ### Usage
 
 `nv show router nexthop-group <nexthop-group-id> via [options] [<via-id> ...]`
 
-### Description
+### Identifiers
 
-  Nexthops
-
-## Identifiers
-
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
-| `<nexthop-group-id>` | Nexthop group ID |
-| `<via-id>`: IP address |
+| `<nexthop-group-id>` | The next hop group name.|
+| `<via-id>` | The IP address of the next hop. |
+
+### Version History
+
+Introduced in Cumulus Linux 4.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show router nexthop-group group 1 via
+```
 
 ## nv show router nexthop-group \<nexthop-group-id\> via \<via-id\>
 
+Shows the egress interface and VRF on the switch.
+
 ### Usage
 
-`nv show router nexthop-group \<nexthop-group-id\> via \<via-id\> [options]`
+`nv show router nexthop-group <nexthop-group-id> via <via-id> [options]`
 
-### Description
+### Identifiers
 
-A nexthop
-
-## Identifiers
-
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
-|`<nexthop-group-id>` | Nexthop group ID |
-| `<via-id>`| IP address |
+|`<nexthop-group-id>` | The nexthop group name. |
+| `<via-id>`| The IP address of the next hop. |
+
+### Version History
+
+Introduced in Cumulus Linux 4.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show router nexthop-group group1 via 192.168.0.32
+```
 
 ## nv show router pbr
+
+Shows global PBR configuration settings.
 
 ### Usage
 
 `nv show router pbr [options] [<attribute> ...]`
 
-### Description
-
-PBR global configuration.
-
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `map` | Collection of PBR Maps|
+| `map` | The collection of PBR maps.|
+
+### Version History
+
+Introduced in Cumulus Linux 4.4.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show router pbr
+```
 
 ## nv show router pbr map
+
+Shows settings for PBR maps. If you do not provide a specific map name, this command shows configuration settings for all configured maps.
 
 ### Usage
 
 `nv show router pbr map [options] [<pbr-map-id> ...]`
 
-### Description
+### Identifiers
 
-Collection of PBR Maps
-
-## Identifiers
-
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
-| `<pbr-map-id>`| Route Map ID |
+| `<pbr-map-id>`| The name of the route map. |
+
+### Version History
+
+Introduced in Cumulus Linux 4.4.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show router pbr map
+```
 
 ## nv show router pbr map \<pbr-map-id\>
+
+Shows the configuration settings for a PBR map used for policy configuration.
 
 ### Usage
 
 `nv show router pbr map <pbr-map-id> [options] [<attribute> ...]`
 
-### Description
+### Identifiers
 
-A pbr map is used for policy configuration.
+| Identifier |  Description   |
+| --------- | -------------- |
+| `<pbr-map-id>` | The name of the route map. |
 
-## Identifiers
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `<pbr-map-id>` | Route Map ID|
+| `rule` | The PBR map rule number. |
 
-## Attributes
+### Version History
 
-| Attribute |  Description   |
-| --------- | -------------- |
-| `rule` | PBR Map rule |
+Introduced in Cumulus Linux 4.4.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show router pbr map map1
+```
 
 ## nv show router pbr map \<pbr-map-id\> rule \<rule-id\>
+
+Shows the match and set criteria, and the rule action for a route map.
 
 ### Usage
 
 `nv show router pbr map <pbr-map-id> rule <rule-id> [options] [<attribute> ...]`
 
-### Description
+### Identifiers
 
-Route Map Matching/setting criteria and action rule
+| Identifier |  Description   |
+| --------- | -------------- |
+|`<pbr-map-id>` | The name of the route map. |
+|`<rule-id>`  |  The PBR rule number. |
 
-## Identifiers
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-|`<pbr-map-id>` |  Route Map ID |
-|`<rule-id>`  |  PBR rule number |
+| match | The PBR match criteria. |
+| action | The PBR set criteria. |
 
-## Attributes
+### Version History
 
-| Attribute |  Description   |
-| --------- | -------------- |
-| match | PBR match |
-| action | PBR set |
+Introduced in Cumulus Linux 4.4.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show router pbr map map1 rule 1
+```
 
 ## nv show router pbr map \<pbr-map-id\> rule \<rule-id\> match
+
+Shows the rule match criteria for a route map.
 
 ### Usage
 
 `nv show router pbr map <pbr-map-id> rule <rule-id> match [options]`
 
-### Description
+### Identifiers
 
-Route map rule match
-
-## Identifiers
-
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
-| `<pbr-map-id>` | Route Map ID |
-|  `<rule-id>` |PBR rule number |
+| `<pbr-map-id>` | The route map name. |
+| `<rule-id>` | The PBR rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 4.4.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show router pbr map map1 rule 1 match
+```
 
 ## nv show router pbr map \<pbr-map-id\> rule \<rule-id\> action
+
+Shows the route with the next hop group.
 
 ### Usage
 
 `nv show router pbr map <pbr-map-id> rule <rule-id> action [options] [<attribute> ...]`
 
-### Description
+### Identifiers
 
-PBR map rule action
-
-## Identifiers
-
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
-| `<pbr-map-id>` | Route Map ID |
-| `<rule-id>` | PBR rule number |
+| `<pbr-map-id>` | The route map name. |
+| `<rule-id>` | The PBR rule number. |
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
 | `nexthop-group` | Route with nexthop-group |
 
+### Version History
+
+Introduced in Cumulus Linux 4.4.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show router pbr map map1 rule 1 action
+```
+
 ## nv show router pbr map \<pbr-map-id\> rule \<rule-id\> action nexthop-group \<nexthop-group-id\>
+
+Shows information about next hop group you specify, such as if the policy is installed and the IP route table number of the default route.
 
 ### Usage
 
 `nv show router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id> [options]`
 
-### Description
+### Identifiers
 
-A nexthop-group
-
-## Identifiers
-
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
-| `<pbr-map-id>` |  Route Map ID |
-| `<rule-id>` | PBR rule number |
-| `<nexthop-group-id>` | Nexthop group ID |
+| `<pbr-map-id>` |  The route map name. |
+| `<rule-id>` | The PBR rule number. |
+| `<nexthop-group-id>` | The next hop group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 4.4.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show router pbr map map1 rule 1 action nexthop-group group1
+```
 
 ## nv show router policy
+
+Shows route filtering and distribution configuration information. You can see configuration settings for prefix lists, community lists, AS path lists, and route maps.
 
 ### Usage
 
 `nv show router policy [options] [<attribute> ...]`
 
-### Description
-
-A router
-
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `community-list` | Community lists |
-| `as-path-list` |  AS Path lists |
-| `ext-community-list` | Extended Community lists |
-| `large-community-list` | Large Community lists |
-| prefix-list  |Prefix list rules |
-| route-map | Collection of Route Maps |
+| `community-list` | Community lists. |
+| `as-path-list` |  AS path lists. |
+| `ext-community-list` | Extended community lists. |
+| `large-community-list` | Large community lists. |
+| `prefix-list`  | Prefix list rules. |
+| `route-map` | The collection of route maps. |
 
 ## nv show router policy community-list
 
@@ -264,13 +360,9 @@ A router
 
 `nv show router policy community-list [options] [<list-id> ...]`
 
-### Description
+### Identifiers
 
-Community lists
-
-## Identifiers
-
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 | <list-id> |  Community List ID |
 
@@ -278,19 +370,19 @@ Community lists
 
 ### Usage
 
-`nv show router policy community-list \<list-id\> [options] [\<attribute\> ...]`
+`nv show router policy community-list <list-id> [options] [<attribute> ...]`
 
 ### Description
 
 A community list is used for matching BGP community policies.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 | <list-id> |  Community List ID |
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -306,9 +398,9 @@ A community list is used for matching BGP community policies.
 
 Community list rules
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 | <list-id> |  Community List ID |
 | <rule-id> |  Prefix List rule number |
@@ -323,14 +415,14 @@ Community list rules
 
 Community list Matching criteria and action rule
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 | <list-id> |  Community List ID |
 | <rule-id> |  Prefix List rule number |
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -346,9 +438,9 @@ Community list Matching criteria and action rule
 
 Set of community names for community-list
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 | <list-id> |  Community List ID |
 | <rule-id> |  Prefix List rule number |
@@ -364,9 +456,9 @@ Set of community names for community-list
 
 A community name
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 | <list-id> |  Community List ID |
 | <rule-id> |  Prefix List rule number |
@@ -382,9 +474,9 @@ A community name
 
 AS Path lists
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 |`<list-id>` | AS Path List ID |
 
@@ -398,13 +490,13 @@ AS Path lists
 
 An AS Path list is used for matching BGP AS Path
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 |`<list-id>` |  AS Path List ID |
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -420,9 +512,9 @@ An AS Path list is used for matching BGP AS Path
 
 AS Path list Matching criteria and action rule
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 | ` <list-id>` |  AS Path List ID |
 | `<rule-id>` | Prefix List rule number |
@@ -437,9 +529,9 @@ AS Path list Matching criteria and action rule
 
 Extended Community lists
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 | `<list-id>` | Community List ID |
 
@@ -453,13 +545,13 @@ Extended Community lists
 
 A Extended Community list used for matching BGP communities
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 | `<list-id>` |  Community List ID |
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -475,9 +567,9 @@ A Extended Community list used for matching BGP communities
 
 Extended Community list rules
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 | `<list-id> |` Community List ID |
 | `<rule-id>` |  Prefix List rule number |
@@ -492,16 +584,16 @@ Extended Community list rules
 
 Extended Community list Matching criteria and action rule
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <list-id>             Community List ID
 
   <rule-id>             Prefix List rule number
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -518,16 +610,16 @@ Extended Community list Matching criteria and action rule
 
   A Extended community name
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <list-id>             Community List ID
 
   <rule-id>             Prefix List rule number
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -546,9 +638,9 @@ Extended Community list Matching criteria and action rule
 
   Set of extended communities
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <list-id>             Community List ID
@@ -567,9 +659,9 @@ Extended Community list Matching criteria and action rule
 
   A extended community name
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <list-id>             Community List ID
@@ -588,9 +680,9 @@ Extended Community list Matching criteria and action rule
 
   Set of extended communities
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <list-id>             Community List ID
@@ -609,9 +701,9 @@ Extended Community list Matching criteria and action rule
 
   A extended community name
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <list-id>             Community List ID
@@ -630,9 +722,9 @@ Extended Community list Matching criteria and action rule
 
   Large Community lists
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <list-id>             Community List ID
@@ -647,14 +739,14 @@ Extended Community list Matching criteria and action rule
 
   A Large Community list used for matching community based BGP policies
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <list-id>             Community List ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -671,9 +763,9 @@ Extended Community list Matching criteria and action rule
 
   Large Community list rules
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <list-id>             Community List ID
@@ -690,16 +782,16 @@ Extended Community list Matching criteria and action rule
 
   Large Community list Matching criteria and action rule
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <list-id>             Community List ID
 
   <rule-id>             Prefix List rule number
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -716,9 +808,9 @@ Extended Community list Matching criteria and action rule
 
   Set of community names for large community list
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <list-id>             Community List ID
@@ -737,9 +829,9 @@ Extended Community list Matching criteria and action rule
 
   Set of community names for large community list
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <list-id>             Community List ID
@@ -758,9 +850,9 @@ Extended Community list Matching criteria and action rule
 
   Prefix list rules
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <prefix-list-id>      Prefix List ID
@@ -775,14 +867,14 @@ Extended Community list Matching criteria and action rule
 
   A prefix list is used for matching IPv4 and IPv6 address prefixes.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <prefix-list-id>      Prefix List ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -799,16 +891,16 @@ Extended Community list Matching criteria and action rule
 
   Prefix list Matching criteria and action rule
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <prefix-list-id>      Prefix List ID
 
   <rule-id>             Prefix List rule number
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -825,9 +917,9 @@ Extended Community list Matching criteria and action rule
 
   A prefix match
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <prefix-list-id>      Prefix List ID
@@ -846,9 +938,9 @@ Extended Community list Matching criteria and action rule
 
   Collection of Route Maps
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <route-map-id>        Route Map ID
@@ -863,14 +955,14 @@ Extended Community list Matching criteria and action rule
 
   A route map is used for policy configuration.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <route-map-id>        Route Map ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -887,16 +979,16 @@ Extended Community list Matching criteria and action rule
 
   Route Map Matching/setting criteria and action rule
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <route-map-id>        Route Map ID
 
   <rule-id>             Sequence to insert or delete from the route-map
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -917,9 +1009,9 @@ Extended Community list Matching criteria and action rule
 
   Route map rule match
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <route-map-id>        Route Map ID
@@ -936,16 +1028,16 @@ Extended Community list Matching criteria and action rule
 
   Route map rule set
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <route-map-id>        Route Map ID
 
   <rule-id>             Sequence to insert or delete from the route-map
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -968,9 +1060,9 @@ Extended Community list Matching criteria and action rule
 
   AS Path prepend
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <route-map-id>        Route Map ID
@@ -987,9 +1079,9 @@ Extended Community list Matching criteria and action rule
 
   BGP Community
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <route-map-id>        Route Map ID
@@ -1008,9 +1100,9 @@ Extended Community list Matching criteria and action rule
 
   Large BGP Community
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <route-map-id>        Route Map ID
@@ -1029,9 +1121,9 @@ Extended Community list Matching criteria and action rule
 
   Aggregator AS Number
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <route-map-id>        Route Map ID
@@ -1040,7 +1132,7 @@ Extended Community list Matching criteria and action rule
 
   <asn-id>              Autonomous number
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -1057,9 +1149,9 @@ Extended Community list Matching criteria and action rule
 
   An IPv4 address
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <route-map-id>        Route Map ID
@@ -1080,16 +1172,16 @@ Extended Community list Matching criteria and action rule
 
   Route map rule action
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <route-map-id>        Route Map ID
 
   <rule-id>             Sequence to insert or delete from the route-map
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -1108,9 +1200,9 @@ Extended Community list Matching criteria and action rule
 
   State details
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <route-map-id>        Route Map ID
@@ -1127,16 +1219,16 @@ Extended Community list Matching criteria and action rule
 
   permit action
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <route-map-id>        Route Map ID
 
   <rule-id>             Sequence to insert or delete from the route-map
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -1153,9 +1245,9 @@ Extended Community list Matching criteria and action rule
 
   Permit action exit policy
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <route-map-id>        Route Map ID
@@ -1172,7 +1264,7 @@ Extended Community list Matching criteria and action rule
 
   BGP global configuration.
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -1211,7 +1303,7 @@ Extended Community list Matching criteria and action rule
 
   OSPF global configuration.
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -1228,7 +1320,7 @@ Extended Community list Matching criteria and action rule
 
   Timers
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -1267,7 +1359,7 @@ Extended Community list Matching criteria and action rule
 
   PIM global configuration.
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -1334,7 +1426,7 @@ Extended Community list Matching criteria and action rule
 
   Top-level container for the components in the system. This node represents a system component inventory, which includes hardware and software elements.
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -1367,7 +1459,7 @@ Extended Community list Matching criteria and action rule
 
   The platform's hardware
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -1384,9 +1476,9 @@ Extended Community list Matching criteria and action rule
 
   Set of components making up the platform.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <component-id>        Component identifier
@@ -1401,14 +1493,14 @@ Extended Community list Matching criteria and action rule
 
   A component in the platform.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <component-id>        Component identifier
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -1427,9 +1519,9 @@ Extended Community list Matching criteria and action rule
 
   Properties of a linecard component
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <component-id>        Component identifier
@@ -1444,9 +1536,9 @@ Extended Community list Matching criteria and action rule
 
   Set of physical ports on this component
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <component-id>        Component identifier
@@ -1463,16 +1555,16 @@ Extended Community list Matching criteria and action rule
 
   A physical port on the component.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <component-id>        Component identifier
 
   <port-id>             Physical port identifier
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -1489,9 +1581,9 @@ Extended Community list Matching criteria and action rule
 
   Set of breakout modes
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <component-id>        Component identifier
@@ -1510,9 +1602,9 @@ Extended Community list Matching criteria and action rule
 
   A breakout mode
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <component-id>        Component identifier
@@ -1531,7 +1623,7 @@ Extended Community list Matching criteria and action rule
 
   Platform environment information
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -1554,9 +1646,9 @@ Extended Community list Matching criteria and action rule
 
   The fans on the switch.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <fan-id>              Physical fan identifier
@@ -1571,9 +1663,9 @@ Extended Community list Matching criteria and action rule
 
   A physical fan on the component.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <fan-id>              Physical fan identifier
@@ -1588,9 +1680,9 @@ Extended Community list Matching criteria and action rule
 
   The sensors on the switch.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <sensor-id>           Physical sensor identifier
@@ -1605,9 +1697,9 @@ Extended Community list Matching criteria and action rule
 
   A physical sensor on the component.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <sensor-id>           Physical sensor identifier
@@ -1622,9 +1714,9 @@ Extended Community list Matching criteria and action rule
 
   The PSUs on the switch.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <psu-id>              Physical PSU identifier
@@ -1639,9 +1731,9 @@ Extended Community list Matching criteria and action rule
 
   A PSU
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <psu-id>              Physical PSU identifier
@@ -1656,9 +1748,9 @@ Extended Community list Matching criteria and action rule
 
   The LEDs on the switch.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <led-id>              Physical LED identifier
@@ -1673,9 +1765,9 @@ Extended Community list Matching criteria and action rule
 
   A LED
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <led-id>              Physical LED identifier
@@ -1690,7 +1782,7 @@ Extended Community list Matching criteria and action rule
 
   The platform's software
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -1707,9 +1799,9 @@ Extended Community list Matching criteria and action rule
 
   List of installed software
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <installed-id>        Package name
@@ -1724,9 +1816,9 @@ Extended Community list Matching criteria and action rule
 
   An installed package
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <installed-id>        Package name
@@ -1741,7 +1833,7 @@ Extended Community list Matching criteria and action rule
 
   Properties associated with an instance of a bridge.
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -1758,9 +1850,9 @@ Extended Community list Matching criteria and action rule
 
   Bridge domains
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <domain-id>           Domain
@@ -1775,14 +1867,14 @@ Extended Community list Matching criteria and action rule
 
   Bridge domain
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <domain-id>           Domain
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -1809,14 +1901,14 @@ Extended Community list Matching criteria and action rule
 
   attributes related to global stp
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <domain-id>           Domain
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -1833,9 +1925,9 @@ Extended Community list Matching criteria and action rule
 
   The state of STP on the bridge
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <domain-id>           Domain
@@ -1850,14 +1942,14 @@ Extended Community list Matching criteria and action rule
 
   Configure multicast on the bridge
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <domain-id>           Domain
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -1874,14 +1966,14 @@ Extended Community list Matching criteria and action rule
 
   IGMP/MLD snooping configuration
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <domain-id>           Domain
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -1898,9 +1990,9 @@ Extended Community list Matching criteria and action rule
 
   IGMP/MLD querier configuration
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <domain-id>           Domain
@@ -1915,16 +2007,16 @@ Extended Community list Matching criteria and action rule
 
   A VLAN tag identifier
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <domain-id>           Domain
 
   <vid>                 VLAN ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -1945,9 +2037,9 @@ Extended Community list Matching criteria and action rule
 
   VNI
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <domain-id>           Domain
@@ -1956,7 +2048,7 @@ Extended Community list Matching criteria and action rule
 
   <vni-id>              VxLAN ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -1973,9 +2065,9 @@ Extended Community list Matching criteria and action rule
 
   Handling of BUM traffic
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <domain-id>           Domain
@@ -1984,7 +2076,7 @@ Extended Community list Matching criteria and action rule
 
   <vni-id>              VxLAN ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -2001,9 +2093,9 @@ Extended Community list Matching criteria and action rule
 
   Set of IPv4 unicast addresses or "evpn".
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <domain-id>           Domain
@@ -2024,9 +2116,9 @@ Extended Community list Matching criteria and action rule
 
   VLAN PTP configuration.  Inherited by interfaces in this VLAN.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <domain-id>           Domain
@@ -2043,16 +2135,16 @@ Extended Community list Matching criteria and action rule
 
   Configure multicast on the vlan
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <domain-id>           Domain
 
   <vid>                 VLAN ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -2069,16 +2161,16 @@ Extended Community list Matching criteria and action rule
 
   IGMP/MLD snooping configuration
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <domain-id>           Domain
 
   <vid>                 VLAN ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -2095,9 +2187,9 @@ Extended Community list Matching criteria and action rule
 
   IGMP/MLD querier configuration
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <domain-id>           Domain
@@ -2114,9 +2206,9 @@ Extended Community list Matching criteria and action rule
 
   L2 FDB
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <domain-id>           Domain
@@ -2131,9 +2223,9 @@ Extended Community list Matching criteria and action rule
 
   Set of mdb entries in the bridge domain
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <domain-id>           Domain
@@ -2148,9 +2240,9 @@ Extended Community list Matching criteria and action rule
 
   Set of multicast router ports
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <domain-id>           Domain
@@ -2165,7 +2257,7 @@ Extended Community list Matching criteria and action rule
 
   Global Multi-chassis Link Aggregation properties
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -2208,7 +2300,7 @@ Extended Community list Matching criteria and action rule
 
   Show the mlag consistency-checker parameters
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -2235,9 +2327,9 @@ Extended Community list Matching criteria and action rule
 
   Set of MLAG backups
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <backup-ip>           Backup IP of MLAG peer
@@ -2252,9 +2344,9 @@ Extended Community list Matching criteria and action rule
 
   alternative ip address or interface for peer to reach us
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <backup-ip>           Backup IP of MLAG peer
@@ -2269,7 +2361,7 @@ Extended Community list Matching criteria and action rule
 
   Set of all mlag macs
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -2320,7 +2412,7 @@ Extended Community list Matching criteria and action rule
 
   Set of Mlag Multicast Database Entries
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -2359,7 +2451,7 @@ Extended Community list Matching criteria and action rule
 
   Set of all Mlag Multicast Router Ports
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -2398,7 +2490,7 @@ Extended Community list Matching criteria and action rule
 
   Set of all vnis
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -2437,7 +2529,7 @@ Extended Community list Matching criteria and action rule
 
   Set of all mlag local/peer lacpdb
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -2476,7 +2568,7 @@ Extended Community list Matching criteria and action rule
 
   Set of all mlag neigh entries
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -2515,7 +2607,7 @@ Extended Community list Matching criteria and action rule
 
   Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -2548,7 +2640,7 @@ Extended Community list Matching criteria and action rule
 
   Duplicate address detection
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -2565,7 +2657,7 @@ Extended Community list Matching criteria and action rule
 
   Handling of BUM traffic
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -2592,9 +2684,9 @@ Extended Community list Matching criteria and action rule
 
   EVIs
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <evi-id>              VRF
@@ -2609,14 +2701,14 @@ Extended Community list Matching criteria and action rule
 
   Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <evi-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -2635,9 +2727,9 @@ Extended Community list Matching criteria and action rule
 
   Route advertise
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <evi-id>              VRF
@@ -2652,14 +2744,14 @@ Extended Community list Matching criteria and action rule
 
   EVPN control plane config and info for VRF
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <evi-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -2680,9 +2772,9 @@ Extended Community list Matching criteria and action rule
 
   Set of route target identifiers
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <evi-id>              VRF
@@ -2699,9 +2791,9 @@ Extended Community list Matching criteria and action rule
 
   A route target identifier
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <evi-id>              VRF
@@ -2718,9 +2810,9 @@ Extended Community list Matching criteria and action rule
 
   Set of route target identifiers
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <evi-id>              VRF
@@ -2737,9 +2829,9 @@ Extended Community list Matching criteria and action rule
 
   A route target identifier
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <evi-id>              VRF
@@ -2756,9 +2848,9 @@ Extended Community list Matching criteria and action rule
 
   Set of route target identifiers
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <evi-id>              VRF
@@ -2775,9 +2867,9 @@ Extended Community list Matching criteria and action rule
 
   A route target identifier
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+|  Identifier |  Description   |
 | --------- | -------------- |
 
   <evi-id>              VRF
@@ -2794,7 +2886,7 @@ Extended Community list Matching criteria and action rule
 
   Multihoming global configuration parameters
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -2833,7 +2925,7 @@ Extended Community list Matching criteria and action rule
 
   QOS
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -2852,7 +2944,7 @@ Extended Community list Matching criteria and action rule
 
   Properties associated with the RDMA over Converged Ethernet (RoCE) feature.
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -2915,9 +3007,9 @@ Extended Community list Matching criteria and action rule
 
   Interfaces
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -2932,14 +3024,14 @@ Extended Community list Matching criteria and action rule
 
   An interface
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -2978,9 +3070,9 @@ Extended Community list Matching criteria and action rule
 
   An interface sfp details
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -2995,14 +3087,14 @@ Extended Community list Matching criteria and action rule
 
   interface router
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -3025,14 +3117,14 @@ Extended Community list Matching criteria and action rule
 
   PBR interface configuration.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -3049,9 +3141,9 @@ Extended Community list Matching criteria and action rule
 
   Interface Pbr map
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3068,14 +3160,14 @@ Extended Community list Matching criteria and action rule
 
   OSPF interface configuration.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -3096,9 +3188,9 @@ Extended Community list Matching criteria and action rule
 
   Timers configuration
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3113,9 +3205,9 @@ Extended Community list Matching criteria and action rule
 
   md5 authentication configuration
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3130,9 +3222,9 @@ Extended Community list Matching criteria and action rule
 
   BFD configuration
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3147,14 +3239,14 @@ Extended Community list Matching criteria and action rule
 
   PIM interface configuration.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -3175,9 +3267,9 @@ Extended Community list Matching criteria and action rule
 
   Timers
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3192,9 +3284,9 @@ Extended Community list Matching criteria and action rule
 
   BFD configuration
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3209,14 +3301,14 @@ Extended Community list Matching criteria and action rule
 
   Address family specific configuration
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -3233,14 +3325,14 @@ Extended Community list Matching criteria and action rule
 
   IPv4 unicast address family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -3257,9 +3349,9 @@ Extended Community list Matching criteria and action rule
 
   Allow RP feature, which allows RP address to be accepts for the received
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3274,9 +3366,9 @@ Extended Community list Matching criteria and action rule
 
   Adaptive routing interface configuration.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3291,14 +3383,14 @@ Extended Community list Matching criteria and action rule
 
   The state of the interface
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -3317,9 +3409,9 @@ Extended Community list Matching criteria and action rule
 
   A bond member
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3336,14 +3428,14 @@ Extended Community list Matching criteria and action rule
 
   MLAG configuration on the bond interface
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -3362,9 +3454,9 @@ Extended Community list Matching criteria and action rule
 
   Configure the mlag lacp-conflict parameters
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3379,9 +3471,9 @@ Extended Community list Matching criteria and action rule
 
   Interface MLAG Consistency-checker
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3396,14 +3488,14 @@ Extended Community list Matching criteria and action rule
 
   attributed related to a bridged interface
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -3420,15 +3512,15 @@ Extended Community list Matching criteria and action rule
 
   Bridge domain on this interface
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
   <domain-id>           Domain
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -3446,9 +3538,9 @@ Extended Community list Matching criteria and action rule
 
   attributed related to a stpd interface
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3465,9 +3557,9 @@ Extended Community list Matching criteria and action rule
 
   A VLAN tag identifier
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3486,14 +3578,14 @@ Extended Community list Matching criteria and action rule
 
   IP configuration for an interface
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -3526,9 +3618,9 @@ Extended Community list Matching criteria and action rule
 
   An IP address with prefix
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3545,14 +3637,14 @@ Extended Community list Matching criteria and action rule
 
   IP neighbors
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -3571,9 +3663,9 @@ Extended Community list Matching criteria and action rule
 
   A neighbor
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3590,9 +3682,9 @@ Extended Community list Matching criteria and action rule
 
   A neighbor
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3609,14 +3701,14 @@ Extended Community list Matching criteria and action rule
 
   Configuration for VRR
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -3635,9 +3727,9 @@ Extended Community list Matching criteria and action rule
 
   An IP address with prefix
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3654,9 +3746,9 @@ Extended Community list Matching criteria and action rule
 
   The state of the interface
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3671,9 +3763,9 @@ Extended Community list Matching criteria and action rule
 
   An IP address
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3690,9 +3782,9 @@ Extended Community list Matching criteria and action rule
 
   IPv4 configuration for an interface
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3707,9 +3799,9 @@ Extended Community list Matching criteria and action rule
 
   IPv6 configuration for an interface
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3724,14 +3816,14 @@ Extended Community list Matching criteria and action rule
 
   Configuration for IGMP
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -3748,9 +3840,9 @@ Extended Community list Matching criteria and action rule
 
   IGMP static multicast mroute
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3767,14 +3859,14 @@ Extended Community list Matching criteria and action rule
 
   Configuration for VRRP
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -3791,16 +3883,16 @@ Extended Community list Matching criteria and action rule
 
   A virtual gateway implemented with VRRP
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
   <virtual-router-id>   Virtual Router IDentifier (VRID)
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -3817,9 +3909,9 @@ Extended Community list Matching criteria and action rule
 
   An IP address
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3838,14 +3930,14 @@ Extended Community list Matching criteria and action rule
 
   Neighbor discovery configuration for an interface
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -3870,9 +3962,9 @@ Extended Community list Matching criteria and action rule
 
   A recursive DNS server
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3889,9 +3981,9 @@ Extended Community list Matching criteria and action rule
 
   A IPv6 prefix
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3908,9 +4000,9 @@ Extended Community list Matching criteria and action rule
 
   A DNS search list
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3927,9 +4019,9 @@ Extended Community list Matching criteria and action rule
 
   Router advertisement configuration for an interface
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3944,9 +4036,9 @@ Extended Community list Matching criteria and action rule
 
   Indicates to neighbors that this router acts as a Home Agent and includes a Home Agent Option. Not defined by default
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -3961,14 +4053,14 @@ Extended Community list Matching criteria and action rule
 
   LLDP on for an interface
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -3985,16 +4077,16 @@ Extended Community list Matching criteria and action rule
 
   LLDP on an interface
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
   <neighbor-id>         System generated identifier for the neighbor on the interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -4011,16 +4103,16 @@ Extended Community list Matching criteria and action rule
 
   An LLDP bridge
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
   <neighbor-id>         System generated identifier for the neighbor on the interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -4037,9 +4129,9 @@ Extended Community list Matching criteria and action rule
 
   A VLAN tag identifier
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -4058,14 +4150,14 @@ Extended Community list Matching criteria and action rule
 
   An physical interface
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -4090,9 +4182,9 @@ Extended Community list Matching criteria and action rule
 
   The state of the interface
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -4107,9 +4199,9 @@ Extended Community list Matching criteria and action rule
 
   An physical interface
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -4124,9 +4216,9 @@ Extended Community list Matching criteria and action rule
 
   Interface stats
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -4141,9 +4233,9 @@ Extended Community list Matching criteria and action rule
 
   Traffic engineering stats
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -4158,9 +4250,9 @@ Extended Community list Matching criteria and action rule
 
   link flags
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -4171,14 +4263,14 @@ Extended Community list Matching criteria and action rule
 
   nv show interface <interface-id> qos [options] [<attribute> ...]
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -4196,14 +4288,14 @@ Extended Community list Matching criteria and action rule
 
   Interface QoS counters
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -4226,14 +4318,14 @@ Extended Community list Matching criteria and action rule
 
   QoS Statistics for Interface
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -4252,9 +4344,9 @@ Extended Community list Matching criteria and action rule
 
   QoS Rx Statistics for Interface
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -4269,9 +4361,9 @@ Extended Community list Matching criteria and action rule
 
   QoS Tx Statistics for Interface
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -4286,9 +4378,9 @@ Extended Community list Matching criteria and action rule
 
   Egress queue statistics per egress traffic-class
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -4303,9 +4395,9 @@ Extended Community list Matching criteria and action rule
 
   Ingress Buffer statistics per priority-group
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -4320,9 +4412,9 @@ Extended Community list Matching criteria and action rule
 
   PFC statistics per internal switch-priority
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -4333,14 +4425,14 @@ Extended Community list Matching criteria and action rule
 
   nv show interface <interface-id> qos roce [options] [<attribute> ...]
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -4358,9 +4450,9 @@ Extended Community list Matching criteria and action rule
 
   Interface roce counters
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -4375,14 +4467,14 @@ Extended Community list Matching criteria and action rule
 
   Interface status
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -4403,9 +4495,9 @@ Extended Community list Matching criteria and action rule
 
   Interface Roce pools
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -4420,9 +4512,9 @@ Extended Community list Matching criteria and action rule
 
   RoCE PCP/DSCP->SP mapping configurations
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -4437,9 +4529,9 @@ Extended Community list Matching criteria and action rule
 
   RoCE SP->TC mapping and ETS configurations
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -4454,14 +4546,14 @@ Extended Community list Matching criteria and action rule
 
   EVPN control plane config and info for VRF
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -4478,14 +4570,14 @@ Extended Community list Matching criteria and action rule
 
   Multihoming interface configuration parameters
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -4502,9 +4594,9 @@ Extended Community list Matching criteria and action rule
 
   Multihoming interface segment
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -4519,16 +4611,16 @@ Extended Community list Matching criteria and action rule
 
   An ACL is used for matching packets and take actions
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
   <acl-id>              ACL ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -4547,16 +4639,16 @@ Extended Community list Matching criteria and action rule
 
   inbound direction
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
   <acl-id>              ACL ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -4573,9 +4665,9 @@ Extended Community list Matching criteria and action rule
 
   State details
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -4592,16 +4684,16 @@ Extended Community list Matching criteria and action rule
 
   State details
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
   <acl-id>              ACL ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -4618,9 +4710,9 @@ Extended Community list Matching criteria and action rule
 
   State details
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -4637,14 +4729,14 @@ Extended Community list Matching criteria and action rule
 
   Interface Specific PTP configuration.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -4663,9 +4755,9 @@ Extended Community list Matching criteria and action rule
 
   Interface PTP timerss
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -4680,9 +4772,9 @@ Extended Community list Matching criteria and action rule
 
   Interface PTP counters
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -4697,9 +4789,9 @@ Extended Community list Matching criteria and action rule
 
   The state of the interface
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <interface-id>        Interface
@@ -4714,7 +4806,7 @@ Extended Community list Matching criteria and action rule
 
   A service
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -4747,9 +4839,9 @@ Extended Community list Matching criteria and action rule
 
   collection of DNS
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -4764,14 +4856,14 @@ Extended Community list Matching criteria and action rule
 
   Domain Name Service
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -4788,9 +4880,9 @@ Extended Community list Matching criteria and action rule
 
   A remote DNS server
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -4807,9 +4899,9 @@ Extended Community list Matching criteria and action rule
 
   collection of syslog
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -4824,14 +4916,14 @@ Extended Community list Matching criteria and action rule
 
   Domain Name Service
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -4848,9 +4940,9 @@ Extended Community list Matching criteria and action rule
 
   A remote DNS server
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -4867,9 +4959,9 @@ Extended Community list Matching criteria and action rule
 
   NTPs
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -4884,14 +4976,14 @@ Extended Community list Matching criteria and action rule
 
   Network Time Protocol
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -4910,9 +5002,9 @@ Extended Community list Matching criteria and action rule
 
   A remote NTP Server
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -4929,9 +5021,9 @@ Extended Community list Matching criteria and action rule
 
   A remote NTP Server
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -4948,9 +5040,9 @@ Extended Community list Matching criteria and action rule
 
   DHCP-relays
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -4965,14 +5057,14 @@ Extended Community list Matching criteria and action rule
 
   DHCP relay
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -4993,9 +5085,9 @@ Extended Community list Matching criteria and action rule
 
   A DHCP server
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5012,9 +5104,9 @@ Extended Community list Matching criteria and action rule
 
   An interface on which DHCP relay is configured.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5031,9 +5123,9 @@ Extended Community list Matching criteria and action rule
 
   An interface on which DHCP relay giaddress is configured.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5050,9 +5142,9 @@ Extended Community list Matching criteria and action rule
 
   DHCP-relays
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5067,14 +5159,14 @@ Extended Community list Matching criteria and action rule
 
   DHCP relay
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -5091,14 +5183,14 @@ Extended Community list Matching criteria and action rule
 
   DHCP relay interfaces
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -5117,9 +5209,9 @@ Extended Community list Matching criteria and action rule
 
   An interface on which DPCH relay is configured.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5136,9 +5228,9 @@ Extended Community list Matching criteria and action rule
 
   An interface on which DPCH relay is configured.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5155,9 +5247,9 @@ Extended Community list Matching criteria and action rule
 
   Collection of PTP instances
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <instance-id>         PTP instance number. It is used for management purpose.
@@ -5172,14 +5264,14 @@ Extended Community list Matching criteria and action rule
 
   Global PTP configuration.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <instance-id>         PTP instance number. It is used for management purpose.
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -5206,9 +5298,9 @@ Extended Community list Matching criteria and action rule
 
   Collection of acceptable masters
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <instance-id>         PTP instance number. It is used for management purpose.
@@ -5225,9 +5317,9 @@ Extended Community list Matching criteria and action rule
 
   List of clocks that the local clock can accept as master clock
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <instance-id>         PTP instance number. It is used for management purpose.
@@ -5244,14 +5336,14 @@ Extended Community list Matching criteria and action rule
 
   PTP monitor configuration
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <instance-id>         PTP instance number. It is used for management purpose.
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -5269,9 +5361,9 @@ Extended Community list Matching criteria and action rule
 
   Collection of violations logs
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <instance-id>         PTP instance number. It is used for management purpose.
@@ -5286,14 +5378,14 @@ Extended Community list Matching criteria and action rule
 
   PTP violations
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <instance-id>         PTP instance number. It is used for management purpose.
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -5310,14 +5402,14 @@ Extended Community list Matching criteria and action rule
 
   PTP violations log
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <instance-id>         PTP instance number. It is used for management purpose.
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -5342,9 +5434,9 @@ Extended Community list Matching criteria and action rule
 
   Collection of master violations
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <instance-id>         PTP instance number. It is used for management purpose.
@@ -5359,9 +5451,9 @@ Extended Community list Matching criteria and action rule
 
   Collection of master violations
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <instance-id>         PTP instance number. It is used for management purpose.
@@ -5376,9 +5468,9 @@ Extended Community list Matching criteria and action rule
 
   Collection of violations logs
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <instance-id>         PTP instance number. It is used for management purpose.
@@ -5393,9 +5485,9 @@ Extended Community list Matching criteria and action rule
 
   Collection of violations logs
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <instance-id>         PTP instance number. It is used for management purpose.
@@ -5410,9 +5502,9 @@ Extended Community list Matching criteria and action rule
 
   Collection of violations logs
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <instance-id>         PTP instance number. It is used for management purpose.
@@ -5427,9 +5519,9 @@ Extended Community list Matching criteria and action rule
 
   Local states learned from the exchange of PTP messages
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <instance-id>         PTP instance number. It is used for management purpose.
@@ -5444,9 +5536,9 @@ Extended Community list Matching criteria and action rule
 
   Clock Quality Status
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <instance-id>         PTP instance number. It is used for management purpose.
@@ -5461,14 +5553,14 @@ Extended Community list Matching criteria and action rule
 
   Local states learned from the exchange of PTP messages
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <instance-id>         PTP instance number. It is used for management purpose.
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -5486,9 +5578,9 @@ Extended Community list Matching criteria and action rule
 
   Clock Quality Status
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <instance-id>         PTP instance number. It is used for management purpose.
@@ -5503,9 +5595,9 @@ Extended Community list Matching criteria and action rule
 
   Time attributes of the clock
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <instance-id>         PTP instance number. It is used for management  purpose.
@@ -5520,9 +5612,9 @@ Extended Community list Matching criteria and action rule
 
   DHCP-servers
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5537,14 +5629,14 @@ Extended Community list Matching criteria and action rule
 
   Dynamic Host Configuration Protocol Server
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -5569,9 +5661,9 @@ Extended Community list Matching criteria and action rule
 
   An interface on which DPCH clients are attached.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5588,16 +5680,16 @@ Extended Community list Matching criteria and action rule
 
   DHCP Pool
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <pool-id>             DHCP pool subnet.
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -5620,9 +5712,9 @@ Extended Community list Matching criteria and action rule
 
   A remote DNS server
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5641,9 +5733,9 @@ Extended Community list Matching criteria and action rule
 
   TBD
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5662,9 +5754,9 @@ Extended Community list Matching criteria and action rule
 
   A remote DNS server
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5683,9 +5775,9 @@ Extended Community list Matching criteria and action rule
 
   DHCP Pool range
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5704,9 +5796,9 @@ Extended Community list Matching criteria and action rule
 
   TBD
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5723,9 +5815,9 @@ Extended Community list Matching criteria and action rule
 
   A remote DNS server
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5742,9 +5834,9 @@ Extended Community list Matching criteria and action rule
 
   static entry
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5761,9 +5853,9 @@ Extended Community list Matching criteria and action rule
 
   DHCP-servers6
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5778,14 +5870,14 @@ Extended Community list Matching criteria and action rule
 
   Dynamic Host Configuration Protocol IPv6 Server
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -5810,9 +5902,9 @@ Extended Community list Matching criteria and action rule
 
   An interface on which DPCH clients are attached.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5829,16 +5921,16 @@ Extended Community list Matching criteria and action rule
 
   DHCP Pool
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <pool-id>             DHCP6 pool subnet.
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -5859,9 +5951,9 @@ Extended Community list Matching criteria and action rule
 
   A remote DNS server
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5880,9 +5972,9 @@ Extended Community list Matching criteria and action rule
 
   TBD
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5901,9 +5993,9 @@ Extended Community list Matching criteria and action rule
 
   DHCP Pool range
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5922,9 +6014,9 @@ Extended Community list Matching criteria and action rule
 
   TBD
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5941,9 +6033,9 @@ Extended Community list Matching criteria and action rule
 
   A remote DNS server
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5960,9 +6052,9 @@ Extended Community list Matching criteria and action rule
 
   static entry
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -5989,7 +6081,7 @@ Extended Community list Matching criteria and action rule
 
   Top-level node which contains system-wide properties.
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6018,7 +6110,7 @@ Extended Community list Matching criteria and action rule
 
   Control Plane specific configurations
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6037,9 +6129,9 @@ Extended Community list Matching criteria and action rule
 
   Trap
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <trap-id>             TRAP ID
@@ -6054,14 +6146,14 @@ Extended Community list Matching criteria and action rule
 
   Policer
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <policer-id>          Policer ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6078,9 +6170,9 @@ Extended Community list Matching criteria and action rule
 
   Policer Statistics
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <policer-id>          Policer ID
@@ -6105,7 +6197,7 @@ Extended Community list Matching criteria and action rule
 
   global system configuration
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6122,7 +6214,7 @@ Extended Community list Matching criteria and action rule
 
   reserved ranges
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6141,7 +6233,7 @@ Extended Community list Matching criteria and action rule
 
   reserved routing table ranges
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6168,7 +6260,7 @@ Extended Community list Matching criteria and action rule
 
   reserved vlan ranges
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6195,7 +6287,7 @@ Extended Community list Matching criteria and action rule
 
   System Zero Touch Provisioning
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6234,7 +6326,7 @@ Extended Community list Matching criteria and action rule
 
   Platform reboot info
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6273,7 +6365,7 @@ Extended Community list Matching criteria and action rule
 
   Port mirror
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6290,9 +6382,9 @@ Extended Community list Matching criteria and action rule
 
   sessions
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <session-id>          port mirror session number
@@ -6307,14 +6399,14 @@ Extended Community list Matching criteria and action rule
 
   port mirror session number
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <session-id>          port mirror session number
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6333,14 +6425,14 @@ Extended Community list Matching criteria and action rule
 
   Switched Port Analyzer
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <session-id>          port mirror session number
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6360,9 +6452,9 @@ Extended Community list Matching criteria and action rule
 
   Set of source ports.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <session-id>          port mirror session number
@@ -6379,9 +6471,9 @@ Extended Community list Matching criteria and action rule
 
   A port-mirror source port (swps or bonds only)
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <session-id>          port mirror session number
@@ -6398,9 +6490,9 @@ Extended Community list Matching criteria and action rule
 
   The SPAN destination port.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <session-id>          port mirror session number
@@ -6417,9 +6509,9 @@ Extended Community list Matching criteria and action rule
 
   The SPAN destination port.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <session-id>          port mirror session number
@@ -6436,9 +6528,9 @@ Extended Community list Matching criteria and action rule
 
   TBD
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <session-id>          port mirror session number
@@ -6453,14 +6545,14 @@ Extended Community list Matching criteria and action rule
 
   Encapsulated Remote Switched Port Analyzer.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <session-id>          port mirror session number
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6481,9 +6573,9 @@ Extended Community list Matching criteria and action rule
 
   Set of source ports.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <session-id>          port mirror session number
@@ -6500,9 +6592,9 @@ Extended Community list Matching criteria and action rule
 
   A port-mirror source port (swps or bonds only)
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <session-id>          port mirror session number
@@ -6519,14 +6611,14 @@ Extended Community list Matching criteria and action rule
 
   erspan destination
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <session-id>          port mirror session number
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6545,9 +6637,9 @@ Extended Community list Matching criteria and action rule
 
   Set of IPv4 addresses
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <session-id>          port mirror session number
@@ -6564,9 +6656,9 @@ Extended Community list Matching criteria and action rule
 
   An IPv4 address
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <session-id>          port mirror session number
@@ -6581,9 +6673,9 @@ Extended Community list Matching criteria and action rule
 
   Set of IPv4 addresses
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <session-id>          port mirror session number
@@ -6600,9 +6692,9 @@ Extended Community list Matching criteria and action rule
 
   An IPv4 address
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <session-id>          port mirror session number
@@ -6617,9 +6709,9 @@ Extended Community list Matching criteria and action rule
 
   TBD
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <session-id>          port mirror session number
@@ -6634,7 +6726,7 @@ Extended Community list Matching criteria and action rule
 
   Affect how config operations are performed.
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6654,7 +6746,7 @@ Extended Community list Matching criteria and action rule
 
   Affect how config apply operations are performed.
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6671,9 +6763,9 @@ Extended Community list Matching criteria and action rule
 
   Set of files to ignore during config apply operations.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <ignore-id>           Ignored file
@@ -6688,9 +6780,9 @@ Extended Community list Matching criteria and action rule
 
   File to ignore during config apply operations.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <ignore-id>           Ignored file
@@ -6716,9 +6808,9 @@ Extended Community list Matching criteria and action rule
 
   VRFs
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -6733,14 +6825,14 @@ Extended Community list Matching criteria and action rule
 
   A VRF
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6763,14 +6855,14 @@ Extended Community list Matching criteria and action rule
 
   The loopback IP interface associated with this VRF.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6787,14 +6879,14 @@ Extended Community list Matching criteria and action rule
 
   IP addresses associated with the VRF's loopback interface.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6811,9 +6903,9 @@ Extended Community list Matching criteria and action rule
 
   An IP address with prefix
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -6830,14 +6922,14 @@ Extended Community list Matching criteria and action rule
 
   EVPN control plane config and info for VRF
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6854,9 +6946,9 @@ Extended Community list Matching criteria and action rule
 
   VNI
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -6873,14 +6965,14 @@ Extended Community list Matching criteria and action rule
 
   A VRF
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6905,16 +6997,16 @@ Extended Community list Matching criteria and action rule
 
   Vrf aware Routing-table per address-family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <afi>                 Route address family.
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6933,9 +7025,9 @@ Extended Community list Matching criteria and action rule
 
   Import Protocols from where routes are known
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -6954,9 +7046,9 @@ Extended Community list Matching criteria and action rule
 
   A route
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -6965,7 +7057,7 @@ Extended Community list Matching criteria and action rule
 
   <route-id>            IP prefix
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -6982,9 +7074,9 @@ Extended Community list Matching criteria and action rule
 
   Protocol types from where routes are known
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -6995,7 +7087,7 @@ Extended Community list Matching criteria and action rule
 
   <protocol-id>         Route entry list keys.
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -7012,14 +7104,14 @@ Extended Community list Matching criteria and action rule
 
   BGP VRF configuration.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -7052,14 +7144,14 @@ Extended Community list Matching criteria and action rule
 
   Address family specific configuration
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -7080,14 +7172,14 @@ Extended Community list Matching criteria and action rule
 
   IPv4 unicast address family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -7118,14 +7210,14 @@ Extended Community list Matching criteria and action rule
 
   Route redistribute
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -7148,9 +7240,9 @@ Extended Community list Matching criteria and action rule
 
   Source route type.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7165,9 +7257,9 @@ Extended Community list Matching criteria and action rule
 
   Source route type.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7182,9 +7274,9 @@ Extended Community list Matching criteria and action rule
 
   Source route type.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7199,9 +7291,9 @@ Extended Community list Matching criteria and action rule
 
   Source route type.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7216,9 +7308,9 @@ Extended Community list Matching criteria and action rule
 
   An IPv4 aggregate route
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7235,9 +7327,9 @@ Extended Community list Matching criteria and action rule
 
   An IPv4 static network.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7254,14 +7346,14 @@ Extended Community list Matching criteria and action rule
 
   Route import
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -7278,14 +7370,14 @@ Extended Community list Matching criteria and action rule
 
   Controls for VRF to VRF route leaking for this address-family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -7302,9 +7394,9 @@ Extended Community list Matching criteria and action rule
 
   A VRF
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7321,9 +7413,9 @@ Extended Community list Matching criteria and action rule
 
   Multipaths
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7338,9 +7430,9 @@ Extended Community list Matching criteria and action rule
 
   Admin distances.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7355,14 +7447,14 @@ Extended Community list Matching criteria and action rule
 
   Route export
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -7379,9 +7471,9 @@ Extended Community list Matching criteria and action rule
 
   Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7396,14 +7488,14 @@ Extended Community list Matching criteria and action rule
 
   IPv4 local RIB
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -7420,16 +7512,16 @@ Extended Community list Matching criteria and action rule
 
   An IPv4/IPv6 route
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <route-id>            IPv4 address and route prefix in CIDR notation
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -7446,9 +7538,9 @@ Extended Community list Matching criteria and action rule
 
   An IPv4/IPv6 route
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7457,7 +7549,7 @@ Extended Community list Matching criteria and action rule
 
   <path-id>             Path Id
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -7488,9 +7580,9 @@ Extended Community list Matching criteria and action rule
 
   An IPv4/IPv6 route
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7511,9 +7603,9 @@ Extended Community list Matching criteria and action rule
 
   Nexthop peer information
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7532,9 +7624,9 @@ Extended Community list Matching criteria and action rule
 
   Route flags
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7553,9 +7645,9 @@ Extended Community list Matching criteria and action rule
 
   A bestpath information
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7574,9 +7666,9 @@ Extended Community list Matching criteria and action rule
 
   AS paths
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7595,9 +7687,9 @@ Extended Community list Matching criteria and action rule
 
   Set of community names for community-list
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7616,9 +7708,9 @@ Extended Community list Matching criteria and action rule
 
   Set of community names for large community list
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7637,9 +7729,9 @@ Extended Community list Matching criteria and action rule
 
   extended communities
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7658,9 +7750,9 @@ Extended Community list Matching criteria and action rule
 
   BGP VRF configuration. L2VPN EVPN address family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7675,14 +7767,14 @@ Extended Community list Matching criteria and action rule
 
   IPv6 unicast address family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -7713,9 +7805,9 @@ Extended Community list Matching criteria and action rule
 
   An IPv6 aggregate route
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7732,9 +7824,9 @@ Extended Community list Matching criteria and action rule
 
   An IPv6 static network.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7751,14 +7843,14 @@ Extended Community list Matching criteria and action rule
 
   Route import
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -7775,14 +7867,14 @@ Extended Community list Matching criteria and action rule
 
   Controls for VRF to VRF route leaking for this address-family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -7799,9 +7891,9 @@ Extended Community list Matching criteria and action rule
 
   Set of VRFs
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7816,9 +7908,9 @@ Extended Community list Matching criteria and action rule
 
   Multipaths
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7833,9 +7925,9 @@ Extended Community list Matching criteria and action rule
 
   Admin distances.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7850,14 +7942,14 @@ Extended Community list Matching criteria and action rule
 
   Route export
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -7874,9 +7966,9 @@ Extended Community list Matching criteria and action rule
 
   Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7891,14 +7983,14 @@ Extended Community list Matching criteria and action rule
 
   Route redistribute
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -7921,9 +8013,9 @@ Extended Community list Matching criteria and action rule
 
   Source route type.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7938,9 +8030,9 @@ Extended Community list Matching criteria and action rule
 
   Source route type.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7955,9 +8047,9 @@ Extended Community list Matching criteria and action rule
 
   Source route type.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7972,9 +8064,9 @@ Extended Community list Matching criteria and action rule
 
   Source route type.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -7989,14 +8081,14 @@ Extended Community list Matching criteria and action rule
 
   IPv6 local RIB
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -8013,16 +8105,16 @@ Extended Community list Matching criteria and action rule
 
   An IPv4/IPv6 route
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <route-id>            IPv6 address and route prefix in CIDR notation
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -8039,9 +8131,9 @@ Extended Community list Matching criteria and action rule
 
   An IPv4/IPv6 route
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8050,7 +8142,7 @@ Extended Community list Matching criteria and action rule
 
   <path-id>             Path Id
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -8081,9 +8173,9 @@ Extended Community list Matching criteria and action rule
 
   An IPv4/IPv6 route
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8105,9 +8197,9 @@ Extended Community list Matching criteria and action rule
 
   Nexthop peer information
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8126,9 +8218,9 @@ Extended Community list Matching criteria and action rule
 
   Route flags
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8147,9 +8239,9 @@ Extended Community list Matching criteria and action rule
 
   A bestpath information
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8168,9 +8260,9 @@ Extended Community list Matching criteria and action rule
 
   AS paths
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8189,9 +8281,9 @@ Extended Community list Matching criteria and action rule
 
   Set of community names for community-list
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8210,9 +8302,9 @@ Extended Community list Matching criteria and action rule
 
   Set of community names for large community list
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8231,9 +8323,9 @@ Extended Community list Matching criteria and action rule
 
   extended communities
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8252,14 +8344,14 @@ Extended Community list Matching criteria and action rule
 
   BGP path-selection configuration.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -8280,9 +8372,9 @@ Extended Community list Matching criteria and action rule
 
   BGP aspath path-selection config, applicable to this BGP instance
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8297,9 +8389,9 @@ Extended Community list Matching criteria and action rule
 
   BGP med path-selection config, applicable to this BGP instance
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8314,9 +8406,9 @@ Extended Community list Matching criteria and action rule
 
   BGP multipath path-selection config, applicable to this BGP instance
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8331,9 +8423,9 @@ Extended Community list Matching criteria and action rule
 
   BGP route-reflection configuration.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8348,15 +8440,15 @@ Extended Community list Matching criteria and action rule
 
   BGP global configuration.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -8385,9 +8477,9 @@ Extended Community list Matching criteria and action rule
 
   Specifies whether to track BGP peering sessions using this configuration via BFD.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8404,9 +8496,9 @@ Extended Community list Matching criteria and action rule
 
   RFC 5082
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8423,9 +8515,9 @@ Extended Community list Matching criteria and action rule
 
   Capabilities
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8442,9 +8534,9 @@ Extended Community list Matching criteria and action rule
 
   BGP Graceful restart per neighbor configuration
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8461,9 +8553,9 @@ Extended Community list Matching criteria and action rule
 
   Local AS feature
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8480,9 +8572,9 @@ Extended Community list Matching criteria and action rule
 
   Peer peer-timerss
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8499,16 +8591,16 @@ Extended Community list Matching criteria and action rule
 
   Address family specific configuration
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <peer-group-id>       Domain
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -8529,16 +8621,16 @@ Extended Community list Matching criteria and action rule
 
   Peer IPv4 unicast address family.  Always on, unless disabled globaly.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <peer-group-id>       Domain
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -8567,9 +8659,9 @@ Extended Community list Matching criteria and action rule
 
   Community advertise for address family.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8586,9 +8678,9 @@ Extended Community list Matching criteria and action rule
 
   Attribute mod for address family.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8605,16 +8697,16 @@ Extended Community list Matching criteria and action rule
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <peer-group-id>       Domain
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -8631,9 +8723,9 @@ Extended Community list Matching criteria and action rule
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8650,16 +8742,16 @@ Extended Community list Matching criteria and action rule
 
   Limits on prefix from the peer for this address-family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <peer-group-id>       Domain
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -8676,9 +8768,9 @@ Extended Community list Matching criteria and action rule
 
   Limits on inbound prefix from the peer for this address-family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8695,9 +8787,9 @@ Extended Community list Matching criteria and action rule
 
   Default route origination
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8714,16 +8806,16 @@ Extended Community list Matching criteria and action rule
 
   Policies for ipv4 unicast
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <peer-group-id>       Domain
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -8742,9 +8834,9 @@ Extended Community list Matching criteria and action rule
 
   Outbound unicast policy
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8761,9 +8853,9 @@ Extended Community list Matching criteria and action rule
 
   Outbound unicast policy
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8780,9 +8872,9 @@ Extended Community list Matching criteria and action rule
 
   Conditional advertise for address family.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8799,16 +8891,16 @@ Extended Community list Matching criteria and action rule
 
   Peer IPv6 unicast address family.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <peer-group-id>       Domain
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -8837,16 +8929,16 @@ Extended Community list Matching criteria and action rule
 
   Policies for ipv6 unicast
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <peer-group-id>       Domain
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -8865,9 +8957,9 @@ Extended Community list Matching criteria and action rule
 
   Outbound unicast policy
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8884,9 +8976,9 @@ Extended Community list Matching criteria and action rule
 
   Outbound unicast policy
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8903,16 +8995,16 @@ Extended Community list Matching criteria and action rule
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <peer-group-id>       Domain
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -8929,9 +9021,9 @@ Extended Community list Matching criteria and action rule
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8948,16 +9040,16 @@ Extended Community list Matching criteria and action rule
 
   Limits on prefix from the peer for this address-family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <peer-group-id>       Domain
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -8974,9 +9066,9 @@ Extended Community list Matching criteria and action rule
 
   Limits on inbound prefix from the peer for this address-family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -8993,9 +9085,9 @@ Extended Community list Matching criteria and action rule
 
   Default route origination
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9012,9 +9104,9 @@ Extended Community list Matching criteria and action rule
 
   Community advertise for address family.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9031,9 +9123,9 @@ Extended Community list Matching criteria and action rule
 
   Attribute mod for address family.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9050,9 +9142,9 @@ Extended Community list Matching criteria and action rule
 
   Conditional advertise for address family.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9069,16 +9161,16 @@ Extended Community list Matching criteria and action rule
 
   Peer l2vpn EVPN address family.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <peer-group-id>       Domain
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -9099,9 +9191,9 @@ Extended Community list Matching criteria and action rule
 
   Attribute mod for address family.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9118,16 +9210,16 @@ Extended Community list Matching criteria and action rule
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <peer-group-id>       Domain
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -9144,9 +9236,9 @@ Extended Community list Matching criteria and action rule
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9163,16 +9255,16 @@ Extended Community list Matching criteria and action rule
 
   Policies for l2vpn evpn
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <peer-group-id>       Domain
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -9191,9 +9283,9 @@ Extended Community list Matching criteria and action rule
 
   Inbound l2vpn-evpn policy
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9210,9 +9302,9 @@ Extended Community list Matching criteria and action rule
 
   Outbound l2vpn-evpn policy
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9229,14 +9321,14 @@ Extended Community list Matching criteria and action rule
 
   Controls for exporting ipv4 and ipv6 routes from this VRF
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -9253,14 +9345,14 @@ Extended Community list Matching criteria and action rule
 
   Controls for exporting routes from this VRF into EVPN
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -9277,9 +9369,9 @@ Extended Community list Matching criteria and action rule
 
   A route target identifier
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9296,14 +9388,14 @@ Extended Community list Matching criteria and action rule
 
   Controls for importing of ipv4 and ipv6 routes from this VRF
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -9320,14 +9412,14 @@ Extended Community list Matching criteria and action rule
 
   Controls for importing EVPN type-2 and type-5 routes into this VRF
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -9344,9 +9436,9 @@ Extended Community list Matching criteria and action rule
 
   A route target identifier
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9363,9 +9455,9 @@ Extended Community list Matching criteria and action rule
 
   timer values for all peers in this VRF
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9380,14 +9472,14 @@ Extended Community list Matching criteria and action rule
 
   BGP Confederation options.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -9404,9 +9496,9 @@ Extended Community list Matching criteria and action rule
 
   Set of autonomous numbers
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9421,16 +9513,16 @@ Extended Community list Matching criteria and action rule
 
   BGP global configuration.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <neighbor-id>         Peer ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -9465,9 +9557,9 @@ Extended Community list Matching criteria and action rule
 
   Specifies whether to track BGP peering sessions using this configuration via BFD.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9484,9 +9576,9 @@ Extended Community list Matching criteria and action rule
 
   Capabilities
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9503,9 +9595,9 @@ Extended Community list Matching criteria and action rule
 
   Local AS feature
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9522,9 +9614,9 @@ Extended Community list Matching criteria and action rule
 
   BGP Graceful restart per neighbor configuration
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9541,9 +9633,9 @@ Extended Community list Matching criteria and action rule
 
   RFC 5082
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9560,9 +9652,9 @@ Extended Community list Matching criteria and action rule
 
   Nexthop
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9579,9 +9671,9 @@ Extended Community list Matching criteria and action rule
 
   Message statistics
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9598,9 +9690,9 @@ Extended Community list Matching criteria and action rule
 
   EBGP Policy RFC8212
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9617,16 +9709,16 @@ Extended Community list Matching criteria and action rule
 
   Address family specific configuration
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <neighbor-id>         Peer ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -9647,16 +9739,16 @@ Extended Community list Matching criteria and action rule
 
   Peer IPv4 unicast address family.  Always on, unless disabled globaly.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <neighbor-id>         Peer ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -9688,9 +9780,9 @@ Extended Community list Matching criteria and action rule
 
   Attribute mod for address family.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9707,16 +9799,16 @@ Extended Community list Matching criteria and action rule
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <neighbor-id>         Peer ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -9733,9 +9825,9 @@ Extended Community list Matching criteria and action rule
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9752,16 +9844,16 @@ Extended Community list Matching criteria and action rule
 
   Policies for ipv4 unicast
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <neighbor-id>         Peer ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -9780,9 +9872,9 @@ Extended Community list Matching criteria and action rule
 
   Outbound unicast policy
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9799,9 +9891,9 @@ Extended Community list Matching criteria and action rule
 
   Outbound unicast policy
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9818,16 +9910,16 @@ Extended Community list Matching criteria and action rule
 
   Limits on prefix from the peer for this address-family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <neighbor-id>         Peer ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -9844,9 +9936,9 @@ Extended Community list Matching criteria and action rule
 
   Limits on inbound prefix from the peer for this address-family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9863,9 +9955,9 @@ Extended Community list Matching criteria and action rule
 
   Default route origination
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9882,9 +9974,9 @@ Extended Community list Matching criteria and action rule
 
   Community advertise for address family.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9901,9 +9993,9 @@ Extended Community list Matching criteria and action rule
 
   Conditional advertise for address family.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9920,9 +10012,9 @@ Extended Community list Matching criteria and action rule
 
   AF capabilities advertised and received
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9939,9 +10031,9 @@ Extended Community list Matching criteria and action rule
 
   graceful restart information
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -9958,16 +10050,16 @@ Extended Community list Matching criteria and action rule
 
   Peer IPv6 unicast address family.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <neighbor-id>         Peer ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -10000,9 +10092,9 @@ Extended Community list Matching criteria and action rule
 
   Attribute mod for address family.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10019,16 +10111,16 @@ Extended Community list Matching criteria and action rule
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <neighbor-id>         Peer ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -10045,9 +10137,9 @@ Extended Community list Matching criteria and action rule
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10064,16 +10156,16 @@ Extended Community list Matching criteria and action rule
 
   Limits on prefix from the peer for this address-family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <neighbor-id>         Peer ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -10090,9 +10182,9 @@ Extended Community list Matching criteria and action rule
 
   Limits on inbound prefix from the peer for this address-family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10109,9 +10201,9 @@ Extended Community list Matching criteria and action rule
 
   Default route origination
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10128,16 +10220,16 @@ Extended Community list Matching criteria and action rule
 
   Policies for ipv6 unicast
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <neighbor-id>         Peer ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -10156,9 +10248,9 @@ Extended Community list Matching criteria and action rule
 
   Outbound unicast policy
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10175,9 +10267,9 @@ Extended Community list Matching criteria and action rule
 
   Outbound unicast policy
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10194,9 +10286,9 @@ Extended Community list Matching criteria and action rule
 
   Community advertise for address family.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10213,9 +10305,9 @@ Extended Community list Matching criteria and action rule
 
   Conditional advertise for address family.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10232,9 +10324,9 @@ Extended Community list Matching criteria and action rule
 
   AF capabilities advertised and received
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10251,9 +10343,9 @@ Extended Community list Matching criteria and action rule
 
   graceful restart information
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10270,16 +10362,16 @@ Extended Community list Matching criteria and action rule
 
   Peer l2vpn EVPN address family.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <neighbor-id>         Peer ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -10304,9 +10396,9 @@ Extended Community list Matching criteria and action rule
 
   Attribute mod for address family.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10323,16 +10415,16 @@ Extended Community list Matching criteria and action rule
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <neighbor-id>         Peer ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -10349,9 +10441,9 @@ Extended Community list Matching criteria and action rule
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10368,16 +10460,16 @@ Extended Community list Matching criteria and action rule
 
   Policies for l2vpn evpn
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <neighbor-id>         Peer ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -10396,9 +10488,9 @@ Extended Community list Matching criteria and action rule
 
   Inbound l2vpn-evpn policy
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10415,9 +10507,9 @@ Extended Community list Matching criteria and action rule
 
   Outbound l2vpn-evpn policy
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10434,9 +10526,9 @@ Extended Community list Matching criteria and action rule
 
   AF capabilities advertised and received
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10453,9 +10545,9 @@ Extended Community list Matching criteria and action rule
 
   graceful restart information
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10472,9 +10564,9 @@ Extended Community list Matching criteria and action rule
 
   Peer peer-timerss
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10491,16 +10583,16 @@ Extended Community list Matching criteria and action rule
 
   A route
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <route-id>            IP prefix
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -10519,9 +10611,9 @@ Extended Community list Matching criteria and action rule
 
   A path
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10530,7 +10622,7 @@ Extended Community list Matching criteria and action rule
 
   <distance-id>         A path distance
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -10547,9 +10639,9 @@ Extended Community list Matching criteria and action rule
 
   A via
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10560,7 +10652,7 @@ Extended Community list Matching criteria and action rule
 
   <via-id>              IP address, interface, or "blackhole".
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -10577,9 +10669,9 @@ Extended Community list Matching criteria and action rule
 
   Nexthop flags
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10600,9 +10692,9 @@ Extended Community list Matching criteria and action rule
 
   A via
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10611,7 +10703,7 @@ Extended Community list Matching criteria and action rule
 
   <via-id>              IP address, interface, or "blackhole".
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -10628,9 +10720,9 @@ Extended Community list Matching criteria and action rule
 
   Nexthop flags
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10649,14 +10741,14 @@ Extended Community list Matching criteria and action rule
 
   PIM VRF configuration.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -10679,9 +10771,9 @@ Extended Community list Matching criteria and action rule
 
   Timers
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10696,9 +10788,9 @@ Extended Community list Matching criteria and action rule
 
   Choose all available ECMP paths for a particular RPF.  If 'off', the first nexthop found will be used.  This is the default.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10713,16 +10805,16 @@ Extended Community list Matching criteria and action rule
 
   MSDP mesh-group
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <msdp-mesh-group-id>  MSDP mesh group name
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -10739,9 +10831,9 @@ Extended Community list Matching criteria and action rule
 
   A MSDP mesh member
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10760,14 +10852,14 @@ Extended Community list Matching criteria and action rule
 
   Address family specific configuration
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -10784,14 +10876,14 @@ Extended Community list Matching criteria and action rule
 
   IPv4 unicast address family
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -10810,9 +10902,9 @@ Extended Community list Matching criteria and action rule
 
   Build shortest path tree towards source.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10827,16 +10919,16 @@ Extended Community list Matching criteria and action rule
 
   RP
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <rp-id>               RP IP address
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -10853,9 +10945,9 @@ Extended Community list Matching criteria and action rule
 
   A group range
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10874,14 +10966,14 @@ Extended Community list Matching criteria and action rule
 
   OSPF VRF configuration.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -10910,16 +11002,16 @@ Extended Community list Matching criteria and action rule
 
   An OSPF area
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
   <area-id>             Area
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -10940,9 +11032,9 @@ Extended Community list Matching criteria and action rule
 
   Filters networks between OSPF areas
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10959,9 +11051,9 @@ Extended Community list Matching criteria and action rule
 
   Filters out components of the prefix
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -10980,9 +11072,9 @@ Extended Community list Matching criteria and action rule
 
   Filters out components of the prefix
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -11001,9 +11093,9 @@ Extended Community list Matching criteria and action rule
 
   Advertise a default route as external lsa
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -11018,9 +11110,9 @@ Extended Community list Matching criteria and action rule
 
   Administrative distance for installation into the rib
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -11035,9 +11127,9 @@ Extended Community list Matching criteria and action rule
 
   Set maximum metric value in router lsa to make stub router
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -11052,9 +11144,9 @@ Extended Community list Matching criteria and action rule
 
   Log configuration
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -11069,14 +11161,14 @@ Extended Community list Matching criteria and action rule
 
   Route redistribute
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -11099,9 +11191,9 @@ Extended Community list Matching criteria and action rule
 
   Source route type.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -11116,9 +11208,9 @@ Extended Community list Matching criteria and action rule
 
   Source route type.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -11133,9 +11225,9 @@ Extended Community list Matching criteria and action rule
 
   Source route type.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -11150,9 +11242,9 @@ Extended Community list Matching criteria and action rule
 
   Source route type.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -11167,14 +11259,14 @@ Extended Community list Matching criteria and action rule
 
   Timers
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -11193,9 +11285,9 @@ Extended Community list Matching criteria and action rule
 
   LSA timers
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -11210,9 +11302,9 @@ Extended Community list Matching criteria and action rule
 
   SPF timers
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -11227,9 +11319,9 @@ Extended Community list Matching criteria and action rule
 
   VRF PTP configuration.  Inherited by interfaces in this VRF.
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <vrf-id>              VRF
@@ -11244,7 +11336,7 @@ Extended Community list Matching criteria and action rule
 
   Network Virtualization configuration and operational info
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -11261,7 +11353,7 @@ Extended Community list Matching criteria and action rule
 
   VxLAN
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -11302,7 +11394,7 @@ Extended Community list Matching criteria and action rule
 
   Handling of BUM traffic
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -11319,9 +11411,9 @@ Extended Community list Matching criteria and action rule
 
   Set of IPv4 unicast addresses or "evpn".
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <hrep-id>             IPv4 unicast addresses or "evpn"
@@ -11336,9 +11428,9 @@ Extended Community list Matching criteria and action rule
 
   Set of IPv4 unicast addresses or "evpn".
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <hrep-id>             IPv4 unicast addresses or "evpn"
@@ -11353,9 +11445,9 @@ Extended Community list Matching criteria and action rule
 
   ACL rules
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <acl-id>              ACL ID
@@ -11370,14 +11462,14 @@ Extended Community list Matching criteria and action rule
 
   An ACL is used for matching packets and take actions
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <acl-id>              ACL ID
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -11394,16 +11486,16 @@ Extended Community list Matching criteria and action rule
 
   ACL Matching criteria and action rule
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <acl-id>              ACL ID
 
   <rule-id>             ACL rule number
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -11422,16 +11514,16 @@ Extended Community list Matching criteria and action rule
 
   An ACL match
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <acl-id>              ACL ID
 
   <rule-id>             ACL rule number
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -11450,16 +11542,16 @@ Extended Community list Matching criteria and action rule
 
   An ACL IPv4/IPv6 match
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <acl-id>              ACL ID
 
   <rule-id>             ACL rule number
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -11484,9 +11576,9 @@ Extended Community list Matching criteria and action rule
 
   L4 port
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <acl-id>              ACL ID
@@ -11505,9 +11597,9 @@ Extended Community list Matching criteria and action rule
 
   L4 port
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <acl-id>              ACL ID
@@ -11526,9 +11618,9 @@ Extended Community list Matching criteria and action rule
 
   State details
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <acl-id>              ACL ID
@@ -11545,16 +11637,16 @@ Extended Community list Matching criteria and action rule
 
   ECN
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <acl-id>              ACL ID
 
   <rule-id>             ACL rule number
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -11571,9 +11663,9 @@ Extended Community list Matching criteria and action rule
 
   ECN flags
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <acl-id>              ACL ID
@@ -11590,16 +11682,16 @@ Extended Community list Matching criteria and action rule
 
   L4 port
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <acl-id>              ACL ID
 
   <rule-id>             ACL rule number
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -11617,9 +11709,9 @@ Extended Community list Matching criteria and action rule
 
   TCP flags
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <acl-id>              ACL ID
@@ -11636,9 +11728,9 @@ Extended Community list Matching criteria and action rule
 
   TCP flags
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <acl-id>              ACL ID
@@ -11655,9 +11747,9 @@ Extended Community list Matching criteria and action rule
 
   An ACL MAC match
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <acl-id>              ACL ID
@@ -11674,16 +11766,16 @@ Extended Community list Matching criteria and action rule
 
   ACL rule action
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <acl-id>              ACL ID
 
   <rule-id>             ACL rule number
 
-## Attributes
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -11710,9 +11802,9 @@ Extended Community list Matching criteria and action rule
 
   Permit packets
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <acl-id>              ACL ID
@@ -11729,9 +11821,9 @@ Extended Community list Matching criteria and action rule
 
   deny packets
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <acl-id>              ACL ID
@@ -11748,9 +11840,9 @@ Extended Community list Matching criteria and action rule
 
   log packets
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <acl-id>              ACL ID
@@ -11767,9 +11859,9 @@ Extended Community list Matching criteria and action rule
 
   Set action for packets
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <acl-id>              ACL ID
@@ -11786,9 +11878,9 @@ Extended Community list Matching criteria and action rule
 
   ERSPAN session
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <acl-id>              ACL ID
@@ -11805,9 +11897,9 @@ Extended Community list Matching criteria and action rule
 
   Policing of matched packets/bytes
 
-## Identifiers
+### Identifiers
 
-| Attribute |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 
   <acl-id>              ACL ID

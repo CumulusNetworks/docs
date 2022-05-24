@@ -6,74 +6,92 @@ product: Cumulus Linux
 ---
 ## nv set router
 
+Configures global routing settings for BGP, OSPF, PIM, IGMP, VRR, VRRP, router policies, next hop groups, and adaptive routing.
+
 ### Usage
 
   `nv set router [options] [<attribute> ...]`
 
-### Description
-
-  A router
-
 ### Attributes
 
-  `nexthop-group`: Nexthops
+| Attribute |  Description   |
+| --------- | -------------- |
+| `nexthop-group`| Nexthops|
+| `pbr`| PBR global configuration |
+| `policy`| A router |
+| `bgp`: BGP global configuration.|
+| `ospf`: OSPF global configuration.|
+| `pim`: PIM global configuration.|
+| `igmp`: IGMP global configuration.|
+| `vrrp`: VRRP global configuration.|
+| `vrr`: VRR global configuration.|
+| `adaptive-routing`: Adaptive routing global configuration.|
 
-  `pbr`: PBR global configuration.
+### Version History
 
-  `policy`: A router
+Introduced in Cumulus Linux 4.4.0
 
-  `bgp`: BGP global configuration.
+## nv set router nexthop-group \<nexthop-group-id\>
 
-  `ospf`: OSPF global configuration.
-
-  `pim`: PIM global configuration.
-
-  `igmp`: IGMP global configuration.
-
-  `vrrp`: VRRP global configuration.
-
-  `vrr`: VRR global configuration.
-
-  `adaptive-routing`: Adaptive routing global configuration.
-
-## nv set router nexthop-group <nexthop-group-id>
+Sets the name of the next hop group.
 
 ### Usage
 
-  `nv set router nexthop-group <nexthop-group-id> [options] [<attribute> ...]`
-
-### Description
-
-  A nexthop-group
+`nv set router nexthop-group <nexthop-group-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
-  `<nexthop-group-id>`: Nexthop group ID
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<nexthop-group-id>` | The next hop group name. |
 
 ### Attributes
 
-  `via`: Nexthops
+| Attribute |  Description   |
+| --------- | -------------- |
+| `via` | A next hop in the next hop group. |
 
-## nv set router nexthop-group <nexthop-group-id> via <via-id>
+### Version History
+
+Introduced in Cumulus Linux 4.4.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv set router nexthop-group group1
+```
+
+## nv set router nexthop-group \<nexthop-group-id\> via \<via-id\>
+
+Sets the IP addresses of the next hops in the next hop group.
 
 ### Usage
 
-  `nv set router nexthop-group <nexthop-group-id> via <via-id> [options] [<attribute> ...]`
-
-### Description
-
-  A nexthop
+`nv set router nexthop-group <nexthop-group-id> via <via-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
-  `<nexthop-group-id>`: Nexthop group ID
-  `<via-id>`: cIP address
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<nexthop-group-id>` | The next hop group name. |
+| `<via-id>` | The IP addresses (or interfaces for unnumbered BGP or OSPF) of the next hop.|
 
 ### Attributes
 
-  `interface`: The interface to use for egress. If not specified, it will automatically be determined. Only valid when the via's type is ipv4-address or ipv6-address.
+| Attribute |  Description   |
+| --------- | -------------- |
+|  `interface`| The interface to use for egress. If not specified, it will automatically be determined. Only valid when the via's type is ipv4-address or ipv6-address. |
+| `vrf` | The VRF to use for egress. If not specified, the route's VRF will be used. Only valid when the via's type is ipv4-address or ipv6-address. |
 
-  `vrf`: The VRF to use for egress. If not specified, the route's VRF will be used. Only valid when the via's type is ipv4-address or ipv6-address.
+### Version History
+
+Introduced in Cumulus Linux 4.4.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32
+```
 
 ## nv set router pbr
 

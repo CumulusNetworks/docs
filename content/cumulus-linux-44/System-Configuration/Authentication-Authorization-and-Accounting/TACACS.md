@@ -355,8 +355,7 @@ The TACACS client on the switch and the TACACS server must have the same shared 
 <!-- vale off -->
 ### Issues with Per-command Authorization
 <!-- vale on -->
-To debug TACACS user command authorization, have the TACACS+ user enter
-the following command at a shell prompt, then try the command again:
+To debug TACACS user command authorization, have the TACACS+ user enter the following command at a shell prompt, then try the command again:
 
 ```
 tacuser0@switch:~$ export TACACSAUTHDEBUG=1
@@ -389,6 +388,12 @@ To disable debugging:
 ```
 tacuser0@switch:~$ export -n TACACSAUTHDEBUG
 ```
+
+{{%notice note%}}
+To use TACACS per-command authorization with NCLU commands, you need to:
+- Configure your TACACS server to allow `systemctl is-active` commands.
+- After you configure TACACS per-command authorization on the switch (as described above), run the `sudo tacplus-restrict -i -u tacacs2 -f -a systemctl` command.
+{{%/notice%}}
 
 ### Debug Issues with Accounting Records
 

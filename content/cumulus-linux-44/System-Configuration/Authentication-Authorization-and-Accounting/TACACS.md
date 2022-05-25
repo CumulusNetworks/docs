@@ -256,6 +256,12 @@ For more information on `tacplus-auth` and `tacplus-restrict`, run the `man` com
 cumulus@switch:~$ man tacplus-auth tacplus-restrict
 ```
 
+{{%notice note%}}
+To use TACACS per-command authorization with NCLU commands, you need to:
+- Configure your TACACS server to allow `systemctl is-active` commands.
+- After you configure TACACS per-command authorization on the switch (as described above), run the `sudo tacplus-restrict -i -u tacacs2 -f -a systemctl` command.
+{{%/notice%}}
+
 ## NSS Plugin
 
 With `pam_tacplus`, TACACS+ authenticated users can log in without a local account on the system using the NSS plugin that comes with the `tacplus_nss` package. The plugin uses the mapped `tacplus` information if the user is not in the local password file, provides the `getpwnam()` and `getpwuid()`entry points, and uses the TACACS+ authentication functions.
@@ -355,8 +361,7 @@ The TACACS client on the switch and the TACACS server must have the same shared 
 <!-- vale off -->
 ### Issues with Per-command Authorization
 <!-- vale on -->
-To debug TACACS user command authorization, have the TACACS+ user enter
-the following command at a shell prompt, then try the command again:
+To debug TACACS user command authorization, have the TACACS+ user enter the following command at a shell prompt, then try the command again:
 
 ```
 tacuser0@switch:~$ export TACACSAUTHDEBUG=1

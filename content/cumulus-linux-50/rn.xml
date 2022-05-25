@@ -64,6 +64,12 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td></td>
 </tr>
 <tr>
+<td>3059380</td>
+<td>When you configure VRF leaking from the default VRF to a non-default VRF, SSH sessions originating from the switch CLI in the default VRF do not connect to devices in the non-default VRF.</td>
+<td>5.0.1-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3057106</td>
 <td>Under certain conditions, the {{switchd}} process might have a slow memory leak.
 </td>

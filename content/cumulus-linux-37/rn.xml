@@ -258,13 +258,6 @@ Fixed: 0.7.git20120829-1+deb8u2</td>
 <td></td>
 </tr>
 <tr>
-<td>2855908</td>
-<td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
-To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15-5.0.1</td>
-<td>5.1.0</td>
-</tr>
-<tr>
 <td>2845290</td>
 <td>The following vulnerabilities in gdb, as embedded in the crash handling program, have been announced:
 CVE-2019-1010180: Buffer overflow which can be triggered by debugging an ELF file.
@@ -290,6 +283,12 @@ Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>2754791</td>
 <td>Remote MAC addreses in zebra are out of sync with {{bgpd}}. The zebra MAC addresses point to an incorrect (old) VTEP IP  address and the sequence number is one higher than in BGP. </td>
 <td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2743186</td>
+<td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
+<td>3.7.15-3.7.16, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -3086,8 +3085,8 @@ Fixed: 2.1.5-2+deb8u13</td>
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
+<td>3.7.15-5.0.1</td>
+<td>5.1.0</td>
 </tr>
 <tr>
 <td>2896672</td>
@@ -3236,13 +3235,6 @@ MemoryError
 </td>
 <td>3.7.15-4.4.1</td>
 <td>4.4.2-4.4.3</td>
-</tr>
-<tr>
-<td>2855908</td>
-<td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
-To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15-5.0.1</td>
-<td>5.1.0</td>
 </tr>
 <tr>
 <td>2855881</td>
@@ -3544,6 +3536,12 @@ Fixed: 2.8.9dev1-2+deb8u2</td>
 <td>2754791</td>
 <td>Remote MAC addreses in zebra are out of sync with {{bgpd}}. The zebra MAC addresses point to an incorrect (old) VTEP IP  address and the sequence number is one higher than in BGP. </td>
 <td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2743186</td>
+<td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
+<td>3.7.15-3.7.16, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>

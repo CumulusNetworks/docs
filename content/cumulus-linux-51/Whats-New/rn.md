@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3081232"></a> [3081232](#3081232) <a name="3081232"></a> <br /> | On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up<br />To work around this issue, disable, then enable the port. | 4.4.0-4.4.3, 5.0.0-5.1.0 | |
 | <a name="3077736"></a> [3077736](#3077736) <a name="3077736"></a> <br /> | When you run the NVUE command to change the minimum interval between received BFD control packets or the minimum interval for sending BFD control packets, the configuration apply fails.<br /><pre><br />cumulus&#64;switch:~$ nv set vrf default router bgp neighbor 10.10.10.2 bfd min-rx-interval 400<br />cumulus&#64;switch:~$ nv config apply<br />2022-05-04T21:36:10.800975+00:00 switch frrinit.sh16431: Stopped watchfrr.<br /></pre> | 5.0.1-5.1.0 | |
 | <a name="3077547"></a> [3077547](#3077547) <a name="3077547"></a> <br /> | When you configure multiple multicast RPs with groups matched by prefix lists, Cumulus Linux selects only one of the RPs and this selection is incorrect. | 5.0.1-5.1.0 | |
 | <a name="3074978"></a> [3074978](#3074978) <a name="3074978"></a> <br /> | On NVIDIA Spectrum A1 switches, the datapath might break when there is a QinQ bridge flap. | 5.1.0 | |
@@ -76,7 +77,7 @@ pdfhidden: True
 | <a name="2837378"></a> [2837378](#2837378) <a name="2837378"></a> <br /> | The switch duplicates DHCP packets that pass through the VTEP. | 4.3.0-4.4.3, 5.0.0-5.1.0 | |
 | <a name="2823307"></a> [2823307](#2823307) <a name="2823307"></a> <br /> | Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration.  | 5.0.0-5.1.0 | |
 | <a name="2812075"></a> [2812075](#2812075) <a name="2812075"></a> <br /> | When you configure PIM, you can either configure RP mappings for different multicast groups or use a prefix list to specify the RP to group mapping. You cannot use the two methods together. | 5.0.0-5.1.0 | |
-| <a name="2743186"></a> [2743186](#2743186) <a name="2743186"></a> <br /> | When you use MD5 passwords and you configure a non-default VRF before the default VRF in the <code>/etc/frr/frr.conf</code> file, numbered BGP sessions do not establish. | 4.4.0-4.4.3, 5.0.0-5.1.0 | |
+| <a name="2743186"></a> [2743186](#2743186) <a name="2743186"></a> <br /> | When you use MD5 passwords and you configure a non-default VRF before the default VRF in the <code>/etc/frr/frr.conf</code> file, numbered BGP sessions do not establish. | 3.7.15-3.7.16, 4.4.0-4.4.3, 5.0.0-5.1.0 | |
 
 ### Fixed Issues in 5.1.0
 |  Issue ID 	|   Description	|   Affects	|

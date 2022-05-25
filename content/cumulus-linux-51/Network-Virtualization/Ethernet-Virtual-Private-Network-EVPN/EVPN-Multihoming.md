@@ -400,6 +400,35 @@ evpn mh startup-delay 1800
 {{</tab>}}
 {{</tabs>}}
 
+To disable fast failover of traffic destined to the access port through the VXLAN overlay (for Cumulus VX):
+
+{{<tabs "redirect delay">}}
+{{<tab "NVUE Commands">}}
+
+Cumulus Linux does not provide NVUE commands to disable fast failover.
+
+{{</tab>}}
+{{<tab "vtysh Commands">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# evpn mh redirect-off
+leaf01(config)# exit
+leaf01# write memory
+```
+
+The vtysh commands create the following configuration in the `/etc/frr/frr.conf` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+...
+evpn mh redirect-off
+```
+
+{{</tab>}}
+{{</tabs>}}
+
 ### Enable FRR Debugging
 
 You can add debug statements to the `/etc/frr/frr.conf` file to debug the Ethernet segments, routes, and routing protocols (via Zebra).

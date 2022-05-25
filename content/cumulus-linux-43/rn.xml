@@ -1761,6 +1761,14 @@ Fixed: 2.9.4+dfsg1-7+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3082555</td>
+<td>CVE-2022-29824: several buffer handling functions in buf.c (xmlBuf*) and tree.c (xmlBuffer*) don't check for integer overflows. This can result in out-of-bounds memory writes. Exploitation requires a victim to open a crafted, multi-gigabyte XML file. 
+Vulnerable: &lt;= 2.9.4+dfsg1-7+deb10u3
+Fixed: 2.9.4+dfsg1-7+deb10u4</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3077723</td>
 <td>CVE-2022-29155: In OpenLDAP 2.x before 2.5.12 and 2.6.x before 2.6.2, a SQL injection vulnerability exists in the experimental back-sql backend to slapd, via a SQL statement within an LDAP query. This can occur during an LDAP search operation when the search filter is processed, due to a lack of proper escaping.
 Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u6
@@ -2046,8 +2054,8 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
+<td>3.7.15-5.0.1</td>
+<td>5.1.0</td>
 </tr>
 <tr>
 <td>2896672</td>
@@ -2208,13 +2216,6 @@ MemoryError
 </td>
 <td>3.7.15-4.4.1</td>
 <td>4.4.2-4.4.3</td>
-</tr>
-<tr>
-<td>2855908</td>
-<td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
-To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15-5.0.1</td>
-<td>5.1.0</td>
 </tr>
 <tr>
 <td>2854787</td>

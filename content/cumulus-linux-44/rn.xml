@@ -7,6 +7,27 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3082583</td>
+<td>On the NVIDIA SN3420, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
+<td>4.4.2-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3082555</td>
+<td>CVE-2022-29824: several buffer handling functions in buf.c (xmlBuf*) and tree.c (xmlBuffer*) don't check for integer overflows. This can result in out-of-bounds memory writes. Exploitation requires a victim to open a crafted, multi-gigabyte XML file. 
+Vulnerable: &lt;= 2.9.4+dfsg1-7+deb10u3
+Fixed: 2.9.4+dfsg1-7+deb10u4</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3081232</td>
+<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
+To work around this issue, disable, then enable the port.</td>
+<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3077737</td>
 <td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
 To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
@@ -192,6 +213,12 @@ Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
 Fixed: 4.1.0+git191117-2~deb10u4</td>
 <td>4.4.0-5.0.1</td>
 <td>5.1.0</td>
+</tr>
+<tr>
+<td>3014664</td>
+<td>On the NVIDIA SN3420, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
+<td>4.4.2-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>3010292</td>
@@ -537,13 +564,6 @@ To work around this issue, load the port configuration in a staggered manner (gr
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>2855908</td>
-<td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
-To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15-5.0.1</td>
-<td>5.1.0</td>
-</tr>
-<tr>
 <td>2854787</td>
 <td>An unexpected software system shutdown can occur due to a thermal zones issue in the {{hw-management}} package. The following message might appear in {{/var/log/syslog}} before the shutdown:
 
@@ -761,7 +781,7 @@ To work around this issue, manually restart WJH with the {{sudo systemctl restar
 <tr>
 <td>2743186</td>
 <td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
-<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td>3.7.15-3.7.16, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2058,6 +2078,27 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3082583</td>
+<td>On the NVIDIA SN3420, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
+<td>4.4.2-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3082555</td>
+<td>CVE-2022-29824: several buffer handling functions in buf.c (xmlBuf*) and tree.c (xmlBuffer*) don't check for integer overflows. This can result in out-of-bounds memory writes. Exploitation requires a victim to open a crafted, multi-gigabyte XML file. 
+Vulnerable: &lt;= 2.9.4+dfsg1-7+deb10u3
+Fixed: 2.9.4+dfsg1-7+deb10u4</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3081232</td>
+<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
+To work around this issue, disable, then enable the port.</td>
+<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3077737</td>
 <td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
 To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
@@ -2213,6 +2254,12 @@ Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
 Fixed: 4.1.0+git191117-2~deb10u4</td>
 <td>4.4.0-5.0.1</td>
 <td>5.1.0</td>
+</tr>
+<tr>
+<td>3014664</td>
+<td>On the NVIDIA SN3420, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
+<td>4.4.2-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>3010292</td>
@@ -2494,8 +2541,8 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
+<td>3.7.15-5.0.1</td>
+<td>5.1.0</td>
 </tr>
 <tr>
 <td>2896672</td>
@@ -2608,13 +2655,6 @@ To work around this issue, load the port configuration in a staggered manner (gr
 <td>2860323</td>
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-5.0.1</td>
-<td>5.1.0</td>
-</tr>
-<tr>
-<td>2855908</td>
-<td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
-To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15-5.0.1</td>
 <td>5.1.0</td>
 </tr>
 <tr>
@@ -2862,7 +2902,7 @@ To work around this issue, manually restart WJH with the {{sudo systemctl restar
 <tr>
 <td>2743186</td>
 <td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
-<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td>3.7.15-3.7.16, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4349,6 +4389,21 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3082555</td>
+<td>CVE-2022-29824: several buffer handling functions in buf.c (xmlBuf*) and tree.c (xmlBuffer*) don't check for integer overflows. This can result in out-of-bounds memory writes. Exploitation requires a victim to open a crafted, multi-gigabyte XML file. 
+Vulnerable: &lt;= 2.9.4+dfsg1-7+deb10u3
+Fixed: 2.9.4+dfsg1-7+deb10u4</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3081232</td>
+<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
+To work around this issue, disable, then enable the port.</td>
+<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3077737</td>
 <td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
 To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
@@ -4755,8 +4810,8 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
+<td>3.7.15-5.0.1</td>
+<td>5.1.0</td>
 </tr>
 <tr>
 <td>2896672</td>
@@ -4941,13 +4996,6 @@ MemoryError
 </td>
 <td>3.7.15-4.4.1</td>
 <td>4.4.2-4.4.3</td>
-</tr>
-<tr>
-<td>2855908</td>
-<td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
-To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15-5.0.1</td>
-<td>5.1.0</td>
 </tr>
 <tr>
 <td>2854787</td>
@@ -5314,7 +5362,7 @@ Fixed: 1.0.28-6+deb10u1</td>
 <tr>
 <td>2743186</td>
 <td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
-<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td>3.7.15-3.7.16, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>

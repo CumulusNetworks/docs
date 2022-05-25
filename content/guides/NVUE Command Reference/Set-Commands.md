@@ -22,20 +22,20 @@ N/A
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `nexthop-group`| Next hop group configuration.|
-| `pbr`| Global PBR configuration. |
-| `policy`| Router policy configurtion.|
-| `bgp`| Global BGP configuration.|
-| `ospf`| Global OSPF configuration.|
-| `pim`| GlobalPIM configuration.|
-| `igmp`| Global IGMP configuration.|
-| `vrrp`| Global VRRP configuration.|
-| `vrr`:| Global VRR configuration.|
-| `adaptive-routing`| Adaptive routing configuration.|
+| `nexthop-group`| Configures next hop groups.|
+| `pbr`| Configures global PBR (Policy-based Routing) settings. |
+| `policy`| Configures router policies.|
+| `bgp`| Configures global BGP (Border Gateway Protocol) settings.|
+| `ospf`| Configures global OSPF (Open Shortest Path First) settings.|
+| `pim`| Configures global PIM (Protocol Independent Multicast) settings.|
+| `igmp`| Configures global IGMP (Internet Group Management Protocol) settings.|
+| `vrrp`| Configures global VRRP (Virtual Router Redundancy) settings.|
+| `vrr`:| Configures global VRR (Virtual Router Redundancy Protocol) settings.|
+| `adaptive-routing`| Configures adaptive routing settings.|
 
 **Version History**
 
-Introduced in Cumulus Linux 4.4.0
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set router nexthop-group \<nexthop-group-id\>
 
@@ -63,7 +63,7 @@ N/A
 
 **Version History**
 
-Introduced in Cumulus Linux 4.4.0
+Introduced in Cumulus Linux 5.0.0
 
 **Example**
 
@@ -92,14 +92,14 @@ N/A
 
 **Attributes**
 
-| Attribute |  Description   |
-| --------- | -------------- |
-|  `interface`| Configures the interface to use for egress. If you do not specify an interface, the switch determines it automatically. This attribute is only valid for IPv4 or IPv6 addresses. |
+| Atrribute |  Description   |
+| ---------  | -------------- |
+|  `interface`| Configures the interface to use for egress. If you do not specify an interface, the switch determines the interface automatically. This attribute is only valid for IPv4 or IPv6 addresses. |
 | `vrf` | Configures the VRF to use for egress. If you do not specify the VRF, the switch uses the VRF that the route uses. This attribute is only valid for IPv4 or IPv6 addresses. |
 
 **Version History**
 
-Introduced in Cumulus Linux 4.4.0
+Introduced in Cumulus Linux 5.0.0
 
 **Example**
 
@@ -109,7 +109,7 @@ cumulus@leaf04:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32
 
 ## nv set router pbr
 
-Configures global PBR settings.
+Configures global PBR ((Policy-based Routing) settings.
 
 **Usage**
 
@@ -121,8 +121,8 @@ N/A
 
 **Attributes**
 
-| Attribute |  Description   |
-| --------- | -------------- |
+| Atrribute |  Description   |
+| ---------  | -------------- |
 | `map`| Configures PBR policies.|
 | `enable`| Turns the PBR `on` or `off`. The default is `off`. |
 
@@ -146,13 +146,13 @@ N/A
 
 **Attributes**
 
-| Attribute |  Description   |
-| --------- | -------------- |
-| `rule`| The PBR map rule. |
+| Atrribute |  Description   |
+| ---------  | -------------- |
+| `rule`| Configures the PBR map rule. |
 
 **Version History**
 
-Introduced in Cumulus Linux 4.4.0
+Introduced in Cumulus Linux 5.0.0
 
 **Example**
 
@@ -181,14 +181,14 @@ N/A
 
 **Attributes**
 
-| Attribute |  Description   |
-| --------- | -------------- |
+| Atrribute |  Description   |
+| ---------  | -------------- |
 | match     |  Configures the PBR match criteria. |
 | action    |  Configures the PBR set criteria.|
 
 **Version History**
 
-Introduced in Cumulus Linux 4.4.0
+Introduced in Cumulus Linux 5.0.0
 
 **Example**
 
@@ -198,7 +198,7 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 10
 
 ## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match
 
-Configures the match criteria for the route map rule.
+Configures the match criteria you want to use for the route map rule.
 
 **Usage**
 
@@ -217,16 +217,16 @@ N/A
 
 **Attributes**
 
-| Attribute |  Description   |
-| --------- | -------------- |
-| `destination-ip` |  Configures the destination IP prefix. |
+| Atrribute |  Description   |
+| ---------  | -------------- |
+| `destination-ip` |  Configures the switch to match a destination IP prefix. |
 | `dscp` | Configures the switch to match packets according to the DSCP field in the IP header. The DSCP value can be an integer between 0 and 63 or the DSCP codepoint name.   |
 | `ecn`  | Configures the switch to match packets according to the ECN field in the IP header. The ECN value can be an integer between 0 and 3. |
-| `source-ip`  |  Configures the source IP prefix. |
+| `source-ip`  |  Configures the switch to match a source IP prefix. |
 
 **Version History**
 
-Introduced in Cumulus Linux 4.4.0
+Introduced in Cumulus Linux 5.0.0
 
 **Example**
 
@@ -255,7 +255,7 @@ N/A
 
 **Version History**
 
-Introduced in Cumulus Linux 4.4.0
+Introduced in Cumulus Linux 5.0.0
 
 **Example**
 
@@ -284,7 +284,7 @@ N/A
 
 **Version History**
 
-Introduced in Cumulus Linux 4.4.0
+Introduced in Cumulus Linux 5.0.0
 
 **Example**
 
@@ -294,7 +294,7 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 match ecn 3
 
 ## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> action
 
-PBR map rule action
+Configures the action you want the PBR map rule to take, such as apply a net hop group or a VRF to a policy.
 
 **Usage**
 
@@ -315,12 +315,12 @@ N/A
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `nexthop-group` | Configures the route with the nexthop-group. |
+| `nexthop-group` | Configures the route through the nexthop-group. |
 | `vrf`     | Configures the route through a VRF. |
 
 **Version History**
 
-Introduced in Cumulus Linux 4.4.0
+Introduced in Cumulus Linux 5.0.0
 
 **Example**
 
@@ -330,7 +330,7 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 ## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> action nexthop-group \<nexthop-group-id\>
 
-Configures the next hop group to apply to the policy map. You must first configure the next hop group, then apply the group to the policy map.
+Configures the next hop group you want to apply to the policy map. You must first configure the next hop group, then apply the group to the policy map.
 
 **Usage**
 
@@ -346,11 +346,11 @@ N/A
 | ---------  | -------------- |
 | `<pbr-map-id>`  |  The route map name. |
 | `<rule-id>`     |  The PBR rule number. |
-| `<nexthop-group-id>`  | The nexthop group name. |
+| `<nexthop-group-id>`  | The next hop group name. |
 
 **Version History**
 
-Introduced in Cumulus Linux 4.4.0
+Introduced in Cumulus Linux 5.0.0
 
 **Example**
 
@@ -360,7 +360,7 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action nexthop-group gr
 
 ## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> action vrf \<vrf-name\>
 
-Configures the VRF to apply to the policy map. If you do not set a VRF, the rule uses the VRF table the interface uses.
+Configures the VRF you want to apply to the policy map. If you do not set a VRF, the rule uses the VRF table set for the interface.
 
 **Usage**
 
@@ -376,11 +376,11 @@ N/A
 | ---------  | -------------- |
 | `<pbr-map-id>`  |  The route map name. |
 | `<rule-id>`     |  The PBR rule number. |
-| `<vrf-name>`    |  The VRF you want tot use. |
+| `<vrf-name>`    |  The VRF you want to apply to the policy map. |
 
 **Version History**
 
-Introduced in Cumulus Linux 4.4.0
+Introduced in Cumulus Linux 5.0.0
 
 **Example**
 
@@ -390,224 +390,379 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 ## nv set router policy
 
+Configures a router policy.
+
 **Usage**
 
-  nv set router policy [options] [<attribute> ...]
+`nv set router policy [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  A router
+N/A
 
 **Attributes**
 
-  community-list        Community lists
+| Atrribute  |  Description   |
+| ---------  | -------------- |
+| `community-list` |  Configures the community lists. |
+| `as-path-list` | Configures the AS Path lists. |
+| `ext-community-list` | Configures the Extended Community lists. |
+| `large-community-list` | Configures the Large Community lists. |
+| `prefix-list` | Configures the prefix list rules. |
+| `route-map` | Configures route maps. |
 
-  as-path-list          AS Path lists
+**Version History**
 
-  ext-community-list    Extended Community lists
+Introduced in Cumulus Linux 5.0.0
 
-  large-community-list  Large Community lists
+## nv set router policy community-list \<list-id\>
 
-  prefix-list           Prefix list rules
-
-  route-map             Collection of Route Maps
-
-## nv set router policy community-list <list-id>
+Configures the community list you want to use to match BGP community policies. The BGP community list can be either standard or expanded. The standard BGP community list is a pair of values (such as 100:100) or one of four BGP default communities (internet, local-AS, no-advertise, no-export). When the neighbor receives the prefix, it examines the community value and takes action accordingly, such as permitting or denying the community member in the routing policy.
 
 **Usage**
 
-  nv set router policy community-list <list-id> [options] [<attribute> ...]
+`nv set router policy community-list <list-id> [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  A community list is used for matching BGP community policies.
+N/A
 
 **Identifiers**
 
-  <list-id>   Community List ID
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<list-id>` |  The community list name. |
 
 **Attributes**
 
-  rule        Community List rule
+| Atrribute |  Description   |
+| ---------  | -------------- |
+| `rule` | | Configures the community list rule. |
 
-## nv set router policy community-list <list-id> rule <rule-id>
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy community-list 
+```
+
+## nv set router policy community-list \<list-id\> rule \<rule-id\>
+
+Configures the community list match criteria and the rule action.
 
 **Usage**
 
-  nv set router policy community-list <list-id> rule <rule-id> [options] [<attribute> ...]
+`nv set router policy community-list <list-id> rule <rule-id> [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  Community list Matching criteria and action rule
+N/A
 
 **Identifiers**
 
-  <list-id>   Community List ID
-  <rule-id>   Prefix List rule number
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<list-id>`  | The community list name. |
+| `<rule-id>`  | The prefix list rule number. |
 
 **Attributes**
 
-  community   Community expression
+| Atrribute |  Description   |
+| --------- | -------------- |
+| `community` | Configures the community expression. |
+| `action`    | Configures the action you want to take for a community list match (permit or deny). |
 
-  action      Action to be taken for community list match
+**Version History**
 
-## nv set router policy community-list <list-id> rule <rule-id> community <community-id>
+Introduced in Cumulus Linux 5.0.0
 
-**Usage**
+**Example**
 
-  nv set router policy community-list <list-id> rule <rule-id> community <community-id> [options]
+```
+cumulus@leaf04:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 action permit
+```
 
-### Description
+## nv set router policy community-list \<list-id\> rule \<rule-id\> community \<community-id\>
 
-  A community name
-
-**Identifiers**
-
-  <list-id>       Community List ID
-  <rule-id>       Prefix List rule number
-  <community-id>  Community number in AA:NN format or well known name
-
-## nv set router policy as-path-list <list-id>
+Configures the name of the community you want to match.
 
 **Usage**
 
-  nv set router policy as-path-list <list-id> [options] [<attribute> ...]
+`nv set router policy community-list <list-id> rule <rule-id> community <community-id> [options]`
 
-### Description
+**Default Setting**
 
-  An AS Path list is used for matching BGP AS Path
+N/A
 
 **Identifiers**
 
-  <list-id>   AS Path List ID
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<list-id>` | The community list name. |
+| `<rule-id>` | The prefix list rule number. |
+| `<community-id>` | The community number in AA:NN format or the well-known name. |
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 community 100:100
+```
+
+## nv set router policy as-path-list \<list-id\>
+
+Configures the AS path access list to permit or deny routes according to the AS path.
+
+**Usage**
+
+`nv set router policy as-path-list <list-id> [options] [<attribute> ...]`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<list-id>` | The AS path list name.|
 
 **Attributes**
 
-  rule        AS Path List rule
+| Atrribute |  Description   |
+| --------- | -------------- |
+| `rule`    |  Configures the AS path list rule. |
 
-## nv set router policy as-path-list <list-id> rule <rule-id>
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy as-path-list mylist
+```
+
+## nv set router policy as-path-list \<list-id\> rule \<rule-id\>
+
+Configures the AS Path list match criteria and the rule action, such as permit or deny.
 
 **Usage**
 
-  nv set router policy as-path-list <list-id> rule <rule-id> [options] [<attribute> ...]
+`nv set router policy as-path-list <list-id> rule <rule-id> [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  AS Path list Matching criteria and action rule
+N/A
 
 **Identifiers**
 
-  <list-id>   AS Path List ID
-  <rule-id>   Prefix List rule number
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<list-id>` |  The AS Path list name. |
+| `<rule-id>` |  The prefix list rule number. |
 
 **Attributes**
 
-  action      Action to be taken for AS path list match
+| Atrribute |  Description   |
+| ---------  | -------------- |
+| `action` |  Configures the action you want to take when the AS paths in the list match, such as permit or deny. |
+| `aspath-exp` | Configures the regular expression you want to use to match BGP AS paths. |
 
-  aspath-exp  Regular expression to match BGP AS Paths
+**Version History**
 
-## nv set router policy as-path-list <list-id> rule <rule-id> aspath-exp <bgp-regex>
+Introduced in Cumulus Linux 5.0.0
 
-**Usage**
+**Example**
 
-  nv set router policy as-path-list <list-id> rule <rule-id> aspath-exp [options] <bgp-regex>
+```
+cumulus@leaf04:mgmt:~$ nv set router policy as-path-list mylist rule 10
+```
 
-### Description
+## nv set router policy as-path-list \<list-id\> rule \<rule-id\> aspath-exp \<bgp-regex\>
 
-  Regular expression to match BGP AS Paths
-
-**Identifiers**
-
-  <list-id>   AS Path List ID
-  <rule-id>   Prefix List rule number
-
-## nv set router policy ext-community-list <list-id>
+Configures the regular expression you want to use to match BGP AS paths.
 
 **Usage**
 
-  nv set router policy ext-community-list <list-id> [options] [<attribute> ...]
+`nv set router policy as-path-list <list-id> rule <rule-id> aspath-exp [options] <bgp-regex>`
 
-### Description
+**Default Setting**
 
-  A Extended Community list used for matching BGP communities
+N/A
 
 **Identifiers**
 
-  <list-id>   Community List ID
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<list-id>` | The AS Path list name. |
+| `<rule-id> ` | Th prefix list rule number. |
+| `bgp-regex` | The regular expression you want to use to match BGP AS paths.|
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy as-path-list mylist rule 10 aspath-exp ^100_
+```
+
+## nv set router policy ext-community-list \<list-id\>
+
+Configures an extended community list you want to use to match BGP communities.
+
+**Usage**
+
+`nv set router policy ext-community-list <list-id> [options] [<attribute> ...]`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<list-id>` | The extended community list name. |
 
 **Attributes**
 
-  rule        Extended Community List rule
+| Atrribute |  Description   |
+| ---------  | -------------- |
+| `rule` | Configures the extended community list rule. |
 
-## nv set router policy ext-community-list <list-id> rule <rule-id>
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy ext-community-list mylist
+```
+
+## nv set router policy ext-community-list \<list-id\> rule \<rule-id\>
+
+Configures the extended community list match criteria and rule action.
 
 **Usage**
 
-  nv set router policy ext-community-list <list-id> rule <rule-id> [options] [<attribute> ...]
+`nv set router policy ext-community-list <list-id> rule <rule-id> [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  Extended Community list Matching criteria and action rule
+N/A
 
 **Identifiers**
 
-  <list-id>      Community List ID
-  <rule-id>      Prefix List rule number
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<list-id>` |  The community list name. |
+| `<rule-id>` |  The prefix list rule number. |
 
 **Attributes**
 
-  ext-community  Extended Community expression
+| Atrribute |  Description   |
+| ---------  | -------------- |
+| `ext-community` |  Extended Community expression |
+| `action `  | The action you want to take when extended communities in the list match, such as permit or deny.
 
-  action         Action to be taken for extended community list match
+**Version History**
 
-## nv set router policy ext-community-list <list-id> rule <rule-id> ext-community
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy ext-community-list mylist rule 10
+```
+
+## nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community
+
+Configures the extended community name.
 
 **Usage**
 
-  nv set router policy ext-community-list <list-id> rule <rule-id> ext-community [options] [<attribute> ...]
+`nv set router policy ext-community-list <list-id> rule <rule-id> ext-community [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  A Extended community name
+N/A
 
 **Identifiers**
 
-  <list-id>   Community List ID
-  <rule-id>   Prefix List rule number
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<list-id>` |  The extended ommunity list name. |
+| `<rule-id>` | The prefix list rule number. |
 
 **Attributes**
 
-  rt          Route Target Extended Community
+| Atrribute |  Description   |
+| ---------  | -------------- |
+| `rt ` | Configures the route target extended community. |
+| `soo ` | Configures the site-of-origin (SoO) extended community. |
 
-  soo         Site of Origin Extended Community
+**Version History**
 
-## nv set router policy ext-community-list <list-id> rule <rule-id> ext-community rt <ext-community-id>
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ext-community 64510:2
+```
+
+## nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community rt \<ext-community-id\>
+
+Configures the route target extended community.
 
 **Usage**
 
-  nv set router policy ext-community-list <list-id> rule <rule-id> ext-community rt <ext-community-id> [options]
+`nv set router policy ext-community-list <list-id> rule <rule-id> ext-community rt <ext-community-id> [options]`
 
-### Description
+**Default Setting**
 
-  A extended community name
+N/A
 
 **Identifiers**
 
-  <list-id>           Community List ID
-  <rule-id>           Prefix List rule number
-  <ext-community-id>  Community number in AA:NN or IP:NN format
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<list-id>` |  The community list name. |
+| `<rule-id>` |  The prefix list rule number. |
+| `<ext-community-id>` | The community number in AA:NN or IP:NN format. |
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ext-community rt 64510:1111
+```
 
 ## nv set router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id>
+
+Configures the site-of-origin (SoO) extended community to identify routes that originate from a certain site so that you can prevent readvertising that prefix back to the source site.
 
 **Usage**
 
   nv set router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id> [options]
 
-### Description
-
-  A extended community name
-
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <list-id>           Community List ID
   <rule-id>           Prefix List rule number
@@ -625,9 +780,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <list-id>   Community List ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   rule        Large Community List rules
 
@@ -643,10 +804,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <list-id>        Community List ID
   <rule-id>        Prefix List rule number
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   large-community  Large Community expression
 
@@ -664,6 +831,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <list-id>             Community List ID
   <rule-id>             Prefix List rule number
   <large-community-id>  Community number in AA:BB:CC format
@@ -680,9 +850,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <prefix-list-id>  Prefix List ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   rule              Prefix List rule
 
@@ -700,10 +876,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <prefix-list-id>  Prefix List ID
   <rule-id>         Prefix List rule number
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   match             Prefix List rule
 
@@ -721,11 +903,17 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <prefix-list-id>  Prefix List ID
   <rule-id>         Prefix List rule number
   <match-id>        ip v4/v6 prefix, or any
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   max-prefix-len    Maximum prefix length to be matched
 
@@ -743,6 +931,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <prefix-list-id>  Prefix List ID
   <rule-id>         Prefix List rule number
   <match-id>        ip v4/v6 prefix, or any
@@ -758,6 +949,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Maximum prefix length to be matched
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <prefix-list-id>  Prefix List ID
   <rule-id>         Prefix List rule number
@@ -775,9 +969,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   rule            Route Map rule
 
@@ -793,10 +993,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   match           Route Map match
 
@@ -816,10 +1022,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>        Route Map ID
   <rule-id>             Sequence to insert or delete from the route-map
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   as-path-list          BGP AS path list
 
@@ -873,6 +1085,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
@@ -887,6 +1102,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   IP address prefix length
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
@@ -903,6 +1121,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
@@ -917,6 +1138,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   IP nexthop prefix length
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
@@ -933,6 +1157,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
@@ -947,6 +1174,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   BGP AS path list
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
@@ -963,6 +1193,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
@@ -977,6 +1210,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   BGP large community list
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
@@ -993,6 +1229,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
@@ -1007,6 +1246,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Tag
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
@@ -1023,6 +1265,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
@@ -1037,6 +1282,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   VNI ID
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
@@ -1053,6 +1301,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
@@ -1068,10 +1319,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>        Route Map ID
   <rule-id>             Sequence to insert or delete from the route-map
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   as-path-prepend       AS Path prepend
 
@@ -1131,10 +1388,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   as              AS number
 
@@ -1152,6 +1415,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
@@ -1167,6 +1433,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
@@ -1181,6 +1450,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   BGP Community
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
@@ -1198,6 +1470,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>        Route Map ID
   <rule-id>             Sequence to insert or delete from the route-map
   <large-community-id>  Large Community number
@@ -1214,11 +1489,17 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
   <asn-id>        Autonomous number
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   address         Set of IPv4 addresses
 
@@ -1233,6 +1514,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   An IPv4 address
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <route-map-id>     Route Map ID
   <rule-id>          Sequence to insert or delete from the route-map
@@ -1251,6 +1535,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
@@ -1265,6 +1552,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Route target extended community
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
@@ -1282,6 +1572,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
@@ -1297,6 +1590,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Local preference
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
@@ -1314,6 +1610,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
@@ -1328,6 +1627,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Tag value for routing protocol
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
@@ -1344,6 +1646,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
@@ -1358,6 +1663,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   IPv6 nexthop local address
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
@@ -1374,10 +1682,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   deny            Deny action
 
@@ -1395,6 +1709,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
@@ -1410,10 +1727,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   exit-policy     Permit action exit policy
 
@@ -1429,10 +1752,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   rule            jump to specific rule
 
@@ -1448,6 +1777,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <route-map-id>  Route Map ID
   <rule-id>       Sequence to insert or delete from the route-map
 
@@ -1462,6 +1794,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   BGP global configuration.
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   graceful-restart     BGP Graceful restart global configuration.
 
@@ -1490,6 +1825,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   BGP Graceful restart global configuration.
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   mode                  Role of router during graceful restart. helper-only, router is in helper role. full, router is in both helper and restarter role. off, GR is disabled for the router
@@ -1541,6 +1879,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   BGP Graceful restart global configuration.
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   establish-wait-time  Maximum time to wait to establish BGP sessions. Any
 
@@ -1602,6 +1943,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
 
   timers      Timers
 
@@ -1623,6 +1967,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
 
   lsa         LSA timers
 
@@ -1641,6 +1988,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   LSA timers
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   min-arrival  Minimum delay in receiving new version of a LSA.
@@ -1678,6 +2028,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   SPF timers
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   delay         Delay (msec) from first change received till SPF calculation.
 
@@ -1737,6 +2090,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
   timers      Timers
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
@@ -1754,6 +2110,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Timers
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   hello-interval       PIM Hello packets periodic interval. Holdtime is 3.5
@@ -1844,6 +2203,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
 ## nv set router vrrp
@@ -1857,6 +2219,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   VRRP global configuration.
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -1898,6 +2263,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
 ## nv set router adaptive-routing
@@ -1911,6 +2279,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Adaptive routing global configuration.
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -1926,6 +2297,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
   hardware    The platform's hardware
 
 ## nv set platform hardware
@@ -1939,6 +2313,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Set of components making up the platform.
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   component   A component in the platform.
 
@@ -1954,9 +2331,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <component-id>  Component identifier
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   linecard        Properties of a linecard component
 
@@ -1977,9 +2360,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <component-id>  Component identifier
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   provision       Provision linecard types
 
@@ -1995,6 +2384,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
   domain      Bridge domains
 
 ## nv set bridge domain <domain-id>
@@ -2009,9 +2401,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <domain-id>      Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   stp              attributes related to global stp
 
@@ -2041,9 +2439,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <domain-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   state        The state of STP on the bridge
 
@@ -2061,6 +2465,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <domain-id>  Domain
 
 ## nv set bridge domain <domain-id> multicast
@@ -2075,9 +2482,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <domain-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   snooping     IGMP/MLD snooping configuration
 
@@ -2093,9 +2506,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <domain-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   querier      IGMP/MLD querier configuration
 
@@ -2113,9 +2532,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <domain-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -2131,10 +2556,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <domain-id>  Domain
   <vid>        VLAN ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   vni          L2 VNI
 
@@ -2154,11 +2585,17 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <domain-id>   Domain
   <vid>         VLAN ID
   <vni-id>      VxLAN ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   flooding      Handling of BUM traffic
@@ -2177,11 +2614,17 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <domain-id>           Domain
   <vid>                 VLAN ID
   <vni-id>              VxLAN ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   head-end-replication  BUM traffic is replicated and individual copies sent to remote destinations.
 
@@ -2201,6 +2644,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <domain-id>  Domain
   <vid>        VLAN ID
   <vni-id>     VxLAN ID
@@ -2218,6 +2664,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <domain-id>  Domain
   <vid>        VLAN ID
   <vni-id>     VxLAN ID
@@ -2234,10 +2683,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <domain-id>  Domain
   <vid>        VLAN ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -2253,10 +2708,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <domain-id>  Domain
   <vid>        VLAN ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   snooping     IGMP/MLD snooping configuration
 
@@ -2272,10 +2733,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <domain-id>  Domain
   <vid>        VLAN ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   querier      IGMP/MLD querier configuration
 
@@ -2291,10 +2758,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <domain-id>  Domain
   <vid>        VLAN ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   source-ip    Source IP to use when sending IGMP/MLD queries.
 
@@ -2309,6 +2782,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Source IP to use when sending IGMP/MLD queries.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <domain-id>  Domain
   <vid>        VLAN ID
@@ -2325,6 +2801,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <domain-id>  Domain
 
 ## nv set bridge domain <domain-id> encap 802.1Q
@@ -2338,6 +2817,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Interfaces added to this domain will, by default, use this encapsulation.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <domain-id>  Domain
 
@@ -2353,6 +2835,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <domain-id>  Domain
 
 ## nv set mlag
@@ -2366,6 +2851,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Global Multi-chassis Link Aggregation properties
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   lacp-conflict  Configure the mlag lacp-conflict parameters
 
@@ -2405,9 +2893,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <backup-ip>  Backup IP of MLAG peer
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   vrf          The backup IP's VRF.
 
@@ -2422,6 +2916,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   The backup IP's VRF.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <backup-ip>  Backup IP of MLAG peer
 
@@ -2457,6 +2954,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
   route-advertise  Route advertising
 
   dad              Advertise
@@ -2479,6 +2979,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
   default-gateway  This configuration should be turned 'on' only in a centralized-routing deployment and only on the centralized GW router(s). If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes with the gateway extended community. The purpose is for remote L2-only VTEPs to do  ARP suppression and for hosts to learn of the gateway's IP to MAC binding.
 
   nexthop-setting  Specifies the next hop IP and MAC (Router MAC) to use in the advertisement of type-5 routes and “self” type-2 routes (“self” = SVI IP/MAC). Relevant only in an MLAG configuration.
@@ -2496,6 +2999,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Duplicate address detection
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   duplicate-action    Action to take when a MAC is flagged as a possible duplicate. If 'warning-only', generates a log message. If 'freeze', further move events for the MAC will not be acted upon.
 
@@ -2517,6 +3023,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
   freeze      Further move events for the MAC will not be acted upon.
 
 ## nv set evpn dad duplicate-action freeze
@@ -2530,6 +3039,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Advertise
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   duration    Freeze the MAC for the specified duration or, if 'permanent'
 
@@ -2567,9 +3079,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <evi-id>         VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   route-advertise  Route advertise
 
@@ -2591,9 +3109,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <evi-id>         VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   default-gateway  If 'auto', inherit from global config. This is the default. This configuration should be turned 'on' only in a centralized-routing deployment and only on the centralized GW router(s). If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes with the gateway extended community. The purpose is for remote L2-only VTEPs to do ARP suppression and for hosts to learn of the gateway's IP to MAC binding.
@@ -2612,9 +3136,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <evi-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   export      Route targets to export
@@ -2635,6 +3165,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <evi-id>    VRF
   <rt-id>     Route target ID
 
@@ -2649,6 +3182,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   A route target identifier
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <evi-id>    VRF
   <rt-id>     Route target ID
@@ -2665,6 +3201,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <evi-id>    VRF
   <rt-id>     Route target ID
 
@@ -2679,6 +3218,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Multihoming global configuration parameters
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   ead-evi-route      Ethernet Auto-discovery per EVPN instance routes
 
@@ -2704,6 +3246,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
   rx          Disable EAD-per-EVI at receiving end.
 
   tx          Suppress advertisement of EAD-per-EVI routes.
@@ -2719,6 +3264,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Multihoming interface segment
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   df-preference  Designated forwarder preference value.
@@ -2787,6 +3335,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
   roce        Properties associated with the RDMA over Converged Ethernet (RoCE) feature.
 
 ## nv set qos roce
@@ -2800,6 +3351,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Properties associated with the RDMA over Converged Ethernet (RoCE) feature.
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable        Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -2829,9 +3383,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   router          interface router
@@ -2874,9 +3434,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>    Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   pbr               PBR interface configuration.
 
@@ -2898,9 +3464,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   map             PBR map to use on this interface
 
@@ -2915,6 +3487,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Interface Pbr map
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
   <pbr-map-id>    Route Map ID
@@ -2931,9 +3506,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   timers          Timers configuration
@@ -2970,9 +3551,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>       Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   dead-interval        Length of time, in seconds, without a hello before  declaring the neighbor dead. If `minimal`, `hello-multiplier` must be set.
@@ -2997,6 +3584,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router ospf timers hello-interval 1-65535
@@ -3010,6 +3600,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   How often to transmit a hello packet, in seconds.  Only valid if `dead-interval` is not `minimal`.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
 
@@ -3025,6 +3618,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router ospf timers transmit-delay 1-65535
@@ -3038,6 +3634,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Delay before sending a new lsa, in seconds
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
 
@@ -3053,9 +3652,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>      Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable              Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -3075,6 +3680,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router ospf authentication md5-key <value>
@@ -3088,6 +3696,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   md5 key
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
 
@@ -3103,9 +3714,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>        Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -3127,6 +3744,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router ospf bfd min-receive-interval 50-60000
@@ -3140,6 +3760,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Minimum receive interval in milliseconds
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
 
@@ -3155,6 +3778,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router ospf priority 0-255
@@ -3168,6 +3794,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Eligibility of this router to become DR on multi-access network
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
 
@@ -3183,9 +3812,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   timers          Timers
 
@@ -3213,9 +3848,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   hello-interval  PIM Hello packets periodic interval. If "auto", inherit from the VRF. This is the default. Holdtime is 3.5 times the hello-interval, the amount of time neighbor must kept in reachable state.
@@ -3232,9 +3873,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>        Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -3256,6 +3903,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router pim bfd min-receive-interval 50-60000
@@ -3269,6 +3919,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Minimum receive interval in milliseconds
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
 
@@ -3284,6 +3937,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router pim address-family
@@ -3298,9 +3954,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   ipv4-unicast    IPv4 unicast address family
 
@@ -3316,9 +3978,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>        Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   allow-rp              Allow RP feature, which allows RP address to be accepts for the received
 
@@ -3338,9 +4006,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable          Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -3362,6 +4036,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> router adaptive-routing
@@ -3376,9 +4053,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>        Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -3396,6 +4079,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> bond
@@ -3410,9 +4096,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   member          Set of bond members
 
@@ -3440,6 +4132,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
   <member-id>     Bond memer interface
 
@@ -3455,9 +4150,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   lacp-conflict   Configure the mlag lacp-conflict parameters
@@ -3478,6 +4179,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> bond down-delay 0-65535
@@ -3491,6 +4195,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   bond down delay
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
 
@@ -3506,6 +4213,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> bridge
@@ -3520,9 +4230,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   domain          Bridge domains on this interface
 
@@ -3538,10 +4254,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
   <domain-id>     Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   stp             attributed related to a stpd interface
 
@@ -3565,10 +4287,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
   <domain-id>     Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   admin-edge      Edge state of the port
 
@@ -3594,6 +4322,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
   <domain-id>     Domain
   <vid>           VLAN ID, or all
@@ -3610,9 +4341,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>      Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   address             ipv4 and ipv6 address
@@ -3645,6 +4382,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
   <ip-prefix-id>  IPv4 or IPv6 address and route prefix in CIDR notation
 
@@ -3660,9 +4400,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   address         Virtual addresses with prefixes
 
@@ -3686,6 +4432,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
   <ip-prefix-id>  IPv4 or IPv6 address and route prefix in CIDR notation
 
@@ -3700,6 +4449,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   An IP address
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>   Interface
   <ip-address-id>  IPv4 or IPv6 address
@@ -3716,9 +4468,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   forward         Enable or disable forwarding.
 
@@ -3734,9 +4492,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable          Turn the feature 'on' or 'off'. The default is 'on'.
 
@@ -3754,9 +4518,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>        Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   static-group          IGMP static mutlicast mroutes
 
@@ -3782,10 +4552,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>     Interface
   <static-group-id>  IGMP static multicast mroute destination
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   source-address     IGMP static multicast mroute source.
 
@@ -3800,6 +4576,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   IGMP static multicast mroute source.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>     Interface
   <static-group-id>  IGMP static multicast mroute destination
@@ -3816,6 +4595,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ip igmp query-max-response-time 10-250
@@ -3831,6 +4613,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ip igmp last-member-query-interval 1-255
@@ -3844,6 +4629,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Last member query interval.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
 
@@ -3859,9 +4647,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   virtual-router  Group of virtual gateways implemented with VRRP
 
@@ -3879,10 +4673,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>        Interface
   <virtual-router-id>   Virtual Router IDentifier (VRID)
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   address               A set of virtual addresses for VRRPv3
@@ -3907,6 +4707,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>       Interface
   <virtual-router-id>  Virtual Router IDentifier (VRID)
   <ip-address-id>      IPv4 or IPv6 address
@@ -3923,9 +4726,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>        Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   rdnss                 Recursive DNS server addresses to be advertised using
 
@@ -3955,10 +4764,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>     Interface
   <ipv6-address-id>  IPv6 address
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   lifetime           Maximum time in seconds for which the server may be used for domain name resolution
 
@@ -3974,10 +4789,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>      Interface
   <ipv6-prefix-id>    IPv6 address and route prefix in CIDR notation
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   autoconfig          Indicates to hosts on the local link that the specified  prefix can be used for v6 autoconfiguration
@@ -4002,6 +4823,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>    Interface
   <ipv6-prefix-id>  IPv6 address and route prefix in CIDR notation
 
@@ -4016,6 +4840,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Time in seconds that addresses generated from a prefix remain preferred
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>    Interface
   <ipv6-prefix-id>  IPv6 address and route prefix in CIDR notation
@@ -4032,11 +4859,17 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>    Interface
   <domain-name-id>  The domain portion of a hostname (RFC 1123) or an
                     internationalized hostname (RFC 5890).
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   lifetime          Maximum time in seconds for which the domain suffix may be used for domain name resolution
@@ -4053,9 +4886,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>     Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable             Turn the feature 'on' or 'off'. The default is 'on'.
 
@@ -4091,6 +4930,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ip neighbor-discovery router-advertisement lifetime 0-9000
@@ -4105,6 +4947,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ip neighbor-discovery router-advertisement reachable-time 0-3600000
@@ -4118,6 +4963,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Time in milliseconds that a IPv6 node is considered reachable
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
 
@@ -4134,6 +4982,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ip neighbor-discovery router-advertisement hop-limit 0-255
@@ -4147,6 +4998,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Value in hop count field in IP header of the outgoing router advertisement packet
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
 
@@ -4162,9 +5016,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   lifetime        Lifetime of a home agent in seconds
@@ -4183,6 +5043,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ip neighbor-discovery home-agent preference 0-65535
@@ -4196,6 +5059,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Home agent's preference value that is used to order the addresses returned in the home agent address discovery reply.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
 
@@ -4211,6 +5077,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ip vrf <vrf-name>
@@ -4224,6 +5093,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Virtual routing and forwarding
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
 
@@ -4239,9 +5111,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>       Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   dcbx-ets-config-tlv  DCBX ETS config TLV flag
 
@@ -4261,9 +5139,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   state           The state of the interface
@@ -4294,9 +5178,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   mab             bypass MAC authentication
 
@@ -4314,6 +5204,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> evpn
@@ -4328,9 +5221,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   multihoming     Multihoming interface configuration parameters
 
@@ -4346,9 +5245,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   segment         Multihoming interface segment
 
@@ -4366,9 +5271,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   enable          Turn the feature 'on' or 'off'. The default is 'off'.
@@ -4393,6 +5304,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> evpn multihoming segment identifier <es-identifier>
@@ -4406,6 +5320,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Ethernet segment identifier.  This must be unique for each segment and match other bonds in the segment.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
 
@@ -4421,10 +5338,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
   <acl-id>        ACL ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   inbound         ACL applied for inbound direction
 
@@ -4442,10 +5365,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
   <acl-id>        ACL ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   control-plane   ACL applied for control plane
 
@@ -4460,6 +5389,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   State details
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
   <acl-id>        ACL ID
@@ -4476,10 +5408,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
   <acl-id>        ACL ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   control-plane
 
@@ -4494,6 +5432,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   State details
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
   <acl-id>        ACL ID
@@ -4510,9 +5451,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>     Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   timers             Interface PTP timerss
 
@@ -4544,9 +5491,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>      Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   announce-interval   Mean time interval between successive Announce messages. It's specified as a power of two in seconds.
 
@@ -4568,6 +5521,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ptp timers sync-interval -7-1
@@ -4581,6 +5537,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   The mean SyncInterval for multicast messages.  It's specified as a power of two in seconds.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
 
@@ -4596,6 +5555,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ptp timers announce-timeout 2-10
@@ -4609,6 +5571,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   The number of announceIntervals that have to pass without receipt of an Announce message before the occurrence of the timeout event
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
 
@@ -4624,6 +5589,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> ptp delay-mechanism end-to-end
@@ -4637,6 +5605,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Mode in which PTP message is transmitted.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
 
@@ -4652,6 +5623,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> tunnel
@@ -4666,9 +5640,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   dest-ip         Destination underlay IP address
 
@@ -4692,6 +5672,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> tunnel dest-ip <ipv4>
@@ -4705,6 +5688,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Destination underlay IP address
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
 
@@ -4720,6 +5706,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> tunnel mode gre
@@ -4733,6 +5722,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   tunnel mode
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
 
@@ -4748,6 +5740,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set interface <interface-id> description <value>
@@ -4761,6 +5756,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Details about the interface
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <interface-id>  Interface
 
@@ -4776,6 +5774,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <interface-id>  Interface
 
 ## nv set service
@@ -4789,6 +5790,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   A service
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   dns           collection of DNS
 
@@ -4820,9 +5824,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   server      Remote DNS servers
 
@@ -4837,6 +5847,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   A remote DNS server
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>         VRF
   <dns-server-id>  IPv4 or IPv6 address of a DNS server
@@ -4853,9 +5866,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   server      Remote DNS servers
 
@@ -4871,10 +5890,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>     VRF
   <server-id>  Hostname or IP address of a syslog server
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   port         Port number of the remote syslog server
 
@@ -4892,6 +5917,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>     VRF
   <server-id>  Hostname or IP address of a syslog server
 
@@ -4907,9 +5935,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   server      Remote NTP Servers
 
@@ -4929,10 +5963,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>     VRF
   <server-id>  Hostname or IP address of the NTP server
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   iburst       When the server is unreachable, send a burst of eight packets instead of the usual one.
 
@@ -4948,10 +5988,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>     VRF
   <server-id>  Hostname or IP address of the NTP server
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   iburst       When the server is unreachable, send a burst of eight packets instead of the usual one.
 
@@ -4967,6 +6013,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 ## nv set service dhcp-relay <vrf-id>
@@ -4981,9 +6030,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>             VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   server               DHCP servers
@@ -5006,6 +6061,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>     VRF
   <server-id>  DHCP server
 
@@ -5020,6 +6078,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   An interface on which DHCP relay is configured.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>        VRF
   <interface-id>  DHCP relay interface
@@ -5036,10 +6097,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>        VRF
   <interface-id>  DHCP relay giaddress interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   address         ipv4 address on giaddress interface
 
@@ -5055,9 +6122,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   interface   DHCP relay interfaces
 
@@ -5073,9 +6146,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   upstream    Configures DHCP relay on the interfaes.
 
@@ -5093,10 +6172,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>        VRF
   <interface-id>  DHCP relay interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   address         ipv6 address on interface
 
@@ -5111,6 +6196,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   ipv6 address on interface
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>        VRF
   <interface-id>  DHCP relay interface
@@ -5127,10 +6215,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>        VRF
   <interface-id>  DHCP relay interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   address         ipv6 address on interface
 
@@ -5145,6 +6239,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   ipv6 address on interface
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>        VRF
   <interface-id>  DHCP relay interface
@@ -5161,9 +6258,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <instance-id>      PTP instance number. It is used for management purpose.
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   acceptable-master  Collection of acceptable masters
 
@@ -5195,10 +6298,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <instance-id>  PTP instance number. It is used for management purpose.
   <clock-id>     Clock ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   alt-priority   Alternate priority
 
@@ -5215,6 +6324,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <instance-id>  PTP instance number. It is used for management purpose.
   <clock-id>     Clock ID
 
@@ -5230,9 +6342,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <instance-id>         PTP instance number. It is used for management purpose.
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   max-offset-threshold  Maximum offset threshold in nano seconds
 
@@ -5260,6 +6378,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <instance-id>  PTP instance number. It is used for management purpose.
 
 ## nv set service ptp <instance-id> monitor max-offset-threshold <value>
@@ -5273,6 +6394,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Maximum offset threshold in nano seconds
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <instance-id>  PTP instance number. It is used for management purpose.
 
@@ -5288,6 +6412,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <instance-id>  PTP instance number. It is used for management purpose.
 
 ## nv set service ptp <instance-id> monitor max-timestamp-entries 400-1000
@@ -5301,6 +6428,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Maximum timestamp entries allowed
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <instance-id>  PTP instance number. It is used for management purpose.
 
@@ -5316,6 +6446,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <instance-id>  PTP instance number. It is used for management purpose.
 
 ## nv set service ptp <instance-id> monitor max-violation-log-entries 8-128
@@ -5329,6 +6462,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Maximum violation log entries per set
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <instance-id>  PTP instance number. It is used for management purpose.
 
@@ -5344,6 +6480,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <instance-id>  PTP instance number. It is used for management purpose.
 
 ## nv set service ptp <instance-id> priority1 <value>
@@ -5357,6 +6496,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Priority1 attribute of the local clock
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <instance-id>  PTP instance number. It is used for management purpose.
 
@@ -5372,6 +6514,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <instance-id>  PTP instance number. It is used for management purpose.
 
 ## nv set service ptp <instance-id> domain 0-127
@@ -5385,6 +6530,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Domain number of the current syntonization
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <instance-id>  PTP instance number. It is used for management purpose.
 
@@ -5400,6 +6548,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <instance-id>  PTP instance number. It is used for management purpose.
 
 ## nv set service dhcp-server <vrf-id>
@@ -5414,9 +6565,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>            VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   interface           Assign DHCP options to clients directly attached to
 
@@ -5442,6 +6599,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>        VRF
   <interface-id>  DHCP client interface
 
@@ -5457,10 +6617,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
   <pool-id>             DHCP pool subnet.
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   domain-name-server    DHCP domain name servers
 
@@ -5492,6 +6658,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>     VRF
   <pool-id>    DHCP pool subnet.
   <server-id>  DNS server
@@ -5508,11 +6677,17 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>          VRF
   <pool-id>         DHCP pool subnet.
   <domain-name-id>  DHCP domain name
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   domain-name       DHCP domain name
 
@@ -5527,6 +6702,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   DHCP domain name
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>          VRF
   <pool-id>         DHCP pool subnet.
@@ -5544,6 +6722,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>      VRF
   <pool-id>     DHCP pool subnet.
   <gateway-id>  Gateway
@@ -5560,11 +6741,17 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
   <range-id>  DHCP client interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   to          End of the range.
 
@@ -5579,6 +6766,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   End of the range.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
@@ -5596,6 +6786,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
 
@@ -5610,6 +6803,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Network address lease time in seconds assigned to DHCP clients.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
@@ -5626,6 +6822,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
 
@@ -5640,6 +6839,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Cumulus specific URL for provisioning script
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>    VRF
   <pool-id>   DHCP pool subnet.
@@ -5656,10 +6858,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>          VRF
   <domain-name-id>  DHCP domain name
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   domain-name       DHCP domain name
 
@@ -5674,6 +6882,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   DHCP domain name
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>          VRF
   <domain-name-id>  DHCP domain name
@@ -5690,6 +6901,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>     VRF
   <server-id>  DNS server
 
@@ -5705,10 +6919,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
   <static-id>           static mapping nane
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   cumulus-provision-url Cumulus specific URL for provisioning script
 
@@ -5728,6 +6948,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>     VRF
   <static-id>  static mapping nane
 
@@ -5744,6 +6967,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>     VRF
   <static-id>  static mapping nane
 
@@ -5758,6 +6984,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Cumulus specific URL for provisioning script
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>     VRF
   <static-id>  static mapping nane
@@ -5774,9 +7003,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>            VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   interface           Assign DHCP options to clients directly attached to
 
@@ -5802,6 +7037,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>        VRF
   <interface-id>  DHCP client interface
 
@@ -5817,10 +7055,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
   <pool-id>             DHCP6 pool subnet.
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   domain-name-server    DHCP domain name servers
 
@@ -5850,6 +7094,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>     VRF
   <pool-id>    DHCP6 pool subnet.
   <server-id>  DNS server
@@ -5866,11 +7113,17 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>          VRF
   <pool-id>         DHCP6 pool subnet.
   <domain-name-id>  DHCP domain name
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   domain-name       DHCP domain name
 
@@ -5885,6 +7138,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   DHCP domain name
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>          VRF
   <pool-id>         DHCP6 pool subnet.
@@ -5902,11 +7158,17 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
   <pool-id>   DHCP6 pool subnet.
   <range-id>  DHCP client interface
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   to          End of the range.
 
@@ -5921,6 +7183,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   End of the range.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>    VRF
   <pool-id>   DHCP6 pool subnet.
@@ -5939,6 +7204,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
   <pool-id>   DHCP6 pool subnet.
 
@@ -5955,6 +7223,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
   <pool-id>   DHCP6 pool subnet.
 
@@ -5969,6 +7240,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   TBD
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>    VRF
   <pool-id>   DHCP6 pool subnet.
@@ -5985,6 +7259,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
   <pool-id>   DHCP6 pool subnet.
 
@@ -6000,10 +7277,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>          VRF
   <domain-name-id>  DHCP domain name
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   domain-name       DHCP domain name
 
@@ -6018,6 +7301,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   DHCP domain name
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>          VRF
   <domain-name-id>  DHCP domain name
@@ -6034,6 +7320,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>     VRF
   <server-id>  DNS server
 
@@ -6049,10 +7338,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
   <static-id>           static mapping nane
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   cumulus-provision-url  Cumulus specific URL for provisioning script
 
@@ -6072,6 +7367,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>     VRF
   <static-id>  static mapping nane
 
@@ -6086,6 +7384,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   IP address
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>     VRF
   <static-id>  static mapping nane
@@ -6102,6 +7403,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>     VRF
   <static-id>  static mapping nane
 
@@ -6116,6 +7420,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Global LLDP
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   dot1-tlv            Enable dot1 TLV advertisements on enabled ports
 
@@ -6155,6 +7462,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
 
   control-plane  Control Plane specific configurations
 
@@ -6182,6 +7492,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
   trap        Traps
 
   policer     Policers
@@ -6198,9 +7511,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <trap-id>   TRAP ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   state       trap state
 
@@ -6216,9 +7535,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <policer-id>  Policer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   burst         policer burst value
 
@@ -6238,6 +7563,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <policer-id>  Policer ID
 
 ## nv set system control-plane policer <policer-id> rate 10-10000
@@ -6252,6 +7580,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <policer-id>  Policer ID
 
 ## nv set system message
@@ -6265,6 +7596,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   System pre-login and post-login messages
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   post-login  configure post-login message of the day
 
@@ -6302,6 +7636,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
   reserved     reserved ranges
 
   anycast-id   An integer (1-65535) to select rack MAC address in range 44:38:39:ff:00:00 to 44:38:39:ff:ff:ff
@@ -6326,6 +7663,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
   routing-table  reserved routing table ranges
 
   vlan           reserved vlan ranges
@@ -6342,6 +7682,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
   pbr         reserved routing table ranges for PBR
 
 ## nv set system global reserved routing-table pbr
@@ -6355,6 +7698,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   reserved routing table ranges for PBR
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   begin       Beginning of reserved routing table range for PBR
 
@@ -6392,6 +7738,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
   l3-vni-vlan  Reserved vlans to be used with l3vni
 
 ## nv set system global reserved vlan l3-vni-vlan
@@ -6405,6 +7754,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Reserved vlans to be used with l3vni
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   begin       Beginning of reserved vlan range for L3 VNI
 
@@ -6452,6 +7804,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
   session     sessions
 
 
@@ -6467,9 +7822,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <session-id>  port mirror session number
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   span          Switched Port Analyzer
 
@@ -6487,9 +7848,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <session-id>  port mirror session number
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   source-port   Set of source ports.
 
@@ -6513,6 +7880,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <session-id>  port mirror session number
 
   <port-id>     Port interface
@@ -6528,6 +7898,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   The SPAN destination port.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <session-id>  port mirror session number
 
@@ -6545,9 +7918,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <session-id>  port mirror session number
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable        Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -6565,9 +7944,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <session-id>  port mirror session number
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   source-port   Set of source ports.
 
@@ -6591,6 +7976,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <session-id>  port mirror session number
 
   <port-id>     Port interface
@@ -6607,9 +7995,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <session-id>  port mirror session number
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   source-ip     TBD
 
@@ -6627,6 +8021,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <session-id>  port mirror session number
 
 ## nv set system port-mirror session <session-id> erspan destination dest-ip <dest-ip>
@@ -6640,6 +8037,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   An IPv4 address
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <session-id>  port mirror session number
 
@@ -6655,9 +8055,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <session-id>  port mirror session number
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   enable        Turn the feature 'on' or 'off'. The default is 'off'.
@@ -6676,6 +8082,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
   apply       Affect how config apply operations are performed.
 
 ## nv set system config apply
@@ -6689,6 +8098,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Affect how config apply operations are performed.
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   ignore      Set of files to ignore during config apply operations.
 
@@ -6705,6 +8117,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   File to ignore during config apply operations.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <ignore-id>  Ignored file
 
@@ -6730,9 +8145,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   loopback    The loopback IP interface associated with this VRF.
@@ -6757,9 +8178,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   ip          Properties associated with the loopback IP address on this VRF.
 
@@ -6775,9 +8202,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   address     static IPv4 or IPv6 address
 
@@ -6792,6 +8225,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   An IP address with prefix
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>        VRF
 
@@ -6809,9 +8245,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   vni         L3 VNI
 
@@ -6831,11 +8273,17 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>            VRF
 
   <vni-id>            VxLAN ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   prefix-routes-only  Associated L3 VNI and corresponding route targets only with EVPN type-5 routes, not with EVPN type-2 routes.
 
@@ -6851,9 +8299,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   rib         RIB Routes
 
@@ -6877,11 +8331,17 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
   <afi>       Route address family.
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   protocol    Import protocols from RIB to FIB
 
@@ -6897,6 +8357,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
 
   <afi>                 Route address family.
@@ -6904,6 +8367,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   <import-protocol-id>  Import protocol list.
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   fib-filter            Route map to apply on the import prootcol's routes.
 
@@ -6919,9 +8385,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>            VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   address-family      Address family specific configuration
@@ -6964,9 +8436,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>      VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   ipv4-unicast  IPv4 unicast address family
 
@@ -6986,9 +8464,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   redistribute     Route redistribute
 
@@ -7020,9 +8504,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   static      Route redistribution of ipv4 static routes
@@ -7045,9 +8535,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7067,9 +8563,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7089,9 +8591,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7111,9 +8619,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7133,11 +8647,17 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
 
   <aggregate-route-id>  IPv4 address and route prefix in CIDR notation
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   as-set                If 'on', an AS_SET is generated for the aggregate.
 
@@ -7157,10 +8677,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>             VRF
   <static-network-id>  IPv4 address and route prefix in CIDR notation
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   route-map            Optional policy to modify attributes
 
@@ -7176,9 +8702,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   from-vrf    Controls for VRF to VRF route leaking for this address-family
 
@@ -7194,9 +8726,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   list        List of VRFs the routes can be imported from
 
@@ -7216,6 +8754,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   
   <leak-vrf-id>  VRF
@@ -7232,6 +8773,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths
@@ -7246,9 +8790,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   compare-cluster-length If on, if IBGP paths have a CLUSTER_LIST, their lengths must be equal to be selected as multipaths
 
@@ -7268,6 +8818,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths ibgp 1-128
@@ -7281,6 +8834,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   IBGP multipath
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>    VRF
 
@@ -7296,9 +8852,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   external    Distance to apply to routes from EBGP peers when installed into the RIB
 
@@ -7316,6 +8878,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance internal 1-255
@@ -7329,6 +8894,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Distance to apply to routes from IBGP peers when installed into the RIB
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>    VRF
 
@@ -7344,9 +8912,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   to-evpn     Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
 
@@ -7362,9 +8936,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7384,9 +8964,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7402,9 +8988,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   aggregate-route  IPv6 aggregate routes
 
@@ -7436,10 +9028,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
   <aggregate-route-id>  IPv6 address and route prefix in CIDR notation
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   as-set                If 'on', an AS_SET is generated for the aggregate.
 
@@ -7459,10 +9057,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>             VRF
   <static-network-id>  IPv6 address and route prefix in CIDR notation
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   route-map            Optional policy to modify attributes
 
@@ -7478,9 +9082,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   from-vrf    Controls for VRF to VRF route leaking for this address-family
 
@@ -7496,9 +9106,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   list        List of VRFs the routes can be imported from
@@ -7519,6 +9135,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf route-map <instance-name>
@@ -7532,6 +9151,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Route-map to control the import of routes into EVPN
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>    VRF
 
@@ -7547,9 +9169,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   compare-cluster-length If on, if IBGP paths have a CLUSTER_LIST, their lengths must be equal to be selected as multipaths
 
@@ -7569,6 +9197,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths ibgp 1-128
@@ -7582,6 +9213,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   IBGP multipath
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>    VRF
 
@@ -7597,9 +9231,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   external    Distance to apply to routes from EBGP peers when installed into the RIB
 
@@ -7617,6 +9257,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance internal 1-255
@@ -7630,6 +9273,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Distance to apply to routes from IBGP peers when installed into the RIB
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>    VRF
 
@@ -7645,9 +9291,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   to-evpn     Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
 
@@ -7663,9 +9315,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7685,9 +9343,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   static      Route redistribution of ipv4 static routes
 
@@ -7709,9 +9373,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7731,9 +9401,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7753,9 +9429,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7775,9 +9457,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7797,9 +9485,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>          VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   aspath            BGP aspath path-selection config, applicable to this BGP instance
 
@@ -7819,9 +9513,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   compare-confed   Select AS based on confederations.
 
@@ -7839,9 +9539,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   compare-always        Always compare the MED on routes, even when they were received from different neighbouring ASes.
 
@@ -7863,9 +9569,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>        VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   aspath-ignore   Ignore AS path when determining multipath routing.
 
@@ -7885,9 +9597,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable                Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7909,10 +9627,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   bfd                   Specifies whether to track BGP peering sessions using this configuration via BFD.
 
@@ -7954,10 +9678,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>           VRF
   <peer-group-id>    Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable             Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -7979,6 +9709,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
@@ -7993,6 +9726,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Minimum receive interval
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
@@ -8009,6 +9745,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
@@ -8024,10 +9763,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -8045,6 +9790,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
@@ -8060,10 +9808,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>          VRF
   <peer-group-id>   Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   extended-nexthop  If 'on', the extended-nexthop capability defined in RFC  5549 is advertised to peer(s) with this config. If 'auto', it will be 'on' for unnumbered peers and 'off' otherwise. This is the default.
 
@@ -8081,10 +9835,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   mode             If 'auto', inherit from global. This is the default. If set to 'off', GR capability is not negotiated with this peer. If set to 'helper-only', only the Helper role is supported for this peer. This means that the GR capability will be negotiated without any address-families with this peer. If set to 'full', both the Helper role and the Restarter role are supported with this peer; the GR capability will be negotiated with the enabled address-families for which GR is also supported.
 
@@ -8100,10 +9860,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -8125,6 +9891,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
@@ -8140,10 +9909,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>             VRF
   <peer-group-id>      Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   connection-retry     Time interval at which connection attempts are retried upon a failure. If `auto`, the global value is used. This is the default.
 
@@ -8165,10 +9940,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   ipv4-unicast     Peer IPv4 unicast address family. Always on, unless disabled globaly.
 
@@ -8188,10 +9969,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   community-advertise   Community advertise for address family.
 
@@ -8233,10 +10020,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   extended         If 'on', it means we can announce the EXT_COMMUNITIES attribute to this peer, otherwise we cannot.
 
@@ -8256,10 +10049,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   aspath           If 'on', it means follow normal BGP procedures in the generation of AS_PATH attribute for this peer; if 'off' it means do not change the AS_PATH when sending an Update to this peer.
 
@@ -8279,10 +10078,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   allow-my-asn     If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -8302,10 +10107,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -8325,6 +10136,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
@@ -8340,10 +10154,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   inbound          Limits on inbound prefix from the peer for this address-family
 
@@ -8359,10 +10179,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>           VRF
   <peer-group-id>    Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   maximum            Limit on number of prefixes of specific address-family that can be received from the peer. By default, there is no limit
 
@@ -8384,6 +10210,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
@@ -8398,6 +10227,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
@@ -8414,10 +10246,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -8435,10 +10273,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   inbound          Outbound unicast policy
 
@@ -8456,10 +10300,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   route-map        Route map to apply to Updates received from this peer
 
@@ -8479,6 +10329,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
@@ -8494,10 +10347,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   route-map        Route map to apply to Updates to be sent to this peer
 
@@ -8519,6 +10378,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
@@ -8534,10 +10396,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -8565,6 +10433,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
@@ -8579,6 +10450,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   route-map contains the conditional routes/prefixes in prefix-list.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
@@ -8595,6 +10469,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
@@ -8609,6 +10486,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Weight applied to routes received from peer; this is used in the BGP route selection algorithm
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
@@ -8625,10 +10505,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   policy                Policies for ipv4 unicast
 
@@ -8671,10 +10557,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   inbound          Outbound unicast policy
 
@@ -8692,10 +10584,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   route-map        Route map to apply to Updates received from this peer
 
@@ -8717,6 +10615,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
@@ -8732,10 +10633,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   route-map        Route map to apply to Updates to be sent to this peer
 
@@ -8757,6 +10664,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
@@ -8772,10 +10682,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   allow-my-asn     If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -8795,10 +10711,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -8818,6 +10740,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
@@ -8833,10 +10758,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   inbound          Limits on inbound prefix from the peer for this address-family
 
@@ -8852,10 +10783,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>           VRF
   <peer-group-id>    Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   maximum            Limit on number of prefixes of specific address-family that can be received from the peer. By default, there is no limit
 
@@ -8877,6 +10814,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
@@ -8891,6 +10831,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
@@ -8907,10 +10850,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -8928,10 +10877,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   extended         If 'on', it means we can announce the EXT_COMMUNITIES attribute to this peer, otherwise we cannot.
 
@@ -8951,10 +10906,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   aspath           If 'on', it means follow normal BGP procedures in the generation of AS_PATH attribute for this peer; if 'off' it means do not change the AS_PATH when sending an Update to this peer.
 
@@ -8975,10 +10936,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -9000,6 +10967,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
@@ -9015,6 +10985,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   route-map contains the conditional routes/prefixes in prefix-list.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
@@ -9032,6 +11005,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
@@ -9046,6 +11022,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Weight applied to routes received from peer; this is used in the BGP route selection algorithm
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
@@ -9062,10 +11041,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
   <peer-group-id>       Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   attribute-mod         Attribute mod for address family.
 
@@ -9097,10 +11082,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   aspath           If 'on', it means follow normal BGP procedures in the generation of AS_PATH attribute for this peer; if 'off' it means do not change the AS_PATH when sending an Update to this peer.
 
@@ -9120,10 +11111,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   allow-my-asn     If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -9143,10 +11140,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable           Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -9166,6 +11169,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
@@ -9181,10 +11187,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   inbound          Inbound l2vpn-evpn policy
 
@@ -9202,10 +11214,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   route-map        Route map to apply to Updates received from this peer
 
@@ -9221,10 +11239,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   route-map        Route map to apply to Updates to be sent to this peer
 
@@ -9243,6 +11267,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <peer-group-id>  Domain
 
@@ -9257,6 +11284,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   neighbor description
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>         VRF
   <peer-group-id>  Domain
@@ -9273,9 +11303,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   to-evpn     Controls for exporting routes from this VRF into EVPN
 
@@ -9291,9 +11327,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>      VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   route-target  List the RTs to attach to host or prefix routes when exporting them into EVPN or "auto". If "auto", the RT will be derived. This is the default.
 
@@ -9308,6 +11350,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   A route target identifier
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>    VRF
   <rt-id>     Route targets or "auto"
@@ -9324,9 +11369,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   from-evpn   Controls for importing EVPN type-2 and type-5 routes into this VRF
 
@@ -9342,9 +11393,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>      VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   route-target  List the RTs to attach to host or prefix routes when importing them into VRF or "auto". If "auto", the RT will be derived. This is the default.\
 
@@ -9359,6 +11416,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   A route target identifier
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>    VRF
   <rt-id>     Route targets or "auto"
@@ -9376,9 +11436,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   conditional-advertise Time interval at which bgp table is scanned for condition is met.
 
@@ -9404,6 +11470,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router bgp confederation
@@ -9419,9 +11488,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   member-as   Confederation ASNs of the peers, maps to BGP confederation peers
 
@@ -9439,6 +11514,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router bgp neighbor <neighbor-id>
@@ -9453,10 +11531,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   bfd                   Specifies whether to track BGP peering sessions using this configuration via BFD.
 
@@ -9504,10 +11588,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>           VRF
   <neighbor-id>      Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable             Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -9529,6 +11619,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
@@ -9543,6 +11636,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Minimum receive interval
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
@@ -9559,6 +11655,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
@@ -9574,10 +11673,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>          VRF
   <neighbor-id>     Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   extended-nexthop  If 'on', the extended-nexthop capability defined in RFC 5549 is advertised to peer(s) with this config. If 'auto', it will be 'on' for unnumbered peers and 'off' otherwise. This is the default.
 
@@ -9595,10 +11700,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -9620,6 +11731,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
@@ -9635,10 +11749,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   mode           If 'auto', inherit from global. This is the default. If set
@@ -9671,10 +11791,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -9692,6 +11818,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
@@ -9707,10 +11836,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   ipv4-unicast   Peer IPv4 unicast address family. Always on, unless disabled globaly.
 
@@ -9730,10 +11865,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   attribute-mod         Attribute mod for address family.
 
@@ -9775,10 +11916,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   aspath         If 'on', it means follow normal BGP procedures in the generation of AS_PATH attribute for this peer; if 'off' it means do not change the AS_PATH when sending an Update to this peer.
 
@@ -9798,10 +11945,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <neighbor-id>    Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   allow-my-asn     If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -9821,10 +11974,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -9844,6 +12003,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
@@ -9859,10 +12021,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   inbound        Outbound unicast policy
 
@@ -9880,10 +12048,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   route-map      Route map to apply to Updates received from this peer
 
@@ -9903,6 +12077,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
@@ -9918,10 +12095,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>        VRF
   <neighbor-id>   Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   route-map       Route map to apply to Updates to be sent to this peer
 
@@ -9943,6 +12126,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
@@ -9958,10 +12144,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   inbound        Limits on inbound prefix from the peer for this address- family
 
@@ -9977,10 +12169,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>           VRF
   <neighbor-id>      Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   maximum            Limit on number of prefixes of specific address-family that can be received from the peer. By default, there is no limit
 
@@ -10002,6 +12200,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
@@ -10016,6 +12217,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
@@ -10032,10 +12236,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -10053,10 +12263,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   extended       If 'on', it means we can announce the EXT_COMMUNITIES attribute to this peer, otherwise we cannot.
 
@@ -10076,10 +12292,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -10101,6 +12323,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
@@ -10115,6 +12340,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   route-map contains the conditional routes/prefixes in prefix-list.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
@@ -10131,6 +12359,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
@@ -10145,6 +12376,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Weight applied to routes received from peer; this is used in the BGP route selection algorithm
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
@@ -10161,10 +12395,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   attribute-mod         Attribute mod for address family.
 
@@ -10204,10 +12444,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   aspath         If 'on', it means follow normal BGP procedures in the generation of AS_PATH attribute for this peer; if 'off' it means do not change the AS_PATH when sending an Update to this peer.
 
@@ -10227,10 +12473,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <neighbor-id>    Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   allow-my-asn     If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -10250,10 +12502,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -10273,6 +12531,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
@@ -10288,10 +12549,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   inbound        Limits on inbound prefix from the peer for this address- family
 
@@ -10307,10 +12574,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>           VRF
   <neighbor-id>      Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   maximum            Limit on number of prefixes of specific address-family
 
@@ -10348,6 +12621,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
@@ -10362,6 +12638,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
@@ -10378,10 +12657,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -10399,10 +12684,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   inbound        Outbound unicast policy
 
@@ -10420,10 +12711,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   route-map      Route map to apply to Updates received from this peer
 
@@ -10443,6 +12740,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
@@ -10458,10 +12758,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>        VRF
   <neighbor-id>   Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   route-map       Route map to apply to Updates to be sent to this peer
 
@@ -10483,6 +12789,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
@@ -10498,10 +12807,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   extended       If 'on', it means we can announce the EXT_COMMUNITIES attribute to this peer, otherwise we cannot.
 
@@ -10522,10 +12837,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -10547,6 +12868,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
@@ -10561,6 +12885,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   route-map contains the conditional routes/prefixes in prefix-list.
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
@@ -10577,6 +12904,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
@@ -10591,6 +12921,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Weight applied to routes received from peer; this is used in the BGP route selection algorithm
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
@@ -10607,10 +12940,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
   <neighbor-id>         Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   attribute-mod         Attribute mod for address family.
 
@@ -10642,10 +12981,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   aspath         If 'on', it means follow normal BGP procedures in the generation of AS_PATH attribute for this peer; if 'off' it means do not change the AS_PATH when sending an Update to this peer.
 
@@ -10665,10 +13010,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
   <neighbor-id>    Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   allow-my-asn     If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -10688,10 +13039,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable         Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -10711,6 +13068,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
@@ -10726,10 +13086,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   inbound        Inbound l2vpn-evpn policy
 
@@ -10747,10 +13113,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   route-map      Route map to apply to Updates received from this peer
 
@@ -10766,10 +13138,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>        VRF
   <neighbor-id>   Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   route-map       Route map to apply to Updates to be sent to this peer
 
@@ -10787,10 +13165,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>             VRF
   <neighbor-id>        Peer ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   connection-retry     Time interval at which connection attempts are retried upon a failure. If `auto`, the global value is used.This is the default.
 
@@ -10812,6 +13196,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
 
@@ -10826,6 +13213,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   neighbor description
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <vrf-id>       VRF
   <neighbor-id>  Peer ID
@@ -10842,6 +13232,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router static <route-id>
@@ -10856,10 +13249,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>        VRF
   <route-id>      IP prefix
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   distance        Paths
 
@@ -10881,11 +13280,17 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <route-id>     IP prefix
   <distance-id>  A path distance
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   via            Nexthops
 
@@ -10903,12 +13308,18 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <route-id>     IP prefix
   <distance-id>  A path distance
   <via-id>       IP address, interface, or "blackhole".
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   flag           Nexthop flags
 
@@ -10938,6 +13349,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
   <route-id>     IP prefix
   <distance-id>  A path distance
@@ -10955,11 +13369,17 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
   <route-id>  IP prefix
   <via-id>    IP address, interface, or "blackhole".
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   flag        Nexthop flags
 
@@ -10981,6 +13401,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
   <route-id>  IP prefix
   <via-id>    IP address, interface, or "blackhole".
@@ -10997,9 +13420,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>         VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   timers           Timers
 
@@ -11023,9 +13452,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>       VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   keep-alive     Timeout value for S,G stream, in seconds
 
@@ -11043,9 +13478,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable      Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -11063,10 +13504,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
   <msdp-mesh-group-id>  MSDP mesh group name
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   member-address        Set of member-address
 
@@ -11084,6 +13531,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
   <msdp-mesh-group-id>  MSDP mesh group name
   <mesh-member-id>      MSDP mesh-group member IP address
@@ -11100,6 +13550,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
   <msdp-mesh-group-id>  MSDP mesh group name
 
@@ -11115,9 +13568,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>      VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   ipv4-unicast  IPv4 unicast address family
 
@@ -11133,9 +13592,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>              VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   spt-switchover        Build shortest path tree towards source.
 
@@ -11159,9 +13624,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>     VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   action       PIM shortest path switchover (SPT) action.
 
@@ -11179,6 +13650,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id>
@@ -11193,10 +13667,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>     VRF
   <rp-id>      RP IP address
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   group-range  Set of group range assocaited to RP.
 
@@ -11214,6 +13694,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>          VRF
   <rp-id>           RP IP address
   <group-range-id>  Group range associated to RP.
@@ -11230,6 +13713,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
   <rp-id>     RP IP address
 
@@ -11245,9 +13731,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>             VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   area                 OSPF areas
 
@@ -11283,10 +13775,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>          VRF
   <area-id>         Area
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   filter-list       Filters networks between OSPF areas
 
@@ -11310,10 +13808,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
   <area-id>   Area
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   in          prefix-list to use as an inbound filter.
 
@@ -11331,11 +13835,17 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
   <area-id>   Area
   <range-id>  Range
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   cost        User specified metric advertised for this summary lsa. If 'auto', operational default value is derived from components. This is the default.
 
@@ -11353,6 +13863,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>      VRF
   <area-id>     Area
   <network-id>  Network
@@ -11369,6 +13882,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
   <area-id>   Area
 
@@ -11384,9 +13900,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>     VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -11410,6 +13932,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router ospf distance
@@ -11424,9 +13949,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   external    External
 
@@ -11446,9 +13977,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>        VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   administrative  Administratively applied, for an indefinite period
 
@@ -11468,9 +14005,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>           VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   adjacency-changes  Log adjacency changes
 
@@ -11486,9 +14029,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   static      Route redistribute of static routes
 
@@ -11510,9 +14059,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>     VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -11534,6 +14089,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router ospf redistribute connected
@@ -11548,9 +14106,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>     VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -11572,6 +14136,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router ospf redistribute kernel
@@ -11586,9 +14153,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>     VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -11610,6 +14183,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router ospf redistribute bgp
@@ -11624,9 +14200,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>     VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable       Turn the feature 'on' or 'off'. The default is 'off'.
 
@@ -11648,6 +14230,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> router ospf timers
@@ -11662,9 +14247,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   lsa         LSA timers
 
@@ -11685,9 +14276,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>     VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   min-arrival  Minimum delay in receiving new version of a LSA. If 'auto', inherited from global. This is the default.
 
@@ -11705,9 +14302,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>      VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   delay         Delay (msec) from first change received till SPF calculation. If 'auto', inherited from global. This is the default.
 
@@ -11727,6 +14330,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 ## nv set vrf <vrf-id> ptp
@@ -11741,9 +14347,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   enable      Turn the feature 'on' or 'off'. The default is 'on'.
 
@@ -11759,6 +14371,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <vrf-id>    VRF
 
 ## nv set nve
@@ -11773,6 +14388,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
   vxlan       Global VxLAN configuration and operational properties.
 
 ## nv set nve vxlan
@@ -11786,6 +14404,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   VxLAN
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   mlag             VxLAN specific MLAG address
 
@@ -11815,6 +14436,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
   shared-address  shared anycast address for MLAG peers
 
 ## nv set nve vxlan source
@@ -11829,6 +14453,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Attributes**
 
+| Atrribute |  Description   |
+| ---------  | -------------- |
+
   address     IP addresses of this node's VTEP or 'auto'. If 'auto', use the primary IP loopback (not 127.0.0.1). This is the default.
 
 ## nv set nve vxlan flooding
@@ -11842,6 +14469,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Handling of BUM traffic
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   head-end-replication  BUM traffic is replicated and individual copies sent to remote destinations.
 
@@ -11860,6 +14490,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Set of IPv4 unicast addresses or "evpn".
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <hrep-id>   IPv4 unicast addresses or "evpn"
 
@@ -11905,9 +14538,15 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>    ACL ID
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   rule        acl rule
 
@@ -11925,10 +14564,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   match       ACL match criteria
 
@@ -11946,10 +14591,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   ip          IPv4 and IPv6 match
 
@@ -11967,10 +14618,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>     ACL ID
   <rule-id>    ACL rule number
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   source-port  source port
 
@@ -12006,6 +14663,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>      ACL ID
   <rule-id>     ACL rule number
   <ip-port-id>  IP port ID
@@ -12021,6 +14681,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   L4 port
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <acl-id>      ACL ID
   <rule-id>     ACL rule number
@@ -12038,6 +14701,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
@@ -12053,10 +14719,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   flags       ECN protocol flags
 
@@ -12074,6 +14746,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
@@ -12089,10 +14764,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   flags       TCP protocol flags
 
@@ -12112,6 +14793,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
@@ -12127,10 +14811,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>         ACL ID
   <rule-id>        ACL rule number
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   dest-mac         Destination MAC address
 
@@ -12157,6 +14847,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
@@ -12171,6 +14864,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Destination MAC address mask
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
@@ -12187,6 +14883,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
@@ -12202,10 +14901,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
 
   permit      Permit action
@@ -12234,6 +14939,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
@@ -12250,6 +14958,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
@@ -12264,6 +14975,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   log packets
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
@@ -12280,10 +14994,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   class       Sets the class value for classification of the packet
 
@@ -12303,6 +15023,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
@@ -12317,6 +15040,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   Set the CoS value
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
@@ -12334,10 +15060,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   dest-ip     Destination IP address
 
@@ -12357,6 +15089,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
@@ -12372,10 +15107,16 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
 **Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
 
   burst       Policing burst value
 
@@ -12396,6 +15137,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
@@ -12411,6 +15155,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 **Identifiers**
 
+| Identifier |  Description   |
+| ---------  | -------------- |
+
   <acl-id>    ACL ID
   <rule-id>   ACL rule number
 
@@ -12425,6 +15172,9 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
   SPAN session
 
 **Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
 
   <acl-id>    ACL ID
   <rule-id>   ACL rule number

@@ -1,10 +1,137 @@
 <tables>
-<table name="Open Issues in 4.1.1">
+<table name="Open Issues in 4.2.0">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3060407</td>
+<td>The {{systemctl restart networking}} command does not restart the {{netqd}} service on Broadcom platforms with an ARM CPU when the {{netq-agent}} service is running in the management VRF and {{netqd}} is running in the default VRF.
+
+To work around this issue, restart {{netqd}} manually using the {{systemctl restart netqd}} command.</td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3053143</td>
+<td>The MLAG Session card might not show all MLAG events.</td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3053091</td>
+<td>Lifecycle management (LCM) features do not work when the NetQ Cloud Appliance uses an external proxy server.</td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3047149</td>
+<td>When you reboot the OPTA, the NetQ validation summary might show an incorrect number of validations. This condition will resolve itself within an hour of the reboot.</td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3043146</td>
+<td>After you upgrade from NetQ 4.1 to NetQ 4.2, some streaming validation checks might erroneously report failures when services are running properly. This condition will resolve itself within 24 hours of the upgrade. </td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3042876</td>
+<td>If you apply a filter to ignore an on-demand validation check, validation results for other checks might also be ignored.</td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3042840</td>
+<td>Some resolved events might continue to be displayed as Open in the Events card even after they are resolved.</td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3042476</td>
+<td>In addition to displaying routes installed on monitored devices in your network, the NetQ UI unexpectedly displays IP routes installed on the NetQ server. This issue does not affect the routes displayed on the CLI with {{netq show ip routes}} and {{netq show ipv6 routes}}.</td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3041860</td>
+<td>The Events card displays duplicate entries for VLAN interface link down events.</td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3018737</td>
+<td>The reverse path of flow analysis data might appear empty even when traffic successfully traversed the reverse path. To work around this issue, create a new flow analysis with the original source and destination IP addresses transposed to view the analysis in that direction. </td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3015875</td>
+<td>NetQ trace might report incomplete route information when there are multiple default routes in a VRF in the path between the source and destination.</td>
+<td>4.1.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2885312</td>
+<td>EVPN Validation Type 2 checks might show false Duplicate MAC events for MAC addresses that are not duplicated. An example of this is shown below:
+
+   EVPN Type 2 Test details:
+   Hostname          Peer Name         Peer Hostname     Reason                                        Last Changed
+   ----------------- ----------------- ----------------- --------------------------------------------- -------------------------
+   torc-11           -                 -                 Duplicate Mac 00:02:00:00:00:55 VLAN 1249 at  Sun Dec  5 18:26:14 2021
+                                                         torc-21:vx-282 and torc-11:peerlink-3
+   </td>
+<td>4.1.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2872288</td>
+<td>When a NetQ agent sends messages with validation check data, there might be a delay of up to 120 seconds before the new data is displayed in streaming validation checks.</td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2817749</td>
+<td>If you configure an event suppression rule with {{is_active false}}, the event will no longer be displayed with the {{netq show events-config}} command.</td>
+<td>4.0.1-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2663534</td>
+<td>Validation check filtering is only applied to errors in validation results and is not applied to warnings in validation results.</td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2555854</td>
+<td>NetQ Agent: If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten.</td>
+<td>3.0.0-3.3.1, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2549649</td>
+<td>NetQ UI: Warnings might appear during the post-upgrade phase for a Cumulus Linux switch upgrade job. They are caused by services that have not yet been restored by the time the job is complete. Cumulus Networks recommend waiting five minutes, creating a network snapshot, then comparing that to the pre-upgrade snapshot. If the comparison shows no differences for the services, the warnings can be ignored. If there are differences, then troubleshooting the relevant service(s) is recommended.</td>
+<td>3.0.0-3.3.1, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+</table>
+<table name="Fixed Issues in 4.2.0">
+<tr>
+<th> Issue ID </th>
+<th> Description </th>
+<th> Affects </th>
+</tr>
+<tr>
+<td>3011307</td>
+<td>NetQ Agent: The NetQ Agent fails to start in Cumulus Linux on switches with ARM CPUs. The log files show the following message:
+
+
+systemd: netq-agent.service: Main process exited, code=exited, status=1/FAILURE
+</td>
+<td></td>
 </tr>
 <tr>
 <td>2896825</td>
@@ -24,189 +151,17 @@
 3. Reinstall the netq-agent package:
 
 {{sudo apt-get update &amp;&amp; sudo apt-get install --reinstall netq-agent}}</td>
-<td>4.1.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2885440</td>
-<td>After upgrading to NetQ 4.1.0, validation checks might show intermittent errors that are not valid while the validation application processess pending messages after upgrade. This condition will clear once all messages are processed.</td>
-<td>4.1.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2885312</td>
-<td>EVPN Validation Type 2 checks might show false Duplicate MAC events for MAC addresses that are not duplicated. An example of this is shown below:
-
-   EVPN Type 2 Test details:
-   Hostname          Peer Name         Peer Hostname     Reason                                        Last Changed
-   ----------------- ----------------- ----------------- --------------------------------------------- -------------------------
-   torc-11           -                 -                 Duplicate Mac 00:02:00:00:00:55 VLAN 1249 at  Sun Dec  5 18:26:14 2021
-                                                         torc-21:vx-282 and torc-11:peerlink-3
-   </td>
-<td>4.1.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2711101</td>
-<td>When RoCE (RDMA over Converged Ethernet) data collection is enabled in Cumulus Linux 4.3.z and 4.4.z, you can experience high dual uplink convergence times.
-To work around this issue, disable RoCE monitoring:
-
-1. Edit &apos;/etc/netq/commands/cl4-netq-commands.yml&apos; and comment out the following lines:
-        #- period: "60"
-        #  key: "roce"
-        #  isactive: true
-        #  command: "/usr/lib/cumulus/mlxcmd --json roce counters"
-        #  parser: "local"
-
-2. Delete the &apos;/var/run/netq/netq_commands.yml&apos; file:
-        $ sudo rm /var/run/netq/netq_commands.yml
-
-3. Restart the NetQ agent:
-       $ netq config agent restart</td>
-<td>4.0.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2663534</td>
-<td>Validation check filtering is only applied to errors in validation results and is not applied to warnings in validation results.</td>
-<td>4.0.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2555854</td>
-<td>NetQ Agent: If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten.</td>
-<td>3.0.0-3.3.1, 4.0.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2555197</td>
-<td>NetQ CLI: Occasionally, when a command response contains a large number of objects to be displayed the NetQ CLI does not display all results in the console. When this occurs, view all results using the {{json}} format option.</td>
-<td>3.3.0-3.3.1, 4.0.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2549649</td>
-<td>NetQ UI: Warnings might appear during the post-upgrade phase for a Cumulus Linux switch upgrade job. They are caused by services that have not yet been restored by the time the job is complete. Cumulus Networks recommend waiting five minutes, creating a network snapshot, then comparing that to the pre-upgrade snapshot. If the comparison shows no differences for the services, the warnings can be ignored. If there are differences, then troubleshooting the relevant service(s) is recommended.</td>
-<td>3.0.0-3.3.1, 4.0.0-4.1.1</td>
-<td></td>
-</tr>
-</table>
-<table name="Fixed Issues in 4.1.1">
-<tr>
-<th> Issue ID </th>
-<th> Description </th>
-<th> Affects </th>
-</tr>
-<tr>
-<td>2921628</td>
-<td>CVE-2021-45046: It was found that the fix to address CVE-2021-44228 in Apache Log4j 2.15.0 was incomplete in certain non-default configurations.
-
-CVE-2021-45105: Apache Log4j2 versions 2.0-alpha1 through 2.16.0 (excluding 2.12.3 and 2.3.1) did not protect from uncontrolled recursion from self-referential lookups. </td>
-<td></td>
-</tr>
-</table>
-<table name="Open Issues in 4.1.0">
-<tr>
-<th> Issue ID </th>
-<th> Description </th>
-<th> Affects </th>
-<th> Fixed </th>
-</tr>
-<tr>
-<td>2896825</td>
-<td>WJH monitoring fails to start with netq-agent on Cumulus Linux 5.0. To work around this issue, reinstall the netq-agent package and configure the netq agent to start monitoring:
-
-
-1. Add the gpg key for the repository:
-
-{{wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -}}
-
-
-2. Add the repository to {{/etc/apt/sources.list}}:
-
-{{echo 'deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest' | sudo tee -a /etc/apt/sources.list}}
-
-
-3. Reinstall the netq-agent package:
-
-{{sudo apt-get update &amp;&amp; sudo apt-get install --reinstall netq-agent}}</td>
 <td>4.1.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2885440</td>
 <td>After upgrading to NetQ 4.1.0, validation checks might show intermittent errors that are not valid while the validation application processess pending messages after upgrade. This condition will clear once all messages are processed.</td>
 <td>4.1.0</td>
-<td></td>
 </tr>
 <tr>
-<td>2885312</td>
-<td>EVPN Validation Type 2 checks might show false Duplicate MAC events for MAC addresses that are not duplicated. An example of this is shown below:
-
-   EVPN Type 2 Test details:
-   Hostname          Peer Name         Peer Hostname     Reason                                        Last Changed
-   ----------------- ----------------- ----------------- --------------------------------------------- -------------------------
-   torc-11           -                 -                 Duplicate Mac 00:02:00:00:00:55 VLAN 1249 at  Sun Dec  5 18:26:14 2021
-                                                         torc-21:vx-282 and torc-11:peerlink-3
-   </td>
-<td>4.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2711101</td>
-<td>When RoCE (RDMA over Converged Ethernet) data collection is enabled in Cumulus Linux 4.3.z and 4.4.z, you can experience high dual uplink convergence times.
-To work around this issue, disable RoCE monitoring:
-
-1. Edit &apos;/etc/netq/commands/cl4-netq-commands.yml&apos; and comment out the following lines:
-        #- period: "60"
-        #  key: "roce"
-        #  isactive: true
-        #  command: "/usr/lib/cumulus/mlxcmd --json roce counters"
-        #  parser: "local"
-
-2. Delete the &apos;/var/run/netq/netq_commands.yml&apos; file:
-        $ sudo rm /var/run/netq/netq_commands.yml
-
-3. Restart the NetQ agent:
-       $ netq config agent restart</td>
+<td>2843640</td>
+<td>In NetQ clustered environments, the network snapshot feature may fail.</td>
 <td>4.0.0-4.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2663534</td>
-<td>Validation check filtering is only applied to errors in validation results and is not applied to warnings in validation results.</td>
-<td>4.0.0-4.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2555854</td>
-<td>NetQ Agent: If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten.</td>
-<td>3.0.0-3.3.1, 4.0.0-4.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2555197</td>
-<td>NetQ CLI: Occasionally, when a command response contains a large number of objects to be displayed the NetQ CLI does not display all results in the console. When this occurs, view all results using the {{json}} format option.</td>
-<td>3.3.0-3.3.1, 4.0.0-4.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2549649</td>
-<td>NetQ UI: Warnings might appear during the post-upgrade phase for a Cumulus Linux switch upgrade job. They are caused by services that have not yet been restored by the time the job is complete. Cumulus Networks recommend waiting five minutes, creating a network snapshot, then comparing that to the pre-upgrade snapshot. If the comparison shows no differences for the services, the warnings can be ignored. If there are differences, then troubleshooting the relevant service(s) is recommended.</td>
-<td>3.0.0-3.3.1, 4.0.0-4.1.0</td>
-<td></td>
-</tr>
-</table>
-<table name="Fixed Issues in 4.1.0">
-<tr>
-<th> Issue ID </th>
-<th> Description </th>
-<th> Affects </th>
-</tr>
-<tr>
-<td>2893000</td>
-<td>CVE-2021-44228: Apache Log4j2 &lt;=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints.</td>
-<td>2.4.0-4.0.1</td>
 </tr>
 <tr>
 <td>2815596</td>
@@ -274,14 +229,26 @@ To work around this issue, disable RoCE monitoring:
 	cumulus@netq-401-cloud:~$ df -hm /
 	Filesystem     1M-blocks  Used Available Use% Mounted on
 	/dev/vda1          63341  1193     62132   2% /</td>
-<td>4.0.1</td>
+<td>4.0.1-4.1.0</td>
 </tr>
 <tr>
-<td>2690469</td>
-<td>While upgrading an on-premises deployment from version 2.4.x to 3.x.y then to 4.x, the upgrade fails during the NetQ application stage.
-To work around this issue, run the following command on the NetQ telemetry server, then start the upgrade again:
-&apos;netq install opta activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiw3T2sweW9kR3Y4Wk9sTHU3MkwrQTRjNkhhQkU3bVpBNVlZVjEvWWgyZGJBPQ==&apos;</td>
-<td>3.2.1-4.0.1</td>
+<td>2711101</td>
+<td>When RoCE (RDMA over Converged Ethernet) data collection is enabled in Cumulus Linux 4.3.z and 4.4.z, you can experience high dual uplink convergence times.
+To work around this issue, disable RoCE monitoring:
+
+1. Edit &apos;/etc/netq/commands/cl4-netq-commands.yml&apos; and comment out the following lines:
+        #- period: "60"
+        #  key: "roce"
+        #  isactive: true
+        #  command: "/usr/lib/cumulus/mlxcmd --json roce counters"
+        #  parser: "local"
+
+2. Delete the &apos;/var/run/netq/netq_commands.yml&apos; file:
+        $ sudo rm /var/run/netq/netq_commands.yml
+
+3. Restart the NetQ agent:
+       $ netq config agent restart</td>
+<td>4.0.0-4.1.0</td>
 </tr>
 </table>
 </tables>

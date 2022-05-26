@@ -287,13 +287,7 @@ N/A
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
-
-```
-cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 10 match destination-ip 10.1.2.0/24
-```
-
-# nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match source-ip \<ipv4-prefix\>|\<ipv6-prefix\>
+## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match source-ip \<ipv4-prefix\>|\<ipv6-prefix\>
 
 Sets PBR to match packets according to the source IP prefix.
 
@@ -311,7 +305,7 @@ N/A
 | ---------  | -------------- |
 | `<pbr-map-id>` |  The PBR route map name. |
 | `<rule-id>`   | The PBR rule number. |
-| `<ipv4-prefix>|<ipv6-prefix>` | The source IPv4 or IPv6 prefix. |
+| `<ipv4-prefix>` or `<ipv6-prefix>` | The source IPv4 or IPv6 prefix. |
 
 **Version History**
 
@@ -323,7 +317,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 10 match source-ip 10.1.4.1/24 
 ```
 
-# nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match destination-ip \<ipv4-prefix\>|\<ipv6-prefix\>
+## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match destination-ip \<ipv4-prefix\>|\<ipv6-prefix\>
 
 Sets PBR to match packets according to the destination IP prefix.
 
@@ -341,7 +335,7 @@ N/A
 | ---------  | -------------- |
 | `<pbr-map-id>` |  The PBR route map name. |
 | `<rule-id>`   | The PBR rule number. |
-| `<ipv4-prefix>|<ipv6-prefix>` | The destination IPv4 or IPv6 prefix. |
+| `<ipv4-prefix>` or `<ipv6-prefix>` | The destination IPv4 or IPv6 prefix. |
 
 **Version History**
 

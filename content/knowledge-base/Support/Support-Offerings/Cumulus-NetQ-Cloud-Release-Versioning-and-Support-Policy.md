@@ -29,10 +29,10 @@ NetQ software installation file names include a version number, in the form of x
 - **TAG** represents a timestamp for the release of the version.
 - **CPU** architecture represents architecture.
 
-This number corresponds to the release version of the software. NetQ requires two Debian packages per release. This example shows the first minor release of the third major release, for the Ubuntu OS and x86\_64 CPU architecture:
+This number corresponds to the release version of the software. NetQ requires two Debian packages per release. For example:
 
-- netq-agent\_4.1.0-cl4u36~1639165028.2c18daee\_amd64.deb
-- netq-apps\_4.1.0-cl4u36~1639165028.2c18daee\_amd64.deb
+- netq-agent\_4.2.0-cl4u38~1652817584.25f4ac06\_amd64.deb
+- netq-apps\_4.2.0-cl4u38~1652817584.25f4ac06\_amd64.deb
 
 ## Release, Support Lifecycle and Support Policy
 
@@ -40,7 +40,7 @@ NetQ is offered with a per switch subscription that includes support for 1, 3, a
 
 Updates are automatically applied to the NetQ Server running in the Cloud. NVIDIA notifies customers before performing upgrades, and makes release notes available for each release.
 
-It is necessary to upgrade the NetQ Agents and NetQ Apps running on switches to the NetQ Server version that is running in the Cloud. NetQ Server compatibility is tested with the current version and one prior version of Agent and Apps software. Review the NetQ [user guide]({{<ref "/cumulus-netq-41/" >}}) for the supported Network Operating System (NOS) versions. 
+It is necessary to upgrade the NetQ Agents and NetQ Apps running on switches to the NetQ Server version that is running in the Cloud. NetQ Server compatibility is tested with the current version and one prior version of Agent and Apps software. Review the NetQ [user guide]({{<ref "/cumulus-netq-42/" >}}) for the supported Network Operating System (NOS) versions. 
 ## Upgrade Process
 
-For information regarding upgrading from previous NetQ releases, refer to the [NetQ Deployment Guide]({{<ref "/cumulus-netq-41/Manage-Deployment" >}}).
+For information regarding upgrading from previous NetQ releases, refer to the [NetQ Deployment Guide]({{<ref "/cumulus-netq-42/Installation-Management" >}}).

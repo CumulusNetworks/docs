@@ -107,6 +107,65 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32
 ```
 
+## nv set router nexthop-group \<nexthop-group-id\> via \<via-id\> interface \<interface-name\>
+
+Sets the interface to use for egress. If you do not specify an interface, the switch determines the interface automatically. This attribute is only valid for IPv4 or IPv6 addresses.
+
+**Usage**
+
+`nv set router nexthop-group <nexthop-group-id> via <via-id> interface [options] (auto|<interface-name>)`
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<nexthop-group-id>` | The next hop group name. |
+| `<via-id>` | The IP address of the next hop.|
+| `<interface-name>` | The interface to use for egress.|
+
+**Default Setting**
+
+`auto`
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32 interface swp51
+```
+## nv set router nexthop-group \<nexthop-group-id\> via \<via-id\> vrf \<vrf-name\>
+
+Sets the VRF to use for egress. If you do not specify the VRF, the switch uses the VRF that the route uses. This attribute is only valid for IPv4 or IPv6 addresses.
+
+**Usage**
+
+`nv set router nexthop-group <nexthop-group-id> via <via-id> vrf [options] (auto|<vrf-name>)`
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<nexthop-group-id>` | The next hop group name. |
+| `<via-id>` | The IP address of the next hop.|
+| `<vrf-name>` | The vrf to use for egress.|
+
+**Default Setting**
+
+`auto`
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32 vrf RED
+```
+
 ## nv set router pbr
 
 Configures global PBR ((Policy-based Routing) settings.
@@ -223,6 +282,66 @@ N/A
 | `dscp` | Configures the switch to match packets according to the DSCP field in the IP header. The DSCP value can be an integer between 0 and 63 or the DSCP codepoint name.   |
 | `ecn`  | Configures the switch to match packets according to the ECN field in the IP header. The ECN value can be an integer between 0 and 3. |
 | `source-ip`  |  Configures the switch to match a source IP prefix. |
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 10 match destination-ip 10.1.2.0/24
+```
+
+# nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match source-ip \<ipv4-prefix\>|\<ipv6-prefix\>
+
+Configures the switch to match packets according to the source IP prefix.
+
+**Usage**
+
+`nv set router pbr map <pbr-map-id> rule <rule-id> match source-ip (<ipv4-prefix>|<ipv6-prefix>)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<pbr-map-id>` |  The route map name. |
+| `<rule-id>`   | The PBR rule number. |
+| `<ipv4-prefix>|<ipv6-prefix>` | The source IPv4 or IPv6 prefix. |
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 10 match source-ip 10.1.4.1/24 
+```
+
+# nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match destination-ip \<ipv4-prefix\>|\<ipv6-prefix\>
+
+Configures the switch to match packets according to the destination IP prefix.
+
+**Usage**
+
+`nv set router pbr map <pbr-map-id> rule <rule-id> match destination-ip (<ipv4-prefix>|<ipv6-prefix>)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<pbr-map-id>` |  The route map name. |
+| `<rule-id>`   | The PBR rule number. |
+| `<ipv4-prefix>|<ipv6-prefix>` | The destination IPv4 or IPv6 prefix. |
 
 **Version History**
 
@@ -388,6 +507,28 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 ```
 
+## nv set router pbr enable
+
+Enables or disables PBR.
+
+**Usage**
+
+`nv set router pbr enable [options] (on|off)`
+
+**Default Setting**
+
+`off`
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router pbr enable on
+```
+
 ## nv set router policy
 
 Configures a router policy.
@@ -484,7 +625,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 action permit
 ```
-
 ## nv set router policy community-list \<list-id\> rule \<rule-id\> community \<community-id\>
 
 Configures the name of the community you want to match.
@@ -513,6 +653,35 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf04:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 community 100:100
+```
+
+## nv set router policy community-list \<list-id\> rule \<rule-id\> action
+
+Configures the community list rule action to be either permit or deny.
+
+**Usage**
+
+`nv set router policy community-list <list-id> rule <rule-id> action [options] (permit|deny)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<list-id>`  | The community list name. |
+| `<rule-id>`  | The prefix list rule number. |
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 action permit
 ```
 
 ## nv set router policy as-path-list \<list-id\>
@@ -583,6 +752,35 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf04:mgmt:~$ nv set router policy as-path-list mylist rule 10
+```
+
+## nv set router policy as-path-list \<list-id\> rule \<rule-id\> action
+
+Configures the AS path list rule action, such as permit or deny.
+
+**Usage**
+
+`nv set router policy as-path-list <list-id> rule <rule-id> action [options] (permit|deny)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<list-id>` |  The AS Path list name. |
+| `<rule-id>` |  The prefix list rule number. |
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy as-path-list mylist rule 10 action permit
 ```
 
 ## nv set router policy as-path-list \<list-id\> rule \<rule-id\> aspath-exp \<bgp-regex\>
@@ -751,92 +949,160 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ext-community rt 64510:1111
 ```
 
-## nv set router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id>
+## nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community soo \<ext-community-id\>
 
 Configures the site-of-origin (SoO) extended community to identify routes that originate from a certain site so that you can prevent readvertising that prefix back to the source site.
 
 **Usage**
 
-  nv set router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id> [options]
+`nv set router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id> [options]`
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
+| `<list-id> ` | The community list name. |
+| `<rule-id> ` |  The prefix list rule number. |
+| `<ext-community-id>` | The community number in AA:NN or IP:NN format. |
 
-  <list-id>           Community List ID
-  <rule-id>           Prefix List rule number
-  <ext-community-id>  Community number in AA:NN or IP:NN format
+**Version History**
 
-## nv set router policy large-community-list <list-id>
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ext-community soo ????????
+```
+
+## nv set router policy ext-community-list \<list-id\> rule \<rule-id\> action
+
+Configures the action to take (permit or deny) on the extended community list match.
 
 **Usage**
 
-  nv set router policy large-community-list <list-id> [options] [<attribute> ...]
+`nv set router policy ext-community-list <list-id> rule <rule-id> action [options] (permit|deny)`
 
-### Description
+**Default Setting**
 
-  A Large Community list used for matching community based BGP policies
+N/A
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
+| `<list-id>` |  The community list name. |
+| `<rule-id>` |  The prefix list rule number. |
 
-  <list-id>   Community List ID
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy ext-community-list mylist rule 10 action permit
+```
+
+## nv set router policy large-community-list \<list-id\>
+
+Configures the large community list you want to use to match community based BGP policies.
+
+**Usage**
+
+`nv set router policy large-community-list <list-id> [options] [<attribute> ...]`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<list-id>  | The community list name |
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `rule` |  Configures the large community list rules. |
 
-  rule        Large Community List rules
+**Version History**
 
-## nv set router policy large-community-list <list-id> rule <rule-id>
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy large-community-list mylist
+```
+
+## nv set router policy large-community-list \<list-id\> rule \<rule-id>\
+
+Configures the large community list rule number.
 
 **Usage**
 
-  nv set router policy large-community-list <list-id> rule <rule-id> [options] [<attribute> ...]
+`nv set router policy large-community-list <list-id> rule <rule-id> [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  Large Community list Matching criteria and action rule
+N/A
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <list-id>        Community List ID
-  <rule-id>        Prefix List rule number
+| `<list-id>` | The community list name |
+| `<rule-id>`  | The community list rule number. |
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `large-community`  | Configures rhe large community expression. |
+| `action`  |  Configures the action you want to take when there is a match. |
 
-  large-community  Large Community expression
+**Version History**
 
-  action           Action to be taken for community list match
+Introduced in Cumulus Linux 5.0.0
 
-## nv set router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id>
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy large-community-list mylist rule 10
+```
+
+## nv set router policy large-community-list \<list-id\> rule \<rule-id\> large-community \<large-community-id\>
+
+Configures the set of community names for the large community list.
 
 **Usage**
 
-  nv set router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id> [options]
+`nv set router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id> [options]`
 
-### Description
+**Default Setting**
 
-  Set of community names for large community list
+N/A
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
+| `<list-id>` |  The community list name. |
+| `<rule-id> ` | The community list rule number. |
+| `<large-community-id>` |  The community number in AA:BB:CC format. |
 
-  <list-id>             Community List ID
-  <rule-id>             Prefix List rule number
-  <large-community-id>  Community number in AA:BB:CC format
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy large-community-list mylist rule 10 large-community ?????
+```
 
 ## nv set router policy prefix-list <prefix-list-id>
 

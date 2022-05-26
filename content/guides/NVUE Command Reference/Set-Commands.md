@@ -168,7 +168,7 @@ cumulus@leaf04:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32 vrf R
 
 ## nv set router pbr
 
-Configures global PBR ((Policy-based Routing) settings.
+Configures global PBR (Policy-based Routing) settings.
 
 **Usage**
 
@@ -221,7 +221,7 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1
 
 ## nv set router pbr map \<pbr-map-id\> rule \<rule-id\>
 
-Configures the route map match and set criteria as well as the rule action.
+Sets the route map rule number.
 
 **Usage**
 
@@ -257,7 +257,7 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 10
 
 ## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match
 
-Configures the match criteria you want to use for the PBR map rule.
+Sets the match criteria you want to use for the PBR map rule.
 
 **Usage**
 
@@ -295,7 +295,7 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 10 match destination-ip 1
 
 # nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match source-ip \<ipv4-prefix\>|\<ipv6-prefix\>
 
-Configures PBR to match packets according to the source IP prefix.
+Sets PBR to match packets according to the source IP prefix.
 
 **Usage**
 
@@ -325,7 +325,7 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 10 match source-ip 10.1.4
 
 # nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match destination-ip \<ipv4-prefix\>|\<ipv6-prefix\>
 
-Configures PBR to match packets according to the destination IP prefix.
+Sets PBR to match packets according to the destination IP prefix.
 
 **Usage**
 
@@ -355,7 +355,7 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 10 match destination-ip 1
 
 ## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match dscp
 
-Configures the switch to match packets according to the DSCP field in the IP header. The DSCP value can be an integer between 0 and 63 or the DSCP codepoint name.
+Sets PBR to match packets according to the DSCP field in the IP header. The DSCP value can be an integer between 0 and 63 or the DSCP codepoint name.
 
 **Usage**
 
@@ -384,7 +384,7 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 match dscp 10
 
 ## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match ecn 0-3
 
-Configures the switch to match packets according to the ECN field in the IP header. The ECN value can be an integer between 0 and 3.
+Sets PBR to match packets according to the ECN field in the IP header. The ECN value can be an integer between 0 and 3.
 
 **Usage**
 
@@ -413,7 +413,7 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 match ecn 3
 
 ## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> action
 
-Configures the action you want the PBR map rule to take, such as apply a net hop group or a VRF to a policy.
+Sets the action you want the PBR map rule to take, such as apply a net hop group or a VRF to a policy.
 
 **Usage**
 
@@ -449,7 +449,7 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 ## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> action nexthop-group \<nexthop-group-id\>
 
-Configures the next hop group you want to apply to the policy map. You must first configure the next hop group, then apply the group to the policy map.
+Sets the next hop group you want to apply to the policy map. You must first configure the next hop group, then apply the group to the policy map.
 
 **Usage**
 
@@ -479,7 +479,7 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action nexthop-group gr
 
 ## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> action vrf \<vrf-name\>
 
-Configures the VRF you want to apply to the policy map. If you do not set a VRF, the rule uses the VRF table set for the interface.
+Sets the VRF you want to apply to the policy map. If you do not set a VRF, the rule uses the VRF table set for the interface.
 
 **Usage**
 
@@ -558,7 +558,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set router policy community-list \<list-id\>
 
-Configures the community list you want to use to match BGP community policies. The BGP community list can be either standard or expanded. The standard BGP community list is a pair of values (such as 100:100) or one of four BGP default communities (internet, local-AS, no-advertise, no-export). When the neighbor receives the prefix, it examines the community value and either permits or denies the community member in the routing policy.
+Configures the name of the community list you want to use to match BGP community policies. The BGP community list can be either standard or expanded. The standard BGP community list is a pair of values (such as 100:100) or one of four BGP default communities (internet, local-AS, no-advertise, no-export). When the neighbor receives the prefix, it examines the community value and either permits or denies the community member in the routing policy.
 
 **Usage**
 
@@ -592,7 +592,7 @@ cumulus@leaf04:mgmt:~$ nv set router policy community-list
 
 ## nv set router policy community-list \<list-id\> rule \<rule-id\>
 
-Configures the community list match criteria and the rule action.
+Configures the community list rule number.
 
 **Usage**
 
@@ -614,7 +614,7 @@ N/A
 | Atrribute |  Description   |
 | --------- | -------------- |
 | `community` | Configures the community expression. |
-| `action`    | Configures the action you want to take for a community list match (permit or deny). |
+| `action`    | Configures the action you want to take for a match; permit or deny. |
 
 **Version History**
 
@@ -627,7 +627,7 @@ cumulus@leaf04:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 ac
 ```
 ## nv set router policy community-list \<list-id\> rule \<rule-id\> community \<community-id\>
 
-Configures the name of the community you want to match.
+Sets the name of the community you want to match.
 
 **Usage**
 
@@ -657,7 +657,7 @@ cumulus@leaf04:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 co
 
 ## nv set router policy community-list \<list-id\> rule \<rule-id\> action
 
-Configures the community list rule action to be either permit or deny.
+Sets the action you want to take for a match; permit or deny.
 
 **Usage**
 
@@ -686,7 +686,7 @@ cumulus@leaf04:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 ac
 
 ## nv set router policy as-path-list \<list-id\>
 
-Configures the AS path access list to permit or deny routes according to the AS path.
+Sets the name of the AS path access list you want to use to match AS paths.
 
 **Usage**
 
@@ -741,7 +741,7 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `action` |  Configures the action you want to take when the AS paths in the list match, such as permit or deny. |
+| `action` |  Configures the action you want to take when there is a match, such as permit or deny. |
 | `aspath-exp` | Configures the regular expression you want to use to match BGP AS paths. |
 
 **Version History**
@@ -756,7 +756,7 @@ cumulus@leaf04:mgmt:~$ nv set router policy as-path-list mylist rule 10
 
 ## nv set router policy as-path-list \<list-id\> rule \<rule-id\> action
 
-Configures the AS path list rule action, such as permit or deny.
+Sets the action you want to take for a match; permit or deny.
 
 **Usage**
 
@@ -815,7 +815,7 @@ cumulus@leaf04:mgmt:~$ nv set router policy as-path-list mylist rule 10 aspath-e
 
 ## nv set router policy ext-community-list \<list-id\>
 
-Configures an Extended Community list you want to use to match BGP communities.
+Sets the name of the Extended Community list you want to use to match BGP communities.
 
 **Usage**
 
@@ -849,7 +849,7 @@ cumulus@leaf04:mgmt:~$ nv set router policy ext-community-list mylist
 
 ## nv set router policy ext-community-list \<list-id\> rule \<rule-id\>
 
-Configures the extended community list rule number.
+Sets the extended community list rule number.
 
 **Usage**
 
@@ -885,7 +885,7 @@ cumulus@leaf04:mgmt:~$ nv set router policy ext-community-list mylist rule 10
 
 ## nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community
 
-Configures the Extended Community name.
+Sets the Extended Community name.
 
 **Usage**
 
@@ -906,8 +906,8 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `rt ` | Configures the Extended Community route target. |
-| `soo ` | Configures the Extended Community site-of-origin (SoO). |
+| `rt ` | Configures the Route Target Extended Community. |
+| `soo ` | Configures the site-of-origin (SoO) Extended Community.  |
 
 **Version History**
 
@@ -921,7 +921,7 @@ cumulus@leaf04:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ex
 
 ## nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community rt \<ext-community-id\>
 
-Configures the Extended Community route target.
+Configures the Route Target Extended Community.
 
 **Usage**
 
@@ -951,7 +951,7 @@ cumulus@leaf04:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ex
 
 ## nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community soo \<ext-community-id\>
 
-Configures the Extended Community site-of-origin (SoO) to identify routes that originate from a certain site so that you can prevent readvertising that prefix back to the source site.
+Configures the site-of-origin (SoO) Extended Community to identify routes that originate from a certain site so that you can prevent readvertising that prefix back to the source site.
 
 **Usage**
 

@@ -1798,6 +1798,8 @@ Configures the source VRF you want to use as a match in the route map.
 
 N/A
 
+**Identifiers**
+
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
@@ -1836,28 +1838,28 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `as-path-prepend` |  Configures the route map to set the AS Path prepend |
-| `community` |  Configures the collection of BGP Communities. |
-| `large-community` | Configures the collection of Large BGP Communities. |
-| `aggregator-as` | Configures the collection of aggregator AS. |
-| `as-path-exclude` |  Exclude from AS path |
-| `atomic-aggregate` |  BGP atomic aggregate |
-| `community-delete-list` | Delete community list |
-| `ext-community-bw` | Extended community link bandwidth |
-| `ext-community-rt`| Route target extended community |
-| `ext-community-soo` | Site of origin extended community |
-| `ip-nexthop ` | IP nexthop |
-| `ipv6-nexthop-global`| IPv6 nexthop global address |
-| `ipv6-nexthop-local` | IPv6 nexthop local address |
-| `ipv6-nexthop-prefer-global` | Prefer to use the global address as the IPV6 nexthop |
-| `large-community-delete-list` | Delete large community list |
-| `local-preference` | Local preference |
-| `metric ` | Metric value for destination routing protocol |
-| `metric-type` | Type of metric |
-| `origin` | BGP origin |
-| `source-ip` | Source IP address |
-| `tag` | Tag value for routing protocol |
-| `weight` | BGP weight |
+| `as-path-prepend` |  Sets the AS Path prepend. |
+| `community` |  Sets the collection of BGP Communities. |
+| `large-community` | Sets the collection of Large BGP Communities. |
+| `aggregator-as` | Sets the collection of aggregator AS. |
+| `as-path-exclude` |  Sets the to exclude from the AS path. |
+| `atomic-aggregate` |  Sets the BGP atomic aggregate. |
+| `community-delete-list` | Sets the Community delete list. |
+| `ext-community-bw` |Sets the Extended Community link bandwidth. |
+| `ext-community-rt`| Sets the route target Extended Community. |
+| `ext-community-soo` | Sets the site of the origin Extended Community. |
+| `ip-nexthop ` | Sets the IP nexthop. |
+| `ipv6-nexthop-global`| Sets the IPv6 nexthop global address. |
+| `ipv6-nexthop-local` | sets the IPv6 nexthop local address. |
+| `ipv6-nexthop-prefer-global` | Sets the global address you prefer to use as the IPV6 next hop. |
+| `large-community-delete-list` | Sets the large community delete list |
+| `local-preference` | Sets the local preference |
+| `metric ` | Sets the metric value for the destination routing protocol. |
+| `metric-type` | Sets the metric Type. |
+| `origin` | Sets the BGP origin. |
+| `source-ip` | Sets the source IP address. |
+| `tag` | Sets the Tag value for the routing protocol. |
+| `weight` | Sets the BGP weight. |
 
 **Version History**
 
@@ -1865,13 +1867,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend
 
+Configures the AS Path prepend
+
 **Usage**
 
-  nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend [options] [<attribute> ...]
-
-### Description
-
-  AS Path prepend
+`nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-prepend [options] [\<attribute\> ...]`
 
 **Identifiers**
 

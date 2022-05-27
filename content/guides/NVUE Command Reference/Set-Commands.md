@@ -1032,7 +1032,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv set router policy large-community-list mylist
 ```
 
-## nv set router policy large-community-list \<list-id\> rule \<rule-id>\
+## nv set router policy large-community-list \<list-id\> rule \<rule-id\>
 
 Configures the Large Community list rule number.
 
@@ -1238,7 +1238,7 @@ cumulus@leaf04:mgmt:~$ nv set router policy prefix-list mylist rule 10 match 10.
 
 ## nv set router policy prefix-list \<prefix-list-id\> rule \<rule-id\> match \<match-id\> max-prefix-len
 
-Configures the maximum prefix length you want to match.
+Configures the maximum prefix length you want to match. You can specify a value between 0 and 128.
 
 **Usage**
 
@@ -1374,7 +1374,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
-| <rule-id> | The route map rule number.
+| `<rule-id>` | The route map rule number.
 
 **Attributes**
 
@@ -1444,7 +1444,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-prefix-list \<instance-name\>
 
-Configures the IP prefix list to use in the route map.
+Configures the IP prefix list to use as a match in the route map.
 
 **Usage**
 
@@ -1473,7 +1473,7 @@ cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-pref
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-prefix-len
 
-Configures IP address prefix length you want to match. You can specify a value between 0 and 128.
+Configures the IP address prefix length you want to match. You can specify a value between 0 and 128.
 
 **Usage**
 
@@ -1502,7 +1502,7 @@ cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-pref
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-nexthop-list \<instance-name\>
 
-Configures the prefix list you want to use in the route map.
+Configures the IP next hop list you want to use as a match in the route map.
 
 **Usage**
 
@@ -1531,7 +1531,7 @@ cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-pref
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-nexthop-len
 
-Configures the IP nexthop prefix length you want to match for the route map.
+Configures the route map to match an IP nexthop prefix length.
 
 **Usage**
 
@@ -1560,7 +1560,7 @@ cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-next
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-nexthop-type blackhole
 
-Configures the route map to match a null route.
+Configures the route map to match a null route (blackhole).
 
 **Usage**
 
@@ -1865,243 +1865,373 @@ N/A
 
 Introduced in Cumulus Linux 5.0.0
 
-## nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-prepend
 
 Configures the AS Path prepend
 
 **Usage**
 
-`nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-prepend [options] [\<attribute\> ...]`
+`nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend [options] [<attribute> ...]`
+
+**Default Setting**
+
+N/A
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <route-map-id>  Route Map ID
-  <rule-id>       Sequence to insert or delete from the route-map
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `as` | Configures the BGP AS number. |
+| `last-as` | Configures the number of times to insert the AS number of the peer. |
 
-  as              AS number
+**Version History**
 
-  last-as         Number of times to insert peer's AS number
+Introduced in Cumulus Linux 5.0.0
 
-## nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend as 1-4294967295
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-prepend
+```
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-prepend as
+
+Configures the BGP AS number.
 
 **Usage**
 
-  nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend as [options] 1-4294967295
+`nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend as [options] 1-4294967295`
 
-### Description
+**Default Setting**
 
-  AS number
+N/A
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
 
-  <route-map-id>  Route Map ID
-  <rule-id>       Sequence to insert or delete from the route-map
+**Version History**
 
-## nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend last-as 1-10
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-prepend as 65101
+```
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-prepend
+
+Configures the number of times to insert the AS number of the BGP peer. You can set a value between 1 and 10.
 
 **Usage**
 
-  nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend last-as [options] 1-10
+`nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend last-as [options] 1-10`
 
-### Description
+**Default Setting**
 
-  Number of times to insert peer's AS number
+N/A
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
 
-  <route-map-id>  Route Map ID
-  <rule-id>       Sequence to insert or delete from the route-map
+**Version History**
 
-## nv set router policy route-map <route-map-id> rule <rule-id> set community <community-id>
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-prepend as last-as 4
+```
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set community \<community-id\>
+
+Configures the BGP Community.
 
 **Usage**
 
-  nv set router policy route-map <route-map-id> rule <rule-id> set community <community-id> [options]
+`nv set router policy route-map <route-map-id> rule <rule-id> set community <community-id> [options]`
 
-### Description
+**Default Setting**
 
-  BGP Community
+N/A
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+| `<community-id>` | The Community number in AA:NN format or the well-known name.|
 
-  <route-map-id>  Route Map ID
-  <rule-id>       Sequence to insert or delete from the route-map
-  <community-id>  Community number
+**Version History**
 
-## nv set router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id>
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set community 100:100
+```
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set large-community \<large-community-id\>
+
+Configures the Large BGP Community
 
 **Usage**
 
-  nv set router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id> [options]
+`nv set router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id> [options]`
 
-### Description
+**Default Setting**
 
-  Large BGP Community
+N/A
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+| `<large-community-id>` | The Large Community number in AA:BB:CC format.|
 
-  <route-map-id>        Route Map ID
-  <rule-id>             Sequence to insert or delete from the route-map
-  <large-community-id>  Large Community number
+**Version History**
 
-## nv set router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id>
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set large-community ????
+```
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set aggregator-as \<asn-id\>
+
+Configures the aggregator AS Number.
 
 **Usage**
 
-  nv set router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> [options] [<attribute> ...]
+`nv set router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  Aggregator AS Number
+N/A
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <route-map-id>  Route Map ID
-  <rule-id>       Sequence to insert or delete from the route-map
-  <asn-id>        Autonomous number
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+| `<asn-id>` | The ASN number.|
 
 **Attributes**
 
 | Atrribute |  Description   |
-| ---------  | -------------- |
+| --------- | -------------- |
+| `address` | Configures the set of IPv4 addresses. |
 
-  address         Set of IPv4 addresses
+**Version History**
 
-## nv set router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address <ipv4-address-id>
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set aggregator-as 65101
+```
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set aggregator-as \<asn-id\> address \<ipv4-address-id\>
+
+Configures a set clause in the route map to 
 
 **Usage**
 
-  nv set router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address <ipv4-address-id> [options]
+`nv set router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address <ipv4-address-id> [options]`
 
-### Description
+**Default Setting**
 
-  An IPv4 address
+N/A
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+| `<asn-id>` | The ASN number.|
+| `<ipv4-address-id>` |  The IPv4 address. |
 
-  <route-map-id>     Route Map ID
-  <rule-id>          Sequence to insert or delete from the route-map
-  <asn-id>           Autonomous number
-  <ipv4-address-id>  IPv4 address
+**Version History**
 
-## nv set router policy route-map <route-map-id> rule <rule-id> set as-path-exclude 1-4294967295
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set aggregator-as 65101 address 10.10.10.01
+```
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-exclude
+
+Configures a set clause in the route map to remove the AS number from the AS Path attribute of the route. You can specify a value between 1 and 4294967295.
 
 **Usage**
 
-  nv set router policy route-map <route-map-id> rule <rule-id> set as-path-exclude [options] 1-4294967295
+`nv set router policy route-map <route-map-id> rule <rule-id> set as-path-exclude [options] 1-4294967295`
 
-### Description
+**Default Setting**
 
-  Exclude from AS path
+N/A
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
 
-  <route-map-id>  Route Map ID
-  <rule-id>       Sequence to insert or delete from the route-map
+**Version History**
 
-## nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-rt <route-distinguisher>
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-exclude 65101
+```
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ext-community-rt \<route-distinguisher\>
+
+Configures a set clause in the route map for the route target Extended Community.
 
 **Usage**
 
-  nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-rt [options] <route-distinguisher>
+`nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-rt [options] <route-distinguisher>`
 
-### Description
+**Default Setting**
 
-  Route target extended community
+N/A
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+|`<route-distinguisher>` | The route distinguisher. |
 
-  <route-map-id>  Route Map ID
-  <rule-id>       Sequence to insert or delete from the route-map
+**Version History**
 
-## nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-soo <route-distinguisher>
+Introduced in Cumulus Linux 5.0.0
 
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ext-community-rt 64510:1111
+```
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ext-community-soo \<route-distinguisher\>
+
+Configures a set clause in the route map for the site-of-origin (SoO) Extended Community.
 
 **Usage**
 
-  nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-soo [options] <route-distinguisher>
+`nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-soo [options] <route-distinguisher>`
 
-### Description
+**Default Setting**
 
-  Site of origin extended community
+N/A
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+| `<route-distinguisher>` |The route distinguisher. |
 
-  <route-map-id>  Route Map ID
-  <rule-id>       Sequence to insert or delete from the route-map
+**Version History**
 
-## nv set router policy route-map <route-map-id> rule <rule-id> set local-preference 0-4294967295
+Introduced in Cumulus Linux 5.0.0
 
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ext-community-soo ????
+```
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set local-preference
+
+Configures a set clause in the route map for the local preference. You can specify a value between 0 and 4294967295.
 
 **Usage**
 
-  nv set router policy route-map <route-map-id> rule <rule-id> set local-preference [options] 0-4294967295
+`nv set router policy route-map <route-map-id> rule <rule-id> set local-preference [options] 0-4294967295`
 
-### Description
+**Default Setting**
 
-  Local preference
+N/A
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
 
-  <route-map-id>  Route Map ID
-  <rule-id>       Sequence to insert or delete from the route-map
+**Version History**
 
-## nv set router policy route-map <route-map-id> rule <rule-id> set weight 0-4294967295
+Introduced in Cumulus Linux 5.0.0
 
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set local-preference 300
+```
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set weight
+
+Configures a set clause in the route map for the BGP weight value for a matched route. You can specify a value between 0 and 4294967295.
 
 **Usage**
 
-  nv set router policy route-map <route-map-id> rule <rule-id> set weight [options] 0-4294967295
+`nv set router policy route-map <route-map-id> rule <rule-id> set weight [options] 0-4294967295`
 
-### Description
+**Default Setting**
 
-  BGP weight
+N/A
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
 
-  <route-map-id>  Route Map ID
-  <rule-id>       Sequence to insert or delete from the route-map
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set weight ????
+```
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> set tag 1-4294967295
 

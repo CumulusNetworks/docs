@@ -235,12 +235,6 @@ nv unset system forwarding ecmp-hash: error: unrecognized arguments: source-port
 <td></td>
 </tr>
 <tr>
-<td>3021886</td>
-<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down ({{ifdown}} and up {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
-<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3021693</td>
 <td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>

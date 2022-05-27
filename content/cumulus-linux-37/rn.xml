@@ -65,12 +65,6 @@ Fixed: 3.1.2-11+deb8u9</td>
 <td></td>
 </tr>
 <tr>
-<td>3073668</td>
-<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3072613</td>
 <td>When  you delete a bond interface with NCLU, BGP peer group configuration is removed.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
@@ -196,12 +190,6 @@ Fixed: 14.0.2-3+deb8u4</td>
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>3.7.15-5.0.1</td>
 <td>5.1.0</td>
-</tr>
-<tr>
-<td>2896450</td>
-<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2885240</td>
@@ -2618,12 +2606,6 @@ Fixed: 3.1.2-11+deb8u9</td>
 <td></td>
 </tr>
 <tr>
-<td>3073668</td>
-<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3072613</td>
 <td>When  you delete a bond interface with NCLU, BGP peer group configuration is removed.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
@@ -3092,12 +3074,6 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>2896672</td>
 <td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2896450</td>
-<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -5816,12 +5792,6 @@ Fixed: 3.1.2-11+deb8u9</td>
 <td></td>
 </tr>
 <tr>
-<td>3073668</td>
-<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -6123,12 +6093,6 @@ Vulnerable: &lt;= 2.1.5-2+deb8u12
 Fixed: 2.1.5-2+deb8u13</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2896450</td>
-<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2885241</td>
@@ -8737,12 +8701,6 @@ Fixed: 3.1.2-11+deb8u9</td>
 <td></td>
 </tr>
 <tr>
-<td>3073668</td>
-<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -9025,12 +8983,6 @@ Vulnerable: &lt;= 2.1.5-2+deb8u12
 Fixed: 2.1.5-2+deb8u13</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2896450</td>
-<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2885241</td>
@@ -12179,12 +12131,6 @@ Fixed: 3.1.2-11+deb8u9</td>
 <td></td>
 </tr>
 <tr>
-<td>3073668</td>
-<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -12467,12 +12413,6 @@ Vulnerable: &lt;= 2.1.5-2+deb8u12
 Fixed: 2.1.5-2+deb8u13</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2896450</td>
-<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2885241</td>
@@ -15834,12 +15774,6 @@ Fixed: 3.1.2-11+deb8u9</td>
 <td></td>
 </tr>
 <tr>
-<td>3073668</td>
-<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -16115,12 +16049,6 @@ Vulnerable: &lt;= 2.1.5-2+deb8u12
 Fixed: 2.1.5-2+deb8u13</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2896450</td>
-<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2885241</td>

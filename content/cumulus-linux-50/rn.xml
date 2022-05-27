@@ -185,12 +185,6 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>3021886</td>
-<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down ({{ifdown}} and up {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
-<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3021838</td>
 <td>PBR rules that you apply to interfaces in the default VRF install in the kernel with the action {{lookup local}}. As a result, packets that match this rule only perform a route lookup in the local table (which contains special routes for local IP addresses and broadcast addresses) but not in the main table (which contains unicast routes).  As a result, policy routing might be applied to traffic incorrectly.</td>
 <td>4.4.2-5.0.1</td>
@@ -780,12 +774,6 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 <td>After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the {{protodown}} flag ON.</td>
 <td>4.4.3-5.0.1</td>
 <td>5.1.0</td>
-</tr>
-<tr>
-<td>3021886</td>
-<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down ({{ifdown}} and up {{ifup}}), the VTEP might not program the local MAC addresses in hardware.</td>
-<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3021838</td>

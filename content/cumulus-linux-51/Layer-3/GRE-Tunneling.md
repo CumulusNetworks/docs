@@ -828,12 +828,16 @@ exit-address-family
 ```
 
 {{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL51 - GRE" showNodes="leaf01,leaf03,spine01,spine02,server01,server04" >}}
+    {{< simulation name="Try It CL51 - GRE" showNodes="leaf01,leaf02,spine01,spine02,border01,border02,server01,server02,server03,server07,server08" >}}
 
-This simulation starts with the GRE example configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
+This simulation starts with the example GRE configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 
-To further validate the configuration, run the commands shown in the troubleshooting section.
+To validate the configuration, run the commands listed in the troubleshooting section.
 
-{{</tab>}}
-{{</tabs>}}
+
+{{< /tab >}}
+{{< /tabs >}}

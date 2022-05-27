@@ -161,7 +161,7 @@ You can upgrade Cumulus Linux in one of two ways:
 Cumulus Linux also provides the Smart System Manager that enables you to upgrade an active switch with minimal disruption to the network. See {{<link url="Smart-System-Manager" text="Smart System Manager">}}.
 
 {{%notice note%}}
-- To upgrade to Cumulus Linux 5.0.0, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with the `apt-get upgrade` command.
+- To upgrade to Cumulus Linux 5.0 from Cumulus Linux 4.x or 3.x, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with the `apt-get upgrade` command.
 - Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
 {{%/notice%}}
 
@@ -299,12 +299,8 @@ If you are using {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}
 
 You must upgrade both switches in the MLAG pair to the same release of Cumulus Linux.
 
-{{%notice warning%}}
-For networks with MLAG deployments, you can only upgrade to Cumulus Linux 5.0 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 5.0. Version 3.7.10 is available on the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox downloads page">}}.
-{{%/notice%}}
-
 {{%notice info%}}
-During upgrade, MLAG bonds stay single-connected while the switches are running different major releases; for example, while leaf01 is running 4.3.0 and leaf02 is running 5.0.0.
+During upgrade, MLAG bonds stay single-connected while the switches are running different major releases; for example, while leaf01 is running 4.4.0 and leaf02 is running 5.0.0.
 
 The bonding driver changes how it derives the *actor port key*, which causes the port key to have a different value for links with the same speed or duplex settings across different major releases. The port key from the LACP partner must remain consistent between all bond members for all bonds to synchronize. When each MLAG switch sends LACPDUs with different port keys, only links to one MLAG switch synchronize.
 {{%/notice%}}

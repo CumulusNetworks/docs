@@ -8,7 +8,7 @@ toc: 4
 
 NVIDIA provides two methods for sharing files with the support team:
 
-- Uploading files directly to the case inside the {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="Web tool">}}
+- Uploading files directly to the case inside the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="Web tool">}}
 - Using FTP to upload files directly to NVIDIA
 
 This article discusses when and how to use FTP to upload files to NVIDIA.

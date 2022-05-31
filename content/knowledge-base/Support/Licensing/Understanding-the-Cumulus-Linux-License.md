@@ -18,7 +18,7 @@ The license format looks like this:
 
     user@company.com|thequickbrownfoxjumpsoverthelazydog312
 
-You manage your licenses in the {{<exlink url="NVIDIA Enterprise supoport portal" text="NVIDIA Enterprise supoport portal">}}.
+You manage your licenses in the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.
 
 To verify that you installed your license, run the `cl-license` command.
 

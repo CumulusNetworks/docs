@@ -47,7 +47,7 @@ Here is an example of `ethtool` output showing an optic that has not identified 
 
 ## Resolution
 
-If you encounter this message and believe the optic is not behaving as expected, then {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="NVIDIA Cumulus support team">}}.
+If you encounter this message and believe the optic is not behaving as expected, then {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Cumulus support team">}}.
 
 ## Suppressing Log Messages
 

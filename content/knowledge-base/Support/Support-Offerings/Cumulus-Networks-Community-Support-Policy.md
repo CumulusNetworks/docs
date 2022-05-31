@@ -11,13 +11,13 @@ NVIDIA provides the community spaces with a goal of sustaining a community that 
 
 ## Support vs Community
 
-First, do not use the NVIDIA forums in place of formal NVIDIA Global Support Services (GSS) engagement for time-sensitive or production-impacting issues. For issues that are time sensitive or impacting production environments, you should engage the NVIDIA GSS team {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="here">}}.
+First, do not use the NVIDIA forums in place of formal NVIDIA Global Support Services (GSS) engagement for time-sensitive or production-impacting issues. For issues that are time sensitive or impacting production environments, you should engage the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA GSS team">}}.
 
 Issues and questions raised on the NVIDIA forums do not come with any formal SLA or response guarantee. An interested peer is just as likely to answer an issue asked by an interested peer as an NVIDIA employee is likely to answer. One of the most important characteristics of any vibrant community is that the sponsoring company does not directly drive the community but merely provides the infrastructure and administration.
 <!-- vale off -->
 ## Customer-sensitive Information
 <!-- vale on -->
-Because the nature of a community site is that it is by definition public, do not share any data or log information that you or your company would consider confidential. If you need to supply such information to resolve the issue, either redact the logs or open a formal support request via {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="the Support Overview page">}}. NVIDIA is not responsible for information shared on the community space. Let NVIDIA support know immediately if you posted something that you should not have via email to <community@cumulusnetworks.com>.
+Because the nature of a community site is that it is by definition public, do not share any data or log information that you or your company would consider confidential. If you need to supply such information to resolve the issue, either redact the logs or open a formal support request via {{<exlink url="https://https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprose support portal">}}. NVIDIA is not responsible for information shared on the community space. Let NVIDIA support know immediately if you posted something that you should not have via email to <community@cumulusnetworks.com>.
 
 ## Help Beyond Cumulus Products
 

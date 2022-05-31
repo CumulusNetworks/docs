@@ -7,15 +7,15 @@ toc: 4
 <!-- vale off -->
 ## One of my colleagues received our order confirmation and I need to access the license file. How can I get it?
 <!-- vale on -->
-You can log in to the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox Customer Portal">}} and retrieve the license file. If you do not have login access to the portal, contact the license owner at your company and they can create a login for you. If you do not know who owns your company's NVIDIA account, contact your NVIDIA account manager.
+You can log in to the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise supoport portal">}} and retrieve the license file. If you do not have login access to the portal, contact the license owner at your company and they can create a login for you. If you do not know who owns your company's NVIDIA account, contact your NVIDIA account manager.
 <!-- vale off -->
 ## How do I know how many users are on our account?
 <!-- vale on -->
-You can view a list of all account users and their profiles from the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox Customer Portal">}}.
+You can view a list of all account users and their profiles from the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise supoport portal">}}.
 <!-- vale off -->  
 ## How can I add users to my account?
 <!-- vale on -->
-To add users, log in to the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox Customer Portal">}}.
+To add users, log in to the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise supoport portal">}}.
 
 ## What user roles are available?
 
@@ -32,4 +32,4 @@ You need at least one active Software Update and Support contract (paid or trial
 -->
 ## How can I reset my account password?
 <!-- vale on -->
-You can reset your password {{<exlink url="https://support.mellanox.com/s/login/" text="here">}}.
+You can reset your password {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise supoport portal">}}.

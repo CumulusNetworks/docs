@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3083265</td>
+<td>Slow memory leak caused by snmpd process using Zabbix template "Template Net Mellanox SNMP"</td>
+<td>4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3082555</td>
 <td>CVE-2022-29824: several buffer handling functions in buf.c (xmlBuf*) and tree.c (xmlBuffer*) don't check for integer overflows. This can result in out-of-bounds memory writes. Exploitation requires a victim to open a crafted, multi-gigabyte XML file. 
 Vulnerable: &lt;= 2.9.4+dfsg1-7+deb10u3
@@ -85,8 +91,8 @@ Fixed:</td>
 <tr>
 <td>2991501</td>
 <td>The {{snmpd}} process using the Zabbix template "Template Net Mellanox SNMP"  causes a slow memory leak.</td>
-<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
+<td>4.2.1-5.0.1</td>
+<td>5.1.0</td>
 </tr>
 <tr>
 <td>2972540</td>

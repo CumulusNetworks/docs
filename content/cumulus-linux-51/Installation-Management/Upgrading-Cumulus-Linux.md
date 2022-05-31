@@ -293,10 +293,6 @@ If you are using {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}
 
 You must upgrade both switches in the MLAG pair to the same release of Cumulus Linux.
 
-{{%notice warning%}}
-For networks with MLAG deployments, you can only upgrade to Cumulus Linux 5.1 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 5.1. Version 3.7.10 is available on the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox downloads page">}}.
-{{%/notice%}}
-
 {{%notice info%}}
 During upgrade, MLAG bonds stay single-connected while the switches are running different major releases; for example, while leaf01 is running 4.4.0 and leaf02 is running 5.1.0.
 

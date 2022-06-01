@@ -17,6 +17,7 @@ The following Try It demos are available:
 - {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP/#configuration-example" text="VRR">}}
 - {{<link url="Static-VXLAN-Tunnels/#single-vxlan-device" text="Single VXLAN device">}}
 - {{<link url="VXLAN-Active-active-Mode/#configuration-example" text="VXLAN Active-active Mode">}}
+- {{<link title="GRE Tunneling#configuration-example" text="GRE">}}
 
 ## Access a Try It Demo
 

@@ -298,6 +298,12 @@ Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>4.4.2-4.4.3</td>
 </tr>
 <tr>
+<td>2716822</td>
+<td>The {{/etc/cumulus/ports.conf}} file on the Dell Z9264F-ON switch does not show that Cumulus Linux does not support the 2x10G SFP+ ports.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>2713888</td>
 <td>With the {{ip-acl-heavy}} TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly.
 
@@ -3589,6 +3595,12 @@ Vulnerable: &lt;= 1.5.6-5+deb8u1
 Fixed: 1.5.6-5+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2716822</td>
+<td>The {{/etc/cumulus/ports.conf}} file on the Dell Z9264F-ON switch does not show that Cumulus Linux does not support the 2x10G SFP+ ports.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2713888</td>

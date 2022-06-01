@@ -7,6 +7,21 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3085285</td>
+<td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
+<td>4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3085280</td>
+<td>CVE-2022-26691: in cups, a logic error in the validation of the secret key used in the "local" authorisation mode of the CUPS printing
+system may result in privilege escalation.
+Vulnerable: &lt;= 2.2.10-6+deb10u5
+Fixed: 2.2.10-6+deb10u6</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3082555</td>
 <td>CVE-2022-29824: several buffer handling functions in buf.c (xmlBuf*) and tree.c (xmlBuffer*) don't check for integer overflows. This can result in out-of-bounds memory writes. Exploitation requires a victim to open a crafted, multi-gigabyte XML file. 
 Vulnerable: &lt;= 2.9.4+dfsg1-7+deb10u3
@@ -35,12 +50,6 @@ Fixed: 1.1.1n-0+deb10u2</td>
 <td>3072613</td>
 <td>When  you delete a bond interface with NCLU, BGP peer group configuration is removed.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>3069065</td>
-<td>When you run Ansible playbooks with NCLU commands, Ansible bypasses TACACS Command Authorization.</td>
-<td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -160,9 +169,9 @@ Fixed:</td>
 </tr>
 <tr>
 <td>2991501</td>
-<td>The {{snmpd}} process using the Zabbix template "Template Net Mellanox SNMP"  causes a slow memory leak.</td>
-<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
+<td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
+<td>4.2.1-5.0.1</td>
+<td>5.1.0</td>
 </tr>
 <tr>
 <td>2972540</td>
@@ -792,6 +801,12 @@ This is a cosmetic software issue and not indicative of a hardware failure on th
 <td>In an EVPN multihoming configuration, the VTEP continues to advertise a stale route after an extended MAC mobility event.</td>
 <td>4.3.0-4.4.1</td>
 <td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2716822</td>
+<td>The {{/etc/cumulus/ports.conf}} file on the Dell Z9264F-ON switch does not show that Cumulus Linux does not support the 2x10G SFP+ ports.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2713888</td>

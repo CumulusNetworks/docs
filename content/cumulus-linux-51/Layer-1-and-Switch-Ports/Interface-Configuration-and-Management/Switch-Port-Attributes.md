@@ -934,7 +934,6 @@ Maximum 200G ports: 32
 {{< /tab >}}
 
 {{< /tabs >}}
-<!-- SN4410 PLATFORM IS PLANNED TO AUG21 (CL4.4.1?)
 {< tab "SN4410">}}
 
 SN4410 24xQSFP28-DD (100GbE) interfaces [ports 1-24] only support NRZ encoding and wll speeds down to 1G.
@@ -1012,7 +1011,6 @@ Maximum 400G ports: 8
 {< /tab >}}
 
 {< /tabs >}}
--->
 {{< tab "SN4600C">}}
 
 64x QSFP28 100G interfaces only support NRZ encoding.
@@ -1060,7 +1058,6 @@ Maximum 100G ports: 80
 {{< /tab >}}
 
 {{< /tabs >}}
-<!-- SN4600 PLATFORM IS PLANNED TO AUG21 (CL4.4.2?)
 {< tab "SN4600">}}
 
 SN4600 64xQSFP56 (200GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 1G.
@@ -1118,7 +1115,6 @@ Maximum 200G ports: 64
 {< /tab >}}
 
 {< /tabs >}}
--->
 {{< tab "SN4700">}}
 
 SN4700 32x QSFP-DD 400GbE interfaces support both PAM4 and NRZ encodings.
@@ -1188,77 +1184,13 @@ Maximum 400G ports: 32
 {{< /tab >}}
 
 {{< /tabs >}}
-<!-- SN4800 PLATFORM IS PLANNED TO NOV21 (CL5.1?)
 {< tab "SN4800">}}
 
-SN4800 is a modular chassis with up to 8 line cards. Each line card can have up to 16 MAC addresses and can be of a different port form-factor and speed.
+SN4800 is a modular chassis with up to 8 line cards. Each line card has 16x QSFP28 NRZ encoding 100G interfaces and supports all speeds down to 1G.
 
-All line cards supports both NRZ and PAM4 encodings with speeds down to 1G. For lower speeds, PAM4 is automatically converted to NRZ encoding.
-
-{< tabs "4800_ports ">}}
-{< tab "10G ">}}
-
-128x10G - 8 line cards of 16xQSFP28* break out into 4x25G and set to 10G
-
-Maximum 10G ports: 128
-
-*Other combinations are possible by using higher speed line card with breakouts (up to 128x10G ports).
+This platform is avaliable only with 16x QSFP28 line cards without an option to breakout ports. Thus, you can install a maximum of 128x100G ports. 
 
 {< /tab >}}
-{< tab "25G ">}}
-
-128x25G - 8 line cards of 16xQSFP28* break out into 4x25G
-
-Maximum 25G ports: 128
-
-*Other combinations are possible by using higher speed line card with breakouts (up to 128x25G ports). 
-
-{< /tab >}}
-{< tab "40G ">}}
-
-128x40G - 8 line cards of 16xQSFP28 set to 40G
-
-Maximum 40G ports: 128
-
-{< /tab >}}
-{< tab "50G ">}}
-
-128x50G - 8 line cards of 8xQSFP56* break out into 4x50G
-
-Maximum 50G ports: 128
-
-*Other combinations are possible by using higher speed line card with breakouts (up to 128x50G ports). 
-
-{< /tab >}}
-{< tab "100G ">}}
-
-128x100G - 8 line cards of 16xQSFP28* (native speed)
-
-Maximum 100G ports:128
-
-*Other combinations are possible by using higher speed line card with breakouts (up to 128x100G ports).
-
-{< /tab >}}
-{< tab "200G ">}}
-
-64x200G - 8 line cards of 8xQSFP56* (native speed)
-
-Maximum 200G ports: 64
-
-*Other combinations are possible by using higher speed line card with breakouts (up to 64x200G ports). 
-
-{< /tab >}}
-{< tab "400G ">}}
-
-32x400G - 8 linecards of 4xQSFP-DD (native speed)
-
-Maximum 400G ports: 32
-
-{< /tab >}}
-{< /tab >}}
-
-{< /tabs >}}
--->
 {{< /tabs >}}
 
 {{%notice note%}}

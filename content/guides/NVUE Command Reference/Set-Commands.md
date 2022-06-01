@@ -68,7 +68,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router nexthop-group group1
+cumulus@leaf01:mgmt:~$ nv set router nexthop-group group1
 ```
 
 ## nv set router nexthop-group \<nexthop-group-id\> via \<via-id\>
@@ -104,7 +104,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32
+cumulus@leaf01:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32
 ```
 
 ## nv set router nexthop-group \<nexthop-group-id\> via \<via-id\> interface \<interface-name\>
@@ -134,7 +134,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32 interface swp51
+cumulus@leaf01:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32 interface swp51
 ```
 
 ## nv set router nexthop-group \<nexthop-group-id\> via \<via-id\> vrf \<vrf-name\>
@@ -164,7 +164,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32 vrf RED
+cumulus@leaf01:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32 vrf RED
 ```
 
 ## nv set router pbr
@@ -217,7 +217,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router pbr map map1
+cumulus@leaf01:mgmt:~$ nv set router pbr map map1
 ```
 
 ## nv set router pbr map \<pbr-map-id\> rule \<rule-id\>
@@ -253,7 +253,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 10
+cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 10
 ```
 
 ## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match
@@ -315,7 +315,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 10 match source-ip 10.1.4.1/24 
+cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 10 match source-ip 10.1.4.1/24 
 ```
 
 ## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match destination-ip \<ipv4-prefix\>|\<ipv6-prefix\>
@@ -345,7 +345,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 10 match destination-ip 10.1.2.0/24
+cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 10 match destination-ip 10.1.2.0/24
 ```
 
 ## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match dscp
@@ -374,7 +374,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 match dscp 10
+cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 1 match dscp 10
 ```
 
 ## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match ecn
@@ -403,7 +403,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 match ecn 3
+cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 1 match ecn 3
 ```
 
 ## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> action
@@ -439,7 +439,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
+cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 ```
 
 ## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> action nexthop-group \<nexthop-group-id\>
@@ -469,7 +469,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action nexthop-group group1
+cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 1 action nexthop-group group1
 ```
 
 ## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> action vrf \<vrf-name\>
@@ -499,7 +499,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
+cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 ```
 
 ## nv set router pbr enable
@@ -521,7 +521,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router pbr enable on
+cumulus@leaf01:mgmt:~$ nv set router pbr enable on
 ```
 
 ## nv set router policy
@@ -582,7 +582,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy community-list 
+cumulus@leaf01:mgmt:~$ nv set router policy community-list 
 ```
 
 ## nv set router policy community-list \<list-id\> rule \<rule-id\>
@@ -618,7 +618,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 action permit
+cumulus@leaf01:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 action permit
 ```
 ## nv set router policy community-list \<list-id\> rule \<rule-id\> community \<community-id\>
 
@@ -647,7 +647,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 community 100:100
+cumulus@leaf01:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 community 100:100
 ```
 
 ## nv set router policy community-list \<list-id\> rule \<rule-id\> action
@@ -676,7 +676,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 action permit
+cumulus@leaf01:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 action permit
 ```
 
 ## nv set router policy as-path-list \<list-id\>
@@ -710,7 +710,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy as-path-list mylist
+cumulus@leaf01:mgmt:~$ nv set router policy as-path-list mylist
 ```
 
 ## nv set router policy as-path-list \<list-id\> rule \<rule-id\>
@@ -746,7 +746,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy as-path-list mylist rule 10
+cumulus@leaf01:mgmt:~$ nv set router policy as-path-list mylist rule 10
 ```
 
 ## nv set router policy as-path-list \<list-id\> rule \<rule-id\> action
@@ -775,7 +775,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy as-path-list mylist rule 10 action permit
+cumulus@leaf01:mgmt:~$ nv set router policy as-path-list mylist rule 10 action permit
 ```
 
 ## nv set router policy as-path-list \<list-id\> rule \<rule-id\> aspath-exp \<bgp-regex\>
@@ -805,7 +805,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy as-path-list mylist rule 10 aspath-exp ^100_
+cumulus@leaf01:mgmt:~$ nv set router policy as-path-list mylist rule 10 aspath-exp ^100_
 ```
 
 ## nv set router policy ext-community-list \<list-id\>
@@ -839,7 +839,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy ext-community-list mylist
+cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist
 ```
 
 ## nv set router policy ext-community-list \<list-id\> rule \<rule-id\>
@@ -875,7 +875,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy ext-community-list mylist rule 10
+cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10
 ```
 
 ## nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community
@@ -911,7 +911,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ext-community 64510:2
+cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ext-community 64510:2
 ```
 
 ## nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community rt \<ext-community-id\>
@@ -941,7 +941,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ext-community rt 64510:1111
+cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ext-community rt 64510:1111
 ```
 
 ## nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community soo \<ext-community-id\>
@@ -967,7 +967,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ext-community soo ????????
+cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ext-community soo ????????
 ```
 
 ## nv set router policy ext-community-list \<list-id\> rule \<rule-id\> action
@@ -996,7 +996,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy ext-community-list mylist rule 10 action permit
+cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10 action permit
 ```
 
 ## nv set router policy large-community-list \<list-id\>
@@ -1030,7 +1030,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy large-community-list mylist
+cumulus@leaf01:mgmt:~$ nv set router policy large-community-list mylist
 ```
 
 ## nv set router policy large-community-list \<list-id\> rule \<rule-id\>
@@ -1066,7 +1066,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy large-community-list mylist rule 10
+cumulus@leaf01:mgmt:~$ nv set router policy large-community-list mylist rule 10
 ```
 
 ## nv set router policy large-community-list \<list-id\> rule \<rule-id\> large-community \<large-community-id\>
@@ -1096,7 +1096,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy large-community-list mylist rule 10 large-community ?????
+cumulus@leaf01:mgmt:~$ nv set router policy large-community-list mylist rule 10 large-community ?????
 ```
 
 ## nv set router policy large-community-list <list-id> rule <rule-id> action
@@ -1123,7 +1123,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy large-community-list mylist rule 10 action permit
+cumulus@leaf01:mgmt:~$ nv set router policy large-community-list mylist rule 10 action permit
 ```
 
 ## nv set router policy prefix-list \<prefix-list-id\>
@@ -1158,7 +1158,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy prefix-list mylist
+cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist
 ```
 
 ## nv set router policy prefix-list \<prefix-list-id\> rule \<rule-id\>
@@ -1194,7 +1194,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy prefix-list mylist rule 10
+cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist rule 10
 ```
 
 ## nv set router policy prefix-list \<prefix-list-id\> rule \<rule-id\> match \<match-id\>
@@ -1231,7 +1231,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy prefix-list mylist rule 10 match 10.0.0.0/16
+cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist rule 10 match 10.0.0.0/16
 ```
 
 ## nv set router policy prefix-list \<prefix-list-id\> rule \<rule-id\> match \<match-id\> min-prefix-len
@@ -1261,7 +1261,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy prefix-list mylist rule 10 match 10.0.0.0/16 min-prefix-len 30
+cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist rule 10 match 10.0.0.0/16 min-prefix-len 30
 ```
 
 ## nv set router policy prefix-list \<prefix-list-id\> rule \<rule-id\> match \<match-id\> max-prefix-len
@@ -1291,7 +1291,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy prefix-list mylist rule 10 match 10.0.0.0/16 max-prefix-len 30
+cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist rule 10 match 10.0.0.0/16 max-prefix-len 30
 ```
 
 ## nv set router policy prefix-list \<list-id\> rule \<rule-id\> action
@@ -1320,7 +1320,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy prefix-list mylist rule 10 action permit
+cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist rule 10 action permit
 ```
 
 ## nv set router policy prefix-list \<list-id\> type
@@ -1348,7 +1348,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy prefix-list mylist type ipv4
+cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist type ipv4
 ```
 
 ## nv set router policy route-map \<route-map-id\>
@@ -1382,7 +1382,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\>
@@ -1419,7 +1419,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match
@@ -1496,7 +1496,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-prefix-list prefixlist1
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-prefix-list prefixlist1
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-prefix-len
@@ -1525,7 +1525,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-prefix-len 128
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-prefix-len 128
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-nexthop-list \<instance-name\>
@@ -1554,7 +1554,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-prefix-list prefixlist1
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-prefix-list prefixlist1
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-nexthop-len
@@ -1583,7 +1583,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-nexthop-len 32
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-nexthop-len 32
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-nexthop \<ipv4\>|\<ipv6\>
@@ -1609,7 +1609,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-nexthop 10.10.101
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-nexthop 10.10.101
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-nexthop-type blackhole
@@ -1634,7 +1634,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-nexthop-type blackhole
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-nexthop-type blackhole
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match as-path-list \<instance-name\>
@@ -1663,7 +1663,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match as-path-list MYLIST
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match as-path-list MYLIST
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match community-list \<instance-name\>
@@ -1692,7 +1692,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match community-list MYLIST
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match community-list MYLIST
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match large-community-list \<instance-name\>
@@ -1721,7 +1721,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match large-community-list MYLIST
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match large-community-list MYLIST
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match metric \<value\>
@@ -1750,7 +1750,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match metric 1
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match metric 1
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match interface \<interface-name\>|\<vrf-name\>
@@ -1779,7 +1779,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match interface swp51
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match interface swp51
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match tag
@@ -1808,7 +1808,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match tag 10
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match tag 10
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match source-protocol
@@ -1837,7 +1837,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match source-protocol bgp
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match source-protocol bgp
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match origin
@@ -1866,7 +1866,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match origin igp
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match origin igp
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match peer
@@ -1895,7 +1895,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match peer swp51
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match peer swp51
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match local-preference
@@ -1924,7 +1924,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match local-preference 300
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match local-preference 300
 ```
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> match evpn-route-type
@@ -1953,7 +1953,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match evpn-route-type macip
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match evpn-route-type macip
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match evpn-vni \<value\>
@@ -1982,7 +1982,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match evpn-vni 10
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match evpn-vni 10
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match source-vrf \<vrf-name\>
@@ -2011,7 +2011,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match source-vrf RED
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match source-vrf RED
 ```
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> match type
@@ -2040,7 +2040,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ipv4
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ipv4
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set
@@ -2126,7 +2126,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-prepend
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-prepend
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-prepend as
@@ -2155,7 +2155,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-prepend as 65101
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-prepend as 65101
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-prepend last-as
@@ -2184,7 +2184,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-prepend as last-as 4
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-prepend as last-as 4
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set community \<community-id\>
@@ -2214,7 +2214,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set community 100:100
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set community 100:100
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set large-community \<large-community-id\>
@@ -2244,7 +2244,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set large-community ????
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set large-community ????
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set aggregator-as \<asn-id\>
@@ -2280,7 +2280,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set aggregator-as 65101
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set aggregator-as 65101
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set aggregator-as \<asn-id\> address \<ipv4-address-id\>
@@ -2311,7 +2311,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set aggregator-as 65101 address 10.10.10.01
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set aggregator-as 65101 address 10.10.10.01
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-exclude
@@ -2340,7 +2340,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-exclude 65101
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-exclude 65101
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set atomic-aggregate (on|off)
@@ -2369,7 +2369,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set atomic-aggregate on
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set atomic-aggregate on
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ext-community-rt \<route-distinguisher\>
@@ -2399,7 +2399,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ext-community-rt 64510:1111
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ext-community-rt 64510:1111
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ext-community-soo \<route-distinguisher\>
@@ -2429,7 +2429,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ext-community-soo ????
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ext-community-soo ????
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ext-community-bw
@@ -2458,7 +2458,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ext-community-bw multipaths.
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ext-community-bw multipaths.
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set local-preference
@@ -2487,7 +2487,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set local-preference 300
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set local-preference 300
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set weight
@@ -2516,7 +2516,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set weight 300
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set weight 300
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set metric
@@ -2545,7 +2545,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set metric metric-minus
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set metric metric-minus
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set metric type
@@ -2574,7 +2574,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set metric type type-2
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set metric type type-2
 ```
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> set origin
@@ -2603,7 +2603,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set origin igp
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set origin igp
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set tag
@@ -2632,7 +2632,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set tag 100
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set tag 100
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ipv6-nexthop-global \<ipv6\>
@@ -2661,7 +2661,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ipv6-nexthop-global 2001:db8:0002::0a00:0002
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ipv6-nexthop-global 2001:db8:0002::0a00:0002
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ipv6-nexthop-local \<ipv6\>
@@ -2690,7 +2690,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ipv6-nexthop-local 2001:db8:0002::0a00:0002
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ipv6-nexthop-local 2001:db8:0002::0a00:0002
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ipv6-nexthop-prefer-global
@@ -2719,7 +2719,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ipv6-nexthop-prefer-global on
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ipv6-nexthop-prefer-global on
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ip-nexthop
@@ -2748,7 +2748,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ip-nexthop peer-addr
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ip-nexthop peer-addr
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set source-ip
@@ -2777,7 +2777,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set source-ip 10.1.10.0
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set source-ip 10.1.10.0
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set community-delete-list
@@ -2806,7 +2806,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set community-delete-list communitylist1
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set community-delete-list communitylist1
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set large-community-delete-list 
@@ -2835,7 +2835,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set large-community-delete-list largecommunitylist1
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set large-community-delete-list largecommunitylist1
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> action
@@ -2894,7 +2894,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 deny
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 deny
 ```
 
 ## nv set router policy route-map <route-map-id> rule <rule-id> action permit
@@ -2929,7 +2929,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 permit
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 permit
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> action permit exit-policy
@@ -2964,7 +2964,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 permit exit-policy
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 permit exit-policy
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> action permit exit-policy rule \<value\>
@@ -2993,7 +2993,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 permit exit-policy rule 20
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 permit exit-policy rule 20
 ```
 
 ## nv set router bgp
@@ -3012,14 +3012,14 @@ Configures BGP global configuration.
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `graceful-restart` | Configures BGP graceful restart globally.|
-| `convergence-wait` | Configures |
+| `graceful-restart` | Configures BGP graceful restart globally so that a BGP speaker can signal to its peers that it can preserve its forwarding state and continue data forwarding during a restart. It also enables a BGP speaker to continue to use routes announced by a peer even after the peer has gone down.|
+| `convergence-wait` | Configures read-only mode so that you can reduce CPU and network usage when restarting the BGP process.|
 | `enable` |  Turns BGP on or off. The default is off.|
-| `autonomous-system` |  Configures the ASN for all VRFs if a single AS is in use; otherwise, you must set an ASN for every VRF.|
-| `graceful-shutdown` |  Configures Graceful shutdown where BGP initiates the GSHUT community to be announced to all EBGP peers in all instances and low LOCAL_PREF to all IBGP peers in all instances. |
+| `autonomous-system` |  Configures the ASN to identify the BGP node. This command configures the ASN for all VRFs if a single AS is in use; otherwise, you must set an ASN for every VRF.|
+| `graceful-shutdown` |  Configures graceful shutdown, which forces traffic to route around the BGP node and reduces packet loss during planned maintenance of a router or link. |
 | `policy-update-timer` | Configures the wait time in seconds before processing updates to policies to ensure that a series of changes are processed together. |
-|` router-id`  | Configures the BGP router ID for all VRFs if a common VRF is used; otherwise, you must set a router ID for every VRF. |
-| `wait-for-install` | Configures BGP to wait for routes to be installed into kernel before advertising. |
+|` router-id`  | Configures the BGP router ID on the switch, which is a 32-bit value and is typically the address of the loopback interface. This command configures a BGP router ID for all VRFs if a common VRF is used; otherwise, you must set a router ID for every VRF. |
+| `wait-for-install` | Configures BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers. |
 
 **Version History**
 
@@ -3027,13 +3027,13 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set router bgp graceful-restart
 
-Configures BGP Graceful restart globally.
+Configures BGP graceful restart globally on the switch so that a BGP speaker can signal to its peers that it can preserve its forwarding state and continue data forwarding during a restart. It also enables a BGP speaker to continue to use routes announced by a peer even after the peer has gone down.
 
 **Usage**
 
 `nv set router bgp graceful-restart [options] [<attribute> ...]`
 
-*Default Setting**
+**Default Setting**
 
 N/A
 
@@ -3041,107 +3041,169 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `mode` | Configures the role of the router during graceful restart. You can specify `helper-only`, where the router is in helper role, `full`, where the router is in both helper and restarter role, or  `off`, where  BGP graceful restart is off. |
-| `path-selection-deferral-time` | Configures the the upper-bounds to wait for peering establishment and end-of-RIB from peers post restart before it starts path-selection.|
-| `restart-time` |  Configures the amount of time to take to restart. It is advertised to the peer.
-| `stale-routes-time` | Configures the upper-bounds on how long to retain routes from a restarting peer before flusing them.
+| `mode` | Configures the role of the router during graceful restart. You can specify `helper-only`, where the router is in helper mode, `full`, where the router is in both helper and restarter mode, or `off`, where BGP graceful restart is off. |
+| `path-selection-deferral-time` | Configures the number of seconds a restarting peer defers path-selection when waiting for the EOR (end of RIB) marker from peers. The default is 360 seconds. You can set a value between 0 and 3600.|
+| `restart-time` |  Configures the number of seconds to wait for a graceful restart capable peer to re-establish BGP peering. The default is 120 seconds. You can set a value between 1 and 4095. |
+| `stale-routes-time` | Configures the number of seconds to hold stale routes for a restarting peer. The default is 360 seconds. You can set a value between 1 and 4095. |
 
 **Version History**
 
 Introduced in Cumulus Linux 5.0.0
 
-## nv set router bgp graceful-restart restart-time 1-3600
+## nv set router bgp graceful-restart restart-time
+
+Configures the number of seconds to wait for a graceful restart capable peer to re-establish BGP peering. You can set a value between 1 and 4095.
 
 **Usage**
 
-  nv set router bgp graceful-restart restart-time [options] 1-3600
+`nv set router bgp graceful-restart restart-time [options] 1-3600`
 
-### Description
+**Default Setting**
 
-  Amount of time taken to restart by router. It is advertised to the peer
+120 seconds
 
-## nv set router bgp graceful-restart path-selection-deferral-time 0-3600
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router restart-time 400
+```
+
+## nv set router bgp graceful-restart path-selection-deferral-time
+
+Configures the number of seconds a restarting peer defers path-selection when waiting for the EOR (end of RIB) marker from peers. You can set a value between 0 and 3600.
 
 **Usage**
 
-  nv set router bgp graceful-restart path-selection-deferral-time [options] 0-3600
+`nv set router bgp graceful-restart path-selection-deferral-time [options] 0-3600`
 
-### Description
+**Default Setting**
 
-  Used by the restarter as an upper-bounds for waiting for peering establishment and end-of-RIB from peers post restart before it starts path-selection.
+360 seconds
 
-## nv set router bgp graceful-restart stale-routes-time 1-3600
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart path-selection-deferral-time 300
+```
+
+## nv set router bgp graceful-restart stale-routes-time
+
+Configures the number of seconds to hold stale routes for a restarting peer. You can set a value between 1 and 4095.
 
 **Usage**
 
-  nv set router bgp graceful-restart stale-routes-time [options] 1-3600
+`nv set router bgp graceful-restart stale-routes-time [options] 1-3600`
 
-### Description
+**Default Setting**
 
-  Specifies an upper-bounds on how long we retain routes from a restarting peer before flusing them.
+360 seconds
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart stale-routes-time 400
+```
 
 ## nv set router bgp convergence-wait
 
+Configures read-only mode so that you can reduce CPU and network usage when restarting the BGP process.
+
 **Usage**
 
-  nv set router bgp convergence-wait [options] [<attribute> ...]
+`nv set router bgp convergence-wait [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  BGP Graceful restart global configuration.
+N/A
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `establish-wait-time` | Configures the maximum time to wait to establish BGP sessions. BGP does not track any peers that do not come up in this time for convergence-wait purposes. A value of 0 means there is no maximum time and BGP tracks peers for convergence time.|
+| `time`  | Configures the time to wait for peers to send an EOR (end of RIB) before the switch selects the path, installs and advertises the route. BGP uses the time to wait during startup or when all peerings flap. A value of zero means that there is no wait time. |
 
-  establish-wait-time  Maximum time to wait to establish BGP sessions. Any
+**Version History**
 
-                       peers which do not come up in this time are not tracked
+Introduced in Cumulus Linux 5.0.0
 
-                       for the convergence-wait purposes. 0 value means there
+## nv set router bgp convergence-wait time
 
-                       is no max time and peers are tracked for convergence
-
-                       time.
-
-  time                 Time to wait for peers to send end-of-RIB before router
-
-                       performs path selection, install and advertisement.
-
-                       This is used during startup or when all peerings are
-
-                       flapped. 0 value means wait time is not configured
-
-## nv set router bgp convergence-wait time 0-3600
+Configures the time to wait for peers to send an EOR (end of RIB) before the switch selects the path, installs and advertises the route. BGP uses the time to wait during startup or when all peerings flap. You can set a value between 0 and 3600 seconds. A value of zero means that there is no wait time.
 
 **Usage**
 
-  nv set router bgp convergence-wait time [options] 0-3600
+`nv set router bgp convergence-wait time [options] 0-3600`
 
-### Description
+**Default Setting**
 
-  Time to wait for peers to send end-of-RIB before router performs path selection, install and advertisement. This is used during startup or when all peerings are flapped. 0 value means wait time is not configured
+N/A
 
-## nv set router bgp convergence-wait establish-wait-time 0-3600
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp convergence-wait time 300
+```
+
+## nv set router bgp convergence-wait establish-wait-time
+
+Configures the maximum time to wait to establish BGP sessions. BGP does not track any peers that do not come up in this time for convergence-wait purposes.  You can set a value between 0 and 600 seconds.  A value of 0 means there is no maximum time and BGP tracks peers for convergence time.
 
 **Usage**
 
-  nv set router bgp convergence-wait establish-wait-time [options] 0-3600
+`nv set router bgp convergence-wait establish-wait-time [options] 0-3600`
 
-### Description
+**Default Setting**
 
-  Maximum time to wait to establish BGP sessions. Any peers which do not come up in this time are not tracked for the convergence-wait purposes. 0 value means there is no max time and peers are tracked for convergence time.
+N/A
 
-## nv set router bgp policy-update-timer 0-600
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp establish-wait-time time 200
+```
+
+## nv set router bgp policy-update-timer
+
+Configures the wait time in seconds before processing updates to policies to ensure that a series of changes process together. You can set a value between o and 600.
 
 **Usage**
 
-  nv set router bgp policy-update-timer [options] 0-600
+`nv set router bgp policy-update-timer [options] 0-600`
 
-### Description
+**Default Setting**
 
-  Wait time in seconds before processing updates to policies to ensure that a series of changes are processed together.
+N/A
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp policy-update-timer 200
+```
 
 ## nv set router ospf
 

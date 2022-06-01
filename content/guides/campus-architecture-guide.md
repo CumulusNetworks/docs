@@ -62,7 +62,7 @@ The Cumulus NetQ agent currently supports:
 - Red Hat Enterprise Linux (RHEL) 7.1
 - CentOS 7
 
-The Cumulus NetQ agent streams all the data it collects to the Cumulus NetQ appliance. This appliance is [available](https://support.mellanox.com/s/) as either a bare metal appliance from NVIDIA or as a virtual appliance for use on nearly any hypervisor.
+The Cumulus NetQ agent streams all the data it collects to the Cumulus NetQ appliance. This appliance is [available](https://enterprise-support.nvidia.com/s/) as either a bare metal appliance from NVIDIA or as a virtual appliance for use on nearly any hypervisor.
 
 ## Campus Networks Overview
 

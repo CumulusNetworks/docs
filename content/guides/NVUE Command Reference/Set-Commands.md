@@ -2158,7 +2158,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-prepend as 65101
 ```
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-prepend
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-prepend last-as
 
 Sets the last BGP AS path to prepend for a matched route. You can set a value between 1 and 10.
 
@@ -2343,6 +2343,35 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-exclude 65101
 ```
 
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set atomic-aggregate (on|off)
+
+Configures a set clause in the route map to inform BGP peers that the local router is using a less specific (aggregated) route to a destination. You can specify `on` or `off`.
+
+**Usage**
+
+`nv set router policy route-map <route-map-id> rule <rule-id> set atomic-aggregate [options] (on|off)`
+
+**Default Setting**
+
+`off`
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set atomic-aggregate on
+```
+
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ext-community-rt \<route-distinguisher\>
 
 Sets the route target Extended Community for a matched route.
@@ -2401,6 +2430,35 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ext-community-soo ????
+```
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ext-community-bw
+
+Sets the BGP Extended Community for a matched route. You can specify `cumulative` `multipaths` `cumulative-non-transitive`, or `multipaths-non-transitive`.
+
+**Usage**
+
+`nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-bw [options] (cumulative|multipaths|cumulative-non-transitive|multipaths-non-transitive)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ext-community-bw multipaths.
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set local-preference

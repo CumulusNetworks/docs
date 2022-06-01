@@ -7,15 +7,30 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3083265</td>
-<td>Slow memory leak caused by snmpd process using Zabbix template "Template Net Mellanox SNMP"</td>
+<td>3089148</td>
+<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
+<td>4.4.3, 5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3085285</td>
+<td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3085280</td>
+<td>CVE-2022-26691: in cups, a logic error in the validation of the secret key used in the "local" authorisation mode of the CUPS printing
+system may result in privilege escalation.
+Vulnerable: &lt;= 2.2.10-6+deb10u5
+Fixed: 2.2.10-6+deb10u6</td>
+<td>4.0.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
 <td>3082583</td>
 <td>On the NVIDIA SN3420, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
-<td>4.4.2-4.4.3</td>
+<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -28,6 +43,13 @@ Fixed: 2.9.4+dfsg1-7+deb10u4</td>
 </tr>
 <tr>
 <td>3081232</td>
+<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
+To work around this issue, disable, then enable the port.</td>
+<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3078202</td>
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
 To work around this issue, disable, then enable the port.</td>
 <td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
@@ -267,7 +289,7 @@ Fixed:</td>
 </tr>
 <tr>
 <td>2991501</td>
-<td>The {{snmpd}} process using the Zabbix template "Template Net Mellanox SNMP"  causes a slow memory leak.</td>
+<td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>4.2.1-5.0.1</td>
 <td>5.1.0</td>
 </tr>
@@ -803,6 +825,12 @@ To work around this issue, restart FRR with the {{sudo systemctl restart frr}} c
 <td>On the Celestica Seastone switch, when you run {{ smonctl -v}}, the DIMM 1 Temp Sensor shows as absent.
 This is a cosmetic software issue and not indicative of a hardware failure on the system.</td>
 <td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2716822</td>
+<td>The {{/etc/cumulus/ports.conf}} file on the Dell Z9264F-ON switch does not show that Cumulus Linux does not support the 2x10G SFP+ ports.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2048,15 +2076,24 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3083265</td>
-<td>Slow memory leak caused by snmpd process using Zabbix template "Template Net Mellanox SNMP"</td>
+<td>3085285</td>
+<td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3085280</td>
+<td>CVE-2022-26691: in cups, a logic error in the validation of the secret key used in the "local" authorisation mode of the CUPS printing
+system may result in privilege escalation.
+Vulnerable: &lt;= 2.2.10-6+deb10u5
+Fixed: 2.2.10-6+deb10u6</td>
+<td>4.0.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
 <td>3082583</td>
 <td>On the NVIDIA SN3420, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
-<td>4.4.2-4.4.3</td>
+<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2069,6 +2106,13 @@ Fixed: 2.9.4+dfsg1-7+deb10u4</td>
 </tr>
 <tr>
 <td>3081232</td>
+<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
+To work around this issue, disable, then enable the port.</td>
+<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3078202</td>
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
 To work around this issue, disable, then enable the port.</td>
 <td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
@@ -2278,7 +2322,7 @@ Fixed:</td>
 </tr>
 <tr>
 <td>2991501</td>
-<td>The {{snmpd}} process using the Zabbix template "Template Net Mellanox SNMP"  causes a slow memory leak.</td>
+<td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>4.2.1-5.0.1</td>
 <td>5.1.0</td>
 </tr>
@@ -2912,6 +2956,12 @@ To work around this issue, restart FRR with the {{sudo systemctl restart frr}} c
 <td>On the Celestica Seastone switch, when you run {{ smonctl -v}}, the DIMM 1 Temp Sensor shows as absent.
 This is a cosmetic software issue and not indicative of a hardware failure on the system.</td>
 <td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2716822</td>
+<td>The {{/etc/cumulus/ports.conf}} file on the Dell Z9264F-ON switch does not show that Cumulus Linux does not support the 2x10G SFP+ ports.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4335,9 +4385,18 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3083265</td>
-<td>Slow memory leak caused by snmpd process using Zabbix template "Template Net Mellanox SNMP"</td>
+<td>3085285</td>
+<td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3085280</td>
+<td>CVE-2022-26691: in cups, a logic error in the validation of the secret key used in the "local" authorisation mode of the CUPS printing
+system may result in privilege escalation.
+Vulnerable: &lt;= 2.2.10-6+deb10u5
+Fixed: 2.2.10-6+deb10u6</td>
+<td>4.0.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4350,6 +4409,13 @@ Fixed: 2.9.4+dfsg1-7+deb10u4</td>
 </tr>
 <tr>
 <td>3081232</td>
+<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
+To work around this issue, disable, then enable the port.</td>
+<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3078202</td>
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
 To work around this issue, disable, then enable the port.</td>
 <td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
@@ -4535,7 +4601,7 @@ Fixed:</td>
 </tr>
 <tr>
 <td>2991501</td>
-<td>The {{snmpd}} process using the Zabbix template "Template Net Mellanox SNMP"  causes a slow memory leak.</td>
+<td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>4.2.1-5.0.1</td>
 <td>5.1.0</td>
 </tr>
@@ -5405,6 +5471,12 @@ This is a cosmetic software issue and not indicative of a hardware failure on th
 The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/switchd.conf}} file is 32 VLANs for single VLAN-aware bridge configurations.</td>
 <td>4.4.0-4.4.1</td>
 <td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2716822</td>
+<td>The {{/etc/cumulus/ports.conf}} file on the Dell Z9264F-ON switch does not show that Cumulus Linux does not support the 2x10G SFP+ ports.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2713888</td>

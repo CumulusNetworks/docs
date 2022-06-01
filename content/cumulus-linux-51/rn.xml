@@ -7,7 +7,34 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3089148</td>
+<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
+<td>4.4.3, 5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3084101</td>
+<td>CVE-2022-1664: dpkg has a vulnerability relating to directory traversal for in-place extracts with untrusted v2 and v3 source packages with debian.tar
+Vulnerable: &lt;= 1.19.7
+Fixed: 1.19.8</td>
+<td>5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3082583</td>
+<td>On the NVIDIA SN3420, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
+<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3081232</td>
+<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
+To work around this issue, disable, then enable the port.</td>
+<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3078202</td>
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
 To work around this issue, disable, then enable the port.</td>
 <td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
@@ -644,7 +671,7 @@ Fixed: 2.2.6-2+deb10u3</td>
 </tr>
 <tr>
 <td>2980891</td>
-<td>The {{snmpd}} process using the Zabbix template "Template Net Mellanox SNMP"  causes a slow memory leak.</td>
+<td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>4.2.1-5.0.1</td>
 </tr>
 <tr>

@@ -1086,6 +1086,15 @@ To work around this issue, change the value of arp_ignore to 2. See &lt;a href="
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3085280</td>
+<td>CVE-2022-26691: in cups, a logic error in the validation of the secret key used in the "local" authorisation mode of the CUPS printing
+system may result in privilege escalation.
+Vulnerable: &lt;= 2.2.10-6+deb10u5
+Fixed: 2.2.10-6+deb10u6</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3082555</td>
 <td>CVE-2022-29824: several buffer handling functions in buf.c (xmlBuf*) and tree.c (xmlBuffer*) don't check for integer overflows. This can result in out-of-bounds memory writes. Exploitation requires a victim to open a crafted, multi-gigabyte XML file. 
 Vulnerable: &lt;= 2.9.4+dfsg1-7+deb10u3

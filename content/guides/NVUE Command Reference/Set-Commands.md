@@ -125,7 +125,7 @@ Sets the interface to use for egress. If you do not specify an interface, the sw
 
 **Default Setting**
 
-`auto`
+`auto`: The switch determines the interface automatically.
 
 **Version History**
 
@@ -136,6 +136,7 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32 interface swp51
 ```
+
 ## nv set router nexthop-group \<nexthop-group-id\> via \<via-id\> vrf \<vrf-name\>
 
 Sets the VRF to use for egress. If you do not specify the VRF, the switch uses the VRF that the route uses. This attribute is only valid for IPv4 or IPv6 addresses.
@@ -154,7 +155,7 @@ Sets the VRF to use for egress. If you do not specify the VRF, the switch uses t
 
 **Default Setting**
 
-`auto`
+`auto`: The switch uses the VRF that the route uses.
 
 **Version History**
 
@@ -187,7 +188,7 @@ N/A
 
 ## nv set router pbr map \<pbr-map-id\>
 
-Configures a PBR policy map.
+Configures the name of the PBR route map.
 
 **Usage**
 
@@ -221,7 +222,7 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1
 
 ## nv set router pbr map \<pbr-map-id\> rule \<rule-id\>
 
-Sets the route map rule number.
+Configures the PBR route map rule number.
 
 **Usage**
 
@@ -376,7 +377,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 match dscp 10
 ```
 
-## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match ecn 0-3
+## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match ecn
 
 Sets PBR to match packets according to the ECN field in the IP header. The ECN value can be an integer between 0 and 3.
 
@@ -443,7 +444,7 @@ cumulus@leaf04:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 ## nv set router pbr map \<pbr-map-id\> rule \<rule-id\> action nexthop-group \<nexthop-group-id\>
 
-Sets the next hop group you want to apply to the policy map. You must first configure the next hop group, then apply the group to the policy map.
+Configures the next hop group you want to apply to the policy map.
 
 **Usage**
 
@@ -552,7 +553,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set router policy community-list \<list-id\>
 
-Configures the name of the community list you want to use to match BGP community policies. The BGP community list can be either standard or expanded. The standard BGP community list is a pair of values (such as 100:100) or one of four BGP default communities (internet, local-AS, no-advertise, no-export). When the neighbor receives the prefix, it examines the community value and either permits or denies the community member in the routing policy.
+Configures the name of the community list you want to use to match BGP community policies.
 
 **Usage**
 
@@ -651,7 +652,7 @@ cumulus@leaf04:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 co
 
 ## nv set router policy community-list \<list-id\> rule \<rule-id\> action
 
-Sets the action you want to take for a match; permit or deny.
+Sets the action you want to take when you meet the match criteria; permit or deny.
 
 **Usage**
 
@@ -1000,7 +1001,7 @@ cumulus@leaf04:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ac
 
 ## nv set router policy large-community-list \<list-id\>
 
-Configures the name of the Large cCommunity list you want to use to match community based BGP policies.
+Configures the name of the Large Community list you want to use to match community based BGP policies.
 
 **Usage**
 
@@ -1096,6 +1097,33 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf04:mgmt:~$ nv set router policy large-community-list mylist rule 10 large-community ?????
+```
+
+## nv set router policy large-community-list <list-id> rule <rule-id> action
+
+**Usage**
+
+`nv set router policy large-community-list <list-id> rule <rule-id> action [options] (permit|deny)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<list-id>` |  The community list name. |
+| `<rule-id> ` | The community list rule number. |
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy large-community-list mylist rule 10 action permit
 ```
 
 ## nv set router policy prefix-list \<prefix-list-id\>
@@ -1206,7 +1234,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv set router policy prefix-list mylist rule 10 match 10.0.0.0/16
 ```
 
-## nv set router policy prefix-list \<prefix-list-id\> rule \<rule-id\> match \<match-id\> min-prefix-len 
+## nv set router policy prefix-list \<prefix-list-id\> rule \<rule-id\> match \<match-id\> min-prefix-len
 
 Configures the minimum prefix length you want to match.
 
@@ -1783,6 +1811,93 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match tag 10
 ```
 
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match source-protocol
+
+Configures the source protocol you want to use as a match in the route map. The source protocol is the protocol through which the switch learns the route. You can specify `bgp`, `connected`, `kernel`, `ospf`, `spf6`, `sharp` or `static`.
+
+**Usage**
+
+`nv set router policy route-map <route-map-id> rule <rule-id> match source-protocol [options] (bgp|connected|kernel|ospf|ospf6|sharp|static)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match source-protocol bgp
+```
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match origin
+
+Configures the BGP origin you want to use as a match in the route map. You can specify `egp`, `igp`, or `incomplete`.
+
+**Usage**
+
+`nv set router policy route-map <route-map-id> rule <rule-id> match origin [options] (egp|igp|incomplete)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match origin igp
+```
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match peer
+
+Configures the BGP peer you want to use as a match in the route map. You can specify `local`, the interface, or the IPv4 or IPv6 address.
+
+**Usage**
+
+`nv set router policy route-map <route-map-id> rule <rule-id> match peer [options] (local|<interface-name>|<ipv4>|<ipv6>)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match peer swp51
+```
+
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match local-preference
 
 Configures the local preference of the route you want to match in the route map. You can specify a value between 0 and 4294967295.
@@ -1810,6 +1925,35 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match local-preference 300
+```
+
+## nv set router policy route-map <route-map-id> rule <rule-id> match evpn-route-type
+
+Configures the EVPN route type you want to match in the route map. You can specify type 2 (MAC or IP advertisement routes), type 3 (Inclusive multicast Ethernet tag routes), or type 5 (IP prefix routes).
+
+**Usage**
+
+`nv set router policy route-map <route-map-id> rule <rule-id> match evpn-route-type [options] (macip|imet|ip-prefix)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match evpn-route-type macip
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match evpn-vni \<value\>
@@ -1868,6 +2012,35 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match source-vrf RED
+```
+
+## nv set router policy route-map <route-map-id> rule <rule-id> match type
+
+Configures the the route types you want to use as a match in the route map. You can specify IPv4 or IPv6 routes.
+
+**Usage**
+
+`nv set router policy route-map <route-map-id> rule <rule-id> match type [options] (ipv4|ipv6)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ipv4
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set

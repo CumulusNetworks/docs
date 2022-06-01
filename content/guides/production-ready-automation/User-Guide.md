@@ -265,8 +265,8 @@ To use the included NetQ Cloud server, you must have the following:
 
 - An active NetQ Cloud account with {{<exlink url="https://netq.cumulusnetworks.com" text="netq.cumulusnetworks.com" >}}.
 - An additional site set up, provisioned, and dedicated for virtualization use (a unique NetQ configuration key for your simulation environment). Do not mix a simulation topology with an existing site or use an existing and in-use NetQ premises configuration key.
-- The NetQ bootstrap tarball downloaded from {{<exlink url="https://support.mellanox.com/s/" text="NVIDIA" >}}.
-- The NetQ OPTA install tarball downloaded from {{<exlink url="https://support.mellanox.com/s/" text="NVIDIA" >}}.
+- The NetQ bootstrap tarball downloaded from {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA" >}}.
+- The NetQ OPTA install tarball downloaded from {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA" >}}.
 
 {{%notice info%}}
 

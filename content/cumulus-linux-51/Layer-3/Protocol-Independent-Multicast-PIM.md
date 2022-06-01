@@ -1953,7 +1953,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL501 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
+    {{< simulation name="Try It CL51 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
 
 This simulation starts with the example PIM configuration. To simplify the example, only one spine and two leafs are in the topology. The demo is pre-configured using NVUE commands.
 
@@ -1962,10 +1962,6 @@ This simulation starts with the example PIM configuration. To simplify the examp
 - To show information about known S,Gs, the [IIF](## "Incoming Interface") and the [OIL](## "Outgoing Interface"), run the `net show pim state` command on the FHR (leaf01), RP (spine01), or LHR (leaf02).
 
 To further validate the configuration, run the PIM show commands listed in the troubleshooting section above.
-
-{{%notice note%}}
-This simulation runs on Cumulus Linux 5.0. Cumulus Linux 5.1 configuration is coming soon.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}

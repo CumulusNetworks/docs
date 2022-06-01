@@ -2519,13 +2519,100 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set weight 300
 ```
 
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set metric
+
+Configures a set clause in the route map for the metric value for the destination routing protocol. You can set `metric-plus`, `metric-minus`, `rtt`, `rtt-plus`, or `rtt-minus`.
+
+**Usage**
+
+`nv set router policy route-map <route-map-id> rule <rule-id> set metric [options] (metric-plus|metric-minus|rtt|rtt-plus|rtt-minus)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set metric metric-minus
+```
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set metric type
+
+Configures a set clause in the route map for the metric type for routes that match the map. The metric type is used by the the OSPF protocol. You can set OSPF external type 1 metric or OSPF external type 2 metric.
+
+**Usage**
+
+`nv set router policy route-map <route-map-id> rule <rule-id> set metric [options] (type-1|type-2)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set metric type type-2
+```
+
+## nv set router policy route-map <route-map-id> rule <rule-id> set origin
+
+Configures a set clause in the route map for the BGP origin code for the matched route. You can specify `egp` (the switch learns the origin of the route from an exterior routing protocol with the given autonomous system number) `igp` (the switch learns the the origin of the route from an interior routing protocol), or `incomplete` (the origin of the route is unknown).
+
+**Usage**
+
+`nv set router policy route-map <route-map-id> rule <rule-id> set origin [options] ((egp|igp|incomplete) `
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set origin igp
+```
+
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set tag
 
 Configures a set clause in the route map for the tag value for the routing protocol.
 
 **Usage**
 
-`nv set router policy route-map <route-map-id> rule <rule-id> set tag [options] 1-4294967295`
+`nv set router policy route-map <route-map-id> rule <rule-id> set metric [options] 1-4294967295`
 
 **Default Setting**
 
@@ -2550,7 +2637,7 @@ cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set tag 100
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ipv6-nexthop-global \<ipv6\>
 
-Configures a set clause in the route map for IPv6 nexthop global address.
+Configures a set clause in the route map for IPv6 next hop global address.
 
 **Usage**
 
@@ -2579,7 +2666,7 @@ cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ipv6-next
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ipv6-nexthop-local \<ipv6\>
 
-Configures a set clause in the route map for the IPv6 nexthop local address.
+Configures a set clause in the route map for the IPv6 next hop local address.
 
 **Usage**
 
@@ -2604,6 +2691,151 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ipv6-nexthop-local 2001:db8:0002::0a00:0002
+```
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ipv6-nexthop-prefer-global
+
+Configures a set clause in the route map to use the global address as the IPv6 next hop.
+
+**Usage**
+
+`nv set router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-prefer-global [options] (on|off)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ipv6-nexthop-prefer-global on
+```
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ip-nexthop
+
+Configures a set clause in the route map for the next hop address for an incoming packet regardless of the explicit route for the packet. You can specify the IP address of the peer, or leave it unchanged.
+
+**Usage**
+
+`nv set router policy route-map <route-map-id> rule <rule-id> set ip-nexthop [options] (unchanged|peer-addr)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ip-nexthop peer-addr
+```
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set source-ip
+
+Configures a set clause in the route map for the source IP address. You can specify an IPv4 or IPv6 address.
+
+**Usage**
+
+`nv set router policy route-map <route-map-id> rule <rule-id> set source-ip [options] (<ipv4>|<ipv6>)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set source-ip 10.1.10.0
+```
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set community-delete-list
+
+Configures a set clause in the route map to remove BGP communities from being advertised to other BGP routes.
+
+**Usage**
+
+`nv set router policy route-map <route-map-id> rule <rule-id> set community-delete-list [options] (<instance-name>|<integer>)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set community-delete-list communitylist1
+```
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set large-community-delete-list 
+
+Configures a set clause in the route map to remove BGP Large Communities from being advertised to other BGP routes.
+
+**Usage**
+
+`nv set router policy route-map <route-map-id> rule <rule-id> set large-community-delete-list [options] (<instance-name>|<integer>)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 set large-community-delete-list largecommunitylist1
 ```
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> action
@@ -2741,7 +2973,7 @@ Configures the route map to go to specific rule when the matching conditions are
 
 **Usage**
 
-nv set router policy route-map <route-map-id> rule <rule-id> action permit exit-policy rule [options] <value>`
+`nv set router policy route-map <route-map-id> rule <rule-id> action permit exit-policy rule [options] <value>`
 
 **Default Setting**
 
@@ -2766,58 +2998,57 @@ cumulus@leaf04:mgmt:~$ nv set router policy route-map MAP1 rule 10 permit exit-p
 
 ## nv set router bgp
 
+Configures BGP global configuration.
+
 **Usage**
 
-  nv set router bgp [options] [<attribute> ...]
+`nv set router bgp [options] [<attribute> ...`
 
-### Description
+**Default Setting**
 
-  BGP global configuration.
+`off`
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `graceful-restart` | Configures BGP graceful restart globally.|
+| `convergence-wait` | Configures |
+| `enable` |  Turns BGP on or off. The default is off.|
+| `autonomous-system` |  Configures the ASN for all VRFs if a single AS is in use; otherwise, you must set an ASN for every VRF.|
+| `graceful-shutdown` |  Configures Graceful shutdown where BGP initiates the GSHUT community to be announced to all EBGP peers in all instances and low LOCAL_PREF to all IBGP peers in all instances. |
+| `policy-update-timer` | Configures the wait time in seconds before processing updates to policies to ensure that a series of changes are processed together. |
+|` router-id`  | Configures the BGP router ID for all VRFs if a common VRF is used; otherwise, you must set a router ID for every VRF. |
+| `wait-for-install` | Configures BGP to wait for routes to be installed into kernel before advertising. |
 
-  graceful-restart     BGP Graceful restart global configuration.
+**Version History**
 
-  convergence-wait     BGP Graceful restart global configuration.
-
-  enable               Turn the feature 'on' or 'off'. The default is 'off'.
-
-  autonomous-system    ASN for all VRFs, if a single AS is in use. If "none", then ASN must be set for every VRF. This is the default.
-
-  graceful-shutdown    Graceful shutdown enable will initiate the GSHUT community to be announced to all EBGP peers in all instances and low LOCAL_PREF to all IBGP peers in all instances.
-
-  policy-update-timer  Wait time in seconds before processing updates to policies to ensure that a series of changes are processed together.
-
-  router-id            BGP router-id for all VRFs, if a common one is used. If "none", then router-id must be set for every VRF. This is the default.
-
-  wait-for-install     bgp waits for routes to be installed into kernel/asic before advertising
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set router bgp graceful-restart
 
+Configures BGP Graceful restart globally.
+
 **Usage**
 
-  nv set router bgp graceful-restart [options] [<attribute> ...]
+`nv set router bgp graceful-restart [options] [<attribute> ...]`
 
-### Description
+*Default Setting**
 
-  BGP Graceful restart global configuration.
+N/A
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `mode` | Configures the role of the router during graceful restart. You can specify `helper-only`, where the router is in helper role, `full`, where the router is in both helper and restarter role, or  `off`, where  BGP graceful restart is off. |
+| `path-selection-deferral-time` | Configures the the upper-bounds to wait for peering establishment and end-of-RIB from peers post restart before it starts path-selection.|
+| `restart-time` |  Configures the amount of time to take to restart. It is advertised to the peer.
+| `stale-routes-time` | Configures the upper-bounds on how long to retain routes from a restarting peer before flusing them.
 
+**Version History**
 
-  mode                  Role of router during graceful restart. helper-only, router is in helper role. full, router is in both helper and restarter role. off, GR is disabled for the router
-
-  path-selection-deferral-time  Used by the restarter as an upper-bounds for waiting for peering establishment and end-of-RIB from peers post restart before it starts path-selection.
-
-  restart-time          Amount of time taken to restart by router. It is advertised to the peer
-
-  stale-routes-time     Specifies an upper-bounds on how long we retain routes from a restarting peer before flusing them.
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set router bgp graceful-restart restart-time 1-3600
 

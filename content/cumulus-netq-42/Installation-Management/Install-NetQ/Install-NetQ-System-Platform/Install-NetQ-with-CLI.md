@@ -99,7 +99,7 @@ Run the following command on your NetQ Cloud Appliance with the `config-key` obt
 <!-- vale on -->
 
 ```
-cumulus@<hostname>:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.2.0-opta.tgz config-key <your-config-key> proxy-host <proxy-hostname> proxy-port <proxy-port>
+cumulus@<hostname>:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.2.0-opta.tgz config-key <your-config-key> [proxy-host <proxy-hostname> proxy-port <proxy-port>]
 ```
 
 {{<notice note>}}
@@ -112,7 +112,7 @@ Reset the VM:
 <pre>cumulus@hostname:~$ netq bootstrap reset</pre>
 
 Re-run the install CLI on the appliance. This example uses interface eno1. Replace this with your updated IP address, hostname or interface using the interface or ip-addr option.
-<pre>cumulus@hostname:~$ netq install opta standalone full interface eno1 bundle /mnt/installables/NetQ-4.2.0-opta.tgz config-key <your-config-key> proxy-host <proxy-hostname> proxy-port <proxy-port></pre>
+<pre>cumulus@hostname:~$ netq install opta standalone full interface eno1 bundle /mnt/installables/NetQ-4.2.0-opta.tgz config-key <your-config-key> [proxy-host <proxy-hostname> proxy-port <proxy-port>]</pre>
 {{</notice>}}
 
 {{<notice tip>}}
@@ -142,7 +142,7 @@ Run the following command on your NetQ Cloud Appliance with the `config-key` obt
 <!-- vale on -->
 
 ```
-cumulus@<hostname>:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.2.0-opta.tgz config-key <your-config-key> workers <worker-1-ip> <worker-2-ip> proxy-host <proxy-hostname> proxy-port <proxy-port>
+cumulus@<hostname>:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.2.0-opta.tgz config-key <your-config-key> workers <worker-1-ip> <worker-2-ip> [proxy-host <proxy-hostname> proxy-port <proxy-port>]
 ```
 
 {{<notice note>}}
@@ -155,7 +155,7 @@ Reset the VM:
 <pre>cumulus@hostname:~$ netq bootstrap reset</pre>
 
 Re-run the install CLI on the appliance. This example uses interface eth0. Replace this with your updated IP address, hostname or interface using the interface or ip-addr option.
-<pre>cumulus@hostname:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.2.0-opta.tgz config-key <your-config-key> proxy-host <proxy-hostname> proxy-port <proxy-port></pre>
+<pre>cumulus@hostname:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.2.0-opta.tgz config-key <your-config-key> [proxy-host <proxy-hostname> proxy-port <proxy-port>]</pre>
 {{</notice>}}
 
 {{<notice tip>}}

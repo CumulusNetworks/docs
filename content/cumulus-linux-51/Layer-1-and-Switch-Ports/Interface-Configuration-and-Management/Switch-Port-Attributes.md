@@ -934,7 +934,7 @@ Maximum 200G ports: 32
 {{< /tab >}}
 
 {{< /tabs >}}
-{< tab "SN4410">}}
+{{< tab "SN4410">}}
 
 SN4410 24xQSFP28-DD (100GbE) interfaces [ports 1-24] only support NRZ encoding and wll speeds down to 1G.
 
@@ -948,8 +948,8 @@ The top 4xQSFP-DD ports can break out into 8xSFP56 (8x50GbE). But, in this case,
 
 All the 8xQSFP-DD ports can break out into 4xQSFP56 (4x100GbE), or 2xQSFP56 (2x200GbE) without blocking ports.
 
-{< tabs "4410_ports ">}}
-{< tab "10G ">}}
+{{< tabs "4410_ports ">}}
+{{< tab "10G ">}}
 
 - 96x10G - 24xQSFP28-DD break out into 4x25G and set to 10G
 - 32x10G - 4 top QSFP-DD break out into 8x50G and set to 10G (bottom 4xQSFP-DD blocked*)
@@ -958,8 +958,8 @@ Maximum 10G ports: 128
 
 *Other QSFP-DD breakout combinations are available up to maximum of 128x10G ports.
 
-{< /tab >}}
-{< tab "25G ">}}
+{{< /tab >}}
+{{< tab "25G ">}}
 
 - 96x25G - 24xQSFP28-DD break out into 4x25G
 - 32x25G - 4 top QSFP-DD break out into 8x50G and set to 25G (bottom 4xQSFP-DD blocked*)
@@ -968,15 +968,15 @@ Maximum 25G ports: 128
 
 *Other QSFP-DD breakout combinations are available up to maximum of 128x25G ports.
 
-{< /tab >}}
-{< tab "40G ">}}
+{{< /tab >}}
+{{< tab "40G ">}}
 
 32x40G - 24xQSFP28-DD and 8xQSFP-DD set to 40G
 
 Maximum 40G ports: 32
 
-{< /tab >}}
-{< tab "50G ">}}
+{{< /tab >}}
+{{< tab "50G ">}}
 
 - 48x50G - 24xQSFP28-DD break out into 2x50G
 - 32x50G - 4 top QSFP-DD break out into 8x50G (bottom 4xQSFP-DD blocked*)
@@ -985,32 +985,32 @@ Maximum 50G ports: 80
 
 *Other QSFP-DD breakout combinations are available up to maximum of 80x50G ports.
 
-{< /tab >}}
-{< tab "100G ">}}
+{{< /tab >}}
+{{< tab "100G ">}}
 
 - 48x100G - 24xQSFP28-DD break out into 2x100G (using special 2xQSFP28-DD breakout cable)
 - 32x100G - 8xQSFP-DD break out into 4x100G
 
 Maximum 100G ports: 80
 
-{< /tab >}}
-{< tab "200G ">}}
+{{< /tab >}}
+{{< tab "200G ">}}
 
 16x200G - 8xQSFP-DD break out into 2x200G
 
 Maximum 200G ports: 16
 
-{< /tab >}}
-{< tab "400G ">}}
+{{< /tab >}}
+{{< tab "400G ">}}
 
 8x400G - 8xQSFP-DD (native speed)
 
 Maximum 400G ports: 8
 
-{< /tab >}}
-{< /tab >}}
+{{< /tab >}}
+{{< /tab >}}
 
-{< /tabs >}}
+{{< /tabs >}}
 {{< tab "SN4600C">}}
 
 64x QSFP28 100G interfaces only support NRZ encoding.
@@ -1058,7 +1058,7 @@ Maximum 100G ports: 80
 {{< /tab >}}
 
 {{< /tabs >}}
-{< tab "SN4600">}}
+{{< tab "SN4600">}}
 
 SN4600 64xQSFP56 (200GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 1G.
 
@@ -1068,36 +1068,36 @@ Only 32xQSFP56 ports can brea kout into 4xSFP56 (4x50GbE). But, in this case, th
 
 All 64xQSFP56 ports can break out into 2xQSFP56 (2x100GbE) without blocking ports. 
 
-{< tabs "4600_ports ">}}
-{< tab "10G ">}}
+{{< tabs "4600_ports ">}}
+{{< tab "10G ">}}
 
 128x10G - 64xQSFP56 break out into 4x50G and set to 10G
 
 Maximum 10G ports: 128
 
-{< /tab >}}
-{< tab "25G ">}}
+{{< /tab >}}
+{{< tab "25G ">}}
 
 128x25G - 64xQSFP56 break out into 4x50G and set to 25G
 
 Maximum 25G ports: 128
 
-{< /tab >}}
-{< tab "40G ">}}
+{{< /tab >}}
+{{< tab "40G ">}}
 
 64x40G - 64xQSFP56 set to 40G
 
 Maximum 40G ports: 64
 
-{< /tab >}}
-{< tab "50G ">}}
+{{< /tab >}}
+{{< tab "50G ">}}
 
 128x50G - 32xQSFP56 break out into 4x50G
 
 Maximum 50G ports: 128
 
-{< /tab >}}
-{< tab "100G ">}}
+{{< /tab >}}
+{{< tab "100G ">}}
 
 - 128x100G - 64xQSFP56 break out into 2x100G
 - 64x100G - 64xQSFP28 set to 100G
@@ -1111,10 +1111,10 @@ Maximum 100G ports: 128
 
 Maximum 200G ports: 64
 
-{< /tab >}}
-{< /tab >}}
+{{< /tab >}}
+{{< /tab >}}
 
-{< /tabs >}}
+{{< /tabs >}}
 {{< tab "SN4700">}}
 
 SN4700 32x QSFP-DD 400GbE interfaces support both PAM4 and NRZ encodings.
@@ -1184,13 +1184,13 @@ Maximum 400G ports: 32
 {{< /tab >}}
 
 {{< /tabs >}}
-{< tab "SN4800">}}
+{{< tab "SN4800">}}
 
 SN4800 is a modular chassis with up to 8 line cards. Each line card has 16x QSFP28 NRZ encoding 100G interfaces and supports all speeds down to 1G.
 
 This platform is avaliable only with 16x QSFP28 line cards without an option to breakout ports. Thus, you can install a maximum of 128x100G ports. 
 
-{< /tab >}}
+{{< /tab >}}
 {{< /tabs >}}
 
 {{%notice note%}}

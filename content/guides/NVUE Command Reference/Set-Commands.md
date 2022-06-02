@@ -3363,7 +3363,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set router ospf timers
 
-Configures OSPF timers.
+Configures OSPF Link State Advertisement (LSA) and Shortest Path First (SPF) timers, and the refresh interval.
 
 **Usage**
 
@@ -3377,15 +3377,17 @@ N/A
 
 | Atrribute |  Description   |
 | --------- | -------------- |
-| `lsa` | Configures Link State Advertisement (LSA) timers. |
-| `spf` | Configures SPF timers. |
-| `refresh` | Configures the interval in seconds to resend LSAs to prevent them from aging out.|
+| `lsa` | Configures LSA timers. |
+| `spf` | Configures the SPF timers. |
+| `refresh` | Configures the refresh interval in seconds to resend LSAs to prevent them from aging out.|
 
 **Version History**
 
 Introduced in Cumulus Linux 5.0.0
 
 ## nv set router ospf timers lsa
+
+Configures LSA timers.
 
 **Usage**
 
@@ -3399,214 +3401,417 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `min-arrival` |  Configures the minimum delay in receiving a new version of an LSA. |
+| `min-arrival` |  Configures the minimum interval during which OSPF can accept the same LSA.|
 | `throttle` |  Configures the delay in milliseconds between sending LSAs. |
 
 **Version History**
 
 Introduced in Cumulus Linux 5.0.0
 
-## nv set router ospf timers lsa min-arrival 0-600000
+## nv set router ospf timers lsa min-arrival
+
+Configures the minimum interval in seconds during which OSPF can accept the same LSA. You can specify a value between 0 and 600000.
 
 **Usage**
 
-  nv set router ospf timers lsa min-arrival [options] 0-600000
+`nv set router ospf timers lsa min-arrival [options] 0-600000`
 
-### Description
+**Default Setting**
 
-  Minimum delay in receiving new version of a LSA.
+N/A
 
-## nv set router ospf timers lsa throttle 0-5000
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router ospf timers lsa min-arrival 300000
+```
+
+## nv set router ospf timers lsa throttle
+
+Configures the amount of time after which OSPF sends LSAs. You can specify a value between 0 and 5000 milliseconds.
 
 **Usage**
 
-  nv set router ospf timers lsa throttle [options] 0-5000
+`nv set router ospf timers lsa throttle [options] 0-5000`
 
-### Description
+**Default Setting**
 
-  Delay (msec) between sending LSAs.
+N/A
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router ospf timers lsa throttle 3000
+```
 
 ## nv set router ospf timers spf
 
+Configures the SPF timers.
+
 **Usage**
 
-  nv set router ospf timers spf [options] [<attribute> ...]
+`nv set router ospf timers spf [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  SPF timers
+N/A
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `delay` | Configures the number of milliseconds to wait to do the SPF calculation after receiving the first topology change. |
+| `holdtime` | Configures the amount of time to wait between consecutive SPF calculations.| 
+| `max-holdtime` | Configures the maximum amount of time to wait between consecutive SPF calculations. |
 
-  delay         Delay (msec) from first change received till SPF calculation.
+**Version History**
 
-  holdtime      Initial hold time (msec) between consecutive SPF calculations.
+Introduced in Cumulus Linux 5.0.0
 
-  max-holdtime  Maximum hold time (msec) between consecutive SPF calculations.
+## nv set router ospf timers spf delay
 
-## nv set router ospf timers spf delay 0-600000
-
-**Usage**
-
-  nv set router ospf timers spf delay [options] 0-600000
-
-### Description
-
-  Delay (msec) from first change received till SPF calculation.
-
-## nv set router ospf timers spf holdtime 0-600000
+Configures the amount of time to wait to do the SPF calculation after receiving the first topology change. You can specify a value between 0 and 600000 milliseconds.
 
 **Usage**
 
-  nv set router ospf timers spf holdtime [options] 0-600000
+`nv set router ospf timers spf delay [options] 0-600000`
 
-### Description
+**Default Setting**
 
-  Initial hold time (msec) between consecutive SPF calculations.
+N/A
 
-## nv set router ospf timers spf max-holdtime 0-600000
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router ospf timers spf delay 300000
+```
+
+## nv set router ospf timers spf holdtime
+
+Configures the amount of time to wait between consecutive SPF calculations. You can specify a value between 0 and 600000 milliseconds.
 
 **Usage**
 
-  nv set router ospf timers spf max-holdtime [options] 0-600000
+`nv set router ospf timers spf holdtime [options] 0-600000`
 
-### Description
+**Default Setting**
 
-  Maximum hold time (msec) between consecutive SPF calculations.
+N/A
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router ospf timers spf holdtime 300000
+```
+
+## nv set router ospf timers spf max-holdtime
+
+Configures the maximum amount of time to wait between consecutive SPF calculations. You can specify a value between 0 and 600000 milliseconds.
+
+**Usage**
+
+`nv set router ospf timers spf max-holdtime [options] 0-600000`
+
+**Default Setting**
+
+N/A
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router ospf timers spf max-holdtime 300000
+```
 
 ## nv set router ospf timers refresh 10-1800
 
+Configures the refresh interval in seconds to resend LSAs to prevent them from aging out. You can specify a value between 10 and 1800 seconds.
+
 **Usage**
 
-  nv set router ospf timers refresh [options] 10-1800
+`nv set router ospf timers refresh [options] 10-1800`
 
-### Description
+**Default Setting**
 
-  defines interval (sec) to re-send lsas to keep from aging out.
+N/A
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router ospf timers refresh 100
+```
 
 ## nv set router ospf enable
 
-**Usage**
-
-## nv set router ospf router-id<ipv4>)
+Turns OSPF on or off. 
 
 **Usage**
+
+`nv set router ospf enable [options] (on|off)`
+
+**Default Setting**
+
+`off`
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router ospf enable on
+```
+
+## nv set router ospf router-id
+
+Configures the OSPF router ID on the switch, which is a 32-bit value and is typically the address of the loopback interface. This command configures the router ID for all VRFs if a common one is used; otherwise, you must set the router ID for every VRF.
+
+**Usage**
+
+`nv set router ospf router-id [options] (none|<ipv4>)`
+
+**Default Setting**
+
+N/A
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router ospf router-id 10.10.10.1.
+```
 
 ## nv set router pim
 
+Configures PIM globally on the switch.
+
 **Usage**
 
-  nv set router pim [options] [<attribute> ...]
+`nv set router pim [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  PIM global configuration.
+N/A
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `timers` | Configures PIM timers. |
+| `enable` | Turns PIM feature on or off. |
+| `packets` |Configures the number of incoming packets to process from the neighbor. |
 
-  timers      Timers
+**Version History**
 
-  enable      Turn the feature 'on' or 'off'. The default is 'off'.
-
-  packets     Number of incoming packet processing from neighbor.
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set router pim timers
 
+Configures PIM timers.
+
 **Usage**
 
-  nv set router pim timers [options] [<attribute> ...]
+`nv set router pim timers [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  Timers
+N/A
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `hello-interval` | Configures the interval in seconds at which the PIM router sends hello messages to discover PIM neighbors and maintain PIM neighbor relationships.  |
+| `join-prune-interval` | The interval in seconds at which a PIM router sends join and prune messages to its upstream neighbors for a state update. |
+| `keep-alive` |  Timeout value for S,G stream, in seconds. |
+| `register-suppress` | The number of seconds during which to stop sending register messages to the RP. |
+| `rp-keep-alive` | RP's timeout value, in seconds |
 
+**Version History**
 
-  hello-interval       PIM Hello packets periodic interval. Holdtime is 3.5
+Introduced in Cumulus Linux 5.0.0
 
-                       times the hello-interval, the amount of time neighbor
+## nv set router pim timers hello-interval
 
-                       must kept in reachable state.
-
-  join-prune-interval  Periodic multicast Join/Prune msg, in seconds
-
-  keep-alive           Timeout value for S,G stream, in seconds
-
-  register-suppress    FHR supresses the register msg transmit to RP, in
-
-                       seconds
-
-  rp-keep-alive        RP's timeout value, in seconds
-
-## nv set router pim timers hello-interval 1-180
+Configures the interval in seconds at which the PIM router sends hello messages to discover PIM neighbors and maintain PIM neighbor relationships. You can specify a value between 1 and 180. The default setting is 30 seconds. 
 
 **Usage**
 
-  nv set router pim timers hello-interval [options] 1-180
+`nv set router pim timers hello-interval [options] 1-180`
 
-### Description
+**Default Setting**
 
-  PIM Hello packets periodic interval. Holdtime is 3.5 times the hello-interval, the amount of time neighbor must kept in reachable state.
+30 seconds
 
-## nv set router pim timers register-suppress 5-60000
+**Version History**
 
-**Usage**
+Introduced in Cumulus Linux 5.0.0
 
-  nv set router pim timers register-suppress [options] 5-60000
+**Example**
 
-### Description
+```
+cumulus@leaf01:mgmt:~$ nv set router pim timers hello-interval 60
+```
 
-  FHR supresses the register msg transmit to RP, in seconds
+## nv set router pim timers register-suppress
 
-## nv set router pim timers join-prune-interval 60-600
-
-**Usage**
-
-  nv set router pim timers join-prune-interval [options] 60-600
-
-### Description
-
-  Periodic multicast Join/Prune msg, in seconds
-
-## nv set router pim timers keep-alive 31-60000
+The number of seconds during which to stop sending register messages to the RP. You can specify a value between 5 and 60000 seconds.
 
 **Usage**
 
-  nv set router pim timers keep-alive [options] 31-60000
+`nv set router pim timers register-suppress [options] 5-60000`
 
-### Description
+**Default Setting**
 
-  Timeout value for S,G stream, in seconds
+60 seconds
 
-## nv set router pim timers rp-keep-alive 31-60000
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router pim timers register-suppress 20000
+```
+
+## nv set router pim timers join-prune-interval
+
+The interval in seconds at which a PIM router sends join and prune messages to its upstream neighbors for a state update. You can specify a value between 60 and 600 seconds.
 
 **Usage**
 
-  nv set router pim timers rp-keep-alive [options] 31-60000
+`nv set router pim timers join-prune-interval [options] 60-600`
 
-### Description
+**Default Setting**
 
-  RP's timeout value, in seconds
+60 seconds
 
-## nv set router pim packets 1-100
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router pim timers join-prune-interval 100
+```
+
+## nv set router pim timers keep-alive
+
+Configures the timeout value for the S,G stream in seconds. You can specify a value between 31 and 60000.
 
 **Usage**
 
-  nv set router pim packets [options] 1-100
+`nv set router pim timers keep-alive [options] 31-60000`
 
-### Description
+**Default Setting**
 
-  Number of incoming packet processing from neighbor.
+210 seconds
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router pim timers keep-alive 10000
+```
+
+## nv set router pim timers rp-keep-alive
+
+Configures the timeout value for the RP in seconds. You can specify a value between 31 and 60000.
+
+**Usage**
+
+`nv set router pim timers rp-keep-alive [options] 31-60000`
+
+**Default Setting**
+
+185 seconds
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router pim timers rp-keep-alive 10000
+```
+
+
+## nv set router pim enable (on|off)
+
+Turns PIM on or off.
+
+**Usage**
+
+`nv set router pim enable [options] (on|off)`
+
+**Default Setting**
+
+`off`
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router pim enable on
+```
+
+## nv set router pim packets
+
+Configures the number of incoming packets from the neighbor that PIM can process. You can specify a value between 1 and 100.
+
+**Usage**
+
+`nv set router pim packets [options] 1-100`
+
+**Default Setting**
+
+N/A
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router pim packets 50
+```
 
 ## nv set router igmp
 

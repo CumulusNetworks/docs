@@ -1,7 +1,7 @@
 ---
-title: Chrony as on Cumulus Linux
+title: Chrony on Cumulus Linux
 author: NVIDIA
-weight: 132
+weight: 1341
 toc: 5
 ---
 You can use Chrony as the time provider on Cumulus Linux devices. The high level steps to install Chrony on Cumulus Linux are as follows:

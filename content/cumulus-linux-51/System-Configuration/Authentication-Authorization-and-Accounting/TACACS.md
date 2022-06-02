@@ -163,7 +163,7 @@ All `sudo` commands run by TACACS+ users generate accounting records against the
 
 For more information, refer to the `audisp.8` and `auditd.8` man pages.
 
-## Configure NVUE for TACACS+ Users
+<!--## Configure NVUE for TACACS+ Users
 
 When you install or upgrade TACACS+ packages, the installation and update process maps user accounts automatically and adds all *tacacs0* through *tacacs15* users to the *nvshow* group.
 
@@ -205,7 +205,7 @@ After you save and exit the `/etc/nvue-auth.yaml` file, restart the `nvued` serv
 
 ```
 cumulus@switch:~$ sudo systemctl restart nvued
-```
+``` -->
 <!-- vale off -->
 ## TACACS+ Per-command Authorization
 

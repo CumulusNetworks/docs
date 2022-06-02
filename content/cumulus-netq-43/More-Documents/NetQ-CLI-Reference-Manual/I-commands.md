@@ -189,7 +189,7 @@ After initiating a NetQ installation, this command configures the first two work
 
 Alternately, use {{<link title="#netq-install-cluster-full" text="netq install cluster full">}} to perform this and all other steps of a NetQ installation with a single command.
 
-Refer to {{<link title="Post Installation Configuration Options#add-more-nodes-to-your-server-cluster" text="Post Installation Configuration Options">}} to add additional worker nodes after NetQ has been completely installed.
+Refer to {{<link title="Post-installation Configurations#add-more-nodes-to-your-server-cluster" text="Post-installation Configurations">}} to add additional worker nodes after NetQ has been completely installed.
 
 ### Syntax
 

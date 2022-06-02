@@ -84,8 +84,8 @@ This listing is the starting point for network OS upgrades or NetQ installations
 - Work with the list you have and add them later
 - Verify the missing switches are reachable using `ping`
 - Verify the NetQ Agent is fresh and version 4.1.0 or later for switches that already have the agent installed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click **Agents** or run `netq show agents`)
-- Install NetQ on the switch (refer to {{<link url="#use-switch-discovery-to-install-and-upgrade-netq" text="Install NetQ">}})
-- Upgrade any NetQ Agents if needed (refer to {{<link title="Upgrade NetQ Agents">}} for instructions)
+- {{<link title="Install NetQ Agents" text="Install NetQ on the switch">}}
+- {{<link title="Upgrade NetQ Agents" text="Upgrade NetQ Agents">}} if needed
 
 ## Role Management
 

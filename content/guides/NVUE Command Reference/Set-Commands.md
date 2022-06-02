@@ -3050,6 +3050,28 @@ N/A
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set router bgp graceful-restart mode (off|helper-only|full)
+
+Configures the role of the router during BGP graceful restart. You can specify `helper-only`, where the router is in helper mode, `full`, where the router is in both helper and restarter mode, or `off`, where BGP graceful restart is off.
+
+**Usage**
+
+`nv set router bgp graceful-restart mode [options] (off|helper-only|full)`
+
+**Default Setting**
+
+`off`
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart mode full
+```
+
 ## nv set router bgp graceful-restart restart-time
 
 Configures the number of seconds to wait for a graceful restart capable peer to re-establish BGP peering. You can set a value between 1 and 4095.
@@ -3069,7 +3091,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router restart-time 400
+cumulus@leaf01:mgmt:~$ nv set router bgp restart-time 400
 ```
 
 ## nv set router bgp graceful-restart path-selection-deferral-time
@@ -3183,6 +3205,72 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router bgp establish-wait-time time 200
 ```
 
+## nv set router bgp enable
+
+Turns BGP on or off. The default is off.
+
+**Usage**
+
+`nv set router bgp enable [options] (on|off)`
+
+**Default Setting**
+
+`off`
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp enable on
+```
+
+## nv set router bgp autonomous-system
+
+Configures the ASN to identify the BGP node. This command configures the ASN for all VRFs if a single AS is in use; otherwise, you must set an ASN for every VRF.
+
+**Usage**
+
+`nv set router bgp autonomous-system [options] (1-4294967295|none|leaf|spine)`
+
+**Default Setting**
+
+N/A
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp autonomous-system 65101
+```
+
+## nv set router bgp router-id
+
+Configures the BGP router ID on the switch, which is a 32-bit value and is typically the address of the loopback interface. This command configures a BGP router ID for all VRFs if a common VRF is used; otherwise, you must set a router ID for every VRF.
+
+**Usage**
+
+`nv set router bgp router-id [options] (none|<ipv4>)`
+
+**Default Setting**
+
+N/A
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp router-id 10.10.10.1
+```
+
 ## nv set router bgp policy-update-timer
 
 Configures the wait time in seconds before processing updates to policies to ensure that a series of changes process together. You can set a value between o and 600.
@@ -3205,71 +3293,118 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router bgp policy-update-timer 200
 ```
 
-## nv set router ospf
+## nv set router bgp graceful-shutdown (on|off)
+
+Configures graceful shutdown, which forces traffic to route around the BGP node and reduces packet loss during planned maintenance of a router or link.
 
 **Usage**
 
-  nv set router ospf [options] [<attribute> ...]
+`nv set router bgp graceful-shutdown [options] (on|off)`
 
-### Description
+**Default Setting**
 
-  OSPF global configuration.
+`off`
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp graceful-shutdown on
+```
+
+## nv set router bgp wait-for-install
+
+Configures BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers.
+
+**Usage**
+
+`nv set router bgp wait-for-install [options] (on|off)`
+
+**Default Setting**
+
+`off`
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp wait-for-install on
+```
+
+## nv set router ospf
+
+Configures OSPF globally on the switch.
+
+**Usage**
+
+`nv set router ospf [options] [<attribute> ...]`
+
+**Default Setting**
+
+N/A
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `timers` | Configures OSPF timers. |
+| `enable` | Turns OSPF on or off. The default is off. |
+| `router-id` | Configures the OSPF router ID. This command configures the router ID for all VRFs if a common one is used; otherwise, you must set the router ID for every VRF. |
 
+**Version History**
 
-  timers      Timers
-
-  enable      Turn the feature 'on' or 'off'. The default is 'off'.
-
-  router-id   OSPF router-id for all VRFs, if a common one is used. If "none",
-
-              then router-id must be set for every VRF. This is the default.
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set router ospf timers
 
+Configures OSPF timers.
+
 **Usage**
 
-  nv set router ospf timers [options] [<attribute> ...]
+`nv set router ospf timers [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  Timers
+N/A
 
 **Attributes**
 
 | Atrribute |  Description   |
-| ---------  | -------------- |
+| --------- | -------------- |
+| `lsa` | Configures Link State Advertisement (LSA) timers. |
+| `spf` | Configures SPF timers. |
+| `refresh` | Configures the interval in seconds to resend LSAs to prevent them from aging out.|
 
+**Version History**
 
-  lsa         LSA timers
-
-  spf         SPF timers
-
-  refresh     defines interval (sec) to re-send lsas to keep from aging out.
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set router ospf timers lsa
 
 **Usage**
 
-  nv set router ospf timers lsa [options] [<attribute> ...]
+`nv set router ospf timers lsa [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  LSA timers
+N/A
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `min-arrival` |  Configures the minimum delay in receiving a new version of an LSA. |
+| `throttle` |  Configures the delay in milliseconds between sending LSAs. |
 
+**Version History**
 
-  min-arrival  Minimum delay in receiving new version of a LSA.
-
-  throttle     Delay (msec) between sending LSAs.
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set router ospf timers lsa min-arrival 0-600000
 
@@ -3351,6 +3486,14 @@ cumulus@leaf01:mgmt:~$ nv set router bgp policy-update-timer 200
 ### Description
 
   defines interval (sec) to re-send lsas to keep from aging out.
+
+## nv set router ospf enable
+
+**Usage**
+
+## nv set router ospf router-id<ipv4>)
+
+**Usage**
 
 ## nv set router pim
 

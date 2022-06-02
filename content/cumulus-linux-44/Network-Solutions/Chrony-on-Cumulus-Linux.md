@@ -2,7 +2,7 @@
 title: Chrony on Cumulus Linux
 author: NVIDIA
 weight: 1341
-toc: 5
+toc: 3
 ---
 To use Chrony as the time provider on Cumulus Linux switches, you need to:
 - Edit the `/etc/apt/sources.list` file to allow upstream repositories.

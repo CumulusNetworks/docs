@@ -3815,80 +3815,194 @@ cumulus@leaf01:mgmt:~$ nv set router pim packets 50
 
 ## nv set router igmp
 
+Configures IGMP globally on the switch.
+
 **Usage**
 
-  nv set router igmp [options] [<attribute> ...]
+`nv set router igmp [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  IGMP global configuration.
+N/A
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `enable` |  Turns IGMP on or off.|
 
-  enable      Turn the feature 'on' or 'off'. The default is 'off'.
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+## nv set router igmp enable (on|off)
+
+**Usage**
+
+`nv set router igmp enable [options] (on|off)`
+
+**Default Setting**
+
+`off`
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router igmp enable on
+```
 
 ## nv set router vrrp
 
+Configures VRRP globally on the switch.
+
 **Usage**
 
-  nv set router vrrp [options] [<attribute> ...]
+`nv set router vrrp [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  VRRP global configuration.
+N/A
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `enable` |  Turns VRRP on or off.|
+| `advertisement-interval` | Configures the advertisement interval between successive advertisements by the master in a virtual router group. |
+| `preempt` | Configures preempt mode, which lets the router take over as master for a virtual router group if it has a higher priority than the current master. |
+| `priority` |  Configures the priority level of the virtual router within the virtual router group, which determines the role that each virtual router plays and what happens if the master fails. Virtual routers have a priority between 1 and 254; the router with the highest priority becomes the master. |
 
-  enable                Turn the feature 'on' or 'off'. The default is 'off'.
+**Version History**
 
-  advertisement-interval Sets the interval between successive VRRP advertisements -- RFC 5798 defines this as a 12-bit value expressed as 0.1 seconds, with default 1000 milliseconds, i.e., 1 second. Represented in units of  milliseconds
+Introduced in Cumulus Linux 5.0.0
 
-  preempt               When set to true, enables preemption by a higher  priority backup router of a lower priority master router
+## nv set router vrrp enable
 
-  priority              Specifies the sending VRRP interface's priority for the virtual router. Higher values equal higher priority
+**Usage**
+
+`nv set router vrrp enable [options] (on|off)`
+
+**Default Setting**
+
+N/A
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router vrrp enable on
+```
 
 ## nv set router vrrp priority 1-254
 
-**Usage**
-
-  nv set router vrrp priority [options] 1-254
-
-### Description
-
-  Specifies the sending VRRP interface's priority for the virtual router. Higher values equal higher priority
-
-## nv set router vrrp advertisement-interval 10-40950
+Configures the priority level of the virtual router within the virtual router group, which determines the role that each virtual router plays and what happens if the master fails. Virtual routers have a priority between 1 and 254; the router with the highest priority becomes the master.
 
 **Usage**
 
-  nv set router vrrp advertisement-interval [options] 10-40950
+`nv set router vrrp priority [options] 1-254`
 
-### Description
+**Default Setting**
 
-  Sets the interval between successive VRRP advertisements -- RFC 5798 defines this as a 12-bit value expressed as 0.1 seconds, with default 1000 milliseconds, i.e., 1 second. Represented in units of milliseconds
+100
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router vrrp priority 254
+```
+
+## nv set router vrrp preempt
+
+Configures preempt mode, which lets the router take over as master for a virtual router group if it has a higher priority than the current master.
+
+**Usage**
+
+`nv set router vrrp preempt [options] (on|off)`
+
+**Default Setting**
+
+`on`
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router vrrp preempt off
+```
+
+## nv set router vrrp advertisement-interval
+
+Configures the advertisement interval between successive advertisements by the master in a virtual router group. You can specify a value between 10 and 40950.
+
+**Usage**
+
+`nv set router vrrp advertisement-interval [options] 10-40950`
+
+**Default Setting**
+
+1000 milliseconds
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router vrrp advertisement-interval 2000
+```
 
 ## nv set router vrr
 
+Configures VRR globally on the switch.
+
 **Usage**
 
-  nv set router vrr [options] [<attribute> ...]
-
-### Description
-
-  VRR global configuration.
+`nv set router vrr [options] [<attribute> ...]`
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `enable` |   Turns VRR on or off. |
 
-  enable      Turn the feature 'on' or 'off'. The default is 'off'.
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+## nv set router vrr enable
+
+**Usage**
+
+`nv set router vrr [options]  (on|off)`
+
+**Default Setting**
+
+`off`
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router vrr enable on
+```
 
 ## nv set router adaptive-routing
 

@@ -3835,7 +3835,9 @@ N/A
 
 Introduced in Cumulus Linux 5.0.0
 
-## nv set router igmp enable (on|off)
+## nv set router igmp enable
+
+Turns IGMP on or off.
 
 **Usage**
 
@@ -3882,6 +3884,8 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set router vrrp enable
 
+Turns VRRP on or off.
+
 **Usage**
 
 `nv set router vrrp enable [options] (on|off)`
@@ -3900,7 +3904,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router vrrp enable on
 ```
 
-## nv set router vrrp priority 1-254
+## nv set router vrrp priority
 
 Configures the priority level of the virtual router within the virtual router group, which determines the role that each virtual router plays and what happens if the master fails. Virtual routers have a priority between 1 and 254; the router with the highest priority becomes the master.
 
@@ -3986,6 +3990,8 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set router vrr enable
 
+Turns VRR on or off.
+
 **Usage**
 
 `nv set router vrr [options]  (on|off)`
@@ -4006,100 +4012,139 @@ cumulus@leaf01:mgmt:~$ nv set router vrr enable on
 
 ## nv set router adaptive-routing
 
+Configures adaptive routing globally on the switch. Adaptive routing is a load balancing mechanism that improves network utilization by selecting routes dynamically based on the immediate network state, such as switch queue length and port utilization.
+
 **Usage**
 
-  nv set router adaptive-routing [options] [<attribute> ...]
+`nv set router adaptive-routing [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  Adaptive routing global configuration.
+N/A
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `enable` | Turns adaptive routing on or off. |
 
-  enable      Turn the feature 'on' or 'off'. The default is 'off'.
+**Version History**
+
+Introduced in Cumulus Linux 5.1.0
+
+## nv set router adaptive-routing enable
+
+Turns adaptive routing on or off.
+
+**Usage**
+
+`nv set router adaptive-routing [options] (on|off)`
+
+**Default Setting**
+
+`off`
+
+**Version History**
+
+Introduced in Cumulus Linux 5.1.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set router adaptive-routing enable on
+```
 
 ## nv set platform
 
+Configures the switch platform settings.
+
 **Usage**
 
-  nv set platform [options] [<attribute> ...]
+`nv set platform [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  Top-level container for the components in the system. This node represents a system component inventory, which includes hardware and software elements.
+`off`
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `hardware` | Configures the switch hardware components. |
 
-  hardware    The platform's hardware
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set platform hardware
 
+Configures the switch hardware components. 
+
 **Usage**
 
-  nv set platform hardware [options] [<attribute> ...]
+`nv set platform hardware [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  Set of components making up the platform.
+N/A
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `component` | Configures a hardware component. |
 
-  component   A component in the platform.
+**Version History**
 
-## nv set platform hardware component <component-id>
+Introduced in Cumulus Linux 5.0.0
+
+## nv set platform hardware component \<component-id\>
+
+Configures a hardware component.
 
 **Usage**
 
-  nv set platform hardware component <component-id> [options] [<attribute> ...]
+`nv set platform hardware component <component-id> [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  A component in the platform.
+N/A
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <component-id>  Component identifier
+| `<component-id>` | The hardware component you want to configure. |
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `linecard` | Configures the properties of a line card. |
+| `admin-state` | Configures the admin state of hardware component. |
+| `type` | Configures the conponent type. |
 
-  linecard        Properties of a linecard component
+**Version History**
 
-  admin-state     The component's admin state
+Introduced in Cumulus Linux 5.0.0
 
-  type            The type of this component
+## nv set platform hardware component \<component-id\> linecard
 
-
-## nv set platform hardware component <component-id> linecard
+Configures the properties of a line card.
 
 **Usage**
 
-  nv set platform hardware component <component-id> linecard [options] [<attribute> ...]
+`nv set platform hardware component <component-id> linecard [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  Properties of a linecard component
+N/A
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <component-id>  Component identifier
+| `<component-id>` | The component identifier.|
 
 **Attributes**
 

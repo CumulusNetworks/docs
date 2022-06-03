@@ -1565,8 +1565,19 @@ Broadcom switches evaluate both IPv4 and IPv6 packets against INPUT chain `iptab
 
 ```
 [iptables]
-
 -A INPUT -p tcp --dport 22 -j DROP
+```
+
+To work around this issue, use `ebtables` with IPv4 or IPv6 headers instead of the `iptables` and `ip6tables` generic INPUT chain DROP. For example:
+
+```
+[ebtables]
+-A INPUT -i swp+ -p IPv4 --ip-protocol tcp --ip-destination-port 22 -j DROP
+```
+
+```
+[ebtables]
+-A INPUT -i swp+ -p IPv6 --ip6-protocol tcp --ip6-destination-port 22 -j DROP
 ```
 
 ### ACL Log Policer Limits Traffic

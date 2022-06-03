@@ -371,6 +371,10 @@ iface vni200
 cumulus@switch:~$ sudo ifreload -a
 ```
 
+{{%notice note%}}
+You must enable ARP and ND suppression on all VXLAN interfaces on the switch. You cannot enable ARP and ND suppression on some VXLAN interfaces but not on others.
+{{%/notice%}}
+
 ## Configure Static MAC Addresses
 
 MAC addresses that are intended to be pinned to a particular VTEP can be provisioned on the VTEP as a static bridge FDB entry. EVPN picks up these MAC addresses and advertises them to peers as remote static MACs. You configure static bridge FDB entries for MACs under the bridge configuration:

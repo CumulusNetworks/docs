@@ -157,37 +157,21 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
     root@ubuntu:~# apt-get install netq-agent netq-apps
     ```
 
-8. Download the bootstrap and NetQ installation tarballs.
+8. Download NetQ installation tarball:
 
-    1. On the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page, log in to your account. If needed create a new account and then log in.
+    1. On the {{<exlink url="https://ui.licensing.nvidia.com/login" text="NVIDIA Licensing Portal">}}, log in to your account.
 
-        {{<figure src="/images/netq/mymellanox-login-320.png" width="500">}}
+    2. Select **Software Downloads** from the menu.
 
-        Your username is based on your Email address. For example, user1@domain.com.mlnx.
+    3. Click **Product Family** and select **NetQ**.
 
-    2. Open the **Downloads** menu.
+    4. Select the relevant software for your appliance:
 
-    3. Click **Software**.
+    If you are installing NetQ Platform software for a NetQ On-premises Appliance, select **NetQ SW 4.1 Appliance** to download the *NetQ-4.1.0.tgz* file. If you are upgrading NetQ software for a NetQ Cloud Appliance, select **NetQ SW 4.1 Appliance Cloud** to download the *NetQ-4.1.0-opta.tgz* file.
 
-    4. Open the **Cumulus Software** option.
+9. Copy these two files, *netq-bootstrap-4.1.0.tgz* and either *NetQ-4.1.0.tgz* (on-premises) or *NetQ-4.1.0-opta.tgz* (cloud), to the */mnt/installables/* directory on the appliance.
 
-        {{<figure src="/images/netq/mymellanox-cumulus-software-download-320.png" width="500">}}
-
-    5. Click **All downloads** next to **NVIDIA NetQ**.
-
-    6. Select *4.1.0* from the **NetQ Version** dropdown.
-
-    7. Select *KVM* from the **Hypervisor** dropdown.
-
-    8. Click **Show Download**.
-
-        {{<figure src="/images/netq/mymellanox-netq-download-kvm-331.png" width="500">}}
-
-    9. Verify this is the correct image, then click **Download**.
-
-    10. Copy these two files, *netq-bootstrap-4.1.0.tgz* and either *NetQ-4.1.0.tgz* (on-premises) or *NetQ-4.1.0-opta.tgz* (cloud), to the */mnt/installables/* directory on the appliance.
-
-    11. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-4.1.0-opta.tgz* instead of *NetQ-4.1.0.tgz*.
+10. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-4.1.0-opta.tgz* instead of *NetQ-4.1.0.tgz*.
 
         ```
         cumulus@<hostname>:~$ dpkg -l | grep netq
@@ -199,7 +183,7 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
         NetQ-4.1.0.tgz  netq-bootstrap-4.1.0.tgz
         ```
 
-    12. Run the following commands.
+11. Run the following commands.
 
         ```
         sudo systemctl disable apt-{daily,daily-upgrade}.{service,timer}
@@ -208,11 +192,11 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
         sudo systemctl stop motd-news.{service,timer}
         ```
 
-9. Run the Bootstrap CLI.
+12. Run the Bootstrap CLI.
 
     Run the bootstrap CLI on your appliance. Be sure to replace the *eth0* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="single" version="3.3.1">}}
+    {{<netq-install/bootstrap server="single" version="4.1">}}
 
 {{<notice note>}}
 If you are creating a server cluster, you need to prepare each of those appliances as well. Repeat these steps if you are using a previously deployed appliance or refer to {{<link title="Install the NetQ System">}} for a new appliance.

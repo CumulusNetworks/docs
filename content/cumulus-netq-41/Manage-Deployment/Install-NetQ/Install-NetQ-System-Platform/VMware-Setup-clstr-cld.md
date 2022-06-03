@@ -19,7 +19,7 @@ Follow these steps to setup and configure your VM on a cluster of servers in a r
 
 3. Download the NetQ Platform image.
 
-    {{<netq-install/vmw-platform-image deployment="cloud" version="4.0">}}
+    {{<netq-install/vmw-platform-image deployment="cloud" version="4.1">}}
 
 4. Setup and configure your VM.
 
@@ -39,11 +39,11 @@ Follow these steps to setup and configure your VM on a cluster of servers in a r
 
 8. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="single" version="4.0" deployment="cloud" platform="vm">}}
+    {{<netq-install/bootstrap server="single" version="4.1" deployment="cloud" platform="vm">}}
 
 9. Consider the following for container environments, and make adjustments as needed.
 
-    {{<netq-install/container version="4.0">}}
+    {{<netq-install/container version="4.1">}}
 
 10. Verify that your first worker node meets the VM requirements, as described in Step 1.
 

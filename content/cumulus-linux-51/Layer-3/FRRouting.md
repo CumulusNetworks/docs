@@ -442,7 +442,7 @@ cumulus@switch:~$ sudo systemctl reload frr.service
 
 Examine the running configuration and verify that it matches the configuration in `/etc/frr/frr.conf`.
 
-If the running configuration is not what you expect, {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="submit a support request">}} and supply the following information:
+If the running configuration is not what you expect, {{<exlink url="https://enterprise-support.nvidia.com/s/" text="submit a support request">}} and supply the following information:
 
 - The current running configuration (run `show running-config` and output the contents to a file)
 - The contents of `/etc/frr/frr.conf`

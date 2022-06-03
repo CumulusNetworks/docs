@@ -36,5 +36,5 @@ NVIDIA plans on updating this article as new information arises.
 
 If the switch fails to boot under the circumstances described above, NVIDIA recommends that you contact:
 
-- The {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="NVIDIA Cumulus support team">}} to make them aware of your situation, and,
+- The {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Cumulus support team">}} to make them aware of your situation, and,
 - Your hardware supplier for the appropriate hardware warranty service.

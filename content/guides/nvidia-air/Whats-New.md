@@ -9,8 +9,10 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 
 ## May 2022
 ### 82.2022.0518
-<!-- Air:WhatsNew -->
 - Added Cumulus Linux 5.1.0
+<!-- Air:WhatsNew -->
+### 82.2022.0524
+- Fixed a bug that prevented some organization members from viewing topology diagrams
 <!-- Air:WhatsNew -->
 
 ## April 2022

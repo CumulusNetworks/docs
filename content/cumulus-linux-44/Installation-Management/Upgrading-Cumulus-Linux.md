@@ -109,7 +109,7 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
 
 The decision to upgrade Cumulus Linux by either installing a Cumulus Linux image or upgrading packages depends on your environment and your preferences. Here are some recommendations for each upgrade method.
 
-**Install a Cumulus Linux image** if you are performing a rolling upgrade in a production environment and if are using up-to-date and comprehensive automation scripts. This upgrade method enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 3.7.14 to 4.4.0).
+**Install a Cumulus Linux image** if you are performing a rolling upgrade in a production environment and if are using up-to-date and comprehensive automation scripts. This upgrade method enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 3.7.14 to 4.4.3).
 
 {{%notice note%}}
 To upgrade to Cumulus Linux 4.4.0 from a previous release, you must install a Cumulus Linux image; package upgrade is not supported.
@@ -239,7 +239,7 @@ If you are using {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}
 You must upgrade both switches in the MLAG pair to the same release of Cumulus Linux.
 
 {{%notice warning%}}
-For networks with MLAG deployments, you can only upgrade to Cumulus Linux 4.4 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 4.4. Version 3.7.10 is available on the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox downloads page">}}.
+For networks with MLAG deployments, you can only upgrade to Cumulus Linux 4.4 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 4.4. Version 3.7.10 is available on the {{<exlink url="https://enterprise-support.nvidia.com/s/downloader" text="NVIDIA Enterprise support portal">}}.
 {{%/notice%}}
 
 {{%notice info%}}

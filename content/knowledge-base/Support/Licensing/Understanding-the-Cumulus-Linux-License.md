@@ -18,7 +18,7 @@ The license format looks like this:
 
     user@company.com|thequickbrownfoxjumpsoverthelazydog312
 
-You manage your licenses in the MyMellanox {{<exlink url="https://support.mellanox.com/s/login/" text="customer portal">}}.
+You manage your licenses in the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.
 
 To verify that you installed your license, run the `cl-license` command.
 

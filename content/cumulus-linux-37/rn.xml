@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3093863</td>
+<td>Slow memory leak caused by snmpd process using Zabbix template "Template Net Mellanox SNMP"</td>
+<td>3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3085285</td>
+<td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
+<td>3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3083265</td>
+<td>Slow memory leak caused by snmpd process using Zabbix template "Template Net Mellanox SNMP"</td>
+<td>3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3077737</td>
 <td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
 To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
@@ -62,12 +80,6 @@ CVE-2019-19221 out-of-bounds read because of an incorrect mbrtowc or mbtowc call
 Vulnerable: &lt;= 3.1.2-11+deb8u8
 Fixed: 3.1.2-11+deb8u9</td>
 <td>3.7.0-3.7.16</td>
-<td></td>
-</tr>
-<tr>
-<td>3073668</td>
-<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -198,12 +210,6 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>2896450</td>
-<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2885240</td>
 <td>CVE-2021-33285 CVE-2021-33286 CVE-2021-33287 CVE-2021-33289 CVE-2021-35266 CVE-2021-35267 CVE-2021-35268 CVE-2021-35269 CVE-2021-39251 CVE-2021-39252 CVE-2021-39253 CVE-2021-39254 CVE-2021-39255 CVE-2021-39256 CVE-2021-39257 CVE-2021-39258 CVE-2021-39259 CVE-2021-39260 CVE-2021-39261 CVE-2021-39262 CVE-2021-39263: Several vulnerabilities were discovered in NTFS-3G, a read-write NTFS driver for FUSE. A local user can take advantage of these flaws for local root privilege escalation.
 Vulnerable: &lt;= 2014.2.15AR.2-1+deb8u4
@@ -308,6 +314,12 @@ Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-4.4.1</td>
 <td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2716822</td>
+<td>The {{/etc/cumulus/ports.conf}} file on the Dell Z9264F-ON switch does not show that Cumulus Linux does not support the 2x10G SFP+ ports.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2713888</td>
@@ -2618,12 +2630,6 @@ Fixed: 3.1.2-11+deb8u9</td>
 <td></td>
 </tr>
 <tr>
-<td>3073668</td>
-<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3072613</td>
 <td>When  you delete a bond interface with NCLU, BGP peer group configuration is removed.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
@@ -3092,12 +3098,6 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>2896672</td>
 <td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2896450</td>
-<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -3613,6 +3613,12 @@ Vulnerable: &lt;= 1.5.6-5+deb8u1
 Fixed: 1.5.6-5+deb8u2</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2716822</td>
+<td>The {{/etc/cumulus/ports.conf}} file on the Dell Z9264F-ON switch does not show that Cumulus Linux does not support the 2x10G SFP+ ports.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2713888</td>
@@ -5816,12 +5822,6 @@ Fixed: 3.1.2-11+deb8u9</td>
 <td></td>
 </tr>
 <tr>
-<td>3073668</td>
-<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -6123,12 +6123,6 @@ Vulnerable: &lt;= 2.1.5-2+deb8u12
 Fixed: 2.1.5-2+deb8u13</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2896450</td>
-<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2885241</td>
@@ -8737,12 +8731,6 @@ Fixed: 3.1.2-11+deb8u9</td>
 <td></td>
 </tr>
 <tr>
-<td>3073668</td>
-<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -9025,12 +9013,6 @@ Vulnerable: &lt;= 2.1.5-2+deb8u12
 Fixed: 2.1.5-2+deb8u13</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2896450</td>
-<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2885241</td>
@@ -12179,12 +12161,6 @@ Fixed: 3.1.2-11+deb8u9</td>
 <td></td>
 </tr>
 <tr>
-<td>3073668</td>
-<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -12467,12 +12443,6 @@ Vulnerable: &lt;= 2.1.5-2+deb8u12
 Fixed: 2.1.5-2+deb8u13</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2896450</td>
-<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2885241</td>
@@ -15834,12 +15804,6 @@ Fixed: 3.1.2-11+deb8u9</td>
 <td></td>
 </tr>
 <tr>
-<td>3073668</td>
-<td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -16115,12 +16079,6 @@ Vulnerable: &lt;= 2.1.5-2+deb8u12
 Fixed: 2.1.5-2+deb8u13</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2896450</td>
-<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2885241</td>

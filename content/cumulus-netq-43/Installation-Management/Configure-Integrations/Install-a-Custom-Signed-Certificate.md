@@ -1,13 +1,9 @@
 ---
-title: Post-installation Configurations
+title: Install a Custom Signed Certificate
 author: NVIDIA
 weight: 395
 toc: 3
 ---
-
-This topic describes how to configure deployment options that you can perform only after you finish installing or upgrading NetQ.
-
-## Install a Custom Signed Certificate
 
 The NetQ UI ships with a self-signed certificate that is sufficient for non-production environments or cloud deployments. For on-premises deployments, however, you receive a warning from your browser that this default certificate is not trusted when you first log in to the NetQ UI. You can avoid this by installing your own signed certificate.
 
@@ -104,51 +100,3 @@ Your custom certificate should now be working. Verify this by opening the NetQ U
 {{%notice note%}}
 If you already have a certificate installed and want to change or update it, run the `kubectl delete secret netq-gui-ingress-tls [name] --namespace default` command.
 {{%/notice%}}
-
-## Update Your Cloud Activation Key
-
-You use the cloud activation key (called the *config-key*) to access the cloud services, not the authorization keys you use for configuring the CLI. NVIDIA provides the key when you set up your premises.
-
-On occasion, you might want to update your cloud service activation key. For example, if you mistyped the key during installation and now your existing key does not work, or you received a new key for your premises from NVIDIA.
-
-Update the activation key using the NetQ CLI:
-
-{{<tabs "Cloud Key">}}
-
-{{<tab "NetQ CLI">}}
-
-Run the following command on your standalone or master NetQ Cloud Appliance or VM replacing `text-opta-key` with your new key.
-
-```
-cumulus@<hostname>:~$ netq install standalone activate-job config-key <text-opta-key>
-```
-
-{{</tab>}}
-
-{{</tabs>}}
-
-## Add More Nodes to Your Server Cluster
-
-### Add More Nodes Using the CLI
-
-You can add additional nodes to your server cluster on-premise and cloud deployments using the CLI:
-
-{{<tabs "addworkerCLI">}}
-
-{{<tab "On-premise Deployments">}}
-
-Run the following CLI command to add a new worker node for on-premise deployments:
-
-```netq install cluster add-worker <text-worker-01>```
-
-{{</tab>}}
-
-{{<tab "Cloud Deployments">}}
-
-Run the following CLI command to add a new worker node for cloud deployments:
-
-```netq install opta cluster add-worker <text-worker-01>```
-
-{{</tab>}}
-
-{{</tabs>}}

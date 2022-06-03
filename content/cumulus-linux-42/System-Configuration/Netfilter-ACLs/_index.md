@@ -1146,6 +1146,16 @@ The following rule blocks any traffic with source MAC address 00:00:00:00:00:12 
 
 Not all `iptables`, `ip6tables`, or `ebtables` rules are supported. Refer to the {{<link url="#iptables-and-ip6tables-rule-support" text="Supported Rules section">}} above for specific rule support.
 
+### Input Chain Rules on Broadcom Switches
+
+Broadcom switches evaluate both IPv4 and IPv6 packets against INPUT chain `iptables` rules. For example, when you install the following rule, the switch drops both IPv6 and IPv4 packets with destination port 22.
+
+```
+[iptables]
+
+-A INPUT -p tcp --dport 22 -j DROP
+```
+
 ### ACL Log Policer Limits Traffic
 
 To protect the CPU from overloading, traffic copied to the CPU is limited to 1 pkt/s by an ACL Log Policer.

@@ -400,6 +400,37 @@
 
 {{ end }}
 
+{{- if eq (.Get "version") "4.1" -}}
+
+{{- if eq (.Get "deployment") "onprem" -}}
+
+<ol>
+    <li>On the <a href="https://ui.licensing.nvidia.com/login">NVIDIA Licensing Portal</a>, log in to your account.<br>
+        <li>Select<strong> Software Downloads</strong> from the menu.</li>
+        <li>Click <strong>Product Family</strong> and select <strong>NetQ</strong>.</li>
+        <li>Locate the <strong>NetQ SW 4.1 VMWare</strong> image and select <strong>Download</strong>.</li>
+        <li>If prompted, agree to the license agreement and proceed with the download.</li>
+</ol>
+
+<div class="notices note"><p>The Documentation option lets you download a copy of the user manual. Ignore the Firmware and More files options as these do not apply to NetQ.</p></div>
+
+{{ end }}
+
+{{- if eq (.Get "deployment") "cloud" -}}
+
+<ol>
+    <li>On the <a href="https://ui.licensing.nvidia.com/login">NVIDIA Licensing Portal</a>, log in to your account.<br>
+        <li>Select<strong> Software Downloads</strong> from the menu.</li>
+        <li>Click <strong>Product Family</strong> and select <strong>NetQ</strong>.</li>
+        <li>Locate the <strong>NetQ SW 4.1 VMWare Cloud</strong> image and select <strong>Download</strong>.</li>
+        <li>If prompted, agree to the license agreement and proceed with the download.</li>
+</ol>
+
+<div class="notices note"><p>The Documentation option lets you download a copy of the user manual. Ignore the Firmware and More files options as these do not apply to NetQ.</p></div>
+
+{{ end }}
+
+{{ end }}
 
 {{- if eq (.Get "version") "4.2" -}}
 

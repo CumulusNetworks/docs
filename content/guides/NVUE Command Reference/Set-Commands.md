@@ -4242,7 +4242,7 @@ cumulus@leaf01:mgmt:~$ nv set platform hardware component device admin-state ena
 
 ## nv set bridge
 
-Configures a bridge.
+Configures a bridge on the switch.
 
 **Usage**
 
@@ -4250,7 +4250,7 @@ Configures a bridge.
 
 **Default Setting**
 
-N/A
+`br_default`
 
 **Attributes**
 
@@ -4262,43 +4262,40 @@ N/A
 
 Introduced in Cumulus Linux 5.0.0
 
-## nv set bridge domain <domain-id>
+## nv set bridge domain \<domain-id\>
+
+Configures the bridge domain.
 
 **Usage**
 
-  nv set bridge domain <domain-id> [options] [<attribute> ...]
-
-### Description
-
-  Bridge domain
+`nv set bridge domain <domain-id> [options] [<attribute> ...]`
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <domain-id>      Domain
+| `<domain-id>` |  The bridge domain. |
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `stp` |  | Configures the attributes related to global STP. |
+| `multicast` |  Configures multicast on the bridge. |
+| `vlan` | Configures a set of VLANs in the bridge domain. This is only applicable when the domain type is `vlan-aware`. |
+| `encap` | Interfaces added to this domain will, by default, use this encapsulation. |
+| `mac-address` |  Override global mac address. |
+| `type` |  Configures the type of bridge domain. |
+| `untagged` |  Interfaces added to this domain will, by default, be trunk interfaces with a single untagged vlan. Untagged packets on domain ports will be put in this vlan. If none, then untagged packets will be dropped. |
+| `vlan-vni-offset` |  A VNI offset while (automatically) mapping VLANs to VNIs
 
-  stp              attributes related to global stp
+**Default Setting**
 
-  multicast        Configure multicast on the bridge
+N/A
 
-  vlan             Set of vlans in the bridge domain. Only applicable when the domain type is "vlan-aware".
+**Version History**
 
-  encap            Interfaces added to this domain will, by default, use this encapsulation.
-
-  mac-address      Override global mac address
-
-  type             Type of bridge domain.
-
-  untagged         Interfaces added to this domain will, by default, be trunk interfaces with a single untagged vlan. Untagged packets on domain ports will be put in this vlan. If none, then untagged packets will be dropped.
-
-  vlan-vni-offset  A VNI offset while (automatically) mapping VLANs to VNIs
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set bridge domain <domain-id> stp
 

@@ -7,13 +7,19 @@ product: NVIDIA Air
 <!-- vale off -->
 Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
+## June 2022
+<!-- Air:WhatsNew -->
+### 82.2022.0606-015
+- Added unique URLs for marketplace demos
+- Fixed a bug that caused IPv6 addresses to not be assigned after multiple power on/power off events
+<!-- Air:WhatsNew -->
+
 ## May 2022
 ### 82.2022.0518
 - Added Cumulus Linux 5.1.0
-<!-- Air:WhatsNew -->
+
 ### 82.2022.0524
 - Fixed a bug that prevented some organization members from viewing topology diagrams
-<!-- Air:WhatsNew -->
 
 ## April 2022
 ### 82.2022.0406

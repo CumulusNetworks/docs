@@ -39,10 +39,6 @@ NVIDIA supports both mainline and Extended Support Releases (ESRs). This support
 
 Consistent with this two-pronged approach, the mainline and ESR code branches are separate code bases. As such, issues and fixes in one branch are independent of the other. NVIDIA prioritizes the ESR branch for stability; any fixes on that branch focus on critical-impact security fixes and urgent bug fixes. This ensures that if you deploy an ESR release, you experience minimal disruption in day to day network operations.
 
-The following diagram illustrates the ESR and mainline branches, and the table below it describes the characteristics of each.
-
-{{<img src="/images/knowledge-base/support-version_policy.png" width="800">}}
-
 <table>
 <colgroup>
 <col style="width: 33%" />

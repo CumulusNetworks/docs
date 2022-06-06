@@ -7,6 +7,10 @@ toc: 3
 
 The NetQ UI ships with a self-signed certificate that is sufficient for non-production environments or cloud deployments. For on-premises deployments, however, you receive a warning from your browser that this default certificate is not trusted when you first log in to the NetQ UI. You can avoid this by installing your own signed certificate.
 
+{{%notice note%}}
+If you already have a certificate installed and want to change or update it, run the `kubectl delete secret netq-gui-ingress-tls [name] --namespace default` command.
+{{%/notice%}}
+
 You need the following items to perform the certificate installation:
 
 - A valid X509 certificate.
@@ -14,11 +18,11 @@ You need the following items to perform the certificate installation:
 - A DNS record name configured to access the NetQ UI.
 
   The FQDN should match the common name of the certificate. If you use a wild card in the common name &mdash; for example, if the common name of the certificate is _*.example.com_ &mdash; then the NetQ telemetry server should reside on a subdomain of that domain, accessible via a URL like _netq.example.com_.
-- NetQ is running.
+- A functioning and healthy NetQ instance.
 
   You can verify this by running the `netq show opta-health` command.
 
-You can install a certificate using the NetQ CLI.
+Install a certificate using the NetQ CLI:
 
 {{<tabs "Install Cert">}}
 
@@ -97,6 +101,3 @@ You can install a certificate using the NetQ CLI.
 
 Your custom certificate should now be working. Verify this by opening the NetQ UI at `https://<your-hostname-or-ipaddr>` in your browser.
 
-{{%notice note%}}
-If you already have a certificate installed and want to change or update it, run the `kubectl delete secret netq-gui-ingress-tls [name] --namespace default` command.
-{{%/notice%}}

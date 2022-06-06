@@ -5,9 +5,9 @@ weight: 395
 toc: 3
 ---
 
-You use the cloud activation key (called the *config-key*) to access the cloud services, not the authorization keys you use for configuring the CLI. NVIDIA provides the key when you set up your premises.
+NVIDIA provides a cloud activation key when you set up your premises. You use the cloud activation key (called the *config-key*) to access the cloud services. Note that these authorization keys are different from the ones you use to configure the CLI. 
 
-On occasion, you might want to update your cloud service activation key. For example, if you mistyped the key during installation and now your existing key does not work, or you received a new key for your premises from NVIDIA.
+On occasion, you might want to update your cloud service activation key---for example, if you mistyped the key during installation and now your existing key does not work, or you received a new key for your premises from NVIDIA.
 
 Update the activation key using the NetQ CLI:
 

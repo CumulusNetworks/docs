@@ -14,11 +14,10 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3096918"></a> [3096918](#3096918) <a name="3096918"></a> <br /> | The <code>cl-resource-query</code> command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the <code>switchd.log</code> file contains ECMP resource errors with routes and next hops failing to install. | 4.2.1-4.4.3, 5.0.0-5.1.0 | |
 | <a name="3093863"></a> [3093863](#3093863) <a name="3093863"></a> <br /> | Slow memory leak caused by snmpd process using Zabbix template "Template Net Mellanox SNMP" | 3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0 | |
 | <a name="3089148"></a> [3089148](#3089148) <a name="3089148"></a> <br /> | The <code>clagd</code> process uses 100 percent CPU and eventually crashes with an <code>Unable to allocate memory</code> error. | 4.4.3, 5.1.0 | |
-| <a name="3085285"></a> [3085285](#3085285) <a name="3085285"></a> <br /> | The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the <code>systemctl restart snmpd</code> command. | 3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0 | |
 | <a name="3084101"></a> [3084101](#3084101) <a name="3084101"></a> <br /> | CVE-2022-1664: dpkg has a vulnerability relating to directory traversal for in-place extracts with untrusted v2 and v3 source packages with debian.tarVulnerable: <= 1.19.7Fixed: 1.19.8 | 5.0.0-5.1.0 | |
-| <a name="3083265"></a> [3083265](#3083265) <a name="3083265"></a> <br /> | Slow memory leak caused by snmpd process using Zabbix template "Template Net Mellanox SNMP" | 3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0 | |
 | <a name="3082583"></a> [3082583](#3082583) <a name="3082583"></a> <br /> | On the NVIDIA SN3420, the <code>smonctl</code> command output shows the maximum PSU temperature higher than the critical temperature. | 4.4.2-4.4.3, 5.0.0-5.1.0 | |
 | <a name="3081232"></a> [3081232](#3081232) <a name="3081232"></a> <br /> | On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up<br />To work around this issue, disable, then enable the port. | 4.4.0-4.4.3, 5.0.0-5.1.0 | |
 | <a name="3078202"></a> [3078202](#3078202) <a name="3078202"></a> <br /> | On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up<br />To work around this issue, disable, then enable the port. | 4.4.0-4.4.3, 5.0.0-5.1.0 | |

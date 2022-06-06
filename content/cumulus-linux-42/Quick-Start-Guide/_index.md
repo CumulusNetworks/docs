@@ -197,11 +197,7 @@ Warning: Unit file of switchd.service changed on disk, 'systemctl daemon-reload'
 
 Cumulus Linux is licensed on a per-instance basis. Each network system is fully operational, enabling any capability to be utilized on the switch with the exception of forwarding on switch panel ports. Only eth0 and console ports are activated on an unlicensed instance of Cumulus Linux. Enabling front panel ports requires a license.
 
-You receive a license key from NVIDIA or an authorized reseller. Here is a sample license key:
-
-```
-user@company.com|thequickbrownfoxjumpsoverthelazydog312
-```
+NVIDIA provides a generic license for Cumulus Linux. Download the license from the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}} and apply it.
 
 There are three ways to install the license onto the switch:
 

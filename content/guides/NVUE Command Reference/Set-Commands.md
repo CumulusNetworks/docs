@@ -4078,7 +4078,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set platform hardware
 
-Configures the switch hardware components. 
+Configures the hardware components of the switch. 
 
 **Usage**
 
@@ -4092,7 +4092,7 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `component` | Configures a hardware component. |
+| `component` | Configures a hardware component on the switch. |
 
 **Version History**
 
@@ -4100,7 +4100,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set platform hardware component \<component-id\>
 
-Configures a hardware component.
+Configures a hardware component on the switch.
 
 **Usage**
 
@@ -4121,7 +4121,7 @@ N/A
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `linecard` | Configures the properties of a line card. |
-| `admin-state` | Configures the admin state of hardware component. |
+| `admin-state` | Configures the admin state of the hardware component. |
 | `type` | Configures the conponent type. |
 
 **Version History**
@@ -4144,31 +4144,123 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<component-id>` | The component identifier.|
+| `<component-id>` | The hardware component you want to configure.|
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `provision`  | Configures the provision line card type. |
 
-  provision       Provision linecard types
+**Version History**
 
-## nv set bridge
+Introduced in Cumulus Linux 5.0.0
+
+## nv set platform hardware component \<component-id\> linecard provision
+
+Configures the properties of a line card. You can specify 16x100GE, 4x400GE, 8x200GE, or NONE.
 
 **Usage**
 
-  nv set bridge [options] [<attribute> ...]
+`nv set platform hardware component <component-id> linecard provision [options] (16x100GE|4x400GE|8x200GE|NONE)`
 
-### Description
+**Default Setting**
 
-  Properties associated with an instance of a bridge.
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<component-id>` | The hardware component you want to configure.|
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set platform hardware component device linecard provision 4x400GE 
+```
+
+## nv set platform hardware component \<component-id\> type
+
+Configures the conponent type; the switch or a line card.
+
+**Usage**
+
+`nv set platform hardware component <component-id> type [options] (switch|linecard)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<component-id>` | The hardware component you want to configure.|
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set platform hardware component device type linecard
+```
+
+## nv set platform hardware component \<component-id\> admin-state
+
+Configures the admin state of the hardware component. You can specify enable or disable.
+
+**Usage**
+
+`nv set platform hardware component <component-id> admin-state [options] (enable|disable)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<component-id>` | The hardware component you want to configure.|
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set platform hardware component device admin-state enable
+```
+
+## nv set bridge
+
+Configures a bridge.
+
+**Usage**
+
+`nv set bridge [options] [<attribute> ...]`
+
+**Default Setting**
+
+N/A
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `domain` |  Configures the bridge domain. |
 
-  domain      Bridge domains
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set bridge domain <domain-id>
 

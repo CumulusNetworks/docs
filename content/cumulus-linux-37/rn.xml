@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3098936</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3093863</td>
 <td>Slow memory leak caused by snmpd process using Zabbix template "Template Net Mellanox SNMP"</td>
 <td>3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0</td>
@@ -300,6 +306,18 @@ Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2734107</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2730225</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
 </tr>
 <tr>
 <td>2728207</td>
@@ -2576,6 +2594,12 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3098936</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3091625</td>
 <td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
 Vulnerable: &lt;= 1.631-3+deb8u1
@@ -3593,6 +3617,18 @@ Vulnerable: &lt;= 2.8.17-1+deb8u7
 Fixed: 2.8.17-1+deb8u8</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2734107</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2730225</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
 </tr>
 <tr>
 <td>2728207</td>
@@ -5791,6 +5827,12 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3098936</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3091625</td>
 <td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
 Vulnerable: &lt;= 1.631-3+deb8u1
@@ -6510,6 +6552,18 @@ Vulnerable: &lt;= 2.8.17-1+deb8u7
 Fixed: 2.8.17-1+deb8u8</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2734107</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2730225</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
 </tr>
 <tr>
 <td>2728207</td>
@@ -8716,6 +8770,12 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3098936</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3091625</td>
 <td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
 Vulnerable: &lt;= 1.631-3+deb8u1
@@ -9386,6 +9446,18 @@ Vulnerable: &lt;= 2.8.17-1+deb8u7
 Fixed: 2.8.17-1+deb8u8</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2734107</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2730225</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
 </tr>
 <tr>
 <td>2728207</td>
@@ -12162,6 +12234,12 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3098936</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3091625</td>
 <td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
 Vulnerable: &lt;= 1.631-3+deb8u1
@@ -12832,6 +12910,18 @@ Vulnerable: &lt;= 2.8.17-1+deb8u7
 Fixed: 2.8.17-1+deb8u8</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2734107</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2730225</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
 </tr>
 <tr>
 <td>2728207</td>
@@ -15821,6 +15911,12 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3098936</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3091625</td>
 <td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
 Vulnerable: &lt;= 1.631-3+deb8u1
@@ -16484,6 +16580,18 @@ Vulnerable: &lt;= 2.8.17-1+deb8u7
 Fixed: 2.8.17-1+deb8u8</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2734107</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2730225</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
 </tr>
 <tr>
 <td>2728207</td>

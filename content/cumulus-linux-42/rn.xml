@@ -424,6 +424,18 @@ Fixed: 241-7~deb10u8</td>
 <td>4.4.2-4.4.3</td>
 </tr>
 <tr>
+<td>2734107</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2730225</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
 <td>2728207</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.3</td>
@@ -3336,6 +3348,18 @@ corruption, allowing to crash systemd and hence the entire operating system.  De
 Vulnerable: &lt;= 241-7~deb10u7
 Fixed: 241-7~deb10u8</td>
 <td>4.0.0-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2734107</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2730225</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
 <td>4.4.2-4.4.3</td>
 </tr>
 <tr>

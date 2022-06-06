@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3098936</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3096918</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
 <td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
@@ -2082,6 +2088,12 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3098936</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>3096918</td>
@@ -4369,7 +4381,7 @@ Fixed: 241-7~deb10u8</td>
 <tr>
 <td>2734107</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>4.3.0-4.4.1</td>
+<td>3.7.12-4.4.1</td>
 </tr>
 <tr>
 <td>2728205</td>
@@ -4399,6 +4411,12 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3098936</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>3096918</td>
@@ -5436,7 +5454,7 @@ Fixed: 241-7~deb10u8</td>
 <tr>
 <td>2734107</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>4.3.0-4.4.1</td>
+<td>3.7.12-4.4.1</td>
 <td>4.4.2-4.4.3</td>
 </tr>
 <tr>

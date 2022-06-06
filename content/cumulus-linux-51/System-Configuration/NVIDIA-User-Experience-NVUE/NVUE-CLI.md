@@ -300,6 +300,14 @@ cumulus@switch:~$ nv config apply
 cumulus@switch:~$ nv config save
 ```
 
+## Clear Switch Configuration
+
+To reset the configuration on the switch back to the factory defaults, run the following command:
+
+```
+cumulus@switch:~$ nv config apply empty
+```
+
 ## Example Configuration Commands
 
 This section provides examples of how to configure a Cumulus Linux switch using NVUE commands.

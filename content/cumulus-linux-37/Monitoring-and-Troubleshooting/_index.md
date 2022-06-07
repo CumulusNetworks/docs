@@ -319,7 +319,6 @@ If you configure remote logging to use the TCP protocol, local logging might sto
 ```
 action(type="omfwd" Target="172.28.240.15" Device="mgmt" Port="1720" Protocol="tcp" action.resumeRetryCount="100" queue.type="linkedList" queue.size="10000")
 ```
-
 {{%/notice%}}
 
 ### Rate-limit syslog Messages

@@ -205,10 +205,10 @@ cumulus@leaf01:~$ nv set mlag peer-ip linklocal
 cumulus@leaf01:~$ nv config apply
 ```
 
-To configure the backup link to a VRF, include the name of the VRF with the `backup-ip` parameter. The following example configures the backup link to VRF RED:
+To configure the backup link to a VRF, include the name of the VRF with the `backup-ip` parameter. The following example configures the backup link to VRF `mgmt`:
 
 ```
-cumulus@leaf01:~$ nv set mlag backup 10.10.10.2 vrf RED
+cumulus@leaf01:~$ nv set mlag backup 10.10.10.2 vrf mgmt
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -223,10 +223,10 @@ cumulus@leaf02:~$ nv set mlag peer-ip linklocal
 cumulus@leaf02:~$ nv config apply
 ```
 
-To configure the backup link to a VRF, include the name of the VRF with the backup-ip parameter. The following example configures the backup link to VRF RED:
+To configure the backup link to a VRF, include the name of the VRF with the backup-ip parameter. The following example configures the backup link to VRF `mgmt`:
 
 ```
-cumulus@leaf02:~$ nv set mlag backup 10.10.10.1 vrf RED
+cumulus@leaf02:~$ nv set mlag backup 10.10.10.1 vrf mgmt
 cumulus@leaf02:~$ nv config apply
 ```
 

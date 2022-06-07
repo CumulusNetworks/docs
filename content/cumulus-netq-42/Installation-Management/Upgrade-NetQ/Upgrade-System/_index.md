@@ -68,6 +68,49 @@ To complete the preparation:
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ```
 
+## Run the Upgrade
+
+{{%notice note%}}
+Verify the following items before upgrading NetQ. For cluster deployments, verify steps 1 and 3 on all nodes in the cluster:
+
+1. Check if enough disk space is available before you proceed with the upgrade:
+
+```
+cumulus@netq-appliance:~$ df -h /
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1       248G   70G  179G  28% /
+cumulus@netq-appliance:~$
+```
+
+The recommended `Use%` to proceed with installation is under 70%.
+
+You can delete previous software tarballs in the `/mnt/installables/` directory to regain some space.
+If you can not bring disk space to under 70% usage, contact the NVIDIA support team.
+
+2. Run the `netq show opta-health` command and check that all pods are in the `READY` state. If not, contact the NVIDIA support team.
+
+3. Check if the certificates have expired:
+
+```
+cumulus@netq-appliance:~$ sudo grep client-certificate-data /etc/kubernetes/kubelet.conf | cut -d: -f2 | xargs | base64 -d | openssl x509 -dates -noout | grep notAfter | cut -f2 -d=
+Dec 18 17:53:16 2021 GMT
+cumulus@netq-appliance:~$
+```
+
+If the date in the above output is in the past, run the following commands before proceeding with the upgrade:
+```
+sudo cp /etc/kubernetes/kubelet.conf /etc/kubernetes/kubelet.conf.bak
+sudo sed -i 's/client-certificate-data.*/client-certificate: \/var\/lib\/kubelet\/pki\/kubelet-client-current.pem/g' /etc/kubernetes/kubelet.conf
+sudo sed -i 's/client-key.*/client-key: \/var\/lib\/kubelet\/pki\/kubelet-client-current.pem/g' /etc/kubernetes/kubelet.conf
+sudo systemctl restart kubelet
+```
+
+Check if the kubelet process is running with the `sudo systemctl status kubelet` command before proceeding with the upgrade.
+
+If any issue occurs, contact the NVIDIA Support team.
+
+{{%/notice%}}
+
 ### Upgrade Using the NetQ CLI
 
 After completing the {{<link url="#prepare-for-upgrade" text="preparation steps">}}, upgrading your NetQ On-premises, Cloud Appliances or VMs is simple using the NetQ CLI.

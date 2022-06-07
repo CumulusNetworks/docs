@@ -244,6 +244,15 @@ cumulus@switch:~$ cat /etc/rsyslog.d/11-remotesyslog.conf
 action(type="omfwd" Target="192.168.0.254" Device="mgmt" Port="514" Protocol="udp")
 action(type="omfwd" Target="10.0.0.1" Device="mgmt" Port="514" Protocol="udp")
 ```
+
+{{%notice warning%}}
+If you configure remote logging to use the TCP protocol, local logging might stop when the remote syslog server is unreachable. To avoid this behavior, configure a disk queue size and maximum retry count in your `rsyslog` configuration:
+
+```
+action(type="omfwd" Target="172.28.240.15" Device="mgmt" Port="1720" Protocol="tcp" action.resumeRetryCount="100" queue.type="linkedList" queue.size="10000")
+```
+{{%/notice%}}
+
 <!-- vale off -->
 ### Rate-limit syslog Messages
 <!-- vale on -->

@@ -473,6 +473,10 @@ cumulus@switch:~$ nv config apply
 
 To disable adaptive routing globally, run the `nv set router adaptive-routing enable off` command. To disable adaptive routing on a port, run the `nv set interface <interface> router adaptive-routing enable off` command.
 
+{{%notice warning%}}
+When you enable adaptive routing, NVUE restarts the `switchd` service, which causes all network ports to reset, interrupting network services, in addition to resetting the switch hardware configuration.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -513,6 +517,26 @@ To disable adaptive routing on a port, set the `interface.<port>.adaptive_routin
 
 {{< /tab >}}
 {{< /tabs >}}
+
+To verify that adaptive routing is on, run the `nv show router adaptive-routing` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show router adaptive-routing
+        applied  description
+------  -------  ------------------------------------------------------
+enable  on       Turn the feature 'on' or 'off'.  The default is 'off'.
+```
+
+To show adaptive routing configuration for an interface, run the `nv show interface <interface> router adaptive-routing` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp51 router adaptive-routing 
+                            applied  description
+--------------------------  -------  ------------------------------------------------------
+enable                      on       Turn the feature 'on' or 'off'.  The default is 'off'.
+link-utilization-threshold  100      Link utilization threshold percentage
+```
+
 <!-- vale off -->
 ## cl-ecmpcalc
 <!-- vale on -->

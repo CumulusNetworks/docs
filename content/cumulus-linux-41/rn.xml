@@ -7,6 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3091561</td>
+<td>CVE-2022-24903: rsyslog modules for TCP syslog eception have a potential heap buffer overflow when octet-counted framing is used.  Modules &apos;imtcp&apos;, &apos;imptcp&apos;, &apos;imgssapi&apos;, and &apos;imhttp&apos; are used for regular syslog message reception. It is best practice not to directly expose them to the public. When this practice is followed, the risk is considerably lower. Module &apos;imdiag&apos; is a diagnostics module primarily intended for testbench runs. We do not expect it to be present on any production installation. Octet-counted framing is not very common. Usually, it needs to be specifically enabled at senders. If users do not need it, they can turn it off for the most important modules. This will mitigate the vulnerability.
+Vulnerable: &lt;= 8.1901.0-1+deb10u1
+Fixed: 8.1901.0-1+deb10u2</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3085280</td>
 <td>CVE-2022-26691: in cups, a logic error in the validation of the secret key used in the "local" authorisation mode of the CUPS printing
 system may result in privilege escalation.
@@ -300,6 +308,18 @@ corruption, allowing to crash systemd and hence the entire operating system.  De
 Vulnerable: &lt;= 241-7~deb10u7
 Fixed: 241-7~deb10u8</td>
 <td>4.0.0-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2734107</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2730225</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
 <td>4.4.2-4.4.3</td>
 </tr>
 <tr>
@@ -3118,6 +3138,14 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3091561</td>
+<td>CVE-2022-24903: rsyslog modules for TCP syslog eception have a potential heap buffer overflow when octet-counted framing is used.  Modules &apos;imtcp&apos;, &apos;imptcp&apos;, &apos;imgssapi&apos;, and &apos;imhttp&apos; are used for regular syslog message reception. It is best practice not to directly expose them to the public. When this practice is followed, the risk is considerably lower. Module &apos;imdiag&apos; is a diagnostics module primarily intended for testbench runs. We do not expect it to be present on any production installation. Octet-counted framing is not very common. Usually, it needs to be specifically enabled at senders. If users do not need it, they can turn it off for the most important modules. This will mitigate the vulnerability.
+Vulnerable: &lt;= 8.1901.0-1+deb10u1
+Fixed: 8.1901.0-1+deb10u2</td>
+<td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3085280</td>
 <td>CVE-2022-26691: in cups, a logic error in the validation of the secret key used in the "local" authorisation mode of the CUPS printing
 system may result in privilege escalation.
@@ -3393,6 +3421,18 @@ corruption, allowing to crash systemd and hence the entire operating system.  De
 Vulnerable: &lt;= 241-7~deb10u7
 Fixed: 241-7~deb10u8</td>
 <td>4.0.0-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2734107</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2730225</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
 <td>4.4.2-4.4.3</td>
 </tr>
 <tr>

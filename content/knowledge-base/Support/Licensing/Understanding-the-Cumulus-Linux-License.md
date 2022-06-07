@@ -3,6 +3,7 @@ title: Understanding the Cumulus Linux License
 author: Cumulus Networks
 weight: 611
 toc: 4
+draft: true
 ---
 
 The Cumulus Linux license has a simple format. Managing your license keys is very easy, as you can use the same license file for all your licensed Cumulus Linux switches.

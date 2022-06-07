@@ -6,40 +6,84 @@ product: Cumulus Linux
 ---
 ## nv config save
 
-### Usage
+Overwrites the startup file with the applied revision.
+
+**Usage**
 
 `nv config save [options]`
 
-### Description
+**Default Setting**
 
-Overwrite startup with the applied revision.
+N/A
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv config save
+```
 
 ## nv config detach
 
-### Usage
+Detaches the confoiguration from the current pending revision.
+
+**Usage**
 
 `nv config detach [options]`
 
-### Description
+**Default Setting**
 
-Detach from the current pending revision
+N/A
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv config detach
+```
 
 ## nv config show
 
-### Usage
+Shows the currently applied configuration.
+
+**Usage**
 
 `nv config show [options]`
 
-### Description
+**Default Setting**
 
-Show the currently applied configuration.
+N/A
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv config show
+```
 
 ## nv action
 
-### Usage
+Action configuration attributes.
+
+**Usage**
 
 `nv action [options]`
 
-### Description
+**Version History**
 
-Action configuration attributes.
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv config action
+```

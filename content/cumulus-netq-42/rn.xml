@@ -19,14 +19,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3060407</td>
-<td>The {{systemctl restart networking}} command does not restart the {{netqd}} service on Broadcom platforms with an ARM CPU when the {{netq-agent}} service is running in the management VRF and {{netqd}} is running in the default VRF.
-
-To work around this issue, restart {{netqd}} manually using the {{systemctl restart netqd}} command.</td>
-<td>4.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3053143</td>
 <td>The MLAG Session card might not show all MLAG events.</td>
 <td>4.2.0</td>

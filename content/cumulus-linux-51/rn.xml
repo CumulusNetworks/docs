@@ -33,6 +33,12 @@ Fixed: 1.19.8</td>
 <td></td>
 </tr>
 <tr>
+<td>3082662</td>
+<td>{{syslog}} writes {{phcsync phc_ctl set clock time}} messages continuously every minute even when {{supervisord}} is not running, which prevents critical information from being logged.</td>
+<td>5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3082583</td>
 <td>On the NVIDIA SN3420, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
@@ -276,6 +282,12 @@ nv unset system forwarding ecmp-hash: error: unrecognized arguments: source-port
 <tr>
 <td>3021887</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
+<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3021877</td>
+<td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>

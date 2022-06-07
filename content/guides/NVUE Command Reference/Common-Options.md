@@ -3,6 +3,7 @@ title: Common Options
 author: Cumulus Networks
 weight: 60
 product: Cumulus Linux
+type: nojs
 ---
 All NVUE commands have `-h` and `--help` options that provide command description and usage. This reference guide is based on the command `-h` output.
 

@@ -3,6 +3,7 @@ title: Set Commands
 author: Cumulus Networks
 weight: 30
 product: Cumulus Linux
+type: nojs
 ---
 This section describes all the `nv set` commands, together with their attributes and identifiers.
 

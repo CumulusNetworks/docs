@@ -35,9 +35,9 @@
       {{ $jsCollapse := resources.Get "js/collapse.js" | resources.ExecuteAsTemplate (print now.Unix "js/collapse.js") . }}
       {{ $jsCustom := resources.Get "js/custom.js" }}
       {{ $jsMenu := slice $jsScroll $jsCollapse $jsCustom | resources.Concat "js/menuBundle.js"}}
-
+      {{if ne .Page.Type "nojs"}}
       <script src = "{{ $jsMenu.Permalink }}"> </script>
-
+      {{ end }}
     </aside>
 {{ end }}
 

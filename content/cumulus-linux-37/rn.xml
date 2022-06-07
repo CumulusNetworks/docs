@@ -7,21 +7,31 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3098936</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3093863</td>
 <td>Slow memory leak caused by snmpd process using Zabbix template "Template Net Mellanox SNMP"</td>
 <td>3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3085285</td>
-<td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
-<td>3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td>3091625</td>
+<td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
+Vulnerable: &lt;= 1.631-3+deb8u1
+Fixed: 1.631-3+deb8u2</td>
+<td>3.7.0-3.7.16</td>
 <td></td>
 </tr>
 <tr>
-<td>3083265</td>
-<td>Slow memory leak caused by snmpd process using Zabbix template "Template Net Mellanox SNMP"</td>
-<td>3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td>3091623</td>
+<td>CVE-2022-29155: SQL injection vulnerability in the back-sql backend to slapd in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol, allowing an attacker to alter the database during an LDAP search operations when a specially crafted search filter is processed.
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u10
+Fixed: 2.4.40+dfsg-1+deb8u11</td>
+<td>3.7.0-3.7.16</td>
 <td></td>
 </tr>
 <tr>
@@ -296,6 +306,18 @@ Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2734107</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2730225</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
 </tr>
 <tr>
 <td>2728207</td>
@@ -2572,6 +2594,28 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3098936</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3091625</td>
+<td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
+Vulnerable: &lt;= 1.631-3+deb8u1
+Fixed: 1.631-3+deb8u2</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3091623</td>
+<td>CVE-2022-29155: SQL injection vulnerability in the back-sql backend to slapd in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol, allowing an attacker to alter the database during an LDAP search operations when a specially crafted search filter is processed.
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u10
+Fixed: 2.4.40+dfsg-1+deb8u11</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3077737</td>
 <td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
 To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
@@ -3573,6 +3617,18 @@ Vulnerable: &lt;= 2.8.17-1+deb8u7
 Fixed: 2.8.17-1+deb8u8</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2734107</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2730225</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
 </tr>
 <tr>
 <td>2728207</td>
@@ -5771,6 +5827,28 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3098936</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3091625</td>
+<td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
+Vulnerable: &lt;= 1.631-3+deb8u1
+Fixed: 1.631-3+deb8u2</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3091623</td>
+<td>CVE-2022-29155: SQL injection vulnerability in the back-sql backend to slapd in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol, allowing an attacker to alter the database during an LDAP search operations when a specially crafted search filter is processed.
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u10
+Fixed: 2.4.40+dfsg-1+deb8u11</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3077714</td>
 <td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
 Vulnerable: &lt;= 7.4.488-7+deb8u5
@@ -6474,6 +6552,18 @@ Vulnerable: &lt;= 2.8.17-1+deb8u7
 Fixed: 2.8.17-1+deb8u8</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2734107</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2730225</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
 </tr>
 <tr>
 <td>2728207</td>
@@ -8680,6 +8770,28 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3098936</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3091625</td>
+<td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
+Vulnerable: &lt;= 1.631-3+deb8u1
+Fixed: 1.631-3+deb8u2</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3091623</td>
+<td>CVE-2022-29155: SQL injection vulnerability in the back-sql backend to slapd in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol, allowing an attacker to alter the database during an LDAP search operations when a specially crafted search filter is processed.
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u10
+Fixed: 2.4.40+dfsg-1+deb8u11</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3077714</td>
 <td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
 Vulnerable: &lt;= 7.4.488-7+deb8u5
@@ -9334,6 +9446,18 @@ Vulnerable: &lt;= 2.8.17-1+deb8u7
 Fixed: 2.8.17-1+deb8u8</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2734107</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2730225</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
 </tr>
 <tr>
 <td>2728207</td>
@@ -12110,6 +12234,28 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3098936</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3091625</td>
+<td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
+Vulnerable: &lt;= 1.631-3+deb8u1
+Fixed: 1.631-3+deb8u2</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3091623</td>
+<td>CVE-2022-29155: SQL injection vulnerability in the back-sql backend to slapd in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol, allowing an attacker to alter the database during an LDAP search operations when a specially crafted search filter is processed.
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u10
+Fixed: 2.4.40+dfsg-1+deb8u11</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3077714</td>
 <td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
 Vulnerable: &lt;= 7.4.488-7+deb8u5
@@ -12764,6 +12910,18 @@ Vulnerable: &lt;= 2.8.17-1+deb8u7
 Fixed: 2.8.17-1+deb8u8</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2734107</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2730225</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
 </tr>
 <tr>
 <td>2728207</td>
@@ -15753,6 +15911,28 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3098936</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3091625</td>
+<td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
+Vulnerable: &lt;= 1.631-3+deb8u1
+Fixed: 1.631-3+deb8u2</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3091623</td>
+<td>CVE-2022-29155: SQL injection vulnerability in the back-sql backend to slapd in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol, allowing an attacker to alter the database during an LDAP search operations when a specially crafted search filter is processed.
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u10
+Fixed: 2.4.40+dfsg-1+deb8u11</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3077714</td>
 <td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
 Vulnerable: &lt;= 7.4.488-7+deb8u5
@@ -16400,6 +16580,18 @@ Vulnerable: &lt;= 2.8.17-1+deb8u7
 Fixed: 2.8.17-1+deb8u8</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2734107</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
+</tr>
+<tr>
+<td>2730225</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.3</td>
 </tr>
 <tr>
 <td>2728207</td>
@@ -19258,6 +19450,22 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3091625</td>
+<td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
+Vulnerable: &lt;= 1.631-3+deb8u1
+Fixed: 1.631-3+deb8u2</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3091623</td>
+<td>CVE-2022-29155: SQL injection vulnerability in the back-sql backend to slapd in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol, allowing an attacker to alter the database during an LDAP search operations when a specially crafted search filter is processed.
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u10
+Fixed: 2.4.40+dfsg-1+deb8u11</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
 </tr>
 <tr>
 <td>3077714</td>
@@ -22298,6 +22506,22 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3091625</td>
+<td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
+Vulnerable: &lt;= 1.631-3+deb8u1
+Fixed: 1.631-3+deb8u2</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3091623</td>
+<td>CVE-2022-29155: SQL injection vulnerability in the back-sql backend to slapd in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol, allowing an attacker to alter the database during an LDAP search operations when a specially crafted search filter is processed.
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u10
+Fixed: 2.4.40+dfsg-1+deb8u11</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3077714</td>
 <td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
 Vulnerable: &lt;= 7.4.488-7+deb8u5
@@ -24784,6 +25008,22 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3091625</td>
+<td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
+Vulnerable: &lt;= 1.631-3+deb8u1
+Fixed: 1.631-3+deb8u2</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3091623</td>
+<td>CVE-2022-29155: SQL injection vulnerability in the back-sql backend to slapd in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol, allowing an attacker to alter the database during an LDAP search operations when a specially crafted search filter is processed.
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u10
+Fixed: 2.4.40+dfsg-1+deb8u11</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
 </tr>
 <tr>
 <td>3077714</td>
@@ -27563,6 +27803,22 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3091625</td>
+<td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
+Vulnerable: &lt;= 1.631-3+deb8u1
+Fixed: 1.631-3+deb8u2</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3091623</td>
+<td>CVE-2022-29155: SQL injection vulnerability in the back-sql backend to slapd in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol, allowing an attacker to alter the database during an LDAP search operations when a specially crafted search filter is processed.
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u10
+Fixed: 2.4.40+dfsg-1+deb8u11</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3077714</td>
 <td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
 Vulnerable: &lt;= 7.4.488-7+deb8u5
@@ -29739,6 +29995,22 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3091625</td>
+<td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
+Vulnerable: &lt;= 1.631-3+deb8u1
+Fixed: 1.631-3+deb8u2</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3091623</td>
+<td>CVE-2022-29155: SQL injection vulnerability in the back-sql backend to slapd in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol, allowing an attacker to alter the database during an LDAP search operations when a specially crafted search filter is processed.
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u10
+Fixed: 2.4.40+dfsg-1+deb8u11</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
 </tr>
 <tr>
 <td>3077714</td>
@@ -32254,6 +32526,22 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3091625</td>
+<td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
+Vulnerable: &lt;= 1.631-3+deb8u1
+Fixed: 1.631-3+deb8u2</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3091623</td>
+<td>CVE-2022-29155: SQL injection vulnerability in the back-sql backend to slapd in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol, allowing an attacker to alter the database during an LDAP search operations when a specially crafted search filter is processed.
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u10
+Fixed: 2.4.40+dfsg-1+deb8u11</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3077714</td>
 <td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
 Vulnerable: &lt;= 7.4.488-7+deb8u5
@@ -34512,6 +34800,22 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3091625</td>
+<td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
+Vulnerable: &lt;= 1.631-3+deb8u1
+Fixed: 1.631-3+deb8u2</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3091623</td>
+<td>CVE-2022-29155: SQL injection vulnerability in the back-sql backend to slapd in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol, allowing an attacker to alter the database during an LDAP search operations when a specially crafted search filter is processed.
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u10
+Fixed: 2.4.40+dfsg-1+deb8u11</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3077714</td>
 <td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
 Vulnerable: &lt;= 7.4.488-7+deb8u5
@@ -36413,6 +36717,22 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3091625</td>
+<td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
+Vulnerable: &lt;= 1.631-3+deb8u1
+Fixed: 1.631-3+deb8u2</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3091623</td>
+<td>CVE-2022-29155: SQL injection vulnerability in the back-sql backend to slapd in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol, allowing an attacker to alter the database during an LDAP search operations when a specially crafted search filter is processed.
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u10
+Fixed: 2.4.40+dfsg-1+deb8u11</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
 </tr>
 <tr>
 <td>3077714</td>
@@ -38343,6 +38663,22 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3091625</td>
+<td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
+Vulnerable: &lt;= 1.631-3+deb8u1
+Fixed: 1.631-3+deb8u2</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3091623</td>
+<td>CVE-2022-29155: SQL injection vulnerability in the back-sql backend to slapd in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol, allowing an attacker to alter the database during an LDAP search operations when a specially crafted search filter is processed.
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u10
+Fixed: 2.4.40+dfsg-1+deb8u11</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
 </tr>
 <tr>
 <td>3077714</td>
@@ -40379,6 +40715,22 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3091625</td>
+<td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
+Vulnerable: &lt;= 1.631-3+deb8u1
+Fixed: 1.631-3+deb8u2</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3091623</td>
+<td>CVE-2022-29155: SQL injection vulnerability in the back-sql backend to slapd in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol, allowing an attacker to alter the database during an LDAP search operations when a specially crafted search filter is processed.
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u10
+Fixed: 2.4.40+dfsg-1+deb8u11</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
 </tr>
 <tr>
 <td>3077714</td>
@@ -42461,6 +42813,22 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3091625</td>
+<td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
+Vulnerable: &lt;= 1.631-3+deb8u1
+Fixed: 1.631-3+deb8u2</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3091623</td>
+<td>CVE-2022-29155: SQL injection vulnerability in the back-sql backend to slapd in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol, allowing an attacker to alter the database during an LDAP search operations when a specially crafted search filter is processed.
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u10
+Fixed: 2.4.40+dfsg-1+deb8u11</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3077714</td>
 <td>CVE-2022-0261 CVE-2022-0351 CVE-2022-0413 CVE-2022-0443 CVE-2022-0572 CVE-2022-1154 CVE-2022-1616 CVE-2022-1619 CVE-2022-1621 CVE-2022-1720: Multiple security vulnerabilities have been discovered in vim, an enhanced vi editor. Buffer overflows, out-of-bounds reads and use-after-free may lead to a denial-of-service (application crash) or other unspecified impact.
 Vulnerable: &lt;= 7.4.488-7+deb8u5
@@ -43845,6 +44213,22 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3091625</td>
+<td>CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401.
+Vulnerable: &lt;= 1.631-3+deb8u1
+Fixed: 1.631-3+deb8u2</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3091623</td>
+<td>CVE-2022-29155: SQL injection vulnerability in the back-sql backend to slapd in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol, allowing an attacker to alter the database during an LDAP search operations when a specially crafted search filter is processed.
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u10
+Fixed: 2.4.40+dfsg-1+deb8u11</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
 </tr>
 <tr>
 <td>3077714</td>

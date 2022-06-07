@@ -32,4 +32,4 @@ You need at least one active Software Update and Support contract (paid or trial
 -->
 ## How can I reset my account password?
 <!-- vale on -->
-You can reset your password {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.
+You can reset your password on the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.

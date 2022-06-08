@@ -6,14 +6,18 @@ product: Cumulus Linux
 ---
 ## nv config apply
 
-Applies the current pending configuration or a specific revision. This command does not save the configuration; the configuration does not persist after a reboot.
+Applies the current pending configuration or a specific revision. This command does not save the configuration; the configuration does not persist after a reboot. You can specify the following options with this command:
 
-| Option   |  Description  |
+| <div style="width:250px">Option   |  Description  |
 | ----------   | ------------  |
 |`--y` or `--assume-yes` | Automatically reply yes to all prompts. |
 | `--assume-no`  | Automatically reply no to all prompts. |
 | `--confirm` | Applies the configuration change but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `nv config apply --confirm 60` requires you to confirm within one hour. |
 | `--confirm-status` | Shows the amount of time left before the automatic rollback.|
+
+**Usage**
+
+`nv config apply [options] [<revision>]`
 
 **Default Setting**
 
@@ -21,7 +25,7 @@ The current pending configuration.
 
 **Identifiers**
 
-| Identifier   |  Description  |
+| <div style="width:250px">Identifier   |  Description  |
 | ----------   | ------------  |
 | `<revision>` | The configuration revision you want to apply instead of the current pending configuration. |
 
@@ -71,7 +75,7 @@ N/A
 
 **Identifiers**
 
-| Identifier   |  Description  |
+| <div style="width:250px">Identifier   |  Description  |
 | ----------   | ------------  |
 | `<cue-file>` | The NVUE YAML file you want to use to replace the pending configuration. |
 
@@ -119,9 +123,9 @@ Shows differences between configurations, such as the pending configuration and 
 
 N/A
 
-| Identifier   |  Description  |
+| <div style="width:250px">Identifier   |  Description  |
 | ----------   | ------------  |
-| `<revision>` | The configuration revision you want to compare. |
+| `<revision>` | The configuration revisions you want to compare. |
 
 **Version History**
 
@@ -155,7 +159,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv config show
 ```
 
-## nv config patch <cue-file>
+## nv config patch \<cue-file\>
 
 Updates the pending configuration with an NVUE configuration file in YAML format.
 
@@ -167,9 +171,9 @@ Updates the pending configuration with an NVUE configuration file in YAML format
 
 N/A
 
-| Identifier   |  Description  |
+| <div style="width:250px">Identifier   |  Description  |
 | ----------   | ------------  |
-| `<cue-file>` | The NVUE YAML file you want to use to replace the pending configuration. |
+| `<cue-file>` | The NVUE YAML file you want to use to update the pending configuration. |
 
 **Version History**
 
@@ -181,9 +185,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv config patch myconfig.yaml
 ```
 
-## nv config history \<revision\>
+## nv config history
 
-Shows the `apply` history for a revision.
+Shows the `apply` history for the current revision or for a specific revision.
 
 **Usage**
 
@@ -195,9 +199,9 @@ The current revision.
 
 **Identifiers**
 
-| Identifier   |  Description  |
+| <div style="width:250px">Identifier   |  Description  |
 | ----------   | ------------  |
-| `<revision>` | The revision whose `apply` history you want to show. |
+| `<revision>` | The revision whose `apply` history you want to show.|
 
 **Version History**
 
@@ -206,7 +210,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf01:mgmt:~$ nv config history myfile
+cumulus@leaf01:mgmt:~$ nv config history
 ```
 
 ## nv action

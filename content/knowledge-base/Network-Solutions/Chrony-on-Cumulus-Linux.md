@@ -4,7 +4,9 @@ author: NVIDIA
 weight: 92
 toc: 3
 ---
-To use Chrony as the time provider on Cumulus Linux switches, you need to:
+On ARM-based platforms running Cumulus Linux 4.3.0, you can use Chrony as the time provider.
+
+To use Chrony, you need to:
 - Edit the `/etc/apt/sources.list` file to allow upstream repositories.
 - Update the local index from source with the apt command-line utility.
 - Remove and `purge` NTP with the apt command-line utility.

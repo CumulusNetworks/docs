@@ -110,13 +110,6 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td></td>
 </tr>
 <tr>
-<td>3057106</td>
-<td>Under certain conditions, the {{switchd}} process might have a slow memory leak.
-</td>
-<td>5.0.1-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3054869</td>
 <td>When you run NVUE commands as part of ZTP scripts, the commands fail with many  errors.
 To work around this issue, before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root). Also, you must export the {{HOME}} variable so it is available globally for NVUE to use.

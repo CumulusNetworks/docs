@@ -27,6 +27,12 @@ Fixed: 8.1901.0-1+deb10u2</td>
 <td></td>
 </tr>
 <tr>
+<td>3089165</td>
+<td>A slow memory leak might occur in {{switchd}}} if the route fails to install in hardware when hardware resources are exhausted.</td>
+<td>4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3085280</td>
 <td>CVE-2022-26691: in cups, a logic error in the validation of the secret key used in the "local" authorisation mode of the CUPS printing
 system may result in privilege escalation.

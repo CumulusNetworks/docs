@@ -4271,237 +4271,337 @@ Configures the bridge domain.
 
 `nv set bridge domain <domain-id> [options] [<attribute> ...]`
 
+**Default Setting**
+
+`br_default`
+
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<domain-id>` |  The bridge domain. |
+| `<domain-id>` |  The name of the bridge domain. |
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `stp` |  | Configures the attributes related to global STP. |
-| `multicast` |  Configures multicast on the bridge. |
+| `stp` |   Configures STP globally for all the interfaces on the bridge domain. |
+| `multicast` |  Configures multicast on the bridge domain. |
 | `vlan` | Configures a set of VLANs in the bridge domain. This is only applicable when the domain type is `vlan-aware`. |
-| `encap` | Interfaces added to this domain will, by default, use this encapsulation. |
-| `mac-address` |  Override global mac address. |
+| `encap` | Configures all the interfaces on this bridge domain to use encapsulation by default. |
+| `mac-address` |  Configures the bridge domain to override the global MAC address. |
 | `type` |  Configures the type of bridge domain. |
-| `untagged` |  Interfaces added to this domain will, by default, be trunk interfaces with a single untagged vlan. Untagged packets on domain ports will be put in this vlan. If none, then untagged packets will be dropped. |
-| `vlan-vni-offset` |  A VNI offset while (automatically) mapping VLANs to VNIs
+| `untagged` |  Configures the interfaces in the bridge domain to be trunk interfaces with a single untagged VLAN by default. Untagged packets on domain ports are in this VLAN. |
+| `vlan-vni-offset` |  Configures a VNI offset while automatically mapping VLANs to VNIs.
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0 
+
+## nv set bridge domain \<domain-id\> stp
+
+
+**Usage**
+
+`nv set bridge domain <domain-id> stp [options] [<attribute> ...]`
 
 **Default Setting**
 
 N/A
 
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` |  The bridge domain. |
+
+**Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
+| `state` |  Configures the STP state on the bridge domain; down or up.|
+| `priority` | Configures the spanning tree priority. The bridge with the lowest priority is the root bridge. You must specify a value between 4096 and 32768. The value must be a multiple of 4096. |
+
 **Version History**
 
 Introduced in Cumulus Linux 5.0.0
 
-## nv set bridge domain <domain-id> stp
+## nv set bridge domain \<domain-id\> stp priority
 
+Configures the spanning tree priority. The bridge with the lowest priority is the root bridge. The priority must be a number between 0 and 61440, and must be a multiple of 4096.
+ 
 **Usage**
 
-  nv set bridge domain <domain-id> stp [options] [<attribute> ...]
+`nv set bridge domain <domain-id> stp priority [options] 4096-61440`
 
-### Description
+**Default Setting**
 
-  attributes related to global stp
+32768
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
+|`<domain-id>` |  The bridge domain. |
 
-  <domain-id>  Domain
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default stp priority 8192
+```
+
+## nv set bridge domain \<domain-id\> multicast
+
+Configures multicast on the bridge domain.
+
+**Usage**
+
+`nv set bridge domain <domain-id> multicast [options] [<attribute> ...]`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` |  The bridge domain. |
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `snooping` |  Configures IGMP and MLD snooping.|
 
-  state        The state of STP on the bridge
+**Version History**
 
-  priority     stp priority. The priority value must be a number between 4096 and 32768 and a multiple of 4096.
+Introduced in Cumulus Linux 5.0.0
 
-## nv set bridge domain <domain-id> stp priority 4096-61440
+## nv set bridge domain \<domain-id\> multicast snooping
+
+Configures IGMP and MLD snooping to prevent hosts on a local network from receiving traffic for a multicast group they have not explicitly joined. IGMP snooping is for IPv4 environments and MLD snooping is for IPv6 environments.
 
 **Usage**
 
-  nv set bridge domain <domain-id> stp priority [options] 4096-61440
+`nv set bridge domain <domain-id> multicast snooping [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  stp priority. The priority value must be a number between 4096 and 32768 and a multiple of 4096.
+N/A
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <domain-id>  Domain
-
-## nv set bridge domain <domain-id> multicast
-
-**Usage**
-
-  nv set bridge domain <domain-id> multicast [options] [<attribute> ...]
-
-### Description
-
-  Configure multicast on the bridge
-
-**Identifiers**
-
-| Identifier |  Description   |
-| ---------  | -------------- |
-
-  <domain-id>  Domain
+|`<domain-id>` |  The bridge domain. |
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `querier`|  Configures the IGMP and MLD querier. |
+| `enable` | Turns IGMP and MLD snooping on or off. |
 
-  snooping     IGMP/MLD snooping configuration
+**Version History**
 
-## nv set bridge domain <domain-id> multicast snooping
+Introduced in Cumulus Linux 5.0.0
+
+## nv set bridge domain \<domain-id\> multicast snooping querier
+
+Configures the IGMP and MLD querier. Without a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is the querier or the designated router. The querier generates query messages to check group membership, and processes membership reports and leave messages.
 
 **Usage**
 
-  nv set bridge domain <domain-id> multicast snooping [options] [<attribute> ...]
+`nv set bridge domain <domain-id> multicast snooping querier [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  IGMP/MLD snooping configuration
+N/A
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <domain-id>  Domain
+|`<domain-id>` |  The bridge domain. |
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `enable` |  Turns the multicast querier on or off.|
 
-  querier      IGMP/MLD querier configuration
+**Version History**
 
-  enable       Turn the feature 'on' or 'off'. The default is 'off'.
+Introduced in Cumulus Linux 5.0.0
 
-## nv set bridge domain <domain-id> multicast snooping querier
+
+## nv set bridge domain \<domain-id\> multicast snooping querier enable
+
+Turns the multicast querier on or off.
 
 **Usage**
 
-  nv set bridge domain <domain-id> multicast snooping querier [options] [<attribute> ...]
+`nv set bridge domain <domain-id> multicast snooping querier enable [options] (on|off)`
 
-### Description
+**Default Setting**
 
-  IGMP/MLD querier configuration
+`off`
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
+|`<domain-id>` |  The bridge domain. |
 
-  <domain-id>  Domain
+**Version History**
 
-**Attributes**
+Introduced in Cumulus Linux 5.0.0
 
-| Atrribute |  Description   |
-| ---------  | -------------- |
+**Example**
 
-  enable       Turn the feature 'on' or 'off'. The default is 'off'.
+```
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default multicast snooping querier enable on
+```
 
-## nv set bridge domain <domain-id> vlan <vid>
+## nv set bridge domain \<domain-id\> multicast snooping enable
+
+Turns IGMP and MLD snooping on or off.
 
 **Usage**
 
-  nv set bridge domain <domain-id> vlan <vid> [options] [<attribute> ...]
+`nv set bridge domain <domain-id> multicast snooping enable [options] (on|off)`
 
-### Description
 
-  A VLAN tag identifier
+**Default Setting**
+
+`off`
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
+|`<domain-id>` |  The bridge domain. |
 
-  <domain-id>  Domain
-  <vid>        VLAN ID
+**Version History**
 
-**Attributes**
+Introduced in Cumulus Linux 5.0.0
 
-| Atrribute |  Description   |
-| ---------  | -------------- |
+**Example**
 
-  vni          L2 VNI
+```
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default multicast snooping enable on
+```
 
-  ptp          VLAN PTP configuration. Inherited by interfaces in this VLAN.
+## nv set bridge domain \<domain-id\> vlan \<vid\>
 
-  multicast    Configure multicast on the vlan
-
-## nv set bridge domain <domain-id> vlan <vid> vni <vni-id>
+Configures the VLAN tag identifier.
 
 **Usage**
 
-  nv set bridge domain <domain-id> vlan <vid> vni <vni-id> [options] [<attribute> ...]
+`nv set bridge domain <domain-id> vlan <vid> [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  VNI
+N/A
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <domain-id>   Domain
-  <vid>         VLAN ID
-  <vni-id>      VxLAN ID
+|`<domain-id>` |  The bridge domain. |
+| `<vid>`   |  The VLAN identifier.
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `vni` |  Configures a layer 2 VNI. |
+| `ptp` |  Configures the VLAN PTP configuration. This is inherited by the interfaces in this VLAN.|
+| `multicast` |  Configures multicast on the VLAN.|
 
+**Version History**
 
-  flooding      Handling of BUM traffic
+Introduced in Cumulus Linux 5.0.0
 
-  mac-learning  Controls dynamic MAC learning over VXLAN tunnels based on received packets. This applies to all overlays (VNIs), but can be overridden by VNI-specific configuration.
+**Example**
 
-## nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding
+```
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10
+```
+
+## nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\>
+
+Maps a VLAN to a VNI.
 
 **Usage**
 
-  nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding [options] [<attribute> ...]
+`nv set bridge domain <domain-id> vlan <vid> vni <vni-id> [options] [<attribute> ...]`
 
-### Description
+**Default Setting**
 
-  Handling of BUM traffic
+N/A
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <domain-id>           Domain
-  <vid>                 VLAN ID
-  <vni-id>              VxLAN ID
+|`<domain-id>` | The bridge domain. |
+| `<vid>`   |  The VLAN identifier.
+| `<vni-id>` | The VXLAN ID. |
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+| `flooding`  |  Configures how to handle BUM traffic.|
+| `mac-learning` | Controls dynamic MAC learning over VXLAN tunnels based on received packets. This applies to all overlays (VNIs). You can override this setting with VNI-specific configuration. |
 
-  head-end-replication  BUM traffic is replicated and individual copies sent to remote destinations.
+**Version History**
 
-  enable                Turn the feature 'on', 'off', or 'auto'. The default is 'auto'.
+Introduced in Cumulus Linux 5.0.0
 
-  multicast-group       BUM traffic is sent to the specified multicast group and will be received by receivers who are interested in that group. This usually requires PIM-SM to be used in the network.
+**Example**
+
+```
+nv set bridge domain br_default vlan 10 vni 10
+```
+
+## nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding
+
+Configures how to handle BUM traffic.
+
+**Usage**
+
+`nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding [options] [<attribute> ...]`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` | The bridge domain. |
+| `<vid>`   |  The VLAN identifier.
+| `<vni-id>` | The VXLAN ID. |
+
+**Attributes**
+
+| Atrribute |  Description   |
+| ---------  | -------------- |
+| `head-end-replication` |  Configures replication of BUM traffic where individual copies send to remote destinations.|
+| `enable` | Turns flooding on or off, or sets flooding to auto.|
+| `multicast-group` | Configures BUM traffic to go to the specified multicast group where receivers who are interested in that group receive the traffic. This usually requires you to use PIM-SM in the network. |
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id>
 
@@ -4509,7 +4609,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id> [options]
 
-### Description
+
 
   Set of IPv4 unicast addresses or "evpn".
 
@@ -4529,7 +4629,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding multicast-group [options] <ipv4-multicast>
 
-### Description
+
 
   BUM traffic is sent to the specified multicast group and will be received by receivers who are interested in that group. This usually requires PIM-SM to be used in the network.
 
@@ -4548,7 +4648,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set bridge domain <domain-id> vlan <vid> ptp [options] [<attribute> ...]
 
-### Description
+
 
   VLAN PTP configuration.  Inherited by interfaces in this VLAN.
 
@@ -4573,7 +4673,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set bridge domain <domain-id> vlan <vid> multicast [options] [<attribute> ...]
 
-### Description
+
 
   Configure multicast on the vlan
 
@@ -4598,7 +4698,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set bridge domain <domain-id> vlan <vid> multicast snooping [options] [<attribute> ...]
 
-### Description
+
 
   IGMP/MLD snooping configuration
 
@@ -4623,7 +4723,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set bridge domain <domain-id> vlan <vid> multicast snooping querier [options] [<attribute> ...]
 
-### Description
+
 
   IGMP/MLD querier configuration
 
@@ -4648,7 +4748,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set bridge domain <domain-id> vlan <vid> multicast snooping querier source-ip [options] <ipv4>
 
-### Description
+
 
   Source IP to use when sending IGMP/MLD queries.
 
@@ -4666,7 +4766,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set bridge domain <domain-id> type [options] vlan-aware
 
-### Description
+
 
   Type of bridge domain.
 
@@ -4683,7 +4783,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set bridge domain <domain-id> encap [options] 802.1Q
 
-### Description
+
 
   Interfaces added to this domain will, by default, use this encapsulation.
 
@@ -4700,7 +4800,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set bridge domain <domain-id> vlan-vni-offset [options] 0-16773120
 
-### Description
+
 
   A VNI offset while (automatically) mapping VLANs to VNIs
 
@@ -4717,7 +4817,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set mlag [options] [<attribute> ...]
 
-### Description
+
 
   Global Multi-chassis Link Aggregation properties
 
@@ -4748,7 +4848,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set mlag lacp-conflict [options]
 
-### Description
+
 
   Configure the mlag lacp-conflict parameters
 
@@ -4758,7 +4858,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set mlag backup <backup-ip> [options] [<attribute> ...]
 
-### Description
+
 
   alternative ip address or interface for peer to reach us
 
@@ -4782,7 +4882,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set mlag backup <backup-ip> vrf [options] <vrf-name>
 
-### Description
+
 
   The backup IP's VRF.
 
@@ -4799,7 +4899,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set mlag priority [options] 0-65535
 
-### Description
+
 
   Mlag Priority
 
@@ -4809,7 +4909,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set mlag init-delay [options] 0-900
 
-### Description
+
 
   The delay, in seconds, before bonds are brought up.
 
@@ -4819,7 +4919,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set evpn [options] [<attribute> ...]
 
-### Description
+
 
   Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
 
@@ -4844,7 +4944,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set evpn route-advertise [options] [<attribute> ...]
 
-### Description
+
 
   Route dvertising
 
@@ -4865,7 +4965,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set evpn dad [options] [<attribute> ...]
 
-### Description
+
 
   Duplicate address detection
 
@@ -4888,7 +4988,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set evpn dad duplicate-action [options] [<attribute> ...]
 
-### Description
+
 
   Handling of BUM traffic
 
@@ -4905,7 +5005,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set evpn dad duplicate-action freeze [options] [<attribute> ...]
 
-### Description
+
 
   Advertise
 
@@ -4924,7 +5024,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set evpn dad mac-move-threshold [options] 2-1000
 
-### Description
+
 
   Number of MAC moves within a time window before the MAC is flagged as a possible duplicate.
 
@@ -4934,7 +5034,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set evpn dad move-window [options] 2-1800
 
-### Description
+
 
   Time window during which the move threshold applies
 
@@ -4944,7 +5044,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set evpn evi <evi-id> [options] [<attribute> ...]
 
-### Description
+
 
   Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
 
@@ -4974,7 +5074,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set evpn evi <evi-id> route-advertise [options] [<attribute> ...]
 
-### Description
+
 
   Route advertise
 
@@ -5001,7 +5101,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set evpn evi <evi-id> route-target [options] [<attribute> ...]
 
-### Description
+
 
   EVPN control plane config and info for VRF
 
@@ -5030,7 +5130,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set evpn evi <evi-id> route-target export <rt-id> [options]
 
-### Description
+
 
   A route target identifier
 
@@ -5048,7 +5148,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set evpn evi <evi-id> route-target import <rt-id> [options]
 
-### Description
+
 
   A route target identifier
 
@@ -5066,7 +5166,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set evpn evi <evi-id> route-target both <rt-id> [options]
 
-### Description
+
 
   A route target identifier
 
@@ -5084,7 +5184,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set evpn multihoming [options] [<attribute> ...]
 
-### Description
+
 
   Multihoming global configuration parameters
 
@@ -5111,7 +5211,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set evpn multihoming ead-evi-route [options] [<attribute> ...]
 
-### Description
+
 
   Ethernet Auto-discovery per EVPN instance routes
 
@@ -5130,7 +5230,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set evpn multihoming segment [options] [<attribute> ...]
 
-### Description
+
 
   Multihoming interface segment
 
@@ -5150,7 +5250,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set evpn multihoming segment mac-address [options] <mac>
 
-### Description
+
 
   MAC address per ethernet segment.  Required.
 
@@ -5160,7 +5260,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set evpn multihoming segment df-preference [options] 1-65535
 
-### Description
+
 
   Designated forwarder preference value.
 
@@ -5170,7 +5270,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set evpn multihoming mac-holdtime [options] 0-86400
 
-### Description
+
 
   During this interval, the switch attempts to independently establish reachability of the MAC on the local ethernet segment. If 'none', there is no holdtime.
 
@@ -5180,7 +5280,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set evpn multihoming neighbor-holdtime [options] 0-86400
 
-### Description
+
 
   During this interval, the switch attempts to independently establish reachability of the host on the local ethernet segment.
 
@@ -5190,7 +5290,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set evpn multihoming startup-delay [options] 0-3600
 
-### Description
+
 
   The duration for which a switch holds the Ethernet segment-bond in a protodown state after a reboot or process restart.
 
@@ -5200,7 +5300,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set qos [options] [<attribute> ...]
 
-### Description
+
 
   QOS
 
@@ -5217,7 +5317,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set qos roce [options] [<attribute> ...]
 
-### Description
+
 
   Properties associated with the RDMA over Converged Ethernet (RoCE) feature.
 
@@ -5238,7 +5338,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set qos roce cable-length [options] 1-100000
 
-### Description
+
 
   Cable Length(in meters) for Roce Lossless Config
 
@@ -5248,7 +5348,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> [options] [<attribute> ...]
 
-### Description
+
 
   An interface
 
@@ -5299,7 +5399,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router [options] [<attribute> ...]
 
-### Description
+
 
   interface router
 
@@ -5329,7 +5429,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router pbr [options] [<attribute> ...]
 
-### Description
+
 
   PBR interface configuration.
 
@@ -5353,7 +5453,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router pbr map <pbr-map-id> [options]
 
-### Description
+
 
   Interface Pbr map
 
@@ -5371,7 +5471,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router ospf [options] [<attribute> ...]
 
-### Description
+
 
   OSPF interface configuration.
 
@@ -5416,7 +5516,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router ospf timers [options] [<attribute> ...]
 
-### Description
+
 
   Timers configuration
 
@@ -5449,7 +5549,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router ospf timers hello-multiplier [options] 1-10
 
-### Description
+
 
   Required and only valid if `dead-interval` is `minimal`.
 
@@ -5466,7 +5566,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router ospf timers hello-interval [options] 1-65535
 
-### Description
+
 
   How often to transmit a hello packet, in seconds.  Only valid if `dead-interval` is not `minimal`.
 
@@ -5483,7 +5583,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router ospf timers retransmit-interval [options] 1-65535
 
-### Description
+
 
   How often to retransmit a packet not acknowledged, in seconds
 
@@ -5500,7 +5600,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router ospf timers transmit-delay [options] 1-65535
 
-### Description
+
 
   Delay before sending a new lsa, in seconds
 
@@ -5517,7 +5617,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router ospf authentication [options] [<attribute> ...]
 
-### Description
+
 
   md5 authentication configuration
 
@@ -5545,7 +5645,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router ospf authentication message-digest-key [options] 1-255
 
-### Description
+
 
   Message digest key
 
@@ -5562,7 +5662,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router ospf authentication md5-key [options] <value>
 
-### Description
+
 
   md5 key
 
@@ -5579,7 +5679,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router ospf bfd [options] [<attribute> ...]
 
-### Description
+
 
   BFD configuration
 
@@ -5609,7 +5709,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router ospf bfd detect-multiplier [options] 2-255
 
-### Description
+
 
   Detect multiplier value
 
@@ -5626,7 +5726,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router ospf bfd min-receive-interval [options] 50-60000
 
-### Description
+
 
   Minimum receive interval in milliseconds
 
@@ -5643,7 +5743,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router ospf bfd min-transmit-interval [options] 50-60000
 
-### Description
+
 
   Minimum transmit interval in milliseconds
 
@@ -5660,7 +5760,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router ospf priority [options] 0-255
 
-### Description
+
 
   Eligibility of this router to become DR on multi-access network
 
@@ -5677,7 +5777,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router pim [options] [<attribute> ...]
 
-### Description
+
 
   PIM interface configuration.
 
@@ -5713,7 +5813,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router pim timers [options] [<attribute> ...]
 
-### Description
+
 
   Timers
 
@@ -5738,7 +5838,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router pim bfd [options] [<attribute> ...]
 
-### Description
+
 
   BFD configuration
 
@@ -5768,7 +5868,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router pim bfd detect-multiplier [options] 2-255
 
-### Description
+
 
   Detect multiplier value
 
@@ -5785,7 +5885,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router pim bfd min-receive-interval [options] 50-60000
 
-### Description
+
 
   Minimum receive interval in milliseconds
 
@@ -5802,7 +5902,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router pim bfd min-transmit-interval [options] 50-60000
 
-### Description
+
 
   Minimum transmit interval in milliseconds
 
@@ -5819,7 +5919,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router pim address-family [options] [<attribute> ...]
 
-### Description
+
 
   Address family specific configuration
 
@@ -5843,7 +5943,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router pim address-family ipv4-unicast [options] [<attribute> ...]
 
-### Description
+
 
   IPv4 unicast address family
 
@@ -5871,7 +5971,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router pim address-family ipv4-unicast allow-rp [options] [<attribute> ...]
 
-### Description
+
 
   Allow RP feature, which allows RP address to be accepts for the received
 
@@ -5901,7 +6001,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router pim dr-priority [options] 1-4294967295
 
-### Description
+
 
   Designated Router Election priority.
 
@@ -5918,7 +6018,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router adaptive-routing [options] [<attribute> ...]
 
-### Description
+
 
   Adaptive routing interface configuration.
 
@@ -5944,7 +6044,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> router adaptive-routing link-utilization-threshold [options] 1-100
 
-### Description
+
 
   Link utilization threshold percentage
 
@@ -5961,7 +6061,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> bond [options] [<attribute> ...]
 
-### Description
+
 
   The state of the interface
 
@@ -5997,7 +6097,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> bond member <member-id> [options]
 
-### Description
+
 
   A bond member
 
@@ -6015,7 +6115,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> bond mlag [options] [<attribute> ...]
 
-### Description
+
 
   MLAG configuration on the bond interface
 
@@ -6044,7 +6144,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> bond mlag lacp-conflict [options]
 
-### Description
+
 
   Configure the mlag lacp-conflict parameters
 
@@ -6061,7 +6161,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> bond down-delay [options] 0-65535
 
-### Description
+
 
   bond down delay
 
@@ -6078,7 +6178,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> bond up-delay [options] 0-65535
 
-### Description
+
 
   bond up delay
 
@@ -6095,7 +6195,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> bridge [options] [<attribute> ...]
 
-### Description
+
 
   attributed related to a bridged interface
 
@@ -6119,7 +6219,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> bridge domain <domain-id> [options] [<attribute> ...]
 
-### Description
+
 
   Bridge domain on this interface
 
@@ -6152,7 +6252,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> bridge domain <domain-id> stp [options] [<attribute> ...]
 
-### Description
+
 
   attributed related to a stpd interface
 
@@ -6187,7 +6287,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> bridge domain <domain-id> vlan <vid> [options]
 
-### Description
+
 
   A VLAN tag identifier
 
@@ -6206,7 +6306,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip [options] [<attribute> ...]
 
-### Description
+
 
   IP configuration for an interface
 
@@ -6247,7 +6347,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip address <ip-prefix-id> [options]
 
-### Description
+
 
   An IP address with prefix
 
@@ -6265,7 +6365,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip vrr [options] [<attribute> ...]
 
-### Description
+
 
   Configuration for VRR
 
@@ -6297,7 +6397,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip vrr address <ip-prefix-id> [options]
 
-### Description
+
 
   An IP address with prefix
 
@@ -6315,7 +6415,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip gateway <ip-address-id> [options]
 
-### Description
+
 
   An IP address
 
@@ -6333,7 +6433,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip ipv4 [options] [<attribute> ...]
 
-### Description
+
 
   IPv4 configuration for an interface
 
@@ -6357,7 +6457,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip ipv6 [options] [<attribute> ...]
 
-### Description
+
 
   IPv6 configuration for an interface
 
@@ -6383,7 +6483,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip igmp [options] [<attribute> ...]
 
-### Description
+
 
   Configuration for IGMP
 
@@ -6417,7 +6517,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip igmp static-group <static-group-id> [options] [<attribute> ...]
 
-### Description
+
 
   IGMP static multicast mroute
 
@@ -6442,7 +6542,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip igmp static-group <static-group-id> source-address [options] <ipv4-unicast>
 
-### Description
+
 
   IGMP static multicast mroute source.
 
@@ -6460,7 +6560,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip igmp query-interval [options] 1-1800
 
-### Description
+
 
   Query interval, in seconds.
 
@@ -6478,7 +6578,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip igmp query-max-response-time [options] 10-250
 
-### Description
+
 
   Max query response time, in seconds.
 
@@ -6495,7 +6595,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip igmp last-member-query-interval [options] 1-255
 
-### Description
+
 
   Last member query interval.
 
@@ -6512,7 +6612,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip vrrp [options] [<attribute> ...]
 
-### Description
+
 
   Configuration for VRRP
 
@@ -6538,7 +6638,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> [options] [<attribute> ...]
 
-### Description
+
 
   A virtual gateway implemented with VRRP
 
@@ -6572,7 +6672,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> address <ip-address-id> [options]
 
-### Description
+
 
   An IP address
 
@@ -6591,7 +6691,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip neighbor-discovery [options] [<attribute> ...]
 
-### Description
+
 
   Neighbor discovery configuration for an interface
 
@@ -6629,7 +6729,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id> [options] [<attribute> ...]
 
-### Description
+
 
   A recursive DNS server
 
@@ -6654,7 +6754,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> [options] [<attribute> ...]
 
-### Description
+
 
   A IPv6 prefix
 
@@ -6688,7 +6788,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> valid-lifetime [options] 0-4294967295
 
-### Description
+
 
   Time in seconds the prefix is valid for on-link determination
 
@@ -6706,7 +6806,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> preferred-lifetime [options] 0-4294967295
 
-### Description
+
 
   Time in seconds that addresses generated from a prefix remain preferred
 
@@ -6724,7 +6824,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip neighbor-discovery dnssl <domain-name-id> [options] [<attribute> ...]
 
-### Description
+
 
   A DNS search list
 
@@ -6751,7 +6851,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip neighbor-discovery router-advertisement [options] [<attribute> ...]
 
-### Description
+
 
   Router advertisement configuration for an interface
 
@@ -6795,7 +6895,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip neighbor-discovery router-advertisement interval [options] 70-1800000
 
-### Description
+
 
   Maximum time in milliseconds allowed between sending unsolicited multicast RA from the interface
 
@@ -6812,7 +6912,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip neighbor-discovery router-advertisement lifetime [options] 0-9000
 
-### Description
+
 
   Maximum time in seconds that the router can be treated as default gateway
 
@@ -6829,7 +6929,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip neighbor-discovery router-advertisement reachable-time [options] 0-3600000
 
-### Description
+
 
   Time in milliseconds that a IPv6 node is considered reachable
 
@@ -6847,7 +6947,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip neighbor-discovery router-advertisement retransmit-time [options] 0-4294967295
 
-### Description
+
 
   Time in milliseconds between retransmission of neighbor solicitation messages
 
@@ -6864,7 +6964,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip neighbor-discovery router-advertisement hop-limit [options] 0-255
 
-### Description
+
 
   Value in hop count field in IP header of the outgoing router advertisement packet
 
@@ -6881,7 +6981,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip neighbor-discovery home-agent [options] [<attribute> ...]
 
-### Description
+
 
   Indicates to neighbors that this router acts as a Home Agent and includes a Home Agent Option. Not defined by default
 
@@ -6908,7 +7008,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip neighbor-discovery home-agent lifetime [options] 0-65520
 
-### Description
+
 
   Lifetime of a home agent in seconds
 
@@ -6925,7 +7025,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip neighbor-discovery home-agent preference [options] 0-65535
 
-### Description
+
 
   Home agent's preference value that is used to order the addresses returned in the home agent address discovery reply.
 
@@ -6942,7 +7042,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip neighbor-discovery mtu [options] 1-65535
 
-### Description
+
 
   MTU option for neighbor discovery messages
 
@@ -6959,7 +7059,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ip vrf [options] <vrf-name>
 
-### Description
+
 
   Virtual routing and forwarding
 
@@ -6976,7 +7076,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> lldp [options] [<attribute> ...]
 
-### Description
+
 
   LLDP on for an interface
 
@@ -7004,7 +7104,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> link [options] [<attribute> ...]
 
-### Description
+
 
   An physical interface
 
@@ -7043,7 +7143,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> link dot1x [options] [<attribute> ...]
 
-### Description
+
 
   An physical interface
 
@@ -7069,7 +7169,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> link mtu [options] 552-9216
 
-### Description
+
 
   interface mtu
 
@@ -7086,7 +7186,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> evpn [options] [<attribute> ...]
 
-### Description
+
 
   EVPN control plane config and info for VRF
 
@@ -7110,7 +7210,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> evpn multihoming [options] [<attribute> ...]
 
-### Description
+
 
   Multihoming interface configuration parameters
 
@@ -7136,7 +7236,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> evpn multihoming segment [options] [<attribute> ...]
 
-### Description
+
 
   Multihoming interface segment
 
@@ -7169,7 +7269,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> evpn multihoming segment local-id [options] 1-16777215
 
-### Description
+
 
   Ethernet segment local-id.  If provided, it will be combined with the global multihoming `mac-address` to create the ethernet segment identifier, which must be unique for each segment and match other bonds in the segment.
 
@@ -7186,7 +7286,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> evpn multihoming segment identifier [options] <es-identifier>
 
-### Description
+
 
   Ethernet segment identifier.  This must be unique for each segment and match other bonds in the segment.
 
@@ -7203,7 +7303,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> acl <acl-id> [options] [<attribute> ...]
 
-### Description
+
 
   An ACL is used for matching packets and take actions
 
@@ -7230,7 +7330,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> acl <acl-id> inbound [options] [<attribute> ...]
 
-### Description
+
 
   inbound direction
 
@@ -7255,7 +7355,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> acl <acl-id> inbound control-plane [options]
 
-### Description
+
 
   State details
 
@@ -7273,7 +7373,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> acl <acl-id> outbound [options] [<attribute> ...]
 
-### Description
+
 
   State details
 
@@ -7298,7 +7398,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> acl <acl-id> outbound control-plane [options]
 
-### Description
+
 
   State details
 
@@ -7316,7 +7416,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ptp [options] [<attribute> ...]
 
-### Description
+
 
   Interface Specific PTP configuration.
 
@@ -7356,7 +7456,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ptp timers [options] [<attribute> ...]
 
-### Description
+
 
   Interface PTP timerss
 
@@ -7386,7 +7486,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ptp timers announce-interval [options] -3-4
 
-### Description
+
 
   Mean time interval between successive Announce messages.  It's specified as a power of two in seconds.
 
@@ -7403,7 +7503,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ptp timers sync-interval [options] -7-1
 
-### Description
+
 
   The mean SyncInterval for multicast messages.  It's specified as a power of two in seconds.
 
@@ -7420,7 +7520,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ptp timers delay-req-interval [options] -7-6
 
-### Description
+
 
   The minimum permitted mean time interval between successive Delay Req messages.  It's specified as a power of two in seconds.
 
@@ -7437,7 +7537,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ptp timers announce-timeout [options] 2-10
 
-### Description
+
 
   The number of announceIntervals that have to pass without receipt of an Announce message before the occurrence of the timeout event
 
@@ -7454,7 +7554,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ptp instance [options] <value>
 
-### Description
+
 
   PTP instance number.
 
@@ -7471,7 +7571,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ptp delay-mechanism [options] end-to-end
 
-### Description
+
 
   Mode in which PTP message is transmitted.
 
@@ -7488,7 +7588,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> ptp ttl [options] 1-255
 
-### Description
+
 
   Maximum number of hops the PTP messages can make before it gets dropped.
 
@@ -7505,7 +7605,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> tunnel [options] [<attribute> ...]
 
-### Description
+
 
   The state of the interface
 
@@ -7537,7 +7637,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> tunnel source-ip [options] <ipv4>
 
-### Description
+
 
   Source underlay IP address
 
@@ -7554,7 +7654,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> tunnel dest-ip [options] <ipv4>
 
-### Description
+
 
   Destination underlay IP address
 
@@ -7571,7 +7671,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> tunnel ttl [options] 1-255
 
-### Description
+
 
   time to live
 
@@ -7588,7 +7688,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> tunnel mode [options] gre
 
-### Description
+
 
   tunnel mode
 
@@ -7605,7 +7705,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> tunnel interface [options] <interface-name>
 
-### Description
+
 
   Physical underlay interface to used for Tunnel packets
 
@@ -7622,7 +7722,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> description [options] <value>
 
-### Description
+
 
   Details about the interface
 
@@ -7639,7 +7739,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set interface <interface-id> vlan [options] 1-4094
 
-### Description
+
 
   VLAN ID
 
@@ -7656,7 +7756,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service [options] [<attribute> ...]
 
-### Description
+
 
   A service
 
@@ -7689,7 +7789,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dns <vrf-id> [options] [<attribute> ...]
 
-### Description
+
 
   Domain Name Service
 
@@ -7713,7 +7813,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dns <vrf-id> server <dns-server-id> [options]
 
-### Description
+
 
   A remote DNS server
 
@@ -7731,7 +7831,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service syslog <vrf-id> [options] [<attribute> ...]
 
-### Description
+
 
   Domain Name Service
 
@@ -7755,7 +7855,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service syslog <vrf-id> server <server-id> [options] [<attribute> ...]
 
-### Description
+
 
   A remote DNS server
 
@@ -7782,7 +7882,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service syslog <vrf-id> server <server-id> port [options] 1-32767
 
-### Description
+
 
   Port number of the remote syslog server
 
@@ -7800,7 +7900,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service ntp <vrf-id> [options] [<attribute> ...]
 
-### Description
+
 
   Network Time Protocol
 
@@ -7828,7 +7928,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service ntp <vrf-id> server <server-id> [options] [<attribute> ...]
 
-### Description
+
 
   A remote NTP Server
 
@@ -7853,7 +7953,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service ntp <vrf-id> pool <server-id> [options] [<attribute> ...]
 
-### Description
+
 
   A remote NTP Server
 
@@ -7878,7 +7978,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service ntp <vrf-id> listen [options] <interface-name>
 
-### Description
+
 
   NTP interface to listen on.
 
@@ -7895,7 +7995,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-relay <vrf-id> [options] [<attribute> ...]
 
-### Description
+
 
   DHCP relay
 
@@ -7926,7 +8026,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-relay <vrf-id> server <server-id> [options]
 
-### Description
+
 
   A DHCP server
 
@@ -7944,7 +8044,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-relay <vrf-id> interface <interface-id> [options]
 
-### Description
+
 
   An interface on which DHCP relay is configured.
 
@@ -7962,7 +8062,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-relay <vrf-id> giaddress-interface <interface-id> [options] [<attribute> ...]
 
-### Description
+
 
   An interface on which DHCP relay giaddress is configured.
 
@@ -7987,7 +8087,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-relay6 <vrf-id> [options] [<attribute> ...]
 
-### Description
+
 
   DHCP relay
 
@@ -8011,7 +8111,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-relay6 <vrf-id> interface [options] [<attribute> ...]
 
-### Description
+
 
   DHCP relay interfaces
 
@@ -8037,7 +8137,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-relay6 <vrf-id> interface upstream <interface-id> [options] [<attribute> ...]
 
-### Description
+
 
   An interface on which DPCH relay is configured.
 
@@ -8062,7 +8162,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-relay6 <vrf-id> interface upstream <interface-id> address [options] <ipv6>
 
-### Description
+
 
   ipv6 address on interface
 
@@ -8080,7 +8180,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-relay6 <vrf-id> interface downstream <interface-id> [options] [<attribute> ...]
 
-### Description
+
 
   An interface on which DPCH relay is configured.
 
@@ -8105,7 +8205,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-relay6 <vrf-id> interface downstream <interface-id> address [options] <ipv6>
 
-### Description
+
 
   ipv6 address on interface
 
@@ -8123,7 +8223,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service ptp <instance-id> [options] [<attribute> ...]
 
-### Description
+
 
   Global PTP configuration.
 
@@ -8163,7 +8263,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service ptp <instance-id> acceptable-master <clock-id> [options] [<attribute> ...]
 
-### Description
+
 
   List of clocks that the local clock can accept as master clock
 
@@ -8189,7 +8289,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service ptp <instance-id> acceptable-master <clock-id> alt-priority [options] <value>
 
-### Description
+
 
   Alternate priority
 
@@ -8207,7 +8307,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service ptp <instance-id> monitor [options] [<attribute> ...]
 
-### Description
+
 
   PTP monitor configuration
 
@@ -8243,7 +8343,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service ptp <instance-id> monitor min-offset-threshold [options] <value>
 
-### Description
+
 
   Minimum offset threshold in nano seconds
 
@@ -8260,7 +8360,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service ptp <instance-id> monitor max-offset-threshold [options] <value>
 
-### Description
+
 
   Maximum offset threshold in nano seconds
 
@@ -8277,7 +8377,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service ptp <instance-id> monitor path-delay-threshold [options] <value>
 
-### Description
+
 
   Path delay threshold in nano seconds
 
@@ -8294,7 +8394,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service ptp <instance-id> monitor max-timestamp-entries [options] 400-1000
 
-### Description
+
 
   Maximum timestamp entries allowed
 
@@ -8311,7 +8411,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service ptp <instance-id> monitor max-violation-log-sets [options] 8-128
 
-### Description
+
 
   Maximum violation logs sets allowed
 
@@ -8328,7 +8428,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service ptp <instance-id> monitor max-violation-log-entries [options] 8-128
 
-### Description
+
 
   Maximum violation log entries per set
 
@@ -8345,7 +8445,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service ptp <instance-id> monitor violation-log-interval [options] 0-259200
 
-### Description
+
 
   violation log intervals in seconds
 
@@ -8362,7 +8462,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service ptp <instance-id> priority1 [options] <value>
 
-### Description
+
 
   Priority1 attribute of the local clock
 
@@ -8379,7 +8479,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service ptp <instance-id> priority2 [options] <value>
 
-### Description
+
 
   Priority2 attribute of the local clock
 
@@ -8396,7 +8496,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service ptp <instance-id> domain [options] 0-127
 
-### Description
+
 
   Domain number of the current syntonization
 
@@ -8413,7 +8513,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service ptp <instance-id> ip-dscp [options] 0-63
 
-### Description
+
 
   Sets the Diffserv code point for all PTP packets originated locally.
 
@@ -8430,7 +8530,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server <vrf-id> [options] [<attribute> ...]
 
-### Description
+
 
   Dynamic Host Configuration Protocol Server
 
@@ -8464,7 +8564,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server <vrf-id> interface <interface-id> [options]
 
-### Description
+
 
   An interface on which DPCH clients are attached.
 
@@ -8482,7 +8582,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server <vrf-id> pool <pool-id> [options] [<attribute> ...]
 
-### Description
+
 
   DHCP Pool
 
@@ -8523,7 +8623,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id> [options]
 
-### Description
+
 
   A remote DNS server
 
@@ -8542,7 +8642,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> [options] [<attribute> ...]
 
-### Description
+
 
   TBD
 
@@ -8568,7 +8668,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> domain-name [options] <idn-hostname>
 
-### Description
+
 
   DHCP domain name
 
@@ -8587,7 +8687,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id> [options]
 
-### Description
+
 
   A remote DNS server
 
@@ -8606,7 +8706,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server <vrf-id> pool <pool-id> range <range-id> [options] [<attribute> ...]
 
-### Description
+
 
   DHCP Pool range
 
@@ -8632,7 +8732,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server <vrf-id> pool <pool-id> range <range-id> to [options] <ipv4>
 
-### Description
+
 
   End of the range.
 
@@ -8651,7 +8751,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server <vrf-id> pool <pool-id> pool-name [options] <value>
 
-### Description
+
 
   Name
 
@@ -8669,7 +8769,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server <vrf-id> pool <pool-id> lease-time [options] 180-31536000
 
-### Description
+
 
   Network address lease time in seconds assigned to DHCP clients.
 
@@ -8687,7 +8787,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server <vrf-id> pool <pool-id> default-url [options] <value>
 
-### Description
+
 
   TBD
 
@@ -8705,7 +8805,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server <vrf-id> pool <pool-id> cumulus-provision-url [options] <value>
 
-### Description
+
 
   Cumulus specific URL for provisioning script
 
@@ -8723,7 +8823,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server <vrf-id> domain-name <domain-name-id> [options] [<attribute> ...]
 
-### Description
+
 
   TBD
 
@@ -8748,7 +8848,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server <vrf-id> domain-name <domain-name-id> domain-name [options] <idn-hostname>
 
-### Description
+
 
   DHCP domain name
 
@@ -8766,7 +8866,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server <vrf-id> domain-name-server <server-id> [options]
 
-### Description
+
 
   A remote DNS server
 
@@ -8784,7 +8884,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server <vrf-id> static <static-id> [options] [<attribute> ...]
 
-### Description
+
 
   static entry
 
@@ -8813,7 +8913,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server <vrf-id> static <static-id> mac-address [options] <mac>
 
-### Description
+
 
   MAC (hardware) address
 
@@ -8832,7 +8932,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server <vrf-id> static <static-id> ip-address [options] <ipv4>
 
-### Description
+
 
   IP address
 
@@ -8850,7 +8950,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server <vrf-id> static <static-id> cumulus-provision-url [options] <value>
 
-### Description
+
 
   Cumulus specific URL for provisioning script
 
@@ -8868,7 +8968,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server6 <vrf-id> [options] [<attribute> ...]
 
-### Description
+
 
   Dynamic Host Configuration Protocol IPv6 Server
 
@@ -8902,7 +9002,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server6 <vrf-id> interface <interface-id> [options]
 
-### Description
+
 
   An interface on which DPCH clients are attached.
 
@@ -8920,7 +9020,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server6 <vrf-id> pool <pool-id> [options] [<attribute> ...]
 
-### Description
+
 
   DHCP Pool
 
@@ -8959,7 +9059,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id> [options]
 
-### Description
+
 
   A remote DNS server
 
@@ -8978,7 +9078,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id> [options] [<attribute> ...]
 
-### Description
+
 
   TBD
 
@@ -9004,7 +9104,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id> domain-name [options] <idn-hostname>
 
-### Description
+
 
   DHCP domain name
 
@@ -9023,7 +9123,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> [options] [<attribute> ...]
 
-### Description
+
 
   DHCP Pool range
 
@@ -9049,7 +9149,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> to [options] <ipv6>
 
-### Description
+
 
   End of the range.
 
@@ -9069,7 +9169,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server6 <vrf-id> pool <pool-id> pool-name [options] <value>
 
-### Description
+
 
   Name
 
@@ -9088,7 +9188,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server6 <vrf-id> pool <pool-id> lease-time [options] 180-31536000
 
-### Description
+
 
   Network address lease time in seconds assigned to DHCP clients.
 
@@ -9106,7 +9206,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server6 <vrf-id> pool <pool-id> default-url [options] <value>
 
-### Description
+
 
   TBD
 
@@ -9124,7 +9224,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server6 <vrf-id> pool <pool-id> cumulus-provision-url [options] <value>
 
-### Description
+
 
   Cumulus specific URL for provisioning script
 
@@ -9142,7 +9242,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server6 <vrf-id> domain-name <domain-name-id> [options] [<attribute> ...]
 
-### Description
+
 
   TBD
 
@@ -9167,7 +9267,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server6 <vrf-id> domain-name <domain-name-id> domain-name [options] <idn-hostname>
 
-### Description
+
 
   DHCP domain name
 
@@ -9185,7 +9285,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server6 <vrf-id> domain-name-server <server-id> [options]
 
-### Description
+
 
   A remote DNS server
 
@@ -9203,7 +9303,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server6 <vrf-id> static <static-id> [options] [<attribute> ...]
 
-### Description
+
 
   static entry
 
@@ -9232,7 +9332,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server6 <vrf-id> static <static-id> mac-address [options] <mac>
 
-### Description
+
 
   MAC (hardware) address
 
@@ -9250,7 +9350,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server6 <vrf-id> static <static-id> ip-address [options] <ipv6>
 
-### Description
+
 
   IP address
 
@@ -9268,7 +9368,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service dhcp-server6 <vrf-id> static <static-id> cumulus-provision-url [options] <value>
 
-### Description
+
 
   Cumulus specific URL for provisioning script
 
@@ -9286,7 +9386,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service lldp [options] [<attribute> ...]
 
-### Description
+
 
   Global LLDP
 
@@ -9307,7 +9407,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service lldp tx-interval [options] 10-300
 
-### Description
+
 
   change transmit delay
 
@@ -9317,7 +9417,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set service lldp tx-hold-multiplier [options] 1-10
 
-### Description
+
 
   < TTL of transmitted packets is calculated by multiplying the tx-interval by the given factor
 
@@ -9327,7 +9427,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system [options] [<attribute> ...]
 
-### Description
+
 
   Top-level node which contains system-wide properties.
 
@@ -9357,7 +9457,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system control-plane [options] [<attribute> ...]
 
-### Description
+
 
   Control Plane specific configurations
 
@@ -9376,7 +9476,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system control-plane trap <trap-id> [options] [<attribute> ...]
 
-### Description
+
 
   Trap
 
@@ -9400,7 +9500,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system control-plane policer <policer-id> [options] [<attribute> ...]
 
-### Description
+
 
   Policer
 
@@ -9428,7 +9528,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system control-plane policer <policer-id> burst [options] 10-10000
 
-### Description
+
 
   policer burst value
 
@@ -9445,7 +9545,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system control-plane policer <policer-id> rate [options] 10-10000
 
-### Description
+
 
   policer rate value
 
@@ -9462,7 +9562,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system message [options] [<attribute> ...]
 
-### Description
+
 
   System pre-login and post-login messages
 
@@ -9481,7 +9581,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system message pre-login [options] <value>
 
-### Description
+
 
   configure pre-login banner
 
@@ -9491,7 +9591,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system message post-login [options] <value>
 
-### Description
+
 
   configure post-login message of the day
 
@@ -9501,7 +9601,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system global [options] [<attribute> ...]
 
-### Description
+
 
   global system configuration
 
@@ -9528,7 +9628,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system global reserved [options] [<attribute> ...]
 
-### Description
+
 
   reserved ranges
 
@@ -9547,7 +9647,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system global reserved routing-table [options] [<attribute> ...]
 
-### Description
+
 
   reserved routing table ranges
 
@@ -9564,7 +9664,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system global reserved routing-table pbr [options] [<attribute> ...]
 
-### Description
+
 
   reserved routing table ranges for PBR
 
@@ -9583,7 +9683,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system global reserved routing-table pbr begin [options] 10000-4294966272
 
-### Description
+
 
   Beginning of reserved routing table range for PBR
 
@@ -9593,7 +9693,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system global reserved routing-table pbr end [options] 10000-4294966272
 
-### Description
+
 
   End of reserved routing table range for PBR
 
@@ -9603,7 +9703,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system global reserved vlan [options] [<attribute> ...]
 
-### Description
+
 
   reserved vlan ranges
 
@@ -9620,7 +9720,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system global reserved vlan l3-vni-vlan [options] [<attribute> ...]
 
-### Description
+
 
   Reserved vlans to be used with l3vni
 
@@ -9639,7 +9739,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system global reserved vlan l3-vni-vlan begin [options] 1-4093
 
-### Description
+
 
   Beginning of reserved vlan range for L3 VNI
 
@@ -9649,7 +9749,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system global reserved vlan l3-vni-vlan end [options] 2-4093
 
-### Description
+
 
   End of reserved vlan range for L3 VNI
 
@@ -9659,7 +9759,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system global fabric-id [options] 1-255
 
-### Description
+
 
   An integer (1-255) to select first hop router MAC adress in range 00:00:5E:00:01:01 to 00:00:5E:00:01:ff
 
@@ -9669,7 +9769,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system port-mirror [options] [<attribute> ...]
 
-### Description
+
 
   Port mirror
 
@@ -9687,7 +9787,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system port-mirror session <session-id> [options] [<attribute> ...]
 
-### Description
+
 
   port mirror session number
 
@@ -9713,7 +9813,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system port-mirror session <session-id> span [options] [<attribute> ...]
 
-### Description
+
 
   Switched Port Analyzer
 
@@ -9745,7 +9845,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system port-mirror session <session-id> span source-port <port-id> [options]
 
-### Description
+
 
   A port-mirror source port (swps or bonds only)
 
@@ -9764,7 +9864,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system port-mirror session <session-id> span destination <port-id> [options]
 
-### Description
+
 
   The SPAN destination port.
 
@@ -9783,7 +9883,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system port-mirror session <session-id> span truncate [options] [<attribute> ...]
 
-### Description
+
 
   TBD
 
@@ -9809,7 +9909,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system port-mirror session <session-id> erspan [options] [<attribute> ...]
 
-### Description
+
 
   Encapsulated Remote Switched Port Analyzer.
 
@@ -9841,7 +9941,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system port-mirror session <session-id> erspan source-port <port-id> [options]
 
-### Description
+
 
   A port-mirror source port (swps or bonds only)
 
@@ -9860,7 +9960,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system port-mirror session <session-id> erspan destination [options] [<attribute> ...]
 
-### Description
+
 
   erspan destination
 
@@ -9886,7 +9986,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system port-mirror session <session-id> erspan destination source-ip <source-ip> [options]
 
-### Description
+
 
   An IPv4 address
 
@@ -9903,7 +10003,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system port-mirror session <session-id> erspan destination dest-ip <dest-ip> [options]
 
-### Description
+
 
   An IPv4 address
 
@@ -9920,7 +10020,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system port-mirror session <session-id> erspan truncate [options] [<attribute> ...]
 
-### Description
+
 
   TBD
 
@@ -9947,7 +10047,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system config [options] [<attribute> ...]
 
-### Description
+
 
   Affect how config operations are performed.
 
@@ -9964,7 +10064,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system config apply [options] [<attribute> ...]
 
-### Description
+
 
   Affect how config apply operations are performed.
 
@@ -9983,7 +10083,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system config apply ignore <ignore-id> [options]
 
-### Description
+
 
   File to ignore during config apply operations.
 
@@ -10000,7 +10100,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set system hostname [options] <idn-hostname>
 
-### Description
+
 
   Static hostname for the switch
 
@@ -10010,7 +10110,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> [options] [<attribute> ...]
 
-### Description
+
 
   A VRF
 
@@ -10043,7 +10143,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> loopback [options] [<attribute> ...]
 
-### Description
+
 
   The loopback IP interface associated with this VRF.
 
@@ -10067,7 +10167,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> loopback ip [options] [<attribute> ...]
 
-### Description
+
 
   IP addresses associated with the VRF's loopback interface.
 
@@ -10091,7 +10191,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> loopback ip address <ip-prefix-id> [options]
 
-### Description
+
 
   An IP address with prefix
 
@@ -10110,7 +10210,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> evpn [options] [<attribute> ...]
 
-### Description
+
 
   EVPN control plane config and info for VRF
 
@@ -10138,7 +10238,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> evpn vni <vni-id> [options] [<attribute> ...]
 
-### Description
+
 
   VNI
 
@@ -10164,7 +10264,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router [options] [<attribute> ...]
 
-### Description
+
 
   A VRF
 
@@ -10196,7 +10296,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router rib <afi> [options] [<attribute> ...]
 
-### Description
+
 
   Vrf aware Routing-table per address-family
 
@@ -10222,7 +10322,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router rib <afi> protocol <import-protocol-id> [options] [<attribute> ...]
 
-### Description
+
 
   Import Protocols from where routes are known
 
@@ -10250,7 +10350,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp [options] [<attribute> ...]
 
-### Description
+
 
   BGP VRF configuration.
 
@@ -10301,7 +10401,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family [options] [<attribute> ...]
 
-### Description
+
 
   Address family specific configuration
 
@@ -10329,7 +10429,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast [options] [<attribute> ...]
 
-### Description
+
 
   IPv4 unicast address family
 
@@ -10369,7 +10469,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute [options] [<attribute> ...]
 
-### Description
+
 
   Route redistribute
 
@@ -10400,7 +10500,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static [options] [<attribute> ...]
 
-### Description
+
 
   Source route type.
 
@@ -10428,7 +10528,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected [options] [<attribute> ...]
 
-### Description
+
 
   Source route type.
 
@@ -10456,7 +10556,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel [options] [<attribute> ...]
 
-### Description
+
 
   Source route type.
 
@@ -10484,7 +10584,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf [options] [<attribute> ...]
 
-### Description
+
 
   Source route type.
 
@@ -10512,7 +10612,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> [options] [<attribute> ...]
 
-### Description
+
 
   An IPv4 aggregate route
 
@@ -10542,7 +10642,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id> [options] [<attribute> ...]
 
-### Description
+
 
   An IPv4 static network.
 
@@ -10567,7 +10667,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import [options] [<attribute> ...]
 
-### Description
+
 
   Route import
 
@@ -10591,7 +10691,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf [options] [<attribute> ...]
 
-### Description
+
 
   Controls for VRF to VRF route leaking for this address-family
 
@@ -10619,7 +10719,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id> [options]
 
-### Description
+
 
   A VRF
 
@@ -10638,7 +10738,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf route-map [options] <instance-name>
 
-### Description
+
 
   Route-map to control the import of routes into EVPN
 
@@ -10655,7 +10755,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths [options] [<attribute> ...]
 
-### Description
+
 
   Multipaths
 
@@ -10683,7 +10783,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths ebgp [options] 1-128
 
-### Description
+
 
   EBGP multipath
 
@@ -10700,7 +10800,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths ibgp [options] 1-128
 
-### Description
+
 
   IBGP multipath
 
@@ -10717,7 +10817,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance [options] [<attribute> ...]
 
-### Description
+
 
   Admin distances.
 
@@ -10743,7 +10843,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance external [options] 1-255
 
-### Description
+
 
   Distance to apply to routes from EBGP peers when installed into the RIB
 
@@ -10760,7 +10860,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance internal [options] 1-255
 
-### Description
+
 
   Distance to apply to routes from IBGP peers when installed into the RIB
 
@@ -10777,7 +10877,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-export [options] [<attribute> ...]
 
-### Description
+
 
   Route export
 
@@ -10801,7 +10901,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn [options] [<attribute> ...]
 
-### Description
+
 
   Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
 
@@ -10829,7 +10929,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family l2vpn-evpn [options] [<attribute> ...]
 
-### Description
+
 
   BGP VRF configuration. L2VPN EVPN address family
 
@@ -10853,7 +10953,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast [options] [<attribute> ...]
 
-### Description
+
 
   IPv6 unicast address family
 
@@ -10893,7 +10993,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> [options] [<attribute> ...]
 
-### Description
+
 
   An IPv6 aggregate route
 
@@ -10922,7 +11022,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id> [options] [<attribute> ...]
 
-### Description
+
 
   An IPv6 static network.
 
@@ -10947,7 +11047,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import [options] [<attribute> ...]
 
-### Description
+
 
   Route import
 
@@ -10971,7 +11071,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf [options] [<attribute> ...]
 
-### Description
+
 
   Controls for VRF to VRF route leaking for this address-family
 
@@ -11000,7 +11100,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf list [options]
 
-### Description
+
 
   Set of VRFs
 
@@ -11017,7 +11117,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf route-map [options] <instance-name>
 
-### Description
+
 
   Route-map to control the import of routes into EVPN
 
@@ -11034,7 +11134,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths [options] [<attribute> ...]
 
-### Description
+
 
   Multipaths
 
@@ -11062,7 +11162,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths ebgp [options] 1-128
 
-### Description
+
 
   EBGP multipath
 
@@ -11079,7 +11179,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths ibgp [options] 1-128
 
-### Description
+
 
   IBGP multipath
 
@@ -11096,7 +11196,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance [options] [<attribute> ...]
 
-### Description
+
 
   Admin distances.
 
@@ -11122,7 +11222,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance external [options] 1-255
 
-### Description
+
 
   Distance to apply to routes from EBGP peers when installed into the RIB
 
@@ -11139,7 +11239,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance internal [options] 1-255
 
-### Description
+
 
   Distance to apply to routes from IBGP peers when installed into the RIB
 
@@ -11156,7 +11256,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-export [options] [<attribute> ...]
 
-### Description
+
 
   Route export
 
@@ -11180,7 +11280,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn [options] [<attribute> ...]
 
-### Description
+
 
   Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
 
@@ -11208,7 +11308,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute [options] [<attribute> ...]
 
-### Description
+
 
   Route redistribute
 
@@ -11238,7 +11338,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static [options] [<attribute> ...]
 
-### Description
+
 
   Source route type.
 
@@ -11266,7 +11366,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected [options] [<attribute> ...]
 
-### Description
+
 
   Source route type.
 
@@ -11294,7 +11394,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel [options] [<attribute> ...]
 
-### Description
+
 
   Source route type.
 
@@ -11322,7 +11422,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6 [options] [<attribute> ...]
 
-### Description
+
 
   Source route type.
 
@@ -11350,7 +11450,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp path-selection [options] [<attribute> ...]
 
-### Description
+
 
   BGP path-selection configuration.
 
@@ -11378,7 +11478,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp path-selection aspath [options] [<attribute> ...]
 
-### Description
+
 
   BGP aspath path-selection config, applicable to this BGP instance
 
@@ -11404,7 +11504,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp path-selection med [options] [<attribute> ...]
 
-### Description
+
 
   BGP med path-selection config, applicable to this BGP instance
 
@@ -11434,7 +11534,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp path-selection multipath [options] [<attribute> ...]
 
-### Description
+
 
   BGP multipath path-selection config, applicable to this BGP instance
 
@@ -11462,7 +11562,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp route-reflection [options] [<attribute> ...]
 
-### Description
+
 
   BGP route-reflection configuration.
 
@@ -11492,7 +11592,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> [options] [<attribute> ...]
 
-### Description
+
 
   BGP global configuration.
 
@@ -11543,7 +11643,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd [options] [<attribute> ...]
 
-### Description
+
 
   Specifies whether to track BGP peering sessions using this configuration via BFD.
 
@@ -11574,7 +11674,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd detect-multiplier [options] 2-255
 
-### Description
+
 
   Detect multiplier
 
@@ -11592,7 +11692,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-rx-interval [options] 50-60000
 
-### Description
+
 
   Minimum receive interval
 
@@ -11610,7 +11710,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-tx-interval [options] 50-60000
 
-### Description
+
 
   Minimum transmit interval.  The actual value used is the smaller of this or what the peer expects.
 
@@ -11628,7 +11728,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security [options] [<attribute> ...]
 
-### Description
+
 
   RFC 5082
 
@@ -11655,7 +11755,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security hops [options] 1-254
 
-### Description
+
 
   Number of hops
 
@@ -11673,7 +11773,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities [options] [<attribute> ...]
 
-### Description
+
 
   Capabilities
 
@@ -11700,7 +11800,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart [options] [<attribute> ...]
 
-### Description
+
 
   BGP Graceful restart per neighbor configuration
 
@@ -11725,7 +11825,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as [options] [<attribute> ...]
 
-### Description
+
 
   Local AS feature
 
@@ -11756,7 +11856,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as asn [options] 1-4294967295
 
-### Description
+
 
   ASN to use to establish the peering if different from the ASN of the BGP instance.  This configuration finds use during AS renumbering.  The local-as configured is also attached to incoming and outgoing updates.
 
@@ -11774,7 +11874,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> timers [options] [<attribute> ...]
 
-### Description
+
 
   Peer peer-timerss
 
@@ -11805,7 +11905,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family [options] [<attribute> ...]
 
-### Description
+
 
   Address family specific configuration
 
@@ -11834,7 +11934,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast [options] [<attribute> ...]
 
-### Description
+
 
   Peer IPv4 unicast address family.  Always on, unless disabled globaly.
 
@@ -11885,7 +11985,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise [options] [<attribute> ...]
 
-### Description
+
 
   Community advertise for address family.
 
@@ -11914,7 +12014,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod [options] [<attribute> ...]
 
-### Description
+
 
   Attribute mod for address family.
 
@@ -11943,7 +12043,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath [options] [<attribute> ...]
 
-### Description
+
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
@@ -11972,7 +12072,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn [options] [<attribute> ...]
 
-### Description
+
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -12001,7 +12101,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn occurrences [options] 1-10
 
-### Description
+
 
   Indicates max number of occurrences of the local system's AS number in the received AS_PATH
 
@@ -12019,7 +12119,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits [options] [<attribute> ...]
 
-### Description
+
 
   Limits on prefix from the peer for this address-family
 
@@ -12044,7 +12144,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound [options] [<attribute> ...]
 
-### Description
+
 
   Limits on inbound prefix from the peer for this address-family
 
@@ -12075,7 +12175,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound warning-threshold [options] 1-100
 
-### Description
+
 
   Percentage of the maximum at which a warning syslog is generated.
 
@@ -12093,7 +12193,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound reestablish-wait [options] 1-4294967295
 
-### Description
+
 
   Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
 
@@ -12111,7 +12211,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination [options] [<attribute> ...]
 
-### Description
+
 
   Default route origination
 
@@ -12138,7 +12238,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy [options] [<attribute> ...]
 
-### Description
+
 
   Policies for ipv4 unicast
 
@@ -12165,7 +12265,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound [options] [<attribute> ...]
 
-### Description
+
 
   Outbound unicast policy
 
@@ -12194,7 +12294,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound aspath-list [options] none
 
-### Description
+
 
   AS-Path filter list to apply to Updates received from this peer
 
@@ -12212,7 +12312,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound [options] [<attribute> ...]
 
-### Description
+
 
   Outbound unicast policy
 
@@ -12243,7 +12343,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound aspath-list [options] none
 
-### Description
+
 
   AS-Path filter list to apply to Updates sent to this peer
 
@@ -12261,7 +12361,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise [options] [<attribute> ...]
 
-### Description
+
 
   Conditional advertise for address family.
 
@@ -12298,7 +12398,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise advertise-map [options] <instance-name>
 
-### Description
+
 
   route-map contains prefix-list which has list of routes/prefixes to operate on.
 
@@ -12316,7 +12416,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise exist-map [options] <instance-name>
 
-### Description
+
 
   route-map contains the conditional routes/prefixes in prefix-list.
 
@@ -12334,7 +12434,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise non-exist-map [options] <instance-name>
 
-### Description
+
 
   route-map contains the negative conditional routes/prefixes in prefix-list.
 
@@ -12352,7 +12452,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast weight [options] 0-65535
 
-### Description
+
 
   Weight applied to routes received from peer; this is used in the BGP route selection algorithm
 
@@ -12370,7 +12470,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast [options] [<attribute> ...]
 
-### Description
+
 
   Peer IPv6 unicast address family.
 
@@ -12422,7 +12522,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy [options] [<attribute> ...]
 
-### Description
+
 
   Policies for ipv6 unicast
 
@@ -12449,7 +12549,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound [options] [<attribute> ...]
 
-### Description
+
 
   Outbound unicast policy
 
@@ -12480,7 +12580,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound aspath-list [options] none
 
-### Description
+
 
   AS-Path filter list to apply to Updates received from this peer
 
@@ -12498,7 +12598,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound [options] [<attribute> ...]
 
-### Description
+
 
   Outbound unicast policy
 
@@ -12529,7 +12629,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound aspath-list [options] none
 
-### Description
+
 
   AS-Path filter list to apply to Updates sent to this peer
 
@@ -12547,7 +12647,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath [options] [<attribute> ...]
 
-### Description
+
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
@@ -12576,7 +12676,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn [options] [<attribute> ...]
 
-### Description
+
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -12605,7 +12705,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn occurrences [options] 1-10
 
-### Description
+
 
   Indicates max number of occurrences of the local system's AS number in the received AS_PATH
 
@@ -12623,7 +12723,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits [options] [<attribute> ...]
 
-### Description
+
 
   Limits on prefix from the peer for this address-family
 
@@ -12648,7 +12748,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound [options] [<attribute> ...]
 
-### Description
+
 
   Limits on inbound prefix from the peer for this address-family
 
@@ -12679,7 +12779,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound warning-threshold [options] 1-100
 
-### Description
+
 
   Percentage of the maximum at which a warning syslog is generated.
 
@@ -12697,7 +12797,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound reestablish-wait [options] 1-4294967295
 
-### Description
+
 
   Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
 
@@ -12715,7 +12815,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast default-route-origination [options] [<attribute> ...]
 
-### Description
+
 
   Default route origination
 
@@ -12742,7 +12842,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast community-advertise [options] [<attribute> ...]
 
-### Description
+
 
   Community advertise for address family.
 
@@ -12771,7 +12871,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast attribute-mod [options] [<attribute> ...]
 
-### Description
+
 
   Attribute mod for address family.
 
@@ -12801,7 +12901,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise [options] [<attribute> ...]
 
-### Description
+
 
   Conditional advertise for address family.
 
@@ -12832,7 +12932,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise advertise-map [options] <instance-name>
 
-### Description
+
 
   route-map contains prefix-list which has list of routes/prefixes to operate on.
 
@@ -12851,7 +12951,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise exist-map [options] <instance-name>
 
-### Description
+
 
   route-map contains the conditional routes/prefixes in prefix-list.
 
@@ -12870,7 +12970,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise non-exist-map [options] <instance-name>
 
-### Description
+
 
   route-map contains the negative conditional routes/prefixes in prefix-list.
 
@@ -12888,7 +12988,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast weight [options] 0-65535
 
-### Description
+
 
   Weight applied to routes received from peer; this is used in the BGP route selection algorithm
 
@@ -12906,7 +13006,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn [options] [<attribute> ...]
 
-### Description
+
 
   Peer l2vpn EVPN address family.
 
@@ -12947,7 +13047,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn attribute-mod [options] [<attribute> ...]
 
-### Description
+
 
   Attribute mod for address family.
 
@@ -12976,7 +13076,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath [options] [<attribute> ...]
 
-### Description
+
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
@@ -13005,7 +13105,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn [options] [<attribute> ...]
 
-### Description
+
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -13034,7 +13134,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn occurrences [options] 1-10
 
-### Description
+
 
   Indicates max number of occurrences of the local system's AS number in the received AS_PATH
 
@@ -13052,7 +13152,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy [options] [<attribute> ...]
 
-### Description
+
 
   Policies for l2vpn evpn
 
@@ -13079,7 +13179,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy inbound [options] [<attribute> ...]
 
-### Description
+
 
   Inbound l2vpn-evpn policy
 
@@ -13104,7 +13204,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy outbound [options] [<attribute> ...]
 
-### Description
+
 
   Outbound l2vpn-evpn policy
 
@@ -13132,7 +13232,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> password [options] none
 
-### Description
+
 
   Password
 
@@ -13150,7 +13250,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp peer-group <peer-group-id> description [options] none
 
-### Description
+
 
   neighbor description
 
@@ -13168,7 +13268,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp route-export [options] [<attribute> ...]
 
-### Description
+
 
   Controls for exporting ipv4 and ipv6 routes from this VRF
 
@@ -13192,7 +13292,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp route-export to-evpn [options] [<attribute> ...]
 
-### Description
+
 
   Controls for exporting routes from this VRF into EVPN
 
@@ -13216,7 +13316,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp route-export to-evpn route-target <rt-id> [options]
 
-### Description
+
 
   A route target identifier
 
@@ -13234,7 +13334,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp route-import [options] [<attribute> ...]
 
-### Description
+
 
   Controls for importing of ipv4 and ipv6 routes from this VRF
 
@@ -13258,7 +13358,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp route-import from-evpn [options] [<attribute> ...]
 
-### Description
+
 
   Controls for importing EVPN type-2 and type-5 routes into this VRF
 
@@ -13282,7 +13382,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp route-import from-evpn route-target <rt-id> [options]
 
-### Description
+
 
   A route target identifier
 
@@ -13301,7 +13401,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp timers [options] [<attribute> ...]
 
-### Description
+
 
   timer values for all peers in this VRF
 
@@ -13335,7 +13435,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp timers connection-retry [options] 1-65535
 
-### Description
+
 
   Time interval at which connection attempts are retried upon a failure.
 
@@ -13353,7 +13453,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp confederation [options] [<attribute> ...]
 
-### Description
+
 
   BGP Confederation options.
 
@@ -13379,7 +13479,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp confederation member-as [options]
 
-### Description
+
 
   Set of autonomous numbers
 
@@ -13396,7 +13496,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> [options] [<attribute> ...]
 
-### Description
+
 
   BGP global configuration.
 
@@ -13453,7 +13553,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd [options] [<attribute> ...]
 
-### Description
+
 
   Specifies whether to track BGP peering sessions using this configuration via BFD.
 
@@ -13484,7 +13584,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd detect-multiplier [options] 2-255
 
-### Description
+
 
   Detect multiplier
 
@@ -13502,7 +13602,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-rx-interval [options] 50-60000
 
-### Description
+
 
   Minimum receive interval
 
@@ -13520,7 +13620,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-tx-interval [options] 50-60000
 
-### Description
+
 
   Minimum transmit interval.  The actual value used is the smaller of this or what the peer expects.
 
@@ -13538,7 +13638,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities [options] [<attribute> ...]
 
-### Description
+
 
   Capabilities
 
@@ -13565,7 +13665,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> local-as [options] [<attribute> ...]
 
-### Description
+
 
   Local AS feature
 
@@ -13596,7 +13696,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> local-as asn [options] 1-4294967295
 
-### Description
+
 
   ASN to use to establish the peering if different from the ASN of the BGP instance.  This configuration finds use during AS renumbering.  The local-as configured is also attached to incoming and outgoing updates.
 
@@ -13614,7 +13714,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> graceful-restart [options] [<attribute> ...]
 
-### Description
+
 
   BGP Graceful restart per neighbor configuration
 
@@ -13656,7 +13756,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security [options] [<attribute> ...]
 
-### Description
+
 
   RFC 5082
 
@@ -13683,7 +13783,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security hops [options] 1-254
 
-### Description
+
 
   Number of hops
 
@@ -13701,7 +13801,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family [options] [<attribute> ...]
 
-### Description
+
 
   Address family specific configuration
 
@@ -13730,7 +13830,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast [options] [<attribute> ...]
 
-### Description
+
 
   Peer IPv4 unicast address family.  Always on, unless disabled globaly.
 
@@ -13781,7 +13881,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast attribute-mod [options] [<attribute> ...]
 
-### Description
+
 
   Attribute mod for address family.
 
@@ -13810,7 +13910,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath [options] [<attribute> ...]
 
-### Description
+
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
@@ -13839,7 +13939,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn [options] [<attribute> ...]
 
-### Description
+
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -13868,7 +13968,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn occurrences [options] 1-10
 
-### Description
+
 
   Indicates max number of occurrences of the local system's AS number in the received AS_PATH
 
@@ -13886,7 +13986,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy [options] [<attribute> ...]
 
-### Description
+
 
   Policies for ipv4 unicast
 
@@ -13913,7 +14013,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound [options] [<attribute> ...]
 
-### Description
+
 
   Outbound unicast policy
 
@@ -13942,7 +14042,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound aspath-list [options] none
 
-### Description
+
 
   AS-Path filter list to apply to Updates received from this peer
 
@@ -13960,7 +14060,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound [options] [<attribute> ...]
 
-### Description
+
 
   Outbound unicast policy
 
@@ -13991,7 +14091,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound aspath-list [options] none
 
-### Description
+
 
   AS-Path filter list to apply to Updates sent to this peer
 
@@ -14009,7 +14109,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits [options] [<attribute> ...]
 
-### Description
+
 
   Limits on prefix from the peer for this address-family
 
@@ -14034,7 +14134,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound [options] [<attribute> ...]
 
-### Description
+
 
   Limits on inbound prefix from the peer for this address-family
 
@@ -14065,7 +14165,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound warning-threshold [options] 1-100
 
-### Description
+
 
   Percentage of the maximum at which a warning syslog is generated.
 
@@ -14083,7 +14183,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound reestablish-wait [options] 1-4294967295
 
-### Description
+
 
   Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
 
@@ -14101,7 +14201,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast default-route-origination [options] [<attribute> ...]
 
-### Description
+
 
   Default route origination
 
@@ -14128,7 +14228,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast community-advertise [options] [<attribute> ...]
 
-### Description
+
 
   Community advertise for address family.
 
@@ -14157,7 +14257,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise [options] [<attribute> ...]
 
-### Description
+
 
   Conditional advertise for address family.
 
@@ -14188,7 +14288,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise advertise-map [options] <instance-name>
 
-### Description
+
 
   route-map contains prefix-list which has list of routes/prefixes to operate on.
 
@@ -14206,7 +14306,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise exist-map [options] <instance-name>
 
-### Description
+
 
   route-map contains the conditional routes/prefixes in prefix-list.
 
@@ -14224,7 +14324,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise non-exist-map [options] <instance-name>
 
-### Description
+
 
   route-map contains the negative conditional routes/prefixes in prefix-list.
 
@@ -14242,7 +14342,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast weight [options] 0-65535
 
-### Description
+
 
   Weight applied to routes received from peer; this is used in the BGP route selection algorithm
 
@@ -14260,7 +14360,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast [options] [<attribute> ...]
 
-### Description
+
 
   Peer IPv6 unicast address family.
 
@@ -14309,7 +14409,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast attribute-mod [options] [<attribute> ...]
 
-### Description
+
 
   Attribute mod for address family.
 
@@ -14338,7 +14438,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath [options] [<attribute> ...]
 
-### Description
+
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
@@ -14367,7 +14467,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn [options] [<attribute> ...]
 
-### Description
+
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -14396,7 +14496,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn occurrences [options] 1-10
 
-### Description
+
 
   Indicates max number of occurrences of the local system's AS number in the received AS_PATH
 
@@ -14414,7 +14514,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits [options] [<attribute> ...]
 
-### Description
+
 
   Limits on prefix from the peer for this address-family
 
@@ -14439,7 +14539,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound [options] [<attribute> ...]
 
-### Description
+
 
   Limits on inbound prefix from the peer for this address-family
 
@@ -14486,7 +14586,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound warning-threshold [options] 1-100
 
-### Description
+
 
   Percentage of the maximum at which a warning syslog is generated.
 
@@ -14504,7 +14604,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound reestablish-wait [options] 1-4294967295
 
-### Description
+
 
   Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
 
@@ -14522,7 +14622,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast default-route-origination [options] [<attribute> ...]
 
-### Description
+
 
   Default route origination
 
@@ -14549,7 +14649,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy [options] [<attribute> ...]
 
-### Description
+
 
   Policies for ipv6 unicast
 
@@ -14576,7 +14676,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound [options] [<attribute> ...]
 
-### Description
+
 
   Outbound unicast policy
 
@@ -14605,7 +14705,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound aspath-list [options] none
 
-### Description
+
 
   AS-Path filter list to apply to Updates received from this peer
 
@@ -14623,7 +14723,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound [options] [<attribute> ...]
 
-### Description
+
 
   Outbound unicast policy
 
@@ -14654,7 +14754,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound aspath-list [options] none
 
-### Description
+
 
   AS-Path filter list to apply to Updates sent to this peer
 
@@ -14672,7 +14772,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast community-advertise [options] [<attribute> ...]
 
-### Description
+
 
   Community advertise for address family.
 
@@ -14702,7 +14802,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise [options] [<attribute> ...]
 
-### Description
+
 
   Conditional advertise for address family.
 
@@ -14733,7 +14833,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise advertise-map [options] <instance-name>
 
-### Description
+
 
   route-map contains prefix-list which has list of routes/prefixes to operate on.
 
@@ -14751,7 +14851,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise exist-map [options] <instance-name>
 
-### Description
+
 
   route-map contains the conditional routes/prefixes in prefix-list.
 
@@ -14769,7 +14869,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise non-exist-map [options] <instance-name>
 
-### Description
+
 
   route-map contains the negative conditional routes/prefixes in prefix-list.
 
@@ -14787,7 +14887,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast weight [options] 0-65535
 
-### Description
+
 
   Weight applied to routes received from peer; this is used in the BGP route selection algorithm
 
@@ -14805,7 +14905,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn [options] [<attribute> ...]
 
-### Description
+
 
   Peer l2vpn EVPN address family.
 
@@ -14846,7 +14946,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn attribute-mod [options] [<attribute> ...]
 
-### Description
+
 
   Attribute mod for address family.
 
@@ -14875,7 +14975,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath [options] [<attribute> ...]
 
-### Description
+
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
@@ -14904,7 +15004,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn [options] [<attribute> ...]
 
-### Description
+
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -14933,7 +15033,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn occurrences [options] 1-10
 
-### Description
+
 
   Indicates max number of occurrences of the local system's AS number in the received AS_PATH
 
@@ -14951,7 +15051,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy [options] [<attribute> ...]
 
-### Description
+
 
   Policies for l2vpn evpn
 
@@ -14978,7 +15078,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy inbound [options] [<attribute> ...]
 
-### Description
+
 
   Inbound l2vpn-evpn policy
 
@@ -15003,7 +15103,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy outbound [options] [<attribute> ...]
 
-### Description
+
 
   Outbound l2vpn-evpn policy
 
@@ -15030,7 +15130,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> timers [options] [<attribute> ...]
 
-### Description
+
 
   Peer peer-timerss
 
@@ -15061,7 +15161,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> password [options] none
 
-### Description
+
 
   Password
 
@@ -15079,7 +15179,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp neighbor <neighbor-id> description [options] none
 
-### Description
+
 
   neighbor description
 
@@ -15097,7 +15197,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router bgp dynamic-peer-limit [options] 1-5000
 
-### Description
+
 
   Maximum number of dynamic neighbors from whom we can accept a connection. Applicable only if 'dynamic-peering' subnet ranges are configured
 
@@ -15114,7 +15214,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router static <route-id> [options] [<attribute> ...]
 
-### Description
+
 
   A route
 
@@ -15145,7 +15245,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router static <route-id> distance <distance-id> [options] [<attribute> ...]
 
-### Description
+
 
   A path
 
@@ -15173,7 +15273,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> [options] [<attribute> ...]
 
-### Description
+
 
   A via
 
@@ -15214,7 +15314,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> flag [options] onlink
 
-### Description
+
 
   Nexthop flags
 
@@ -15234,7 +15334,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router static <route-id> via <via-id> [options] [<attribute> ...]
 
-### Description
+
 
   A via
 
@@ -15266,7 +15366,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router static <route-id> via <via-id> flag [options] onlink
 
-### Description
+
 
   Nexthop flags
 
@@ -15285,7 +15385,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router pim [options] [<attribute> ...]
 
-### Description
+
 
   PIM VRF configuration.
 
@@ -15317,7 +15417,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router pim timers [options] [<attribute> ...]
 
-### Description
+
 
   Timers
 
@@ -15343,7 +15443,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router pim ecmp [options] [<attribute> ...]
 
-### Description
+
 
   Choose all available ECMP paths for a particular RPF.  If 'off', the first nexthop found will be used.  This is the default.
 
@@ -15369,7 +15469,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> [options] [<attribute> ...]
 
-### Description
+
 
   MSDP mesh-group
 
@@ -15396,7 +15496,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> member-address <mesh-member-id> [options]
 
-### Description
+
 
   A MSDP mesh member
 
@@ -15415,7 +15515,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> source-address [options] <ipv4>
 
-### Description
+
 
   MSDP mesh-group source IP address
 
@@ -15433,7 +15533,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router pim address-family [options] [<attribute> ...]
 
-### Description
+
 
   Address family specific configuration
 
@@ -15457,7 +15557,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router pim address-family ipv4-unicast [options] [<attribute> ...]
 
-### Description
+
 
   IPv4 unicast address family
 
@@ -15489,7 +15589,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover [options] [<attribute> ...]
 
-### Description
+
 
   Build shortest path tree towards source.
 
@@ -15515,7 +15615,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover prefix-list [options] <instance-name>
 
-### Description
+
 
   Prefix-list to specify multicast group range.
 
@@ -15532,7 +15632,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> [options] [<attribute> ...]
 
-### Description
+
 
   RP
 
@@ -15559,7 +15659,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range <group-range-id> [options]
 
-### Description
+
 
   A group range
 
@@ -15578,7 +15678,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> prefix-list [options] <instance-name>
 
-### Description
+
 
   Prefix-list to specify multicast group range.
 
@@ -15596,7 +15696,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf [options] [<attribute> ...]
 
-### Description
+
 
   OSPF VRF configuration.
 
@@ -15640,7 +15740,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf area <area-id> [options] [<attribute> ...]
 
-### Description
+
 
   An OSPF area
 
@@ -15673,7 +15773,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf area <area-id> filter-list [options] [<attribute> ...]
 
-### Description
+
 
   Filters networks between OSPF areas
 
@@ -15700,7 +15800,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf area <area-id> range <range-id> [options] [<attribute> ...]
 
-### Description
+
 
   Filters out components of the prefix
 
@@ -15728,7 +15828,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf area <area-id> network <network-id> [options]
 
-### Description
+
 
   Filters out components of the prefix
 
@@ -15747,7 +15847,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf area <area-id> default-lsa-cost [options] 0-16777215
 
-### Description
+
 
   Default LSA cost.  Only applies when type is non-normal.
 
@@ -15765,7 +15865,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf default-originate [options] [<attribute> ...]
 
-### Description
+
 
   Advertise a default route as external lsa
 
@@ -15797,7 +15897,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf default-originate metric-type [options] 1-2
 
-### Description
+
 
   Set OSPF External Type 1/2 metrics
 
@@ -15814,7 +15914,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf distance [options] [<attribute> ...]
 
-### Description
+
 
   Administrative distance for installation into the rib
 
@@ -15842,7 +15942,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf max-metric [options] [<attribute> ...]
 
-### Description
+
 
   Set maximum metric value in router lsa to make stub router
 
@@ -15870,7 +15970,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf log [options] [<attribute> ...]
 
-### Description
+
 
   Log configuration
 
@@ -15894,7 +15994,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf redistribute [options] [<attribute> ...]
 
-### Description
+
 
   Route redistribute
 
@@ -15924,7 +16024,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf redistribute static [options] [<attribute> ...]
 
-### Description
+
 
   Source route type.
 
@@ -15954,7 +16054,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf redistribute static metric-type [options] 1-2
 
-### Description
+
 
   Set OSPF External Type 1/2 metrics
 
@@ -15971,7 +16071,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf redistribute connected [options] [<attribute> ...]
 
-### Description
+
 
   Source route type.
 
@@ -16001,7 +16101,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf redistribute connected metric-type [options] 1-2
 
-### Description
+
 
   Set OSPF External Type 1/2 metrics
 
@@ -16018,7 +16118,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf redistribute kernel [options] [<attribute> ...]
 
-### Description
+
 
   Source route type.
 
@@ -16048,7 +16148,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf redistribute kernel metric-type [options] 1-2
 
-### Description
+
 
   Set OSPF External Type 1/2 metrics
 
@@ -16065,7 +16165,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf redistribute bgp [options] [<attribute> ...]
 
-### Description
+
 
   Source route type.
 
@@ -16095,7 +16195,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf redistribute bgp metric-type [options] 1-2
 
-### Description
+
 
   Set OSPF External Type 1/2 metrics
 
@@ -16112,7 +16212,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf timers [options] [<attribute> ...]
 
-### Description
+
 
   Timers
 
@@ -16141,7 +16241,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf timers lsa [options] [<attribute> ...]
 
-### Description
+
 
   LSA timers
 
@@ -16167,7 +16267,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf timers spf [options] [<attribute> ...]
 
-### Description
+
 
   SPF timers
 
@@ -16195,7 +16295,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> router ospf reference-bandwidth [options] 1-4294967
 
-### Description
+
 
   Used to determine link cost/metric value relative to defined reference.
 
@@ -16212,7 +16312,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> ptp [options] [<attribute> ...]
 
-### Description
+
 
   VRF PTP configuration.  Inherited by interfaces in this VRF.
 
@@ -16236,7 +16336,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set vrf <vrf-id> table [options] auto
 
-### Description
+
 
   The routing table number, between 1001-1255, used by the named VRF. If auto, the default, it will be auto generated.
 
@@ -16253,7 +16353,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set nve [options] [<attribute> ...]
 
-### Description
+
 
   Network Virtualization configuration and operational info
 
@@ -16270,7 +16370,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set nve vxlan [options] [<attribute> ...]
 
-### Description
+
 
   VxLAN
 
@@ -16301,7 +16401,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set nve vxlan mlag [options] [<attribute> ...]
 
-### Description
+
 
   VxLAN specfic MLAG configuration
 
@@ -16318,7 +16418,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set nve vxlan source [options] [<attribute> ...]
 
-### Description
+
 
   Source address
 
@@ -16335,7 +16435,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set nve vxlan flooding [options] [<attribute> ...]
 
-### Description
+
 
   Handling of BUM traffic
 
@@ -16356,7 +16456,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set nve vxlan flooding head-end-replication <hrep-id> [options]
 
-### Description
+
 
   Set of IPv4 unicast addresses or "evpn".
 
@@ -16373,7 +16473,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set nve vxlan flooding multicast-group [options] <ipv4-multicast>
 
-### Description
+
 
   BUM traffic is sent to the specified multicast group and will be received by receivers who are interested in that group. This usually requires PIM-SM to be used in the network.
 
@@ -16383,7 +16483,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set nve vxlan port [options] 1024-65535
 
-### Description
+
 
   UDP port for VXLAN frames
 
@@ -16393,7 +16493,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set nve vxlan mtu [options] 552-9216
 
-### Description
+
 
   interface mtu
 
@@ -16403,7 +16503,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> [options] [<attribute> ...]
 
-### Description
+
 
   An ACL is used for matching packets and take actions
 
@@ -16429,7 +16529,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> [options] [<attribute> ...]
 
-### Description
+
 
   ACL Matching criteria and action rule
 
@@ -16456,7 +16556,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> match [options] [<attribute> ...]
 
-### Description
+
 
   An ACL match
 
@@ -16483,7 +16583,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> match ip [options] [<attribute> ...]
 
-### Description
+
 
   An ACL IPv4/IPv6 match
 
@@ -16528,7 +16628,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> match ip source-port <ip-port-id> [options]
 
-### Description
+
 
   L4 port
 
@@ -16547,7 +16647,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> match ip dest-port <ip-port-id> [options]
 
-### Description
+
 
   L4 port
 
@@ -16566,7 +16666,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> match ip fragment [options]
 
-### Description
+
 
   State details
 
@@ -16584,7 +16684,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> match ip ecn [options] [<attribute> ...]
 
-### Description
+
 
   ECN
 
@@ -16611,7 +16711,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> match ip ecn ip-ect [options] 0-3
 
-### Description
+
 
   IP ECT
 
@@ -16629,7 +16729,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> match ip tcp [options] [<attribute> ...]
 
-### Description
+
 
   L4 port
 
@@ -16658,7 +16758,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> match ip tcp state [options] established
 
-### Description
+
 
   TCP state
 
@@ -16676,7 +16776,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> match mac [options] [<attribute> ...]
 
-### Description
+
 
   An ACL MAC match
 
@@ -16712,7 +16812,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> match mac source-mac-mask [options] <mac>
 
-### Description
+
 
   Source MAC address mask
 
@@ -16730,7 +16830,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> match mac dest-mac-mask [options] <mac>
 
-### Description
+
 
   Destination MAC address mask
 
@@ -16748,7 +16848,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> match mac vlan [options] 1-4094
 
-### Description
+
 
   VLAN ID
 
@@ -16766,7 +16866,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> action [options] [<attribute> ...]
 
-### Description
+
 
   ACL rule action
 
@@ -16804,7 +16904,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> action permit [options]
 
-### Description
+
 
   Permit packets
 
@@ -16823,7 +16923,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> action deny [options]
 
-### Description
+
 
   deny packets
 
@@ -16841,7 +16941,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> action log [options]
 
-### Description
+
 
   log packets
 
@@ -16859,7 +16959,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> action set [options] [<attribute> ...]
 
-### Description
+
 
   Set action for packets
 
@@ -16888,7 +16988,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> action set class [options] 0-7
 
-### Description
+
 
   Sets the class value for classification of the packet
 
@@ -16906,7 +17006,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> action set cos [options] 0-7
 
-### Description
+
 
   Set the CoS value
 
@@ -16925,7 +17025,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> action erspan [options] [<attribute> ...]
 
-### Description
+
 
   ERSPAN session
 
@@ -16954,7 +17054,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> action erspan ttl [options] 1-255
 
-### Description
+
 
   Time to Live
 
@@ -16972,7 +17072,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> action police [options] [<attribute> ...]
 
-### Description
+
 
   Policing of matched packets/bytes
 
@@ -17002,7 +17102,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> action police burst [options] 1-2147483647
 
-### Description
+
 
   Policing burst value
 
@@ -17020,7 +17120,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> action police rate [options] 1-2147483647
 
-### Description
+
 
   Policing rate value
 
@@ -17038,7 +17138,7 @@ Introduced in Cumulus Linux 5.0.0
 
   nv set acl <acl-id> rule <rule-id> action span [options] <interface-name>
 
-### Description
+
 
   SPAN session
 

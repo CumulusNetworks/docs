@@ -4,32 +4,9 @@ product: AIR SDK
 title: Node
 ---
 
-# Table of Contents
-
-* [air\_sdk.node](#air_sdk.node)
-  * [Node](#air_sdk.node.Node)
-  * [NodeApi](#air_sdk.node.NodeApi)
-    * [get](#air_sdk.node.NodeApi.get)
-    * [list](#air_sdk.node.NodeApi.list)
-    * [create](#air_sdk.node.NodeApi.create)
-* [air\_sdk.simulation\_node](#air_sdk.simulation_node)
-  * [SimulationNode](#air_sdk.simulation_node.SimulationNode)
-    * [create\_instructions](#air_sdk.simulation_node.SimulationNode.create_instructions)
-    * [list\_instructions](#air_sdk.simulation_node.SimulationNode.list_instructions)
-    * [delete\_instructions](#air_sdk.simulation_node.SimulationNode.delete_instructions)
-    * [control](#air_sdk.simulation_node.SimulationNode.control)
-    * [rebuild](#air_sdk.simulation_node.SimulationNode.rebuild)
-    * [reset](#air_sdk.simulation_node.SimulationNode.reset)
-  * [SimulationNodeApi](#air_sdk.simulation_node.SimulationNodeApi)
-    * [get](#air_sdk.simulation_node.SimulationNodeApi.get)
-    * [list](#air_sdk.simulation_node.SimulationNodeApi.list)
-
-Node module
-
-<a name="air_sdk.node.Node"></a>
 ## Node
 
-Manage a Node
+Manage a node
 
 ### delete
 Delete the node. Once successful, the object should no longer be used and will raise
@@ -148,8 +125,6 @@ Create a new node
 >>> air.nodes.create(name='server', topology=topology)
 <Node server 01298e0c-4ef1-43ec-9675-93160eb29d9f>
 ```
-
-SimulationNode module
 
 <a name="air_sdk.simulation_node.SimulationNode"></a>
 ## SimulationNode
@@ -273,7 +248,7 @@ Sends a control command to the `SimulationNode`.
 <a name="air_sdk.simulation_node.SimulationNode.rebuild"></a>
 ### rebuild
 
-Rebuild the `SimulationNode` back to it's initial state. **All existing data will be lost!**
+Rebuild the `SimulationNode` back to its initial state. **All existing data will be lost.**
 
 <a name="air_sdk.simulation_node.SimulationNode.reset"></a>
 ### reset

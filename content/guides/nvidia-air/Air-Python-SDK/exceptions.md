@@ -3,19 +3,8 @@ menu: main
 product: AIR SDK
 title: Exceptions
 ---
-
-# Table of Contents
-
-* [air\_sdk.exceptions](#air_sdk.exceptions)
-  * [AirError](#air_sdk.exceptions.AirError)
-  * [AirAuthorizationError](#air_sdk.exceptions.AirAuthorizationError)
-  * [AirUnexpectedResponse](#air_sdk.exceptions.AirUnexpectedResponse)
-  * [AirForbiddenError](#air_sdk.exceptions.AirForbiddenError)
-  * [AirObjectDeleted](#air_sdk.exceptions.AirObjectDeleted)
-
 Custom exceptions for the AIR SDK
 
-<a name="air_sdk.exceptions.AirError"></a>
 ## AirError
 
 Base exception class. All custom exceptions should inherit from this class.

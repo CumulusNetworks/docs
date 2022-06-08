@@ -3,25 +3,8 @@ menu: main
 product: AIR SDK
 title: AirApi
 ---
-
-# Table of Contents
-
-* [air\_sdk.air\_api](#air_sdk.air_api)
-  * [AirSession](#air_sdk.air_api.AirSession)
-    * [rebuild\_auth](#air_sdk.air_api.AirSession.rebuild_auth)
-  * [AirApi](#air_sdk.air_api.AirApi)
-    * [\_\_init\_\_](#air_sdk.air_api.AirApi.__init__)
-    * [authorize](#air_sdk.air_api.AirApi.authorize)
-    * [get\_token](#air_sdk.air_api.AirApi.get_token)
-    * [get](#air_sdk.air_api.AirApi.get)
-    * [post](#air_sdk.air_api.AirApi.post)
-    * [put](#air_sdk.air_api.AirApi.put)
-    * [patch](#air_sdk.air_api.AirApi.patch)
-    * [delete](#air_sdk.air_api.AirApi.delete)
-
 Cumulus AIR API module
 
-<a name="air_sdk.air_api.AirSession"></a>
 ## AirSession
 
 Wrapper around requests.Session

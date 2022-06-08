@@ -4,21 +4,10 @@ product: AIR SDK
 title: API Token
 ---
 
-# Table of Contents
 
-* [air\_sdk.api\_token](#air_sdk.api_token)
-  * [Token](#air_sdk.api_token.Token)
-  * [TokenApi](#air_sdk.api_token.TokenApi)
-    * [list](#air_sdk.api_token.TokenApi.list)
-    * [create](#air_sdk.api_token.TokenApi.create)
-    * [delete](#air_sdk.api_token.TokenApi.delete)
-
-SSH Key module
-
-<a name="air_sdk.api_token.Token"></a>
 ## Token
 
-Manage an API Token
+Manage an API token
 
 <a name="air_sdk.api_token.TokenApi"></a>
 ## TokenApi
@@ -73,7 +62,7 @@ Add a new api token to your account
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedResponse`](/docs/exceptions) - API did not return a 200 OK
   or valid response JSON
   
 

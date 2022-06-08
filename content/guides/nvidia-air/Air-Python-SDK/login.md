@@ -4,17 +4,6 @@ product: AIR SDK
 title: Login
 ---
 
-# Table of Contents
-
-* [air\_sdk.login](#air_sdk.login)
-  * [Login](#air_sdk.login.Login)
-  * [LoginApi](#air_sdk.login.LoginApi)
-    * [get](#air_sdk.login.LoginApi.get)
-    * [list](#air_sdk.login.LoginApi.list)
-
-Login module
-
-<a name="air_sdk.login.Login"></a>
 ## Login
 
 View login information

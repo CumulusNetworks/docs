@@ -3,23 +3,8 @@ menu: main
 product: AIR SDK
 title: Image
 ---
-
-# Table of Contents
-
-* [air\_sdk.image](#air_sdk.image)
-  * [Image](#air_sdk.image.Image)
-    * [upload](#air_sdk.image.Image.upload)
-  * [ImageApi](#air_sdk.image.ImageApi)
-    * [get](#air_sdk.image.ImageApi.get)
-    * [list](#air_sdk.image.ImageApi.list)
-    * [create](#air_sdk.image.ImageApi.create)
-
-Image module
-
-<a name="air_sdk.image.Image"></a>
 ## Image
-
-Manage an Image
+Manage an image
 
 ### delete
 Delete the image. Once successful, the object should no longer be used and will raise

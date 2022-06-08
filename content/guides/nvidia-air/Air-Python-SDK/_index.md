@@ -5,11 +5,8 @@ title: Air Python SDK
 weight: 999
 ---
 
-# cumulus_air_sdk
-
 This project provides a Python SDK for interacting with the NVIDIA Air API (https://air.nvidia.com/api/).
 
-[Click here for the full documentation](https://cumulus-consulting.gitlab.io/air/cumulus_air_sdk/docs/)
 
 ## Prerequisite
 
@@ -33,7 +30,7 @@ python3.7 -m virtualenv venv37
 
 ## Installation
 
-To install the SDK, use pip. Either command will work below based on context.
+To install the SDK, use pip. Choose the command that fits your context.
 
 If using the modernized python3 method:
 

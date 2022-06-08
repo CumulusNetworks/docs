@@ -4,21 +4,9 @@ product: AIR SDK
 title: Permission
 ---
 
-# Table of Contents
-
-* [air\_sdk.permission](#air_sdk.permission)
-  * [Permission](#air_sdk.permission.Permission)
-  * [PermissionApi](#air_sdk.permission.PermissionApi)
-    * [create](#air_sdk.permission.PermissionApi.create)
-    * [get](#air_sdk.permission.PermissionApi.get)
-    * [list](#air_sdk.permission.PermissionApi.list)
-
-Permission module
-
-<a name="air_sdk.permission.Permission"></a>
 ## Permission
 
-Manage a Permission
+Manage a permission
 
 ### delete
 Delete the permission. Once successful, the object should no longer be used and will raise

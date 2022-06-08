@@ -3,17 +3,6 @@ menu: main
 product: AIR SDK
 title: Capacity
 ---
-
-# Table of Contents
-
-* [air\_sdk.capacity](#air_sdk.capacity)
-  * [Capacity](#air_sdk.capacity.Capacity)
-  * [CapacityApi](#air_sdk.capacity.CapacityApi)
-    * [get](#air_sdk.capacity.CapacityApi.get)
-
-Capacity module
-
-<a name="air_sdk.capacity.Capacity"></a>
 ## Capacity
 
 View platform capacity

@@ -4,20 +4,9 @@ product: AIR SDK
 title: SSH Key
 ---
 
-# Table of Contents
-
-* [air\_sdk.ssh\_key](#air_sdk.ssh_key)
-  * [SSHKey](#air_sdk.ssh_key.SSHKey)
-  * [SSHKeyApi](#air_sdk.ssh_key.SSHKeyApi)
-    * [list](#air_sdk.ssh_key.SSHKeyApi.list)
-    * [create](#air_sdk.ssh_key.SSHKeyApi.create)
-
-SSH Key module
-
-<a name="air_sdk.ssh_key.SSHKey"></a>
 ## SSHKey
 
-Manage a SSH Key
+Manage an SSH key
 
 ### delete
 Delete the key. Once successful, the object should no longer be used and will raise

@@ -4,31 +4,9 @@ product: AIR SDK
 title: Simulation
 ---
 
-# Table of Contents
-
-* [air\_sdk.simulation](#air_sdk.simulation)
-  * [Simulation](#air_sdk.simulation.Simulation)
-    * [create\_service](#air_sdk.simulation.Simulation.create_service)
-    * [add\_permission](#air_sdk.simulation.Simulation.add_permission)
-    * [control](#air_sdk.simulation.Simulation.control)
-    * [load](#air_sdk.simulation.Simulation.load)
-    * [start](#air_sdk.simulation.Simulation.start)
-    * [stop](#air_sdk.simulation.Simulation.stop)
-    * [store](#air_sdk.simulation.Simulation.store)
-    * [delete](#air_sdk.simulation.Simulation.delete)
-  * [SimulationApi](#air_sdk.simulation.SimulationApi)
-    * [duplicate](#air_sdk.simulation.SimulationApi.duplicate)
-    * [get\_citc\_simulation](#air_sdk.simulation.SimulationApi.get_citc_simulation)
-    * [get](#air_sdk.simulation.SimulationApi.get)
-    * [list](#air_sdk.simulation.SimulationApi.list)
-    * [create](#air_sdk.simulation.SimulationApi.create)
-
-Simulation module
-
-<a name="air_sdk.simulation.Simulation"></a>
 ## Simulation
 
-Manage a Simulation
+Manage a simulation
 
 ### json
 Returns a JSON string representation of the simulation

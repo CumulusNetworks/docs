@@ -4,21 +4,10 @@ product: AIR SDK
 title: Link
 ---
 
-# Table of Contents
 
-* [air\_sdk.link](#air_sdk.link)
-  * [Link](#air_sdk.link.Link)
-  * [LinkApi](#air_sdk.link.LinkApi)
-    * [get](#air_sdk.link.LinkApi.get)
-    * [list](#air_sdk.link.LinkApi.list)
-    * [create](#air_sdk.link.LinkApi.create)
-
-Link module
-
-<a name="air_sdk.link.Link"></a>
 ## Link
 
-Manage a Link
+Manage a link
 
 ### delete
 Delete the link. Once successful, the object should no longer be used and will raise

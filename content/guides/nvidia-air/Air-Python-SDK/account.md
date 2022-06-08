@@ -3,21 +3,8 @@ menu: main
 product: AIR SDK
 title: Account
 ---
-
-# Table of Contents
-
-* [air\_sdk.account](#air_sdk.account)
-  * [Account](#air_sdk.account.Account)
-  * [AccountApi](#air_sdk.account.AccountApi)
-    * [get](#air_sdk.account.AccountApi.get)
-    * [list](#air_sdk.account.AccountApi.list)
-
-Account module
-
-<a name="air_sdk.account.Account"></a>
 ## Account
-
-Manage an Account
+Manage an account
 ### json
 Returns a JSON string representation of the account
 

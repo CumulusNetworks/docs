@@ -4,21 +4,9 @@ product: AIR SDK
 title: Organization
 ---
 
-# Table of Contents
-
-* [air\_sdk.organization](#air_sdk.organization)
-  * [Organization](#air_sdk.organization.Organization)
-  * [OrganizationApi](#air_sdk.organization.OrganizationApi)
-    * [get](#air_sdk.organization.OrganizationApi.get)
-    * [list](#air_sdk.organization.OrganizationApi.list)
-    * [create](#air_sdk.organization.OrganizationApi.create)
-
-Organization module
-
-<a name="air_sdk.organization.Organization"></a>
 ## Organization
 
-Manage an Organization
+Manage an organization
 
 ### delete
 Delete the organization. Once successful, the object should no longer be used and will raise

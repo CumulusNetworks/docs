@@ -4,21 +4,9 @@ product: AIR SDK
 title: Service
 ---
 
-# Table of Contents
-
-* [air\_sdk.service](#air_sdk.service)
-  * [Service](#air_sdk.service.Service)
-  * [ServiceApi](#air_sdk.service.ServiceApi)
-    * [get](#air_sdk.service.ServiceApi.get)
-    * [list](#air_sdk.service.ServiceApi.list)
-    * [create](#air_sdk.service.ServiceApi.create)
-
-Service module
-
-<a name="air_sdk.service.Service"></a>
 ## Service
 
-Manage a Service
+Manage a service
 
 ### delete
 Delete the service. Once successful, the object should no longer be used and will raise

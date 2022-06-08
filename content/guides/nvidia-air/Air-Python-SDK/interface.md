@@ -4,25 +4,10 @@ product: AIR SDK
 title: Interface
 ---
 
-# Table of Contents
-
-* [air\_sdk.interface](#air_sdk.interface)
-  * [Interface](#air_sdk.interface.Interface)
-  * [InterfaceApi](#air_sdk.interface.InterfaceApi)
-    * [get](#air_sdk.interface.InterfaceApi.get)
-    * [list](#air_sdk.interface.InterfaceApi.list)
-* [air\_sdk.simulation\_interface](#air_sdk.simulation_interface)
-  * [SimulationInterface](#air_sdk.simulation_interface.SimulationInterface)
-  * [SimulationInterfaceApi](#air_sdk.simulation_interface.SimulationInterfaceApi)
-    * [get](#air_sdk.simulation_interface.SimulationInterfaceApi.get)
-    * [list](#air_sdk.simulation_interface.SimulationInterfaceApi.list)
-
-Interface module
-
 <a name="air_sdk.interface.Interface"></a>
 ## Interface
 
-View an Interface
+View an interface
 
 ### json
 Returns a JSON string representation of the interface
@@ -99,7 +84,7 @@ SimulationInterface module
 <a name="air_sdk.simulation_interface.SimulationInterface"></a>
 ## SimulationInterface
 
-Manage a SimulationInterface
+Manage a simulation interface
 
 ### json
 Returns a JSON string representation of the simulation interface

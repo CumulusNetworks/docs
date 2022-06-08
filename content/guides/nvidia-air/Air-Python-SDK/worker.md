@@ -4,22 +4,9 @@ product: AIR SDK
 title: Worker
 ---
 
-# Table of Contents
-
-* [air\_sdk.worker](#air_sdk.worker)
-  * [Worker](#air_sdk.worker.Worker)
-    * [set\_available](#air_sdk.worker.Worker.set_available)
-  * [WorkerApi](#air_sdk.worker.WorkerApi)
-    * [get](#air_sdk.worker.WorkerApi.get)
-    * [list](#air_sdk.worker.WorkerApi.list)
-    * [create](#air_sdk.worker.WorkerApi.create)
-
-Worker module
-
-<a name="air_sdk.worker.Worker"></a>
 ## Worker
 
-Manage a Worker
+Manage a worker
 
 ### json
 Returns a JSON string representation of the worker

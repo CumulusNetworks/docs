@@ -4,22 +4,9 @@ product: AIR SDK
 title: Topology
 ---
 
-# Table of Contents
-
-* [air\_sdk.topology](#air_sdk.topology)
-  * [Topology](#air_sdk.topology.Topology)
-    * [add\_permission](#air_sdk.topology.Topology.add_permission)
-  * [TopologyApi](#air_sdk.topology.TopologyApi)
-    * [get](#air_sdk.topology.TopologyApi.get)
-    * [list](#air_sdk.topology.TopologyApi.list)
-    * [create](#air_sdk.topology.TopologyApi.create)
-
-Topology module
-
-<a name="air_sdk.topology.Topology"></a>
 ## Topology
 
-Manage a Topology
+Manage a topology
 
 ### delete
 Delete the topology. Once successful, the object should no longer be used and will raise

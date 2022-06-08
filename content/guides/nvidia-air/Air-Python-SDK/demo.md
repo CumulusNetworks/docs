@@ -3,21 +3,9 @@ menu: main
 product: AIR SDK
 title: Demo
 ---
-
-# Table of Contents
-
-* [air\_sdk.demo](#air_sdk.demo)
-  * [Demo](#air_sdk.demo.Demo)
-  * [DemoApi](#air_sdk.demo.DemoApi)
-    * [get](#air_sdk.demo.DemoApi.get)
-    * [list](#air_sdk.demo.DemoApi.list)
-
-Demo module
-
-<a name="air_sdk.demo.Demo"></a>
 ## Demo
+View demos
 
-View Demos
 ### json
 Returns a JSON string representation of the demo
 

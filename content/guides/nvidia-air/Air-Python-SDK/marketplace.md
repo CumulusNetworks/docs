@@ -4,20 +4,9 @@ product: AIR SDK
 title: Marketplace
 ---
 
-# Table of Contents
-
-* [air\_sdk.marketplace](#air_sdk.marketplace)
-  * [Marketplace](#air_sdk.marketplace.Marketplace)
-  * [MarketplaceApi](#air_sdk.marketplace.MarketplaceApi)
-    * [get](#air_sdk.marketplace.MarketplaceApi.get)
-    * [list](#air_sdk.marketplace.MarketplaceApi.list)
-
-Marketplace module
-
-<a name="air_sdk.marketplace.Marketplace"></a>
 ## Marketplace
 
-View Marketplace Demos
+View marketplace demos
 ### json
 Returns a JSON string representation of the marketplace demo
 

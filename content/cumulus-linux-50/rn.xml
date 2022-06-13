@@ -205,12 +205,6 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>3021887</td>
-<td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3021877</td>
 <td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
@@ -809,12 +803,6 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 <td>After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the {{protodown}} flag ON.</td>
 <td>4.4.3-5.0.1</td>
 <td>5.1.0</td>
-</tr>
-<tr>
-<td>3021887</td>
-<td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3021877</td>

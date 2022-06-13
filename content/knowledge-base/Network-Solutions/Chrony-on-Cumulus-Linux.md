@@ -5,6 +5,7 @@ weight: 92
 toc: 3
 ---
 On ARM-based platforms running Cumulus Linux 4.3.0, you can use Chrony as the time provider.
+The following procedure has been validated using Netq 4.2.0 (4.2.0-cl4u38~1652820696.25f4ac06) and chrony_3.4-4+deb10u2_armel.deb 
 
 To use Chrony, you need to:
 - Edit the `/etc/apt/sources.list` file to allow upstream repositories.

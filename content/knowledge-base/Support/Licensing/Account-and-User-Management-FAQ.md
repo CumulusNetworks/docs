@@ -8,6 +8,7 @@ toc: 4
 ## One of my colleagues received our order confirmation and I need to access the license file. How can I get it?
 <!-- vale on -->
 Cumulus Linux 4.3 and earlier uses a generic license. To retrieve the license:
+
 1. Log in to the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.
 2. From the **Downloads** tab, click **Switches and Gateways**.
 3. Under **Switch Software**, click **All downloads** next to **Cumulus Linux for Mellanox Switches**.

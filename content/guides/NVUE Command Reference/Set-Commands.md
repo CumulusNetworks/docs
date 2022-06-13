@@ -13,7 +13,7 @@ Configures global routing settings for BGP, OSPF, PIM, IGMP, VRR, VRRP, router p
 
 **Usage**
 
-  `nv set router [options] [<attribute> ...]`
+`nv set router [options] [<attribute> ...]`
 
 **Default Setting**
 
@@ -621,6 +621,7 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 action permit
 ```
+
 ## nv set router policy community-list \<list-id\> rule \<rule-id\> community \<community-id\>
 
 Sets the name of the community you want to match.
@@ -3911,7 +3912,7 @@ Configures the priority level of the virtual router within the virtual router gr
 
 **Usage**
 
-`nv set router vrrp priority [options] 1-254`
+`nv set router vrrp priority [options] 1-2`54`
 
 **Default Setting**
 
@@ -4568,7 +4569,7 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-nv set bridge domain br_default vlan 10 vni 10
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10`
 ```
 
 ## nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding
@@ -4605,548 +4606,439 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id>
 
-**Usage**
-
-  nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id> [options]
-
-
-
-  Set of IPv4 unicast addresses or "evpn".
+Set of IPv4 unicast addresses or "evpn".
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
+|`<domain-id>` | The bridge domain. |
+| `<vid>`   |  The VLAN identifier.
+| `<vni-id>` | The VXLAN ID. |
+| <hrep-id>  |   IPv4 unicast addresses or "evpn" |
 
-  <domain-id>  Domain
-  <vid>        VLAN ID
-  <vni-id>     VxLAN ID
-  <hrep-id>    IPv4 unicast addresses or "evpn"
+**Usage**
+
+`nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id> [options]`
 
 ## nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding multicast-group <ipv4-multicast>
 
+BUM traffic is sent to the specified multicast group and will be received by receivers who are interested in that group. This usually requires PIM-SM to be used in the network.
+
 **Usage**
 
-  nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding multicast-group [options] <ipv4-multicast>
-
-
-
-  BUM traffic is sent to the specified multicast group and will be received by receivers who are interested in that group. This usually requires PIM-SM to be used in the network.
+`nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding multicast-group [options] <ipv4-multicast>`
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <domain-id>  Domain
-  <vid>        VLAN ID
-  <vni-id>     VxLAN ID
+|`<domain-id>` |  Domain |
+|`<vid>`  | VLAN ID |
+|`<vni-id>` |   VxLAN ID |
 
 ## nv set bridge domain <domain-id> vlan <vid> ptp
 
+VLAN PTP configuration.  Inherited by interfaces in this VLAN.
+
 **Usage**
 
-  nv set bridge domain <domain-id> vlan <vid> ptp [options] [<attribute> ...]
-
-
-
-  VLAN PTP configuration.  Inherited by interfaces in this VLAN.
+`nv set bridge domain <domain-id> vlan <vid> ptp [options] [<attribute> ...]`
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <domain-id>  Domain
-  <vid>        VLAN ID
+|`<domain-id>` |  Domain |
+|`<vid>`  | VLAN ID |
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-
-  enable       Turn the feature 'on' or 'off'. The default is 'off'.
+| `enable`   |   Turn the feature 'on' or 'off'. The default is 'off'. |
 
 ## nv set bridge domain <domain-id> vlan <vid> multicast
 
+Configure multicast on the vlan
+
 **Usage**
 
-  nv set bridge domain <domain-id> vlan <vid> multicast [options] [<attribute> ...]
-
-
-
-  Configure multicast on the vlan
+`nv set bridge domain <domain-id> vlan <vid> multicast [options] [<attribute> ...]`
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <domain-id>  Domain
-  <vid>        VLAN ID
+|`<domain-id>` |  Domain |
+|`<vid>`  | VLAN ID |
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-
-  snooping     IGMP/MLD snooping configuration
+| `snooping`  |   IGMP/MLD snooping configuration |
 
 ## nv set bridge domain <domain-id> vlan <vid> multicast snooping
 
+IGMP/MLD snooping configuration
+
 **Usage**
 
-  nv set bridge domain <domain-id> vlan <vid> multicast snooping [options] [<attribute> ...]
-
-
-
-  IGMP/MLD snooping configuration
+`nv set bridge domain <domain-id> vlan <vid> multicast snooping [options] [<attribute> ...]`
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <domain-id>  Domain
-  <vid>        VLAN ID
+|`<domain-id>` |  Domain |
+|`<vid>`  | VLAN ID |
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-
-  querier      IGMP/MLD querier configuration
+|`querier` |  IGMP/MLD querier configuration |
 
 ## nv set bridge domain <domain-id> vlan <vid> multicast snooping querier
 
+IGMP/MLD querier configuration
+
 **Usage**
 
-  nv set bridge domain <domain-id> vlan <vid> multicast snooping querier [options] [<attribute> ...]
-
-
-
-  IGMP/MLD querier configuration
+`nv set bridge domain <domain-id> vlan <vid> multicast snooping querier [options] [<attribute> ...]`
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <domain-id>  Domain
-  <vid>        VLAN ID
+|`<domain-id>` |  Domain |
+|`<vid>`  | VLAN ID |
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 
-  source-ip    Source IP to use when sending IGMP/MLD queries.
+|`source-ip  | Source IP to use when sending IGMP/MLD queries. |
 
 ## nv set bridge domain <domain-id> vlan <vid> multicast snooping querier source-ip <ipv4>
 
+Source IP to use when sending IGMP/MLD queries.
+
 **Usage**
 
-  nv set bridge domain <domain-id> vlan <vid> multicast snooping querier source-ip [options] <ipv4>
-
-
-
-  Source IP to use when sending IGMP/MLD queries.
+`nv set bridge domain <domain-id> vlan <vid> multicast snooping querier source-ip [options] <ipv4>`
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <domain-id>  Domain
-  <vid>        VLAN ID
+|`<domain-id>` |  Domain |
+|`<vid>`  | VLAN ID |
 
 ## nv set bridge domain <domain-id> type vlan-aware
 
+Type of bridge domain.
+
 **Usage**
 
-  nv set bridge domain <domain-id> type [options] vlan-aware
-
-
-
-  Type of bridge domain.
+`nv set bridge domain <domain-id> type [options] vlan-aware`
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <domain-id>  Domain
+|`<domain-id>` |  Domain |
 
 ## nv set bridge domain <domain-id> encap 802.1Q
 
+Interfaces added to this domain will, by default, use this encapsulation.
+
 **Usage**
 
-  nv set bridge domain <domain-id> encap [options] 802.1Q
-
-
-
-  Interfaces added to this domain will, by default, use this encapsulation.
+`nv set bridge domain <domain-id> encap [options] 802.1Q`
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <domain-id>  Domain
+|`<domain-id>` |  Domain |
 
 ## nv set bridge domain <domain-id> vlan-vni-offset 0-16773120
 
+A VNI offset while (automatically) mapping VLANs to VNIs
+
+
 **Usage**
 
-  nv set bridge domain <domain-id> vlan-vni-offset [options] 0-16773120
-
-
-
-  A VNI offset while (automatically) mapping VLANs to VNIs
+`nv set bridge domain <domain-id> vlan-vni-offset [options] 0-16773120`
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <domain-id>  Domain
+|`<domain-id>` |  Domain |
 
 ## nv set mlag
 
+Global Multi-chassis Link Aggregation properties
+
 **Usage**
 
-  nv set mlag [options] [<attribute> ...]
-
-
-
-  Global Multi-chassis Link Aggregation properties
+`nv set mlag [options] [<attribute> ...]`
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-
-  lacp-conflict  Configure the mlag lacp-conflict parameters
-
-  backup         Set of MLAG backups
-
-  enable         Turn the feature 'on' or 'off'. The default is 'off'.
-
-  debug          Enable MLAG debugging
-
-  init-delay     The delay, in seconds, before bonds are brought up.
-
-  mac-address    Override anycast-mac and anycast-id
-
-  peer-ip        Peer Ip Address
-
-  priority       Mlag Priority
+| `lacp-conflict` |  Configure the mlag lacp-conflict parameters |
+| `backup`  | Set of MLAG backups |
+|`enable` | Turn the feature 'on' or 'off'. The default is 'off'.|
+|`debug` | Enable MLAG debugging |
+|`init-delay` | The delay, in seconds, before bonds are brought up.|
+|`mac-address` | Override anycast-mac and anycast-id|
+|`peer-ip`  | Peer Ip Address |
+|`priority` | Mlag Priority |
 
 ## nv set mlag lacp-conflict
 
+Configure the mlag lacp-conflict parameters
+
 **Usage**
 
-  nv set mlag lacp-conflict [options]
-
-
-
-  Configure the mlag lacp-conflict parameters
+`nv set mlag lacp-conflict [options]`
 
 ## nv set mlag backup <backup-ip>
 
+alternative ip address or interface for peer to reach us
+
 **Usage**
 
-  nv set mlag backup <backup-ip> [options] [<attribute> ...]
-
-
-
-  alternative ip address or interface for peer to reach us
+`nv set mlag backup <backup-ip> [options] [<attribute> ...]`
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <backup-ip>  Backup IP of MLAG peer
+| `<backup-ip>` |  `Backup IP of MLAG peer` |
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-
-  vrf          The backup IP's VRF.
+| `vrf` |  The backup IP's VRF. |
 
 ## nv set mlag backup <backup-ip> vrf <vrf-name>
 
+The backup IP's VRF.
+
 **Usage**
 
-  nv set mlag backup <backup-ip> vrf [options] <vrf-name>
-
-
-
-  The backup IP's VRF.
+`nv set mlag backup <backup-ip> vrf [options] <vrf-name>`
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <backup-ip>  Backup IP of MLAG peer
+| `<backup-ip>` |  Backup IP of MLAG peer |
 
 ## nv set mlag priority 0-65535
 
+Mlag Priority
+
 **Usage**
 
-  nv set mlag priority [options] 0-65535
-
-
-
-  Mlag Priority
+`nv set mlag priority [options] 0-65535`
 
 ## nv set mlag init-delay 0-900
 
+The delay, in seconds, before bonds are brought up.
+
 **Usage**
 
-  nv set mlag init-delay [options] 0-900
-
-
-
-  The delay, in seconds, before bonds are brought up.
+`nv set mlag init-delay [options] 0-900`
 
 ## nv set evpn
 
+Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
+
 **Usage**
 
-  nv set evpn [options] [<attribute> ...]
-
-
-
-  Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
+`nv set evpn [options] [<attribute> ...]`
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-
-  route-advertise  Route advertising
-
-  dad              Advertise
-
-  evi              EVI
-
-  multihoming      Multihoming global configuration parameters
-
-  enable           Turn the feature 'on' or 'off'. The default is 'off'.
+|`route-advertise` | Route advertising |
+|`dad`  | Advertise |
+|`evi` | EVI |
+|`multihoming`  | Multihoming global configuration parameters |
+|`enable` |  Turn the feature 'on' or 'off'. The default is 'off'. |
 
 ## nv set evpn route-advertise
 
+Route dvertising
+
 **Usage**
 
-  nv set evpn route-advertise [options] [<attribute> ...]
-
-
-
-  Route dvertising
+`nv set evpn route-advertise [options] [<attribute> ...]`
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-
-  default-gateway  This configuration should be turned 'on' only in a centralized-routing deployment and only on the centralized GW router(s). If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes with the gateway extended community. The purpose is for remote L2-only VTEPs to do  ARP suppression and for hosts to learn of the gateway's IP to MAC binding.
-
-  nexthop-setting  Specifies the next hop IP and MAC (Router MAC) to use in the advertisement of type-5 routes and “self” type-2 routes (“self” = SVI IP/MAC). Relevant only in an MLAG configuration.
-
-  svi-ip           If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes. This configuration should not be enabled if SVI IPs are reused in the network.
+| `default-gateway` |  This configuration should be turned 'on' only in a centralized-routing deployment and only on the centralized GW router(s). If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes with the gateway extended community. The purpose is for remote L2-only VTEPs to do  ARP suppression and for hosts to learn of the gateway's IP to MAC binding. |
+| `nexthop-setting` |  Specifies the next hop IP and MAC (Router MAC) to use in the advertisement of type-5 routes and “self” type-2 routes (“self” = SVI IP/MAC). Relevant only in an MLAG configuration.|
+| `svi-ip` | If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes. This configuration should not be enabled if SVI IPs are reused in the network. \
 
 ## nv set evpn dad
 
+Duplicate address detection
+
 **Usage**
 
-  nv set evpn dad [options] [<attribute> ...]
-
-
-
-  Duplicate address detection
+`nv set evpn dad [options] [<attribute> ...]`
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-
-  duplicate-action    Action to take when a MAC is flagged as a possible duplicate. If 'warning-only', generates a log message. If 'freeze', further move events for the MAC will not be acted upon.
-
-  enable              Turn the feature 'on' or 'off'. The default is 'off'.
-
-  mac-move-threshold  Number of MAC moves within a time window before the MAC is flagged as a possible duplicate.
-
-  move-window         Time window during which the move threshold applies
+|`duplicate-action` |    Action to take when a MAC is flagged as a possible duplicate. If 'warning-only', generates a log message. If 'freeze', further move events for the MAC will not be acted |`upon.|
+|`enable`|             Turn the feature 'on' or 'off'. The default is 'off'. |
+|`mac-move-threshold` |  Number of MAC moves within a time window before the MAC is flagged as a possible duplicate. |
+move-window` |         Time window during which the move threshold applies |
 
 ## nv set evpn dad duplicate-action
 
+Handling of BUM traffic
+
 **Usage**
 
-  nv set evpn dad duplicate-action [options] [<attribute> ...]
-
-
-
-  Handling of BUM traffic
+`nv set evpn dad duplicate-action [options] [<attribute> ...]`
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-
-  freeze      Further move events for the MAC will not be acted upon.
+| `freeze` |   Further move events for the MAC will not be acted upon. |
 
 ## nv set evpn dad duplicate-action freeze
 
+Advertise
+
 **Usage**
 
-  nv set evpn dad duplicate-action freeze [options] [<attribute> ...]
-
-
-
-  Advertise
+`nv set evpn dad duplicate-action freeze [options] [<attribute> ...]`
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-
-  duration    Freeze the MAC for the specified duration or, if 'permanent'
-
-              until the operator intervenes.
+| `duration` |    Freeze the MAC for the specified duration or, if 'permanent' until the operator intervenes. |
 
 ## nv set evpn dad mac-move-threshold 2-1000
 
+Number of MAC moves within a time window before the MAC is flagged as a possible duplicate.
+
 **Usage**
 
-  nv set evpn dad mac-move-threshold [options] 2-1000
-
-
-
-  Number of MAC moves within a time window before the MAC is flagged as a possible duplicate.
+`nv set evpn dad mac-move-threshold [options] 2-1000`
 
 ## nv set evpn dad move-window 2-1800
 
+Time window during which the move threshold applies
+
 **Usage**
 
-  nv set evpn dad move-window [options] 2-1800
-
-
-
-  Time window during which the move threshold applies
+`nv set evpn dad move-window [options] 2-1800`
 
 ## nv set evpn evi <evi-id>
 
 **Usage**
 
-  nv set evpn evi <evi-id> [options] [<attribute> ...]
+`nv set evpn evi <evi-id> [options] [<attribute> ...]`
 
-
-
-  Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
+Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <evi-id>         VRF
+| `<evi-id>` |  VRF |
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-
-  route-advertise  Route advertise
-
-  route-target     Route targets
-
-  rd               BGP Route Distinguisher to use for EVPN type-5 routes
-
-                   originated for this VRF.
+|`route-advertise` |  Route advertise |
+| `route-target` |    Route targets |
+| `rd` | BGP Route Distinguisher to use for EVPN type-5 routes originated for this VRF. |
 
 ## nv set evpn evi <evi-id> route-advertise
 
+Route advertise
+
 **Usage**
 
-  nv set evpn evi <evi-id> route-advertise [options] [<attribute> ...]
-
-
-
-  Route advertise
+`nv set evpn evi <evi-id> route-advertise [options] [<attribute> ...]`
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <evi-id>         VRF
+| `<evi-id>` | VRF |
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-
-
-  default-gateway  If 'auto', inherit from global config. This is the default. This configuration should be turned 'on' only in a centralized-routing deployment and only on the centralized GW router(s). If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes with the gateway extended community. The purpose is for remote L2-only VTEPs to do ARP suppression and for hosts to learn of the gateway's IP to MAC binding.
-
-  svi-ip           If 'auto', inherit from global config. This is the default. If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes. This configuration should not be enabled if SVI IPs are reused in the network.
+|`default-gateway` |  If 'auto', inherit from global config. This is the default. This configuration should be turned 'on' only in a centralized-routing deployment and only on the centralized GW router(s). If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes with the gateway extended community. The purpose is for remote L2-only VTEPs to do ARP suppression and for hosts to learn of the gateway's IP to MAC binding. |
+|`svi-ip` \           If 'auto', inherit from global config. This is the default. If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes. This configuration should not be enabled if SVI IPs are reused in the network. |
 
 ## nv set evpn evi <evi-id> route-target
 
+EVPN control plane config and info for VRF
+
 **Usage**
 
-  nv set evpn evi <evi-id> route-target [options] [<attribute> ...]
-
-
-
-  EVPN control plane config and info for VRF
+`nv set evpn evi <evi-id> route-target [options] [<attribute> ...]`
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <evi-id>    VRF
+| `<evi-id>` | VRF |
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-
-
-  export      Route targets to export
-
-  import      Route targets to import
-
-  both        Route targets to import and export
+|`export` | Route targets to export |
+|`import` |  Route targets to import |
+|`both` | Route targets to import and export |
 
 ## nv set evpn evi <evi-id> route-target export <rt-id>
 
+A route target identifier
+
 **Usage**
 
-  nv set evpn evi <evi-id> route-target export <rt-id> [options]
-
-
-
-  A route target identifier
+`nv set evpn evi <evi-id> route-target export <rt-id> [options]`
 
 **Identifiers**
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-
-  <evi-id>    VRF
-  <rt-id>     Route target ID
+| `<evi-id>` | VRF |
+| `<rt-id>` |     Route target ID |
 
 ## nv set evpn evi <evi-id> route-target import <rt-id>
 
 **Usage**
 
-  nv set evpn evi <evi-id> route-target import <rt-id> [options]
+`nv set evpn evi <evi-id> route-target import <rt-id> [options]`
 
 
 
@@ -5164,7 +5056,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set evpn evi <evi-id> route-target both <rt-id> [options]
+`nv set evpn evi <evi-id> route-target both <rt-id> [options]`
 
 
 
@@ -5182,7 +5074,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set evpn multihoming [options] [<attribute> ...]
+`nv set evpn multihoming [options] [<attribute> ...]`
 
 
 
@@ -5209,7 +5101,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set evpn multihoming ead-evi-route [options] [<attribute> ...]
+`nv set evpn multihoming ead-evi-route [options] [<attribute> ...]`
 
 
 
@@ -5228,7 +5120,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set evpn multihoming segment [options] [<attribute> ...]
+`nv set evpn multihoming segment [options] [<attribute> ...]`
 
 
 
@@ -5248,7 +5140,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set evpn multihoming segment mac-address [options] <mac>
+`nv set evpn multihoming segment mac-address [options] <mac>`
 
 
 
@@ -5258,7 +5150,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set evpn multihoming segment df-preference [options] 1-65535
+`nv set evpn multihoming segment df-preference [options] 1-65535`
 
 
 
@@ -5268,7 +5160,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set evpn multihoming mac-holdtime [options] 0-86400
+`nv set evpn multihoming mac-holdtime [options] 0-86400`
 
 
 
@@ -5278,7 +5170,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set evpn multihoming neighbor-holdtime [options] 0-86400
+`nv set evpn multihoming neighbor-holdtime [options] 0-86400`
 
 
 
@@ -5288,7 +5180,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set evpn multihoming startup-delay [options] 0-3600
+`nv set evpn multihoming startup-delay [options] 0-3600`
 
 
 
@@ -5298,7 +5190,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set qos [options] [<attribute> ...]
+`nv set qos [options] [<attribute> ...]`
 
 
 
@@ -5315,7 +5207,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set qos roce [options] [<attribute> ...]
+`nv set qos roce [options] [<attribute> ...]`
 
 
 
@@ -5336,7 +5228,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set qos roce cable-length [options] 1-100000
+`nv set qos roce cable-length [options] 1-100000`
 
 
 
@@ -5346,7 +5238,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> [options] [<attribute> ...]
+`nv set interface <interface-id> [options] [<attribute> ...]`
 
 
 
@@ -5397,7 +5289,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router [options] [<attribute> ...]
+`nv set interface <interface-id> router [options] [<attribute> ...]`
 
 
 
@@ -5427,7 +5319,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router pbr [options] [<attribute> ...]
+`nv set interface <interface-id> router pbr [options] [<attribute> ...]`
 
 
 
@@ -5451,7 +5343,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router pbr map <pbr-map-id> [options]
+`nv set interface <interface-id> router pbr map <pbr-map-id> [options]`
 
 
 
@@ -5469,7 +5361,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router ospf [options] [<attribute> ...]
+`nv set interface <interface-id> router ospf [options] [<attribute> ...]`
 
 
 
@@ -5514,7 +5406,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router ospf timers [options] [<attribute> ...]
+`nv set interface <interface-id> router ospf timers [options] [<attribute> ...]`
 
 
 
@@ -5547,7 +5439,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router ospf timers hello-multiplier [options] 1-10
+`nv set interface <interface-id> router ospf timers hello-multiplier [options] 1-10`
 
 
 
@@ -5564,7 +5456,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router ospf timers hello-interval [options] 1-65535
+`nv set interface <interface-id> router ospf timers hello-interval [options] 1-65535`
 
 
 
@@ -5581,7 +5473,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router ospf timers retransmit-interval [options] 1-65535
+`nv set interface <interface-id> router ospf timers retransmit-interval [options] 1-65535`
 
 
 
@@ -5598,7 +5490,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router ospf timers transmit-delay [options] 1-65535
+`nv set interface <interface-id> router ospf timers transmit-delay [options] 1-65535`
 
 
 
@@ -5615,7 +5507,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router ospf authentication [options] [<attribute> ...]
+`nv set interface <interface-id> router ospf authentication [options] [<attribute> ...]`
 
 
 
@@ -5643,7 +5535,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router ospf authentication message-digest-key [options] 1-255
+`nv set interface <interface-id> router ospf authentication message-digest-key [options] 1-255`
 
 
 
@@ -5660,7 +5552,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router ospf authentication md5-key [options] <value>
+`nv set interface <interface-id> router ospf authentication md5-key [options] <value>`
 
 
 
@@ -5677,7 +5569,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router ospf bfd [options] [<attribute> ...]
+`nv set interface <interface-id> router ospf bfd [options] [<attribute> ...]`
 
 
 
@@ -5707,7 +5599,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router ospf bfd detect-multiplier [options] 2-255
+`nv set interface <interface-id> router ospf bfd detect-multiplier [options] 2-255`
 
 
 
@@ -5724,7 +5616,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router ospf bfd min-receive-interval [options] 50-60000
+`nv set interface <interface-id> router ospf bfd min-receive-interval [options] 50-60000`
 
 
 
@@ -5741,7 +5633,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router ospf bfd min-transmit-interval [options] 50-60000
+`nv set interface <interface-id> router ospf bfd min-transmit-interval [options] 50-60000`
 
 
 
@@ -5758,7 +5650,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router ospf priority [options] 0-255
+`nv set interface <interface-id> router ospf priority [options] 0-255`
 
 
 
@@ -5775,7 +5667,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router pim [options] [<attribute> ...]
+`nv set interface <interface-id> router pim [options] [<attribute> ...]`
 
 
 
@@ -5811,7 +5703,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router pim timers [options] [<attribute> ...]
+`nv set interface <interface-id> router pim timers [options] [<attribute> ...]`
 
 
 
@@ -5836,7 +5728,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router pim bfd [options] [<attribute> ...]
+`nv set interface <interface-id> router pim bfd [options] [<attribute> ...]`
 
 
 
@@ -5866,7 +5758,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router pim bfd detect-multiplier [options] 2-255
+`nv set interface <interface-id> router pim bfd detect-multiplier [options] 2-255`
 
 
 
@@ -5883,7 +5775,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router pim bfd min-receive-interval [options] 50-60000
+`nv set interface <interface-id> router pim bfd min-receive-interval [options] 50-60000`
 
 
 
@@ -5900,7 +5792,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router pim bfd min-transmit-interval [options] 50-60000
+`nv set interface <interface-id> router pim bfd min-transmit-interval [options] 50-60000`
 
 
 
@@ -5917,7 +5809,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router pim address-family [options] [<attribute> ...]
+`nv set interface <interface-id> router pim address-family [options] [<attribute> ...]`
 
 
 
@@ -5941,7 +5833,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router pim address-family ipv4-unicast [options] [<attribute> ...]
+`nv set interface <interface-id> router pim address-family ipv4-unicast [options] [<attribute> ...]`
 
 
 
@@ -5969,7 +5861,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router pim address-family ipv4-unicast allow-rp [options] [<attribute> ...]
+`nv set interface <interface-id> router pim address-family ipv4-unicast allow-rp [options] [<attribute> ...]`
 
 
 
@@ -5999,7 +5891,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router pim dr-priority [options] 1-4294967295
+`nv set interface <interface-id> router pim dr-priority [options] 1-4294967295`
 
 
 
@@ -6016,7 +5908,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router adaptive-routing [options] [<attribute> ...]
+`nv set interface <interface-id> router adaptive-routing [options] [<attribute> ...]`
 
 
 
@@ -6042,7 +5934,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> router adaptive-routing link-utilization-threshold [options] 1-100
+`nv set interface <interface-id> router adaptive-routing link-utilization-threshold [options] 1-100`
 
 
 
@@ -6059,7 +5951,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> bond [options] [<attribute> ...]
+`nv set interface <interface-id> bond [options] [<attribute> ...]`
 
 
 
@@ -6095,7 +5987,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> bond member <member-id> [options]
+`nv set interface <interface-id> bond member <member-id> [options]`
 
 
 
@@ -6113,7 +6005,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> bond mlag [options] [<attribute> ...]
+`nv set interface <interface-id> bond mlag [options] [<attribute> ...]`
 
 
 
@@ -6142,7 +6034,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> bond mlag lacp-conflict [options]
+`nv set interface <interface-id> bond mlag lacp-conflict [options]`
 
 
 
@@ -6159,7 +6051,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> bond down-delay [options] 0-65535
+`nv set interface <interface-id> bond down-delay [options] 0-65535`
 
 
 
@@ -6176,7 +6068,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> bond up-delay [options] 0-65535
+`nv set interface <interface-id> bond up-delay [options] 0-65535`
 
 
 
@@ -6193,7 +6085,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> bridge [options] [<attribute> ...]
+`nv set interface <interface-id> bridge [options] [<attribute> ...]`
 
 
 
@@ -6217,7 +6109,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> bridge domain <domain-id> [options] [<attribute> ...]
+`nv set interface <interface-id> bridge domain <domain-id> [options] [<attribute> ...]`
 
 
 
@@ -6250,7 +6142,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> bridge domain <domain-id> stp [options] [<attribute> ...]
+`nv set interface <interface-id> bridge domain <domain-id> stp [options] [<attribute> ...]`
 
 
 
@@ -6285,7 +6177,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> bridge domain <domain-id> vlan <vid> [options]
+`nv set interface <interface-id> bridge domain <domain-id> vlan <vid> [options]`
 
 
 
@@ -6304,7 +6196,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip [options] [<attribute> ...]
+`nv set interface <interface-id> ip [options] [<attribute> ...]`
 
 
 
@@ -6345,7 +6237,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip address <ip-prefix-id> [options]
+`nv set interface <interface-id> ip address <ip-prefix-id> [options]`
 
 
 
@@ -6363,7 +6255,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip vrr [options] [<attribute> ...]
+`nv set interface <interface-id> ip vrr [options] [<attribute> ...]`
 
 
 
@@ -6395,7 +6287,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip vrr address <ip-prefix-id> [options]
+`nv set interface <interface-id> ip vrr address <ip-prefix-id> [options]`
 
 
 
@@ -6413,7 +6305,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip gateway <ip-address-id> [options]
+`nv set interface <interface-id> ip gateway <ip-address-id> [options]`
 
 
 
@@ -6431,7 +6323,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip ipv4 [options] [<attribute> ...]
+`nv set interface <interface-id> ip ipv4 [options] [<attribute> ...]`
 
 
 
@@ -6455,7 +6347,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip ipv6 [options] [<attribute> ...]
+`nv set interface <interface-id> ip ipv6 [options] [<attribute> ...]`
 
 
 
@@ -6481,7 +6373,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip igmp [options] [<attribute> ...]
+`nv set interface <interface-id> ip igmp [options] [<attribute> ...]`
 
 
 
@@ -6515,7 +6407,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip igmp static-group <static-group-id> [options] [<attribute> ...]
+`nv set interface <interface-id> ip igmp static-group <static-group-id> [options] [<attribute> ...]`
 
 
 
@@ -6540,7 +6432,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip igmp static-group <static-group-id> source-address [options] <ipv4-unicast>
+`nv set interface <interface-id> ip igmp static-group <static-group-id> source-address [options] <ipv4-unicast>`
 
 
 
@@ -6558,7 +6450,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip igmp query-interval [options] 1-1800
+`nv set interface <interface-id> ip igmp query-interval [options] 1-1800`
 
 
 
@@ -6576,7 +6468,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip igmp query-max-response-time [options] 10-250
+`nv set interface <interface-id> ip igmp query-max-response-time [options] 10-250`
 
 
 
@@ -6593,7 +6485,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip igmp last-member-query-interval [options] 1-255
+`nv set interface <interface-id> ip igmp last-member-query-interval [options] 1-255`
 
 
 
@@ -6610,7 +6502,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip vrrp [options] [<attribute> ...]
+`nv set interface <interface-id> ip vrrp [options] [<attribute> ...]`
 
 
 
@@ -6636,7 +6528,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> [options] [<attribute> ...]
+`nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> [options] [<attribute> ...]`
 
 
 
@@ -6670,7 +6562,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> address <ip-address-id> [options]
+`nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> address <ip-address-id> [options]`
 
 
 
@@ -6689,7 +6581,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip neighbor-discovery [options] [<attribute> ...]
+`nv set interface <interface-id> ip neighbor-discovery [options] [<attribute> ...]`
 
 
 
@@ -6727,7 +6619,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id> [options] [<attribute> ...]
+`nv set interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id> [options] [<attribute> ...]`
 
 
 
@@ -6752,7 +6644,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> [options] [<attribute> ...]
+`nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> [options] [<attribute> ...]`
 
 
 
@@ -6786,7 +6678,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> valid-lifetime [options] 0-4294967295
+`nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> valid-lifetime [options] 0-4294967295`
 
 
 
@@ -6804,7 +6696,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> preferred-lifetime [options] 0-4294967295
+`nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> preferred-lifetime [options] 0-4294967295`
 
 
 
@@ -6822,7 +6714,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip neighbor-discovery dnssl <domain-name-id> [options] [<attribute> ...]
+`nv set interface <interface-id> ip neighbor-discovery dnssl <domain-name-id> [options] [<attribute> ...]`
 
 
 
@@ -6849,7 +6741,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip neighbor-discovery router-advertisement [options] [<attribute> ...]
+`nv set interface <interface-id> ip neighbor-discovery router-advertisement [options] [<attribute> ...]`
 
 
 
@@ -6893,7 +6785,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip neighbor-discovery router-advertisement interval [options] 70-1800000
+`nv set interface <interface-id> ip neighbor-discovery router-advertisement interval [options] 70-1800000`
 
 
 
@@ -6910,7 +6802,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip neighbor-discovery router-advertisement lifetime [options] 0-9000
+`nv set interface <interface-id> ip neighbor-discovery router-advertisement lifetime [options] 0-9000`
 
 
 
@@ -6927,7 +6819,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip neighbor-discovery router-advertisement reachable-time [options] 0-3600000
+`nv set interface <interface-id> ip neighbor-discovery router-advertisement reachable-time [options] 0-3600000`
 
 
 
@@ -6945,7 +6837,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip neighbor-discovery router-advertisement retransmit-time [options] 0-4294967295
+`nv set interface <interface-id> ip neighbor-discovery router-advertisement retransmit-time [options] 0-4294967295`
 
 
 
@@ -6962,7 +6854,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip neighbor-discovery router-advertisement hop-limit [options] 0-255
+`nv set interface <interface-id> ip neighbor-discovery router-advertisement hop-limit [options] 0-255`
 
 
 
@@ -6979,7 +6871,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip neighbor-discovery home-agent [options] [<attribute> ...]
+`nv set interface <interface-id> ip neighbor-discovery home-agent [options] [<attribute> ...]`
 
 
 
@@ -7006,7 +6898,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip neighbor-discovery home-agent lifetime [options] 0-65520
+`nv set interface <interface-id> ip neighbor-discovery home-agent lifetime [options] 0-65520`
 
 
 
@@ -7023,7 +6915,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip neighbor-discovery home-agent preference [options] 0-65535
+`nv set interface <interface-id> ip neighbor-discovery home-agent preference [options] 0-65535`
 
 
 
@@ -7040,7 +6932,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip neighbor-discovery mtu [options] 1-65535
+`nv set interface <interface-id> ip neighbor-discovery mtu [options] 1-65535`
 
 
 
@@ -7057,7 +6949,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ip vrf [options] <vrf-name>
+`nv set interface <interface-id> ip vrf [options] <vrf-name>`
 
 
 
@@ -7074,7 +6966,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> lldp [options] [<attribute> ...]
+`nv set interface <interface-id> lldp [options] [<attribute> ...]`
 
 
 
@@ -7102,7 +6994,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> link [options] [<attribute> ...]
+`nv set interface <interface-id> link [options] [<attribute> ...]`
 
 
 
@@ -7141,7 +7033,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> link dot1x [options] [<attribute> ...]
+`nv set interface <interface-id> link dot1x [options] [<attribute> ...]`
 
 
 
@@ -7167,7 +7059,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> link mtu [options] 552-9216
+`nv set interface <interface-id> link mtu [options] 552-9216`
 
 
 
@@ -7184,7 +7076,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> evpn [options] [<attribute> ...]
+`nv set interface <interface-id> evpn [options] [<attribute> ...]`
 
 
 
@@ -7208,7 +7100,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> evpn multihoming [options] [<attribute> ...]
+`nv set interface <interface-id> evpn multihoming [options] [<attribute> ...]`
 
 
 
@@ -7234,7 +7126,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> evpn multihoming segment [options] [<attribute> ...]
+`nv set interface <interface-id> evpn multihoming segment [options] [<attribute> ...]`
 
 
 
@@ -7267,7 +7159,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> evpn multihoming segment local-id [options] 1-16777215
+`nv set interface <interface-id> evpn multihoming segment local-id [options] 1-16777215`
 
 
 
@@ -7284,7 +7176,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> evpn multihoming segment identifier [options] <es-identifier>
+`nv set interface <interface-id> evpn multihoming segment identifier [options] <es-identifier>`
 
 
 
@@ -7301,7 +7193,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> acl <acl-id> [options] [<attribute> ...]
+`nv set interface <interface-id> acl <acl-id> [options] [<attribute> ...]`
 
 
 
@@ -7328,7 +7220,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> acl <acl-id> inbound [options] [<attribute> ...]
+`nv set interface <interface-id> acl <acl-id> inbound [options] [<attribute> ...]`
 
 
 
@@ -7353,7 +7245,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> acl <acl-id> inbound control-plane [options]
+`nv set interface <interface-id> acl <acl-id> inbound control-plane [options]`
 
 
 
@@ -7371,7 +7263,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> acl <acl-id> outbound [options] [<attribute> ...]
+`nv set interface <interface-id> acl <acl-id> outbound [options] [<attribute> ...]`
 
 
 
@@ -7396,7 +7288,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> acl <acl-id> outbound control-plane [options]
+`nv set interface <interface-id> acl <acl-id> outbound control-plane [options]`
 
 
 
@@ -7414,7 +7306,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ptp [options] [<attribute> ...]
+`nv set interface <interface-id> ptp [options] [<attribute> ...]`
 
 
 
@@ -7454,7 +7346,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ptp timers [options] [<attribute> ...]
+`nv set interface <interface-id> ptp timers [options] [<attribute> ...]`
 
 
 
@@ -7484,7 +7376,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ptp timers announce-interval [options] -3-4
+`nv set interface <interface-id> ptp timers announce-interval [options] -3-4`
 
 
 
@@ -7501,7 +7393,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ptp timers sync-interval [options] -7-1
+`nv set interface <interface-id> ptp timers sync-interval [options] -7-1`
 
 
 
@@ -7518,7 +7410,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ptp timers delay-req-interval [options] -7-6
+`nv set interface <interface-id> ptp timers delay-req-interval [options] -7-6`
 
 
 
@@ -7535,7 +7427,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ptp timers announce-timeout [options] 2-10
+`nv set interface <interface-id> ptp timers announce-timeout [options] 2-10`
 
 
 
@@ -7552,7 +7444,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ptp instance [options] <value>
+`nv set interface <interface-id> ptp instance [options] <value>`
 
 
 
@@ -7569,7 +7461,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ptp delay-mechanism [options] end-to-end
+`nv set interface <interface-id> ptp delay-mechanism [options] end-to-end`
 
 
 
@@ -7586,7 +7478,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> ptp ttl [options] 1-255
+`nv set interface <interface-id> ptp ttl [options] 1-2`55
 
 
 
@@ -7603,7 +7495,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> tunnel [options] [<attribute> ...]
+`nv set interface <interface-id> tunnel [options] [<attribute> ...]`
 
 
 
@@ -7635,7 +7527,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> tunnel source-ip [options] <ipv4>
+`nv set interface <interface-id> tunnel source-ip [options] <ipv4>`
 
 
 
@@ -7652,7 +7544,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> tunnel dest-ip [options] <ipv4>
+`nv set interface <interface-id> tunnel dest-ip [options] <ipv4>`
 
 
 
@@ -7669,7 +7561,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> tunnel ttl [options] 1-255
+`nv set interface <interface-id> tunnel ttl [options] 1-255`
 
 
 
@@ -7686,7 +7578,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> tunnel mode [options] gre
+`nv set interface <interface-id> tunnel mode [options] gre`
 
 
 
@@ -7703,7 +7595,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> tunnel interface [options] <interface-name>
+`nv set interface <interface-id> tunnel interface [options] <interface-name>`
 
 
 
@@ -7720,7 +7612,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> description [options] <value>
+`nv set interface <interface-id> description [options] <value>`
 
 
 
@@ -7737,7 +7629,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set interface <interface-id> vlan [options] 1-4094
+`nv set interface <interface-id> vlan [options] 1-4094`
 
 
 
@@ -7754,7 +7646,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service [options] [<attribute> ...]
+`nv set service [options] [<attribute> ...]`
 
 
 
@@ -7787,7 +7679,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dns <vrf-id> [options] [<attribute> ...]
+`nv set service dns <vrf-id> [options] [<attribute> ...]`
 
 
 
@@ -7811,7 +7703,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dns <vrf-id> server <dns-server-id> [options]
+`nv set service dns <vrf-id> server <dns-server-id> [options]`
 
 
 
@@ -7829,7 +7721,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service syslog <vrf-id> [options] [<attribute> ...]
+`nv set service syslog <vrf-id> [options] [<attribute> ...]`
 
 
 
@@ -7853,7 +7745,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service syslog <vrf-id> server <server-id> [options] [<attribute> ...]
+`nv set service syslog <vrf-id> server <server-id> [options] [<attribute> ...]`
 
 
 
@@ -7880,7 +7772,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service syslog <vrf-id> server <server-id> port [options] 1-32767
+`nv set service syslog <vrf-id> server <server-id> port [options] 1-32767`
 
 
 
@@ -7898,7 +7790,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service ntp <vrf-id> [options] [<attribute> ...]
+`nv set service ntp <vrf-id> [options] [<attribute> ...]`
 
 
 
@@ -7926,7 +7818,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service ntp <vrf-id> server <server-id> [options] [<attribute> ...]
+`nv set service ntp <vrf-id> server <server-id> [options] [<attribute> ...]`
 
 
 
@@ -7951,7 +7843,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service ntp <vrf-id> pool <server-id> [options] [<attribute> ...]
+`nv set service ntp <vrf-id> pool <server-id> [options] [<attribute> ...]`
 
 
 
@@ -7976,7 +7868,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service ntp <vrf-id> listen [options] <interface-name>
+`nv set service ntp <vrf-id> listen [options] <interface-name>
 
 
 
@@ -7993,7 +7885,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-relay <vrf-id> [options] [<attribute> ...]
+`nv set service dhcp-relay <vrf-id> [options] [<attribute> ...]`
 
 
 
@@ -8024,7 +7916,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-relay <vrf-id> server <server-id> [options]
+`nv set service dhcp-relay <vrf-id> server <server-id> [options]`
 
 
 
@@ -8042,7 +7934,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-relay <vrf-id> interface <interface-id> [options]
+`nv set service dhcp-relay <vrf-id> interface <interface-id> [options]`
 
 
 
@@ -8060,7 +7952,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-relay <vrf-id> giaddress-interface <interface-id> [options] [<attribute> ...]
+`nv set service dhcp-relay <vrf-id> giaddress-interface <interface-id> [options] [<attribute> ...]`
 
 
 
@@ -8085,7 +7977,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-relay6 <vrf-id> [options] [<attribute> ...]
+`nv set service dhcp-relay6 <vrf-id> [options] [<attribute> ...]`
 
 
 
@@ -8109,7 +8001,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-relay6 <vrf-id> interface [options] [<attribute> ...]
+`nv set service dhcp-relay6 <vrf-id> interface [options] [<attribute> ...]`
 
 
 
@@ -8135,7 +8027,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-relay6 <vrf-id> interface upstream <interface-id> [options] [<attribute> ...]
+`nv set service dhcp-relay6 <vrf-id> interface upstream <interface-id> [options] [<attribute> ...]`
 
 
 
@@ -8160,7 +8052,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-relay6 <vrf-id> interface upstream <interface-id> address [options] <ipv6>
+`nv set service dhcp-relay6 <vrf-id> interface upstream <interface-id> address [options] <ipv6>`
 
 
 
@@ -8178,7 +8070,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-relay6 <vrf-id> interface downstream <interface-id> [options] [<attribute> ...]
+`nv set service dhcp-relay6 <vrf-id> interface downstream <interface-id> [options] [<attribute> ...]`
 
 
 
@@ -8203,7 +8095,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-relay6 <vrf-id> interface downstream <interface-id> address [options] <ipv6>
+`nv set service dhcp-relay6 <vrf-id> interface downstream <interface-id> address [options] <ipv6>`
 
 
 
@@ -8221,7 +8113,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service ptp <instance-id> [options] [<attribute> ...]
+`nv set service ptp <instance-id> [options] [<attribute> ...]`
 
 
 
@@ -8261,7 +8153,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service ptp <instance-id> acceptable-master <clock-id> [options] [<attribute> ...]
+`nv set service ptp <instance-id> acceptable-master <clock-id> [options] [<attribute> ...]`
 
 
 
@@ -8287,7 +8179,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service ptp <instance-id> acceptable-master <clock-id> alt-priority [options] <value>
+`nv set service ptp <instance-id> acceptable-master <clock-id> alt-priority [options] <value>`
 
 
 
@@ -8305,7 +8197,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service ptp <instance-id> monitor [options] [<attribute> ...]
+`nv set service ptp <instance-id> monitor [options] [<attribute> ...]`
 
 
 
@@ -8341,7 +8233,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service ptp <instance-id> monitor min-offset-threshold [options] <value>
+`nv set service ptp <instance-id> monitor min-offset-threshold [options] <value>`
 
 
 
@@ -8358,7 +8250,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service ptp <instance-id> monitor max-offset-threshold [options] <value>
+`nv set service ptp <instance-id> monitor max-offset-threshold [options] <value>`
 
 
 
@@ -8375,7 +8267,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service ptp <instance-id> monitor path-delay-threshold [options] <value>
+`nv set service ptp <instance-id> monitor path-delay-threshold [options] <value>`
 
 
 
@@ -8392,7 +8284,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service ptp <instance-id> monitor max-timestamp-entries [options] 400-1000
+`nv set service ptp <instance-id> monitor max-timestamp-entries [options] 400-1000`
 
 
 
@@ -8409,7 +8301,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service ptp <instance-id> monitor max-violation-log-sets [options] 8-128
+`nv set service ptp <instance-id> monitor max-violation-log-sets [options] 8-128`
 
 
 
@@ -8426,7 +8318,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service ptp <instance-id> monitor max-violation-log-entries [options] 8-128
+`nv set service ptp <instance-id> monitor max-violation-log-entries [options] 8-128`
 
 
 
@@ -8443,7 +8335,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service ptp <instance-id> monitor violation-log-interval [options] 0-259200
+`nv set service ptp <instance-id> monitor violation-log-interval [options] 0-259200`
 
 
 
@@ -8460,7 +8352,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service ptp <instance-id> priority1 [options] <value>
+`nv set service ptp <instance-id> priority1 [options] <value>`
 
 
 
@@ -8477,7 +8369,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service ptp <instance-id> priority2 [options] <value>
+`nv set service ptp <instance-id> priority2 [options] <value>`
 
 
 
@@ -8494,7 +8386,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service ptp <instance-id> domain [options] 0-127
+`nv set service ptp <instance-id> domain [options] 0-127`
 
 
 
@@ -8511,7 +8403,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service ptp <instance-id> ip-dscp [options] 0-63
+`nv set service ptp <instance-id> ip-dscp [options] 0-63`
 
 
 
@@ -8528,7 +8420,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server <vrf-id> [options] [<attribute> ...]
+`nv set service dhcp-server <vrf-id> [options] [<attribute> ...]`
 
 
 
@@ -8562,7 +8454,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server <vrf-id> interface <interface-id> [options]
+`nv set service dhcp-server <vrf-id> interface <interface-id> [options]`
 
 
 
@@ -8580,7 +8472,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server <vrf-id> pool <pool-id> [options] [<attribute> ...]
+`nv set service dhcp-server <vrf-id> pool <pool-id> [options] [<attribute> ...]`
 
 
 
@@ -8621,7 +8513,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id> [options]
+`nv set service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id> [options]`
 
 
 
@@ -8640,7 +8532,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> [options] [<attribute> ...]
+`nv set service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> [options] [<attribute> ...]`
 
 
 
@@ -8666,7 +8558,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> domain-name [options] <idn-hostname>
+`nv set service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> domain-name [options] <idn-hostname>`
 
 
 
@@ -8685,7 +8577,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id> [options]
+`nv set service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id> [options]`
 
 
 
@@ -8704,7 +8596,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server <vrf-id> pool <pool-id> range <range-id> [options] [<attribute> ...]
+`nv set service dhcp-server <vrf-id> pool <pool-id> range <range-id> [options] [<attribute> ...]`
 
 
 
@@ -8730,7 +8622,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server <vrf-id> pool <pool-id> range <range-id> to [options] <ipv4>
+`nv set service dhcp-server <vrf-id> pool <pool-id> range <range-id> to [options] <ipv4>`
 
 
 
@@ -8749,7 +8641,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server <vrf-id> pool <pool-id> pool-name [options] <value>
+`nv set service dhcp-server <vrf-id> pool <pool-id> pool-name [options] <value>`
 
 
 
@@ -8767,7 +8659,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server <vrf-id> pool <pool-id> lease-time [options] 180-31536000
+`nv set service dhcp-server <vrf-id> pool <pool-id> lease-time [options] 180-31536000`
 
 
 
@@ -8785,7 +8677,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server <vrf-id> pool <pool-id> default-url [options] <value>
+`nv set service dhcp-server <vrf-id> pool <pool-id> default-url [options] <value>`
 
 
 
@@ -8803,7 +8695,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server <vrf-id> pool <pool-id> cumulus-provision-url [options] <value>
+`nv set service dhcp-server <vrf-id> pool <pool-id> cumulus-provision-url [options] <value>`
 
 
 
@@ -8821,7 +8713,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server <vrf-id> domain-name <domain-name-id> [options] [<attribute> ...]
+`nv set service dhcp-server <vrf-id> domain-name <domain-name-id> [options] [<attribute> ...]`
 
 
 
@@ -8846,7 +8738,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server <vrf-id> domain-name <domain-name-id> domain-name [options] <idn-hostname>
+`nv set service dhcp-server <vrf-id> domain-name <domain-name-id> domain-name [options] <idn-hostname>`
 
 
 
@@ -8864,7 +8756,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server <vrf-id> domain-name-server <server-id> [options]
+`nv set service dhcp-server <vrf-id> domain-name-server <server-id> [options]`
 
 
 
@@ -8882,7 +8774,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server <vrf-id> static <static-id> [options] [<attribute> ...]
+`nv set service dhcp-server <vrf-id> static <static-id> [options] [<attribute> ...]`
 
 
 
@@ -8911,7 +8803,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server <vrf-id> static <static-id> mac-address [options] <mac>
+`nv set service dhcp-server <vrf-id> static <static-id> mac-address [options] <mac>`
 
 
 
@@ -8930,7 +8822,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server <vrf-id> static <static-id> ip-address [options] <ipv4>
+`nv set service dhcp-server <vrf-id> static <static-id> ip-address [options] <ipv4>`
 
 
 
@@ -8948,7 +8840,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server <vrf-id> static <static-id> cumulus-provision-url [options] <value>
+`nv set service dhcp-server <vrf-id> static <static-id> cumulus-provision-url [options] <value>`
 
 
 
@@ -8966,7 +8858,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server6 <vrf-id> [options] [<attribute> ...]
+`nv set service dhcp-server6 <vrf-id> [options] [<attribute> ...]`
 
 
 
@@ -9000,7 +8892,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server6 <vrf-id> interface <interface-id> [options]
+`nv set service dhcp-server6 <vrf-id> interface <interface-id> [options]`
 
 
 
@@ -9018,7 +8910,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server6 <vrf-id> pool <pool-id> [options] [<attribute> ...]
+`nv set service dhcp-server6 <vrf-id> pool <pool-id> [options] [<attribute> ...]`
 
 
 
@@ -9057,7 +8949,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id> [options]
+`nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id> [options]`
 
 
 
@@ -9076,7 +8968,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id> [options] [<attribute> ...]
+`nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id> [options] [<attribute> ...]`
 
 
 
@@ -9102,7 +8994,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id> domain-name [options] <idn-hostname>
+`nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id> domain-name [options] <idn-hostname>`
 
 
 
@@ -9121,7 +9013,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> [options] [<attribute> ...]
+`nv set service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> [options] [<attribute> ...]`
 
 
 
@@ -9147,7 +9039,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> to [options] <ipv6>
+`nv set service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> to [options] <ipv6>`
 
 
 
@@ -9167,7 +9059,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server6 <vrf-id> pool <pool-id> pool-name [options] <value>
+`nv set service dhcp-server6 <vrf-id> pool <pool-id> pool-name [options] <value>`
 
 
 
@@ -9186,7 +9078,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server6 <vrf-id> pool <pool-id> lease-time [options] 180-31536000
+`nv set service dhcp-server6 <vrf-id> pool <pool-id> lease-time [options] 180-31536000`
 
 
 
@@ -9204,7 +9096,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server6 <vrf-id> pool <pool-id> default-url [options] <value>
+`nv set service dhcp-server6 <vrf-id> pool <pool-id> default-url [options] <value>`
 
 
 
@@ -9222,7 +9114,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server6 <vrf-id> pool <pool-id> cumulus-provision-url [options] <value>
+`nv set service dhcp-server6 <vrf-id> pool <pool-id> cumulus-provision-url [options] <value>`
 
 
 
@@ -9240,7 +9132,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server6 <vrf-id> domain-name <domain-name-id> [options] [<attribute> ...]
+`nv set service dhcp-server6 <vrf-id> domain-name <domain-name-id> [options] [<attribute> ...]`
 
 
 
@@ -9265,7 +9157,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server6 <vrf-id> domain-name <domain-name-id> domain-name [options] <idn-hostname>
+`nv set service dhcp-server6 <vrf-id> domain-name <domain-name-id> domain-name [options] <idn-hostname>`
 
 
 
@@ -9283,7 +9175,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server6 <vrf-id> domain-name-server <server-id> [options]
+`nv set service dhcp-server6 <vrf-id> domain-name-server <server-id> [options]`
 
 
 
@@ -9301,7 +9193,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server6 <vrf-id> static <static-id> [options] [<attribute> ...]
+`nv set service dhcp-server6 <vrf-id> static <static-id> [options] [<attribute> ...]`
 
 
 
@@ -9330,7 +9222,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server6 <vrf-id> static <static-id> mac-address [options] <mac>
+`nv set service dhcp-server6 <vrf-id> static <static-id> mac-address [options] <mac>`
 
 
 
@@ -9348,7 +9240,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server6 <vrf-id> static <static-id> ip-address [options] <ipv6>
+`nv set service dhcp-server6 <vrf-id> static <static-id> ip-address [options] <ipv6>`
 
 
 
@@ -9366,7 +9258,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service dhcp-server6 <vrf-id> static <static-id> cumulus-provision-url [options] <value>
+`nv set service dhcp-server6 <vrf-id> static <static-id> cumulus-provision-url [options] <value>
 
 
 
@@ -9384,7 +9276,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service lldp [options] [<attribute> ...]
+`nv set service lldp [options] [<attribute> ...]`
 
 
 
@@ -9405,7 +9297,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service lldp tx-interval [options] 10-300
+`nv set service lldp tx-interval [options] 10-300
 
 
 
@@ -9415,7 +9307,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set service lldp tx-hold-multiplier [options] 1-10
+`nv set service lldp tx-hold-multiplier [options] 1-10`
 
 
 
@@ -9425,7 +9317,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system [options] [<attribute> ...]
+`nv set system [options] [<attribute> ...]`
 
 
 
@@ -9455,7 +9347,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system control-plane [options] [<attribute> ...]
+`nv set system control-plane [options] [<attribute> ...]`
 
 
 
@@ -9474,7 +9366,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system control-plane trap <trap-id> [options] [<attribute> ...]
+`nv set system control-plane trap <trap-id> [options] [<attribute> ...]`
 
 
 
@@ -9498,7 +9390,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system control-plane policer <policer-id> [options] [<attribute> ...]
+`nv set system control-plane policer <policer-id> [options] [<attribute> ...]`
 
 
 
@@ -9526,7 +9418,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system control-plane policer <policer-id> burst [options] 10-10000
+`nv set system control-plane policer <policer-id> burst [options] 10-10000`
 
 
 
@@ -9543,7 +9435,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system control-plane policer <policer-id> rate [options] 10-10000
+`nv set system control-plane policer <policer-id> rate [options] 10-10000`
 
 
 
@@ -9560,7 +9452,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system message [options] [<attribute> ...]
+`nv set system message [options] [<attribute> ...]`
 
 
 
@@ -9579,7 +9471,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system message pre-login [options] <value>
+`nv set system message pre-login [options] <value>
 
 
 
@@ -9589,7 +9481,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system message post-login [options] <value>
+`nv set system message post-login [options] <value>
 
 
 
@@ -9599,7 +9491,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system global [options] [<attribute> ...]
+`nv set system global [options] [<attribute> ...]`
 
 
 
@@ -9626,7 +9518,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system global reserved [options] [<attribute> ...]
+`nv set system global reserved [options] [<attribute> ...]`
 
 
 
@@ -9645,7 +9537,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system global reserved routing-table [options] [<attribute> ...]
+`nv set system global reserved routing-table [options] [<attribute> ...]`
 
 
 
@@ -9662,7 +9554,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system global reserved routing-table pbr [options] [<attribute> ...]
+`nv set system global reserved routing-table pbr [options] [<attribute> ...]`
 
 
 
@@ -9681,7 +9573,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system global reserved routing-table pbr begin [options] 10000-4294966272
+`nv set system global reserved routing-table pbr begin [options] 10000-4294966272`
 
 
 
@@ -9691,7 +9583,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system global reserved routing-table pbr end [options] 10000-4294966272
+`nv set system global reserved routing-table pbr end [options] 10000-4294966272`
 
 
 
@@ -9701,7 +9593,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system global reserved vlan [options] [<attribute> ...]
+`nv set system global reserved vlan [options] [<attribute> ...]`
 
 
 
@@ -9718,7 +9610,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system global reserved vlan l3-vni-vlan [options] [<attribute> ...]
+`nv set system global reserved vlan l3-vni-vlan [options] [<attribute> ...]`
 
 
 
@@ -9737,7 +9629,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system global reserved vlan l3-vni-vlan begin [options] 1-4093
+`nv set system global reserved vlan l3-vni-vlan begin [options] 1-4093`
 
 
 
@@ -9747,7 +9639,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system global reserved vlan l3-vni-vlan end [options] 2-4093
+`nv set system global reserved vlan l3-vni-vlan end [options] 2-4093`
 
 
 
@@ -9757,7 +9649,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system global fabric-id [options] 1-255
+`nv set system global fabric-id [options] 1-2`55
 
 
 
@@ -9767,7 +9659,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system port-mirror [options] [<attribute> ...]
+`nv set system port-mirror [options] [<attribute> ...]`
 
 
 
@@ -9785,7 +9677,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system port-mirror session <session-id> [options] [<attribute> ...]
+`nv set system port-mirror session <session-id> [options] [<attribute> ...]`
 
 
 
@@ -9811,7 +9703,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system port-mirror session <session-id> span [options] [<attribute> ...]
+`nv set system port-mirror session <session-id> span [options] [<attribute> ...]`
 
 
 
@@ -9843,7 +9735,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system port-mirror session <session-id> span source-port <port-id> [options]
+`nv set system port-mirror session <session-id> span source-port <port-id> [options]`
 
 
 
@@ -9862,7 +9754,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system port-mirror session <session-id> span destination <port-id> [options]
+`nv set system port-mirror session <session-id> span destination <port-id> [options]`
 
 
 
@@ -9881,7 +9773,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system port-mirror session <session-id> span truncate [options] [<attribute> ...]
+`nv set system port-mirror session <session-id> span truncate [options] [<attribute> ...]`
 
 
 
@@ -9907,7 +9799,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system port-mirror session <session-id> erspan [options] [<attribute> ...]
+`nv set system port-mirror session <session-id> erspan [options] [<attribute> ...]`
 
 
 
@@ -9939,7 +9831,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system port-mirror session <session-id> erspan source-port <port-id> [options]
+`nv set system port-mirror session <session-id> erspan source-port <port-id> [options]`
 
 
 
@@ -9958,7 +9850,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system port-mirror session <session-id> erspan destination [options] [<attribute> ...]
+`nv set system port-mirror session <session-id> erspan destination [options] [<attribute> ...]`
 
 
 
@@ -9984,7 +9876,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system port-mirror session <session-id> erspan destination source-ip <source-ip> [options]
+`nv set system port-mirror session <session-id> erspan destination source-ip <source-ip> [options]`
 
 
 
@@ -10001,7 +9893,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system port-mirror session <session-id> erspan destination dest-ip <dest-ip> [options]
+`nv set system port-mirror session <session-id> erspan destination dest-ip <dest-ip> [options]`
 
 
 
@@ -10018,7 +9910,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system port-mirror session <session-id> erspan truncate [options] [<attribute> ...]
+`nv set system port-mirror session <session-id> erspan truncate [options] [<attribute> ...]`
 
 
 
@@ -10045,7 +9937,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system config [options] [<attribute> ...]
+`nv set system config [options] [<attribute> ...]`
 
 
 
@@ -10062,7 +9954,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system config apply [options] [<attribute> ...]
+`nv set system config apply [options] [<attribute> ...]`
 
 
 
@@ -10081,7 +9973,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system config apply ignore <ignore-id> [options]
+`nv set system config apply ignore <ignore-id> [options]`
 
 
 
@@ -10098,7 +9990,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set system hostname [options] <idn-hostname>
+`nv set system hostname [options] <idn-hostname>
 
 
 
@@ -10108,7 +10000,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> [options] [<attribute> ...]
+`nv set vrf <vrf-id> [options] [<attribute> ...]`
 
 
 
@@ -10141,7 +10033,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> loopback [options] [<attribute> ...]
+`nv set vrf <vrf-id> loopback [options] [<attribute> ...]`
 
 
 
@@ -10165,7 +10057,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> loopback ip [options] [<attribute> ...]
+`nv set vrf <vrf-id> loopback ip [options] [<attribute> ...]`
 
 
 
@@ -10189,7 +10081,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> loopback ip address <ip-prefix-id> [options]
+`nv set vrf <vrf-id> loopback ip address <ip-prefix-id> [options]
 
 
 
@@ -10208,7 +10100,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> evpn [options] [<attribute> ...]
+`nv set vrf <vrf-id> evpn [options] [<attribute> ...]`
 
 
 
@@ -10236,7 +10128,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> evpn vni <vni-id> [options] [<attribute> ...]
+`nv set vrf <vrf-id> evpn vni <vni-id> [options] [<attribute> ...]`
 
 
 
@@ -10262,7 +10154,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router [options] [<attribute> ...]
+`nv set vrf <vrf-id> router [options] [<attribute> ...]`
 
 
 
@@ -10294,7 +10186,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router rib <afi> [options] [<attribute> ...]
+`nv set vrf <vrf-id> router rib <afi> [options] [<attribute> ...]`
 
 
 
@@ -10320,7 +10212,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router rib <afi> protocol <import-protocol-id> [options] [<attribute> ...]
+`nv set vrf <vrf-id> router rib <afi> protocol <import-protocol-id> [options] [<attribute> ...]`
 
 
 
@@ -10348,7 +10240,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp [options] [<attribute> ...]`
 
 
 
@@ -10399,7 +10291,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family [options] [<attribute> ...]`
 
 
 
@@ -10427,7 +10319,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv4-unicast [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast [options] [<attribute> ...]`
 
 
 
@@ -10467,7 +10359,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute [options] [<attribute> ...]`
 
 
 
@@ -10498,7 +10390,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static [options] [<attribute> ...]`
 
 
 
@@ -10526,7 +10418,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected [options] [<attribute> ...]`
 
 
 
@@ -10554,7 +10446,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel [options] [<attribute> ...]`
 
 
 
@@ -10582,7 +10474,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf [options] [<attribute> ...]`
 
 
 
@@ -10610,7 +10502,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> [options] [<attribute> ...]`
 
 
 
@@ -10640,7 +10532,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id> [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id> [options] [<attribute> ...]`
 
 
 
@@ -10665,7 +10557,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import [options] [<attribute> ...]`
 
 
 
@@ -10689,7 +10581,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf [options] [<attribute> ...]`
 
 
 
@@ -10717,7 +10609,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id> [options]
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id> [options]`
 
 
 
@@ -10736,7 +10628,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf route-map [options] <instance-name>
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf route-map [options] <instance-name>`
 
 
 
@@ -10753,7 +10645,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths [options] [<attribute> ...]`
 
 
 
@@ -10781,7 +10673,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths ebgp [options] 1-128
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths ebgp [options] 1-128`
 
 
 
@@ -10798,7 +10690,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths ibgp [options] 1-128
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths ibgp [options] 1-128`
 
 
 
@@ -10815,7 +10707,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance [options] [<attribute> ...]`
 
 
 
@@ -10841,7 +10733,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance external [options] 1-255
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance external [options] 1-255`
 
 
 
@@ -10858,7 +10750,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance internal [options] 1-255
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance internal [options] 1-255`
 
 
 
@@ -10875,7 +10767,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-export [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-export [options] [<attribute> ...]`
 
 
 
@@ -10899,7 +10791,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn [options] [<attribute> ...]`
 
 
 
@@ -10927,7 +10819,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family l2vpn-evpn [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family l2vpn-evpn [options] [<attribute> ...]`
 
 
 
@@ -10951,7 +10843,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv6-unicast [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast [options] [<attribute> ...]`
 
 
 
@@ -10991,7 +10883,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> [options] [<attribute> ...]`
 
 
 
@@ -11020,7 +10912,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id> [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id> [options] [<attribute> ...]`
 
 
 
@@ -11045,7 +10937,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import [options] [<attribute> ...]`
 
 
 
@@ -11069,7 +10961,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf [options] [<attribute> ...]`
 
 
 
@@ -11098,7 +10990,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf list [options]
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf list [options]`
 
 
 
@@ -11115,7 +11007,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf route-map [options] <instance-name>
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf route-map [options] <instance-name>
 
 
 
@@ -11132,7 +11024,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths [options] [<attribute> ...]`
 
 
 
@@ -11160,7 +11052,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths ebgp [options] 1-128
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths ebgp [options] 1-128`
 
 
 
@@ -11177,7 +11069,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths ibgp [options] 1-128
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths ibgp [options] 1-128`
 
 
 
@@ -11194,7 +11086,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance [options] [<attribute> ...]`
 
 
 
@@ -11220,7 +11112,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance external [options] 1-255
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance external [options] 1-255`
 
 
 
@@ -11237,7 +11129,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance internal [options] 1-255
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance internal [options] 1-2`55
 
 
 
@@ -11254,7 +11146,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-export [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-export [options] [<attribute> ...]`
 
 
 
@@ -11278,7 +11170,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn [options] [<attribute> ...]`
 
 
 
@@ -11306,7 +11198,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute [options] [<attribute> ...]`
 
 
 
@@ -11336,7 +11228,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static [options] [<attribute> ...]`
 
 
 
@@ -11364,7 +11256,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected [options] [<attribute> ...]`
 
 
 
@@ -11392,7 +11284,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel [options] [<attribute> ...]`
 
 
 
@@ -11420,7 +11312,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6 [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6 [options] [<attribute> ...]`
 
 
 
@@ -11448,7 +11340,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp path-selection [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp path-selection [options] [<attribute> ...]`
 
 
 
@@ -11476,7 +11368,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp path-selection aspath [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp path-selection aspath [options] [<attribute> ...]`
 
 
 
@@ -11502,7 +11394,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp path-selection med [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp path-selection med [options] [<attribute> ...]`
 
 
 
@@ -11532,7 +11424,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp path-selection multipath [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp path-selection multipath [options] [<attribute> ...]`
 
 
 
@@ -11560,7 +11452,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp route-reflection [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp route-reflection [options] [<attribute> ...]`
 
 
 
@@ -11590,7 +11482,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> [options] [<attribute> ...]`
 
 
 
@@ -11641,7 +11533,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd [options] [<attribute> ...]`
 
 
 
@@ -11672,7 +11564,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd detect-multiplier [options] 2-255
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd detect-multiplier [options] 2-255`
 
 
 
@@ -11690,7 +11582,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-rx-interval [options] 50-60000
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-rx-interval [options] 50-60000`
 
 
 
@@ -11708,7 +11600,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-tx-interval [options] 50-60000
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-tx-interval [options] 50-60000`
 
 
 
@@ -11726,7 +11618,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security [options] [<attribute> ...]`
 
 
 
@@ -11753,7 +11645,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security hops [options] 1-254
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security hops [options] 1-254`
 
 
 
@@ -11771,7 +11663,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities [options] [<attribute> ...]`
 
 
 
@@ -11798,7 +11690,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart [options] [<attribute> ...]`
 
 
 
@@ -11823,7 +11715,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as [options] [<attribute> ...]`
 
 
 
@@ -11854,7 +11746,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as asn [options] 1-4294967295
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as asn [options] 1-4294967295`
 
 
 
@@ -11872,7 +11764,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> timers [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> timers [options] [<attribute> ...]`
 
 
 
@@ -11903,7 +11795,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family [options] [<attribute> ...]`
 
 
 
@@ -11932,7 +11824,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast [options] [<attribute> ...]`
 
 
 
@@ -11983,7 +11875,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise [options] [<attribute> ...]`
 
 
 
@@ -12012,7 +11904,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod [options] [<attribute> ...]`
 
 
 
@@ -12041,7 +11933,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath [options] [<attribute> ...]`
 
 
 
@@ -12070,7 +11962,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn [options] [<attribute> ...]`
 
 
 
@@ -12099,7 +11991,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn occurrences [options] 1-10
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn occurrences [options] 1-10`
 
 
 
@@ -12117,7 +12009,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits [options] [<attribute> ...]`
 
 
 
@@ -12142,7 +12034,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound [options] [<attribute> ...]`
 
 
 
@@ -12173,7 +12065,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound warning-threshold [options] 1-100
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound warning-threshold [options] 1-100`
 
 
 
@@ -12191,7 +12083,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound reestablish-wait [options] 1-4294967295
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound reestablish-wait [options] 1-4294967295`
 
 
 
@@ -12209,7 +12101,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination [options] [<attribute> ...]`
 
 
 
@@ -12236,7 +12128,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy [options] [<attribute> ...]`
 
 
 
@@ -12263,7 +12155,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound [options] [<attribute> ...]`
 
 
 
@@ -12292,7 +12184,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound aspath-list [options] none
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound aspath-list [options] none`
 
 
 
@@ -12310,7 +12202,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound [options] [<attribute> ...]`
 
 
 
@@ -12341,7 +12233,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound aspath-list [options] none
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound aspath-list [options] none`
 
 
 
@@ -12359,7 +12251,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise [options] [<attribute> ...]`
 
 
 
@@ -12396,7 +12288,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise advertise-map [options] <instance-name>
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise advertise-map [options] <instance-name>`
 
 
 
@@ -12414,7 +12306,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise exist-map [options] <instance-name>
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise exist-map [options] <instance-name>`
 
 
 
@@ -12432,7 +12324,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise non-exist-map [options] <instance-name>
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise non-exist-map [options] <instance-name>`
 
 
 
@@ -12450,7 +12342,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast weight [options] 0-65535
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast weight [options] 0-65535`
 
 
 
@@ -12468,7 +12360,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast [options] [<attribute> ...]`
 
 
 
@@ -12520,7 +12412,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy [options] [<attribute> ...]`
 
 
 
@@ -12547,7 +12439,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound [options] [<attribute> ...]`
 
 
 
@@ -12578,7 +12470,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound aspath-list [options] none
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound aspath-list [options] none`
 
 
 
@@ -12596,7 +12488,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound [options] [<attribute> ...]`
 
 
 
@@ -12627,7 +12519,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound aspath-list [options] none
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound aspath-list [options] none`
 
 
 
@@ -12645,7 +12537,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath [options] [<attribute> ...]`
 
 
 
@@ -12674,7 +12566,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn [options] [<attribute> ...]`
 
 
 
@@ -12703,7 +12595,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn occurrences [options] 1-10
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn occurrences [options] 1-10`
 
 
 
@@ -12721,7 +12613,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits [options] [<attribute> ...]`
 
 
 
@@ -12746,7 +12638,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound [options] [<attribute> ...]`
 
 
 
@@ -12777,7 +12669,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound warning-threshold [options] 1-100
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound warning-threshold [options] 1-100`
 
 
 
@@ -12795,7 +12687,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound reestablish-wait [options] 1-4294967295
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound reestablish-wait [options] 1-4294967295`
 
 
 
@@ -12813,7 +12705,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast default-route-origination [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast default-route-origination [options] [<attribute> ...]`
 
 
 
@@ -12840,7 +12732,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast community-advertise [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast community-advertise [options] [<attribute> ...]`
 
 
 
@@ -12869,7 +12761,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast attribute-mod [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast attribute-mod [options] [<attribute> ...]`
 
 
 
@@ -12899,7 +12791,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise [options] [<attribute> ...]`
 
 
 
@@ -12930,7 +12822,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise advertise-map [options] <instance-name>
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise advertise-map [options] <instance-name>`
 
 
 
@@ -12949,7 +12841,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise exist-map [options] <instance-name>
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise exist-map [options] <instance-name>`
 
 
 
@@ -12968,7 +12860,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise non-exist-map [options] <instance-name>
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise non-exist-map [options] <instance-name>`
 
 
 
@@ -12986,7 +12878,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast weight [options] 0-65535
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast weight [options] 0-65535`
 
 
 
@@ -13004,7 +12896,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn [options] [<attribute> ...]`
 
 
 
@@ -13045,7 +12937,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn attribute-mod [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn attribute-mod [options] [<attribute> ...]`
 
 
 
@@ -13074,7 +12966,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath [options] [<attribute> ...]`
 
 
 
@@ -13103,7 +12995,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn [options] [<attribute> ...]`
 
 
 
@@ -13132,7 +13024,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn occurrences [options] 1-10
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn occurrences [options] 1-10`
 
 
 
@@ -13150,7 +13042,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy [options] [<attribute> ...]`
 
 
 
@@ -13177,7 +13069,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy inbound [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy inbound [options] [<attribute> ...]`
 
 
 
@@ -13202,7 +13094,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy outbound [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy outbound [options] [<attribute> ...]`
 
 
 
@@ -13230,7 +13122,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> password [options] none
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> password [options] none`
 
 
 
@@ -13248,7 +13140,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp peer-group <peer-group-id> description [options] none
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> description [options] none`
 
 
 
@@ -13266,7 +13158,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp route-export [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp route-export [options] [<attribute> ...]`
 
 
 
@@ -13290,7 +13182,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp route-export to-evpn [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp route-export to-evpn [options] [<attribute> ...]`
 
 
 
@@ -13314,7 +13206,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp route-export to-evpn route-target <rt-id> [options]
+`nv set vrf <vrf-id> router bgp route-export to-evpn route-target <rt-id> [options]`
 
 
 
@@ -13332,7 +13224,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp route-import [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp route-import [options] [<attribute> ...]`
 
 
 
@@ -13356,7 +13248,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp route-import from-evpn [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp route-import from-evpn [options] [<attribute> ...]`
 
 
 
@@ -13380,7 +13272,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp route-import from-evpn route-target <rt-id> [options]
+`nv set vrf <vrf-id> router bgp route-import from-evpn route-target <rt-id> [options]`
 
 
 
@@ -13399,7 +13291,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp timers [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp timers [options] [<attribute> ...]`
 
 
 
@@ -13433,7 +13325,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp timers connection-retry [options] 1-65535
+`nv set vrf <vrf-id> router bgp timers connection-retry [options] 1-65535`
 
 
 
@@ -13451,7 +13343,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp confederation [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp confederation [options] [<attribute> ...]`
 
 
 
@@ -13477,7 +13369,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp confederation member-as [options]
+`nv set vrf <vrf-id> router bgp confederation member-as [options]`
 
 
 
@@ -13494,7 +13386,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> [options] [<attribute> ...]`
 
 
 
@@ -13551,7 +13443,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd [options] [<attribute> ...]`
 
 
 
@@ -13582,7 +13474,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd detect-multiplier [options] 2-255
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd detect-multiplier [options] 2-255`
 
 
 
@@ -13600,7 +13492,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-rx-interval [options] 50-60000
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-rx-interval [options] 50-60000`
 
 
 
@@ -13618,7 +13510,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-tx-interval [options] 50-60000
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-tx-interval [options] 50-60000`
 
 
 
@@ -13636,7 +13528,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities [options] [<attribute> ...]`
 
 
 
@@ -13663,7 +13555,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> local-as [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> local-as [options] [<attribute> ...]`
 
 
 
@@ -13694,7 +13586,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> local-as asn [options] 1-4294967295
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> local-as asn [options] 1-4294967295`
 
 
 
@@ -13712,7 +13604,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> graceful-restart [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> graceful-restart [options] [<attribute> ...]`
 
 
 
@@ -13754,7 +13646,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security [options] [<attribute> ...]`
 
 
 
@@ -13781,7 +13673,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security hops [options] 1-254
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security hops [options] 1-254`
 
 
 
@@ -13799,7 +13691,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family [options] [<attribute> ...]`
 
 
 
@@ -13828,7 +13720,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast [options] [<attribute> ...]`
 
 
 
@@ -13879,7 +13771,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast attribute-mod [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast attribute-mod [options] [<attribute> ...]`
 
 
 
@@ -13908,7 +13800,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath [options] [<attribute> ...]`
 
 
 
@@ -13937,7 +13829,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn [options] [<attribute> ...]`
 
 
 
@@ -13966,7 +13858,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn occurrences [options] 1-10
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn occurrences [options] 1-10`
 
 
 
@@ -13984,7 +13876,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy [options] [<attribute> ...]`
 
 
 
@@ -14011,7 +13903,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound [options] [<attribute> ...]`
 
 
 
@@ -14040,7 +13932,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound aspath-list [options] none
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound aspath-list [options] none`
 
 
 
@@ -14058,7 +13950,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound [options] [<attribute> ...]`
 
 
 
@@ -14089,7 +13981,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound aspath-list [options] none
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound aspath-list [options] none`
 
 
 
@@ -14107,7 +13999,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits [options] [<attribute> ...]`
 
 
 
@@ -14132,7 +14024,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound [options] [<attribute> ...]`
 
 
 
@@ -14163,7 +14055,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound warning-threshold [options] 1-100
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound warning-threshold [options] 1-100`
 
 
 
@@ -14181,7 +14073,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound reestablish-wait [options] 1-4294967295
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound reestablish-wait [options] 1-4294967295`
 
 
 
@@ -14199,7 +14091,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast default-route-origination [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast default-route-origination [options] [<attribute> ...]`
 
 
 
@@ -14226,7 +14118,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast community-advertise [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast community-advertise [options] [<attribute> ...]`
 
 
 
@@ -14255,7 +14147,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise [options] [<attribute> ...]`
 
 
 
@@ -14286,7 +14178,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise advertise-map [options] <instance-name>
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise advertise-map [options] <instance-name>`
 
 
 
@@ -14304,7 +14196,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise exist-map [options] <instance-name>
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise exist-map [options] <instance-name>`
 
 
 
@@ -14322,7 +14214,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise non-exist-map [options] <instance-name>
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise non-exist-map [options] <instance-name>`
 
 
 
@@ -14340,7 +14232,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast weight [options] 0-65535
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast weight [options] 0-65535`
 
 
 
@@ -14358,7 +14250,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast [options] [<attribute> ...]`
 
 
 
@@ -14407,7 +14299,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast attribute-mod [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast attribute-mod [options] [<attribute> ...]`
 
 
 
@@ -14436,7 +14328,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath [options] [<attribute> ...]`
 
 
 
@@ -14465,7 +14357,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn [options] [<attribute> ...]`
 
 
 
@@ -14494,7 +14386,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn occurrences [options] 1-10
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn occurrences [options] 1-10`
 
 
 
@@ -14512,7 +14404,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits [options] [<attribute> ...]`
 
 
 
@@ -14537,7 +14429,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound [options] [<attribute> ...]`
 
 
 
@@ -14584,7 +14476,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound warning-threshold [options] 1-100
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound warning-threshold [options] 1-100`
 
 
 
@@ -14602,7 +14494,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound reestablish-wait [options] 1-4294967295
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound reestablish-wait [options] 1-4294967295`
 
 
 
@@ -14620,7 +14512,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast default-route-origination [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast default-route-origination [options] [<attribute> ...]`
 
 
 
@@ -14647,7 +14539,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy [options] [<attribute> ...]`
 
 
 
@@ -14674,7 +14566,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound [options] [<attribute> ...]`
 
 
 
@@ -14703,7 +14595,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound aspath-list [options] none
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound aspath-list [options] none`
 
 
 
@@ -14721,7 +14613,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound [options] [<attribute> ...]`
 
 
 
@@ -14752,7 +14644,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound aspath-list [options] none
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound aspath-list [options] none`
 
 
 
@@ -14770,7 +14662,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast community-advertise [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast community-advertise [options] [<attribute> ...]`
 
 
 
@@ -14800,7 +14692,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise [options] [<attribute> ...]`
 
 
 
@@ -14831,7 +14723,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise advertise-map [options] <instance-name>
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise advertise-map [options] <instance-name>`
 
 
 
@@ -14849,7 +14741,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise exist-map [options] <instance-name>
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise exist-map [options] <instance-name>`
 
 
 
@@ -14867,7 +14759,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise non-exist-map [options] <instance-name>
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise non-exist-map [options] <instance-name>`
 
 
 
@@ -14885,7 +14777,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast weight [options] 0-65535
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast weight [options] 0-65535`
 
 
 
@@ -14903,7 +14795,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn [options] [<attribute> ...]`
 
 
 
@@ -14944,7 +14836,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn attribute-mod [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn attribute-mod [options] [<attribute> ...]`
 
 
 
@@ -14973,7 +14865,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath [options] [<attribute> ...]`
 
 
 
@@ -15002,7 +14894,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn [options] [<attribute> ...]`
 
 
 
@@ -15031,7 +14923,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn occurrences [options] 1-10
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn occurrences [options] 1-10`
 
 
 
@@ -15049,7 +14941,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy [options] [<attribute> ...]`
 
 
 
@@ -15076,7 +14968,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy inbound [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy inbound [options] [<attribute> ...]`
 
 
 
@@ -15101,7 +14993,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy outbound [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy outbound [options] [<attribute> ...]`
 
 
 
@@ -15128,7 +15020,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> timers [options] [<attribute> ...]
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> timers [options] [<attribute> ...]`
 
 
 
@@ -15159,7 +15051,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> password [options] none
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> password [options] none`
 
 
 
@@ -15177,7 +15069,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp neighbor <neighbor-id> description [options] none
+`nv set vrf <vrf-id> router bgp neighbor <neighbor-id> description [options] none`
 
 
 
@@ -15195,7 +15087,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router bgp dynamic-peer-limit [options] 1-5000
+`nv set vrf <vrf-id> router bgp dynamic-peer-limit [options] 1-5000`
 
 
 
@@ -15212,7 +15104,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router static <route-id> [options] [<attribute> ...]
+`nv set vrf <vrf-id> router static <route-id> [options] [<attribute> ...]`
 
 
 
@@ -15243,7 +15135,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router static <route-id> distance <distance-id> [options] [<attribute> ...]
+`nv set vrf <vrf-id> router static <route-id> distance <distance-id> [options] [<attribute> ...]`
 
 
 
@@ -15271,7 +15163,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> [options] [<attribute> ...]
+`nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> [options] [<attribute> ...]`
 
 
 
@@ -15312,7 +15204,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> flag [options] onlink
+`nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> flag [options] onlink`
 
 
 
@@ -15332,7 +15224,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router static <route-id> via <via-id> [options] [<attribute> ...]
+`nv set vrf <vrf-id> router static <route-id> via <via-id> [options] [<attribute> ...]`
 
 
 
@@ -15364,7 +15256,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router static <route-id> via <via-id> flag [options] onlink
+`nv set vrf <vrf-id> router static <route-id> via <via-id> flag [options] onlink`
 
 
 
@@ -15383,7 +15275,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router pim [options] [<attribute> ...]
+`nv set vrf <vrf-id> router pim [options] [<attribute> ...]`
 
 
 
@@ -15415,7 +15307,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router pim timers [options] [<attribute> ...]
+`nv set vrf <vrf-id> router pim timers [options] [<attribute> ...]`
 
 
 
@@ -15441,7 +15333,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router pim ecmp [options] [<attribute> ...]
+`nv set vrf <vrf-id> router pim ecmp [options] [<attribute> ...]`
 
 
 
@@ -15467,7 +15359,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> [options] [<attribute> ...]
+`nv set vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> [options] [<attribute> ...]`
 
 
 
@@ -15494,7 +15386,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> member-address <mesh-member-id> [options]
+`nv set vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> member-address <mesh-member-id> [options]`
 
 
 
@@ -15513,7 +15405,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> source-address [options] <ipv4>
+`nv set vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> source-address [options] <ipv4>`
 
 
 
@@ -15531,7 +15423,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router pim address-family [options] [<attribute> ...]
+`nv set vrf <vrf-id> router pim address-family [options] [<attribute> ...]`
 
 
 
@@ -15555,7 +15447,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router pim address-family ipv4-unicast [options] [<attribute> ...]
+`nv set vrf <vrf-id> router pim address-family ipv4-unicast [options] [<attribute> ...]`
 
 
 
@@ -15587,7 +15479,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover [options] [<attribute> ...]
+`nv set vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover [options] [<attribute> ...]`
 
 
 
@@ -15613,7 +15505,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover prefix-list [options] <instance-name>
+`nv set vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover prefix-list [options] <instance-name>`
 
 
 
@@ -15630,7 +15522,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> [options] [<attribute> ...]
+`nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> [options] [<attribute> ...]`
 
 
 
@@ -15657,7 +15549,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range <group-range-id> [options]
+`nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range <group-range-id> [options]`
 
 
 
@@ -15676,7 +15568,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> prefix-list [options] <instance-name>
+`nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> prefix-list [options] <instance-name>`
 
 
 
@@ -15694,7 +15586,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf [options] [<attribute> ...]
+`nv set vrf <vrf-id> router ospf [options] [<attribute> ...]`
 
 
 
@@ -15738,7 +15630,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf area <area-id> [options] [<attribute> ...]
+`nv set vrf <vrf-id> router ospf area <area-id> [options] [<attribute> ...]`
 
 
 
@@ -15771,7 +15663,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf area <area-id> filter-list [options] [<attribute> ...]
+`nv set vrf <vrf-id> router ospf area <area-id> filter-list [options] [<attribute> ...]`
 
 
 
@@ -15798,7 +15690,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf area <area-id> range <range-id> [options] [<attribute> ...]
+`nv set vrf <vrf-id> router ospf area <area-id> range <range-id> [options] [<attribute> ...]`
 
 
 
@@ -15826,7 +15718,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf area <area-id> network <network-id> [options]
+`nv set vrf <vrf-id> router ospf area <area-id> network <network-id> [options]`
 
 
 
@@ -15845,7 +15737,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf area <area-id> default-lsa-cost [options] 0-16777215
+`nv set vrf <vrf-id> router ospf area <area-id> default-lsa-cost [options] 0-16777215`
 
 
 
@@ -15863,7 +15755,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf default-originate [options] [<attribute> ...]
+`nv set vrf <vrf-id> router ospf default-originate [options] [<attribute> ...]`
 
 
 
@@ -15895,7 +15787,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf default-originate metric-type [options] 1-2
+`nv set vrf <vrf-id> router ospf default-originate metric-type [options] 1-2`
 
 
 
@@ -15912,7 +15804,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf distance [options] [<attribute> ...]
+`nv set vrf <vrf-id> router ospf distance [options] [<attribute> ...]`
 
 
 
@@ -15940,7 +15832,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf max-metric [options] [<attribute> ...]
+`nv set vrf <vrf-id> router ospf max-metric [options] [<attribute> ...]`
 
 
 
@@ -15968,7 +15860,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf log [options] [<attribute> ...]
+`nv set vrf <vrf-id> router ospf log [options] [<attribute> ...]`
 
 
 
@@ -15992,7 +15884,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf redistribute [options] [<attribute> ...]
+`nv set vrf <vrf-id> router ospf redistribute [options] [<attribute> ...]`
 
 
 
@@ -16022,7 +15914,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf redistribute static [options] [<attribute> ...]
+`nv set vrf <vrf-id> router ospf redistribute static [options] [<attribute> ...]`
 
 
 
@@ -16052,7 +15944,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf redistribute static metric-type [options] 1-2
+`nv set vrf <vrf-id> router ospf redistribute static metric-type [options] 1-2`
 
 
 
@@ -16069,7 +15961,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf redistribute connected [options] [<attribute> ...]
+`nv set vrf <vrf-id> router ospf redistribute connected [options] [<attribute> ...]`
 
 
 
@@ -16099,7 +15991,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf redistribute connected metric-type [options] 1-2
+`nv set vrf <vrf-id> router ospf redistribute connected metric-type [options] 1-2`
 
 
 
@@ -16116,8 +16008,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf redistribute kernel [options] [<attribute> ...]
-
+`nv set vrf <vrf-id> router ospf redistribute kernel [options] [<attribute> ...]`
 
 
   Source route type.
@@ -16146,7 +16037,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf redistribute kernel metric-type [options] 1-2
+`nv set vrf <vrf-id> router ospf redistribute kernel metric-type [options] 1-2`
 
 
 
@@ -16163,7 +16054,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf redistribute bgp [options] [<attribute> ...]
+`nv set vrf <vrf-id> router ospf redistribute bgp [options] [<attribute> ...]`
 
 
 
@@ -16193,7 +16084,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf redistribute bgp metric-type [options] 1-2
+`nv set vrf <vrf-id> router ospf redistribute bgp metric-type [options] 1-2`
 
 
 
@@ -16210,7 +16101,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf timers [options] [<attribute> ...]
+`nv set vrf <vrf-id> router ospf timers [options] [<attribute> ...]`
 
 
 
@@ -16239,7 +16130,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf timers lsa [options] [<attribute> ...]
+`nv set vrf <vrf-id> router ospf timers lsa [options] [<attribute> ...]`
 
 
 
@@ -16265,7 +16156,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf timers spf [options] [<attribute> ...]
+`nv set vrf <vrf-id> router ospf timers spf [options] [<attribute> ...]`
 
 
 
@@ -16293,7 +16184,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> router ospf reference-bandwidth [options] 1-4294967
+`nv set vrf <vrf-id> router ospf reference-bandwidth [options] 1-4294967`
 
 
 
@@ -16310,7 +16201,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> ptp [options] [<attribute> ...]
+`nv set vrf <vrf-id> ptp [options] [<attribute> ...]`
 
 
 
@@ -16334,7 +16225,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set vrf <vrf-id> table [options] auto
+`nv set vrf <vrf-id> table [options] auto`
 
 
 
@@ -16351,7 +16242,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set nve [options] [<attribute> ...]
+`nv set nve [options] [<attribute> ...]`
 
 
 
@@ -16368,7 +16259,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set nve vxlan [options] [<attribute> ...]
+`nv set nve vxlan [options] [<attribute> ...]`
 
 
 
@@ -16399,7 +16290,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set nve vxlan mlag [options] [<attribute> ...]
+`nv set nve vxlan mlag [options] [<attribute> ...]`
 
 
 
@@ -16416,7 +16307,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set nve vxlan source [options] [<attribute> ...]
+`nv set nve vxlan source [options] [<attribute> ...]`
 
 
 
@@ -16433,7 +16324,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set nve vxlan flooding [options] [<attribute> ...]
+`nv set nve vxlan flooding [options] [<attribute> ...]`
 
 
 
@@ -16454,7 +16345,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set nve vxlan flooding head-end-replication <hrep-id> [options]
+`nv set nve vxlan flooding head-end-replication <hrep-id> [options]`
 
 
 
@@ -16471,7 +16362,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set nve vxlan flooding multicast-group [options] <ipv4-multicast>
+`nv set nve vxlan flooding multicast-group [options] <ipv4-multicast>`
 
 
 
@@ -16481,7 +16372,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set nve vxlan port [options] 1024-65535
+`nv set nve vxlan port [options] 1024-65535`
 
 
 
@@ -16491,7 +16382,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set nve vxlan mtu [options] 552-9216
+`nv set nve vxlan mtu [options] 552-9216
 
 
 
@@ -16501,7 +16392,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> [options] [<attribute> ...]
+`nv set acl <acl-id> [options] [<attribute> ...]`
 
 
 
@@ -16527,7 +16418,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> [options] [<attribute> ...]
+`nv set acl <acl-id> rule <rule-id> [options] [<attribute> ...]`
 
 
 
@@ -16554,7 +16445,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> match [options] [<attribute> ...]
+`nv set acl <acl-id> rule <rule-id> match [options] [<attribute> ...]`
 
 
 
@@ -16581,7 +16472,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> match ip [options] [<attribute> ...]
+`nv set acl <acl-id> rule <rule-id> match ip [options] [<attribute> ...]`
 
 
 
@@ -16626,7 +16517,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> match ip source-port <ip-port-id> [options]
+`nv set acl <acl-id> rule <rule-id> match ip source-port <ip-port-id> [options]`
 
 
 
@@ -16645,7 +16536,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> match ip dest-port <ip-port-id> [options]
+`nv set acl <acl-id> rule <rule-id> match ip dest-port <ip-port-id> [options]`
 
 
 
@@ -16664,7 +16555,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> match ip fragment [options]
+`nv set acl <acl-id> rule <rule-id> match ip fragment [options]`
 
 
 
@@ -16682,7 +16573,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> match ip ecn [options] [<attribute> ...]
+`nv set acl <acl-id> rule <rule-id> match ip ecn [options] [<attribute> ...]`
 
 
 
@@ -16709,7 +16600,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> match ip ecn ip-ect [options] 0-3
+`nv set acl <acl-id> rule <rule-id> match ip ecn ip-ect [options] 0-3`
 
 
 
@@ -16727,7 +16618,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> match ip tcp [options] [<attribute> ...]
+`nv set acl <acl-id> rule <rule-id> match ip tcp [options] [<attribute> ...]`
 
 
 
@@ -16756,7 +16647,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> match ip tcp state [options] established
+`nv set acl <acl-id> rule <rule-id> match ip tcp state [options] established`
 
 
 
@@ -16774,7 +16665,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> match mac [options] [<attribute> ...]
+`nv set acl <acl-id> rule <rule-id> match mac [options] [<attribute> ...]`
 
 
 
@@ -16810,7 +16701,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> match mac source-mac-mask [options] <mac>
+`nv set acl <acl-id> rule <rule-id> match mac source-mac-mask [options] <mac>`
 
 
 
@@ -16828,7 +16719,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> match mac dest-mac-mask [options] <mac>
+`nv set acl <acl-id> rule <rule-id> match mac dest-mac-mask [options] <mac>`
 
 
 
@@ -16846,7 +16737,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> match mac vlan [options] 1-4094
+`nv set acl <acl-id> rule <rule-id> match mac vlan [options] 1-4094`
 
 
 
@@ -16864,7 +16755,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> action [options] [<attribute> ...]
+`nv set acl <acl-id> rule <rule-id> action [options] [<attribute> ...]`
 
 
 
@@ -16902,7 +16793,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> action permit [options]
+`nv set acl <acl-id> rule <rule-id> action permit [options]`
 
 
 
@@ -16921,7 +16812,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> action deny [options]
+`nv set acl <acl-id> rule <rule-id> action deny [options]`
 
 
 
@@ -16939,7 +16830,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> action log [options]
+`nv set acl <acl-id> rule <rule-id> action log [options]`
 
 
 
@@ -16957,7 +16848,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> action set [options] [<attribute> ...]
+`nv set acl <acl-id> rule <rule-id> action set [options] [<attribute> ...]`
 
 
 
@@ -16986,7 +16877,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> action set class [options] 0-7
+`nv set acl <acl-id> rule <rule-id> action set class [options] 0-7`
 
 
 
@@ -17004,7 +16895,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> action set cos [options] 0-7
+`nv set acl <acl-id> rule <rule-id> action set cos [options] 0-7`
 
 
 
@@ -17023,7 +16914,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> action erspan [options] [<attribute> ...]
+`nv set acl <acl-id> rule <rule-id> action erspan [options] [<attribute> ...]`
 
 
 
@@ -17052,7 +16943,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> action erspan ttl [options] 1-255
+`nv set acl <acl-id> rule <rule-id> action erspan ttl [options] 1-2`55`
 
 
 
@@ -17070,7 +16961,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> action police [options] [<attribute> ...]
+`nv set acl <acl-id> rule <rule-id> action police [options] [<attribute> ...]`
 
 
 
@@ -17100,7 +16991,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> action police burst [options] 1-2147483647
+`nv set acl <acl-id> rule <rule-id> action police burst [options] 1-2`147483647`
 
 
 
@@ -17118,7 +17009,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> action police rate [options] 1-2147483647
+`nv set acl <acl-id> rule <rule-id> action police rate [options] 1-2`147483647`
 
 
 
@@ -17136,7 +17027,7 @@ Introduced in Cumulus Linux 5.0.0
 
 **Usage**
 
-  nv set acl <acl-id> rule <rule-id> action span [options] <interface-name>
+`nv set acl <acl-id> rule <rule-id> action span [options] <interface-name>`
 
 
 

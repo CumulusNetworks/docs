@@ -33,6 +33,12 @@ Fixed: 8.1901.0-1+deb10u2</td>
 <td></td>
 </tr>
 <tr>
+<td>3089165</td>
+<td>A slow memory leak might occur in {{switchd}}} if the route fails to install in hardware when hardware resources are exhausted.</td>
+<td>4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3089148</td>
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
 <td>4.4.3, 5.1.0</td>
@@ -352,7 +358,7 @@ Fixed:</td>
 <tr>
 <td>2961216</td>
 <td>When there is a peer link failure followed by a power failure or a crash on the primary switch,  the MLAG secondary switch takes up to 24 seconds to change roles to the Primary.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.2-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -376,7 +382,7 @@ Fixed:</td>
 <tr>
 <td>2947679</td>
 <td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
+<td>3.7.15-3.7.16, 4.4.2-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -484,13 +490,7 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <tr>
 <td>2896672</td>
 <td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
-</tr>
-<tr>
-<td>2879645</td>
-<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
+<td>4.3.0-4.4.3</td>
 <td>3.7.16</td>
 </tr>
 <tr>
@@ -2122,6 +2122,12 @@ Fixed: 8.1901.0-1+deb10u2</td>
 <td></td>
 </tr>
 <tr>
+<td>3089165</td>
+<td>A slow memory leak might occur in {{switchd}}} if the route fails to install in hardware when hardware resources are exhausted.</td>
+<td>4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3085280</td>
 <td>CVE-2022-26691: in cups, a logic error in the validation of the secret key used in the "local" authorisation mode of the CUPS printing
 system may result in privilege escalation.
@@ -2413,7 +2419,7 @@ Fixed: 2.2.6-2+deb10u2</td>
 <tr>
 <td>2961216</td>
 <td>When there is a peer link failure followed by a power failure or a crash on the primary switch,  the MLAG secondary switch takes up to 24 seconds to change roles to the Primary.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.2-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2473,7 +2479,7 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <tr>
 <td>2947679</td>
 <td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
+<td>3.7.15-3.7.16, 4.4.2-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2589,14 +2595,8 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <tr>
 <td>2896672</td>
 <td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
+<td>4.3.0-4.4.3</td>
 <td></td>
-</tr>
-<tr>
-<td>2879645</td>
-<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
 </tr>
 <tr>
 <td>2875338</td>
@@ -4451,6 +4451,12 @@ Fixed: 8.1901.0-1+deb10u2</td>
 <td></td>
 </tr>
 <tr>
+<td>3089165</td>
+<td>A slow memory leak might occur in {{switchd}}} if the route fails to install in hardware when hardware resources are exhausted.</td>
+<td>4.2.1-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3085280</td>
 <td>CVE-2022-26691: in cups, a logic error in the validation of the secret key used in the "local" authorisation mode of the CUPS printing
 system may result in privilege escalation.
@@ -4752,12 +4758,6 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td></td>
 </tr>
 <tr>
-<td>2947679</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2943443</td>
 <td>Cumulus Linux lets you add more than one VXLAN interface to same VLAN on the same bridge. This is an invalid configuration as certain Cumulus Linux components, such as {{switchd}}, expect a single VNI for a given bridge or VLAN.</td>
 <td>3.7.15, 4.2.1-5.0.1</td>
@@ -4870,7 +4870,7 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <tr>
 <td>2896672</td>
 <td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
+<td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4900,12 +4900,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>TACACS+ and RADIUS package installation from the CumulusLinux-4.4-latest distribution on apt.cumulusnetworks.com fails because package metadata in the preinstalled {{cumulus-local-apt-archive}} package is incorrect.  The SHA512 checksum causes a hash sum mismatch.</td>
 <td>4.4.0-4.4.1</td>
 <td>4.4.2-4.4.3</td>
-</tr>
-<tr>
-<td>2879645</td>
-<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
 </tr>
 <tr>
 <td>2877796</td>

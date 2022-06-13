@@ -147,13 +147,6 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td></td>
 </tr>
 <tr>
-<td>3057106</td>
-<td>Under certain conditions, the {{switchd}} process might have a slow memory leak.
-</td>
-<td>5.0.1-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3054869</td>
 <td>When you run NVUE commands as part of ZTP scripts, the commands fail with many  errors.
 To work around this issue, before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root). Also, you must export the {{HOME}} variable so it is available globally for NVUE to use.
@@ -365,12 +358,6 @@ Fixed: 4.19.194-3</td>
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>2961216</td>
-<td>When there is a peer link failure followed by a power failure or a crash on the primary switch,  the MLAG secondary switch takes up to 24 seconds to change roles to the Primary.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2959550</td>
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-4.4.2, 5.0.0-5.1.0</td>
@@ -389,12 +376,6 @@ Fixed: 4.19.194-3</td>
 <td></td>
 </tr>
 <tr>
-<td>2947679</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2939231</td>
 <td>If you use NVUE to configure selective route leaking to exclude certain prefixes, the route map fails to apply when you run the {{nv config apply}} command.</td>
 <td>5.0.0-5.1.0</td>
@@ -403,12 +384,6 @@ Fixed: 4.19.194-3</td>
 <tr>
 <td>2923737</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
-</tr>
-<tr>
-<td>2896672</td>
-<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
 </tr>
@@ -433,12 +408,6 @@ Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4.0.0-4.4.1, 5.0.0-5.1.0</td>
 <td>4.4.2-4.4.3</td>
-</tr>
-<tr>
-<td>2879645</td>
-<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
 </tr>
 <tr>
 <td>2875338</td>

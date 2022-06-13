@@ -6,26 +6,15 @@ toc: 4
 draft: true
 ---
 
-The Cumulus Linux license has a simple format. Managing your license keys is very easy, as you can use the same license file for all your licensed Cumulus Linux switches.
+Cumulus Linux uses a generic license. You use the same license file for all your licensed Cumulus Linux switches.
 
-In addition, there is no need to replace the license file when you renew or purchase additional licenses.
+To retrieve the license:
+1. Log in to the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.
+2. From the **Downloads** tab, click **Switches and Gateways**.
+3. Under **Switch Software**, click **All downloads** next to **Cumulus Linux for Mellanox Switches**.
+4. Select the current version and the target version, then click the **Show Downloads Path** button.
+5. Click on the download icon for the Generic Cumulus License to display the generic license.
 
-From a technical standpoint, the license changed as follows:
+To verify that you installed the license on the switch, run the `cl-license` command.
 
-- Increased messaging volume, which displays on screen when you log into the switch; Cumulus Linux writes the messages to `syslog`.
-- New messaging when `switchd` detects a missing or invalid license.  
-
-The license format looks like this:
-
-    user@company.com|thequickbrownfoxjumpsoverthelazydog312
-
-You manage your licenses in the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.
-
-To verify that you installed your license, run the `cl-license` command.
-
-    cumulus@switch:~$ cl-license
-    user@example.com|$ampleL1cen$et3xt
-
-For more information on the use of `cl-license`, refer to the [Quick Start Guide]({{<ref "/cumulus-linux-43/Quick-Start-Guide" >}}).
-
-To check the version of Cumulus Linux you are running, {{<link url="Verify-Software-and-Hardware-Version-Information" text="read this article">}}.
+To check the Cumulus Linux version on the switch, {{<link url="Verify-Software-and-Hardware-Version-Information" text="read this article">}}.

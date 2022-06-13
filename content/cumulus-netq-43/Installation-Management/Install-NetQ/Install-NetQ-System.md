@@ -1,12 +1,9 @@
 ---
 title: Install the NetQ System
 author: NVIDIA
-weight: 190
+weight: 200
 toc: 3
 ---
-{{<notice note>}}
-The installation process now uses a single installer tarball. If you are familiar with installing previous versions of NetQ, review the instructions for your deployment type.
-{{</notice>}}
 
 The following table lists the various ways to install NetQ. If you are unsure which option is best for your network, refer to the {{<link title="Pre-installation Guide" text="Pre-installation Guide">}}.
 

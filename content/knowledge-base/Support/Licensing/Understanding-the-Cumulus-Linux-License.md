@@ -3,9 +3,7 @@ title: Understanding the Cumulus Linux License
 author: Cumulus Networks
 weight: 611
 toc: 4
-draft: true
 ---
-
 Cumulus Linux uses a generic license. You use the same license file for all your licensed Cumulus Linux switches.
 
 To retrieve the license:

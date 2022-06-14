@@ -176,12 +176,6 @@ Fixed:</td>
 <td>3.7.16, 5.1.0</td>
 </tr>
 <tr>
-<td>2993773</td>
-<td>When a VNI goes into a protodown state, MLAG updates the VTEP IP address, which results in {{switchd}} changing the tunnel SIP in hardware.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
@@ -272,22 +266,10 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>3.7.16, 5.1.0</td>
 </tr>
 <tr>
-<td>2940063</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.4.3</td>
-<td>3.7.16, 5.0.0-5.1.0</td>
-</tr>
-<tr>
 <td>2940051</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.3</td>
 <td>3.7.16, 5.0.0-5.1.0</td>
-</tr>
-<tr>
-<td>2935122</td>
-<td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
-<td>4.3.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2935121</td>
@@ -319,12 +301,6 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>3.7.15-5.0.1</td>
 <td>5.1.0</td>
-</tr>
-<tr>
-<td>2896672</td>
-<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>4.3.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2891257</td>
@@ -367,8 +343,8 @@ To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <td>2875296</td>
 <td>On the Mellanox Spectrum-2 switches, after running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
 To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
-<td>4.2.1-4.4.3</td>
-<td></td>
+<td>4.2.1-4.3.0</td>
+<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2875279</td>
@@ -383,16 +359,10 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 </tr>
 <tr>
-<td>2873185</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when you add new VLANS or bridges. </td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2866097</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.16, 4.1.1-4.4.3</td>
-<td></td>
+<td>3.7.12-3.7.15, 4.1.1-4.4.3</td>
+<td>3.7.16, 5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>2866084</td>
@@ -424,12 +394,6 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 <td>2866080</td>
 <td>On the Maverick S4148T switch with MLAG, Cumulus Linux drops LACP, ARP, LLDP and BGP traffic.</td>
 <td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2862214</td>
-<td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -475,7 +439,7 @@ thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 <td>2854784</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
 <td>4.3.0-4.4.1</td>
-<td>4.4.2-4.4.3</td>
+<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>2853630</td>
@@ -525,12 +489,6 @@ Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>2840819</td>
 <td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
-</tr>
-<tr>
-<td>2839140</td>
-<td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
-<td>4.3.0-4.4.1</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 </tr>
 <tr>
@@ -1027,13 +985,6 @@ Fixed: 2.40.1-6+deb10u1</td>
 <td>4.4.0-4.4.3</td>
 </tr>
 <tr>
-<td>2653493</td>
-<td>After running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
-To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
-<td>4.2.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2653400</td>
 <td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
 <td>3.7.10-4.3.0</td>
@@ -1072,13 +1023,6 @@ CVE-2021-25216: the SPNEGO implementation used by BIND is prone to a buffer over
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u4
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u5</td>
 <td>4.0.0-4.3.0</td>
-<td>4.4.0-4.4.3</td>
-</tr>
-<tr>
-<td>2643822</td>
-<td>On the Mellanox Spectrum-2 switches, after running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
-To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
-<td>4.2.1-4.3.0</td>
 <td>4.4.0-4.4.3</td>
 </tr>
 <tr>

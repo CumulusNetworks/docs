@@ -184,12 +184,6 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>3.7.16, 5.1.0</td>
 </tr>
 <tr>
-<td>2940063</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.4.3</td>
-<td>3.7.16, 5.0.0-5.1.0</td>
-</tr>
-<tr>
 <td>2902013</td>
 <td>The NCLU commit  command adds a five second delay.</td>
 <td>4.2.1-4.4.3</td>
@@ -236,8 +230,8 @@ Fixed: 3.42.1-1+deb10u4</td>
 <td>2875296</td>
 <td>On the Mellanox Spectrum-2 switches, after running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
 To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
-<td>4.2.1-4.4.3</td>
-<td></td>
+<td>4.2.1-4.3.0</td>
+<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2875279</td>
@@ -254,8 +248,8 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <tr>
 <td>2866097</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.16, 4.1.1-4.4.3</td>
-<td></td>
+<td>3.7.12-3.7.15, 4.1.1-4.4.3</td>
+<td>3.7.16, 5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>2859177</td>
@@ -614,13 +608,6 @@ Fixed: 2.40.1-6+deb10u1</td>
 <td>4.4.0-4.4.3</td>
 </tr>
 <tr>
-<td>2653493</td>
-<td>After running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
-To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
-<td>4.2.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2653400</td>
 <td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
 <td>3.7.10-4.3.0</td>
@@ -647,13 +634,6 @@ CVE-2021-25216: the SPNEGO implementation used by BIND is prone to a buffer over
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u4
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u5</td>
 <td>4.0.0-4.3.0</td>
-<td>4.4.0-4.4.3</td>
-</tr>
-<tr>
-<td>2643822</td>
-<td>On the Mellanox Spectrum-2 switches, after running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
-To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
-<td>4.2.1-4.3.0</td>
 <td>4.4.0-4.4.3</td>
 </tr>
 <tr>
@@ -3160,12 +3140,6 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>4.4.3, 5.1.0</td>
 </tr>
 <tr>
-<td>2940063</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.4.3</td>
-<td>3.7.16, 5.0.0-5.1.0</td>
-</tr>
-<tr>
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
@@ -3205,8 +3179,8 @@ Fixed: 3.42.1-1+deb10u4</td>
 <tr>
 <td>2866097</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.16, 4.1.1-4.4.3</td>
-<td></td>
+<td>3.7.12-3.7.15, 4.1.1-4.4.3</td>
+<td>3.7.16, 5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>2859177</td>

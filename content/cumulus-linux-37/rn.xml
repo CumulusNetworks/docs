@@ -153,12 +153,6 @@ Fixed: 14.0.2-3+deb8u4</td>
 <td></td>
 </tr>
 <tr>
-<td>2993773</td>
-<td>When a VNI goes into a protodown state, MLAG updates the VTEP IP address, which results in {{switchd}} changing the tunnel SIP in hardware.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2972540</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>3.7.15-3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0</td>
@@ -228,12 +222,6 @@ Fixed: 2014.2.15AR.2-1+deb8u5</td>
 <td></td>
 </tr>
 <tr>
-<td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-4.4.3</td>
-<td>5.0.0-5.1.0</td>
-</tr>
-<tr>
 <td>2866084</td>
 <td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
 To work around this issue:
@@ -257,12 +245,6 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 
 3. Reboot the affected switches.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2862214</td>
-<td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2851,12 +2833,6 @@ Fixed:</td>
 <td>3.7.16, 5.1.0</td>
 </tr>
 <tr>
-<td>2993773</td>
-<td>When a VNI goes into a protodown state, MLAG updates the VTEP IP address, which results in {{switchd}} changing the tunnel SIP in hardware.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
@@ -3180,22 +3156,10 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>2873185</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when you add new VLANS or bridges. </td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2866111</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.16, 4.1.1-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2866096</td>
@@ -3236,12 +3200,6 @@ Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2862214</td>
-<td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2861951</td>
@@ -6232,22 +6190,10 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>2873185</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when you add new VLANS or bridges. </td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2866111</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.16, 4.1.1-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2866096</td>
@@ -6288,12 +6234,6 @@ Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2862214</td>
-<td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2861951</td>
@@ -9160,12 +9100,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.16, 4.1.1-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2866096</td>
@@ -12624,12 +12558,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.16, 4.1.1-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2866096</td>
@@ -16294,12 +16222,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.16, 4.1.1-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2866096</td>
